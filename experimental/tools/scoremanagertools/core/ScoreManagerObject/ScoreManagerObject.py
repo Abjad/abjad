@@ -84,10 +84,6 @@ class ScoreManagerObject(AbjadObject):
                 for line in lines:
                     print line
 
-    # TODO: eventually remove after all configuration info is encapsulated somewhere
-    def dot_join(self, expr):
-        return '.'.join(expr)
-
     # TODO: migrate to [menuing.]IO class
     def handle_raw_input(self, prompt, include_chevron=True, include_newline=True, prompt_character='>',
         capitalize_prompt=True):

@@ -84,9 +84,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.display
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.dot_join
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.handle_main_menu_result
    :noindex:
 

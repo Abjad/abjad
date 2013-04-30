@@ -181,7 +181,7 @@ class ScoreManagerConfiguration(Configuration):
 
         Return string.
         '''
-        return self.dot_join(['scoremanagertools', 'editors'])
+        return '.'.join(['scoremanagertools', 'editors'])
 
     @property
     def handler_tools_directory_path(self):
@@ -247,7 +247,7 @@ class ScoreManagerConfiguration(Configuration):
 
         Return string.
         '''
-        return self.dot_join([self.score_manager_tools_package_name, 'makers'])
+        return '.'.join([self.score_manager_tools_package_name, 'makers'])
 
     @property
     def score_external_segments_directory_path(self):
@@ -493,7 +493,7 @@ class ScoreManagerConfiguration(Configuration):
 
         Return string.
         '''
-        return self.dot_join(['scoremanagertools', 'specifiers'])
+        return '.'.join(['scoremanagertools', 'specifiers'])
 
     @property
     def storage_format(self):
@@ -530,7 +530,7 @@ class ScoreManagerConfiguration(Configuration):
 
         Return string.
         '''
-        return self.dot_join([self.score_manager_tools_package_name, 'stylesheets'])
+        return '.'.join([self.score_manager_tools_package_name, 'stylesheets'])
 
     @property
     def user_specific_makers_directory_path(self):
@@ -557,8 +557,3 @@ class ScoreManagerConfiguration(Configuration):
         Return string.
         '''
         return self._settings['user_specific_score_manager_makers_package_path']
-
-    ### PUBLIC METHODS ###
-
-    def dot_join(self, expr):
-        return '.'.join(expr)

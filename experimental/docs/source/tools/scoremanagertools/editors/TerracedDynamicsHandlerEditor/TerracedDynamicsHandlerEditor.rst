@@ -84,9 +84,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.TerracedDynamicsHandlerEditor.TerracedDynamicsHandlerEditor.TerracedDynamicsHandlerEditor.display
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.TerracedDynamicsHandlerEditor.TerracedDynamicsHandlerEditor.TerracedDynamicsHandlerEditor.dot_join
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.TerracedDynamicsHandlerEditor.TerracedDynamicsHandlerEditor.TerracedDynamicsHandlerEditor.handle_main_menu_result
    :noindex:
 

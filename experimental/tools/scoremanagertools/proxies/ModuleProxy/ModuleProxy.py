@@ -46,7 +46,7 @@ class ModuleProxy(ParsableFileProxy, AssetProxy, ScoreManagerObject):
     @property
     def grandparent_package_path(self):
         if self.module_path:
-            return self.dot_join(self.module_path.split('.')[:-2])
+            return '.'.join(self.module_path.split('.')[:-2])
 
     @property
     def human_readable_name(self):
@@ -75,7 +75,7 @@ class ModuleProxy(ParsableFileProxy, AssetProxy, ScoreManagerObject):
     @property
     def parent_package_path(self):
         if self.module_path:
-            return self.dot_join(self.module_path.split('.')[:-1])
+            return '.'.join(self.module_path.split('.')[:-1])
 
     ### PUBLIC METHODS ###
 

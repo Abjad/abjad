@@ -86,7 +86,7 @@ class Session(ScoreManagerObject):
     @property
     def current_segments_package_path(self):
         if self.is_in_score:
-            return self.dot_join([
+            return '.'.join([
                 self.current_score_package_name,
                 self.configuration._score_internal_segments_package_path_infix])
         else:
@@ -100,7 +100,7 @@ class Session(ScoreManagerObject):
     @property
     def current_materials_package_path(self):
         if self.is_in_score:
-            return self.dot_join([
+            return '.'.join([
                 self.current_score_package_name,
                 self.configuration._score_internal_materials_package_path_infix])
         else:
@@ -129,7 +129,7 @@ class Session(ScoreManagerObject):
     @property
     def current_specifiers_package_path(self):
         if self.is_in_score:
-            return self.dot_join([
+            return '.'.join([
                 self.current_score_package_name,
                 self.configuration._score_internal_specifiers_package_path_infix])
         else:

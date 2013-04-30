@@ -36,9 +36,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.display
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.dot_join
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.handle_raw_input
    :noindex:
 

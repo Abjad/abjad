@@ -351,9 +351,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.makers.OctaveTranspositionMappingInventoryMaterialPackageMaker.OctaveTranspositionMappingInventoryMaterialPackageMaker.OctaveTranspositionMappingInventoryMaterialPackageMaker.display
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.makers.OctaveTranspositionMappingInventoryMaterialPackageMaker.OctaveTranspositionMappingInventoryMaterialPackageMaker.OctaveTranspositionMappingInventoryMaterialPackageMaker.dot_join
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.makers.OctaveTranspositionMappingInventoryMaterialPackageMaker.OctaveTranspositionMappingInventoryMaterialPackageMaker.OctaveTranspositionMappingInventoryMaterialPackageMaker.edit_output_material_interactively
    :noindex:
 

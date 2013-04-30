@@ -81,9 +81,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.EtcDirectoryProxy.EtcDirectoryProxy.EtcDirectoryProxy.display
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.EtcDirectoryProxy.EtcDirectoryProxy.EtcDirectoryProxy.dot_join
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.EtcDirectoryProxy.EtcDirectoryProxy.EtcDirectoryProxy.fix
    :noindex:
 

@@ -182,7 +182,7 @@ class MaterialPackageProxy(PackageProxy):
     @property
     def illustration_builder_module_path(self):
         if self.should_have_illustration_builder_module:
-            return self.dot_join([self.package_path, 'illustration_builder'])
+            return '.'.join([self.package_path, 'illustration_builder'])
 
     @property
     def illustration_builder_module_proxy(self):
@@ -265,7 +265,7 @@ class MaterialPackageProxy(PackageProxy):
     @property
     def material_definition_module_path(self):
         if self.should_have_material_definition_module:
-            return self.dot_join([self.package_path, 'material_definition'])
+            return '.'.join([self.package_path, 'material_definition'])
 
     @property
     def material_definition_module_proxy(self):
@@ -416,7 +416,7 @@ class MaterialPackageProxy(PackageProxy):
     @property
     def user_input_module_path(self):
         if self.should_have_user_input_module:
-            return self.dot_join([self.package_path, 'user_input'])
+            return '.'.join([self.package_path, 'user_input'])
 
     @property
     def user_input_module_proxy(self):

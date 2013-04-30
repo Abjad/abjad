@@ -84,9 +84,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.MarkupEditor.MarkupEditor.MarkupEditor.display
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.MarkupEditor.MarkupEditor.MarkupEditor.dot_join
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.MarkupEditor.MarkupEditor.MarkupEditor.handle_main_menu_result
    :noindex:
 

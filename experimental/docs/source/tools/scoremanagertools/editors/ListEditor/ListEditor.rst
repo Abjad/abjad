@@ -93,9 +93,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.display
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.dot_join
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.edit_item_interactively
    :noindex:
 

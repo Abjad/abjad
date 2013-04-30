@@ -59,7 +59,7 @@ class ScorePackageProxy(PackageProxy):
 
     @property
     def segments_package_path(self):
-        return self.dot_join([self.package_path, 'mus', 'chunks'])
+        return '.'.join([self.package_path, 'mus', 'chunks'])
 
     @property
     def composer(self):
@@ -115,7 +115,7 @@ class ScorePackageProxy(PackageProxy):
 
     @property
     def materials_package_path(self):
-        return self.dot_join([self.package_path, 'mus', 'materials'])
+        return '.'.join([self.package_path, 'mus', 'materials'])
 
     @property
     def mus_proxy(self):

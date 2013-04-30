@@ -162,9 +162,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.display
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.dot_join
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.format_breadcrumb_stack
    :noindex:
 

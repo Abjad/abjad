@@ -84,9 +84,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.display
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.dot_join
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.handle_main_menu_result
    :noindex:
 

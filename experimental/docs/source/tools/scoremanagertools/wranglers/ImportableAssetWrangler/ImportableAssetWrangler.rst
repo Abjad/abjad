@@ -90,9 +90,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.display
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.dot_join
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.fix_visible_assets
    :noindex:
 

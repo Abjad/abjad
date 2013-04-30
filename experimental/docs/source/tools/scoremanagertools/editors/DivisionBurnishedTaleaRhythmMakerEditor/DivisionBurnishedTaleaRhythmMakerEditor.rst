@@ -84,9 +84,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.display
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.dot_join
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.handle_main_menu_result
    :noindex:
 

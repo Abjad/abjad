@@ -117,9 +117,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.clear
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.dot_join
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.get
    :noindex:
 

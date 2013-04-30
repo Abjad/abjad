@@ -74,7 +74,7 @@ class MaterialPackageWrangler(PackageWrangler):
             if self.session.backtrack():
                 return
             material_package_name = stringtools.string_to_accent_free_underscored_delimited_lowercase(package_name)
-            material_package_path = self.dot_join([
+            material_package_path = '.'.join([
                 self.current_asset_container_package_path, material_package_name])
             if filesystemtools.package_exists(material_package_path):
                 line = 'Material package {!r} already exists.'.format(material_package_path)

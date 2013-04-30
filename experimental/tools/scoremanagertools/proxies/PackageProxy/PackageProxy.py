@@ -102,7 +102,7 @@ class PackageProxy(DirectoryProxy, AssetProxy, ScoreManagerObject):
     @property
     def parent_package_path(self):
         if self.package_path is not None:
-            result = self.dot_join(self.package_path.split('.')[:-1])
+            result = '.'.join(self.package_path.split('.')[:-1])
             if result:
                 return result
 

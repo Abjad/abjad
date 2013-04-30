@@ -48,9 +48,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuObject.MenuObject.MenuObject.display
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuObject.MenuObject.MenuObject.dot_join
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuObject.MenuObject.MenuObject.edit_client_source_file
    :noindex:
 

@@ -93,9 +93,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.display
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.dot_join
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.edit_item_interactively
    :noindex:
 

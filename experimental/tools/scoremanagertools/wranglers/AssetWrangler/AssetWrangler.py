@@ -84,7 +84,7 @@ class AssetWrangler(ScoreManagerObject):
     @property
     def current_asset_container_package_path(self):
         if self.session.is_in_score:
-            return self.dot_join([
+            return '.'.join([
                 self.session.current_score_package_name,
                 self.score_internal_asset_container_package_path_infix])
         elif self.list_score_external_asset_container_package_paths():
@@ -287,7 +287,7 @@ class AssetWrangler(ScoreManagerObject):
             parts = [score_package_name]
             if self.score_internal_asset_container_package_path_infix:
                 parts.append(self.score_internal_asset_container_package_path_infix)
-            score_internal_score_package_path = self.dot_join(parts)
+            score_internal_score_package_path = '.'.join(parts)
             result.append(score_internal_score_package_path)
         return result
 

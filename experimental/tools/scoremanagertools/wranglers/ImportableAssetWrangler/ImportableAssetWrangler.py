@@ -10,7 +10,7 @@ class ImportableAssetWrangler(AssetWrangler):
     @property
     def temporary_asset_package_path(self):
         if self.current_asset_container_package_path:
-            return self.dot_join([
+            return '.'.join([
                 self.current_asset_container_package_path,
                 self.temporary_asset_name])
         else:
@@ -38,7 +38,7 @@ class ImportableAssetWrangler(AssetWrangler):
             for name in os.listdir(path):
                 package_path = filesystemtools.directory_path_to_package_path(path)
                 if name[0].isalpha():
-                    result.append(self.dot_join([package_path, name]))
+                    result.append('.'.join([package_path, name]))
         return result
 
     def list_score_internal_asset_package_paths(self, head=None):
@@ -62,7 +62,7 @@ class ImportableAssetWrangler(AssetWrangler):
         for path in self.list_user_asset_container_paths(head=head):
             for name in os.listdir(path):
                 if name[0].isalpha():
-                    result.append(self.dot_join([self.configuration.user_specific_makers_package_path, name]))
+                    result.append('.'.join([self.configuration.user_specific_makers_package_path, name]))
         return result
 
     # TODO: try to reimplement without proxy instantiation

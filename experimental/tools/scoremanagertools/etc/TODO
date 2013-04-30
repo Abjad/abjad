@@ -117,5 +117,3 @@
 
 41. The wrangler inheritance hierarchy is confused.
     Look at the inheritance diagram given at AssetWrangler.html and rewire as appropriate.
-
-42. Remove self.dot_join() in favor of ''.join() idiom.

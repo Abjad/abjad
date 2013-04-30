@@ -45,9 +45,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.display
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.dot_join
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.get_tag_from_directory_path
    :noindex:
 

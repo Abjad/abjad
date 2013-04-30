@@ -84,9 +84,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.DivisionIncisedNoteRhythmMakerEditor.DivisionIncisedNoteRhythmMakerEditor.DivisionIncisedNoteRhythmMakerEditor.display
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.DivisionIncisedNoteRhythmMakerEditor.DivisionIncisedNoteRhythmMakerEditor.DivisionIncisedNoteRhythmMakerEditor.dot_join
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.DivisionIncisedNoteRhythmMakerEditor.DivisionIncisedNoteRhythmMakerEditor.DivisionIncisedNoteRhythmMakerEditor.handle_main_menu_result
    :noindex:
 

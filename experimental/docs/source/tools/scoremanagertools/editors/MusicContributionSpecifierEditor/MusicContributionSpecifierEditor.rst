@@ -93,9 +93,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.display
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.dot_join
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.edit_item_interactively
    :noindex:
 

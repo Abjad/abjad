@@ -72,9 +72,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.display
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.dot_join
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.fix
    :noindex:
 
