@@ -2,12 +2,12 @@
 from abjad.tools.stringtools.strip_diacritics_from_binary_string import strip_diacritics_from_binary_string
 
 
-def string_to_strict_directory_name(string):
+def string_to_accent_free_underscored_delimited_lowercase(string):
     '''.. versionadded:: 2.6
 
     Change `string` to strict directory name::
 
-        >>> stringtools.string_to_strict_directory_name('Déja vu')
+        >>> stringtools.string_to_accent_free_underscored_delimited_lowercase('Déja vu')
         'deja_vu'
 
     Strip accents from accented characters.

@@ -171,9 +171,9 @@ Implements 197 public classes and 941 public functions totalling 153,000 lines o
     pitchtools.is_smbolic_accidental_string()
     pitchtools.is_pitch_class_octave_number_string()
 
-* Added ``stringtools.string_to_strict_directory_name()``::
+* Added ``stringtools.string_to_accent_free_underscored_delimited_lowercase()``::
 
-    >>> stringtools.string_to_strict_directory_name('Déja vu')
+    >>> stringtools.string_to_accent_free_underscored_delimited_lowercase('Déja vu')
     'deja_vu'
 
 * Added ``stringtools.strip_diacritics_from_binary_string()``::

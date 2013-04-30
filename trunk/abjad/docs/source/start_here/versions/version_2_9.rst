@@ -393,7 +393,7 @@ Added a new ``stringtools`` package.
     stringtools.is_underscore_delimited_lowercase_string()
     stringtools.is_uppercamelcase_string()
     stringtools.space_delimited_lowercase_to_uppercamelcase()
-    stringtools.string_to_strict_directory_name()
+    stringtools.string_to_accent_free_underscored_delimited_lowercase()
     stringtools.strip_diacritics_from_binary_string()
     stringtools.underscore_delimited_lowercase_to_lowercamelcase()
     stringtools.underscore_delimited_lowercase_to_uppercamelcase()
