@@ -3280,9 +3280,10 @@ Core composition packages
       tools/stringtools/is_underscore_delimited_lowercase_package_name
       tools/stringtools/is_underscore_delimited_lowercase_string
       tools/stringtools/is_uppercamelcase_string
+      tools/stringtools/pluralize_string
       tools/stringtools/space_delimited_lowercase_to_uppercamelcase
-      tools/stringtools/string_to_space_delimited_lowercase
       tools/stringtools/string_to_accent_free_underscored_delimited_lowercase
+      tools/stringtools/string_to_space_delimited_lowercase
       tools/stringtools/strip_diacritics_from_binary_string
       tools/stringtools/underscore_delimited_lowercase_to_lowercamelcase
       tools/stringtools/underscore_delimited_lowercase_to_uppercamelcase
@@ -3312,9 +3313,10 @@ Core composition packages
       tools/stringtools/is_underscore_delimited_lowercase_package_name
       tools/stringtools/is_underscore_delimited_lowercase_string
       tools/stringtools/is_uppercamelcase_string
+      tools/stringtools/pluralize_string
       tools/stringtools/space_delimited_lowercase_to_uppercamelcase
-      tools/stringtools/string_to_space_delimited_lowercase
       tools/stringtools/string_to_accent_free_underscored_delimited_lowercase
+      tools/stringtools/string_to_space_delimited_lowercase
       tools/stringtools/strip_diacritics_from_binary_string
       tools/stringtools/underscore_delimited_lowercase_to_lowercamelcase
       tools/stringtools/underscore_delimited_lowercase_to_uppercamelcase
