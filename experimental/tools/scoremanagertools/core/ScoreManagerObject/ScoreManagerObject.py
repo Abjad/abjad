@@ -54,13 +54,6 @@ class ScoreManagerObject(AbjadObject):
     ### PUBLIC METHODS ###
 
     # TODO: move to filesystemtools
-    def asset_path_to_directory_path(self, asset_path):
-        if self.is_path(asset_path):
-            return asset_path
-        else:
-            return self.package_path_to_directory_path(asset_path)
-
-    # TODO: move to filesystemtools
     def asset_path_to_human_readable_asset_name(self, asset_path):
         asset_path = os.path.normpath(asset_path)
         asset_name = os.path.basename(asset_path)
@@ -239,13 +232,6 @@ class ScoreManagerObject(AbjadObject):
     def is_module_name(self, expr):
         if isinstance(expr, str):
             if os.path.sep not in expr:
-                return True
-        return False
-
-    # TODO: move to filesystemtools
-    def is_path(self, expr):
-        if isinstance(expr, str):
-            if os.path.sep in expr:
                 return True
         return False
 
