@@ -336,15 +336,6 @@ class ScoreManagerObject(AbjadObject):
         directory = os.path.join(*directory_parts)
         return directory
 
-    # TODO: move to stringtools
-    def pluralize_string(self, string):
-        if string.endswith('y'):
-            return string[:-1] + 'ies'
-        elif string.endswith(('s', 'sh', 'x', 'z')):
-            return string + 'es'
-        else:
-            return string + 's'
-
     # TODO: move to Session
     def pop_backtrack(self):
         return self.session.backtracking_stack.pop()

@@ -2,6 +2,7 @@ import abc
 import os
 import shutil
 import subprocess
+from abjad.tools import stringtools
 from experimental.tools.scoremanagertools.core.ScoreManagerObject import ScoreManagerObject
 from experimental.tools.scoremanagertools.menuing.UserInputGetter import UserInputGetter
 
@@ -82,7 +83,7 @@ class AssetProxy(ScoreManagerObject):
 
     @property
     def plural_generic_class_name(self):
-        return self.pluralize_string(self.generic_class_name)
+        return stringtools.pluralize_string(self.generic_class_name)
 
     @property
     def svn_add_command(self):

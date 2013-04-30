@@ -1,5 +1,6 @@
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
+from abjad.tools import stringtools
 from experimental.tools.scoremanagertools import menuing
 from experimental.tools.scoremanagertools.editors.InteractiveEditor import InteractiveEditor
 from experimental.tools.scoremanagertools.editors.TargetManifest import TargetManifest
@@ -32,7 +33,7 @@ class ListEditor(InteractiveEditor):
         if hasattr(self, '_items_identifier'):
             return self._items_identifer
         else:
-            return self.pluralize_string(self.item_identifier)
+            return stringtools.pluralize_string(self.item_identifier)
 
     @property
     def target_summary_lines(self):

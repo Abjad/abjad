@@ -92,20 +92,17 @@
 32. Encapsulate the stuff in ScoreManagerObject in newly implemented class.
     Then include a reference to the class (perhaps as a class attribute) in ScoreManagerObject by composition.
 
-33. Rename stringtools.strict_to_strict_directory_name() to something without 'directory'.
-    The function is used to strip nonascii things. Maybe better to use that.
+33. Audit for os.path.sep and replace with better os module functions.
 
-34. Audit for os.path.sep and replace with better os module functions.
-
-35. Fix AssetWrangler.__repr__ and ScorePackageWrangler.__repr__.
+34. Fix AssetWrangler.__repr__ and ScorePackageWrangler.__repr__.
     Write a generalized script to test the reprs of all objects in the system.
 
-36. Make Session no longer inherit from ScoreManagerObject. Maybe?
+35. Make Session no longer inherit from ScoreManagerObject. Maybe?
 
-37. Remove Session.transcript.
+36. Remove Session.transcript.
     Change Session.complete_transcript to Session.transcript.
     Remove concept of 'short transcript' altogether.
 
-38. Remove 'for path in self.list_*' from AssetWrangler.
+37. Remove 'for path in self.list_*' from AssetWrangler.
 
-39. Possibly do away with 'human-readable' in favor of 'space-delimited lowercase'?
+38. Possibly do away with 'human-readable' in favor of 'space-delimited lowercase'?

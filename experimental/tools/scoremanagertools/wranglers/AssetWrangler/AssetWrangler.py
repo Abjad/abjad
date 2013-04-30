@@ -68,7 +68,7 @@ class AssetWrangler(ScoreManagerObject):
 
     @property
     def asset_class_plural_human_readable_name(self):
-        return self.pluralize_string(self.asset_class_human_readable_name)
+        return stringtools.pluralize_string(self.asset_class_human_readable_name)
 
     @property
     def asset_container_class(self):

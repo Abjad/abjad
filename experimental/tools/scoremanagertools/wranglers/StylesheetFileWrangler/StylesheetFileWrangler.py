@@ -54,7 +54,7 @@ class StylesheetFileWrangler(PackageWrangler):
         stylesheet_file_name = getter.run()
         if self.backtrack():
             return
-        stylesheet_file_name = stringtools.string_to_strict_directory_name(stylesheet_file_name)
+        stylesheet_file_name = stringtools.string_to_accent_free_underscored_delimited_lowercase(stylesheet_file_name)
         if not stylesheet_file_name.endswith('.ly'):
             stylesheet_file_name = stylesheet_file_name + '.ly'
         stylesheet_file_name = os.path.join(

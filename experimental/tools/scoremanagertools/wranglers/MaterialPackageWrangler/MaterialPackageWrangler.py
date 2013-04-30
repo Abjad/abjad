@@ -72,7 +72,7 @@ class MaterialPackageWrangler(PackageWrangler):
             self.pop_backtrack()
             if self.backtrack():
                 return
-            material_package_name = stringtools.string_to_strict_directory_name(package_name)
+            material_package_name = stringtools.string_to_accent_free_underscored_delimited_lowercase(package_name)
             material_package_path = self.dot_join([
                 self.current_asset_container_package_path, material_package_name])
             if self.package_exists(material_package_path):
