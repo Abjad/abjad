@@ -106,3 +106,7 @@
 37. Remove 'for path in self.list_*' from AssetWrangler.
 
 38. Possibly do away with 'human-readable' in favor of 'space-delimited lowercase'?
+
+39. Currently MaterialPackageMaker inherits from MaterialPackageProxy.
+    Maybe MaterialPackageMaker should *have* a MaterialPackageProxy instead.
+    This would clean up the inheritance schema somewhat.

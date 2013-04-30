@@ -16,10 +16,3 @@ class ImportableAssetProxy(AssetProxy):
             return '{}({!r})'.format(self._class_name, self.package_path)
         else:
             return '{}()'.format(self._class_name)
-
-    ### READ-ONLY PROPERTIES ###
-
-    @property
-    def package_path(self):
-        # TODO: eventually change to self.directory_path_to_package_path(self.directory_path)
-        return self.directory_path_to_package_path(self.asset_path)

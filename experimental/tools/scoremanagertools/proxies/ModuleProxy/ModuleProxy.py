@@ -17,6 +17,7 @@ class ModuleProxy(ParsableFileProxy, ImportableAssetProxy, ScoreManagerObject):
         file_path = self.module_path_to_file_path(module_path)
         ParsableFileProxy.__init__(self, file_path=file_path, session=self.session)
         ImportableAssetProxy.__init__(self, asset_path=file_path, session=self.session)
+        self._module_path = module_path
 
     ### SPECIAL METHODS ###
 
@@ -57,7 +58,7 @@ class ModuleProxy(ParsableFileProxy, ImportableAssetProxy, ScoreManagerObject):
 
     @property
     def module_path(self):
-        return self.package_path
+        return self._module_path
 
     @property
     def parent_directory_path(self):

@@ -21,6 +21,7 @@ class PackageProxy(DirectoryProxy, ImportableAssetProxy, ScoreManagerObject):
         directory_path = self.package_path_to_directory_path(package_path)
         DirectoryProxy.__init__(self, directory_path=directory_path, session=self.session)
         ImportableAssetProxy.__init__(self, asset_path=package_path, session=self.session)
+        self._package_path = package_path
 
     ### SPECIAL METHODS ###
 
@@ -74,6 +75,10 @@ class PackageProxy(DirectoryProxy, ImportableAssetProxy, ScoreManagerObject):
     @property
     def initializer_file_proxy(self):
         return InitializerFileProxy(self.initializer_file_name, session=self.session)
+
+    @property
+    def package_path(self):
+        return self._package_path
 
     @property
     def package_root_name(self):
