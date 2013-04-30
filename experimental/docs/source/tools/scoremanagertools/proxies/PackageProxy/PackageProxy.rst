@@ -114,12 +114,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.conditionally_clear_terminal
    :noindex:
 
@@ -195,16 +189,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.manage_tags
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.print_directory_contents
@@ -217,12 +202,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.profile
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.push_breadcrumb
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.remove
@@ -259,9 +238,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.rename_versioned_asset
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.run

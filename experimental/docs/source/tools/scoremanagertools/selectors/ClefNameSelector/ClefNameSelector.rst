@@ -33,12 +33,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.change_expr_to_menu_token
    :noindex:
 
@@ -87,16 +81,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.make_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.print_not_yet_implemented
@@ -105,16 +90,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.run

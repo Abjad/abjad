@@ -33,12 +33,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.change_expr_to_menu_token
    :noindex:
 
@@ -87,16 +81,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.make_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.print_not_yet_implemented
@@ -105,16 +90,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.run

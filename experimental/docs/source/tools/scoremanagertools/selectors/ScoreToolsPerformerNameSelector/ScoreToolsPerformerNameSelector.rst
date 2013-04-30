@@ -33,12 +33,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.change_expr_to_menu_token
    :noindex:
 
@@ -87,16 +81,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.make_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.print_not_yet_implemented
@@ -105,16 +90,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.run

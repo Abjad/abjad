@@ -117,12 +117,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.conditionally_clear_terminal
    :noindex:
 
@@ -186,16 +180,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.make_title_lines
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.print_not_yet_implemented
@@ -204,16 +189,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.show_menu_client

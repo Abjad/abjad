@@ -33,12 +33,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.change_expr_to_menu_token
    :noindex:
 
@@ -87,16 +81,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.make_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.print_not_yet_implemented
@@ -105,16 +90,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.run

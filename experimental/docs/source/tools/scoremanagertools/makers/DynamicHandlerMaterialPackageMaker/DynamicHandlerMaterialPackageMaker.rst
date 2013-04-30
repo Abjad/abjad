@@ -324,12 +324,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.makers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.makers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.makers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.clear_user_input_wrapper
    :noindex:
 
@@ -471,19 +465,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.makers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.overwrite_output_material_module
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.makers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.makers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.pop_next_user_response_from_user_input
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.populate_user_input_wrapper
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.print_directory_contents
@@ -496,12 +481,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.profile
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.push_breadcrumb
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.regenerate_everything
@@ -571,9 +550,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.rename_versioned_asset
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.run

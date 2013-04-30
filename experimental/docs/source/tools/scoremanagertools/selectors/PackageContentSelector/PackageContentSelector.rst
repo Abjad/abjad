@@ -33,12 +33,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.change_expr_to_menu_token
    :noindex:
 
@@ -87,16 +81,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.make_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.print_not_yet_implemented
@@ -105,16 +90,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.run

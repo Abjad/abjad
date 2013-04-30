@@ -63,12 +63,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.MarkupEditor.MarkupEditor.MarkupEditor.attribute_name_to_menu_key
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.MarkupEditor.MarkupEditor.MarkupEditor.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.MarkupEditor.MarkupEditor.MarkupEditor.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.MarkupEditor.MarkupEditor.MarkupEditor.clean_up_attributes_in_memory
    :noindex:
 
@@ -135,16 +129,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.MarkupEditor.MarkupEditor.MarkupEditor.menu_key_to_existing_value
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.MarkupEditor.MarkupEditor.MarkupEditor.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.MarkupEditor.MarkupEditor.MarkupEditor.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.MarkupEditor.MarkupEditor.MarkupEditor.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.MarkupEditor.MarkupEditor.MarkupEditor.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.MarkupEditor.MarkupEditor.MarkupEditor.print_not_yet_implemented
@@ -153,16 +138,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.MarkupEditor.MarkupEditor.MarkupEditor.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.MarkupEditor.MarkupEditor.MarkupEditor.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.MarkupEditor.MarkupEditor.MarkupEditor.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.MarkupEditor.MarkupEditor.MarkupEditor.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.MarkupEditor.MarkupEditor.MarkupEditor.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.MarkupEditor.MarkupEditor.MarkupEditor.run

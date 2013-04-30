@@ -201,15 +201,6 @@ class ScoreManagerObject(AbjadObject):
             is_ranged=is_ranged)
         return menu, section
 
-    # TODO: move to Session
-    def pop_backtrack(self):
-        return self.session.backtracking_stack.pop()
-
-    # TODO: move to Session
-    def pop_breadcrumb(self, rollback=True):
-        if rollback:
-            return self.session._breadcrumb_stack.pop()
-
     # TODO: migrate to [menuing.]IO class
     def pop_next_user_response_from_user_input(self):
         self.session.last_command_was_composite = False
@@ -259,37 +250,11 @@ class ScoreManagerObject(AbjadObject):
         self.handle_raw_input('press return to continue.', include_chevron=False)
         self.conditionally_clear_terminal()
 
-    # TODO: move to Session
-    def pprint_transcript(self):
-        pprint.pprint(self.transcript)
-        print len(self.transcript)
-
-    # TODO: move to Session
-    def push_backtrack(self):
-        if self.session.backtracking_stack:
-            last_number = self.session.backtracking_stack[-1]
-            self.session.backtracking_stack.append(last_number + 1)
-        else:
-            self.session.backtracking_stack.append(0)
-
-    # TODO: move to Session
-    def push_breadcrumb(self, breadcrumb=None, rollback=True):
-        if rollback:
-            if breadcrumb is not None:
-                self.session._breadcrumb_stack.append(breadcrumb)
-            else:
-                self.session._breadcrumb_stack.append(self.breadcrumb)
-
     def remove_package_path_from_sys_modules(self, package_path):
         '''Total hack. But works.'''
         command = "if '{}' in sys.modules: del(sys.modules['{}'])".format(
             package_path, package_path)
         exec(command)
-
-    # TODO: move to Session
-    def restore_breadcrumbs(self, cache=False):
-        if cache:
-            self.session._breadcrumb_stack[:] = self.session.breadcrumb_cache_stack.pop()
 
     def where(self):
         if self.session.enable_where:

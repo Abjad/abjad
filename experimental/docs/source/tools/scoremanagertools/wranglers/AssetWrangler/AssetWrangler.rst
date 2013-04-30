@@ -66,12 +66,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.conditionally_clear_terminal
    :noindex:
 
@@ -240,16 +234,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.make_visible_asset_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.print_not_yet_implemented
@@ -261,12 +246,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.profile_visible_assets
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.remove_assets_interactively
    :noindex:
 
@@ -274,9 +253,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.rename_asset_interactively
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.run

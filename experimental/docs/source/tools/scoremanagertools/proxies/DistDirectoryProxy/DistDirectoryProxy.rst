@@ -63,12 +63,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.DistDirectoryProxy.DistDirectoryProxy.DistDirectoryProxy.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.DistDirectoryProxy.DistDirectoryProxy.DistDirectoryProxy.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.DistDirectoryProxy.DistDirectoryProxy.DistDirectoryProxy.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.DistDirectoryProxy.DistDirectoryProxy.DistDirectoryProxy.conditionally_clear_terminal
    :noindex:
 
@@ -123,16 +117,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.DistDirectoryProxy.DistDirectoryProxy.DistDirectoryProxy.make_menu
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.DistDirectoryProxy.DistDirectoryProxy.DistDirectoryProxy.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.DistDirectoryProxy.DistDirectoryProxy.DistDirectoryProxy.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.DistDirectoryProxy.DistDirectoryProxy.DistDirectoryProxy.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.DistDirectoryProxy.DistDirectoryProxy.DistDirectoryProxy.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.DistDirectoryProxy.DistDirectoryProxy.DistDirectoryProxy.print_directory_contents
@@ -145,12 +130,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.DistDirectoryProxy.DistDirectoryProxy.DistDirectoryProxy.profile
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.DistDirectoryProxy.DistDirectoryProxy.DistDirectoryProxy.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.DistDirectoryProxy.DistDirectoryProxy.DistDirectoryProxy.push_breadcrumb
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.DistDirectoryProxy.DistDirectoryProxy.DistDirectoryProxy.remove
@@ -178,9 +157,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.DistDirectoryProxy.DistDirectoryProxy.DistDirectoryProxy.rename_versioned_asset
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.DistDirectoryProxy.DistDirectoryProxy.DistDirectoryProxy.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.DistDirectoryProxy.DistDirectoryProxy.DistDirectoryProxy.run

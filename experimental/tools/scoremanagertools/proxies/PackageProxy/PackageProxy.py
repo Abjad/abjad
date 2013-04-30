@@ -196,7 +196,7 @@ class PackageProxy(DirectoryProxy, AssetProxy, ScoreManagerObject):
     def manage_tags(self, clear=True, cache=False):
         self.session.cache_breadcrumbs(cache=cache)
         while True:
-            self.push_breadcrumb('tags')
+            self.session.push_breadcrumb('tags')
             menu = self.make_tags_menu()
             result = menu.run(clear=clear)
             if self.session.backtrack():
@@ -204,9 +204,9 @@ class PackageProxy(DirectoryProxy, AssetProxy, ScoreManagerObject):
             self.handle_tags_menu_result(result)
             if self.session.backtrack():
                 break
-            self.pop_breadcrumb()
-        self.pop_breadcrumb()
-        self.restore_breadcrumbs(cache=cache)
+            self.session.pop_breadcrumb()
+        self.session.pop_breadcrumb()
+        self.session.restore_breadcrumbs(cache=cache)
 
     def remove_initializer(self, is_interactive=True):
         if self.has_initializer:

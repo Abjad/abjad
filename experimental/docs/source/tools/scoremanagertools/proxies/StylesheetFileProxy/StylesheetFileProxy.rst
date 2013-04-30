@@ -69,12 +69,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.conditionally_clear_terminal
    :noindex:
 
@@ -138,16 +132,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.make_menu
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.print_not_yet_implemented
@@ -157,12 +142,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.profile
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.push_breadcrumb
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.remove
@@ -190,9 +169,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.rename_versioned_asset
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.run

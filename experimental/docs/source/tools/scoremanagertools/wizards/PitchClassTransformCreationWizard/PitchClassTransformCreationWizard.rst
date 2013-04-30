@@ -27,12 +27,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wizards.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.conditionally_clear_terminal
    :noindex:
 
@@ -75,16 +69,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wizards.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.make_menu
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.print_not_yet_implemented
@@ -93,16 +78,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wizards.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.run

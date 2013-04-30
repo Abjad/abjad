@@ -27,12 +27,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wizards.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.conditionally_clear_terminal
    :noindex:
 
@@ -69,16 +63,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wizards.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.make_menu
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.print_not_yet_implemented
@@ -87,16 +72,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wizards.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.run

@@ -27,12 +27,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.conditionally_clear_terminal
    :noindex:
 
@@ -69,16 +63,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.make_menu
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.print_not_yet_implemented
@@ -87,16 +72,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.run

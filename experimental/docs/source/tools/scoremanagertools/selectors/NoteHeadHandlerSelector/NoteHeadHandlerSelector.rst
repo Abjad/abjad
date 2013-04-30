@@ -33,12 +33,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.NoteHeadHandlerSelector.NoteHeadHandlerSelector.NoteHeadHandlerSelector.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.NoteHeadHandlerSelector.NoteHeadHandlerSelector.NoteHeadHandlerSelector.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.NoteHeadHandlerSelector.NoteHeadHandlerSelector.NoteHeadHandlerSelector.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.NoteHeadHandlerSelector.NoteHeadHandlerSelector.NoteHeadHandlerSelector.change_expr_to_menu_token
    :noindex:
 
@@ -87,16 +81,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.NoteHeadHandlerSelector.NoteHeadHandlerSelector.NoteHeadHandlerSelector.make_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.NoteHeadHandlerSelector.NoteHeadHandlerSelector.NoteHeadHandlerSelector.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.NoteHeadHandlerSelector.NoteHeadHandlerSelector.NoteHeadHandlerSelector.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.NoteHeadHandlerSelector.NoteHeadHandlerSelector.NoteHeadHandlerSelector.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.NoteHeadHandlerSelector.NoteHeadHandlerSelector.NoteHeadHandlerSelector.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.NoteHeadHandlerSelector.NoteHeadHandlerSelector.NoteHeadHandlerSelector.print_not_yet_implemented
@@ -105,16 +90,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.NoteHeadHandlerSelector.NoteHeadHandlerSelector.NoteHeadHandlerSelector.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.NoteHeadHandlerSelector.NoteHeadHandlerSelector.NoteHeadHandlerSelector.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.NoteHeadHandlerSelector.NoteHeadHandlerSelector.NoteHeadHandlerSelector.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.NoteHeadHandlerSelector.NoteHeadHandlerSelector.NoteHeadHandlerSelector.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.NoteHeadHandlerSelector.NoteHeadHandlerSelector.NoteHeadHandlerSelector.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.NoteHeadHandlerSelector.NoteHeadHandlerSelector.NoteHeadHandlerSelector.run

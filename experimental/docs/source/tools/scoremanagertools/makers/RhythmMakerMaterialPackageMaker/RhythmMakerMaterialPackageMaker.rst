@@ -324,12 +324,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.clear_user_input_wrapper
    :noindex:
 
@@ -471,19 +465,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.overwrite_output_material_module
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.pop_next_user_response_from_user_input
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.populate_user_input_wrapper
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.print_directory_contents
@@ -496,12 +481,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.profile
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.push_breadcrumb
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.regenerate_everything
@@ -571,9 +550,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.rename_versioned_asset
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.run

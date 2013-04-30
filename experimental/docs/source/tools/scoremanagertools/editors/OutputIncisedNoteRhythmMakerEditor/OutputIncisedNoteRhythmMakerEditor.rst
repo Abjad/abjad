@@ -63,12 +63,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.attribute_name_to_menu_key
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.clean_up_attributes_in_memory
    :noindex:
 
@@ -135,16 +129,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.menu_key_to_existing_value
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.print_not_yet_implemented
@@ -153,16 +138,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.run

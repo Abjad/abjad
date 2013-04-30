@@ -27,12 +27,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wizards.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.conditionally_clear_terminal
    :noindex:
 
@@ -69,16 +63,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wizards.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.make_menu
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.print_not_yet_implemented
@@ -87,16 +72,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wizards.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.run

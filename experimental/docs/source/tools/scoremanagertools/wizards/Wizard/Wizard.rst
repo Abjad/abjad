@@ -27,12 +27,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.conditionally_clear_terminal
    :noindex:
 
@@ -66,16 +60,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.make_menu
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.print_not_yet_implemented
@@ -84,16 +69,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.run

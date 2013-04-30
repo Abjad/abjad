@@ -63,12 +63,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.ParameterSpecifierEditor.ParameterSpecifierEditor.ParameterSpecifierEditor.attribute_name_to_menu_key
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ParameterSpecifierEditor.ParameterSpecifierEditor.ParameterSpecifierEditor.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ParameterSpecifierEditor.ParameterSpecifierEditor.ParameterSpecifierEditor.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.ParameterSpecifierEditor.ParameterSpecifierEditor.ParameterSpecifierEditor.clean_up_attributes_in_memory
    :noindex:
 
@@ -135,16 +129,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.ParameterSpecifierEditor.ParameterSpecifierEditor.ParameterSpecifierEditor.menu_key_to_existing_value
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ParameterSpecifierEditor.ParameterSpecifierEditor.ParameterSpecifierEditor.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ParameterSpecifierEditor.ParameterSpecifierEditor.ParameterSpecifierEditor.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.ParameterSpecifierEditor.ParameterSpecifierEditor.ParameterSpecifierEditor.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ParameterSpecifierEditor.ParameterSpecifierEditor.ParameterSpecifierEditor.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ParameterSpecifierEditor.ParameterSpecifierEditor.ParameterSpecifierEditor.print_not_yet_implemented
@@ -153,16 +138,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.ParameterSpecifierEditor.ParameterSpecifierEditor.ParameterSpecifierEditor.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ParameterSpecifierEditor.ParameterSpecifierEditor.ParameterSpecifierEditor.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ParameterSpecifierEditor.ParameterSpecifierEditor.ParameterSpecifierEditor.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.ParameterSpecifierEditor.ParameterSpecifierEditor.ParameterSpecifierEditor.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ParameterSpecifierEditor.ParameterSpecifierEditor.ParameterSpecifierEditor.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ParameterSpecifierEditor.ParameterSpecifierEditor.ParameterSpecifierEditor.run

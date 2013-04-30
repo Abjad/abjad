@@ -72,12 +72,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.attribute_name_to_menu_key
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.clean_up_attributes_in_memory
    :noindex:
 
@@ -156,16 +150,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.move_item_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.print_not_yet_implemented
@@ -174,19 +159,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.remove_items_interactively
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.run

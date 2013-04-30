@@ -33,12 +33,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.change_expr_to_menu_token
    :noindex:
 
@@ -87,16 +81,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.make_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.print_not_yet_implemented
@@ -105,16 +90,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.run

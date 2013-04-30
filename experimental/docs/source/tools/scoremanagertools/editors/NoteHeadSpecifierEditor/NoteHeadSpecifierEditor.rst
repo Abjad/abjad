@@ -63,12 +63,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.attribute_name_to_menu_key
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.clean_up_attributes_in_memory
    :noindex:
 
@@ -135,16 +129,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.menu_key_to_existing_value
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.print_not_yet_implemented
@@ -153,16 +138,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.run

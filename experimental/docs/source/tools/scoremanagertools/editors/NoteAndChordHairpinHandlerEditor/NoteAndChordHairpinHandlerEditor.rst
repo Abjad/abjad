@@ -63,12 +63,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.attribute_name_to_menu_key
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.clean_up_attributes_in_memory
    :noindex:
 
@@ -135,16 +129,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.menu_key_to_existing_value
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.print_not_yet_implemented
@@ -153,16 +138,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.run

@@ -108,12 +108,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.clear
    :noindex:
 
@@ -189,16 +183,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.parse
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.print_not_yet_implemented
@@ -208,12 +193,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.profile
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.push_breadcrumb
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.remove
@@ -241,9 +220,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.rename_versioned_asset
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.run

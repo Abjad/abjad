@@ -75,12 +75,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.conditionally_clear_terminal
    :noindex:
 
@@ -264,16 +258,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.make_visible_asset_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.print_not_yet_implemented
@@ -285,12 +270,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.profile_visible_assets
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.remove_assets_interactively
    :noindex:
 
@@ -298,9 +277,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.rename_asset_interactively
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.run

@@ -197,20 +197,20 @@ class AssetProxy(ScoreManagerObject):
         self.assign_user_input(user_input=user_input)
         self.session.cache_breadcrumbs(cache=cache)
         while True:
-            self.push_breadcrumb()
+            self.session.push_breadcrumb(self.breadcrumb)
             menu = self.make_main_menu()
             result = menu.run(clear=clear)
             if self.session.backtrack(source=self._backtracking_source):
                 break
             elif not result:
-                self.pop_breadcrumb()
+                self.session.pop_breadcrumb()
                 continue
             self.handle_main_menu_result(result)
             if self.session.backtrack(source=self._backtracking_source):
                 break
-            self.pop_breadcrumb()
-        self.pop_breadcrumb()
-        self.restore_breadcrumbs(cache=cache)
+            self.session.pop_breadcrumb()
+        self.session.pop_breadcrumb()
+        self.session.restore_breadcrumbs(cache=cache)
 
     def run_first_time(self, **kwargs):
         self.run(**kwargs)
@@ -288,9 +288,9 @@ class AssetProxy(ScoreManagerObject):
         self.assign_user_input(user_input=user_input)
         getter = self.make_getter(where=self.where())
         getter.append_underscore_delimited_lowercase_file_name('name of boilerplate asset')
-        self.push_backtrack()
+        self.session.push_backtrack()
         boilerplate_asset_name = getter.run()
-        self.pop_backtrack()
+        self.session.pop_backtrack()
         if self.session.backtrack():
             return
         if self.write_boilerplate_asset_to_disk(boilerplate_asset_name):

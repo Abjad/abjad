@@ -33,12 +33,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.change_expr_to_menu_token
    :noindex:
 
@@ -87,16 +81,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.make_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.print_not_yet_implemented
@@ -105,16 +90,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.run

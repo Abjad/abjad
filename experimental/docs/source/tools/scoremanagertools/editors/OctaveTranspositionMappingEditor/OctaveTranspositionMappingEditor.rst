@@ -72,12 +72,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingEditor.OctaveTranspositionMappingEditor.OctaveTranspositionMappingEditor.attribute_name_to_menu_key
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingEditor.OctaveTranspositionMappingEditor.OctaveTranspositionMappingEditor.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingEditor.OctaveTranspositionMappingEditor.OctaveTranspositionMappingEditor.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingEditor.OctaveTranspositionMappingEditor.OctaveTranspositionMappingEditor.clean_up_attributes_in_memory
    :noindex:
 
@@ -156,16 +150,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingEditor.OctaveTranspositionMappingEditor.OctaveTranspositionMappingEditor.move_item_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingEditor.OctaveTranspositionMappingEditor.OctaveTranspositionMappingEditor.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingEditor.OctaveTranspositionMappingEditor.OctaveTranspositionMappingEditor.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingEditor.OctaveTranspositionMappingEditor.OctaveTranspositionMappingEditor.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingEditor.OctaveTranspositionMappingEditor.OctaveTranspositionMappingEditor.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingEditor.OctaveTranspositionMappingEditor.OctaveTranspositionMappingEditor.print_not_yet_implemented
@@ -174,19 +159,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingEditor.OctaveTranspositionMappingEditor.OctaveTranspositionMappingEditor.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingEditor.OctaveTranspositionMappingEditor.OctaveTranspositionMappingEditor.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingEditor.OctaveTranspositionMappingEditor.OctaveTranspositionMappingEditor.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingEditor.OctaveTranspositionMappingEditor.OctaveTranspositionMappingEditor.remove_items_interactively
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingEditor.OctaveTranspositionMappingEditor.OctaveTranspositionMappingEditor.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingEditor.OctaveTranspositionMappingEditor.OctaveTranspositionMappingEditor.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingEditor.OctaveTranspositionMappingEditor.OctaveTranspositionMappingEditor.run

@@ -21,12 +21,12 @@ class HandlerCreationWizard(Wizard):
     def run(self, cache=False, clear=True, head=None, user_input=None):
         self.assign_user_input(user_input=user_input)
         self.session.cache_breadcrumbs(cache=cache)
-        self.push_breadcrumb()
+        self.session.push_breadcrumb(self.breadcrumb)
         selector = self.handler_class_name_selector(session=self.session)
         handler_class_name = selector.run()
         if not self.session.backtrack():
             handler_editor = self.get_handler_editor(handler_class_name)
             handler_editor.run(is_autoadvancing=True, is_autostarting=True)
             self.target = handler_editor.target
-        self.pop_breadcrumb()
-        self.restore_breadcrumbs(cache=cache)
+        self.session.pop_breadcrumb()
+        self.session.restore_breadcrumbs(cache=cache)

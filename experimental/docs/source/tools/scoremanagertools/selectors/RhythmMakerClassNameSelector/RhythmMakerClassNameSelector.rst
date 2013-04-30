@@ -33,12 +33,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.change_expr_to_menu_token
    :noindex:
 
@@ -87,16 +81,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.make_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.print_not_yet_implemented
@@ -105,16 +90,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.run

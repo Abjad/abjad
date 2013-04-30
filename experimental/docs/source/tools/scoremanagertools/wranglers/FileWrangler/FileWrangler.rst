@@ -66,12 +66,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.conditionally_clear_terminal
    :noindex:
 
@@ -240,16 +234,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.make_visible_asset_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.print_not_yet_implemented
@@ -261,12 +246,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.profile_visible_assets
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.remove_assets_interactively
    :noindex:
 
@@ -274,9 +253,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.rename_asset_interactively
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.run

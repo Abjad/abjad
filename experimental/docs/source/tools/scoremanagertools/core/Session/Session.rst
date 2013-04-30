@@ -198,9 +198,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.pop_next_user_response_from_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.pprint_transcript
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.print_not_yet_implemented
    :noindex:
 

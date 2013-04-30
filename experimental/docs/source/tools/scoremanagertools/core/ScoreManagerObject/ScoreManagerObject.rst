@@ -24,12 +24,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.conditionally_clear_terminal
    :noindex:
 
@@ -63,16 +57,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.make_menu
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.print_not_yet_implemented
@@ -81,16 +66,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.where

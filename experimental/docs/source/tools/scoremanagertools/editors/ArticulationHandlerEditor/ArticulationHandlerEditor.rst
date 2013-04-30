@@ -63,12 +63,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.attribute_name_to_menu_key
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.clean_up_attributes_in_memory
    :noindex:
 
@@ -135,16 +129,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.menu_key_to_existing_value
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.print_not_yet_implemented
@@ -153,16 +138,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.run

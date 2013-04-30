@@ -33,12 +33,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.change_expr_to_menu_token
    :noindex:
 
@@ -87,16 +81,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.make_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.print_not_yet_implemented
@@ -105,16 +90,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.run

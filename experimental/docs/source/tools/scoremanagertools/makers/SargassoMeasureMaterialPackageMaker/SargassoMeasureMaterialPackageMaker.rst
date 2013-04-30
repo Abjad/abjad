@@ -324,12 +324,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.makers.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.makers.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.makers.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.clear_user_input_wrapper
    :noindex:
 
@@ -471,19 +465,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.makers.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.overwrite_output_material_module
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.makers.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.makers.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.pop_next_user_response_from_user_input
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.populate_user_input_wrapper
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.print_directory_contents
@@ -496,12 +481,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.profile
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.push_breadcrumb
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.regenerate_everything
@@ -571,9 +550,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.rename_versioned_asset
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.run

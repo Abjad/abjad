@@ -186,12 +186,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.change_user_response_to_value
    :noindex:
 
@@ -276,16 +270,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.move_to_prev_prompt
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.present_prompt_and_store_value
@@ -300,16 +285,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.run

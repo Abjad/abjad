@@ -81,12 +81,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.conditionally_clear_terminal
    :noindex:
 
@@ -276,16 +270,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.make_visible_asset_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.print_not_yet_implemented
@@ -297,12 +282,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.profile_visible_assets
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.remove_assets_interactively
    :noindex:
 
@@ -310,9 +289,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.rename_asset_interactively
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.run

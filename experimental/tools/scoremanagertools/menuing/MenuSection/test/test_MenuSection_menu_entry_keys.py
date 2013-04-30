@@ -7,7 +7,7 @@ def test_MenuSection_menu_entry_keys_01():
     '''
 
     menu = scoremanagertools.menuing.Menu()
-    menu.push_breadcrumb('location')
+    menu.session.push_breadcrumb('location')
     section = menu.make_section()
     section.title = 'section'
     section.extend(['apple', 'banana', 'cherry'])
@@ -15,7 +15,7 @@ def test_MenuSection_menu_entry_keys_01():
     assert section.menu_entry_keys == [None, None, None]
 
     menu = scoremanagertools.menuing.Menu()
-    menu.push_breadcrumb('location')
+    menu.session.push_breadcrumb('location')
     section = menu.make_section(is_numbered=True)
     section.title = 'section'
     section.extend(['apple', 'banana', 'cherry'])
@@ -29,7 +29,7 @@ def test_MenuSection_menu_entry_keys_02():
     '''
 
     menu = scoremanagertools.menuing.Menu()
-    menu.push_breadcrumb('location')
+    menu.session.push_breadcrumb('location')
     section = menu.make_section()
     section.title = 'section title'
     section.append(('add', 'add something'))
@@ -40,7 +40,7 @@ def test_MenuSection_menu_entry_keys_02():
     assert section.menu_entry_keys == [x[0] for x in section.tokens]
 
     menu = scoremanagertools.menuing.Menu()
-    menu.push_breadcrumb('location')
+    menu.session.push_breadcrumb('location')
     section = menu.make_section(is_numbered=True)
     section.title = 'section title'
     section.append(('add', 'add something'))

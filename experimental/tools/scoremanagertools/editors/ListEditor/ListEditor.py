@@ -48,9 +48,9 @@ class ListEditor(InteractiveEditor):
         if self.item_creator_class:
             item_creator = self.item_creator_class(
                 session=self.session, **self.item_creator_class_kwargs)
-            self.push_backtrack()
+            self.session.push_backtrack()
             result = item_creator.run()
-            self.pop_backtrack()
+            self.session.pop_backtrack()
             if self.session.backtrack():
                 return
             if result == 'done':
@@ -60,9 +60,9 @@ class ListEditor(InteractiveEditor):
         elif self.item_getter_configuration_method:
             getter = self.make_getter(where=self.where())
             self.item_getter_configuration_method(getter, self.item_identifier)
-            self.push_backtrack()
+            self.session.push_backtrack()
             item_initialization_token = getter.run()
-            self.pop_backtrack()
+            self.session.pop_backtrack()
             if self.session.backtrack():
                 return
             if item_initialization_token == 'done':

@@ -63,12 +63,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.StaffSpecifierEditor.StaffSpecifierEditor.StaffSpecifierEditor.attribute_name_to_menu_key
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.StaffSpecifierEditor.StaffSpecifierEditor.StaffSpecifierEditor.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.StaffSpecifierEditor.StaffSpecifierEditor.StaffSpecifierEditor.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.StaffSpecifierEditor.StaffSpecifierEditor.StaffSpecifierEditor.clean_up_attributes_in_memory
    :noindex:
 
@@ -135,16 +129,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.StaffSpecifierEditor.StaffSpecifierEditor.StaffSpecifierEditor.menu_key_to_existing_value
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.StaffSpecifierEditor.StaffSpecifierEditor.StaffSpecifierEditor.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.StaffSpecifierEditor.StaffSpecifierEditor.StaffSpecifierEditor.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.StaffSpecifierEditor.StaffSpecifierEditor.StaffSpecifierEditor.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.StaffSpecifierEditor.StaffSpecifierEditor.StaffSpecifierEditor.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.StaffSpecifierEditor.StaffSpecifierEditor.StaffSpecifierEditor.print_not_yet_implemented
@@ -153,16 +138,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.StaffSpecifierEditor.StaffSpecifierEditor.StaffSpecifierEditor.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.StaffSpecifierEditor.StaffSpecifierEditor.StaffSpecifierEditor.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.StaffSpecifierEditor.StaffSpecifierEditor.StaffSpecifierEditor.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.StaffSpecifierEditor.StaffSpecifierEditor.StaffSpecifierEditor.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.StaffSpecifierEditor.StaffSpecifierEditor.StaffSpecifierEditor.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.StaffSpecifierEditor.StaffSpecifierEditor.StaffSpecifierEditor.run

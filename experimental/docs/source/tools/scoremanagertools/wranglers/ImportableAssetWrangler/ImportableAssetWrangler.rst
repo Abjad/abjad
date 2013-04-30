@@ -69,12 +69,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.conditionally_clear_terminal
    :noindex:
 
@@ -258,16 +252,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.make_visible_asset_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.print_not_yet_implemented
@@ -279,12 +264,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.profile_visible_assets
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.remove_assets_interactively
    :noindex:
 
@@ -292,9 +271,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.rename_asset_interactively
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.run

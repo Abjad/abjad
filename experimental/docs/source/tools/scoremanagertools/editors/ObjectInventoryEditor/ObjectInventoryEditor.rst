@@ -72,12 +72,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.ObjectInventoryEditor.ObjectInventoryEditor.ObjectInventoryEditor.attribute_name_to_menu_key
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ObjectInventoryEditor.ObjectInventoryEditor.ObjectInventoryEditor.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ObjectInventoryEditor.ObjectInventoryEditor.ObjectInventoryEditor.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.ObjectInventoryEditor.ObjectInventoryEditor.ObjectInventoryEditor.clean_up_attributes_in_memory
    :noindex:
 
@@ -156,16 +150,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.ObjectInventoryEditor.ObjectInventoryEditor.ObjectInventoryEditor.move_item_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ObjectInventoryEditor.ObjectInventoryEditor.ObjectInventoryEditor.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ObjectInventoryEditor.ObjectInventoryEditor.ObjectInventoryEditor.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.ObjectInventoryEditor.ObjectInventoryEditor.ObjectInventoryEditor.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ObjectInventoryEditor.ObjectInventoryEditor.ObjectInventoryEditor.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ObjectInventoryEditor.ObjectInventoryEditor.ObjectInventoryEditor.print_not_yet_implemented
@@ -174,19 +159,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.ObjectInventoryEditor.ObjectInventoryEditor.ObjectInventoryEditor.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ObjectInventoryEditor.ObjectInventoryEditor.ObjectInventoryEditor.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ObjectInventoryEditor.ObjectInventoryEditor.ObjectInventoryEditor.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.ObjectInventoryEditor.ObjectInventoryEditor.ObjectInventoryEditor.remove_items_interactively
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ObjectInventoryEditor.ObjectInventoryEditor.ObjectInventoryEditor.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ObjectInventoryEditor.ObjectInventoryEditor.ObjectInventoryEditor.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ObjectInventoryEditor.ObjectInventoryEditor.ObjectInventoryEditor.run

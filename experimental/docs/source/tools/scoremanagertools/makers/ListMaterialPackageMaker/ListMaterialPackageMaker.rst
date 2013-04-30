@@ -324,12 +324,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.clear_user_input_wrapper
    :noindex:
 
@@ -471,19 +465,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.overwrite_output_material_module
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.pop_next_user_response_from_user_input
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.populate_user_input_wrapper
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.print_directory_contents
@@ -496,12 +481,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.profile
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.push_breadcrumb
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.regenerate_everything
@@ -571,9 +550,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.rename_versioned_asset
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.run

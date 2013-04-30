@@ -69,12 +69,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationLyFileProxy.IllustrationLyFileProxy.IllustrationLyFileProxy.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationLyFileProxy.IllustrationLyFileProxy.IllustrationLyFileProxy.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationLyFileProxy.IllustrationLyFileProxy.IllustrationLyFileProxy.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationLyFileProxy.IllustrationLyFileProxy.IllustrationLyFileProxy.conditionally_clear_terminal
    :noindex:
 
@@ -132,16 +126,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationLyFileProxy.IllustrationLyFileProxy.IllustrationLyFileProxy.make_menu
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationLyFileProxy.IllustrationLyFileProxy.IllustrationLyFileProxy.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationLyFileProxy.IllustrationLyFileProxy.IllustrationLyFileProxy.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationLyFileProxy.IllustrationLyFileProxy.IllustrationLyFileProxy.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationLyFileProxy.IllustrationLyFileProxy.IllustrationLyFileProxy.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationLyFileProxy.IllustrationLyFileProxy.IllustrationLyFileProxy.print_not_yet_implemented
@@ -151,12 +136,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationLyFileProxy.IllustrationLyFileProxy.IllustrationLyFileProxy.profile
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationLyFileProxy.IllustrationLyFileProxy.IllustrationLyFileProxy.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationLyFileProxy.IllustrationLyFileProxy.IllustrationLyFileProxy.push_breadcrumb
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationLyFileProxy.IllustrationLyFileProxy.IllustrationLyFileProxy.remove
@@ -184,9 +163,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationLyFileProxy.IllustrationLyFileProxy.IllustrationLyFileProxy.rename_versioned_asset
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationLyFileProxy.IllustrationLyFileProxy.IllustrationLyFileProxy.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationLyFileProxy.IllustrationLyFileProxy.IllustrationLyFileProxy.run

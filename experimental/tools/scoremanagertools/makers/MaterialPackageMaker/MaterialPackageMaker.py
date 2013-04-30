@@ -157,17 +157,17 @@ class MaterialPackageMaker(MaterialPackageProxy):
         total_elements = len(self.user_input_wrapper_in_memory)
         getter = self.make_getter(where=self.where())
         getter.append_integer_in_range('start at element number', 1, total_elements, default=1)
-        self.push_backtrack()
+        self.session.push_backtrack()
         start_element_number = getter.run()
-        self.pop_backtrack()
+        self.session.pop_backtrack()
         if self.session.backtrack():
             return
         current_element_number = start_element_number
         current_element_index = current_element_number - 1
         while True:
-            self.push_backtrack()
+            self.session.push_backtrack()
             self.edit_user_input_wrapper_at_number(current_element_number, include_newline=False)
-            self.pop_backtrack()
+            self.session.pop_backtrack()
             if self.session.backtrack():
                 return
             current_element_index += 1

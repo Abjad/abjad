@@ -63,12 +63,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.attribute_name_to_menu_key
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.clean_up_attributes_in_memory
    :noindex:
 
@@ -135,16 +129,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.menu_key_to_existing_value
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.print_not_yet_implemented
@@ -153,16 +138,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.run

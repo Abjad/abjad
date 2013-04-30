@@ -108,12 +108,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.clear
    :noindex:
 
@@ -180,16 +174,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.parse
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.print_not_yet_implemented
@@ -199,12 +184,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.profile
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.push_breadcrumb
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.remove
@@ -232,9 +211,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.rename_versioned_asset
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.run

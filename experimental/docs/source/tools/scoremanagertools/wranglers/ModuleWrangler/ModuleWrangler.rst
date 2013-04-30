@@ -69,12 +69,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.conditionally_clear_terminal
    :noindex:
 
@@ -258,16 +252,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.make_visible_asset_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.print_not_yet_implemented
@@ -279,12 +264,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.profile_visible_assets
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.remove_assets_interactively
    :noindex:
 
@@ -292,9 +271,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.rename_asset_interactively
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.run

@@ -102,12 +102,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.clear
    :noindex:
 
@@ -174,16 +168,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.parse
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.print_not_yet_implemented
@@ -193,12 +178,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.profile
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.push_breadcrumb
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.read_user_input_wrapper_from_disk
@@ -229,9 +208,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.rename_versioned_asset
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.run

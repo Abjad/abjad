@@ -22,22 +22,22 @@ class PerformerCreationWizard(Wizard):
     def initialize_performer_interactively(self, performer, cache=False, clear=True):
         menu = self.make_performer_configuration_menu(performer)
         while True:
-            self.push_breadcrumb(performer.name)
+            self.session.push_breadcrumb(performer.name)
             result = menu.run(clear=clear)
             if self.session.backtrack():
-                self.pop_breadcrumb()
-                self.restore_breadcrumbs(cache=cache)
+                self.session.pop_breadcrumb()
+                self.session.restore_breadcrumbs(cache=cache)
                 return
             elif not result:
-                self.pop_breadcrumb()
+                self.session.pop_breadcrumb()
                 continue
             if result in ('skip', ['skip']):
                 break
             elif result in ('more', ['more']):
-                self.push_backtrack()
+                self.session.push_backtrack()
                 wizard = InstrumentCreationWizard(session=self.session, is_ranged=True)
                 instruments = wizard.run()
-                self.pop_backtrack()
+                self.session.pop_backtrack()
                 if self.session.backtrack():
                     break
                 if instruments is not None:
@@ -53,9 +53,9 @@ class PerformerCreationWizard(Wizard):
                 break
             else:
                 raise ValueError("how'd we get here?")
-            self.pop_breadcrumb()
-        self.pop_breadcrumb()
-        self.restore_breadcrumbs(cache=cache)
+            self.session.pop_breadcrumb()
+        self.session.pop_breadcrumb()
+        self.session.restore_breadcrumbs(cache=cache)
 
     def make_performer_configuration_menu(self, performer):
         menu, section = self.make_menu(where=self.where(), is_parenthetically_numbered=True, is_ranged=True)
@@ -89,12 +89,12 @@ class PerformerCreationWizard(Wizard):
         try_again = False
         performers = []
         while True:
-            self.push_breadcrumb()
+            self.session.push_breadcrumb(self.breadcrumb)
             kwargs = {'session': self.session, 'is_ranged': self.is_ranged}
             selector = selectors.ScoreToolsPerformerNameSelector(**kwargs)
-            self.push_backtrack()
+            self.session.push_backtrack()
             result = selector.run()
-            self.pop_backtrack()
+            self.session.pop_backtrack()
             if self.session.backtrack():
                 break
             if isinstance(result, list):
@@ -103,12 +103,12 @@ class PerformerCreationWizard(Wizard):
                 performer_names = [result]
             performers = []
             for performer_name in performer_names:
-                self.push_breadcrumb()
-                self.push_backtrack()
+                self.session.push_breadcrumb(self.breadcrumb)
+                self.session.push_backtrack()
                 performer = scoretools.Performer(performer_name)
                 self.initialize_performer_interactively(performer)
-                self.pop_backtrack()
-                self.pop_breadcrumb()
+                self.session.pop_backtrack()
+                self.session.pop_breadcrumb()
                 was_backtracking_locally = self.session.is_backtracking_locally
                 if self.session.backtrack():
                     if was_backtracking_locally:
@@ -122,7 +122,7 @@ class PerformerCreationWizard(Wizard):
                 break
             else:
                 try_again = False
-                self.pop_breadcrumb()
+                self.session.pop_breadcrumb()
         if self.is_ranged and performers:
             final_result = performers[:]
         elif self.is_ranged and not performers:
@@ -133,7 +133,7 @@ class PerformerCreationWizard(Wizard):
             final_result = None
         else:
             raise ValueError
-        self.pop_breadcrumb()
-        self.restore_breadcrumbs(cache=cache)
+        self.session.pop_breadcrumb()
+        self.session.restore_breadcrumbs(cache=cache)
         self.target = final_result
         return self.target

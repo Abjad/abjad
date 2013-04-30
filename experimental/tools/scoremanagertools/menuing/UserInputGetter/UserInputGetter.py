@@ -419,9 +419,9 @@ class UserInputGetter(MenuSectionAggregator):
 
     def run(self, user_input=None, include_chevron=True):
         self.assign_user_input(user_input=user_input)
-        self.push_backtrack()
+        self.session.push_backtrack()
         self.present_prompts_and_store_values(include_chevron=include_chevron)
-        self.pop_backtrack()
+        self.session.pop_backtrack()
         if len(self.values) == 1:
             return self.values[0]
         else:

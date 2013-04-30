@@ -33,12 +33,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector.change_expr_to_menu_token
    :noindex:
 
@@ -96,16 +90,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector.make_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector.print_not_yet_implemented
@@ -114,16 +99,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector.run

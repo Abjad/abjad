@@ -33,12 +33,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.TempoMarkSelector.TempoMarkSelector.TempoMarkSelector.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.TempoMarkSelector.TempoMarkSelector.TempoMarkSelector.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.TempoMarkSelector.TempoMarkSelector.TempoMarkSelector.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.TempoMarkSelector.TempoMarkSelector.TempoMarkSelector.change_expr_to_menu_token
    :noindex:
 
@@ -87,16 +81,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.TempoMarkSelector.TempoMarkSelector.TempoMarkSelector.make_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.TempoMarkSelector.TempoMarkSelector.TempoMarkSelector.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.TempoMarkSelector.TempoMarkSelector.TempoMarkSelector.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.TempoMarkSelector.TempoMarkSelector.TempoMarkSelector.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.TempoMarkSelector.TempoMarkSelector.TempoMarkSelector.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.TempoMarkSelector.TempoMarkSelector.TempoMarkSelector.print_not_yet_implemented
@@ -105,16 +90,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.TempoMarkSelector.TempoMarkSelector.TempoMarkSelector.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.TempoMarkSelector.TempoMarkSelector.TempoMarkSelector.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.TempoMarkSelector.TempoMarkSelector.TempoMarkSelector.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.TempoMarkSelector.TempoMarkSelector.TempoMarkSelector.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.TempoMarkSelector.TempoMarkSelector.TempoMarkSelector.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.TempoMarkSelector.TempoMarkSelector.TempoMarkSelector.run

@@ -33,12 +33,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector.change_expr_to_menu_token
    :noindex:
 
@@ -96,16 +90,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector.make_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector.print_not_yet_implemented
@@ -114,16 +99,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector.run

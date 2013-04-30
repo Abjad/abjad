@@ -81,12 +81,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.conditionally_clear_terminal
    :noindex:
 
@@ -279,16 +273,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.make_visible_asset_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.print_not_yet_implemented
@@ -300,12 +285,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.profile_visible_assets
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.remove_assets_interactively
    :noindex:
 
@@ -313,9 +292,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.rename_asset_interactively
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.run

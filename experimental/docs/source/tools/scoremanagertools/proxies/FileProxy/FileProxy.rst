@@ -69,12 +69,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.conditionally_clear_terminal
    :noindex:
 
@@ -132,16 +126,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.make_menu
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.print_not_yet_implemented
@@ -151,12 +136,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.profile
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.push_breadcrumb
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.remove
@@ -184,9 +163,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.rename_versioned_asset
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.run

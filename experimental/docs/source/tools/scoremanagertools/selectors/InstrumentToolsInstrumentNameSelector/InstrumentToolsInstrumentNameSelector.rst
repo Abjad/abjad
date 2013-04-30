@@ -33,12 +33,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.change_expr_to_menu_token
    :noindex:
 
@@ -87,16 +81,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.make_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.print_not_yet_implemented
@@ -105,16 +90,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.run

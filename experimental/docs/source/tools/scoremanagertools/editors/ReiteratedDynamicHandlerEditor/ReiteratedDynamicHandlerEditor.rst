@@ -63,12 +63,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.attribute_name_to_menu_key
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.clean_up_attributes_in_memory
    :noindex:
 
@@ -135,16 +129,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.menu_key_to_existing_value
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.print_not_yet_implemented
@@ -153,16 +138,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.run

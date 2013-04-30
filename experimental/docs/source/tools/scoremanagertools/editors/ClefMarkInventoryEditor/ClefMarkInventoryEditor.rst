@@ -72,12 +72,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.attribute_name_to_menu_key
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.clean_up_attributes_in_memory
    :noindex:
 
@@ -156,16 +150,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.move_item_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.print_not_yet_implemented
@@ -174,19 +159,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.remove_items_interactively
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.run

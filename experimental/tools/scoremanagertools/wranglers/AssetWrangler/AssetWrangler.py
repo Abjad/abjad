@@ -469,10 +469,10 @@ class AssetWrangler(ScoreManagerObject):
 
     # TODO: write test
     def rename_asset_interactively(self, head=None):
-        self.push_backtrack()
+        self.session.push_backtrack()
         asset_package_path = self.select_asset_package_path_interactively(
             head=head, infinitival_phrase='to rename')
-        self.pop_backtrack()
+        self.session.pop_backtrack()
         if self.session.backtrack():
             return
         asset_proxy = self.get_asset_proxy(asset_package_path)
@@ -480,41 +480,41 @@ class AssetWrangler(ScoreManagerObject):
 
     def run(self, cache=False, clear=True, head=None, rollback=None, user_input=None):
         self.assign_user_input(user_input=user_input)
-        breadcrumb = self.pop_breadcrumb(rollback=rollback)
+        breadcrumb = self.session.pop_breadcrumb(rollback=rollback)
         self.session.cache_breadcrumbs(cache=cache)
         while True:
-            self.push_breadcrumb()
+            self.session.push_breadcrumb(self.breadcrumb)
             menu = self.make_main_menu(head=head)
             result = menu.run(clear=clear)
             if self.session.backtrack():
                 break
             elif not result:
-                self.pop_breadcrumb()
+                self.session.pop_breadcrumb()
                 continue
             self.handle_main_menu_result(result)
             if self.session.backtrack():
                 break
-            self.pop_breadcrumb()
-        self.pop_breadcrumb()
-        self.push_breadcrumb(breadcrumb=breadcrumb, rollback=rollback)
-        self.restore_breadcrumbs(cache=cache)
+            self.session.pop_breadcrumb()
+        self.session.pop_breadcrumb()
+        self.session.push_breadcrumb(breadcrumb=breadcrumb, rollback=rollback)
+        self.session.restore_breadcrumbs(cache=cache)
 
     def select_asset_package_path_interactively(
         self, clear=True, cache=False, head=None, infinitival_phrase=None, user_input=None):
         self.session.cache_breadcrumbs(cache=cache)
         while True:
-            self.push_breadcrumb(self.make_asset_selection_breadcrumb(infinitival_phrase=infinitival_phrase))
+            self.session.push_breadcrumb(self.make_asset_selection_breadcrumb(infinitival_phrase=infinitival_phrase))
             menu = self.make_asset_selection_menu(head=head)
             result = menu.run(clear=clear)
             if self.session.backtrack():
                 break
             elif not result:
-                self.pop_breadcrumb()
+                self.session.pop_breadcrumb()
                 continue
             else:
                 break
-        self.pop_breadcrumb()
-        self.restore_breadcrumbs(cache=cache)
+        self.session.pop_breadcrumb()
+        self.session.restore_breadcrumbs(cache=cache)
         return result
 
     def strip_file_extension_from_file_name(self, file_name):

@@ -33,12 +33,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.change_expr_to_menu_token
    :noindex:
 
@@ -87,16 +81,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.make_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.print_not_yet_implemented
@@ -105,16 +90,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.run

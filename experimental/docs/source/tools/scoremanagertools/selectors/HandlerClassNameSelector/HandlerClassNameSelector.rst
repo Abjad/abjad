@@ -33,12 +33,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.change_expr_to_menu_token
    :noindex:
 
@@ -87,16 +81,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.make_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.print_not_yet_implemented
@@ -105,16 +90,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.run

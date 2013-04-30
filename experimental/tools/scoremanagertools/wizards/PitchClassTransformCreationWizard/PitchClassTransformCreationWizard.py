@@ -46,26 +46,26 @@ class PitchClassTransformCreationWizard(Wizard):
         function_application_pairs = []
         while True:
             breadcrumb = self.function_application_pairs_to_breadcrumb(function_application_pairs)
-            self.push_breadcrumb(breadcrumb=breadcrumb)
+            self.session.push_breadcrumb(breadcrumb=breadcrumb)
             selector = selectors.PitchClassTransformSelector(session=self.session)
             selector.explicit_breadcrumb = self.get_explicit_breadcrumb(function_application_pairs)
-            self.push_backtrack()
+            self.session.push_backtrack()
             function_name = selector.run(clear=clear)
-            self.pop_backtrack()
+            self.session.pop_backtrack()
             if self.session.backtrack():
                 break
             elif not function_name:
-                self.pop_breadcrumb()
+                self.session.pop_breadcrumb()
                 continue
             function_arguments = self.get_function_arguments(function_name)
             if self.session.backtrack():
                 break
             elif function_arguments is None:
-                self.pop_breadcrumb()
+                self.session.pop_breadcrumb()
                 continue
             function_application_pairs.append((function_name, function_arguments))
-            self.pop_breadcrumb()
-        self.pop_breadcrumb()
-        self.restore_breadcrumbs(cache=cache)
+            self.session.pop_breadcrumb()
+        self.session.pop_breadcrumb()
+        self.session.restore_breadcrumbs(cache=cache)
         self.target = function_application_pairs
         return self.target

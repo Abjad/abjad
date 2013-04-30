@@ -324,12 +324,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.makers.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.makers.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.makers.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.clear_user_input_wrapper
    :noindex:
 
@@ -471,19 +465,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.makers.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.overwrite_output_material_module
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.makers.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.makers.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.pop_next_user_response_from_user_input
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.populate_user_input_wrapper
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.print_directory_contents
@@ -496,12 +481,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.profile
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.push_breadcrumb
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.regenerate_everything
@@ -571,9 +550,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.rename_versioned_asset
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.run

@@ -90,7 +90,7 @@ class ScorePackageWrangler(PackageWrangler):
         return result
 
     def make_asset_interactively(self, rollback=False):
-        breadcrumb = self.pop_breadcrumb(rollback=rollback)
+        breadcrumb = self.session.pop_breadcrumb(rollback=rollback)
         getter = self.make_getter(where=self.where())
         getter.indent_level = 1
         getter.prompt_character = ':'
@@ -108,7 +108,7 @@ class ScorePackageWrangler(PackageWrangler):
         score_package_proxy = self.get_asset_proxy(score_package_name)
         score_package_proxy.add_tag('title', title)
         score_package_proxy.year_of_completion = year
-        self.push_breadcrumb(breadcrumb=breadcrumb, rollback=rollback)
+        self.session.push_breadcrumb(breadcrumb=breadcrumb, rollback=rollback)
 
     def make_main_menu(self):
         self.print_not_yet_implemented()

@@ -27,12 +27,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wizards.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.conditionally_clear_terminal
    :noindex:
 
@@ -69,16 +63,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wizards.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.make_menu
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.print_not_yet_implemented
@@ -87,16 +72,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wizards.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.run

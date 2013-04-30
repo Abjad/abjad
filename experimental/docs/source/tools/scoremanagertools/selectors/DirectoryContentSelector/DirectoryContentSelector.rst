@@ -33,12 +33,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.change_expr_to_menu_token
    :noindex:
 
@@ -87,16 +81,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.make_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.print_not_yet_implemented
@@ -105,16 +90,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.run

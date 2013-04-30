@@ -81,12 +81,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.clear
    :noindex:
 
@@ -150,16 +144,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.make_menu
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.print_not_yet_implemented
@@ -169,12 +154,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.profile
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.push_breadcrumb
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.remove
@@ -202,9 +181,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.rename_versioned_asset
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.run

@@ -63,12 +63,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.attribute_name_to_menu_key
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.clean_up_attributes_in_memory
    :noindex:
 
@@ -135,16 +129,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.menu_key_to_existing_value
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.print_not_yet_implemented
@@ -153,16 +138,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.run

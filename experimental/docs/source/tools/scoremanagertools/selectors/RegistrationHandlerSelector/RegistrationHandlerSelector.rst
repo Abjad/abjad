@@ -33,12 +33,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.RegistrationHandlerSelector.RegistrationHandlerSelector.RegistrationHandlerSelector.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.RegistrationHandlerSelector.RegistrationHandlerSelector.RegistrationHandlerSelector.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.RegistrationHandlerSelector.RegistrationHandlerSelector.RegistrationHandlerSelector.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.RegistrationHandlerSelector.RegistrationHandlerSelector.RegistrationHandlerSelector.change_expr_to_menu_token
    :noindex:
 
@@ -87,16 +81,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.RegistrationHandlerSelector.RegistrationHandlerSelector.RegistrationHandlerSelector.make_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.RegistrationHandlerSelector.RegistrationHandlerSelector.RegistrationHandlerSelector.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.RegistrationHandlerSelector.RegistrationHandlerSelector.RegistrationHandlerSelector.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.RegistrationHandlerSelector.RegistrationHandlerSelector.RegistrationHandlerSelector.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.RegistrationHandlerSelector.RegistrationHandlerSelector.RegistrationHandlerSelector.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.RegistrationHandlerSelector.RegistrationHandlerSelector.RegistrationHandlerSelector.print_not_yet_implemented
@@ -105,16 +90,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.RegistrationHandlerSelector.RegistrationHandlerSelector.RegistrationHandlerSelector.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.RegistrationHandlerSelector.RegistrationHandlerSelector.RegistrationHandlerSelector.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.RegistrationHandlerSelector.RegistrationHandlerSelector.RegistrationHandlerSelector.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.RegistrationHandlerSelector.RegistrationHandlerSelector.RegistrationHandlerSelector.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.RegistrationHandlerSelector.RegistrationHandlerSelector.RegistrationHandlerSelector.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.RegistrationHandlerSelector.RegistrationHandlerSelector.RegistrationHandlerSelector.run

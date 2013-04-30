@@ -42,12 +42,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.conditionally_clear_terminal
    :noindex:
 
@@ -105,16 +99,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.make_title_lines
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.print_not_yet_implemented
@@ -123,16 +108,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.show_hidden_menu_entries

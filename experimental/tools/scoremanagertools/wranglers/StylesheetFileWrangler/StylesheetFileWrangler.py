@@ -75,16 +75,16 @@ class StylesheetFileWrangler(PackageWrangler):
         menu, section = self.make_menu(where=self.where(), is_parenthetically_numbered=True)
         section.tokens = self.stylesheet_file_names
         while True:
-            self.push_breadcrumb('select stylesheet')
+            self.session.push_breadcrumb('select stylesheet')
             result = menu.run(clear=clear)
             if self.session.backtrack():
                 break
             elif not result:
-                self.pop_breadcrumb()
+                self.session.pop_breadcrumb()
                 continue
             else:
                 break
-        self.pop_breadcrumb()
-        self.restore_breadcrumbs(cache=cache)
+        self.session.pop_breadcrumb()
+        self.session.restore_breadcrumbs(cache=cache)
         result = os.path.join(self.configuration.stylesheets_directory_path, result)
         return result

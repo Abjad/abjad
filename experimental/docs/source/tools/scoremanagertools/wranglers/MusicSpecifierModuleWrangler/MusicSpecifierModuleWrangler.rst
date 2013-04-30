@@ -72,12 +72,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.conditionally_clear_terminal
    :noindex:
 
@@ -261,16 +255,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.make_visible_asset_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.print_not_yet_implemented
@@ -282,12 +267,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.profile_visible_assets
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.remove_assets_interactively
    :noindex:
 
@@ -295,9 +274,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.rename_asset_interactively
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.run

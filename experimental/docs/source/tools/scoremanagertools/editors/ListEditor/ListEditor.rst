@@ -72,12 +72,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.attribute_name_to_menu_key
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.clean_up_attributes_in_memory
    :noindex:
 
@@ -156,16 +150,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.move_item_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.print_not_yet_implemented
@@ -174,19 +159,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.remove_items_interactively
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.run

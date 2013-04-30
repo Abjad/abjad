@@ -33,12 +33,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.change_expr_to_menu_token
    :noindex:
 
@@ -96,16 +90,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.make_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.print_not_yet_implemented
@@ -114,16 +99,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.run

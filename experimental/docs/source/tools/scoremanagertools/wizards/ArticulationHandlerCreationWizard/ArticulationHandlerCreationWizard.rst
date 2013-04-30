@@ -27,12 +27,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.conditionally_clear_terminal
    :noindex:
 
@@ -69,16 +63,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.make_menu
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.print_not_yet_implemented
@@ -87,16 +72,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.run

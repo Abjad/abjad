@@ -63,12 +63,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.InteractiveEditor.InteractiveEditor.InteractiveEditor.attribute_name_to_menu_key
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.InteractiveEditor.InteractiveEditor.InteractiveEditor.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.InteractiveEditor.InteractiveEditor.InteractiveEditor.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.InteractiveEditor.InteractiveEditor.InteractiveEditor.clean_up_attributes_in_memory
    :noindex:
 
@@ -135,16 +129,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.InteractiveEditor.InteractiveEditor.InteractiveEditor.menu_key_to_existing_value
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.InteractiveEditor.InteractiveEditor.InteractiveEditor.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.InteractiveEditor.InteractiveEditor.InteractiveEditor.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.InteractiveEditor.InteractiveEditor.InteractiveEditor.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.InteractiveEditor.InteractiveEditor.InteractiveEditor.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.InteractiveEditor.InteractiveEditor.InteractiveEditor.print_not_yet_implemented
@@ -153,16 +138,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.InteractiveEditor.InteractiveEditor.InteractiveEditor.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.InteractiveEditor.InteractiveEditor.InteractiveEditor.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.InteractiveEditor.InteractiveEditor.InteractiveEditor.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.InteractiveEditor.InteractiveEditor.InteractiveEditor.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.InteractiveEditor.InteractiveEditor.InteractiveEditor.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.InteractiveEditor.InteractiveEditor.InteractiveEditor.run

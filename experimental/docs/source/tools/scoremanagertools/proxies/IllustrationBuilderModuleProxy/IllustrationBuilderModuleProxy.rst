@@ -117,12 +117,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.clear
    :noindex:
 
@@ -192,16 +186,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.parse
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.print_not_yet_implemented
@@ -211,12 +196,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.profile
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.push_breadcrumb
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.remove
@@ -244,9 +223,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.rename_versioned_asset
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.run

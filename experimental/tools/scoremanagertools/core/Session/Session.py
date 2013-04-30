@@ -372,8 +372,30 @@ class Session(ScoreManagerObject):
                 result_lines.append(result_line)
         return result_lines
 
+    def pop_backtrack(self):
+        return self.backtracking_stack.pop()
+
+    def pop_breadcrumb(self, rollback=True):
+        if rollback:
+            return self._breadcrumb_stack.pop()
+
+    def push_backtrack(self):
+        if self.backtracking_stack:
+            last_number = self.backtracking_stack[-1]
+            self.backtracking_stack.append(last_number + 1)
+        else:
+            self.backtracking_stack.append(0)
+
+    def push_breadcrumb(self, breadcrumb, rollback=True):
+        if rollback:
+            self._breadcrumb_stack.append(breadcrumb)
+
     def reinitialize(self):
         type(self).__init__(self)
+
+    def restore_breadcrumbs(self, cache=False):
+        if cache:
+            self._breadcrumb_stack[:] = self.breadcrumb_cache_stack.pop()
 
     def show_active_scores(self):
         self._scores_to_show = 'active'

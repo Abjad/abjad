@@ -76,16 +76,16 @@ class Selector(ScoreManagerObject):
         self.assign_user_input(user_input=user_input)
         self.session.cache_breadcrumbs(cache=cache)
         while True:
-            self.push_breadcrumb()
+            self.session.push_breadcrumb(self.breadcrumb)
             menu = self.make_main_menu(head=head)
             result = menu.run(clear=clear)
             if self.session.backtrack():
                 break
             elif not result:
-                self.pop_breadcrumb()
+                self.session.pop_breadcrumb()
                 continue
             else:
                 break
-        self.pop_breadcrumb()
-        self.restore_breadcrumbs(cache=cache)
+        self.session.pop_breadcrumb()
+        self.session.restore_breadcrumbs(cache=cache)
         return result

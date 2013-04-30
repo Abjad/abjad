@@ -23,24 +23,24 @@ class ParameterSpecifierCreationWizard(Wizard):
     def run(self, cache=False, clear=True, head=None, user_input=None):
         self.assign_user_input(user_input=user_input)
         self.session.cache_breadcrumbs(cache=cache)
-        self.push_breadcrumb()
+        self.session.push_breadcrumb(self.breadcrumb)
         selector = selectors.ParameterSpecifierClassNameSelector(session=self.session)
-        self.push_backtrack()
+        self.session.push_backtrack()
         target_class_name = selector.run()
-        self.pop_backtrack()
+        self.session.pop_backtrack()
         if self.session.backtrack():
-            self.pop_breadcrumb()
-            self.restore_breadcrumbs(cache=cache)
+            self.session.pop_breadcrumb()
+            self.session.restore_breadcrumbs(cache=cache)
             return
         target_editor = self.get_target_editor(target_class_name)
-        self.push_backtrack()
+        self.session.push_backtrack()
         target_editor.run()
-        self.pop_backtrack()
+        self.session.pop_backtrack()
         if self.session.backtrack():
-            self.pop_breadcrumb()
-            self.restore_breadcrumbs(cache=cache)
+            self.session.pop_breadcrumb()
+            self.session.restore_breadcrumbs(cache=cache)
             return
-        self.pop_breadcrumb()
-        self.restore_breadcrumbs(cache=cache)
+        self.session.pop_breadcrumb()
+        self.session.restore_breadcrumbs(cache=cache)
         self.target = target_editor.target
         return self.target

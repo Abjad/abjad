@@ -27,12 +27,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.change_instrument_name_to_instrument
    :noindex:
 
@@ -72,16 +66,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.name_untuned_percussion
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.print_not_yet_implemented
@@ -90,16 +75,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.run

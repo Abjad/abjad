@@ -807,9 +807,9 @@ class MaterialPackageProxy(PackageProxy):
 
     def select_material_package_maker_interactively(self, prompt=True):
         material_proxy_wrangler = MaterialPackageMakerWrangler(session=self.session)
-        self.push_backtrack()
+        self.session.push_backtrack()
         material_package_maker = material_proxy_wrangler.select_material_proxy_class_name_interactively()
-        self.pop_backtrack()
+        self.session.pop_backtrack()
         if self.session.backtrack():
             return
         self.add_tag('material_package_maker', material_package_maker.class_name)
@@ -818,9 +818,9 @@ class MaterialPackageProxy(PackageProxy):
 
     def select_stylesheet_interactively(self, prompt=True):
         stylesheet_file_wrangler = StylesheetFileWrangler(session=self.session)
-        self.push_backtrack()
+        self.session.push_backtrack()
         stylesheet_file_name = stylesheet_file_wrangler.select_stylesheet_file_name_interactively()
-        self.pop_backtrack()
+        self.session.pop_backtrack()
         if self.session.backtrack():
             return
         self.stylesheet_file_name_in_memory = stylesheet_file_name

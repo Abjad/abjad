@@ -99,12 +99,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.clear
    :noindex:
 
@@ -168,16 +162,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.make_menu
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.print_not_yet_implemented
@@ -187,12 +172,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.profile
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.push_breadcrumb
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.remove
@@ -220,9 +199,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.rename_versioned_asset
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.run

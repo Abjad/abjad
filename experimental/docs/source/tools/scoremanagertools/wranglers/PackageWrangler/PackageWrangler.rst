@@ -72,12 +72,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.conditionally_clear_terminal
    :noindex:
 
@@ -261,16 +255,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.make_visible_asset_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.print_not_yet_implemented
@@ -282,12 +267,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.profile_visible_assets
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.remove_assets_interactively
    :noindex:
 
@@ -295,9 +274,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.rename_asset_interactively
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.run

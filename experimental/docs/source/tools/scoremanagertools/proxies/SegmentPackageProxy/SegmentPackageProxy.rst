@@ -120,12 +120,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.conditionally_clear_terminal
    :noindex:
 
@@ -213,16 +207,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.manage_tags
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.print_directory_contents
@@ -235,12 +220,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.profile
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.push_breadcrumb
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.remove
@@ -277,9 +256,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.rename_versioned_asset
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.run

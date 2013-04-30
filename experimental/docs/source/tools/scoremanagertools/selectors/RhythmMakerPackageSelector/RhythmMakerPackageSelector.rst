@@ -33,12 +33,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.RhythmMakerPackageSelector.RhythmMakerPackageSelector.RhythmMakerPackageSelector.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.RhythmMakerPackageSelector.RhythmMakerPackageSelector.RhythmMakerPackageSelector.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.RhythmMakerPackageSelector.RhythmMakerPackageSelector.RhythmMakerPackageSelector.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.RhythmMakerPackageSelector.RhythmMakerPackageSelector.RhythmMakerPackageSelector.change_expr_to_menu_token
    :noindex:
 
@@ -96,16 +90,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.RhythmMakerPackageSelector.RhythmMakerPackageSelector.RhythmMakerPackageSelector.make_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.RhythmMakerPackageSelector.RhythmMakerPackageSelector.RhythmMakerPackageSelector.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.RhythmMakerPackageSelector.RhythmMakerPackageSelector.RhythmMakerPackageSelector.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.RhythmMakerPackageSelector.RhythmMakerPackageSelector.RhythmMakerPackageSelector.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.RhythmMakerPackageSelector.RhythmMakerPackageSelector.RhythmMakerPackageSelector.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.RhythmMakerPackageSelector.RhythmMakerPackageSelector.RhythmMakerPackageSelector.print_not_yet_implemented
@@ -114,16 +99,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.RhythmMakerPackageSelector.RhythmMakerPackageSelector.RhythmMakerPackageSelector.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.RhythmMakerPackageSelector.RhythmMakerPackageSelector.RhythmMakerPackageSelector.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.RhythmMakerPackageSelector.RhythmMakerPackageSelector.RhythmMakerPackageSelector.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.RhythmMakerPackageSelector.RhythmMakerPackageSelector.RhythmMakerPackageSelector.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.RhythmMakerPackageSelector.RhythmMakerPackageSelector.RhythmMakerPackageSelector.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.RhythmMakerPackageSelector.RhythmMakerPackageSelector.RhythmMakerPackageSelector.run

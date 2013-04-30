@@ -63,12 +63,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.attribute_name_to_menu_key
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.clean_up_attributes_in_memory
    :noindex:
 
@@ -135,16 +129,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.menu_key_to_existing_value
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.print_not_yet_implemented
@@ -153,16 +138,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.run

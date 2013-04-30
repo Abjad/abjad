@@ -72,12 +72,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.attribute_name_to_menu_key
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.clean_up_attributes_in_memory
    :noindex:
 
@@ -156,16 +150,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.move_item_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.print_not_yet_implemented
@@ -174,19 +159,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.remove_items_interactively
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.run

@@ -406,38 +406,38 @@ class ScorePackageProxy(PackageProxy):
     def manage_setup(self, clear=True, cache=False):
         self.session.cache_breadcrumbs(cache=cache)
         while True:
-            self.push_breadcrumb('{} - setup'.format(self.annotated_title))
+            self.session.push_breadcrumb('{} - setup'.format(self.annotated_title))
             setup_menu = self.make_setup_menu()
             result = setup_menu.run(clear=clear)
             if self.session.backtrack():
                 break
             elif not result:
-                self.pop_breadcrumb()
+                self.session.pop_breadcrumb()
                 continue
             self.handle_setup_menu_result(result)
             if self.session.backtrack():
                 break
-            self.pop_breadcrumb()
-        self.pop_breadcrumb()
-        self.restore_breadcrumbs(cache=cache)
+            self.session.pop_breadcrumb()
+        self.session.pop_breadcrumb()
+        self.session.restore_breadcrumbs(cache=cache)
 
     def manage_svn(self, clear=True, cache=False):
         self.session.cache_breadcrumbs(cache=cache)
         while True:
-            self.push_breadcrumb('repository commands')
+            self.session.push_breadcrumb('repository commands')
             menu = self.make_svn_menu()
             result = menu.run(clear=clear)
             if self.session.backtrack():
                 break
             elif not result:
-                self.pop_breadcrumb()
+                self.session.pop_breadcrumb()
                 continue
             self.handle_svn_menu_result(result)
             if self.session.backtrack():
                 break
-            self.pop_breadcrumb()
-        self.pop_breadcrumb()
-        self.restore_breadcrumbs(cache=cache)
+            self.session.pop_breadcrumb()
+        self.session.pop_breadcrumb()
+        self.session.restore_breadcrumbs(cache=cache)
 
     def profile(self, prompt=True):
         if not os.path.exists(self.directory_path):
@@ -458,15 +458,15 @@ class ScorePackageProxy(PackageProxy):
         self.display([line, ''])
         getter = self.make_getter(where=self.where())
         getter.append_string("type 'clobberscore' to proceed")
-        self.push_backtrack()
+        self.session.push_backtrack()
         should_clobber = getter.run()
-        self.pop_backtrack()
+        self.session.pop_backtrack()
         if self.session.backtrack():
             return
         if should_clobber == 'clobberscore':
-            self.push_backtrack()
+            self.session.push_backtrack()
             self.remove()
-            self.pop_backtrack()
+            self.session.pop_backtrack()
             if self.session.backtrack():
                 return
             self.session.is_backtracking_locally = True

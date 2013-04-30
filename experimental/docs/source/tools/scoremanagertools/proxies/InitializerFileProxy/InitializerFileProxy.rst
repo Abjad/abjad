@@ -84,12 +84,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.clear
    :noindex:
 
@@ -162,16 +156,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.parse
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.print_not_yet_implemented
@@ -181,12 +166,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.profile
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.push_breadcrumb
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.remove
@@ -217,9 +196,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.rename_versioned_asset
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.restore_interactively

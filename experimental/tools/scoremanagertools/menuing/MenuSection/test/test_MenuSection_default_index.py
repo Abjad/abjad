@@ -5,7 +5,7 @@ import py
 def test_MenuSection_default_index_01():
 
     menu = scoremanagertools.menuing.Menu()
-    menu.push_breadcrumb('location')
+    menu.session.push_breadcrumb('location')
     section = menu.make_section()
     section.title = 'section'
     section.extend(['apple', 'banana', 'cherry'])

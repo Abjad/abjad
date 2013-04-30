@@ -27,12 +27,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.conditionally_clear_terminal
    :noindex:
 
@@ -72,16 +66,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.make_performer_configuration_menu
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.print_not_yet_implemented
@@ -90,16 +75,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.run

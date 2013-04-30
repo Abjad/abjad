@@ -29,9 +29,9 @@ class InstrumentCreationWizard(Wizard):
     def name_untuned_percussion(self, instrument):
         if isinstance(instrument, instrumenttools.UntunedPercussion):
             selector = selectors.InstrumentToolsUntunedPercussionNameSelector(session=self.session)
-            self.push_backtrack()
+            self.session.push_backtrack()
             instrument_name = selector.run()
-            self.pop_backtrack()
+            self.session.pop_backtrack()
             if self.session.backtrack():
                 return
             instrument.instrument_name = instrument_name
@@ -40,15 +40,15 @@ class InstrumentCreationWizard(Wizard):
     def run(self, cache=False, clear=True, head=None, user_input=None):
         self.assign_user_input(user_input=user_input)
         self.session.cache_breadcrumbs(cache=cache)
-        self.push_breadcrumb()
+        self.session.push_breadcrumb(self.breadcrumb)
         kwargs = {'session': self.session, 'is_ranged': self.is_ranged}
         selector = selectors.InstrumentToolsInstrumentNameSelector(**kwargs)
-        self.push_backtrack()
+        self.session.push_backtrack()
         result = selector.run()
-        self.pop_backtrack()
+        self.session.pop_backtrack()
         if self.session.backtrack():
-            self.pop_breadcrumb()
-            self.restore_breadcrumbs(cache=cache)
+            self.session.pop_breadcrumb()
+            self.session.restore_breadcrumbs(cache=cache)
             return
         if isinstance(result, list):
             instrument_names = result
@@ -63,7 +63,7 @@ class InstrumentCreationWizard(Wizard):
             result = instruments[:]
         else:
             result = instruments[0]
-        self.pop_breadcrumb()
-        self.restore_breadcrumbs(cache=cache)
+        self.session.pop_breadcrumb()
+        self.session.restore_breadcrumbs(cache=cache)
         self.target = result
         return self.target

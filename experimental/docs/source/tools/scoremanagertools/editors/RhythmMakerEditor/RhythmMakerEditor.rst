@@ -63,12 +63,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.attribute_name_to_menu_key
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.clean_up_attributes_in_memory
    :noindex:
 
@@ -135,16 +129,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.menu_key_to_existing_value
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.print_not_yet_implemented
@@ -153,16 +138,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.run

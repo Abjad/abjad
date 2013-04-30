@@ -324,12 +324,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.makers.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.makers.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.makers.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.clear_user_input_wrapper
    :noindex:
 
@@ -471,19 +465,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.makers.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.overwrite_output_material_module
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.makers.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.makers.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.pop_next_user_response_from_user_input
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.populate_user_input_wrapper
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.print_directory_contents
@@ -496,12 +481,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.profile
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.push_breadcrumb
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.regenerate_everything
@@ -571,9 +550,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.rename_versioned_asset
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.run

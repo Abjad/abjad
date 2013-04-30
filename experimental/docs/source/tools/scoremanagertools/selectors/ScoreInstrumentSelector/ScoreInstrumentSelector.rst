@@ -33,12 +33,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.ScoreInstrumentSelector.ScoreInstrumentSelector.ScoreInstrumentSelector.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.ScoreInstrumentSelector.ScoreInstrumentSelector.ScoreInstrumentSelector.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ScoreInstrumentSelector.ScoreInstrumentSelector.ScoreInstrumentSelector.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.ScoreInstrumentSelector.ScoreInstrumentSelector.ScoreInstrumentSelector.change_expr_to_menu_token
    :noindex:
 
@@ -87,16 +81,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.ScoreInstrumentSelector.ScoreInstrumentSelector.ScoreInstrumentSelector.make_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.ScoreInstrumentSelector.ScoreInstrumentSelector.ScoreInstrumentSelector.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ScoreInstrumentSelector.ScoreInstrumentSelector.ScoreInstrumentSelector.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.ScoreInstrumentSelector.ScoreInstrumentSelector.ScoreInstrumentSelector.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ScoreInstrumentSelector.ScoreInstrumentSelector.ScoreInstrumentSelector.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.ScoreInstrumentSelector.ScoreInstrumentSelector.ScoreInstrumentSelector.print_not_yet_implemented
@@ -105,16 +90,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.ScoreInstrumentSelector.ScoreInstrumentSelector.ScoreInstrumentSelector.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.ScoreInstrumentSelector.ScoreInstrumentSelector.ScoreInstrumentSelector.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ScoreInstrumentSelector.ScoreInstrumentSelector.ScoreInstrumentSelector.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.ScoreInstrumentSelector.ScoreInstrumentSelector.ScoreInstrumentSelector.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ScoreInstrumentSelector.ScoreInstrumentSelector.ScoreInstrumentSelector.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.ScoreInstrumentSelector.ScoreInstrumentSelector.ScoreInstrumentSelector.run

@@ -54,12 +54,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.conditionally_clear_terminal
    :noindex:
 
@@ -108,16 +102,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.make_menu
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.print_not_yet_implemented
@@ -127,12 +112,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.profile
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.push_breadcrumb
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.remove
@@ -160,9 +139,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.rename_versioned_asset
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.run

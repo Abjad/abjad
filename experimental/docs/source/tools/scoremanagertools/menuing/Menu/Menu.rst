@@ -99,12 +99,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.change_user_input_to_directive
    :noindex:
 
@@ -177,16 +171,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.make_title_lines
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.print_not_yet_implemented
@@ -195,16 +180,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.return_value_to_location_pair

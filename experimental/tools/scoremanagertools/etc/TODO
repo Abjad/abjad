@@ -32,7 +32,7 @@
 
 15. Find a way to dynamically present (default) indicator to default menu entries.
 
-16. Consider keyword backtracking protocol to replace self.push_backtrack() / self.pop_backtrack().
+16. Consider keyword backtracking protocol to replace self.session.push_backtrack() / self.session.pop_backtrack().
 
 17. Distinguish positional editor parameters from keyword editor parameters.
 

@@ -152,11 +152,11 @@ class InitializerFileProxy(ParsableFileProxy):
             should_have_illustration = 'yes'.startswith(result.lower())
         else:
             material_package_maker_wrangler = scoremanagertools.wranglers.MaterialPackageMakerWrangler(session=self.session)
-            self.push_backtrack()
+            self.session.push_backtrack()
             material_package_maker_class_name = \
                 material_package_maker_wrangler.select_material_proxy_class_name_interactively(
                     clear=False, cache=True)
-            self.pop_backtrack()
+            self.session.pop_backtrack()
             if self.session.backtrack():
                 return
             should_have_illustration = True

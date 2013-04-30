@@ -63,12 +63,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.attribute_name_to_menu_key
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.cache_breadcrumbs
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.clean_up_attributes_in_memory
    :noindex:
 
@@ -135,16 +129,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.menu_key_to_existing_value
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.pop_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.pop_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.pprint_transcript
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.print_not_yet_implemented
@@ -153,16 +138,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.proceed
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.push_backtrack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.push_breadcrumb
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.remove_package_path_from_sys_modules
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.restore_breadcrumbs
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.run
