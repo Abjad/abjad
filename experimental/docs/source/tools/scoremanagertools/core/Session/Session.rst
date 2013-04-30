@@ -195,9 +195,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.make_menu
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.module_path_to_file_path
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.package_exists
    :noindex:
 

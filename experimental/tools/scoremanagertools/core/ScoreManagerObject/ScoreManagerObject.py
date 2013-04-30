@@ -224,19 +224,9 @@ class ScoreManagerObject(AbjadObject):
             is_ranged=is_ranged)
         return menu, section
 
-    # TODO: move to filesystemtools
-    def module_path_to_file_path(self, module_path):
-        if module_path is not None:
-            file_path = filesystemtools.package_path_to_directory_path(
-                module_path, self.configuration)
-            file_path += '.py'
-            return file_path
-
-    # TODO: move to filesystemtools
+    # TODO: remove in favor of filesystemtools.package_exists()
     def package_exists(self, package_path):
-        assert isinstance(package_path, str)
-        directory_path = filesystemtools.package_path_to_directory_path(package_path, self.configuration)
-        return os.path.exists(directory_path)
+        return filesystemtools.package_exists(package_path, self.configuration)
 
     # TODO: move to Session
     def pop_backtrack(self):
