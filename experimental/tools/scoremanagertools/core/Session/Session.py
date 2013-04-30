@@ -1,14 +1,18 @@
 # -*- encoding: utf-8 -*-
 import os
 from abjad.tools import stringtools
+from abjad.tools import abctools
 from experimental.tools import filesystemtools
-from experimental.tools.scoremanagertools.core.ScoreManagerObject import ScoreManagerObject
 from experimental.tools.scoremanagertools.core.ScoreManagerConfiguration import \
     ScoreManagerConfiguration
 from experimental.tools.scoremanagertools.core.Transcript import Transcript
 
 
-class Session(ScoreManagerObject):
+class Session(abctools.AbjadObject):
+
+    ### CLASS ATTRIBUTES ### 
+
+    configuration = ScoreManagerConfiguration()
 
     ### INITIALIZER ###
 
@@ -18,7 +22,6 @@ class Session(ScoreManagerObject):
         self._breadcrumb_stack = []
         self._command_history = []
         self._complete_transcript = Transcript()
-        self._configuration = ScoreManagerConfiguration()
         self._session_once_had_user_input = False
         self.current_score_package_name = None
         self.display_pitch_ranges_with_numbered_pitches = False
@@ -174,11 +177,6 @@ class Session(ScoreManagerObject):
     @property
     def menu_header(self):
         return '\n'.join(self.format_breadcrumb_stack())
-
-    # TODO: rename to self.score_manager_transcripts_directory_path
-    @property
-    def output_directory(self):
-        return self.configuration.score_manager_transcripts_directory_path
 
     @property
     def scores_to_show(self):
@@ -354,7 +352,7 @@ class Session(ScoreManagerObject):
 
     def clean_up(self):
         if self.dump_transcript:
-            self.complete_transcript.write_to_disk(self.output_directory)
+            self.complete_transcript.write_to_disk()
 
     def format_breadcrumb_stack(self):
         if not self._breadcrumb_stack:

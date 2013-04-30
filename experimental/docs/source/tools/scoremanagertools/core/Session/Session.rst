@@ -72,13 +72,7 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.menu_header
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.output_directory
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.scores_to_show
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.session
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.session_once_had_user_input
@@ -141,9 +135,6 @@ Read/write properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.backtrack
    :noindex:
 
@@ -153,43 +144,13 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.clean_up
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.conditionally_clear_terminal
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.confirm
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.display
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.format_breadcrumb_stack
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.handle_raw_input_with_default
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.make_getter
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.make_menu
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.pop_backtrack
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.pop_breadcrumb
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.push_backtrack
@@ -214,9 +175,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.swap_user_input_values_default_status
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.where
    :noindex:
 
 Special methods

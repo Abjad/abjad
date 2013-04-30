@@ -24,6 +24,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.core.Transcript.Transcript.Transcript.start_time
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.core.Transcript.Transcript.Transcript.storage_format
+   :noindex:
+
 Methods
 -------
 
@@ -34,4 +37,28 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.core.Transcript.Transcript.Transcript.write_to_disk
+   :noindex:
+
+Special methods
+---------------
+
+.. automethod:: experimental.tools.scoremanagertools.core.Transcript.Transcript.Transcript.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.core.Transcript.Transcript.Transcript.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.core.Transcript.Transcript.Transcript.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.core.Transcript.Transcript.Transcript.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.core.Transcript.Transcript.Transcript.__lt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.core.Transcript.Transcript.Transcript.__ne__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.core.Transcript.Transcript.Transcript.__repr__
    :noindex:

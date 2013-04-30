@@ -1,10 +1,18 @@
 import datetime
 import os
-import pprint
 import time
+from abjad.tools.abctools.AbjadObject import AbjadObject
+from experimental.tools.scoremanagertools.core.ScoreManagerConfiguration import \
+    ScoreManagerConfiguration
 
 
-class Transcript(object):
+class Transcript(AbjadObject):
+
+    ### CLASS ATTRIBUTES ### 
+
+    configuration = ScoreManagerConfiguration()
+
+    ### INITIALIZER ###
 
     def __init__(self):
         self._entries = []
@@ -67,7 +75,9 @@ class Transcript(object):
             result.append(line)
         return '\n'.join(result)
 
-    def write_to_disk(self, output_directory):
+    def write_to_disk(self, output_directory=None):
+        output_directory = output_directory or \
+            self.configuration.score_manager_transcripts_directory_path
         start_time = self.start_time.strftime('%Y-%m-%d-%H-%M-%S')
         file_name = 'session-{}.txt'.format(start_time)
         file_path = os.path.join(output_directory, file_name)
