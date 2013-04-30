@@ -1,4 +1,5 @@
 import os
+from experimental.tools.scoremanagertools import helpers
 from experimental.tools.scoremanagertools.core.ScoreManagerObject import ScoreManagerObject
 
 
@@ -42,7 +43,7 @@ class Selector(ScoreManagerObject):
     ### PUBLIC METHODS ###
 
     def change_expr_to_menu_token(self, expr):
-        return (None, self.get_one_line_menuing_summary(expr), None, expr)
+        return (None, helpers.get_one_line_menuing_summary(expr), None, expr)
 
     def get_tag_from_directory_path(self, directory_path, tag_name):
         tags_file_name = os.path.join(directory_path, 'tags.py')

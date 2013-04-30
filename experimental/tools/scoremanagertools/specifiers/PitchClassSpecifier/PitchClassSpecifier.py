@@ -1,7 +1,10 @@
+from experimental.tools.scoremanagertools import helpers
 from experimental.tools.scoremanagertools.specifiers.ParameterSpecifier import ParameterSpecifier
 
 
 class PitchClassSpecifier(ParameterSpecifier):
+
+    ### INITIALIZER ###
 
     def __init__(self,
         description=None,
@@ -20,4 +23,4 @@ class PitchClassSpecifier(ParameterSpecifier):
 
     @property
     def one_line_menuing_summary(self):
-        return self.name or self.get_one_line_menuing_summary(self.pitch_class_reservoir)
+        return self.name or helpers.get_one_line_menuing_summary(self.pitch_class_reservoir)

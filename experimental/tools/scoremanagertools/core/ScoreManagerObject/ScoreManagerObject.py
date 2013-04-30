@@ -1,10 +1,7 @@
-import abc
 import inspect
 import os
-import pprint
 import readline
 import sys
-import types
 from abjad.tools import iotools
 from abjad.tools import markuptools
 from abjad.tools import mathtools
@@ -122,25 +119,6 @@ class ScoreManagerObject(AbjadObject):
     # TODO: eventually remove after all configuration info is encapsulated somewhere
     def dot_join(self, expr):
         return '.'.join(expr)
-
-    # TODO: move to somewhere in menuing package
-    def get_one_line_menuing_summary(self, expr):
-        if isinstance(expr, (types.ClassType, abc.ABCMeta)):
-            return expr.__name__
-        elif getattr(expr, 'one_line_menuing_summary', None):
-            return expr.one_line_menuing_summary
-        elif getattr(expr, '_one_line_menuing_summary', None):
-            return expr._one_line_menuing_summary
-        elif isinstance(expr, type(type)):
-            return expr.__name__
-        elif isinstance(expr, str):
-            return expr
-        else:
-            return repr(expr)
-
-    # TODO: remove or hoist to AbjadObject, as necessary
-    def get_tools_package_qualified_repr(self, expr):
-        return getattr(expr, '_tools_package_qualified_repr', repr(expr))
 
     # TODO: migrate to [menuing.]IO class
     def handle_raw_input(self, prompt, include_chevron=True, include_newline=True, prompt_character='>',

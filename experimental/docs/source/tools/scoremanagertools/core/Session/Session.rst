@@ -171,12 +171,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.format_breadcrumb_stack
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.get_one_line_menuing_summary
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.get_tools_package_qualified_repr
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.handle_raw_input
    :noindex:
 

@@ -1,4 +1,5 @@
 from abjad.tools import stringtools
+from experimental.tools.scoremanagertools import helpers
 from experimental.tools.scoremanagertools.core.ScoreManagerObject import ScoreManagerObject
 
 
@@ -101,7 +102,7 @@ class InteractiveEditor(ScoreManagerObject):
         if self.target is not None:
             for target_attribute_name in self.target_attribute_names:
                 name = stringtools.string_to_space_delimited_lowercase(target_attribute_name)
-                value = self.get_one_line_menuing_summary(getattr(self.target, target_attribute_name))
+                value = helpers.get_one_line_menuing_summary(getattr(self.target, target_attribute_name))
                 result.append('{}: {}'.format(name, value))
         return result
 
@@ -234,7 +235,7 @@ class InteractiveEditor(ScoreManagerObject):
                     attribute_value = self.attributes_in_memory.get(attribute_detail.name)
             if hasattr(attribute_value, '__len__') and not len(attribute_value):
                 attribute_value = None
-            existing_value = self.get_one_line_menuing_summary(attribute_value)
+            existing_value = helpers.get_one_line_menuing_summary(attribute_value)
             token = (menu_key, menu_body, existing_value)
             result.append(token)
         return result
@@ -304,7 +305,7 @@ class InteractiveEditor(ScoreManagerObject):
         result = []
         for arg in getattr(target, 'args', []):
             name = stringtools.string_to_space_delimited_lowercase(arg)
-            value = self.get_one_line_menuing_summary(getattr(target, arg))
+            value = helpers.get_one_line_menuing_summary(getattr(target, arg))
             result.append('{}: {}'.format(name, value))
         return result
 
@@ -312,6 +313,6 @@ class InteractiveEditor(ScoreManagerObject):
         result = []
         for kwarg in getattr(target, 'kwargs', []):
             name = stringtools.string_to_space_delimited_lowercase(kwarg)
-            value = self.get_one_line_menuing_summary(getattr(target, kwarg))
+            value = helpers.get_one_line_menuing_summary(getattr(target, kwarg))
             result.append('{}: {}'.format(name, value))
         return result

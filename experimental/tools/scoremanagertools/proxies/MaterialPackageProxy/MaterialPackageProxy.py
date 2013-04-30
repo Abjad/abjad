@@ -474,6 +474,9 @@ class MaterialPackageProxy(PackageProxy):
             output_material_module_import_statements=output_material_module_import_statements,
             output_material_module_body_lines=output_material_module_body_lines)
 
+    def get_tools_package_qualified_repr(self, expr):
+        return getattr(expr, '_tools_package_qualified_repr', repr(expr))
+
     # TODO: audit
     def handle_main_menu_result(self, result):
         assert isinstance(result, str)

@@ -1,6 +1,7 @@
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
 from abjad.tools import stringtools
+from experimental.tools.scoremanagertools import helpers
 from experimental.tools.scoremanagertools import menuing
 from experimental.tools.scoremanagertools.editors.InteractiveEditor import InteractiveEditor
 from experimental.tools.scoremanagertools.editors.TargetManifest import TargetManifest
@@ -39,7 +40,7 @@ class ListEditor(InteractiveEditor):
     def target_summary_lines(self):
         result = []
         for item in self.items:
-            result.append(self.get_one_line_menuing_summary(item))
+            result.append(helpers.get_one_line_menuing_summary(item))
         return result
 
     ### PUBLIC METHODS ###
