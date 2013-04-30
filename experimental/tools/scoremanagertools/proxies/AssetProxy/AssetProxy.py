@@ -8,6 +8,8 @@ from experimental.tools.scoremanagertools.menuing.UserInputGetter import UserInp
 
 
 class AssetProxy(ScoreManagerObject):
+    '''Asset proxy.
+    '''
 
     ### CLASS ATTRIBUTES ###
 

@@ -3,12 +3,10 @@ from abjad.tools import stringtools
 from experimental.tools.scoremanagertools.core.ScoreManagerObject import ScoreManagerObject
 from experimental.tools.scoremanagertools.menuing.UserInputGetter import UserInputGetter
 from experimental.tools.scoremanagertools.proxies.AssetProxy import AssetProxy
-#from experimental.tools.scoremanagertools.proxies.ImportableAssetProxy import ImportableAssetProxy
 from experimental.tools.scoremanagertools.proxies.ParsableFileProxy import ParsableFileProxy
 
 
-#class ModuleProxy(ParsableFileProxy, ImportableAssetProxy):
-#class ModuleProxy(ParsableFileProxy, ImportableAssetProxy, ScoreManagerObject):
+#class ModuleProxy(ParsableFileProxy, AssetProxy):
 class ModuleProxy(ParsableFileProxy, AssetProxy, ScoreManagerObject):
 
     ### INITIALIZER ###
@@ -18,14 +16,12 @@ class ModuleProxy(ParsableFileProxy, AssetProxy, ScoreManagerObject):
         module_path = self.strip_py_extension(module_path)
         file_path = self.module_path_to_file_path(module_path)
         ParsableFileProxy.__init__(self, file_path=file_path, session=self.session)
-        #ImportableAssetProxy.__init__(self, asset_path=file_path, session=self.session)
         AssetProxy.__init__(self, asset_path=file_path, session=self.session)
         self._module_path = module_path
 
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        #return ImportableAssetProxy.__repr__(self)
         return AssetProxy.__repr__(self)
 
     ### CLASS ATTRIBUTES ###
