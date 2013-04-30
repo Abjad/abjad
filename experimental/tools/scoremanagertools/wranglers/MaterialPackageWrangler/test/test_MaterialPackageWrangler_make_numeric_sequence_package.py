@@ -4,11 +4,11 @@ from experimental import *
 def test_MaterialPackageWrangler_make_numeric_sequence_package_01():
 
     wrangler = scoremanagertools.wranglers.MaterialPackageWrangler()
-    assert not wrangler.package_exists('materials.testsequence')
+    assert not filesystemtools.package_exists('materials.testsequence')
 
     try:
         wrangler.make_numeric_sequence_package('materials.testsequence')
-        assert wrangler.package_exists('materials.testsequence')
+        assert filesystemtools.package_exists('materials.testsequence')
         mpp = scoremanagertools.proxies.MaterialPackageProxy('materials.testsequence')
         assert mpp.is_data_only
         assert mpp.directory_contents == ['__init__.py', 'material_definition.py', 'tags.py']
@@ -16,7 +16,7 @@ def test_MaterialPackageWrangler_make_numeric_sequence_package_01():
         assert mpp.get_tag('is_material_package')
     finally:
         mpp.remove()
-        assert not wrangler.package_exists('materials.testsequence')
+        assert not filesystemtools.package_exists('materials.testsequence')
 
 
 def test_MaterialPackageWrangler_make_numeric_sequence_package_02():
@@ -24,11 +24,11 @@ def test_MaterialPackageWrangler_make_numeric_sequence_package_02():
     '''
 
     wrangler = scoremanagertools.wranglers.MaterialPackageWrangler()
-    assert not wrangler.package_exists('materials.testsequence')
+    assert not filesystemtools.package_exists('materials.testsequence')
 
     try:
         wrangler.make_numeric_sequence_package_interactively(user_input='testsequence')
-        assert wrangler.package_exists('materials.testsequence')
+        assert filesystemtools.package_exists('materials.testsequence')
         mpp = scoremanagertools.proxies.MaterialPackageProxy('materials.testsequence')
         assert mpp.is_data_only
         assert mpp.directory_contents == ['__init__.py', 'material_definition.py', 'tags.py']
@@ -36,4 +36,4 @@ def test_MaterialPackageWrangler_make_numeric_sequence_package_02():
         assert mpp.get_tag('is_material_package')
     finally:
         mpp.remove()
-        assert not wrangler.package_exists('materials.testsequence')
+        assert not filesystemtools.package_exists('materials.testsequence')

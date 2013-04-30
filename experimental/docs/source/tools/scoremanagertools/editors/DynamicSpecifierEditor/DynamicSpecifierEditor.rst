@@ -141,9 +141,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.menu_key_to_existing_value
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.package_exists
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.pop_backtrack
    :noindex:
 

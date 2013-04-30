@@ -224,10 +224,6 @@ class ScoreManagerObject(AbjadObject):
             is_ranged=is_ranged)
         return menu, section
 
-    # TODO: remove in favor of filesystemtools.package_exists()
-    def package_exists(self, package_path):
-        return filesystemtools.package_exists(package_path, self.configuration)
-
     # TODO: move to Session
     def pop_backtrack(self):
         return self.session.backtracking_stack.pop()

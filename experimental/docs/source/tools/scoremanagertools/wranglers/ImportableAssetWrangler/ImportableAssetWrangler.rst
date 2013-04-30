@@ -264,9 +264,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.make_visible_asset_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.package_exists
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.pop_backtrack
    :noindex:
 
