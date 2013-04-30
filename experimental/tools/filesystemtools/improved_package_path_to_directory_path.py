@@ -2,8 +2,10 @@ import imp
 import os
 
 
-def package_path_to_directory_path(package_path):
+def improved_package_path_to_directory_path(package_path):
     '''Change `package_path` to directory path.
+
+    Implemented with built-in ``imp`` module.
 
     Return string.
     '''
