@@ -2,14 +2,16 @@ import os
 import sys
 from abjad.tools import iotools
 from experimental.tools.scoremanagertools.core.ScoreManagerObject import ScoreManagerObject
+from experimental.tools.scoremanagertools.proxies.AssetProxy import AssetProxy
 from experimental.tools.scoremanagertools.proxies.DirectoryProxy import DirectoryProxy
-from experimental.tools.scoremanagertools.proxies.ImportableAssetProxy import ImportableAssetProxy
+#from experimental.tools.scoremanagertools.proxies.ImportableAssetProxy import ImportableAssetProxy
 from experimental.tools.scoremanagertools.proxies.InitializerFileProxy import InitializerFileProxy
 from experimental.tools.scoremanagertools.helpers import safe_import
 
 
 #class PackageProxy(DirectoryProxy, ImportableAssetProxy):
-class PackageProxy(DirectoryProxy, ImportableAssetProxy, ScoreManagerObject):
+#class PackageProxy(DirectoryProxy, ImportableAssetProxy, ScoreManagerObject):
+class PackageProxy(DirectoryProxy, AssetProxy, ScoreManagerObject):
 
     ### INITIALIZER ###
 
@@ -20,13 +22,15 @@ class PackageProxy(DirectoryProxy, ImportableAssetProxy, ScoreManagerObject):
         ScoreManagerObject.__init__(self, session=session)
         directory_path = self.package_path_to_directory_path(package_path)
         DirectoryProxy.__init__(self, directory_path=directory_path, session=self.session)
-        ImportableAssetProxy.__init__(self, asset_path=package_path, session=self.session)
+        #ImportableAssetProxy.__init__(self, asset_path=package_path, session=self.session)
+        AssetProxy.__init__(self, asset_path=directory_path, session=self.session)
         self._package_path = package_path
 
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        return ImportableAssetProxy.__repr__(self)
+        #return ImportableAssetProxy.__repr__(self)
+        return AssetProxy.__repr__(self)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
