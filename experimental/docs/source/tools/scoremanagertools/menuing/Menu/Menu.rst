@@ -96,12 +96,6 @@ Read/write properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.asset_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.asset_path_to_human_readable_asset_name
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.assign_user_input
    :noindex:
 
@@ -124,9 +118,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.conditionally_enclose_in_list
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.conditionally_make_empty_package
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.confirm
@@ -169,21 +160,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.handle_raw_input_with_default
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.is_module_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.is_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.list_public_directory_paths_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.list_public_directory_paths_with_initializers_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.list_score_package_names
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.make_default_hidden_section
@@ -262,12 +238,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.strip_default_indicators_from_strings
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.strip_file_extension_from_file_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.strip_py_extension
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.toggle_menu

@@ -111,12 +111,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.add_tag_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.asset_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.asset_path_to_human_readable_asset_name
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.assign_user_input
    :noindex:
 
@@ -133,9 +127,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.conditionally_make_empty_asset
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.conditionally_make_empty_package
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.confirm
@@ -193,21 +184,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.human_readable_name_to_asset_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.is_module_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.is_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.list_public_directory_paths_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.list_public_directory_paths_with_initializers_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.list_score_package_names
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.make_directory
@@ -313,12 +289,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.set_package_path_interactively
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.strip_file_extension_from_file_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.strip_py_extension
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.svn_add

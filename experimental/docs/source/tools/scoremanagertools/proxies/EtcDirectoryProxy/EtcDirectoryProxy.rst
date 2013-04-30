@@ -60,12 +60,6 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.EtcDirectoryProxy.EtcDirectoryProxy.EtcDirectoryProxy.asset_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.EtcDirectoryProxy.EtcDirectoryProxy.EtcDirectoryProxy.asset_path_to_human_readable_asset_name
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.EtcDirectoryProxy.EtcDirectoryProxy.EtcDirectoryProxy.assign_user_input
    :noindex:
 
@@ -82,9 +76,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.EtcDirectoryProxy.EtcDirectoryProxy.EtcDirectoryProxy.conditionally_make_empty_asset
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.EtcDirectoryProxy.EtcDirectoryProxy.EtcDirectoryProxy.conditionally_make_empty_package
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.EtcDirectoryProxy.EtcDirectoryProxy.EtcDirectoryProxy.confirm
@@ -127,21 +118,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.EtcDirectoryProxy.EtcDirectoryProxy.EtcDirectoryProxy.human_readable_name_to_asset_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.EtcDirectoryProxy.EtcDirectoryProxy.EtcDirectoryProxy.is_module_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.EtcDirectoryProxy.EtcDirectoryProxy.EtcDirectoryProxy.is_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.EtcDirectoryProxy.EtcDirectoryProxy.EtcDirectoryProxy.list_public_directory_paths_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.EtcDirectoryProxy.EtcDirectoryProxy.EtcDirectoryProxy.list_public_directory_paths_with_initializers_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.EtcDirectoryProxy.EtcDirectoryProxy.EtcDirectoryProxy.list_score_package_names
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.EtcDirectoryProxy.EtcDirectoryProxy.EtcDirectoryProxy.make_directory
@@ -229,12 +205,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.EtcDirectoryProxy.EtcDirectoryProxy.EtcDirectoryProxy.run_py_test
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.EtcDirectoryProxy.EtcDirectoryProxy.EtcDirectoryProxy.strip_file_extension_from_file_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.EtcDirectoryProxy.EtcDirectoryProxy.EtcDirectoryProxy.strip_py_extension
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.EtcDirectoryProxy.EtcDirectoryProxy.EtcDirectoryProxy.svn_add

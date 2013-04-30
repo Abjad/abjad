@@ -66,12 +66,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.add_items_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.asset_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.asset_path_to_human_readable_asset_name
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.assign_user_input
    :noindex:
 
@@ -94,9 +88,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.conditionally_initialize_target
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.conditionally_make_empty_package
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.conditionally_set_target_attribute
@@ -147,22 +138,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.initialize_target_from_attributes_in_memory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.is_module_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.is_path
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.item_getter_configuration_method
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.list_public_directory_paths_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.list_public_directory_paths_with_initializers_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.list_score_package_names
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.make_getter
@@ -229,12 +205,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.run
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.strip_file_extension_from_file_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.strip_py_extension
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.target_args_to_target_summary_lines

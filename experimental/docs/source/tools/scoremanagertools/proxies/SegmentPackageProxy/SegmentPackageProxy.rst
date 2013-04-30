@@ -117,12 +117,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.add_tag_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.asset_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.asset_path_to_human_readable_asset_name
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.assign_user_input
    :noindex:
 
@@ -139,9 +133,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.conditionally_make_empty_asset
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.conditionally_make_empty_package
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.confirm
@@ -202,21 +193,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.human_readable_name_to_asset_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.is_module_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.is_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.list_public_directory_paths_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.list_public_directory_paths_with_initializers_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.list_score_package_names
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.make_asset
@@ -334,12 +310,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.set_score_template_interactively
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.strip_file_extension_from_file_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.strip_py_extension
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.svn_add

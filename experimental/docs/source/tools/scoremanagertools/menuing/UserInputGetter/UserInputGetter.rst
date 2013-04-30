@@ -183,12 +183,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.apply_tests_to_value
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.asset_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.asset_path_to_human_readable_asset_name
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.assign_user_input
    :noindex:
 
@@ -208,9 +202,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.conditionally_display_help
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.conditionally_make_empty_package
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.confirm
@@ -265,21 +256,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.indent_and_number_prompt
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.is_module_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.is_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.list_public_directory_paths_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.list_public_directory_paths_with_initializers_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.list_score_package_names
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.load_prompt
@@ -367,12 +343,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.store_value_from_argument_list
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.strip_file_extension_from_file_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.strip_py_extension
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.toggle_menu

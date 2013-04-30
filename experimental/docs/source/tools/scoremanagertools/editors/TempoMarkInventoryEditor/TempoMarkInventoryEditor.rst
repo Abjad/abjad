@@ -66,12 +66,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.add_items_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.asset_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.asset_path_to_human_readable_asset_name
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.assign_user_input
    :noindex:
 
@@ -94,9 +88,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.conditionally_initialize_target
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.conditionally_make_empty_package
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.conditionally_set_target_attribute
@@ -147,22 +138,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.initialize_target_from_attributes_in_memory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.is_module_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.is_path
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.item_getter_configuration_method
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.list_public_directory_paths_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.list_public_directory_paths_with_initializers_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.list_score_package_names
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.make_getter
@@ -229,12 +205,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.run
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.strip_file_extension_from_file_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.strip_py_extension
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.target_args_to_target_summary_lines

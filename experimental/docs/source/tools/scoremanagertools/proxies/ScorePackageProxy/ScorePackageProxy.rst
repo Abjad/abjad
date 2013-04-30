@@ -210,12 +210,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.add_tag_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.asset_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.asset_path_to_human_readable_asset_name
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.assign_user_input
    :noindex:
 
@@ -232,9 +226,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.conditionally_make_empty_asset
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.conditionally_make_empty_package
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.confirm
@@ -313,21 +304,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.human_readable_name_to_asset_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.is_module_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.is_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.list_public_directory_paths_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.list_public_directory_paths_with_initializers_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.list_score_package_names
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.make_asset_structure
@@ -454,12 +430,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.set_package_path_interactively
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.strip_file_extension_from_file_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.strip_py_extension
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.summarize_chunks

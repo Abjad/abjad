@@ -36,12 +36,6 @@ Read/write properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuObject.MenuObject.MenuObject.asset_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuObject.MenuObject.MenuObject.asset_path_to_human_readable_asset_name
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuObject.MenuObject.MenuObject.assign_user_input
    :noindex:
 
@@ -55,9 +49,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuObject.MenuObject.MenuObject.conditionally_clear_terminal
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuObject.MenuObject.MenuObject.conditionally_make_empty_package
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuObject.MenuObject.MenuObject.confirm
@@ -94,21 +85,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuObject.MenuObject.MenuObject.handle_raw_input_with_default
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuObject.MenuObject.MenuObject.is_module_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuObject.MenuObject.MenuObject.is_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuObject.MenuObject.MenuObject.list_public_directory_paths_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuObject.MenuObject.MenuObject.list_public_directory_paths_with_initializers_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuObject.MenuObject.MenuObject.list_score_package_names
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuObject.MenuObject.MenuObject.make_default_hidden_section
@@ -169,12 +145,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuObject.MenuObject.MenuObject.show_menu_client
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuObject.MenuObject.MenuObject.strip_file_extension_from_file_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuObject.MenuObject.MenuObject.strip_py_extension
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuObject.MenuObject.MenuObject.toggle_menu

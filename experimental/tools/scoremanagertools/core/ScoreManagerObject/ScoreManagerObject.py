@@ -53,13 +53,6 @@ class ScoreManagerObject(AbjadObject):
 
     ### PUBLIC METHODS ###
 
-    # TODO: move to filesystemtools
-    def asset_path_to_human_readable_asset_name(self, asset_path):
-        asset_path = os.path.normpath(asset_path)
-        asset_name = os.path.basename(asset_path)
-        asset_name = self.strip_file_extension_from_file_name(asset_name)
-        return stringtools.string_to_space_delimited_lowercase(asset_name)
-
     # TODO: move to Session
     def assign_user_input(self, user_input=None):
         if user_input is not None:
@@ -86,20 +79,6 @@ class ScoreManagerObject(AbjadObject):
     def conditionally_clear_terminal(self):
         if self.session.is_displayable:
             iotools.clear_terminal()
-
-    # TODO: move to filesystemtools
-    # TODO: write test
-    def conditionally_make_empty_package(self, package_path):
-        if package_path is None:
-            return
-        directory_path = self.package_path_to_directory_path(
-            package_path)
-        if not os.path.exists(directory_path):
-            os.mkdir(directory_path)
-            initializer_file_name = os.path.join(directory_path, '__init__.py')
-            file_reference = file(initializer_file_name, 'w')
-            file_reference.write('')
-            file_reference.close()
 
     # TODO: migrate to [menuing.]IO class
     def confirm(self, prompt_string='ok?', include_chevron=False):
@@ -227,43 +206,6 @@ class ScoreManagerObject(AbjadObject):
                 capitalize_prompt=capitalize_prompt)
         finally:
             readline.set_startup_hook()
-
-    # TODO: move to filesystemtools
-    def is_module_name(self, expr):
-        if isinstance(expr, str):
-            if os.path.sep not in expr:
-                return True
-        return False
-
-    # TODO: move to filesystemtools
-    def list_public_directory_paths_in_subtree(self, subtree_path):
-        result = []
-        for subtree_path, directory_names, file_names in os.walk(subtree_path):
-            if '.svn' not in subtree_path:
-                for directory_name in directory_names:
-                    if '.svn' not in directory_name:
-                        if directory_name[0].isalpha():
-                            result.append(os.path.join(subtree_path, directory_name))
-        return result
-
-    # TODO: move to filesystemtools
-    def list_public_directory_paths_with_initializers_in_subtree(self, subtree_path):
-        result = []
-        for directory_path in self.list_public_directory_paths_in_subtree(subtree_path):
-            if '__init__.py' in os.listdir(directory_path):
-                result.append(directory_path)
-        return result
-
-    # TODO: not quite sure where to move this method
-    def list_score_package_names(self, head=None):
-        result = []
-        for name in os.listdir(self.configuration.scores_directory_path):
-            if name[0].isalpha():
-                if head and name == head:
-                    return [name]
-                elif not head:
-                    result.append(name)
-        return result
 
     # TODO: migrate to [menuing.]IO class
     def make_getter(self, where=None):
@@ -411,20 +353,6 @@ class ScoreManagerObject(AbjadObject):
     def restore_breadcrumbs(self, cache=False):
         if cache:
             self.session._breadcrumb_stack[:] = self.session.breadcrumb_cache_stack.pop()
-
-    # TODO: move to filesystemtools
-    def strip_file_extension_from_file_name(self, file_name):
-        if '.' in file_name:
-            return file_name[:file_name.rindex('.')]
-        return file_name
-
-    
-    # TODO: remove in favor of self.strip_file_extension_from_file_name()
-    def strip_py_extension(self, string):
-        if isinstance(string, str) and string.endswith('.py'):
-            return string[:-3]
-        else:
-            return string
 
     def where(self):
         if self.session.enable_where:

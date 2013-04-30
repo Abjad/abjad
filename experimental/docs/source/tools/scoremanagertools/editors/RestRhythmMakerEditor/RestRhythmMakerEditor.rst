@@ -57,12 +57,6 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.asset_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.asset_path_to_human_readable_asset_name
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.assign_user_input
    :noindex:
 
@@ -85,9 +79,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.conditionally_initialize_target
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.conditionally_make_empty_package
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.conditionally_set_target_attribute
@@ -130,21 +121,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.initialize_target_from_attributes_in_memory
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.is_module_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.is_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.list_public_directory_paths_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.list_public_directory_paths_with_initializers_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.list_score_package_names
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.make_getter
@@ -205,12 +181,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.run
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.strip_file_extension_from_file_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.strip_py_extension
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.target_args_to_target_summary_lines

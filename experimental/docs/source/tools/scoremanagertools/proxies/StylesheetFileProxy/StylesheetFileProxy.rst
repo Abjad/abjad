@@ -66,12 +66,6 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.asset_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.asset_path_to_human_readable_asset_name
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.assign_user_input
    :noindex:
 
@@ -88,9 +82,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.conditionally_make_empty_asset
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.conditionally_make_empty_package
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.confirm
@@ -142,21 +133,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.human_readable_name_to_asset_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.is_module_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.is_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.list_public_directory_paths_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.list_public_directory_paths_with_initializers_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.list_score_package_names
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.make_getter
@@ -241,12 +217,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.run_py_test
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.strip_file_extension_from_file_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.strip_py_extension
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.svn_add

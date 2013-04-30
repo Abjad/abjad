@@ -57,12 +57,6 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.asset_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.asset_path_to_human_readable_asset_name
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.assign_user_input
    :noindex:
 
@@ -85,9 +79,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.conditionally_initialize_target
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.conditionally_make_empty_package
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.conditionally_set_target_attribute
@@ -130,21 +121,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.initialize_target_from_attributes_in_memory
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.is_module_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.is_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.list_public_directory_paths_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.list_public_directory_paths_with_initializers_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.list_score_package_names
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.make_getter
@@ -205,12 +181,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.run
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.strip_file_extension_from_file_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.strip_py_extension
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.target_args_to_target_summary_lines

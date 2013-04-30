@@ -24,12 +24,6 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.asset_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.asset_path_to_human_readable_asset_name
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.assign_user_input
    :noindex:
 
@@ -43,9 +37,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.conditionally_clear_terminal
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.conditionally_make_empty_package
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.confirm
@@ -76,21 +67,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.handle_raw_input_with_default
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.is_module_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.is_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.list_public_directory_paths_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.list_public_directory_paths_with_initializers_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.list_score_package_names
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.make_getter
@@ -139,12 +115,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.run
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.strip_file_extension_from_file_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.strip_py_extension
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.where

@@ -30,12 +30,6 @@ Read/write properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.PerformerSelector.PerformerSelector.PerformerSelector.asset_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.PerformerSelector.PerformerSelector.PerformerSelector.asset_path_to_human_readable_asset_name
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.PerformerSelector.PerformerSelector.PerformerSelector.assign_user_input
    :noindex:
 
@@ -49,9 +43,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.PerformerSelector.PerformerSelector.PerformerSelector.conditionally_clear_terminal
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.PerformerSelector.PerformerSelector.PerformerSelector.conditionally_make_empty_package
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.PerformerSelector.PerformerSelector.PerformerSelector.confirm
@@ -81,22 +72,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.PerformerSelector.PerformerSelector.PerformerSelector.handle_raw_input_with_default
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.PerformerSelector.PerformerSelector.PerformerSelector.is_module_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.PerformerSelector.PerformerSelector.PerformerSelector.is_path
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.PerformerSelector.PerformerSelector.PerformerSelector.list_items
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.PerformerSelector.PerformerSelector.PerformerSelector.list_public_directory_paths_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.PerformerSelector.PerformerSelector.PerformerSelector.list_public_directory_paths_with_initializers_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.PerformerSelector.PerformerSelector.PerformerSelector.list_score_package_names
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.PerformerSelector.PerformerSelector.PerformerSelector.make_getter
@@ -151,12 +127,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.PerformerSelector.PerformerSelector.PerformerSelector.run
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.PerformerSelector.PerformerSelector.PerformerSelector.strip_file_extension_from_file_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.PerformerSelector.PerformerSelector.PerformerSelector.strip_py_extension
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.PerformerSelector.PerformerSelector.PerformerSelector.where

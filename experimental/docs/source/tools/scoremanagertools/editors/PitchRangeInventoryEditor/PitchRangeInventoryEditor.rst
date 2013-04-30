@@ -66,12 +66,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.add_items_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.asset_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.asset_path_to_human_readable_asset_name
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.assign_user_input
    :noindex:
 
@@ -94,9 +88,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.conditionally_initialize_target
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.conditionally_make_empty_package
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.conditionally_set_target_attribute
@@ -147,22 +138,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.initialize_target_from_attributes_in_memory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.is_module_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.is_path
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.item_getter_configuration_method
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.list_public_directory_paths_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.list_public_directory_paths_with_initializers_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.list_score_package_names
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.make_getter
@@ -229,12 +205,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.run
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.strip_file_extension_from_file_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.strip_py_extension
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.target_args_to_target_summary_lines

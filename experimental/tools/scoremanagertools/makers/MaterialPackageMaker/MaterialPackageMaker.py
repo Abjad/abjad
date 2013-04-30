@@ -28,10 +28,10 @@ class MaterialPackageMaker(MaterialPackageProxy):
         if not self.should_have_user_input_module:
             return
         user_input_module_path = self.dot_join([self.package_path, 'user_input'])
-        user_input_module_file_name = self.module_path_to_file_path(
+        user_input_module_file_path = self.module_path_to_file_path(
             user_input_module_path)
-        if not os.path.exists(user_input_module_file_name):
-            file(user_input_module_file_name, 'w').write('')
+        if not os.path.exists(user_input_module_file_path):
+            file(user_input_module_file_path, 'w').write('')
         proxy = scoremanagertools.proxies.UserInputModuleProxy(user_input_module_path, session=self.session)
         user_input_wrapper = proxy.read_user_input_wrapper_from_disk()
         if user_input_wrapper:

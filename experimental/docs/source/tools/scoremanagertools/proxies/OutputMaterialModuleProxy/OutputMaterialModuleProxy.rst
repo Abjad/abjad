@@ -105,12 +105,6 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.asset_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.asset_path_to_human_readable_asset_name
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.assign_user_input
    :noindex:
 
@@ -130,9 +124,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.conditionally_make_empty_asset
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.conditionally_make_empty_package
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.confirm
@@ -193,21 +184,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.import_output_material_safely
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.is_module_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.is_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.list_public_directory_paths_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.list_public_directory_paths_with_initializers_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.list_score_package_names
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.make_getter
@@ -298,12 +274,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.run_python
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.strip_file_extension_from_file_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.strip_py_extension
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.svn_add

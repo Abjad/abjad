@@ -24,12 +24,6 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.asset_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.asset_path_to_human_readable_asset_name
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.assign_user_input
    :noindex:
 
@@ -43,9 +37,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.conditionally_clear_terminal
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.conditionally_make_empty_package
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.confirm
@@ -76,21 +67,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.initialize_performer_interactively
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.is_module_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.is_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.list_public_directory_paths_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.list_public_directory_paths_with_initializers_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.list_score_package_names
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.make_getter
@@ -142,12 +118,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.run
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.strip_file_extension_from_file_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.strip_py_extension
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.where

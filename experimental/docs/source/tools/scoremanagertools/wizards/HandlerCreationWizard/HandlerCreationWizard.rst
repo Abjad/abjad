@@ -24,12 +24,6 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.asset_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.asset_path_to_human_readable_asset_name
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.assign_user_input
    :noindex:
 
@@ -43,9 +37,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.conditionally_clear_terminal
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.conditionally_make_empty_package
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.confirm
@@ -76,21 +67,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.handle_raw_input_with_default
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.is_module_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.is_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.list_public_directory_paths_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.list_public_directory_paths_with_initializers_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.list_score_package_names
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.make_getter
@@ -139,12 +115,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.run
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.strip_file_extension_from_file_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.strip_py_extension
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.where

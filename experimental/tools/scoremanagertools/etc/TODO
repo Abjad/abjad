@@ -114,3 +114,6 @@
 40. Currently PackageProxy inherits from both DirectoryProxy and AssetProxy.
     Maybe PackageProxy needs to inherit from only DirectoryProxy.
     Likewise for ModuleProxy in relation to FileProxy and AssetProxy.
+
+41. The wrangler inheritance hierarchy is confused.
+    Look at the inheritance diagram given at AssetWrangler.html and rewire as appropriate.

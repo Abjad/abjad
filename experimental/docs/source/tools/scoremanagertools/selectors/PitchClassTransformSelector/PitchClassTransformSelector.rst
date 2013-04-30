@@ -30,12 +30,6 @@ Read/write properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.asset_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.asset_path_to_human_readable_asset_name
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.assign_user_input
    :noindex:
 
@@ -49,9 +43,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.conditionally_clear_terminal
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.conditionally_make_empty_package
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.confirm
@@ -81,22 +72,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.handle_raw_input_with_default
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.is_module_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.is_path
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.list_items
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.list_public_directory_paths_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.list_public_directory_paths_with_initializers_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.list_score_package_names
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.make_getter
@@ -151,12 +127,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.run
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.strip_file_extension_from_file_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.strip_py_extension
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.where

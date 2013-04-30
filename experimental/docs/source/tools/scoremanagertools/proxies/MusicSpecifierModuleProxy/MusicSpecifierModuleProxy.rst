@@ -102,12 +102,6 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.asset_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.asset_path_to_human_readable_asset_name
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.assign_user_input
    :noindex:
 
@@ -127,9 +121,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.conditionally_make_empty_asset
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.conditionally_make_empty_package
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.confirm
@@ -181,21 +172,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.human_readable_name_to_asset_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.is_module_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.is_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.list_public_directory_paths_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.list_public_directory_paths_with_initializers_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.list_score_package_names
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.load_target_into_memory
@@ -295,12 +271,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.run_python
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.strip_file_extension_from_file_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.strip_py_extension
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.svn_add

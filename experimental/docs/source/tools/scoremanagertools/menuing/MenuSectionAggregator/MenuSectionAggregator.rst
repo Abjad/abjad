@@ -39,12 +39,6 @@ Read/write properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.asset_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.asset_path_to_human_readable_asset_name
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.assign_user_input
    :noindex:
 
@@ -58,9 +52,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.conditionally_clear_terminal
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.conditionally_make_empty_package
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.confirm
@@ -100,21 +91,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.handle_raw_input_with_default
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.is_module_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.is_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.list_public_directory_paths_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.list_public_directory_paths_with_initializers_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.list_score_package_names
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.make_default_hidden_section
@@ -178,12 +154,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.show_menu_client
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.strip_file_extension_from_file_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.strip_py_extension
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.toggle_menu

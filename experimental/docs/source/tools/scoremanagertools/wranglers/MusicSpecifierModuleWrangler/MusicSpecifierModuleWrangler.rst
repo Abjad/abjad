@@ -66,9 +66,6 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.asset_path_to_directory_path
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.asset_path_to_human_readable_asset_name
    :noindex:
 
@@ -135,12 +132,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.handle_raw_input_with_default
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.is_module_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.is_path
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.list_asset_container_human_readable_names
    :noindex:
 
@@ -163,12 +154,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.list_asset_proxies
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.list_public_directory_paths_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.list_public_directory_paths_with_initializers_in_subtree
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.list_score_external_asset_container_human_readable_names
@@ -337,9 +322,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.strip_file_extension_from_file_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.strip_py_extension
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.svn_add

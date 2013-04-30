@@ -114,12 +114,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.argument_string_to_number_optimized
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.asset_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.asset_path_to_human_readable_asset_name
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.assign_user_input
    :noindex:
 
@@ -133,9 +127,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.conditionally_clear_terminal
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.conditionally_make_empty_package
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.confirm
@@ -177,22 +168,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.handle_raw_input_with_default
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.is_module_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.is_path
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.is_token
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.list_public_directory_paths_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.list_public_directory_paths_with_initializers_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.list_score_package_names
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.make_default_hidden_section
@@ -256,12 +232,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.show_menu_client
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.strip_file_extension_from_file_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.strip_py_extension
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.toggle_menu

@@ -315,12 +315,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.add_tag_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.asset_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.asset_path_to_human_readable_asset_name
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.assign_user_input
    :noindex:
 
@@ -337,9 +331,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.conditionally_make_empty_asset
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.conditionally_make_empty_package
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.conditionally_write_stub_material_definition_module_to_disk
@@ -409,21 +400,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.human_readable_name_to_asset_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.is_module_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.is_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.list_public_directory_paths_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.list_public_directory_paths_with_initializers_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.list_score_package_names
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.load_user_input_wrapper_demo_values
@@ -607,12 +583,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.set_package_path_interactively
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.strip_file_extension_from_file_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.strip_py_extension
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.svn_add

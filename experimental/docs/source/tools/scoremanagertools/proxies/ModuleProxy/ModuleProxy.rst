@@ -96,12 +96,6 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.asset_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.asset_path_to_human_readable_asset_name
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.assign_user_input
    :noindex:
 
@@ -121,9 +115,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.conditionally_make_empty_asset
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.conditionally_make_empty_package
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.confirm
@@ -175,21 +166,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.human_readable_name_to_asset_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.is_module_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.is_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.list_public_directory_paths_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.list_public_directory_paths_with_initializers_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.list_score_package_names
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.make_getter
@@ -277,12 +253,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.run_python
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.strip_file_extension_from_file_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.strip_py_extension
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.svn_add

@@ -57,12 +57,6 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ReiteratedArticulationHandlerEditor.ReiteratedArticulationHandlerEditor.ReiteratedArticulationHandlerEditor.asset_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ReiteratedArticulationHandlerEditor.ReiteratedArticulationHandlerEditor.ReiteratedArticulationHandlerEditor.asset_path_to_human_readable_asset_name
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.ReiteratedArticulationHandlerEditor.ReiteratedArticulationHandlerEditor.ReiteratedArticulationHandlerEditor.assign_user_input
    :noindex:
 
@@ -85,9 +79,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ReiteratedArticulationHandlerEditor.ReiteratedArticulationHandlerEditor.ReiteratedArticulationHandlerEditor.conditionally_initialize_target
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ReiteratedArticulationHandlerEditor.ReiteratedArticulationHandlerEditor.ReiteratedArticulationHandlerEditor.conditionally_make_empty_package
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ReiteratedArticulationHandlerEditor.ReiteratedArticulationHandlerEditor.ReiteratedArticulationHandlerEditor.conditionally_set_target_attribute
@@ -130,21 +121,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ReiteratedArticulationHandlerEditor.ReiteratedArticulationHandlerEditor.ReiteratedArticulationHandlerEditor.initialize_target_from_attributes_in_memory
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ReiteratedArticulationHandlerEditor.ReiteratedArticulationHandlerEditor.ReiteratedArticulationHandlerEditor.is_module_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ReiteratedArticulationHandlerEditor.ReiteratedArticulationHandlerEditor.ReiteratedArticulationHandlerEditor.is_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ReiteratedArticulationHandlerEditor.ReiteratedArticulationHandlerEditor.ReiteratedArticulationHandlerEditor.list_public_directory_paths_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ReiteratedArticulationHandlerEditor.ReiteratedArticulationHandlerEditor.ReiteratedArticulationHandlerEditor.list_public_directory_paths_with_initializers_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ReiteratedArticulationHandlerEditor.ReiteratedArticulationHandlerEditor.ReiteratedArticulationHandlerEditor.list_score_package_names
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ReiteratedArticulationHandlerEditor.ReiteratedArticulationHandlerEditor.ReiteratedArticulationHandlerEditor.make_getter
@@ -205,12 +181,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ReiteratedArticulationHandlerEditor.ReiteratedArticulationHandlerEditor.ReiteratedArticulationHandlerEditor.run
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ReiteratedArticulationHandlerEditor.ReiteratedArticulationHandlerEditor.ReiteratedArticulationHandlerEditor.strip_file_extension_from_file_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ReiteratedArticulationHandlerEditor.ReiteratedArticulationHandlerEditor.ReiteratedArticulationHandlerEditor.strip_py_extension
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ReiteratedArticulationHandlerEditor.ReiteratedArticulationHandlerEditor.ReiteratedArticulationHandlerEditor.target_args_to_target_summary_lines

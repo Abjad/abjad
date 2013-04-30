@@ -57,12 +57,6 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.editors.MarkupEditor.MarkupEditor.MarkupEditor.asset_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.MarkupEditor.MarkupEditor.MarkupEditor.asset_path_to_human_readable_asset_name
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.MarkupEditor.MarkupEditor.MarkupEditor.assign_user_input
    :noindex:
 
@@ -85,9 +79,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.MarkupEditor.MarkupEditor.MarkupEditor.conditionally_initialize_target
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.MarkupEditor.MarkupEditor.MarkupEditor.conditionally_make_empty_package
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.MarkupEditor.MarkupEditor.MarkupEditor.conditionally_set_target_attribute
@@ -130,21 +121,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.MarkupEditor.MarkupEditor.MarkupEditor.initialize_target_from_attributes_in_memory
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.MarkupEditor.MarkupEditor.MarkupEditor.is_module_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.MarkupEditor.MarkupEditor.MarkupEditor.is_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.MarkupEditor.MarkupEditor.MarkupEditor.list_public_directory_paths_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.MarkupEditor.MarkupEditor.MarkupEditor.list_public_directory_paths_with_initializers_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.MarkupEditor.MarkupEditor.MarkupEditor.list_score_package_names
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.MarkupEditor.MarkupEditor.MarkupEditor.make_getter
@@ -205,12 +181,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.MarkupEditor.MarkupEditor.MarkupEditor.run
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.MarkupEditor.MarkupEditor.MarkupEditor.strip_file_extension_from_file_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.MarkupEditor.MarkupEditor.MarkupEditor.strip_py_extension
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.MarkupEditor.MarkupEditor.MarkupEditor.target_args_to_target_summary_lines

@@ -124,10 +124,29 @@ class AssetWrangler(ScoreManagerObject):
 
     ### PUBLIC METHODS ###
 
+    def asset_path_to_human_readable_asset_name(self, asset_path):
+        asset_path = os.path.normpath(asset_path)
+        asset_name = os.path.basename(asset_path)
+        asset_name = self.strip_file_extension_from_file_name(asset_name)
+        return stringtools.string_to_space_delimited_lowercase(asset_name)
+
     def conditionally_make_asset_container_packages(self, is_interactive=False):
         self.conditionally_make_score_external_asset_container_package()
         self.conditionally_make_score_internal_asset_container_packages()
         self.proceed('missing packages created.', is_interactive=is_interactive)
+
+    # TODO: write test
+    def conditionally_make_empty_package(self, package_path):
+        if package_path is None:
+            return
+        directory_path = self.package_path_to_directory_path(
+            package_path)
+        if not os.path.exists(directory_path):
+            os.mkdir(directory_path)
+            initializer_file_name = os.path.join(directory_path, '__init__.py')
+            file_reference = file(initializer_file_name, 'w')
+            file_reference.write('')
+            file_reference.close()
 
     def conditionally_make_score_external_asset_container_package(self):
         for package_path in self.list_score_external_asset_container_package_paths():
@@ -310,6 +329,18 @@ class AssetWrangler(ScoreManagerObject):
             result.append(asset_proxy)
         return result
 
+    # utility method #
+
+    def list_score_package_names(self, head=None):
+        result = []
+        for name in os.listdir(self.configuration.scores_directory_path):
+            if name[0].isalpha():
+                if head and name == head:
+                    return [name]
+                elif not head:
+                    result.append(name)
+        return result
+
     ### BEGIN NEW ###
 
     # user asset containers #
@@ -485,6 +516,11 @@ class AssetWrangler(ScoreManagerObject):
         self.pop_breadcrumb()
         self.restore_breadcrumbs(cache=cache)
         return result
+
+    def strip_file_extension_from_file_name(self, file_name):
+        if '.' in file_name:
+            return file_name[:file_name.rindex('.')]
+        return file_name
 
     def svn_add(self, is_interactive=True):
         for asset_proxy in self.list_visible_asset_proxies():

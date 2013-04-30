@@ -66,12 +66,6 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.asset_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.asset_path_to_human_readable_asset_name
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.assign_user_input
    :noindex:
 
@@ -88,9 +82,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.conditionally_make_empty_asset
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.conditionally_make_empty_package
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.confirm
@@ -139,21 +130,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.human_readable_name_to_asset_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.is_module_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.is_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.list_public_directory_paths_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.list_public_directory_paths_with_initializers_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.list_score_package_names
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.make_getter
@@ -235,12 +211,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.run_py_test
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.strip_file_extension_from_file_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.strip_py_extension
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.svn_add

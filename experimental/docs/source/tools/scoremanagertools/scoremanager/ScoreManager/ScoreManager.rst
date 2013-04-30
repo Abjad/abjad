@@ -45,12 +45,6 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.asset_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.asset_path_to_human_readable_asset_name
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.assign_user_input
    :noindex:
 
@@ -64,9 +58,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.conditionally_clear_terminal
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.conditionally_make_empty_package
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.confirm
@@ -109,21 +100,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.handle_svn_menu_result
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.is_module_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.is_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.list_public_directory_paths_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.list_public_directory_paths_with_initializers_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.list_score_package_names
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.make_getter
@@ -187,12 +163,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.run_py_test_all
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.strip_file_extension_from_file_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.strip_py_extension
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.where

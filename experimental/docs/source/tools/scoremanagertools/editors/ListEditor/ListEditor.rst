@@ -66,12 +66,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.add_items_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.asset_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.asset_path_to_human_readable_asset_name
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.assign_user_input
    :noindex:
 
@@ -94,9 +88,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.conditionally_initialize_target
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.conditionally_make_empty_package
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.conditionally_set_target_attribute
@@ -147,22 +138,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.initialize_target_from_attributes_in_memory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.is_module_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.is_path
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.item_getter_configuration_method
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.list_public_directory_paths_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.list_public_directory_paths_with_initializers_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.list_score_package_names
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.make_getter
@@ -229,12 +205,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.run
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.strip_file_extension_from_file_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.strip_py_extension
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.target_args_to_target_summary_lines

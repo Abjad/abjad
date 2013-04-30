@@ -30,12 +30,6 @@ Read/write properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.asset_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.asset_path_to_human_readable_asset_name
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.assign_user_input
    :noindex:
 
@@ -49,9 +43,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.conditionally_clear_terminal
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.conditionally_make_empty_package
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.confirm
@@ -81,12 +72,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.handle_raw_input_with_default
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.is_module_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.is_path
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.list_current_material_directory_paths
    :noindex:
 
@@ -97,9 +82,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.list_public_directory_paths_with_initializers_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.list_score_package_names
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.make_getter
@@ -154,12 +136,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.run
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.strip_file_extension_from_file_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.strip_py_extension
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.where

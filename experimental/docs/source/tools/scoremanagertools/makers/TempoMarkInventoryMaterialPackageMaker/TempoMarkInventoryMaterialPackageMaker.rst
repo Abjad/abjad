@@ -321,12 +321,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.makers.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.add_tag_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.makers.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.asset_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.asset_path_to_human_readable_asset_name
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.makers.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.assign_user_input
    :noindex:
 
@@ -346,9 +340,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.conditionally_make_empty_asset
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.conditionally_make_empty_package
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.conditionally_write_stub_material_definition_module_to_disk
@@ -424,21 +415,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.initialize_empty_user_input_wrapper
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.is_module_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.is_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.list_public_directory_paths_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.list_public_directory_paths_with_initializers_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.list_score_package_names
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.load_user_input_wrapper_demo_values
@@ -634,12 +610,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.show_user_input_demo_values
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.strip_file_extension_from_file_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.strip_py_extension
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.svn_add

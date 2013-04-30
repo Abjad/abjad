@@ -24,12 +24,6 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.asset_path_to_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.asset_path_to_human_readable_asset_name
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.assign_user_input
    :noindex:
 
@@ -46,9 +40,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.conditionally_clear_terminal
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.conditionally_make_empty_package
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.confirm
@@ -76,21 +67,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.handle_raw_input_with_default
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.is_module_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.is_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.list_public_directory_paths_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.list_public_directory_paths_with_initializers_in_subtree
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.list_score_package_names
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.make_getter
@@ -142,12 +118,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.run
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.strip_file_extension_from_file_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.strip_py_extension
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.where
