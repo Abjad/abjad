@@ -53,7 +53,7 @@ class ScoreManagerObject(AbjadObject):
 
     ### PUBLIC METHODS ###
 
-    # TODO: move to Session
+    # TODO: migrate to [menuing.]IO class
     def assign_user_input(self, user_input=None):
         if user_input is not None:
             if self.session.user_input:
@@ -90,7 +90,7 @@ class ScoreManagerObject(AbjadObject):
             return
         return 'yes'.startswith(result.lower())
 
-    # TODO: move to ScoreManagerConfiguration
+    # TODO: move to ScoreManagerConfiguration ... or eliminate?
     def directory_path_to_package_path(self, directory_path):
         if directory_path is None:
             return
