@@ -67,7 +67,7 @@ class DirectoryProxy(AssetProxy):
         getter = self.make_getter(where=self.where())
         getter.append_string('directory name')
         result = getter.run()
-        if self.backtrack():
+        if self.session.backtrack():
             return
         self.directory_path = result
 

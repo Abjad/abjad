@@ -56,7 +56,7 @@ class MusicSpecifierModuleWrangler(ModuleWrangler):
         getter = self.make_getter()
         getter.append_space_delimited_lowercase_string('music specifier name')
         package_name = getter.run()
-        if self.backtrack():
+        if self.session.backtrack():
             return
         package_name = package_name.replace(' ', '_')
         self.debug(package_name)

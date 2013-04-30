@@ -100,7 +100,7 @@ class MaterialPackageMaker(MaterialPackageProxy):
         getter.include_newlines = include_newline
         getter.allow_none = True
         new_value = getter.run()
-        if self.backtrack():
+        if self.session.backtrack():
             return
         self.user_input_wrapper_in_memory[key] = new_value
         self.user_input_module_proxy.write_user_input_wrapper_to_disk(self.user_input_wrapper_in_memory)
@@ -160,7 +160,7 @@ class MaterialPackageMaker(MaterialPackageProxy):
         self.push_backtrack()
         start_element_number = getter.run()
         self.pop_backtrack()
-        if self.backtrack():
+        if self.session.backtrack():
             return
         current_element_number = start_element_number
         current_element_index = current_element_number - 1
@@ -168,7 +168,7 @@ class MaterialPackageMaker(MaterialPackageProxy):
             self.push_backtrack()
             self.edit_user_input_wrapper_at_number(current_element_number, include_newline=False)
             self.pop_backtrack()
-            if self.backtrack():
+            if self.session.backtrack():
                 return
             current_element_index += 1
             current_element_index %= total_elements

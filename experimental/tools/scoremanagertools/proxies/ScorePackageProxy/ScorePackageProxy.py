@@ -221,7 +221,7 @@ class ScorePackageProxy(PackageProxy):
         getter = self.make_getter(where=self.where())
         getter.append_string('Forces tagline')
         result = getter.run()
-        if self.backtrack():
+        if self.session.backtrack():
             return
         self.add_tag('forces_tagline', result)
 
@@ -236,7 +236,7 @@ class ScorePackageProxy(PackageProxy):
         getter = self.make_getter(where=self.where())
         getter.append_string('new title')
         result = getter.run()
-        if self.backtrack():
+        if self.session.backtrack():
             return
         self.add_tag('title', result)
 
@@ -244,7 +244,7 @@ class ScorePackageProxy(PackageProxy):
         getter = self.make_getter(where=self.where())
         getter.append_integer_in_range('year of completion', start=1, allow_none=True)
         result = getter.run()
-        if self.backtrack():
+        if self.session.backtrack():
             return
         self.add_tag('year_of_completion', result)
 
@@ -404,36 +404,36 @@ class ScorePackageProxy(PackageProxy):
         return menu
 
     def manage_setup(self, clear=True, cache=False):
-        self.cache_breadcrumbs(cache=cache)
+        self.session.cache_breadcrumbs(cache=cache)
         while True:
             self.push_breadcrumb('{} - setup'.format(self.annotated_title))
             setup_menu = self.make_setup_menu()
             result = setup_menu.run(clear=clear)
-            if self.backtrack():
+            if self.session.backtrack():
                 break
             elif not result:
                 self.pop_breadcrumb()
                 continue
             self.handle_setup_menu_result(result)
-            if self.backtrack():
+            if self.session.backtrack():
                 break
             self.pop_breadcrumb()
         self.pop_breadcrumb()
         self.restore_breadcrumbs(cache=cache)
 
     def manage_svn(self, clear=True, cache=False):
-        self.cache_breadcrumbs(cache=cache)
+        self.session.cache_breadcrumbs(cache=cache)
         while True:
             self.push_breadcrumb('repository commands')
             menu = self.make_svn_menu()
             result = menu.run(clear=clear)
-            if self.backtrack():
+            if self.session.backtrack():
                 break
             elif not result:
                 self.pop_breadcrumb()
                 continue
             self.handle_svn_menu_result(result)
-            if self.backtrack():
+            if self.session.backtrack():
                 break
             self.pop_breadcrumb()
         self.pop_breadcrumb()
@@ -461,13 +461,13 @@ class ScorePackageProxy(PackageProxy):
         self.push_backtrack()
         should_clobber = getter.run()
         self.pop_backtrack()
-        if self.backtrack():
+        if self.session.backtrack():
             return
         if should_clobber == 'clobberscore':
             self.push_backtrack()
             self.remove()
             self.pop_backtrack()
-            if self.backtrack():
+            if self.session.backtrack():
                 return
             self.session.is_backtracking_locally = True
 

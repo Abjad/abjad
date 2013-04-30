@@ -346,6 +346,11 @@ class Session(ScoreManagerObject):
             not self.backtracking_stack:
             self.is_backtracking_locally = False
             return True
+    
+    def cache_breadcrumbs(self, cache=False):
+        if cache:
+            self.breadcrumb_cache_stack.append(self._breadcrumb_stack[:])
+            self._breadcrumb_stack[:] = []
 
     def clean_up(self):
         if self.dump_transcript:

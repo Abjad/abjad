@@ -455,7 +455,7 @@ class AssetWrangler(ScoreManagerObject):
         argument_list = self.list_visible_asset_paths(head=head)
         getter.append_argument_range(self.asset_class_plural_human_readable_name, argument_list)
         result = getter.run()
-        if self.backtrack():
+        if self.session.backtrack():
             return
         asset_indices = [asset_number - 1 for asset_number in result]
         total_assets_removed = 0
@@ -473,7 +473,7 @@ class AssetWrangler(ScoreManagerObject):
         asset_package_path = self.select_asset_package_path_interactively(
             head=head, infinitival_phrase='to rename')
         self.pop_backtrack()
-        if self.backtrack():
+        if self.session.backtrack():
             return
         asset_proxy = self.get_asset_proxy(asset_package_path)
         asset_proxy.rename_interactively()
@@ -481,18 +481,18 @@ class AssetWrangler(ScoreManagerObject):
     def run(self, cache=False, clear=True, head=None, rollback=None, user_input=None):
         self.assign_user_input(user_input=user_input)
         breadcrumb = self.pop_breadcrumb(rollback=rollback)
-        self.cache_breadcrumbs(cache=cache)
+        self.session.cache_breadcrumbs(cache=cache)
         while True:
             self.push_breadcrumb()
             menu = self.make_main_menu(head=head)
             result = menu.run(clear=clear)
-            if self.backtrack():
+            if self.session.backtrack():
                 break
             elif not result:
                 self.pop_breadcrumb()
                 continue
             self.handle_main_menu_result(result)
-            if self.backtrack():
+            if self.session.backtrack():
                 break
             self.pop_breadcrumb()
         self.pop_breadcrumb()
@@ -501,12 +501,12 @@ class AssetWrangler(ScoreManagerObject):
 
     def select_asset_package_path_interactively(
         self, clear=True, cache=False, head=None, infinitival_phrase=None, user_input=None):
-        self.cache_breadcrumbs(cache=cache)
+        self.session.cache_breadcrumbs(cache=cache)
         while True:
             self.push_breadcrumb(self.make_asset_selection_breadcrumb(infinitival_phrase=infinitival_phrase))
             menu = self.make_asset_selection_menu(head=head)
             result = menu.run(clear=clear)
-            if self.backtrack():
+            if self.session.backtrack():
                 break
             elif not result:
                 self.pop_breadcrumb()
@@ -531,7 +531,7 @@ class AssetWrangler(ScoreManagerObject):
         getter = self.make_getter(where=self.where())
         getter.append_string('commit message')
         commit_message = getter.run()
-        if self.backtrack():
+        if self.session.backtrack():
             return
         line = 'commit message will be: "{}"\n'.format(commit_message)
         self.display(line)

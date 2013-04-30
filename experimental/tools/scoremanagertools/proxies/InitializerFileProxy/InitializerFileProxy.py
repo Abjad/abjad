@@ -140,14 +140,14 @@ class InitializerFileProxy(ParsableFileProxy):
         getter = self.make_getter(where=self.where())
         getter.append_yes_no_string('handmade')
         result = getter.run()
-        if self.backtrack():
+        if self.session.backtrack():
             return
         if 'yes'.startswith(result.lower()):
             material_package_maker_class_name = None
             getter = self.make_getter(where=self.where())
             getter.append_yes_no_string('should have illustration')
             result = getter.run()
-            if self.backtrack():
+            if self.session.backtrack():
                 return
             should_have_illustration = 'yes'.startswith(result.lower())
         else:
@@ -157,7 +157,7 @@ class InitializerFileProxy(ParsableFileProxy):
                 material_package_maker_wrangler.select_material_proxy_class_name_interactively(
                     clear=False, cache=True)
             self.pop_backtrack()
-            if self.backtrack():
+            if self.session.backtrack():
                 return
             should_have_illustration = True
         tags = collections.OrderedDict([])

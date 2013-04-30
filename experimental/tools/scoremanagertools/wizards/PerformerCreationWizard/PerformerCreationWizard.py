@@ -24,7 +24,7 @@ class PerformerCreationWizard(Wizard):
         while True:
             self.push_breadcrumb(performer.name)
             result = menu.run(clear=clear)
-            if self.backtrack():
+            if self.session.backtrack():
                 self.pop_breadcrumb()
                 self.restore_breadcrumbs(cache=cache)
                 return
@@ -38,7 +38,7 @@ class PerformerCreationWizard(Wizard):
                 wizard = InstrumentCreationWizard(session=self.session, is_ranged=True)
                 instruments = wizard.run()
                 self.pop_backtrack()
-                if self.backtrack():
+                if self.session.backtrack():
                     break
                 if instruments is not None:
                     for instrument in instruments:
@@ -85,7 +85,7 @@ class PerformerCreationWizard(Wizard):
 
     def run(self, cache=False, clear=True, head=None, user_input=None):
         self.assign_user_input(user_input=user_input)
-        self.cache_breadcrumbs(cache=cache)
+        self.session.cache_breadcrumbs(cache=cache)
         try_again = False
         performers = []
         while True:
@@ -95,7 +95,7 @@ class PerformerCreationWizard(Wizard):
             self.push_backtrack()
             result = selector.run()
             self.pop_backtrack()
-            if self.backtrack():
+            if self.session.backtrack():
                 break
             if isinstance(result, list):
                 performer_names = result
@@ -110,7 +110,7 @@ class PerformerCreationWizard(Wizard):
                 self.pop_backtrack()
                 self.pop_breadcrumb()
                 was_backtracking_locally = self.session.is_backtracking_locally
-                if self.backtrack():
+                if self.session.backtrack():
                     if was_backtracking_locally:
                         try_again = True
                     else:

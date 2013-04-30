@@ -62,16 +62,6 @@ class ScoreManagerObject(AbjadObject):
             else:
                 self.session.user_input = user_input
 
-    # TODO: move to Session
-    def backtrack(self, source=None):
-        return self.session.backtrack(source=source)
-
-    # TODO: move to Session
-    def cache_breadcrumbs(self, cache=False):
-        if cache:
-            self.session.breadcrumb_cache_stack.append(self.session._breadcrumb_stack[:])
-            self.session._breadcrumb_stack[:] = []
-
     # TODO: migrate to [menuing.]IO class
     def conditionally_clear_terminal(self):
         if self.session.is_displayable:
@@ -83,7 +73,7 @@ class ScoreManagerObject(AbjadObject):
         getter.append_yes_no_string(prompt_string)
         getter.include_newlines = False
         result = getter.run(include_chevron=include_chevron)
-        if self.backtrack():
+        if self.session.backtrack():
             return
         return 'yes'.startswith(result.lower())
 
@@ -95,12 +85,14 @@ class ScoreManagerObject(AbjadObject):
         if directory_path.endswith('.py'):
             directory_path = directory_path[:-3]
         if directory_path.startswith(self.configuration.score_manager_tools_directory_path):
-            prefix_length = len(os.path.dirname(self.configuration.score_manager_tools_directory_path)) + 1
+            prefix_length = \
+                len(os.path.dirname(self.configuration.score_manager_tools_directory_path)) + 1
         elif directory_path.startswith(self.configuration.score_external_materials_directory_path):
             prefix_length = \
                 len(os.path.dirname(self.configuration.score_external_materials_directory_path)) + 1
         elif directory_path.startswith(self.configuration.score_external_segments_directory_path):
-            prefix_length = len(os.path.dirname(self.configuration.score_external_segments_directory_path)) + 1
+            prefix_length = \
+                len(os.path.dirname(self.configuration.score_external_segments_directory_path)) + 1
         elif directory_path.startswith(self.configuration.score_external_specifiers_directory_path):
             prefix_length = \
                 len(os.path.dirname(self.configuration.score_external_specifiers_directory_path)) + 1

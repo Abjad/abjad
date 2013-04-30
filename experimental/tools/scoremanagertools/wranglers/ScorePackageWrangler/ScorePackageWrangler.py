@@ -101,7 +101,7 @@ class ScorePackageWrangler(PackageWrangler):
         getter.append_underscore_delimited_lowercase_package_name('package name')
         getter.append_integer_in_range('year', start=1, allow_none=True)
         result = getter.run()
-        if self.backtrack():
+        if self.session.backtrack():
             return
         title, score_package_name, year = result
         self.make_asset(score_package_name)

@@ -106,7 +106,7 @@ class AssetProxy(ScoreManagerObject):
         getter = self.make_getter()
         getter.append_underscore_delimited_lowercase_file_name('new name')
         result = getter.run()
-        if self.backtrack():
+        if self.session.backtrack():
             return
         new_asset_name = self.human_readable_name_to_asset_name(result)
         new_path = os.path.join(self.parent_directory_path, new_asset_name)
@@ -141,7 +141,7 @@ class AssetProxy(ScoreManagerObject):
         getter = self.make_getter(where=self.where())
         getter.append_string("type 'remove' to proceed")
         result = getter.run()
-        if self.backtrack():
+        if self.session.backtrack():
             return
         if not result == 'remove':
             return
@@ -172,7 +172,7 @@ class AssetProxy(ScoreManagerObject):
         getter.append_underscore_delimited_lowercase_file_name('new human-readable name')
         getter.include_newlines = False
         result = getter.run()
-        if self.backtrack():
+        if self.session.backtrack():
             return
         new_path = os.path.join(self.parent_directory_path, result)
         self.display(['new path name will be: "{}"'.format(new_path), ''])
@@ -195,18 +195,18 @@ class AssetProxy(ScoreManagerObject):
 
     def run(self, cache=False, clear=True, user_input=None):
         self.assign_user_input(user_input=user_input)
-        self.cache_breadcrumbs(cache=cache)
+        self.session.cache_breadcrumbs(cache=cache)
         while True:
             self.push_breadcrumb()
             menu = self.make_main_menu()
             result = menu.run(clear=clear)
-            if self.backtrack(source=self._backtracking_source):
+            if self.session.backtrack(source=self._backtracking_source):
                 break
             elif not result:
                 self.pop_breadcrumb()
                 continue
             self.handle_main_menu_result(result)
-            if self.backtrack(source=self._backtracking_source):
+            if self.session.backtrack(source=self._backtracking_source):
                 break
             self.pop_breadcrumb()
         self.pop_breadcrumb()
@@ -238,7 +238,7 @@ class AssetProxy(ScoreManagerObject):
             getter = self.make_getter(where=self.where())
             getter.append_string('commit message')
             commit_message = getter.run()
-            if self.backtrack():
+            if self.session.backtrack():
                 return
             line = 'commit message will be: "{}"\n'.format(commit_message)
             self.display(line)
@@ -291,7 +291,7 @@ class AssetProxy(ScoreManagerObject):
         self.push_backtrack()
         boilerplate_asset_name = getter.run()
         self.pop_backtrack()
-        if self.backtrack():
+        if self.session.backtrack():
             return
         if self.write_boilerplate_asset_to_disk(boilerplate_asset_name):
             self.proceed('boilerplate asset copied.')

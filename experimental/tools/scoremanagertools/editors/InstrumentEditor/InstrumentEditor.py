@@ -37,7 +37,7 @@ class InstrumentEditor(InteractiveEditor):
             wizard = wizards.InstrumentCreationWizard(is_ranged=True, session=self.session)
             instruments = wizard.run()
             self.pop_backtrack()
-            if self.backtrack():
+            if self.session.backtrack():
                 return
             if instruments:
                 self.target = instruments[0]

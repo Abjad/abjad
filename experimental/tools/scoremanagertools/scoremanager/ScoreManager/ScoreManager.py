@@ -161,10 +161,10 @@ class ScoreManager(ScoreManagerObject):
                 self.session.is_backtracking_to_score = False
                 self.pop_breadcrumb()
                 continue
-            elif self.backtrack():
+            elif self.session.backtrack():
                 break
             self.handle_svn_menu_result(result)
-            if self.backtrack():
+            if self.session.backtrack():
                 break
             self.pop_breadcrumb()
         self.pop_breadcrumb()
@@ -172,7 +172,7 @@ class ScoreManager(ScoreManagerObject):
     def run(self, user_input=None, clear=True, cache=False):
         type(self).__init__(self)
         self.assign_user_input(user_input=user_input)
-        self.cache_breadcrumbs(cache=cache)
+        self.session.cache_breadcrumbs(cache=cache)
         self.push_breadcrumb()
         run_main_menu = True
         while True:
@@ -182,7 +182,7 @@ class ScoreManager(ScoreManagerObject):
                 result = menu.run(clear=clear)
             else:
                 run_main_menu = True
-            if self.backtrack(source='home'):
+            if self.session.backtrack(source='home'):
                 self.pop_breadcrumb()
                 self.session.clean_up()
                 break
@@ -198,7 +198,7 @@ class ScoreManager(ScoreManagerObject):
                 self.pop_breadcrumb()
                 continue
             self.handle_main_menu_result(result)
-            if self.backtrack(source='home'):
+            if self.session.backtrack(source='home'):
                 self.pop_breadcrumb()
                 self.session.clean_up()
                 break

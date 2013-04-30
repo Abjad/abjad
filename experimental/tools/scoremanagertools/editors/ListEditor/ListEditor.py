@@ -51,7 +51,7 @@ class ListEditor(InteractiveEditor):
             self.push_backtrack()
             result = item_creator.run()
             self.pop_backtrack()
-            if self.backtrack():
+            if self.session.backtrack():
                 return
             if result == 'done':
                 self.session.is_autoadding = False
@@ -63,7 +63,7 @@ class ListEditor(InteractiveEditor):
             self.push_backtrack()
             item_initialization_token = getter.run()
             self.pop_backtrack()
-            if self.backtrack():
+            if self.session.backtrack():
                 return
             if item_initialization_token == 'done':
                 self.session.is_autoadding = False
@@ -139,7 +139,7 @@ class ListEditor(InteractiveEditor):
         getter.append_integer_in_range('old number', 1, len(self.items))
         getter.append_integer_in_range('new number', 1, len(self.items))
         result = getter.run()
-        if self.backtrack():
+        if self.session.backtrack():
             return
         old_number, new_number = result
         old_index, new_index = old_number - 1, new_number - 1
@@ -151,7 +151,7 @@ class ListEditor(InteractiveEditor):
         getter = self.make_getter(where=self.where())
         getter.append_argument_range(self.items_identifier, self.target_summary_lines)
         argument_range = getter.run()
-        if self.backtrack():
+        if self.session.backtrack():
             return
         indices = [argument_number - 1 for argument_number in argument_range]
         indices = list(reversed(sorted(set(indices))))

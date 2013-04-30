@@ -71,7 +71,7 @@ class MaterialPackageWrangler(PackageWrangler):
             self.push_backtrack()
             package_name = getter.run()
             self.pop_backtrack()
-            if self.backtrack():
+            if self.session.backtrack():
                 return
             material_package_name = stringtools.string_to_accent_free_underscored_delimited_lowercase(package_name)
             material_package_path = self.dot_join([
@@ -114,7 +114,7 @@ class MaterialPackageWrangler(PackageWrangler):
         self.push_backtrack()
         material_package_path = self.get_available_material_package_path_interactively()
         self.pop_backtrack()
-        if self.backtrack():
+        if self.session.backtrack():
             return
         self.make_data_package(material_package_path, tags=tags)
 
@@ -130,7 +130,7 @@ class MaterialPackageWrangler(PackageWrangler):
         self.push_backtrack()
         material_package_path = self.get_available_material_package_path_interactively()
         self.pop_backtrack()
-        if self.backtrack():
+        if self.session.backtrack():
             return
         self.make_handmade_material_package(material_package_path)
 
@@ -172,14 +172,14 @@ class MaterialPackageWrangler(PackageWrangler):
         result = self.material_package_maker_wrangler.select_asset_package_path_interactively(
             cache=True, clear=False)
         self.pop_backtrack()
-        if self.backtrack():
+        if self.session.backtrack():
             return
         material_package_maker_package_path = result
         material_package_maker_class_name = material_package_maker_package_path.split('.')[-1]
         self.push_backtrack()
         material_package_path = self.get_available_material_package_path_interactively()
         self.pop_backtrack()
-        if self.backtrack():
+        if self.session.backtrack():
             return
         self.make_makermade_material_package(
             material_package_path, material_package_maker_class_name)

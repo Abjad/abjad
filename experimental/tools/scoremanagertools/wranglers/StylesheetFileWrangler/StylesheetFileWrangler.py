@@ -52,7 +52,7 @@ class StylesheetFileWrangler(PackageWrangler):
         getter = self.make_getter(where=self.where())
         getter.append_string('stylesheet name')
         stylesheet_file_name = getter.run()
-        if self.backtrack():
+        if self.session.backtrack():
             return
         stylesheet_file_name = stringtools.string_to_accent_free_underscored_delimited_lowercase(stylesheet_file_name)
         if not stylesheet_file_name.endswith('.ly'):
@@ -71,13 +71,13 @@ class StylesheetFileWrangler(PackageWrangler):
 
     # TODO: write test
     def select_stylesheet_file_name_interactively(self, clear=True, cache=False):
-        self.cache_breadcrumbs(cache=cache)
+        self.session.cache_breadcrumbs(cache=cache)
         menu, section = self.make_menu(where=self.where(), is_parenthetically_numbered=True)
         section.tokens = self.stylesheet_file_names
         while True:
             self.push_breadcrumb('select stylesheet')
             result = menu.run(clear=clear)
-            if self.backtrack():
+            if self.session.backtrack():
                 break
             elif not result:
                 self.pop_breadcrumb()

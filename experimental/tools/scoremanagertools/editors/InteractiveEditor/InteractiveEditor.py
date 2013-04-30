@@ -181,7 +181,7 @@ class InteractiveEditor(ScoreManagerObject):
             result, session=self.session, existing_value=existing_value, **kwargs)
         if editor is not None:
             result = editor.run()
-            if self.backtrack():
+            if self.session.backtrack():
                 self.is_autoadvancing = False
                 return
             if hasattr(editor, 'target'):
@@ -249,13 +249,13 @@ class InteractiveEditor(ScoreManagerObject):
     def run(self, breadcrumb=None, cache=False, clear=True, is_autoadding=False,
         is_autoadvancing=False, is_autostarting=False, user_input=None):
         self.assign_user_input(user_input=user_input)
-        self.cache_breadcrumbs(cache=cache)
+        self.session.cache_breadcrumbs(cache=cache)
         self.push_breadcrumb()
         self.push_backtrack()
         self.conditionally_initialize_target()
         self.pop_backtrack()
         self.pop_breadcrumb()
-        if self.backtrack():
+        if self.session.backtrack():
             self.restore_breadcrumbs(cache=cache)
             return
         result, entry_point, self.is_autoadvancing, is_first_pass = None, None, is_autoadvancing, True
@@ -283,7 +283,7 @@ class InteractiveEditor(ScoreManagerObject):
             else:
                 menu = self.make_main_menu()
                 result = menu.run(clear=clear)
-                if self.backtrack():
+                if self.session.backtrack():
                     break
                 elif not result:
                     self.pop_breadcrumb()
@@ -291,7 +291,7 @@ class InteractiveEditor(ScoreManagerObject):
             if result == 'done':
                 break
             self.handle_main_menu_result(result)
-            if self.backtrack():
+            if self.session.backtrack():
                 break
             self.pop_breadcrumb()
         self.session.is_autoadding = False

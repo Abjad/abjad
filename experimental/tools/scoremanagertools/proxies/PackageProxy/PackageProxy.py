@@ -140,7 +140,7 @@ class PackageProxy(DirectoryProxy, AssetProxy, ScoreManagerObject):
         getter.append_string('tag name')
         getter.append_expr('tag value')
         result = getter.run()
-        if self.backtrack():
+        if self.session.backtrack():
             return
         if result:
             tag_name, tag_value = result
@@ -155,7 +155,7 @@ class PackageProxy(DirectoryProxy, AssetProxy, ScoreManagerObject):
         getter = self.make_getter(where=self.where())
         getter.append_string('tag name')
         result = getter.run()
-        if self.backtrack():
+        if self.session.backtrack():
             return
         tag = self.get_tag(result)
         line = '{!r}'.format(tag)
@@ -194,15 +194,15 @@ class PackageProxy(DirectoryProxy, AssetProxy, ScoreManagerObject):
         return menu
 
     def manage_tags(self, clear=True, cache=False):
-        self.cache_breadcrumbs(cache=cache)
+        self.session.cache_breadcrumbs(cache=cache)
         while True:
             self.push_breadcrumb('tags')
             menu = self.make_tags_menu()
             result = menu.run(clear=clear)
-            if self.backtrack():
+            if self.session.backtrack():
                 break
             self.handle_tags_menu_result(result)
-            if self.backtrack():
+            if self.session.backtrack():
                 break
             self.pop_breadcrumb()
         self.pop_breadcrumb()
@@ -223,7 +223,7 @@ class PackageProxy(DirectoryProxy, AssetProxy, ScoreManagerObject):
         getter = self.make_getter(where=self.where())
         getter.append_string('tag name')
         result = getter.run()
-        if self.backtrack():
+        if self.session.backtrack():
             return
         if result:
             tag_name = result
@@ -233,7 +233,7 @@ class PackageProxy(DirectoryProxy, AssetProxy, ScoreManagerObject):
         getter = self.make_getter(where=self.where())
         getter.append_underscore_delimited_lowercase_package_name('package name')
         result = getter.run()
-        if self.backtrack():
+        if self.session.backtrack():
             return
         self.package_path = result
 

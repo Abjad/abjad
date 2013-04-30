@@ -32,21 +32,21 @@ class InstrumentCreationWizard(Wizard):
             self.push_backtrack()
             instrument_name = selector.run()
             self.pop_backtrack()
-            if self.backtrack():
+            if self.session.backtrack():
                 return
             instrument.instrument_name = instrument_name
             instrument.short_instrument_name = instrument_name
 
     def run(self, cache=False, clear=True, head=None, user_input=None):
         self.assign_user_input(user_input=user_input)
-        self.cache_breadcrumbs(cache=cache)
+        self.session.cache_breadcrumbs(cache=cache)
         self.push_breadcrumb()
         kwargs = {'session': self.session, 'is_ranged': self.is_ranged}
         selector = selectors.InstrumentToolsInstrumentNameSelector(**kwargs)
         self.push_backtrack()
         result = selector.run()
         self.pop_backtrack()
-        if self.backtrack():
+        if self.session.backtrack():
             self.pop_breadcrumb()
             self.restore_breadcrumbs(cache=cache)
             return

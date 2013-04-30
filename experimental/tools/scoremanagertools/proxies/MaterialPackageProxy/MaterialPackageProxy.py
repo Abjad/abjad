@@ -460,7 +460,7 @@ class MaterialPackageProxy(PackageProxy):
         output_material_handler = output_material_handler_callable(
             target=output_material, session=self.session)
         output_material_handler.run()
-        if self.backtrack():
+        if self.session.backtrack():
             return
         output_material_module_import_statements = self.output_material_module_import_statements
         if hasattr(self, 'make_output_material_module_body_lines'):
@@ -766,7 +766,7 @@ class MaterialPackageProxy(PackageProxy):
         getter = self.make_getter(where=self.where())
         getter.append_underscore_delimited_lowercase_package_name('new material name')
         new_material_package_name = getter.run()
-        if self.backtrack():
+        if self.session.backtrack():
             return
         lines = []
         lines.append('current material name: {}'.format(self.material_package_name))
@@ -810,7 +810,7 @@ class MaterialPackageProxy(PackageProxy):
         self.push_backtrack()
         material_package_maker = material_proxy_wrangler.select_material_proxy_class_name_interactively()
         self.pop_backtrack()
-        if self.backtrack():
+        if self.session.backtrack():
             return
         self.add_tag('material_package_maker', material_package_maker.class_name)
         line = 'user input handler selected.'
@@ -821,7 +821,7 @@ class MaterialPackageProxy(PackageProxy):
         self.push_backtrack()
         stylesheet_file_name = stylesheet_file_wrangler.select_stylesheet_file_name_interactively()
         self.pop_backtrack()
-        if self.backtrack():
+        if self.session.backtrack():
             return
         self.stylesheet_file_name_in_memory = stylesheet_file_name
         self.proceed('stylesheet selected.', is_interactive=prompt)

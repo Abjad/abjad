@@ -391,7 +391,7 @@ class UserInputGetter(MenuSectionAggregator):
                 self.prompt_index = self.prompt_index + 1
                 break
             user_response = self.handle_hidden_key(user_response)
-            if self.backtrack():
+            if self.session.backtrack():
                 return False
             elif user_response is None:
                 continue
