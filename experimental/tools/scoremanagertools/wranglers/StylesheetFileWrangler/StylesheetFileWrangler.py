@@ -49,7 +49,7 @@ class StylesheetFileWrangler(PackageWrangler):
 
     # TODO: write test
     def make_asset_interactively(self):
-        getter = self.make_getter(where=self.where())
+        getter = self.io.make_getter(where=self.where())
         getter.append_string('stylesheet name')
         stylesheet_file_name = getter.run()
         if self.session.backtrack():
@@ -63,7 +63,7 @@ class StylesheetFileWrangler(PackageWrangler):
         stylesheet_proxy.edit()
 
     def make_main_menu(self):
-        menu, section = self.make_menu(where=self.where(), is_parenthetically_numbered=True)
+        menu, section = self.io.make_menu(where=self.where(), is_parenthetically_numbered=True)
         section.tokens = self.stylesheet_file_names
         section = menu.make_section()
         section.append(('new', 'new stylesheet'))
@@ -72,7 +72,7 @@ class StylesheetFileWrangler(PackageWrangler):
     # TODO: write test
     def select_stylesheet_file_name_interactively(self, clear=True, cache=False):
         self.session.cache_breadcrumbs(cache=cache)
-        menu, section = self.make_menu(where=self.where(), is_parenthetically_numbered=True)
+        menu, section = self.io.make_menu(where=self.where(), is_parenthetically_numbered=True)
         section.tokens = self.stylesheet_file_names
         while True:
             self.session.push_breadcrumb('select stylesheet')

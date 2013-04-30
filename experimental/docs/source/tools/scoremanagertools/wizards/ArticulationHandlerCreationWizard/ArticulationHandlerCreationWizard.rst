@@ -12,6 +12,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.breadcrumb
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.session
    :noindex:
 
@@ -24,40 +27,7 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.assign_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.conditionally_clear_terminal
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.confirm
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.display
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.get_handler_editor
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.handle_raw_input_with_default
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.make_getter
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.make_menu
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.run

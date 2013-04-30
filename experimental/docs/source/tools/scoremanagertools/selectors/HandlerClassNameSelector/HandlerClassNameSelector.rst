@@ -12,6 +12,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.breadcrumb
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.session
    :noindex:
 
@@ -30,52 +33,19 @@ Read/write properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.change_expr_to_menu_token
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.conditionally_clear_terminal
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.confirm
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.display
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.get_tag_from_directory_path
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.handle_raw_input_with_default
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.list_items
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.make_getter
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.make_main_menu
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.make_menu
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.make_menu_tokens
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector.run

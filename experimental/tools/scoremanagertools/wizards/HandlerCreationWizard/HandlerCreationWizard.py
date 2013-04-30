@@ -19,7 +19,7 @@ class HandlerCreationWizard(Wizard):
         return handler_editor
 
     def run(self, cache=False, clear=True, head=None, user_input=None):
-        self.assign_user_input(user_input=user_input)
+        self.io.assign_user_input(user_input=user_input)
         self.session.cache_breadcrumbs(cache=cache)
         self.session.push_breadcrumb(self.breadcrumb)
         selector = self.handler_class_name_selector(session=self.session)

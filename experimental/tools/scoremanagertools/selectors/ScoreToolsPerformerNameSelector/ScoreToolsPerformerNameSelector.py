@@ -17,7 +17,7 @@ class ScoreToolsPerformerNameSelector(Selector):
     ### PUBLIC METHODS ###
 
     def make_main_menu(self, head=None):
-        menu, section = self.make_menu(where=self.where(),
+        menu, section = self.io.make_menu(where=self.where(),
             is_keyed=self.is_keyed,
             is_numbered=self.is_numbered,
             is_parenthetically_numbered=self.is_parenthetically_numbered,

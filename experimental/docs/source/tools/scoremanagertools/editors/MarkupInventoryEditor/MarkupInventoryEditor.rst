@@ -18,6 +18,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.has_target
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.items
    :noindex:
 
@@ -66,16 +69,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.add_items_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.attribute_name_to_menu_key
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.clean_up_attributes_in_memory
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.conditionally_clear_terminal
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.conditionally_initialize_target
@@ -84,13 +81,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.conditionally_set_target_attribute
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.confirm
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.copy_target_attributes_to_memory
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.display
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.edit_item_interactively
@@ -102,12 +93,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.handle_main_menu_result
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.handle_raw_input_with_default
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.initialize_attributes_in_memory
    :noindex:
 
@@ -117,13 +102,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.item_getter_configuration_method
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.make_getter
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.make_main_menu
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.make_menu
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.make_target_attribute_tokens_from_target_manifest
@@ -136,15 +115,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.move_item_interactively
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.remove_items_interactively

@@ -42,6 +42,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.human_readable_name
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.is_exceptionless
    :noindex:
 
@@ -105,28 +108,16 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.clear
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.conditionally_clear_terminal
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.conditionally_make_empty_asset
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.confirm
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.copy
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.copy_interactively
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.display
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.display_formatted_lines
@@ -141,31 +132,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.fix
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.handle_raw_input_with_default
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.has_line
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.human_readable_name_to_asset_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.make_getter
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.make_menu
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.profile

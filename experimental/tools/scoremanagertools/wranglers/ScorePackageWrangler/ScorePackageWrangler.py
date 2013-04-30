@@ -91,7 +91,7 @@ class ScorePackageWrangler(PackageWrangler):
 
     def make_asset_interactively(self, rollback=False):
         breadcrumb = self.session.pop_breadcrumb(rollback=rollback)
-        getter = self.make_getter(where=self.where())
+        getter = self.io.make_getter(where=self.where())
         getter.indent_level = 1
         getter.prompt_character = ':'
         getter.capitalize_prompts = False

@@ -513,6 +513,7 @@ Unstable packages (load manually)
    .. toctree::
       :maxdepth: 1
 
+      tools/scoremanagertools/core/IO/IO
       tools/scoremanagertools/core/ScoreManagerConfiguration/ScoreManagerConfiguration
       tools/scoremanagertools/core/ScoreManagerObject/ScoreManagerObject
       tools/scoremanagertools/core/Session/Session
@@ -719,6 +720,7 @@ Unstable packages (load manually)
 
    .. toctree::
 
+      tools/scoremanagertools/core/IO/IO
       tools/scoremanagertools/core/ScoreManagerConfiguration/ScoreManagerConfiguration
       tools/scoremanagertools/core/ScoreManagerObject/ScoreManagerObject
       tools/scoremanagertools/core/Session/Session

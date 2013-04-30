@@ -134,7 +134,7 @@ class AssetWrangler(ScoreManagerObject):
     def conditionally_make_asset_container_packages(self, is_interactive=False):
         self.conditionally_make_score_external_asset_container_package()
         self.conditionally_make_score_internal_asset_container_packages()
-        self.proceed('missing packages created.', is_interactive=is_interactive)
+        self.io.proceed('missing packages created.', is_interactive=is_interactive)
 
     # TODO: write test
     def conditionally_make_empty_package(self, package_path):
@@ -430,7 +430,7 @@ class AssetWrangler(ScoreManagerObject):
             return 'select {}:'.format(self.asset_class.generic_class_name)
 
     def make_asset_selection_menu(self, head=None):
-        menu, section = self.make_menu(where=self.where(), is_keyed=False, is_parenthetically_numbered=True)
+        menu, section = self.io.make_menu(where=self.where(), is_keyed=False, is_parenthetically_numbered=True)
         section.tokens = self.make_visible_asset_menu_tokens(head=head)
         #self.debug(section.tokens, 'TOKENS')
         section.return_value_attribute = 'key'
@@ -451,7 +451,7 @@ class AssetWrangler(ScoreManagerObject):
 
     # TODO: write test
     def remove_assets_interactively(self, head=None):
-        getter = self.make_getter(where=self.where())
+        getter = self.io.make_getter(where=self.where())
         argument_list = self.list_visible_asset_paths(head=head)
         getter.append_argument_range(self.asset_class_plural_human_readable_name, argument_list)
         result = getter.run()
@@ -465,7 +465,7 @@ class AssetWrangler(ScoreManagerObject):
             asset_proxy = self.get_asset_proxy(asset_path)
             asset_proxy.remove()
             total_assets_removed += 1
-        self.proceed('{} asset(s) removed.'.format(total_assets_removed))
+        self.io.proceed('{} asset(s) removed.'.format(total_assets_removed))
 
     # TODO: write test
     def rename_asset_interactively(self, head=None):
@@ -479,7 +479,7 @@ class AssetWrangler(ScoreManagerObject):
         asset_proxy.rename_interactively()
 
     def run(self, cache=False, clear=True, head=None, rollback=None, user_input=None):
-        self.assign_user_input(user_input=user_input)
+        self.io.assign_user_input(user_input=user_input)
         breadcrumb = self.session.pop_breadcrumb(rollback=rollback)
         self.session.cache_breadcrumbs(cache=cache)
         while True:
@@ -525,28 +525,28 @@ class AssetWrangler(ScoreManagerObject):
     def svn_add(self, is_interactive=True):
         for asset_proxy in self.list_visible_asset_proxies():
             asset_proxy.svn_add(is_interactive=False)
-        self.proceed(is_interactive=is_interactive)
+        self.io.proceed(is_interactive=is_interactive)
 
     def svn_ci(self, is_interactive=True):
-        getter = self.make_getter(where=self.where())
+        getter = self.io.make_getter(where=self.where())
         getter.append_string('commit message')
         commit_message = getter.run()
         if self.session.backtrack():
             return
         line = 'commit message will be: "{}"\n'.format(commit_message)
-        self.display(line)
-        if not self.confirm():
+        self.io.display(line)
+        if not self.io.confirm():
             return
         for asset_proxy in self.list_visible_asset_proxies():
             asset_proxy.svn_ci(commit_message=commit_message, is_interactive=False)
-        self.proceed(is_interactive=is_interactive)
+        self.io.proceed(is_interactive=is_interactive)
 
     def svn_st(self, is_interactive=True):
         for asset_proxy in self.list_visible_asset_proxies():
             asset_proxy.svn_st(is_interactive=False)
-        self.proceed(is_interactive=is_interactive)
+        self.io.proceed(is_interactive=is_interactive)
 
     def svn_up(self, is_interactive=True):
         for asset_proxy in self.list_visible_asset_proxies():
             asset_proxy.svn_up(is_interactive=False)
-        self.proceed(is_interactive=is_interactive)
+        self.io.proceed(is_interactive=is_interactive)

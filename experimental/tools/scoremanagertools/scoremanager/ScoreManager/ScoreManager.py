@@ -140,12 +140,12 @@ class ScoreManager(ScoreManagerObject):
         return menu
 
     def make_score_selection_menu(self):
-        menu, section = self.make_menu(where=self.where(), is_numbered=True, is_keyed=False)
+        menu, section = self.io.make_menu(where=self.where(), is_numbered=True, is_keyed=False)
         section.tokens = self.score_package_wrangler.make_visible_asset_menu_tokens()
         return menu
 
     def make_svn_menu(self):
-        menu, section = self.make_menu(where=self.where())
+        menu, section = self.io.make_menu(where=self.where())
         section.append(('add', 'svn add scores'))
         section.append(('ci', 'svn commit scores'))
         section.append(('st', 'svn status scores'))
@@ -171,7 +171,7 @@ class ScoreManager(ScoreManagerObject):
 
     def run(self, user_input=None, clear=True, cache=False):
         type(self).__init__(self)
-        self.assign_user_input(user_input=user_input)
+        self.io.assign_user_input(user_input=user_input)
         self.session.cache_breadcrumbs(cache=cache)
         self.session.push_breadcrumb(self.breadcrumb)
         run_main_menu = True
@@ -216,6 +216,6 @@ class ScoreManager(ScoreManagerObject):
             shell=True, stdout=subprocess.PIPE)
         lines = [line.strip() for line in proc.stdout.readlines()]
         if lines:
-            self.display(lines, capitalize_first_character=False)
+            self.io.display(lines, capitalize_first_character=False)
         line = 'tests complete.'
-        self.proceed(line, is_interactive=prompt)
+        self.io.proceed(line, is_interactive=prompt)

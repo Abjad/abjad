@@ -21,6 +21,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.human_readable_name
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.is_versioned
    :noindex:
 
@@ -51,16 +54,7 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.assign_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.conditionally_clear_terminal
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.conditionally_make_empty_asset
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.confirm
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.copy
@@ -69,34 +63,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.copy_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.display
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.fix
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.handle_raw_input_with_default
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.human_readable_name_to_asset_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.make_getter
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.make_menu
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.profile

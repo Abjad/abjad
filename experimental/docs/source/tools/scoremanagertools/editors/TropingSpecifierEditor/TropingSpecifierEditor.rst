@@ -18,6 +18,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.has_target
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.session
    :noindex:
 
@@ -57,16 +60,10 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.attribute_name_to_menu_key
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.clean_up_attributes_in_memory
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.conditionally_clear_terminal
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.conditionally_initialize_target
@@ -75,22 +72,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.conditionally_set_target_attribute
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.confirm
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.copy_target_attributes_to_memory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.display
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.handle_main_menu_result
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.handle_raw_input_with_default
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.initialize_attributes_in_memory
@@ -99,13 +84,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.initialize_target_from_attributes_in_memory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.make_getter
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.make_main_menu
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.make_menu
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.make_target_attribute_tokens_from_target_manifest
@@ -115,15 +94,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.menu_key_to_existing_value
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.run

@@ -18,6 +18,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.has_target
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.session
    :noindex:
 
@@ -57,16 +60,10 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.attribute_name_to_menu_key
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.clean_up_attributes_in_memory
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.conditionally_clear_terminal
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.conditionally_initialize_target
@@ -75,22 +72,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.conditionally_set_target_attribute
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.confirm
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.copy_target_attributes_to_memory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.display
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.handle_main_menu_result
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.handle_raw_input_with_default
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.initialize_attributes_in_memory
@@ -99,13 +84,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.initialize_target_from_attributes_in_memory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.make_getter
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.make_main_menu
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.make_menu
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.make_target_attribute_tokens_from_target_manifest
@@ -115,15 +94,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.menu_key_to_existing_value
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.run

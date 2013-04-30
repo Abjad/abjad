@@ -78,6 +78,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.instrumentation
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.is_versioned
    :noindex:
 
@@ -210,25 +213,13 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.add_tag_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.assign_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.conditionally_clear_terminal
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.conditionally_make_empty_asset
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.confirm
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.copy
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.copy_interactively
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.display
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.edit_forces_tagline_interactively
@@ -261,12 +252,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.handle_main_menu_result
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.handle_raw_input_with_default
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.handle_setup_menu_result
    :noindex:
 
@@ -288,13 +273,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.make_directory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.make_getter
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.make_main_menu
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.make_menu
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.make_score_interactively
@@ -318,16 +297,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.manage_tags
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.pop_next_user_response_from_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.print_directory_contents
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.profile

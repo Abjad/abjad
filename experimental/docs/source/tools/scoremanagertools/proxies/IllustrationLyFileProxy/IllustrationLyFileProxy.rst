@@ -36,6 +36,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.IllustrationLyFileProxy.IllustrationLyFileProxy.IllustrationLyFileProxy.human_readable_name
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.IllustrationLyFileProxy.IllustrationLyFileProxy.IllustrationLyFileProxy.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.IllustrationLyFileProxy.IllustrationLyFileProxy.IllustrationLyFileProxy.is_versioned
    :noindex:
 
@@ -66,25 +69,13 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationLyFileProxy.IllustrationLyFileProxy.IllustrationLyFileProxy.assign_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationLyFileProxy.IllustrationLyFileProxy.IllustrationLyFileProxy.conditionally_clear_terminal
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationLyFileProxy.IllustrationLyFileProxy.IllustrationLyFileProxy.conditionally_make_empty_asset
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationLyFileProxy.IllustrationLyFileProxy.IllustrationLyFileProxy.confirm
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationLyFileProxy.IllustrationLyFileProxy.IllustrationLyFileProxy.copy
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationLyFileProxy.IllustrationLyFileProxy.IllustrationLyFileProxy.copy_interactively
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationLyFileProxy.IllustrationLyFileProxy.IllustrationLyFileProxy.display
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationLyFileProxy.IllustrationLyFileProxy.IllustrationLyFileProxy.display_formatted_lines
@@ -96,31 +87,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationLyFileProxy.IllustrationLyFileProxy.IllustrationLyFileProxy.fix
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationLyFileProxy.IllustrationLyFileProxy.IllustrationLyFileProxy.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationLyFileProxy.IllustrationLyFileProxy.IllustrationLyFileProxy.handle_raw_input_with_default
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationLyFileProxy.IllustrationLyFileProxy.IllustrationLyFileProxy.has_line
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationLyFileProxy.IllustrationLyFileProxy.IllustrationLyFileProxy.human_readable_name_to_asset_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationLyFileProxy.IllustrationLyFileProxy.IllustrationLyFileProxy.make_getter
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationLyFileProxy.IllustrationLyFileProxy.IllustrationLyFileProxy.make_menu
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationLyFileProxy.IllustrationLyFileProxy.IllustrationLyFileProxy.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationLyFileProxy.IllustrationLyFileProxy.IllustrationLyFileProxy.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationLyFileProxy.IllustrationLyFileProxy.IllustrationLyFileProxy.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationLyFileProxy.IllustrationLyFileProxy.IllustrationLyFileProxy.profile

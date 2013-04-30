@@ -12,6 +12,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.wizards.InstrumentSelectionWizard.InstrumentSelectionWizard.InstrumentSelectionWizard.breadcrumb
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.wizards.InstrumentSelectionWizard.InstrumentSelectionWizard.InstrumentSelectionWizard.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.wizards.InstrumentSelectionWizard.InstrumentSelectionWizard.InstrumentSelectionWizard.session
    :noindex:
 
@@ -23,39 +26,6 @@ Read-only properties
 
 Methods
 -------
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentSelectionWizard.InstrumentSelectionWizard.InstrumentSelectionWizard.assign_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentSelectionWizard.InstrumentSelectionWizard.InstrumentSelectionWizard.conditionally_clear_terminal
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentSelectionWizard.InstrumentSelectionWizard.InstrumentSelectionWizard.confirm
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentSelectionWizard.InstrumentSelectionWizard.InstrumentSelectionWizard.display
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentSelectionWizard.InstrumentSelectionWizard.InstrumentSelectionWizard.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentSelectionWizard.InstrumentSelectionWizard.InstrumentSelectionWizard.handle_raw_input_with_default
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentSelectionWizard.InstrumentSelectionWizard.InstrumentSelectionWizard.make_getter
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentSelectionWizard.InstrumentSelectionWizard.InstrumentSelectionWizard.make_menu
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentSelectionWizard.InstrumentSelectionWizard.InstrumentSelectionWizard.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentSelectionWizard.InstrumentSelectionWizard.InstrumentSelectionWizard.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentSelectionWizard.InstrumentSelectionWizard.InstrumentSelectionWizard.proceed
-   :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentSelectionWizard.InstrumentSelectionWizard.InstrumentSelectionWizard.run
    :noindex:

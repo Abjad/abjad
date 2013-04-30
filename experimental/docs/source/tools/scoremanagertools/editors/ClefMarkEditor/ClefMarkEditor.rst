@@ -18,6 +18,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.editors.ClefMarkEditor.ClefMarkEditor.ClefMarkEditor.has_target
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.editors.ClefMarkEditor.ClefMarkEditor.ClefMarkEditor.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.editors.ClefMarkEditor.ClefMarkEditor.ClefMarkEditor.session
    :noindex:
 
@@ -57,16 +60,10 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkEditor.ClefMarkEditor.ClefMarkEditor.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkEditor.ClefMarkEditor.ClefMarkEditor.attribute_name_to_menu_key
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkEditor.ClefMarkEditor.ClefMarkEditor.clean_up_attributes_in_memory
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkEditor.ClefMarkEditor.ClefMarkEditor.conditionally_clear_terminal
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkEditor.ClefMarkEditor.ClefMarkEditor.conditionally_initialize_target
@@ -75,22 +72,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkEditor.ClefMarkEditor.ClefMarkEditor.conditionally_set_target_attribute
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkEditor.ClefMarkEditor.ClefMarkEditor.confirm
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkEditor.ClefMarkEditor.ClefMarkEditor.copy_target_attributes_to_memory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkEditor.ClefMarkEditor.ClefMarkEditor.display
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkEditor.ClefMarkEditor.ClefMarkEditor.handle_main_menu_result
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkEditor.ClefMarkEditor.ClefMarkEditor.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkEditor.ClefMarkEditor.ClefMarkEditor.handle_raw_input_with_default
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkEditor.ClefMarkEditor.ClefMarkEditor.initialize_attributes_in_memory
@@ -99,13 +84,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkEditor.ClefMarkEditor.ClefMarkEditor.initialize_target_from_attributes_in_memory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkEditor.ClefMarkEditor.ClefMarkEditor.make_getter
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkEditor.ClefMarkEditor.ClefMarkEditor.make_main_menu
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkEditor.ClefMarkEditor.ClefMarkEditor.make_menu
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkEditor.ClefMarkEditor.ClefMarkEditor.make_target_attribute_tokens_from_target_manifest
@@ -115,15 +94,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkEditor.ClefMarkEditor.ClefMarkEditor.menu_key_to_existing_value
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkEditor.ClefMarkEditor.ClefMarkEditor.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkEditor.ClefMarkEditor.ClefMarkEditor.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkEditor.ClefMarkEditor.ClefMarkEditor.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkEditor.ClefMarkEditor.ClefMarkEditor.run

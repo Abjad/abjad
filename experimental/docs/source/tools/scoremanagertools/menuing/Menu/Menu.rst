@@ -33,6 +33,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.hidden_section
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.menu_entry_bodies
    :noindex:
 
@@ -96,9 +99,6 @@ Read/write properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.change_user_input_to_directive
    :noindex:
 
@@ -109,12 +109,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.conditionally_enclose_in_list
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.confirm
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.display
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.edit_client_source_file
@@ -132,22 +126,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.handle_hidden_key
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.handle_raw_input_with_default
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.make_default_hidden_section
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.make_getter
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.make_is_integer_in_range
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.make_menu
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.make_section
@@ -157,15 +139,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.make_title_lines
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.return_value_to_location_pair

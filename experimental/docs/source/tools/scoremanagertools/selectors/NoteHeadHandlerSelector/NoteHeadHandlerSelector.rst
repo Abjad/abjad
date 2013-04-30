@@ -12,6 +12,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.NoteHeadHandlerSelector.NoteHeadHandlerSelector.NoteHeadHandlerSelector.breadcrumb
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.selectors.NoteHeadHandlerSelector.NoteHeadHandlerSelector.NoteHeadHandlerSelector.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.NoteHeadHandlerSelector.NoteHeadHandlerSelector.NoteHeadHandlerSelector.session
    :noindex:
 
@@ -30,52 +33,19 @@ Read/write properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.NoteHeadHandlerSelector.NoteHeadHandlerSelector.NoteHeadHandlerSelector.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.NoteHeadHandlerSelector.NoteHeadHandlerSelector.NoteHeadHandlerSelector.change_expr_to_menu_token
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.NoteHeadHandlerSelector.NoteHeadHandlerSelector.NoteHeadHandlerSelector.conditionally_clear_terminal
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.NoteHeadHandlerSelector.NoteHeadHandlerSelector.NoteHeadHandlerSelector.confirm
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.NoteHeadHandlerSelector.NoteHeadHandlerSelector.NoteHeadHandlerSelector.display
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.NoteHeadHandlerSelector.NoteHeadHandlerSelector.NoteHeadHandlerSelector.get_tag_from_directory_path
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.NoteHeadHandlerSelector.NoteHeadHandlerSelector.NoteHeadHandlerSelector.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.NoteHeadHandlerSelector.NoteHeadHandlerSelector.NoteHeadHandlerSelector.handle_raw_input_with_default
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.NoteHeadHandlerSelector.NoteHeadHandlerSelector.NoteHeadHandlerSelector.list_items
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.NoteHeadHandlerSelector.NoteHeadHandlerSelector.NoteHeadHandlerSelector.make_getter
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.NoteHeadHandlerSelector.NoteHeadHandlerSelector.NoteHeadHandlerSelector.make_main_menu
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.NoteHeadHandlerSelector.NoteHeadHandlerSelector.NoteHeadHandlerSelector.make_menu
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.NoteHeadHandlerSelector.NoteHeadHandlerSelector.NoteHeadHandlerSelector.make_menu_tokens
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.NoteHeadHandlerSelector.NoteHeadHandlerSelector.NoteHeadHandlerSelector.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.NoteHeadHandlerSelector.NoteHeadHandlerSelector.NoteHeadHandlerSelector.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.NoteHeadHandlerSelector.NoteHeadHandlerSelector.NoteHeadHandlerSelector.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.NoteHeadHandlerSelector.NoteHeadHandlerSelector.NoteHeadHandlerSelector.run

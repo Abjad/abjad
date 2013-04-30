@@ -157,7 +157,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         initializer.close()
 
     def make_asset_interactively(self):
-        getter = self.make_getter(where=self.where())
+        getter = self.io.make_getter(where=self.where())
         getter.append_material_package_maker_class_name('material proxy name')
         getter.append_space_delimited_lowercase_string('generic output product')
         result = getter.run()
@@ -192,7 +192,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         stylesheet_file_pointer.close()
 
     def make_main_menu(self, head=None):
-        menu, section = self.make_menu(where=self.where(), is_numbered=True)
+        menu, section = self.io.make_menu(where=self.where(), is_numbered=True)
         section.tokens = self.list_asset_human_readable_names(head=head)
         section = menu.make_section()
         section.append(('new', 'new material package maker'))

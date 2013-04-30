@@ -18,6 +18,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.editors.ArticulationSpecifierEditor.ArticulationSpecifierEditor.ArticulationSpecifierEditor.has_target
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.editors.ArticulationSpecifierEditor.ArticulationSpecifierEditor.ArticulationSpecifierEditor.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.editors.ArticulationSpecifierEditor.ArticulationSpecifierEditor.ArticulationSpecifierEditor.session
    :noindex:
 
@@ -57,16 +60,10 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ArticulationSpecifierEditor.ArticulationSpecifierEditor.ArticulationSpecifierEditor.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.ArticulationSpecifierEditor.ArticulationSpecifierEditor.ArticulationSpecifierEditor.attribute_name_to_menu_key
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ArticulationSpecifierEditor.ArticulationSpecifierEditor.ArticulationSpecifierEditor.clean_up_attributes_in_memory
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ArticulationSpecifierEditor.ArticulationSpecifierEditor.ArticulationSpecifierEditor.conditionally_clear_terminal
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ArticulationSpecifierEditor.ArticulationSpecifierEditor.ArticulationSpecifierEditor.conditionally_initialize_target
@@ -75,22 +72,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.ArticulationSpecifierEditor.ArticulationSpecifierEditor.ArticulationSpecifierEditor.conditionally_set_target_attribute
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ArticulationSpecifierEditor.ArticulationSpecifierEditor.ArticulationSpecifierEditor.confirm
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.ArticulationSpecifierEditor.ArticulationSpecifierEditor.ArticulationSpecifierEditor.copy_target_attributes_to_memory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ArticulationSpecifierEditor.ArticulationSpecifierEditor.ArticulationSpecifierEditor.display
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.ArticulationSpecifierEditor.ArticulationSpecifierEditor.ArticulationSpecifierEditor.handle_main_menu_result
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ArticulationSpecifierEditor.ArticulationSpecifierEditor.ArticulationSpecifierEditor.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ArticulationSpecifierEditor.ArticulationSpecifierEditor.ArticulationSpecifierEditor.handle_raw_input_with_default
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ArticulationSpecifierEditor.ArticulationSpecifierEditor.ArticulationSpecifierEditor.initialize_attributes_in_memory
@@ -99,13 +84,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.ArticulationSpecifierEditor.ArticulationSpecifierEditor.ArticulationSpecifierEditor.initialize_target_from_attributes_in_memory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ArticulationSpecifierEditor.ArticulationSpecifierEditor.ArticulationSpecifierEditor.make_getter
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.ArticulationSpecifierEditor.ArticulationSpecifierEditor.ArticulationSpecifierEditor.make_main_menu
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ArticulationSpecifierEditor.ArticulationSpecifierEditor.ArticulationSpecifierEditor.make_menu
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ArticulationSpecifierEditor.ArticulationSpecifierEditor.ArticulationSpecifierEditor.make_target_attribute_tokens_from_target_manifest
@@ -115,15 +94,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ArticulationSpecifierEditor.ArticulationSpecifierEditor.ArticulationSpecifierEditor.menu_key_to_existing_value
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ArticulationSpecifierEditor.ArticulationSpecifierEditor.ArticulationSpecifierEditor.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ArticulationSpecifierEditor.ArticulationSpecifierEditor.ArticulationSpecifierEditor.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ArticulationSpecifierEditor.ArticulationSpecifierEditor.ArticulationSpecifierEditor.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ArticulationSpecifierEditor.ArticulationSpecifierEditor.ArticulationSpecifierEditor.run

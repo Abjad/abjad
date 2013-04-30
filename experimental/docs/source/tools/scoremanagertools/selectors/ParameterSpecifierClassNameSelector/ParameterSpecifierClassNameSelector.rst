@@ -12,6 +12,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.ParameterSpecifierClassNameSelector.ParameterSpecifierClassNameSelector.ParameterSpecifierClassNameSelector.breadcrumb
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.selectors.ParameterSpecifierClassNameSelector.ParameterSpecifierClassNameSelector.ParameterSpecifierClassNameSelector.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.ParameterSpecifierClassNameSelector.ParameterSpecifierClassNameSelector.ParameterSpecifierClassNameSelector.session
    :noindex:
 
@@ -30,52 +33,19 @@ Read/write properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.ParameterSpecifierClassNameSelector.ParameterSpecifierClassNameSelector.ParameterSpecifierClassNameSelector.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.ParameterSpecifierClassNameSelector.ParameterSpecifierClassNameSelector.ParameterSpecifierClassNameSelector.change_expr_to_menu_token
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ParameterSpecifierClassNameSelector.ParameterSpecifierClassNameSelector.ParameterSpecifierClassNameSelector.conditionally_clear_terminal
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ParameterSpecifierClassNameSelector.ParameterSpecifierClassNameSelector.ParameterSpecifierClassNameSelector.confirm
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ParameterSpecifierClassNameSelector.ParameterSpecifierClassNameSelector.ParameterSpecifierClassNameSelector.display
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.ParameterSpecifierClassNameSelector.ParameterSpecifierClassNameSelector.ParameterSpecifierClassNameSelector.get_tag_from_directory_path
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.ParameterSpecifierClassNameSelector.ParameterSpecifierClassNameSelector.ParameterSpecifierClassNameSelector.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ParameterSpecifierClassNameSelector.ParameterSpecifierClassNameSelector.ParameterSpecifierClassNameSelector.handle_raw_input_with_default
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.ParameterSpecifierClassNameSelector.ParameterSpecifierClassNameSelector.ParameterSpecifierClassNameSelector.list_items
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ParameterSpecifierClassNameSelector.ParameterSpecifierClassNameSelector.ParameterSpecifierClassNameSelector.make_getter
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.ParameterSpecifierClassNameSelector.ParameterSpecifierClassNameSelector.ParameterSpecifierClassNameSelector.make_main_menu
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.ParameterSpecifierClassNameSelector.ParameterSpecifierClassNameSelector.ParameterSpecifierClassNameSelector.make_menu
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.ParameterSpecifierClassNameSelector.ParameterSpecifierClassNameSelector.ParameterSpecifierClassNameSelector.make_menu_tokens
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ParameterSpecifierClassNameSelector.ParameterSpecifierClassNameSelector.ParameterSpecifierClassNameSelector.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ParameterSpecifierClassNameSelector.ParameterSpecifierClassNameSelector.ParameterSpecifierClassNameSelector.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ParameterSpecifierClassNameSelector.ParameterSpecifierClassNameSelector.ParameterSpecifierClassNameSelector.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.ParameterSpecifierClassNameSelector.ParameterSpecifierClassNameSelector.ParameterSpecifierClassNameSelector.run

@@ -18,6 +18,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.has_target
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.session
    :noindex:
 
@@ -57,16 +60,10 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.attribute_name_to_menu_key
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.clean_up_attributes_in_memory
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.conditionally_clear_terminal
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.conditionally_initialize_target
@@ -75,22 +72,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.conditionally_set_target_attribute
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.confirm
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.copy_target_attributes_to_memory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.display
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.handle_main_menu_result
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.handle_raw_input_with_default
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.initialize_attributes_in_memory
@@ -99,13 +84,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.initialize_target_from_attributes_in_memory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.make_getter
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.make_main_menu
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.make_menu
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.make_target_attribute_tokens_from_target_manifest
@@ -115,15 +94,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.menu_key_to_existing_value
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.run

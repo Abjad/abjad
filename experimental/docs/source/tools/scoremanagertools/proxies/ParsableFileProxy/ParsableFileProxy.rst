@@ -36,6 +36,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.human_readable_name
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.is_exceptionless
    :noindex:
 
@@ -78,28 +81,16 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.clear
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.conditionally_clear_terminal
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.conditionally_make_empty_asset
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.confirm
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.copy
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.copy_interactively
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.display
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.display_formatted_lines
@@ -114,31 +105,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.fix
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.handle_raw_input_with_default
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.has_line
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.human_readable_name_to_asset_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.make_getter
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.make_menu
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.profile

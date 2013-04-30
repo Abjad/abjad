@@ -18,6 +18,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.editors.RegistrationSpecifierEditor.RegistrationSpecifierEditor.RegistrationSpecifierEditor.has_target
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.editors.RegistrationSpecifierEditor.RegistrationSpecifierEditor.RegistrationSpecifierEditor.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.editors.RegistrationSpecifierEditor.RegistrationSpecifierEditor.RegistrationSpecifierEditor.session
    :noindex:
 
@@ -57,16 +60,10 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.editors.RegistrationSpecifierEditor.RegistrationSpecifierEditor.RegistrationSpecifierEditor.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.RegistrationSpecifierEditor.RegistrationSpecifierEditor.RegistrationSpecifierEditor.attribute_name_to_menu_key
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.RegistrationSpecifierEditor.RegistrationSpecifierEditor.RegistrationSpecifierEditor.clean_up_attributes_in_memory
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.RegistrationSpecifierEditor.RegistrationSpecifierEditor.RegistrationSpecifierEditor.conditionally_clear_terminal
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.RegistrationSpecifierEditor.RegistrationSpecifierEditor.RegistrationSpecifierEditor.conditionally_initialize_target
@@ -75,22 +72,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.RegistrationSpecifierEditor.RegistrationSpecifierEditor.RegistrationSpecifierEditor.conditionally_set_target_attribute
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.RegistrationSpecifierEditor.RegistrationSpecifierEditor.RegistrationSpecifierEditor.confirm
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.RegistrationSpecifierEditor.RegistrationSpecifierEditor.RegistrationSpecifierEditor.copy_target_attributes_to_memory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.RegistrationSpecifierEditor.RegistrationSpecifierEditor.RegistrationSpecifierEditor.display
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.RegistrationSpecifierEditor.RegistrationSpecifierEditor.RegistrationSpecifierEditor.handle_main_menu_result
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.RegistrationSpecifierEditor.RegistrationSpecifierEditor.RegistrationSpecifierEditor.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.RegistrationSpecifierEditor.RegistrationSpecifierEditor.RegistrationSpecifierEditor.handle_raw_input_with_default
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.RegistrationSpecifierEditor.RegistrationSpecifierEditor.RegistrationSpecifierEditor.initialize_attributes_in_memory
@@ -99,13 +84,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.RegistrationSpecifierEditor.RegistrationSpecifierEditor.RegistrationSpecifierEditor.initialize_target_from_attributes_in_memory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.RegistrationSpecifierEditor.RegistrationSpecifierEditor.RegistrationSpecifierEditor.make_getter
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.RegistrationSpecifierEditor.RegistrationSpecifierEditor.RegistrationSpecifierEditor.make_main_menu
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.RegistrationSpecifierEditor.RegistrationSpecifierEditor.RegistrationSpecifierEditor.make_menu
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.RegistrationSpecifierEditor.RegistrationSpecifierEditor.RegistrationSpecifierEditor.make_target_attribute_tokens_from_target_manifest
@@ -115,15 +94,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.RegistrationSpecifierEditor.RegistrationSpecifierEditor.RegistrationSpecifierEditor.menu_key_to_existing_value
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.RegistrationSpecifierEditor.RegistrationSpecifierEditor.RegistrationSpecifierEditor.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.RegistrationSpecifierEditor.RegistrationSpecifierEditor.RegistrationSpecifierEditor.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.RegistrationSpecifierEditor.RegistrationSpecifierEditor.RegistrationSpecifierEditor.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.RegistrationSpecifierEditor.RegistrationSpecifierEditor.RegistrationSpecifierEditor.run

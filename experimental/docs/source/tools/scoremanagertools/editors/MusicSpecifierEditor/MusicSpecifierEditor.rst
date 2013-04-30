@@ -18,6 +18,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.has_target
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.items
    :noindex:
 
@@ -66,16 +69,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.add_items_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.attribute_name_to_menu_key
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.clean_up_attributes_in_memory
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.conditionally_clear_terminal
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.conditionally_initialize_target
@@ -84,13 +81,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.conditionally_set_target_attribute
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.confirm
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.copy_target_attributes_to_memory
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.display
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.edit_item_interactively
@@ -102,12 +93,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.handle_main_menu_result
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.handle_raw_input_with_default
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.initialize_attributes_in_memory
    :noindex:
 
@@ -117,13 +102,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.item_getter_configuration_method
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.make_getter
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.make_main_menu
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.make_menu
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.make_target_attribute_tokens_from_target_manifest
@@ -136,15 +115,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.move_item_interactively
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.remove_items_interactively

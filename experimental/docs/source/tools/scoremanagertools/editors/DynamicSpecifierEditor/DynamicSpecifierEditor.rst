@@ -18,6 +18,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.has_target
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.session
    :noindex:
 
@@ -57,16 +60,10 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.attribute_name_to_menu_key
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.clean_up_attributes_in_memory
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.conditionally_clear_terminal
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.conditionally_initialize_target
@@ -75,22 +72,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.conditionally_set_target_attribute
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.confirm
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.copy_target_attributes_to_memory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.display
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.handle_main_menu_result
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.handle_raw_input_with_default
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.initialize_attributes_in_memory
@@ -99,13 +84,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.initialize_target_from_attributes_in_memory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.make_getter
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.make_main_menu
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.make_menu
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.make_target_attribute_tokens_from_target_manifest
@@ -115,15 +94,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.menu_key_to_existing_value
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor.run

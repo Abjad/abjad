@@ -175,10 +175,10 @@ class Menu(MenuSectionAggregator):
 
     def conditionally_display_menu(self, flamingo_input=None):
         self.conditionally_clear_terminal()
-        self.display(self.menu_lines, capitalize_first_character=False)
+        self.io.display(self.menu_lines, capitalize_first_character=False)
         if flamingo_input is not None:
             return flamingo_input
-        user_response = self.handle_raw_input_with_default('', default=self.prompt_default)
+        user_response = self.io.handle_raw_input_with_default('', default=self.prompt_default)
         directive = self.change_user_input_to_directive(user_response)
         directive = self.strip_default_indicators_from_strings(directive)
         self.session.hide_next_redraw = False
@@ -228,7 +228,7 @@ class Menu(MenuSectionAggregator):
         return section.menu_entry_return_values[entry_index]
 
     def run(self, clear=True, flamingo_input=None, user_input=None):
-        self.assign_user_input(user_input=user_input)
+        self.io.assign_user_input(user_input=user_input)
         clear, hide_current_run = clear, False
         while True:
             self.should_clear_terminal, self.hide_current_run = clear, hide_current_run

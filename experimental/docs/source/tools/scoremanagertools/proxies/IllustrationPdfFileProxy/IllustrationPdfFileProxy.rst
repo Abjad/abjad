@@ -36,6 +36,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.human_readable_name
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.is_versioned
    :noindex:
 
@@ -66,25 +69,13 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.assign_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.conditionally_clear_terminal
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.conditionally_make_empty_asset
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.confirm
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.copy
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.copy_interactively
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.display
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.display_formatted_lines
@@ -96,31 +87,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.fix
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.handle_raw_input_with_default
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.has_line
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.human_readable_name_to_asset_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.make_getter
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.make_menu
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.profile

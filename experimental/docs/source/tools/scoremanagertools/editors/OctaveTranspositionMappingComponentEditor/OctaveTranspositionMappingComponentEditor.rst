@@ -18,6 +18,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.has_target
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.session
    :noindex:
 
@@ -57,16 +60,10 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.attribute_name_to_menu_key
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.clean_up_attributes_in_memory
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.conditionally_clear_terminal
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.conditionally_initialize_target
@@ -75,22 +72,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.conditionally_set_target_attribute
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.confirm
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.copy_target_attributes_to_memory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.display
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.handle_main_menu_result
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.handle_raw_input_with_default
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.initialize_attributes_in_memory
@@ -99,13 +84,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.initialize_target_from_attributes_in_memory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.make_getter
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.make_main_menu
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.make_menu
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.make_target_attribute_tokens_from_target_manifest
@@ -115,15 +94,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.menu_key_to_existing_value
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.run

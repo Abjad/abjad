@@ -33,6 +33,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.current_asset_container_proxy
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.score_internal_asset_container_package_path_infix
    :noindex:
 
@@ -63,12 +66,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.asset_path_to_human_readable_asset_name
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.assign_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.conditionally_clear_terminal
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.conditionally_make_asset_container_packages
    :noindex:
 
@@ -81,12 +78,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.conditionally_make_score_internal_asset_container_packages
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.confirm
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.display
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.fix_visible_assets
    :noindex:
 
@@ -94,12 +85,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.handle_main_menu_result
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.handle_raw_input_with_default
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.list_asset_container_human_readable_names
@@ -210,25 +195,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.make_asset_selection_menu
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.make_getter
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.make_main_menu
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.make_menu
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.make_visible_asset_menu_tokens
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.profile_visible_assets

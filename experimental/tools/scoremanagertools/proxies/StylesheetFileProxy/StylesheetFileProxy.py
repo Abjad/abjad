@@ -42,7 +42,7 @@ class StylesheetFileProxy(FileProxy):
         return asset_name
 
     def make_main_menu(self):
-        menu, section = self.make_menu(where=self.where)
+        menu, section = self.io.make_menu(where=self.where)
         section.append(('cp', 'copy stylesheet'))
         section.append(('pr', 'profile stylesheet'))
         section.append(('rm', 'delete stylesheet'))

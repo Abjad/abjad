@@ -144,6 +144,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.makers.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.initializer_has_output_material_safe_import_statement
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.makers.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.makers.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.is_changed
    :noindex:
 
@@ -321,13 +324,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.makers.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.add_tag_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.makers.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.makers.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.clear_user_input_wrapper
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.conditionally_clear_terminal
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.conditionally_make_empty_asset
@@ -339,16 +336,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.makers.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.conditionally_write_stub_user_input_module_to_disk
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.makers.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.confirm
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.makers.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.copy
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.copy_interactively
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.display
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.edit_output_material_interactively
@@ -378,12 +369,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.makers.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.handle_main_menu_result
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.makers.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.handle_raw_input_with_default
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.makers.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.handle_tags_menu_result
    :noindex:
 
@@ -400,9 +385,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.make_directory
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.make_getter
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.make_main_menu
@@ -435,9 +417,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.makers.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.make_main_menu_sections
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.makers.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.make_menu
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.makers.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.make_output_material_from_user_input_wrapper_in_memory
    :noindex:
 
@@ -456,19 +435,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.makers.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.overwrite_output_material_module
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.makers.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.pop_next_user_response_from_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.makers.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.populate_user_input_wrapper
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.print_directory_contents
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.profile

@@ -45,6 +45,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.human_readable_name
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.is_exceptionless
    :noindex:
 
@@ -102,28 +105,16 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.clear
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.conditionally_clear_terminal
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.conditionally_make_empty_asset
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.confirm
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.copy
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.copy_interactively
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.display
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.display_formatted_lines
@@ -138,12 +129,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.fix
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.handle_raw_input_with_default
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.has_line
    :noindex:
 
@@ -153,25 +138,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.load_target_into_memory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.make_getter
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.make_menu
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.parse
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.pop_next_user_response_from_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.prepend_target_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.profile

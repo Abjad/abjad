@@ -12,6 +12,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.breadcrumb
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.selectors.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.session
    :noindex:
 
@@ -30,52 +33,19 @@ Read/write properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.change_expr_to_menu_token
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.conditionally_clear_terminal
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.confirm
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.display
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.get_tag_from_directory_path
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.handle_raw_input_with_default
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.list_items
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.make_getter
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.make_main_menu
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.make_menu
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.make_menu_tokens
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.run

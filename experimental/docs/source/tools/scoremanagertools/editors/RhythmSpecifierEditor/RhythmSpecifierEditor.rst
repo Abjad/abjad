@@ -18,6 +18,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.editors.RhythmSpecifierEditor.RhythmSpecifierEditor.RhythmSpecifierEditor.has_target
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.editors.RhythmSpecifierEditor.RhythmSpecifierEditor.RhythmSpecifierEditor.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.editors.RhythmSpecifierEditor.RhythmSpecifierEditor.RhythmSpecifierEditor.session
    :noindex:
 
@@ -57,16 +60,10 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.editors.RhythmSpecifierEditor.RhythmSpecifierEditor.RhythmSpecifierEditor.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.RhythmSpecifierEditor.RhythmSpecifierEditor.RhythmSpecifierEditor.attribute_name_to_menu_key
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.RhythmSpecifierEditor.RhythmSpecifierEditor.RhythmSpecifierEditor.clean_up_attributes_in_memory
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.RhythmSpecifierEditor.RhythmSpecifierEditor.RhythmSpecifierEditor.conditionally_clear_terminal
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.RhythmSpecifierEditor.RhythmSpecifierEditor.RhythmSpecifierEditor.conditionally_initialize_target
@@ -75,22 +72,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.RhythmSpecifierEditor.RhythmSpecifierEditor.RhythmSpecifierEditor.conditionally_set_target_attribute
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.RhythmSpecifierEditor.RhythmSpecifierEditor.RhythmSpecifierEditor.confirm
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.RhythmSpecifierEditor.RhythmSpecifierEditor.RhythmSpecifierEditor.copy_target_attributes_to_memory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.RhythmSpecifierEditor.RhythmSpecifierEditor.RhythmSpecifierEditor.display
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.RhythmSpecifierEditor.RhythmSpecifierEditor.RhythmSpecifierEditor.handle_main_menu_result
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.RhythmSpecifierEditor.RhythmSpecifierEditor.RhythmSpecifierEditor.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.RhythmSpecifierEditor.RhythmSpecifierEditor.RhythmSpecifierEditor.handle_raw_input_with_default
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.RhythmSpecifierEditor.RhythmSpecifierEditor.RhythmSpecifierEditor.initialize_attributes_in_memory
@@ -99,13 +84,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.RhythmSpecifierEditor.RhythmSpecifierEditor.RhythmSpecifierEditor.initialize_target_from_attributes_in_memory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.RhythmSpecifierEditor.RhythmSpecifierEditor.RhythmSpecifierEditor.make_getter
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.RhythmSpecifierEditor.RhythmSpecifierEditor.RhythmSpecifierEditor.make_main_menu
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.RhythmSpecifierEditor.RhythmSpecifierEditor.RhythmSpecifierEditor.make_menu
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.RhythmSpecifierEditor.RhythmSpecifierEditor.RhythmSpecifierEditor.make_target_attribute_tokens_from_target_manifest
@@ -115,15 +94,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.RhythmSpecifierEditor.RhythmSpecifierEditor.RhythmSpecifierEditor.menu_key_to_existing_value
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.RhythmSpecifierEditor.RhythmSpecifierEditor.RhythmSpecifierEditor.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.RhythmSpecifierEditor.RhythmSpecifierEditor.RhythmSpecifierEditor.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.RhythmSpecifierEditor.RhythmSpecifierEditor.RhythmSpecifierEditor.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.RhythmSpecifierEditor.RhythmSpecifierEditor.RhythmSpecifierEditor.run

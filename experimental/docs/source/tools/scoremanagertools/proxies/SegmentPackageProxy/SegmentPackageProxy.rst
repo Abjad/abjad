@@ -48,6 +48,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.initializer_file_proxy
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.is_versioned
    :noindex:
 
@@ -117,25 +120,13 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.add_tag_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.assign_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.conditionally_clear_terminal
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.conditionally_make_empty_asset
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.confirm
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.copy
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.copy_interactively
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.display
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.fix
@@ -156,12 +147,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.handle_main_menu_result
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.handle_raw_input_with_default
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.handle_tags_menu_result
    :noindex:
 
@@ -180,13 +165,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.make_directory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.make_getter
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.make_main_menu
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.make_menu
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.make_tags_menu
@@ -195,16 +174,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.manage_tags
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.pop_next_user_response_from_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.print_directory_contents
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.profile

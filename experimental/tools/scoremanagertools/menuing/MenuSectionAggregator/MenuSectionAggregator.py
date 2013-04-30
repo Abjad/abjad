@@ -67,5 +67,5 @@ class MenuSectionAggregator(MenuObject):
                     menu_line += '{} ({})'.format(body, key)
                     menu_lines.append(menu_line)
                 menu_lines.append('')
-        self.display(menu_lines, capitalize_first_character=False)
+        self.io.display(menu_lines, capitalize_first_character=False)
         self.session.hide_next_redraw = True

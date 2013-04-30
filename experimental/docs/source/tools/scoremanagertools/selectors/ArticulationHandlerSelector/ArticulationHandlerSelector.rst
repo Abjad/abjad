@@ -12,6 +12,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector.breadcrumb
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector.session
    :noindex:
 
@@ -30,28 +33,10 @@ Read/write properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector.change_expr_to_menu_token
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector.conditionally_clear_terminal
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector.confirm
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector.display
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector.get_tag_from_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector.handle_raw_input_with_default
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector.list_current_material_directory_paths
@@ -66,25 +51,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector.list_public_directory_paths_with_initializers_in_subtree
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector.make_getter
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector.make_main_menu
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector.make_menu
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector.make_menu_tokens
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector.run

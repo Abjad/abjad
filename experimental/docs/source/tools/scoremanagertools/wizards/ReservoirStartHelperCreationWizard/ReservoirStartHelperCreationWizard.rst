@@ -12,6 +12,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.wizards.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.breadcrumb
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.wizards.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.wizards.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.session
    :noindex:
 
@@ -24,40 +27,7 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.assign_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.conditionally_clear_terminal
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.confirm
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.display
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.get_function_arguments
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.handle_raw_input_with_default
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.make_getter
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.make_menu
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.run

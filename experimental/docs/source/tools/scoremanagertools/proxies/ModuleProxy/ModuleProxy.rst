@@ -42,6 +42,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.human_readable_name
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.is_exceptionless
    :noindex:
 
@@ -96,28 +99,16 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.clear
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.conditionally_clear_terminal
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.conditionally_make_empty_asset
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.confirm
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.copy
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.copy_interactively
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.display
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.display_formatted_lines
@@ -132,31 +123,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.fix
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.handle_raw_input_with_default
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.has_line
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.human_readable_name_to_asset_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.make_getter
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.make_menu
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.ModuleProxy.ModuleProxy.ModuleProxy.profile

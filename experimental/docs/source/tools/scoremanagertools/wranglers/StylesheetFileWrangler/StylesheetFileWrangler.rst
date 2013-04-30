@@ -36,6 +36,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.current_asset_container_proxy
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.score_external_asset_proxies
    :noindex:
 
@@ -75,12 +78,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.asset_path_to_human_readable_asset_name
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.assign_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.conditionally_clear_terminal
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.conditionally_make_asset_container_packages
    :noindex:
 
@@ -93,12 +90,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.conditionally_make_score_internal_asset_container_packages
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.confirm
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.display
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.fix_visible_assets
    :noindex:
 
@@ -106,12 +97,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.handle_main_menu_result
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.handle_raw_input_with_default
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.list_asset_container_human_readable_names
@@ -237,25 +222,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.make_asset_selection_menu
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.make_getter
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.make_main_menu
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.make_menu
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.make_visible_asset_menu_tokens
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.profile_visible_assets

@@ -12,6 +12,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.breadcrumb
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.session
    :noindex:
 
@@ -30,52 +33,19 @@ Read/write properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.change_expr_to_menu_token
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.conditionally_clear_terminal
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.confirm
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.display
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.get_tag_from_directory_path
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.handle_raw_input_with_default
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.list_items
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.make_getter
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.make_main_menu
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.make_menu
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.make_menu_tokens
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.run

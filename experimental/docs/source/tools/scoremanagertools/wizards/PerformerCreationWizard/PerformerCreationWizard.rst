@@ -12,6 +12,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.breadcrumb
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.session
    :noindex:
 
@@ -24,43 +27,10 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.assign_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.conditionally_clear_terminal
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.confirm
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.display
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.handle_raw_input_with_default
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.initialize_performer_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.make_getter
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.make_menu
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.make_performer_configuration_menu
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.run

@@ -209,7 +209,7 @@ class InteractiveEditor(ScoreManagerObject):
             pass
 
     def make_main_menu(self):
-        menu, section = self.make_menu(where=self.where(),
+        menu, section = self.io.make_menu(where=self.where(),
             is_keyed=self.target_manifest.is_keyed, is_parenthetically_numbered=True)
         section.tokens = self.target_attribute_tokens
         section.show_existing_values = True
@@ -249,7 +249,7 @@ class InteractiveEditor(ScoreManagerObject):
 
     def run(self, breadcrumb=None, cache=False, clear=True, is_autoadding=False,
         is_autoadvancing=False, is_autostarting=False, user_input=None):
-        self.assign_user_input(user_input=user_input)
+        self.io.assign_user_input(user_input=user_input)
         self.session.cache_breadcrumbs(cache=cache)
         self.session.push_breadcrumb(self.breadcrumb)
         self.session.push_backtrack()

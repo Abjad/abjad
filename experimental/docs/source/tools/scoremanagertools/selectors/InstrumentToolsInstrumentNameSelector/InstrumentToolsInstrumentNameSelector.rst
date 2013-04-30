@@ -12,6 +12,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.breadcrumb
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.selectors.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.session
    :noindex:
 
@@ -30,52 +33,19 @@ Read/write properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.change_expr_to_menu_token
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.conditionally_clear_terminal
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.confirm
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.display
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.get_tag_from_directory_path
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.handle_raw_input_with_default
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.list_items
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.make_getter
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.make_main_menu
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.make_menu
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.make_menu_tokens
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.run

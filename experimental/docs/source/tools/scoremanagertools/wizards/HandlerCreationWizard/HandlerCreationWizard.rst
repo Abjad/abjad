@@ -12,6 +12,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.breadcrumb
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.session
    :noindex:
 
@@ -24,40 +27,7 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.assign_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.conditionally_clear_terminal
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.confirm
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.display
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.get_handler_editor
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.handle_raw_input_with_default
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.make_getter
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.make_menu
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.run

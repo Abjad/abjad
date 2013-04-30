@@ -12,6 +12,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.breadcrumb
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.selectors.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.session
    :noindex:
 
@@ -30,52 +33,19 @@ Read/write properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.change_expr_to_menu_token
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.conditionally_clear_terminal
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.confirm
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.display
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.get_tag_from_directory_path
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.handle_raw_input_with_default
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.list_items
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.make_getter
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.make_main_menu
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.make_menu
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.make_menu_tokens
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.run

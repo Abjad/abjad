@@ -12,6 +12,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.breadcrumb
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.session
    :noindex:
 
@@ -30,52 +33,19 @@ Read/write properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.change_expr_to_menu_token
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.conditionally_clear_terminal
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.confirm
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.display
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.get_tag_from_directory_path
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.handle_raw_input_with_default
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.list_items
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.make_getter
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.make_main_menu
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.make_menu
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.make_menu_tokens
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.run

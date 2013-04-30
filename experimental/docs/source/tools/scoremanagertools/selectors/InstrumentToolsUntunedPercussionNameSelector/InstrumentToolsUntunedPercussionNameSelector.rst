@@ -12,6 +12,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.breadcrumb
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.session
    :noindex:
 
@@ -30,52 +33,19 @@ Read/write properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.change_expr_to_menu_token
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.conditionally_clear_terminal
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.confirm
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.display
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.get_tag_from_directory_path
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.handle_raw_input_with_default
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.list_items
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.make_getter
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.make_main_menu
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.make_menu
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.make_menu_tokens
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.run

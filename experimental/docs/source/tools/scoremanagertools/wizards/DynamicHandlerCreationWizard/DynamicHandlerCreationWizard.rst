@@ -12,6 +12,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.wizards.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.breadcrumb
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.wizards.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.wizards.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.session
    :noindex:
 
@@ -24,40 +27,7 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.assign_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.conditionally_clear_terminal
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.confirm
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.display
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.get_handler_editor
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.handle_raw_input_with_default
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.make_getter
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.make_menu
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.run

@@ -44,7 +44,7 @@ class SegmentPackageProxy(PackageProxy):
         self.print_not_yet_implemented()
 
     def make_main_menu(self):
-        menu, section = self.make_menu(where=self.where())
+        menu, section = self.io.make_menu(where=self.where())
         section.append(('n', 'initializer'))
         section = menu.make_section()
         section.append(('d', 'delete'))

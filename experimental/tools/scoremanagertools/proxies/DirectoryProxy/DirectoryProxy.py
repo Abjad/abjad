@@ -64,7 +64,7 @@ class DirectoryProxy(AssetProxy):
         pass
 
     def get_directory_path_interactively(self):
-        getter = self.make_getter(where=self.where())
+        getter = self.io.make_getter(where=self.where())
         getter.append_string('directory name')
         result = getter.run()
         if self.session.backtrack():
@@ -75,8 +75,8 @@ class DirectoryProxy(AssetProxy):
         os.mkdir(self.directory_path)
 
     def print_directory_contents(self):
-        self.display(self.directory_contents, capitalize_first_character=False)
-        self.display('')
+        self.io.display(self.directory_contents, capitalize_first_character=False)
+        self.io.display('')
         self.session.hide_next_redraw = True
 
     def profile(self):

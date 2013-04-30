@@ -12,6 +12,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.breadcrumb
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.session
    :noindex:
 
@@ -30,52 +33,19 @@ Read/write properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.change_expr_to_menu_token
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.conditionally_clear_terminal
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.confirm
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.display
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.get_tag_from_directory_path
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.handle_raw_input_with_default
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.list_items
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.make_getter
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.make_main_menu
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.make_menu
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.make_menu_tokens
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.run

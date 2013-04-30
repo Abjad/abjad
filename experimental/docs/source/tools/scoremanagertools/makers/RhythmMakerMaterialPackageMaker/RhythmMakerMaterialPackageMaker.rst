@@ -144,6 +144,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.initializer_has_output_material_safe_import_statement
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.is_changed
    :noindex:
 
@@ -321,13 +324,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.add_tag_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.clear_user_input_wrapper
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.conditionally_clear_terminal
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.conditionally_make_empty_asset
@@ -339,16 +336,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.conditionally_write_stub_user_input_module_to_disk
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.confirm
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.copy
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.copy_interactively
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.display
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.edit_output_material_interactively
@@ -378,12 +369,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.handle_main_menu_result
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.handle_raw_input_with_default
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.handle_tags_menu_result
    :noindex:
 
@@ -400,9 +385,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.make_directory
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.make_getter
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.make_main_menu
@@ -435,9 +417,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.make_main_menu_sections
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.make_menu
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.make_output_material_from_user_input_wrapper_in_memory
    :noindex:
 
@@ -456,19 +435,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.overwrite_output_material_module
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.pop_next_user_response_from_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.populate_user_input_wrapper
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.print_directory_contents
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.profile

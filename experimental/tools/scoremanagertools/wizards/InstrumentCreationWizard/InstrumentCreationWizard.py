@@ -38,7 +38,7 @@ class InstrumentCreationWizard(Wizard):
             instrument.short_instrument_name = instrument_name
 
     def run(self, cache=False, clear=True, head=None, user_input=None):
-        self.assign_user_input(user_input=user_input)
+        self.io.assign_user_input(user_input=user_input)
         self.session.cache_breadcrumbs(cache=cache)
         self.session.push_breadcrumb(self.breadcrumb)
         kwargs = {'session': self.session, 'is_ranged': self.is_ranged}

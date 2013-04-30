@@ -12,6 +12,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.breadcrumb
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.session
    :noindex:
 
@@ -30,52 +33,19 @@ Read/write properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.change_expr_to_menu_token
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.conditionally_clear_terminal
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.confirm
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.display
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.get_tag_from_directory_path
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.handle_raw_input_with_default
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.list_items
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.make_getter
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.make_main_menu
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.make_menu
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.make_menu_tokens
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.run

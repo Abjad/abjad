@@ -12,6 +12,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.RegistrationHandlerSelector.RegistrationHandlerSelector.RegistrationHandlerSelector.breadcrumb
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.selectors.RegistrationHandlerSelector.RegistrationHandlerSelector.RegistrationHandlerSelector.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.RegistrationHandlerSelector.RegistrationHandlerSelector.RegistrationHandlerSelector.session
    :noindex:
 
@@ -30,52 +33,19 @@ Read/write properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.RegistrationHandlerSelector.RegistrationHandlerSelector.RegistrationHandlerSelector.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.RegistrationHandlerSelector.RegistrationHandlerSelector.RegistrationHandlerSelector.change_expr_to_menu_token
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.RegistrationHandlerSelector.RegistrationHandlerSelector.RegistrationHandlerSelector.conditionally_clear_terminal
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.RegistrationHandlerSelector.RegistrationHandlerSelector.RegistrationHandlerSelector.confirm
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.RegistrationHandlerSelector.RegistrationHandlerSelector.RegistrationHandlerSelector.display
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.RegistrationHandlerSelector.RegistrationHandlerSelector.RegistrationHandlerSelector.get_tag_from_directory_path
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.RegistrationHandlerSelector.RegistrationHandlerSelector.RegistrationHandlerSelector.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.RegistrationHandlerSelector.RegistrationHandlerSelector.RegistrationHandlerSelector.handle_raw_input_with_default
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.RegistrationHandlerSelector.RegistrationHandlerSelector.RegistrationHandlerSelector.list_items
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.RegistrationHandlerSelector.RegistrationHandlerSelector.RegistrationHandlerSelector.make_getter
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.RegistrationHandlerSelector.RegistrationHandlerSelector.RegistrationHandlerSelector.make_main_menu
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.RegistrationHandlerSelector.RegistrationHandlerSelector.RegistrationHandlerSelector.make_menu
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.RegistrationHandlerSelector.RegistrationHandlerSelector.RegistrationHandlerSelector.make_menu_tokens
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.RegistrationHandlerSelector.RegistrationHandlerSelector.RegistrationHandlerSelector.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.RegistrationHandlerSelector.RegistrationHandlerSelector.RegistrationHandlerSelector.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.RegistrationHandlerSelector.RegistrationHandlerSelector.RegistrationHandlerSelector.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.RegistrationHandlerSelector.RegistrationHandlerSelector.RegistrationHandlerSelector.run

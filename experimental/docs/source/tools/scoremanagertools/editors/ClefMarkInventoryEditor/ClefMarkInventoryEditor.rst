@@ -18,6 +18,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.has_target
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.items
    :noindex:
 
@@ -66,16 +69,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.add_items_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.attribute_name_to_menu_key
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.clean_up_attributes_in_memory
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.conditionally_clear_terminal
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.conditionally_initialize_target
@@ -84,13 +81,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.conditionally_set_target_attribute
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.confirm
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.copy_target_attributes_to_memory
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.display
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.edit_item_interactively
@@ -102,12 +93,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.handle_main_menu_result
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.handle_raw_input_with_default
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.initialize_attributes_in_memory
    :noindex:
 
@@ -117,13 +102,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.item_getter_configuration_method
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.make_getter
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.make_main_menu
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.make_menu
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.make_target_attribute_tokens_from_target_manifest
@@ -136,15 +115,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.move_item_interactively
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.remove_items_interactively

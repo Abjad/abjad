@@ -49,10 +49,10 @@ class FileProxy(AssetProxy):
             file_reference = file(self.file_path, 'w')
             file_reference.write('')
             file_reference.close()
-        self.proceed(is_interactive=is_interactive)
+        self.io.proceed(is_interactive=is_interactive)
 
     def display_formatted_lines(self):
-        self.display(self.formatted_lines)
+        self.io.display(self.formatted_lines)
 
     def edit(self):
         os.system('vi + {}'.format(self.file_path))

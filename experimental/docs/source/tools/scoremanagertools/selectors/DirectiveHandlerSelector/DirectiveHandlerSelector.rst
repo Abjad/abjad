@@ -12,6 +12,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.breadcrumb
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.session
    :noindex:
 
@@ -30,52 +33,19 @@ Read/write properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.change_expr_to_menu_token
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.conditionally_clear_terminal
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.confirm
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.display
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.get_tag_from_directory_path
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.handle_raw_input_with_default
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.list_items
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.make_getter
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.make_main_menu
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.make_menu
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.make_menu_tokens
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.run

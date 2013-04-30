@@ -144,6 +144,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.makers.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.initializer_has_output_material_safe_import_statement
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.makers.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.makers.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.is_changed
    :noindex:
 
@@ -321,13 +324,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.makers.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.add_tag_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.makers.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.makers.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.clear_user_input_wrapper
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.conditionally_clear_terminal
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.conditionally_make_empty_asset
@@ -339,16 +336,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.makers.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.conditionally_write_stub_user_input_module_to_disk
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.makers.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.confirm
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.makers.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.copy
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.copy_interactively
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.display
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.edit_output_material_interactively
@@ -378,12 +369,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.makers.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.handle_main_menu_result
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.makers.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.handle_raw_input_with_default
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.makers.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.handle_tags_menu_result
    :noindex:
 
@@ -400,9 +385,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.make_directory
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.make_getter
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.make_main_menu
@@ -435,9 +417,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.makers.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.make_main_menu_sections
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.makers.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.make_menu
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.makers.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.make_output_material_from_user_input_wrapper_in_memory
    :noindex:
 
@@ -456,19 +435,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.makers.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.overwrite_output_material_module
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.makers.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.pop_next_user_response_from_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.makers.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.populate_user_input_wrapper
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.print_directory_contents
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.makers.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.makers.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.profile

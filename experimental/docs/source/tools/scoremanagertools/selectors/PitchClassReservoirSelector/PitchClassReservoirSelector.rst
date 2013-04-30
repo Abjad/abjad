@@ -12,6 +12,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector.breadcrumb
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector.session
    :noindex:
 
@@ -30,28 +33,10 @@ Read/write properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector.change_expr_to_menu_token
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector.conditionally_clear_terminal
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector.confirm
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector.display
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector.get_tag_from_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector.handle_raw_input_with_default
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector.list_current_material_directory_paths
@@ -66,25 +51,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector.list_public_directory_paths_with_initializers_in_subtree
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector.make_getter
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector.make_main_menu
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector.make_menu
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector.make_menu_tokens
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector.run

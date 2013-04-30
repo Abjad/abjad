@@ -12,6 +12,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.wizards.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.breadcrumb
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.wizards.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.wizards.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.session
    :noindex:
 
@@ -24,18 +27,6 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.assign_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.conditionally_clear_terminal
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.confirm
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.display
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.function_application_pairs_to_breadcrumb
    :noindex:
 
@@ -43,27 +34,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.get_function_arguments
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.handle_raw_input_with_default
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.make_getter
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.make_menu
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.run

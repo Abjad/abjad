@@ -48,6 +48,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.initializer_file_proxy
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.is_versioned
    :noindex:
 
@@ -111,25 +114,13 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.add_tag_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.assign_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.conditionally_clear_terminal
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.conditionally_make_empty_asset
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.confirm
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.copy
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.copy_interactively
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.display
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.fix
@@ -147,12 +138,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.get_tags
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.handle_raw_input_with_default
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.handle_tags_menu_result
    :noindex:
 
@@ -165,28 +150,13 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.make_directory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.make_getter
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.make_menu
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.make_tags_menu
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.manage_tags
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.pop_next_user_response_from_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.print_directory_contents
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.profile

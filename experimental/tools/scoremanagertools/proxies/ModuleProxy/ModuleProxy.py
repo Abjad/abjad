@@ -87,11 +87,11 @@ class ModuleProxy(ParsableFileProxy, AssetProxy, ScoreManagerObject):
 
     def run_abjad(self, prompt=True):
         os.system('abjad {}'.format(self.file_path))
-        self.proceed('file executed', is_interactive=prompt)
+        self.io.proceed('file executed', is_interactive=prompt)
 
     def run_python(self, prompt=True):
         os.system('python {}'.format(self.file_path))
-        self.proceed('file executed.', is_interactive=prompt)
+        self.io.proceed('file executed.', is_interactive=prompt)
 
     def unimport(self):
         self.remove_package_path_from_sys_modules(self.module_path)

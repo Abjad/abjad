@@ -42,6 +42,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.forbidden_package_paths
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.score_external_asset_proxies
    :noindex:
 
@@ -78,12 +81,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.asset_path_to_human_readable_asset_name
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.assign_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.conditionally_clear_terminal
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.conditionally_make_asset_container_packages
    :noindex:
 
@@ -96,12 +93,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.conditionally_make_score_internal_asset_container_packages
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.confirm
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.display
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.fix_visible_assets
    :noindex:
 
@@ -109,12 +100,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.handle_main_menu_result
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.handle_raw_input_with_default
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.list_asset_container_human_readable_names
@@ -249,25 +234,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.make_asset_stylesheet
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.make_getter
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.make_main_menu
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.make_menu
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.make_visible_asset_menu_tokens
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.profile_visible_assets

@@ -33,6 +33,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.current_asset_container_proxy
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.score_external_asset_proxies
    :noindex:
 
@@ -69,12 +72,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.asset_path_to_human_readable_asset_name
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.assign_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.conditionally_clear_terminal
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.conditionally_make_asset_container_packages
    :noindex:
 
@@ -87,12 +84,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.conditionally_make_score_internal_asset_container_packages
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.confirm
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.display
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.fix_visible_assets
    :noindex:
 
@@ -100,12 +91,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.handle_main_menu_result
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.handle_raw_input_with_default
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.list_asset_container_human_readable_names
@@ -231,25 +216,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.make_asset_selection_menu
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.make_getter
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.make_main_menu
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.make_menu
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.make_visible_asset_menu_tokens
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.profile_visible_assets

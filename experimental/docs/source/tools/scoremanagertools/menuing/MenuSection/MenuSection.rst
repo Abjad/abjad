@@ -27,6 +27,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.has_tuple_tokens
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.is_hidden
    :noindex:
 
@@ -114,16 +117,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.argument_string_to_number_optimized
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.conditionally_clear_terminal
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.confirm
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.display
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.edit_client_source_file
@@ -138,25 +132,13 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.grep_directories
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.handle_raw_input_with_default
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.is_token
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.make_default_hidden_section
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.make_getter
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.make_is_integer_in_range
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.make_menu
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.make_menu_lines
@@ -166,15 +148,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.make_title_lines
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.show_menu_client

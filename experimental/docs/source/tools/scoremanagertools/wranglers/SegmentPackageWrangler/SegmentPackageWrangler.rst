@@ -36,6 +36,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.current_asset_container_proxy
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.score_external_asset_proxies
    :noindex:
 
@@ -72,12 +75,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.asset_path_to_human_readable_asset_name
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.assign_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.conditionally_clear_terminal
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.conditionally_make_asset_container_packages
    :noindex:
 
@@ -90,12 +87,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.conditionally_make_score_internal_asset_container_packages
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.confirm
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.display
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.fix_visible_assets
    :noindex:
 
@@ -103,12 +94,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.handle_main_menu_result
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.handle_raw_input_with_default
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.list_asset_container_human_readable_names
@@ -234,25 +219,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.make_asset_selection_menu
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.make_getter
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.make_main_menu
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.make_menu
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.make_visible_asset_menu_tokens
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.profile_visible_assets

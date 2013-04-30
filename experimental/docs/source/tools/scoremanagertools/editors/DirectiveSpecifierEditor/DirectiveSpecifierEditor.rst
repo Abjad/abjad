@@ -18,6 +18,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.has_target
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.session
    :noindex:
 
@@ -57,16 +60,10 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.attribute_name_to_menu_key
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.clean_up_attributes_in_memory
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.conditionally_clear_terminal
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.conditionally_initialize_target
@@ -75,22 +72,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.conditionally_set_target_attribute
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.confirm
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.copy_target_attributes_to_memory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.display
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.handle_main_menu_result
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.handle_raw_input_with_default
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.initialize_attributes_in_memory
@@ -99,13 +84,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.initialize_target_from_attributes_in_memory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.make_getter
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.make_main_menu
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.make_menu
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.make_target_attribute_tokens_from_target_manifest
@@ -115,15 +94,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.menu_key_to_existing_value
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.run

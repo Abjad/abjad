@@ -18,6 +18,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.has_target
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.items
    :noindex:
 
@@ -66,16 +69,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.add_items_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.attribute_name_to_menu_key
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.clean_up_attributes_in_memory
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.conditionally_clear_terminal
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.conditionally_initialize_target
@@ -84,13 +81,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.conditionally_set_target_attribute
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.confirm
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.copy_target_attributes_to_memory
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.display
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.edit_item_interactively
@@ -102,12 +93,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.handle_main_menu_result
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.handle_raw_input_with_default
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.initialize_attributes_in_memory
    :noindex:
 
@@ -117,13 +102,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.item_getter_configuration_method
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.make_getter
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.make_main_menu
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.make_menu
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.make_target_attribute_tokens_from_target_manifest
@@ -136,15 +115,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.move_item_interactively
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.remove_items_interactively

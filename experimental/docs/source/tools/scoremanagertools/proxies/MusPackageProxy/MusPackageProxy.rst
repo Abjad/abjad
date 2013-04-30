@@ -48,6 +48,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.initializer_file_proxy
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.is_versioned
    :noindex:
 
@@ -111,25 +114,13 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.add_tag_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.assign_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.conditionally_clear_terminal
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.conditionally_make_empty_asset
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.confirm
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.copy
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.copy_interactively
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.display
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.fix
@@ -147,12 +138,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.get_tags
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.handle_raw_input_with_default
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.handle_tags_menu_result
    :noindex:
 
@@ -165,28 +150,13 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.make_directory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.make_getter
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.make_menu
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.make_tags_menu
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.manage_tags
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.pop_next_user_response_from_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.print_directory_contents
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.profile

@@ -18,6 +18,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.has_target
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.items
    :noindex:
 
@@ -66,16 +69,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.add_items_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.attribute_name_to_menu_key
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.clean_up_attributes_in_memory
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.conditionally_clear_terminal
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.conditionally_initialize_target
@@ -84,13 +81,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.conditionally_set_target_attribute
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.confirm
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.copy_target_attributes_to_memory
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.display
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.edit_item_interactively
@@ -102,12 +93,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.handle_main_menu_result
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.handle_raw_input_with_default
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.initialize_attributes_in_memory
    :noindex:
 
@@ -117,13 +102,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.item_getter_configuration_method
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.make_getter
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.make_main_menu
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.make_menu
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.make_target_attribute_tokens_from_target_manifest
@@ -136,15 +115,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.move_item_interactively
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.remove_items_interactively

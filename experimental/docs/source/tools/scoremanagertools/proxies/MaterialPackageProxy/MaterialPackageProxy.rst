@@ -144,6 +144,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.initializer_has_output_material_safe_import_statement
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.is_changed
    :noindex:
 
@@ -315,12 +318,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.add_tag_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.assign_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.conditionally_clear_terminal
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.conditionally_make_empty_asset
    :noindex:
 
@@ -330,16 +327,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.conditionally_write_stub_user_input_module_to_disk
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.confirm
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.copy
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.copy_interactively
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.display
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.edit_output_material_interactively
@@ -366,12 +357,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.handle_main_menu_result
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.handle_raw_input_with_default
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.handle_tags_menu_result
    :noindex:
 
@@ -385,9 +370,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.make_directory
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.make_getter
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.make_main_menu
@@ -417,9 +399,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.make_main_menu_sections
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.make_menu
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.make_tags_menu
    :noindex:
 
@@ -432,19 +411,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.overwrite_output_material_module
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.pop_next_user_response_from_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.populate_user_input_wrapper
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.print_directory_contents
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.profile

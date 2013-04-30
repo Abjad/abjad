@@ -18,6 +18,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.has_target
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.items
    :noindex:
 
@@ -66,16 +69,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.add_items_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.attribute_name_to_menu_key
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.clean_up_attributes_in_memory
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.conditionally_clear_terminal
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.conditionally_initialize_target
@@ -84,13 +81,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.conditionally_set_target_attribute
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.confirm
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.copy_target_attributes_to_memory
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.display
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.edit_item_interactively
@@ -102,12 +93,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.handle_main_menu_result
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.handle_raw_input_with_default
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.initialize_attributes_in_memory
    :noindex:
 
@@ -117,13 +102,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.item_getter_configuration_method
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.make_getter
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.make_main_menu
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.make_menu
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.make_target_attribute_tokens_from_target_manifest
@@ -136,15 +115,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.move_item_interactively
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.remove_items_interactively

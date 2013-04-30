@@ -18,6 +18,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.has_target
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.items
    :noindex:
 
@@ -66,16 +69,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.add_items_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.attribute_name_to_menu_key
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.clean_up_attributes_in_memory
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.conditionally_clear_terminal
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.conditionally_initialize_target
@@ -84,13 +81,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.conditionally_set_target_attribute
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.confirm
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.copy_target_attributes_to_memory
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.display
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.edit_item_interactively
@@ -102,12 +93,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.handle_main_menu_result
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.handle_raw_input_with_default
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.initialize_attributes_in_memory
    :noindex:
 
@@ -117,13 +102,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.item_getter_configuration_method
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.make_getter
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.make_main_menu
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.make_menu
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.make_target_attribute_tokens_from_target_manifest
@@ -136,15 +115,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.move_item_interactively
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.remove_items_interactively

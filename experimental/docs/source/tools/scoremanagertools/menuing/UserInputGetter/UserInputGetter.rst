@@ -24,6 +24,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.helps
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.prompts
    :noindex:
 
@@ -183,9 +186,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.apply_tests_to_value
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.change_user_response_to_value
    :noindex:
 
@@ -193,12 +193,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.conditionally_display_help
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.confirm
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.display
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.display_title
@@ -225,12 +219,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.handle_hidden_key
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.handle_raw_input_with_default
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.indent_and_number_prompt
    :noindex:
 
@@ -240,13 +228,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.make_default_hidden_section
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.make_getter
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.make_is_integer_in_range
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.make_menu
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.make_tab
@@ -258,19 +240,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.move_to_prev_prompt
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.pop_next_user_response_from_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.present_prompt_and_store_value
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.present_prompts_and_store_values
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.run

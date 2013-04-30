@@ -36,6 +36,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.human_readable_name
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.is_exceptionless
    :noindex:
 
@@ -81,28 +84,16 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.add_safe_import_statement
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.clear
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.conditionally_clear_terminal
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.conditionally_make_empty_asset
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.confirm
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.copy
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.copy_interactively
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.display
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.display_formatted_lines
@@ -117,12 +108,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.fix
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.handle_raw_input_with_default
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.has_line
    :noindex:
 
@@ -132,25 +117,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.human_readable_name_to_asset_name
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.make_getter
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.make_menu
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.make_tag_lines
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.parse
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.profile

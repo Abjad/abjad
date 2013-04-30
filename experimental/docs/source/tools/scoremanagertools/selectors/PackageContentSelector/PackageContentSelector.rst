@@ -12,6 +12,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.breadcrumb
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.session
    :noindex:
 
@@ -30,52 +33,19 @@ Read/write properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.change_expr_to_menu_token
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.conditionally_clear_terminal
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.confirm
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.display
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.get_tag_from_directory_path
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.handle_raw_input_with_default
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.list_items
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.make_getter
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.make_main_menu
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.make_menu
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.make_menu_tokens
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.run

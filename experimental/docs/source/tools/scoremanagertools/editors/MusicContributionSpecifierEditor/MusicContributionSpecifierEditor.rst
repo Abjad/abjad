@@ -18,6 +18,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.editors.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.has_target
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.editors.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.editors.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.items
    :noindex:
 
@@ -66,16 +69,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.add_items_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.attribute_name_to_menu_key
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.clean_up_attributes_in_memory
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.conditionally_clear_terminal
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.conditionally_initialize_target
@@ -84,13 +81,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.conditionally_set_target_attribute
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.confirm
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.copy_target_attributes_to_memory
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.display
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.edit_item_interactively
@@ -102,12 +93,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.handle_main_menu_result
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.handle_raw_input_with_default
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.initialize_attributes_in_memory
    :noindex:
 
@@ -117,13 +102,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.item_getter_configuration_method
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.make_getter
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.make_main_menu
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.make_menu
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.make_target_attribute_tokens_from_target_manifest
@@ -136,15 +115,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.move_item_interactively
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.remove_items_interactively

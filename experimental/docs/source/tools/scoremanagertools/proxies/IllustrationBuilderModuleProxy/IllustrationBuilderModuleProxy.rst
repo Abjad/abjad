@@ -48,6 +48,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.illustration_pdf_file_name
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.is_exceptionless
    :noindex:
 
@@ -114,28 +117,16 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.clear
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.conditionally_clear_terminal
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.conditionally_make_empty_asset
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.confirm
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.copy
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.copy_interactively
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.display
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.display_formatted_lines
@@ -150,12 +141,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.fix
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.handle_raw_input_with_default
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.has_line
    :noindex:
 
@@ -165,22 +150,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.import_illustration
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.make_getter
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.make_menu
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.parse
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.profile

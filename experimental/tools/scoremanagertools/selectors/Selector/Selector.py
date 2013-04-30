@@ -60,7 +60,7 @@ class Selector(ScoreManagerObject):
         return result
 
     def make_main_menu(self, head=None):
-        menu, section = self.make_menu(where=self.where(),
+        menu, section = self.io.make_menu(where=self.where(),
             is_keyed=self.is_keyed,
             is_numbered=self.is_numbered,
             is_parenthetically_numbered=self.is_parenthetically_numbered,
@@ -74,7 +74,7 @@ class Selector(ScoreManagerObject):
         return [self.change_expr_to_menu_token(item) for item in self.items]
 
     def run(self, cache=False, clear=True, head=None, user_input=None):
-        self.assign_user_input(user_input=user_input)
+        self.io.assign_user_input(user_input=user_input)
         self.session.cache_breadcrumbs(cache=cache)
         while True:
             self.session.push_breadcrumb(self.breadcrumb)

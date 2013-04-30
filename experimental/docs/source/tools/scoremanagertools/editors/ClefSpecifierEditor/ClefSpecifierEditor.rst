@@ -18,6 +18,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.has_target
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.session
    :noindex:
 
@@ -57,16 +60,10 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.attribute_name_to_menu_key
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.clean_up_attributes_in_memory
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.conditionally_clear_terminal
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.conditionally_initialize_target
@@ -75,22 +72,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.conditionally_set_target_attribute
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.confirm
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.copy_target_attributes_to_memory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.display
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.handle_main_menu_result
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.handle_raw_input_with_default
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.initialize_attributes_in_memory
@@ -99,13 +84,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.initialize_target_from_attributes_in_memory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.make_getter
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.make_main_menu
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.make_menu
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.make_target_attribute_tokens_from_target_manifest
@@ -115,15 +94,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.menu_key_to_existing_value
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.run

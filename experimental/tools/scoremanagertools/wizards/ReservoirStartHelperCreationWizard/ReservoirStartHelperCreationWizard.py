@@ -15,7 +15,7 @@ class ReservoirStartHelperCreationWizard(Wizard):
     def get_function_arguments(self, function_name):
         arguments = []
         if function_name in ('start at index n'):
-            getter = self.make_getter(where=self.where())
+            getter = self.io.make_getter(where=self.where())
             getter.append_integer('index')
             result = getter.run()
             if self.session.backtrack():
@@ -24,7 +24,7 @@ class ReservoirStartHelperCreationWizard(Wizard):
         return tuple(arguments)
 
     def run(self, cache=False, clear=True, head=None, user_input=None):
-        self.assign_user_input(user_input=user_input)
+        self.io.assign_user_input(user_input=user_input)
         self.session.cache_breadcrumbs(cache=cache)
         while True:
             function_application_pairs = []

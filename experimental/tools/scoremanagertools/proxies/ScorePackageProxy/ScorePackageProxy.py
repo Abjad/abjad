@@ -218,7 +218,7 @@ class ScorePackageProxy(PackageProxy):
     ### PUBLIC METHODS ###
 
     def edit_forces_tagline_interactively(self):
-        getter = self.make_getter(where=self.where())
+        getter = self.io.make_getter(where=self.where())
         getter.append_string('Forces tagline')
         result = getter.run()
         if self.session.backtrack():
@@ -233,7 +233,7 @@ class ScorePackageProxy(PackageProxy):
         self.add_tag('instrumentation', editor.target)
 
     def edit_title_interactively(self):
-        getter = self.make_getter(where=self.where())
+        getter = self.io.make_getter(where=self.where())
         getter.append_string('new title')
         result = getter.run()
         if self.session.backtrack():
@@ -241,7 +241,7 @@ class ScorePackageProxy(PackageProxy):
         self.add_tag('title', result)
 
     def edit_year_of_completion_interactively(self):
-        getter = self.make_getter(where=self.where())
+        getter = self.io.make_getter(where=self.where())
         getter.append_integer_in_range('year of completion', start=1, allow_none=True)
         result = getter.run()
         if self.session.backtrack():
@@ -256,19 +256,19 @@ class ScorePackageProxy(PackageProxy):
             if not os.path.exists(path):
                 result = False
                 prompt = 'create {!r}? '.format(path)
-                if not is_interactive or self.confirm(prompt):
+                if not is_interactive or self.io.confirm(prompt):
                     os.mkdir(path)
         if not os.path.exists(self.initializer_file_name):
             result = False
             prompt = 'create {}? '.format(self.initializer_file_name)
-            if not is_interactive or self.confirm(prompt):
+            if not is_interactive or self.io.confirm(prompt):
                 initializer = file(self.initializer_file_name, 'w')
                 initializer.write('')
                 initializer.close()
         if not os.path.exists(self.mus_proxy.initializer_file_name):
             result = False
             prompt = 'create {}? '.format(self.mus_proxy.initializer_file_name)
-            if not is_interactive or self.confirm(prompt):
+            if not is_interactive or self.io.confirm(prompt):
                 initializer = file(self.mus_proxy.initializer_file_name, 'w')
                 initializer.write('')
                 initializer.close()
@@ -289,7 +289,7 @@ class ScorePackageProxy(PackageProxy):
         if not os.path.exists(self.tags_file_name):
             result = False
             prompt = 'create {}? '.format(self.tags_file_name)
-            if not is_interactive or self.confirm(prompt):
+            if not is_interactive or self.io.confirm(prompt):
                 tags_file = file(self.tags_file_name, 'w')
                 tags_file.write('# -*- encoding: utf-8 -*-\n')
                 tags_file.write('from abjad import *\n')
@@ -301,7 +301,7 @@ class ScorePackageProxy(PackageProxy):
         if not os.path.exists(self.materials_directory_path):
             result = False
             prompt = 'create {}'.format(self.materials_directory_path)
-            if not is_interactive or self.confirm(prompt):
+            if not is_interactive or self.io.confirm(prompt):
                 os.mkdir(self.materials_directory_path)
         if not os.path.exists(self.materials_package_initializer_file_name):
             result = False
@@ -309,12 +309,12 @@ class ScorePackageProxy(PackageProxy):
         if not os.path.exists(self.segments_directory_path):
             result = False
             prompt = 'create {}'.format(self.segments_directory_path)
-            if not is_interactive or self.confirm(prompt):
+            if not is_interactive or self.io.confirm(prompt):
                 os.mkdir(self.segments_directory_path)
         if not os.path.exists(self.segments_package_initializer_file_name):
             result = False
             file(self.segments_package_initializer_file_name, 'w').write('')
-        self.proceed('packaged structure fixed.', is_interactive=is_interactive)
+        self.io.proceed('packaged structure fixed.', is_interactive=is_interactive)
         return result
 
     def handle_main_menu_result(self, result):
@@ -370,7 +370,7 @@ class ScorePackageProxy(PackageProxy):
         self.fix_score_package_directory_structure(is_interactive=False)
 
     def make_main_menu(self):
-        menu, section = self.make_menu(where=self.where(), is_numbered=True)
+        menu, section = self.io.make_menu(where=self.where(), is_numbered=True)
         section = menu.make_section()
         section.append(('h', 'chunks'))
         section.append(('m', 'materials'))
@@ -389,14 +389,14 @@ class ScorePackageProxy(PackageProxy):
         self.print_not_yet_implemented()
 
     def make_setup_menu(self):
-        setup_menu, section = self.make_menu(where=self.where(),
+        setup_menu, section = self.io.make_menu(where=self.where(),
             is_parenthetically_numbered=True, is_keyed=False)
         section.tokens = self.setup_value_menu_tokens
         section.return_value_attribute = 'key'
         return setup_menu
 
     def make_svn_menu(self):
-        menu, section = self.make_menu(where=self.where(), is_keyed=False)
+        menu, section = self.io.make_menu(where=self.where(), is_keyed=False)
         section.return_value_attribute = 'key'
         section.append(('st', 'st'))
         section.append(('add', 'add'))
@@ -450,13 +450,13 @@ class ScorePackageProxy(PackageProxy):
         for initializer in self.score_initializer_file_names:
             lines.append('{} {}'.format(initializer.ljust(80), os.path.exists(initializer)))
         lines.append('')
-        self.display(lines)
-        self.proceed(is_interactive=prompt)
+        self.io.display(lines)
+        self.io.proceed(is_interactive=prompt)
 
     def remove_interactively(self):
         line = 'WARNING! Score package {!r} will be completely removed.'.format(self.package_path)
-        self.display([line, ''])
-        getter = self.make_getter(where=self.where())
+        self.io.display([line, ''])
+        getter = self.io.make_getter(where=self.where())
         getter.append_string("type 'clobberscore' to proceed")
         self.session.push_backtrack()
         should_clobber = getter.run()
@@ -481,7 +481,7 @@ class ScorePackageProxy(PackageProxy):
         for chunk in chunks:
             lines.append('{}{}'.format(self.make_tab(2), chunk))
         lines.append('')
-        self.display(lines)
+        self.io.display(lines)
 
     def summarize_materials(self):
         materials = self.material_package_wrangler.human_readable_names
@@ -494,4 +494,4 @@ class ScorePackageProxy(PackageProxy):
             lines.append('')
         for i, material in enumerate(materials):
             lines.append('{}({}) {}'.format(self.make_tab(1), i + 1, material))
-        self.display(lines)
+        self.io.display(lines)

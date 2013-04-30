@@ -48,7 +48,7 @@ class SegmentPackageWrangler(PackageWrangler):
         segment_package_proxy.make_asset_interactively()
 
     def make_main_menu(self, head=None):
-        menu, section = self.make_menu(where=self.where(), is_numbered=True)
+        menu, section = self.io.make_menu(where=self.where(), is_numbered=True)
         section.tokens = self.list_asset_human_readable_names(head=head)
         section = menu.make_section()
         section.append(('new', 'new chunk'))

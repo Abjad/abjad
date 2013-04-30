@@ -12,6 +12,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.breadcrumb
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.session
    :noindex:
 
@@ -24,43 +27,10 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.change_instrument_name_to_instrument
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.conditionally_clear_terminal
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.confirm
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.display
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.handle_raw_input_with_default
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.make_getter
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.make_menu
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.name_untuned_percussion
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.run

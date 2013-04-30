@@ -9,6 +9,9 @@ scoremanagertools.menuing.MenuSectionAggregator
 Read-only properties
 --------------------
 
+.. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.sections
    :noindex:
 
@@ -39,16 +42,7 @@ Read/write properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.conditionally_clear_terminal
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.confirm
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.display
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.edit_client_source_file
@@ -63,37 +57,16 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.handle_hidden_key
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.handle_raw_input_with_default
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.make_default_hidden_section
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.make_getter
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.make_is_integer_in_range
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.make_menu
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.make_tab
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.make_title_lines
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSectionAggregator.MenuSectionAggregator.MenuSectionAggregator.show_hidden_menu_entries

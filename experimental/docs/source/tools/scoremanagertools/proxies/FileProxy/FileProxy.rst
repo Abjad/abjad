@@ -36,6 +36,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.human_readable_name
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.is_versioned
    :noindex:
 
@@ -66,25 +69,13 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.assign_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.conditionally_clear_terminal
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.conditionally_make_empty_asset
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.confirm
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.copy
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.copy_interactively
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.display
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.display_formatted_lines
@@ -96,31 +87,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.fix
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.handle_raw_input_with_default
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.has_line
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.human_readable_name_to_asset_name
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.make_getter
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.make_menu
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.profile

@@ -33,6 +33,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.current_asset_container_proxy
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.score_internal_asset_container_package_path_infix
    :noindex:
 
@@ -63,12 +66,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.asset_path_to_human_readable_asset_name
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.assign_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.conditionally_clear_terminal
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.conditionally_make_asset_container_packages
    :noindex:
 
@@ -81,12 +78,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.conditionally_make_score_internal_asset_container_packages
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.confirm
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.display
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.fix_visible_assets
    :noindex:
 
@@ -94,12 +85,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.handle_main_menu_result
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.handle_raw_input_with_default
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.list_asset_container_human_readable_names
@@ -210,25 +195,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.make_asset_selection_menu
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.make_getter
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.make_main_menu
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.make_menu
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.make_visible_asset_menu_tokens
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.profile_visible_assets

@@ -32,7 +32,7 @@ class PitchClassTransformCreationWizard(Wizard):
     def get_function_arguments(self, function_name):
         arguments = []
         if function_name in ('transpose', 'multiply'):
-            getter = self.make_getter(where=self.where())
+            getter = self.io.make_getter(where=self.where())
             getter.append_integer_in_range('index', start=0, stop=11)
             result = getter.run()
             if self.session.backtrack():
@@ -41,7 +41,7 @@ class PitchClassTransformCreationWizard(Wizard):
         return tuple(arguments)
 
     def run(self, cache=False, clear=True, head=None, user_input=None):
-        self.assign_user_input(user_input=user_input)
+        self.io.assign_user_input(user_input=user_input)
         self.session.cache_breadcrumbs(cache=cache)
         function_application_pairs = []
         while True:

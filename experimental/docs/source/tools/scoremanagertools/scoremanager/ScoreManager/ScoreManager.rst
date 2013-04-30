@@ -12,6 +12,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.breadcrumb
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.material_package_maker_wrangler
    :noindex:
 
@@ -45,18 +48,6 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.assign_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.conditionally_clear_terminal
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.confirm
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.display
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.edit_score_interactively
    :noindex:
 
@@ -69,22 +60,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.handle_main_menu_result
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.handle_raw_input_with_default
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.handle_svn_menu_result
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.make_getter
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.make_main_menu
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.make_menu
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.make_score_selection_menu
@@ -94,15 +73,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.manage_svn
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.run

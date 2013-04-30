@@ -9,6 +9,9 @@ scoremanagertools.core.ScoreManagerObject
 Read-only properties
 --------------------
 
+.. autoattribute:: experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.session
    :noindex:
 
@@ -20,39 +23,6 @@ Read-only properties
 
 Methods
 -------
-
-.. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.assign_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.conditionally_clear_terminal
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.confirm
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.display
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.handle_raw_input_with_default
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.make_getter
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.make_menu
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.proceed
-   :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.where
    :noindex:

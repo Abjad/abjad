@@ -12,6 +12,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.breadcrumb
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.selectors.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.session
    :noindex:
 
@@ -30,28 +33,10 @@ Read/write properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.change_expr_to_menu_token
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.conditionally_clear_terminal
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.confirm
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.display
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.get_tag_from_directory_path
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.handle_raw_input_with_default
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.list_current_material_directory_paths
@@ -66,25 +51,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.list_public_directory_paths_with_initializers_in_subtree
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.make_getter
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.make_main_menu
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.make_menu
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.make_menu_tokens
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.run

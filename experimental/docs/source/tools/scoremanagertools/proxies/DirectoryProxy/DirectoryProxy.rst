@@ -27,6 +27,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy.human_readable_name
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy.is_versioned
    :noindex:
 
@@ -60,16 +63,7 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy.assign_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy.conditionally_clear_terminal
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy.conditionally_make_empty_asset
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy.confirm
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy.copy
@@ -78,19 +72,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy.copy_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy.display
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy.fix
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy.get_directory_path_interactively
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy.handle_raw_input_with_default
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy.human_readable_name_to_asset_name
@@ -99,22 +84,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy.make_directory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy.make_getter
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy.make_menu
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy.pop_next_user_response_from_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy.print_directory_contents
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy.profile

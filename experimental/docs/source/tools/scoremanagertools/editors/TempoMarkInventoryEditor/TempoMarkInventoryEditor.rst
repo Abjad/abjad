@@ -18,6 +18,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.has_target
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.items
    :noindex:
 
@@ -66,16 +69,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.add_items_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.attribute_name_to_menu_key
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.clean_up_attributes_in_memory
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.conditionally_clear_terminal
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.conditionally_initialize_target
@@ -84,13 +81,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.conditionally_set_target_attribute
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.confirm
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.copy_target_attributes_to_memory
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.display
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.edit_item_interactively
@@ -102,12 +93,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.handle_main_menu_result
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.handle_raw_input_with_default
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.initialize_attributes_in_memory
    :noindex:
 
@@ -117,13 +102,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.item_getter_configuration_method
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.make_getter
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.make_main_menu
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.make_menu
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.make_target_attribute_tokens_from_target_manifest
@@ -136,15 +115,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.move_item_interactively
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.remove_items_interactively

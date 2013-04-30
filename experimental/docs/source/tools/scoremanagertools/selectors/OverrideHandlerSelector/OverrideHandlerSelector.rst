@@ -12,6 +12,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.breadcrumb
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.session
    :noindex:
 
@@ -30,52 +33,19 @@ Read/write properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.change_expr_to_menu_token
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.conditionally_clear_terminal
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.confirm
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.display
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.get_tag_from_directory_path
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.handle_raw_input_with_default
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.list_items
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.make_getter
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.make_main_menu
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.make_menu
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.make_menu_tokens
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.run

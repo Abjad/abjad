@@ -12,6 +12,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.wizards.RhythmMakerCreationWizard.RhythmMakerCreationWizard.RhythmMakerCreationWizard.breadcrumb
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.wizards.RhythmMakerCreationWizard.RhythmMakerCreationWizard.RhythmMakerCreationWizard.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.wizards.RhythmMakerCreationWizard.RhythmMakerCreationWizard.RhythmMakerCreationWizard.session
    :noindex:
 
@@ -24,40 +27,7 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.RhythmMakerCreationWizard.RhythmMakerCreationWizard.RhythmMakerCreationWizard.assign_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.RhythmMakerCreationWizard.RhythmMakerCreationWizard.RhythmMakerCreationWizard.conditionally_clear_terminal
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.RhythmMakerCreationWizard.RhythmMakerCreationWizard.RhythmMakerCreationWizard.confirm
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.RhythmMakerCreationWizard.RhythmMakerCreationWizard.RhythmMakerCreationWizard.display
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.RhythmMakerCreationWizard.RhythmMakerCreationWizard.RhythmMakerCreationWizard.get_handler_editor
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.RhythmMakerCreationWizard.RhythmMakerCreationWizard.RhythmMakerCreationWizard.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.RhythmMakerCreationWizard.RhythmMakerCreationWizard.RhythmMakerCreationWizard.handle_raw_input_with_default
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.RhythmMakerCreationWizard.RhythmMakerCreationWizard.RhythmMakerCreationWizard.make_getter
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.RhythmMakerCreationWizard.RhythmMakerCreationWizard.RhythmMakerCreationWizard.make_menu
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.RhythmMakerCreationWizard.RhythmMakerCreationWizard.RhythmMakerCreationWizard.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.RhythmMakerCreationWizard.RhythmMakerCreationWizard.RhythmMakerCreationWizard.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.RhythmMakerCreationWizard.RhythmMakerCreationWizard.RhythmMakerCreationWizard.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wizards.RhythmMakerCreationWizard.RhythmMakerCreationWizard.RhythmMakerCreationWizard.run

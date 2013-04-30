@@ -42,6 +42,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.human_readable_name
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.io
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.is_exceptionless
    :noindex:
 
@@ -105,28 +108,16 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.assign_user_input
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.clear
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.conditionally_clear_terminal
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.conditionally_make_empty_asset
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.confirm
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.copy
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.copy_interactively
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.display
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.display_formatted_lines
@@ -144,12 +135,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.fix
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.handle_raw_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.handle_raw_input_with_default
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.has_line
    :noindex:
 
@@ -162,22 +147,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.import_output_material_safely
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.make_getter
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.make_menu
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.parse
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.pop_next_user_response_from_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.print_not_yet_implemented
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.proceed
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.OutputMaterialModuleProxy.OutputMaterialModuleProxy.OutputMaterialModuleProxy.profile
