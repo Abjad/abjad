@@ -69,7 +69,7 @@ class AssetProxy(ScoreManagerObject):
     @property
     def name(self):
         if self.asset_path:
-            return self.asset_path.split(os.path.sep)[-1]
+            return os.path.basename(self.asset_path)
 
     @property
     def name_without_extension(self):
