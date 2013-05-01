@@ -5,7 +5,7 @@ class RegistrationHandlerSelector(Selector):
 
     ### CLASS ATTRIBUTES ###
 
-    target_human_readable_name = 'registration handler'
+    space_delimited_lowercase_target_name = 'registration handler'
 
     ### PUBLIC METHODS ###
 

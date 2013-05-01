@@ -60,7 +60,7 @@ class PackageProxy(DirectoryProxy, AssetProxy, ScoreManagerObject):
         return os.path.isfile(self.tags_file_name)
 
     @property
-    def human_readable_name(self):
+    def space_delimited_lowercase_name(self):
         return self.name.replace('_', ' ')
 
     @property

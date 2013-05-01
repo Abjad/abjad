@@ -7,7 +7,7 @@ class DirectoryContentSelector(Selector):
     ### CLASS ATTRIBUTES ###
 
     asset_container_paths = []
-    target_human_readable_name = 'file'
+    space_delimited_lowercase_target_name = 'file'
 
     ### PUBLIC METHODS ###
 

@@ -5,7 +5,7 @@ class TrillHandlerSelector(Selector):
 
     ### CLASS ATTRIBUTES ###
 
-    target_human_readable_name = 'trill handler'
+    space_delimited_lowercase_target_name = 'trill handler'
 
     ### PUBLIC METHODS ###
 

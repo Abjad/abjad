@@ -5,7 +5,7 @@ class DirectiveHandlerSelector(Selector):
 
     ### CLASS ATTRIBUTES ###
 
-    target_human_readable_name = 'directive handler'
+    space_delimited_lowercase_target_name = 'directive handler'
 
     ### PUBLIC METHODS ###
 

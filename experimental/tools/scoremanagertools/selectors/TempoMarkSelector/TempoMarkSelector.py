@@ -5,7 +5,7 @@ class TempoMarkSelector(Selector):
 
     ### CLASS ATTRIBUTES ###
 
-    target_human_readable_name = 'tempo'
+    space_delimited_lowercase_target_name = 'tempo'
 
     ### PUBLIC METHODS ###
 

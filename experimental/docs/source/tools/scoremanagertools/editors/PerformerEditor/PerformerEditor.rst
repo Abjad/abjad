@@ -30,6 +30,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.session
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.space_delimited_lowercase_target_class_name
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.storage_format
    :noindex:
 
@@ -40,9 +43,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.target_class
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.target_class_human_readable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.target_keyword_attribute_names

@@ -35,8 +35,8 @@ class StylesheetFileProxy(FileProxy):
         else:
             raise ValueError
 
-    def human_readable_name_to_asset_name(self, human_readable_name):
-        asset_name = FileProxy.human_readable_name_to_asset_name(self, human_readable_name)
+    def space_delimited_lowercase_name_to_asset_name(self, space_delimited_lowercase_name):
+        asset_name = FileProxy.space_delimited_lowercase_name_to_asset_name(self, space_delimited_lowercase_name)
         if not asset_name.endswith(self.extension):
             asset_name += self.extension
         return asset_name

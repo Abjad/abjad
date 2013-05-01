@@ -22,8 +22,8 @@ class Selector(ScoreManagerObject):
     def breadcrumb(self):
         if getattr(self, 'explicit_breadcrumb', None):
             return self.explicit_breadcrumb
-        elif hasattr(self, 'target_human_readable_name'):
-            return 'select {}:'.format(self.target_human_readable_name)
+        elif hasattr(self, 'space_delimited_lowercase_target_name'):
+            return 'select {}:'.format(self.space_delimited_lowercase_target_name)
         else:
             return 'select:'
 

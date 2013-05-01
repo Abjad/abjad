@@ -5,7 +5,7 @@ class OverrideHandlerSelector(Selector):
 
     ### CLASS ATTRIBUTES ###
 
-    target_human_readable_name = 'override handler'
+    space_delimited_lowercase_target_name = 'override handler'
 
     ### PUBLIC METHODS ###
 

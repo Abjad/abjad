@@ -7,7 +7,7 @@ class PackageContentSelector(DirectoryContentSelector):
     ### CLASS ATTRIBUTES ###
 
     asset_container_package_paths = []
-    target_human_readable_name = 'item'
+    space_delimited_lowercase_target_name = 'item'
 
     ### PUBLIC METHODS ###
 

@@ -69,15 +69,15 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         else:
             raise ValueError
 
-    def list_asset_human_readable_names(self, head=None):
+    def list_asset_space_delimited_lowercase_names(self, head=None):
         result = []
         for asset_path in self.list_asset_paths(head=head):
             asset_path = os.path.normpath(asset_path)
             asset_name = os.path.basename(asset_path)
             if asset_name in self.forbidden_class_names:
                 continue
-            asset_human_readable_name = stringtools.uppercamelcase_to_space_delimited_lowercase(asset_name)
-            result.append(asset_human_readable_name)
+            space_delimited_lowercase_asset_name = stringtools.uppercamelcase_to_space_delimited_lowercase(asset_name)
+            result.append(space_delimited_lowercase_asset_name)
         return result
 
     def list_score_external_asset_package_paths(self, head=None):
@@ -193,12 +193,12 @@ class MaterialPackageMakerWrangler(PackageWrangler):
 
     def make_main_menu(self, head=None):
         menu, section = self.io.make_menu(where=self.where(), is_numbered=True)
-        section.tokens = self.list_asset_human_readable_names(head=head)
+        section.tokens = self.list_asset_space_delimited_lowercase_names(head=head)
         section = menu.make_section()
         section.append(('new', 'new material package maker'))
         return menu
 
     def make_visible_asset_menu_tokens(self, head=None):
         keys = self.list_asset_package_paths(head=head)
-        bodies = self.list_asset_human_readable_names(head=head)
+        bodies = self.list_asset_space_delimited_lowercase_names(head=head)
         return zip(keys, bodies)

@@ -25,7 +25,7 @@ class ScoreManagerObject(AbjadObject):
         return
 
     @property
-    def _human_readable_class_name(self):
+    def _space_delimited_lowercase_class_name(self):
         return stringtools.string_to_space_delimited_lowercase(self._class_name)
 
     @property

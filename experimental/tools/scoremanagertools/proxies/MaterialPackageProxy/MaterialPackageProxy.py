@@ -34,7 +34,7 @@ class MaterialPackageProxy(PackageProxy):
 
     @property
     def breadcrumb(self):
-        return self.human_readable_name
+        return self.space_delimited_lowercase_name
 
     @property
     def has_complete_user_input_wrapper_in_memory(self):

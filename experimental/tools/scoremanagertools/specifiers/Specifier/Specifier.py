@@ -30,7 +30,7 @@ class Specifier(AbjadObject):
     ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
-    def _human_readable_class_name(self):
+    def _space_delimited_lowercase_class_name(self):
         return iotools.uppercamelcase_to_space_delimited_lowercase(self._class_name)
 
 #    @property

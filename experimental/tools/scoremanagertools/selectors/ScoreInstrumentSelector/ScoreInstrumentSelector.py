@@ -6,7 +6,7 @@ class ScoreInstrumentSelector(Selector):
 
     ### CLASS ATTRIBUTES ###
 
-    target_human_readable_name = 'instrument'
+    space_delimited_lowercase_target_name = 'instrument'
 
     ### PUBLIC METHODS ###
 

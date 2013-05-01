@@ -6,7 +6,7 @@ class ScoreToolsPerformerNameSelector(Selector):
 
     ### CLASS ATTRIBUTES ###
 
-    target_human_readable_name = 'performer'
+    space_delimited_lowercase_target_name = 'performer'
 
     ### INITIALIZER ###
 

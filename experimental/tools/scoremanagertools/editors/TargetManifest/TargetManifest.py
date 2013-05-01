@@ -26,10 +26,10 @@ class TargetManifest(object):
         return self._attribute_details
 
     @property
-    def attribute_human_readable_names(self):
+    def space_delimited_lowercase_attribute_names(self):
         result = []
         for attribute_detail in self.attribute_details:
-            result.append(attribute_detail.human_readable_name)
+            result.append(attribute_detail.space_delimited_lowercase_name)
         return result
 
     @property
@@ -117,7 +117,7 @@ class TargetManifest(object):
             return attribute_detail.name
 
     def menu_key_to_editor(self, menu_key, existing_value, session=None, **kwargs):
-        space_delimited_attribute_name = self.menu_key_to_human_readable_attribute_name(menu_key)
+        space_delimited_attribute_name = self.menu_key_to_space_delimited_lowercase_attribute_name(menu_key)
         attribute_detail = self.menu_key_to_attribute_detail(menu_key)
         return attribute_detail.get_editor(space_delimited_attribute_name, existing_value, session=session, **kwargs)
 
@@ -125,7 +125,7 @@ class TargetManifest(object):
         attribute_name = self.menu_key_to_attribute_name(menu_key)
         return getattr(self.target, attribute_name, None)
 
-    def menu_key_to_human_readable_attribute_name(self, menu_key):
+    def menu_key_to_space_delimited_lowercase_attribute_name(self, menu_key):
         attribute_detail = self.menu_key_to_attribute_detail(menu_key)
         if attribute_detail:
-            return attribute_detail.human_readable_name
+            return attribute_detail.space_delimited_lowercase_name

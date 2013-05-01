@@ -5,7 +5,7 @@ class StaffHandlerSelector(Selector):
 
     ### CLASS ATTRIBUTES ###
 
-    target_human_readable_name = 'staff handler'
+    space_delimited_lowercase_target_name = 'staff handler'
 
     ### PUBLIC METHODS ###
 

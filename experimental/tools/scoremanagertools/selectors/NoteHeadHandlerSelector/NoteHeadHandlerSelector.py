@@ -5,7 +5,7 @@ class NoteHeadHandlerSelector(Selector):
 
     ### CLASS ATTRIBUTES ###
 
-    target_human_readable_name = 'note head handler'
+    space_delimited_lowercase_target_name = 'note head handler'
 
     ### PUBLIC METHODS ###
 

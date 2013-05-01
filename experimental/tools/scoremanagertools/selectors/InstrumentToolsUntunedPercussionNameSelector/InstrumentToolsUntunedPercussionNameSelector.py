@@ -6,7 +6,7 @@ class InstrumentToolsUntunedPercussionNameSelector(Selector):
 
     ### CLASS ATTRIBUES ###
 
-    target_human_readable_name = 'untuned percussion'
+    space_delimited_lowercase_target_name = 'untuned percussion'
 
     ### PUBLIC METHODS ###
 

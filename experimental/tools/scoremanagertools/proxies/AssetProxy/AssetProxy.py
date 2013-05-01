@@ -40,7 +40,7 @@ class AssetProxy(ScoreManagerObject):
 
     @property
     def breadcrumb(self):
-        return self.name or self._human_readable_class_name
+        return self.name or self._space_delimited_lowercase_class_name
 
     @property
     def exists(self):
@@ -49,7 +49,7 @@ class AssetProxy(ScoreManagerObject):
         return False
 
     @property
-    def human_readable_name(self):
+    def space_delimited_lowercase_name(self):
         return self.name
 
     @property
@@ -109,7 +109,7 @@ class AssetProxy(ScoreManagerObject):
         result = getter.run()
         if self.session.backtrack():
             return
-        new_asset_name = self.human_readable_name_to_asset_name(result)
+        new_asset_name = self.space_delimited_lowercase_name_to_asset_name(result)
         new_path = os.path.join(self.parent_directory_path, new_asset_name)
         self.io.display('new path will be {}'.format(new_path))
         if not self.io.confirm():
@@ -121,8 +121,8 @@ class AssetProxy(ScoreManagerObject):
     def fix(self):
         pass
 
-    def human_readable_name_to_asset_name(self, human_readable_name):
-        asset_name = human_readable_name.lower()
+    def space_delimited_lowercase_name_to_asset_name(self, space_delimited_lowercase_name):
+        asset_name = space_delimited_lowercase_name.lower()
         asset_name = asset_name.replace(' ', '_')
         return asset_name
 
@@ -176,7 +176,7 @@ class AssetProxy(ScoreManagerObject):
     def rename_interactively(self, user_input=None):
         self.io.assign_user_input(user_input=user_input)
         getter = self.io.make_getter(where=self.where())
-        getter.append_underscore_delimited_lowercase_file_name('new human-readable name')
+        getter.append_underscore_delimited_lowercase_file_name('new name')
         getter.include_newlines = False
         result = getter.run()
         if self.session.backtrack():

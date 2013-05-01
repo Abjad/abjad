@@ -9,4 +9,4 @@ class RhythmMakerClassNameSelector(HandlerClassNameSelector):
 
     asset_container_package_paths = ['abjad.tools.rhythmmakertools']
     asset_container_paths = [os.path.join(ABJCFG.abjad_directory_path, 'tools', 'rhythmmakertools')]
-    target_human_readable_name = 'time-token maker class name'
+    space_delimited_lowercase_target_name = 'time-token maker class name'

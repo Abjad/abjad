@@ -46,7 +46,7 @@ def test_MaterialPackageWrangler_read_only_attributes_05():
     '''Score-external assets.
     '''
 
-    assert 'red notes' in wrangler.list_score_external_asset_human_readable_names()
+    assert 'red notes' in wrangler.list_score_external_asset_space_delimited_lowercase_names()
     assert 'materials.red_notes' in wrangler.list_score_external_asset_package_paths()
     assert os.path.join(wrangler.configuration.score_manager_materials_directory_path, 'red_notes') in \
         wrangler.list_score_external_asset_paths()

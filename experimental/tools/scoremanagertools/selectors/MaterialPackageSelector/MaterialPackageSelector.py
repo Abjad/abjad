@@ -8,7 +8,7 @@ class MaterialPackageSelector(Selector):
 	### CLASS ATTRIBUTES ###
 
     asset_subtree_package_paths = []
-    target_human_readable_name = 'material package'
+    space_delimited_lowercase_target_name = 'material package'
 
     ### PUBLIC METHODS ###
 

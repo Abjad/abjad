@@ -12,16 +12,10 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.asset_class
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.asset_class_human_readable_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.asset_class_plural_human_readable_name
+.. autoattribute:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.asset_class_space_delimited_lowercase_plural_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.asset_container_class
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.current_asset_container_human_readable_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.current_asset_container_package_path
@@ -33,6 +27,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.current_asset_container_proxy
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.current_asset_container_space_delimited_lowercase_name
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.io
    :noindex:
 
@@ -42,10 +39,10 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.session
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.storage_format
+.. autoattribute:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.space_delimited_lowercase_asset_class_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.temporary_asset_human_readable_name
+.. autoattribute:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.storage_format
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.temporary_asset_name
@@ -60,13 +57,16 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.temporary_asset_proxy
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.temporary_space_delimited_lowercase_asset_name
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.transcript_signature
    :noindex:
 
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.asset_path_to_human_readable_asset_name
+.. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.asset_path_to_space_delimited_lowercase_name
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.conditionally_make_asset_container_packages
@@ -90,9 +90,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.handle_main_menu_result
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.list_asset_container_human_readable_names
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.list_asset_container_package_paths
    :noindex:
 
@@ -100,9 +97,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.list_asset_container_proxies
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.list_asset_human_readable_names
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.list_asset_package_paths
@@ -114,7 +108,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.list_asset_proxies
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.list_score_external_asset_container_human_readable_names
+.. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.list_asset_space_delimited_lowercase_names
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.list_score_external_asset_container_package_paths
@@ -126,9 +120,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.list_score_external_asset_container_proxies
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.list_score_external_asset_human_readable_names
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.list_score_external_asset_package_paths
    :noindex:
 
@@ -138,7 +129,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.list_score_external_asset_proxies
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.list_score_internal_asset_container_human_readable_names
+.. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.list_score_external_asset_space_delimited_lowercase_names
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.list_score_internal_asset_container_package_paths
@@ -150,7 +141,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.list_score_internal_asset_container_proxies
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.list_score_internal_asset_human_readable_names
+.. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.list_score_internal_asset_container_space_delimited_lowercase_names
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.list_score_internal_asset_package_paths
@@ -162,10 +153,16 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.list_score_internal_asset_proxies
    :noindex:
 
+.. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.list_score_internal_asset_space_delimited_lowercase_names
+   :noindex:
+
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.list_score_package_names
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.list_user_asset_container_human_readable_names
+.. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.list_space_delimited_lowercase_asset_container_names
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.list_space_delimited_lowercase_score_external_asset_container_names
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.list_user_asset_container_package_paths
@@ -177,7 +174,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.list_user_asset_container_proxies
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.list_user_asset_human_readable_names
+.. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.list_user_asset_container_space_delimited_lowercase_names
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.list_user_asset_package_paths
@@ -189,7 +186,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.list_user_asset_proxies
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.list_visible_asset_human_readable_names
+.. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.list_user_asset_space_delimited_lowercase_names
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.list_visible_asset_package_paths
@@ -199,6 +196,9 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.list_visible_asset_proxies
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.list_visible_asset_space_delimited_lowercase_names
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler.ImportableAssetWrangler.ImportableAssetWrangler.make_asset

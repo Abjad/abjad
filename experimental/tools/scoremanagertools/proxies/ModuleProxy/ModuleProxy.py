@@ -49,7 +49,7 @@ class ModuleProxy(ParsableFileProxy, AssetProxy, ScoreManagerObject):
             return '.'.join(self.module_path.split('.')[:-2])
 
     @property
-    def human_readable_name(self):
+    def space_delimited_lowercase_name(self):
         return stringtools.string_to_space_delimited_lowercase(self.name_without_extension)
 
     @property
@@ -79,9 +79,9 @@ class ModuleProxy(ParsableFileProxy, AssetProxy, ScoreManagerObject):
 
     ### PUBLIC METHODS ###
 
-    def human_readable_name_to_asset_name(self, human_readable_name):
-        asset_name = ParsableFileProxy.human_readable_name_to_asset_name(
-            self, human_readable_name)
+    def space_delimited_lowercase_name_to_asset_name(self, space_delimited_lowercase_name):
+        asset_name = ParsableFileProxy.space_delimited_lowercase_name_to_asset_name(
+            self, space_delimited_lowercase_name)
         asset_name += '.py'
         return asset_name
 

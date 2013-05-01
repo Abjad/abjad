@@ -5,7 +5,7 @@ class TropingHandlerSelector(Selector):
 
     ### CLASS ATTRIBUTES ###
 
-    target_human_readable_name = 'troping handler'
+    space_delimited_lowercase_target_name = 'troping handler'
 
     ### PUBLIC METHODS ###
 

@@ -23,7 +23,7 @@ class ListEditor(InteractiveEditor):
 
     @property
     def breadcrumb(self):
-        return self.target_name or self.target_class_human_readable_name
+        return self.target_name or self.space_delimited_lowercase_target_class_name
 
     @property
     def items(self):

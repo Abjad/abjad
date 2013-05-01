@@ -33,7 +33,7 @@ class InteractiveEditor(ScoreManagerObject):
 
     @property
     def breadcrumb(self):
-        return self.target_name or self.target_class_human_readable_name
+        return self.target_name or self.space_delimited_lowercase_target_class_name
 
     @property
     def has_target(self):
@@ -58,7 +58,7 @@ class InteractiveEditor(ScoreManagerObject):
         return self.target_manifest.target_class
 
     @property
-    def target_class_human_readable_name(self):
+    def space_delimited_lowercase_target_class_name(self):
         return stringtools.string_to_space_delimited_lowercase(self.target_class.__name__)
 
     @property
@@ -224,7 +224,7 @@ class InteractiveEditor(ScoreManagerObject):
                 result.append(())
                 continue
             menu_key = attribute_detail.menu_key
-            menu_body = attribute_detail.human_readable_name
+            menu_body = attribute_detail.space_delimited_lowercase_name
             if self.target is not None:
                 attribute_value = getattr(self.target, attribute_detail.retrievable_name, None)
                 if attribute_value is None:

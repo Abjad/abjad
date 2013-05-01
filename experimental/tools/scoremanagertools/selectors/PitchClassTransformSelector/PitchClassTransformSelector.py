@@ -5,7 +5,7 @@ class PitchClassTransformSelector(Selector):
 
     ### CLASS ATTRIBUTES ###
 
-    target_human_readable_name = 'pitch-class transform'
+    space_delimited_lowercase_target_name = 'pitch-class transform'
 
     ### PUBLIC METHODS ###
 

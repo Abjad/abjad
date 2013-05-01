@@ -5,7 +5,7 @@ class ReservoirStartHelperSelector(Selector):
 
     ### CLASS ATTRIBUTES ###
 
-    target_human_readable_name = 'reservoir start helper'
+    space_delimited_lowercase_target_name = 'reservoir start helper'
 
     ### PUBLIC METHODS ###
 

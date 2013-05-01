@@ -14,7 +14,7 @@ class SegmentPackageProxy(PackageProxy):
 
     @property
     def breadcrumb(self):
-        return self.human_readable_name
+        return self.space_delimited_lowercase_name
 
     ### READ / WRITE PUBLIC PROPERTIES ###
 
