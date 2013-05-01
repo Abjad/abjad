@@ -87,22 +87,21 @@
         class PackageProxy(DirectoryProxy, AssetProxy)
     ... instead.
 
-31. Fix AssetWrangler.__repr__ and ScorePackageWrangler.__repr__.
-    Write a generalized script to test the reprs of all objects in the system.
-
-32. Remove Session.transcript.
+31. Remove Session.transcript.
     Change Session.complete_transcript to Session.transcript.
     Remove concept of 'short transcript' altogether.
 
-33. Remove 'for path in self.list_*' from AssetWrangler.
-
-34. Currently MaterialPackageMaker inherits from MaterialPackageProxy.
+32. Currently MaterialPackageMaker inherits from MaterialPackageProxy.
     Maybe MaterialPackageMaker should *have* a MaterialPackageProxy instead.
     This would clean up the inheritance schema somewhat.
 
-35. Currently PackageProxy inherits from both DirectoryProxy and AssetProxy.
+33. Currently PackageProxy inherits from both DirectoryProxy and AssetProxy.
     Maybe PackageProxy needs to inherit from only DirectoryProxy.
     Likewise for ModuleProxy in relation to FileProxy and AssetProxy.
 
-36. The wrangler inheritance hierarchy is confused.
+34. The wrangler inheritance hierarchy is confused.
     Look at the inheritance diagram given at AssetWrangler.html and rewire as appropriate.
+
+35. Replace 'score-internal' with something else.
+    Replace 'score-external' with something else.
+    Perhaps 'score-external' becomes 'system' and 'score-internal' becomes 'score'.

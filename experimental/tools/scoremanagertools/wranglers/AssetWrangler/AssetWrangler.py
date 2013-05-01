@@ -202,8 +202,8 @@ class AssetWrangler(ScoreManagerObject):
 
     def list_asset_space_delimited_lowercase_names(self, head=None):
         result = []
-        for path in self.list_asset_paths(head=head):
-            result.append(self.asset_path_to_space_delimited_lowercase_name(path))
+        for asset_path in self.list_asset_paths(head=head):
+            result.append(self.asset_path_to_space_delimited_lowercase_name(asset_path))
         return result
 
     def list_asset_paths(self, head=None):
@@ -225,8 +225,8 @@ class AssetWrangler(ScoreManagerObject):
 
     def list_space_delimited_lowercase_score_external_asset_container_names(self, head=None):
         result = []
-        for path in self.list_score_external_asset_container_paths(head=head):
-            result.append(self.asset_path_to_space_delimited_lowercase_name(path))
+        for asset_path in self.list_score_external_asset_container_paths(head=head):
+            result.append(self.asset_path_to_space_delimited_lowercase_name(asset_path))
         return result
 
     def list_score_external_asset_container_package_paths(self, head=None):
@@ -254,16 +254,16 @@ class AssetWrangler(ScoreManagerObject):
 
     def list_score_external_asset_space_delimited_lowercase_names(self, head=None):
         result = []
-        for path in self.list_score_external_asset_paths(head=head):
-            result.append(self.asset_path_to_space_delimited_lowercase_name(path))
+        for asset_path in self.list_score_external_asset_paths(head=head):
+            result.append(self.asset_path_to_space_delimited_lowercase_name(asset_path))
         return result
 
     def list_score_external_asset_paths(self, head=None):
         result = []
-        for path in self.list_score_external_asset_container_paths(head=head):
-            for name in os.listdir(path):
+        for asset_path in self.list_score_external_asset_container_paths(head=head):
+            for name in os.listdir(asset_path):
                 if name[0].isalpha():
-                    result.append(os.path.join(path, name))
+                    result.append(os.path.join(asset_path, name))
         return result
 
     def list_score_external_asset_proxies(self, head=None):
@@ -277,8 +277,8 @@ class AssetWrangler(ScoreManagerObject):
 
     def list_score_internal_asset_container_space_delimited_lowercase_names(self, head=None):
         result = []
-        for path in self.list_score_internal_asset_container_space_delimited_lowercase_names(head=head):
-            result.append(self.asset_path_to_space_delimited_lowercase_name(path))
+        for asset_path in self.list_score_internal_asset_container_paths(head=head):
+            result.append(self.asset_path_to_space_delimited_lowercase_name(asset_path))
         return result
 
     def list_score_internal_asset_container_package_paths(self, head=None):
@@ -310,16 +310,16 @@ class AssetWrangler(ScoreManagerObject):
 
     def list_score_internal_asset_space_delimited_lowercase_names(self, head=None):
         result = []
-        for path in self.list_score_internal_asset_paths(head=head):
-            result.append(self.asset_path_to_space_delimited_lowercase_name(path))
+        for asset_path in self.list_score_internal_asset_paths(head=head):
+            result.append(self.asset_path_to_space_delimited_lowercase_name(asset_path))
         return result
 
     def list_score_internal_asset_paths(self, head=None):
         result = []
-        for path in self.list_score_internal_asset_container_paths(head=head):
-            for name in os.listdir(path):
+        for asset_path in self.list_score_internal_asset_container_paths(head=head):
+            for name in os.listdir(asset_path):
                 if name[0].isalpha():
-                    result.append(os.path.join(path, name))
+                    result.append(os.path.join(asset_path, name))
         return result
 
     def list_score_internal_asset_proxies(self, head=None):
@@ -347,8 +347,8 @@ class AssetWrangler(ScoreManagerObject):
 
     def list_user_asset_container_space_delimited_lowercase_names(self, head=None):
         result = []
-        for path in self.list_user_asset_container_paths(head=head):
-            result.append(self.asset_path_to_space_delimited_lowercase_name(path))
+        for asset_path in self.list_user_asset_container_paths(head=head):
+            result.append(self.asset_path_to_space_delimited_lowercase_name(asset_path))
         return result
 
     def list_user_asset_container_package_paths(self, head=None):
@@ -376,16 +376,16 @@ class AssetWrangler(ScoreManagerObject):
 
     def list_user_asset_space_delimited_lowercase_names(self, head=None):
         result = []
-        for path in self.list_user_asset_paths(head=head):
-            result.append(self.asset_path_to_space_delimited_lowercase_name(path))
+        for asset_path in self.list_user_asset_paths(head=head):
+            result.append(self.asset_path_to_space_delimited_lowercase_name(asset_path))
         return result
 
     def list_user_asset_paths(self, head=None):
         result = []
-        for path in self.list_user_asset_container_paths(head=head):
-            for name in os.listdir(path):
+        for asset_path in self.list_user_asset_container_paths(head=head):
+            for name in os.listdir(asset_path):
                 if name[0].isalpha():
-                    result.append(os.path.join(path, name))
+                    result.append(os.path.join(asset_path, name))
         return result
 
     def list_user_asset_proxies(self, head=None):
@@ -401,8 +401,8 @@ class AssetWrangler(ScoreManagerObject):
 
     def list_visible_asset_space_delimited_lowercase_names(self, head=None):
         result = []
-        for path in self.list_visible_asset_paths(head=head):
-            result.append(self.asset_path_to_space_delimited_lowercase_name(path))
+        for asset_path in self.list_visible_asset_paths(head=head):
+            result.append(self.asset_path_to_space_delimited_lowercase_name(asset_path))
         return result
 
     def list_visible_asset_paths(self, head=None):

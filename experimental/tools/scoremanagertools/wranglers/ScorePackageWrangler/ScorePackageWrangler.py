@@ -49,8 +49,8 @@ class ScorePackageWrangler(PackageWrangler):
 
     def list_visible_asset_names(self, head=None):
         result = []
-        for path in self.list_visible_asset_paths(head=head):
-            result.append(os.path.basename(path))
+        for asset_path in self.list_visible_asset_paths(head=head):
+            result.append(os.path.basename(asset_path))
         return result
 
     def list_visible_asset_package_path_and_score_title_pairs(self, head=None):
