@@ -82,20 +82,6 @@ class Session(abctools.AbjadObject):
         return self._complete_transcript
 
     @property
-    def current_segments_directory_path(self):
-        return filesystemtools.package_path_to_directory_path(
-            self.current_segments_package_path, self.configuration)
-
-    @property
-    def current_segments_package_path(self):
-        if self.is_in_score:
-            return '.'.join([
-                self.current_score_package_name,
-                self.configuration._score_internal_segments_package_path_infix])
-        else:
-            return self.configuration.score_external_segments_package_path
-
-    @property
     def current_materials_directory_path(self):
         return filesystemtools.package_path_to_directory_path(
             self.current_materials_package_path, self.configuration)
@@ -121,6 +107,20 @@ class Session(abctools.AbjadObject):
         if self.is_in_score:
             return filesystemtools.package_path_to_directory_path(
                 self.current_score_package_name, self.configuration)
+
+    @property
+    def current_segments_directory_path(self):
+        return filesystemtools.package_path_to_directory_path(
+            self.current_segments_package_path, self.configuration)
+
+    @property
+    def current_segments_package_path(self):
+        if self.is_in_score:
+            return '.'.join([
+                self.current_score_package_name,
+                self.configuration._score_internal_segments_package_path_infix])
+        else:
+            return self.configuration.score_external_segments_package_path
 
     @property
     def current_specifiers_directory_path(self):

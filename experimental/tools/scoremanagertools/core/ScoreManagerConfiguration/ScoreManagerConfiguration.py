@@ -88,12 +88,12 @@ class ScoreManagerConfiguration(Configuration):
         return options
 
     @property
-    def _score_internal_segments_package_path_infix(self):
-        return 'mus.chunks'
-
-    @property
     def _score_internal_materials_package_path_infix(self):
         return 'mus.materials'
+
+    @property
+    def _score_internal_segments_package_path_infix(self):
+        return 'mus.chunks'
 
     @property
     def _score_internal_specifiers_package_path_infix(self):
@@ -101,10 +101,6 @@ class ScoreManagerConfiguration(Configuration):
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
-    def trim(self, asset_path):
-        index = asset_path.index('abjad')
-        return asset_path[index:]
-        
     @property
     def boilerplate_directory_path(self):
         '''Boilerplate directory path:
@@ -250,32 +246,6 @@ class ScoreManagerConfiguration(Configuration):
         return '.'.join([self.score_manager_tools_package_name, 'makers'])
 
     @property
-    def score_external_segments_directory_path(self):
-        '''Score-external chunks directory path:
-
-        ::
-
-            >>> configuration.score_external_segments_directory_path # doctest: +SKIP
-            '~/.score_manager/sketches'
-
-        Return string.
-        '''
-        return self._settings['score_manager_sketches_directory_path']
-
-    @property
-    def score_external_segments_package_path(self):
-        '''Score-external chunks package path:
-
-        ::
-
-            >>> configuration.score_external_segments_package_path
-            'sketches'
-
-        Return string.
-        '''
-        return os.path.basename(self.score_manager_sketches_directory_path)
-
-    @property
     def score_external_materials_directory_path(self):
         '''Score-external materials directory path:
 
@@ -320,6 +290,32 @@ class ScoreManagerConfiguration(Configuration):
             self.score_external_materials_package_path,
             self.score_external_specifiers_package_path,
             )
+
+    @property
+    def score_external_segments_directory_path(self):
+        '''Score-external chunks directory path:
+
+        ::
+
+            >>> configuration.score_external_segments_directory_path # doctest: +SKIP
+            '~/.score_manager/sketches'
+
+        Return string.
+        '''
+        return self._settings['score_manager_sketches_directory_path']
+
+    @property
+    def score_external_segments_package_path(self):
+        '''Score-external chunks package path:
+
+        ::
+
+            >>> configuration.score_external_segments_package_path
+            'sketches'
+
+        Return string.
+        '''
+        return os.path.basename(self.score_manager_sketches_directory_path)
 
     @property
     def score_external_specifiers_directory_path(self):
@@ -557,3 +553,9 @@ class ScoreManagerConfiguration(Configuration):
         Return string.
         '''
         return self._settings['user_specific_score_manager_makers_package_path']
+
+    ### PUBLIC METHODS ###
+
+    def trim(self, asset_path):
+        index = asset_path.index('abjad')
+        return asset_path[index:]
