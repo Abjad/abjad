@@ -100,7 +100,7 @@ class ClefMark(ContextMark):
         'varbaritone': 4,
         'percussion': 0,
         'tab': 0
-    } 
+    }
 
     @property
     def _contents_repr_string(self):

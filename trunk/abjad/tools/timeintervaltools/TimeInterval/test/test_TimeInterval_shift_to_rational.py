@@ -3,7 +3,7 @@ from abjad.tools.timeintervaltools.TimeInterval import TimeInterval
 
 
 def test_TimeInterval_shift_to_rational_01():
-    '''TimeInterval.shift_to_rational returns a new TimeInterval instance 
+    '''TimeInterval.shift_to_rational returns a new TimeInterval instance
     unless offset is old start offset.
     '''
 

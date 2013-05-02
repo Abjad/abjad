@@ -24,7 +24,7 @@ class AbjadConfiguration(Configuration):
     The Abjad output directory is created the from `abjad_output` key
     if it does not already exist.
 
-    `AbjadConfiguration` supports the mutable mapping interface 
+    `AbjadConfiguration` supports the mutable mapping interface
     and can be subscripted as a dictionary.
     '''
 

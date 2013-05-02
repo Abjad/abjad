@@ -7,9 +7,9 @@ def directory_path_to_package_path(directory_path):
     Return string.
     '''
     from experimental.tools.scoremanagertools import core
-    
+
     configuration = core.ScoreManagerConfiguration()
-    
+
     if directory_path is None:
         return
 

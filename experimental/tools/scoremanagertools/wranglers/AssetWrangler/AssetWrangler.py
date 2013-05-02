@@ -101,7 +101,7 @@ class AssetWrangler(ScoreManagerObject):
     def score_internal_asset_container_package_path_infix(self):
         return self._score_internal_asset_container_package_path_infix
 
-    # other # 
+    # other #
 
     @property
     def space_delimited_lowercase_asset_class_name(self):

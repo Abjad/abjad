@@ -106,7 +106,7 @@ class Sieve(_BaseResidueClass):
 
     def get_boolean_train(self, *min_max):
         '''Returns a boolean train with 0s mapped to the integers
-        that are not congruent bases of the residue class expression 
+        that are not congruent bases of the residue class expression
         and 1s mapped to those that are.
         The method takes one or two integer arguments.
         If only one is given, it is taken as the max range

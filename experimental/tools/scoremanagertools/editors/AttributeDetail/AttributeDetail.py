@@ -46,8 +46,8 @@ class AttributeDetail(object):
 
     def __repr__(self):
         parts = [
-            repr(self.space_delimited_lowercase_name), 
-            repr(self.menu_key), 
+            repr(self.space_delimited_lowercase_name),
+            repr(self.menu_key),
             self.editor_callable.__name__]
         if not self.allow_none:
             parts.append('allow_none=False')

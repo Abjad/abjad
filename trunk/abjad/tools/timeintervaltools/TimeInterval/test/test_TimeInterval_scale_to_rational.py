@@ -4,7 +4,7 @@ import py.test
 
 
 def test_TimeInterval_scale_to_rational_01():
-    '''TimeInterval.scale_to_rational returns a new TimeInterval instance 
+    '''TimeInterval.scale_to_rational returns a new TimeInterval instance
     unless offset is old duration.
     '''
 

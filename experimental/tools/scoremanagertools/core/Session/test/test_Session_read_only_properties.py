@@ -31,7 +31,7 @@ def test_Session_read_only_properties_01():
         os.path.basename(session.configuration.score_manager_specifiers_directory_path)
     assert session.current_specifiers_directory_path == \
         session.configuration.score_manager_specifiers_directory_path
-        
+
     assert session.explicit_command_history == []
     assert not session.is_complete
     assert session.is_displayable

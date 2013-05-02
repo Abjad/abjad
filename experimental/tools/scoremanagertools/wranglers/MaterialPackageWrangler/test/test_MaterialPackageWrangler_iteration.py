@@ -79,7 +79,7 @@ def test_MaterialPackageWrangler_iteration_08():
     py.test.skip('TODO: add time_signatures package to Example Score I.')
 
     directory_path = os.path.join(
-        wrangler.configuration.scores_directory_path, 
+        wrangler.configuration.scores_directory_path,
         'example_scores_1', 'mus', 'materials', 'time_signatures')
     assert directory_path in wrangler.list_score_internal_asset_paths()
     assert directory_path in wrangler.list_score_internal_asset_paths(head='example_score_2')

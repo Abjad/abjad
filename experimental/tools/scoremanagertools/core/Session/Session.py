@@ -10,7 +10,7 @@ from experimental.tools.scoremanagertools.core.Transcript import Transcript
 
 class Session(abctools.AbjadObject):
 
-    ### CLASS ATTRIBUTES ### 
+    ### CLASS ATTRIBUTES ###
 
     configuration = ScoreManagerConfiguration()
 
@@ -344,7 +344,7 @@ class Session(abctools.AbjadObject):
             not self.backtracking_stack:
             self.is_backtracking_locally = False
             return True
-    
+
     def cache_breadcrumbs(self, cache=False):
         if cache:
             self.breadcrumb_cache_stack.append(self._breadcrumb_stack[:])

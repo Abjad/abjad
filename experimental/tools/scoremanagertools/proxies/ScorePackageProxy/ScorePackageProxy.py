@@ -25,7 +25,7 @@ class ScorePackageProxy(PackageProxy):
             session=self.session)
         self._music_specifier_module_wrangler = scoremanagertools.wranglers.MusicSpecifierModuleWrangler(
             session=self.session)
-    
+
     ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property

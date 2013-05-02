@@ -17,7 +17,7 @@ def add_terminal_newlines(lines):
 
     Return newly constructed object of `lines` type.
     '''
-    
+
     terminated_lines = []
     for line in lines:
         if not line.endswith('\n'):

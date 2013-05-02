@@ -8,7 +8,7 @@ from experimental.tools.scoremanagertools.core.ScoreManagerConfiguration import 
 
 class Transcript(AbjadObject):
 
-    ### CLASS ATTRIBUTES ### 
+    ### CLASS ATTRIBUTES ###
 
     configuration = ScoreManagerConfiguration()
 

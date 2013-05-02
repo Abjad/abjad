@@ -9,7 +9,7 @@ def improved_package_path_to_directory_path(package_path):
 
     Return string.
     '''
-    
+
     if package_path is None:
         return
 

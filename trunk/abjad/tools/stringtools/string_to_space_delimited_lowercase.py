@@ -28,7 +28,7 @@ def string_to_space_delimited_lowercase(string):
 
         >>> stringtools.string_to_space_delimited_lowercase('')
         ''
-        
+
     Return string.
     '''
     from abjad.tools import stringtools

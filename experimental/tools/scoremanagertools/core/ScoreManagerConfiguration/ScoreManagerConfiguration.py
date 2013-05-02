@@ -9,12 +9,12 @@ class ScoreManagerConfiguration(Configuration):
         >>> configuration = scoremanagertools.core.ScoreManagerConfiguration()
         >>> configuration
         ScoreManagerConfiguration()
-    
+
     Treated as a singleton.
     '''
 
     ### CLASS ATTRIBUTES ###
-    
+
     abjad_configuration = AbjadConfiguration()
 
     ### INITIALIZER ###
@@ -368,7 +368,7 @@ class ScoreManagerConfiguration(Configuration):
         Return string.
         '''
         return os.path.join(self.abjad_configuration.abjad_experimental_directory_path, 'materials')
-    
+
     @property
     def score_manager_sketches_directory_path(self):
         '''Score manager sketches directory path:
@@ -394,7 +394,7 @@ class ScoreManagerConfiguration(Configuration):
         Return string.
         '''
         return os.path.join(self.abjad_configuration.abjad_experimental_directory_path, 'specifiers')
-    
+
     @property
     def score_manager_tools_directory_path(self):
         '''Score manager tools directory path:
@@ -407,10 +407,10 @@ class ScoreManagerConfiguration(Configuration):
         Return string.
         '''
         return os.path.join(
-            self.abjad_configuration.abjad_experimental_directory_path, 
-            'tools', 
+            self.abjad_configuration.abjad_experimental_directory_path,
+            'tools',
             'scoremanagertools')
-        
+
     @property
     def score_manager_tools_package_name(self):
         '''Score manager tools package name:
