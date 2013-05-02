@@ -13,7 +13,7 @@ def test_Session_read_only_properties_01():
     assert session._breadcrumb_stack == []
     assert session.command_history == []
     assert session.command_history_string == ''
-    assert isinstance(session.complete_transcript, scoremanagertools.core.Transcript)
+    assert isinstance(session.transcript, scoremanagertools.core.Transcript)
 
     assert session.current_segments_package_path == \
         os.path.basename(session.configuration.score_manager_sketches_directory_path)
@@ -43,7 +43,7 @@ def test_Session_read_only_properties_01():
     assert not session.session_once_had_user_input
     assert session.testable_command_history_string == ''
     assert session.transcribe_next_command
-    assert session.transcript == []
+    assert session.short_transcript == []
     assert not session.user_input_is_consumed
 
 

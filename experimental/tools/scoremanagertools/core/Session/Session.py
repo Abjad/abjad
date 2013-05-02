@@ -21,8 +21,8 @@ class Session(abctools.AbjadObject):
         self._breadcrumb_cache_stack = []
         self._breadcrumb_stack = []
         self._command_history = []
-        self._complete_transcript = Transcript()
         self._session_once_had_user_input = False
+        self._transcript = Transcript()
         self.current_score_package_name = None
         self.display_pitch_ranges_with_numbered_pitches = False
         self.dump_transcript = False
@@ -76,10 +76,6 @@ class Session(abctools.AbjadObject):
     @property
     def command_history_string(self):
         return ' '.join(self.explicit_command_history)
-
-    @property
-    def complete_transcript(self):
-        return self._complete_transcript
 
     @property
     def current_materials_directory_path(self):
@@ -187,6 +183,12 @@ class Session(abctools.AbjadObject):
         return self._session_once_had_user_input
 
     @property
+    def short_transcript(self):
+        entries = self.transcript.entries
+        short_transcript = [entry[1] for entry in entries]
+        return short_transcript
+
+    @property
     def testable_command_history_string(self):
         result = []
         for part in self.explicit_command_history:
@@ -206,13 +208,7 @@ class Session(abctools.AbjadObject):
 
     @property
     def transcript(self):
-        entries = self.complete_transcript.entries
-        short_transcript = [entry[1] for entry in entries]
-        return short_transcript
-
-    @property
-    def transcript_signature(self):
-        return self.complete_transcript.signature
+        return self._transcript
 
     @property
     def user_input_is_consumed(self):
@@ -354,7 +350,7 @@ class Session(abctools.AbjadObject):
 
     def clean_up(self):
         if self.dump_transcript:
-            self.complete_transcript.write_to_disk()
+            self.transcript.write_to_disk()
 
     def format_breadcrumb_stack(self):
         if not self._breadcrumb_stack:

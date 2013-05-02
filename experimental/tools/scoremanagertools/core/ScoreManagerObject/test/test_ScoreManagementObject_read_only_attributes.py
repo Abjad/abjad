@@ -28,7 +28,6 @@ def test_ScoreManagementObject_read_only_attributes_01():
     assert score_manager_object._spaced_class_name == 'score manager object'
     assert score_manager_object.configuration.score_external_materials_package_path == 'materials'
 
-
     directory_path = os.path.join(
         score_manager_object.configuration.score_manager_tools_directory_path,
         'stylesheets')
@@ -36,4 +35,3 @@ def test_ScoreManagementObject_read_only_attributes_01():
 
     assert score_manager_object.configuration.stylesheets_package_path == \
         'scoremanagertools.stylesheets'
-    assert isinstance(score_manager_object.transcript_signature, tuple)

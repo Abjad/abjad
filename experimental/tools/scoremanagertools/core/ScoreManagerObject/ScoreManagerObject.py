@@ -44,7 +44,7 @@ class ScoreManagerObject(AbjadObject):
 
     @property
     def transcript_signature(self):
-        return self.session.complete_transcript.signature
+        return self.session.transcript.signature
 
     ### PUBLIC METHODS ###
 

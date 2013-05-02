@@ -49,7 +49,7 @@ class IO(AbjadObject):
                 lines = [stringtools.capitalize_string_start(line) for line in lines]
             if lines:
                 if self.session.transcribe_next_command:
-                    self.session.complete_transcript.append_lines(lines)
+                    self.session.transcript.append_lines(lines)
             if self.session.is_displayable:
                 for line in lines:
                     print line
@@ -80,7 +80,7 @@ class IO(AbjadObject):
             if include_newline:
                 if not user_response == 'help':
                     menu_chunk.append('')
-            self.session.complete_transcript.append_lines(menu_chunk)
+            self.session.transcript.append_lines(menu_chunk)
         return user_response
 
     def handle_raw_input_with_default(self, prompt, default=None, include_chevron=True, include_newline=True,

@@ -24,9 +24,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.command_history_string
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.complete_transcript
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.current_materials_directory_path
    :noindex:
 
@@ -78,6 +75,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.session_once_had_user_input
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.short_transcript
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.storage_format
    :noindex:
 
@@ -85,9 +85,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.transcript
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.transcript_signature
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.user_input_is_consumed
