@@ -8,11 +8,13 @@ def _find_all_duplicate_module_names():
     all_file_names, all_directory_paths = [], []
     unique_file_names, duplicate_file_names = [], []
     expected_duplicate_file_names = (
-        'tags.py', 
+        'conf.py',
         'make_illustration_from_output_material.py', 
-        'output_material.py',
         'material_definition.py',
-        'Voice.py')
+        'output_material.py',
+        'tags.py', 
+        'Voice.py',
+        )
     for directory_path, dir_names, file_names in os.walk('.'):
         for file_name in file_names:
             if file_name.endswith('.py'):
