@@ -1,7 +1,7 @@
-from collections import OrderedDict
+import collections
 
 
-tags = OrderedDict([
+tags = collections.OrderedDict([
     ('generic_output_name', 'articulation handler'),
     ('is_material_package', True),
     ('material_package_maker_class_name', 'ArticulationHandlerMaterialPackageMaker'),

@@ -293,10 +293,10 @@ class ScorePackageProxy(PackageProxy):
                 tags_file = file(self.tags_file_name, 'w')
                 tags_file.write('# -*- encoding: utf-8 -*-\n')
                 tags_file.write('from abjad import *\n')
-                tags_file.write('from collections import OrderedDict\n')
+                tags_file.write('import collections\n')
                 tags_file.write('\n')
                 tags_file.write('\n')
-                tags_file.write('tags = OrderedDict([])\n')
+                tags_file.write('tags = collections.OrderedDict([])\n')
                 tags_file.close()
         if not os.path.exists(self.materials_directory_path):
             result = False

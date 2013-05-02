@@ -66,9 +66,9 @@ class InitializerFileProxy(ParsableFileProxy):
                     value = getattr(value, '_tools_package_qualified_repr', repr(value))
                     lines.append('({}, {})'.format(key, value))
             lines = ',\n    '.join(lines)
-            result = 'tags = OrderedDict([\n    {}])'.format(lines)
+            result = 'tags = collections.OrderedDict([\n    {}])'.format(lines)
         else:
-            result = 'tags = OrderedDict([])'
+            result = 'tags = collections.OrderedDict([])'
         return result
 
     def parse(self, initializer_file_name=None):
@@ -174,7 +174,7 @@ class InitializerFileProxy(ParsableFileProxy):
     # TODO: move to TagsFileProxy
     def write_tags_to_disk(self, tags):
         self.parse()
-        ordered_dict_import_statement = 'from collections import OrderedDict\n'
+        ordered_dict_import_statement = 'import collections\n'
         if ordered_dict_import_statement not in self.setup_statements:
             self.setup_statements.append(ordered_dict_import_statement)
         tag_lines = self.make_tag_lines(tags)
