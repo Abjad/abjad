@@ -7,7 +7,7 @@ def test_PitchRangeInventoryMaterialPackageMaker_01():
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    assert not filesystemtools.package_exists('materials.testpir')
+    assert not packagepathtools.package_exists('materials.testpir')
     try:
         score_manager.run(user_input=
             'materials maker pitch testpir default '
@@ -18,7 +18,7 @@ def test_PitchRangeInventoryMaterialPackageMaker_01():
         assert mpp.output_material is None
     finally:
         score_manager.run(user_input='m testpir del remove default q')
-        assert not filesystemtools.package_exists('materials.testpir')
+        assert not packagepathtools.package_exists('materials.testpir')
 
 
 def test_PitchRangeInventoryMaterialPackageMaker_02():
@@ -26,7 +26,7 @@ def test_PitchRangeInventoryMaterialPackageMaker_02():
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    assert not filesystemtools.package_exists('materials.testpir')
+    assert not packagepathtools.package_exists('materials.testpir')
     try:
         score_manager.run(user_input=
             'materials maker pitch testpir default '
@@ -42,4 +42,4 @@ def test_PitchRangeInventoryMaterialPackageMaker_02():
         assert mpp.output_material == pitch_range_inventory
     finally:
         score_manager.run(user_input='m testpir del remove default q')
-        assert not filesystemtools.package_exists('materials.testpir')
+        assert not packagepathtools.package_exists('materials.testpir')

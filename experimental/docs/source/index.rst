@@ -113,33 +113,6 @@ Unstable packages (load manually)
       tools/constrainttools/RelativeIndexConstraint/RelativeIndexConstraint
       tools/constrainttools/VariableLengthStreamSolver/VariableLengthStreamSolver
 
-:py:mod:`filesystemtools <experimental.tools.filesystemtools>`
-==============================================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/filesystemtools/directory_path_to_package_path
-      tools/filesystemtools/improved_package_path_to_directory_path
-      tools/filesystemtools/module_path_to_file_path
-      tools/filesystemtools/package_exists
-      tools/filesystemtools/package_path_to_directory_path
-
-.. only:: latex
-
-   Functions
-   ---------
-
-   .. toctree::
-
-      tools/filesystemtools/directory_path_to_package_path
-      tools/filesystemtools/improved_package_path_to_directory_path
-      tools/filesystemtools/module_path_to_file_path
-      tools/filesystemtools/package_exists
-      tools/filesystemtools/package_path_to_directory_path
-
 :py:mod:`handlertools <experimental.tools.handlertools>`
 ========================================================
 
@@ -469,6 +442,33 @@ Unstable packages (load manually)
       tools/musicexpressiontools/TimespanScopedSingleContextSetExpressionInventory/TimespanScopedSingleContextSetExpressionInventory
       tools/musicexpressiontools/VoiceDictionary/VoiceDictionary
       tools/musicexpressiontools/VoiceProxy/VoiceProxy
+
+:py:mod:`packagepathtools <experimental.tools.packagepathtools>`
+================================================================
+
+.. only:: html
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/packagepathtools/directory_path_to_package_path
+      tools/packagepathtools/improved_package_path_to_directory_path
+      tools/packagepathtools/module_path_to_file_path
+      tools/packagepathtools/package_exists
+      tools/packagepathtools/package_path_to_directory_path
+
+.. only:: latex
+
+   Functions
+   ---------
+
+   .. toctree::
+
+      tools/packagepathtools/directory_path_to_package_path
+      tools/packagepathtools/improved_package_path_to_directory_path
+      tools/packagepathtools/module_path_to_file_path
+      tools/packagepathtools/package_exists
+      tools/packagepathtools/package_path_to_directory_path
 
 :py:mod:`parsertools <experimental.tools.parsertools>`
 ======================================================

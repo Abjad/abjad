@@ -5,7 +5,7 @@ from experimental import *
 def test_TempoMarkInventoryMaterialPackageMaker_01():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    assert not filesystemtools.package_exists('materials.testtempoinventory')
+    assert not packagepathtools.package_exists('materials.testtempoinventory')
     try:
         score_manager.run(user_input=
             'materials maker tempo testtempoinventory default '
@@ -18,4 +18,4 @@ def test_TempoMarkInventoryMaterialPackageMaker_01():
         assert mpp.output_material == inventory
     finally:
         score_manager.run(user_input='m testtempoinventory del remove default q')
-        assert not filesystemtools.package_exists('materials.testtempoinventory')
+        assert not packagepathtools.package_exists('materials.testtempoinventory')

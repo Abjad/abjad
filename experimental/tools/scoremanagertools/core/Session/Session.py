@@ -2,7 +2,7 @@
 import os
 from abjad.tools import stringtools
 from abjad.tools import abctools
-from experimental.tools import filesystemtools
+from experimental.tools import packagepathtools
 from experimental.tools.scoremanagertools.core.ScoreManagerConfiguration import \
     ScoreManagerConfiguration
 from experimental.tools.scoremanagertools.core.Transcript import Transcript
@@ -79,7 +79,7 @@ class Session(abctools.AbjadObject):
 
     @property
     def current_materials_directory_path(self):
-        return filesystemtools.package_path_to_directory_path(
+        return packagepathtools.package_path_to_directory_path(
             self.current_materials_package_path, self.configuration)
 
     @property
@@ -101,12 +101,12 @@ class Session(abctools.AbjadObject):
     @property
     def current_score_path(self):
         if self.is_in_score:
-            return filesystemtools.package_path_to_directory_path(
+            return packagepathtools.package_path_to_directory_path(
                 self.current_score_package_name, self.configuration)
 
     @property
     def current_segments_directory_path(self):
-        return filesystemtools.package_path_to_directory_path(
+        return packagepathtools.package_path_to_directory_path(
             self.current_segments_package_path, self.configuration)
 
     @property

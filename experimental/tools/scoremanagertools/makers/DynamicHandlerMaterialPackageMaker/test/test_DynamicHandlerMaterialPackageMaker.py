@@ -6,7 +6,7 @@ from experimental import *
 def test_DynamicHandlerMaterialPackageMaker_01():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    assert not filesystemtools.package_exists('materials.testdynamichandler')
+    assert not packagepathtools.package_exists('materials.testdynamichandler')
     try:
         score_manager.run(user_input=
             'materials maker dynamic testdynamichandler default '
@@ -23,4 +23,4 @@ def test_DynamicHandlerMaterialPackageMaker_01():
         assert mpp.output_material == handler
     finally:
         score_manager.run(user_input='m testdynamichandler del remove default q')
-        assert not filesystemtools.package_exists('materials.testdynamichandler')
+        assert not packagepathtools.package_exists('materials.testdynamichandler')

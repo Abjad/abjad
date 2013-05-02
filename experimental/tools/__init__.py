@@ -1,7 +1,7 @@
 from abjad import *
 
 import constrainttools
-import filesystemtools
+import packagepathtools
 import handlertools
 import lyrictools
 import metricmodulationtools

@@ -1,6 +1,6 @@
 import os
 from abjad.tools import stringtools
-from experimental.tools import filesystemtools
+from experimental.tools import packagepathtools
 from experimental.tools.scoremanagertools.proxies.ParsableFileProxy import ParsableFileProxy
 
 
@@ -10,7 +10,7 @@ class ModuleProxy(ParsableFileProxy):
 
     def __init__(self, module_path=None, session=None):
         self._module_path = module_path
-        file_path = filesystemtools.module_path_to_file_path(self.module_path, self.configuration)
+        file_path = packagepathtools.module_path_to_file_path(self.module_path, self.configuration)
         ParsableFileProxy.__init__(self, file_path=file_path, session=session)
 
     ### CLASS ATTRIBUTES ###
@@ -24,7 +24,7 @@ class ModuleProxy(ParsableFileProxy):
     @property
     def grandparent_directory_path(self):
         if self.module_path:
-            return filesystemtools.package_path_to_directory_path(
+            return packagepathtools.package_path_to_directory_path(
                 self.grandparent_package_path, self.configuration)
 
     @property
@@ -49,7 +49,7 @@ class ModuleProxy(ParsableFileProxy):
     @property
     def parent_directory_path(self):
         if self.module_path:
-            return filesystemtools.package_path_to_directory_path(
+            return packagepathtools.package_path_to_directory_path(
                 self.parent_package_path, self.configuration)
 
     @property

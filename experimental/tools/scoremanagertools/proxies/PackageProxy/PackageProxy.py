@@ -1,7 +1,7 @@
 import os
 import sys
 from abjad.tools import iotools
-from experimental.tools import filesystemtools
+from experimental.tools import packagepathtools
 from experimental.tools.scoremanagertools.core.ScoreManagerObject import ScoreManagerObject
 from experimental.tools.scoremanagertools.proxies.AssetProxy import AssetProxy
 from experimental.tools.scoremanagertools.proxies.DirectoryProxy import DirectoryProxy
@@ -15,11 +15,11 @@ class PackageProxy(DirectoryProxy, AssetProxy, ScoreManagerObject):
     ### INITIALIZER ###
 
     def __init__(self, package_path=None, session=None):
-#        directory_path = filesystemtools.package_path_to_directory_path(package_path, self.configuration)
+#        directory_path = packagepathtools.package_path_to_directory_path(package_path, self.configuration)
 #        DirectoryProxy.__init__(self, directory_path=directory_path, session=session)
 #        AssetProxy.__init__(self, asset_path=package_path, session=self.session)
         ScoreManagerObject.__init__(self, session=session)
-        directory_path = filesystemtools.package_path_to_directory_path(package_path, self.configuration)
+        directory_path = packagepathtools.package_path_to_directory_path(package_path, self.configuration)
         DirectoryProxy.__init__(self, directory_path=directory_path, session=self.session)
         AssetProxy.__init__(self, asset_path=directory_path, session=self.session)
         self._package_path = package_path
@@ -34,7 +34,7 @@ class PackageProxy(DirectoryProxy, AssetProxy, ScoreManagerObject):
     @property
     def directory_path(self):
         if self.package_path is not None:
-            return filesystemtools.package_path_to_directory_path(self.package_path, self.configuration)
+            return packagepathtools.package_path_to_directory_path(self.package_path, self.configuration)
 
     @property
     def formatted_tags(self):
@@ -84,7 +84,7 @@ class PackageProxy(DirectoryProxy, AssetProxy, ScoreManagerObject):
     @property
     def parent_initializer_file_name(self):
         if self.parent_package_path:
-            parent_directory_path = filesystemtools.package_path_to_directory_path(
+            parent_directory_path = packagepathtools.package_path_to_directory_path(
                 self.parent_package_path, self.configuration)
             return os.path.join(parent_directory_path, '__init__.py')
 

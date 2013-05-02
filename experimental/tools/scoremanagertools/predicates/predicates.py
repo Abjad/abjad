@@ -1,5 +1,5 @@
 from abjad import *
-from experimental.tools import filesystemtools
+from experimental.tools import packagepathtools
 import re
 
 
@@ -17,7 +17,7 @@ def is_articulation_token(expr):
 def is_available_underscore_delimited_lowercase_package_name(expr):
     if stringtools.is_underscore_delimited_lowercase_package_name(expr):
         if 3 <= len(expr):
-            return not filesystemtools.package_exists(expr)
+            return not packagepathtools.package_exists(expr)
     return False
 
 def is_boolean(expr):
@@ -51,7 +51,7 @@ def is_dynamic_token(expr):
         return False
 
 def is_existing_package_name(expr):
-    return filesystemtools.package_exists(expr)
+    return packagepathtools.package_exists(expr)
 
 def is_hairpin_token(expr):
     return spannertools.HairpinSpanner.is_hairpin_token(expr)

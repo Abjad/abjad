@@ -1,5 +1,5 @@
-filesystemtools.package_exists
+packagepathtools.package_exists
 ==============================
 
-.. autofunction:: experimental.tools.filesystemtools.package_exists.package_exists
+.. autofunction:: experimental.tools.packagepathtools.package_exists.package_exists
    :noindex:

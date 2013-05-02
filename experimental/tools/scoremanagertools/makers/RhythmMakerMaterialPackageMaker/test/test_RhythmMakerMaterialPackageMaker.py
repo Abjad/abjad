@@ -5,7 +5,7 @@ from experimental import *
 def test_RhythmMakerMaterialPackageMaker_01():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    assert not filesystemtools.package_exists('materials.testrhythmmaker')
+    assert not packagepathtools.package_exists('materials.testrhythmmaker')
     try:
         score_manager.run(user_input=
             'materials maker rhythm testrhythmmaker default '
@@ -23,4 +23,4 @@ def test_RhythmMakerMaterialPackageMaker_01():
         assert mpp.output_material == maker
     finally:
         score_manager.run(user_input='m testrhythmmaker del remove default q')
-        assert not filesystemtools.package_exists('materials.testrhythmmaker')
+        assert not packagepathtools.package_exists('materials.testrhythmmaker')

@@ -5,7 +5,7 @@ from experimental import *
 def test_MarkupInventoryMaterialPackageMaker_01():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    assert not filesystemtools.package_exists('materials.testmarkupinventory')
+    assert not packagepathtools.package_exists('materials.testmarkupinventory')
     try:
         score_manager.run(user_input=
             "materials maker markup testmarkupinventory "
@@ -30,4 +30,4 @@ def test_MarkupInventoryMaterialPackageMaker_01():
         assert mpp.output_material == inventory
     finally:
         score_manager.run(user_input='m testmarkupinventory del remove default q')
-        assert not filesystemtools.package_exists('materials.testmarkupinventory')
+        assert not packagepathtools.package_exists('materials.testmarkupinventory')

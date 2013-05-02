@@ -7,7 +7,7 @@ def test_SargassoMeasureMaterialPackageMaker_01():
     '''Empty wrapper.'''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    assert not filesystemtools.package_exists('materials.testsargasso')
+    assert not packagepathtools.package_exists('materials.testsargasso')
     try:
         score_manager.run(user_input=
             'materials maker sargasso testsargasso default '
@@ -28,14 +28,14 @@ def test_SargassoMeasureMaterialPackageMaker_01():
         assert mpp.user_input_wrapper_in_memory == user_input_wrapper
     finally:
         score_manager.run(user_input='m testsargasso del remove default q')
-        assert not filesystemtools.package_exists('materials.testsargasso')
+        assert not packagepathtools.package_exists('materials.testsargasso')
 
 
 def test_SargassoMeasureMaterialPackageMaker_02():
     '''Load demo values.'''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    assert not filesystemtools.package_exists('materials.testsargasso')
+    assert not packagepathtools.package_exists('materials.testsargasso')
 
     try:
         score_manager.run(user_input=
@@ -58,14 +58,14 @@ def test_SargassoMeasureMaterialPackageMaker_02():
         assert mpp.user_input_wrapper_in_memory == user_input_wrapper
     finally:
         score_manager.run(user_input='m testsargasso del remove default q')
-        assert not filesystemtools.package_exists('materials.testsargasso')
+        assert not packagepathtools.package_exists('materials.testsargasso')
 
 
 def test_SargassoMeasureMaterialPackageMaker_03():
     '''Load demo values and then clear all.'''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    assert not filesystemtools.package_exists('materials.testsargasso')
+    assert not packagepathtools.package_exists('materials.testsargasso')
     try:
         score_manager.run(user_input=
             'materials maker sargasso testsargasso default '
@@ -87,14 +87,14 @@ def test_SargassoMeasureMaterialPackageMaker_03():
         assert mpp.user_input_wrapper_in_memory == user_input_wrapper
     finally:
         score_manager.run(user_input='m testsargasso del remove default q')
-        assert not filesystemtools.package_exists('materials.testsargasso')
+        assert not packagepathtools.package_exists('materials.testsargasso')
 
 
 def test_SargassoMeasureMaterialPackageMaker_04():
     '''Edit one value.'''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    assert not filesystemtools.package_exists('materials.testsargasso')
+    assert not packagepathtools.package_exists('materials.testsargasso')
     try:
         score_manager.run(user_input=
             'materials maker sargasso testsargasso default '
@@ -116,14 +116,14 @@ def test_SargassoMeasureMaterialPackageMaker_04():
         assert mpp.user_input_wrapper_in_memory == user_input_wrapper
     finally:
         score_manager.run(user_input='m testsargasso del remove default q')
-        assert not filesystemtools.package_exists('materials.testsargasso')
+        assert not packagepathtools.package_exists('materials.testsargasso')
 
 
 def test_SargassoMeasureMaterialPackageMaker_05():
     '''Populate wrapper.'''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    assert not filesystemtools.package_exists('materials.testsargasso')
+    assert not packagepathtools.package_exists('materials.testsargasso')
     try:
         score_manager.run(user_input=
             'materials maker sargasso testsargasso default '
@@ -146,14 +146,14 @@ def test_SargassoMeasureMaterialPackageMaker_05():
         assert mpp.user_input_wrapper_in_memory == user_input_wrapper
     finally:
         score_manager.run(user_input='m testsargasso del remove default q')
-        assert not filesystemtools.package_exists('materials.testsargasso')
+        assert not packagepathtools.package_exists('materials.testsargasso')
 
 
 def test_SargassoMeasureMaterialPackageMaker_06():
     '''Partial population.'''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    assert not filesystemtools.package_exists('materials.testsargasso')
+    assert not packagepathtools.package_exists('materials.testsargasso')
     try:
         score_manager.run(user_input=
             'materials maker sargasso testsargasso default '
@@ -176,14 +176,14 @@ def test_SargassoMeasureMaterialPackageMaker_06():
         assert mpp.user_input_wrapper_in_memory == user_input_wrapper
     finally:
         score_manager.run(user_input='m testsargasso del remove default q')
-        assert not filesystemtools.package_exists('materials.testsargasso')
+        assert not packagepathtools.package_exists('materials.testsargasso')
 
 
 def test_SargassoMeasureMaterialPackageMaker_07():
     '''Set some values to none.'''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    assert not filesystemtools.package_exists('materials.testsargasso')
+    assert not packagepathtools.package_exists('materials.testsargasso')
     try:
         score_manager.run(user_input=
             'materials maker sargasso testsargasso default '
@@ -205,14 +205,14 @@ def test_SargassoMeasureMaterialPackageMaker_07():
         assert mpp.user_input_wrapper_in_memory == user_input_wrapper
     finally:
         score_manager.run(user_input='m testsargasso del remove default q')
-        assert not filesystemtools.package_exists('materials.testsargasso')
+        assert not packagepathtools.package_exists('materials.testsargasso')
 
 
 def test_SargassoMeasureMaterialPackageMaker_08():
     '''Make output from demo values.'''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    assert not filesystemtools.package_exists('materials.testsargasso')
+    assert not packagepathtools.package_exists('materials.testsargasso')
     try:
         score_manager.run(user_input=
             'materials maker sargasso testsargasso default '
@@ -244,4 +244,4 @@ def test_SargassoMeasureMaterialPackageMaker_08():
         assert Staff(mpp.output_material).lilypond_format == Staff(measures).lilypond_format
     finally:
         score_manager.run(user_input='m testsargasso del remove default q')
-        assert not filesystemtools.package_exists('materials.testsargasso')
+        assert not packagepathtools.package_exists('materials.testsargasso')

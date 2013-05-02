@@ -5,11 +5,11 @@ from experimental import *
 def test_MaterialPackageWrangler_make_data_package_01():
 
     wrangler = scoremanagertools.wranglers.MaterialPackageWrangler()
-    assert not filesystemtools.package_exists('materials.testnumbers')
+    assert not packagepathtools.package_exists('materials.testnumbers')
 
     try:
         wrangler.make_data_package('materials.testnumbers')
-        assert filesystemtools.package_exists('materials.testnumbers')
+        assert packagepathtools.package_exists('materials.testnumbers')
         mpp = scoremanagertools.proxies.MaterialPackageProxy('materials.testnumbers')
         assert mpp.is_data_only
         assert mpp.directory_contents == ['__init__.py', 'material_definition.py', 'tags.py']
@@ -22,13 +22,13 @@ def test_MaterialPackageWrangler_make_data_package_01():
         assert mpp.output_material is None
     finally:
         mpp.remove()
-        assert not filesystemtools.package_exists('materials.testnumbers')
+        assert not packagepathtools.package_exists('materials.testnumbers')
 
 
 def test_MaterialPackageWrangler_make_data_package_02():
 
     wrangler = scoremanagertools.wranglers.MaterialPackageWrangler()
-    assert filesystemtools.package_exists('materials.red_numbers')
+    assert packagepathtools.package_exists('materials.red_numbers')
     assert py.test.raises(Exception, "wrangler.make_data_package('materials.red_numbers')")
 
 
@@ -37,17 +37,17 @@ def test_MaterialPackageWrangler_make_data_package_03():
     '''
 
     wrangler = scoremanagertools.wranglers.MaterialPackageWrangler()
-    assert not filesystemtools.package_exists('materials.testnumbers')
+    assert not packagepathtools.package_exists('materials.testnumbers')
 
     try:
         wrangler.make_data_package_interactively(user_input='testnumbers q')
-        assert filesystemtools.package_exists('materials.testnumbers')
+        assert packagepathtools.package_exists('materials.testnumbers')
         mpp = scoremanagertools.proxies.MaterialPackageProxy('materials.testnumbers')
         assert mpp.is_data_only
         assert mpp.directory_contents == ['__init__.py', 'material_definition.py', 'tags.py']
     finally:
         mpp.remove()
-        assert not filesystemtools.package_exists('materials.testnumbers')
+        assert not packagepathtools.package_exists('materials.testnumbers')
 
 
 def test_MaterialPackageWrangler_make_data_package_04():
@@ -55,15 +55,15 @@ def test_MaterialPackageWrangler_make_data_package_04():
     '''
 
     wrangler = scoremanagertools.wranglers.MaterialPackageWrangler()
-    assert not filesystemtools.package_exists('materials.testnumbers')
+    assert not packagepathtools.package_exists('materials.testnumbers')
 
     try:
         tags = {'color': 'red', 'is_colored': True}
         wrangler.make_data_package('materials.testnumbers', tags=tags)
-        assert filesystemtools.package_exists('materials.testnumbers')
+        assert packagepathtools.package_exists('materials.testnumbers')
         mpp = scoremanagertools.proxies.MaterialPackageProxy('materials.testnumbers')
         assert mpp.get_tag('color') == 'red'
         assert mpp.get_tag('is_colored')
     finally:
         mpp.remove()
-        assert not filesystemtools.package_exists('materials.testnumbers')
+        assert not packagepathtools.package_exists('materials.testnumbers')

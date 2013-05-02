@@ -4,7 +4,7 @@ from experimental import *
 def test_ListMaterialPackageMaker_01():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    assert not filesystemtools.package_exists('materials.testlist')
+    assert not packagepathtools.package_exists('materials.testlist')
     try:
         score_manager.run(user_input=
             'materials maker list testlist '
@@ -15,4 +15,4 @@ def test_ListMaterialPackageMaker_01():
         assert mpp.output_material == [17, 'foo']
     finally:
         score_manager.run(user_input='m testlist del remove default q')
-        assert not filesystemtools.package_exists('materials.testlist')
+        assert not packagepathtools.package_exists('materials.testlist')

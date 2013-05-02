@@ -7,7 +7,7 @@ def test_OctaveTranspositionMappingInventoryMaterialPackageMaker_01():
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    assert not filesystemtools.package_exists('materials.testoctavetrans')
+    assert not packagepathtools.package_exists('materials.testoctavetrans')
     try:
         score_manager.run(user_input=
             'materials maker octave testoctavetrans default '
@@ -18,7 +18,7 @@ def test_OctaveTranspositionMappingInventoryMaterialPackageMaker_01():
         assert mpp.output_material is None
     finally:
         score_manager.run(user_input='m testoctavetrans del remove default q')
-        assert not filesystemtools.package_exists('materials.testoctavetrans')
+        assert not packagepathtools.package_exists('materials.testoctavetrans')
 
 
 def test_OctaveTranspositionMappingInventoryMaterialPackageMaker_02():
@@ -26,7 +26,7 @@ def test_OctaveTranspositionMappingInventoryMaterialPackageMaker_02():
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    assert not filesystemtools.package_exists('materials.testoctavetrans')
+    assert not packagepathtools.package_exists('materials.testoctavetrans')
     try:
         score_manager.run(user_input=
             'materials maker octave testoctavetrans '
@@ -43,4 +43,4 @@ def test_OctaveTranspositionMappingInventoryMaterialPackageMaker_02():
         assert mpp.output_material == inventory
     finally:
         score_manager.run(user_input='m testoctavetrans del remove default q')
-        assert not filesystemtools.package_exists('materials.testoctavetrans')
+        assert not packagepathtools.package_exists('materials.testoctavetrans')
