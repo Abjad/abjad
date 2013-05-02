@@ -1,5 +1,3 @@
-from get_context_mark_format_pieces import get_context_mark_format_pieces
-from is_formattable_context_mark_for_component import is_formattable_context_mark_for_component
 import inspect
 
 
@@ -12,9 +10,9 @@ def get_all_mark_format_contributions(component):
 
     Return dict.
     '''
-
     from abjad.tools import componenttools
     from abjad.tools import contexttools
+    from abjad.tools import formattools
     from abjad.tools import marktools
     from abjad.tools import markuptools
 
@@ -52,7 +50,7 @@ def get_all_mark_format_contributions(component):
         ### context marks to be dealt with later ###
 
         elif isinstance(mark, contexttools.ContextMark):
-            if is_formattable_context_mark_for_component(mark, component):
+            if formattools.is_formattable_context_mark_for_component(mark, component):
                 context_marks.append(mark)
                 continue
 
@@ -103,7 +101,7 @@ def get_all_mark_format_contributions(component):
         for mark in parent._marks_for_which_component_functions_as_start_component:
             if isinstance(mark, contexttools.ContextMark):
                 if mark not in context_marks:
-                    if is_formattable_context_mark_for_component(mark, component):
+                    if formattools.is_formattable_context_mark_for_component(mark, component):
                         context_marks.append(mark)
 
     #for candidate in context_mark_candidates:
@@ -113,7 +111,7 @@ def get_all_mark_format_contributions(component):
     section = 'context marks'
     for mark in context_marks:
         format_slot = mark._format_slot
-        result = get_context_mark_format_pieces(mark)
+        result = formattools.get_context_mark_format_pieces(mark)
         if format_slot not in contributions:
             contributions[format_slot] = { }
         if section not in contributions[format_slot]:

@@ -29,7 +29,8 @@ def _find_local_import_statements_in_file(full_file_name):
     for line in fp.readlines():
         if line.startswith('from') and \
             not line.startswith('from experimental import *') and \
-            not line.startswith('from make_illustration_from_output_material'):
+            not line.startswith('from make_illustration_from_output_material') and \
+            not line.startswith('from _'):
             line_parts = line.split()
             module_name = line_parts[1]
             if not module_name in ('abjad', '__future__'):

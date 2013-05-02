@@ -1,12 +1,11 @@
 import fractions
 import math
 import re
-from fractions import Fraction
 from abjad.tools.abctools import ImmutableAbjadObject
 from abjad.tools import mathtools
 
 
-class Duration(ImmutableAbjadObject, Fraction):
+class Duration(ImmutableAbjadObject, fractions.Fraction):
     r'''.. versionadded:: 2.0
 
     Abjad model of musical duration.
@@ -105,26 +104,26 @@ class Duration(ImmutableAbjadObject, Fraction):
     def __new__(klass, *args):
         from abjad.tools import sequencetools
         try:
-            return Fraction.__new__(klass, *args)
+            return fractions.Fraction.__new__(klass, *args)
         except TypeError:
             pass
         try:
-            return Fraction.__new__(klass, *args[0])
+            return fractions.Fraction.__new__(klass, *args[0])
         except (AttributeError, TypeError):
             pass
         try:
-            return Fraction.__new__(klass, args[0].numerator, args[0].denominator)
+            return fractions.Fraction.__new__(klass, args[0].numerator, args[0].denominator)
         except AttributeError:
             pass
         if len(args) == 1 and sequencetools.is_integer_equivalent_singleton(args[0]):
-            self = Fraction.__new__(klass, int(args[0][0]))
+            self = fractions.Fraction.__new__(klass, int(args[0][0]))
         elif len(args) == 1 and sequencetools.is_fraction_equivalent_pair(args[0]):
-            self = Fraction.__new__(klass, int(args[0][0]), int(args[0][1]))
+            self = fractions.Fraction.__new__(klass, int(args[0][0]), int(args[0][1]))
         elif len(args) == 1 and isinstance(args[0], str) and not '/' in args[0]:
             result = Duration._init_from_lilypond_duration_string(args[0])
-            self = Fraction.__new__(klass, result)
+            self = fractions.Fraction.__new__(klass, result)
         elif sequencetools.all_are_integer_equivalent_numbers(args):
-            self = Fraction.__new__(klass, *[int(x) for x in args])
+            self = fractions.Fraction.__new__(klass, *[int(x) for x in args])
         else:
             raise ValueError(args)
         return self
@@ -132,70 +131,70 @@ class Duration(ImmutableAbjadObject, Fraction):
     ### SPECIAL METHODS ###
 
     def __abs__(self, *args):
-        return type(self)(Fraction.__abs__(self, *args))
+        return type(self)(fractions.Fraction.__abs__(self, *args))
 
     def __add__(self, *args):
         if len(args) == 1 and isinstance(args[0], mathtools.NonreducedFraction):
             return args[0].__radd__(self)
         else:
-            return type(self)(Fraction.__add__(self, *args))
+            return type(self)(fractions.Fraction.__add__(self, *args))
 
     def __div__(self, *args):
         from abjad.tools import durationtools
         if len(args) == 1 and isinstance(args[0], type(self)):
-            return durationtools.Multiplier(Fraction.__div__(self, *args))
+            return durationtools.Multiplier(fractions.Fraction.__div__(self, *args))
         elif len(args) == 1 and isinstance(args[0], mathtools.NonreducedFraction):
             return args[0].__rdiv__(self)
         else:
-            return type(self)(Fraction.__div__(self, *args))
+            return type(self)(fractions.Fraction.__div__(self, *args))
 
     def __divmod__(self, *args):
-        return type(self)(Fraction.__divmod__(self, *args))
+        return type(self)(fractions.Fraction.__divmod__(self, *args))
 
     def __eq__(self, arg):
-        return Fraction.__eq__(self, arg)
+        return fractions.Fraction.__eq__(self, arg)
 
     def __ge__(self, arg):
-        return Fraction.__ge__(self, arg)
+        return fractions.Fraction.__ge__(self, arg)
 
     def __gt__(self, arg):
-        return Fraction.__gt__(self, arg)
+        return fractions.Fraction.__gt__(self, arg)
 
     def __le__(self, arg):
-        return Fraction.__le__(self, arg)
+        return fractions.Fraction.__le__(self, arg)
 
     def __lt__(self, arg):
-        return Fraction.__lt__(self, arg)
+        return fractions.Fraction.__lt__(self, arg)
 
     def __mod__(self, *args):
-        return type(self)(Fraction.__mod__(self, *args))
+        return type(self)(fractions.Fraction.__mod__(self, *args))
 
     def __mul__(self, *args):
         if len(args) == 1 and isinstance(args[0], mathtools.NonreducedFraction):
             return args[0].__rmul__(self)
         else:
-            return type(self)(Fraction.__mul__(self, *args))
+            return type(self)(fractions.Fraction.__mul__(self, *args))
 
     def __ne__(self, arg):
-        return Fraction.__ne__(self, arg)
+        return fractions.Fraction.__ne__(self, arg)
 
     def __neg__(self, *args):
-        return type(self)(Fraction.__neg__(self, *args))
+        return type(self)(fractions.Fraction.__neg__(self, *args))
 
     def __pos__(self, *args):
-        return type(self)(Fraction.__pos__(self, *args))
+        return type(self)(fractions.Fraction.__pos__(self, *args))
 
     def __pow__(self, *args):
-        return type(self)(Fraction.__pow__(self, *args))
+        return type(self)(fractions.Fraction.__pow__(self, *args))
 
     def __radd__(self, *args):
-        return type(self)(Fraction.__radd__(self, *args))
+        return type(self)(fractions.Fraction.__radd__(self, *args))
 
     def __rdiv__(self, *args):
-        return type(self)(Fraction.__rdiv__(self, *args))
+        return type(self)(fractions.Fraction.__rdiv__(self, *args))
 
     def __rdivmod__(self, *args):
-        return type(self)(Fraction.__rdivmod__(self, *args))
+        return type(self)(fractions.Fraction.__rdivmod__(self, *args))
 
     def __reduce__(self):
         return self.__class__, (self.numerator, self.denominator)
@@ -207,28 +206,28 @@ class Duration(ImmutableAbjadObject, Fraction):
         return '%s(%s, %s)' % (type(self).__name__, self.numerator, self.denominator)
 
     def __rmod__(self, *args):
-        return type(self)(Fraction.__rmod__(self, *args))
+        return type(self)(fractions.Fraction.__rmod__(self, *args))
 
     def __rmul__(self, *args):
-        return type(self)(Fraction.__rmul__(self, *args))
+        return type(self)(fractions.Fraction.__rmul__(self, *args))
 
     def __rpow__(self, *args):
-        return type(self)(Fraction.__rpow__(self, *args))
+        return type(self)(fractions.Fraction.__rpow__(self, *args))
 
     def __rsub__(self, *args):
-        return type(self)(Fraction.__rsub__(self, *args))
+        return type(self)(fractions.Fraction.__rsub__(self, *args))
 
     def __rtruediv__(self, *args):
-        return type(self)(Fraction.__rtruediv__(self, *args))
+        return type(self)(fractions.Fraction.__rtruediv__(self, *args))
 
     def __sub__(self, *args):
         if len(args) == 1 and isinstance(args[0], mathtools.NonreducedFraction):
             return args[0].__rsub__(self)
         else:
-            return type(self)(Fraction.__sub__(self, *args))
+            return type(self)(fractions.Fraction.__sub__(self, *args))
 
     def __truediv__(self, *args):
-        return type(self)(Fraction.__truediv__(self, *args))
+        return type(self)(fractions.Fraction.__truediv__(self, *args))
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 
@@ -266,14 +265,14 @@ class Duration(ImmutableAbjadObject, Fraction):
 
         try:
             body_denominator = int(body_string)
-            body_duration = Fraction(1, body_denominator)
+            body_duration = fractions.Fraction(1, body_denominator)
         except ValueError:
             if body_string == r'\breve':
-                body_duration = Fraction(2)
+                body_duration = fractions.Fraction(2)
             elif body_string == r'\longa':
-                body_duration = Fraction(4)
+                body_duration = fractions.Fraction(4)
             elif body_string == r'\maxima':
-                body_duration = Fraction(8)
+                body_duration = fractions.Fraction(8)
             else:
                 raise ValueError('unknown body string %s.' % body_string)
 
@@ -281,7 +280,7 @@ class Duration(ImmutableAbjadObject, Fraction):
         for n in range(len(dots_string)):
             exponent = n + 1
             denominator = 2 ** exponent
-            multiplier = Fraction(1, denominator)
+            multiplier = fractions.Fraction(1, denominator)
             addend = multiplier * body_duration
             rational += addend
 
