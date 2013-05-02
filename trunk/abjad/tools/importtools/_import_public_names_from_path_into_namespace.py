@@ -15,6 +15,7 @@ def _import_public_names_from_path_into_namespace(path, namespace, package_root_
     Do not inspect lower levels of path.
     '''
 
+    package_root_name += os.sep
     module = path[path.rindex(package_root_name):]
     module = module.replace(os.sep, '.')
 
