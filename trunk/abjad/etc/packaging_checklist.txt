@@ -60,8 +60,7 @@ Abjad packaging checklist:
         find-nonalphabetized-class-method-names
         fix-test-cases
         find-and-fix-manual-class-package-initializers
-            (do NOT run on tools/abjadbooktools; or else revert __init__.py changes afer running)
-            (change packge_root_name='abjad' manually before running against experimental)
+            (change packge_root_name='experimental' manually before running against experimental)
         find-duplicate-modules-names
         find-import-as-statements
         find-import-from-stdlib-statements
@@ -88,7 +87,6 @@ Abjad packaging checklist:
         find-missing-test-modules
             (we can run this before builds but we don't really care about the output)
         find-multiline-import-statements (coding standards now allow multiline import statements)
-        find-module-headers
     Test and commit. Alternately you may want to test after each script runs.
     Then run the matinenance scripts on the experimental branch.
     Then test and commit.
