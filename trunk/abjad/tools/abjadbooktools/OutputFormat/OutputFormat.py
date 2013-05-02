@@ -1,9 +1,9 @@
 import abc
 import os
-from abjad.tools import abctools
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class OutputFormat(abctools.AbjadObject):
+class OutputFormat(AbjadObject):
 
     ### CLASS ATTRIBUTES ###
 
