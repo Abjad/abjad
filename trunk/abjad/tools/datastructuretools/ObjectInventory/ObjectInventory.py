@@ -1,5 +1,5 @@
-from abjad.tools.abctools.AbjadObject import AbjadObject
 import types
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class ObjectInventory(list, AbjadObject):
@@ -15,6 +15,10 @@ class ObjectInventory(list, AbjadObject):
     This class is an abstract base class that can not instantiate
     and should be subclassed.
     '''
+
+    ### CLASS ATTRIBUTES ###
+
+    __slots__ = ('_name', )
 
     ### INITIALIZER ###
 
