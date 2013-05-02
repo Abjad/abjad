@@ -1,9 +1,5 @@
-from AbjadBookProcessor import AbjadBookProcessor
-from AbjadBookScript import AbjadBookScript
-from CodeBlock import CodeBlock
-from HTMLOutputFormat import HTMLOutputFormat
-from LaTeXOutputFormat import LaTeXOutputFormat
-from OutputFormat import OutputFormat
-from ReSTOutputFormat import ReSTOutputFormat
+from abjad.tools import importtools
+
+importtools.import_structured_package(__path__[0], globals(), package_root_name='abjad')
 
 _documentation_section = 'internals'

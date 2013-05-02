@@ -1,14 +1,11 @@
-from abjad.tools.abjadbooktools.HTMLOutputFormat import HTMLOutputFormat
-from abjad.tools.abjadbooktools.LaTeXOutputFormat import LaTeXOutputFormat
-from abjad.tools.abjadbooktools.ReSTOutputFormat import ReSTOutputFormat
-from abjad.tools import developerscripttools
 import argparse
 import os
 import sys
 import traceback
+from abjad.tools.developerscripttools.DeveloperScript import DeveloperScript
 
 
-class AbjadBookScript(developerscripttools.DeveloperScript):
+class AbjadBookScript(DeveloperScript):
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -76,11 +73,12 @@ EXAMPLES
 
     @property
     def output_formats(self):
+        from abjad.tools import abjadbooktools
         return {
-            'htm': HTMLOutputFormat,
-            'html': HTMLOutputFormat,
-            'rst': ReSTOutputFormat,
-            'tex': LaTeXOutputFormat,
+            'htm': abjadbooktools.HTMLOutputFormat,
+            'html': abjadbooktools.HTMLOutputFormat,
+            'rst': abjadbooktools.ReSTOutputFormat,
+            'tex': abjadbooktools.LaTeXOutputFormat,
         }
 
     @property
