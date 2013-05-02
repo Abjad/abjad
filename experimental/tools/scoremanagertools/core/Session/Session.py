@@ -206,7 +206,9 @@ class Session(abctools.AbjadObject):
 
     @property
     def transcript(self):
-        return self.complete_transcript.short_transcript
+        entries = self.complete_transcript.entries
+        short_transcript = [entry[1] for entry in entries]
+        return short_transcript
 
     @property
     def transcript_signature(self):

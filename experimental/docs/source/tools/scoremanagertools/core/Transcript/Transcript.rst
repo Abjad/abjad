@@ -15,9 +15,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.core.Transcript.Transcript.Transcript.entries
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.core.Transcript.Transcript.Transcript.short_transcript
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.core.Transcript.Transcript.Transcript.signature
    :noindex:
 

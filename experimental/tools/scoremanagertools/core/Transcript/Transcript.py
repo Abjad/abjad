@@ -29,19 +29,16 @@ class Transcript(AbjadObject):
         return self._entries
 
     @property
-    def short_transcript(self):
-        return [entry[1] for entry in self.entries]
-
-    @property
     def signature(self):
         result = []
-        result.append(len(self.short_transcript))
+        short_transcript = [entry[1] for entry in self.entries]
+        result.append(len(short_transcript))
         indices_already_encountered = set([])
-        for i in range(len(self.short_transcript)):
+        for i in range(len(short_transcript)):
             if i not in indices_already_encountered:
                 shared_indices = [i]
-                reference_element = self.short_transcript[i]
-                for j, current_element in enumerate(self.short_transcript):
+                reference_element = short_transcript[i]
+                for j, current_element in enumerate(short_transcript):
                     if current_element == reference_element:
                         if i != j:
                             shared_indices.append(j)
