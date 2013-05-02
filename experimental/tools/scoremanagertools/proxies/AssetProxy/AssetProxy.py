@@ -49,10 +49,6 @@ class AssetProxy(ScoreManagerObject):
         return False
 
     @property
-    def space_delimited_lowercase_name(self):
-        return self.name
-
-    @property
     def is_versioned(self):
         if self.asset_path is None:
             return False
@@ -89,6 +85,10 @@ class AssetProxy(ScoreManagerObject):
         return stringtools.pluralize_string(self.generic_class_name)
 
     @property
+    def space_delimited_lowercase_name(self):
+        return self.name
+
+    @property
     def svn_add_command(self):
         if self.asset_path:
             return 'svn add {}'.format(self.asset_path)
@@ -120,11 +120,6 @@ class AssetProxy(ScoreManagerObject):
     @abc.abstractmethod
     def fix(self):
         pass
-
-    def space_delimited_lowercase_name_to_asset_name(self, space_delimited_lowercase_name):
-        asset_name = space_delimited_lowercase_name.lower()
-        asset_name = asset_name.replace(' ', '_')
-        return asset_name
 
     @abc.abstractmethod
     def profile(self):
@@ -229,6 +224,11 @@ class AssetProxy(ScoreManagerObject):
             self.io.display(lines)
         line = 'tests run.'
         self.io.proceed(line, is_interactive=prompt)
+
+    def space_delimited_lowercase_name_to_asset_name(self, space_delimited_lowercase_name):
+        asset_name = space_delimited_lowercase_name.lower()
+        asset_name = asset_name.replace(' ', '_')
+        return asset_name
 
     def svn_add(self, is_interactive=False):
         if is_interactive:

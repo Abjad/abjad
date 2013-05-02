@@ -49,10 +49,6 @@ class ModuleProxy(ParsableFileProxy, AssetProxy, ScoreManagerObject):
             return '.'.join(self.module_path.split('.')[:-2])
 
     @property
-    def space_delimited_lowercase_name(self):
-        return stringtools.string_to_space_delimited_lowercase(self.name_without_extension)
-
-    @property
     def module_name(self):
         if self.module_path:
             return self.module_path.split('.')[-1]
@@ -77,13 +73,11 @@ class ModuleProxy(ParsableFileProxy, AssetProxy, ScoreManagerObject):
         if self.module_path:
             return '.'.join(self.module_path.split('.')[:-1])
 
-    ### PUBLIC METHODS ###
+    @property
+    def space_delimited_lowercase_name(self):
+        return stringtools.string_to_space_delimited_lowercase(self.name_without_extension)
 
-    def space_delimited_lowercase_name_to_asset_name(self, space_delimited_lowercase_name):
-        asset_name = ParsableFileProxy.space_delimited_lowercase_name_to_asset_name(
-            self, space_delimited_lowercase_name)
-        asset_name += '.py'
-        return asset_name
+    ### PUBLIC METHODS ###
 
     def run_abjad(self, prompt=True):
         os.system('abjad {}'.format(self.file_path))
@@ -92,6 +86,12 @@ class ModuleProxy(ParsableFileProxy, AssetProxy, ScoreManagerObject):
     def run_python(self, prompt=True):
         os.system('python {}'.format(self.file_path))
         self.io.proceed('file executed.', is_interactive=prompt)
+
+    def space_delimited_lowercase_name_to_asset_name(self, space_delimited_lowercase_name):
+        asset_name = ParsableFileProxy.space_delimited_lowercase_name_to_asset_name(
+            self, space_delimited_lowercase_name)
+        asset_name += '.py'
+        return asset_name
 
     def unimport(self):
         self.remove_package_path_from_sys_modules(self.module_path)

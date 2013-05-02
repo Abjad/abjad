@@ -46,22 +46,6 @@ class ScorePackageProxy(PackageProxy):
         return self.annotated_title
 
     @property
-    def segment_wrangler(self):
-        return self._segment_wrangler
-
-    @property
-    def segments_directory_path(self):
-        return os.path.join(self.directory_path, 'mus', 'chunks')
-
-    @property
-    def segments_package_initializer_file_name(self):
-        return os.path.join(self.segments_directory_path, '__init__.py')
-
-    @property
-    def segments_package_path(self):
-        return '.'.join([self.package_path, 'mus', 'chunks'])
-
-    @property
     def composer(self):
         return self.get_tag('composer')
 
@@ -138,6 +122,22 @@ class ScorePackageProxy(PackageProxy):
             self.segment_wrangler,
             self.material_package_wrangler,
             )
+
+    @property
+    def segment_wrangler(self):
+        return self._segment_wrangler
+
+    @property
+    def segments_directory_path(self):
+        return os.path.join(self.directory_path, 'mus', 'chunks')
+
+    @property
+    def segments_package_initializer_file_name(self):
+        return os.path.join(self.segments_directory_path, '__init__.py')
+
+    @property
+    def segments_package_path(self):
+        return '.'.join([self.package_path, 'mus', 'chunks'])
 
     @property
     def tempo_inventory(self):

@@ -26,13 +26,6 @@ class TargetManifest(object):
         return self._attribute_details
 
     @property
-    def space_delimited_lowercase_attribute_names(self):
-        result = []
-        for attribute_detail in self.attribute_details:
-            result.append(attribute_detail.space_delimited_lowercase_name)
-        return result
-
-    @property
     def attribute_menu_keys(self):
         result = []
         for attribute_detail in self.attribute_details:
@@ -90,6 +83,13 @@ class TargetManifest(object):
         for attribute_detail in self.attribute_details:
             if attribute_detail.is_positional:
                 result.append(attribute_detail.retrievable_name)
+        return result
+
+    @property
+    def space_delimited_lowercase_attribute_names(self):
+        result = []
+        for attribute_detail in self.attribute_details:
+            result.append(attribute_detail.space_delimited_lowercase_name)
         return result
 
     ### PUBLIC METHODS ###

@@ -64,10 +64,6 @@ class AssetWrangler(ScoreManagerObject):
         pass
 
     @property
-    def space_delimited_lowercase_asset_class_name(self):
-        return string.string_to_space_delimited_lowercase(self.asset_class.__name__)
-
-    @property
     def asset_class_space_delimited_lowercase_plural_name(self):
         return stringtools.pluralize_string(self.space_delimited_lowercase_asset_class_name)
 
@@ -76,10 +72,6 @@ class AssetWrangler(ScoreManagerObject):
         return PackageProxy
 
     # current asset container #
-
-    @property
-    def current_asset_container_space_delimited_lowercase_name(self):
-        return self.asset_path_to_space_delimited_lowercase_name(self.current_asset_container_path)
 
     @property
     def current_asset_container_package_path(self):
@@ -99,17 +91,23 @@ class AssetWrangler(ScoreManagerObject):
     def current_asset_container_proxy(self):
         return self.asset_container_class(self.current_asset_container_package_path)
 
+    @property
+    def current_asset_container_space_delimited_lowercase_name(self):
+        return self.asset_path_to_space_delimited_lowercase_name(self.current_asset_container_path)
+
     # infix #
 
     @property
     def score_internal_asset_container_package_path_infix(self):
         return self._score_internal_asset_container_package_path_infix
 
-    # temporary asset #
+    # other # 
 
     @property
-    def temporary_space_delimited_lowercase_asset_name(self):
-        return self.asset_path_to_space_delimited_lowercase_name(self.temporary_asset_path)
+    def space_delimited_lowercase_asset_class_name(self):
+        return string.string_to_space_delimited_lowercase(self.asset_class.__name__)
+
+    # temporary asset #
 
     @abc.abstractproperty
     def temporary_asset_name(self):
@@ -122,6 +120,10 @@ class AssetWrangler(ScoreManagerObject):
     @property
     def temporary_asset_proxy(self):
         return self.get_asset_proxy(self.temporary_asset_package_path)
+
+    @property
+    def temporary_space_delimited_lowercase_asset_name(self):
+        return self.asset_path_to_space_delimited_lowercase_name(self.temporary_asset_path)
 
     ### PUBLIC METHODS ###
 
@@ -174,12 +176,6 @@ class AssetWrangler(ScoreManagerObject):
 
     # asset containers (all) #
 
-    def list_space_delimited_lowercase_asset_container_names(self, head=None):
-        result = []
-        result.extend(self.list_space_delimited_lowercase_score_external_asset_container_names(head=head))
-        result.extend(self.list_score_internal_asset_container_space_delimited_lowercase_names(head=head))
-        return result
-
     def list_asset_container_package_paths(self, head=None):
         result = []
         result.extend(self.list_score_external_asset_container_package_paths(head=head))
@@ -200,12 +196,6 @@ class AssetWrangler(ScoreManagerObject):
 
     # assets (all) #
 
-    def list_asset_space_delimited_lowercase_names(self, head=None):
-        result = []
-        for asset_path in self.list_asset_paths(head=head):
-            result.append(self.asset_path_to_space_delimited_lowercase_name(asset_path))
-        return result
-
     def list_asset_paths(self, head=None):
         result = []
         if head in (None,) + self.configuration.score_external_package_paths:
@@ -221,13 +211,13 @@ class AssetWrangler(ScoreManagerObject):
             result.append(asset_proxy)
         return result
 
-    # score-external asset containers #
-
-    def list_space_delimited_lowercase_score_external_asset_container_names(self, head=None):
+    def list_asset_space_delimited_lowercase_names(self, head=None):
         result = []
-        for asset_path in self.list_score_external_asset_container_paths(head=head):
+        for asset_path in self.list_asset_paths(head=head):
             result.append(self.asset_path_to_space_delimited_lowercase_name(asset_path))
         return result
+
+    # score-external asset containers #
 
     def list_score_external_asset_container_package_paths(self, head=None):
         result = []
@@ -252,12 +242,6 @@ class AssetWrangler(ScoreManagerObject):
 
     # score-external assets #
 
-    def list_score_external_asset_space_delimited_lowercase_names(self, head=None):
-        result = []
-        for asset_path in self.list_score_external_asset_paths(head=head):
-            result.append(self.asset_path_to_space_delimited_lowercase_name(asset_path))
-        return result
-
     def list_score_external_asset_paths(self, head=None):
         result = []
         for asset_path in self.list_score_external_asset_container_paths(head=head):
@@ -273,13 +257,13 @@ class AssetWrangler(ScoreManagerObject):
             result.append(asset_proxy)
         return result
 
-    # score-internal asset containers #
-
-    def list_score_internal_asset_container_space_delimited_lowercase_names(self, head=None):
+    def list_score_external_asset_space_delimited_lowercase_names(self, head=None):
         result = []
-        for asset_path in self.list_score_internal_asset_container_paths(head=head):
+        for asset_path in self.list_score_external_asset_paths(head=head):
             result.append(self.asset_path_to_space_delimited_lowercase_name(asset_path))
         return result
+
+    # score-internal asset containers #
 
     def list_score_internal_asset_container_package_paths(self, head=None):
         result = []
@@ -306,13 +290,13 @@ class AssetWrangler(ScoreManagerObject):
             result.append(asset_container_proxy)
         return result
 
-    # score-internal assets #
-
-    def list_score_internal_asset_space_delimited_lowercase_names(self, head=None):
+    def list_score_internal_asset_container_space_delimited_lowercase_names(self, head=None):
         result = []
-        for asset_path in self.list_score_internal_asset_paths(head=head):
+        for asset_path in self.list_score_internal_asset_container_paths(head=head):
             result.append(self.asset_path_to_space_delimited_lowercase_name(asset_path))
         return result
+
+    # score-internal assets #
 
     def list_score_internal_asset_paths(self, head=None):
         result = []
@@ -329,6 +313,12 @@ class AssetWrangler(ScoreManagerObject):
             result.append(asset_proxy)
         return result
 
+    def list_score_internal_asset_space_delimited_lowercase_names(self, head=None):
+        result = []
+        for asset_path in self.list_score_internal_asset_paths(head=head):
+            result.append(self.asset_path_to_space_delimited_lowercase_name(asset_path))
+        return result
+
     # utility method #
 
     def list_score_package_names(self, head=None):
@@ -341,15 +331,21 @@ class AssetWrangler(ScoreManagerObject):
                     result.append(name)
         return result
 
-    ### BEGIN NEW ###
+    # space-delimited stuff #
 
-    # user asset containers #
-
-    def list_user_asset_container_space_delimited_lowercase_names(self, head=None):
+    def list_space_delimited_lowercase_asset_container_names(self, head=None):
         result = []
-        for asset_path in self.list_user_asset_container_paths(head=head):
+        result.extend(self.list_space_delimited_lowercase_score_external_asset_container_names(head=head))
+        result.extend(self.list_score_internal_asset_container_space_delimited_lowercase_names(head=head))
+        return result
+
+    def list_space_delimited_lowercase_score_external_asset_container_names(self, head=None):
+        result = []
+        for asset_path in self.list_score_external_asset_container_paths(head=head):
             result.append(self.asset_path_to_space_delimited_lowercase_name(asset_path))
         return result
+
+    # user asset containers #
 
     def list_user_asset_container_package_paths(self, head=None):
         result = []
@@ -372,13 +368,13 @@ class AssetWrangler(ScoreManagerObject):
             result.append(asset_container_proxy)
         return result
 
-    # user assets #
-
-    def list_user_asset_space_delimited_lowercase_names(self, head=None):
+    def list_user_asset_container_space_delimited_lowercase_names(self, head=None):
         result = []
-        for asset_path in self.list_user_asset_paths(head=head):
+        for asset_path in self.list_user_asset_container_paths(head=head):
             result.append(self.asset_path_to_space_delimited_lowercase_name(asset_path))
         return result
+
+    # user assets #
 
     def list_user_asset_paths(self, head=None):
         result = []
@@ -395,21 +391,25 @@ class AssetWrangler(ScoreManagerObject):
             result.append(asset_proxy)
         return result
 
-    ### END NEW ###
-
-    # visible assets #
-
-    def list_visible_asset_space_delimited_lowercase_names(self, head=None):
+    def list_user_asset_space_delimited_lowercase_names(self, head=None):
         result = []
-        for asset_path in self.list_visible_asset_paths(head=head):
+        for asset_path in self.list_user_asset_paths(head=head):
             result.append(self.asset_path_to_space_delimited_lowercase_name(asset_path))
         return result
+
+    # visible assets #
 
     def list_visible_asset_paths(self, head=None):
         return self.list_asset_paths(head=head)
 
     def list_visible_asset_proxies(self, head=None):
         return self.list_asset_proxies(head=head)
+
+    def list_visible_asset_space_delimited_lowercase_names(self, head=None):
+        result = []
+        for asset_path in self.list_visible_asset_paths(head=head):
+            result.append(self.asset_path_to_space_delimited_lowercase_name(asset_path))
+        return result
 
     # other #
 

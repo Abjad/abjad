@@ -60,10 +60,6 @@ class PackageProxy(DirectoryProxy, AssetProxy, ScoreManagerObject):
         return os.path.isfile(self.tags_file_name)
 
     @property
-    def space_delimited_lowercase_name(self):
-        return self.name.replace('_', ' ')
-
-    @property
     def imported_package(self):
         return __import__(self.package_path, fromlist=['*'])
 
@@ -114,6 +110,10 @@ class PackageProxy(DirectoryProxy, AssetProxy, ScoreManagerObject):
             if not key.startswith('_'):
                 result.append(imported_package_vars[key])
         return result
+
+    @property
+    def space_delimited_lowercase_name(self):
+        return self.name.replace('_', ' ')
 
     @property
     def tags_file_name(self):

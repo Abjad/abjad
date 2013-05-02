@@ -40,6 +40,10 @@ class InteractiveEditor(ScoreManagerObject):
         return self.target is not None
 
     @property
+    def space_delimited_lowercase_target_class_name(self):
+        return stringtools.string_to_space_delimited_lowercase(self.target_class.__name__)
+
+    @property
     def target_attribute_names(self):
         result = []
         if hasattr(self, 'target_manifest'):
@@ -56,10 +60,6 @@ class InteractiveEditor(ScoreManagerObject):
     @property
     def target_class(self):
         return self.target_manifest.target_class
-
-    @property
-    def space_delimited_lowercase_target_class_name(self):
-        return stringtools.string_to_space_delimited_lowercase(self.target_class.__name__)
 
     @property
     def target_keyword_attribute_names(self):

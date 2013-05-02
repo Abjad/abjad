@@ -35,12 +35,6 @@ class StylesheetFileProxy(FileProxy):
         else:
             raise ValueError
 
-    def space_delimited_lowercase_name_to_asset_name(self, space_delimited_lowercase_name):
-        asset_name = FileProxy.space_delimited_lowercase_name_to_asset_name(self, space_delimited_lowercase_name)
-        if not asset_name.endswith(self.extension):
-            asset_name += self.extension
-        return asset_name
-
     def make_main_menu(self):
         menu, section = self.io.make_menu(where=self.where)
         section.append(('cp', 'copy stylesheet'))
@@ -52,3 +46,9 @@ class StylesheetFileProxy(FileProxy):
 
     def profile(self):
         self.print_not_yet_implemented()
+
+    def space_delimited_lowercase_name_to_asset_name(self, space_delimited_lowercase_name):
+        asset_name = FileProxy.space_delimited_lowercase_name_to_asset_name(self, space_delimited_lowercase_name)
+        if not asset_name.endswith(self.extension):
+            asset_name += self.extension
+        return asset_name

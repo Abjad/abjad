@@ -32,10 +32,6 @@ class ScoreManager(ScoreManagerObject):
         return 'scores'
 
     @property
-    def segment_package_wrangler(self):
-        return self._segment_package_wrangler
-
-    @property
     def material_package_maker_wrangler(self):
         return self._material_package_maker_wrangler
 
@@ -54,6 +50,10 @@ class ScoreManager(ScoreManagerObject):
     @property
     def score_status_string(self):
         return '{} scores'.format(self.session.scores_to_show)
+
+    @property
+    def segment_package_wrangler(self):
+        return self._segment_package_wrangler
 
     @property
     def stylesheet_file_wrangler(self):
