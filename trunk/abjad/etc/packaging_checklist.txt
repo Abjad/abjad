@@ -86,7 +86,8 @@ Abjad packaging checklist:
         find-multifunction-modules
     These are no longer the standard but might as well be kept around just in case:
         find-missing-test-modules
-        find-multiline-import-statements
+            (we can run this before builds but we don't really care about the output)
+        find-multiline-import-statements (coding standards now allow multiline import statements)
         find-module-headers
     Test and commit. Alternately you may want to test after each script runs.
     Then run the matinenance scripts on the experimental branch.

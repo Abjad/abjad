@@ -1,7 +1,6 @@
 #! /usr/bin/env python
 
 import os
-from abjad import ABJCFG
 from abjad.tools import iotools
 
 
@@ -22,23 +21,14 @@ def _main():
                     elif line == '\n' or line.startswith('py.test'):
                         break
                     else:
-                        print ''
-                        print total_module_headers
-                        print ''
-                        print full_file_name
-                        print header_lines
-                        print 'This line is problematic: {!r}'.format(line)
-                        print ''
-                        raise Exception
+                        header_lines.append(line)
                 if header_lines:
                     total_module_headers += 1
-                    print header_lines
-                    print ''
-    print total_module_headers
+    print 'Total module headers: {}'.format(total_module_headers)
 
 
 if __name__ == '__main__':
     iotools.clear_terminal()
     print 'Finding module headers ...'
-    print ''
     _main()
+    print ''

@@ -30,12 +30,15 @@ def _find_multiline_import_statements():
                             within_multiline_import, constituent_lines = False, [ ]
             if found_import_statement_in_file:
                 print ''
-    print 'Total multilline import statements: %s' % total_multiline_import_statements
+    print 'Total multiline import statements: %s' % total_multiline_import_statements
     print ''
 
 
 if __name__ == '__main__':
     iotools.clear_terminal()
-    print 'Finding multiline import statements ...'
+    #print 'Finding multiline import statements ...'
+    #print ''
+    #_find_multiline_import_statements()
+    print 'Coding standards now allow multiline import statements.'
+    print 'So running this script is no longer recommended.'
     print ''
-    _find_multiline_import_statements()
