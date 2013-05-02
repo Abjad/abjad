@@ -1,10 +1,10 @@
-from collections import OrderedDict
+import collections
 from abjad.tools import iterationtools
 from abjad.tools import scoretools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class VoiceDictionary(AbjadObject, OrderedDict):
+class VoiceDictionary(AbjadObject, collections.OrderedDict):
     '''Voice dictionary.
     '''
 
@@ -12,7 +12,7 @@ class VoiceDictionary(AbjadObject, OrderedDict):
 
     def __init__(self, score):
         assert isinstance(score, scoretools.Score), repr(score)
-        OrderedDict.__init__(self)
+        collections.OrderedDict.__init__(self)
         self._score = score
         self._initialize_voice_proxies()
 
@@ -26,7 +26,7 @@ class VoiceDictionary(AbjadObject, OrderedDict):
         from experimental.tools import musicexpressiontools
         assert isinstance(key, str), repr(key)
         assert isinstance(value, musicexpressiontools.VoiceProxy), repr(value)
-        OrderedDict.__setitem__(self, key, value)
+        collections.OrderedDict.__setitem__(self, key, value)
 
     ### PRIVATE METHODS ###
 

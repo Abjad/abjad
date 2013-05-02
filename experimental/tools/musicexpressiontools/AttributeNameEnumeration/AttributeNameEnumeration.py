@@ -1,7 +1,7 @@
-from collections import OrderedDict
+import collections
 
 
-class AttributeNameEnumeration(OrderedDict):
+class AttributeNameEnumeration(collections.OrderedDict):
     r'''Attribute name enumeration.
 
     The allowable attribute names known to the ``musicexpressiontools`` classes:
@@ -42,6 +42,6 @@ class AttributeNameEnumeration(OrderedDict):
     ### INITIALIZER ###
 
     def __init__(self):
-        OrderedDict.__init__(self)
+        collections.OrderedDict.__init__(self)
         for i, attribute in enumerate(sorted(self.attributes)):
             self[attribute] = i

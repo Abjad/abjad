@@ -73,35 +73,33 @@
 
 26. Audit the UI of the entire materials management system by hand.
 
-27. Audit all __init__.py files and make all autoloading.
-
-28. Rename experimental/materials to experimental/system_materials.
+27. Rename experimental/materials to experimental/system_materials.
     Rename experimental/specifiers to experimental/system_specifiers.
 
-29. Change 'chunks' globally to 'segments'.
+28. Change 'chunks' globally to 'segments'.
 
-30. Move ScoreManagerObject.package_path_to_directory_path() to ScoreManagerConfiguration.
+29. Move ScoreManagerObject.package_path_to_directory_path() to ScoreManagerConfiguration.
     Then see if it's possible to change ...
         class PackageProxy(DirectoryProxy, AssetProxy, ScoreManagerObject)
     ... to ...
         class PackageProxy(DirectoryProxy, AssetProxy)
     ... instead.
 
-31. Remove Session.transcript.
+30. Remove Session.transcript.
     Change Session.complete_transcript to Session.transcript.
     Remove concept of 'short transcript' altogether.
 
-32. Currently MaterialPackageMaker inherits from MaterialPackageProxy.
+31. Currently MaterialPackageMaker inherits from MaterialPackageProxy.
     Maybe MaterialPackageMaker should *have* a MaterialPackageProxy instead.
     This would clean up the inheritance schema somewhat.
 
-33. Currently PackageProxy inherits from both DirectoryProxy and AssetProxy.
+32. Currently PackageProxy inherits from both DirectoryProxy and AssetProxy.
     Maybe PackageProxy needs to inherit from only DirectoryProxy.
     Likewise for ModuleProxy in relation to FileProxy and AssetProxy.
 
-34. The wrangler inheritance hierarchy is confused.
+33. The wrangler inheritance hierarchy is confused.
     Look at the inheritance diagram given at AssetWrangler.html and rewire as appropriate.
 
-35. Replace 'score-internal' with something else.
+34. Replace 'score-internal' with something else.
     Replace 'score-external' with something else.
     Perhaps 'score-external' becomes 'system' and 'score-internal' becomes 'score'.

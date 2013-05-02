@@ -1,10 +1,10 @@
-from collections import OrderedDict
+import collections
 from abjad.tools import iterationtools
 from abjad.tools import scoretools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class ContextDictionary(AbjadObject, OrderedDict):
+class ContextDictionary(AbjadObject, collections.OrderedDict):
     '''Context dictionary.
     '''
 
@@ -12,7 +12,7 @@ class ContextDictionary(AbjadObject, OrderedDict):
 
     def __init__(self, score):
         assert isinstance(score, scoretools.Score), repr(score)
-        OrderedDict.__init__(self)
+        collections.OrderedDict.__init__(self)
         self._score = score
         self._initialize_single_context_set_expressions_by_context()
 
@@ -20,9 +20,9 @@ class ContextDictionary(AbjadObject, OrderedDict):
 
     def __getitem__(self, expr):
         if expr is None:
-            return OrderedDict.__getitem__(self, self.score_name)
+            return collections.OrderedDict.__getitem__(self, self.score_name)
         else:
-            return OrderedDict.__getitem__(self, expr)
+            return collections.OrderedDict.__getitem__(self, expr)
 
     def __repr__(self):
         contents = ', '.join([repr(x) for x in self])
@@ -32,7 +32,7 @@ class ContextDictionary(AbjadObject, OrderedDict):
         from experimental.tools import musicexpressiontools
         assert isinstance(key, str), repr(key)
         assert isinstance(value, musicexpressiontools.ContextProxy), repr(value)
-        OrderedDict.__setitem__(self, key, value)
+        collections.OrderedDict.__setitem__(self, key, value)
 
     ### PRIVATE METHODS ###
 
