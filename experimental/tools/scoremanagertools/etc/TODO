@@ -103,3 +103,7 @@
 34. Replace 'score-internal' with something else.
     Replace 'score-external' with something else.
     Perhaps 'score-external' becomes 'system' and 'score-internal' becomes 'score'.
+
+35. Make filesystemtools.package_directory_to_directory_path() configuration argument optional.
+
+36. Change filesystemtools to packagepathtools.
