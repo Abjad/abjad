@@ -35,9 +35,9 @@ def test_ModuleProxy_public_attributes_02():
     '''With path.
     '''
 
-    score_manager_object = scoremanagertools.core.ScoreManagerObject()
+    configuration = scoremanagertools.core.ScoreManagerConfiguration()
     module_path = '.'.join([
-        score_manager_object.configuration.score_external_materials_package_path, 'red_notes', 'material_definition'])
+        configuration.score_external_materials_package_path, 'red_notes', 'material_definition'])
     proxy = scoremanagertools.proxies.ModuleProxy(module_path=module_path)
 
     assert proxy.breadcrumb == 'material_definition.py'

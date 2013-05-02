@@ -497,6 +497,7 @@ Unstable packages (load manually)
    .. toctree::
       :maxdepth: 1
 
+      tools/scoremanagertools/core/ScoreManagerObject/ScoreManagerObject
       tools/scoremanagertools/proxies/AssetProxy/AssetProxy
       tools/scoremanagertools/specifiers/DynamicSpecifier/DynamicSpecifier
       tools/scoremanagertools/specifiers/ParameterSpecifier/ParameterSpecifier
@@ -515,7 +516,6 @@ Unstable packages (load manually)
 
       tools/scoremanagertools/core/IO/IO
       tools/scoremanagertools/core/ScoreManagerConfiguration/ScoreManagerConfiguration
-      tools/scoremanagertools/core/ScoreManagerObject/ScoreManagerObject
       tools/scoremanagertools/core/Session/Session
       tools/scoremanagertools/core/Transcript/Transcript
       tools/scoremanagertools/editors/ArticulationHandlerEditor/ArticulationHandlerEditor
@@ -704,6 +704,7 @@ Unstable packages (load manually)
 
    .. toctree::
 
+      tools/scoremanagertools/core/ScoreManagerObject/ScoreManagerObject
       tools/scoremanagertools/proxies/AssetProxy/AssetProxy
       tools/scoremanagertools/specifiers/DynamicSpecifier/DynamicSpecifier
       tools/scoremanagertools/specifiers/ParameterSpecifier/ParameterSpecifier
@@ -722,7 +723,6 @@ Unstable packages (load manually)
 
       tools/scoremanagertools/core/IO/IO
       tools/scoremanagertools/core/ScoreManagerConfiguration/ScoreManagerConfiguration
-      tools/scoremanagertools/core/ScoreManagerObject/ScoreManagerObject
       tools/scoremanagertools/core/Session/Session
       tools/scoremanagertools/core/Transcript/Transcript
       tools/scoremanagertools/editors/ArticulationHandlerEditor/ArticulationHandlerEditor

@@ -1,3 +1,4 @@
+import abc
 import inspect
 from abjad.tools import stringtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
@@ -9,10 +10,12 @@ class ScoreManagerObject(AbjadObject):
 
     ### CLASS ATTRIBUTES ###
 
+    __meta__ = abc.ABCMeta
     configuration = ScoreManagerConfiguration()
 
     ### INITIALIZER ###
 
+    @abc.abstractmethod
     def __init__(self, session=None):
         from experimental.tools import scoremanagertools
         self._session = session or scoremanagertools.core.Session()

@@ -107,3 +107,5 @@
 35. Make filesystemtools.package_directory_to_directory_path() configuration argument optional.
 
 36. Change filesystemtools to packagepathtools.
+
+37. Move remaining two test files out of ScoreManagerObject/test directory.
