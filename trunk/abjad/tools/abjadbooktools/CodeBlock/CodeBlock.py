@@ -1,9 +1,9 @@
-import os
+from abjad.tools import abctools
 from abjad.tools import documentationtools
-from abjad.tools.abctools.AbjadObject import AbjadObject
+import os
 
 
-class CodeBlock(AbjadObject):
+class CodeBlock(abctools.AbjadObject):
 
     ### CLASS ATTRIBUTES ###
 

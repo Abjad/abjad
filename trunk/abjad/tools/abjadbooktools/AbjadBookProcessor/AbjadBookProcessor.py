@@ -4,19 +4,20 @@ import os
 import shutil
 import subprocess
 import tempfile
+from abjad.tools import abctools
 from abjad.tools import sequencetools
 from abjad.tools import documentationtools
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.abjadbooktools.CodeBlock import CodeBlock
+from abjad.tools.abjadbooktools.OutputFormat import OutputFormat
 
 
-class AbjadBookProcessor(AbjadObject):
+class AbjadBookProcessor(abctools.AbjadObject):
 
     ### INITIALIZER ###
 
     def __init__(self, directory, lines, output_format, skip_rendering=False,
         image_prefix='image', verbose=False):
-        from abjad.tools import abjadbooktools
-        assert isinstance(output_format, abjadbooktools.OutputFormat)
+        assert isinstance(output_format, OutputFormat)
         self._current_code_line = 0
         self._total_code_lines = 0
         self._directory = os.path.abspath(directory)
@@ -134,8 +135,6 @@ class AbjadBookProcessor(AbjadObject):
         shutil.rmtree(tmp_directory)
 
     def _extract_code_blocks(self, lines):
-        from abjad.tools import abjadbooktools
-
         #print 'EXTRACT CODE BLOCKS'
         blocks = []
         block = []
@@ -156,7 +155,7 @@ class AbjadBookProcessor(AbjadObject):
                     hide = 'hide=true' in block[0]
                     strip_prompt = 'strip_prompt=true' in block[0]
                     stopping_line_number = i
-                    code_block = abjadbooktools.CodeBlock(
+                    code_block = CodeBlock(
                         block[1:],
                         starting_line_number,
                         stopping_line_number,
@@ -180,7 +179,7 @@ class AbjadBookProcessor(AbjadObject):
                 module = importlib.import_module(module_name)
                 attr = getattr(module, attr_name)
                 code_lines = inspect.getsource(attr).splitlines()
-                code_block = abjadbooktools.CodeBlock(
+                code_block = CodeBlock(
                     code_lines,
                     starting_line_number,
                     stopping_line_number,

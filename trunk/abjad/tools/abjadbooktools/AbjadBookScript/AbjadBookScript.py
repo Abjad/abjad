@@ -1,8 +1,11 @@
+from abjad.tools.abjadbooktools.HTMLOutputFormat import HTMLOutputFormat
+from abjad.tools.abjadbooktools.LaTeXOutputFormat import LaTeXOutputFormat
+from abjad.tools.abjadbooktools.ReSTOutputFormat import ReSTOutputFormat
+from abjad.tools import developerscripttools
 import argparse
 import os
 import sys
 import traceback
-from abjad.tools import developerscripttools
 
 
 class AbjadBookScript(developerscripttools.DeveloperScript):
@@ -73,12 +76,11 @@ EXAMPLES
 
     @property
     def output_formats(self):
-        from abjad.tools import abjadbooktools
         return {
-            'htm': abjadbooktools.HTMLOutputFormat,
-            'html': abjadbooktools.HTMLOutputFormat,
-            'rst': abjadbooktools.ReSTOutputFormat,
-            'tex': abjadbooktools.LaTeXOutputFormat,
+            'htm': HTMLOutputFormat,
+            'html': HTMLOutputFormat,
+            'rst': ReSTOutputFormat,
+            'tex': LaTeXOutputFormat,
         }
 
     @property
@@ -115,8 +117,7 @@ EXAMPLES
         return False
 
     def _process_filename(self, args, filename):
-        from abjad.tools import abjadbooktools
-
+        from abjad.tools.abjadbooktools.AbjadBookProcessor import AbjadBookProcessor
         input_filename = filename
         print 'Processing {!r}...'.format(os.path.relpath(input_filename))
         try:
@@ -127,7 +128,7 @@ EXAMPLES
             with open(input_filename, 'r') as f:
                 lines = f.read().split('\n')
             output_format = self.output_formats[file_extension]()
-            abjad_book_processor = abjadbooktools.AbjadBookProcessor(
+            abjad_book_processor = AbjadBookProcessor(
                 directory, lines, output_format,
                 skip_rendering=args.skip_rendering, image_prefix=image_prefix,
                 verbose=args.verbose)
