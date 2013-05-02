@@ -66,9 +66,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.temporary_space_delimited_lowercase_asset_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.transcript_signature
-   :noindex:
-
 Methods
 -------
 

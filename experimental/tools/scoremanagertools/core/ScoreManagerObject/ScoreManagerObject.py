@@ -42,10 +42,6 @@ class ScoreManagerObject(AbjadObject):
     def session(self):
         return self._session
 
-    @property
-    def transcript_signature(self):
-        return self.session.transcript.signature
-
     ### PUBLIC METHODS ###
 
     def where(self):
