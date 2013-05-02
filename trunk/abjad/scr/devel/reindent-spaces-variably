@@ -76,4 +76,3 @@ if __name__ == '__main__':
     iotools.clear_terminal()
     print 'REINDENTING...'
     _reindent(leading_tab, old_tab_size, new_tab_size)
-

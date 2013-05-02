@@ -92,16 +92,14 @@ def _reindent(file, path):
 
 
 def _print_results(reindented, indented, skipped):
-    print '%d FILE(S) REINDENTED' % len(reindented)
+    print '%d FILE(S) REINDENTED.' % len(reindented)
     for x in reindented:
         print '\t%s' % x
-    print '%d FILE(S) ALREADY INDENTED' % len(indented)
-    for x in indented:
-        print '\t%s' % x
-    print '%d FILE(S) SKIPPED DUE TO INCONSISTENT INDENTATION' % len(skipped)
-    for x in skipped:
-        print '\t%s' % x[0]
-        print '\t\t@ %s' % ', '.join([str(line_number + 1) for line_number in x[1]])
+    print '%d FILE(S) ALREADY INDENTED.' % len(indented)
+    print '%d FILE(S) SKIPPED DUE TO INCONSISTENT INDENTATION.' % len(skipped)
+    #for x in skipped:
+    #    print '\t%s' % x[0]
+    #    print '\t\t@ %s' % ', '.join([str(line_number + 1) for line_number in x[1]])
 
 
 if __name__ == '__main__':
