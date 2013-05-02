@@ -1,11 +1,17 @@
 import os
 
 
-def package_path_to_directory_path(package_path, configuration):
+def package_path_to_directory_path(package_path, configuration=None):
     '''Change `package_path` to directory path.
+    
+    When score manager configuration variables when `configuration` is none.
 
     Return string.
     '''
+    from experimental.tools.scoremanagertools import core
+
+    configuration = configuration or core.ScoreManagerConfiguration()
+    
     if package_path is None:
         return
     package_path_parts = package_path.split('.')

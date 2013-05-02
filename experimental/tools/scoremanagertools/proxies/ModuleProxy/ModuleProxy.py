@@ -1,21 +1,18 @@
 import os
 from abjad.tools import stringtools
 from experimental.tools import filesystemtools
-from experimental.tools.scoremanagertools.core.ScoreManagerObject import ScoreManagerObject
 from experimental.tools.scoremanagertools.menuing.UserInputGetter import UserInputGetter
 from experimental.tools.scoremanagertools.proxies.AssetProxy import AssetProxy
 from experimental.tools.scoremanagertools.proxies.ParsableFileProxy import ParsableFileProxy
 
 
-#class ModuleProxy(ParsableFileProxy, AssetProxy):
-class ModuleProxy(ParsableFileProxy, AssetProxy, ScoreManagerObject):
+class ModuleProxy(ParsableFileProxy, AssetProxy):
 
     ### INITIALIZER ###
 
     def __init__(self, module_path=None, session=None):
-        ScoreManagerObject.__init__(self, session=session)
         file_path = filesystemtools.module_path_to_file_path(module_path, self.configuration)
-        ParsableFileProxy.__init__(self, file_path=file_path, session=self.session)
+        ParsableFileProxy.__init__(self, file_path=file_path, session=session)
         AssetProxy.__init__(self, asset_path=file_path, session=self.session)
         self._module_path = module_path
 
