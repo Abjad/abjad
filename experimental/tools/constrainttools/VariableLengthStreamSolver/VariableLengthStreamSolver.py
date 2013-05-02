@@ -1,8 +1,7 @@
 import random
-
 from experimental.tools.constrainttools.Domain import Domain
 from experimental.tools.constrainttools._Constraint._Constraint import _Constraint
-from experimental.tools.constrainttools._SolutionNode._SolutionNode import _SolutionNode as Node
+from experimental.tools.constrainttools._SolutionNode._SolutionNode import _SolutionNode
 from experimental.tools.constrainttools._Solver._Solver import _Solver
 
 
@@ -80,7 +79,7 @@ class VariableLengthStreamSolver(_Solver):
                 if valid:
                     yield solution
                 for x in domain[0]:
-                    child = Node(x, parent=node, children=[])
+                    child = _SolutionNode(x, parent=node, children=[])
                     node.append(child)
                     for y in ordered_recurse(child, solution):
                         yield y
@@ -101,7 +100,7 @@ class VariableLengthStreamSolver(_Solver):
                         break
 
                 if valid and node.children is None:
-                    node.children = [Node(x, parent=node) for x in domain[0]]
+                    node.children = [_SolutionNode(x, parent=node) for x in domain[0]]
                     return solution
 
                 elif node.children == []:
@@ -109,7 +108,7 @@ class VariableLengthStreamSolver(_Solver):
 
                 else:
                     if node.children is None:
-                        node.children = [Node(x, parent=node) for x in domain[0]]
+                        node.children = [_SolutionNode(x, parent=node) for x in domain[0]]
                     result = random_recurse(random.choice(node.children), solution)
                     if isinstance(result, list):
                         return result
@@ -131,7 +130,7 @@ class VariableLengthStreamSolver(_Solver):
                 return node
 
         if self.randomized:
-            graphs = [Node(x) for x in domain[0]]
+            graphs = [_SolutionNode(x) for x in domain[0]]
             while graphs:
                 result = random_recurse(random.choice(graphs), [])
                 if isinstance(result, list):
@@ -140,11 +139,11 @@ class VariableLengthStreamSolver(_Solver):
                     solution, node = result
                     graphs.remove(node)
                     yield solution
-                elif isinstance(result, Node):
+                elif isinstance(result, _SolutionNode):
                     graphs.remove(result)
         else:
             for x in domain[0]:
-                node = Node(x, children=[])
+                node = _SolutionNode(x, children=[])
                 for y in ordered_recurse(node, ()):
                     yield y
 

@@ -1,8 +1,7 @@
 import random
-
 from experimental.tools.constrainttools.Domain import Domain
 from experimental.tools.constrainttools._Constraint._Constraint import _Constraint
-from experimental.tools.constrainttools._SolutionNode._SolutionNode import _SolutionNode as Node
+from experimental.tools.constrainttools._SolutionNode._SolutionNode import _SolutionNode
 from experimental.tools.constrainttools._Solver._Solver import _Solver
 
 
@@ -95,7 +94,7 @@ class FixedLengthStreamSolver(_Solver):
                     return solution, node
                 else:
                     if node.children is None:
-                        node.children = [Node(x, parent=node) for x in domain[depth]]
+                        node.children = [_SolutionNode(x, parent=node) for x in domain[depth]]
                     elif node.children == []:
                         return node
                     else:
@@ -131,14 +130,14 @@ class FixedLengthStreamSolver(_Solver):
                     yield solution
                 else:
                     for x in domain[depth]:
-                        child = Node(x, parent=node, children=[])
+                        child = _SolutionNode(x, parent=node, children=[])
                         node.append(child)
                         for y in ordered_recurse(child, solution, depth):
                             yield y
 
         # randomized traversal
         if self.randomized:
-            graphs = [Node(x) for x in domain[0]]
+            graphs = [_SolutionNode(x) for x in domain[0]]
             while graphs:
                 result = random_recurse(random.choice(graphs), [], 0)
                 if isinstance(result, list):
@@ -147,12 +146,12 @@ class FixedLengthStreamSolver(_Solver):
                     solution, node = result
                     graphs.remove(node)
                     yield solution
-                elif isinstance(result, Node):
+                elif isinstance(result, _SolutionNode):
                     graphs.remove(result)
 
         # ordered traversal
         else:
             for x in domain[0]:
-                node = Node(x, children=[])
+                node = _SolutionNode(x, children=[])
                 for y in ordered_recurse(node, [], 0):
                     yield y
