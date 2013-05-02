@@ -14,6 +14,10 @@ class GraceHandler(AbjadObject):
     second item of the pair is a ``GraceContainer`` instance or None.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
+    __slots__ = ()
+
     ### INITIALIZER ###
 
     def __init__(self):
