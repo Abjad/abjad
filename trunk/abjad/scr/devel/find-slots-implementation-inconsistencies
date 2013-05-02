@@ -3,10 +3,10 @@
 import inspect
 import os
 from abjad import ABJCFG
+from abjad.tools import iotools
 from abjad.tools.abctools import AbjadObject
 from abjad.tools.documentationtools import ClassCrawler
 from abjad.tools.documentationtools import InheritanceGraph
-from abjad.tools import iotools
 
 
 def _shorten_class_name(klass):
