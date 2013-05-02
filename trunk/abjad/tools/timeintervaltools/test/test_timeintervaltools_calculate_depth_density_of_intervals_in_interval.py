@@ -1,4 +1,4 @@
-from fractions import Fraction
+from abjad import *
 from abjad.tools.timeintervaltools import *
 import py.test
 
