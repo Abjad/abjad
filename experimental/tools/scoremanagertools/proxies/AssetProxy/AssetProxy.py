@@ -5,7 +5,6 @@ import subprocess
 import sys
 from abjad.tools import stringtools
 from experimental.tools.scoremanagertools.core.ScoreManagerObject import ScoreManagerObject
-from experimental.tools.scoremanagertools.menuing.UserInputGetter import UserInputGetter
 
 
 class AssetProxy(ScoreManagerObject):
@@ -20,17 +19,9 @@ class AssetProxy(ScoreManagerObject):
     ### INITIALIZER ###
 
     def __init__(self, asset_path=None, session=None):
-        assert isinstance(asset_path, (str, type(None))), repr(asset_path)
-        ScoreManagerObject.__init__(self, session=session)
+        assert asset_path is None or os.path.sep in asset_path
         self._asset_path = asset_path
-
-    ### SPECIAL METHODS ###
-
-    def __repr__(self):
-        if self.asset_path:
-            return '{}({!r})'.format(self._class_name, self.asset_path)
-        else:
-            return '{}()'.format(self._class_name)
+        ScoreManagerObject.__init__(self, session=session)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

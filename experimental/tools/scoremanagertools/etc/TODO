@@ -104,13 +104,9 @@
     Replace 'score-external' with something else.
     Perhaps 'score-external' becomes 'system' and 'score-internal' becomes 'score'.
 
-35. Make packagepathtools.package_directory_to_directory_path() configuration argument optional.
+35. Move remaining two test files out of ScoreManagerObject/test directory.
 
-36. Move remaining two test files out of ScoreManagerObject/test directory.
-
-37. Change AssetProxy.__init__() asset_path=whatever keyword argument.
+36. Change AssetProxy.__init__() asset_path=whatever keyword argument.
     It's not clear whether asset_path should be a directory path or a package path.
     Perhaps best to find a way to eliminate the input argument altogether.
     (Recall that AssetProxy is abstract so this should be doable.)
-
-38. Change scoremanagertools.materialpackagemakers to scoremangertools.materialpackagemakers.
