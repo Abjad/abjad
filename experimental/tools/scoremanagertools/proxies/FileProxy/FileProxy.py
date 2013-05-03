@@ -1,8 +1,8 @@
 import os
-from experimental.tools.scoremanagertools.proxies.AssetProxy import AssetProxy
+from experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy import FilesystemAssetProxy
 
 
-class FileProxy(AssetProxy):
+class FileProxy(FilesystemAssetProxy):
 
     ### CLASS ATTRIBUTES ###
 
@@ -12,7 +12,7 @@ class FileProxy(AssetProxy):
     ### INITIALIZER ###
 
     def __init__(self, file_path=None, session=None):
-        AssetProxy.__init__(self, asset_filesystem_path=file_path, session=session)
+        FilesystemAssetProxy.__init__(self, asset_filesystem_path=file_path, session=session)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

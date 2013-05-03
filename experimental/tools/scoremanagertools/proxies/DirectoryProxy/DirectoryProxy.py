@@ -1,14 +1,14 @@
 import os
 import subprocess
-from experimental.tools.scoremanagertools.proxies.AssetProxy import AssetProxy
+from experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy import FilesystemAssetProxy
 
 
-class DirectoryProxy(AssetProxy):
+class DirectoryProxy(FilesystemAssetProxy):
 
     ### INITIALIZER ###
 
     def __init__(self, directory_path=None, session=None):
-        AssetProxy.__init__(self, asset_filesystem_path=directory_path, session=session)
+        FilesystemAssetProxy.__init__(self, asset_filesystem_path=directory_path, session=session)
 
     ### SPECIAL METHODS ###
 

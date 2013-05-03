@@ -7,7 +7,7 @@ from abjad.tools import stringtools
 from experimental.tools.scoremanagertools.core.ScoreManagerObject import ScoreManagerObject
 
 
-class AssetProxy(ScoreManagerObject):
+class FilesystemAssetProxy(ScoreManagerObject):
     '''Asset proxy.
     '''
 

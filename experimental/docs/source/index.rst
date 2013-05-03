@@ -498,7 +498,7 @@ Unstable packages (load manually)
       :maxdepth: 1
 
       tools/scoremanagertools/core/ScoreManagerObject/ScoreManagerObject
-      tools/scoremanagertools/proxies/AssetProxy/AssetProxy
+      tools/scoremanagertools/proxies/FilesystemAssetProxy/FilesystemAssetProxy
       tools/scoremanagertools/specifiers/DynamicSpecifier/DynamicSpecifier
       tools/scoremanagertools/specifiers/ParameterSpecifier/ParameterSpecifier
       tools/scoremanagertools/specifiers/Specifier/Specifier
@@ -705,7 +705,7 @@ Unstable packages (load manually)
    .. toctree::
 
       tools/scoremanagertools/core/ScoreManagerObject/ScoreManagerObject
-      tools/scoremanagertools/proxies/AssetProxy/AssetProxy
+      tools/scoremanagertools/proxies/FilesystemAssetProxy/FilesystemAssetProxy
       tools/scoremanagertools/specifiers/DynamicSpecifier/DynamicSpecifier
       tools/scoremanagertools/specifiers/ParameterSpecifier/ParameterSpecifier
       tools/scoremanagertools/specifiers/Specifier/Specifier

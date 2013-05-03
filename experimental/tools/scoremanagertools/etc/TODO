@@ -90,7 +90,7 @@
     Replace 'score-external' with something else.
     Perhaps 'score-external' becomes 'system' and 'score-internal' becomes 'score'.
 
-32. Change AssetProxy to FilesystemAssetProxy.
+32. Change AssetWrangler to FilesystemAssetWrangler.
 
 33. In system_materials/red_marcati/output_material.py we find the header line "import handlertools".
     Change this to "from experimental.tools import handlertools".
