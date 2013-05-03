@@ -6,7 +6,7 @@ def test_PackageProxy_read_only_attributes_01():
     '''Stub package.
     '''
 
-    package_proxy = scoremanagertools.proxies.PackageProxy('materials.red_sargasso_measures')
+    package_proxy = scoremanagertools.proxies.PackageProxy('system_materials.red_sargasso_measures')
     assert package_proxy.directory_path == os.path.join(
         package_proxy.configuration.score_manager_materials_directory_path, 'red_sargasso_measures')
     assert package_proxy.get_tag('foo') is None
@@ -14,9 +14,9 @@ def test_PackageProxy_read_only_attributes_01():
         os.path.join(
             package_proxy.configuration.score_manager_materials_directory_path,
             'red_sargasso_measures','__init__.py')
-    assert package_proxy.package_path == 'materials.red_sargasso_measures'
+    assert package_proxy.package_path == 'system_materials.red_sargasso_measures'
     assert package_proxy.name == 'red_sargasso_measures'
     assert package_proxy.space_delimited_lowercase_name == 'red sargasso measures'
     assert package_proxy.parent_initializer_file_name == \
         os.path.join(package_proxy.configuration.score_manager_materials_directory_path, '__init__.py')
-    assert package_proxy.parent_package_path == 'materials'
+    assert package_proxy.parent_package_path == 'system_materials'

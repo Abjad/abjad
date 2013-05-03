@@ -5,7 +5,7 @@ from experimental import *
 def test_RhythmMakerMaterialPackageMaker_01():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    assert not packagepathtools.package_exists('materials.testrhythmmaker')
+    assert not packagepathtools.package_exists('system_materials.testrhythmmaker')
     try:
         score_manager.run(user_input=
             'materials maker rhythm testrhythmmaker default '
@@ -13,7 +13,7 @@ def test_RhythmMakerMaterialPackageMaker_01():
             '[-1, 2, -3, 4] 16 [2, 3] [6] b default '
             'q '
             )
-        mpp = scoremanagertools.materialpackagemakers.RhythmMakerMaterialPackageMaker('materials.testrhythmmaker')
+        mpp = scoremanagertools.materialpackagemakers.RhythmMakerMaterialPackageMaker('system_materials.testrhythmmaker')
         assert mpp.directory_contents == ['__init__.py', 'output_material.py', 'tags.py']
         maker = rhythmmakertools.TaleaRhythmMaker(
             [-1, 2, -3, 4],
@@ -23,4 +23,4 @@ def test_RhythmMakerMaterialPackageMaker_01():
         assert mpp.output_material == maker
     finally:
         score_manager.run(user_input='m testrhythmmaker del remove default q')
-        assert not packagepathtools.package_exists('materials.testrhythmmaker')
+        assert not packagepathtools.package_exists('system_materials.testrhythmmaker')

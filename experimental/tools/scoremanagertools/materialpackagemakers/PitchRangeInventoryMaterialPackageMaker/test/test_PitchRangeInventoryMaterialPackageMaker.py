@@ -7,18 +7,18 @@ def test_PitchRangeInventoryMaterialPackageMaker_01():
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    assert not packagepathtools.package_exists('materials.testpir')
+    assert not packagepathtools.package_exists('system_materials.testpir')
     try:
         score_manager.run(user_input=
             'materials maker pitch testpir default '
             'q'
             )
-        mpp = scoremanagertools.materialpackagemakers.PitchRangeInventoryMaterialPackageMaker('materials.testpir')
+        mpp = scoremanagertools.materialpackagemakers.PitchRangeInventoryMaterialPackageMaker('system_materials.testpir')
         assert mpp.directory_contents == ['__init__.py', 'tags.py']
         assert mpp.output_material is None
     finally:
         score_manager.run(user_input='m testpir del remove default q')
-        assert not packagepathtools.package_exists('materials.testpir')
+        assert not packagepathtools.package_exists('system_materials.testpir')
 
 
 def test_PitchRangeInventoryMaterialPackageMaker_02():
@@ -26,7 +26,7 @@ def test_PitchRangeInventoryMaterialPackageMaker_02():
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    assert not packagepathtools.package_exists('materials.testpir')
+    assert not packagepathtools.package_exists('system_materials.testpir')
     try:
         score_manager.run(user_input=
             'materials maker pitch testpir default '
@@ -35,11 +35,11 @@ def test_PitchRangeInventoryMaterialPackageMaker_02():
             'q'
             )
         mpp = scoremanagertools.materialpackagemakers.PitchRangeInventoryMaterialPackageMaker(
-            'materials.testpir')
+            'system_materials.testpir')
         assert mpp.directory_contents == ['__init__.py', 'output_material.py', 'tags.py']
         pitch_range_inventory = pitchtools.PitchRangeInventory([
             pitchtools.PitchRange('[C2, G5]'), pitchtools.PitchRange('[C2, F#5]')])
         assert mpp.output_material == pitch_range_inventory
     finally:
         score_manager.run(user_input='m testpir del remove default q')
-        assert not packagepathtools.package_exists('materials.testpir')
+        assert not packagepathtools.package_exists('system_materials.testpir')

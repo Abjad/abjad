@@ -6,7 +6,7 @@ from experimental import *
 def test_ArticulationHandlerMaterialPackageMaker_01():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    assert not packagepathtools.package_exists('materials.testarticulationhandler')
+    assert not packagepathtools.package_exists('system_materials.testarticulationhandler')
     try:
         score_manager.run(user_input=
             'materials maker articulation testarticulationhandler default '
@@ -14,7 +14,7 @@ def test_ArticulationHandlerMaterialPackageMaker_01():
             "['^', '.'] (1, 64) (1, 4) c c'''' done default "
             'q '
             )
-        mpp = scoremanagertools.materialpackagemakers.ArticulationHandlerMaterialPackageMaker('materials.testarticulationhandler')
+        mpp = scoremanagertools.materialpackagemakers.ArticulationHandlerMaterialPackageMaker('system_materials.testarticulationhandler')
         assert mpp.directory_contents == ['__init__.py', 'output_material.py', 'tags.py']
         handler = handlertools.ReiteratedArticulationHandler(
             articulation_list=['^', '.'],
@@ -26,4 +26,4 @@ def test_ArticulationHandlerMaterialPackageMaker_01():
         assert mpp.output_material == handler
     finally:
         score_manager.run(user_input='m testarticulationhandler del remove default q')
-        assert not packagepathtools.package_exists('materials.testarticulationhandler')
+        assert not packagepathtools.package_exists('system_materials.testarticulationhandler')

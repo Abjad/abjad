@@ -5,13 +5,13 @@ from experimental import *
 def test_MaterialPackageWrangler_make_handmade_material_package_01():
 
     wrangler = scoremanagertools.wranglers.MaterialPackageWrangler()
-    assert not packagepathtools.package_exists('materials.testnotes')
+    assert not packagepathtools.package_exists('system_materials.testnotes')
 
 
     try:
-        wrangler.make_handmade_material_package('materials.testnotes')
-        assert packagepathtools.package_exists('materials.testnotes')
-        mpp = scoremanagertools.proxies.MaterialPackageProxy('materials.testnotes')
+        wrangler.make_handmade_material_package('system_materials.testnotes')
+        assert packagepathtools.package_exists('system_materials.testnotes')
+        mpp = scoremanagertools.proxies.MaterialPackageProxy('system_materials.testnotes')
         assert mpp.is_handmade and not mpp.is_data_only
         assert mpp.directory_contents == ['__init__.py', 'material_definition.py', 'tags.py']
         assert mpp.has_readable_initializer
@@ -24,14 +24,14 @@ def test_MaterialPackageWrangler_make_handmade_material_package_01():
         assert mpp.output_material is None
     finally:
         mpp.remove()
-        assert not packagepathtools.package_exists('materials.testnotes')
+        assert not packagepathtools.package_exists('system_materials.testnotes')
 
 
 def test_MaterialPackageWrangler_make_handmade_material_package_02():
 
     wrangler = scoremanagertools.wranglers.MaterialPackageWrangler()
-    assert packagepathtools.package_exists('materials.red_notes')
-    assert py.test.raises(Exception, "wrangler.make_handmade_material_package('materials.red_notes')")
+    assert packagepathtools.package_exists('system_materials.red_notes')
+    assert py.test.raises(Exception, "wrangler.make_handmade_material_package('system_materials.red_notes')")
 
 
 def test_MaterialPackageWrangler_make_handmade_material_package_03():
@@ -39,18 +39,18 @@ def test_MaterialPackageWrangler_make_handmade_material_package_03():
     '''
 
     wrangler = scoremanagertools.wranglers.MaterialPackageWrangler()
-    assert not packagepathtools.package_exists('materials.testnotes')
+    assert not packagepathtools.package_exists('system_materials.testnotes')
 
 
     try:
         wrangler.make_handmade_material_package_interactively(user_input='testnotes q')
-        assert packagepathtools.package_exists('materials.testnotes')
-        mpp = scoremanagertools.proxies.MaterialPackageProxy('materials.testnotes')
+        assert packagepathtools.package_exists('system_materials.testnotes')
+        mpp = scoremanagertools.proxies.MaterialPackageProxy('system_materials.testnotes')
         assert mpp.is_handmade and not mpp.is_data_only
         assert mpp.directory_contents == ['__init__.py', 'material_definition.py', 'tags.py']
     finally:
         mpp.remove()
-        assert not packagepathtools.package_exists('materials.testnotes')
+        assert not packagepathtools.package_exists('system_materials.testnotes')
 
 
 def test_MaterialPackageWrangler_make_handmade_material_package_04():
@@ -58,16 +58,16 @@ def test_MaterialPackageWrangler_make_handmade_material_package_04():
     '''
 
     wrangler = scoremanagertools.wranglers.MaterialPackageWrangler()
-    assert not packagepathtools.package_exists('materials.testnotes')
+    assert not packagepathtools.package_exists('system_materials.testnotes')
 
 
     try:
         tags = {'color': 'red', 'is_colored': True}
-        wrangler.make_handmade_material_package('materials.testnotes', tags=tags)
-        assert packagepathtools.package_exists('materials.testnotes')
-        mpp = scoremanagertools.proxies.MaterialPackageProxy('materials.testnotes')
+        wrangler.make_handmade_material_package('system_materials.testnotes', tags=tags)
+        assert packagepathtools.package_exists('system_materials.testnotes')
+        mpp = scoremanagertools.proxies.MaterialPackageProxy('system_materials.testnotes')
         assert mpp.get_tag('color') == 'red'
         assert mpp.get_tag('is_colored')
     finally:
         mpp.remove()
-        assert not packagepathtools.package_exists('materials.testnotes')
+        assert not packagepathtools.package_exists('system_materials.testnotes')

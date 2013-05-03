@@ -73,24 +73,29 @@
 
 26. Audit the UI of the entire materials management system by hand.
 
-27. Rename experimental/materials to experimental/system_materials.
-    Rename experimental/specifiers to experimental/system_specifiers.
+27. Change 'chunks' globally to 'segments'.
 
-28. Change 'chunks' globally to 'segments'.
-
-29. Remove Session.transcript.
+28. Remove Session.transcript.
     Change Session.complete_transcript to Session.transcript.
     Remove concept of 'short transcript' altogether.
 
-30. Currently MaterialPackageMaker inherits from MaterialPackageProxy.
+29. Currently MaterialPackageMaker inherits from MaterialPackageProxy.
     Maybe MaterialPackageMaker should *have* a MaterialPackageProxy instead.
     This would clean up the inheritance schema somewhat.
 
-31. The wrangler inheritance hierarchy is confused.
+30. The wrangler inheritance hierarchy is confused.
     Look at the inheritance diagram given at AssetWrangler.html and rewire as appropriate.
 
-32. Replace 'score-internal' with something else.
+31. Replace 'score-internal' with something else.
     Replace 'score-external' with something else.
     Perhaps 'score-external' becomes 'system' and 'score-internal' becomes 'score'.
 
-33. Change AssetProxy to FilesystemAssetProxy.
+32. Change AssetProxy to FilesystemAssetProxy.
+
+33. In system_materials/red_marcati/output_material.py we find the header line "import handlertools".
+    Change this to "from experimental.tools import handlertools".
+    Same for the output material modules of all other system materials.
+
+34. Figure out why browsing to materials > red forte raises an exception.
+    Figure out why browsing to materials > red marcati raises an exception.
+    Note that browsing to all other system materials works fine.

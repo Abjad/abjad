@@ -5,7 +5,7 @@ from experimental import *
 def test_MarkupInventoryMaterialPackageMaker_01():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    assert not packagepathtools.package_exists('materials.testmarkupinventory')
+    assert not packagepathtools.package_exists('system_materials.testmarkupinventory')
     try:
         score_manager.run(user_input=
             "materials maker markup testmarkupinventory "
@@ -13,7 +13,7 @@ def test_MarkupInventoryMaterialPackageMaker_01():
             "add arg r'\\italic~{~serenamente~}' name serenamente done "
             "add arg r'\\italic~{~presto~}' name presto done done default q"
             )
-        mpp = scoremanagertools.materialpackagemakers.ArticulationHandlerMaterialPackageMaker('materials.testmarkupinventory')
+        mpp = scoremanagertools.materialpackagemakers.ArticulationHandlerMaterialPackageMaker('system_materials.testmarkupinventory')
         assert mpp.directory_contents == ['__init__.py', 'output_material.py', 'tags.py']
         inventory = markuptools.MarkupInventory([
             markuptools.Markup(
@@ -30,4 +30,4 @@ def test_MarkupInventoryMaterialPackageMaker_01():
         assert mpp.output_material == inventory
     finally:
         score_manager.run(user_input='m testmarkupinventory del remove default q')
-        assert not packagepathtools.package_exists('materials.testmarkupinventory')
+        assert not packagepathtools.package_exists('system_materials.testmarkupinventory')

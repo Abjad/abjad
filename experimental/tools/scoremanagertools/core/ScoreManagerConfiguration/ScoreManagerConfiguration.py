@@ -252,7 +252,7 @@ class ScoreManagerConfiguration(Configuration):
         ::
 
             >>> configuration.trim(configuration.score_external_materials_directory_path)
-            'abjad/experimental/materials'
+            'abjad/experimental/system_materials'
 
         Return string.
         '''
@@ -265,7 +265,7 @@ class ScoreManagerConfiguration(Configuration):
         ::
 
             >>> configuration.score_external_materials_package_path
-            'materials'
+            'system_materials'
 
         Return string.
         '''
@@ -280,7 +280,7 @@ class ScoreManagerConfiguration(Configuration):
             >>> for package_path in configuration.score_external_package_paths:
             ...     package_path
             'sketches'
-            'materials'
+            'system_materials'
             'specifiers'
 
         Return string.
@@ -363,11 +363,11 @@ class ScoreManagerConfiguration(Configuration):
         ::
 
             >>> configuration.trim(configuration.score_manager_materials_directory_path)
-            'abjad/experimental/materials'
+            'abjad/experimental/system_materials'
 
         Return string.
         '''
-        return os.path.join(self.abjad_configuration.abjad_experimental_directory_path, 'materials')
+        return os.path.join(self.abjad_configuration.abjad_experimental_directory_path, 'system_materials')
 
     @property
     def score_manager_sketches_directory_path(self):

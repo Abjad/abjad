@@ -18,9 +18,9 @@ def test_MaterialPackageWrangler_iteration_01():
 
 def test_MaterialPackageWrangler_iteration_02():
 
-    assert 'materials.red_sargasso_measures' in \
+    assert 'system_materials.red_sargasso_measures' in \
         wrangler.list_asset_package_paths()
-    assert 'materials.red_sargasso_measures' not in \
+    assert 'system_materials.red_sargasso_measures' not in \
         wrangler.list_asset_package_paths(head='example_score_1')
 
 
@@ -108,11 +108,11 @@ def test_MaterialPackageWrangler_iteration_10():
 def test_MaterialPackageWrangler_iteration_11():
     py.test.skip('TODO: add time_signatures package to Example Score I.')
 
-    assert ('materials.red_sargasso_measures', 'red sargasso measures') in \
+    assert ('system_materials.red_sargasso_measures', 'red sargasso measures') in \
         wrangler.make_visible_asset_menu_tokens()
     assert ('example_score_1.mus.materials.time_signatures', 'time signatures') in \
         wrangler.make_visible_asset_menu_tokens()
-    assert ('materials.red_sargasso_measures', 'red sargasso measures') not in \
+    assert ('system_materials.red_sargasso_measures', 'red sargasso measures') not in \
         wrangler.make_visible_asset_menu_tokens(head='example_score_1')
     assert ('example_score_1.mus.materials.time_signatures', 'time signatures') not in \
         wrangler.make_visible_asset_menu_tokens(head='example_score_2')
