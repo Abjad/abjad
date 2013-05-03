@@ -85,7 +85,7 @@ class AssetWrangler(ScoreManagerObject):
     @property
     def current_asset_container_path(self):
         return packagepathtools.package_path_to_directory_path(
-            self.current_asset_container_package_path, self.configuration)
+            self.current_asset_container_package_path)
 
     @property
     def current_asset_container_proxy(self):
@@ -138,11 +138,12 @@ class AssetWrangler(ScoreManagerObject):
         self.conditionally_make_score_internal_asset_container_packages()
         self.io.proceed('missing packages created.', is_interactive=is_interactive)
 
+    # TODO: move to packagepathtools
     # TODO: write test
     def conditionally_make_empty_package(self, package_path):
         if package_path is None:
             return
-        directory_path = packagepathtools.package_path_to_directory_path(package_path, self.configuration)
+        directory_path = packagepathtools.package_path_to_directory_path(package_path)
         if not os.path.exists(directory_path):
             os.mkdir(directory_path)
             initializer_file_name = os.path.join(directory_path, '__init__.py')
@@ -229,7 +230,7 @@ class AssetWrangler(ScoreManagerObject):
     def list_score_external_asset_container_paths(self, head=None):
         result = []
         for package_path in self.list_score_external_asset_container_package_paths(head=head):
-            result.append(packagepathtools.package_path_to_directory_path(package_path, self.configuration))
+            result.append(packagepathtools.package_path_to_directory_path(package_path))
         return result
 
     def list_score_external_asset_container_proxies(self, head=None):
@@ -279,7 +280,7 @@ class AssetWrangler(ScoreManagerObject):
         result = []
         for package_path in \
             self.list_score_internal_asset_container_package_paths(head=head):
-            result.append(packagepathtools.package_path_to_directory_path(package_path, self.configuration))
+            result.append(packagepathtools.package_path_to_directory_path(package_path))
         return result
 
     def list_score_internal_asset_container_proxies(self, head=None):
@@ -357,7 +358,7 @@ class AssetWrangler(ScoreManagerObject):
     def list_user_asset_container_paths(self, head=None):
         #result = []
         #for package_path in self.list_user_asset_container_package_paths(head=head):
-        #    result.append(packagepathtools.package_path_to_directory_path(package_path, self.configuration))
+        #    result.append(packagepathtools.package_path_to_directory_path(package_path))
         #return result
         return self._user_asset_container_paths[:]
 
