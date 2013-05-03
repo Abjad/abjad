@@ -1,33 +1,18 @@
 import os
-import sys
 from abjad.tools import iotools
 from experimental.tools import packagepathtools
-from experimental.tools.scoremanagertools.core.ScoreManagerObject import ScoreManagerObject
-from experimental.tools.scoremanagertools.proxies.AssetProxy import AssetProxy
 from experimental.tools.scoremanagertools.proxies.DirectoryProxy import DirectoryProxy
-from experimental.tools.scoremanagertools.proxies.InitializerFileProxy import InitializerFileProxy
 from experimental.tools.scoremanagertools.helpers import safe_import
 
 
-#class PackageProxy(DirectoryProxy, AssetProxy):
-class PackageProxy(DirectoryProxy, AssetProxy, ScoreManagerObject):
+class PackageProxy(DirectoryProxy):
 
     ### INITIALIZER ###
 
     def __init__(self, package_path=None, session=None):
-#        directory_path = packagepathtools.package_path_to_directory_path(package_path, self.configuration)
-#        DirectoryProxy.__init__(self, directory_path=directory_path, session=session)
-#        AssetProxy.__init__(self, asset_path=package_path, session=self.session)
-        ScoreManagerObject.__init__(self, session=session)
-        directory_path = packagepathtools.package_path_to_directory_path(package_path, self.configuration)
-        DirectoryProxy.__init__(self, directory_path=directory_path, session=self.session)
-        AssetProxy.__init__(self, asset_path=directory_path, session=self.session)
+        directory_path = packagepathtools.package_path_to_directory_path(package_path)
+        DirectoryProxy.__init__(self, directory_path=directory_path, session=session)
         self._package_path = package_path
-
-    ### SPECIAL METHODS ###
-
-    def __repr__(self):
-        return AssetProxy.__repr__(self)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -71,7 +56,9 @@ class PackageProxy(DirectoryProxy, AssetProxy, ScoreManagerObject):
     # TODO: write test
     @property
     def initializer_file_proxy(self):
-        return InitializerFileProxy(self.initializer_file_name, session=self.session)
+        from experimental.tools import scoremanagertools
+        return scoremanagertools.proxies.InitializerFileProxy(
+            self.initializer_file_name, session=self.session)
 
     @property
     def package_path(self):
@@ -91,8 +78,9 @@ class PackageProxy(DirectoryProxy, AssetProxy, ScoreManagerObject):
     # TODO: write test
     @property
     def parent_initializer_file_proxy(self):
+        from experimental.tools import scoremanagertools
         if self.has_parent_initializer:
-            return InitializerFileProxy(
+            return scoremanagertools.proxies.InitializerFileProxy(
                 self.parent_initializer_file_name, session=self.session)
 
     @property
@@ -121,12 +109,14 @@ class PackageProxy(DirectoryProxy, AssetProxy, ScoreManagerObject):
 
     @property
     def tags_file_proxy(self):
+        from experimental.tools import scoremanagertools
         if not self.has_tags_file:
             tags_file = open(self.tags_file_name, 'w')
             tags_file.write('')
             tags_file.close()
         if True:
-            return InitializerFileProxy(self.tags_file_name, session=self.session)
+            return scoremanagertools.proxies.InitializerFileProxy(
+                self.tags_file_name, session=self.session)
 
     ### PUBLIC METHODS ###
 

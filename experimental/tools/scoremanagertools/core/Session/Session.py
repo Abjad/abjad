@@ -80,7 +80,7 @@ class Session(abctools.AbjadObject):
     @property
     def current_materials_directory_path(self):
         return packagepathtools.package_path_to_directory_path(
-            self.current_materials_package_path, self.configuration)
+            self.current_materials_package_path)
 
     @property
     def current_materials_package_path(self):
@@ -102,12 +102,12 @@ class Session(abctools.AbjadObject):
     def current_score_path(self):
         if self.is_in_score:
             return packagepathtools.package_path_to_directory_path(
-                self.current_score_package_name, self.configuration)
+                self.current_score_package_name)
 
     @property
     def current_segments_directory_path(self):
         return packagepathtools.package_path_to_directory_path(
-            self.current_segments_package_path, self.configuration)
+            self.current_segments_package_path)
 
     @property
     def current_segments_package_path(self):

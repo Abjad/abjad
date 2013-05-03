@@ -25,7 +25,7 @@ class ModuleProxy(ParsableFileProxy):
     def grandparent_directory_path(self):
         if self.module_path:
             return packagepathtools.package_path_to_directory_path(
-                self.grandparent_package_path, self.configuration)
+                self.grandparent_package_path)
 
     @property
     def grandparent_package_initializer_file_name(self):
@@ -50,7 +50,7 @@ class ModuleProxy(ParsableFileProxy):
     def parent_directory_path(self):
         if self.module_path:
             return packagepathtools.package_path_to_directory_path(
-                self.parent_package_path, self.configuration)
+                self.parent_package_path)
 
     @property
     def parent_package_initializer_file_name(self):
