@@ -226,11 +226,11 @@ class ScoreManagerConfiguration(Configuration):
         ::
 
             >>> configuration.trim(configuration.makers_directory_path)
-            'abjad/experimental/tools/scoremanagertools/makers'
+            'abjad/experimental/tools/scoremanagertools/materialpackagemakers'
 
         Return string.
         '''
-        return os.path.join(self.score_manager_tools_directory_path, 'makers')
+        return os.path.join(self.score_manager_tools_directory_path, 'materialpackagemakers')
 
     @property
     def makers_package_path(self):
@@ -239,11 +239,11 @@ class ScoreManagerConfiguration(Configuration):
         ::
 
             >>> configuration.makers_package_path
-            'scoremanagertools.makers'
+            'scoremanagertools.materialpackagemakers'
 
         Return string.
         '''
-        return '.'.join([self.score_manager_tools_package_name, 'makers'])
+        return '.'.join([self.score_manager_tools_package_name, 'materialpackagemakers'])
 
     @property
     def score_external_materials_directory_path(self):

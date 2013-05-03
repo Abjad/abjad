@@ -113,4 +113,4 @@
     Perhaps best to find a way to eliminate the input argument altogether.
     (Recall that AssetProxy is abstract so this should be doable.)
 
-38. Change scoremangertools.makers to scoremangertools.materialpackagemakers.
+38. Change scoremanagertools.materialpackagemakers to scoremangertools.materialpackagemakers.

@@ -68,7 +68,7 @@ def test_MaterialPackageProxy_read_only_attributes_02():
     '''Makermade material.
     '''
 
-    mpp = scoremanagertools.makers.SargassoMeasureMaterialPackageMaker('materials.red_sargasso_measures')
+    mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker('materials.red_sargasso_measures')
     assert     mpp.breadcrumb == 'red sargasso measures'
     assert not mpp.has_illustration_builder_module
     assert     mpp.has_illustration_ly
@@ -101,7 +101,7 @@ def test_MaterialPackageProxy_read_only_attributes_02():
     assert     mpp.material_definition_module_proxy is None
     assert     mpp.material_package_directory == \
         os.path.join(mpp.configuration.score_manager_materials_directory_path, 'red_sargasso_measures')
-    assert     mpp.material_package_maker is scoremanagertools.makers.SargassoMeasureMaterialPackageMaker
+    assert     mpp.material_package_maker is scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker
     assert     mpp.material_package_maker_class_name == 'SargassoMeasureMaterialPackageMaker'
     assert     mpp.material_package_name == 'red_sargasso_measures'
     assert     mpp.space_delimited_material_package_name == 'red sargasso measures'

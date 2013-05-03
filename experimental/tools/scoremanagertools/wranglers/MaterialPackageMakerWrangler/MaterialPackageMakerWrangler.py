@@ -40,7 +40,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
 
     @property
     def forbidden_package_paths(self):
-        return ['scoremanagertools.makers.' + class_name for class_name in self.forbidden_class_names]
+        return ['scoremanagertools.materialpackagemakers.' + class_name for class_name in self.forbidden_class_names]
 
     ### PUBLIC METHODS ###
 
@@ -50,7 +50,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         material_package_maker_class_name = material_package_proxy.material_package_maker_class_name
         if material_package_maker_class_name is not None:
             material_package_maker_class = None
-            command = 'from experimental.tools.scoremanagertools.makers import {} as material_package_maker_class'
+            command = 'from experimental.tools.scoremanagertools.materialpackagemakers import {} as material_package_maker_class'
             command = command.format(material_package_maker_class_name)
             try:
                 exec(command)
@@ -101,7 +101,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         lines = []
         lines.append('from music.foo import foo')
         lines.append('from music.foo import make_illustration_from_output_material')
-        lines.append('from experimental.tools.scoremanagertools.makers.MaterialPackageMaker import MaterialPackageMaker')
+        lines.append('from experimental.tools.scoremanagertools.materialpackagemakers.MaterialPackageMaker import MaterialPackageMaker')
         lines.append('from experimental.tools.scoremanagertools.editors.UserInputWrapper import UserInputWrapper')
         lines.append('from experimental.tools import scoremanagertools')
         lines.append('')

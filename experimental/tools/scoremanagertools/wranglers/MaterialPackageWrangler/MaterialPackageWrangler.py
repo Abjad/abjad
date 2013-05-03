@@ -42,7 +42,7 @@ class MaterialPackageWrangler(PackageWrangler):
                 material_package_path, session=self.session)
         else:
             command = 'material_package_proxy = '
-            command += 'scoremanagertools.makers.{}(material_package_path, session=self.session)'
+            command += 'scoremanagertools.materialpackagemakers.{}(material_package_path, session=self.session)'
             command = command.format(material_package_maker_class_name)
             try:
                 exec(command)
@@ -145,7 +145,7 @@ class MaterialPackageWrangler(PackageWrangler):
     def make_makermade_material_package(self,
         material_package_path, material_package_maker_class_name, tags=None):
         tags = tags or {}
-        command = 'from experimental.tools.scoremanagertools.makers import {} as material_package_maker_class'.format(
+        command = 'from experimental.tools.scoremanagertools.materialpackagemakers import {} as material_package_maker_class'.format(
             material_package_maker_class_name)
         try:
             exec(command)

@@ -16,13 +16,13 @@ def test_MaterialPackageMakerWrangler_iteration_02():
 
 def test_MaterialPackageMakerWrangler_iteration_03():
 
-    assert 'scoremanagertools.makers.PitchRangeInventoryMaterialPackageMaker' in \
+    assert 'scoremanagertools.materialpackagemakers.PitchRangeInventoryMaterialPackageMaker' in \
         wrangler.list_asset_package_paths()
 
 
 def test_MaterialPackageMakerWrangler_iteration_04():
 
-    assert ('scoremanagertools.makers.PitchRangeInventoryMaterialPackageMaker',
+    assert ('scoremanagertools.materialpackagemakers.PitchRangeInventoryMaterialPackageMaker',
         'pitch range inventory material package maker') in wrangler.make_visible_asset_menu_tokens()
 
 

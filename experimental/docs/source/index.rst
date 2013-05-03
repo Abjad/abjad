@@ -573,18 +573,18 @@ Unstable packages (load manually)
       tools/scoremanagertools/editors/TrillSpecifierEditor/TrillSpecifierEditor
       tools/scoremanagertools/editors/TropingSpecifierEditor/TropingSpecifierEditor
       tools/scoremanagertools/editors/UserInputWrapper/UserInputWrapper
-      tools/scoremanagertools/makers/ArticulationHandlerMaterialPackageMaker/ArticulationHandlerMaterialPackageMaker
-      tools/scoremanagertools/makers/DynamicHandlerMaterialPackageMaker/DynamicHandlerMaterialPackageMaker
-      tools/scoremanagertools/makers/FunctionInputMaterialPackageMaker/FunctionInputMaterialPackageMaker
-      tools/scoremanagertools/makers/InventoryMaterialPackageMaker/InventoryMaterialPackageMaker
-      tools/scoremanagertools/makers/ListMaterialPackageMaker/ListMaterialPackageMaker
-      tools/scoremanagertools/makers/MarkupInventoryMaterialPackageMaker/MarkupInventoryMaterialPackageMaker
-      tools/scoremanagertools/makers/MaterialPackageMaker/MaterialPackageMaker
-      tools/scoremanagertools/makers/OctaveTranspositionMappingInventoryMaterialPackageMaker/OctaveTranspositionMappingInventoryMaterialPackageMaker
-      tools/scoremanagertools/makers/PitchRangeInventoryMaterialPackageMaker/PitchRangeInventoryMaterialPackageMaker
-      tools/scoremanagertools/makers/RhythmMakerMaterialPackageMaker/RhythmMakerMaterialPackageMaker
-      tools/scoremanagertools/makers/SargassoMeasureMaterialPackageMaker/SargassoMeasureMaterialPackageMaker
-      tools/scoremanagertools/makers/TempoMarkInventoryMaterialPackageMaker/TempoMarkInventoryMaterialPackageMaker
+      tools/scoremanagertools/materialpackagemakers/ArticulationHandlerMaterialPackageMaker/ArticulationHandlerMaterialPackageMaker
+      tools/scoremanagertools/materialpackagemakers/DynamicHandlerMaterialPackageMaker/DynamicHandlerMaterialPackageMaker
+      tools/scoremanagertools/materialpackagemakers/FunctionInputMaterialPackageMaker/FunctionInputMaterialPackageMaker
+      tools/scoremanagertools/materialpackagemakers/InventoryMaterialPackageMaker/InventoryMaterialPackageMaker
+      tools/scoremanagertools/materialpackagemakers/ListMaterialPackageMaker/ListMaterialPackageMaker
+      tools/scoremanagertools/materialpackagemakers/MarkupInventoryMaterialPackageMaker/MarkupInventoryMaterialPackageMaker
+      tools/scoremanagertools/materialpackagemakers/MaterialPackageMaker/MaterialPackageMaker
+      tools/scoremanagertools/materialpackagemakers/OctaveTranspositionMappingInventoryMaterialPackageMaker/OctaveTranspositionMappingInventoryMaterialPackageMaker
+      tools/scoremanagertools/materialpackagemakers/PitchRangeInventoryMaterialPackageMaker/PitchRangeInventoryMaterialPackageMaker
+      tools/scoremanagertools/materialpackagemakers/RhythmMakerMaterialPackageMaker/RhythmMakerMaterialPackageMaker
+      tools/scoremanagertools/materialpackagemakers/SargassoMeasureMaterialPackageMaker/SargassoMeasureMaterialPackageMaker
+      tools/scoremanagertools/materialpackagemakers/TempoMarkInventoryMaterialPackageMaker/TempoMarkInventoryMaterialPackageMaker
       tools/scoremanagertools/menuing/Menu/Menu
       tools/scoremanagertools/menuing/MenuObject/MenuObject
       tools/scoremanagertools/menuing/MenuSection/MenuSection
@@ -690,11 +690,11 @@ Unstable packages (load manually)
       tools/scoremanagertools/helpers/get_one_line_menuing_summary
       tools/scoremanagertools/helpers/globally_replace_in_file
       tools/scoremanagertools/helpers/safe_import
-      tools/scoremanagertools/makers/MarkupInventoryMaterialPackageMaker/make_illustration_from_output_material
-      tools/scoremanagertools/makers/OctaveTranspositionMappingInventoryMaterialPackageMaker/make_illustration_from_output_material
-      tools/scoremanagertools/makers/PitchRangeInventoryMaterialPackageMaker/make_illustration_from_output_material
-      tools/scoremanagertools/makers/RhythmMakerMaterialPackageMaker/make_illustration_from_output_material
-      tools/scoremanagertools/makers/TempoMarkInventoryMaterialPackageMaker/make_illustration_from_output_material
+      tools/scoremanagertools/materialpackagemakers/MarkupInventoryMaterialPackageMaker/make_illustration_from_output_material
+      tools/scoremanagertools/materialpackagemakers/OctaveTranspositionMappingInventoryMaterialPackageMaker/make_illustration_from_output_material
+      tools/scoremanagertools/materialpackagemakers/PitchRangeInventoryMaterialPackageMaker/make_illustration_from_output_material
+      tools/scoremanagertools/materialpackagemakers/RhythmMakerMaterialPackageMaker/make_illustration_from_output_material
+      tools/scoremanagertools/materialpackagemakers/TempoMarkInventoryMaterialPackageMaker/make_illustration_from_output_material
       tools/scoremanagertools/music/make_sargasso_measures
 
 .. only:: latex
@@ -780,18 +780,18 @@ Unstable packages (load manually)
       tools/scoremanagertools/editors/TrillSpecifierEditor/TrillSpecifierEditor
       tools/scoremanagertools/editors/TropingSpecifierEditor/TropingSpecifierEditor
       tools/scoremanagertools/editors/UserInputWrapper/UserInputWrapper
-      tools/scoremanagertools/makers/ArticulationHandlerMaterialPackageMaker/ArticulationHandlerMaterialPackageMaker
-      tools/scoremanagertools/makers/DynamicHandlerMaterialPackageMaker/DynamicHandlerMaterialPackageMaker
-      tools/scoremanagertools/makers/FunctionInputMaterialPackageMaker/FunctionInputMaterialPackageMaker
-      tools/scoremanagertools/makers/InventoryMaterialPackageMaker/InventoryMaterialPackageMaker
-      tools/scoremanagertools/makers/ListMaterialPackageMaker/ListMaterialPackageMaker
-      tools/scoremanagertools/makers/MarkupInventoryMaterialPackageMaker/MarkupInventoryMaterialPackageMaker
-      tools/scoremanagertools/makers/MaterialPackageMaker/MaterialPackageMaker
-      tools/scoremanagertools/makers/OctaveTranspositionMappingInventoryMaterialPackageMaker/OctaveTranspositionMappingInventoryMaterialPackageMaker
-      tools/scoremanagertools/makers/PitchRangeInventoryMaterialPackageMaker/PitchRangeInventoryMaterialPackageMaker
-      tools/scoremanagertools/makers/RhythmMakerMaterialPackageMaker/RhythmMakerMaterialPackageMaker
-      tools/scoremanagertools/makers/SargassoMeasureMaterialPackageMaker/SargassoMeasureMaterialPackageMaker
-      tools/scoremanagertools/makers/TempoMarkInventoryMaterialPackageMaker/TempoMarkInventoryMaterialPackageMaker
+      tools/scoremanagertools/materialpackagemakers/ArticulationHandlerMaterialPackageMaker/ArticulationHandlerMaterialPackageMaker
+      tools/scoremanagertools/materialpackagemakers/DynamicHandlerMaterialPackageMaker/DynamicHandlerMaterialPackageMaker
+      tools/scoremanagertools/materialpackagemakers/FunctionInputMaterialPackageMaker/FunctionInputMaterialPackageMaker
+      tools/scoremanagertools/materialpackagemakers/InventoryMaterialPackageMaker/InventoryMaterialPackageMaker
+      tools/scoremanagertools/materialpackagemakers/ListMaterialPackageMaker/ListMaterialPackageMaker
+      tools/scoremanagertools/materialpackagemakers/MarkupInventoryMaterialPackageMaker/MarkupInventoryMaterialPackageMaker
+      tools/scoremanagertools/materialpackagemakers/MaterialPackageMaker/MaterialPackageMaker
+      tools/scoremanagertools/materialpackagemakers/OctaveTranspositionMappingInventoryMaterialPackageMaker/OctaveTranspositionMappingInventoryMaterialPackageMaker
+      tools/scoremanagertools/materialpackagemakers/PitchRangeInventoryMaterialPackageMaker/PitchRangeInventoryMaterialPackageMaker
+      tools/scoremanagertools/materialpackagemakers/RhythmMakerMaterialPackageMaker/RhythmMakerMaterialPackageMaker
+      tools/scoremanagertools/materialpackagemakers/SargassoMeasureMaterialPackageMaker/SargassoMeasureMaterialPackageMaker
+      tools/scoremanagertools/materialpackagemakers/TempoMarkInventoryMaterialPackageMaker/TempoMarkInventoryMaterialPackageMaker
       tools/scoremanagertools/menuing/Menu/Menu
       tools/scoremanagertools/menuing/MenuObject/MenuObject
       tools/scoremanagertools/menuing/MenuSection/MenuSection
@@ -897,9 +897,9 @@ Unstable packages (load manually)
       tools/scoremanagertools/helpers/get_one_line_menuing_summary
       tools/scoremanagertools/helpers/globally_replace_in_file
       tools/scoremanagertools/helpers/safe_import
-      tools/scoremanagertools/makers/MarkupInventoryMaterialPackageMaker/make_illustration_from_output_material
-      tools/scoremanagertools/makers/OctaveTranspositionMappingInventoryMaterialPackageMaker/make_illustration_from_output_material
-      tools/scoremanagertools/makers/PitchRangeInventoryMaterialPackageMaker/make_illustration_from_output_material
-      tools/scoremanagertools/makers/RhythmMakerMaterialPackageMaker/make_illustration_from_output_material
-      tools/scoremanagertools/makers/TempoMarkInventoryMaterialPackageMaker/make_illustration_from_output_material
+      tools/scoremanagertools/materialpackagemakers/MarkupInventoryMaterialPackageMaker/make_illustration_from_output_material
+      tools/scoremanagertools/materialpackagemakers/OctaveTranspositionMappingInventoryMaterialPackageMaker/make_illustration_from_output_material
+      tools/scoremanagertools/materialpackagemakers/PitchRangeInventoryMaterialPackageMaker/make_illustration_from_output_material
+      tools/scoremanagertools/materialpackagemakers/RhythmMakerMaterialPackageMaker/make_illustration_from_output_material
+      tools/scoremanagertools/materialpackagemakers/TempoMarkInventoryMaterialPackageMaker/make_illustration_from_output_material
       tools/scoremanagertools/music/make_sargasso_measures
