@@ -78,35 +78,21 @@
 
 28. Change 'chunks' globally to 'segments'.
 
-29. Move ScoreManagerObject.package_path_to_directory_path() to ScoreManagerConfiguration.
-    Then see if it's possible to change ...
-        class PackageProxy(DirectoryProxy, AssetProxy, ScoreManagerObject)
-    ... to ...
-        class PackageProxy(DirectoryProxy, AssetProxy)
-    ... instead.
-
-30. Remove Session.transcript.
+29. Remove Session.transcript.
     Change Session.complete_transcript to Session.transcript.
     Remove concept of 'short transcript' altogether.
 
-31. Currently MaterialPackageMaker inherits from MaterialPackageProxy.
+30. Currently MaterialPackageMaker inherits from MaterialPackageProxy.
     Maybe MaterialPackageMaker should *have* a MaterialPackageProxy instead.
     This would clean up the inheritance schema somewhat.
 
-32. Currently PackageProxy inherits from both DirectoryProxy and AssetProxy.
-    Maybe PackageProxy needs to inherit from only DirectoryProxy.
-    Likewise for ModuleProxy in relation to FileProxy and AssetProxy.
-
-33. The wrangler inheritance hierarchy is confused.
+31. The wrangler inheritance hierarchy is confused.
     Look at the inheritance diagram given at AssetWrangler.html and rewire as appropriate.
 
-34. Replace 'score-internal' with something else.
+32. Replace 'score-internal' with something else.
     Replace 'score-external' with something else.
     Perhaps 'score-external' becomes 'system' and 'score-internal' becomes 'score'.
 
-35. Move remaining two test files out of ScoreManagerObject/test directory.
+33. Move remaining two test files out of ScoreManagerObject/test directory.
 
-36. Change AssetProxy.__init__() asset_filesystem_path=whatever keyword argument.
-    It's not clear whether asset_filesystem_path should be a directory path or a package path.
-    Perhaps best to find a way to eliminate the input argument altogether.
-    (Recall that AssetProxy is abstract so this should be doable.)
+34. Change AssetProxy to FilesystemAssetProxy.
