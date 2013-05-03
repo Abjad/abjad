@@ -246,19 +246,6 @@ class ScoreManagerConfiguration(Configuration):
         return '.'.join([self.score_manager_tools_package_name, 'materialpackagemakers'])
 
     @property
-    def score_external_materials_directory_path(self):
-        '''Score-external materials directory path:
-
-        ::
-
-            >>> configuration.trim(configuration.score_external_materials_directory_path)
-            'abjad/experimental/system_materials'
-
-        Return string.
-        '''
-        return self.score_manager_materials_directory_path
-
-    @property
     def score_external_materials_package_path(self):
         '''Score-external materials package path:
 
@@ -527,6 +514,19 @@ class ScoreManagerConfiguration(Configuration):
         Return string.
         '''
         return '.'.join([self.score_manager_tools_package_name, 'stylesheets'])
+
+    @property
+    def system_materials_directory_path(self):
+        '''System materials directory path:
+
+        ::
+
+            >>> configuration.system_materials_directory_path
+            '/Users/trevorbaca/Documents/abjad/experimental/system_materials'
+
+        Return string.
+        '''
+        return os.path.join(self.abjad_configuration.abjad_experimental_directory_path, 'system_materials')
 
     @property
     def user_specific_makers_directory_path(self):
