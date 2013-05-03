@@ -93,6 +93,4 @@
     Replace 'score-external' with something else.
     Perhaps 'score-external' becomes 'system' and 'score-internal' becomes 'score'.
 
-33. Move remaining two test files out of ScoreManagerObject/test directory.
-
-34. Change AssetProxy to FilesystemAssetProxy.
+33. Change AssetProxy to FilesystemAssetProxy.

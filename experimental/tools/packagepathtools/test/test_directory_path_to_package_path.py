@@ -1,19 +1,18 @@
 import os
 from experimental import *
 
-score_manager_object = scoremanagertools.core.ScoreManagerObject()
-score_manager_configuration = scoremanagertools.core.ScoreManagerConfiguration()
-scores_directory_path = score_manager_configuration.scores_directory_path
+configuration = scoremanagertools.core.ScoreManagerConfiguration()
+scores_directory_path = configuration.scores_directory_path
 
 
 def test_directory_path_to_package_path_01():
 
     assert packagepathtools.directory_path_to_package_path(
-        score_manager_configuration.score_manager_materials_directory_path) == 'materials'
+        configuration.score_manager_materials_directory_path) == 'materials'
     assert packagepathtools.directory_path_to_package_path(
-        score_manager_configuration.score_manager_specifiers_directory_path) == 'specifiers'
+        configuration.score_manager_specifiers_directory_path) == 'specifiers'
     assert packagepathtools.directory_path_to_package_path(
-        score_manager_configuration.score_manager_sketches_directory_path) == 'sketches'
+        configuration.score_manager_sketches_directory_path) == 'sketches'
 
 
 def test_directory_path_to_package_path_02():
