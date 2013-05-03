@@ -92,7 +92,7 @@ class ScoreManager(ScoreManagerObject):
             self.session.show_all_scores()
         elif result == 'm':
             self.material_package_wrangler.run(
-                rollback=True, head=self.configuration.score_external_materials_package_path)
+                rollback=True, head=self.configuration.system_materials_package_path)
         elif result == 'f':
             self.music_specifier_module_wrangler.run(
                 rollback=True, head=self.configuration.score_external_specifiers_package_path)

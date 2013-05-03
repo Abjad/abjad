@@ -37,7 +37,7 @@ def test_ModuleProxy_public_attributes_02():
 
     configuration = scoremanagertools.core.ScoreManagerConfiguration()
     module_path = '.'.join([
-        configuration.score_external_materials_package_path, 'red_notes', 'material_definition'])
+        configuration.system_materials_package_path, 'red_notes', 'material_definition'])
     proxy = scoremanagertools.proxies.ModuleProxy(module_path=module_path)
 
     assert proxy.breadcrumb == 'material_definition.py'
@@ -45,7 +45,7 @@ def test_ModuleProxy_public_attributes_02():
     assert proxy.file_lines
     assert proxy.generic_class_name == 'module'
     assert proxy.grandparent_directory_path == proxy.configuration.system_materials_directory_path
-    assert proxy.grandparent_package_path == proxy.configuration.score_external_materials_package_path
+    assert proxy.grandparent_package_path == proxy.configuration.system_materials_package_path
     assert proxy.space_delimited_lowercase_name == 'material definition'
     assert proxy.is_versioned
     assert proxy.module_path == module_path
@@ -55,7 +55,7 @@ def test_ModuleProxy_public_attributes_02():
     assert proxy.parent_directory_path == os.path.join(
         proxy.configuration.system_materials_directory_path, 'red_notes')
     assert proxy.parent_package_path == '.'.join([
-        proxy.configuration.score_external_materials_package_path, 'red_notes'])
+        proxy.configuration.system_materials_package_path, 'red_notes'])
     assert proxy.parent_package_initializer_file_name == os.path.join(
         proxy.configuration.system_materials_directory_path, 'red_notes', '__init__.py')
     assert proxy.file_path == os.path.join(

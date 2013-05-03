@@ -20,7 +20,7 @@ def package_path_to_directory_path(package_path, configuration=None):
         directory_parts = [configuration.score_manager_tools_directory_path] + \
             package_path_parts[1:]
     elif package_path_parts[0] == \
-        configuration.score_external_materials_package_path:
+        configuration.system_materials_package_path:
         directory_parts = \
             [configuration.system_materials_directory_path] + \
             package_path_parts[1:]

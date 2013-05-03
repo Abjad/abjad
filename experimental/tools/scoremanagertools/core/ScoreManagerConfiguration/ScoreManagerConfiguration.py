@@ -246,17 +246,18 @@ class ScoreManagerConfiguration(Configuration):
         return '.'.join([self.score_manager_tools_package_name, 'materialpackagemakers'])
 
     @property
-    def score_external_materials_package_path(self):
-        '''Score-external materials package path:
+    def system_materials_package_path(self):
+        '''System materials package path:
 
         ::
 
-            >>> configuration.score_external_materials_package_path
+            >>> configuration.system_materials_package_path
             'system_materials'
 
         Return string.
         '''
-        return os.path.basename(self.score_manager_materials_directory_path)
+        #return os.path.basename(self.score_manager_materials_directory_path)
+        return os.path.basename(self.system_materials_directory_path)
 
     @property
     def score_external_package_paths(self):
@@ -274,7 +275,7 @@ class ScoreManagerConfiguration(Configuration):
         '''
         return (
             self.score_external_segments_package_path,
-            self.score_external_materials_package_path,
+            self.system_materials_package_path,
             self.score_external_specifiers_package_path,
             )
 

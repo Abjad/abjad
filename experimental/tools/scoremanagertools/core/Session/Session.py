@@ -89,7 +89,7 @@ class Session(abctools.AbjadObject):
                 self.current_score_package_name,
                 self.configuration._score_internal_materials_package_path_infix])
         else:
-            return self.configuration.score_external_materials_package_path
+            return self.configuration.system_materials_package_path
 
     @property
     def current_score_package_proxy(self):
