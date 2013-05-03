@@ -34,9 +34,9 @@ class ImportableAssetWrangler(AssetWrangler):
 
     def list_score_external_asset_package_paths(self, head=None):
         result = []
-        for asset_path in self.list_score_external_asset_container_paths(head=head):
-            for name in os.listdir(asset_path):
-                package_path = packagepathtools.directory_path_to_package_path(asset_path)
+        for asset_filesystem_path in self.list_score_external_asset_container_paths(head=head):
+            for name in os.listdir(asset_filesystem_path):
+                package_path = packagepathtools.directory_path_to_package_path(asset_filesystem_path)
                 if name[0].isalpha():
                     result.append('.'.join([package_path, name]))
         return result
@@ -46,9 +46,9 @@ class ImportableAssetWrangler(AssetWrangler):
         for asset_container_package_path in \
             self.list_score_internal_asset_container_package_paths(head=head):
             if self.score_internal_asset_container_package_path_infix:
-                asset_path = packagepathtools.package_path_to_directory_path(
+                asset_filesystem_path = packagepathtools.package_path_to_directory_path(
                     asset_container_package_path)
-                for name in os.listdir(asset_path):
+                for name in os.listdir(asset_filesystem_path):
                     if name[0].isalpha():
                         package_name = self.strip_file_extension_from_file_name(name)
                         result.append('{}.{}'.format(
@@ -59,8 +59,8 @@ class ImportableAssetWrangler(AssetWrangler):
 
     def list_user_asset_package_paths(self, head=None):
         result = []
-        for asset_path in self.list_user_asset_container_paths(head=head):
-            for name in os.listdir(asset_path):
+        for asset_filesystem_path in self.list_user_asset_container_paths(head=head):
+            for name in os.listdir(asset_filesystem_path):
                 if name[0].isalpha():
                     result.append('.'.join([self.configuration.user_specific_makers_package_path, name]))
         return result

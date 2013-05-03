@@ -9,7 +9,7 @@ scoremanagertools.proxies.StylesheetFileProxy
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.asset_path
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.asset_filesystem_path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.breadcrumb

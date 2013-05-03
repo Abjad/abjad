@@ -9,7 +9,7 @@ scoremanagertools.materialpackagemakers.ArticulationHandlerMaterialPackageMaker
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.materialpackagemakers.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.asset_path
+.. autoattribute:: experimental.tools.scoremanagertools.materialpackagemakers.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.asset_filesystem_path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.materialpackagemakers.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.breadcrumb

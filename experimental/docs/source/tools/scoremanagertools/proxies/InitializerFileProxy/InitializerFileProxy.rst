@@ -9,7 +9,7 @@ scoremanagertools.proxies.InitializerFileProxy
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.asset_path
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.asset_filesystem_path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.breadcrumb

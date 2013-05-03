@@ -9,7 +9,7 @@ scoremanagertools.proxies.MusPackageProxy
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.asset_path
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.asset_filesystem_path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.MusPackageProxy.MusPackageProxy.MusPackageProxy.breadcrumb

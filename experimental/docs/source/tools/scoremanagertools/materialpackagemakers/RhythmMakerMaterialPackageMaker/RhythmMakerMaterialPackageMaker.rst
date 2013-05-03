@@ -9,7 +9,7 @@ scoremanagertools.materialpackagemakers.RhythmMakerMaterialPackageMaker
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.materialpackagemakers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.asset_path
+.. autoattribute:: experimental.tools.scoremanagertools.materialpackagemakers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.asset_filesystem_path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.materialpackagemakers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.breadcrumb

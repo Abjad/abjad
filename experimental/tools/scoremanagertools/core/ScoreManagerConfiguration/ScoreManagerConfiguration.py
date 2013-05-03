@@ -556,6 +556,6 @@ class ScoreManagerConfiguration(Configuration):
 
     ### PUBLIC METHODS ###
 
-    def trim(self, asset_path):
-        index = asset_path.index('abjad')
-        return asset_path[index:]
+    def trim(self, asset_filesystem_path):
+        index = asset_filesystem_path.index('abjad')
+        return asset_filesystem_path[index:]

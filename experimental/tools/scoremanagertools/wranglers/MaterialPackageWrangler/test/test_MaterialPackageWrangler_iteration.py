@@ -27,10 +27,10 @@ def test_MaterialPackageWrangler_iteration_02():
 def test_MaterialPackageWrangler_iteration_03():
 
     assert os.path.join(wrangler.configuration.score_manager_materials_directory_path, 'red_notes') in \
-        wrangler.list_asset_paths()
+        wrangler.list_asset_filesystem_paths()
     assert os.path.join(wrangler.configuration.score_manager_materials_directory_path, 'red_notes') not in \
-        wrangler.list_asset_paths(head='example_score_1')
-    assert wrangler.list_asset_paths(head='asdf') == []
+        wrangler.list_asset_filesystem_paths(head='example_score_1')
+    assert wrangler.list_asset_filesystem_paths(head='asdf') == []
 
 
 def test_MaterialPackageWrangler_iteration_04():
@@ -81,9 +81,9 @@ def test_MaterialPackageWrangler_iteration_08():
     directory_path = os.path.join(
         wrangler.configuration.scores_directory_path,
         'example_scores_1', 'mus', 'materials', 'time_signatures')
-    assert directory_path in wrangler.list_score_internal_asset_paths()
-    assert directory_path in wrangler.list_score_internal_asset_paths(head='example_score_2')
-    assert wrangler.list_score_internal_asset_paths(head='asdf') == []
+    assert directory_path in wrangler.list_score_internal_asset_filesystem_paths()
+    assert directory_path in wrangler.list_score_internal_asset_filesystem_paths(head='example_score_2')
+    assert wrangler.list_score_internal_asset_filesystem_paths(head='asdf') == []
 
 
 def test_MaterialPackageWrangler_iteration_09():

@@ -71,9 +71,9 @@ class MaterialPackageMakerWrangler(PackageWrangler):
 
     def list_asset_space_delimited_lowercase_names(self, head=None):
         result = []
-        for asset_path in self.list_asset_paths(head=head):
-            asset_path = os.path.normpath(asset_path)
-            asset_name = os.path.basename(asset_path)
+        for asset_filesystem_path in self.list_asset_filesystem_paths(head=head):
+            asset_filesystem_path = os.path.normpath(asset_filesystem_path)
+            asset_name = os.path.basename(asset_filesystem_path)
             if asset_name in self.forbidden_class_names:
                 continue
             space_delimited_lowercase_asset_name = stringtools.uppercamelcase_to_space_delimited_lowercase(asset_name)

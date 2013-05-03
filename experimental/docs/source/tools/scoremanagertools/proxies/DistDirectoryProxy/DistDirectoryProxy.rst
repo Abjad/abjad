@@ -9,7 +9,7 @@ scoremanagertools.proxies.DistDirectoryProxy
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.DistDirectoryProxy.DistDirectoryProxy.DistDirectoryProxy.asset_path
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.DistDirectoryProxy.DistDirectoryProxy.DistDirectoryProxy.asset_filesystem_path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.DistDirectoryProxy.DistDirectoryProxy.DistDirectoryProxy.breadcrumb

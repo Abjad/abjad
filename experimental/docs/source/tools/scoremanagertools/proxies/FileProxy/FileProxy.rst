@@ -9,7 +9,7 @@ scoremanagertools.proxies.FileProxy
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.asset_path
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.asset_filesystem_path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.breadcrumb

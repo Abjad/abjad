@@ -9,7 +9,7 @@ scoremanagertools.proxies.AssetProxy
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.asset_path
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.asset_filesystem_path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.AssetProxy.AssetProxy.AssetProxy.breadcrumb

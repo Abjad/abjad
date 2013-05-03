@@ -9,7 +9,7 @@ scoremanagertools.materialpackagemakers.MarkupInventoryMaterialPackageMaker
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.materialpackagemakers.MarkupInventoryMaterialPackageMaker.MarkupInventoryMaterialPackageMaker.MarkupInventoryMaterialPackageMaker.asset_path
+.. autoattribute:: experimental.tools.scoremanagertools.materialpackagemakers.MarkupInventoryMaterialPackageMaker.MarkupInventoryMaterialPackageMaker.MarkupInventoryMaterialPackageMaker.asset_filesystem_path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.materialpackagemakers.MarkupInventoryMaterialPackageMaker.MarkupInventoryMaterialPackageMaker.MarkupInventoryMaterialPackageMaker.breadcrumb

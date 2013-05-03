@@ -93,7 +93,7 @@ class AssetWrangler(ScoreManagerObject):
 
     @property
     def current_asset_container_space_delimited_lowercase_name(self):
-        return self.asset_path_to_space_delimited_lowercase_name(self.current_asset_container_path)
+        return self.asset_filesystem_path_to_space_delimited_lowercase_name(self.current_asset_container_path)
 
     # infix #
 
@@ -114,7 +114,7 @@ class AssetWrangler(ScoreManagerObject):
         pass
 
     @property
-    def temporary_asset_path(self):
+    def temporary_asset_filesystem_path(self):
         return os.path.join(self.current_asset_container_path, self.temporary_asset_name)
 
     @property
@@ -123,13 +123,13 @@ class AssetWrangler(ScoreManagerObject):
 
     @property
     def temporary_space_delimited_lowercase_asset_name(self):
-        return self.asset_path_to_space_delimited_lowercase_name(self.temporary_asset_path)
+        return self.asset_filesystem_path_to_space_delimited_lowercase_name(self.temporary_asset_filesystem_path)
 
     ### PUBLIC METHODS ###
 
-    def asset_path_to_space_delimited_lowercase_name(self, asset_path):
-        asset_path = os.path.normpath(asset_path)
-        asset_name = os.path.basename(asset_path)
+    def asset_filesystem_path_to_space_delimited_lowercase_name(self, asset_filesystem_path):
+        asset_filesystem_path = os.path.normpath(asset_filesystem_path)
+        asset_name = os.path.basename(asset_filesystem_path)
         asset_name = self.strip_file_extension_from_file_name(asset_name)
         return stringtools.string_to_space_delimited_lowercase(asset_name)
 
@@ -168,8 +168,8 @@ class AssetWrangler(ScoreManagerObject):
                 asset_proxy.profile()
         return results
 
-    def get_asset_proxy(self, asset_path):
-        return self.asset_class(asset_path, session=self.session)
+    def get_asset_proxy(self, asset_filesystem_path):
+        return self.asset_class(asset_filesystem_path, session=self.session)
 
     @abc.abstractmethod
     def handle_main_menu_result(self, result):
@@ -197,25 +197,25 @@ class AssetWrangler(ScoreManagerObject):
 
     # assets (all) #
 
-    def list_asset_paths(self, head=None):
+    def list_asset_filesystem_paths(self, head=None):
         result = []
         if head in (None,) + self.configuration.score_external_package_paths:
-            result.extend(self.list_score_external_asset_paths(head=head))
-        result.extend(self.list_score_internal_asset_paths(head=head))
-        result.extend(self.list_user_asset_paths(head=head))
+            result.extend(self.list_score_external_asset_filesystem_paths(head=head))
+        result.extend(self.list_score_internal_asset_filesystem_paths(head=head))
+        result.extend(self.list_user_asset_filesystem_paths(head=head))
         return result
 
     def list_asset_proxies(self, head=None):
         result = []
-        for asset_path in self.list_asset_paths(head=head):
-            asset_proxy = self.get_asset_proxy(asset_path)
+        for asset_filesystem_path in self.list_asset_filesystem_paths(head=head):
+            asset_proxy = self.get_asset_proxy(asset_filesystem_path)
             result.append(asset_proxy)
         return result
 
     def list_asset_space_delimited_lowercase_names(self, head=None):
         result = []
-        for asset_path in self.list_asset_paths(head=head):
-            result.append(self.asset_path_to_space_delimited_lowercase_name(asset_path))
+        for asset_filesystem_path in self.list_asset_filesystem_paths(head=head):
+            result.append(self.asset_filesystem_path_to_space_delimited_lowercase_name(asset_filesystem_path))
         return result
 
     # score-external asset containers #
@@ -243,25 +243,25 @@ class AssetWrangler(ScoreManagerObject):
 
     # score-external assets #
 
-    def list_score_external_asset_paths(self, head=None):
+    def list_score_external_asset_filesystem_paths(self, head=None):
         result = []
-        for asset_path in self.list_score_external_asset_container_paths(head=head):
-            for name in os.listdir(asset_path):
+        for asset_filesystem_path in self.list_score_external_asset_container_paths(head=head):
+            for name in os.listdir(asset_filesystem_path):
                 if name[0].isalpha():
-                    result.append(os.path.join(asset_path, name))
+                    result.append(os.path.join(asset_filesystem_path, name))
         return result
 
     def list_score_external_asset_proxies(self, head=None):
         result = []
-        for asset_path in self.list_score_external_asset_paths(head=head):
-            asset_proxy = self.get_asset_proxy(asset_path)
+        for asset_filesystem_path in self.list_score_external_asset_filesystem_paths(head=head):
+            asset_proxy = self.get_asset_proxy(asset_filesystem_path)
             result.append(asset_proxy)
         return result
 
     def list_score_external_asset_space_delimited_lowercase_names(self, head=None):
         result = []
-        for asset_path in self.list_score_external_asset_paths(head=head):
-            result.append(self.asset_path_to_space_delimited_lowercase_name(asset_path))
+        for asset_filesystem_path in self.list_score_external_asset_filesystem_paths(head=head):
+            result.append(self.asset_filesystem_path_to_space_delimited_lowercase_name(asset_filesystem_path))
         return result
 
     # score-internal asset containers #
@@ -293,18 +293,18 @@ class AssetWrangler(ScoreManagerObject):
 
     def list_score_internal_asset_container_space_delimited_lowercase_names(self, head=None):
         result = []
-        for asset_path in self.list_score_internal_asset_container_paths(head=head):
-            result.append(self.asset_path_to_space_delimited_lowercase_name(asset_path))
+        for asset_filesystem_path in self.list_score_internal_asset_container_paths(head=head):
+            result.append(self.asset_filesystem_path_to_space_delimited_lowercase_name(asset_filesystem_path))
         return result
 
     # score-internal assets #
 
-    def list_score_internal_asset_paths(self, head=None):
+    def list_score_internal_asset_filesystem_paths(self, head=None):
         result = []
-        for asset_path in self.list_score_internal_asset_container_paths(head=head):
-            for name in os.listdir(asset_path):
+        for asset_filesystem_path in self.list_score_internal_asset_container_paths(head=head):
+            for name in os.listdir(asset_filesystem_path):
                 if name[0].isalpha():
-                    result.append(os.path.join(asset_path, name))
+                    result.append(os.path.join(asset_filesystem_path, name))
         return result
 
     def list_score_internal_asset_proxies(self, head=None):
@@ -316,8 +316,8 @@ class AssetWrangler(ScoreManagerObject):
 
     def list_score_internal_asset_space_delimited_lowercase_names(self, head=None):
         result = []
-        for asset_path in self.list_score_internal_asset_paths(head=head):
-            result.append(self.asset_path_to_space_delimited_lowercase_name(asset_path))
+        for asset_filesystem_path in self.list_score_internal_asset_filesystem_paths(head=head):
+            result.append(self.asset_filesystem_path_to_space_delimited_lowercase_name(asset_filesystem_path))
         return result
 
     # utility method #
@@ -342,8 +342,8 @@ class AssetWrangler(ScoreManagerObject):
 
     def list_space_delimited_lowercase_score_external_asset_container_names(self, head=None):
         result = []
-        for asset_path in self.list_score_external_asset_container_paths(head=head):
-            result.append(self.asset_path_to_space_delimited_lowercase_name(asset_path))
+        for asset_filesystem_path in self.list_score_external_asset_container_paths(head=head):
+            result.append(self.asset_filesystem_path_to_space_delimited_lowercase_name(asset_filesystem_path))
         return result
 
     # user asset containers #
@@ -371,53 +371,53 @@ class AssetWrangler(ScoreManagerObject):
 
     def list_user_asset_container_space_delimited_lowercase_names(self, head=None):
         result = []
-        for asset_path in self.list_user_asset_container_paths(head=head):
-            result.append(self.asset_path_to_space_delimited_lowercase_name(asset_path))
+        for asset_filesystem_path in self.list_user_asset_container_paths(head=head):
+            result.append(self.asset_filesystem_path_to_space_delimited_lowercase_name(asset_filesystem_path))
         return result
 
     # user assets #
 
-    def list_user_asset_paths(self, head=None):
+    def list_user_asset_filesystem_paths(self, head=None):
         result = []
-        for asset_path in self.list_user_asset_container_paths(head=head):
-            for name in os.listdir(asset_path):
+        for asset_filesystem_path in self.list_user_asset_container_paths(head=head):
+            for name in os.listdir(asset_filesystem_path):
                 if name[0].isalpha():
-                    result.append(os.path.join(asset_path, name))
+                    result.append(os.path.join(asset_filesystem_path, name))
         return result
 
     def list_user_asset_proxies(self, head=None):
         result = []
-        for asset_path in self.list_user_asset_paths(head=head):
-            asset_proxy = self.get_asset_proxy(asset_path)
+        for asset_filesystem_path in self.list_user_asset_filesystem_paths(head=head):
+            asset_proxy = self.get_asset_proxy(asset_filesystem_path)
             result.append(asset_proxy)
         return result
 
     def list_user_asset_space_delimited_lowercase_names(self, head=None):
         result = []
-        for asset_path in self.list_user_asset_paths(head=head):
-            result.append(self.asset_path_to_space_delimited_lowercase_name(asset_path))
+        for asset_filesystem_path in self.list_user_asset_filesystem_paths(head=head):
+            result.append(self.asset_filesystem_path_to_space_delimited_lowercase_name(asset_filesystem_path))
         return result
 
     # visible assets #
 
-    def list_visible_asset_paths(self, head=None):
-        return self.list_asset_paths(head=head)
+    def list_visible_asset_filesystem_paths(self, head=None):
+        return self.list_asset_filesystem_paths(head=head)
 
     def list_visible_asset_proxies(self, head=None):
         return self.list_asset_proxies(head=head)
 
     def list_visible_asset_space_delimited_lowercase_names(self, head=None):
         result = []
-        for asset_path in self.list_visible_asset_paths(head=head):
-            result.append(self.asset_path_to_space_delimited_lowercase_name(asset_path))
+        for asset_filesystem_path in self.list_visible_asset_filesystem_paths(head=head):
+            result.append(self.asset_filesystem_path_to_space_delimited_lowercase_name(asset_filesystem_path))
         return result
 
     # other #
 
     def make_asset(self, asset_name):
         assert stringtools.is_underscore_delimited_lowercase_string(asset_name)
-        asset_path = os.path.join(self.current_asset_container_path, asset_name)
-        asset_proxy = self.get_asset_proxy(asset_path)
+        asset_filesystem_path = os.path.join(self.current_asset_container_path, asset_name)
+        asset_proxy = self.get_asset_proxy(asset_filesystem_path)
         asset_proxy.write_stub_to_disk()
 
     @abc.abstractmethod
@@ -442,7 +442,7 @@ class AssetWrangler(ScoreManagerObject):
         pass
 
     def make_visible_asset_menu_tokens(self, head=None):
-        keys = self.list_visible_asset_paths(head=head)
+        keys = self.list_visible_asset_filesystem_paths(head=head)
         bodies = self.list_visible_asset_space_delimited_lowercase_names(head=head)
         return zip(keys, bodies)
 
@@ -453,7 +453,7 @@ class AssetWrangler(ScoreManagerObject):
     # TODO: write test
     def remove_assets_interactively(self, head=None):
         getter = self.io.make_getter(where=self.where())
-        argument_list = self.list_visible_asset_paths(head=head)
+        argument_list = self.list_visible_asset_filesystem_paths(head=head)
         getter.append_argument_range(self.asset_class_space_delimited_lowercase_plural_name, argument_list)
         result = getter.run()
         if self.session.backtrack():
@@ -462,8 +462,8 @@ class AssetWrangler(ScoreManagerObject):
         total_assets_removed = 0
         for asset_number in result:
             asset_index = asset_number - 1
-            asset_path = argument_list[asset_index]
-            asset_proxy = self.get_asset_proxy(asset_path)
+            asset_filesystem_path = argument_list[asset_index]
+            asset_proxy = self.get_asset_proxy(asset_filesystem_path)
             asset_proxy.remove()
             total_assets_removed += 1
         self.io.proceed('{} asset(s) removed.'.format(total_assets_removed))

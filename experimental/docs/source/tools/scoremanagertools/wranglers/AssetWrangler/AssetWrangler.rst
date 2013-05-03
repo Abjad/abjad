@@ -45,10 +45,10 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.storage_format
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.temporary_asset_name
+.. autoattribute:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.temporary_asset_filesystem_path
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.temporary_asset_path
+.. autoattribute:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.temporary_asset_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.temporary_asset_proxy
@@ -60,7 +60,7 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.asset_path_to_space_delimited_lowercase_name
+.. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.asset_filesystem_path_to_space_delimited_lowercase_name
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.conditionally_make_asset_container_packages
@@ -93,7 +93,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.list_asset_container_proxies
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.list_asset_paths
+.. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.list_asset_filesystem_paths
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.list_asset_proxies
@@ -111,7 +111,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.list_score_external_asset_container_proxies
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.list_score_external_asset_paths
+.. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.list_score_external_asset_filesystem_paths
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.list_score_external_asset_proxies
@@ -132,7 +132,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.list_score_internal_asset_container_space_delimited_lowercase_names
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.list_score_internal_asset_paths
+.. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.list_score_internal_asset_filesystem_paths
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.list_score_internal_asset_proxies
@@ -162,7 +162,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.list_user_asset_container_space_delimited_lowercase_names
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.list_user_asset_paths
+.. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.list_user_asset_filesystem_paths
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.list_user_asset_proxies
@@ -171,7 +171,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.list_user_asset_space_delimited_lowercase_names
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.list_visible_asset_paths
+.. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.list_visible_asset_filesystem_paths
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.AssetWrangler.AssetWrangler.AssetWrangler.list_visible_asset_proxies

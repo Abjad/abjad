@@ -9,7 +9,7 @@ scoremanagertools.materialpackagemakers.OctaveTranspositionMappingInventoryMater
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.materialpackagemakers.OctaveTranspositionMappingInventoryMaterialPackageMaker.OctaveTranspositionMappingInventoryMaterialPackageMaker.OctaveTranspositionMappingInventoryMaterialPackageMaker.asset_path
+.. autoattribute:: experimental.tools.scoremanagertools.materialpackagemakers.OctaveTranspositionMappingInventoryMaterialPackageMaker.OctaveTranspositionMappingInventoryMaterialPackageMaker.OctaveTranspositionMappingInventoryMaterialPackageMaker.asset_filesystem_path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.materialpackagemakers.OctaveTranspositionMappingInventoryMaterialPackageMaker.OctaveTranspositionMappingInventoryMaterialPackageMaker.OctaveTranspositionMappingInventoryMaterialPackageMaker.breadcrumb

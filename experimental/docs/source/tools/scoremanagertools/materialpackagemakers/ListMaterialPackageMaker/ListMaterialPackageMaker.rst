@@ -9,7 +9,7 @@ scoremanagertools.materialpackagemakers.ListMaterialPackageMaker
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.materialpackagemakers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.asset_path
+.. autoattribute:: experimental.tools.scoremanagertools.materialpackagemakers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.asset_filesystem_path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.materialpackagemakers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.breadcrumb
