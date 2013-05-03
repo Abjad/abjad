@@ -6,7 +6,7 @@ from experimental.tools.scoremanagertools.core.ScoreManagerObject import ScoreMa
 from experimental.tools.scoremanagertools.proxies.PackageProxy import PackageProxy
 
 
-class AssetWrangler(ScoreManagerObject):
+class FilesystemAssetWrangler(ScoreManagerObject):
 
     ### CLASS ATTRIBUTES ###
 

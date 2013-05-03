@@ -1,9 +1,9 @@
 import os
 from experimental.tools import packagepathtools
-from experimental.tools.scoremanagertools.wranglers.AssetWrangler import AssetWrangler
+from experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler import FilesystemAssetWrangler
 
 
-class ImportableAssetWrangler(AssetWrangler):
+class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

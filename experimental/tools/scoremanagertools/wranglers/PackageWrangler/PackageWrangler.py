@@ -1,10 +1,10 @@
 import os
 from abjad.tools import stringtools
 from experimental.tools.scoremanagertools.proxies.PackageProxy import PackageProxy
-from experimental.tools.scoremanagertools.wranglers.ImportableAssetWrangler import ImportableAssetWrangler
+from experimental.tools.scoremanagertools.wranglers.ImportableFilesystemAssetWrangler import ImportableFilesystemAssetWrangler
 
 
-class PackageWrangler(ImportableAssetWrangler):
+class PackageWrangler(ImportableFilesystemAssetWrangler):
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

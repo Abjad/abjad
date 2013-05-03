@@ -504,9 +504,9 @@ Unstable packages (load manually)
       tools/scoremanagertools/specifiers/Specifier/Specifier
       tools/scoremanagertools/wizards/HandlerCreationWizard/HandlerCreationWizard
       tools/scoremanagertools/wizards/Wizard/Wizard
-      tools/scoremanagertools/wranglers/AssetWrangler/AssetWrangler
       tools/scoremanagertools/wranglers/FileWrangler/FileWrangler
-      tools/scoremanagertools/wranglers/ImportableAssetWrangler/ImportableAssetWrangler
+      tools/scoremanagertools/wranglers/FilesystemAssetWrangler/FilesystemAssetWrangler
+      tools/scoremanagertools/wranglers/ImportableFilesystemAssetWrangler/ImportableFilesystemAssetWrangler
       tools/scoremanagertools/wranglers/ModuleWrangler/ModuleWrangler
 
    --------
@@ -711,9 +711,9 @@ Unstable packages (load manually)
       tools/scoremanagertools/specifiers/Specifier/Specifier
       tools/scoremanagertools/wizards/HandlerCreationWizard/HandlerCreationWizard
       tools/scoremanagertools/wizards/Wizard/Wizard
-      tools/scoremanagertools/wranglers/AssetWrangler/AssetWrangler
       tools/scoremanagertools/wranglers/FileWrangler/FileWrangler
-      tools/scoremanagertools/wranglers/ImportableAssetWrangler/ImportableAssetWrangler
+      tools/scoremanagertools/wranglers/FilesystemAssetWrangler/FilesystemAssetWrangler
+      tools/scoremanagertools/wranglers/ImportableFilesystemAssetWrangler/ImportableFilesystemAssetWrangler
       tools/scoremanagertools/wranglers/ModuleWrangler/ModuleWrangler
 
    Concrete Classes
