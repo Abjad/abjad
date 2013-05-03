@@ -256,9 +256,9 @@ class ScoreManagerConfiguration(Configuration):
 
         Return string.
         '''
-        #return os.path.basename(self.score_manager_materials_directory_path)
         return os.path.basename(self.system_materials_directory_path)
 
+    # TODO: change name to system_package_paths
     @property
     def score_external_package_paths(self):
         '''Score-external package paths:
@@ -344,19 +344,7 @@ class ScoreManagerConfiguration(Configuration):
         '''
         return os.path.join(self.home_directory_path, '.score_manager')
 
-    @property
-    def score_manager_materials_directory_path(self):
-        '''Score manager materials directory path:
-
-        ::
-
-            >>> configuration.trim(configuration.score_manager_materials_directory_path)
-            'abjad/experimental/system_materials'
-
-        Return string.
-        '''
-        return os.path.join(self.abjad_configuration.abjad_experimental_directory_path, 'system_materials')
-
+    # TODO: change name to system_segments_directory_path
     @property
     def score_manager_sketches_directory_path(self):
         '''Score manager sketches directory path:
@@ -370,6 +358,7 @@ class ScoreManagerConfiguration(Configuration):
         '''
         return self._settings['score_manager_sketches_directory_path']
 
+    # TODO: change name to system_specifiers_directory_path
     @property
     def score_manager_specifiers_directory_path(self):
         '''Score manager sketches directory path:
@@ -425,7 +414,7 @@ class ScoreManagerConfiguration(Configuration):
         '''
         return 'experimental.tools.scoremanagertools'
 
-    # TODO: change name to user_specified_transcripts_directory_path
+    # TODO: change name to user_transcripts_directory_path
     @property
     def score_manager_transcripts_directory_path(self):
         '''Score manager transcripts directory path:
@@ -529,6 +518,7 @@ class ScoreManagerConfiguration(Configuration):
         '''
         return os.path.join(self.abjad_configuration.abjad_experimental_directory_path, 'system_materials')
 
+    # TODO: change name to user_material_package_makers_directory_path
     @property
     def user_specific_makers_directory_path(self):
         '''User-specific makers directory path:
@@ -542,6 +532,7 @@ class ScoreManagerConfiguration(Configuration):
         '''
         return self._settings['user_specific_score_manager_makers_directory_path']
 
+    # TODO: change name to user_material_package_makers_package_path
     @property
     def user_specific_makers_package_path(self):
         '''User-specific makers package path:

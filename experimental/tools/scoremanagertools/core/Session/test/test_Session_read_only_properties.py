@@ -21,8 +21,8 @@ def test_Session_read_only_properties_01():
         session.configuration.score_manager_sketches_directory_path
 
     assert session.current_materials_package_path == \
-        os.path.basename(session.configuration.score_manager_materials_directory_path)
-    assert session.current_materials_directory_path == session.configuration.score_manager_materials_directory_path
+        os.path.basename(session.configuration.system_materials_directory_path)
+    assert session.current_materials_directory_path == session.configuration.system_materials_directory_path
 
     assert session.current_score_package_proxy is None
     assert session.current_score_path is None

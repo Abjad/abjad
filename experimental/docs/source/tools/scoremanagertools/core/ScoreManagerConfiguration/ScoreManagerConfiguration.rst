@@ -60,9 +60,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.score_manager_configuration_directory
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.score_manager_materials_directory_path
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.score_manager_sketches_directory_path
    :noindex:
 
