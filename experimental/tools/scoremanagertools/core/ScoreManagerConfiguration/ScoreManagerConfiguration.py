@@ -64,22 +64,20 @@ class ScoreManagerConfiguration(Configuration):
                 ],
                 'spec': "string(default='')"
             },
-            'user_specific_score_manager_makers_directory_path': {
+            'user_material_package_makers_directory_path': {
                 'comment': [
                     '',
                     'Set to the directory where you house your user-specific makers.',
-                    'Always set user_specific_score_manager_makers_directory_path',
-                    'together with user_specific_score_manager_makers_package_path.',
+                    'Always set together with user_material_package_makers_package_path.',
                     'Defaults to none.'
                 ],
                 'spec': "string(default='')"
             },
-            'user_specific_score_manager_makers_package_path': {
+            'user_material_package_makers_package_path': {
                 'comment': [
                     '',
                     'Set to the directory where you house your user-specific makers.',
-                    'Always set user_specific_score_manager_makers_directory_path',
-                    'together with user_specific_score_manager_makers_package_path.',
+                    'Always set together with user_material_package_makers_directory_path.',
                     'Defaults to none.'
                 ],
                 'spec': "string(default='')"
@@ -220,12 +218,12 @@ class ScoreManagerConfiguration(Configuration):
         return Configuration.home_directory_path.fget(self)
 
     @property
-    def makers_directory_path(self):
+    def system_material_package_makers_directory_path(self):
         '''Makers directory path:
 
         ::
 
-            >>> configuration.trim(configuration.makers_directory_path)
+            >>> configuration.trim(configuration.system_material_package_makers_directory_path)
             'abjad/experimental/tools/scoremanagertools/materialpackagemakers'
 
         Return string.
@@ -233,12 +231,12 @@ class ScoreManagerConfiguration(Configuration):
         return os.path.join(self.score_manager_tools_directory_path, 'materialpackagemakers')
 
     @property
-    def makers_package_path(self):
+    def system_material_package_makers_package_path(self):
         '''Makers package path:
 
         ::
 
-            >>> configuration.makers_package_path
+            >>> configuration.system_material_package_makers_package_path
             'scoremanagertools.materialpackagemakers'
 
         Return string.
@@ -518,33 +516,31 @@ class ScoreManagerConfiguration(Configuration):
         '''
         return os.path.join(self.abjad_configuration.abjad_experimental_directory_path, 'system_materials')
 
-    # TODO: change name to user_material_package_makers_directory_path
     @property
-    def user_specific_makers_directory_path(self):
-        '''User-specific makers directory path:
+    def user_material_package_makers_directory_path(self):
+        '''User material package makers directory path:
 
         ::
 
-            >>> configuration.user_specific_makers_directory_path # doctest: +SKIP
-            'username/music/makers'
+            >>> configuration.user_material_package_makers_directory_path # doctest: +SKIP
+            '~/music/makers'
 
         Return string.
         '''
-        return self._settings['user_specific_score_manager_makers_directory_path']
+        return self._settings['user_material_package_makers_directory_path']
 
-    # TODO: change name to user_material_package_makers_package_path
     @property
-    def user_specific_makers_package_path(self):
-        '''User-specific makers package path:
+    def user_material_package_makers_package_path(self):
+        '''User material package makers package path:
 
         ::
 
-            >>> configuration.user_specific_makers_package_path # doctest: +SKIP
-            'username.music.makers'
+            >>> configuration.user_material_package_makers_package_path # doctest: +SKIP
+            '~.music.makers'
 
         Return string.
         '''
-        return self._settings['user_specific_score_manager_makers_package_path']
+        return self._settings['user_material_package_makers_package_path']
 
     ### PUBLIC METHODS ###
 

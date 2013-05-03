@@ -62,7 +62,7 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
         for asset_filesystem_path in self.list_user_asset_container_paths(head=head):
             for name in os.listdir(asset_filesystem_path):
                 if name[0].isalpha():
-                    result.append('.'.join([self.configuration.user_specific_makers_package_path, name]))
+                    result.append('.'.join([self.configuration.user_material_package_makers_package_path, name]))
         return result
 
     # TODO: try to reimplement without proxy instantiation

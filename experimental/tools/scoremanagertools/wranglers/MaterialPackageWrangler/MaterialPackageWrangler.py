@@ -49,7 +49,7 @@ class MaterialPackageWrangler(PackageWrangler):
             except AttributeError:
                 command = 'import {}.{} as material_package_maker_class'
                 command = command.format(
-                    self.configuration.user_specific_makers_package_path, material_package_maker_class_name)
+                    self.configuration.user_material_package_makers_package_path, material_package_maker_class_name)
                 exec(command)
                 material_package_proxy = material_package_maker_class(
                     material_package_path, session=self.session)
@@ -151,7 +151,7 @@ class MaterialPackageWrangler(PackageWrangler):
             exec(command)
         except ImportError:
             command = 'from {} import {} as material_package_maker_class'.format(
-                self.configuration.user_specific_makers_package_path, material_package_maker_class_name)
+                self.configuration.user_material_package_makers_package_path, material_package_maker_class_name)
             exec(command)
         should_have_user_input_module = getattr(
             material_package_maker_class, 'should_have_user_input_module', True)
