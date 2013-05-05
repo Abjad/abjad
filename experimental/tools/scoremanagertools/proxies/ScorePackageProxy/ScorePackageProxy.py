@@ -129,7 +129,7 @@ class ScorePackageProxy(PackageProxy):
 
     @property
     def segments_directory_path(self):
-        return os.path.join(self.directory_path, 'mus', 'chunks')
+        return os.path.join(self.directory_path, 'mus', 'segments')
 
     @property
     def segments_package_initializer_file_name(self):
@@ -137,7 +137,7 @@ class ScorePackageProxy(PackageProxy):
 
     @property
     def segments_package_path(self):
-        return '.'.join([self.package_path, 'mus', 'chunks'])
+        return '.'.join([self.package_path, 'mus', 'segments'])
 
     @property
     def tempo_inventory(self):
@@ -372,7 +372,7 @@ class ScorePackageProxy(PackageProxy):
     def make_main_menu(self):
         menu, section = self.io.make_menu(where=self.where(), is_numbered=True)
         section = menu.make_section()
-        section.append(('h', 'chunks'))
+        section.append(('h', 'segments'))
         section.append(('m', 'materials'))
         section.append(('f', 'specifiers'))
         section.append(('s', 'setup'))
@@ -471,15 +471,15 @@ class ScorePackageProxy(PackageProxy):
                 return
             self.session.is_backtracking_locally = True
 
-    def summarize_chunks(self):
-        chunks = self.segment_wrangler.list_visible_asset_names()
+    def summarize_segments(self):
+        segments = self.segment_wrangler.list_visible_asset_names()
         lines = []
-        if not chunks:
-            lines.append('{}Chunks (none yet)'.format(self.make_tab(1)))
+        if not segments:
+            lines.append('{}Segments (none yet)'.format(self.make_tab(1)))
         else:
-            lines.append('{}Chunks'.format(self.make_tab(1)))
-        for chunk in chunks:
-            lines.append('{}{}'.format(self.make_tab(2), chunk))
+            lines.append('{}Segments'.format(self.make_tab(1)))
+        for segment in segments:
+            lines.append('{}{}'.format(self.make_tab(2), segment))
         lines.append('')
         self.io.display(lines)
 

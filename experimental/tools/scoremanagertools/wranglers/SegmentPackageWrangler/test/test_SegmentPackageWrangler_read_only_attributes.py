@@ -12,12 +12,12 @@ def test_SegmentPackageWrangler_read_only_attributes_01():
     assert all([x.startswith('sketches') for x in wrangler.list_score_external_asset_package_paths()])
 
     assert wrangler.list_score_external_asset_container_package_paths() == ['sketches']
-    assert wrangler.score_internal_asset_container_package_path_infix == 'mus.chunks'
+    assert wrangler.score_internal_asset_container_package_path_infix == 'mus.segments'
 
     assert wrangler.temporary_asset_package_path == 'sketches.__temporary_package'
 
     assert 'sketches' in wrangler.list_asset_container_package_paths()
-    assert 'example_score_1.mus.chunks' in wrangler.list_asset_container_package_paths()
+    assert 'example_score_1.mus.segments' in wrangler.list_asset_container_package_paths()
 
 
 def test_SegmentPackageWrangler_read_only_attributes_02():
@@ -27,18 +27,18 @@ def test_SegmentPackageWrangler_read_only_attributes_02():
     wrangler.session.current_score_package_name = 'example_score_1'
     assert wrangler.session.is_in_score
 
-    assert wrangler.breadcrumb == 'chunks'
+    assert wrangler.breadcrumb == 'segments'
 
-    assert wrangler.current_asset_container_package_path == 'example_score_1.mus.chunks'
+    assert wrangler.current_asset_container_package_path == 'example_score_1.mus.segments'
 
     assert all([
         x.startswith('sketches.') for x in wrangler.list_score_external_asset_package_paths()])
     assert wrangler.list_score_external_asset_container_package_paths() == \
         ['sketches']
 
-    assert wrangler.score_internal_asset_container_package_path_infix == 'mus.chunks'
+    assert wrangler.score_internal_asset_container_package_path_infix == 'mus.segments'
 
-    assert wrangler.temporary_asset_package_path == 'example_score_1.mus.chunks.__temporary_package'
+    assert wrangler.temporary_asset_package_path == 'example_score_1.mus.segments.__temporary_package'
 
     assert 'sketches' in wrangler.list_asset_container_package_paths()
-    assert 'example_score_1.mus.chunks' in wrangler.list_asset_container_package_paths()
+    assert 'example_score_1.mus.segments' in wrangler.list_asset_container_package_paths()

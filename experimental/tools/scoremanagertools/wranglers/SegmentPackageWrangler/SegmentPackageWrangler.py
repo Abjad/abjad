@@ -7,6 +7,7 @@ class SegmentPackageWrangler(PackageWrangler):
 
     ### INITIALIZER ###
 
+    # TODO: restore initializer now that self.configuration exists
     def __init__(self, session=None):
 #        PackageWrangler.__init__(self,
 #            score_external_asset_container_package_paths= \
@@ -29,7 +30,7 @@ class SegmentPackageWrangler(PackageWrangler):
     @property
     def breadcrumb(self):
         if self.session.is_in_score:
-            return 'chunks'
+            return 'segments'
         else:
             return 'sketches'
 
@@ -51,5 +52,5 @@ class SegmentPackageWrangler(PackageWrangler):
         menu, section = self.io.make_menu(where=self.where(), is_numbered=True)
         section.tokens = self.list_asset_space_delimited_lowercase_names(head=head)
         section = menu.make_section()
-        section.append(('new', 'new chunk'))
+        section.append(('new', 'new segment'))
         return menu

@@ -12,7 +12,7 @@ def test_ScorePackageProxy_01():
     assert example_score_1.session.transcript[-2][1] == \
     ['Example Score I (2013)',
       '',
-      '     chunks (h)',
+      '     segments (h)',
       '     materials (m)',
       '     specifiers (f)',
       '     setup (s)',

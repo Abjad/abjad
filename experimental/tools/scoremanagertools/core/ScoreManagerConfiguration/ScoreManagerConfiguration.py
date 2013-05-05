@@ -91,7 +91,7 @@ class ScoreManagerConfiguration(Configuration):
 
     @property
     def _score_internal_segments_package_path_infix(self):
-        return 'mus.chunks'
+        return 'mus.segments'
 
     @property
     def _score_internal_specifiers_package_path_infix(self):
@@ -279,7 +279,7 @@ class ScoreManagerConfiguration(Configuration):
 
     @property
     def score_external_segments_directory_path(self):
-        '''Score-external chunks directory path:
+        '''Score-external segments directory path:
 
         ::
 
@@ -292,7 +292,7 @@ class ScoreManagerConfiguration(Configuration):
 
     @property
     def score_external_segments_package_path(self):
-        '''Score-external chunks package path:
+        '''Score-external segments package path:
 
         ::
 
