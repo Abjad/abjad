@@ -13,7 +13,7 @@ class ScorePackageProxy(PackageProxy):
             score_package_name=score_package_name, session=self.session)
         self._etc_proxy = scoremanagertools.proxies.EtcDirectoryProxy(
             score_package_name=score_package_name, session=self.session)
-        self._exg_proxy = scoremanagertools.proxies.ExgDirectoryProxy(
+        self._exg_proxy = scoremanagertools.proxies.AssemblyDirectoryProxy(
             score_package_name=score_package_name, session=self.session)
         self._mus_proxy = scoremanagertools.proxies.MusPackageProxy(
             score_package_name=score_package_name, session=self.session)

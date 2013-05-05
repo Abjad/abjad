@@ -590,11 +590,11 @@ Unstable packages (load manually)
       tools/scoremanagertools/menuing/MenuSection/MenuSection
       tools/scoremanagertools/menuing/MenuSectionAggregator/MenuSectionAggregator
       tools/scoremanagertools/menuing/UserInputGetter/UserInputGetter
+      tools/scoremanagertools/proxies/AssemblyDirectoryProxy/AssemblyDirectoryProxy
       tools/scoremanagertools/proxies/BasicModuleProxy/BasicModuleProxy
       tools/scoremanagertools/proxies/DirectoryProxy/DirectoryProxy
       tools/scoremanagertools/proxies/DistributionDirectoryProxy/DistributionDirectoryProxy
       tools/scoremanagertools/proxies/EtcDirectoryProxy/EtcDirectoryProxy
-      tools/scoremanagertools/proxies/ExgDirectoryProxy/ExgDirectoryProxy
       tools/scoremanagertools/proxies/FileProxy/FileProxy
       tools/scoremanagertools/proxies/IllustrationBuilderModuleProxy/IllustrationBuilderModuleProxy
       tools/scoremanagertools/proxies/IllustrationLyFileProxy/IllustrationLyFileProxy
@@ -797,11 +797,11 @@ Unstable packages (load manually)
       tools/scoremanagertools/menuing/MenuSection/MenuSection
       tools/scoremanagertools/menuing/MenuSectionAggregator/MenuSectionAggregator
       tools/scoremanagertools/menuing/UserInputGetter/UserInputGetter
+      tools/scoremanagertools/proxies/AssemblyDirectoryProxy/AssemblyDirectoryProxy
       tools/scoremanagertools/proxies/BasicModuleProxy/BasicModuleProxy
       tools/scoremanagertools/proxies/DirectoryProxy/DirectoryProxy
       tools/scoremanagertools/proxies/DistributionDirectoryProxy/DistributionDirectoryProxy
       tools/scoremanagertools/proxies/EtcDirectoryProxy/EtcDirectoryProxy
-      tools/scoremanagertools/proxies/ExgDirectoryProxy/ExgDirectoryProxy
       tools/scoremanagertools/proxies/FileProxy/FileProxy
       tools/scoremanagertools/proxies/IllustrationBuilderModuleProxy/IllustrationBuilderModuleProxy
       tools/scoremanagertools/proxies/IllustrationLyFileProxy/IllustrationLyFileProxy
