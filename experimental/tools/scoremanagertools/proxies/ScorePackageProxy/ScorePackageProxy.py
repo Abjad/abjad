@@ -13,7 +13,7 @@ class ScorePackageProxy(PackageProxy):
             score_package_name=score_package_name, session=self.session)
         self._etc_proxy = scoremanagertools.proxies.EtcDirectoryProxy(
             score_package_name=score_package_name, session=self.session)
-        self._exg_proxy = scoremanagertools.proxies.AssemblyDirectoryProxy(
+        self._assembly_proxy = scoremanagertools.proxies.AssemblyDirectoryProxy(
             score_package_name=score_package_name, session=self.session)
         self._mus_proxy = scoremanagertools.proxies.MusPackageProxy(
             score_package_name=score_package_name, session=self.session)
@@ -62,8 +62,8 @@ class ScorePackageProxy(PackageProxy):
         return self._etc_proxy
 
     @property
-    def exg_proxy(self):
-        return self._exg_proxy
+    def assembly_proxy(self):
+        return self._assembly_proxy
 
     @property
     def has_correct_directory_structure(self):
@@ -167,7 +167,7 @@ class ScorePackageProxy(PackageProxy):
         return (
             self.dist_proxy,
             self.etc_proxy,
-            self.exg_proxy,
+            self.assembly_proxy,
             self.mus_proxy,
             )
 

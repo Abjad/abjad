@@ -90,7 +90,7 @@ def test_ScorePackageProxy_07():
 
     assert spp.session is spp.dist_proxy.session
     assert spp.session is spp.etc_proxy.session
-    assert spp.session is spp.exg_proxy.session
+    assert spp.session is spp.assembly_proxy.session
     assert spp.session is spp.mus_proxy.session
     assert spp.session is spp.segment_wrangler.session
     assert spp.session is spp.material_package_wrangler.session
