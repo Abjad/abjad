@@ -183,12 +183,6 @@ class Session(abctools.AbjadObject):
         return self._session_once_had_user_input
 
     @property
-    def short_transcript(self):
-        entries = self.transcript.entries
-        short_transcript = [entry[1] for entry in entries]
-        return short_transcript
-
-    @property
     def testable_command_history_string(self):
         result = []
         for part in self.explicit_command_history:

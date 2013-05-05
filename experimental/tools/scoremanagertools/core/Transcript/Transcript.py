@@ -18,6 +18,11 @@ class Transcript(AbjadObject):
         self._entries = []
         self._start_time = self.current_time
 
+    ### SPECIAL METHODS ###
+
+    def __getitem__(self, expr):
+        return self.entries.__getitem__(expr)
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property

@@ -9,7 +9,7 @@ def test_ScorePackageProxy_01():
     example_score_1 = scoremanagertools.proxies.ScorePackageProxy('example_score_1')
     example_score_1.run(user_input='q')
 
-    assert example_score_1.session.short_transcript[-2] == \
+    assert example_score_1.session.transcript[-2][1] == \
     ['Example Score I (2013)',
       '',
       '     chunks (h)',
@@ -52,9 +52,9 @@ def test_ScorePackageProxy_04():
     score_manager.run(user_input="example~score~i home q")
 
     assert score_manager.session.transcript.signature == (6, (0, 4))
-    assert score_manager.session.short_transcript[0][0] == 'Scores - active scores'
-    assert score_manager.session.short_transcript[2][0] == 'Example Score I (2013)'
-    assert score_manager.session.short_transcript[4][0] == 'Scores - active scores'
+    assert score_manager.session.transcript[0][1][0] == 'Scores - active scores'
+    assert score_manager.session.transcript[2][1][0] == 'Example Score I (2013)'
+    assert score_manager.session.transcript[4][1][0] == 'Scores - active scores'
 
 
 def test_ScorePackageProxy_05():
@@ -65,8 +65,8 @@ def test_ScorePackageProxy_05():
     example_score_1.run(user_input='home')
 
     assert example_score_1.session.transcript.signature == (2,)
-    assert example_score_1.session.short_transcript[0][0] == "Example Score I (2013)"
-    assert example_score_1.session.short_transcript[1][0] == '> home'
+    assert example_score_1.session.transcript[0][1][0] == "Example Score I (2013)"
+    assert example_score_1.session.transcript[1][1][0] == '> home'
 
 
 def test_ScorePackageProxy_06():
@@ -77,9 +77,9 @@ def test_ScorePackageProxy_06():
     score_manager.run(user_input='example~score~i b q')
 
     assert score_manager.session.transcript.signature == (6, (0, 4))
-    assert score_manager.session.short_transcript[0][0] == 'Scores - active scores'
-    assert score_manager.session.short_transcript[2][0] == 'Example Score I (2013)'
-    assert score_manager.session.short_transcript[4][0] == 'Scores - active scores'
+    assert score_manager.session.transcript[0][1][0] == 'Scores - active scores'
+    assert score_manager.session.transcript[2][1][0] == 'Example Score I (2013)'
+    assert score_manager.session.transcript[4][1][0] == 'Scores - active scores'
 
 
 def test_ScorePackageProxy_07():

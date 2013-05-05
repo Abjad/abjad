@@ -5,7 +5,7 @@ def test_ScoreManager_show_hidden_menu_entries_01():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     score_manager.run(user_input='hidden q')
-    assert score_manager.session.short_transcript[-2] == \
+    assert score_manager.session.transcript[-2][1] == \
      ['     back (b)',
       '     exec statement (exec)',
       '     grep directories (grep)',

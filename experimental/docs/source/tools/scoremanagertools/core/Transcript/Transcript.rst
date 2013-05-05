@@ -45,6 +45,9 @@ Special methods
 .. automethod:: experimental.tools.scoremanagertools.core.Transcript.Transcript.Transcript.__ge__
    :noindex:
 
+.. automethod:: experimental.tools.scoremanagertools.core.Transcript.Transcript.Transcript.__getitem__
+   :noindex:
+
 .. automethod:: experimental.tools.scoremanagertools.core.Transcript.Transcript.Transcript.__gt__
    :noindex:
 

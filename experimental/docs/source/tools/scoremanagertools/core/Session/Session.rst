@@ -75,9 +75,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.session_once_had_user_input
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.short_transcript
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.storage_format
    :noindex:
 
