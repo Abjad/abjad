@@ -48,7 +48,7 @@ def test_ScorePackageProxy_read_only_attributes_01():
         scoremanagertools.wranglers.MaterialPackageWrangler())
 
     assert score_proxy.top_level_directory_proxies == (
-        scoremanagertools.proxies.DistDirectoryProxy('example_score_1'),
+        scoremanagertools.proxies.DistributionDirectoryProxy('example_score_1'),
         scoremanagertools.proxies.EtcDirectoryProxy('example_score_1'),
         scoremanagertools.proxies.ExgDirectoryProxy('example_score_1'),
         scoremanagertools.proxies.MusPackageProxy('example_score_1'))

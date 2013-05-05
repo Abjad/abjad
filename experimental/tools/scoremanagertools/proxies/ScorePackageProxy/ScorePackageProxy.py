@@ -9,7 +9,7 @@ class ScorePackageProxy(PackageProxy):
     def __init__(self, score_package_name=None, session=None):
         from experimental.tools import scoremanagertools
         PackageProxy.__init__(self, score_package_name, session=session)
-        self._dist_proxy = scoremanagertools.proxies.DistDirectoryProxy(
+        self._dist_proxy = scoremanagertools.proxies.DistributionDirectoryProxy(
             score_package_name=score_package_name, session=self.session)
         self._etc_proxy = scoremanagertools.proxies.EtcDirectoryProxy(
             score_package_name=score_package_name, session=self.session)
