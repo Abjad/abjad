@@ -8,7 +8,7 @@ scores_directory_path = configuration.scores_directory_path
 def test_directory_path_to_package_path_01():
 
     assert packagepathtools.directory_path_to_package_path(
-        configuration.system_materials_directory_path) == 'materials'
+        configuration.system_materials_directory_path) == 'system_materials'
     assert packagepathtools.directory_path_to_package_path(
         configuration.score_manager_specifiers_directory_path) == 'specifiers'
     assert packagepathtools.directory_path_to_package_path(
