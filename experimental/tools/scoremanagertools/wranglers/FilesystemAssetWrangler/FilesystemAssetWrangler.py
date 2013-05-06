@@ -38,12 +38,12 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, other):
-        if isinstance(other, type(self)):
+    def __eq__(self, expr):
+        if isinstance(expr, type(self)):
             if self.list_score_external_asset_container_package_paths() == \
-                other.list_score_external_asset_container_package_paths():
+                expr.list_score_external_asset_container_package_paths():
                 if self.score_internal_asset_container_package_path_infix == \
-                    other.score_internal_asset_container_package_path_infix:
+                    expr.score_internal_asset_container_package_path_infix:
                     return True
         return False
 
@@ -111,10 +111,10 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     @property
     def temporary_asset_filesystem_path(self):
-        return os.path.join(self.current_asset_container_path, self.temporary_asset_name)
+        return os.path.join(self.current_asset_container_path, self._temporary_asset_name)
 
     @abc.abstractproperty
-    def temporary_asset_name(self):
+    def _temporary_asset_name(self):
         pass
 
     @property
@@ -426,9 +426,9 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     def make_asset_selection_breadcrumb(self, infinitival_phrase=None):
         if infinitival_phrase:
-            return 'select {} {}:'.format(self.asset_class.generic_class_name, infinitival_phrase)
+            return 'select {} {}:'.format(self.asset_class._generic_class_name, infinitival_phrase)
         else:
-            return 'select {}:'.format(self.asset_class.generic_class_name)
+            return 'select {}:'.format(self.asset_class._generic_class_name)
 
     def make_asset_selection_menu(self, head=None):
         menu, section = self.io.make_menu(where=self.where(), is_keyed=False, is_parenthetically_numbered=True)

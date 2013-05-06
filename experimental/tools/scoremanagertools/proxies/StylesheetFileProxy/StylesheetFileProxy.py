@@ -5,8 +5,8 @@ class StylesheetFileProxy(FileProxy):
 
     ### CLASS ATTRIBUTES ###
 
-    generic_class_name = 'stylesheet'
-    temporary_asset_name = 'temporary_stylesheet.ly'
+    _generic_class_name = 'stylesheet'
+    _temporary_asset_name = 'temporary_stylesheet.ly'
 
     ### READ-ONLY PROPERTIES ###
 

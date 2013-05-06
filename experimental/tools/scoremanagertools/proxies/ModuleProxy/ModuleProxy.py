@@ -16,8 +16,8 @@ class ModuleProxy(ParsableFileProxy):
     ### CLASS ATTRIBUTES ###
 
     extension = '.py'
-    generic_class_name = 'module'
-    temporary_asset_name = 'temporary_module.py'
+    _generic_class_name = 'module'
+    _temporary_asset_name = 'temporary_module.py'
 
     ### READ-ONLY PROPERTIES ###
 

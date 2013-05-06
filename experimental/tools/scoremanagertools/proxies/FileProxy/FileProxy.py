@@ -6,8 +6,8 @@ class FileProxy(FilesystemAssetProxy):
 
     ### CLASS ATTRIBUTES ###
 
-    generic_class_name = 'file'
-    temporary_asset_name = 'temporary_file.txt'
+    _generic_class_name = 'file'
+    _temporary_asset_name = 'temporary_file.txt'
 
     ### INITIALIZER ###
 

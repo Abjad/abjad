@@ -66,7 +66,7 @@ def test_MaterialPackageWrangler_read_only_attributes_07():
     assert wrangler.temporary_asset_package_path == 'system_materials.__temporary_package'
     assert wrangler.temporary_asset_filesystem_path == \
         os.path.join(wrangler.configuration.system_materials_directory_path, '__temporary_package')
-    assert wrangler.temporary_asset_name == '__temporary_package'
+    assert wrangler._temporary_asset_name == '__temporary_package'
 
 
 def test_MaterialPackageWrangler_read_only_attributes_08():

@@ -18,12 +18,12 @@ class Specifier(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, other):
-        if self is other:
+    def __eq__(self, expr):
+        if self is expr:
             return True
-        if isinstance(other, type(self)):
-            if self._positional_argument_values == other._positional_argument_values:
-                if self._keyword_argument_name_value_strings == other._keyword_argument_name_value_strings:
+        if isinstance(expr, type(self)):
+            if self._positional_argument_values == expr._positional_argument_values:
+                if self._keyword_argument_name_value_strings == expr._keyword_argument_name_value_strings:
                     return True
         return False
 

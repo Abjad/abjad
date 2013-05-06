@@ -22,7 +22,7 @@ class PackageWrangler(ImportableFilesystemAssetWrangler):
         return result
 
     @property
-    def temporary_asset_name(self):
+    def _temporary_asset_name(self):
         return '__temporary_package'
 
     ### PUBLIC METHODS ###

@@ -12,9 +12,9 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
         if self.current_asset_container_package_path:
             return '.'.join([
                 self.current_asset_container_package_path,
-                self.temporary_asset_name])
+                self._temporary_asset_name])
         else:
-            return self.temporary_asset_name
+            return self._temporary_asset_name
 
     ### PUBLIC METHODS ###
 

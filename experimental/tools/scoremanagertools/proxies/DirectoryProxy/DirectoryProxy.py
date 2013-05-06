@@ -10,20 +10,6 @@ class DirectoryProxy(FilesystemAssetProxy):
     def __init__(self, directory_path=None, session=None):
         FilesystemAssetProxy.__init__(self, filesystem_path=directory_path, session=session)
 
-    ### SPECIAL METHODS ###
-
-    def __eq__(self, other):
-        if isinstance(other, type(self)):
-            if self.directory_path == other.directory_path:
-                return True
-        return False
-
-    def __ne__(self, other):
-        return not self == other
-
-    def __repr__(self):
-        return '{}({!r})'.format(self._class_name, self.directory_path)
-
     ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property

@@ -12,7 +12,7 @@ def test_ModuleProxy_public_attributes_01():
     assert proxy.breadcrumb == 'module proxy'
     assert not proxy.exists
     assert not proxy.file_lines
-    assert proxy.generic_class_name == 'module'
+    assert proxy._generic_class_name == 'module'
     assert proxy.grandparent_directory_path is None
     assert proxy.grandparent_package_path is None
     assert proxy.space_delimited_lowercase_name is None
@@ -24,11 +24,11 @@ def test_ModuleProxy_public_attributes_01():
     assert proxy.parent_package_path is None
     assert proxy.parent_package_initializer_file_name is None
     assert proxy.file_path is None
-    assert proxy.plural_generic_class_name == 'modules'
+    assert proxy._plural_generic_class_name == 'modules'
     assert proxy.name is None
     assert proxy.name_without_extension is None
     assert proxy._svn_add_command is None
-    assert proxy.temporary_asset_name == 'temporary_module.py'
+    assert proxy._temporary_asset_name == 'temporary_module.py'
 
 
 def test_ModuleProxy_public_attributes_02():
@@ -43,7 +43,7 @@ def test_ModuleProxy_public_attributes_02():
     assert proxy.breadcrumb == 'material_definition.py'
     assert proxy.exists
     assert proxy.file_lines
-    assert proxy.generic_class_name == 'module'
+    assert proxy._generic_class_name == 'module'
     assert proxy.grandparent_directory_path == proxy.configuration.system_materials_directory_path
     assert proxy.grandparent_package_path == proxy.configuration.system_materials_package_path
     assert proxy.space_delimited_lowercase_name == 'material definition'
@@ -60,8 +60,8 @@ def test_ModuleProxy_public_attributes_02():
         proxy.configuration.system_materials_directory_path, 'red_notes', '__init__.py')
     assert proxy.file_path == os.path.join(
         proxy.configuration.system_materials_directory_path, 'red_notes', 'material_definition.py')
-    assert proxy.plural_generic_class_name == 'modules'
+    assert proxy._plural_generic_class_name == 'modules'
     assert proxy.name == 'material_definition.py'
     assert proxy.name_without_extension == 'material_definition'
     assert proxy._svn_add_command
-    assert proxy.temporary_asset_name == 'temporary_module.py'
+    assert proxy._temporary_asset_name == 'temporary_module.py'

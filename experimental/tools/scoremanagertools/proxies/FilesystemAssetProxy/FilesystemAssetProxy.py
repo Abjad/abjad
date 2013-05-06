@@ -14,7 +14,7 @@ class FilesystemAssetProxy(ScoreManagerObject):
     ### CLASS ATTRIBUTES ###
 
     __metaclass__ = abc.ABCMeta
-    generic_class_name = 'asset'
+    _generic_class_name = 'filesystem asset'
 
     ### INITIALIZER ###
 
@@ -23,7 +23,22 @@ class FilesystemAssetProxy(ScoreManagerObject):
         self._filesystem_path = filesystem_path
         ScoreManagerObject.__init__(self, session=session)
 
+    ### SPECIAL METHODS ###
+
+    def __eq__(self, expr):
+        if isinstance(expr, type(self)):
+            if self.filesystem_path == expr.filesystem_path:
+                return True
+        return False
+
+    def __repr__(self):
+        return '{}({!r})'.format(self._class_name, self.filesystem_path)
+
     ### READ-ONLY PRIVATE PROPERTIES ###
+
+    @property
+    def _plural_generic_class_name(self):
+        return stringtools.pluralize_string(self._generic_class_name)
 
     @property
     def _svn_add_command(self):
@@ -69,10 +84,6 @@ class FilesystemAssetProxy(ScoreManagerObject):
     def parent_directory_path(self):
         if self.filesystem_path:
             return os.path.dirname(self.filesystem_path)
-
-    @property
-    def plural_generic_class_name(self):
-        return stringtools.pluralize_string(self.generic_class_name)
 
     @property
     def space_delimited_lowercase_name(self):
