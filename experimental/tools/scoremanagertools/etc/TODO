@@ -83,11 +83,3 @@
 29. Replace 'score-internal' with something else.
     Replace 'score-external' with something else.
     Perhaps 'score-external' becomes 'system' and 'score-internal' becomes 'score'.
-
-30. In system_materials/red_marcati/output_material.py we find the header line "import handlertools".
-    Change this to "from experimental.tools import handlertools".
-    Same for the output material modules of all other system materials.
-
-31. Figure out why browsing to materials > red forte raises an exception.
-    Figure out why browsing to materials > red marcati raises an exception.
-    Note that browsing to all other system materials works fine.
