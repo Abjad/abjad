@@ -34,11 +34,11 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
 
     def list_score_external_asset_package_paths(self, head=None):
         result = []
-        for asset_filesystem_path in self.list_score_external_asset_container_paths(head=head):
-            for name in os.listdir(asset_filesystem_path):
-                package_path = packagepathtools.directory_path_to_package_path(asset_filesystem_path)
-                if name[0].isalpha():
-                    result.append('.'.join([package_path, name]))
+        for directory_path in self.list_score_external_asset_container_paths(head=head):
+            for directory_entry in os.listdir(directory_path):
+                package_path = packagepathtools.filesystem_path_to_package_path(directory_path)
+                if directory_entry[0].isalpha():
+                    result.append('.'.join([package_path, directory_entry]))
         return result
 
     def list_score_internal_asset_package_paths(self, head=None):

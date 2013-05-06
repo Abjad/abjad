@@ -15,9 +15,9 @@ class PackageWrangler(ImportableFilesystemAssetWrangler):
     @property
     def score_external_asset_proxies(self):
         result = []
-        for asset_filesystem_path in self.score_external_asset_filesystem_paths:
-            asset_package_path = packagepathtools.directory_path_to_package_path(asset_filesystem_path)
-            asset_proxy = self.get_asset_proxy(asset_package_path)
+        for filesystem_path in self.score_external_asset_filesystem_paths:
+            package_path = packagepathtools.filesystem_path_to_package_path(filesystem_path)
+            asset_proxy = self.get_asset_proxy(package_path)
             result.append(asset_proxy)
         return result
 

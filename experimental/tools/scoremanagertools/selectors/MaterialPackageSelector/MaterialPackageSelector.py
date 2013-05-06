@@ -23,8 +23,8 @@ class MaterialPackageSelector(Selector):
 
     def list_items(self):
         result = []
-        for path in self.list_current_material_directory_paths():
-            package_path = packagepathtools.directory_path_to_package_path(path)
+        for directory_path in self.list_current_material_directory_paths():
+            package_path = packagepathtools.filesystem_path_to_package_path(directory_path)
             result.append(package_path)
         return result
 
