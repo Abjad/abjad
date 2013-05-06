@@ -52,5 +52,5 @@ def test_ScorePackageProxy_read_only_attributes_01():
 
     assert score_proxy.top_level_directory_proxies == (
         scoremanagertools.proxies.DistributionDirectoryProxy('example_score_1'),
-        scoremanagertools.proxies.AssemblyDirectoryProxy('example_score_1'),
+        scoremanagertools.proxies.ExergueDirectoryProxy('example_score_1'),
         scoremanagertools.proxies.MusicPackageProxy('example_score_1'))

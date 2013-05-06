@@ -2,7 +2,7 @@ import os
 from experimental.tools.scoremanagertools.proxies.DirectoryProxy import DirectoryProxy
 
 
-class AssemblyDirectoryProxy(DirectoryProxy):
+class ExergueDirectoryProxy(DirectoryProxy):
 
     ### INITIALIZER ###
 

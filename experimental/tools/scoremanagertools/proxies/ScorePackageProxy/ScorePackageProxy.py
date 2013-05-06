@@ -11,7 +11,7 @@ class ScorePackageProxy(PackageProxy):
         PackageProxy.__init__(self, score_package_name, session=session)
         self._dist_proxy = scoremanagertools.proxies.DistributionDirectoryProxy(
             score_package_name=score_package_name, session=self.session)
-        self._assembly_proxy = scoremanagertools.proxies.AssemblyDirectoryProxy(
+        self._assembly_proxy = scoremanagertools.proxies.ExergueDirectoryProxy(
             score_package_name=score_package_name, session=self.session)
         self._mus_proxy = scoremanagertools.proxies.MusicPackageProxy(
             score_package_name=score_package_name, session=self.session)
