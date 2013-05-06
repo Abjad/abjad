@@ -1,7 +1,7 @@
 from experimental.tools.scoremanagertools.proxies.PackageProxy import PackageProxy
 
 
-class MusPackageProxy(PackageProxy):
+class MusicPackageProxy(PackageProxy):
 
     def __init__(self, score_package_name=None, session=None):
         package_path = '{}.mus'.format(score_package_name)

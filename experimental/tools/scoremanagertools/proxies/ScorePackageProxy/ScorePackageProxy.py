@@ -15,7 +15,7 @@ class ScorePackageProxy(PackageProxy):
             score_package_name=score_package_name, session=self.session)
         self._assembly_proxy = scoremanagertools.proxies.AssemblyDirectoryProxy(
             score_package_name=score_package_name, session=self.session)
-        self._mus_proxy = scoremanagertools.proxies.MusPackageProxy(
+        self._mus_proxy = scoremanagertools.proxies.MusicPackageProxy(
             score_package_name=score_package_name, session=self.session)
         self._segment_wrangler = scoremanagertools.wranglers.SegmentPackageWrangler(
             session=self.session)
