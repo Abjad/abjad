@@ -18,10 +18,10 @@ def test_MaterialPackageWrangler_read_only_attributes_02():
     '''
 
     assert 'system_materials' in wrangler.list_asset_container_package_paths()
-    assert 'example_score_1.mus.materials' in wrangler.list_asset_container_package_paths()
+    assert 'example_score_1.music.materials' in wrangler.list_asset_container_package_paths()
     assert wrangler.configuration.system_materials_directory_path in wrangler.list_asset_container_paths()
     directory_path = os.path.join(
-        wrangler.configuration.scores_directory_path, 'example_score_1', 'mus', 'materials')
+        wrangler.configuration.scores_directory_path, 'example_score_1', 'music', 'materials')
     assert directory_path in wrangler.list_asset_container_paths()
 
 
@@ -56,7 +56,7 @@ def test_MaterialPackageWrangler_read_only_attributes_06():
     '''Infix.
     '''
 
-    assert wrangler.score_internal_asset_container_package_path_infix == 'mus.materials'
+    assert wrangler.score_internal_asset_container_package_path_infix == 'music.materials'
 
 
 def test_MaterialPackageWrangler_read_only_attributes_07():
@@ -78,10 +78,10 @@ def test_MaterialPackageWrangler_read_only_attributes_08():
     wrangler.session.current_score_package_name = 'example_score_1'
     assert wrangler.session.is_in_score
 
-    assert 'example_score_1.mus.materials' in wrangler.list_asset_container_package_paths()
-    assert wrangler.current_asset_container_package_path == 'example_score_1.mus.materials'
-    assert wrangler.temporary_asset_package_path == 'example_score_1.mus.materials.__temporary_package'
+    assert 'example_score_1.music.materials' in wrangler.list_asset_container_package_paths()
+    assert wrangler.current_asset_container_package_path == 'example_score_1.music.materials'
+    assert wrangler.temporary_asset_package_path == 'example_score_1.music.materials.__temporary_package'
     directory_path = os.path.join(
          wrangler.configuration.scores_directory_path,
-        'example_score_1', 'mus', 'materials', '__temporary_package')
+        'example_score_1', 'music', 'materials', '__temporary_package')
     assert wrangler.temporary_asset_filesystem_path == directory_path

@@ -121,7 +121,7 @@ class Session(abctools.AbjadObject):
     @property
     def current_specifiers_directory_path(self):
         if self.is_in_score:
-            return os.path.join(self.current_score_path, 'mus', 'specifiers')
+            return os.path.join(self.current_score_path, 'music', 'specifiers')
         else:
             return self.configuration.score_external_specifiers_directory_path
 

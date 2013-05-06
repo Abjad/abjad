@@ -85,7 +85,7 @@ class ScorePackageProxy(PackageProxy):
 
     @property
     def materials_directory_path(self):
-        return os.path.join(self.directory_path, 'mus', 'materials')
+        return os.path.join(self.directory_path, 'music', 'materials')
 
     @property
     def materials_package_initializer_file_name(self):
@@ -93,7 +93,7 @@ class ScorePackageProxy(PackageProxy):
 
     @property
     def materials_package_path(self):
-        return '.'.join([self.package_path, 'mus', 'materials'])
+        return '.'.join([self.package_path, 'music', 'materials'])
 
     @property
     def mus_proxy(self):
@@ -123,7 +123,7 @@ class ScorePackageProxy(PackageProxy):
 
     @property
     def segments_directory_path(self):
-        return os.path.join(self.directory_path, 'mus', 'segments')
+        return os.path.join(self.directory_path, 'music', 'segments')
 
     @property
     def segments_package_initializer_file_name(self):
@@ -131,7 +131,7 @@ class ScorePackageProxy(PackageProxy):
 
     @property
     def segments_package_path(self):
-        return '.'.join([self.package_path, 'mus', 'segments'])
+        return '.'.join([self.package_path, 'music', 'segments'])
 
     @property
     def tempo_inventory(self):

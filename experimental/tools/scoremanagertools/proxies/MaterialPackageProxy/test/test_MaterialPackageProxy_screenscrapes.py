@@ -34,7 +34,8 @@ def test_MaterialPackageProxy_screenscrapes_02():
     '''
     py.test.skip('TODO: add Example Score I time signatures.')
 
-    material_proxy = scoremanagertools.proxies.MaterialPackageProxy('example_score_1.mus.materials.time_signatures')
+    material_proxy = scoremanagertools.proxies.MaterialPackageProxy(
+        'example_score_1.music.materials.time_signatures')
     material_proxy.run(user_input='q')
 
     assert material_proxy.transcript[-2] == \

@@ -51,7 +51,7 @@
     Then create scoremanagertoolstestscores directory somewhere.
     Then check Example Score I, Example Score II, Étude Score I in to directory.
 
-22. Simplify custom_score/mus/materials/__init__.py files.
+22. Simplify custom_score/music/materials/__init__.py files.
     File should probably contain nothing.
     What is the design goal?
     The design goal is that the score manager should always start.
@@ -61,9 +61,11 @@
     Ultimately this should mean that safe_import() can be removed from *all* __init__.py files everywhere.
     The system might preserve safe_import() to be used in direct response to user request for explicit import.
 
-23. Implement example_score_i.mus.materials.divisions to import example_score_i.mus.materials.time_signatures.
+23. Implement example_score_i.music.materials.divisions to import 
+    example_score_i.music.materials.time_signatures.
     This will implement an intrapackage material import.
-    Implement example_score_ii.mus.materials.divisions to import example_score_i.mus.materials.time_signatures.
+    Implement example_score_ii.music.materials.divisions to 
+    import example_score_i.music.materials.time_signatures.
     This will implement an interpackage material import.
 
 24. Remove the has_readable_... and is_readable_... properties from the system entirely.
@@ -83,3 +85,5 @@
 29. Replace 'score-internal' with something else.
     Replace 'score-external' with something else.
     Perhaps 'score-external' becomes 'system' and 'score-internal' becomes 'score'.
+
+30. Sweep inline scoremanagertools TODO items.

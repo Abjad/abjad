@@ -53,20 +53,20 @@ def test_Session_read_only_properties_02():
     session = scoremanagertools.core.Session()
     session.current_score_package_name = 'foo'
 
-    assert session.current_segments_package_path == 'foo.mus.segments'
+    assert session.current_segments_package_path == 'foo.music.segments'
     scores_directory_path = session.configuration.scores_directory_path
     assert session.current_segments_directory_path == \
-        os.path.join(scores_directory_path, 'foo', 'mus', 'segments')
+        os.path.join(scores_directory_path, 'foo', 'music', 'segments')
 
-    assert session.current_materials_package_path == 'foo.mus.materials'
+    assert session.current_materials_package_path == 'foo.music.materials'
     assert session.current_materials_directory_path == \
-        os.path.join(scores_directory_path, 'foo', 'mus', 'materials')
+        os.path.join(scores_directory_path, 'foo', 'music', 'materials')
 
     assert isinstance(session.current_score_package_proxy, scoremanagertools.proxies.ScorePackageProxy)
     assert session.current_score_path == os.path.join(scores_directory_path, 'foo')
 
-    assert session.current_specifiers_package_path == 'foo.mus.specifiers'
+    assert session.current_specifiers_package_path == 'foo.music.specifiers'
     assert session.current_specifiers_directory_path == \
-        os.path.join(scores_directory_path, 'foo', 'mus', 'specifiers')
+        os.path.join(scores_directory_path, 'foo', 'music', 'specifiers')
 
     assert session.is_in_score

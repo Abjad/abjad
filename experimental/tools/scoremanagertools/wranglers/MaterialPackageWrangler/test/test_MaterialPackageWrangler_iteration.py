@@ -13,7 +13,8 @@ def test_MaterialPackageWrangler_iteration_01():
     '''
 
     assert 'red sargasso measures' in wrangler.list_asset_space_delimited_lowercase_names()
-    assert 'red sargasso measures' not in wrangler.list_asset_space_delimited_lowercase_names(head='example_score_1')
+    assert 'red sargasso measures' not in wrangler.list_asset_space_delimited_lowercase_names(
+        head='example_score_1')
 
 
 def test_MaterialPackageWrangler_iteration_02():
@@ -43,13 +44,13 @@ def test_MaterialPackageWrangler_iteration_05():
     '''Score-internal asset containers.
     '''
 
-    assert 'example_score_1.mus.materials' in \
+    assert 'example_score_1.music.materials' in \
         wrangler.list_score_internal_asset_container_package_paths()
-    assert 'example_score_2.mus.materials' in \
+    assert 'example_score_2.music.materials' in \
         wrangler.list_score_internal_asset_container_package_paths()
-    assert 'example_score_1.mus.materials' not in \
+    assert 'example_score_1.music.materials' not in \
         wrangler.list_score_internal_asset_container_package_paths(head='example_score_2')
-    assert 'example_score_2.mus.materials' not in \
+    assert 'example_score_2.music.materials' not in \
         wrangler.list_score_internal_asset_container_package_paths(head='example_score_1')
     assert wrangler.list_score_internal_asset_container_package_paths(head='asdf') == []
 
@@ -57,7 +58,7 @@ def test_MaterialPackageWrangler_iteration_05():
 def test_MaterialPackageWrangler_iteration_06():
 
     directory_path = os.path.join(
-        wrangler.configuration.scores_directory_path, 'example_score_1', 'mus', 'materials')
+        wrangler.configuration.scores_directory_path, 'example_score_1', 'music', 'materials')
     assert directory_path in wrangler.list_score_internal_asset_container_paths()
     assert directory_path not in wrangler.list_score_internal_asset_container_paths(head='example_score_2')
     assert wrangler.list_score_internal_asset_container_paths(head='asdf') == []
@@ -68,9 +69,9 @@ def test_MaterialPackageWrangler_iteration_07():
     '''
     py.test.skip('TODO: add time_signatures package to Example Score I.')
 
-    assert 'example_score_1.mus.materials.time_signatures' in \
+    assert 'example_score_1.music.materials.time_signatures' in \
         wrangler.list_score_internal_asset_package_paths()
-    assert 'example_score_1.mus.materials.time_signatures' not in \
+    assert 'example_score_1.music.materials.time_signatures' not in \
         wrangler.list_score_internal_asset_package_paths(head='example_score_2')
     assert wrangler.list_score_internal_asset_package_paths(head='asdf') == []
 
@@ -80,7 +81,7 @@ def test_MaterialPackageWrangler_iteration_08():
 
     directory_path = os.path.join(
         wrangler.configuration.scores_directory_path,
-        'example_scores_1', 'mus', 'materials', 'time_signatures')
+        'example_scores_1', 'music', 'materials', 'time_signatures')
     assert directory_path in wrangler.list_score_internal_asset_filesystem_paths()
     assert directory_path in wrangler.list_score_internal_asset_filesystem_paths(head='example_score_2')
     assert wrangler.list_score_internal_asset_filesystem_paths(head='asdf') == []
@@ -98,9 +99,9 @@ def test_MaterialPackageWrangler_iteration_09():
 def test_MaterialPackageWrangler_iteration_10():
    py.test.skip('TODO: add time_signatures package to Example Score I.')
 
-   assert 'example_score_1.mus.materials.time_signatures' in \
+   assert 'example_score_1.music.materials.time_signatures' in \
         wrangler.list_visible_asset_package_paths()
-   assert 'example_score_1.mus.materials.time_signatures' not in \
+   assert 'example_score_1.music.materials.time_signatures' not in \
         wrangler.list_visible_asset_package_paths(head='example_score_2')
    assert wrangler.list_visible_asset_package_paths(head='asdf') == []
 
@@ -110,11 +111,11 @@ def test_MaterialPackageWrangler_iteration_11():
 
     assert ('system_materials.red_sargasso_measures', 'red sargasso measures') in \
         wrangler.make_visible_asset_menu_tokens()
-    assert ('example_score_1.mus.materials.time_signatures', 'time signatures') in \
+    assert ('example_score_1.music.materials.time_signatures', 'time signatures') in \
         wrangler.make_visible_asset_menu_tokens()
     assert ('system_materials.red_sargasso_measures', 'red sargasso measures') not in \
         wrangler.make_visible_asset_menu_tokens(head='example_score_1')
-    assert ('example_score_1.mus.materials.time_signatures', 'time signatures') not in \
+    assert ('example_score_1.music.materials.time_signatures', 'time signatures') not in \
         wrangler.make_visible_asset_menu_tokens(head='example_score_2')
 
 

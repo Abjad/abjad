@@ -20,12 +20,12 @@ def test_directory_path_to_package_path_02():
     directory_path = os.path.join(scores_directory_path, 'example_score_1')
     assert packagepathtools.directory_path_to_package_path(directory_path) == 'example_score_1'
 
-    directory_path = os.path.join(scores_directory_path, 'example_score_1', 'mus')
-    assert packagepathtools.directory_path_to_package_path(directory_path) == 'example_score_1.mus'
+    directory_path = os.path.join(scores_directory_path, 'example_score_1', 'music')
+    assert packagepathtools.directory_path_to_package_path(directory_path) == 'example_score_1.music'
 
-    directory_path = os.path.join(scores_directory_path, 'example_score_1', 'mus', 'materials')
+    directory_path = os.path.join(scores_directory_path, 'example_score_1', 'music', 'materials')
     assert packagepathtools.directory_path_to_package_path(directory_path) == \
-        'example_score_1.mus.materials'
+        'example_score_1.music.materials'
 
 
 def test_directory_path_to_package_path_03():
