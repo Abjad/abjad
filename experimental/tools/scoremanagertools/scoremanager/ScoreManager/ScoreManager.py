@@ -212,7 +212,7 @@ class ScoreManager(ScoreManagerObject):
     #       just fix that at some point to run tests again from within score manager.
     def run_py_test_all(self, prompt=True):
         proc = subprocess.Popen(
-            'py.test {} {}'.format(self.asset_filesystem_path, self.score_package_wrangler.asset_filesystem_path),
+            'py.test {} {}'.format(self.filesystem_path, self.score_package_wrangler.filesystem_path),
             shell=True, stdout=subprocess.PIPE)
         lines = [line.strip() for line in proc.stdout.readlines()]
         if lines:

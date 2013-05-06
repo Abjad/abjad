@@ -63,9 +63,6 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableFilesystemAssetWrangler.ImportableFilesystemAssetWrangler.ImportableFilesystemAssetWrangler.asset_filesystem_path_to_space_delimited_lowercase_name
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableFilesystemAssetWrangler.ImportableFilesystemAssetWrangler.ImportableFilesystemAssetWrangler.conditionally_make_asset_container_packages
    :noindex:
 
@@ -76,6 +73,9 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableFilesystemAssetWrangler.ImportableFilesystemAssetWrangler.ImportableFilesystemAssetWrangler.conditionally_make_score_internal_asset_container_packages
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableFilesystemAssetWrangler.ImportableFilesystemAssetWrangler.ImportableFilesystemAssetWrangler.filesystem_path_to_space_delimited_lowercase_name
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableFilesystemAssetWrangler.ImportableFilesystemAssetWrangler.ImportableFilesystemAssetWrangler.fix_visible_assets

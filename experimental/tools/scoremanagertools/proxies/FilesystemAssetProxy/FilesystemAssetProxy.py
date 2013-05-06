@@ -18,16 +18,12 @@ class FilesystemAssetProxy(ScoreManagerObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, asset_filesystem_path=None, session=None):
-        assert asset_filesystem_path is None or os.path.sep in asset_filesystem_path
-        self._asset_filesystem_path = asset_filesystem_path
+    def __init__(self, filesystem_path=None, session=None):
+        assert filesystem_path is None or os.path.sep in filesystem_path
+        self._filesystem_path = filesystem_path
         ScoreManagerObject.__init__(self, session=session)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
-
-    @property
-    def asset_filesystem_path(self):
-        return self._asset_filesystem_path
 
     @property
     def breadcrumb(self):
@@ -35,17 +31,21 @@ class FilesystemAssetProxy(ScoreManagerObject):
 
     @property
     def exists(self):
-        if self.asset_filesystem_path:
-            return os.path.exists(self.asset_filesystem_path)
+        if self.filesystem_path:
+            return os.path.exists(self.filesystem_path)
         return False
 
     @property
+    def filesystem_path(self):
+        return self._filesystem_path
+
+    @property
     def is_versioned(self):
-        if self.asset_filesystem_path is None:
+        if self.filesystem_path is None:
             return False
-        if not os.path.exists(self.asset_filesystem_path):
+        if not os.path.exists(self.filesystem_path):
             return False
-        command = 'svn st {}'.format(self.asset_filesystem_path)
+        command = 'svn st {}'.format(self.filesystem_path)
         proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         first_line = proc.stdout.readline()
         if first_line.startswith(('?', 'svn: warning:')):
@@ -55,8 +55,8 @@ class FilesystemAssetProxy(ScoreManagerObject):
 
     @property
     def name(self):
-        if self.asset_filesystem_path:
-            return os.path.basename(self.asset_filesystem_path)
+        if self.filesystem_path:
+            return os.path.basename(self.filesystem_path)
 
     @property
     def name_without_extension(self):
@@ -68,8 +68,8 @@ class FilesystemAssetProxy(ScoreManagerObject):
 
     @property
     def parent_directory_path(self):
-        if self.asset_filesystem_path:
-            return os.path.dirname(self.asset_filesystem_path)
+        if self.filesystem_path:
+            return os.path.dirname(self.filesystem_path)
 
     @property
     def plural_generic_class_name(self):
@@ -81,8 +81,8 @@ class FilesystemAssetProxy(ScoreManagerObject):
 
     @property
     def svn_add_command(self):
-        if self.asset_filesystem_path:
-            return 'svn add {}'.format(self.asset_filesystem_path)
+        if self.filesystem_path:
+            return 'svn add {}'.format(self.filesystem_path)
 
     ### PUBLIC METHODS ###
 
@@ -90,8 +90,8 @@ class FilesystemAssetProxy(ScoreManagerObject):
     def conditionally_make_empty_asset(self, is_interactive=False):
         pass
 
-    def copy(self, new_asset_filesystem_path):
-        shutil.copyfile(self.asset_filesystem_path, new_asset_filesystem_path)
+    def copy(self, new_filesystem_path):
+        shutil.copyfile(self.filesystem_path, new_filesystem_path)
 
     def copy_interactively(self, user_input=None):
         self.io.assign_user_input(user_input=user_input)
@@ -124,7 +124,7 @@ class FilesystemAssetProxy(ScoreManagerObject):
 
     def remove_interactively(self, user_input=None):
         self.io.assign_user_input(user_input=user_input)
-        self.io.display(['{} will be removed.'.format(self.asset_filesystem_path), ''])
+        self.io.display(['{} will be removed.'.format(self.filesystem_path), ''])
         getter = self.io.make_getter(where=self.where())
         getter.append_string("type 'remove' to proceed")
         result = getter.run()
@@ -133,10 +133,10 @@ class FilesystemAssetProxy(ScoreManagerObject):
         if not result == 'remove':
             return
         if self.remove():
-            self.io.proceed('{} removed.'.format(self.asset_filesystem_path))
+            self.io.proceed('{} removed.'.format(self.filesystem_path))
 
     def remove_nonversioned_asset(self):
-        command = 'rm -rf {}'.format(self.asset_filesystem_path)
+        command = 'rm -rf {}'.format(self.filesystem_path)
         proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         proc.stdout.readline()
         return True
@@ -148,7 +148,7 @@ class FilesystemAssetProxy(ScoreManagerObject):
         exec(command)
 
     def remove_versioned_asset(self, is_interactive=False):
-        command = 'svn --force rm {}'.format(self.asset_filesystem_path)
+        command = 'svn --force rm {}'.format(self.filesystem_path)
         proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
         proc.stdout.readline()
         return True
@@ -175,16 +175,16 @@ class FilesystemAssetProxy(ScoreManagerObject):
             self.io.proceed('asset renamed.')
 
     def rename_nonversioned_asset(self, new_path):
-        command = 'mv {} {}'.format(self.asset_filesystem_path, new_path)
+        command = 'mv {} {}'.format(self.filesystem_path, new_path)
         proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
         proc.stdout.readline()
-        self._asset_filesystem_path = new_path
+        self._filesystem_path = new_path
 
     def rename_versioned_asset(self, new_path):
-        command = 'svn --force mv {} {}'.format(self.asset_filesystem_path, new_path)
+        command = 'svn --force mv {} {}'.format(self.filesystem_path, new_path)
         proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
         proc.stdout.readline()
-        self._asset_filesystem_path = new_path
+        self._filesystem_path = new_path
 
     def run(self, cache=False, clear=True, user_input=None):
         self.io.assign_user_input(user_input=user_input)
@@ -209,7 +209,7 @@ class FilesystemAssetProxy(ScoreManagerObject):
         self.run(**kwargs)
 
     def run_py_test(self, prompt=True):
-        proc = subprocess.Popen('py.test {}'.format(self.asset_filesystem_path), shell=True, stdout=subprocess.PIPE)
+        proc = subprocess.Popen('py.test {}'.format(self.filesystem_path), shell=True, stdout=subprocess.PIPE)
         lines = [line.strip() for line in proc.stdout.readlines()]
         if lines:
             self.io.display(lines)
@@ -223,7 +223,7 @@ class FilesystemAssetProxy(ScoreManagerObject):
 
     def svn_add(self, is_interactive=False):
         if is_interactive:
-            self.io.display(self.asset_filesystem_path)
+            self.io.display(self.filesystem_path)
         proc = subprocess.Popen(self.svn_add_command, shell=True, stdout=subprocess.PIPE)
         lines = [line.strip() for line in proc.stdout.readlines()]
         lines.append('')
@@ -243,8 +243,8 @@ class FilesystemAssetProxy(ScoreManagerObject):
             if not self.io.confirm():
                 return
         lines = []
-        lines.append(self.asset_filesystem_path)
-        command = 'svn commit -m "{}" {}'.format(commit_message, self.asset_filesystem_path)
+        lines.append(self.filesystem_path)
+        command = 'svn commit -m "{}" {}'.format(commit_message, self.filesystem_path)
         proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
         lines.extend([line.strip() for line in proc.stdout.readlines()])
         lines.append('')
@@ -253,8 +253,8 @@ class FilesystemAssetProxy(ScoreManagerObject):
 
     def svn_st(self, is_interactive=True):
         if is_interactive:
-            self.io.display(self.asset_filesystem_path)
-        command = 'svn st -u {}'.format(self.asset_filesystem_path)
+            self.io.display(self.filesystem_path)
+        command = 'svn st -u {}'.format(self.filesystem_path)
         proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
         lines = [line.strip() for line in proc.stdout.readlines()]
         lines.append('')
@@ -263,8 +263,8 @@ class FilesystemAssetProxy(ScoreManagerObject):
 
     def svn_up(self, is_interactive=True):
         if is_interactive:
-            self.io.display(self.asset_filesystem_path)
-        command = 'svn up {}'.format(self.asset_filesystem_path)
+            self.io.display(self.filesystem_path)
+        command = 'svn up {}'.format(self.filesystem_path)
         proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
         lines = [line.strip() for line in proc.stdout.readlines()]
         lines.append('')
@@ -272,14 +272,14 @@ class FilesystemAssetProxy(ScoreManagerObject):
         self.io.proceed(is_interactive=is_interactive)
 
     def touch(self):
-        os.system('touch {}'.format(self.asset_filesystem_path))
+        os.system('touch {}'.format(self.filesystem_path))
 
     def write_boilerplate_asset_to_disk(self, boilerplate_asset_name):
         if not os.path.exists(boilerplate_asset_name):
             boilerplate_asset_name = os.path.join(
                 self.configuration.boilerplate_directory_path, boilerplate_asset_name)
         if os.path.exists(boilerplate_asset_name):
-            shutil.copyfile(boilerplate_asset_name, self.asset_filesystem_path)
+            shutil.copyfile(boilerplate_asset_name, self.filesystem_path)
             return True
 
     def write_boilerplate_asset_to_disk_interactively(self, user_input=None):

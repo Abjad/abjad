@@ -8,7 +8,7 @@ class DirectoryProxy(FilesystemAssetProxy):
     ### INITIALIZER ###
 
     def __init__(self, directory_path=None, session=None):
-        FilesystemAssetProxy.__init__(self, asset_filesystem_path=directory_path, session=session)
+        FilesystemAssetProxy.__init__(self, filesystem_path=directory_path, session=session)
 
     ### SPECIAL METHODS ###
 
@@ -40,7 +40,7 @@ class DirectoryProxy(FilesystemAssetProxy):
 
     @property
     def directory_path(self):
-        return self.asset_filesystem_path
+        return self.filesystem_path
 
     @property
     def public_content_names(self):

@@ -12,7 +12,7 @@ class FileProxy(FilesystemAssetProxy):
     ### INITIALIZER ###
 
     def __init__(self, file_path=None, session=None):
-        FilesystemAssetProxy.__init__(self, asset_filesystem_path=file_path, session=session)
+        FilesystemAssetProxy.__init__(self, filesystem_path=file_path, session=session)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -32,7 +32,7 @@ class FileProxy(FilesystemAssetProxy):
 
     @property
     def file_path(self):
-        return self.asset_filesystem_path
+        return self.filesystem_path
 
     @property
     def format(self):

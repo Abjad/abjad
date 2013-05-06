@@ -60,9 +60,6 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.asset_filesystem_path_to_space_delimited_lowercase_name
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.conditionally_make_asset_container_packages
    :noindex:
 
@@ -73,6 +70,9 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.conditionally_make_score_internal_asset_container_packages
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.filesystem_path_to_space_delimited_lowercase_name
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.fix_visible_assets
