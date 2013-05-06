@@ -14,7 +14,7 @@ def test_MarkupInventoryMaterialPackageMaker_01():
             "add arg r'\\italic~{~presto~}' name presto done done default q"
             )
         mpp = scoremanagertools.materialpackagemakers.ArticulationHandlerMaterialPackageMaker('system_materials.testmarkupinventory')
-        assert mpp.directory_contents == ['__init__.py', 'output_material.py', 'tags.py']
+        assert mpp.list_directory() == ['__init__.py', 'output_material.py', 'tags.py']
         inventory = markuptools.MarkupInventory([
             markuptools.Markup(
                 '\\italic { serenamente }',

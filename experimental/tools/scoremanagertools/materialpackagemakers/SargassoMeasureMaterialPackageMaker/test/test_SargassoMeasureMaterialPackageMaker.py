@@ -15,7 +15,7 @@ def test_SargassoMeasureMaterialPackageMaker_01():
             )
         mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker(
             'system_materials.testsargasso')
-        assert mpp.directory_contents == ['__init__.py', 'tags.py', 'user_input.py']
+        assert mpp.list_directory() == ['__init__.py', 'tags.py', 'user_input.py']
         user_input_wrapper = UserInputWrapper([
             ('measure_denominator', None),
             ('measure_numerator_talea', None),
@@ -45,7 +45,7 @@ def test_SargassoMeasureMaterialPackageMaker_02():
             )
         mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker(
             'system_materials.testsargasso')
-        assert mpp.directory_contents == ['__init__.py', 'tags.py', 'user_input.py']
+        assert mpp.list_directory() == ['__init__.py', 'tags.py', 'user_input.py']
         user_input_wrapper = UserInputWrapper([
             ('measure_denominator', 4),
             ('measure_numerator_talea', [2, 2, 2, 2, 1, 1, 4, 4]),
@@ -74,7 +74,7 @@ def test_SargassoMeasureMaterialPackageMaker_03():
             )
         mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker(
             'system_materials.testsargasso')
-        assert mpp.directory_contents == ['__init__.py', 'tags.py', 'user_input.py']
+        assert mpp.list_directory() == ['__init__.py', 'tags.py', 'user_input.py']
         user_input_wrapper = UserInputWrapper([
             ('measure_denominator', None),
             ('measure_numerator_talea', None),
@@ -103,7 +103,7 @@ def test_SargassoMeasureMaterialPackageMaker_04():
             )
         mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker(
             'system_materials.testsargasso')
-        assert mpp.directory_contents == ['__init__.py', 'tags.py', 'user_input.py']
+        assert mpp.list_directory() == ['__init__.py', 'tags.py', 'user_input.py']
         user_input_wrapper = UserInputWrapper([
             ('measure_denominator', None),
             ('measure_numerator_talea', None),
@@ -133,7 +133,7 @@ def test_SargassoMeasureMaterialPackageMaker_05():
             )
         mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker(
             'system_materials.testsargasso')
-        assert mpp.directory_contents == ['__init__.py', 'tags.py', 'user_input.py']
+        assert mpp.list_directory() == ['__init__.py', 'tags.py', 'user_input.py']
         user_input_wrapper = UserInputWrapper([
             ('measure_denominator', 4),
             ('measure_numerator_talea', [2, 2, 2, 2, 1, 1, 4, 4]),
@@ -163,7 +163,7 @@ def test_SargassoMeasureMaterialPackageMaker_06():
             )
         mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker(
             'system_materials.testsargasso')
-        assert mpp.directory_contents == ['__init__.py', 'tags.py', 'user_input.py']
+        assert mpp.list_directory() == ['__init__.py', 'tags.py', 'user_input.py']
         user_input_wrapper = UserInputWrapper([
             ('measure_denominator', 4),
             ('measure_numerator_talea', [2, 2, 3, 3]),
@@ -192,7 +192,7 @@ def test_SargassoMeasureMaterialPackageMaker_07():
             )
         mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker(
             'system_materials.testsargasso')
-        assert mpp.directory_contents == ['__init__.py', 'tags.py', 'user_input.py']
+        assert mpp.list_directory() == ['__init__.py', 'tags.py', 'user_input.py']
         user_input_wrapper = UserInputWrapper([
             ('measure_denominator', 4),
             ('measure_numerator_talea', [2, 2, 2, 2, 1, 1, 4, 4]),
@@ -220,7 +220,7 @@ def test_SargassoMeasureMaterialPackageMaker_08():
             'q'
             )
         mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker('system_materials.testsargasso')
-        assert mpp.directory_contents == ['__init__.py', 'output_material.py', 'tags.py', 'user_input.py']
+        assert mpp.list_directory() == ['__init__.py', 'output_material.py', 'tags.py', 'user_input.py']
         measures = [
             measuretools.Measure((4, 16), "c'16 c'16 c'8"),
             measuretools.Measure((2, 10), "c'8 c'8"),

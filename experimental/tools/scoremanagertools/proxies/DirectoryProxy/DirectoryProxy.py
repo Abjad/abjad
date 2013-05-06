@@ -19,18 +19,6 @@ class DirectoryProxy(FilesystemAssetProxy):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def directory_contents(self):
-        result = []
-        for file_name in os.listdir(self.directory_path):
-            if file_name.endswith('.pyc'):
-                file_path = os.path.join(self.directory_path, file_name)
-                os.remove(file_path)
-        for name in os.listdir(self.directory_path):
-            if not name.startswith('.'):
-                result.append(name)
-        return result
-
-    @property
     def directory_path(self):
         return self.filesystem_path
 
@@ -59,11 +47,22 @@ class DirectoryProxy(FilesystemAssetProxy):
             return
         self.directory_path = result
 
+    def list_directory(self):
+        result = []
+        for file_name in os.listdir(self.directory_path):
+            if file_name.endswith('.pyc'):
+                file_path = os.path.join(self.directory_path, file_name)
+                os.remove(file_path)
+        for name in os.listdir(self.directory_path):
+            if not name.startswith('.'):
+                result.append(name)
+        return result
+
     def make_directory(self):
         os.mkdir(self.directory_path)
 
     def print_directory_contents(self):
-        self.io.display(self.directory_contents, capitalize_first_character=False)
+        self.io.display(self.list_directory(), capitalize_first_character=False)
         self.io.display('')
         self.session.hide_next_redraw = True
 

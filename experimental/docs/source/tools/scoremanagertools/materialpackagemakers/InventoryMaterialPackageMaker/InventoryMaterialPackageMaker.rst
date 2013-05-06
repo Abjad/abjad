@@ -12,9 +12,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.materialpackagemakers.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.breadcrumb
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.materialpackagemakers.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.directory_contents
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.materialpackagemakers.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.directory_path
    :noindex:
 
@@ -364,6 +361,9 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.initialize_empty_user_input_wrapper
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.list_directory
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.InventoryMaterialPackageMaker.load_user_input_wrapper_demo_values

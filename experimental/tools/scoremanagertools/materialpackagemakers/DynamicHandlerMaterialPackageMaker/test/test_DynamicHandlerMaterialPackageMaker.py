@@ -15,7 +15,7 @@ def test_DynamicHandlerMaterialPackageMaker_01():
             'q '
             )
         mpp = scoremanagertools.materialpackagemakers.DynamicHandlerMaterialPackageMaker('system_materials.testdynamichandler')
-        assert mpp.directory_contents == ['__init__.py', 'output_material.py', 'tags.py']
+        assert mpp.list_directory() == ['__init__.py', 'output_material.py', 'tags.py']
         handler = handlertools.ReiteratedDynamicHandler(
             dynamic_name='f',
             minimum_duration=Duration(1, 16),

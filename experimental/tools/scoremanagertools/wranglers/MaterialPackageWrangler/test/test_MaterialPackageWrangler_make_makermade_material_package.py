@@ -13,7 +13,7 @@ def test_MaterialPackageWrangler_make_makermade_material_package_01():
         assert packagepathtools.package_exists('system_materials.testsargasso')
         mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker('system_materials.testsargasso')
         assert mpp.is_makermade
-        assert mpp.directory_contents == ['__init__.py', 'tags.py', 'user_input.py']
+        assert mpp.list_directory() == ['__init__.py', 'tags.py', 'user_input.py']
         assert mpp.has_initializer
         assert not mpp.has_output_material_module
         assert mpp.has_user_input_module
@@ -46,7 +46,7 @@ def test_MaterialPackageWrangler_make_makermade_material_package_03():
         assert packagepathtools.package_exists('system_materials.testsargasso')
         mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker('system_materials.testsargasso')
         assert mpp.is_makermade
-        assert mpp.directory_contents == ['__init__.py', 'tags.py', 'user_input.py']
+        assert mpp.list_directory() == ['__init__.py', 'tags.py', 'user_input.py']
     finally:
         mpp.remove()
         assert not packagepathtools.package_exists('system_materials.testsargasso')
@@ -64,7 +64,7 @@ def test_MaterialPackageWrangler_make_makermade_material_package_04():
         assert packagepathtools.package_exists('system_materials.testsargasso')
         mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker('system_materials.testsargasso')
         assert mpp.is_makermade
-        assert mpp.directory_contents == ['__init__.py', 'tags.py', 'user_input.py']
+        assert mpp.list_directory() == ['__init__.py', 'tags.py', 'user_input.py']
         assert mpp.get_tag('color') == 'red'
         assert mpp.get_tag('is_colored')
     finally:

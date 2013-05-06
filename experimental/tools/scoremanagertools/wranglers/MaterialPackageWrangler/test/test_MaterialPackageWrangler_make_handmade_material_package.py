@@ -13,7 +13,7 @@ def test_MaterialPackageWrangler_make_handmade_material_package_01():
         assert packagepathtools.package_exists('system_materials.testnotes')
         mpp = scoremanagertools.proxies.MaterialPackageProxy('system_materials.testnotes')
         assert mpp.is_handmade and not mpp.is_data_only
-        assert mpp.directory_contents == ['__init__.py', 'material_definition.py', 'tags.py']
+        assert mpp.list_directory() == ['__init__.py', 'material_definition.py', 'tags.py']
         assert mpp.has_readable_initializer
         assert mpp.has_readable_material_definition_module
         assert not mpp.has_output_material_module
@@ -47,7 +47,7 @@ def test_MaterialPackageWrangler_make_handmade_material_package_03():
         assert packagepathtools.package_exists('system_materials.testnotes')
         mpp = scoremanagertools.proxies.MaterialPackageProxy('system_materials.testnotes')
         assert mpp.is_handmade and not mpp.is_data_only
-        assert mpp.directory_contents == ['__init__.py', 'material_definition.py', 'tags.py']
+        assert mpp.list_directory() == ['__init__.py', 'material_definition.py', 'tags.py']
     finally:
         mpp.remove()
         assert not packagepathtools.package_exists('system_materials.testnotes')

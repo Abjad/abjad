@@ -14,7 +14,7 @@ def test_RhythmMakerMaterialPackageMaker_01():
             'q '
             )
         mpp = scoremanagertools.materialpackagemakers.RhythmMakerMaterialPackageMaker('system_materials.testrhythmmaker')
-        assert mpp.directory_contents == ['__init__.py', 'output_material.py', 'tags.py']
+        assert mpp.list_directory() == ['__init__.py', 'output_material.py', 'tags.py']
         maker = rhythmmakertools.TaleaRhythmMaker(
             [-1, 2, -3, 4],
             16,
