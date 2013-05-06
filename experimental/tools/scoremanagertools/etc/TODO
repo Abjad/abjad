@@ -87,3 +87,5 @@
     Perhaps 'score-external' becomes 'system' and 'score-internal' becomes 'score'.
 
 30. Sweep inline scoremanagertools TODO items.
+
+31. Change 'asset_filesystem_path' to just 'filesystem_path'.

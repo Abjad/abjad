@@ -116,7 +116,7 @@ List the contents of the example_score_1 score directory.
 You should see the following:
 
     scores$ ls example_score_1/
-    __init__.py assembly    distribution        music         tags.py
+    __init__.py     distribution    exergue     music         tags.py
 
 
 6. Create Example Score II using the score manager.
