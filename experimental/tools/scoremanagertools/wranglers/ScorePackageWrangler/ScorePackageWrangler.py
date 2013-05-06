@@ -47,6 +47,12 @@ class ScorePackageWrangler(PackageWrangler):
     def handle_main_menu_result(self):
         self.print_not_yet_implemented()
 
+    def list_visible_asset_filesystem_paths(self, head=None):
+        result = []
+        for visible_asset_proxy in self.list_visible_asset_proxies(head=head):
+            result.append(visible_asset_proxy.filesystem_path)
+        return result
+
     def list_visible_asset_names(self, head=None):
         result = []
         for asset_filesystem_path in self.list_visible_asset_filesystem_paths(head=head):
@@ -68,12 +74,6 @@ class ScorePackageWrangler(PackageWrangler):
                 else:
                     title_with_year = '{}'.format(tags['title'])
                 result.append((asset_proxy.package_path, title_with_year))
-        return result
-
-    def list_visible_asset_filesystem_paths(self, head=None):
-        result = []
-        for visible_asset_proxy in self.list_visible_asset_proxies(head=head):
-            result.append(visible_asset_proxy.filesystem_path)
         return result
 
     def list_visible_asset_proxies(self, head=None):

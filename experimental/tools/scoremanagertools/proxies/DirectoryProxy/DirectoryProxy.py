@@ -24,6 +24,12 @@ class DirectoryProxy(FilesystemAssetProxy):
     def __repr__(self):
         return '{}({!r})'.format(self._class_name, self.directory_path)
 
+    ### READ-ONLY PRIVATE PROPERTIES ###
+
+    @property
+    def _svn_add_command(self):
+        return 'cd {} && svn-add-all'.format(self.directory_path)
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
@@ -50,10 +56,6 @@ class DirectoryProxy(FilesystemAssetProxy):
                 if not name.endswith('.pyc'):
                     result.append(name)
         return result
-
-    @property
-    def svn_add_command(self):
-        return 'cd {} && svn-add-all'.format(self.directory_path)
 
     ### PUBLIC METHODS ###
 

@@ -27,9 +27,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy.FilesystemAssetProxy.FilesystemAssetProxy.name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy.FilesystemAssetProxy.FilesystemAssetProxy.name_without_extension
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy.FilesystemAssetProxy.FilesystemAssetProxy.parent_directory_path
    :noindex:
 
@@ -43,9 +40,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy.FilesystemAssetProxy.FilesystemAssetProxy.storage_format
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy.FilesystemAssetProxy.FilesystemAssetProxy.svn_add_command
    :noindex:
 
 Methods

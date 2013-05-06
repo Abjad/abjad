@@ -17,7 +17,7 @@ def test_FileProxy_public_attributes_01():
     assert file_proxy.plural_generic_class_name == 'files'
     assert file_proxy.name is None
     assert file_proxy.name_without_extension is None
-    assert file_proxy.svn_add_command is None
+    assert file_proxy._svn_add_command is None
     assert file_proxy.temporary_asset_name == 'temporary_file.txt'
 
 
@@ -41,5 +41,5 @@ def test_FileProxy_public_attributes_02():
     assert file_proxy.plural_generic_class_name == 'files'
     assert file_proxy.name == file_name
     assert file_proxy.name_without_extension == file_name[:-3]
-    assert file_proxy.svn_add_command == 'svn add {}'.format(file_proxy.file_path)
+    assert file_proxy._svn_add_command == 'svn add {}'.format(file_proxy.file_path)
     assert file_proxy.temporary_asset_name == 'temporary_file.txt'

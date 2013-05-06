@@ -109,13 +109,13 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     # temporary asset #
 
-    @abc.abstractproperty
-    def temporary_asset_name(self):
-        pass
-
     @property
     def temporary_asset_filesystem_path(self):
         return os.path.join(self.current_asset_container_path, self.temporary_asset_name)
+
+    @abc.abstractproperty
+    def temporary_asset_name(self):
+        pass
 
     @property
     def temporary_asset_proxy(self):
@@ -126,12 +126,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         return self.filesystem_path_to_space_delimited_lowercase_name(self.temporary_asset_filesystem_path)
 
     ### PUBLIC METHODS ###
-
-    def filesystem_path_to_space_delimited_lowercase_name(self, asset_filesystem_path):
-        asset_filesystem_path = os.path.normpath(asset_filesystem_path)
-        asset_name = os.path.basename(asset_filesystem_path)
-        asset_name = self.strip_file_extension_from_file_name(asset_name)
-        return stringtools.string_to_space_delimited_lowercase(asset_name)
 
     def conditionally_make_asset_container_packages(self, is_interactive=False):
         self.conditionally_make_score_external_asset_container_package()
@@ -159,6 +153,12 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         for score_internal_asset_container_package_path in \
             self.list_score_internal_asset_container_package_paths(head=head):
             self.conditionally_make_empty_package(score_internal_asset_container_package_path)
+
+    def filesystem_path_to_space_delimited_lowercase_name(self, asset_filesystem_path):
+        asset_filesystem_path = os.path.normpath(asset_filesystem_path)
+        asset_name = os.path.basename(asset_filesystem_path)
+        asset_name = self.strip_file_extension_from_file_name(asset_name)
+        return stringtools.string_to_space_delimited_lowercase(asset_name)
 
     def fix_visible_assets(self, is_interactive=True):
         results = []

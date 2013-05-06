@@ -23,6 +23,13 @@ class FilesystemAssetProxy(ScoreManagerObject):
         self._filesystem_path = filesystem_path
         ScoreManagerObject.__init__(self, session=session)
 
+    ### READ-ONLY PRIVATE PROPERTIES ###
+
+    @property
+    def _svn_add_command(self):
+        if self.filesystem_path:
+            return 'svn add {}'.format(self.filesystem_path)
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
@@ -59,14 +66,6 @@ class FilesystemAssetProxy(ScoreManagerObject):
             return os.path.basename(self.filesystem_path)
 
     @property
-    def name_without_extension(self):
-        if self.name:
-            if '.' in self.name:
-                return self.name[:self.name.rindex('.')]
-            else:
-                return self.name
-
-    @property
     def parent_directory_path(self):
         if self.filesystem_path:
             return os.path.dirname(self.filesystem_path)
@@ -78,11 +77,6 @@ class FilesystemAssetProxy(ScoreManagerObject):
     @property
     def space_delimited_lowercase_name(self):
         return self.name
-
-    @property
-    def svn_add_command(self):
-        if self.filesystem_path:
-            return 'svn add {}'.format(self.filesystem_path)
 
     ### PUBLIC METHODS ###
 
@@ -224,7 +218,7 @@ class FilesystemAssetProxy(ScoreManagerObject):
     def svn_add(self, is_interactive=False):
         if is_interactive:
             self.io.display(self.filesystem_path)
-        proc = subprocess.Popen(self.svn_add_command, shell=True, stdout=subprocess.PIPE)
+        proc = subprocess.Popen(self._svn_add_command, shell=True, stdout=subprocess.PIPE)
         lines = [line.strip() for line in proc.stdout.readlines()]
         lines.append('')
         if is_interactive:

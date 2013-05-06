@@ -464,18 +464,6 @@ class ScorePackageProxy(PackageProxy):
                 return
             self.session.is_backtracking_locally = True
 
-    def summarize_segments(self):
-        segments = self.segment_wrangler.list_visible_asset_names()
-        lines = []
-        if not segments:
-            lines.append('{}Segments (none yet)'.format(self.make_tab(1)))
-        else:
-            lines.append('{}Segments'.format(self.make_tab(1)))
-        for segment in segments:
-            lines.append('{}{}'.format(self.make_tab(2), segment))
-        lines.append('')
-        self.io.display(lines)
-
     def summarize_materials(self):
         materials = self.material_package_wrangler.space_delimited_lowercase_names
         lines = []
@@ -487,4 +475,16 @@ class ScorePackageProxy(PackageProxy):
             lines.append('')
         for i, material in enumerate(materials):
             lines.append('{}({}) {}'.format(self.make_tab(1), i + 1, material))
+        self.io.display(lines)
+
+    def summarize_segments(self):
+        segments = self.segment_wrangler.list_visible_asset_names()
+        lines = []
+        if not segments:
+            lines.append('{}Segments (none yet)'.format(self.make_tab(1)))
+        else:
+            lines.append('{}Segments'.format(self.make_tab(1)))
+        for segment in segments:
+            lines.append('{}{}'.format(self.make_tab(2), segment))
+        lines.append('')
         self.io.display(lines)

@@ -27,7 +27,7 @@ def test_ModuleProxy_public_attributes_01():
     assert proxy.plural_generic_class_name == 'modules'
     assert proxy.name is None
     assert proxy.name_without_extension is None
-    assert proxy.svn_add_command is None
+    assert proxy._svn_add_command is None
     assert proxy.temporary_asset_name == 'temporary_module.py'
 
 
@@ -63,5 +63,5 @@ def test_ModuleProxy_public_attributes_02():
     assert proxy.plural_generic_class_name == 'modules'
     assert proxy.name == 'material_definition.py'
     assert proxy.name_without_extension == 'material_definition'
-    assert proxy.svn_add_command
+    assert proxy._svn_add_command
     assert proxy.temporary_asset_name == 'temporary_module.py'

@@ -42,6 +42,14 @@ class FileProxy(FilesystemAssetProxy):
     def formatted_lines(self):
         return self.file_lines
 
+    @property
+    def name_without_extension(self):
+        if self.name:
+            if '.' in self.name:
+                return self.name[:self.name.rindex('.')]
+            else:
+                return self.name
+
     ### PUBLIC METHODS ###
 
     def conditionally_make_empty_asset(self, is_interactive=False):
