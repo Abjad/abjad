@@ -89,7 +89,6 @@ def test_ScorePackageProxy_07():
     spp = scoremanagertools.proxies.ScorePackageProxy('example_score_1')
 
     assert spp.session is spp.dist_proxy.session
-    assert spp.session is spp.etc_proxy.session
     assert spp.session is spp.assembly_proxy.session
     assert spp.session is spp.mus_proxy.session
     assert spp.session is spp.segment_wrangler.session

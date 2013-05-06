@@ -11,8 +11,6 @@ class ScorePackageProxy(PackageProxy):
         PackageProxy.__init__(self, score_package_name, session=session)
         self._dist_proxy = scoremanagertools.proxies.DistributionDirectoryProxy(
             score_package_name=score_package_name, session=self.session)
-        self._etc_proxy = scoremanagertools.proxies.EtcDirectoryProxy(
-            score_package_name=score_package_name, session=self.session)
         self._assembly_proxy = scoremanagertools.proxies.AssemblyDirectoryProxy(
             score_package_name=score_package_name, session=self.session)
         self._mus_proxy = scoremanagertools.proxies.MusicPackageProxy(
@@ -56,10 +54,6 @@ class ScorePackageProxy(PackageProxy):
     @property
     def dist_proxy(self):
         return self._dist_proxy
-
-    @property
-    def etc_proxy(self):
-        return self._etc_proxy
 
     @property
     def assembly_proxy(self):
@@ -166,7 +160,6 @@ class ScorePackageProxy(PackageProxy):
     def top_level_directory_proxies(self):
         return (
             self.dist_proxy,
-            self.etc_proxy,
             self.assembly_proxy,
             self.mus_proxy,
             )

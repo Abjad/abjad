@@ -12,10 +12,13 @@ def test_ScorePackageProxy_read_only_attributes_01():
 
     assert isinstance(score_proxy.segment_wrangler, scoremanagertools.wranglers.SegmentPackageWrangler)
     assert isinstance(score_proxy.dist_proxy, scoremanagertools.proxies.DirectoryProxy)
-    assert isinstance(score_proxy.etc_proxy, scoremanagertools.proxies.DirectoryProxy)
     assert isinstance(score_proxy.assembly_proxy, scoremanagertools.proxies.DirectoryProxy)
-    assert isinstance(score_proxy.material_package_maker_wrangler, scoremanagertools.wranglers.MaterialPackageMakerWrangler)
-    assert isinstance(score_proxy.material_package_wrangler, scoremanagertools.wranglers.MaterialPackageWrangler)
+    assert isinstance(
+        score_proxy.material_package_maker_wrangler, 
+        scoremanagertools.wranglers.MaterialPackageMakerWrangler)
+    assert isinstance(
+        score_proxy.material_package_wrangler, 
+        scoremanagertools.wranglers.MaterialPackageWrangler)
     assert isinstance(score_proxy.mus_proxy, scoremanagertools.proxies.MusicPackageProxy)
 
     assert score_proxy.has_correct_initializers
@@ -49,6 +52,5 @@ def test_ScorePackageProxy_read_only_attributes_01():
 
     assert score_proxy.top_level_directory_proxies == (
         scoremanagertools.proxies.DistributionDirectoryProxy('example_score_1'),
-        scoremanagertools.proxies.EtcDirectoryProxy('example_score_1'),
         scoremanagertools.proxies.AssemblyDirectoryProxy('example_score_1'),
         scoremanagertools.proxies.MusicPackageProxy('example_score_1'))

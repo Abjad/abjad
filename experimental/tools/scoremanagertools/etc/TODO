@@ -42,7 +42,7 @@
 
 19. Add a scores/test directory and check it into the scores repository.
     Then add a scores/test/test_scores_import_scores.py file.
-    The file will test 'import example_score_1', 'import example_score_2', etc.
+    The file will test 'import example_score_1', 'import example_score_2', and so on.
     This will be a very high-level test to make sure that entire score packages remain importable.
 
 20. Extend stuff to allow makers to be stored in multiple directories.
