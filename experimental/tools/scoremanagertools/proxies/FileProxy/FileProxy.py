@@ -44,11 +44,11 @@ class FileProxy(FilesystemAssetProxy):
 
     @property
     def name_without_extension(self):
-        if self.name:
-            if '.' in self.name:
-                return self.name[:self.name.rindex('.')]
+        if self.filesystem_basename:
+            if '.' in self.filesystem_basename:
+                return self.filesystem_basename[:self.filesystem_basename.rindex('.')]
             else:
-                return self.name
+                return self.filesystem_basename
 
     ### PUBLIC METHODS ###
 

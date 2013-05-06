@@ -101,7 +101,7 @@ class PackageProxy(DirectoryProxy):
 
     @property
     def space_delimited_lowercase_name(self):
-        return self.name.replace('_', ' ')
+        return self.filesystem_basename.replace('_', ' ')
 
     @property
     def tags_file_name(self):

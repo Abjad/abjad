@@ -49,13 +49,18 @@ class FilesystemAssetProxy(ScoreManagerObject):
 
     @property
     def breadcrumb(self):
-        return self.name or self._space_delimited_lowercase_class_name
+        return self.filesystem_basename or self._space_delimited_lowercase_class_name
 
     @property
     def exists(self):
         if self.filesystem_path:
             return os.path.exists(self.filesystem_path)
         return False
+
+    @property
+    def filesystem_basename(self):
+        if self.filesystem_path:
+            return os.path.basename(self.filesystem_path)
 
     @property
     def filesystem_path(self):
@@ -76,18 +81,13 @@ class FilesystemAssetProxy(ScoreManagerObject):
             return True
 
     @property
-    def name(self):
-        if self.filesystem_path:
-            return os.path.basename(self.filesystem_path)
-
-    @property
     def parent_directory_path(self):
         if self.filesystem_path:
             return os.path.dirname(self.filesystem_path)
 
     @property
     def space_delimited_lowercase_name(self):
-        return self.name
+        return self.filesystem_basename
 
     ### PUBLIC METHODS ###
 

@@ -15,7 +15,7 @@ def test_PackageProxy_read_only_attributes_01():
             package_proxy.configuration.system_materials_directory_path,
             'red_sargasso_measures','__init__.py')
     assert package_proxy.package_path == 'system_materials.red_sargasso_measures'
-    assert package_proxy.name == 'red_sargasso_measures'
+    assert package_proxy.filesystem_basename == 'red_sargasso_measures'
     assert package_proxy.space_delimited_lowercase_name == 'red sargasso measures'
     assert package_proxy.parent_initializer_file_name == \
         os.path.join(package_proxy.configuration.system_materials_directory_path, '__init__.py')

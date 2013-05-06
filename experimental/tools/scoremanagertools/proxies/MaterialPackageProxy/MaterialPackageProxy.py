@@ -297,7 +297,7 @@ class MaterialPackageProxy(PackageProxy):
 
     @property
     def material_package_name(self):
-        return self.name
+        return self.filesystem_basename
 
     @property
     def output_material(self):
