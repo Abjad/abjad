@@ -108,12 +108,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.rename_versioned_asset
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.run
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.run_first_time
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.space_delimited_lowercase_name_to_asset_name
    :noindex:
 

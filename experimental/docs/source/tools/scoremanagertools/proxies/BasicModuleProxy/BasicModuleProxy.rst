@@ -156,13 +156,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.rename_versioned_asset
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.run_abjad
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.run_first_time
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.run_python

@@ -93,12 +93,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.DistributionDirectoryProxy.DistributionDirectoryProxy.DistributionDirectoryProxy.rename_versioned_asset
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.DistributionDirectoryProxy.DistributionDirectoryProxy.DistributionDirectoryProxy.run
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.DistributionDirectoryProxy.DistributionDirectoryProxy.DistributionDirectoryProxy.run_first_time
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.DistributionDirectoryProxy.DistributionDirectoryProxy.DistributionDirectoryProxy.run_py_test
    :noindex:
 

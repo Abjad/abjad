@@ -168,13 +168,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.rename_versioned_asset
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.run_abjad
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.run_first_time
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.run_python

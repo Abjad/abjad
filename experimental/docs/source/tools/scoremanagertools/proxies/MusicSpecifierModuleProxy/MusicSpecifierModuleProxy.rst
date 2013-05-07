@@ -162,13 +162,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.rename_versioned_asset
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.run_abjad
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.run_first_time
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.run_python

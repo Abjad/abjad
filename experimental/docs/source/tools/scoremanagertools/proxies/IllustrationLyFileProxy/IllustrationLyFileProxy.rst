@@ -108,12 +108,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationLyFileProxy.IllustrationLyFileProxy.IllustrationLyFileProxy.rename_versioned_asset
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationLyFileProxy.IllustrationLyFileProxy.IllustrationLyFileProxy.run
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationLyFileProxy.IllustrationLyFileProxy.IllustrationLyFileProxy.run_first_time
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationLyFileProxy.IllustrationLyFileProxy.IllustrationLyFileProxy.space_delimited_lowercase_name_to_asset_name
    :noindex:
 

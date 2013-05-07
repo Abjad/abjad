@@ -153,13 +153,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.rename_versioned_asset
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.run_abjad
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.run_first_time
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.MaterialModuleProxy.MaterialModuleProxy.MaterialModuleProxy.run_python

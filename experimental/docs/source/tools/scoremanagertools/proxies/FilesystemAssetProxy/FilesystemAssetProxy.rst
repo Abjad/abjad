@@ -81,12 +81,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy.FilesystemAssetProxy.FilesystemAssetProxy.rename_versioned_asset
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy.FilesystemAssetProxy.FilesystemAssetProxy.run
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy.FilesystemAssetProxy.FilesystemAssetProxy.run_first_time
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy.FilesystemAssetProxy.FilesystemAssetProxy.space_delimited_lowercase_name_to_asset_name
    :noindex:
 

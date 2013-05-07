@@ -221,6 +221,28 @@ class PackageProxy(DirectoryProxy):
             tag_name = result
             self.remove_tag(tag_name)
 
+    def run(self, cache=False, clear=True, user_input=None):
+        self.io.assign_user_input(user_input=user_input)
+        self.session.cache_breadcrumbs(cache=cache)
+        while True:
+            self.session.push_breadcrumb(self.breadcrumb)
+            menu = self.make_main_menu()
+            result = menu.run(clear=clear)
+            if self.session.backtrack(source=self._backtracking_source):
+                break
+            elif not result:
+                self.session.pop_breadcrumb()
+                continue
+            self.handle_main_menu_result(result)
+            if self.session.backtrack(source=self._backtracking_source):
+                break
+            self.session.pop_breadcrumb()
+        self.session.pop_breadcrumb()
+        self.session.restore_breadcrumbs(cache=cache)
+
+    def run_first_time(self, **kwargs):
+        self.run(**kwargs)
+
     def set_package_path_interactively(self):
         getter = self.io.make_getter(where=self.where())
         getter.append_underscore_delimited_lowercase_package_name('package name')

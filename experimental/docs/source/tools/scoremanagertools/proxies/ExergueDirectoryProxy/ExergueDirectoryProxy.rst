@@ -93,12 +93,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.ExergueDirectoryProxy.ExergueDirectoryProxy.ExergueDirectoryProxy.rename_versioned_asset
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.ExergueDirectoryProxy.ExergueDirectoryProxy.ExergueDirectoryProxy.run
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.ExergueDirectoryProxy.ExergueDirectoryProxy.ExergueDirectoryProxy.run_first_time
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.ExergueDirectoryProxy.ExergueDirectoryProxy.ExergueDirectoryProxy.run_py_test
    :noindex:
 
