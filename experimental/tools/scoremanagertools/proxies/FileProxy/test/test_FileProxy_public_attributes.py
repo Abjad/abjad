@@ -10,7 +10,7 @@ def test_FileProxy_public_attributes_01():
 
     assert not file_proxy.file_lines
     assert file_proxy._generic_class_name == 'file'
-    assert file_proxy.space_delimited_lowercase_name is None
+    assert file_proxy._space_delimited_lowercase_name is None
     assert not file_proxy.is_versioned
     assert file_proxy.parent_directory_path is None
     assert file_proxy.file_path is None
@@ -34,7 +34,7 @@ def test_FileProxy_public_attributes_02():
 
     assert file_proxy.file_lines
     assert file_proxy._generic_class_name == 'file'
-    assert file_proxy.space_delimited_lowercase_name == file_name
+    assert file_proxy._space_delimited_lowercase_name == file_name
     assert file_proxy.is_versioned
     assert file_proxy.parent_directory_path == file_proxy.configuration.stylesheets_directory_path
     assert file_proxy.file_path == file_path

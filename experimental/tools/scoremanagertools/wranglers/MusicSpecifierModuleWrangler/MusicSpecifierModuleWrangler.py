@@ -21,6 +21,12 @@ class MusicSpecifierModuleWrangler(ModuleWrangler):
         self._score_internal_asset_container_package_path_infix = \
             self.configuration._score_internal_specifiers_package_path_infix
 
+    ### READ-ONLY PRIVATE PROPERTIES ###
+
+    @property
+    def _temporary_asset_name(self):
+        return 'temporary_specifier_module.py'
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
@@ -30,10 +36,6 @@ class MusicSpecifierModuleWrangler(ModuleWrangler):
     @property
     def breadcrumb(self):
         return 'music specifiers'
-
-    @property
-    def _temporary_asset_name(self):
-        return 'temporary_specifier_module.py'
 
     ### PUBLIC METHODS ###
 

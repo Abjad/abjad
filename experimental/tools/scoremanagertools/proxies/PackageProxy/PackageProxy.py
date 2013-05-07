@@ -14,6 +14,12 @@ class PackageProxy(DirectoryProxy):
         DirectoryProxy.__init__(self, directory_path=directory_path, session=session)
         self._package_path = package_path
 
+    ### READ-ONLY PRIVATE PROPERTIES ###
+
+    @property
+    def _space_delimited_lowercase_name(self):
+        return self.filesystem_basename.replace('_', ' ')
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
@@ -98,10 +104,6 @@ class PackageProxy(DirectoryProxy):
             if not key.startswith('_'):
                 result.append(imported_package_vars[key])
         return result
-
-    @property
-    def space_delimited_lowercase_name(self):
-        return self.filesystem_basename.replace('_', ' ')
 
     @property
     def tags_file_name(self):

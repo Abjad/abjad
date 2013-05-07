@@ -41,6 +41,10 @@ class FilesystemAssetProxy(ScoreManagerObject):
         return stringtools.pluralize_string(self._generic_class_name)
 
     @property
+    def _space_delimited_lowercase_name(self):
+        return self.filesystem_basename
+
+    @property
     def _svn_add_command(self):
         if self.filesystem_path:
             return 'svn add {}'.format(self.filesystem_path)
@@ -84,10 +88,6 @@ class FilesystemAssetProxy(ScoreManagerObject):
     def parent_directory_path(self):
         if self.filesystem_path:
             return os.path.dirname(self.filesystem_path)
-
-    @property
-    def space_delimited_lowercase_name(self):
-        return self.filesystem_basename
 
     ### PUBLIC METHODS ###
 
@@ -221,8 +221,8 @@ class FilesystemAssetProxy(ScoreManagerObject):
         line = 'tests run.'
         self.io.proceed(line, is_interactive=prompt)
 
-    def space_delimited_lowercase_name_to_asset_name(self, space_delimited_lowercase_name):
-        asset_name = space_delimited_lowercase_name.lower()
+    def space_delimited_lowercase_name_to_asset_name(self, _space_delimited_lowercase_name):
+        asset_name = _space_delimited_lowercase_name.lower()
         asset_name = asset_name.replace(' ', '_')
         return asset_name
 

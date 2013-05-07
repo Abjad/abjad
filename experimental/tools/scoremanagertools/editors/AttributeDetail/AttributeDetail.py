@@ -11,31 +11,31 @@ class AttributeDetail(object):
     def __init__(self, *args, **kwargs):
         is_null = False
         if len(args) == 0:
-            name = retrievable_name = space_delimited_lowercase_name = \
+            name = retrievable_name = _space_delimited_lowercase_name = \
                 menu_key = editor_callable = is_positional = None
             is_null = True
         elif len(args) == 3:
             name, menu_key, editor_callable = args
-            space_delimited_lowercase_name = None
+            _space_delimited_lowercase_name = None
             is_positional = True
             retrievable_name = name
         elif len(args) == 4:
-            name, space_delimited_lowercase_name, menu_key, editor_callable = args
+            name, _space_delimited_lowercase_name, menu_key, editor_callable = args
             is_positional = True
             retrievable_name = name
         elif len(args) == 5:
-            name, space_delimited_lowercase_name, menu_key, editor_callable, is_positional = args
+            name, _space_delimited_lowercase_name, menu_key, editor_callable, is_positional = args
             retrievable_name = name
         elif len(args) == 6:
-            name, retrievable_name, space_delimited_lowercase_name, \
+            name, retrievable_name, _space_delimited_lowercase_name, \
                 menu_key, editor_callable, is_positional = args
         else:
             raise ValueError('can not parse attribute detail {!r}.'.format(args))
-        if not space_delimited_lowercase_name and name:
-            space_delimited_lowercase_name = name.replace('_', ' ')
+        if not _space_delimited_lowercase_name and name:
+            _space_delimited_lowercase_name = name.replace('_', ' ')
         self.name = name
         self.retrievable_name = retrievable_name
-        self.space_delimited_lowercase_name = space_delimited_lowercase_name
+        self._space_delimited_lowercase_name = _space_delimited_lowercase_name
         self.menu_key = menu_key
         self.editor_callable = editor_callable
         self.is_positional = is_positional
@@ -46,7 +46,7 @@ class AttributeDetail(object):
 
     def __repr__(self):
         parts = [
-            repr(self.space_delimited_lowercase_name),
+            repr(self._space_delimited_lowercase_name),
             repr(self.menu_key),
             self.editor_callable.__name__]
         if not self.allow_none:

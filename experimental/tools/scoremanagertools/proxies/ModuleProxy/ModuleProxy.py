@@ -19,7 +19,13 @@ class ModuleProxy(ParsableFileProxy):
     _generic_class_name = 'module'
     _temporary_asset_name = 'temporary_module.py'
 
-    ### READ-ONLY PROPERTIES ###
+    ### READ-ONLY PRIVATE PROPERTIES ###
+
+    @property
+    def _space_delimited_lowercase_name(self):
+        return stringtools.string_to_space_delimited_lowercase(self.name_without_extension)
+
+    ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def grandparent_directory_path(self):
@@ -62,10 +68,6 @@ class ModuleProxy(ParsableFileProxy):
         if self.module_path:
             return '.'.join(self.module_path.split('.')[:-1])
 
-    @property
-    def space_delimited_lowercase_name(self):
-        return stringtools.string_to_space_delimited_lowercase(self.name_without_extension)
-
     ### PUBLIC METHODS ###
 
     def run_abjad(self, prompt=True):
@@ -76,9 +78,9 @@ class ModuleProxy(ParsableFileProxy):
         os.system('python {}'.format(self.file_path))
         self.io.proceed('file executed.', is_interactive=prompt)
 
-    def space_delimited_lowercase_name_to_asset_name(self, space_delimited_lowercase_name):
+    def space_delimited_lowercase_name_to_asset_name(self, _space_delimited_lowercase_name):
         asset_name = ParsableFileProxy.space_delimited_lowercase_name_to_asset_name(
-            self, space_delimited_lowercase_name)
+            self, _space_delimited_lowercase_name)
         asset_name += '.py'
         return asset_name
 

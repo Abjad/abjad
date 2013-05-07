@@ -47,8 +47,8 @@ class StylesheetFileProxy(FileProxy):
     def profile(self):
         self.print_not_yet_implemented()
 
-    def space_delimited_lowercase_name_to_asset_name(self, space_delimited_lowercase_name):
-        asset_name = FileProxy.space_delimited_lowercase_name_to_asset_name(self, space_delimited_lowercase_name)
+    def space_delimited_lowercase_name_to_asset_name(self, _space_delimited_lowercase_name):
+        asset_name = FileProxy.space_delimited_lowercase_name_to_asset_name(self, _space_delimited_lowercase_name)
         if not asset_name.endswith(self.extension):
             asset_name += self.extension
         return asset_name

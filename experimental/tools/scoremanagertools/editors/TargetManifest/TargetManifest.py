@@ -89,7 +89,7 @@ class TargetManifest(object):
     def space_delimited_lowercase_attribute_names(self):
         result = []
         for attribute_detail in self.attribute_details:
-            result.append(attribute_detail.space_delimited_lowercase_name)
+            result.append(attribute_detail._space_delimited_lowercase_name)
         return result
 
     ### PUBLIC METHODS ###
@@ -128,4 +128,4 @@ class TargetManifest(object):
     def menu_key_to_space_delimited_lowercase_attribute_name(self, menu_key):
         attribute_detail = self.menu_key_to_attribute_detail(menu_key)
         if attribute_detail:
-            return attribute_detail.space_delimited_lowercase_name
+            return attribute_detail._space_delimited_lowercase_name

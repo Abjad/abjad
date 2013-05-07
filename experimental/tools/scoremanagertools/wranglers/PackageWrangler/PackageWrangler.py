@@ -6,6 +6,12 @@ from experimental.tools.scoremanagertools.wranglers.ImportableFilesystemAssetWra
 
 class PackageWrangler(ImportableFilesystemAssetWrangler):
 
+    ### READ-ONLY PRIVATE PROPERTIES ###
+
+    @property
+    def _temporary_asset_name(self):
+        return '__temporary_package'
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
@@ -20,10 +26,6 @@ class PackageWrangler(ImportableFilesystemAssetWrangler):
             asset_proxy = self.get_asset_proxy(package_path)
             result.append(asset_proxy)
         return result
-
-    @property
-    def _temporary_asset_name(self):
-        return '__temporary_package'
 
     ### PUBLIC METHODS ###
 

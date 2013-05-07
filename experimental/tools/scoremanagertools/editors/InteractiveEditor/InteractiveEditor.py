@@ -224,7 +224,7 @@ class InteractiveEditor(ScoreManagerObject):
                 result.append(())
                 continue
             menu_key = attribute_detail.menu_key
-            menu_body = attribute_detail.space_delimited_lowercase_name
+            menu_body = attribute_detail._space_delimited_lowercase_name
             if self.target is not None:
                 attribute_value = getattr(self.target, attribute_detail.retrievable_name, None)
                 if attribute_value is None:

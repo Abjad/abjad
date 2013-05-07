@@ -48,7 +48,7 @@ class MaterialPackageMaker(MaterialPackageProxy):
     def illustration(self):
         output_material = self.output_material_module_proxy.import_output_material_safely()
         kwargs = {}
-        kwargs['title'] = self.space_delimited_lowercase_name
+        kwargs['title'] = self._space_delimited_lowercase_name
         if self.session.is_in_score:
             kwargs['subtitle'] = '({})'.format(self.session.current_score_package_proxy.title)
         illustration = self.illustration_maker(output_material, **kwargs)

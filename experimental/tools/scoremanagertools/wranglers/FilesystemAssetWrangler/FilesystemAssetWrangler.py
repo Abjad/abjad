@@ -55,6 +55,12 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         parts = ', '.join([repr(part) for part in parts])
         return '{}({})'.format(self._class_name, parts)
 
+    ### READ-ONLY PRIVATE PROPERTIES ###
+
+    @abc.abstractproperty
+    def _temporary_asset_name(self):
+        pass
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     # asset class #
@@ -112,10 +118,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     @property
     def temporary_asset_filesystem_path(self):
         return os.path.join(self.current_asset_container_path, self._temporary_asset_name)
-
-    @abc.abstractproperty
-    def _temporary_asset_name(self):
-        pass
 
     @property
     def temporary_asset_proxy(self):
