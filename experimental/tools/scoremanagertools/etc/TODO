@@ -89,5 +89,3 @@
 30. Sweep inline scoremanagertools TODO items.
 
 31. Change 'directory_content' to 'directory_entry'.
-
-32. Make sure all _temporary_asset_name properties begin with double underscore.

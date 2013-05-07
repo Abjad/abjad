@@ -20,7 +20,7 @@ class MusicSpecifierModuleWrangler(ModuleWrangler):
 
     @property
     def _temporary_asset_name(self):
-        return 'temporary_specifier_module.py'
+        return '__temporary_specifier_module.py'
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
