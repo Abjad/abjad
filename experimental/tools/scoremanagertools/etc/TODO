@@ -92,15 +92,13 @@
 
 32. Remove 'grandparent_directory_path'.
 
-33. Remove mention of 'conditionally'.
+33. Remove ModuleProxy.unimport() entirely.
 
-34. Remove ModuleProxy.unimport() entirely.
-
-35. Change FilesystemAssetProxy.write_boilerplate_asset_to_disk()
+34. Change FilesystemAssetProxy.write_boilerplate_asset_to_disk()
     to FilesystemAssetProxy.write_boilerplate_filesystem_asset_to_disk().
     Same with interactive version of method.
 
-36. Fix these import errors:
+35. Fix these import errors:
     Error reading user input module '/Users/trevorbaca/Documents/scores/betoerung/music/materials/indigo_pitch_classes/user_input.py'.
     Error reading user input module '/Users/trevorbaca/Documents/scores/betoerung/music/materials/violet_pitch_classes/user_input.py'.
     Error reading user input module '/Users/trevorbaca/Documents/scores/gebiete/music/materials/pitch_classes/user_input.py'.

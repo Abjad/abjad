@@ -306,9 +306,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.MarkupInventoryMaterialPackageMaker.MarkupInventoryMaterialPackageMaker.MarkupInventoryMaterialPackageMaker.clear_user_input_wrapper
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.MarkupInventoryMaterialPackageMaker.MarkupInventoryMaterialPackageMaker.MarkupInventoryMaterialPackageMaker.conditionally_make_empty_asset
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.MarkupInventoryMaterialPackageMaker.MarkupInventoryMaterialPackageMaker.MarkupInventoryMaterialPackageMaker.conditionally_write_stub_material_definition_module_to_disk
    :noindex:
 
@@ -363,7 +360,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.MarkupInventoryMaterialPackageMaker.MarkupInventoryMaterialPackageMaker.MarkupInventoryMaterialPackageMaker.load_user_input_wrapper_demo_values
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.MarkupInventoryMaterialPackageMaker.MarkupInventoryMaterialPackageMaker.MarkupInventoryMaterialPackageMaker.make_directory
+.. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.MarkupInventoryMaterialPackageMaker.MarkupInventoryMaterialPackageMaker.MarkupInventoryMaterialPackageMaker.make_empty_asset
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.MarkupInventoryMaterialPackageMaker.MarkupInventoryMaterialPackageMaker.MarkupInventoryMaterialPackageMaker.make_main_menu

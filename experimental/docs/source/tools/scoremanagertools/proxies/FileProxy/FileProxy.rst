@@ -57,9 +57,6 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.conditionally_make_empty_asset
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.copy
    :noindex:
 
@@ -76,6 +73,9 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.has_line
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.make_empty_asset
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.profile

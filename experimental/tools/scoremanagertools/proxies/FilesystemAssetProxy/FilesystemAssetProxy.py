@@ -107,7 +107,7 @@ class FilesystemAssetProxy(ScoreManagerObject):
     ### PUBLIC METHODS ###
 
     @abc.abstractmethod
-    def conditionally_make_empty_asset(self, is_interactive=False):
+    def make_empty_asset(self, is_interactive=False):
         pass
 
     def copy(self, new_filesystem_path):

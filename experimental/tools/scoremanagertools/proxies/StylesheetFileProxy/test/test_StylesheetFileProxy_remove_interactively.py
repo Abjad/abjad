@@ -14,7 +14,7 @@ def test_StylesheetFileProxy_remove_interactively_01():
     assert not proxy.exists
 
     try:
-        proxy.conditionally_make_empty_asset()
+        proxy.make_empty_asset()
         assert proxy.exists
         proxy.remove_interactively(user_input='remove default q')
         assert not proxy.exists
@@ -37,7 +37,7 @@ def test_StylesheetFileProxy_remove_interactively_02():
     assert not proxy.exists
 
     try:
-        proxy.conditionally_make_empty_asset()
+        proxy.make_empty_asset()
         assert os.path.exists(file_path)
         proxy.svn_add()
         assert proxy.is_versioned

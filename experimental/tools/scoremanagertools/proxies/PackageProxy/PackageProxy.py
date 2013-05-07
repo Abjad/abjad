@@ -155,7 +155,7 @@ class PackageProxy(DirectoryProxy):
 
     def get_tags(self):
         from collections import OrderedDict
-        self.tags_file_proxy.conditionally_make_empty_asset()
+        self.tags_file_proxy.make_empty_asset()
         file_pointer = open(self.tags_file_name, 'r')
         file_contents_string = file_pointer.read()
         file_pointer.close()

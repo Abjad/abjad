@@ -93,9 +93,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusicPackageProxy.MusicPackageProxy.MusicPackageProxy.add_tag_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.MusicPackageProxy.MusicPackageProxy.MusicPackageProxy.conditionally_make_empty_asset
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusicPackageProxy.MusicPackageProxy.MusicPackageProxy.copy
    :noindex:
 
@@ -126,7 +123,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusicPackageProxy.MusicPackageProxy.MusicPackageProxy.list_directory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.MusicPackageProxy.MusicPackageProxy.MusicPackageProxy.make_directory
+.. automethod:: experimental.tools.scoremanagertools.proxies.MusicPackageProxy.MusicPackageProxy.MusicPackageProxy.make_empty_asset
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusicPackageProxy.MusicPackageProxy.MusicPackageProxy.make_tags_menu

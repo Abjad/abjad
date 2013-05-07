@@ -11,7 +11,7 @@ def test_FileProxy_copy_interactively_01():
     assert not os.path.exists(file_path)
 
     try:
-        file_proxy.conditionally_make_empty_asset()
+        file_proxy.make_empty_asset()
         assert os.path.exists(file_path)
         new_file_path = os.path.join(
             score_manager_configuration.score_manager_tools_directory_path, 'new_temporary_file.txt')

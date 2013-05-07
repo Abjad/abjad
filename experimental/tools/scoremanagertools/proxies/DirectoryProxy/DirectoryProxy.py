@@ -18,9 +18,6 @@ class DirectoryProxy(FilesystemAssetProxy):
 
     ### PUBLIC METHODS ###
 
-    def conditionally_make_empty_asset(self, is_interactive=False):
-        self.print_not_yet_implemented()
-
     def fix(self, is_interactive=False):
         pass
 
@@ -46,8 +43,10 @@ class DirectoryProxy(FilesystemAssetProxy):
                     result.append(directory_entry)
         return result
 
-    def make_directory(self):
-        os.mkdir(self.filesystem_path)
+    def make_empty_asset(self, is_interactive=False):
+        if not self.exists:
+            os.mkdir(self.filesystem_path)
+        self.io.proceed(is_interactive=is_interactive)
 
     def print_directory_entries(self):
         self.io.display(self.list_directory(), capitalize_first_character=False)

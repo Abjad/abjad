@@ -306,9 +306,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.clear_user_input_wrapper
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.conditionally_make_empty_asset
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.conditionally_write_stub_material_definition_module_to_disk
    :noindex:
 
@@ -363,7 +360,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.load_user_input_wrapper_demo_values
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.make_directory
+.. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.make_empty_asset
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.make_main_menu

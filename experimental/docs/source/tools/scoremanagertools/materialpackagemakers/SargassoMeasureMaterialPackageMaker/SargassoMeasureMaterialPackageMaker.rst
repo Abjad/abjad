@@ -306,9 +306,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.clear_user_input_wrapper
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.conditionally_make_empty_asset
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.conditionally_write_stub_material_definition_module_to_disk
    :noindex:
 
@@ -363,7 +360,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.load_user_input_wrapper_demo_values
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.make_directory
+.. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.make_empty_asset
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.make_main_menu

@@ -11,7 +11,7 @@ def test_FileProxy_conditionally_make_empty_asset_01():
     assert not os.path.exists(file_path)
 
     try:
-        file_proxy.conditionally_make_empty_asset()
+        file_proxy.make_empty_asset()
         assert os.path.exists(file_path)
         file_proxy.remove()
     finally:

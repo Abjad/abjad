@@ -52,13 +52,6 @@ class FileProxy(FilesystemAssetProxy):
 
     ### PUBLIC METHODS ###
 
-    def conditionally_make_empty_asset(self, is_interactive=False):
-        if not os.path.exists(self.file_path):
-            file_reference = file(self.file_path, 'w')
-            file_reference.write('')
-            file_reference.close()
-        self.io.proceed(is_interactive=is_interactive)
-
     def display_formatted_lines(self):
         self.io.display(self.formatted_lines)
 
@@ -76,6 +69,13 @@ class FileProxy(FilesystemAssetProxy):
                 return True
         file_reference.close()
         return False
+
+    def make_empty_asset(self, is_interactive=False):
+        if not self.exists:
+            file_reference = file(self.file_path, 'w')
+            file_reference.write('')
+            file_reference.close()
+        self.io.proceed(is_interactive=is_interactive)
 
     def profile(self):
         pass

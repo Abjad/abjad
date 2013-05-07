@@ -14,7 +14,7 @@ class MusicSpecifierModuleProxy(ModuleProxy):
         self.load_target_into_memory()
         self._editor = self.editor_class(target=self.target_in_memory, session=self.session)
         self.target_lines = []
-        #self.conditionally_make_empty_asset()
+        #self.make_empty_asset()
         #self.parse()
 
     ### CLASS ATTRIUBTES ###
@@ -111,7 +111,7 @@ class MusicSpecifierModuleProxy(ModuleProxy):
             return target
 
     def write_stub_to_disk(self):
-        self.conditionally_make_empty_asset()
+        self.make_empty_asset()
 
     def write_target_to_disk(self, target_in_memory):
         self.parse()

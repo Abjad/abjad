@@ -39,9 +39,6 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.DistributionDirectoryProxy.DistributionDirectoryProxy.DistributionDirectoryProxy.conditionally_make_empty_asset
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.DistributionDirectoryProxy.DistributionDirectoryProxy.DistributionDirectoryProxy.copy
    :noindex:
 
@@ -57,7 +54,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.DistributionDirectoryProxy.DistributionDirectoryProxy.DistributionDirectoryProxy.list_directory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.DistributionDirectoryProxy.DistributionDirectoryProxy.DistributionDirectoryProxy.make_directory
+.. automethod:: experimental.tools.scoremanagertools.proxies.DistributionDirectoryProxy.DistributionDirectoryProxy.DistributionDirectoryProxy.make_empty_asset
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.DistributionDirectoryProxy.DistributionDirectoryProxy.DistributionDirectoryProxy.print_directory_entries

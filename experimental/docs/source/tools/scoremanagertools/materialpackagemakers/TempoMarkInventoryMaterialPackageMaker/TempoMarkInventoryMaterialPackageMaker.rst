@@ -306,9 +306,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.clear_user_input_wrapper
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.conditionally_make_empty_asset
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.conditionally_write_stub_material_definition_module_to_disk
    :noindex:
 
@@ -363,7 +360,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.load_user_input_wrapper_demo_values
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.make_directory
+.. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.make_empty_asset
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.make_main_menu

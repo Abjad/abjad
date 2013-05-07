@@ -14,7 +14,7 @@ def test_StylesheetFileProxy_rename_interactively_01():
     assert not proxy.exists
 
     try:
-        proxy.conditionally_make_empty_asset()
+        proxy.make_empty_asset()
         assert proxy.exists
         assert not proxy.is_versioned
         new_file_path = os.path.join(
@@ -42,7 +42,7 @@ def test_StylesheetFileProxy_rename_interactively_02():
     assert not os.path.exists(file_path)
 
     try:
-        proxy.conditionally_make_empty_asset()
+        proxy.make_empty_asset()
         assert os.path.exists(file_path)
         proxy.svn_add()
         assert proxy.is_versioned
