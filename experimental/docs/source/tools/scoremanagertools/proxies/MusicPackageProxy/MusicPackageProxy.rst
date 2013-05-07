@@ -21,6 +21,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.MusicPackageProxy.MusicPackageProxy.MusicPackageProxy.filesystem_basename
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.MusicPackageProxy.MusicPackageProxy.MusicPackageProxy.filesystem_directory_name
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.MusicPackageProxy.MusicPackageProxy.MusicPackageProxy.filesystem_path
    :noindex:
 
@@ -55,9 +58,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.MusicPackageProxy.MusicPackageProxy.MusicPackageProxy.package_root_name
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.MusicPackageProxy.MusicPackageProxy.MusicPackageProxy.parent_directory_path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.MusicPackageProxy.MusicPackageProxy.MusicPackageProxy.parent_initializer_file_name

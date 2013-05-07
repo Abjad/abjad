@@ -785,8 +785,8 @@ class MaterialPackageProxy(PackageProxy):
             command = 'svn mv {} {}'.format(self.directory_path, new_directory_path)
             os.system(command)
             # update package initializer
-            parent_directory_path = os.path.dirname(self.directory_path)
-            new_package_directory = os.path.join(parent_directory_path, new_material_package_name)
+            filesystem_directory_name = os.path.dirname(self.directory_path)
+            new_package_directory = os.path.join(filesystem_directory_name, new_material_package_name)
             new_initializer = os.path.join(new_package_directory, '__init__.py')
             helpers.globally_replace_in_file(
                 new_initializer, self.material_package_name, new_material_package_name)
@@ -798,7 +798,7 @@ class MaterialPackageProxy(PackageProxy):
             commit_message = 'renamed {} to {}.'.format(
                 self.material_package_name, new_material_package_name)
             commit_message = commit_message.replace('_', ' ')
-            command = 'svn commit -m "{}" {}'.format(commit_message, self.parent_directory_path)
+            command = 'svn commit -m "{}" {}'.format(commit_message, self.filesystem_directory_name)
             os.system(command)
             # update path name to reflect change
             self._path = new_package_directory

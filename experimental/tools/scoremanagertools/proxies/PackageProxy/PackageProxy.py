@@ -77,9 +77,9 @@ class PackageProxy(DirectoryProxy):
     @property
     def parent_initializer_file_name(self):
         if self.parent_package_path:
-            parent_directory_path = packagepathtools.package_path_to_directory_path(
+            filesystem_directory_name = packagepathtools.package_path_to_directory_path(
                 self.parent_package_path, self.configuration)
-            return os.path.join(parent_directory_path, '__init__.py')
+            return os.path.join(filesystem_directory_name, '__init__.py')
 
     # TODO: write test
     @property

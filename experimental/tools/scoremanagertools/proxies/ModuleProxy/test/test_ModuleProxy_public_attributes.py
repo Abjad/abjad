@@ -19,8 +19,8 @@ def test_ModuleProxy_public_attributes_01():
     assert not proxy.is_versioned
     assert proxy.module_path is None
     assert proxy.module_name is None
-    assert proxy.parent_directory_path is None
-    assert proxy.parent_directory_path is None
+    assert proxy.filesystem_directory_name is None
+    assert proxy.filesystem_directory_name is None
     assert proxy.parent_package_path is None
     assert proxy.parent_package_initializer_file_name is None
     assert proxy.file_path is None
@@ -50,9 +50,9 @@ def test_ModuleProxy_public_attributes_02():
     assert proxy.is_versioned
     assert proxy.module_path == module_path
     assert proxy.module_name == 'material_definition'
-    assert proxy.parent_directory_path == os.path.join(
+    assert proxy.filesystem_directory_name == os.path.join(
         proxy.configuration.system_materials_directory_path, 'red_notes')
-    assert proxy.parent_directory_path == os.path.join(
+    assert proxy.filesystem_directory_name == os.path.join(
         proxy.configuration.system_materials_directory_path, 'red_notes')
     assert proxy.parent_package_path == '.'.join([
         proxy.configuration.system_materials_package_path, 'red_notes'])

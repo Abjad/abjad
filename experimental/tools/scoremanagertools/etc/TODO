@@ -89,3 +89,5 @@
 30. Sweep inline scoremanagertools TODO items.
 
 31. Change 'directory_content' to 'directory_entry'.
+
+32. Remove 'grandparent_directory_path'.

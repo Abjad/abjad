@@ -28,6 +28,12 @@ class ModuleProxy(ParsableFileProxy):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
+    def filesystem_directory_name(self):
+        if self.module_path:
+            return packagepathtools.package_path_to_directory_path(
+                self.parent_package_path)
+
+    @property
     def grandparent_directory_path(self):
         if self.module_path:
             return packagepathtools.package_path_to_directory_path(
@@ -53,15 +59,9 @@ class ModuleProxy(ParsableFileProxy):
         return self._module_path
 
     @property
-    def parent_directory_path(self):
-        if self.module_path:
-            return packagepathtools.package_path_to_directory_path(
-                self.parent_package_path)
-
-    @property
     def parent_package_initializer_file_name(self):
         if self.module_path:
-            return os.path.join(self.parent_directory_path, '__init__.py')
+            return os.path.join(self.filesystem_directory_name, '__init__.py')
 
     @property
     def parent_package_path(self):
