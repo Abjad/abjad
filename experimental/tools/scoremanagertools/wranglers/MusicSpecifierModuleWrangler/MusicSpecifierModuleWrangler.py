@@ -9,17 +9,12 @@ class MusicSpecifierModuleWrangler(ModuleWrangler):
     ### INITIALIZER ###
 
     def __init__(self, session=None):
-#        ModuleWrangler.__init__(self,
-#            score_external_asset_container_package_paths=\
-#                [self.configuration.score_external_specifiers_package_path],
-#            score_internal_asset_container_package_path_infix=\
-#                self.configuration._score_internal_specifiers_package_path_infix,
-#            session=session)
-        ModuleWrangler.__init__(self, session=session)
-        self._score_external_asset_container_package_paths = [
-            self.configuration.score_external_specifiers_package_path]
-        self._score_internal_asset_container_package_path_infix = \
-            self.configuration._score_internal_specifiers_package_path_infix
+        ModuleWrangler.__init__(self,
+            score_external_asset_container_package_paths=\
+                [self.configuration.score_external_specifiers_package_path],
+            score_internal_asset_container_package_path_infix=\
+                self.configuration._score_internal_specifiers_package_path_infix,
+            session=session)
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 

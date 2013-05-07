@@ -90,7 +90,4 @@
 
 31. Change 'directory_content' to 'directory_entry'.
 
-32. Revert MusicSpecifierModuleWrangler initializer.
-
-33. Change _space_delimited_lowercase_name to something more explicit.
-    Which name?
+32. Make sure all _temporary_asset_name properties begin with double underscore.

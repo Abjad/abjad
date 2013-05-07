@@ -7,19 +7,13 @@ class SegmentPackageWrangler(PackageWrangler):
 
     ### INITIALIZER ###
 
-    # TODO: restore initializer now that self.configuration exists
     def __init__(self, session=None):
-#        PackageWrangler.__init__(self,
-#            score_external_asset_container_package_paths= \
-#                [self.configuration.score_external_segments_package_path],
-#            score_internal_asset_container_package_path_infix= \
-#                self.configuration._score_internal_segments_package_path_infix,
-#            session=session)
-        PackageWrangler.__init__(self, session=session)
-        self._score_external_asset_container_package_paths = [
-            self.configuration.score_external_segments_package_path]
-        self._score_internal_asset_container_package_path_infix = \
-            self.configuration._score_internal_segments_package_path_infix
+        PackageWrangler.__init__(self,
+            score_external_asset_container_package_paths= \
+                [self.configuration.score_external_segments_package_path],
+            score_internal_asset_container_package_path_infix= \
+                self.configuration._score_internal_segments_package_path_infix,
+            session=session)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
