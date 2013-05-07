@@ -56,3 +56,11 @@ class DirectoryProxy(FilesystemAssetProxy):
 
     def profile(self):
         pass
+
+    def run_py_test(self, prompt=True):
+        proc = subprocess.Popen('py.test {}'.format(self.filesystem_path), shell=True, stdout=subprocess.PIPE)
+        lines = [line.strip() for line in proc.stdout.readlines()]
+        if lines:
+            self.io.display(lines)
+        line = 'tests run.'
+        self.io.proceed(line, is_interactive=prompt)

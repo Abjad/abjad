@@ -91,3 +91,11 @@
 31. Change 'directory_content' to 'directory_entry'.
 
 32. Remove 'grandparent_directory_path'.
+
+33. Remove mention of 'conditionally'.
+
+34. Remove ModuleProxy.unimport() entirely.
+
+35. Change FilesystemAssetProxy.write_boilerplate_asset_to_disk()
+    to FilesystemAssetProxy.write_boilerplate_filesystem_asset_to_disk().
+    Same with interactive version of method.

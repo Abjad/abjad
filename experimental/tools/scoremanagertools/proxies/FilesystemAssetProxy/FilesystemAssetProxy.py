@@ -26,12 +26,21 @@ class FilesystemAssetProxy(ScoreManagerObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
+        '''True when filesystem path properties are equal.
+        Otherwise false.
+
+        Return boolean.
+        '''
         if isinstance(expr, type(self)):
             if self.filesystem_path == expr.filesystem_path:
                 return True
         return False
 
     def __repr__(self):
+        '''Filesystem asset proxy repr.
+    
+        Return string.
+        '''
         return '{}({!r})'.format(self._class_name, self.filesystem_path)
 
     ### READ-ONLY PRIVATE PROPERTIES ###
@@ -212,14 +221,6 @@ class FilesystemAssetProxy(ScoreManagerObject):
 
     def run_first_time(self, **kwargs):
         self.run(**kwargs)
-
-    def run_py_test(self, prompt=True):
-        proc = subprocess.Popen('py.test {}'.format(self.filesystem_path), shell=True, stdout=subprocess.PIPE)
-        lines = [line.strip() for line in proc.stdout.readlines()]
-        if lines:
-            self.io.display(lines)
-        line = 'tests run.'
-        self.io.proceed(line, is_interactive=prompt)
 
     def space_delimited_lowercase_name_to_asset_name(self, _space_delimited_lowercase_name):
         asset_name = _space_delimited_lowercase_name.lower()
