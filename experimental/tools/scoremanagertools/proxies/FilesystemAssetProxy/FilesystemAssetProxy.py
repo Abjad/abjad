@@ -58,6 +58,13 @@ class FilesystemAssetProxy(ScoreManagerObject):
         if self.filesystem_path:
             return 'svn add {}'.format(self.filesystem_path)
 
+    ### PRIVATE METHODS ###
+
+    def _space_delimited_lowercase_name_to_asset_name(self, space_delimited_lowercase_name):
+        space_delimited_lowercase_name = space_delimited_lowercase_name.lower()
+        asset_name = space_delimited_lowercase_name.replace(' ', '_')
+        return asset_name
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
@@ -114,7 +121,7 @@ class FilesystemAssetProxy(ScoreManagerObject):
         result = getter.run()
         if self.session.backtrack():
             return
-        new_asset_name = self.space_delimited_lowercase_name_to_asset_name(result)
+        new_asset_name = self._space_delimited_lowercase_name_to_asset_name(result)
         new_path = os.path.join(self.filesystem_directory_name, new_asset_name)
         self.io.display('new path will be {}'.format(new_path))
         if not self.io.confirm():
@@ -199,11 +206,6 @@ class FilesystemAssetProxy(ScoreManagerObject):
         proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
         proc.stdout.readline()
         self._filesystem_path = new_path
-
-    def space_delimited_lowercase_name_to_asset_name(self, _space_delimited_lowercase_name):
-        asset_name = _space_delimited_lowercase_name.lower()
-        asset_name = asset_name.replace(' ', '_')
-        return asset_name
 
     def svn_add(self, is_interactive=False):
         if is_interactive:

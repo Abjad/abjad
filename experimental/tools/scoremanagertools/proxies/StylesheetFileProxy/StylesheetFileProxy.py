@@ -8,7 +8,16 @@ class StylesheetFileProxy(FileProxy):
     _generic_class_name = 'stylesheet'
     _temporary_asset_name = 'temporary_stylesheet.ly'
 
-    ### READ-ONLY PROPERTIES ###
+    ### PRIVATE METHODS ###
+
+    def _space_delimited_lowercase_name_to_asset_name(self, space_delimited_lowercase_name):
+        asset_name = FileProxy._space_delimited_lowercase_name_to_asset_name(
+            self, space_delimited_lowercase_name)
+        if not asset_name.endswith(self.extension):
+            asset_name += self.extension
+        return asset_name
+
+    ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def extension(self):
@@ -46,9 +55,3 @@ class StylesheetFileProxy(FileProxy):
 
     def profile(self):
         self.print_not_yet_implemented()
-
-    def space_delimited_lowercase_name_to_asset_name(self, _space_delimited_lowercase_name):
-        asset_name = FileProxy.space_delimited_lowercase_name_to_asset_name(self, _space_delimited_lowercase_name)
-        if not asset_name.endswith(self.extension):
-            asset_name += self.extension
-        return asset_name
