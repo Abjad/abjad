@@ -21,7 +21,7 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.directory_path
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.dist_pdf_directory_path
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.distribution_pdf_directory_path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.distribution_proxy
@@ -93,7 +93,7 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.materials_package_path
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.mus_proxy
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.music_proxy
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.music_specifier_module_wrangler

@@ -12,9 +12,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy.breadcrumb
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy.directory_path
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy.exists
    :noindex:
 

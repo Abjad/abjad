@@ -13,7 +13,7 @@ class ScorePackageProxy(PackageProxy):
             score_package_name=score_package_name, session=self.session)
         self._exergue_directory_proxy = scoremanagertools.proxies.ExergueDirectoryProxy(
             score_package_name=score_package_name, session=self.session)
-        self._mus_proxy = scoremanagertools.proxies.MusicPackageProxy(
+        self._music_proxy = scoremanagertools.proxies.MusicPackageProxy(
             score_package_name=score_package_name, session=self.session)
         self._segment_wrangler = scoremanagertools.wranglers.SegmentPackageWrangler(
             session=self.session)
@@ -48,8 +48,8 @@ class ScorePackageProxy(PackageProxy):
         return self.get_tag('composer')
 
     @property
-    def dist_pdf_directory_path(self):
-        return os.path.join(self.distribution_proxy.directory_path, 'pdf')
+    def distribution_pdf_directory_path(self):
+        return os.path.join(self.distribution_proxy.filesystem_path, 'pdf')
 
     @property
     def distribution_proxy(self):
@@ -85,7 +85,7 @@ class ScorePackageProxy(PackageProxy):
 
     @property
     def materials_directory_path(self):
-        return os.path.join(self.directory_path, 'music', 'materials')
+        return os.path.join(self.filesystem_path, 'music', 'materials')
 
     @property
     def materials_package_initializer_file_name(self):
@@ -96,8 +96,8 @@ class ScorePackageProxy(PackageProxy):
         return '.'.join([self.package_path, 'music', 'materials'])
 
     @property
-    def mus_proxy(self):
-        return self._mus_proxy
+    def music_proxy(self):
+        return self._music_proxy
 
     @property
     def music_specifier_module_wrangler(self):
@@ -107,7 +107,7 @@ class ScorePackageProxy(PackageProxy):
     def score_initializer_file_names(self):
         return (
             self.initializer_file_name,
-            self.mus_proxy.initializer_file_name,
+            self.music_proxy.initializer_file_name,
             )
 
     @property
@@ -123,7 +123,7 @@ class ScorePackageProxy(PackageProxy):
 
     @property
     def segments_directory_path(self):
-        return os.path.join(self.directory_path, 'music', 'segments')
+        return os.path.join(self.filesystem_path, 'music', 'segments')
 
     @property
     def segments_package_initializer_file_name(self):
@@ -155,14 +155,14 @@ class ScorePackageProxy(PackageProxy):
 
     @property
     def top_level_directory_paths(self):
-        return tuple([x.directory_path for x in self.top_level_directory_proxies])
+        return tuple([x.filesystem_path for x in self.top_level_directory_proxies])
 
     @property
     def top_level_directory_proxies(self):
         return (
             self.distribution_proxy,
             self.exergue_directory_proxy,
-            self.mus_proxy,
+            self.music_proxy,
             )
 
     @property
@@ -259,15 +259,15 @@ class ScorePackageProxy(PackageProxy):
                 initializer = file(self.initializer_file_name, 'w')
                 initializer.write('')
                 initializer.close()
-        if not os.path.exists(self.mus_proxy.initializer_file_name):
+        if not os.path.exists(self.music_proxy.initializer_file_name):
             result = False
-            prompt = 'create {}? '.format(self.mus_proxy.initializer_file_name)
+            prompt = 'create {}? '.format(self.music_proxy.initializer_file_name)
             if not is_interactive or self.io.confirm(prompt):
-                initializer = file(self.mus_proxy.initializer_file_name, 'w')
+                initializer = file(self.music_proxy.initializer_file_name, 'w')
                 initializer.write('')
                 initializer.close()
         lines = []
-        initializer = file(self.mus_proxy.initializer_file_name, 'r')
+        initializer = file(self.music_proxy.initializer_file_name, 'r')
         found_materials_import = False
         for line in initializer.readlines():
             lines.append(line)
@@ -277,7 +277,7 @@ class ScorePackageProxy(PackageProxy):
         if not found_materials_import:
             result = False
             lines.insert(0, 'import materials\n')
-            initializer = file(self.mus_proxy.initializer_file_name, 'w')
+            initializer = file(self.music_proxy.initializer_file_name, 'w')
             initializer.write(''.join(lines))
             initializer.close()
         if not os.path.exists(self.tags_file_name):
@@ -434,8 +434,8 @@ class ScorePackageProxy(PackageProxy):
         self.session.restore_breadcrumbs(cache=cache)
 
     def profile(self, prompt=True):
-        if not os.path.exists(self.directory_path):
-            raise OSError('directory {!r} does not exist.'.format(self.directory_path))
+        if not os.path.exists(self.filesystem_path):
+            raise OSError('directory {!r} does not exist.'.format(self.filesystem_path))
         if self.filesystem_basename == 'recursif':
             return
         lines = []
