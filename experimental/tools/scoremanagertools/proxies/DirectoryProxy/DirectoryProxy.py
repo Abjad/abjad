@@ -16,17 +16,6 @@ class DirectoryProxy(FilesystemAssetProxy):
     def _svn_add_command(self):
         return 'cd {} && svn-add-all'.format(self.directory_path)
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
-
-    @property
-    def public_content_names(self):
-        result = []
-        for name in os.listdir(self.filesystem_path):
-            if name[0].isalpha():
-                if not name.endswith('.pyc'):
-                    result.append(name)
-        return result
-
     ### PUBLIC METHODS ###
 
     def conditionally_make_empty_asset(self, is_interactive=False):
@@ -43,21 +32,24 @@ class DirectoryProxy(FilesystemAssetProxy):
             return
         self.filesystem_path = result
 
-    def list_directory(self):
+    def list_directory(self, public_entries_only=False):
         result = []
-        for file_name in os.listdir(self.filesystem_path):
-            if file_name.endswith('.pyc'):
-                file_path = os.path.join(self.filesystem_path, file_name)
-                os.remove(file_path)
-        for name in os.listdir(self.filesystem_path):
-            if not name.startswith('.'):
-                result.append(name)
+        if public_entries_only:
+            for directory_entry in os.listdir(self.filesystem_path):
+                if directory_entry[0].isalpha() and \
+                    not directory_entry.endswith('.pyc'):
+                    result.append(directory_entry)
+        else:
+            for directory_entry in os.listdir(self.filesystem_path):
+                if not directory_entry.startswith('.') and \
+                    not directory_entry.endswith('.pyc'):
+                    result.append(directory_entry)
         return result
 
     def make_directory(self):
         os.mkdir(self.filesystem_path)
 
-    def print_directory_contents(self):
+    def print_directory_entries(self):
         self.io.display(self.list_directory(), capitalize_first_character=False)
         self.io.display('')
         self.session.hide_next_redraw = True

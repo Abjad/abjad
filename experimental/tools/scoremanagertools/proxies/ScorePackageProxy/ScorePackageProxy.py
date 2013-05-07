@@ -324,7 +324,7 @@ class ScorePackageProxy(PackageProxy):
         elif result == 'fix':
             self.fix()
         elif result == 'ls':
-            self.print_directory_contents()
+            self.print_directory_entries()
         elif result == 'profile':
             self.profile()
         elif result == 'removescore':
