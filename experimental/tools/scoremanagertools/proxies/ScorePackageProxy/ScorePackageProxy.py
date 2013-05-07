@@ -9,7 +9,7 @@ class ScorePackageProxy(PackageProxy):
     def __init__(self, score_package_name=None, session=None):
         from experimental.tools import scoremanagertools
         PackageProxy.__init__(self, score_package_name, session=session)
-        self._dist_proxy = scoremanagertools.proxies.DistributionDirectoryProxy(
+        self._distribution_proxy = scoremanagertools.proxies.DistributionDirectoryProxy(
             score_package_name=score_package_name, session=self.session)
         self._exergue_directory_proxy = scoremanagertools.proxies.ExergueDirectoryProxy(
             score_package_name=score_package_name, session=self.session)
@@ -49,11 +49,11 @@ class ScorePackageProxy(PackageProxy):
 
     @property
     def dist_pdf_directory_path(self):
-        return os.path.join(self.dist_proxy.directory_path, 'pdf')
+        return os.path.join(self.distribution_proxy.directory_path, 'pdf')
 
     @property
-    def dist_proxy(self):
-        return self._dist_proxy
+    def distribution_proxy(self):
+        return self._distribution_proxy
 
     @property
     def exergue_directory_proxy(self):
@@ -160,7 +160,7 @@ class ScorePackageProxy(PackageProxy):
     @property
     def top_level_directory_proxies(self):
         return (
-            self.dist_proxy,
+            self.distribution_proxy,
             self.exergue_directory_proxy,
             self.mus_proxy,
             )

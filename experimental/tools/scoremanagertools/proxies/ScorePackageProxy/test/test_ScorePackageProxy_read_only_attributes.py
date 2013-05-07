@@ -11,7 +11,7 @@ def test_ScorePackageProxy_read_only_attributes_01():
 
 
     assert isinstance(score_proxy.segment_wrangler, scoremanagertools.wranglers.SegmentPackageWrangler)
-    assert isinstance(score_proxy.dist_proxy, scoremanagertools.proxies.DirectoryProxy)
+    assert isinstance(score_proxy.distribution_proxy, scoremanagertools.proxies.DirectoryProxy)
     assert isinstance(score_proxy.exergue_directory_proxy, scoremanagertools.proxies.DirectoryProxy)
     assert isinstance(
         score_proxy.material_package_maker_wrangler, 
