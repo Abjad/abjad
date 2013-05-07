@@ -106,10 +106,6 @@ class FilesystemAssetProxy(ScoreManagerObject):
 
     ### PUBLIC METHODS ###
 
-    @abc.abstractmethod
-    def make_empty_asset(self, is_interactive=False):
-        pass
-
     def copy(self, new_filesystem_path):
         shutil.copyfile(self.filesystem_path, new_filesystem_path)
 
@@ -133,14 +129,24 @@ class FilesystemAssetProxy(ScoreManagerObject):
         pass
 
     @abc.abstractmethod
+    def make_empty_asset(self, is_interactive=False):
+        pass
+
+    @abc.abstractmethod
     def profile(self):
         pass
 
     def remove(self):
         if self.is_versioned:
-            return self.remove_versioned_asset()
+            command = 'svn --force rm {}'.format(self.filesystem_path)
+            proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
+            proc.stdout.readline()
+            return True
         else:
-            return self.remove_nonversioned_asset()
+            command = 'rm -rf {}'.format(self.filesystem_path)
+            proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+            proc.stdout.readline()
+            return True
 
     def remove_interactively(self, user_input=None):
         self.io.assign_user_input(user_input=user_input)
@@ -155,23 +161,17 @@ class FilesystemAssetProxy(ScoreManagerObject):
         if self.remove():
             self.io.proceed('{} removed.'.format(self.filesystem_path))
 
-    def remove_nonversioned_asset(self):
-        command = 'rm -rf {}'.format(self.filesystem_path)
-        proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-        proc.stdout.readline()
-        return True
-
-    def remove_versioned_asset(self, is_interactive=False):
-        command = 'svn --force rm {}'.format(self.filesystem_path)
-        proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
-        proc.stdout.readline()
-        return True
-
     def rename(self, new_path):
         if self.is_versioned:
-            result = self.rename_versioned_asset(new_path)
+            command = 'svn --force mv {} {}'.format(self.filesystem_path, new_path)
+            proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
+            proc.stdout.readline()
+            self._filesystem_path = new_path
         else:
-            result = self.rename_nonversioned_asset(new_path)
+            command = 'mv {} {}'.format(self.filesystem_path, new_path)
+            proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
+            proc.stdout.readline()
+            self._filesystem_path = new_path
 
     def rename_interactively(self, user_input=None):
         self.io.assign_user_input(user_input=user_input)
@@ -187,18 +187,6 @@ class FilesystemAssetProxy(ScoreManagerObject):
             return
         if self.rename(new_path):
             self.io.proceed('asset renamed.')
-
-    def rename_nonversioned_asset(self, new_path):
-        command = 'mv {} {}'.format(self.filesystem_path, new_path)
-        proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
-        proc.stdout.readline()
-        self._filesystem_path = new_path
-
-    def rename_versioned_asset(self, new_path):
-        command = 'svn --force mv {} {}'.format(self.filesystem_path, new_path)
-        proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
-        proc.stdout.readline()
-        self._filesystem_path = new_path
 
     def svn_add(self, is_interactive=False):
         if is_interactive:
