@@ -1,4 +1,5 @@
 import os
+import sys
 from abjad.tools import stringtools
 from experimental.tools import packagepathtools
 from experimental.tools.scoremanagertools.proxies.ParsableFileProxy import ParsableFileProxy
@@ -78,6 +79,14 @@ class ModuleProxy(ParsableFileProxy):
 
     ### PUBLIC METHODS ###
 
+    # TODO: remove entirely
+    def remove_package_path_from_sys_modules(self, package_path):
+        '''Total hack. Should be eliminated entirely.
+        '''
+        command = "if '{}' in sys.modules: del(sys.modules['{}'])".format(
+            package_path, package_path)
+        exec(command)
+
     def run_abjad(self, prompt=True):
         os.system('abjad {}'.format(self.file_path))
         self.io.proceed('file executed', is_interactive=prompt)
@@ -86,5 +95,6 @@ class ModuleProxy(ParsableFileProxy):
         os.system('python {}'.format(self.file_path))
         self.io.proceed('file executed.', is_interactive=prompt)
 
+    # TODO: remove entirely
     def unimport(self):
         self.remove_package_path_from_sys_modules(self.module_path)

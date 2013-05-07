@@ -250,6 +250,3 @@ class PackageProxy(DirectoryProxy):
         if self.session.backtrack():
             return
         self.package_path = result
-
-    def unimport_package(self):
-        self.remove_package_path_from_sys_modules(self.package_path)
