@@ -3,7 +3,6 @@ import os
 from abjad.tools import stringtools
 from experimental.tools import packagepathtools
 from experimental.tools.scoremanagertools.core.ScoreManagerObject import ScoreManagerObject
-from experimental.tools.scoremanagertools.proxies.PackageProxy import PackageProxy
 
 
 class FilesystemAssetWrangler(ScoreManagerObject):
@@ -15,20 +14,20 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     ### INITIALIZER ###
 
     def __init__(self,
-        score_external_asset_container_package_paths=None,
+        system_asset_container_package_paths=None,
         score_internal_asset_container_package_path_infix=None,
         session=None,
         user_asset_container_package_paths=None,
         user_asset_container_directory_paths=None):
         ScoreManagerObject.__init__(self, session=session)
-        if score_external_asset_container_package_paths:
+        if system_asset_container_package_paths:
             assert all([stringtools.is_underscore_delimited_lowercase_package_name(x)
-                for x in score_external_asset_container_package_paths])
+                for x in system_asset_container_package_paths])
         if score_internal_asset_container_package_path_infix:
             assert stringtools.is_underscore_delimited_lowercase_package_name(
                 score_internal_asset_container_package_path_infix)
-        self._score_external_asset_container_package_paths = \
-            score_external_asset_container_package_paths or []
+        self._system_asset_container_package_paths = \
+            system_asset_container_package_paths or []
         self._score_internal_asset_container_package_path_infix = \
             score_internal_asset_container_package_path_infix
         self._user_asset_container_package_paths = \
@@ -40,8 +39,8 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     def __eq__(self, expr):
         if isinstance(expr, type(self)):
-            if self.list_score_external_asset_container_package_paths() == \
-                expr.list_score_external_asset_container_package_paths():
+            if self.list_system_asset_container_package_paths() == \
+                expr.list_system_asset_container_package_paths():
                 if self.score_internal_asset_container_package_path_infix == \
                     expr.score_internal_asset_container_package_path_infix:
                     return True
@@ -49,7 +48,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     def __repr__(self):
         parts = []
-        parts.extend(self.list_score_external_asset_container_package_paths())
+        parts.extend(self.list_system_asset_container_package_paths())
         if self.score_internal_asset_container_package_path_infix:
             parts.append(self.score_internal_asset_container_package_path_infix)
         parts = ', '.join([repr(part) for part in parts])
@@ -75,7 +74,8 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     @property
     def asset_container_class(self):
-        return PackageProxy
+        from experimental.tools import scoremanagertools
+        return scoremanagertools.proxies.PackageProxy
 
     # current asset container #
 
@@ -85,8 +85,8 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             return '.'.join([
                 self.session.current_score_package_name,
                 self.score_internal_asset_container_package_path_infix])
-        elif self.list_score_external_asset_container_package_paths():
-            return self.list_score_external_asset_container_package_paths()[0]
+        elif self.list_system_asset_container_package_paths():
+            return self.list_system_asset_container_package_paths()[0]
 
     @property
     def current_asset_container_directory_path(self):
@@ -148,7 +148,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             file_reference.close()
 
     def conditionally_make_score_external_asset_container_package(self):
-        for package_path in self.list_score_external_asset_container_package_paths():
+        for package_path in self.list_system_asset_container_package_paths():
             self.conditionally_make_empty_package(package_path)
 
     def conditionally_make_score_internal_asset_container_packages(self, head=None):
@@ -181,7 +181,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     def list_asset_container_package_paths(self, head=None):
         result = []
-        result.extend(self.list_score_external_asset_container_package_paths(head=head))
+        result.extend(self.list_system_asset_container_package_paths(head=head))
         result.extend(self.list_score_internal_asset_container_package_paths(head=head))
         return result
 
@@ -222,23 +222,23 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     # score-external asset containers #
 
-    def list_score_external_asset_container_package_paths(self, head=None):
+    def list_system_asset_container_package_paths(self, head=None):
         result = []
-        for package_path in self._score_external_asset_container_package_paths:
+        for package_path in self._system_asset_container_package_paths:
             if head is None or package_path.startswith(head):
                 result.append(package_path)
         return result
 
     def list_score_external_asset_container_directory_paths(self, head=None):
         result = []
-        for package_path in self.list_score_external_asset_container_package_paths(head=head):
+        for package_path in self.list_system_asset_container_package_paths(head=head):
             result.append(packagepathtools.package_path_to_directory_path(package_path))
         return result
 
     def list_score_external_asset_container_proxies(self, head=None):
         result = []
         for package_path in \
-            self.list_score_external_asset_container_package_paths(head=head):
+            self.list_system_asset_container_package_paths(head=head):
             asset_container_proxy = self.asset_container_class(package_path)
             result.append(asset_container_proxy)
         return result

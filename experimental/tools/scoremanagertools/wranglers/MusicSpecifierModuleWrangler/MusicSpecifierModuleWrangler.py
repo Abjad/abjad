@@ -10,7 +10,7 @@ class MusicSpecifierModuleWrangler(ModuleWrangler):
 
     def __init__(self, session=None):
         ModuleWrangler.__init__(self,
-            score_external_asset_container_package_paths=\
+            system_asset_container_package_paths=\
                 [self.configuration.system_specifiers_package_path],
             score_internal_asset_container_package_path_infix=\
                 self.configuration._score_internal_specifiers_package_path_infix,

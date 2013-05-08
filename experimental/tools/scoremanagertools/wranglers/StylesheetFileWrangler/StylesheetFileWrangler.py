@@ -10,11 +10,11 @@ class StylesheetFileWrangler(PackageWrangler):
 
     def __init__(self, session=None):
 #        PackageWrangler.__init__(self,
-#            score_external_asset_container_package_paths=[self.configuration.system_stylesheets_package_path],
+#            system_asset_container_package_paths=[self.configuration.system_stylesheets_package_path],
 #            score_internal_asset_container_package_path_infix=None,
 #            session=session)
         PackageWrangler.__init__(self, session=session)
-        self._score_external_asset_container_package_paths = [
+        self._system_asset_container_package_paths = [
             self.configuration.system_stylesheets_package_path]
         self._score_internal_asset_container_package_path_infix = None
 

@@ -11,7 +11,7 @@ def test_SegmentPackageWrangler_read_only_attributes_01():
     assert wrangler.current_asset_container_package_path == 'sketches'
     assert all([x.startswith('sketches') for x in wrangler.list_score_external_asset_package_paths()])
 
-    assert wrangler.list_score_external_asset_container_package_paths() == ['sketches']
+    assert wrangler.list_system_asset_container_package_paths() == ['sketches']
     assert wrangler.score_internal_asset_container_package_path_infix == 'music.segments'
 
     assert wrangler.temporary_asset_package_path == 'sketches.__temporary_package'
@@ -33,7 +33,7 @@ def test_SegmentPackageWrangler_read_only_attributes_02():
 
     assert all([
         x.startswith('sketches.') for x in wrangler.list_score_external_asset_package_paths()])
-    assert wrangler.list_score_external_asset_container_package_paths() == \
+    assert wrangler.list_system_asset_container_package_paths() == \
         ['sketches']
 
     assert wrangler.score_internal_asset_container_package_path_infix == 'music.segments'

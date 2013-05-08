@@ -15,7 +15,7 @@ class MaterialPackageWrangler(PackageWrangler):
         from experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler import \
             MaterialPackageMakerWrangler
         PackageWrangler.__init__(self,
-            score_external_asset_container_package_paths= \
+            system_asset_container_package_paths= \
                 [self.configuration.system_materials_package_path],
             score_internal_asset_container_package_path_infix= \
                 self.configuration._score_internal_materials_package_path_infix,

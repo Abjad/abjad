@@ -11,7 +11,7 @@ def test_MaterialPackageMakerWrangler_read_only_attributes_01():
     assert all([
         x.startswith('scoremanagertools.materialpackagemakers.') for x in wrangler.list_score_external_asset_package_paths()])
 
-    assert wrangler.list_score_external_asset_container_package_paths() == \
+    assert wrangler.list_system_asset_container_package_paths() == \
         ['scoremanagertools.materialpackagemakers']
     assert wrangler.score_internal_asset_container_package_path_infix is None
 

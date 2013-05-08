@@ -10,7 +10,7 @@ class ScorePackageWrangler(PackageWrangler):
 
     def __init__(self, session=None):
         PackageWrangler.__init__(self,
-            score_external_asset_container_package_paths=[],
+            system_asset_container_package_paths=[],
             score_internal_asset_container_package_path_infix=None,
             session=session)
 
