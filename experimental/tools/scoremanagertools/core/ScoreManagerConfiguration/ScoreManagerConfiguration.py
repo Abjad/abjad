@@ -207,20 +207,6 @@ class ScoreManagerConfiguration(Configuration):
             'tools',
             'scoremanagertools')
 
-    # TODO: remove because configuration should store only package PATH and not package NAME
-    @property
-    def score_manager_tools_package_name(self):
-        '''Score manager tools package name:
-
-        ::
-
-            >>> configuration.score_manager_tools_package_name
-            'scoremanagertools'
-
-        Return string.
-        '''
-        return 'scoremanagertools'
-
     @property
     def score_manager_tools_package_path(self):
         '''Score manager tools package path:
@@ -296,7 +282,7 @@ class ScoreManagerConfiguration(Configuration):
 
         Return string.
         '''
-        return '.'.join([self.score_manager_tools_package_name, 'materialpackagemakers'])
+        return 'scoremanagertools.materialpackagemakers'
 
     @property
     def system_materials_directory_path(self):
@@ -424,7 +410,7 @@ class ScoreManagerConfiguration(Configuration):
 
         Return string.
         '''
-        return '.'.join([self.score_manager_tools_package_name, 'stylesheets'])
+        return 'scoremanagertools.stylesheets'
 
     @property
     def transcripts_directory_path(self):

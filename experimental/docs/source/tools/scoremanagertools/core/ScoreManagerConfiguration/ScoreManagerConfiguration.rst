@@ -33,9 +33,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.score_manager_tools_directory_path
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.score_manager_tools_package_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.score_manager_tools_package_path
    :noindex:
 

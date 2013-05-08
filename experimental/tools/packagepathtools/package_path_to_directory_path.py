@@ -15,8 +15,7 @@ def package_path_to_directory_path(package_path, configuration=None):
     if package_path is None:
         return
     package_path_parts = package_path.split('.')
-    if package_path_parts[0] == \
-        configuration.score_manager_tools_package_name:
+    if package_path_parts[0] == 'scoremanagertools':
         directory_parts = [configuration.score_manager_tools_directory_path] + \
             package_path_parts[1:]
     elif package_path_parts[0] == \
