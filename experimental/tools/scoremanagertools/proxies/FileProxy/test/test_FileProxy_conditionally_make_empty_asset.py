@@ -2,7 +2,7 @@ import os
 from experimental import *
 
 
-def test_FileProxy_conditionally_make_empty_asset_01():
+def test_FileProxy_make_empty_asset_01():
 
     score_manager_configuration = scoremanagertools.core.ScoreManagerConfiguration()
     file_path = os.path.join(

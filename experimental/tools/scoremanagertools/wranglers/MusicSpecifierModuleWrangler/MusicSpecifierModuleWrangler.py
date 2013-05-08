@@ -42,7 +42,7 @@ class MusicSpecifierModuleWrangler(ModuleWrangler):
         elif result == 'rm':
             self.remove_assets_interactively()
         elif result == 'missing':
-            self.conditionally_make_asset_container_packages(is_interactive=True)
+            self.make_asset_container_packages(is_interactive=True)
         elif result == 'profile':
             self.profile_visible_assets()
         else:

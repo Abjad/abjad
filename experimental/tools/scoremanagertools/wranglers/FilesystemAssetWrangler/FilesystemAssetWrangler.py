@@ -121,16 +121,16 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     # asset containers (all) #
 
-    def list_asset_container_package_paths(self, head=None):
-        result = []
-        result.extend(self.list_system_asset_container_package_paths(head=head))
-        result.extend(self.list_score_internal_asset_container_package_paths(head=head))
-        return result
-
     def list_asset_container_directory_paths(self, head=None):
         result = []
         result.extend(self.list_score_external_asset_container_directory_paths(head=head))
         result.extend(self.list_score_internal_asset_container_directory_paths(head=head))
+        return result
+
+    def list_asset_container_package_paths(self, head=None):
+        result = []
+        result.extend(self.list_system_asset_container_package_paths(head=head))
+        result.extend(self.list_score_internal_asset_container_package_paths(head=head))
         return result
 
     def list_asset_container_proxies(self, head=None):
@@ -163,13 +163,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         return result
 
     # score-external asset containers #
-
-    def list_system_asset_container_package_paths(self, head=None):
-        result = []
-        for package_path in self._system_asset_container_package_paths:
-            if head is None or package_path.startswith(head):
-                result.append(package_path)
-        return result
 
     def list_score_external_asset_container_directory_paths(self, head=None):
         result = []
@@ -210,6 +203,13 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     # score-internal asset containers #
 
+    def list_score_internal_asset_container_directory_paths(self, head=None):
+        result = []
+        for package_path in \
+            self.list_score_internal_asset_container_package_paths(head=head):
+            result.append(packagepathtools.package_path_to_directory_path(package_path))
+        return result
+
     def list_score_internal_asset_container_package_paths(self, head=None):
         result = []
         for score_package_name in self.list_score_package_names(head=head):
@@ -218,13 +218,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                 parts.append(self.score_internal_asset_container_package_path_infix)
             score_internal_score_package_path = '.'.join(parts)
             result.append(score_internal_score_package_path)
-        return result
-
-    def list_score_internal_asset_container_directory_paths(self, head=None):
-        result = []
-        for package_path in \
-            self.list_score_internal_asset_container_package_paths(head=head):
-            result.append(packagepathtools.package_path_to_directory_path(package_path))
         return result
 
     def list_score_internal_asset_container_proxies(self, head=None):
@@ -290,7 +283,17 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             result.append(self.filesystem_path_to_space_delimited_lowercase_name(asset_filesystem_path))
         return result
 
+    def list_system_asset_container_package_paths(self, head=None):
+        result = []
+        for package_path in self._system_asset_container_package_paths:
+            if head is None or package_path.startswith(head):
+                result.append(package_path)
+        return result
+
     # user asset containers #
+
+    def list_user_asset_container_directory_paths(self, head=None):
+        return self.user_asset_container_directory_paths[:]
 
     def list_user_asset_container_package_paths(self, head=None):
         result = []
@@ -298,9 +301,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             if head is None or package_path.startswith(head):
                 result.append(package_path)
         return result
-
-    def list_user_asset_container_directory_paths(self, head=None):
-        return self.user_asset_container_directory_paths[:]
 
     def list_user_asset_container_proxies(self, head=None):
         result = []
