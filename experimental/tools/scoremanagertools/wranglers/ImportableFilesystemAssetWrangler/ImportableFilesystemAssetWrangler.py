@@ -18,11 +18,16 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
             system_asset_container_package_paths=system_asset_container_package_paths,
             user_asset_container_directory_paths=user_asset_container_directory_paths,
             user_asset_container_package_paths=user_asset_container_package_paths,
-            score_internal_asset_container_package_path_infix=score_internal_asset_container_package_path_infix,
             session=session,
             )
+        self._score_internal_asset_container_package_path_infix = \
+            score_internal_asset_container_package_path_infix
 
     ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def score_internal_asset_container_package_path_infix(self):
+        return self._score_internal_asset_container_package_path_infix
 
     @property
     def temporary_asset_package_path(self):

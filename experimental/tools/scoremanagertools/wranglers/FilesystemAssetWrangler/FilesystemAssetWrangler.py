@@ -20,7 +20,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         system_asset_container_package_paths=None,
         user_asset_container_directory_paths=None,
         user_asset_container_package_paths=None,
-        score_internal_asset_container_package_path_infix=None,
         session=None,
         ):
         ScoreManagerObject.__init__(self, session=session)
@@ -32,8 +31,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             user_asset_container_directory_paths or []
         self._user_asset_container_package_paths = \
             user_asset_container_package_paths or []
-        self._score_internal_asset_container_package_path_infix = \
-            score_internal_asset_container_package_path_infix
 
     ### SPECIAL METHODS ###
 
@@ -101,11 +98,11 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def current_asset_container_space_delimited_lowercase_name(self):
         return self.filesystem_path_to_space_delimited_lowercase_name(self.current_asset_container_directory_path)
 
-    # infix #
-
-    @property
-    def score_internal_asset_container_package_path_infix(self):
-        return self._score_internal_asset_container_package_path_infix
+#    # infix #
+#
+#    @property
+#    def score_internal_asset_container_package_path_infix(self):
+#        return self._score_internal_asset_container_package_path_infix
 
     # other #
 
