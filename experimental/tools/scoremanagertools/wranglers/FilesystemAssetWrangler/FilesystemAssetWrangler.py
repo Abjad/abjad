@@ -6,6 +6,8 @@ from experimental.tools.scoremanagertools.core.ScoreManagerObject import ScoreMa
 
 
 class FilesystemAssetWrangler(ScoreManagerObject):
+    '''Filesystem asset wrangler.
+    '''
 
     ### CLASS ATTRIBUTES ###
 
@@ -14,11 +16,13 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     ### INITIALIZER ###
 
     def __init__(self,
+        system_asset_container_directory_paths=None,
         system_asset_container_package_paths=None,
+        user_asset_container_directory_paths=None,
+        user_asset_container_package_paths=None,
         score_internal_asset_container_package_path_infix=None,
         session=None,
-        user_asset_container_package_paths=None,
-        user_asset_container_directory_paths=None):
+        ):
         ScoreManagerObject.__init__(self, session=session)
         if system_asset_container_package_paths:
             assert all([stringtools.is_underscore_delimited_lowercase_package_name(x)
@@ -30,10 +34,10 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             system_asset_container_package_paths or []
         self._score_internal_asset_container_package_path_infix = \
             score_internal_asset_container_package_path_infix
-        self._user_asset_container_package_paths = \
-            user_asset_container_package_paths or []
         self._user_asset_container_directory_paths = \
             user_asset_container_directory_paths or []
+        self._user_asset_container_package_paths = \
+            user_asset_container_package_paths or []
 
     ### SPECIAL METHODS ###
 
@@ -113,6 +117,14 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def space_delimited_lowercase_asset_class_name(self):
         return string.string_to_space_delimited_lowercase(self.asset_class.__name__)
 
+    @property
+    def system_asset_container_directory_paths(self):
+        return self._system_asset_container_directory_paths
+
+    @property
+    def system_asset_container_package_paths(self):
+        return self._system_asset_container_package_paths
+
     # temporary asset #
 
     @property
@@ -126,6 +138,16 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     @property
     def temporary_space_delimited_lowercase_asset_name(self):
         return self.filesystem_path_to_space_delimited_lowercase_name(self.temporary_asset_filesystem_path)
+
+    # user #
+
+    @property
+    def user_asset_container_directory_paths(self):
+        return self._user_asset_container_directory_paths
+    
+    @property
+    def user_asset_container_package_paths(self):
+        return self._user_asset_container_package_paths
 
     ### PUBLIC METHODS ###
 
