@@ -46,7 +46,7 @@ class ScoreManagerConfiguration(Configuration):
                     'Defaults to $HOME/.score_manager/sketches/.'
                 ],
                 'spec': 'string(default={!r})'.format(
-                    os.path.join(self.score_manager_configuration_directory, 'sketches'))
+                    os.path.join(self.configuration_directory_path, 'sketches'))
             },
             'transcripts_directory_path': {
                 'comment': [
@@ -55,7 +55,7 @@ class ScoreManagerConfiguration(Configuration):
                     'Defaults to $HOME/.score_manager/transcripts/.'
                 ],
                 'spec': 'string(default={!r})'.format(
-                    os.path.join(self.score_manager_configuration_directory, 'transcripts'))
+                    os.path.join(self.configuration_directory_path, 'transcripts'))
             },
             'user_scores_directory_path': {
                 'comment': [
@@ -123,7 +123,7 @@ class ScoreManagerConfiguration(Configuration):
 
         Return string.
         '''
-        return self.score_manager_configuration_directory
+        return os.path.join(self.home_directory_path, '.score_manager')
 
     @property
     def configuration_file_name(self):
@@ -150,32 +150,6 @@ class ScoreManagerConfiguration(Configuration):
         Return string.
         '''
         return Configuration.configuration_file_path.fget(self)
-
-    @property
-    def editors_directory_path(self):
-        '''Editors directory path:
-
-        ::
-
-            >>> configuration.trim(configuration.editors_directory_path)
-            'abjad/experimental/tools/scoremanagertools/editors'
-
-        Return string.
-        '''
-        return os.path.join(self.score_manager_tools_directory_path, 'editors')
-
-    @property
-    def editors_package_path(self):
-        '''Editors package path:
-
-        ::
-
-            >>> configuration.editors_package_path
-            'scoremanagertools.editors'
-
-        Return string.
-        '''
-        return '.'.join(['scoremanagertools', 'editors'])
 
     @property
     def handler_tools_directory_path(self):
@@ -218,6 +192,87 @@ class ScoreManagerConfiguration(Configuration):
         return Configuration.home_directory_path.fget(self)
 
     @property
+    def score_manager_tools_directory_path(self):
+        '''Score manager tools directory path:
+
+        ::
+
+            >>> configuration.trim(configuration.score_manager_tools_directory_path)
+            'abjad/experimental/tools/scoremanagertools'
+
+        Return string.
+        '''
+        return os.path.join(
+            self.abjad_configuration.abjad_experimental_directory_path,
+            'tools',
+            'scoremanagertools')
+
+    # TODO: remove because configuration should store only package PATH and not package NAME
+    @property
+    def score_manager_tools_package_name(self):
+        '''Score manager tools package name:
+
+        ::
+
+            >>> configuration.score_manager_tools_package_name
+            'scoremanagertools'
+
+        Return string.
+        '''
+        return 'scoremanagertools'
+
+    @property
+    def score_manager_tools_package_path(self):
+        '''Score manager tools package path:
+
+        ::
+
+            >>> configuration.score_manager_tools_package_path
+            'experimental.tools.scoremanagertools'
+
+        Return string.
+        '''
+        return 'experimental.tools.scoremanagertools'
+
+    @property
+    def storage_format(self):
+        '''Storage format:
+
+            >>> z(configuration)
+            core.ScoreManagerConfiguration()
+
+        Return string.
+        '''
+        return Configuration.storage_format.fget(self)
+
+    @property
+    def system_editors_directory_path(self):
+        '''Editors directory path:
+
+        ::
+
+            >>> configuration.trim(configuration.system_editors_directory_path)
+            'abjad/experimental/tools/scoremanagertools/editors'
+
+        Return string.
+        '''
+        return os.path.join(self.score_manager_tools_directory_path, 'editors')
+
+    # TODO: maybe remove because unused?
+    @property
+    def system_editors_package_path(self):
+        '''Editors package path:
+
+        ::
+
+            >>> configuration.system_editors_package_path
+            'scoremanagertools.editors'
+
+        Return string.
+        '''
+        return '.'.join(['scoremanagertools', 'editors'])
+
+    @property
     def system_material_package_makers_directory_path(self):
         '''Makers directory path:
 
@@ -242,6 +297,19 @@ class ScoreManagerConfiguration(Configuration):
         Return string.
         '''
         return '.'.join([self.score_manager_tools_package_name, 'materialpackagemakers'])
+
+    @property
+    def system_materials_directory_path(self):
+        '''System materials directory path:
+
+        ::
+
+            >>> configuration.system_materials_directory_path
+            '/Users/trevorbaca/Documents/abjad/experimental/system_materials'
+
+        Return string.
+        '''
+        return os.path.join(self.abjad_configuration.abjad_experimental_directory_path, 'system_materials')
 
     @property
     def system_materials_package_path(self):
@@ -277,30 +345,46 @@ class ScoreManagerConfiguration(Configuration):
             )
 
     @property
-    def user_sketches_directory_path(self):
-        '''Score-external segments directory path:
+    def system_specifier_classes_directory_path(self):
+        '''Specifier classes directory path:
 
         ::
 
-            >>> configuration.user_sketches_directory_path # doctest: +SKIP
-            '~/.score_manager/sketches'
+            >>> configuration.trim(configuration.system_specifier_classes_directory_path)
+            'abjad/experimental/tools/scoremanagertools/specifiers'
 
         Return string.
         '''
-        return self._settings['user_sketches_directory_path']
+        return os.path.join(self.score_manager_tools_directory_path, 'specifiers')
+
+    # TODO: maybe remove because unused?
+    @property
+    def system_specifier_classes_package_path(self):
+        '''Specifier classes package path:
+
+        ::
+
+            >>> configuration.system_specifier_classes_package_path
+            'scoremanagertools.specifiers'
+
+        Return string.
+        '''
+        return '.'.join(['scoremanagertools', 'specifiers'])
 
     @property
-    def user_sketches_package_path(self):
-        '''Score-external segments package path:
+    def system_specifiers_directory_path(self):
+        '''Score manager sketches directory path:
 
         ::
 
-            >>> configuration.user_sketches_package_path
-            'sketches'
+            >>> configuration.trim(configuration.system_specifiers_directory_path)
+            'abjad/experimental/system_specifiers'
 
         Return string.
         '''
-        return os.path.basename(self.user_sketches_directory_path)
+        return os.path.join(
+            self.abjad_configuration.abjad_experimental_directory_path, 
+            'system_specifiers')
 
     @property
     def system_specifiers_package_path(self):
@@ -316,88 +400,32 @@ class ScoreManagerConfiguration(Configuration):
         return os.path.basename(self.system_specifiers_directory_path)
 
     @property
-    def score_manager_configuration_directory(self):
-        '''Score manager configuration directory:
+    def system_stylesheets_directory_path(self):
+        '''Stylesheets directory path:
 
         ::
 
-            >>> configuration.score_manager_configuration_directory # doctest: +SKIP
-            '~/.score_manager'
+            >>> configuration.trim(configuration.system_stylesheets_directory_path)
+            'abjad/experimental/tools/scoremanagertools/stylesheets'
 
         Return string.
         '''
-        return os.path.join(self.home_directory_path, '.score_manager')
+        return os.path.join(self.score_manager_tools_directory_path, 'stylesheets')
 
+    # TODO: remove because shouldn't be a package?
     @property
-    def user_sketches_directory_path(self):
-        '''Score manager sketches directory path:
+    def system_stylesheets_package_path(self):
+        '''Stylesheets package path:
 
         ::
 
-            >>> configuration.user_sketches_directory_path # doctest: +SKIP
-            '~/.score_manager/sketches'
+            >>> configuration.system_stylesheets_package_path
+            'scoremanagertools.stylesheets'
 
         Return string.
         '''
-        return self._settings['user_sketches_directory_path']
+        return '.'.join([self.score_manager_tools_package_name, 'stylesheets'])
 
-    # TODO: change name to system_specifiers_directory_path
-    @property
-    def system_specifiers_directory_path(self):
-        '''Score manager sketches directory path:
-
-        ::
-
-            >>> configuration.trim(configuration.system_specifiers_directory_path)
-            'abjad/experimental/specifiers'
-
-        Return string.
-        '''
-        return os.path.join(self.abjad_configuration.abjad_experimental_directory_path, 'specifiers')
-
-    @property
-    def score_manager_tools_directory_path(self):
-        '''Score manager tools directory path:
-
-        ::
-
-            >>> configuration.trim(configuration.score_manager_tools_directory_path)
-            'abjad/experimental/tools/scoremanagertools'
-
-        Return string.
-        '''
-        return os.path.join(
-            self.abjad_configuration.abjad_experimental_directory_path,
-            'tools',
-            'scoremanagertools')
-
-    @property
-    def score_manager_tools_package_name(self):
-        '''Score manager tools package name:
-
-        ::
-
-            >>> configuration.score_manager_tools_package_name
-            'scoremanagertools'
-
-        Return string.
-        '''
-        return 'scoremanagertools'
-
-    @property
-    def score_manager_tools_package_path(self):
-        '''Score manager tools package path:
-
-        ::
-
-            >>> configuration.score_manager_tools_package_path
-            'experimental.tools.scoremanagertools'
-
-        Return string.
-        '''
-        return 'experimental.tools.scoremanagertools'
-
-    # TODO: change name to user_transcripts_directory_path
     @property
     def transcripts_directory_path(self):
         '''Score manager transcripts directory path:
@@ -410,95 +438,6 @@ class ScoreManagerConfiguration(Configuration):
         Return string.
         '''
         return self._settings['transcripts_directory_path']
-
-    @property
-    def user_scores_directory_path(self):
-        '''Scores directory path:
-
-        ::
-
-            >>> configuration.user_scores_directory_path # doctest: +SKIP
-            '~/scores'
-
-        Return string.
-        '''
-        return os.path.normpath(self._settings['user_scores_directory_path'])
-
-    @property
-    def specifier_classes_directory_path(self):
-        '''Specifier classes directory path:
-
-        ::
-
-            >>> configuration.trim(configuration.specifier_classes_directory_path)
-            'abjad/experimental/tools/scoremanagertools/specifiers'
-
-        Return string.
-        '''
-        return os.path.join(self.score_manager_tools_directory_path, 'specifiers')
-
-    @property
-    def specifier_classes_package_path(self):
-        '''Specifier classes package path:
-
-        ::
-
-            >>> configuration.specifier_classes_package_path
-            'scoremanagertools.specifiers'
-
-        Return string.
-        '''
-        return '.'.join(['scoremanagertools', 'specifiers'])
-
-    @property
-    def storage_format(self):
-        '''Storage format:
-
-            >>> z(configuration)
-            core.ScoreManagerConfiguration()
-
-        Return string.
-        '''
-        return Configuration.storage_format.fget(self)
-
-    @property
-    def stylesheets_directory_path(self):
-        '''Stylesheets directory path:
-
-        ::
-
-            >>> configuration.trim(configuration.stylesheets_directory_path)
-            'abjad/experimental/tools/scoremanagertools/stylesheets'
-
-        Return string.
-        '''
-        return os.path.join(self.score_manager_tools_directory_path, 'stylesheets')
-
-    @property
-    def stylesheets_package_path(self):
-        '''Stylesheets package path:
-
-        ::
-
-            >>> configuration.stylesheets_package_path
-            'scoremanagertools.stylesheets'
-
-        Return string.
-        '''
-        return '.'.join([self.score_manager_tools_package_name, 'stylesheets'])
-
-    @property
-    def system_materials_directory_path(self):
-        '''System materials directory path:
-
-        ::
-
-            >>> configuration.system_materials_directory_path
-            '/Users/trevorbaca/Documents/abjad/experimental/system_materials'
-
-        Return string.
-        '''
-        return os.path.join(self.abjad_configuration.abjad_experimental_directory_path, 'system_materials')
 
     @property
     def user_material_package_makers_directory_path(self):
@@ -525,6 +464,58 @@ class ScoreManagerConfiguration(Configuration):
         Return string.
         '''
         return self._settings['user_material_package_makers_package_path']
+
+    @property
+    def user_scores_directory_path(self):
+        '''Scores directory path:
+
+        ::
+
+            >>> configuration.user_scores_directory_path # doctest: +SKIP
+            '~/scores'
+
+        Return string.
+        '''
+        return os.path.normpath(self._settings['user_scores_directory_path'])
+
+    @property
+    def user_sketches_directory_path(self):
+        '''Score-external segments directory path:
+
+        ::
+
+            >>> configuration.user_sketches_directory_path # doctest: +SKIP
+            '~/.score_manager/sketches'
+
+        Return string.
+        '''
+        return self._settings['user_sketches_directory_path']
+
+    @property
+    def user_sketches_directory_path(self):
+        '''Score manager sketches directory path:
+
+        ::
+
+            >>> configuration.user_sketches_directory_path # doctest: +SKIP
+            '~/.score_manager/sketches'
+
+        Return string.
+        '''
+        return self._settings['user_sketches_directory_path']
+
+    @property
+    def user_sketches_package_path(self):
+        '''Score-external segments package path:
+
+        ::
+
+            >>> configuration.user_sketches_package_path
+            'sketches'
+
+        Return string.
+        '''
+        return os.path.basename(self.user_sketches_directory_path)
 
     ### PUBLIC METHODS ###
 

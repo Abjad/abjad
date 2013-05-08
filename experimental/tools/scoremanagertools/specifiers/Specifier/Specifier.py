@@ -33,16 +33,6 @@ class Specifier(AbjadObject):
     def _space_delimited_lowercase_class_name(self):
         return iotools.uppercamelcase_to_space_delimited_lowercase(self._class_name)
 
-#    @property
-#    def _keyword_argument_names(self):
-#        '''Defined by hand so that this tuple is inheritable by subclasses.
-#        Is there a way to derive this programmatically *and* be inheritable by subclasses?
-#        '''
-#        return tuple(sorted([
-#            'description',
-#            'name',
-#            ]))
-
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property

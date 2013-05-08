@@ -91,3 +91,8 @@
 32. Replace 'score-internal' with something else.
     Replace 'score-external' with something else.
     Perhaps 'score-external' becomes 'system' and 'score-internal' becomes 'score'.
+
+33. Find out why "home > specifiers" raises an exception.
+    Then write a test to capture that movement through the user interface.
+
+34. Remove (or rename) Specifier.format, TargetManifest.format and FileProxy.format properties.
