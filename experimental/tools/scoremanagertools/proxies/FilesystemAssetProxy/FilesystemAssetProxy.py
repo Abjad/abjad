@@ -241,24 +241,24 @@ class FilesystemAssetProxy(ScoreManagerObject):
     def touch(self):
         os.system('touch {}'.format(self.filesystem_path))
 
-    def write_boilerplate_asset_to_disk(self, boilerplate_asset_name):
-        if not os.path.exists(boilerplate_asset_name):
-            boilerplate_asset_name = os.path.join(
-                self.configuration.boilerplate_directory_path, boilerplate_asset_name)
-        if os.path.exists(boilerplate_asset_name):
-            shutil.copyfile(boilerplate_asset_name, self.filesystem_path)
+    def write_boilerplate(self, boilerplate_filesystem_asset_name):
+        if not os.path.exists(boilerplate_filesystem_asset_name):
+            boilerplate_filesystem_asset_name = os.path.join(
+                self.configuration.boilerplate_directory_path, boilerplate_filesystem_asset_name)
+        if os.path.exists(boilerplate_filesystem_asset_name):
+            shutil.copyfile(boilerplate_filesystem_asset_name, self.filesystem_path)
             return True
 
-    def write_boilerplate_asset_to_disk_interactively(self, user_input=None):
+    def write_boilerplate_interactively(self, user_input=None):
         self.io.assign_user_input(user_input=user_input)
         getter = self.io.make_getter(where=self.where())
         getter.append_underscore_delimited_lowercase_file_name('name of boilerplate asset')
         self.session.push_backtrack()
-        boilerplate_asset_name = getter.run()
+        boilerplate_filesystem_asset_name = getter.run()
         self.session.pop_backtrack()
         if self.session.backtrack():
             return
-        if self.write_boilerplate_asset_to_disk(boilerplate_asset_name):
+        if self.write_boilerplate(boilerplate_filesystem_asset_name):
             self.io.proceed('boilerplate asset copied.')
         else:
-            self.io.proceed('boilerplate asset {!r} does not exist.'.format(boilerplate_asset_name))
+            self.io.proceed('boilerplate asset {!r} does not exist.'.format(boilerplate_filesystem_asset_name))
