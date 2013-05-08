@@ -42,9 +42,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler.FilesystemAssetWrangler.FilesystemAssetWrangler.user_asset_container_directory_paths
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler.FilesystemAssetWrangler.FilesystemAssetWrangler.user_asset_container_package_paths
-   :noindex:
-
 Methods
 -------
 

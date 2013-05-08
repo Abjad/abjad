@@ -17,9 +17,10 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
             system_asset_container_directory_paths=system_asset_container_directory_paths,
             system_asset_container_package_paths=system_asset_container_package_paths,
             user_asset_container_directory_paths=user_asset_container_directory_paths,
-            user_asset_container_package_paths=user_asset_container_package_paths,
             session=session,
             )
+        self._user_asset_container_package_paths = \
+            user_asset_container_package_paths or []
         self._score_internal_asset_container_package_path_infix = \
             score_internal_asset_container_package_path_infix
 
@@ -85,6 +86,10 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
                 self._temporary_asset_name])
         else:
             return self._temporary_asset_name
+
+    @property
+    def user_asset_container_package_paths(self):
+        return self._user_asset_container_package_paths
 
     ### PUBLIC METHODS ###
 

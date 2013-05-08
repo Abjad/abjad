@@ -19,7 +19,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         system_asset_container_directory_paths=None,
         system_asset_container_package_paths=None,
         user_asset_container_directory_paths=None,
-        user_asset_container_package_paths=None,
         session=None,
         ):
         ScoreManagerObject.__init__(self, session=session)
@@ -29,8 +28,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             system_asset_container_package_paths or []
         self._user_asset_container_directory_paths = \
             user_asset_container_directory_paths or []
-        self._user_asset_container_package_paths = \
-            user_asset_container_package_paths or []
 
     ### SPECIAL METHODS ###
 
@@ -99,10 +96,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def user_asset_container_directory_paths(self):
         return self._user_asset_container_directory_paths
     
-    @property
-    def user_asset_container_package_paths(self):
-        return self._user_asset_container_package_paths
-
     ### PUBLIC METHODS ###
 
     def conditionally_make_asset_container_packages(self, is_interactive=False):
