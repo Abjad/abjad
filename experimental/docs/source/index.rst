@@ -508,6 +508,7 @@ Unstable packages (load manually)
       tools/scoremanagertools/wranglers/FilesystemAssetWrangler/FilesystemAssetWrangler
       tools/scoremanagertools/wranglers/ImportableFilesystemAssetWrangler/ImportableFilesystemAssetWrangler
       tools/scoremanagertools/wranglers/ModuleWrangler/ModuleWrangler
+      tools/scoremanagertools/wranglers/PackageWrangler/PackageWrangler
 
    --------
 
@@ -671,7 +672,6 @@ Unstable packages (load manually)
       tools/scoremanagertools/wranglers/MaterialPackageMakerWrangler/MaterialPackageMakerWrangler
       tools/scoremanagertools/wranglers/MaterialPackageWrangler/MaterialPackageWrangler
       tools/scoremanagertools/wranglers/MusicSpecifierModuleWrangler/MusicSpecifierModuleWrangler
-      tools/scoremanagertools/wranglers/PackageWrangler/PackageWrangler
       tools/scoremanagertools/wranglers/ScorePackageWrangler/ScorePackageWrangler
       tools/scoremanagertools/wranglers/SegmentPackageWrangler/SegmentPackageWrangler
       tools/scoremanagertools/wranglers/StylesheetFileWrangler/StylesheetFileWrangler
@@ -714,6 +714,7 @@ Unstable packages (load manually)
       tools/scoremanagertools/wranglers/FilesystemAssetWrangler/FilesystemAssetWrangler
       tools/scoremanagertools/wranglers/ImportableFilesystemAssetWrangler/ImportableFilesystemAssetWrangler
       tools/scoremanagertools/wranglers/ModuleWrangler/ModuleWrangler
+      tools/scoremanagertools/wranglers/PackageWrangler/PackageWrangler
 
    Concrete Classes
    ----------------
@@ -877,7 +878,6 @@ Unstable packages (load manually)
       tools/scoremanagertools/wranglers/MaterialPackageMakerWrangler/MaterialPackageMakerWrangler
       tools/scoremanagertools/wranglers/MaterialPackageWrangler/MaterialPackageWrangler
       tools/scoremanagertools/wranglers/MusicSpecifierModuleWrangler/MusicSpecifierModuleWrangler
-      tools/scoremanagertools/wranglers/PackageWrangler/PackageWrangler
       tools/scoremanagertools/wranglers/ScorePackageWrangler/ScorePackageWrangler
       tools/scoremanagertools/wranglers/SegmentPackageWrangler/SegmentPackageWrangler
       tools/scoremanagertools/wranglers/StylesheetFileWrangler/StylesheetFileWrangler

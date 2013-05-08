@@ -1,3 +1,4 @@
+import abc
 import os
 from abjad.tools import stringtools
 from experimental.tools.scoremanagertools.wranglers.ImportableFilesystemAssetWrangler import \
@@ -5,6 +6,10 @@ from experimental.tools.scoremanagertools.wranglers.ImportableFilesystemAssetWra
 
 
 class PackageWrangler(ImportableFilesystemAssetWrangler):
+
+    ### CLASS ATTRIBUTES ###
+
+    __meta__ = abc.ABCMeta
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 
@@ -14,7 +19,7 @@ class PackageWrangler(ImportableFilesystemAssetWrangler):
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
-    @property
+    @abc.abstractproperty
     def asset_class(self):
         from experimental.tools import scoremanagertools
         return scoremanagertools.proxies.PackageProxy

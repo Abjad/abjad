@@ -10,20 +10,20 @@ class MaterialPackageMakerWrangler(PackageWrangler):
     ### INITIALIZER ###
 
     def __init__(self, session=None):
-#        PackageWrangler.__init__(self,
-#            system_asset_container_package_paths=[self.system_material_package_makers_package_path],
-#            score_internal_asset_container_package_path_infix=None,
-#            session=session,
-#            user_asset_container_package_paths=[self.configuration.user_material_package_makers_package_path],
-#            user_asset_container_directory_paths=[self.configuration.user_material_package_makers_directory_path])
-        PackageWrangler.__init__(self, session=session)
-        self._system_asset_container_package_paths = [
-            self.configuration.system_material_package_makers_package_path]
-        self._score_internal_asset_container_package_path_infix = None
-        self._user_asset_container_package_paths = [self.configuration.user_material_package_makers_package_path]
-        self._user_asset_container_directory_paths = [self.configuration.user_material_package_makers_directory_path]
+        PackageWrangler.__init__(self,
+            system_asset_container_package_paths=[self.configuration.system_material_package_makers_package_path],
+            score_internal_asset_container_package_path_infix=None,
+            user_asset_container_package_paths=[self.configuration.user_material_package_makers_package_path],
+            user_asset_container_directory_paths=[self.configuration.user_material_package_makers_directory_path],
+            session=session
+            )
 
     ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def asset_class(self):
+        from experimental.tools import scoremanagertools
+        return scoremanagertools.proxies.PackageProxy
 
     @property
     def breadcrumb(self):
@@ -40,7 +40,8 @@ class MaterialPackageMakerWrangler(PackageWrangler):
 
     @property
     def forbidden_package_paths(self):
-        return ['scoremanagertools.materialpackagemakers.' + class_name for class_name in self.forbidden_class_names]
+        return ['scoremanagertools.materialpackagemakers.' + class_name for 
+            class_name in self.forbidden_class_names]
 
     ### PUBLIC METHODS ###
 
