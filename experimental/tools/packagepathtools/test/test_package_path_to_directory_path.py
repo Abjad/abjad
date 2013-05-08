@@ -11,5 +11,5 @@ def test_package_path_to_directory_path_01():
     assert packagepathtools.package_path_to_directory_path('sketches') == \
         configuration.user_sketches_directory_path
     assert packagepathtools.package_path_to_directory_path('specifiers') == \
-        configuration.score_manager_specifiers_directory_path
+        configuration.system_specifiers_directory_path
 

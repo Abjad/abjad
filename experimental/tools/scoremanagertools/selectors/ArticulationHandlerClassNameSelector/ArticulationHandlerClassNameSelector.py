@@ -10,6 +10,6 @@ class ArticulationHandlerClassNameSelector(HandlerClassNameSelector):
     asset_container_paths = [HandlerClassNameSelector.configuration.handler_tools_directory_path]
     space_delimited_lowercase_target_name = 'articulation handler class name'
 
-    forbidden_directory_content_names = (
+    forbidden_directory_entries = (
         'ArticulationHandler',
         )

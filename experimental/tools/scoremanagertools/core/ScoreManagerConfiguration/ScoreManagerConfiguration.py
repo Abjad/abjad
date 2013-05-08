@@ -271,9 +271,9 @@ class ScoreManagerConfiguration(Configuration):
         Return string.
         '''
         return (
-            self.score_external_segments_package_path,
+            self.user_sketches_package_path,
             self.system_materials_package_path,
-            self.score_external_specifiers_package_path,
+            self.system_specifiers_package_path,
             )
 
     @property
@@ -290,12 +290,12 @@ class ScoreManagerConfiguration(Configuration):
         return self._settings['user_sketches_directory_path']
 
     @property
-    def score_external_segments_package_path(self):
+    def user_sketches_package_path(self):
         '''Score-external segments package path:
 
         ::
 
-            >>> configuration.score_external_segments_package_path
+            >>> configuration.user_sketches_package_path
             'sketches'
 
         Return string.
@@ -303,30 +303,17 @@ class ScoreManagerConfiguration(Configuration):
         return os.path.basename(self.user_sketches_directory_path)
 
     @property
-    def score_external_specifiers_directory_path(self):
-        '''Score-external specifiers directory path:
-
-        ::
-
-            >>> configuration.trim(configuration.score_external_specifiers_directory_path)
-            'abjad/experimental/specifiers'
-
-        Return string.
-        '''
-        return self.score_manager_specifiers_directory_path
-
-    @property
-    def score_external_specifiers_package_path(self):
+    def system_specifiers_package_path(self):
         '''Score-external specifiers package path:
 
         ::
 
-            >>> configuration.score_external_specifiers_package_path
+            >>> configuration.system_specifiers_package_path
             'specifiers'
 
         Return string.
         '''
-        return os.path.basename(self.score_manager_specifiers_directory_path)
+        return os.path.basename(self.system_specifiers_directory_path)
 
     @property
     def score_manager_configuration_directory(self):
@@ -341,7 +328,6 @@ class ScoreManagerConfiguration(Configuration):
         '''
         return os.path.join(self.home_directory_path, '.score_manager')
 
-    # TODO: change name to system_segments_directory_path
     @property
     def user_sketches_directory_path(self):
         '''Score manager sketches directory path:
@@ -357,12 +343,12 @@ class ScoreManagerConfiguration(Configuration):
 
     # TODO: change name to system_specifiers_directory_path
     @property
-    def score_manager_specifiers_directory_path(self):
+    def system_specifiers_directory_path(self):
         '''Score manager sketches directory path:
 
         ::
 
-            >>> configuration.trim(configuration.score_manager_specifiers_directory_path)
+            >>> configuration.trim(configuration.system_specifiers_directory_path)
             'abjad/experimental/specifiers'
 
         Return string.

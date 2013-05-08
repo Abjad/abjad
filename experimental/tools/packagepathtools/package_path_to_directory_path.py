@@ -25,14 +25,14 @@ def package_path_to_directory_path(package_path, configuration=None):
             [configuration.system_materials_directory_path] + \
             package_path_parts[1:]
     elif package_path_parts[0] == \
-        configuration.score_external_segments_package_path:
+        configuration.user_sketches_package_path:
         directory_parts = \
             [configuration.user_sketches_directory_path] + \
             package_path_parts[1:]
     elif package_path_parts[0] == \
-        configuration.score_external_specifiers_package_path:
+        configuration.system_specifiers_package_path:
         directory_parts = \
-            [configuration.score_external_specifiers_directory_path] + \
+            [configuration.system_specifiers_directory_path] + \
             package_path_parts[1:]
     else:
         directory_parts = [configuration.scores_directory_path] + package_path_parts[:]

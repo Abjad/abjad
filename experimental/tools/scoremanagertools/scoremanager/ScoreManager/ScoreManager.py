@@ -95,7 +95,7 @@ class ScoreManager(ScoreManagerObject):
                 rollback=True, head=self.configuration.system_materials_package_path)
         elif result == 'f':
             self.music_specifier_module_wrangler.run(
-                rollback=True, head=self.configuration.score_external_specifiers_package_path)
+                rollback=True, head=self.configuration.system_specifiers_package_path)
         elif result == 'k':
             self.print_not_yet_implemented()
         elif result == 'new':

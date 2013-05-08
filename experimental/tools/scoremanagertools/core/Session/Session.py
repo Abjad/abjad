@@ -116,14 +116,14 @@ class Session(abctools.AbjadObject):
                 self.current_score_package_name,
                 self.configuration._score_internal_segments_package_path_infix])
         else:
-            return self.configuration.score_external_segments_package_path
+            return self.configuration.user_sketches_package_path
 
     @property
     def current_specifiers_directory_path(self):
         if self.is_in_score:
             return os.path.join(self.current_score_path, 'music', 'specifiers')
         else:
-            return self.configuration.score_external_specifiers_directory_path
+            return self.configuration.system_specifiers_directory_path
 
     @property
     def current_specifiers_package_path(self):
@@ -132,7 +132,7 @@ class Session(abctools.AbjadObject):
                 self.current_score_package_name,
                 self.configuration._score_internal_specifiers_package_path_infix])
         else:
-            return self.configuration.score_external_specifiers_package_path
+            return self.configuration.system_specifiers_package_path
 
     @property
     def explicit_command_history(self):

@@ -82,14 +82,12 @@
 28. The wrangler inheritance hierarchy is confused.
     Look at the inheritance diagram given at FilesystemAssetWrangler.html and rewire as appropriate.
 
-29. Replace 'score-internal' with something else.
+29. Sweep inline scoremanagertools TODO items.
+
+30. Remove 'grandparent_directory_path'.
+
+31. Remove ModuleProxy.unimport() entirely.
+
+32. Replace 'score-internal' with something else.
     Replace 'score-external' with something else.
     Perhaps 'score-external' becomes 'system' and 'score-internal' becomes 'score'.
-
-30. Sweep inline scoremanagertools TODO items.
-
-31. Change 'directory_content' to 'directory_entry'.
-
-32. Remove 'grandparent_directory_path'.
-
-33. Remove ModuleProxy.unimport() entirely.

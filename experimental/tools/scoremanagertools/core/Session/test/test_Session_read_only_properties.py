@@ -28,9 +28,9 @@ def test_Session_read_only_properties_01():
     assert session.current_score_path is None
 
     assert session.current_specifiers_package_path == \
-        os.path.basename(session.configuration.score_manager_specifiers_directory_path)
+        os.path.basename(session.configuration.system_specifiers_directory_path)
     assert session.current_specifiers_directory_path == \
-        session.configuration.score_manager_specifiers_directory_path
+        session.configuration.system_specifiers_directory_path
 
     assert session.explicit_command_history == []
     assert not session.is_complete
