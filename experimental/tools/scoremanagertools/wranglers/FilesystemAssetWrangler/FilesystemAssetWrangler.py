@@ -326,7 +326,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     def list_score_package_names(self, head=None):
         result = []
-        for name in os.listdir(self.configuration.scores_directory_path):
+        for name in os.listdir(self.configuration.user_scores_directory_path):
             if name[0].isalpha():
                 if head and name == head:
                     return [name]

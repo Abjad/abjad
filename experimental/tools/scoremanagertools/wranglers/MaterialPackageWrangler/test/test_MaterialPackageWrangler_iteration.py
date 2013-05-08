@@ -58,7 +58,7 @@ def test_MaterialPackageWrangler_iteration_05():
 def test_MaterialPackageWrangler_iteration_06():
 
     directory_path = os.path.join(
-        wrangler.configuration.scores_directory_path, 'example_score_1', 'music', 'materials')
+        wrangler.configuration.user_scores_directory_path, 'example_score_1', 'music', 'materials')
     assert directory_path in wrangler.list_score_internal_asset_container_paths()
     assert directory_path not in wrangler.list_score_internal_asset_container_paths(head='example_score_2')
     assert wrangler.list_score_internal_asset_container_paths(head='asdf') == []
@@ -80,7 +80,7 @@ def test_MaterialPackageWrangler_iteration_08():
     py.test.skip('TODO: add time_signatures package to Example Score I.')
 
     directory_path = os.path.join(
-        wrangler.configuration.scores_directory_path,
+        wrangler.configuration.user_scores_directory_path,
         'example_scores_1', 'music', 'materials', 'time_signatures')
     assert directory_path in wrangler.list_score_internal_asset_filesystem_paths()
     assert directory_path in wrangler.list_score_internal_asset_filesystem_paths(head='example_score_2')

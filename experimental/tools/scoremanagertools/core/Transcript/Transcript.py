@@ -79,7 +79,7 @@ class Transcript(AbjadObject):
 
     def write_to_disk(self, output_directory=None):
         output_directory = output_directory or \
-            self.configuration.score_manager_transcripts_directory_path
+            self.configuration.transcripts_directory_path
         start_time = self.start_time.strftime('%Y-%m-%d-%H-%M-%S')
         file_name = 'session-{}.txt'.format(start_time)
         file_path = os.path.join(output_directory, file_name)

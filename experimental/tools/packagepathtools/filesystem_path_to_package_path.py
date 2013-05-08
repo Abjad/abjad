@@ -29,8 +29,8 @@ def filesystem_path_to_package_path(directory_path):
     elif directory_path.startswith(configuration.system_specifiers_directory_path):
         prefix_length = \
             len(os.path.dirname(configuration.system_specifiers_directory_path)) + 1
-    elif directory_path.startswith(configuration.scores_directory_path):
-        prefix_length = len(configuration.scores_directory_path) + 1
+    elif directory_path.startswith(configuration.user_scores_directory_path):
+        prefix_length = len(configuration.user_scores_directory_path) + 1
     else:
         return
 

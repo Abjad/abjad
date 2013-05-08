@@ -21,8 +21,8 @@ class ScoreManagerConfiguration(Configuration):
 
     def __init__(self):
         Configuration.__init__(self)
-        if not os.path.exists(self.score_manager_transcripts_directory_path):
-            os.makedirs(self.score_manager_transcripts_directory_path)
+        if not os.path.exists(self.transcripts_directory_path):
+            os.makedirs(self.transcripts_directory_path)
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 
@@ -48,7 +48,7 @@ class ScoreManagerConfiguration(Configuration):
                 'spec': 'string(default={!r})'.format(
                     os.path.join(self.score_manager_configuration_directory, 'sketches'))
             },
-            'score_manager_transcripts_directory_path': {
+            'transcripts_directory_path': {
                 'comment': [
                     '',
                     'Set to the directory where you want score manager transcripts written.',
@@ -57,7 +57,7 @@ class ScoreManagerConfiguration(Configuration):
                 'spec': 'string(default={!r})'.format(
                     os.path.join(self.score_manager_configuration_directory, 'transcripts'))
             },
-            'scores_directory_path': {
+            'user_scores_directory_path': {
                 'comment': [
                     '',
                     'Set to the directory where you house your scores. No default provided.'
@@ -399,31 +399,30 @@ class ScoreManagerConfiguration(Configuration):
 
     # TODO: change name to user_transcripts_directory_path
     @property
-    def score_manager_transcripts_directory_path(self):
+    def transcripts_directory_path(self):
         '''Score manager transcripts directory path:
 
         ::
 
-            >>> configuration.score_manager_transcripts_directory_path # doctest: +SKIP
+            >>> configuration.transcripts_directory_path # doctest: +SKIP
             '~/.score_manager/transcripts'
 
         Return string.
         '''
-        return self._settings['score_manager_transcripts_directory_path']
+        return self._settings['transcripts_directory_path']
 
-    # TODO: change name to user_scores_directory_path
     @property
-    def scores_directory_path(self):
+    def user_scores_directory_path(self):
         '''Scores directory path:
 
         ::
 
-            >>> configuration.scores_directory_path # doctest: +SKIP
+            >>> configuration.user_scores_directory_path # doctest: +SKIP
             '~/scores'
 
         Return string.
         '''
-        return os.path.normpath(self._settings['scores_directory_path'])
+        return os.path.normpath(self._settings['user_scores_directory_path'])
 
     @property
     def specifier_classes_directory_path(self):

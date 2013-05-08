@@ -35,6 +35,6 @@ def package_path_to_directory_path(package_path, configuration=None):
             [configuration.system_specifiers_directory_path] + \
             package_path_parts[1:]
     else:
-        directory_parts = [configuration.scores_directory_path] + package_path_parts[:]
+        directory_parts = [configuration.user_scores_directory_path] + package_path_parts[:]
     directory_path = os.path.join(*directory_parts)
     return directory_path
