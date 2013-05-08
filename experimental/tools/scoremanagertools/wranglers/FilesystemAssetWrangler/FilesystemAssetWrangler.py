@@ -35,19 +35,26 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
+        '''True when system and user asset container paths are both equal.
+        Otherwise false.
+
+        Return boolean.
+        '''
         if isinstance(expr, type(self)):
-            if self.list_system_asset_container_package_paths() == \
-                expr.list_system_asset_container_package_paths():
-                if self.score_internal_asset_container_package_path_infix == \
-                    expr.score_internal_asset_container_package_path_infix:
-                    return True
+            if self.system_asset_container_directory_paths == \
+                expr.system_asset_container_directory_paths:
+                if self.user_asset_container_directory_paths == \
+                    expr.user_asset_container_directory_paths:
+                        return True
         return False
 
     def __repr__(self):
+        '''Filesystem asset wrangler repr.
+
+        Return string.
+        '''
         parts = []
-        parts.extend(self.list_system_asset_container_package_paths())
-        if self.score_internal_asset_container_package_path_infix:
-            parts.append(self.score_internal_asset_container_package_path_infix)
+        parts.extend(self.system_asset_container_directory_paths)
         parts = ', '.join([repr(part) for part in parts])
         return '{}({})'.format(self._class_name, parts)
 
@@ -69,21 +76,13 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def asset_class_space_delimited_lowercase_plural_name(self):
         return stringtools.pluralize_string(self.space_delimited_lowercase_asset_class_name)
 
+    # TODO: maybe remove altogether?
     @property
     def asset_container_class(self):
         from experimental.tools import scoremanagertools
-        return scoremanagertools.proxies.PackageProxy
+        return scoremanagertools.proxies.DirectoryProxy
 
     # current asset container #
-
-    @property
-    def current_asset_container_package_path(self):
-        if self.session.is_in_score:
-            return '.'.join([
-                self.session.current_score_package_name,
-                self.score_internal_asset_container_package_path_infix])
-        elif self.list_system_asset_container_package_paths():
-            return self.list_system_asset_container_package_paths()[0]
 
     @property
     def current_asset_container_directory_path(self):
@@ -97,12 +96,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     @property
     def current_asset_container_space_delimited_lowercase_name(self):
         return self.filesystem_path_to_space_delimited_lowercase_name(self.current_asset_container_directory_path)
-
-#    # infix #
-#
-#    @property
-#    def score_internal_asset_container_package_path_infix(self):
-#        return self._score_internal_asset_container_package_path_infix
 
     # other #
 

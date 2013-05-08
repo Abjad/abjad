@@ -23,7 +23,50 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
         self._score_internal_asset_container_package_path_infix = \
             score_internal_asset_container_package_path_infix
 
+    ### SPECIAL METHODS ###
+
+    def __eq__(self, expr):
+        '''True when system asset container package paths and score-internal
+        asset container package path infixes are both equal.
+        Otherwise false.
+
+        Return boolean.
+        '''
+        if isinstance(expr, type(self)):
+            if self.list_system_asset_container_package_paths() == \
+                expr.list_system_asset_container_package_paths():
+                if self.score_internal_asset_container_package_path_infix == \
+                    expr.score_internal_asset_container_package_path_infix:
+                    return True
+        return False
+
+    def __repr__(self):
+        '''Importable filesystem asset wrangler repr.
+        
+        Return string.
+        '''
+        parts = []
+        parts.extend(self.list_system_asset_container_package_paths())
+        if self.score_internal_asset_container_package_path_infix:
+            parts.append(self.score_internal_asset_container_package_path_infix)
+        parts = ', '.join([repr(part) for part in parts])
+        return '{}({})'.format(self._class_name, parts)
+
     ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def asset_container_class(self):
+        from experimental.tools import scoremanagertools
+        return scoremanagertools.proxies.PackageProxy
+
+    @property
+    def current_asset_container_package_path(self):
+        if self.session.is_in_score:
+            return '.'.join([
+                self.session.current_score_package_name,
+                self.score_internal_asset_container_package_path_infix])
+        elif self.list_system_asset_container_package_paths():
+            return self.list_system_asset_container_package_paths()[0]
 
     @property
     def score_internal_asset_container_package_path_infix(self):
