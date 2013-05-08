@@ -66,42 +66,18 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
-    # asset class #
-
     @abc.abstractproperty
     def asset_class(self):
         pass
 
     @property
-    def asset_class_space_delimited_lowercase_plural_name(self):
-        return stringtools.pluralize_string(self.space_delimited_lowercase_asset_class_name)
-
-    # TODO: maybe remove altogether?
-    @property
     def asset_container_class(self):
         from experimental.tools import scoremanagertools
         return scoremanagertools.proxies.DirectoryProxy
 
-    # current asset container #
-
-    @property
-    def current_asset_container_directory_path(self):
-        return packagepathtools.package_path_to_directory_path(
-            self.current_asset_container_package_path)
-
     @property
     def current_asset_container_proxy(self):
         return self.asset_container_class(self.current_asset_container_package_path)
-
-    @property
-    def current_asset_container_space_delimited_lowercase_name(self):
-        return self.filesystem_path_to_space_delimited_lowercase_name(self.current_asset_container_directory_path)
-
-    # other #
-
-    @property
-    def space_delimited_lowercase_asset_class_name(self):
-        return string.string_to_space_delimited_lowercase(self.asset_class.__name__)
 
     @property
     def system_asset_container_directory_paths(self):
@@ -111,8 +87,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def system_asset_container_package_paths(self):
         return self._system_asset_container_package_paths
 
-    # temporary asset #
-
     @property
     def temporary_asset_filesystem_path(self):
         return os.path.join(self.current_asset_container_directory_path, self._temporary_asset_name)
@@ -120,12 +94,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     @property
     def temporary_asset_proxy(self):
         return self.get_asset_proxy(self.temporary_asset_package_path)
-
-    @property
-    def temporary_space_delimited_lowercase_asset_name(self):
-        return self.filesystem_path_to_space_delimited_lowercase_name(self.temporary_asset_filesystem_path)
-
-    # user #
 
     @property
     def user_asset_container_directory_paths(self):
@@ -460,7 +428,11 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def remove_assets_interactively(self, head=None):
         getter = self.io.make_getter(where=self.where())
         argument_list = self.list_visible_asset_filesystem_paths(head=head)
-        getter.append_argument_range(self.asset_class_space_delimited_lowercase_plural_name, argument_list)
+        space_delimited_lowercase_asset_class_name = stringtools.string_to_space_delimited_lowercase(
+            self.asset_class.__name__)
+        plural_space_delimited_lowercase_asset_class_name = stringtools.pluralize_string(
+            space_delimited_lowercase_asset_class_name)
+        getter.append_argument_range(plural_space_delimited_lowercase_asset_class_name, argument_list)
         result = getter.run()
         if self.session.backtrack():
             return

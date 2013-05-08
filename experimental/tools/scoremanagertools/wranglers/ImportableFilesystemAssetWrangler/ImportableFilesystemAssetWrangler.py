@@ -60,6 +60,11 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
         return scoremanagertools.proxies.PackageProxy
 
     @property
+    def current_asset_container_directory_path(self):
+        return packagepathtools.package_path_to_directory_path(
+            self.current_asset_container_package_path)
+
+    @property
     def current_asset_container_package_path(self):
         if self.session.is_in_score:
             return '.'.join([
