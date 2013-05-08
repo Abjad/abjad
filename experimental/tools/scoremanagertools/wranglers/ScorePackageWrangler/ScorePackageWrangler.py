@@ -25,7 +25,7 @@ class ScorePackageWrangler(PackageWrangler):
         return 'scores'
 
     @property
-    def current_asset_container_path(self):
+    def current_asset_container_directory_path(self):
         return self.configuration.user_scores_directory_path
 
     @property

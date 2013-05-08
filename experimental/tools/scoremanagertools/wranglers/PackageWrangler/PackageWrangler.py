@@ -34,7 +34,7 @@ class PackageWrangler(ImportableFilesystemAssetWrangler):
 
     def make_asset(self, asset_name):
         assert stringtools.is_underscore_delimited_lowercase_package_name(asset_name)
-        asset_filesystem_path = os.path.join(self.current_asset_container_path, asset_name)
+        asset_filesystem_path = os.path.join(self.current_asset_container_directory_path, asset_name)
         os.mkdir(asset_filesystem_path)
         package_proxy = self.get_asset_proxy(asset_name)
         package_proxy.fix(is_interactive=False)

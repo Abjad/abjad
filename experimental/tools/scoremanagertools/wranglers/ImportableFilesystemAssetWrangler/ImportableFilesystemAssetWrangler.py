@@ -34,7 +34,7 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
 
     def list_score_external_asset_package_paths(self, head=None):
         result = []
-        for directory_path in self.list_score_external_asset_container_paths(head=head):
+        for directory_path in self.list_score_external_asset_container_directory_paths(head=head):
             for directory_entry in os.listdir(directory_path):
                 package_path = packagepathtools.filesystem_path_to_package_path(directory_path)
                 if directory_entry[0].isalpha():
@@ -59,7 +59,7 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
 
     def list_user_asset_package_paths(self, head=None):
         result = []
-        for asset_filesystem_path in self.list_user_asset_container_paths(head=head):
+        for asset_filesystem_path in self.list_user_asset_container_directory_paths(head=head):
             for name in os.listdir(asset_filesystem_path):
                 if name[0].isalpha():
                     result.append('.'.join([self.configuration.user_material_package_makers_package_path, name]))

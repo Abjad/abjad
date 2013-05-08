@@ -59,9 +59,9 @@ def test_MaterialPackageWrangler_iteration_06():
 
     directory_path = os.path.join(
         wrangler.configuration.user_scores_directory_path, 'example_score_1', 'music', 'materials')
-    assert directory_path in wrangler.list_score_internal_asset_container_paths()
-    assert directory_path not in wrangler.list_score_internal_asset_container_paths(head='example_score_2')
-    assert wrangler.list_score_internal_asset_container_paths(head='asdf') == []
+    assert directory_path in wrangler.list_score_internal_asset_container_directory_paths()
+    assert directory_path not in wrangler.list_score_internal_asset_container_directory_paths(head='example_score_2')
+    assert wrangler.list_score_internal_asset_container_directory_paths(head='asdf') == []
 
 
 def test_MaterialPackageWrangler_iteration_07():
