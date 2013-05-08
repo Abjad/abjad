@@ -23,9 +23,9 @@ def filesystem_path_to_package_path(directory_path):
     elif directory_path.startswith(configuration.system_materials_directory_path):
         prefix_length = \
             len(os.path.dirname(configuration.system_materials_directory_path)) + 1
-    elif directory_path.startswith(configuration.score_external_segments_directory_path):
+    elif directory_path.startswith(configuration.user_sketches_directory_path):
         prefix_length = \
-            len(os.path.dirname(configuration.score_external_segments_directory_path)) + 1
+            len(os.path.dirname(configuration.user_sketches_directory_path)) + 1
     elif directory_path.startswith(configuration.score_external_specifiers_directory_path):
         prefix_length = \
             len(os.path.dirname(configuration.score_external_specifiers_directory_path)) + 1

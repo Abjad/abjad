@@ -201,7 +201,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     def list_asset_filesystem_paths(self, head=None):
         result = []
-        if head in (None,) + self.configuration.score_external_package_paths:
+        if head in (None,) + self.configuration.system_package_paths:
             result.extend(self.list_score_external_asset_filesystem_paths(head=head))
         result.extend(self.list_score_internal_asset_filesystem_paths(head=head))
         result.extend(self.list_user_asset_filesystem_paths(head=head))

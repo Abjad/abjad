@@ -39,7 +39,7 @@ class ScoreManagerConfiguration(Configuration):
     @property
     def _option_definitions(self):
         options = {
-            'score_manager_sketches_directory_path': {
+            'user_sketches_directory_path': {
                 'comment': [
                     '',
                     'Set to the directory where you want score manager to store sketches.',
@@ -256,14 +256,13 @@ class ScoreManagerConfiguration(Configuration):
         '''
         return os.path.basename(self.system_materials_directory_path)
 
-    # TODO: change name to system_package_paths
     @property
-    def score_external_package_paths(self):
-        '''Score-external package paths:
+    def system_package_paths(self):
+        '''System package paths:
 
         ::
 
-            >>> for package_path in configuration.score_external_package_paths:
+            >>> for package_path in configuration.system_package_paths:
             ...     package_path
             'sketches'
             'system_materials'
@@ -278,17 +277,17 @@ class ScoreManagerConfiguration(Configuration):
             )
 
     @property
-    def score_external_segments_directory_path(self):
+    def user_sketches_directory_path(self):
         '''Score-external segments directory path:
 
         ::
 
-            >>> configuration.score_external_segments_directory_path # doctest: +SKIP
+            >>> configuration.user_sketches_directory_path # doctest: +SKIP
             '~/.score_manager/sketches'
 
         Return string.
         '''
-        return self._settings['score_manager_sketches_directory_path']
+        return self._settings['user_sketches_directory_path']
 
     @property
     def score_external_segments_package_path(self):
@@ -301,7 +300,7 @@ class ScoreManagerConfiguration(Configuration):
 
         Return string.
         '''
-        return os.path.basename(self.score_manager_sketches_directory_path)
+        return os.path.basename(self.user_sketches_directory_path)
 
     @property
     def score_external_specifiers_directory_path(self):
@@ -344,17 +343,17 @@ class ScoreManagerConfiguration(Configuration):
 
     # TODO: change name to system_segments_directory_path
     @property
-    def score_manager_sketches_directory_path(self):
+    def user_sketches_directory_path(self):
         '''Score manager sketches directory path:
 
         ::
 
-            >>> configuration.score_manager_sketches_directory_path # doctest: +SKIP
+            >>> configuration.user_sketches_directory_path # doctest: +SKIP
             '~/.score_manager/sketches'
 
         Return string.
         '''
-        return self._settings['score_manager_sketches_directory_path']
+        return self._settings['user_sketches_directory_path']
 
     # TODO: change name to system_specifiers_directory_path
     @property

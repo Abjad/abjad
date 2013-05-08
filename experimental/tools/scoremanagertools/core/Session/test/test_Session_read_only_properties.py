@@ -16,9 +16,9 @@ def test_Session_read_only_properties_01():
     assert isinstance(session.transcript, scoremanagertools.core.Transcript)
 
     assert session.current_segments_package_path == \
-        os.path.basename(session.configuration.score_manager_sketches_directory_path)
+        os.path.basename(session.configuration.user_sketches_directory_path)
     assert session.current_segments_directory_path == \
-        session.configuration.score_manager_sketches_directory_path
+        session.configuration.user_sketches_directory_path
 
     assert session.current_materials_package_path == \
         os.path.basename(session.configuration.system_materials_directory_path)

@@ -36,12 +36,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.home_directory_path
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.score_external_package_paths
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.score_external_segments_directory_path
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.score_external_segments_package_path
    :noindex:
 
@@ -52,9 +46,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.score_manager_configuration_directory
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.score_manager_sketches_directory_path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.score_manager_specifiers_directory_path
@@ -102,10 +93,16 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.system_materials_package_path
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.system_package_paths
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.user_material_package_makers_directory_path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.user_material_package_makers_package_path
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagertools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.user_sketches_directory_path
    :noindex:
 
 Methods

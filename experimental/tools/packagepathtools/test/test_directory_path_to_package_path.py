@@ -12,7 +12,7 @@ def test_filesystem_path_to_package_path_01():
     assert packagepathtools.filesystem_path_to_package_path(
         configuration.score_manager_specifiers_directory_path) == 'specifiers'
     assert packagepathtools.filesystem_path_to_package_path(
-        configuration.score_manager_sketches_directory_path) == 'sketches'
+        configuration.user_sketches_directory_path) == 'sketches'
 
 
 def test_filesystem_path_to_package_path_02():

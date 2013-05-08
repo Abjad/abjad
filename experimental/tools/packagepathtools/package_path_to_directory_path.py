@@ -27,7 +27,7 @@ def package_path_to_directory_path(package_path, configuration=None):
     elif package_path_parts[0] == \
         configuration.score_external_segments_package_path:
         directory_parts = \
-            [configuration.score_external_segments_directory_path] + \
+            [configuration.user_sketches_directory_path] + \
             package_path_parts[1:]
     elif package_path_parts[0] == \
         configuration.score_external_specifiers_package_path:
