@@ -1,17 +1,23 @@
 import os
 from abjad.tools import stringtools
-from experimental.tools.scoremanagertools.wranglers.PackageWrangler import PackageWrangler
+from experimental.tools.scoremanagertools.wranglers.FileWrangler import FileWrangler
 
 
-class StylesheetFileWrangler(PackageWrangler):
+class StylesheetFileWrangler(FileWrangler):
 
     ### INITIALIZER ###
 
     def __init__(self, session=None):
-        PackageWrangler.__init__(self,
+        FileWrangler.__init__(self,
             system_asset_container_package_paths=[self.configuration.system_stylesheets_package_path],
             score_internal_asset_container_package_path_infix=None,
             session=session)
+
+    ### READ-ONLY PRIVATE PROPERTIES ###
+
+    @property
+    def _temporary_asset_name(self):
+        return '__temporary_stylesheet.ly'
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

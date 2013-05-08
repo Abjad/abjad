@@ -1,7 +1,4 @@
-from abjad.tools import iotools
-from experimental.tools.scoremanagertools.proxies.FileProxy import FileProxy
 from experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler import FilesystemAssetWrangler
-import os
 
 
 class FileWrangler(FilesystemAssetWrangler):
@@ -10,4 +7,5 @@ class FileWrangler(FilesystemAssetWrangler):
 
     @property
     def asset_class(self):
-        return FileProxy
+        from experimental.tools import scoremanagertools
+        return scoremanagertools.proxies.FileProxy

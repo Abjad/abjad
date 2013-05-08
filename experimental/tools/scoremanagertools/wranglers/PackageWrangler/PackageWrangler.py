@@ -1,7 +1,7 @@
 import os
 from abjad.tools import stringtools
-from experimental.tools.scoremanagertools.proxies.PackageProxy import PackageProxy
-from experimental.tools.scoremanagertools.wranglers.ImportableFilesystemAssetWrangler import ImportableFilesystemAssetWrangler
+from experimental.tools.scoremanagertools.wranglers.ImportableFilesystemAssetWrangler import \
+    ImportableFilesystemAssetWrangler
 
 
 class PackageWrangler(ImportableFilesystemAssetWrangler):
@@ -16,7 +16,8 @@ class PackageWrangler(ImportableFilesystemAssetWrangler):
 
     @property
     def asset_class(self):
-        return PackageProxy
+        from experimental.tools import scoremanagertools
+        return scoremanagertools.proxies.PackageProxy
 
     @property
     def score_external_asset_proxies(self):
