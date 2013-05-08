@@ -24,20 +24,16 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         session=None,
         ):
         ScoreManagerObject.__init__(self, session=session)
-        if system_asset_container_package_paths:
-            assert all([stringtools.is_underscore_delimited_lowercase_package_name(x)
-                for x in system_asset_container_package_paths])
-        if score_internal_asset_container_package_path_infix:
-            assert stringtools.is_underscore_delimited_lowercase_package_name(
-                score_internal_asset_container_package_path_infix)
+        self._system_asset_container_directory_paths = \
+            system_asset_container_directory_paths or []
         self._system_asset_container_package_paths = \
             system_asset_container_package_paths or []
-        self._score_internal_asset_container_package_path_infix = \
-            score_internal_asset_container_package_path_infix
         self._user_asset_container_directory_paths = \
             user_asset_container_directory_paths or []
         self._user_asset_container_package_paths = \
             user_asset_container_package_paths or []
+        self._score_internal_asset_container_package_path_infix = \
+            score_internal_asset_container_package_path_infix
 
     ### SPECIAL METHODS ###
 
@@ -380,11 +376,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         return result
 
     def list_user_asset_container_directory_paths(self, head=None):
-        #result = []
-        #for package_path in self.list_user_asset_container_package_paths(head=head):
-        #    result.append(packagepathtools.package_path_to_directory_path(package_path))
-        #return result
-        return self._user_asset_container_directory_paths[:]
+        return self.user_asset_container_directory_paths[:]
 
     def list_user_asset_container_proxies(self, head=None):
         result = []

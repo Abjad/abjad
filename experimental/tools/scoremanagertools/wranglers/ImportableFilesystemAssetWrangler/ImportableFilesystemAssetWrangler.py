@@ -5,6 +5,23 @@ from experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler impo
 
 class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
 
+    def __init__(self,
+        system_asset_container_directory_paths=None,
+        system_asset_container_package_paths=None,
+        user_asset_container_directory_paths=None,
+        user_asset_container_package_paths=None,
+        score_internal_asset_container_package_path_infix=None,
+        session=None,
+        ):
+        FilesystemAssetWrangler.__init__(self,
+            system_asset_container_directory_paths=system_asset_container_directory_paths,
+            system_asset_container_package_paths=system_asset_container_package_paths,
+            user_asset_container_directory_paths=user_asset_container_directory_paths,
+            user_asset_container_package_paths=user_asset_container_package_paths,
+            score_internal_asset_container_package_path_infix=score_internal_asset_container_package_path_infix,
+            session=session,
+            )
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property

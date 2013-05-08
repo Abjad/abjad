@@ -9,8 +9,9 @@ class StylesheetFileWrangler(FileWrangler):
 
     def __init__(self, session=None):
         FileWrangler.__init__(self,
+            # TODO: eventually use the second line instead of the first
             system_asset_container_package_paths=[self.configuration.system_stylesheets_package_path],
-            score_internal_asset_container_package_path_infix=None,
+            #system_asset_container_directory_paths=[self.configuration.system_stylesheets_directory_path],
             session=session)
 
     ### READ-ONLY PRIVATE PROPERTIES ###

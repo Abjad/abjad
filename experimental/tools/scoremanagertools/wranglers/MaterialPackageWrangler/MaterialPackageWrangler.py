@@ -12,15 +12,15 @@ class MaterialPackageWrangler(PackageWrangler):
     ### INITIALIZER ###
 
     def __init__(self, session=None):
-        from experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler import \
-            MaterialPackageMakerWrangler
+        from experimental.tools import scoremanagertools
         PackageWrangler.__init__(self,
             system_asset_container_package_paths= \
                 [self.configuration.system_materials_package_path],
             score_internal_asset_container_package_path_infix= \
                 self.configuration._score_internal_materials_package_path_infix,
             session=session)
-        self._material_package_maker_wrangler = MaterialPackageMakerWrangler(session=self.session)
+        self._material_package_maker_wrangler = \
+            scoremanagertools.wranglers.MaterialPackageMakerWrangler(session=self.session)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
