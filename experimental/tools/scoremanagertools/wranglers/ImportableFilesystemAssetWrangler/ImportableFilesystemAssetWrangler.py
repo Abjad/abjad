@@ -88,10 +88,40 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
             return self._temporary_asset_name
 
     @property
+    def temporary_asset_proxy(self):
+        return self.get_asset_proxy(self.temporary_asset_package_path)
+
+    @property
     def user_asset_container_package_paths(self):
         return self._user_asset_container_package_paths
 
     ### PUBLIC METHODS ###
+
+    def conditionally_make_asset_container_packages(self, is_interactive=False):
+        self.conditionally_make_score_external_asset_container_package()
+        self.conditionally_make_score_internal_asset_container_packages()
+        self.io.proceed('missing packages created.', is_interactive=is_interactive)
+
+    # TODO: write test
+    def conditionally_make_empty_package(self, package_path):
+        if package_path is None:
+            return
+        directory_path = packagepathtools.package_path_to_directory_path(package_path)
+        if not os.path.exists(directory_path):
+            os.mkdir(directory_path)
+            initializer_file_name = os.path.join(directory_path, '__init__.py')
+            file_reference = file(initializer_file_name, 'w')
+            file_reference.write('')
+            file_reference.close()
+
+    def conditionally_make_score_external_asset_container_package(self):
+        for package_path in self.list_system_asset_container_package_paths():
+            self.conditionally_make_empty_package(package_path)
+
+    def conditionally_make_score_internal_asset_container_packages(self, head=None):
+        for score_internal_asset_container_package_path in \
+            self.list_score_internal_asset_container_package_paths(head=head):
+            self.conditionally_make_empty_package(score_internal_asset_container_package_path)
 
     def list_asset_package_paths(self, head=None):
         result = []
