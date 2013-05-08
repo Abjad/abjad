@@ -1,5 +1,5 @@
-from experimental.tools.scoremanagertools.selectors.Selector import Selector
 import os
+from experimental.tools.scoremanagertools.selectors.Selector import Selector
 
 
 class ParameterSpecifierClassNameSelector(Selector):

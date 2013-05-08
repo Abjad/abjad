@@ -152,20 +152,6 @@ class ScoreManagerConfiguration(Configuration):
         return Configuration.configuration_file_path.fget(self)
 
     @property
-    def handler_tools_directory_path(self):
-        '''Handler tools directory path:
-
-        ::
-
-            >>> configuration.trim(configuration.handler_tools_directory_path)
-            'abjad/experimental/tools/handlertools'
-
-        Return string.
-        '''
-        return os.path.join(
-            self.abjad_configuration.abjad_experimental_directory_path, 'tools', 'handlertools')
-
-    @property
     def help_item_width(self):
         '''Help item width:
 
@@ -320,7 +306,7 @@ class ScoreManagerConfiguration(Configuration):
             ...     package_path
             'sketches'
             'system_materials'
-            'specifiers'
+            'system_specifiers'
 
         Return string.
         '''
@@ -379,7 +365,7 @@ class ScoreManagerConfiguration(Configuration):
         ::
 
             >>> configuration.system_specifiers_package_path
-            'specifiers'
+            'system_specifiers'
 
         Return string.
         '''
