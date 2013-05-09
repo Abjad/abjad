@@ -106,6 +106,7 @@ class MusicSpecifierModuleProxy(ModuleProxy):
             file_pointer = open(self.file_path, 'r')
             file_contents_string = file_pointer.read()
             file_pointer.close()
+            print file_contents_string
             exec(file_contents_string)
             target = locals().get(self.target_name_in_storage_module, None)
             return target

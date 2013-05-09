@@ -96,3 +96,5 @@
     Then write a test to capture that movement through the user interface.
 
 34. Remove (or rename) Specifier.format, TargetManifest.format and FileProxy.format properties.
+
+35. Change 'rhythm_maker' globally to 'rhythm_maker'.

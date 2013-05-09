@@ -684,7 +684,7 @@ Unstable packages (load manually)
       tools/scoremanagertools/editors/get_articulation_handler_editor
       tools/scoremanagertools/editors/get_dynamic_handler_editor
       tools/scoremanagertools/editors/get_parameter_specifier_editor
-      tools/scoremanagertools/editors/get_time_token_maker_editor
+      tools/scoremanagertools/editors/get_rhythm_maker_editor
       tools/scoremanagertools/helpers/get_current_date
       tools/scoremanagertools/helpers/get_one_line_menuing_summary
       tools/scoremanagertools/helpers/globally_replace_in_file
@@ -890,7 +890,7 @@ Unstable packages (load manually)
       tools/scoremanagertools/editors/get_articulation_handler_editor
       tools/scoremanagertools/editors/get_dynamic_handler_editor
       tools/scoremanagertools/editors/get_parameter_specifier_editor
-      tools/scoremanagertools/editors/get_time_token_maker_editor
+      tools/scoremanagertools/editors/get_rhythm_maker_editor
       tools/scoremanagertools/helpers/get_current_date
       tools/scoremanagertools/helpers/get_one_line_menuing_summary
       tools/scoremanagertools/helpers/globally_replace_in_file

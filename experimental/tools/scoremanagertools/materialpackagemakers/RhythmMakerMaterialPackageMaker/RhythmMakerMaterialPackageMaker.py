@@ -1,5 +1,5 @@
 from make_illustration_from_output_material import make_illustration_from_output_material
-from experimental.tools.scoremanagertools.editors.get_time_token_maker_editor import get_time_token_maker_editor
+from experimental.tools.scoremanagertools.editors.get_rhythm_maker_editor import get_rhythm_maker_editor
 from experimental.tools.scoremanagertools.materialpackagemakers.MaterialPackageMaker import MaterialPackageMaker
 from experimental.tools.scoremanagertools.wizards.RhythmMakerCreationWizard import RhythmMakerCreationWizard
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
@@ -12,6 +12,6 @@ class RhythmMakerMaterialPackageMaker(MaterialPackageMaker):
     generic_output_name = 'time-token maker'
     illustration_maker = staticmethod(make_illustration_from_output_material)
     output_material_checker = staticmethod(lambda x: isinstance(x, RhythmMaker))
-    output_material_editor = staticmethod(get_time_token_maker_editor)
+    output_material_editor = staticmethod(get_rhythm_maker_editor)
     output_material_maker = RhythmMakerCreationWizard
     output_material_module_import_statements = ['from abjad.tools import rhythmmakertools']

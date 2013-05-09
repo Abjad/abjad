@@ -13,5 +13,5 @@ class RhythmSpecifierEditor(ParameterSpecifierEditor):
         ('name', 'nm', getters.get_string),
         ('description', 'ds', getters.get_string),
         (),
-        ('time_token_maker_package_path', 'time-token', 'ttm', selectors.RhythmMakerPackageSelector),
+        ('rhythm_maker_package_path', 'time-token', 'ttm', selectors.RhythmMakerPackageSelector),
         )
