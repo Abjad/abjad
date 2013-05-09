@@ -150,12 +150,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             result.append(asset_proxy)
         return result
 
-    def list_asset_space_delimited_lowercase_names(self, head=None):
-        result = []
-        for filesystem_path in self.list_asset_filesystem_paths(head=head):
-            result.append(self._filesystem_path_to_space_delimited_lowercase_name(filesystem_path))
-        return result
-
     # score-external asset containers #
 
     # TODO: rewrite purely in terms of directory paths (instead of package paths)
@@ -233,14 +227,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             result.append(asset_proxy)
         return result
 
-    def list_score_internal_asset_space_delimited_lowercase_names(self, head=None):
-        result = []
-        for asset_filesystem_path in self.list_score_internal_asset_filesystem_paths(head=head):
-            result.append(self._filesystem_path_to_space_delimited_lowercase_name(asset_filesystem_path))
-        return result
-
-    # utility method #
-
     def list_score_package_names(self, head=None):
         result = []
         for name in os.listdir(self.configuration.user_scores_directory_path):
@@ -258,6 +244,18 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         for directory_path in directory_paths:
             name = self._filesystem_path_to_space_delimited_lowercase_name(directory_path)
             result.append(name)
+        return result
+
+    def list_space_delimited_lowercase_asset_names(self, head=None):
+        result = []
+        for filesystem_path in self.list_asset_filesystem_paths(head=head):
+            result.append(self._filesystem_path_to_space_delimited_lowercase_name(filesystem_path))
+        return result
+
+    def list_space_delimited_lowercase_visible_asset_names(self, head=None):
+        result = []
+        for filesystem_path in self.list_visible_asset_filesystem_paths(head=head):
+            result.append(self._filesystem_path_to_space_delimited_lowercase_name(filesystem_path))
         return result
 
     def list_system_asset_container_package_paths(self, head=None):
@@ -286,14 +284,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             result.append(asset_container_proxy)
         return result
 
-    def list_user_asset_container_space_delimited_lowercase_names(self, head=None):
-        result = []
-        for asset_filesystem_path in self.list_user_asset_container_directory_paths(head=head):
-            result.append(self._filesystem_path_to_space_delimited_lowercase_name(asset_filesystem_path))
-        return result
-
-    # user assets #
-
     def list_user_asset_filesystem_paths(self, head=None):
         result = []
         for asset_filesystem_path in self.list_user_asset_container_directory_paths(head=head):
@@ -309,27 +299,11 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             result.append(asset_proxy)
         return result
 
-    def list_user_asset_space_delimited_lowercase_names(self, head=None):
-        result = []
-        for asset_filesystem_path in self.list_user_asset_filesystem_paths(head=head):
-            result.append(self._filesystem_path_to_space_delimited_lowercase_name(asset_filesystem_path))
-        return result
-
-    # visible assets #
-
     def list_visible_asset_filesystem_paths(self, head=None):
         return self.list_asset_filesystem_paths(head=head)
 
     def list_visible_asset_proxies(self, head=None):
         return self.list_asset_proxies(head=head)
-
-    def list_visible_asset_space_delimited_lowercase_names(self, head=None):
-        result = []
-        for asset_filesystem_path in self.list_visible_asset_filesystem_paths(head=head):
-            result.append(self._filesystem_path_to_space_delimited_lowercase_name(asset_filesystem_path))
-        return result
-
-    # other #
 
     def make_asset(self, asset_name):
         assert stringtools.is_underscore_delimited_lowercase_string(asset_name)
@@ -360,7 +334,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     def make_visible_asset_menu_tokens(self, head=None):
         keys = self.list_visible_asset_filesystem_paths(head=head)
-        bodies = self.list_visible_asset_space_delimited_lowercase_names(head=head)
+        bodies = self.list_space_delimited_lowercase_visible_asset_names(head=head)
         return zip(keys, bodies)
 
     def profile_visible_assets(self):

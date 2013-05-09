@@ -12,8 +12,8 @@ def test_MaterialPackageWrangler_iteration_01():
     '''Assets (all).
     '''
 
-    assert 'red sargasso measures' in wrangler.list_asset_space_delimited_lowercase_names()
-    assert 'red sargasso measures' not in wrangler.list_asset_space_delimited_lowercase_names(
+    assert 'red sargasso measures' in wrangler.list_space_delimited_lowercase_asset_names()
+    assert 'red sargasso measures' not in wrangler.list_space_delimited_lowercase_asset_names(
         head='example_score_1')
 
 
@@ -91,9 +91,9 @@ def test_MaterialPackageWrangler_iteration_09():
     '''Visible assets.
     '''
 
-    assert 'red sargasso measures' in wrangler.list_visible_asset_space_delimited_lowercase_names()
-    assert 'red sargasso measures' not in wrangler.list_visible_asset_space_delimited_lowercase_names(head='example_score_1')
-    assert wrangler.list_visible_asset_space_delimited_lowercase_names(head='asdf') == []
+    assert 'red sargasso measures' in wrangler.list_space_delimited_lowercase_visible_asset_names()
+    assert 'red sargasso measures' not in wrangler.list_space_delimited_lowercase_visible_asset_names(head='example_score_1')
+    assert wrangler.list_space_delimited_lowercase_visible_asset_names(head='asdf') == []
 
 
 def test_MaterialPackageWrangler_iteration_10():

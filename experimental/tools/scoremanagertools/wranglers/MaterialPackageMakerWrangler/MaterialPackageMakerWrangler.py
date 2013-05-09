@@ -70,7 +70,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         else:
             raise ValueError
 
-    def list_asset_space_delimited_lowercase_names(self, head=None):
+    def list_space_delimited_lowercase_asset_names(self, head=None):
         result = []
         for asset_filesystem_path in self.list_asset_filesystem_paths(head=head):
             asset_filesystem_path = os.path.normpath(asset_filesystem_path)
@@ -194,12 +194,12 @@ class MaterialPackageMakerWrangler(PackageWrangler):
 
     def make_main_menu(self, head=None):
         menu, section = self.io.make_menu(where=self.where(), is_numbered=True)
-        section.tokens = self.list_asset_space_delimited_lowercase_names(head=head)
+        section.tokens = self.list_space_delimited_lowercase_asset_names(head=head)
         section = menu.make_section()
         section.append(('new', 'new material package maker'))
         return menu
 
     def make_visible_asset_menu_tokens(self, head=None):
         keys = self.list_asset_package_paths(head=head)
-        bodies = self.list_asset_space_delimited_lowercase_names(head=head)
+        bodies = self.list_space_delimited_lowercase_asset_names(head=head)
         return zip(keys, bodies)

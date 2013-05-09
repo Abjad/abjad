@@ -189,5 +189,5 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
 
     def make_visible_asset_menu_tokens(self, head=None):
         keys = self.list_visible_asset_package_paths(head=head)
-        bodies = self.list_visible_asset_space_delimited_lowercase_names(head=head)
+        bodies = self.list_space_delimited_lowercase_visible_asset_names(head=head)
         return zip(keys, bodies)

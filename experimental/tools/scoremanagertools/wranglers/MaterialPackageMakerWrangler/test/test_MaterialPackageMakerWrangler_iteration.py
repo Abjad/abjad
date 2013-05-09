@@ -28,4 +28,4 @@ def test_MaterialPackageMakerWrangler_iteration_04():
 
 def test_MaterialPackageMakerWrangler_iteration_05():
 
-    assert 'pitch range inventory material package maker' in wrangler.list_asset_space_delimited_lowercase_names()
+    assert 'pitch range inventory material package maker' in wrangler.list_space_delimited_lowercase_asset_names()
