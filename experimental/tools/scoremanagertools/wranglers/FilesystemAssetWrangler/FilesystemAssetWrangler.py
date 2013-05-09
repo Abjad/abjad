@@ -17,7 +17,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def __init__(self,
         system_asset_container_directory_paths=None,
         user_asset_container_directory_paths=None,
-        score_internal_asset_container_package_path_infix=None,
+        score_internal_asset_container_path_infix_parts=None,
         session=None,
         ):
         ScoreManagerObject.__init__(self, session=session)
@@ -25,8 +25,8 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             system_asset_container_directory_paths or []
         self._user_asset_container_directory_paths = \
             user_asset_container_directory_paths or []
-        self._score_internal_asset_container_package_path_infix = \
-            score_internal_asset_container_package_path_infix
+        self._score_internal_asset_container_path_infix_parts = \
+            score_internal_asset_container_path_infix_parts
 
     ### SPECIAL METHODS ###
 
@@ -89,8 +89,8 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         return self.asset_container_class(self.current_asset_container_filesystem_path)
 
     @property
-    def score_internal_asset_container_package_path_infix(self):
-        return self._score_internal_asset_container_package_path_infix
+    def score_internal_asset_container_path_infix_parts(self):
+        return self._score_internal_asset_container_path_infix_parts
 
     @property
     def system_asset_container_directory_paths(self):
@@ -204,8 +204,8 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         result = []
         for score_directory_path in self.list_score_directory_paths(head=head):
             parts = [score_directory_path]
-            if self.score_internal_asset_container_package_path_infix:
-                infix_parts = self.score_internal_asset_container_package_path_infix.split('.')
+            if self.score_internal_asset_container_path_infix_parts:
+                infix_parts = self.score_internal_asset_container_path_infix_parts.split('.')
                 parts.extend(infix_parts)
             score_internal_directory_path = os.path.join(*parts)
             result.append(score_internal_directory_path)

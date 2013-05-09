@@ -11,8 +11,8 @@ class SegmentPackageWrangler(PackageWrangler):
         PackageWrangler.__init__(self,
             system_asset_container_package_paths= \
                 [self.configuration.user_sketches_package_path],
-            score_internal_asset_container_package_path_infix= \
-                self.configuration._score_internal_segments_package_path_infix,
+            score_internal_asset_container_path_infix_parts= \
+                self.configuration._score_internal_segments_path_infix_parts,
             session=session)
 
     ### READ-ONLY PUBLIC PROPERTIES ###

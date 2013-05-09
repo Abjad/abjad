@@ -86,15 +86,15 @@ class ScoreManagerConfiguration(Configuration):
         return options
 
     @property
-    def _score_internal_materials_package_path_infix(self):
+    def _score_internal_materials_path_infix_parts(self):
         return 'music.materials'
 
     @property
-    def _score_internal_segments_package_path_infix(self):
+    def _score_internal_segments_path_infix_parts(self):
         return 'music.segments'
 
     @property
-    def _score_internal_specifiers_package_path_infix(self):
+    def _score_internal_specifiers_path_infix_parts(self):
         return 'music.specifiers'
 
     ### READ-ONLY PUBLIC PROPERTIES ###

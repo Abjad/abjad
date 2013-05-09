@@ -87,7 +87,7 @@ class Session(abctools.AbjadObject):
         if self.is_in_score:
             return '.'.join([
                 self.current_score_package_name,
-                self.configuration._score_internal_materials_package_path_infix])
+                self.configuration._score_internal_materials_path_infix_parts])
         else:
             return self.configuration.system_materials_package_path
 
@@ -114,7 +114,7 @@ class Session(abctools.AbjadObject):
         if self.is_in_score:
             return '.'.join([
                 self.current_score_package_name,
-                self.configuration._score_internal_segments_package_path_infix])
+                self.configuration._score_internal_segments_path_infix_parts])
         else:
             return self.configuration.user_sketches_package_path
 
@@ -130,7 +130,7 @@ class Session(abctools.AbjadObject):
         if self.is_in_score:
             return '.'.join([
                 self.current_score_package_name,
-                self.configuration._score_internal_specifiers_package_path_infix])
+                self.configuration._score_internal_specifiers_path_infix_parts])
         else:
             return self.configuration.system_specifiers_package_path
 

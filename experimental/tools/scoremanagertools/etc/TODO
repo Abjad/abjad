@@ -97,5 +97,5 @@
 
 34. Remove (or rename) Specifier.format, TargetManifest.format and FileProxy.format properties.
 
-35. Change package_path_infix properties to tuples (instead of strings).
-    Rename package_path_infix properties to just path_infix properties.
+35. Change path_infix_parts properties to tuples (instead of strings).
+    Rename path_infix_parts properties to just path_infix properties.

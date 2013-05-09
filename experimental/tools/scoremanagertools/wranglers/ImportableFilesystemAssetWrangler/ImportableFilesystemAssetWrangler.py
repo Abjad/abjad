@@ -10,14 +10,14 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
         system_asset_container_package_paths=None,
         user_asset_container_directory_paths=None,
         user_asset_container_package_paths=None,
-        score_internal_asset_container_package_path_infix=None,
+        score_internal_asset_container_path_infix_parts=None,
         session=None,
         ):
         FilesystemAssetWrangler.__init__(self,
             system_asset_container_directory_paths=system_asset_container_directory_paths,
             #system_asset_container_package_paths=system_asset_container_package_paths,
             user_asset_container_directory_paths=user_asset_container_directory_paths,
-            score_internal_asset_container_package_path_infix=score_internal_asset_container_package_path_infix,
+            score_internal_asset_container_path_infix_parts=score_internal_asset_container_path_infix_parts,
             session=session,
             )
         self._system_asset_container_package_paths = \
@@ -37,8 +37,8 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
         if isinstance(expr, type(self)):
             if self.list_system_asset_container_package_paths() == \
                 expr.list_system_asset_container_package_paths():
-                if self.score_internal_asset_container_package_path_infix == \
-                    expr.score_internal_asset_container_package_path_infix:
+                if self.score_internal_asset_container_path_infix_parts == \
+                    expr.score_internal_asset_container_path_infix_parts:
                     return True
         return False
 
@@ -49,8 +49,8 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
         '''
         parts = []
         parts.extend(self.list_system_asset_container_package_paths())
-        if self.score_internal_asset_container_package_path_infix:
-            parts.append(self.score_internal_asset_container_package_path_infix)
+        if self.score_internal_asset_container_path_infix_parts:
+            parts.append(self.score_internal_asset_container_path_infix_parts)
         parts = ', '.join([repr(part) for part in parts])
         return '{}({})'.format(self._class_name, parts)
 
@@ -71,7 +71,7 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
         if self.session.is_in_score:
             return '.'.join([
                 self.session.current_score_package_name,
-                self.score_internal_asset_container_package_path_infix])
+                self.score_internal_asset_container_path_infix_parts])
         elif self.list_system_asset_container_package_paths():
             return self.list_system_asset_container_package_paths()[0]
 
@@ -142,8 +142,8 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
         result = []
         for score_package_name in self.list_score_directory_basenames(head=head):
             parts = [score_package_name]
-            if self.score_internal_asset_container_package_path_infix:
-                parts.append(self.score_internal_asset_container_package_path_infix)
+            if self.score_internal_asset_container_path_infix_parts:
+                parts.append(self.score_internal_asset_container_path_infix_parts)
             score_internal_score_package_path = '.'.join(parts)
             result.append(score_internal_score_package_path)
         return result
@@ -152,7 +152,7 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
         result = []
         for asset_container_package_path in \
             self.list_score_internal_asset_container_package_paths(head=head):
-            if self.score_internal_asset_container_package_path_infix:
+            if self.score_internal_asset_container_path_infix_parts:
                 asset_filesystem_path = packagepathtools.package_path_to_directory_path(
                     asset_container_package_path)
                 for directory_entry in os.listdir(asset_filesystem_path):
