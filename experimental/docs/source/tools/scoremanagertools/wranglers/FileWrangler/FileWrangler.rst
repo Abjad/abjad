@@ -33,9 +33,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.system_asset_container_directory_paths
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.system_asset_container_package_paths
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.temporary_asset_filesystem_path
    :noindex:
 
@@ -109,9 +106,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.list_system_asset_container_directory_paths
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.list_system_asset_container_package_paths
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.list_user_asset_container_directory_paths

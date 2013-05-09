@@ -15,11 +15,13 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
         ):
         FilesystemAssetWrangler.__init__(self,
             system_asset_container_directory_paths=system_asset_container_directory_paths,
-            system_asset_container_package_paths=system_asset_container_package_paths,
+            #system_asset_container_package_paths=system_asset_container_package_paths,
             user_asset_container_directory_paths=user_asset_container_directory_paths,
             score_internal_asset_container_package_path_infix=score_internal_asset_container_package_path_infix,
             session=session,
             )
+        self._system_asset_container_package_paths = \
+            system_asset_container_package_paths or []
         self._user_asset_container_package_paths = \
             user_asset_container_package_paths or []
 
@@ -76,6 +78,10 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
     @property
     def current_asset_container_proxy(self):
         return self.asset_container_class(self.current_asset_container_package_path)
+
+    @property
+    def system_asset_container_package_paths(self):
+        return self._system_asset_container_package_paths
 
     @property
     def temporary_asset_package_path(self):
@@ -156,6 +162,13 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
                             asset_container_package_path, package_name))
             else:
                 result.append(asset_container_package_path)
+        return result
+
+    def list_system_asset_container_package_paths(self, head=None):
+        result = []
+        for package_path in self.system_asset_container_package_paths:
+            if head is None or package_path.startswith(head):
+                result.append(package_path)
         return result
 
     def list_user_asset_container_package_paths(self, head=None):

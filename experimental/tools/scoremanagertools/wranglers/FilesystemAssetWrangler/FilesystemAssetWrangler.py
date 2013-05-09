@@ -1,7 +1,6 @@
 import abc
 import os
 from abjad.tools import stringtools
-from experimental.tools import packagepathtools
 from experimental.tools.scoremanagertools.core.ScoreManagerObject import ScoreManagerObject
 
 
@@ -17,7 +16,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     def __init__(self,
         system_asset_container_directory_paths=None,
-        system_asset_container_package_paths=None,
         user_asset_container_directory_paths=None,
         score_internal_asset_container_package_path_infix=None,
         session=None,
@@ -25,8 +23,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         ScoreManagerObject.__init__(self, session=session)
         self._system_asset_container_directory_paths = \
             system_asset_container_directory_paths or []
-        self._system_asset_container_package_paths = \
-            system_asset_container_package_paths or []
         self._user_asset_container_directory_paths = \
             user_asset_container_directory_paths or []
         self._score_internal_asset_container_package_path_infix = \
@@ -99,10 +95,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     @property
     def system_asset_container_directory_paths(self):
         return self._system_asset_container_directory_paths
-
-    @property
-    def system_asset_container_package_paths(self):
-        return self._system_asset_container_package_paths
 
     @property
     def temporary_asset_filesystem_path(self):
@@ -264,14 +256,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     def list_system_asset_container_directory_paths(self, head=None):
         return self.system_asset_container_directory_paths[:]
-
-    # TODO: migrate to ImportableFilesystemAssetWrangler once no longer needed here
-    def list_system_asset_container_package_paths(self, head=None):
-        result = []
-        for package_path in self.system_asset_container_package_paths:
-            if head is None or package_path.startswith(head):
-                result.append(package_path)
-        return result
 
     def list_user_asset_container_directory_paths(self, head=None):
         return self.user_asset_container_directory_paths[:]
