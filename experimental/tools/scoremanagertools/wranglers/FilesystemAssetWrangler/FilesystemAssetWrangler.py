@@ -66,8 +66,13 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def _filesystem_path_to_space_delimited_lowercase_name(self, filesystem_path):
         filesystem_path = os.path.normpath(filesystem_path)
         asset_name = os.path.basename(filesystem_path)
-        asset_name = self.strip_file_extension_from_file_name(asset_name)
+        asset_name = self._strip_file_extension_from_file_name(asset_name)
         return stringtools.string_to_space_delimited_lowercase(asset_name)
+
+    def _strip_file_extension_from_file_name(self, file_name):
+        if '.' in file_name:
+            return file_name[:file_name.rindex('.')]
+        return file_name
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -150,7 +155,15 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             result.append(asset_proxy)
         return result
 
-    # score-external asset containers #
+    def list_score_directory_basenames(self, head=None):
+        result = []
+        for directory_entry in os.listdir(self.configuration.user_scores_directory_path):
+            if directory_entry[0].isalpha():
+                if head and directory_entry == head:
+                    return [directory_entry]
+                elif not head:
+                    result.append(directory_entry)
+        return result
 
     # TODO: rewrite purely in terms of directory paths (instead of package paths)
     def list_score_external_asset_container_directory_paths(self, head=None):
@@ -183,8 +196,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             result.append(asset_proxy)
         return result
 
-    # score-internal asset containers #
-
     def list_score_internal_asset_container_directory_paths(self, head=None):
         result = []
         for package_path in \
@@ -194,7 +205,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     def list_score_internal_asset_container_package_paths(self, head=None):
         result = []
-        for score_package_name in self.list_score_package_names(head=head):
+        for score_package_name in self.list_score_directory_basenames(head=head):
             parts = [score_package_name]
             if self.score_internal_asset_container_package_path_infix:
                 parts.append(self.score_internal_asset_container_package_path_infix)
@@ -210,8 +221,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             result.append(asset_container_proxy)
         return result
 
-    # score-internal assets #
-
     def list_score_internal_asset_filesystem_paths(self, head=None):
         result = []
         for asset_filesystem_path in self.list_score_internal_asset_container_directory_paths(head=head):
@@ -225,16 +234,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         for package_path in self.list_score_internal_asset_package_paths(head=head):
             asset_proxy = self.asset_class_name(package_path)
             result.append(asset_proxy)
-        return result
-
-    def list_score_package_names(self, head=None):
-        result = []
-        for directory_entry in os.listdir(self.configuration.user_scores_directory_path):
-            if directory_entry[0].isalpha():
-                if head and directory_entry == head:
-                    return [directory_entry]
-                elif not head:
-                    result.append(directory_entry)
         return result
 
     def list_space_delimited_lowercase_asset_container_names(self, head=None):
@@ -264,8 +263,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             if head is None or package_path.startswith(head):
                 result.append(package_path)
         return result
-
-    # user asset containers #
 
     def list_user_asset_container_directory_paths(self, head=None):
         return self.user_asset_container_directory_paths[:]
@@ -324,7 +321,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def make_asset_selection_menu(self, head=None):
         menu, section = self.io.make_menu(where=self.where(), is_keyed=False, is_parenthetically_numbered=True)
         section.tokens = self.make_visible_asset_menu_tokens(head=head)
-        #self.debug(section.tokens, 'TOKENS')
         section.return_value_attribute = 'key'
         return menu
 
@@ -399,7 +395,8 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         self, clear=True, cache=False, head=None, infinitival_phrase=None, user_input=None):
         self.session.cache_breadcrumbs(cache=cache)
         while True:
-            self.session.push_breadcrumb(self.make_asset_selection_breadcrumb(infinitival_phrase=infinitival_phrase))
+            self.session.push_breadcrumb(self.make_asset_selection_breadcrumb(
+                infinitival_phrase=infinitival_phrase))
             menu = self.make_asset_selection_menu(head=head)
             result = menu.run(clear=clear)
             if self.session.backtrack():
@@ -412,11 +409,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         self.session.pop_breadcrumb()
         self.session.restore_breadcrumbs(cache=cache)
         return result
-
-    def strip_file_extension_from_file_name(self, file_name):
-        if '.' in file_name:
-            return file_name[:file_name.rindex('.')]
-        return file_name
 
     def svn_add(self, is_interactive=True):
         for asset_proxy in self.list_visible_asset_proxies():

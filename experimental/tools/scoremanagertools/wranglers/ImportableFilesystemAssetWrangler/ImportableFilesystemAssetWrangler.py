@@ -139,7 +139,7 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
                     asset_container_package_path)
                 for directory_entry in os.listdir(asset_filesystem_path):
                     if directory_entry[0].isalpha():
-                        package_name = self.strip_file_extension_from_file_name(directory_entry)
+                        package_name = self._strip_file_extension_from_file_name(directory_entry)
                         result.append('{}.{}'.format(
                             asset_container_package_path, package_name))
             else:
