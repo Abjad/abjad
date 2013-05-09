@@ -75,6 +75,10 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
             return self.list_system_asset_container_package_paths()[0]
 
     @property
+    def current_asset_container_proxy(self):
+        return self.asset_container_class(self.current_asset_container_package_path)
+
+    @property
     def score_internal_asset_container_package_path_infix(self):
         return self._score_internal_asset_container_package_path_infix
 
@@ -96,6 +100,12 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
         return self._user_asset_container_package_paths
 
     ### PUBLIC METHODS ###
+
+    def list_asset_container_package_paths(self, head=None):
+        result = []
+        result.extend(self.list_system_asset_container_package_paths(head=head))
+        result.extend(self.list_score_internal_asset_container_package_paths(head=head))
+        return result
 
     def list_asset_package_paths(self, head=None):
         result = []
