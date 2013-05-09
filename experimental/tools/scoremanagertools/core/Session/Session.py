@@ -85,9 +85,10 @@ class Session(abctools.AbjadObject):
     @property
     def current_materials_package_path(self):
         if self.is_in_score:
-            return '.'.join([
-                self.current_score_package_name,
-                self.configuration._score_internal_materials_path_infix_parts])
+            parts = []
+            parts.append(self.current_score_package_name)
+            parts.extend(self.configuration._score_internal_materials_path_infix_parts)
+            return '.'.join(parts)
         else:
             return self.configuration.system_materials_package_path
 
@@ -112,9 +113,10 @@ class Session(abctools.AbjadObject):
     @property
     def current_segments_package_path(self):
         if self.is_in_score:
-            return '.'.join([
-                self.current_score_package_name,
-                self.configuration._score_internal_segments_path_infix_parts])
+            parts = []
+            parts.append(self.current_score_package_name)
+            parts.extend(self.configuration._score_internal_segments_path_infix_parts)
+            return '.'.join(parts)
         else:
             return self.configuration.user_sketches_package_path
 
@@ -128,9 +130,10 @@ class Session(abctools.AbjadObject):
     @property
     def current_specifiers_package_path(self):
         if self.is_in_score:
-            return '.'.join([
-                self.current_score_package_name,
-                self.configuration._score_internal_specifiers_path_infix_parts])
+            parts = []
+            parts.append(self.current_score_package_name)
+            parts.extend(self.configuration._score_internal_specifiers_path_infix_parts)
+            return '.'.join(parts)
         else:
             return self.configuration.system_specifiers_package_path
 

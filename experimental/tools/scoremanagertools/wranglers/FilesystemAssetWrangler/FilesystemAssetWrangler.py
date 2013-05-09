@@ -205,8 +205,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         for score_directory_path in self.list_score_directory_paths(head=head):
             parts = [score_directory_path]
             if self.score_internal_asset_container_path_infix_parts:
-                infix_parts = self.score_internal_asset_container_path_infix_parts.split('.')
-                parts.extend(infix_parts)
+                parts.extend(self.score_internal_asset_container_path_infix_parts)
             score_internal_directory_path = os.path.join(*parts)
             result.append(score_internal_directory_path)
         return result

@@ -15,7 +15,6 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
         ):
         FilesystemAssetWrangler.__init__(self,
             system_asset_container_directory_paths=system_asset_container_directory_paths,
-            #system_asset_container_package_paths=system_asset_container_package_paths,
             user_asset_container_directory_paths=user_asset_container_directory_paths,
             score_internal_asset_container_path_infix_parts=score_internal_asset_container_path_infix_parts,
             session=session,
@@ -50,7 +49,7 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
         parts = []
         parts.extend(self.list_system_asset_container_package_paths())
         if self.score_internal_asset_container_path_infix_parts:
-            parts.append(self.score_internal_asset_container_path_infix_parts)
+            parts.append('.'.join(self.score_internal_asset_container_path_infix_parts))
         parts = ', '.join([repr(part) for part in parts])
         return '{}({})'.format(self._class_name, parts)
 
@@ -69,9 +68,10 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
     @property
     def current_asset_container_package_path(self):
         if self.session.is_in_score:
-            return '.'.join([
-                self.session.current_score_package_name,
-                self.score_internal_asset_container_path_infix_parts])
+            parts = []
+            parts.append(self.session.current_score_package_name)
+            parts.extend(self.score_internal_asset_container_path_infix_parts)
+            return '.'.join(parts)
         elif self.list_system_asset_container_package_paths():
             return self.list_system_asset_container_package_paths()[0]
 
@@ -143,7 +143,7 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
         for score_package_name in self.list_score_directory_basenames(head=head):
             parts = [score_package_name]
             if self.score_internal_asset_container_path_infix_parts:
-                parts.append(self.score_internal_asset_container_path_infix_parts)
+                parts.extend(self.score_internal_asset_container_path_infix_parts)
             score_internal_score_package_path = '.'.join(parts)
             result.append(score_internal_score_package_path)
         return result
