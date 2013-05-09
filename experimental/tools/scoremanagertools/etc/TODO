@@ -97,4 +97,5 @@
 
 34. Remove (or rename) Specifier.format, TargetManifest.format and FileProxy.format properties.
 
-35. Change 'rhythm_maker' globally to 'rhythm_maker'.
+35. Change package_path_infix properties to tuples (instead of strings).
+    Rename package_path_infix properties to just path_infix properties.

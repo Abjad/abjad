@@ -19,6 +19,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         system_asset_container_directory_paths=None,
         system_asset_container_package_paths=None,
         user_asset_container_directory_paths=None,
+        score_internal_asset_container_package_path_infix=None,
         session=None,
         ):
         ScoreManagerObject.__init__(self, session=session)
@@ -28,6 +29,8 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             system_asset_container_package_paths or []
         self._user_asset_container_directory_paths = \
             user_asset_container_directory_paths or []
+        self._score_internal_asset_container_package_path_infix = \
+            score_internal_asset_container_package_path_infix
 
     ### SPECIAL METHODS ###
 
@@ -88,6 +91,10 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     @property
     def current_asset_container_proxy(self):
         return self.asset_container_class(self.current_asset_container_filesystem_path)
+
+    @property
+    def score_internal_asset_container_package_path_infix(self):
+        return self._score_internal_asset_container_package_path_infix
 
     @property
     def system_asset_container_directory_paths(self):
@@ -163,17 +170,25 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                     result.append(directory_entry)
         return result
 
+    def list_score_directory_paths(self, head=None):
+        result = []
+        for score_directory_basename in self.list_score_directory_basenames(head=head):
+            score_directory_path = os.path.join(
+                self.configuration.user_scores_directory_path,
+                score_directory_basename)
+            result.append(score_directory_path) 
+        return result
+
     def list_score_external_asset_container_directory_paths(self, head=None):
         result = []
         for directory_path in self.list_system_asset_container_directory_paths(head=head):
             result.append(directory_path)
         return result
 
-    # TODO: rewrite purley in terms of directory paths (instead of package paths)
     def list_score_external_asset_container_proxies(self, head=None):
         result = []
-        for package_path in self.list_system_asset_container_package_paths(head=head):
-            asset_container_proxy = self.asset_container_class(package_path)
+        for directory_path in self.list_system_asset_container_directory_paths(head=head):
+            asset_container_proxy = self.asset_container_class(directory_path)
             result.append(asset_container_proxy)
         return result
 
@@ -193,11 +208,15 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             result.append(asset_proxy)
         return result
 
-    # TODO: rewrite purely in terms of directory paths (instead of package paths)
     def list_score_internal_asset_container_directory_paths(self, head=None):
         result = []
-        for package_path in self.list_score_internal_asset_container_package_paths(head=head):
-            result.append(packagepathtools.package_path_to_directory_path(package_path))
+        for score_directory_path in self.list_score_directory_paths(head=head):
+            parts = [score_directory_path]
+            if self.score_internal_asset_container_package_path_infix:
+                infix_parts = self.score_internal_asset_container_package_path_infix.split('.')
+                parts.extend(infix_parts)
+            score_internal_directory_path = os.path.join(*parts)
+            result.append(score_internal_directory_path)
         return result
 
     # TODO: rewrite purely in terms of directory paths (instead of package paths)
