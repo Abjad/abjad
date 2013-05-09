@@ -147,7 +147,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     def list_asset_filesystem_paths(self, head=None):
         result = []
-        if head in (None,) + self.configuration.system_package_paths:
+        if head is None or head in self.configuration.system_package_paths:
             result.extend(self.list_score_external_asset_filesystem_paths(head=head))
         result.extend(self.list_score_internal_asset_filesystem_paths(head=head))
         result.extend(self.list_user_asset_filesystem_paths(head=head))
@@ -219,11 +219,10 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             result.append(score_internal_directory_path)
         return result
 
-    # TODO: rewrite purely in terms of directory paths (instead of package paths)
     def list_score_internal_asset_container_proxies(self, head=None):
         result = []
-        for package_path in self.list_score_internal_asset_container_package_paths(head=head):
-            asset_container_proxy = self.asset_container_class(package_path)
+        for directory_path in self.list_score_internal_asset_container_directory_paths(head=head):
+            asset_container_proxy = self.asset_container_class(directory_path)
             result.append(asset_container_proxy)
         return result
 
@@ -235,11 +234,10 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                     result.append(os.path.join(asset_filesystem_path, directory_entry))
         return result
 
-    # TODO: rewrite purely in terms of directory paths (instead of package paths)
     def list_score_internal_asset_proxies(self, head=None):
         result = []
-        for package_path in self.list_score_internal_asset_package_paths(head=head):
-            asset_proxy = self.asset_class_name(package_path)
+        for directory_path in self.list_score_internal_asset_directory_paths(head=head):
+            asset_proxy = self.asset_class_name(directory_path)
             result.append(asset_proxy)
         return result
 
@@ -278,11 +276,10 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def list_user_asset_container_directory_paths(self, head=None):
         return self.user_asset_container_directory_paths[:]
 
-    # TODO: rewrite purely in terms of directory paths (instead of package paths)
     def list_user_asset_container_proxies(self, head=None):
         result = []
-        for package_path in self.list_user_asset_container_package_paths(head=head):
-            asset_container_proxy = self.asset_container_class(package_path)
+        for directory_path in self.list_user_asset_container_directory_paths(head=head):
+            asset_container_proxy = self.asset_container_class(directory_path)
             result.append(asset_container_proxy)
         return result
 
