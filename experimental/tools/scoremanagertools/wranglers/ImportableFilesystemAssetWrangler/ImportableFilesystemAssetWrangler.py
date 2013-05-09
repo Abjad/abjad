@@ -130,6 +130,16 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
                     result.append('.'.join([package_path, directory_entry]))
         return result
 
+    def list_score_internal_asset_container_package_paths(self, head=None):
+        result = []
+        for score_package_name in self.list_score_directory_basenames(head=head):
+            parts = [score_package_name]
+            if self.score_internal_asset_container_package_path_infix:
+                parts.append(self.score_internal_asset_container_package_path_infix)
+            score_internal_score_package_path = '.'.join(parts)
+            result.append(score_internal_score_package_path)
+        return result
+
     def list_score_internal_asset_package_paths(self, head=None):
         result = []
         for asset_container_package_path in \
@@ -144,6 +154,13 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
                             asset_container_package_path, package_name))
             else:
                 result.append(asset_container_package_path)
+        return result
+
+    def list_user_asset_container_package_paths(self, head=None):
+        result = []
+        for package_path in self.user_asset_container_package_paths:
+            if head is None or package_path.startswith(head):
+                result.append(package_path)
         return result
 
     def list_user_asset_package_paths(self, head=None):
@@ -193,3 +210,33 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
         keys = self.list_visible_asset_package_paths(head=head)
         bodies = self.list_space_delimited_lowercase_visible_asset_names(head=head)
         return zip(keys, bodies)
+
+    # TODO: write test
+    def rename_asset_interactively(self, head=None):
+        self.session.push_backtrack()
+        asset_package_path = self.select_asset_package_path_interactively(
+            head=head, infinitival_phrase='to rename')
+        self.session.pop_backtrack()
+        if self.session.backtrack():
+            return
+        asset_proxy = self.get_asset_proxy(asset_package_path)
+        asset_proxy.rename_interactively()
+
+    def select_asset_package_path_interactively(
+        self, clear=True, cache=False, head=None, infinitival_phrase=None, user_input=None):
+        self.session.cache_breadcrumbs(cache=cache)
+        while True:
+            self.session.push_breadcrumb(self.make_asset_selection_breadcrumb(
+                infinitival_phrase=infinitival_phrase))
+            menu = self.make_asset_selection_menu(head=head)
+            result = menu.run(clear=clear)
+            if self.session.backtrack():
+                break
+            elif not result:
+                self.session.pop_breadcrumb()
+                continue
+            else:
+                break
+        self.session.pop_breadcrumb()
+        self.session.restore_breadcrumbs(cache=cache)
+        return result
