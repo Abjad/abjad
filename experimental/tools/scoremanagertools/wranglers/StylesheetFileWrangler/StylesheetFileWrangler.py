@@ -35,9 +35,9 @@ class StylesheetFileWrangler(FileWrangler):
     @property
     def stylesheet_file_names(self):
         result = []
-        for file_name in os.listdir(self.configuration.system_stylesheets_directory_path):
-            if file_name.endswith('.ly'):
-                result.append(file_name)
+        for directory_entry in os.listdir(self.configuration.system_stylesheets_directory_path):
+            if directory_entry.endswith('.ly'):
+                result.append(directory_name)
         return result
 
     ### PUBLIC METHODS ###

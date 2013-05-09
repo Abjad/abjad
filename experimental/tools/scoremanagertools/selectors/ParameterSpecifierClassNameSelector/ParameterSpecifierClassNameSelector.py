@@ -14,8 +14,8 @@ class ParameterSpecifierClassNameSelector(Selector):
             'ParameterSpecifier',
             'Specifier',
             )
-        for name in os.listdir(self.configuration.system_specifier_classes_directory_path):
-            if name.endswith('Specifier'):
-                if not name in forbidden_directory_entries:
-                    result.append(name)
+        for directory_entry in os.listdir(self.configuration.system_specifier_classes_directory_path):
+            if directory_entry.endswith('Specifier'):
+                if not directory_entry in forbidden_directory_entries:
+                    result.append(directory_entry)
         return result

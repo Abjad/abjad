@@ -137,9 +137,9 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
             if self.score_internal_asset_container_package_path_infix:
                 asset_filesystem_path = packagepathtools.package_path_to_directory_path(
                     asset_container_package_path)
-                for name in os.listdir(asset_filesystem_path):
-                    if name[0].isalpha():
-                        package_name = self.strip_file_extension_from_file_name(name)
+                for directory_entry in os.listdir(asset_filesystem_path):
+                    if directory_entry[0].isalpha():
+                        package_name = self.strip_file_extension_from_file_name(directory_entry)
                         result.append('{}.{}'.format(
                             asset_container_package_path, package_name))
             else:
@@ -149,9 +149,11 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
     def list_user_asset_package_paths(self, head=None):
         result = []
         for asset_filesystem_path in self.list_user_asset_container_directory_paths(head=head):
-            for name in os.listdir(asset_filesystem_path):
-                if name[0].isalpha():
-                    result.append('.'.join([self.configuration.user_material_package_makers_package_path, name]))
+            for directory_entry in os.listdir(asset_filesystem_path):
+                if directory_entry[0].isalpha():
+                    result.append('.'.join([
+                        self.configuration.user_material_package_makers_package_path, 
+                        directory_entry]))
         return result
 
     # TODO: try to reimplement without proxy instantiation

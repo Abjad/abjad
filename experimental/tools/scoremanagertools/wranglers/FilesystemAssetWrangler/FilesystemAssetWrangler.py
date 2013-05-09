@@ -215,9 +215,9 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def list_score_internal_asset_filesystem_paths(self, head=None):
         result = []
         for asset_filesystem_path in self.list_score_internal_asset_container_directory_paths(head=head):
-            for name in os.listdir(asset_filesystem_path):
-                if name[0].isalpha():
-                    result.append(os.path.join(asset_filesystem_path, name))
+            for directory_entry in os.listdir(asset_filesystem_path):
+                if directory_entry[0].isalpha():
+                    result.append(os.path.join(asset_filesystem_path, directory_entry))
         return result
 
     def list_score_internal_asset_proxies(self, head=None):
@@ -229,12 +229,12 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     def list_score_package_names(self, head=None):
         result = []
-        for name in os.listdir(self.configuration.user_scores_directory_path):
-            if name[0].isalpha():
-                if head and name == head:
-                    return [name]
+        for directory_entry in os.listdir(self.configuration.user_scores_directory_path):
+            if directory_entry[0].isalpha():
+                if head and directory_entry == head:
+                    return [directory_entry]
                 elif not head:
-                    result.append(name)
+                    result.append(directory_entry)
         return result
 
     def list_space_delimited_lowercase_asset_container_names(self, head=None):
@@ -287,9 +287,9 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def list_user_asset_filesystem_paths(self, head=None):
         result = []
         for asset_filesystem_path in self.list_user_asset_container_directory_paths(head=head):
-            for name in os.listdir(asset_filesystem_path):
-                if name[0].isalpha():
-                    result.append(os.path.join(asset_filesystem_path, name))
+            for directory_entry in os.listdir(asset_filesystem_path):
+                if directory_entry[0].isalpha():
+                    result.append(os.path.join(asset_filesystem_path, directory_entry))
         return result
 
     def list_user_asset_proxies(self, head=None):
