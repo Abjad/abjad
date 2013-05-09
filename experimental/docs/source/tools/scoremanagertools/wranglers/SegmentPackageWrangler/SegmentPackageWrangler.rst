@@ -66,9 +66,6 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.filesystem_path_to_space_delimited_lowercase_name
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.fix_visible_assets
    :noindex:
 
@@ -114,9 +111,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.list_score_external_asset_proxies
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.list_score_external_asset_space_delimited_lowercase_names
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.list_score_internal_asset_container_directory_paths
    :noindex:
 
@@ -124,9 +118,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.list_score_internal_asset_container_proxies
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.list_score_internal_asset_container_space_delimited_lowercase_names
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.list_score_internal_asset_filesystem_paths
@@ -145,9 +136,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.list_space_delimited_lowercase_asset_container_names
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.list_space_delimited_lowercase_score_external_asset_container_names
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.list_system_asset_container_package_paths

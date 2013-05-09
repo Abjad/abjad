@@ -158,42 +158,35 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     # score-external asset containers #
 
-    # TODO: rewrite purely in terms of directory paths instead of package paths
+    # TODO: rewrite purely in terms of directory paths (instead of package paths)
     def list_score_external_asset_container_directory_paths(self, head=None):
         result = []
         for package_path in self.list_system_asset_container_package_paths(head=head):
             result.append(packagepathtools.package_path_to_directory_path(package_path))
         return result
 
+    # TODO: rewrite purley in terms of directory paths (instead of package paths)
     def list_score_external_asset_container_proxies(self, head=None):
         result = []
-        for package_path in \
-            self.list_system_asset_container_package_paths(head=head):
+        for package_path in self.list_system_asset_container_package_paths(head=head):
             asset_container_proxy = self.asset_container_class(package_path)
             result.append(asset_container_proxy)
         return result
 
-    # score-external assets #
-
     def list_score_external_asset_filesystem_paths(self, head=None):
         result = []
-        for asset_filesystem_path in self.list_score_external_asset_container_directory_paths(head=head):
-            for name in os.listdir(asset_filesystem_path):
-                if name[0].isalpha():
-                    result.append(os.path.join(asset_filesystem_path, name))
+        for directory_path in self.list_score_external_asset_container_directory_paths(head=head):
+            for directory_entry in os.listdir(directory_path):
+                if directory_entry[0].isalpha():
+                    filesystem_path = os.path.join(directory_path, directory_entry)
+                    result.append(filesystem_path)
         return result
 
     def list_score_external_asset_proxies(self, head=None):
         result = []
-        for asset_filesystem_path in self.list_score_external_asset_filesystem_paths(head=head):
-            asset_proxy = self.get_asset_proxy(asset_filesystem_path)
+        for filesystem_path in self.list_score_external_asset_filesystem_paths(head=head):
+            asset_proxy = self.get_asset_proxy(filesystem_path)
             result.append(asset_proxy)
-        return result
-
-    def list_score_external_asset_space_delimited_lowercase_names(self, head=None):
-        result = []
-        for asset_filesystem_path in self.list_score_external_asset_filesystem_paths(head=head):
-            result.append(self._filesystem_path_to_space_delimited_lowercase_name(asset_filesystem_path))
         return result
 
     # score-internal asset containers #
@@ -221,12 +214,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             self.list_score_internal_asset_container_package_paths(head=head):
             asset_container_proxy = self.asset_container_class(package_path)
             result.append(asset_container_proxy)
-        return result
-
-    def list_score_internal_asset_container_space_delimited_lowercase_names(self, head=None):
-        result = []
-        for asset_filesystem_path in self.list_score_internal_asset_container_directory_paths(head=head):
-            result.append(self._filesystem_path_to_space_delimited_lowercase_name(asset_filesystem_path))
         return result
 
     # score-internal assets #
@@ -264,18 +251,13 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                     result.append(name)
         return result
 
-    # space-delimited stuff #
-
     def list_space_delimited_lowercase_asset_container_names(self, head=None):
-        result = []
-        result.extend(self.list_space_delimited_lowercase_score_external_asset_container_names(head=head))
-        result.extend(self.list_score_internal_asset_container_space_delimited_lowercase_names(head=head))
-        return result
-
-    def list_space_delimited_lowercase_score_external_asset_container_names(self, head=None):
-        result = []
-        for asset_filesystem_path in self.list_score_external_asset_container_directory_paths(head=head):
-            result.append(self._filesystem_path_to_space_delimited_lowercase_name(asset_filesystem_path))
+        directory_paths, result = [], []
+        directory_paths.extend(self.list_score_external_asset_container_directory_paths(head=head))
+        directory_paths.extend(self.list_score_internal_asset_container_directory_paths(head=head))
+        for directory_path in directory_paths:
+            name = self._filesystem_path_to_space_delimited_lowercase_name(directory_path)
+            result.append(name)
         return result
 
     def list_system_asset_container_package_paths(self, head=None):
