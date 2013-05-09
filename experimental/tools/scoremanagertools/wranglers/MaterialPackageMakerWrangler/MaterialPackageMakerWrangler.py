@@ -70,17 +70,6 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         else:
             raise ValueError
 
-    def list_space_delimited_lowercase_asset_names(self, head=None):
-        result = []
-        for asset_filesystem_path in self.list_asset_filesystem_paths(head=head):
-            asset_filesystem_path = os.path.normpath(asset_filesystem_path)
-            asset_name = os.path.basename(asset_filesystem_path)
-            if asset_name in self.forbidden_class_names:
-                continue
-            space_delimited_lowercase_asset_name = stringtools.uppercamelcase_to_space_delimited_lowercase(asset_name)
-            result.append(space_delimited_lowercase_asset_name)
-        return result
-
     def list_score_external_asset_package_paths(self, head=None):
         result = PackageWrangler.list_score_external_asset_package_paths(self, head=head)
         #if self.base_class_name in result:
@@ -92,6 +81,18 @@ class MaterialPackageMakerWrangler(PackageWrangler):
 
     def list_score_internal_asset_container_package_paths(self, head=None):
         return []
+
+    def list_space_delimited_lowercase_asset_names(self, head=None):
+        result = []
+        for asset_filesystem_path in self.list_asset_filesystem_paths(head=head):
+            asset_filesystem_path = os.path.normpath(asset_filesystem_path)
+            asset_name = os.path.basename(asset_filesystem_path)
+            if asset_name in self.forbidden_class_names:
+                continue
+            space_delimited_lowercase_asset_name = stringtools.uppercamelcase_to_space_delimited_lowercase(
+                asset_name)
+            result.append(space_delimited_lowercase_asset_name)
+        return result
 
     # TODO: implement MaterialPackageProxyClassFile object to model and customize these settings
     def make_asset_class_file(self, package_name, generic_output_name):

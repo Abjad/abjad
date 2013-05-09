@@ -163,11 +163,10 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                     result.append(directory_entry)
         return result
 
-    # TODO: rewrite purely in terms of directory paths (instead of package paths)
     def list_score_external_asset_container_directory_paths(self, head=None):
         result = []
-        for package_path in self.list_system_asset_container_package_paths(head=head):
-            result.append(packagepathtools.package_path_to_directory_path(package_path))
+        for directory_path in self.list_system_asset_container_directory_paths(head=head):
+            result.append(directory_path)
         return result
 
     # TODO: rewrite purley in terms of directory paths (instead of package paths)
@@ -245,6 +244,9 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         for filesystem_path in self.list_visible_asset_filesystem_paths(head=head):
             result.append(self._filesystem_path_to_space_delimited_lowercase_name(filesystem_path))
         return result
+
+    def list_system_asset_container_directory_paths(self, head=None):
+        return self.system_asset_container_directory_paths[:]
 
     # TODO: migrate to ImportableFilesystemAssetWrangler once no longer needed here
     def list_system_asset_container_package_paths(self, head=None):

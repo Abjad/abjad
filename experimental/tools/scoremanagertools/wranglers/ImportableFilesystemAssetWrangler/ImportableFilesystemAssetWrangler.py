@@ -121,6 +121,13 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
             result.append(asset_proxy)
         return result
 
+    # TODO: eventually remove altogether
+    def list_score_external_asset_container_directory_paths(self, head=None):
+        result = []
+        for package_path in self.list_system_asset_container_package_paths(head=head):
+            result.append(packagepathtools.package_path_to_directory_path(package_path))
+        return result
+
     def list_score_external_asset_package_paths(self, head=None):
         result = []
         for directory_path in self.list_score_external_asset_container_directory_paths(head=head):
