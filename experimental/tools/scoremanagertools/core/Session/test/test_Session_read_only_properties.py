@@ -51,7 +51,7 @@ def test_Session_read_only_properties_02():
     '''
 
     session = scoremanagertools.core.Session()
-    session.current_score_package_name = 'foo'
+    session.underscore_delimited_current_score_name = 'foo'
 
     assert session.current_segments_package_path == 'foo.music.segments'
     user_scores_directory_path = session.configuration.user_scores_directory_path

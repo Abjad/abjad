@@ -89,7 +89,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         if self.session.is_in_score:
             parts = []
             parts.append(self.configuration.user_scores_directory_path)
-            parts.append(self.session.current_score_package_name)
+            parts.append(self.session.underscore_delimited_current_score_name)
             parts.extend(self.score_internal_asset_container_path_infix_parts)
             return os.path.join(*parts)
         if self.list_system_asset_container_directory_paths():

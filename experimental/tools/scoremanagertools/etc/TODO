@@ -97,7 +97,4 @@
 
 34. Remove (or rename) Specifier.format, TargetManifest.format and FileProxy.format properties.
 
-35. Change Session.current_score_package_name to Session.underscore_delimited_current_score_name.
-    This will avoid using 'package' in the property name.
-
-36. Remove packagepathtools.improved_package_path_to_directory_path().
+35. Reduce (or completely remove!) calls to packagepathtools in ImportableFilesystemAssetWrangler.

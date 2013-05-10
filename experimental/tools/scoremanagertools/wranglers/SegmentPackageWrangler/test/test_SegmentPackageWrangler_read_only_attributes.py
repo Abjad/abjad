@@ -24,7 +24,7 @@ def test_SegmentPackageWrangler_read_only_attributes_02():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     wrangler = score_manager.segment_package_wrangler
-    wrangler.session.current_score_package_name = 'example_score_1'
+    wrangler.session.underscore_delimited_current_score_name = 'example_score_1'
     assert wrangler.session.is_in_score
 
     assert wrangler.breadcrumb == 'segments'

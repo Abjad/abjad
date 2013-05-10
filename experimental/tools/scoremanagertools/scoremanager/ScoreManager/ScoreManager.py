@@ -63,23 +63,23 @@ class ScoreManager(ScoreManagerObject):
 
     def edit_score_interactively(self, score_package_path):
         score_package_proxy = self.score_package_wrangler.get_asset_proxy(score_package_path)
-        score_package_proxy.session.current_score_package_name = score_package_path
+        score_package_proxy.session.underscore_delimited_current_score_name = score_package_path
         score_package_proxy.run(cache=True)
-        self.session.current_score_package_name = None
+        self.session.underscore_delimited_current_score_name = None
 
     def get_next_score_package_name(self):
         score_package_names = self.score_package_wrangler.list_visible_asset_names()
-        if self.session.current_score_package_name is None:
+        if self.session.underscore_delimited_current_score_name is None:
             return score_package_names[0]
-        index = score_package_names.index(self.session.current_score_package_name)
+        index = score_package_names.index(self.session.underscore_delimited_current_score_name)
         next_index = (index + 1) % len(score_package_names)
         return score_package_names[next_index]
 
     def get_prev_score_package_name(self):
         score_package_names = self.score_package_wrangler.list_visible_asset_names()
-        if self.session.current_score_package_name is None:
+        if self.session.underscore_delimited_current_score_name is None:
             return score_package_names[-1]
-        index = score_package_names.index(self.session.current_score_package_name)
+        index = score_package_names.index(self.session.underscore_delimited_current_score_name)
         prev_index = (index - 1) % len(score_package_names)
         return score_package_names[prev_index]
 

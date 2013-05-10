@@ -23,7 +23,7 @@ class Session(abctools.AbjadObject):
         self._command_history = []
         self._session_once_had_user_input = False
         self._transcript = Transcript()
-        self.current_score_package_name = None
+        self.underscore_delimited_current_score_name = None
         self.display_pitch_ranges_with_numbered_pitches = False
         self.dump_transcript = False
         self.enable_where = False
@@ -86,7 +86,7 @@ class Session(abctools.AbjadObject):
     def current_materials_package_path(self):
         if self.is_in_score:
             parts = []
-            parts.append(self.current_score_package_name)
+            parts.append(self.underscore_delimited_current_score_name)
             parts.extend(self.configuration._score_internal_materials_path_infix_parts)
             return '.'.join(parts)
         else:
@@ -97,13 +97,13 @@ class Session(abctools.AbjadObject):
         from experimental.tools.scoremanagertools.proxies.ScorePackageProxy import ScorePackageProxy
         if self.is_in_score:
             return ScorePackageProxy(
-                score_package_name=self.current_score_package_name, session=self)
+                score_package_name=self.underscore_delimited_current_score_name, session=self)
 
     @property
     def current_score_path(self):
         if self.is_in_score:
             return packagepathtools.package_path_to_directory_path(
-                self.current_score_package_name)
+                self.underscore_delimited_current_score_name)
 
     @property
     def current_segments_directory_path(self):
@@ -114,7 +114,7 @@ class Session(abctools.AbjadObject):
     def current_segments_package_path(self):
         if self.is_in_score:
             parts = []
-            parts.append(self.current_score_package_name)
+            parts.append(self.underscore_delimited_current_score_name)
             parts.extend(self.configuration._score_internal_segments_path_infix_parts)
             return '.'.join(parts)
         else:
@@ -131,7 +131,7 @@ class Session(abctools.AbjadObject):
     def current_specifiers_package_path(self):
         if self.is_in_score:
             parts = []
-            parts.append(self.current_score_package_name)
+            parts.append(self.underscore_delimited_current_score_name)
             parts.extend(self.configuration._score_internal_specifiers_path_infix_parts)
             return '.'.join(parts)
         else:
@@ -157,7 +157,7 @@ class Session(abctools.AbjadObject):
 
     @property
     def is_in_score(self):
-        return self.current_score_package_name is not None
+        return self.underscore_delimited_current_score_name is not None
 
     @property
     def is_navigating_to_sibling_score(self):
@@ -217,12 +217,12 @@ class Session(abctools.AbjadObject):
     ### READ / WRITE PUBLIC PROPERTIES ###
 
     @apply
-    def current_score_package_name():
+    def underscore_delimited_current_score_name():
         def fget(self):
-            return self._current_score_package_name
-        def fset(self, current_score_package_name):
-            assert isinstance(current_score_package_name, (str, type(None)))
-            self._current_score_package_name = current_score_package_name
+            return self._underscore_delimited_current_score_name
+        def fset(self, underscore_delimited_current_score_name):
+            assert isinstance(underscore_delimited_current_score_name, (str, type(None)))
+            self._underscore_delimited_current_score_name = underscore_delimited_current_score_name
         return property(**locals())
 
     @apply

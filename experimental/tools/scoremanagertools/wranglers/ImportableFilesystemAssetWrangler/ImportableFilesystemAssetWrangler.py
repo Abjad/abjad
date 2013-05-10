@@ -71,7 +71,7 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
     def current_asset_container_package_path(self):
         if self.session.is_in_score:
             parts = []
-            parts.append(self.session.current_score_package_name)
+            parts.append(self.session.underscore_delimited_current_score_name)
             parts.extend(self.score_internal_asset_container_path_infix_parts)
             return '.'.join(parts)
         if self.list_system_asset_container_package_paths():

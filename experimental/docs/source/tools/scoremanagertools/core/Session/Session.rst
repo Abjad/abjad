@@ -90,9 +90,6 @@ Read-only properties
 Read/write properties
 ---------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.current_score_package_name
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.dump_transcript
    :noindex:
 
@@ -115,6 +112,9 @@ Read/write properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.transcribe_next_command
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.underscore_delimited_current_score_name
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.use_current_user_input_values_as_default
