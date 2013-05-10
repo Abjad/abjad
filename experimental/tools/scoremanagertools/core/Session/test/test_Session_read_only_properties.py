@@ -25,7 +25,6 @@ def test_Session_read_only_properties_01():
     assert session.current_materials_directory_path == session.configuration.system_materials_directory_path
 
     assert session.current_score_package_proxy is None
-    assert session.current_score_path is None
 
     assert session.current_specifiers_package_path == \
         os.path.basename(session.configuration.system_specifiers_directory_path)
@@ -63,7 +62,6 @@ def test_Session_read_only_properties_02():
         os.path.join(user_scores_directory_path, 'foo', 'music', 'materials')
 
     assert isinstance(session.current_score_package_proxy, scoremanagertools.proxies.ScorePackageProxy)
-    assert session.current_score_path == os.path.join(user_scores_directory_path, 'foo')
 
     assert session.current_specifiers_package_path == 'foo.music.specifiers'
     assert session.current_specifiers_directory_path == \

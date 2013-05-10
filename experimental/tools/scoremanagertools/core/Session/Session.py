@@ -2,7 +2,6 @@
 import os
 from abjad.tools import stringtools
 from abjad.tools import abctools
-from experimental.tools import packagepathtools
 from experimental.tools.scoremanagertools.core.ScoreManagerConfiguration import \
     ScoreManagerConfiguration
 from experimental.tools.scoremanagertools.core.Transcript import Transcript
@@ -79,8 +78,14 @@ class Session(abctools.AbjadObject):
 
     @property
     def current_materials_directory_path(self):
-        return packagepathtools.package_path_to_directory_path(
-            self.current_materials_package_path)
+        if self.is_in_score:
+            parts = []
+            parts.append(self.configuration.user_scores_directory_path)
+            parts.append(self.underscore_delimited_current_score_name)
+            parts.extend(self.configuration._score_internal_materials_path_infix_parts)
+            return os.path.join(*parts)
+        else:
+            return self.configuration.system_materials_directory_path
 
     @property
     def current_materials_package_path(self):
@@ -100,15 +105,15 @@ class Session(abctools.AbjadObject):
                 score_package_name=self.underscore_delimited_current_score_name, session=self)
 
     @property
-    def current_score_path(self):
-        if self.is_in_score:
-            return packagepathtools.package_path_to_directory_path(
-                self.underscore_delimited_current_score_name)
-
-    @property
     def current_segments_directory_path(self):
-        return packagepathtools.package_path_to_directory_path(
-            self.current_segments_package_path)
+        if self.is_in_score:
+            parts = []
+            parts.append(self.configuration.user_scores_directory_path)
+            parts.append(self.underscore_delimited_current_score_name)
+            parts.extend(self.configuration._score_internal_segments_path_infix_parts)
+            return os.path.join(*parts)
+        else:
+            return self.configuration.user_sketches_directory_path
 
     @property
     def current_segments_package_path(self):
@@ -123,7 +128,10 @@ class Session(abctools.AbjadObject):
     @property
     def current_specifiers_directory_path(self):
         if self.is_in_score:
-            return os.path.join(self.current_score_path, 'music', 'specifiers')
+            return os.path.join(
+                self.configuration.user_scores_directory_path, 
+                self.underscore_delimited_current_score_name, 
+                'music', 'specifiers')
         else:
             return self.configuration.system_specifiers_directory_path
 
