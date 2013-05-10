@@ -109,6 +109,13 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
 
     ### PUBLIC METHODS ###
 
+    def get_asset_proxies(self, head=None):
+        result = []
+        for package_path in self.list_asset_package_paths(head=head):
+            asset_proxy = self.get_asset_proxy(package_path)
+            result.append(asset_proxy)
+        return result
+
     def list_asset_container_package_paths(self, head=None):
         result = []
         result.extend(self.list_system_asset_container_package_paths(head=head))
@@ -120,13 +127,6 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
         result.extend(self.list_score_external_asset_package_paths(head=head))
         result.extend(self.list_score_internal_asset_package_paths(head=head))
         result.extend(self.list_user_asset_package_paths(head=head))
-        return result
-
-    def list_asset_proxies(self, head=None):
-        result = []
-        for package_path in self.list_asset_package_paths(head=head):
-            asset_proxy = self.get_asset_proxy(package_path)
-            result.append(asset_proxy)
         return result
 
     # TODO: eventually remove altogether
@@ -198,7 +198,7 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
     # TODO: try to reimplement without proxy instantiation
     def list_visible_asset_package_paths(self, head=None):
         result = []
-        for asset_proxy in self.list_visible_asset_proxies(head=head):
+        for asset_proxy in self.get_visible_asset_proxies(head=head):
             result.append(asset_proxy.package_path)
         return result
 

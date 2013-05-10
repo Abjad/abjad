@@ -36,7 +36,7 @@ def test_MaterialPackageWrangler_iteration_03():
 
 def test_MaterialPackageWrangler_iteration_04():
 
-    # wrangler.list_asset_proxies()
+    # wrangler.get_asset_proxies()
     pass
 
 
@@ -121,5 +121,5 @@ def test_MaterialPackageWrangler_iteration_11():
 
 def test_MaterialPackageWrangler_iteration_12():
 
-    # wrangler.list_visible_asset_proxies()
+    # wrangler.get_visible_asset_proxies()
     pass

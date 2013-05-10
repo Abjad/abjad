@@ -144,7 +144,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     def fix_visible_assets(self, is_interactive=True):
         results = []
-        for asset_proxy in self.list_visible_asset_proxies():
+        for asset_proxy in self.get_visible_asset_proxies():
             results.append(asset_proxy.fix(is_interactive=is_interactive))
             if is_interactive:
                 asset_proxy.profile()
@@ -153,16 +153,68 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def get_asset_proxy(self, asset_filesystem_path):
         return self.asset_class(asset_filesystem_path, session=self._session)
 
+    def get_asset_container_proxies(self, head=None):
+        result = []
+        result.extend(self.get_score_external_asset_container_proxies(head=head))
+        result.extend(self.get_score_internal_asset_container_proxies(head=head))
+        return result
+
+    def get_asset_proxies(self, head=None):
+        result = []
+        for filesystem_path in self.list_asset_filesystem_paths(head=head):
+            asset_proxy = self.get_asset_proxy(filesystem_path)
+            result.append(asset_proxy)
+        return result
+
+    def get_score_external_asset_container_proxies(self, head=None):
+        result = []
+        for directory_path in self.list_system_asset_container_directory_paths(head=head):
+            asset_container_proxy = self.asset_container_class(directory_path)
+            result.append(asset_container_proxy)
+        return result
+
+    def get_score_external_asset_proxies(self, head=None):
+        result = []
+        for filesystem_path in self.list_score_external_asset_filesystem_paths(head=head):
+            asset_proxy = self.get_asset_proxy(filesystem_path)
+            result.append(asset_proxy)
+        return result
+
+    def get_score_internal_asset_container_proxies(self, head=None):
+        result = []
+        for directory_path in self.list_score_internal_asset_container_directory_paths(head=head):
+            asset_container_proxy = self.asset_container_class(directory_path)
+            result.append(asset_container_proxy)
+        return result
+
+    def get_score_internal_asset_proxies(self, head=None):
+        result = []
+        for directory_path in self.list_score_internal_asset_directory_paths(head=head):
+            asset_proxy = self.asset_class_name(directory_path)
+            result.append(asset_proxy)
+        return result
+
+    def get_user_asset_container_proxies(self, head=None):
+        result = []
+        for directory_path in self.list_user_asset_container_directory_paths(head=head):
+            asset_container_proxy = self.asset_container_class(directory_path)
+            result.append(asset_container_proxy)
+        return result
+
+    def get_user_asset_proxies(self, head=None):
+        result = []
+        for asset_filesystem_path in self.list_user_asset_filesystem_paths(head=head):
+            asset_proxy = self.get_asset_proxy(asset_filesystem_path)
+            result.append(asset_proxy)
+        return result
+
+    def get_visible_asset_proxies(self, head=None):
+        return self.get_asset_proxies(head=head)
+
     def list_asset_container_directory_paths(self, head=None):
         result = []
         result.extend(self.list_score_external_asset_container_directory_paths(head=head))
         result.extend(self.list_score_internal_asset_container_directory_paths(head=head))
-        return result
-
-    def list_asset_container_proxies(self, head=None):
-        result = []
-        result.extend(self.list_score_external_asset_container_proxies(head=head))
-        result.extend(self.list_score_internal_asset_container_proxies(head=head))
         return result
 
     def list_asset_filesystem_paths(self, head=None):
@@ -171,13 +223,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             result.extend(self.list_score_external_asset_filesystem_paths(head=head))
         result.extend(self.list_score_internal_asset_filesystem_paths(head=head))
         result.extend(self.list_user_asset_filesystem_paths(head=head))
-        return result
-
-    def list_asset_proxies(self, head=None):
-        result = []
-        for filesystem_path in self.list_asset_filesystem_paths(head=head):
-            asset_proxy = self.get_asset_proxy(filesystem_path)
-            result.append(asset_proxy)
         return result
 
     def list_score_directory_basenames(self, head=None):
@@ -205,13 +250,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             result.append(directory_path)
         return result
 
-    def list_score_external_asset_container_proxies(self, head=None):
-        result = []
-        for directory_path in self.list_system_asset_container_directory_paths(head=head):
-            asset_container_proxy = self.asset_container_class(directory_path)
-            result.append(asset_container_proxy)
-        return result
-
     def list_score_external_asset_filesystem_paths(self, head=None):
         result = []
         for directory_path in self.list_score_external_asset_container_directory_paths(head=head):
@@ -219,13 +257,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                 if directory_entry[0].isalpha():
                     filesystem_path = os.path.join(directory_path, directory_entry)
                     result.append(filesystem_path)
-        return result
-
-    def list_score_external_asset_proxies(self, head=None):
-        result = []
-        for filesystem_path in self.list_score_external_asset_filesystem_paths(head=head):
-            asset_proxy = self.get_asset_proxy(filesystem_path)
-            result.append(asset_proxy)
         return result
 
     def list_score_internal_asset_container_directory_paths(self, head=None):
@@ -238,26 +269,12 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             result.append(score_internal_directory_path)
         return result
 
-    def list_score_internal_asset_container_proxies(self, head=None):
-        result = []
-        for directory_path in self.list_score_internal_asset_container_directory_paths(head=head):
-            asset_container_proxy = self.asset_container_class(directory_path)
-            result.append(asset_container_proxy)
-        return result
-
     def list_score_internal_asset_filesystem_paths(self, head=None):
         result = []
         for asset_filesystem_path in self.list_score_internal_asset_container_directory_paths(head=head):
             for directory_entry in os.listdir(asset_filesystem_path):
                 if directory_entry[0].isalpha():
                     result.append(os.path.join(asset_filesystem_path, directory_entry))
-        return result
-
-    def list_score_internal_asset_proxies(self, head=None):
-        result = []
-        for directory_path in self.list_score_internal_asset_directory_paths(head=head):
-            asset_proxy = self.asset_class_name(directory_path)
-            result.append(asset_proxy)
         return result
 
     def list_space_delimited_lowercase_asset_container_names(self, head=None):
@@ -287,13 +304,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def list_user_asset_container_directory_paths(self, head=None):
         return self.user_asset_container_directory_paths[:]
 
-    def list_user_asset_container_proxies(self, head=None):
-        result = []
-        for directory_path in self.list_user_asset_container_directory_paths(head=head):
-            asset_container_proxy = self.asset_container_class(directory_path)
-            result.append(asset_container_proxy)
-        return result
-
     def list_user_asset_filesystem_paths(self, head=None):
         result = []
         for asset_filesystem_path in self.list_user_asset_container_directory_paths(head=head):
@@ -302,18 +312,8 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                     result.append(os.path.join(asset_filesystem_path, directory_entry))
         return result
 
-    def list_user_asset_proxies(self, head=None):
-        result = []
-        for asset_filesystem_path in self.list_user_asset_filesystem_paths(head=head):
-            asset_proxy = self.get_asset_proxy(asset_filesystem_path)
-            result.append(asset_proxy)
-        return result
-
     def list_visible_asset_filesystem_paths(self, head=None):
         return self.list_asset_filesystem_paths(head=head)
-
-    def list_visible_asset_proxies(self, head=None):
-        return self.list_asset_proxies(head=head)
 
     def make_asset(self, asset_name):
         assert stringtools.is_underscore_delimited_lowercase_string(asset_name)
@@ -326,7 +326,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         pass
 
     def profile_visible_assets(self):
-        for asset_proxy in self.list_visible_asset_proxies():
+        for asset_proxy in self.get_visible_asset_proxies():
             asset_proxy.profile()
 
     # TODO: write test
@@ -373,7 +373,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         self._session.restore_breadcrumbs(cache=cache)
 
     def svn_add(self, is_interactive=True):
-        for asset_proxy in self.list_visible_asset_proxies():
+        for asset_proxy in self.get_visible_asset_proxies():
             asset_proxy.svn_add(is_interactive=False)
         self._io.proceed(is_interactive=is_interactive)
 
@@ -387,16 +387,16 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         self._io.display(line)
         if not self._io.confirm():
             return
-        for asset_proxy in self.list_visible_asset_proxies():
+        for asset_proxy in self.get_visible_asset_proxies():
             asset_proxy.svn_ci(commit_message=commit_message, is_interactive=False)
         self._io.proceed(is_interactive=is_interactive)
 
     def svn_st(self, is_interactive=True):
-        for asset_proxy in self.list_visible_asset_proxies():
+        for asset_proxy in self.get_visible_asset_proxies():
             asset_proxy.svn_st(is_interactive=False)
         self._io.proceed(is_interactive=is_interactive)
 
     def svn_up(self, is_interactive=True):
-        for asset_proxy in self.list_visible_asset_proxies():
+        for asset_proxy in self.get_visible_asset_proxies():
             asset_proxy.svn_up(is_interactive=False)
         self._io.proceed(is_interactive=is_interactive)

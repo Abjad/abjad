@@ -45,14 +45,14 @@ class ScorePackageWrangler(PackageWrangler):
     @property
     def visible_score_titles(self):
         result = []
-        for score_package_proxy in self.list_visible_asset_proxies():
+        for score_package_proxy in self.get_visible_asset_proxies():
             result.append(score_package_proxy.title or '(untitled score)')
         return result
 
     @property
     def visible_score_titles_with_years(self):
         result = []
-        for score_package_proxy in self.list_visible_asset_proxies():
+        for score_package_proxy in self.get_visible_asset_proxies():
             result.append(score_package_proxy.title_with_year or '(untitled score)')
         return result
 
@@ -60,7 +60,7 @@ class ScorePackageWrangler(PackageWrangler):
 
     def list_visible_asset_filesystem_paths(self, head=None):
         result = []
-        for visible_asset_proxy in self.list_visible_asset_proxies(head=head):
+        for visible_asset_proxy in self.get_visible_asset_proxies(head=head):
             result.append(visible_asset_proxy.filesystem_path)
         return result
 
@@ -73,7 +73,7 @@ class ScorePackageWrangler(PackageWrangler):
     def list_visible_asset_package_path_and_score_title_pairs(self, head=None):
         result = []
         scores_to_show = self._session.scores_to_show
-        for asset_proxy in PackageWrangler.list_asset_proxies(self, head=head):
+        for asset_proxy in PackageWrangler.get_asset_proxies(self, head=head):
             tags = asset_proxy.get_tags()
             is_mothballed = tags.get('is_mothballed', False)
             if scores_to_show == 'all' or \
@@ -87,10 +87,10 @@ class ScorePackageWrangler(PackageWrangler):
                 result.append((asset_proxy.package_path, title_with_year))
         return result
 
-    def list_visible_asset_proxies(self, head=None):
+    def get_visible_asset_proxies(self, head=None):
         result = []
         scores_to_show = self._session.scores_to_show
-        for asset_proxy in PackageWrangler.list_asset_proxies(self, head=head):
+        for asset_proxy in PackageWrangler.get_asset_proxies(self, head=head):
             is_mothballed = asset_proxy.get_tag('is_mothballed')
             if scores_to_show == 'all':
                 result.append(asset_proxy)
