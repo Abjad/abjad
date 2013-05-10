@@ -15,7 +15,7 @@ def test_FileProxy_write_boilerplate_interactively_01():
         user_input = '{} q'.format(boilerplate_filesystem_asset_name)
         file_proxy.write_boilerplate_interactively(user_input=user_input)
         source = open(os.path.join(
-            file_proxy.configuration.boilerplate_directory_path, boilerplate_filesystem_asset_name), 'r')
+            file_proxy.boilerplate_directory_path, boilerplate_filesystem_asset_name), 'r')
         target = open(file_proxy.file_path)
         assert source.readlines() == target.readlines()
         file_proxy.remove()

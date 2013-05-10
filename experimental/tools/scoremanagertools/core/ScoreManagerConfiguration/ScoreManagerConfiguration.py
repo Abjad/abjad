@@ -99,19 +99,6 @@ class ScoreManagerConfiguration(Configuration):
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
-    @property
-    def boilerplate_directory_path(self):
-        '''Boilerplate directory path:
-
-        ::
-
-            >>> configuration.boilerplate_directory_path
-            '.../abjad/experimental/tools/scoremanagertools/boilerplate'
-
-        Return string.
-        '''
-        return os.path.join(self.score_manager_tools_directory_path, 'boilerplate')
-
     # TODO: make user-settable
     @property
     def configuration_directory_path(self):
@@ -151,20 +138,6 @@ class ScoreManagerConfiguration(Configuration):
         Return string.
         '''
         return Configuration.configuration_file_path.fget(self)
-
-    # TODO: make private
-    @property
-    def help_item_width(self):
-        '''Help item width:
-
-        ::
-
-            >>> configuration.help_item_width
-            5
-
-        Return constant integer.
-        '''
-        return 5
 
     @property
     def home_directory_path(self):

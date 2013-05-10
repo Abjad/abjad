@@ -14,6 +14,8 @@ class FilesystemAssetProxy(ScoreManagerObject):
 
     __metaclass__ = abc.ABCMeta
     _generic_class_name = 'filesystem asset'
+    boilerplate_directory_path = os.path.join(
+        ScoreManagerObject.configuration.score_manager_tools_directory_path, 'boilerplate')
 
     ### INITIALIZER ###
 
@@ -244,7 +246,7 @@ class FilesystemAssetProxy(ScoreManagerObject):
     def write_boilerplate(self, boilerplate_filesystem_asset_name):
         if not os.path.exists(boilerplate_filesystem_asset_name):
             boilerplate_filesystem_asset_name = os.path.join(
-                self.configuration.boilerplate_directory_path, boilerplate_filesystem_asset_name)
+                self.boilerplate_directory_path, boilerplate_filesystem_asset_name)
         if os.path.exists(boilerplate_filesystem_asset_name):
             shutil.copyfile(boilerplate_filesystem_asset_name, self.filesystem_path)
             return True

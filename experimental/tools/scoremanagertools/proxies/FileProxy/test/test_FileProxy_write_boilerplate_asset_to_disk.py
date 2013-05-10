@@ -14,7 +14,7 @@ def test_FileProxy_write_boilerplate_01():
         boilerplate_filesystem_asset_name = 'canned_testnumbers_material_definition.py'
         file_proxy.write_boilerplate(boilerplate_filesystem_asset_name)
         source = open(os.path.join(
-            file_proxy.configuration.boilerplate_directory_path, boilerplate_filesystem_asset_name), 'r')
+            file_proxy.boilerplate_directory_path, boilerplate_filesystem_asset_name), 'r')
         target = open(file_proxy.file_path)
         assert source.readlines() == target.readlines()
         file_proxy.remove()
