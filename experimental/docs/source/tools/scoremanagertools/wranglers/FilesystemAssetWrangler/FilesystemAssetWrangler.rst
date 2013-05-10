@@ -9,13 +9,13 @@ scoremanagertools.wranglers.FilesystemAssetWrangler
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler.FilesystemAssetWrangler.FilesystemAssetWrangler.asset_class
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler.FilesystemAssetWrangler.FilesystemAssetWrangler.asset_container_class
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler.FilesystemAssetWrangler.FilesystemAssetWrangler.asset_container_path_infix_parts
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler.FilesystemAssetWrangler.FilesystemAssetWrangler.asset_container_proxy_class
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler.FilesystemAssetWrangler.FilesystemAssetWrangler.asset_proxy_class
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler.FilesystemAssetWrangler.FilesystemAssetWrangler.current_asset_container_directory_path

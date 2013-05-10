@@ -85,7 +85,7 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def asset_container_class(self):
+    def asset_container_proxy_class(self):
         from experimental.tools import scoremanagertools
         return scoremanagertools.proxies.PackageProxy
 

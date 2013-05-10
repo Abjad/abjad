@@ -53,21 +53,49 @@ class StylesheetFileWrangler(FileWrangler):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def asset_class(self):
+    def asset_proxy_class(self):
+        '''Stylesheet file wrangler asset class:
+
+        ::
+
+            >>> wrangler.asset_proxy_class.__name__
+            'StylesheetFileProxy'
+
+        Return proxy class.
+        '''
         from experimental.tools import scoremanagertools
         return scoremanagertools.proxies.StylesheetFileProxy
 
     @property
     def breadcrumb(self):
+        '''Stylesheet file wrangler breadcrumb:
+
+        ::
+
+            >>> wrangler.breadcrumb
+            'stylesheets'
+
+        Return string.
+        '''
         return 'stylesheets'
 
-    # TODO: write test
+    # TODO: write test; also rename to something general without 'stylehsset' in name
     @property
     def stylesheet_file_names(self):
+        '''Stylesheet file wrangler stylesheet file names:
+
+            >>> for x in wrangler.stylesheet_file_names:
+            ...     x
+            'clean_letter_14.ly'
+            'clean_letter_16.ly'
+            'rhythm_letter_16.ly'
+
+        Return list.
+        '''
         result = []
         for directory_entry in os.listdir(self.system_stylesheets_directory_path):
             if directory_entry.endswith('.ly'):
-                result.append(directory_name)
+                result.append(directory_entry)
         return result
 
     ### PUBLIC METHODS ###

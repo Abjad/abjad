@@ -87,9 +87,9 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     def _make_asset_selection_breadcrumb(self, infinitival_phrase=None):
         if infinitival_phrase:
-            return 'select {} {}:'.format(self.asset_class._generic_class_name, infinitival_phrase)
+            return 'select {} {}:'.format(self.asset_proxy_class._generic_class_name, infinitival_phrase)
         else:
-            return 'select {}:'.format(self.asset_class._generic_class_name)
+            return 'select {}:'.format(self.asset_proxy_class._generic_class_name)
 
     def _make_asset_selection_menu(self, head=None):
         menu, section = self._io.make_menu(where=self._where, is_keyed=False, is_parenthetically_numbered=True)
@@ -135,11 +135,11 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @abc.abstractproperty
-    def asset_class(self):
+    def asset_proxy_class(self):
         pass
 
     @property
-    def asset_container_class(self):
+    def asset_container_proxy_class(self):
         from experimental.tools import scoremanagertools
         return scoremanagertools.proxies.DirectoryProxy
 
@@ -190,12 +190,12 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         return result
 
     def get_asset_proxy(self, asset_filesystem_path):
-        return self.asset_class(asset_filesystem_path, session=self._session)
+        return self.asset_proxy_class(asset_filesystem_path, session=self._session)
 
     def get_score_external_asset_container_proxies(self, head=None):
         result = []
         for directory_path in self.list_system_asset_container_directory_paths(head=head):
-            asset_container_proxy = self.asset_container_class(directory_path)
+            asset_container_proxy = self.asset_container_proxy_class(directory_path)
             result.append(asset_container_proxy)
         return result
 
@@ -209,7 +209,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def get_score_internal_asset_container_proxies(self, head=None):
         result = []
         for directory_path in self.list_score_internal_asset_container_directory_paths(head=head):
-            asset_container_proxy = self.asset_container_class(directory_path)
+            asset_container_proxy = self.asset_container_proxy_class(directory_path)
             result.append(asset_container_proxy)
         return result
 
@@ -223,7 +223,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def get_user_asset_container_proxies(self, head=None):
         result = []
         for directory_path in self.list_user_asset_container_directory_paths(head=head):
-            asset_container_proxy = self.asset_container_class(directory_path)
+            asset_container_proxy = self.asset_container_proxy_class(directory_path)
             result.append(asset_container_proxy)
         return result
 
@@ -360,7 +360,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         getter = self._io.make_getter(where=self._where)
         argument_list = self.list_visible_asset_filesystem_paths(head=head)
         space_delimited_lowercase_asset_class_name = stringtools.string_to_space_delimited_lowercase(
-            self.asset_class.__name__)
+            self.asset_proxy_class.__name__)
         plural_space_delimited_lowercase_asset_class_name = stringtools.pluralize_string(
             space_delimited_lowercase_asset_class_name)
         getter.append_argument_range(plural_space_delimited_lowercase_asset_class_name, argument_list)

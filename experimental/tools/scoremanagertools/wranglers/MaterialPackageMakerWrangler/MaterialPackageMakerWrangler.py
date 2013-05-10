@@ -41,7 +41,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def asset_class(self):
+    def asset_proxy_class(self):
         from experimental.tools import scoremanagertools
         return scoremanagertools.proxies.PackageProxy
 
