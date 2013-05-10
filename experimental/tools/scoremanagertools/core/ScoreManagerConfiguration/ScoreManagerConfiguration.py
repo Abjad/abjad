@@ -273,27 +273,6 @@ class ScoreManagerConfiguration(Configuration):
         '''
         return os.path.basename(self.system_materials_directory_path)
 
-    # TODO: remove sketches ... then migrate out of this class
-    @property
-    def system_resource_directory_basenames(self):
-        '''System package paths:
-
-        ::
-
-            >>> for package_path in configuration.system_resource_directory_basenames:
-            ...     package_path
-            'sketches'
-            'system_materials'
-            'system_specifiers'
-
-        Return string.
-        '''
-        return (
-            self.user_sketches_package_path,
-            self.system_materials_package_path,
-            self.system_specifiers_package_path,
-            )
-
     @property
     def system_specifier_classes_directory_path(self):
         '''Specifier classes directory path:
