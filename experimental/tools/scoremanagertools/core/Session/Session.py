@@ -8,6 +8,17 @@ from experimental.tools.scoremanagertools.core.Transcript import Transcript
 
 
 class Session(abctools.AbjadObject):
+    '''Score manager session.
+
+        >>> session = scoremanagertools.core.Session()
+
+    ::
+
+        >>> session
+        Session()
+
+    Return session.
+    '''
 
     ### CLASS ATTRIBUTES ###
 
@@ -46,6 +57,10 @@ class Session(abctools.AbjadObject):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
+        '''Session repr.
+
+        Return string.
+        '''
         summary = []
         if self.initial_user_input is not None:
             summary.append('initial_user_input={!r}'.format(self.initial_user_input))
@@ -58,26 +73,80 @@ class Session(abctools.AbjadObject):
 
     @property
     def backtracking_stack(self):
+        '''Session backtracking stack:
+
+        ::
+
+            >>> session.backtracking_stack
+            []
+
+        Return list.
+        '''
         return self._backtracking_stack
 
     @property
     def breadcrumb_cache_stack(self):
+        '''Session breadcrumb cache stack:
+
+        ::
+
+            >>> session.breadcrumb_cache_stack
+            []
+
+        Return list.
+        '''
         return self._breadcrumb_cache_stack
 
     @property
     def breadcrumb_stack(self):
+        '''Session breadcrumb stack:
+
+        ::
+
+            >>> session.breadcrumb_stack
+            []
+
+        Return list.
+        '''
         return self._breadcrumb_stack
 
     @property
     def command_history(self):
+        '''Session command history:
+
+        ::
+
+            >>> session.command_history
+            []
+        
+        Return list.
+        '''
         return self._command_history
 
     @property
     def command_history_string(self):
+        '''Session command history string:
+
+        ::
+
+            >>> session.command_history_string
+            ''
+
+        Return string.
+        '''
         return ' '.join(self.explicit_command_history)
 
     @property
     def current_materials_directory_path(self):
+        '''Session current materials directory path:
+
+        ::
+
+            >>> session.current_materials_directory_path
+            '.../abjad/experimental/system_materials'
+
+        Return string.
+        '''
         if self.is_in_score:
             parts = []
             parts.append(self.configuration.user_scores_directory_path)
@@ -89,6 +158,15 @@ class Session(abctools.AbjadObject):
 
     @property
     def current_materials_package_path(self):
+        '''Session current materials package path:
+
+        ::
+
+            >>> session.current_materials_package_path
+            'system_materials'
+
+        Return string.
+        '''
         if self.is_in_score:
             parts = []
             parts.append(self.underscore_delimited_current_score_name)
@@ -99,6 +177,15 @@ class Session(abctools.AbjadObject):
 
     @property
     def current_score_package_proxy(self):
+        '''Session current score package proxy:
+
+        ::
+
+            >>> session.current_score_package_proxy is None
+            True
+
+        Return score package proxy or none.
+        '''
         from experimental.tools.scoremanagertools.proxies.ScorePackageProxy import ScorePackageProxy
         if self.is_in_score:
             return ScorePackageProxy(
@@ -106,6 +193,17 @@ class Session(abctools.AbjadObject):
 
     @property
     def current_segments_directory_path(self):
+        '''Session current segments directory path:
+
+        ::
+
+            >>> session.current_segments_directory_path # doctest: +SKIP
+            '~/score_manager/sketches'
+
+        (Output will vary according to configuration.)
+
+        Return string.
+        '''
         if self.is_in_score:
             parts = []
             parts.append(self.configuration.user_scores_directory_path)
@@ -117,6 +215,15 @@ class Session(abctools.AbjadObject):
 
     @property
     def current_segments_package_path(self):
+        '''Session current segments package path:
+
+        ::
+
+            >>> session.current_segments_package_path
+            'sketches'
+
+        Return string.
+        '''
         if self.is_in_score:
             parts = []
             parts.append(self.underscore_delimited_current_score_name)
@@ -127,6 +234,15 @@ class Session(abctools.AbjadObject):
 
     @property
     def current_specifiers_directory_path(self):
+        '''Session current specifiers directory path:
+
+        ::
+
+            >>> session.current_specifiers_directory_path
+            '.../abjad/experimental/system_specifiers'
+
+        Return string.
+        '''
         if self.is_in_score:
             return os.path.join(
                 self.configuration.user_scores_directory_path, 
@@ -137,6 +253,15 @@ class Session(abctools.AbjadObject):
 
     @property
     def current_specifiers_package_path(self):
+        '''Session current specifiers package path:
+
+        ::
+
+            >>> session.current_specifiers_package_path
+            'system_specifiers'
+
+        Return string.
+        '''
         if self.is_in_score:
             parts = []
             parts.append(self.underscore_delimited_current_score_name)
@@ -147,6 +272,15 @@ class Session(abctools.AbjadObject):
 
     @property
     def explicit_command_history(self):
+        '''Session explicit command history:
+
+        ::
+
+            >>> session.explicit_command_history
+            []
+
+        Return list.
+        '''
         result = []
         for command in self.command_history:
             if command == '':
@@ -157,18 +291,55 @@ class Session(abctools.AbjadObject):
 
     @property
     def is_complete(self):
+        '''True when session is complete. Otherwise false:
+
+        ::
+
+            >>> session.is_complete
+            False
+
+        Return boolean.
+        '''
         return self.user_specified_quit
 
     @property
     def is_displayable(self):
+        '''True when session is displayable. Otherwise false:
+
+        ::
+
+            >>> session.is_displayable
+            True
+
+        Return boolean.
+        '''
         return not self.user_input
 
     @property
     def is_in_score(self):
+        '''True when session is in score. Otherwise false:
+
+        ::
+
+            >>> session.is_in_score
+            False
+
+        Return boolean.
+        '''
         return self.underscore_delimited_current_score_name is not None
 
     @property
     def is_navigating_to_sibling_score(self):
+        '''True when session is navigating to sibling score.
+        Otherwise false:
+
+        ::
+            
+            >>> session.is_navigating_to_sibling_score
+            False
+
+        Return boolean.
+        '''
         if self.is_navigating_to_next_score:
             return True
         if self.is_navigating_to_prev_score:
@@ -177,24 +348,69 @@ class Session(abctools.AbjadObject):
 
     @property
     def last_semantic_command(self):
+        '''Session last semantic command:
+
+        ::
+
+            >>> session.last_semantic_command is None
+            True
+
+        Return string or none.
+        '''
         for command in reversed(self.command_history):
             if not command.startswith('.'):
                 return command
 
     @property
     def menu_header(self):
+        '''Session menu header:
+
+        ::
+
+            >>> session.menu_header
+            ''
+
+        Return string.
+        '''
         return '\n'.join(self.format_breadcrumb_stack())
 
     @property
     def scores_to_show(self):
+        '''Session scores to show:
+
+        ::
+
+            >>> session.scores_to_show
+            'active'
+
+        Return string.
+        '''
         return self._scores_to_show
 
     @property
     def session_once_had_user_input(self):
+        '''True when session once had user input. Otherwise false:
+
+        ::
+
+            >>> session.session_once_had_user_input
+            False
+
+        Return boolean.
+        '''
         return self._session_once_had_user_input
 
     @property
     def testable_command_history_string(self):
+        '''Session testable command history string:
+
+        ::
+
+            >>> session.testable_command_history_string
+            ''
+
+        Return string.
+        '''
         result = []
         for part in self.explicit_command_history:
             if ' ' in part and ',' not in part:
@@ -202,21 +418,31 @@ class Session(abctools.AbjadObject):
             result.append(part)
         return ' '.join(result)
 
-    @apply
-    def transcribe_next_command():
-        def fget(self):
-            return self._transcribe_next_command
-        def fset(self, transcribe_next_command):
-            assert isinstance(transcribe_next_command, bool)
-            self._transcribe_next_command = transcribe_next_command
-        return property(**locals())
-
     @property
     def transcript(self):
+        '''Session transcript:
+
+        ::
+
+            >>> session.transcript
+            Transcript()
+
+        Return transcript.
+        '''
         return self._transcript
 
     @property
     def user_input_is_consumed(self):
+        '''True when session user input is consumed.
+        Otherwise false:
+
+        ::
+
+            >>> session.user_input_is_consumed
+            False
+
+        Return boolean.
+        '''
         if self._session_once_had_user_input:
             if self.user_input is None:
                 return True
@@ -285,6 +511,15 @@ class Session(abctools.AbjadObject):
         def fset(self, nonnumbered_menu_sections_are_hidden):
             assert isinstance(nonnumbered_menu_sections_are_hidden, bool)
             self._nonnumbered_menu_sections_are_hidden = nonnumbered_menu_sections_are_hidden
+        return property(**locals())
+
+    @apply
+    def transcribe_next_command():
+        def fget(self):
+            return self._transcribe_next_command
+        def fset(self, transcribe_next_command):
+            assert isinstance(transcribe_next_command, bool)
+            self._transcribe_next_command = transcribe_next_command
         return property(**locals())
 
     @apply
