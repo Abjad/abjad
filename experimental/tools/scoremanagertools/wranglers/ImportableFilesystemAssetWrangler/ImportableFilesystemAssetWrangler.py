@@ -13,6 +13,13 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
         score_internal_asset_container_path_infix_parts=None,
         session=None,
         ):
+        system_asset_container_directory_paths = system_asset_container_directory_paths or \
+            [packagepathtools.package_path_to_directory_path(x) for x in system_asset_container_package_paths]
+        if user_asset_container_directory_paths is None and \
+            user_asset_container_package_paths is not None:
+            user_asset_container_directory_paths = [
+                packagepathtools.package_path_to_directory_path(x) 
+                for x in user_asset_container_package_paths]
         FilesystemAssetWrangler.__init__(self,
             system_asset_container_directory_paths=system_asset_container_directory_paths,
             user_asset_container_directory_paths=user_asset_container_directory_paths,
@@ -61,23 +68,14 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
         return scoremanagertools.proxies.PackageProxy
 
     @property
-    def current_asset_container_directory_path(self):
-        return packagepathtools.package_path_to_directory_path(
-            self.current_asset_container_package_path)
-
-    @property
     def current_asset_container_package_path(self):
         if self.session.is_in_score:
             parts = []
             parts.append(self.session.current_score_package_name)
             parts.extend(self.score_internal_asset_container_path_infix_parts)
             return '.'.join(parts)
-        elif self.list_system_asset_container_package_paths():
+        if self.list_system_asset_container_package_paths():
             return self.list_system_asset_container_package_paths()[0]
-
-    @property
-    def current_asset_container_proxy(self):
-        return self.asset_container_class(self.current_asset_container_package_path)
 
     @property
     def system_asset_container_package_paths(self):

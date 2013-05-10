@@ -85,8 +85,19 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         return scoremanagertools.proxies.DirectoryProxy
 
     @property
+    def current_asset_container_directory_path(self):
+        if self.session.is_in_score:
+            parts = []
+            parts.append(self.configuration.user_scores_directory_path)
+            parts.append(self.session.current_score_package_name)
+            parts.extend(self.score_internal_asset_container_path_infix_parts)
+            return os.path.join(*parts)
+        if self.list_system_asset_container_directory_paths():
+            return self.list_system_asset_container_directory_paths()[0]
+
+    @property
     def current_asset_container_proxy(self):
-        return self.asset_container_class(self.current_asset_container_filesystem_path)
+        return self.asset_container_class(self.current_asset_container_directory_path)
 
     @property
     def score_internal_asset_container_path_infix_parts(self):
