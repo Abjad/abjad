@@ -95,7 +95,7 @@ class Menu(MenuSectionAggregator):
             if self.explicit_title is not None:
                 title = self.explicit_title
             else:
-                title = self.session.menu_header
+                title = self._session.menu_header
             menu_lines.append(stringtools.capitalize_string_start(title))
             menu_lines.append('')
         return menu_lines
@@ -118,7 +118,7 @@ class Menu(MenuSectionAggregator):
         for section in self.sections:
             section_menu_lines = section.make_menu_lines()
             if not section.is_hidden:
-                if not self.session.nonnumbered_menu_sections_are_hidden or \
+                if not self._session.nonnumbered_menu_sections_are_hidden or \
                     section.is_numbered or section.is_parenthetically_numbered:
                     menu_lines.extend(section_menu_lines)
         if self.hide_current_run:
@@ -175,13 +175,13 @@ class Menu(MenuSectionAggregator):
 
     def conditionally_display_menu(self, flamingo_input=None):
         self.conditionally_clear_terminal()
-        self.io.display(self.menu_lines, capitalize_first_character=False)
+        self._io.display(self.menu_lines, capitalize_first_character=False)
         if flamingo_input is not None:
             return flamingo_input
-        user_response = self.io.handle_raw_input_with_default('', default=self.prompt_default)
+        user_response = self._io.handle_raw_input_with_default('', default=self.prompt_default)
         directive = self.change_user_input_to_directive(user_response)
         directive = self.strip_default_indicators_from_strings(directive)
-        self.session.hide_next_redraw = False
+        self._session.hide_next_redraw = False
         directive = self.handle_hidden_key(directive)
         return directive
 
@@ -212,7 +212,7 @@ class Menu(MenuSectionAggregator):
         section = MenuSection(is_hidden=is_hidden, is_internally_keyed=is_internally_keyed,
             is_keyed=is_keyed, is_numbered=is_numbered,
             is_parenthetically_numbered=is_parenthetically_numbered, is_ranged=is_ranged,
-            session=self.session, where=self.where)
+            session=self._session, where=self.where)
         self.sections.append(section)
         return section
 
@@ -228,13 +228,13 @@ class Menu(MenuSectionAggregator):
         return section.menu_entry_return_values[entry_index]
 
     def run(self, clear=True, flamingo_input=None, user_input=None):
-        self.io.assign_user_input(user_input=user_input)
+        self._io.assign_user_input(user_input=user_input)
         clear, hide_current_run = clear, False
         while True:
             self.should_clear_terminal, self.hide_current_run = clear, hide_current_run
             clear, hide_current_run = False, True
             result = self.conditionally_display_menu(flamingo_input=flamingo_input)
-            if self.session.is_complete:
+            if self._session.is_complete:
                 break
             elif result == 'r':
                 clear, hide_current_run = True, False

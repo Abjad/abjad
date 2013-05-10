@@ -110,19 +110,19 @@ class FilesystemAssetProxy(ScoreManagerObject):
         shutil.copyfile(self.filesystem_path, new_filesystem_path)
 
     def copy_interactively(self, user_input=None):
-        self.io.assign_user_input(user_input=user_input)
-        getter = self.io.make_getter()
+        self._io.assign_user_input(user_input=user_input)
+        getter = self._io.make_getter()
         getter.append_underscore_delimited_lowercase_file_name('new name')
         result = getter.run()
-        if self.session.backtrack():
+        if self._session.backtrack():
             return
         new_asset_name = self._space_delimited_lowercase_name_to_asset_name(result)
         new_path = os.path.join(self.filesystem_directory_name, new_asset_name)
-        self.io.display('new path will be {}'.format(new_path))
-        if not self.io.confirm():
+        self._io.display('new path will be {}'.format(new_path))
+        if not self._io.confirm():
             return
         self.copy(new_path)
-        self.io.proceed('asset copied.')
+        self._io.proceed('asset copied.')
 
     @abc.abstractmethod
     def fix(self):
@@ -149,17 +149,17 @@ class FilesystemAssetProxy(ScoreManagerObject):
             return True
 
     def remove_interactively(self, user_input=None):
-        self.io.assign_user_input(user_input=user_input)
-        self.io.display(['{} will be removed.'.format(self.filesystem_path), ''])
-        getter = self.io.make_getter(where=self.where())
+        self._io.assign_user_input(user_input=user_input)
+        self._io.display(['{} will be removed.'.format(self.filesystem_path), ''])
+        getter = self._io.make_getter(where=self.where())
         getter.append_string("type 'remove' to proceed")
         result = getter.run()
-        if self.session.backtrack():
+        if self._session.backtrack():
             return
         if not result == 'remove':
             return
         if self.remove():
-            self.io.proceed('{} removed.'.format(self.filesystem_path))
+            self._io.proceed('{} removed.'.format(self.filesystem_path))
 
     def rename(self, new_path):
         if self.is_versioned:
@@ -174,40 +174,40 @@ class FilesystemAssetProxy(ScoreManagerObject):
             self._filesystem_path = new_path
 
     def rename_interactively(self, user_input=None):
-        self.io.assign_user_input(user_input=user_input)
-        getter = self.io.make_getter(where=self.where())
+        self._io.assign_user_input(user_input=user_input)
+        getter = self._io.make_getter(where=self.where())
         getter.append_underscore_delimited_lowercase_file_name('new name')
         getter.include_newlines = False
         result = getter.run()
-        if self.session.backtrack():
+        if self._session.backtrack():
             return
         new_path = os.path.join(self.filesystem_directory_name, result)
-        self.io.display(['new path name will be: "{}"'.format(new_path), ''])
-        if not self.io.confirm():
+        self._io.display(['new path name will be: "{}"'.format(new_path), ''])
+        if not self._io.confirm():
             return
         if self.rename(new_path):
-            self.io.proceed('asset renamed.')
+            self._io.proceed('asset renamed.')
 
     def svn_add(self, is_interactive=False):
         if is_interactive:
-            self.io.display(self.filesystem_path)
+            self._io.display(self.filesystem_path)
         proc = subprocess.Popen(self._svn_add_command, shell=True, stdout=subprocess.PIPE)
         lines = [line.strip() for line in proc.stdout.readlines()]
         lines.append('')
         if is_interactive:
-            self.io.display(lines)
-        self.io.proceed(is_interactive=is_interactive)
+            self._io.display(lines)
+        self._io.proceed(is_interactive=is_interactive)
 
     def svn_ci(self, commit_message=None, is_interactive=True):
         if commit_message is None:
-            getter = self.io.make_getter(where=self.where())
+            getter = self._io.make_getter(where=self.where())
             getter.append_string('commit message')
             commit_message = getter.run()
-            if self.session.backtrack():
+            if self._session.backtrack():
                 return
             line = 'commit message will be: "{}"\n'.format(commit_message)
-            self.io.display(line)
-            if not self.io.confirm():
+            self._io.display(line)
+            if not self._io.confirm():
                 return
         lines = []
         lines.append(self.filesystem_path)
@@ -215,28 +215,28 @@ class FilesystemAssetProxy(ScoreManagerObject):
         proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
         lines.extend([line.strip() for line in proc.stdout.readlines()])
         lines.append('')
-        self.io.display(lines)
-        self.io.proceed(is_interactive=is_interactive)
+        self._io.display(lines)
+        self._io.proceed(is_interactive=is_interactive)
 
     def svn_st(self, is_interactive=True):
         if is_interactive:
-            self.io.display(self.filesystem_path)
+            self._io.display(self.filesystem_path)
         command = 'svn st -u {}'.format(self.filesystem_path)
         proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
         lines = [line.strip() for line in proc.stdout.readlines()]
         lines.append('')
-        self.io.display(lines)
-        self.io.proceed(is_interactive=is_interactive)
+        self._io.display(lines)
+        self._io.proceed(is_interactive=is_interactive)
 
     def svn_up(self, is_interactive=True):
         if is_interactive:
-            self.io.display(self.filesystem_path)
+            self._io.display(self.filesystem_path)
         command = 'svn up {}'.format(self.filesystem_path)
         proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
         lines = [line.strip() for line in proc.stdout.readlines()]
         lines.append('')
-        self.io.display(lines)
-        self.io.proceed(is_interactive=is_interactive)
+        self._io.display(lines)
+        self._io.proceed(is_interactive=is_interactive)
 
     def touch(self):
         os.system('touch {}'.format(self.filesystem_path))
@@ -250,15 +250,15 @@ class FilesystemAssetProxy(ScoreManagerObject):
             return True
 
     def write_boilerplate_interactively(self, user_input=None):
-        self.io.assign_user_input(user_input=user_input)
-        getter = self.io.make_getter(where=self.where())
+        self._io.assign_user_input(user_input=user_input)
+        getter = self._io.make_getter(where=self.where())
         getter.append_underscore_delimited_lowercase_file_name('name of boilerplate asset')
-        self.session.push_backtrack()
+        self._session.push_backtrack()
         boilerplate_filesystem_asset_name = getter.run()
-        self.session.pop_backtrack()
-        if self.session.backtrack():
+        self._session.pop_backtrack()
+        if self._session.backtrack():
             return
         if self.write_boilerplate(boilerplate_filesystem_asset_name):
-            self.io.proceed('boilerplate asset copied.')
+            self._io.proceed('boilerplate asset copied.')
         else:
-            self.io.proceed('boilerplate asset {!r} does not exist.'.format(boilerplate_filesystem_asset_name))
+            self._io.proceed('boilerplate asset {!r} does not exist.'.format(boilerplate_filesystem_asset_name))

@@ -5,7 +5,7 @@ def test_SegmentPackageWrangler_read_only_attributes_01():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     wrangler = score_manager.segment_package_wrangler
-    assert not wrangler.session.is_in_score
+    assert not wrangler._session.is_in_score
 
     assert wrangler.breadcrumb == 'sketches'
     assert wrangler.current_asset_container_package_path == 'sketches'
@@ -24,8 +24,8 @@ def test_SegmentPackageWrangler_read_only_attributes_02():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     wrangler = score_manager.segment_package_wrangler
-    wrangler.session.underscore_delimited_current_score_name = 'example_score_1'
-    assert wrangler.session.is_in_score
+    wrangler._session.underscore_delimited_current_score_name = 'example_score_1'
+    assert wrangler._session.is_in_score
 
     assert wrangler.breadcrumb == 'segments'
 

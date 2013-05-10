@@ -18,12 +18,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.has_target
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.io
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.session
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.space_delimited_lowercase_target_class_name
    :noindex:
 

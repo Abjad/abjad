@@ -319,12 +319,12 @@ class UserInputGetter(MenuSectionAggregator):
             lines = []
             lines.append(self.helps[self.prompt_index])
             lines.append('')
-            self.io.display(lines)
+            self._io.display(lines)
 
     def display_title(self):
         title_lines = self.make_title_lines()
         if title_lines:
-            self.io.display(title_lines)
+            self._io.display(title_lines)
         pass
 
     def evaluate_test(self, test, argument):
@@ -384,14 +384,14 @@ class UserInputGetter(MenuSectionAggregator):
             default = str(self.defaults[self.prompt_index])
             include_chevron = self.chevrons[self.prompt_index]
             prompt = self.indent_and_number_prompt(prompt)
-            user_response = self.io.handle_raw_input_with_default(prompt, default=default,
+            user_response = self._io.handle_raw_input_with_default(prompt, default=default,
                 include_chevron=include_chevron, include_newline=self.include_newlines,
                 prompt_character=self.prompt_character, capitalize_prompt=self.capitalize_prompts)
             if user_response is None:
                 self.prompt_index = self.prompt_index + 1
                 break
             user_response = self.handle_hidden_key(user_response)
-            if self.session.backtrack():
+            if self._session.backtrack():
                 return False
             elif user_response is None:
                 continue
@@ -418,10 +418,10 @@ class UserInputGetter(MenuSectionAggregator):
                 break
 
     def run(self, user_input=None, include_chevron=True):
-        self.io.assign_user_input(user_input=user_input)
-        self.session.push_backtrack()
+        self._io.assign_user_input(user_input=user_input)
+        self._session.push_backtrack()
         self.present_prompts_and_store_values(include_chevron=include_chevron)
-        self.session.pop_backtrack()
+        self._session.pop_backtrack()
         if len(self.values) == 1:
             return self.values[0]
         else:
@@ -434,7 +434,7 @@ class UserInputGetter(MenuSectionAggregator):
         else:
             lines.append('help string not available.')
         lines.append('')
-        self.io.display(lines)
+        self._io.display(lines)
 
     def store_value(self, user_response):
         assert isinstance(user_response, str)

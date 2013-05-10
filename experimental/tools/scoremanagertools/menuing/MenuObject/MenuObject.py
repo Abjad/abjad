@@ -57,9 +57,9 @@ class MenuObject(ScoreManagerObject):
     ### PUBLIC METHODS ###
 
     def conditionally_clear_terminal(self):
-        if not self.session.hide_next_redraw:
+        if not self._session.hide_next_redraw:
             if self.should_clear_terminal:
-                self.io.conditionally_clear_terminal()
+                self._io.conditionally_clear_terminal()
 
     def edit_client_source_file(self):
         if self.where is not None:
@@ -71,12 +71,12 @@ class MenuObject(ScoreManagerObject):
             lines = []
             lines.append("where-tracking not enabled. Use 'tw' to toggle where-tracking.")
             lines.append('')
-            self.io.display(lines)
-            self.session.hide_next_redraw = True
+            self._io.display(lines)
+            self._session.hide_next_redraw = True
 
     def exec_statement(self):
         lines = []
-        statement = self.io.handle_raw_input('XCF', include_newline=False)
+        statement = self._io.handle_raw_input('XCF', include_newline=False)
         command = 'from abjad import *'
         exec(command)
         try:
@@ -87,16 +87,16 @@ class MenuObject(ScoreManagerObject):
         except:
             lines.append('expression not executable.')
         lines.append('')
-        self.io.display(lines)
-        self.session.hide_next_redraw = True
+        self._io.display(lines)
+        self._session.hide_next_redraw = True
 
     def grep_directories(self):
-        regex = self.io.handle_raw_input('regex')
+        regex = self._io.handle_raw_input('regex')
         command = 'grep -Irn "{}" * | grep -v svn'.format(regex)
         proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
         lines = [line.strip() for line in proc.stdout.readlines()]
         lines.append('')
-        self.io.display(lines, capitalize_first_character=False)
+        self._io.display(lines, capitalize_first_character=False)
 
     def make_default_hidden_section(self, session=None, where=None):
         from experimental.tools.scoremanagertools.menuing.MenuSection import MenuSection
@@ -150,15 +150,15 @@ class MenuObject(ScoreManagerObject):
             lines.append('{} line: {}'.format(self.make_tab(1), self.where[2]))
             lines.append('{} meth: {}'.format(self.make_tab(1), self.where[3]))
             lines.append('')
-            self.io.display(lines, capitalize_first_character=False)
+            self._io.display(lines, capitalize_first_character=False)
         else:
             lines.append("where-tracking not enabled. Use 'tw' to toggle where-tracking.")
             lines.append('')
-            self.io.display(lines)
-        self.session.hide_next_redraw = True
+            self._io.display(lines)
+        self._session.hide_next_redraw = True
 
     def toggle_menu(self):
-        if self.session.nonnumbered_menu_sections_are_hidden:
-            self.session.nonnumbered_menu_sections_are_hidden = False
+        if self._session.nonnumbered_menu_sections_are_hidden:
+            self._session.nonnumbered_menu_sections_are_hidden = False
         else:
-            self.session.nonnumbered_menu_sections_are_hidden = True
+            self._session.nonnumbered_menu_sections_are_hidden = True

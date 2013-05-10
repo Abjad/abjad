@@ -12,12 +12,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.TempoMarkSelector.TempoMarkSelector.TempoMarkSelector.breadcrumb
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.selectors.TempoMarkSelector.TempoMarkSelector.TempoMarkSelector.io
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.selectors.TempoMarkSelector.TempoMarkSelector.TempoMarkSelector.session
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.TempoMarkSelector.TempoMarkSelector.TempoMarkSelector.storage_format
    :noindex:
 

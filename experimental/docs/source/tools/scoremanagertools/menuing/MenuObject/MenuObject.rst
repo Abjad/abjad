@@ -9,12 +9,6 @@ scoremanagertools.menuing.MenuObject
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuObject.MenuObject.MenuObject.io
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuObject.MenuObject.MenuObject.session
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuObject.MenuObject.MenuObject.storage_format
    :noindex:
 

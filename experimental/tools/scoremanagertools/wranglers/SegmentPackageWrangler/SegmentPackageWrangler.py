@@ -23,7 +23,7 @@ class SegmentPackageWrangler(PackageWrangler):
 
     @property
     def breadcrumb(self):
-        if self.session.is_in_score:
+        if self._session.is_in_score:
             return 'segments'
         else:
             return 'sketches'
@@ -39,11 +39,11 @@ class SegmentPackageWrangler(PackageWrangler):
             segment_package_proxy.run()
 
     def make_asset_interactively(self):
-        segment_package_proxy = SegmentPackageProxy(session=self.session)
+        segment_package_proxy = SegmentPackageProxy(session=self._session)
         segment_package_proxy.make_asset_interactively()
 
     def make_main_menu(self, head=None):
-        menu, section = self.io.make_menu(where=self.where(), is_numbered=True)
+        menu, section = self._io.make_menu(where=self.where(), is_numbered=True)
         section.tokens = self.list_space_delimited_lowercase_asset_names(head=head)
         section = menu.make_section()
         section.append(('new', 'new segment'))

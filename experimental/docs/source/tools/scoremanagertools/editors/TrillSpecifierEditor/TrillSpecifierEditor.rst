@@ -18,12 +18,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.has_target
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.io
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.session
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.space_delimited_lowercase_target_class_name
    :noindex:
 

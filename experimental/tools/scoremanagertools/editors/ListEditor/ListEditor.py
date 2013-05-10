@@ -48,26 +48,26 @@ class ListEditor(InteractiveEditor):
     def add_items_interactively(self):
         if self.item_creator_class:
             item_creator = self.item_creator_class(
-                session=self.session, **self.item_creator_class_kwargs)
-            self.session.push_backtrack()
+                session=self._session, **self.item_creator_class_kwargs)
+            self._session.push_backtrack()
             result = item_creator.run()
-            self.session.pop_backtrack()
-            if self.session.backtrack():
+            self._session.pop_backtrack()
+            if self._session.backtrack():
                 return
             if result == 'done':
-                self.session.is_autoadding = False
+                self._session.is_autoadding = False
                 return
             result = result or item_creator.target
         elif self.item_getter_configuration_method:
-            getter = self.io.make_getter(where=self.where())
+            getter = self._io.make_getter(where=self.where())
             self.item_getter_configuration_method(getter, self.item_identifier)
-            self.session.push_backtrack()
+            self._session.push_backtrack()
             item_initialization_token = getter.run()
-            self.session.pop_backtrack()
-            if self.session.backtrack():
+            self._session.pop_backtrack()
+            if self._session.backtrack():
                 return
             if item_initialization_token == 'done':
-                self.session.is_autoadding = False
+                self._session.is_autoadding = False
                 return
             if self.item_class:
                 result = self.item_class(item_initialization_token)
@@ -92,7 +92,7 @@ class ListEditor(InteractiveEditor):
     def edit_item_interactively(self, item_number):
         item = self.get_item_from_item_number(item_number)
         if item is not None:
-            item_editor = self.item_editor_class(session=self.session, target=item)
+            item_editor = self.item_editor_class(session=self._session, target=item)
             item_editor.run()
             item_index = int(item_number) - 1
             self.items[item_index] = item_editor.target
@@ -118,7 +118,7 @@ class ListEditor(InteractiveEditor):
             InteractiveEditor.handle_main_menu_result(self, result)
 
     def make_main_menu(self):
-        menu, attribute_management_section = self.io.make_menu(where=self.where(),
+        menu, attribute_management_section = self._io.make_menu(where=self.where(),
             is_keyed=getattr(self.target_manifest, 'is_keyed', False))
         attribute_management_section.tokens = self.target_attribute_tokens
         attribute_management_section.show_existing_values = True
@@ -136,11 +136,11 @@ class ListEditor(InteractiveEditor):
         return menu
 
     def move_item_interactively(self):
-        getter = self.io.make_getter(where=self.where())
+        getter = self._io.make_getter(where=self.where())
         getter.append_integer_in_range('old number', 1, len(self.items))
         getter.append_integer_in_range('new number', 1, len(self.items))
         result = getter.run()
-        if self.session.backtrack():
+        if self._session.backtrack():
             return
         old_number, new_number = result
         old_index, new_index = old_number - 1, new_number - 1
@@ -149,10 +149,10 @@ class ListEditor(InteractiveEditor):
         self.items.insert(new_index, item)
 
     def remove_items_interactively(self):
-        getter = self.io.make_getter(where=self.where())
+        getter = self._io.make_getter(where=self.where())
         getter.append_argument_range(self.items_identifier, self.target_summary_lines)
         argument_range = getter.run()
-        if self.session.backtrack():
+        if self._session.backtrack():
             return
         indices = [argument_number - 1 for argument_number in argument_range]
         indices = list(reversed(sorted(set(indices))))

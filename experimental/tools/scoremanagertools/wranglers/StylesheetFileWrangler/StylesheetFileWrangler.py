@@ -47,16 +47,16 @@ class StylesheetFileWrangler(FileWrangler):
         else:
             stylesheet_file_name = os.path.join(self.configuration.system_stylesheets_directory_path, result)
             stylesheet_proxy = scoremanagertools.proxies.StylesheetFileProxy(
-                stylesheet_file_name, session=self.session)
+                stylesheet_file_name, session=self._session)
             stylesheet_proxy.run()
 
     # TODO: write test
     def make_asset_interactively(self):
         from experimental.tools import scoremanagertools
-        getter = self.io.make_getter(where=self.where())
+        getter = self._io.make_getter(where=self.where())
         getter.append_string('stylesheet name')
         stylesheet_file_name = getter.run()
-        if self.session.backtrack():
+        if self._session.backtrack():
             return
         stylesheet_file_name = stringtools.string_to_accent_free_underscored_delimited_lowercase(
             stylesheet_file_name)
@@ -65,11 +65,11 @@ class StylesheetFileWrangler(FileWrangler):
         stylesheet_file_name = os.path.join(
             self.configuration.system_stylesheets_directory_path, stylesheet_file_name)
         stylesheet_proxy = scoremanagertools.proxies.StylesheetFileProxy(
-            stylesheet_file_name, session=self.session)
+            stylesheet_file_name, session=self._session)
         stylesheet_proxy.edit()
 
     def make_main_menu(self):
-        menu, section = self.io.make_menu(where=self.where(), is_parenthetically_numbered=True)
+        menu, section = self._io.make_menu(where=self.where(), is_parenthetically_numbered=True)
         section.tokens = self.stylesheet_file_names
         section = menu.make_section()
         section.append(('new', 'new stylesheet'))
@@ -77,20 +77,20 @@ class StylesheetFileWrangler(FileWrangler):
 
     # TODO: write test
     def select_stylesheet_file_name_interactively(self, clear=True, cache=False):
-        self.session.cache_breadcrumbs(cache=cache)
-        menu, section = self.io.make_menu(where=self.where(), is_parenthetically_numbered=True)
+        self._session.cache_breadcrumbs(cache=cache)
+        menu, section = self._io.make_menu(where=self.where(), is_parenthetically_numbered=True)
         section.tokens = self.stylesheet_file_names
         while True:
-            self.session.push_breadcrumb('select stylesheet')
+            self._session.push_breadcrumb('select stylesheet')
             result = menu.run(clear=clear)
-            if self.session.backtrack():
+            if self._session.backtrack():
                 break
             elif not result:
-                self.session.pop_breadcrumb()
+                self._session.pop_breadcrumb()
                 continue
             else:
                 break
-        self.session.pop_breadcrumb()
-        self.session.restore_breadcrumbs(cache=cache)
+        self._session.pop_breadcrumb()
+        self._session.restore_breadcrumbs(cache=cache)
         result = os.path.join(self.configuration.system_stylesheets_directory_path, result)
         return result

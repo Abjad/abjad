@@ -22,13 +22,13 @@ class IO(AbjadObject):
 
     def assign_user_input(self, user_input=None):
         if user_input is not None:
-            if self.session.user_input:
-                self.session.user_input = user_input + ' ' + self.session.user_input
+            if self._session.user_input:
+                self._session.user_input = user_input + ' ' + self._session.user_input
             else:
-                self.session.user_input = user_input
+                self._session.user_input = user_input
 
     def conditionally_clear_terminal(self):
-        if self.session.is_displayable:
+        if self._session.is_displayable:
             iotools.clear_terminal()
 
     def confirm(self, prompt_string='ok?', include_chevron=False):
@@ -36,7 +36,7 @@ class IO(AbjadObject):
         getter.append_yes_no_string(prompt_string)
         getter.include_newlines = False
         result = getter.run(include_chevron=include_chevron)
-        if self.session.backtrack():
+        if self._session.backtrack():
             return
         return 'yes'.startswith(result.lower())
 
@@ -44,13 +44,13 @@ class IO(AbjadObject):
         assert isinstance(lines, (str, list))
         if isinstance(lines, str):
             lines = [lines]
-        if not self.session.hide_next_redraw:
+        if not self._session.hide_next_redraw:
             if capitalize_first_character:
                 lines = [stringtools.capitalize_string_start(line) for line in lines]
             if lines:
-                if self.session.transcribe_next_command:
-                    self.session.transcript.append_lines(lines)
-            if self.session.is_displayable:
+                if self._session.transcribe_next_command:
+                    self._session.transcript.append_lines(lines)
+            if self._session.is_displayable:
                 for line in lines:
                     print line
 
@@ -62,25 +62,25 @@ class IO(AbjadObject):
             prompt = prompt + prompt_character + ' '
         else:
             prompt = prompt + ' '
-        if self.session.is_displayable:
+        if self._session.is_displayable:
             user_response = raw_input(prompt)
             if include_newline:
                 if not user_response == 'help':
                     print ''
         else:
             user_response = self.pop_next_user_response_from_user_input()
-        if self.session.transcribe_next_command:
-            self.session.command_history.append(user_response)
+        if self._session.transcribe_next_command:
+            self._session.command_history.append(user_response)
         if user_response == '.':
-            last_semantic_command = self.session.last_semantic_command
+            last_semantic_command = self._session.last_semantic_command
             user_response = last_semantic_command
-        if self.session.transcribe_next_command:
+        if self._session.transcribe_next_command:
             menu_chunk = []
             menu_chunk.append('{}{}'.format(prompt, user_response))
             if include_newline:
                 if not user_response == 'help':
                     menu_chunk.append('')
-            self.session.transcript.append_lines(menu_chunk)
+            self._session.transcript.append_lines(menu_chunk)
         return user_response
 
     def handle_raw_input_with_default(self, prompt, default=None, include_chevron=True, include_newline=True,
@@ -97,12 +97,12 @@ class IO(AbjadObject):
 
     def make_getter(self, where=None):
         from experimental.tools import scoremanagertools
-        return scoremanagertools.menuing.UserInputGetter(where=where, session=self.session)
+        return scoremanagertools.menuing.UserInputGetter(where=where, session=self._session)
 
     def make_menu(self, is_hidden=False, is_internally_keyed=False, is_keyed=True,
         is_numbered=False, is_parenthetically_numbered=False, is_ranged=False, where=None):
         from experimental.tools import scoremanagertools
-        menu = scoremanagertools.menuing.Menu(where=where, session=self.session)
+        menu = scoremanagertools.menuing.Menu(where=where, session=self._session)
         section = menu.make_section(
             is_hidden=is_hidden, is_internally_keyed=is_internally_keyed, is_keyed=is_keyed,
             is_numbered=is_numbered, is_parenthetically_numbered=is_parenthetically_numbered,
@@ -110,21 +110,21 @@ class IO(AbjadObject):
         return menu, section
 
     def pop_next_user_response_from_user_input(self):
-        self.session.last_command_was_composite = False
-        if self.session.user_input is None:
+        self._session.last_command_was_composite = False
+        if self._session.user_input is None:
             return None
-        elif self.session.user_input == '':
-            self.session.user_input = None
+        elif self._session.user_input == '':
+            self._session.user_input = None
             return None
-        elif '\n' in self.session.user_input:
+        elif '\n' in self._session.user_input:
             raise ValueError('no longer implemented.')
-        elif self.session.user_input.startswith('{{'):
-            index = self.session.user_input.find('}}')
-            user_response = self.session.user_input[2:index]
-            user_input = self.session.user_input[index+2:].strip()
-            self.session.last_command_was_composite = True
+        elif self._session.user_input.startswith('{{'):
+            index = self._session.user_input.find('}}')
+            user_response = self._session.user_input[2:index]
+            user_input = self._session.user_input[index+2:].strip()
+            self._session.last_command_was_composite = True
         else:
-            user_input = self.session.user_input.split(' ')
+            user_input = self._session.user_input.split(' ')
             first_parts, rest_parts = [], []
             for i, part in enumerate(user_input):
                 if not part.endswith((',', '-')):
@@ -134,7 +134,7 @@ class IO(AbjadObject):
             user_response = ' '.join(first_parts)
             user_input = ' '.join(rest_parts)
         user_response = user_response.replace('~', ' ')
-        self.session.user_input = user_input
+        self._session.user_input = user_input
         return user_response
 
     def print_not_yet_implemented(self):

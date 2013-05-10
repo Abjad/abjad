@@ -24,4 +24,4 @@ class MaterialModuleProxy(ModuleProxy):
 
     def unimport_materials_package(self):
         self.remove_package_path_from_sys_modules(
-            self.session.current_materials_package_path)
+            self._session.current_materials_package_path)

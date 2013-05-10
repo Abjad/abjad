@@ -26,8 +26,8 @@ score manager-initiated test.
 OBSERVATION: Note that the following ...
 
     def make_score_selection_menu(self):
-        #menu, section = self.io.make_menu(where=self.where(), is_numbered=True, is_keyed=False)
-        menu, section = self.io.make_menu(where='foo', is_numbered=True, is_keyed=False)
+        #menu, section = self._io.make_menu(where=self.where(), is_numbered=True, is_keyed=False)
+        menu, section = self._io.make_menu(where='foo', is_numbered=True, is_keyed=False)
         section.tokens = self.score_package_wrangler.make_visible_asset_menu_tokens()
         return menu
 

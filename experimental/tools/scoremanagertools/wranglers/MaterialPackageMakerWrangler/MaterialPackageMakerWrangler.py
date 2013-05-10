@@ -47,7 +47,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
 
     def get_asset_proxy(self, package_path):
         from experimental.tools.scoremanagertools.proxies.MaterialPackageProxy import MaterialPackageProxy
-        material_package_proxy = MaterialPackageProxy(package_path, session=self.session)
+        material_package_proxy = MaterialPackageProxy(package_path, session=self._session)
         material_package_maker_class_name = material_package_proxy.material_package_maker_class_name
         if material_package_maker_class_name is not None:
             material_package_maker_class = None
@@ -61,7 +61,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
                     self.configuration.user_material_package_makers_package_path, material_package_maker_class_name)
                 exec(command)
             material_package_proxy = material_package_maker_class(
-                package_path, session=self.session)
+                package_path, session=self._session)
         return material_package_proxy
 
     def handle_main_menu_result(self, result):
@@ -159,11 +159,11 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         initializer.close()
 
     def make_asset_interactively(self):
-        getter = self.io.make_getter(where=self.where())
+        getter = self._io.make_getter(where=self.where())
         getter.append_material_package_maker_class_name('material proxy name')
         getter.append_space_delimited_lowercase_string('generic output product')
         result = getter.run()
-        if self.session.backtrack():
+        if self._session.backtrack():
             return
         material_package_maker_class_name, generic_output_product_name = result
         material_package_maker_directory = os.path.join(
@@ -194,7 +194,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         stylesheet_file_pointer.close()
 
     def make_main_menu(self, head=None):
-        menu, section = self.io.make_menu(where=self.where(), is_numbered=True)
+        menu, section = self._io.make_menu(where=self.where(), is_numbered=True)
         section.tokens = self.list_space_delimited_lowercase_asset_names(head=head)
         section = menu.make_section()
         section.append(('new', 'new material package maker'))

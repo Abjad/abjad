@@ -209,7 +209,7 @@ class Session(abctools.AbjadObject):
 
     @property
     def user_input_is_consumed(self):
-        if self.session_once_had_user_input:
+        if self._session_once_had_user_input:
             if self.user_input is None:
                 return True
         return False

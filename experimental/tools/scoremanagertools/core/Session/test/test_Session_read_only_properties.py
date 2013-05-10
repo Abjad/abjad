@@ -40,7 +40,7 @@ def test_Session_read_only_properties_01():
     assert session.last_semantic_command is None
     assert session.menu_header == ''
     assert session.scores_to_show == 'active'
-    assert not session.session_once_had_user_input
+    assert not session._session_once_had_user_input
     assert session.testable_command_history_string == ''
     assert session.transcribe_next_command
     assert not session.user_input_is_consumed

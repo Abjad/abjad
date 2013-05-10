@@ -61,7 +61,7 @@ class ScorePackageWrangler(PackageWrangler):
 
     def list_visible_asset_package_path_and_score_title_pairs(self, head=None):
         result = []
-        scores_to_show = self.session.scores_to_show
+        scores_to_show = self._session.scores_to_show
         for asset_proxy in PackageWrangler.list_asset_proxies(self, head=head):
             tags = asset_proxy.get_tags()
             is_mothballed = tags.get('is_mothballed', False)
@@ -78,7 +78,7 @@ class ScorePackageWrangler(PackageWrangler):
 
     def list_visible_asset_proxies(self, head=None):
         result = []
-        scores_to_show = self.session.scores_to_show
+        scores_to_show = self._session.scores_to_show
         for asset_proxy in PackageWrangler.list_asset_proxies(self, head=head):
             is_mothballed = asset_proxy.get_tag('is_mothballed')
             if scores_to_show == 'all':
@@ -90,8 +90,8 @@ class ScorePackageWrangler(PackageWrangler):
         return result
 
     def make_asset_interactively(self, rollback=False):
-        breadcrumb = self.session.pop_breadcrumb(rollback=rollback)
-        getter = self.io.make_getter(where=self.where())
+        breadcrumb = self._session.pop_breadcrumb(rollback=rollback)
+        getter = self._io.make_getter(where=self.where())
         getter.indent_level = 1
         getter.prompt_character = ':'
         getter.capitalize_prompts = False
@@ -101,14 +101,14 @@ class ScorePackageWrangler(PackageWrangler):
         getter.append_underscore_delimited_lowercase_package_name('package name')
         getter.append_integer_in_range('year', start=1, allow_none=True)
         result = getter.run()
-        if self.session.backtrack():
+        if self._session.backtrack():
             return
         title, score_package_name, year = result
         self.make_asset(score_package_name)
         score_package_proxy = self.get_asset_proxy(score_package_name)
         score_package_proxy.add_tag('title', title)
         score_package_proxy.year_of_completion = year
-        self.session.push_breadcrumb(breadcrumb=breadcrumb, rollback=rollback)
+        self._session.push_breadcrumb(breadcrumb=breadcrumb, rollback=rollback)
 
     def make_main_menu(self):
         self.print_not_yet_implemented()

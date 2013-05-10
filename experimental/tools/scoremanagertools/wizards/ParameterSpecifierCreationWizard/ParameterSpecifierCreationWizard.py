@@ -17,30 +17,30 @@ class ParameterSpecifierCreationWizard(Wizard):
         target_editor_class_name = target_class_name + self.target_editor_class_name_suffix
         command = 'from experimental.tools.scoremanagertools.editors import {} as target_editor_class'.format(target_editor_class_name)
         exec(command)
-        target_editor = target_editor_class(session=self.session, target=target)
+        target_editor = target_editor_class(session=self._session, target=target)
         return target_editor
 
     def run(self, cache=False, clear=True, head=None, user_input=None):
-        self.io.assign_user_input(user_input=user_input)
-        self.session.cache_breadcrumbs(cache=cache)
-        self.session.push_breadcrumb(self.breadcrumb)
-        selector = selectors.ParameterSpecifierClassNameSelector(session=self.session)
-        self.session.push_backtrack()
+        self._io.assign_user_input(user_input=user_input)
+        self._session.cache_breadcrumbs(cache=cache)
+        self._session.push_breadcrumb(self.breadcrumb)
+        selector = selectors.ParameterSpecifierClassNameSelector(session=self._session)
+        self._session.push_backtrack()
         target_class_name = selector.run()
-        self.session.pop_backtrack()
-        if self.session.backtrack():
-            self.session.pop_breadcrumb()
-            self.session.restore_breadcrumbs(cache=cache)
+        self._session.pop_backtrack()
+        if self._session.backtrack():
+            self._session.pop_breadcrumb()
+            self._session.restore_breadcrumbs(cache=cache)
             return
         target_editor = self.get_target_editor(target_class_name)
-        self.session.push_backtrack()
+        self._session.push_backtrack()
         target_editor.run()
-        self.session.pop_backtrack()
-        if self.session.backtrack():
-            self.session.pop_breadcrumb()
-            self.session.restore_breadcrumbs(cache=cache)
+        self._session.pop_backtrack()
+        if self._session.backtrack():
+            self._session.pop_breadcrumb()
+            self._session.restore_breadcrumbs(cache=cache)
             return
-        self.session.pop_breadcrumb()
-        self.session.restore_breadcrumbs(cache=cache)
+        self._session.pop_breadcrumb()
+        self._session.restore_breadcrumbs(cache=cache)
         self.target = target_editor.target
         return self.target

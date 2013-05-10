@@ -12,12 +12,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.breadcrumb
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.io
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.session
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.storage_format
    :noindex:
 

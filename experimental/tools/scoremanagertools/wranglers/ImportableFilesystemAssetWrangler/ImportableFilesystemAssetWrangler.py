@@ -84,9 +84,9 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
 
     @property
     def current_asset_container_package_path(self):
-        if self.session.is_in_score:
+        if self._session.is_in_score:
             parts = []
-            parts.append(self.session.underscore_delimited_current_score_name)
+            parts.append(self._session.underscore_delimited_current_score_name)
             parts.extend(self.asset_container_path_infix_parts)
             return '.'.join(parts)
         if self.list_system_asset_container_package_paths():
@@ -198,7 +198,7 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
     def make_asset_container_packages(self, is_interactive=False):
         self.make_score_external_asset_container_package()
         self.make_score_internal_asset_container_packages()
-        self.io.proceed('missing packages created.', is_interactive=is_interactive)
+        self._io.proceed('missing packages created.', is_interactive=is_interactive)
 
     # TODO: write test
     def make_empty_package(self, package_path):
@@ -228,30 +228,30 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
 
     # TODO: write test
     def rename_asset_interactively(self, head=None):
-        self.session.push_backtrack()
+        self._session.push_backtrack()
         asset_package_path = self.select_asset_package_path_interactively(
             head=head, infinitival_phrase='to rename')
-        self.session.pop_backtrack()
-        if self.session.backtrack():
+        self._session.pop_backtrack()
+        if self._session.backtrack():
             return
         asset_proxy = self.get_asset_proxy(asset_package_path)
         asset_proxy.rename_interactively()
 
     def select_asset_package_path_interactively(
         self, clear=True, cache=False, head=None, infinitival_phrase=None, user_input=None):
-        self.session.cache_breadcrumbs(cache=cache)
+        self._session.cache_breadcrumbs(cache=cache)
         while True:
-            self.session.push_breadcrumb(self.make_asset_selection_breadcrumb(
+            self._session.push_breadcrumb(self.make_asset_selection_breadcrumb(
                 infinitival_phrase=infinitival_phrase))
             menu = self.make_asset_selection_menu(head=head)
             result = menu.run(clear=clear)
-            if self.session.backtrack():
+            if self._session.backtrack():
                 break
             elif not result:
-                self.session.pop_breadcrumb()
+                self._session.pop_breadcrumb()
                 continue
             else:
                 break
-        self.session.pop_breadcrumb()
-        self.session.restore_breadcrumbs(cache=cache)
+        self._session.pop_breadcrumb()
+        self._session.restore_breadcrumbs(cache=cache)
         return result

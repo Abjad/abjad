@@ -42,4 +42,4 @@ class IllustrationBuilderModuleProxy(BasicModuleProxy):
         self.body_lines.append(line)
         self.body_lines.append('illustration = lilypondfiletools.make_basic_lilypond_file(score)\n')
         self.write_to_disk()
-        self.io.proceed('stub illustration builder written to disk.', is_interactive=prompt)
+        self._io.proceed('stub illustration builder written to disk.', is_interactive=prompt)

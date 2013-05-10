@@ -5,7 +5,7 @@ from experimental import *
 
 score_manager = scoremanagertools.scoremanager.ScoreManager()
 wrangler = score_manager.material_package_wrangler
-assert not wrangler.session.is_in_score
+assert not wrangler._session.is_in_score
 
 
 def test_MaterialPackageWrangler_iteration_01():

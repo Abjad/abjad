@@ -22,10 +22,10 @@ class DirectoryProxy(FilesystemAssetProxy):
         pass
 
     def get_filesystem_path_interactively(self):
-        getter = self.io.make_getter(where=self.where())
+        getter = self._io.make_getter(where=self.where())
         getter.append_string('directory path')
         result = getter.run()
-        if self.session.backtrack():
+        if self._session.backtrack():
             return
         self.filesystem_path = result
 
@@ -46,12 +46,12 @@ class DirectoryProxy(FilesystemAssetProxy):
     def make_empty_asset(self, is_interactive=False):
         if not self.exists:
             os.mkdir(self.filesystem_path)
-        self.io.proceed(is_interactive=is_interactive)
+        self._io.proceed(is_interactive=is_interactive)
 
     def print_directory_entries(self):
-        self.io.display(self.list_directory(), capitalize_first_character=False)
-        self.io.display('')
-        self.session.hide_next_redraw = True
+        self._io.display(self.list_directory(), capitalize_first_character=False)
+        self._io.display('')
+        self._session.hide_next_redraw = True
 
     def profile(self):
         pass
@@ -60,6 +60,6 @@ class DirectoryProxy(FilesystemAssetProxy):
         proc = subprocess.Popen('py.test {}'.format(self.filesystem_path), shell=True, stdout=subprocess.PIPE)
         lines = [line.strip() for line in proc.stdout.readlines()]
         if lines:
-            self.io.display(lines)
+            self._io.display(lines)
         line = 'tests run.'
-        self.io.proceed(line, is_interactive=prompt)
+        self._io.proceed(line, is_interactive=prompt)

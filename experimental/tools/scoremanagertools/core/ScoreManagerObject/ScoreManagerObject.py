@@ -19,7 +19,7 @@ class ScoreManagerObject(AbjadObject):
     def __init__(self, session=None):
         from experimental.tools import scoremanagertools
         self._session = session or scoremanagertools.core.Session()
-        self._io = scoremanagertools.core.IO(session=self.session)
+        self._io = scoremanagertools.core.IO(session=self._session)
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 
@@ -35,18 +35,8 @@ class ScoreManagerObject(AbjadObject):
     def _spaced_class_name(self):
         return stringtools.string_to_space_delimited_lowercase(self._class_name)
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
-
-    @property
-    def io(self):
-        return self._io
-
-    @property
-    def session(self):
-        return self._session
-
     ### PUBLIC METHODS ###
 
     def where(self):
-        if self.session.enable_where:
+        if self._session.enable_where:
             return inspect.stack()[1]

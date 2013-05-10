@@ -98,10 +98,10 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     @property
     def current_asset_container_directory_path(self):
-        if self.session.is_in_score:
+        if self._session.is_in_score:
             parts = []
             parts.append(self.configuration.user_scores_directory_path)
-            parts.append(self.session.underscore_delimited_current_score_name)
+            parts.append(self._session.underscore_delimited_current_score_name)
             parts.extend(self.asset_container_path_infix_parts)
             return os.path.join(*parts)
         if self.list_system_asset_container_directory_paths():
@@ -126,7 +126,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         return results
 
     def get_asset_proxy(self, asset_filesystem_path):
-        return self.asset_class(asset_filesystem_path, session=self.session)
+        return self.asset_class(asset_filesystem_path, session=self._session)
 
     @abc.abstractmethod
     def handle_main_menu_result(self, result):
@@ -311,7 +311,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             return 'select {}:'.format(self.asset_class._generic_class_name)
 
     def make_asset_selection_menu(self, head=None):
-        menu, section = self.io.make_menu(where=self.where(), is_keyed=False, is_parenthetically_numbered=True)
+        menu, section = self._io.make_menu(where=self.where(), is_keyed=False, is_parenthetically_numbered=True)
         section.tokens = self.make_visible_asset_menu_tokens(head=head)
         section.return_value_attribute = 'key'
         return menu
@@ -331,7 +331,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     # TODO: write test
     def remove_assets_interactively(self, head=None):
-        getter = self.io.make_getter(where=self.where())
+        getter = self._io.make_getter(where=self.where())
         argument_list = self.list_visible_asset_filesystem_paths(head=head)
         space_delimited_lowercase_asset_class_name = stringtools.string_to_space_delimited_lowercase(
             self.asset_class.__name__)
@@ -339,7 +339,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             space_delimited_lowercase_asset_class_name)
         getter.append_argument_range(plural_space_delimited_lowercase_asset_class_name, argument_list)
         result = getter.run()
-        if self.session.backtrack():
+        if self._session.backtrack():
             return
         asset_indices = [asset_number - 1 for asset_number in result]
         total_assets_removed = 0
@@ -349,54 +349,54 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             asset_proxy = self.get_asset_proxy(asset_filesystem_path)
             asset_proxy.remove()
             total_assets_removed += 1
-        self.io.proceed('{} asset(s) removed.'.format(total_assets_removed))
+        self._io.proceed('{} asset(s) removed.'.format(total_assets_removed))
 
     def run(self, cache=False, clear=True, head=None, rollback=None, user_input=None):
-        self.io.assign_user_input(user_input=user_input)
-        breadcrumb = self.session.pop_breadcrumb(rollback=rollback)
-        self.session.cache_breadcrumbs(cache=cache)
+        self._io.assign_user_input(user_input=user_input)
+        breadcrumb = self._session.pop_breadcrumb(rollback=rollback)
+        self._session.cache_breadcrumbs(cache=cache)
         while True:
-            self.session.push_breadcrumb(self.breadcrumb)
+            self._session.push_breadcrumb(self.breadcrumb)
             menu = self.make_main_menu(head=head)
             result = menu.run(clear=clear)
-            if self.session.backtrack():
+            if self._session.backtrack():
                 break
             elif not result:
-                self.session.pop_breadcrumb()
+                self._session.pop_breadcrumb()
                 continue
             self.handle_main_menu_result(result)
-            if self.session.backtrack():
+            if self._session.backtrack():
                 break
-            self.session.pop_breadcrumb()
-        self.session.pop_breadcrumb()
-        self.session.push_breadcrumb(breadcrumb=breadcrumb, rollback=rollback)
-        self.session.restore_breadcrumbs(cache=cache)
+            self._session.pop_breadcrumb()
+        self._session.pop_breadcrumb()
+        self._session.push_breadcrumb(breadcrumb=breadcrumb, rollback=rollback)
+        self._session.restore_breadcrumbs(cache=cache)
 
     def svn_add(self, is_interactive=True):
         for asset_proxy in self.list_visible_asset_proxies():
             asset_proxy.svn_add(is_interactive=False)
-        self.io.proceed(is_interactive=is_interactive)
+        self._io.proceed(is_interactive=is_interactive)
 
     def svn_ci(self, is_interactive=True):
-        getter = self.io.make_getter(where=self.where())
+        getter = self._io.make_getter(where=self.where())
         getter.append_string('commit message')
         commit_message = getter.run()
-        if self.session.backtrack():
+        if self._session.backtrack():
             return
         line = 'commit message will be: "{}"\n'.format(commit_message)
-        self.io.display(line)
-        if not self.io.confirm():
+        self._io.display(line)
+        if not self._io.confirm():
             return
         for asset_proxy in self.list_visible_asset_proxies():
             asset_proxy.svn_ci(commit_message=commit_message, is_interactive=False)
-        self.io.proceed(is_interactive=is_interactive)
+        self._io.proceed(is_interactive=is_interactive)
 
     def svn_st(self, is_interactive=True):
         for asset_proxy in self.list_visible_asset_proxies():
             asset_proxy.svn_st(is_interactive=False)
-        self.io.proceed(is_interactive=is_interactive)
+        self._io.proceed(is_interactive=is_interactive)
 
     def svn_up(self, is_interactive=True):
         for asset_proxy in self.list_visible_asset_proxies():
             asset_proxy.svn_up(is_interactive=False)
-        self.io.proceed(is_interactive=is_interactive)
+        self._io.proceed(is_interactive=is_interactive)

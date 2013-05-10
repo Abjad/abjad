@@ -23,7 +23,7 @@ class MenuSectionAggregator(MenuObject):
         else:
             key = directive
         if key in ('b', 'back'):
-            self.session.is_backtracking_locally = True
+            self._session.is_backtracking_locally = True
         elif key == 'exec':
             self.exec_statement()
         elif key == 'grep':
@@ -33,25 +33,25 @@ class MenuSectionAggregator(MenuObject):
         elif key == 'hidden':
             self.show_hidden_menu_entries()
         elif key == 'next':
-            self.session.is_navigating_to_next_score = True
-            self.session.is_backtracking_to_score_manager = True
+            self._session.is_navigating_to_next_score = True
+            self._session.is_backtracking_to_score_manager = True
         elif key == 'prev':
-            self.session.is_navigating_to_prev_score = True
-            self.session.is_backtracking_to_score_manager = True
+            self._session.is_navigating_to_prev_score = True
+            self._session.is_backtracking_to_score_manager = True
         elif key in ('q', 'quit'):
-            self.session.user_specified_quit = True
+            self._session.user_specified_quit = True
 #        # TODO: make this redraw!
 #        elif key == 'r':
 #            pass
         elif isinstance(key, str) and 3 <= len(key) and 'score'.startswith(key):
-            if self.session.is_in_score:
-                self.session.is_backtracking_to_score = True
+            if self._session.is_in_score:
+                self._session.is_backtracking_to_score = True
         elif isinstance(key, str) and 3 <= len(key) and 'home'.startswith(key):
-            self.session.is_backtracking_to_score_manager = True
+            self._session.is_backtracking_to_score_manager = True
         elif key == 'tm':
             self.toggle_menu()
         elif key == 'tw':
-            self.session.enable_where = not self.session.enable_where
+            self._session.enable_where = not self._session.enable_where
         elif key == 'where':
             self.show_menu_client()
         else:
@@ -67,5 +67,5 @@ class MenuSectionAggregator(MenuObject):
                     menu_line += '{} ({})'.format(body, key)
                     menu_lines.append(menu_line)
                 menu_lines.append('')
-        self.io.display(menu_lines, capitalize_first_character=False)
-        self.session.hide_next_redraw = True
+        self._io.display(menu_lines, capitalize_first_character=False)
+        self._session.hide_next_redraw = True

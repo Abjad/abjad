@@ -50,10 +50,10 @@ class MusicSpecifierModuleWrangler(ModuleWrangler):
             package_proxy.edit()
 
     def make_asset_interactively(self):
-        getter = self.io.make_getter()
+        getter = self._io.make_getter()
         getter.append_space_delimited_lowercase_string('music specifier name')
         package_name = getter.run()
-        if self.session.backtrack():
+        if self._session.backtrack():
             return
         package_name = package_name.replace(' ', '_')
         self.debug(package_name)
@@ -61,7 +61,7 @@ class MusicSpecifierModuleWrangler(ModuleWrangler):
         self.debug('foo')
 
     def make_main_menu(self, head=None):
-        menu, section = self.io.make_menu(where=self.where(), is_keyed=False, is_parenthetically_numbered=True)
+        menu, section = self._io.make_menu(where=self.where(), is_keyed=False, is_parenthetically_numbered=True)
         section.tokens = self.make_visible_asset_menu_tokens(head=head)
         section = menu.make_section()
         section.append(('new', 'new music specifier'))

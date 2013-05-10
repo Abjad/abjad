@@ -64,7 +64,7 @@ class PackageProxy(DirectoryProxy):
     def initializer_file_proxy(self):
         from experimental.tools import scoremanagertools
         return scoremanagertools.proxies.InitializerFileProxy(
-            self.initializer_file_name, session=self.session)
+            self.initializer_file_name, session=self._session)
 
     @property
     def package_path(self):
@@ -87,7 +87,7 @@ class PackageProxy(DirectoryProxy):
         from experimental.tools import scoremanagertools
         if self.has_parent_initializer:
             return scoremanagertools.proxies.InitializerFileProxy(
-                self.parent_initializer_file_name, session=self.session)
+                self.parent_initializer_file_name, session=self._session)
 
     @property
     def parent_package_path(self):
@@ -118,7 +118,7 @@ class PackageProxy(DirectoryProxy):
             tags_file.close()
         if True:
             return scoremanagertools.proxies.InitializerFileProxy(
-                self.tags_file_name, session=self.session)
+                self.tags_file_name, session=self._session)
 
     ### PUBLIC METHODS ###
 
@@ -128,11 +128,11 @@ class PackageProxy(DirectoryProxy):
         self.tags_file_proxy.write_tags_to_disk(tags)
 
     def add_tag_interactively(self):
-        getter = self.io.make_getter(where=self.where())
+        getter = self._io.make_getter(where=self.where())
         getter.append_string('tag name')
         getter.append_expr('tag value')
         result = getter.run()
-        if self.session.backtrack():
+        if self._session.backtrack():
             return
         if result:
             tag_name, tag_value = result
@@ -144,14 +144,14 @@ class PackageProxy(DirectoryProxy):
         return tag
 
     def get_tag_interactively(self):
-        getter = self.io.make_getter(where=self.where())
+        getter = self._io.make_getter(where=self.where())
         getter.append_string('tag name')
         result = getter.run()
-        if self.session.backtrack():
+        if self._session.backtrack():
             return
         tag = self.get_tag(result)
         line = '{!r}'.format(tag)
-        self.io.proceed(line)
+        self._io.proceed(line)
 
     def get_tags(self):
         from collections import OrderedDict
@@ -177,7 +177,7 @@ class PackageProxy(DirectoryProxy):
         return bool(tag_name in tags)
 
     def make_tags_menu(self):
-        menu, section = self.io.make_menu(where=self.where(), is_keyed=False)
+        menu, section = self._io.make_menu(where=self.where(), is_keyed=False)
         section.tokens = self.formatted_tags
         section = menu.make_section()
         section.append(('add', 'add tag'))
@@ -186,25 +186,25 @@ class PackageProxy(DirectoryProxy):
         return menu
 
     def manage_tags(self, clear=True, cache=False):
-        self.session.cache_breadcrumbs(cache=cache)
+        self._session.cache_breadcrumbs(cache=cache)
         while True:
-            self.session.push_breadcrumb('tags')
+            self._session.push_breadcrumb('tags')
             menu = self.make_tags_menu()
             result = menu.run(clear=clear)
-            if self.session.backtrack():
+            if self._session.backtrack():
                 break
             self.handle_tags_menu_result(result)
-            if self.session.backtrack():
+            if self._session.backtrack():
                 break
-            self.session.pop_breadcrumb()
-        self.session.pop_breadcrumb()
-        self.session.restore_breadcrumbs(cache=cache)
+            self._session.pop_breadcrumb()
+        self._session.pop_breadcrumb()
+        self._session.restore_breadcrumbs(cache=cache)
 
     def remove_initializer(self, is_interactive=True):
         if self.has_initializer:
             os.remove(self.initializer_file_name)
             line = 'initializer deleted.'
-            self.io.proceed(line, is_interactive=is_interactive)
+            self._io.proceed(line, is_interactive=is_interactive)
 
     def remove_tag(self, tag_name):
         tags = self.get_tags()
@@ -212,41 +212,41 @@ class PackageProxy(DirectoryProxy):
         self.tags_file_proxy.write_tags_to_disk(tags)
 
     def remove_tag_interactively(self):
-        getter = self.io.make_getter(where=self.where())
+        getter = self._io.make_getter(where=self.where())
         getter.append_string('tag name')
         result = getter.run()
-        if self.session.backtrack():
+        if self._session.backtrack():
             return
         if result:
             tag_name = result
             self.remove_tag(tag_name)
 
     def run(self, cache=False, clear=True, user_input=None):
-        self.io.assign_user_input(user_input=user_input)
-        self.session.cache_breadcrumbs(cache=cache)
+        self._io.assign_user_input(user_input=user_input)
+        self._session.cache_breadcrumbs(cache=cache)
         while True:
-            self.session.push_breadcrumb(self.breadcrumb)
+            self._session.push_breadcrumb(self.breadcrumb)
             menu = self.make_main_menu()
             result = menu.run(clear=clear)
-            if self.session.backtrack(source=self._backtracking_source):
+            if self._session.backtrack(source=self._backtracking_source):
                 break
             elif not result:
-                self.session.pop_breadcrumb()
+                self._session.pop_breadcrumb()
                 continue
             self.handle_main_menu_result(result)
-            if self.session.backtrack(source=self._backtracking_source):
+            if self._session.backtrack(source=self._backtracking_source):
                 break
-            self.session.pop_breadcrumb()
-        self.session.pop_breadcrumb()
-        self.session.restore_breadcrumbs(cache=cache)
+            self._session.pop_breadcrumb()
+        self._session.pop_breadcrumb()
+        self._session.restore_breadcrumbs(cache=cache)
 
     def run_first_time(self, **kwargs):
         self.run(**kwargs)
 
     def set_package_path_interactively(self):
-        getter = self.io.make_getter(where=self.where())
+        getter = self._io.make_getter(where=self.where())
         getter.append_underscore_delimited_lowercase_package_name('package name')
         result = getter.run()
-        if self.session.backtrack():
+        if self._session.backtrack():
             return
         self.package_path = result

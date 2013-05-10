@@ -36,7 +36,7 @@ class StylesheetFileProxy(FileProxy):
             self.profile()
         elif result == 'rm':
             self.remove_interactively()
-            self.session.is_backtracking_locally = True
+            self._session.is_backtracking_locally = True
         elif result == 'ren':
             self.rename_interactively()
         elif result == 'vi':
@@ -45,7 +45,7 @@ class StylesheetFileProxy(FileProxy):
             raise ValueError
 
     def make_main_menu(self):
-        menu, section = self.io.make_menu(where=self.where)
+        menu, section = self._io.make_menu(where=self.where)
         section.append(('cp', 'copy stylesheet'))
         section.append(('pr', 'profile stylesheet'))
         section.append(('rm', 'delete stylesheet'))

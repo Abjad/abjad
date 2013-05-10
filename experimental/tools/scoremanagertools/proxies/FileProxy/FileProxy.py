@@ -53,7 +53,7 @@ class FileProxy(FilesystemAssetProxy):
     ### PUBLIC METHODS ###
 
     def display_formatted_lines(self):
-        self.io.display(self.formatted_lines)
+        self._io.display(self.formatted_lines)
 
     def edit(self):
         os.system('vi + {}'.format(self.file_path))
@@ -75,7 +75,7 @@ class FileProxy(FilesystemAssetProxy):
             file_reference = file(self.file_path, 'w')
             file_reference.write('')
             file_reference.close()
-        self.io.proceed(is_interactive=is_interactive)
+        self._io.proceed(is_interactive=is_interactive)
 
     def profile(self):
         pass

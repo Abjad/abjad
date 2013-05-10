@@ -9,8 +9,8 @@ class OutputMaterialModuleProxy(BasicModuleProxy):
 
     def display_output_material(self):
         output_material = self.import_output_material_safely()
-        self.io.display([repr(output_material), ''], capitalize_first_character=False)
-        self.session.hide_next_redraw = True
+        self._io.display([repr(output_material), ''], capitalize_first_character=False)
+        self._session.hide_next_redraw = True
 
     def import_output_material(self):
         # the next two lines actually matter

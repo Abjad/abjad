@@ -6,13 +6,13 @@ def test_Menu_run_01():
     '''
 
     menu = scoremanagertools.menuing.Menu()
-    menu.session.push_breadcrumb('location')
+    menu._session.push_breadcrumb('location')
     section_1 = menu.make_section(is_keyed=True, is_hidden=False, is_numbered=False, is_ranged=False)
     section_1.title = 'section'
     result = section_1.extend(['apple', 'banana', 'cherry'])
 
     result = menu.run(user_input='foo')
-    assert menu.session.transcript[-2][1] == \
+    assert menu._session.transcript[-2][1] == \
     ['Location',
       '',
       '     Section',
@@ -23,22 +23,22 @@ def test_Menu_run_01():
       '']
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='q')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='1')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='app')
     assert result == 'apple'
 
     result = menu.run(user_input='1, 3-2')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='app, che-ban')
     assert result is None
 
@@ -46,26 +46,26 @@ def test_Menu_run_01():
 
     section_1.return_value_attribute = 'body'
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='foo')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='q')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='1')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='app')
     assert result == 'apple'
 
     result = menu.run(user_input='1, 3-2')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='app, che-ban')
     assert result is None
 
@@ -75,13 +75,13 @@ def test_Menu_run_02():
     '''
 
     menu = scoremanagertools.menuing.Menu()
-    menu.session.push_breadcrumb('location')
+    menu._session.push_breadcrumb('location')
     section_1 = menu.make_section(is_keyed=False, is_hidden=False, is_numbered=False, is_ranged=False)
     section_1.title = 'section'
     section_1.extend(['apple', 'banana', 'cherry'])
     result = menu.run(user_input='foo')
 
-    assert menu.session.transcript[-2][1] == \
+    assert menu._session.transcript[-2][1] == \
     ['Location',
       '',
       '     Section',
@@ -92,22 +92,22 @@ def test_Menu_run_02():
       '']
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='q')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='1')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='app')
     assert result == 'apple'
 
     result = menu.run(user_input='1, 3-2')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='app, che-ban')
     assert result is None
 
@@ -117,32 +117,32 @@ def test_Menu_run_03():
     '''
 
     menu = scoremanagertools.menuing.Menu()
-    menu.session.push_breadcrumb('location')
+    menu._session.push_breadcrumb('location')
     section_1 = menu.make_section(is_keyed=True, is_hidden=True, is_numbered=False, is_ranged=False)
     section_1.title = 'section'
     section_1.extend(['apple', 'banana', 'cherry'])
     result = menu.run(user_input='foo')
 
-    assert menu.session.transcript[-2][1] == \
+    assert menu._session.transcript[-2][1] == \
     ['Location', '']
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='q')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='1')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='app')
     assert result == 'apple'
 
     result = menu.run(user_input='1, 3-2')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='app, che-ban')
     assert result is None
 
@@ -152,13 +152,13 @@ def test_Menu_run_04():
     '''
 
     menu = scoremanagertools.menuing.Menu()
-    menu.session.push_breadcrumb('location')
+    menu._session.push_breadcrumb('location')
     section_1 = menu.make_section(is_keyed=True, is_hidden=False, is_numbered=True, is_ranged=False)
     section_1.title = 'section'
     section_1.extend(['apple', 'banana', 'cherry'])
     result = menu.run(user_input='foo')
 
-    assert menu.session.transcript[-2][1] == \
+    assert menu._session.transcript[-2][1] == \
     ['Location',
       '',
       '     Section',
@@ -169,22 +169,22 @@ def test_Menu_run_04():
       '']
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='q')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='1')
     assert result == 'apple'
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='app')
     assert result == 'apple'
 
     result = menu.run(user_input='1, 3-2')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='app, che-ban')
     assert result is None
 
@@ -194,13 +194,13 @@ def test_Menu_run_05():
     '''
 
     menu = scoremanagertools.menuing.Menu()
-    menu.session.push_breadcrumb('location')
+    menu._session.push_breadcrumb('location')
     section_1 = menu.make_section(is_keyed=True, is_hidden=False, is_numbered=False, is_ranged=True)
     section_1.title = 'section'
     section_1.extend(['apple', 'banana', 'cherry'])
     result = menu.run(user_input='foo')
 
-    assert menu.session.transcript[-2][1] == \
+    assert menu._session.transcript[-2][1] == \
     ['Location',
       '',
       '     Section',
@@ -211,23 +211,23 @@ def test_Menu_run_05():
       '']
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='q')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='1')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='app')
     assert result == ['apple']
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='1, 3-2')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='app, che-ban')
     assert result == ['apple', 'cherry', 'banana']
 
@@ -237,7 +237,7 @@ def test_Menu_run_06():
     '''
 
     menu = scoremanagertools.menuing.Menu()
-    menu.session.push_breadcrumb('location')
+    menu._session.push_breadcrumb('location')
     section_1 = menu.make_section(is_keyed=True, is_hidden=False, is_numbered=False, is_ranged=False)
     section_1.title = 'section'
     section_1 = menu.make_section()
@@ -246,7 +246,7 @@ def test_Menu_run_06():
     section_1.append(('mod', 'third command'))
     result = menu.run(user_input='foo')
 
-    assert menu.session.transcript[-2][1] == \
+    assert menu._session.transcript[-2][1] == \
     ['Location',
       '',
       '     Section',
@@ -257,34 +257,34 @@ def test_Menu_run_06():
       '']
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='q')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='1')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='add')
     assert result == 'add'
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='fir')
     assert result == 'add'
 
     result = menu.run(user_input='1, 3-2')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='add, mod-rm')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='fir, thi-sec')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='fir, mod-sec')
     assert result is None
 
@@ -292,38 +292,38 @@ def test_Menu_run_06():
 
     section_1.return_value_attribute = 'body'
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='foo')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='q')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='1')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='add')
     assert result == 'first command'
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='fir')
     assert result == 'first command'
 
     result = menu.run(user_input='1, 3-2')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='add, mod-rm')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='fir, thi-sec')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='fir, mod-sec')
     assert result is None
 
@@ -334,7 +334,7 @@ def test_Menu_run_07():
     '''
 
     menu = scoremanagertools.menuing.Menu()
-    menu.session.push_breadcrumb('location')
+    menu._session.push_breadcrumb('location')
     section_1 = menu.make_section(is_keyed=False, is_hidden=False, is_numbered=False, is_ranged=False)
     section_1.title = 'section'
     section_1.append(('add', 'first command'))
@@ -342,7 +342,7 @@ def test_Menu_run_07():
     section_1.append(('mod', 'third command'))
     result = menu.run(user_input='foo')
 
-    assert menu.session.transcript[-2][1] == \
+    assert menu._session.transcript[-2][1] == \
     ['Location',
       '',
       '     Section',
@@ -354,34 +354,34 @@ def test_Menu_run_07():
 
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='q')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='1')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='add')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='fir')
     assert result == 'add'
 
     result = menu.run(user_input='1, 3-2')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='add, mod-rm')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='fir, thi-sec')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='fir, mod-sec')
     assert result is None
 
@@ -389,38 +389,38 @@ def test_Menu_run_07():
 
     section_1.return_value_attribute = 'body'
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='foo')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='q')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='1')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='add')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='fir')
     assert result == 'first command'
 
     result = menu.run(user_input='1, 3-2')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='add, mod-rm')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='fir, thi-sec')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='fir, mod-sec')
     assert result is None
 
@@ -430,7 +430,7 @@ def test_Menu_run_08():
     '''
 
     menu = scoremanagertools.menuing.Menu()
-    menu.session.push_breadcrumb('location')
+    menu._session.push_breadcrumb('location')
     section_1 = menu.make_section(is_keyed=True, is_hidden=True, is_numbered=False, is_ranged=False)
     section_1.title = 'section'
     section_1.append(('add', 'first command'))
@@ -438,39 +438,39 @@ def test_Menu_run_08():
     section_1.append(('mod', 'third command'))
     result = menu.run(user_input='foo')
 
-    assert menu.session.transcript[-2][1] == \
+    assert menu._session.transcript[-2][1] == \
     ['Location', '']
 
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='q')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='1')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='add')
     assert result == 'add'
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='fir')
     assert result == 'add'
 
     result = menu.run(user_input='1, 3-2')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='add, mod-rm')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='fir, thi-sec')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='fir, mod-sec')
     assert result is None
 
@@ -478,38 +478,38 @@ def test_Menu_run_08():
 
     section_1.return_value_attribute = 'body'
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='foo')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='q')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='1')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='add')
     assert result == 'first command'
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='fir')
     assert result == 'first command'
 
     result = menu.run(user_input='1, 3-2')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='add, mod-rm')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='fir, thi-sec')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='fir, mod-sec')
     assert result is None
 
@@ -519,7 +519,7 @@ def test_Menu_run_09():
     '''
 
     menu = scoremanagertools.menuing.Menu()
-    menu.session.push_breadcrumb('location')
+    menu._session.push_breadcrumb('location')
     section_1 = menu.make_section(is_keyed=True, is_hidden=False, is_numbered=True, is_ranged=False)
     section_1.title = 'section'
     section_1.append(('add', 'first command'))
@@ -527,7 +527,7 @@ def test_Menu_run_09():
     section_1.append(('mod', 'third command'))
     result = menu.run(user_input='foo')
 
-    assert menu.session.transcript[-2][1] == \
+    assert menu._session.transcript[-2][1] == \
     ['Location',
       '',
       '     Section',
@@ -538,34 +538,34 @@ def test_Menu_run_09():
       '']
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='q')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='1')
     assert result == 'add'
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='add')
     assert result == 'add'
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='fir')
     assert result == 'add'
 
     result = menu.run(user_input='1, 3-2')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='add, mod-rm')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='fir, thi-sec')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='fir, mod-sec')
     assert result is None
 
@@ -573,38 +573,38 @@ def test_Menu_run_09():
 
     section_1.return_value_attribute = 'body'
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='foo')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='q')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='1')
     assert result == 'first command'
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='add')
     assert result == 'first command'
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='fir')
     assert result == 'first command'
 
     result = menu.run(user_input='1, 3-2')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='add, mod-rm')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='fir, thi-sec')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='fir, mod-sec')
     assert result is None
 
@@ -614,7 +614,7 @@ def test_Menu_run_10():
     '''
 
     menu = scoremanagertools.menuing.Menu()
-    menu.session.push_breadcrumb('location')
+    menu._session.push_breadcrumb('location')
     section_1 = menu.make_section(is_keyed=True, is_hidden=False, is_numbered=False, is_ranged=True)
     section_1.title = 'section'
     section_1.append(('add', 'first command'))
@@ -622,7 +622,7 @@ def test_Menu_run_10():
     section_1.append(('mod', 'third command'))
     result = menu.run(user_input='foo')
 
-    assert menu.session.transcript[-2][1] == \
+    assert menu._session.transcript[-2][1] == \
     ['Location',
       '',
       '     Section',
@@ -633,34 +633,34 @@ def test_Menu_run_10():
       '']
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='q')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='1')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='add')
     assert result == ['add']
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='fir')
     assert result == ['add']
 
     result = menu.run(user_input='1, 3-2')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='add, mod-rm')
     assert result == ['add', 'mod', 'rm']
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='fir, thi-sec')
     assert result == ['add', 'mod', 'rm']
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='fir, mod-sec')
     assert result == ['add', 'mod', 'rm']
 
@@ -668,38 +668,38 @@ def test_Menu_run_10():
 
     section_1.return_value_attribute = 'body'
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='foo')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='q')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='1')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='add')
     assert result == ['first command']
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='fir')
     assert result == ['first command']
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='1, 3-2')
     assert result is None
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='add, mod-rm')
     assert result == ['first command', 'third command', 'second command']
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='fir, thi-sec')
     assert result == ['first command', 'third command', 'second command']
 
-    menu.session.reinitialize()
+    menu._session.reinitialize()
     result = menu.run(user_input='fir, mod-sec')
     assert result == ['first command', 'third command', 'second command']

@@ -28,27 +28,27 @@ class InstrumentCreationWizard(Wizard):
 
     def name_untuned_percussion(self, instrument):
         if isinstance(instrument, instrumenttools.UntunedPercussion):
-            selector = selectors.InstrumentToolsUntunedPercussionNameSelector(session=self.session)
-            self.session.push_backtrack()
+            selector = selectors.InstrumentToolsUntunedPercussionNameSelector(session=self._session)
+            self._session.push_backtrack()
             instrument_name = selector.run()
-            self.session.pop_backtrack()
-            if self.session.backtrack():
+            self._session.pop_backtrack()
+            if self._session.backtrack():
                 return
             instrument.instrument_name = instrument_name
             instrument.short_instrument_name = instrument_name
 
     def run(self, cache=False, clear=True, head=None, user_input=None):
-        self.io.assign_user_input(user_input=user_input)
-        self.session.cache_breadcrumbs(cache=cache)
-        self.session.push_breadcrumb(self.breadcrumb)
-        kwargs = {'session': self.session, 'is_ranged': self.is_ranged}
+        self._io.assign_user_input(user_input=user_input)
+        self._session.cache_breadcrumbs(cache=cache)
+        self._session.push_breadcrumb(self.breadcrumb)
+        kwargs = {'session': self._session, 'is_ranged': self.is_ranged}
         selector = selectors.InstrumentToolsInstrumentNameSelector(**kwargs)
-        self.session.push_backtrack()
+        self._session.push_backtrack()
         result = selector.run()
-        self.session.pop_backtrack()
-        if self.session.backtrack():
-            self.session.pop_breadcrumb()
-            self.session.restore_breadcrumbs(cache=cache)
+        self._session.pop_backtrack()
+        if self._session.backtrack():
+            self._session.pop_breadcrumb()
+            self._session.restore_breadcrumbs(cache=cache)
             return
         if isinstance(result, list):
             instrument_names = result
@@ -63,7 +63,7 @@ class InstrumentCreationWizard(Wizard):
             result = instruments[:]
         else:
             result = instruments[0]
-        self.session.pop_breadcrumb()
-        self.session.restore_breadcrumbs(cache=cache)
+        self._session.pop_breadcrumb()
+        self._session.restore_breadcrumbs(cache=cache)
         self.target = result
         return self.target

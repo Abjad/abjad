@@ -16,34 +16,34 @@ class InstrumentSelectionWizard(Wizard):
     ### PUBLIC METHODS ###
 
     def run(self, cache=False, clear=True, head=None, user_input=None):
-        self.io.assign_user_input(user_input=user_input)
-        self.session.cache_breadcrumbs(cache=cache)
-        self.session.push_breadcrumb(self.breadcrumb)
-        if self.session.is_in_score:
-            selector = selectors.ScoreInstrumentSelector(session=self.session)
-            self.session.push_backtrack()
+        self._io.assign_user_input(user_input=user_input)
+        self._session.cache_breadcrumbs(cache=cache)
+        self._session.push_breadcrumb(self.breadcrumb)
+        if self._session.is_in_score:
+            selector = selectors.ScoreInstrumentSelector(session=self._session)
+            self._session.push_backtrack()
             result = selector.run(clear=clear)
-            self.session.pop_backtrack()
-            if self.session.backtrack():
-                self.session.pop_breadcrumb()
-                self.session.restore_breadcrumbs(cache=cache)
+            self._session.pop_backtrack()
+            if self._session.backtrack():
+                self._session.pop_breadcrumb()
+                self._session.restore_breadcrumbs(cache=cache)
                 return
             if isinstance(result, Instrument):
-                self.session.pop_breadcrumb()
-                self.session.restore_breadcrumbs(cache=cache)
+                self._session.pop_breadcrumb()
+                self._session.restore_breadcrumbs(cache=cache)
                 self.target = result
                 return self.target
             elif not result == 'other':
                 raise ValueError
-        wizard = InstrumentCreationWizard(session=self.session)
-        self.session.push_backtrack()
+        wizard = InstrumentCreationWizard(session=self._session)
+        self._session.push_backtrack()
         result = wizard.run()
-        self.session.pop_backtrack()
-        if self.session.backtrack():
-            self.session.pop_breadcrumb()
-            self.session.restore_breadcrumbs(cache=cache)
+        self._session.pop_backtrack()
+        if self._session.backtrack():
+            self._session.pop_breadcrumb()
+            self._session.restore_breadcrumbs(cache=cache)
             return
-        self.session.pop_breadcrumb()
-        self.session.restore_breadcrumbs(cache=cache)
+        self._session.pop_breadcrumb()
+        self._session.restore_breadcrumbs(cache=cache)
         self.target = result
         return self.target

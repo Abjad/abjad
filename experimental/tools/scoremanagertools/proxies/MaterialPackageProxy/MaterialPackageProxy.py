@@ -190,7 +190,7 @@ class MaterialPackageProxy(PackageProxy):
             if not self.has_illustration_builder_module:
                 file(self.illustration_builder_module_file_name, 'w').write('')
             return IllustrationBuilderModuleProxy(
-                self.illustration_builder_module_path, session=self.session)
+                self.illustration_builder_module_path, session=self._session)
 
     @property
     def illustration_ly_file_name(self):
@@ -202,7 +202,7 @@ class MaterialPackageProxy(PackageProxy):
         if self.should_have_illustration_ly:
             if not self.has_illustration_ly:
                 file(self.illustration_ly_file_name, 'w').write('')
-            return IllustrationLyFileProxy(self.illustration_ly_file_name, session=self.session)
+            return IllustrationLyFileProxy(self.illustration_ly_file_name, session=self._session)
 
     @property
     def illustration_pdf_file_name(self):
@@ -214,7 +214,7 @@ class MaterialPackageProxy(PackageProxy):
         if self.should_have_illustration_pdf:
             if not self.has_illustration_pdf:
                 file(self.illustration_pdf_file_name, 'w').write('')
-            return IllustrationPdfFileProxy(self.illustration_pdf_file_name, session=self.session)
+            return IllustrationPdfFileProxy(self.illustration_pdf_file_name, session=self._session)
 
     @property
     def illustration_with_stylesheet(self):
@@ -271,14 +271,14 @@ class MaterialPackageProxy(PackageProxy):
     def material_definition_module_proxy(self):
         if self.should_have_material_definition_module:
             return MaterialDefinitionModuleProxy(
-                self.material_definition_module_path, session=self.session)
+                self.material_definition_module_path, session=self._session)
 
     @property
     def material_package_directory(self):
-        if self.session.current_materials_directory_path:
+        if self._session.current_materials_directory_path:
             if self.material_package_name:
                 return os.path.join(
-                    self.session.current_materials_directory_path, self.material_package_name)
+                    self._session.current_materials_directory_path, self.material_package_name)
 
     @property
     def material_package_maker(self):
@@ -345,7 +345,7 @@ class MaterialPackageProxy(PackageProxy):
         if self.should_have_output_material_module:
             if self.has_output_material_module:
                 return OutputMaterialModuleProxy(
-                    self.output_material_module_path, session=self.session)
+                    self.output_material_module_path, session=self._session)
 
     @property
     def parent_initializer_has_output_material_safe_import_statement(self):
@@ -403,7 +403,7 @@ class MaterialPackageProxy(PackageProxy):
     @property
     def stylesheet_file_proxy(self):
         if self.should_have_stylesheet:
-            return StylesheetFileProxy(self.stylesheet_file_name, session=self.session)
+            return StylesheetFileProxy(self.stylesheet_file_name, session=self._session)
 
     @property
     def user_input_module_file_name(self):
@@ -420,7 +420,7 @@ class MaterialPackageProxy(PackageProxy):
         if self.should_have_user_input_module:
             if not self.has_user_input_module:
                 file(self.user_input_module_file_name, 'w').write('')
-            return UserInputModuleProxy(self.user_input_module_path, session=self.session)
+            return UserInputModuleProxy(self.user_input_module_path, session=self._session)
 
     ### PUBLIC METHODS ###
 
@@ -429,7 +429,7 @@ class MaterialPackageProxy(PackageProxy):
             'output_material', self.material_package_name)
 
     def add_material_to_materials_initializer(self):
-        parent_package = PackageProxy(self.parent_package_path, session=self.session)
+        parent_package = PackageProxy(self.parent_package_path, session=self._session)
         parent_package.initializer_file_proxy.add_safe_import_statement(
             self.material_package_name, self.material_package_name)
 
@@ -455,9 +455,9 @@ class MaterialPackageProxy(PackageProxy):
         else:
             output_material_handler_callable = self.output_material_editor
         output_material_handler = output_material_handler_callable(
-            target=output_material, session=self.session)
+            target=output_material, session=self._session)
         output_material_handler.run()
-        if self.session.backtrack():
+        if self._session.backtrack():
             return
         output_material_module_import_statements = self.output_material_module_import_statements
         if hasattr(self, 'make_output_material_module_body_lines'):
@@ -488,7 +488,7 @@ class MaterialPackageProxy(PackageProxy):
         elif result == 'uis':
             self.show_user_input_demo_values(prompt=True)
         elif result == 'uit':
-            self.session.swap_user_input_values_default_status()
+            self._session.swap_user_input_values_default_status()
         elif result == 'uimv':
             self.user_input_module_proxy.view()
         elif result == 'mdcanned':
@@ -572,7 +572,7 @@ class MaterialPackageProxy(PackageProxy):
         pass
 
     def make_main_menu(self):
-        menu, hidden_section = self.io.make_menu(where=self.where(), is_hidden=True)
+        menu, hidden_section = self._io.make_menu(where=self.where(), is_hidden=True)
         self.make_main_menu_section_for_initializer(menu, hidden_section)
         self.make_main_menu_sections(menu, hidden_section)
         self.make_main_menu_section_for_illustration_ly(hidden_section)
@@ -665,7 +665,7 @@ class MaterialPackageProxy(PackageProxy):
                 section = main_menu.make_section()
                 if self.has_output_material:
                     output_material_editor = self.output_material_editor(
-                        target=self.output_material, session=self.session)
+                        target=self.output_material, session=self._session)
                     target_summary_lines = output_material_editor.target_summary_lines
                     if target_summary_lines:
                         section.title = target_summary_lines
@@ -685,7 +685,7 @@ class MaterialPackageProxy(PackageProxy):
         self.make_main_menu_section_for_illustration_builder(menu, hidden_section)
 
     def manage_stylesheets(self):
-        stylesheet_file_wrangler = StylesheetFileWrangler(session=self.session)
+        stylesheet_file_wrangler = StylesheetFileWrangler(session=self._session)
         stylesheet_file_wrangler.run()
 
     def overwrite_output_material_module(self):
@@ -697,7 +697,7 @@ class MaterialPackageProxy(PackageProxy):
     # TODO: port
     def regenerate_everything(self, prompt=True):
         self.print_not_yet_implemented()
-        self.io.proceed(is_interactive=prompt)
+        self._io.proceed(is_interactive=prompt)
 
     def remove(self):
         self.remove_material_from_materials_initializer()
@@ -731,7 +731,7 @@ class MaterialPackageProxy(PackageProxy):
         import_statement = 'safe_import(globals(), {!r}, {!r})\n'
         import_statement = import_statement.format(
             self.material_package_name, self.material_package_name)
-        parent_package = PackageProxy(self.parent_package_path, session=self.session)
+        parent_package = PackageProxy(self.parent_package_path, session=self._session)
         parent_package_initializer_file_proxy = parent_package.initializer_file_proxy
         filtered_import_statements = []
         for safe_import_statement in parent_package_initializer_file_proxy.safe_import_statements:
@@ -742,7 +742,7 @@ class MaterialPackageProxy(PackageProxy):
 
     def remove_material_package(self):
         self.remove()
-        self.session.is_backtracking_locally = True
+        self._session.is_backtracking_locally = True
 
     def remove_output_material_module(self, prompt=True):
         self.remove_illustration_builder_module(prompt=False)
@@ -762,18 +762,18 @@ class MaterialPackageProxy(PackageProxy):
 
     def rename_material_interactively(self):
         line = 'current material name: {}'.format(self.material_package_name)
-        self.io.display(line)
-        getter = self.io.make_getter(where=self.where())
+        self._io.display(line)
+        getter = self._io.make_getter(where=self.where())
         getter.append_underscore_delimited_lowercase_package_name('new material name')
         new_material_package_name = getter.run()
-        if self.session.backtrack():
+        if self._session.backtrack():
             return
         lines = []
         lines.append('current material name: {}'.format(self.material_package_name))
         lines.append('new material name:     {}'.format(new_material_package_name))
         lines.append('')
-        self.io.display(lines)
-        if not self.io.confirm():
+        self._io.display(lines)
+        if not self._io.confirm():
             return
         if self.is_versioned:
             # rename package directory
@@ -806,25 +806,25 @@ class MaterialPackageProxy(PackageProxy):
         self.run(user_input='omi')
 
     def select_material_package_maker_interactively(self, prompt=True):
-        material_proxy_wrangler = MaterialPackageMakerWrangler(session=self.session)
-        self.session.push_backtrack()
+        material_proxy_wrangler = MaterialPackageMakerWrangler(session=self._session)
+        self._session.push_backtrack()
         material_package_maker = material_proxy_wrangler.select_material_proxy_class_name_interactively()
-        self.session.pop_backtrack()
-        if self.session.backtrack():
+        self._session.pop_backtrack()
+        if self._session.backtrack():
             return
         self.add_tag('material_package_maker', material_package_maker.class_name)
         line = 'user input handler selected.'
-        self.io.proceed(line, is_interactive=prompt)
+        self._io.proceed(line, is_interactive=prompt)
 
     def select_stylesheet_interactively(self, prompt=True):
-        stylesheet_file_wrangler = StylesheetFileWrangler(session=self.session)
-        self.session.push_backtrack()
+        stylesheet_file_wrangler = StylesheetFileWrangler(session=self._session)
+        self._session.push_backtrack()
         stylesheet_file_name = stylesheet_file_wrangler.select_stylesheet_file_name_interactively()
-        self.session.pop_backtrack()
-        if self.session.backtrack():
+        self._session.pop_backtrack()
+        if self._session.backtrack():
             return
         self.stylesheet_file_name_in_memory = stylesheet_file_name
-        self.io.proceed('stylesheet selected.', is_interactive=prompt)
+        self._io.proceed('stylesheet selected.', is_interactive=prompt)
 
     # NOTE: not currently used
     def touch_parent_initializer(self):
@@ -835,17 +835,17 @@ class MaterialPackageProxy(PackageProxy):
         illustration = self.illustration_with_stylesheet
         iotools.write_expr_to_pdf(illustration, self.illustration_pdf_file_name, print_status=False)
         iotools.write_expr_to_ly(illustration, self.illustration_ly_file_name, print_status=False)
-        self.io.proceed('PDF and LilyPond file written to disk.', is_interactive=prompt)
+        self._io.proceed('PDF and LilyPond file written to disk.', is_interactive=prompt)
 
     def write_illustration_ly_to_disk(self, prompt=True):
         illustration = self.illustration_with_stylesheet
         iotools.write_expr_to_ly(illustration, self.illustration_ly_file_name, print_status=False)
-        self.io.proceed('LilyPond file written to disk.', is_interactive=prompt)
+        self._io.proceed('LilyPond file written to disk.', is_interactive=prompt)
 
     def write_illustration_pdf_to_disk(self, prompt=True):
         illustration = self.illustration_with_stylesheet
         iotools.write_expr_to_pdf(illustration, self.illustration_pdf_file_name, print_status=False)
-        self.io.proceed('PDF written to disk.', is_interactive=prompt)
+        self._io.proceed('PDF written to disk.', is_interactive=prompt)
 
     def write_output_material_to_disk(self, output_material_module_import_statements=None,
         output_material_module_body_lines=None, prompt=True):
@@ -863,7 +863,7 @@ class MaterialPackageProxy(PackageProxy):
         self.add_material_to_materials_initializer()
         self.add_material_to_material_initializer()
         self.write_tags_to_disk()
-        self.io.proceed('output material written to disk.', is_interactive=prompt)
+        self._io.proceed('output material written to disk.', is_interactive=prompt)
 
     def write_stub_material_definition_module_to_disk(self):
         if self.should_have_material_definition_module:

@@ -32,40 +32,40 @@ class PitchClassTransformCreationWizard(Wizard):
     def get_function_arguments(self, function_name):
         arguments = []
         if function_name in ('transpose', 'multiply'):
-            getter = self.io.make_getter(where=self.where())
+            getter = self._io.make_getter(where=self.where())
             getter.append_integer_in_range('index', start=0, stop=11)
             result = getter.run()
-            if self.session.backtrack():
+            if self._session.backtrack():
                 return
             arguments.append(result)
         return tuple(arguments)
 
     def run(self, cache=False, clear=True, head=None, user_input=None):
-        self.io.assign_user_input(user_input=user_input)
-        self.session.cache_breadcrumbs(cache=cache)
+        self._io.assign_user_input(user_input=user_input)
+        self._session.cache_breadcrumbs(cache=cache)
         function_application_pairs = []
         while True:
             breadcrumb = self.function_application_pairs_to_breadcrumb(function_application_pairs)
-            self.session.push_breadcrumb(breadcrumb=breadcrumb)
-            selector = selectors.PitchClassTransformSelector(session=self.session)
+            self._session.push_breadcrumb(breadcrumb=breadcrumb)
+            selector = selectors.PitchClassTransformSelector(session=self._session)
             selector.explicit_breadcrumb = self.get_explicit_breadcrumb(function_application_pairs)
-            self.session.push_backtrack()
+            self._session.push_backtrack()
             function_name = selector.run(clear=clear)
-            self.session.pop_backtrack()
-            if self.session.backtrack():
+            self._session.pop_backtrack()
+            if self._session.backtrack():
                 break
             elif not function_name:
-                self.session.pop_breadcrumb()
+                self._session.pop_breadcrumb()
                 continue
             function_arguments = self.get_function_arguments(function_name)
-            if self.session.backtrack():
+            if self._session.backtrack():
                 break
             elif function_arguments is None:
-                self.session.pop_breadcrumb()
+                self._session.pop_breadcrumb()
                 continue
             function_application_pairs.append((function_name, function_arguments))
-            self.session.pop_breadcrumb()
-        self.session.pop_breadcrumb()
-        self.session.restore_breadcrumbs(cache=cache)
+            self._session.pop_breadcrumb()
+        self._session.pop_breadcrumb()
+        self._session.restore_breadcrumbs(cache=cache)
         self.target = function_application_pairs
         return self.target

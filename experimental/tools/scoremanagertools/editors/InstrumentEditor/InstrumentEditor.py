@@ -33,11 +33,11 @@ class InstrumentEditor(InteractiveEditor):
 
     def conditionally_initialize_target(self):
         if self.target is None:
-            self.session.push_backtrack()
-            wizard = wizards.InstrumentCreationWizard(is_ranged=True, session=self.session)
+            self._session.push_backtrack()
+            wizard = wizards.InstrumentCreationWizard(is_ranged=True, session=self._session)
             instruments = wizard.run()
-            self.session.pop_backtrack()
-            if self.session.backtrack():
+            self._session.pop_backtrack()
+            if self._session.backtrack():
                 return
             if instruments:
                 self.target = instruments[0]
@@ -46,10 +46,10 @@ class InstrumentEditor(InteractiveEditor):
 
     def handle_main_menu_result(self, result):
         if result == 'tprd':
-            if self.session.display_pitch_ranges_with_numbered_pitches:
-                self.session.display_pitch_ranges_with_numbered_pitches = False
+            if self._session.display_pitch_ranges_with_numbered_pitches:
+                self._session.display_pitch_ranges_with_numbered_pitches = False
             else:
-                self.session.display_pitch_ranges_with_numbered_pitches = True
+                self._session.display_pitch_ranges_with_numbered_pitches = True
         else:
             InteractiveEditor.handle_main_menu_result(self, result)
 
