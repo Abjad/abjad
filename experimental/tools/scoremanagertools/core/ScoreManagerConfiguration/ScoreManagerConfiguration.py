@@ -43,7 +43,7 @@ class ScoreManagerConfiguration(Configuration):
                 'comment': [
                     '',
                     'Set to the directory where you want score manager to store sketches.',
-                    'Defaults to $HOME/.score_manager/sketches/.'
+                    'Defaults to $HOME/score_manager/sketches/.'
                 ],
                 'spec': 'string(default={!r})'.format(
                     os.path.join(self.configuration_directory_path, 'sketches'))
@@ -52,7 +52,7 @@ class ScoreManagerConfiguration(Configuration):
                 'comment': [
                     '',
                     'Set to the directory where you want score manager transcripts written.',
-                    'Defaults to $HOME/.score_manager/transcripts/.'
+                    'Defaults to $HOME/score_manager/transcripts/.'
                 ],
                 'spec': 'string(default={!r})'.format(
                     os.path.join(self.configuration_directory_path, 'transcripts'))
@@ -119,11 +119,11 @@ class ScoreManagerConfiguration(Configuration):
         ::
 
             >>> configuration.configuration_directory_path # doctest: +SKIP
-            '~/.score_manager'
+            '~/score_manager'
 
         Return string.
         '''
-        return os.path.join(self.home_directory_path, '.score_manager')
+        return os.path.join(self.home_directory_path, 'score_manager')
 
     @property
     def configuration_file_name(self):
@@ -145,7 +145,7 @@ class ScoreManagerConfiguration(Configuration):
         ::
 
             >>> configuration.configuration_file_path # doctest: +SKIP
-            '~/.score_manager/score_manager.cfg'
+            '~/score_manager/score_manager.cfg'
 
         Return string.
         '''
@@ -384,20 +384,6 @@ class ScoreManagerConfiguration(Configuration):
         '''
         return os.path.join(self.score_manager_tools_directory_path, 'stylesheets')
 
-    # TODO: remove because shouldn't be a package?
-    @property
-    def system_stylesheets_package_path(self):
-        '''Stylesheets package path:
-
-        ::
-
-            >>> configuration.system_stylesheets_package_path
-            'scoremanagertools.stylesheets'
-
-        Return string.
-        '''
-        return 'scoremanagertools.stylesheets'
-
     @property
     def transcripts_directory_path(self):
         '''Score manager transcripts directory path:
@@ -405,7 +391,7 @@ class ScoreManagerConfiguration(Configuration):
         ::
 
             >>> configuration.transcripts_directory_path # doctest: +SKIP
-            '~/.score_manager/transcripts'
+            '~/score_manager/transcripts'
 
         Return string.
         '''
@@ -418,7 +404,7 @@ class ScoreManagerConfiguration(Configuration):
         ::
 
             >>> configuration.user_material_package_makers_directory_path # doctest: +SKIP
-            '~/music/makers'
+            '~/music/materialpackagemakers'
 
         Return string.
         '''
@@ -431,7 +417,7 @@ class ScoreManagerConfiguration(Configuration):
         ::
 
             >>> configuration.user_material_package_makers_package_path # doctest: +SKIP
-            '~.music.makers'
+            '~.music.materialpackagemakers'
 
         Return string.
         '''
@@ -457,7 +443,7 @@ class ScoreManagerConfiguration(Configuration):
         ::
 
             >>> configuration.user_sketches_directory_path # doctest: +SKIP
-            '~/.score_manager/sketches'
+            '~/score_manager/sketches'
 
         Return string.
         '''
@@ -470,7 +456,7 @@ class ScoreManagerConfiguration(Configuration):
         ::
 
             >>> configuration.user_sketches_directory_path # doctest: +SKIP
-            '~/.score_manager/sketches'
+            '~/score_manager/sketches'
 
         Return string.
         '''

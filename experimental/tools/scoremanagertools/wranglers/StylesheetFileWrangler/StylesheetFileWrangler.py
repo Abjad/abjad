@@ -4,6 +4,14 @@ from experimental.tools.scoremanagertools.wranglers.FileWrangler import FileWran
 
 
 class StylesheetFileWrangler(FileWrangler):
+    '''Stylesheet file wrangler.
+
+        >>> wrangler = scoremanagertools.wranglers.StylesheetFileWrangler()
+        >>> wrangler
+        StylesheetFileWrangler('.../abjad/experimental/tools/scoremanagertools/stylesheets')
+
+    Return stylesheet file wrangler.
+    '''
 
     ### INITIALIZER ###
 
