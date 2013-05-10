@@ -69,9 +69,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.system_specifiers_package_path
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.system_stylesheets_directory_path
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.transcripts_directory_path
    :noindex:
 
@@ -121,9 +118,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.setdefault
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.trim
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.update

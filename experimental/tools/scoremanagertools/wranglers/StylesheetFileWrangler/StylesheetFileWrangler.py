@@ -13,11 +13,16 @@ class StylesheetFileWrangler(FileWrangler):
     Return stylesheet file wrangler.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
+    system_stylesheets_directory_path = os.path.join(
+        FileWrangler.configuration.score_manager_tools_directory_path, 'stylesheets')
+
     ### INITIALIZER ###
 
     def __init__(self, session=None):
         FileWrangler.__init__(self,
-            system_asset_container_directory_paths=[self.configuration.system_stylesheets_directory_path],
+            system_asset_container_directory_paths=[self.system_stylesheets_directory_path],
             session=session)
 
     ### READ-ONLY PRIVATE PROPERTIES ###
@@ -33,7 +38,7 @@ class StylesheetFileWrangler(FileWrangler):
         if result == 'new':
             self.make_asset_interactively()
         else:
-            stylesheet_file_name = os.path.join(self.configuration.system_stylesheets_directory_path, result)
+            stylesheet_file_name = os.path.join(self.system_stylesheets_directory_path, result)
             stylesheet_proxy = scoremanagertools.proxies.StylesheetFileProxy(
                 stylesheet_file_name, session=self._session)
             stylesheet_proxy._run()
@@ -60,7 +65,7 @@ class StylesheetFileWrangler(FileWrangler):
     @property
     def stylesheet_file_names(self):
         result = []
-        for directory_entry in os.listdir(self.configuration.system_stylesheets_directory_path):
+        for directory_entry in os.listdir(self.system_stylesheets_directory_path):
             if directory_entry.endswith('.ly'):
                 result.append(directory_name)
         return result
@@ -80,7 +85,7 @@ class StylesheetFileWrangler(FileWrangler):
         if not stylesheet_file_name.endswith('.ly'):
             stylesheet_file_name = stylesheet_file_name + '.ly'
         stylesheet_file_name = os.path.join(
-            self.configuration.system_stylesheets_directory_path, stylesheet_file_name)
+            self.system_stylesheets_directory_path, stylesheet_file_name)
         stylesheet_proxy = scoremanagertools.proxies.StylesheetFileProxy(
             stylesheet_file_name, session=self._session)
         stylesheet_proxy.edit()
@@ -102,5 +107,5 @@ class StylesheetFileWrangler(FileWrangler):
                 break
         self._session.pop_breadcrumb()
         self._session.restore_breadcrumbs(cache=cache)
-        result = os.path.join(self.configuration.system_stylesheets_directory_path, result)
+        result = os.path.join(self.system_stylesheets_directory_path, result)
         return result

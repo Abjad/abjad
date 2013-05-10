@@ -105,13 +105,14 @@ class ScoreManagerConfiguration(Configuration):
 
         ::
 
-            >>> configuration.trim(configuration.boilerplate_directory_path)
-            'abjad/experimental/tools/scoremanagertools/boilerplate'
+            >>> configuration.boilerplate_directory_path
+            '.../abjad/experimental/tools/scoremanagertools/boilerplate'
 
         Return string.
         '''
         return os.path.join(self.score_manager_tools_directory_path, 'boilerplate')
 
+    # TODO: make user-settable
     @property
     def configuration_directory_path(self):
         '''Configuration directory path:
@@ -151,6 +152,7 @@ class ScoreManagerConfiguration(Configuration):
         '''
         return Configuration.configuration_file_path.fget(self)
 
+    # TODO: make private
     @property
     def help_item_width(self):
         '''Help item width:
@@ -173,6 +175,8 @@ class ScoreManagerConfiguration(Configuration):
             >>> configuration.home_directory_path # doctest: +SKIP
             '~'
 
+        (Output will vary according to configuration.)
+
         Return string.
         '''
         return Configuration.home_directory_path.fget(self)
@@ -183,8 +187,8 @@ class ScoreManagerConfiguration(Configuration):
 
         ::
 
-            >>> configuration.trim(configuration.score_manager_tools_directory_path)
-            'abjad/experimental/tools/scoremanagertools'
+            >>> configuration.score_manager_tools_directory_path
+            '.../abjad/experimental/tools/scoremanagertools'
 
         Return string.
         '''
@@ -223,8 +227,8 @@ class ScoreManagerConfiguration(Configuration):
 
         ::
 
-            >>> configuration.trim(configuration.system_editors_directory_path)
-            'abjad/experimental/tools/scoremanagertools/editors'
+            >>> configuration.system_editors_directory_path
+            '.../abjad/experimental/tools/scoremanagertools/editors'
 
         Return string.
         '''
@@ -250,8 +254,8 @@ class ScoreManagerConfiguration(Configuration):
 
         ::
 
-            >>> configuration.trim(configuration.system_material_package_makers_directory_path)
-            'abjad/experimental/tools/scoremanagertools/materialpackagemakers'
+            >>> configuration.system_material_package_makers_directory_path
+            '.../abjad/experimental/tools/scoremanagertools/materialpackagemakers'
 
         Return string.
         '''
@@ -277,7 +281,7 @@ class ScoreManagerConfiguration(Configuration):
         ::
 
             >>> configuration.system_materials_directory_path
-            '/Users/trevorbaca/Documents/abjad/experimental/system_materials'
+            '.../abjad/experimental/system_materials'
 
         Return string.
         '''
@@ -296,6 +300,7 @@ class ScoreManagerConfiguration(Configuration):
         '''
         return os.path.basename(self.system_materials_directory_path)
 
+    # TODO: remove sketches ... then migrate out of this class
     @property
     def system_resource_directory_basenames(self):
         '''System package paths:
@@ -322,8 +327,8 @@ class ScoreManagerConfiguration(Configuration):
 
         ::
 
-            >>> configuration.trim(configuration.system_specifier_classes_directory_path)
-            'abjad/experimental/tools/scoremanagertools/specifiers'
+            >>> configuration.system_specifier_classes_directory_path
+            '.../abjad/experimental/tools/scoremanagertools/specifiers'
 
         Return string.
         '''
@@ -349,8 +354,8 @@ class ScoreManagerConfiguration(Configuration):
 
         ::
 
-            >>> configuration.trim(configuration.system_specifiers_directory_path)
-            'abjad/experimental/system_specifiers'
+            >>> configuration.system_specifiers_directory_path
+            '.../abjad/experimental/system_specifiers'
 
         Return string.
         '''
@@ -372,19 +377,6 @@ class ScoreManagerConfiguration(Configuration):
         return os.path.basename(self.system_specifiers_directory_path)
 
     @property
-    def system_stylesheets_directory_path(self):
-        '''Stylesheets directory path:
-
-        ::
-
-            >>> configuration.trim(configuration.system_stylesheets_directory_path)
-            'abjad/experimental/tools/scoremanagertools/stylesheets'
-
-        Return string.
-        '''
-        return os.path.join(self.score_manager_tools_directory_path, 'stylesheets')
-
-    @property
     def transcripts_directory_path(self):
         '''Score manager transcripts directory path:
 
@@ -392,6 +384,8 @@ class ScoreManagerConfiguration(Configuration):
 
             >>> configuration.transcripts_directory_path # doctest: +SKIP
             '~/score_manager/transcripts'
+
+        (Output will vary according to configuration.)
 
         Return string.
         '''
@@ -406,6 +400,8 @@ class ScoreManagerConfiguration(Configuration):
             >>> configuration.user_material_package_makers_directory_path # doctest: +SKIP
             '~/music/materialpackagemakers'
 
+        (Output will vary according to configuration.)
+
         Return string.
         '''
         return self._settings['user_material_package_makers_directory_path']
@@ -418,6 +414,8 @@ class ScoreManagerConfiguration(Configuration):
 
             >>> configuration.user_material_package_makers_package_path # doctest: +SKIP
             '~.music.materialpackagemakers'
+
+        (Output will vary according to configuration.)
 
         Return string.
         '''
@@ -432,6 +430,8 @@ class ScoreManagerConfiguration(Configuration):
             >>> configuration.user_scores_directory_path # doctest: +SKIP
             '~/scores'
 
+        (Output will vary according to configuration.)
+
         Return string.
         '''
         return os.path.normpath(self._settings['user_scores_directory_path'])
@@ -445,18 +445,7 @@ class ScoreManagerConfiguration(Configuration):
             >>> configuration.user_sketches_directory_path # doctest: +SKIP
             '~/score_manager/sketches'
 
-        Return string.
-        '''
-        return self._settings['user_sketches_directory_path']
-
-    @property
-    def user_sketches_directory_path(self):
-        '''Score manager sketches directory path:
-
-        ::
-
-            >>> configuration.user_sketches_directory_path # doctest: +SKIP
-            '~/score_manager/sketches'
+        (Output will vary according to configuration.)
 
         Return string.
         '''
@@ -468,15 +457,11 @@ class ScoreManagerConfiguration(Configuration):
 
         ::
 
-            >>> configuration.user_sketches_package_path
+            >>> configuration.user_sketches_package_path # doctest: +SKIP
             'sketches'
+
+        (Output will vary according to configuration.)
 
         Return string.
         '''
         return os.path.basename(self.user_sketches_directory_path)
-
-    ### PUBLIC METHODS ###
-
-    def trim(self, asset_filesystem_path):
-        index = asset_filesystem_path.index('abjad')
-        return asset_filesystem_path[index:]

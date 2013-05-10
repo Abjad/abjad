@@ -40,7 +40,6 @@ def test_StylesheetFileProxy_public_attributes_02():
     assert proxy._generic_class_name == 'stylesheet'
     assert proxy._space_delimited_lowercase_name == file_name
     assert proxy.is_versioned
-    assert proxy.filesystem_directory_name == proxy.configuration.system_stylesheets_directory_path
     assert proxy.file_path == file_path
     assert proxy._plural_generic_class_name == 'stylesheets'
     assert proxy.filesystem_basename == file_name
