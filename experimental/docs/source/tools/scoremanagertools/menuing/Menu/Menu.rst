@@ -138,9 +138,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.return_value_to_next_return_value_in_section
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.show_hidden_menu_entries
    :noindex:
 

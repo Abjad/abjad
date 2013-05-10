@@ -105,9 +105,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.remove_items_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor.target_args_to_target_summary_lines
    :noindex:
 

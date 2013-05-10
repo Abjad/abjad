@@ -300,7 +300,7 @@ class MenuSection(MenuObject):
         BODIES. Bodies are those things shown in each entry;
         bodies are positional and every entry must be supplied with a body.
 
-        RESULT. Result is the thing ultimately returned by Menu.run().
+        RESULT. Result is the thing ultimately returned by Menu._run().
 
         Match determination:
         1. Numeric user input checked against numbered entries.

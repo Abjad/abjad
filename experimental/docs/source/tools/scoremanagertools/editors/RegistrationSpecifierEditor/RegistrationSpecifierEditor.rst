@@ -81,9 +81,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.RegistrationSpecifierEditor.RegistrationSpecifierEditor.RegistrationSpecifierEditor.menu_key_to_existing_value
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.RegistrationSpecifierEditor.RegistrationSpecifierEditor.RegistrationSpecifierEditor.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.RegistrationSpecifierEditor.RegistrationSpecifierEditor.RegistrationSpecifierEditor.target_args_to_target_summary_lines
    :noindex:
 

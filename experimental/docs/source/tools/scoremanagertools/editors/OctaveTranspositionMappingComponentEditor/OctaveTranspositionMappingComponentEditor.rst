@@ -81,9 +81,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.menu_key_to_existing_value
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.target_args_to_target_summary_lines
    :noindex:
 

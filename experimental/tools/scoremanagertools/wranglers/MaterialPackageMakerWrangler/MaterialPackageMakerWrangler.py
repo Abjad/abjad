@@ -176,7 +176,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         getter = self._io.make_getter(where=self.where())
         getter.append_material_package_maker_class_name('material proxy name')
         getter.append_space_delimited_lowercase_string('generic output product')
-        result = getter.run()
+        result = getter._run()
         if self._session.backtrack():
             return
         material_package_maker_class_name, generic_output_product_name = result

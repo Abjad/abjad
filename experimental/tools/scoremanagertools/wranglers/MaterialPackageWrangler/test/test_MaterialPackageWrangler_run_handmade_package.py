@@ -11,7 +11,7 @@ def test_MaterialPackageWrangler_run_handmade_package_01():
     assert not packagepathtools.package_exists('system_materials.testnotes')
 
     try:
-        score_manager.run(user_input='m h testnotes default default q')
+        score_manager._run(user_input='m h testnotes default default q')
         assert packagepathtools.package_exists('system_materials.testnotes')
         mpp = scoremanagertools.proxies.MaterialPackageProxy('system_materials.testnotes')
         assert mpp.is_handmade and not mpp.is_data_only
@@ -25,7 +25,7 @@ def test_MaterialPackageWrangler_run_handmade_package_01():
         assert mpp.material_definition is None
         assert mpp.output_material is None
     finally:
-        score_manager.run(user_input='m testnotes del remove default q')
+        score_manager._run(user_input='m testnotes del remove default q')
         assert not packagepathtools.package_exists('system_materials.testnotes')
 
 
@@ -38,7 +38,7 @@ def test_MaterialPackageWrangler_run_handmade_package_02():
     assert not packagepathtools.package_exists('system_materials.testnotes')
 
     try:
-        score_manager.run(user_input=
+        score_manager._run(user_input=
             'm h testnotes default default '
             'testnotes incanned canned_exception.py default q')
         assert packagepathtools.package_exists('system_materials.testnotes')
@@ -54,7 +54,7 @@ def test_MaterialPackageWrangler_run_handmade_package_02():
         assert mpp.output_material is None
         assert mpp.illustration is None
     finally:
-        score_manager.run(user_input='m testnotes del remove default q')
+        score_manager._run(user_input='m testnotes del remove default q')
         assert not packagepathtools.package_exists('system_materials.testnotes')
 
 
@@ -67,7 +67,7 @@ def test_MaterialPackageWrangler_run_handmade_package_03():
     assert not packagepathtools.package_exists('system_materials.testnotes')
 
     try:
-        score_manager.run(user_input=
+        score_manager._run(user_input=
             'm h testnotes default default '
             'testnotes incanned canned_exception.py default '
             'inr yes yes default q')
@@ -84,7 +84,7 @@ def test_MaterialPackageWrangler_run_handmade_package_03():
         assert mpp.material_definition is None
         assert mpp.output_material is None
     finally:
-        score_manager.run(user_input='m testnotes del remove default q')
+        score_manager._run(user_input='m testnotes del remove default q')
         assert not packagepathtools.package_exists('system_materials.testnotes')
 
 
@@ -97,7 +97,7 @@ def test_MaterialPackageWrangler_run_handmade_package_04():
     assert not packagepathtools.package_exists('system_materials.testnotes')
 
     try:
-        score_manager.run(user_input=
+        score_manager._run(user_input=
             'm h testnotes default default '
             'testnotes mdcanned canned_testnotes_material_definition.py default '
             'omm default q')
@@ -115,7 +115,7 @@ def test_MaterialPackageWrangler_run_handmade_package_04():
         assert mpp.material_definition and notetools.all_are_notes(mpp.material_definition)
         assert mpp.output_material and notetools.all_are_notes(mpp.output_material)
     finally:
-        score_manager.run(user_input='m testnotes del remove default q')
+        score_manager._run(user_input='m testnotes del remove default q')
         assert not packagepathtools.package_exists('system_materials.testnotes')
 
 
@@ -128,7 +128,7 @@ def test_MaterialPackageWrangler_run_handmade_package_05():
     assert not packagepathtools.package_exists('system_materials.testnotes')
 
     try:
-        score_manager.run(user_input=
+        score_manager._run(user_input=
             'm h testnotes default default '
             'testnotes mddelete remove default q')
         assert packagepathtools.package_exists('system_materials.testnotes')
@@ -144,7 +144,7 @@ def test_MaterialPackageWrangler_run_handmade_package_05():
         assert mpp.material_definition is None
         assert mpp.output_material is None
     finally:
-        score_manager.run(user_input='m testnotes del remove default q')
+        score_manager._run(user_input='m testnotes del remove default q')
         assert not packagepathtools.package_exists('system_materials.testnotes')
 
 
@@ -157,7 +157,7 @@ def test_MaterialPackageWrangler_run_handmade_package_06():
     assert not packagepathtools.package_exists('system_materials.testnotes')
 
     try:
-        score_manager.run(user_input=
+        score_manager._run(user_input=
             'm h testnotes default '
             'testnotes mdstub default q')
         assert packagepathtools.package_exists('system_materials.testnotes')
@@ -173,7 +173,7 @@ def test_MaterialPackageWrangler_run_handmade_package_06():
         assert mpp.material_definition is None
         assert mpp.output_material is None
     finally:
-        score_manager.run(user_input='m testnotes del remove default q')
+        score_manager._run(user_input='m testnotes del remove default q')
         assert not packagepathtools.package_exists('system_materials.testnotes')
 
 
@@ -186,7 +186,7 @@ def test_MaterialPackageWrangler_run_handmade_package_07():
     assert not packagepathtools.package_exists('system_materials.testnotes')
 
     try:
-        score_manager.run(user_input=
+        score_manager._run(user_input=
             'm h testnotes default default '
             'testnotes mdcanned canned_testnotes_material_definition.py default '
             'omm default '
@@ -204,7 +204,7 @@ def test_MaterialPackageWrangler_run_handmade_package_07():
         assert mpp.material_definition and notetools.all_are_notes(mpp.material_definition)
         assert mpp.output_material is None
     finally:
-        score_manager.run(user_input='m testnotes del remove default q')
+        score_manager._run(user_input='m testnotes del remove default q')
         assert not packagepathtools.package_exists('system_materials.testnotes')
 
 
@@ -217,7 +217,7 @@ def test_MaterialPackageWrangler_run_handmade_package_08():
     assert not packagepathtools.package_exists('system_materials.testnotes')
 
     try:
-        score_manager.run(user_input=
+        score_manager._run(user_input=
             'm h testnotes default default '
             'testnotes mdcanned canned_exception.py default q')
         assert packagepathtools.package_exists('system_materials.testnotes')
@@ -233,7 +233,7 @@ def test_MaterialPackageWrangler_run_handmade_package_08():
         assert mpp.material_definition is None
         assert mpp.output_material is None
     finally:
-        score_manager.run(user_input='m testnotes del remove default q')
+        score_manager._run(user_input='m testnotes del remove default q')
         assert not packagepathtools.package_exists('system_materials.testnotes')
 
 
@@ -246,7 +246,7 @@ def test_MaterialPackageWrangler_run_handmade_package_09():
     assert not packagepathtools.package_exists('system_materials.testnotes')
 
     try:
-        score_manager.run(user_input=
+        score_manager._run(user_input=
             'm h testnotes default default '
             'testnotes mdcanned canned_testnotes_material_definition.py default '
             'omm default '
@@ -265,7 +265,7 @@ def test_MaterialPackageWrangler_run_handmade_package_09():
         assert mpp.material_definition and notetools.all_are_notes(mpp.material_definition)
         assert mpp.output_material is None
     finally:
-        score_manager.run(user_input='m testnotes del remove default q')
+        score_manager._run(user_input='m testnotes del remove default q')
         assert not packagepathtools.package_exists('system_materials.testnotes')
 
 
@@ -279,7 +279,7 @@ def test_MaterialPackageWrangler_run_handmade_package_10():
     assert not packagepathtools.package_exists('system_materials.testnotes')
 
     try:
-        score_manager.run(user_input=
+        score_manager._run(user_input=
             'm h testnotes default default '
             'testnotes mdcanned canned_testnotes_material_definition.py default '
             'omm default '
@@ -302,5 +302,5 @@ def test_MaterialPackageWrangler_run_handmade_package_10():
         assert mpp.material_definition and notetools.all_are_notes(mpp.material_definition)
         assert mpp.output_material and notetools.all_are_notes(mpp.output_material)
     finally:
-        score_manager.run(user_input='m testnotes del remove default q')
+        score_manager._run(user_input='m testnotes del remove default q')
         assert not packagepathtools.package_exists('system_materials.testnotes')

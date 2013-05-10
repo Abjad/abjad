@@ -5,4 +5,4 @@ from experimental import *
 def test_ClefSpecifierEditor_run_01():
 
     editor = scoremanagertools.editors.ClefSpecifierEditor()
-    editor.run(user_input='clef tre done') == 'treble'
+    editor._run(user_input='clef tre done') == 'treble'

@@ -113,7 +113,7 @@ class FilesystemAssetProxy(ScoreManagerObject):
         self._io.assign_user_input(user_input=user_input)
         getter = self._io.make_getter()
         getter.append_underscore_delimited_lowercase_file_name('new name')
-        result = getter.run()
+        result = getter._run()
         if self._session.backtrack():
             return
         new_asset_name = self._space_delimited_lowercase_name_to_asset_name(result)
@@ -153,7 +153,7 @@ class FilesystemAssetProxy(ScoreManagerObject):
         self._io.display(['{} will be removed.'.format(self.filesystem_path), ''])
         getter = self._io.make_getter(where=self.where())
         getter.append_string("type 'remove' to proceed")
-        result = getter.run()
+        result = getter._run()
         if self._session.backtrack():
             return
         if not result == 'remove':
@@ -178,7 +178,7 @@ class FilesystemAssetProxy(ScoreManagerObject):
         getter = self._io.make_getter(where=self.where())
         getter.append_underscore_delimited_lowercase_file_name('new name')
         getter.include_newlines = False
-        result = getter.run()
+        result = getter._run()
         if self._session.backtrack():
             return
         new_path = os.path.join(self.filesystem_directory_name, result)
@@ -202,7 +202,7 @@ class FilesystemAssetProxy(ScoreManagerObject):
         if commit_message is None:
             getter = self._io.make_getter(where=self.where())
             getter.append_string('commit message')
-            commit_message = getter.run()
+            commit_message = getter._run()
             if self._session.backtrack():
                 return
             line = 'commit message will be: "{}"\n'.format(commit_message)
@@ -254,7 +254,7 @@ class FilesystemAssetProxy(ScoreManagerObject):
         getter = self._io.make_getter(where=self.where())
         getter.append_underscore_delimited_lowercase_file_name('name of boilerplate asset')
         self._session.push_backtrack()
-        boilerplate_filesystem_asset_name = getter.run()
+        boilerplate_filesystem_asset_name = getter._run()
         self._session.pop_backtrack()
         if self._session.backtrack():
             return

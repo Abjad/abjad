@@ -6,21 +6,21 @@ def test_InstrumentEditor_select_instrument_01():
     '''
 
     editor = scoremanagertools.editors.InstrumentEditor()
-    editor.run(user_input='q')
+    editor._run(user_input='q')
     assert editor._session.transcript.signature == (2,)
 
     editor = scoremanagertools.editors.InstrumentEditor()
-    editor.run(user_input='b q')
+    editor._run(user_input='b q')
     assert (2,)
 
     editor = scoremanagertools.editors.InstrumentEditor()
-    editor.run(user_input='home q')
+    editor._run(user_input='home q')
     assert (2,)
 
     editor = scoremanagertools.editors.InstrumentEditor()
-    editor.run(user_input='score q')
+    editor._run(user_input='score q')
     assert editor._session.transcript.signature == (4, (0, 2))
 
     editor = scoremanagertools.editors.InstrumentEditor()
-    editor.run(user_input='foo q')
+    editor._run(user_input='foo q')
     assert editor._session.transcript.signature == (4, (0, 2))

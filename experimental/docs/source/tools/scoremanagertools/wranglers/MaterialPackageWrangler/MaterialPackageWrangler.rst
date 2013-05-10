@@ -216,9 +216,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.MaterialPackageWrangler.MaterialPackageWrangler.MaterialPackageWrangler.rename_asset_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.MaterialPackageWrangler.MaterialPackageWrangler.MaterialPackageWrangler.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.MaterialPackageWrangler.MaterialPackageWrangler.MaterialPackageWrangler.select_asset_package_path_interactively
    :noindex:
 

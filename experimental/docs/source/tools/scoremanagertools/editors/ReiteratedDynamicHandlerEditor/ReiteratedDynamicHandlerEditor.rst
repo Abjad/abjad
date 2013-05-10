@@ -81,9 +81,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.menu_key_to_existing_value
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.target_args_to_target_summary_lines
    :noindex:
 

@@ -36,9 +36,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.make_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.where
    :noindex:
 

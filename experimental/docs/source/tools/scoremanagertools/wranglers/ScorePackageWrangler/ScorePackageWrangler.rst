@@ -192,9 +192,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.rename_asset_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.select_asset_package_path_interactively
    :noindex:
 

@@ -81,9 +81,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.menu_key_to_existing_value
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.target_args_to_target_summary_lines
    :noindex:
 

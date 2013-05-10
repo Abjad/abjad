@@ -435,9 +435,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.rename_material_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.run_first_time
    :noindex:
 

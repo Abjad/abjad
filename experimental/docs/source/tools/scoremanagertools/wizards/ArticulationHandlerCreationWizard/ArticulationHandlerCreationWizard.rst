@@ -21,9 +21,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.get_handler_editor
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.where
    :noindex:
 

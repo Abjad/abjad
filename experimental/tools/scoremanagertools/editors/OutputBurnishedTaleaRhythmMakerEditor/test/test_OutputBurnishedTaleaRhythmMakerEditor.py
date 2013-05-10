@@ -5,7 +5,7 @@ from experimental import *
 def test_OutputBurnishedTaleaRhythmMakerEditor_01():
 
     editor = scoremanagertools.editors.OutputBurnishedTaleaRhythmMakerEditor()
-    editor.run(user_input='1 [1] 16 [2] [0] [-1] [0] [1] [1] q', is_autoadvancing=True)
+    editor._run(user_input='1 [1] 16 [2] [0] [-1] [0] [1] [1] q', is_autoadvancing=True)
 
     maker = rhythmmakertools.OutputBurnishedTaleaRhythmMaker([1], 16,
         prolation_addenda=[2],

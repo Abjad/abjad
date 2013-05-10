@@ -237,9 +237,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.present_prompts_and_store_values
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.show_help
    :noindex:
 

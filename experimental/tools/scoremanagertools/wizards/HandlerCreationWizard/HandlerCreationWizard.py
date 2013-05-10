@@ -8,6 +8,21 @@ class HandlerCreationWizard(Wizard):
 
     __metaclass__ = abc.ABCMeta
 
+    ### PRIVATE METHODS ###
+
+    def _run(self, cache=False, clear=True, head=None, user_input=None):
+        self._io.assign_user_input(user_input=user_input)
+        self._session.cache_breadcrumbs(cache=cache)
+        self._session.push_breadcrumb(self.breadcrumb)
+        selector = self.handler_class_name_selector(session=self._session)
+        handler_class_name = selector._run()
+        if not self._session.backtrack():
+            handler_editor = self.get_handler_editor(handler_class_name)
+            handler_editor._run(is_autoadvancing=True, is_autostarting=True)
+            self.target = handler_editor.target
+        self._session.pop_breadcrumb()
+        self._session.restore_breadcrumbs(cache=cache)
+
     ### PUBLIC METHODS ###
 
     # TODO: abstract up to Wizard?
@@ -17,16 +32,3 @@ class HandlerCreationWizard(Wizard):
         exec(command)
         handler_editor = handler_editor_class(session=self._session, target=target)
         return handler_editor
-
-    def run(self, cache=False, clear=True, head=None, user_input=None):
-        self._io.assign_user_input(user_input=user_input)
-        self._session.cache_breadcrumbs(cache=cache)
-        self._session.push_breadcrumb(self.breadcrumb)
-        selector = self.handler_class_name_selector(session=self._session)
-        handler_class_name = selector.run()
-        if not self._session.backtrack():
-            handler_editor = self.get_handler_editor(handler_class_name)
-            handler_editor.run(is_autoadvancing=True, is_autostarting=True)
-            self.target = handler_editor.target
-        self._session.pop_breadcrumb()
-        self._session.restore_breadcrumbs(cache=cache)

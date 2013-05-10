@@ -81,9 +81,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.RhythmSpecifierEditor.RhythmSpecifierEditor.RhythmSpecifierEditor.menu_key_to_existing_value
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.RhythmSpecifierEditor.RhythmSpecifierEditor.RhythmSpecifierEditor.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.RhythmSpecifierEditor.RhythmSpecifierEditor.RhythmSpecifierEditor.target_args_to_target_summary_lines
    :noindex:
 

@@ -25,5 +25,5 @@ class Wizard(ScoreManagerObject):
     ### PUBLIC METHODS ###
 
     @abc.abstractmethod
-    def run(self, cache=False, clear=True, head=None, user_input=None):
+    def _run(self, cache=False, clear=True, head=None, user_input=None):
         pass

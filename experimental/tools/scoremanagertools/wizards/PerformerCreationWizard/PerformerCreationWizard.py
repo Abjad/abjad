@@ -7,9 +7,68 @@ from experimental.tools.scoremanagertools.wizards.Wizard import Wizard
 
 class PerformerCreationWizard(Wizard):
 
+    ### INITIALIZER ###
+
     def __init__(self, is_ranged=False, session=None, target=None):
         Wizard.__init__(self, session=session, target=target)
         self.is_ranged = is_ranged
+
+    ### PRIVATE METHODS ###
+
+    def _run(self, cache=False, clear=True, head=None, user_input=None):
+        self._io.assign_user_input(user_input=user_input)
+        self._session.cache_breadcrumbs(cache=cache)
+        try_again = False
+        performers = []
+        while True:
+            self._session.push_breadcrumb(self.breadcrumb)
+            kwargs = {'session': self._session, 'is_ranged': self.is_ranged}
+            selector = selectors.ScoreToolsPerformerNameSelector(**kwargs)
+            self._session.push_backtrack()
+            result = selector._run()
+            self._session.pop_backtrack()
+            if self._session.backtrack():
+                break
+            if isinstance(result, list):
+                performer_names = result
+            else:
+                performer_names = [result]
+            performers = []
+            for performer_name in performer_names:
+                self._session.push_breadcrumb(self.breadcrumb)
+                self._session.push_backtrack()
+                performer = scoretools.Performer(performer_name)
+                self.initialize_performer_interactively(performer)
+                self._session.pop_backtrack()
+                self._session.pop_breadcrumb()
+                was_backtracking_locally = self._session.is_backtracking_locally
+                if self._session.backtrack():
+                    if was_backtracking_locally:
+                        try_again = True
+                    else:
+                        try_again = False
+                        performers = []
+                    break
+                performers.append(performer)
+            if not try_again:
+                break
+            else:
+                try_again = False
+                self._session.pop_breadcrumb()
+        if self.is_ranged and performers:
+            final_result = performers[:]
+        elif self.is_ranged and not performers:
+            final_result = []
+        elif not self.is_ranged and performers:
+            final_result = performers[0]
+        elif not self.is_ranged and not performers:
+            final_result = None
+        else:
+            raise ValueError
+        self._session.pop_breadcrumb()
+        self._session.restore_breadcrumbs(cache=cache)
+        self.target = final_result
+        return self.target
 
     ### READ-ONLY PROPERTIES ###
 
@@ -23,7 +82,7 @@ class PerformerCreationWizard(Wizard):
         menu = self.make_performer_configuration_menu(performer)
         while True:
             self._session.push_breadcrumb(performer.name)
-            result = menu.run(clear=clear)
+            result = menu._run(clear=clear)
             if self._session.backtrack():
                 self._session.pop_breadcrumb()
                 self._session.restore_breadcrumbs(cache=cache)
@@ -36,7 +95,7 @@ class PerformerCreationWizard(Wizard):
             elif result in ('more', ['more']):
                 self._session.push_backtrack()
                 wizard = InstrumentCreationWizard(session=self._session, is_ranged=True)
-                instruments = wizard.run()
+                instruments = wizard._run()
                 self._session.pop_backtrack()
                 if self._session.backtrack():
                     break
@@ -82,58 +141,3 @@ class PerformerCreationWizard(Wizard):
             section = menu.make_section(is_keyed=False)
         section.append(('skip', 'skip instruments'))
         return menu
-
-    def run(self, cache=False, clear=True, head=None, user_input=None):
-        self._io.assign_user_input(user_input=user_input)
-        self._session.cache_breadcrumbs(cache=cache)
-        try_again = False
-        performers = []
-        while True:
-            self._session.push_breadcrumb(self.breadcrumb)
-            kwargs = {'session': self._session, 'is_ranged': self.is_ranged}
-            selector = selectors.ScoreToolsPerformerNameSelector(**kwargs)
-            self._session.push_backtrack()
-            result = selector.run()
-            self._session.pop_backtrack()
-            if self._session.backtrack():
-                break
-            if isinstance(result, list):
-                performer_names = result
-            else:
-                performer_names = [result]
-            performers = []
-            for performer_name in performer_names:
-                self._session.push_breadcrumb(self.breadcrumb)
-                self._session.push_backtrack()
-                performer = scoretools.Performer(performer_name)
-                self.initialize_performer_interactively(performer)
-                self._session.pop_backtrack()
-                self._session.pop_breadcrumb()
-                was_backtracking_locally = self._session.is_backtracking_locally
-                if self._session.backtrack():
-                    if was_backtracking_locally:
-                        try_again = True
-                    else:
-                        try_again = False
-                        performers = []
-                    break
-                performers.append(performer)
-            if not try_again:
-                break
-            else:
-                try_again = False
-                self._session.pop_breadcrumb()
-        if self.is_ranged and performers:
-            final_result = performers[:]
-        elif self.is_ranged and not performers:
-            final_result = []
-        elif not self.is_ranged and performers:
-            final_result = performers[0]
-        elif not self.is_ranged and not performers:
-            final_result = None
-        else:
-            raise ValueError
-        self._session.pop_breadcrumb()
-        self._session.restore_breadcrumbs(cache=cache)
-        self.target = final_result
-        return self.target

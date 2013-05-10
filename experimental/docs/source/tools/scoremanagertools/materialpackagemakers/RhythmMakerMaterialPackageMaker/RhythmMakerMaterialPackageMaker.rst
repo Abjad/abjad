@@ -435,9 +435,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.rename_material_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.run_first_time
    :noindex:
 

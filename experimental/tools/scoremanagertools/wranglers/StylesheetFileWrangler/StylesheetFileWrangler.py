@@ -28,7 +28,7 @@ class StylesheetFileWrangler(FileWrangler):
             stylesheet_file_name = os.path.join(self.configuration.system_stylesheets_directory_path, result)
             stylesheet_proxy = scoremanagertools.proxies.StylesheetFileProxy(
                 stylesheet_file_name, session=self._session)
-            stylesheet_proxy.run()
+            stylesheet_proxy._run()
 
     def _make_main_menu(self):
         menu, section = self._io.make_menu(where=self.where(), is_parenthetically_numbered=True)
@@ -64,7 +64,7 @@ class StylesheetFileWrangler(FileWrangler):
         from experimental.tools import scoremanagertools
         getter = self._io.make_getter(where=self.where())
         getter.append_string('stylesheet name')
-        stylesheet_file_name = getter.run()
+        stylesheet_file_name = getter._run()
         if self._session.backtrack():
             return
         stylesheet_file_name = stringtools.string_to_accent_free_underscored_delimited_lowercase(
@@ -84,7 +84,7 @@ class StylesheetFileWrangler(FileWrangler):
         section.tokens = self.stylesheet_file_names
         while True:
             self._session.push_breadcrumb('select stylesheet')
-            result = menu.run(clear=clear)
+            result = menu._run(clear=clear)
             if self._session.backtrack():
                 break
             elif not result:

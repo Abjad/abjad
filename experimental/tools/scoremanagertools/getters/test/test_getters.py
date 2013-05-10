@@ -7,7 +7,7 @@ def test_getters_01():
     '''
 
     getter = getters.get_duration('foo bar')
-    assert getter.run(user_input='asdf (1, 16)') == Duration(1, 16)
+    assert getter._run(user_input='asdf (1, 16)') == Duration(1, 16)
 
 
 def test_getters_02():
@@ -15,4 +15,4 @@ def test_getters_02():
     '''
 
     getter = getters.get_duration('foo bar')
-    assert getter.run(user_input='None') is None
+    assert getter._run(user_input='None') is None

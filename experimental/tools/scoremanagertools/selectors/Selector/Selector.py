@@ -29,7 +29,27 @@ class Selector(ScoreManagerObject):
         section.return_value_attribute = 'prepopulated'
         return menu
 
-    ### READ-ONLY PROPERTIES ###
+    ### PRIVATE METHODS ###
+
+    def _run(self, cache=False, clear=True, head=None, user_input=None):
+        self._io.assign_user_input(user_input=user_input)
+        self._session.cache_breadcrumbs(cache=cache)
+        while True:
+            self._session.push_breadcrumb(self.breadcrumb)
+            menu = self._make_main_menu(head=head)
+            result = menu._run(clear=clear)
+            if self._session.backtrack():
+                break
+            elif not result:
+                self._session.pop_breadcrumb()
+                continue
+            else:
+                break
+        self._session.pop_breadcrumb()
+        self._session.restore_breadcrumbs(cache=cache)
+        return result
+
+    ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def breadcrumb(self):
@@ -40,7 +60,7 @@ class Selector(ScoreManagerObject):
         else:
             return 'select:'
 
-    ### READ / WRITE PROPERTIES ###
+    ### READ / WRITE PUBLIC PROPERTIES ###
 
     @apply
     def items():
@@ -74,21 +94,3 @@ class Selector(ScoreManagerObject):
 
     def make_menu_tokens(self, head=None):
         return [self.change_expr_to_menu_token(item) for item in self.items]
-
-    def run(self, cache=False, clear=True, head=None, user_input=None):
-        self._io.assign_user_input(user_input=user_input)
-        self._session.cache_breadcrumbs(cache=cache)
-        while True:
-            self._session.push_breadcrumb(self.breadcrumb)
-            menu = self._make_main_menu(head=head)
-            result = menu.run(clear=clear)
-            if self._session.backtrack():
-                break
-            elif not result:
-                self._session.pop_breadcrumb()
-                continue
-            else:
-                break
-        self._session.pop_breadcrumb()
-        self._session.restore_breadcrumbs(cache=cache)
-        return result

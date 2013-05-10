@@ -36,9 +36,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.make_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.ParameterEditorClassNameSelector.where
    :noindex:
 

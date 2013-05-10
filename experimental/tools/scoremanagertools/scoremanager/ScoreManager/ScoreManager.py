@@ -35,10 +35,10 @@ class ScoreManager(ScoreManagerObject):
         elif result == 'all':
             self._session.show_all_scores()
         elif result == 'm':
-            self.material_package_wrangler.run(
+            self.material_package_wrangler._run(
                 rollback=True, head=self.configuration.system_materials_package_path)
         elif result == 'f':
-            self.music_specifier_module_wrangler.run(
+            self.music_specifier_module_wrangler._run(
                 rollback=True, head=self.configuration.system_specifiers_package_path)
         elif result == 'k':
             self.print_not_yet_implemented()
@@ -67,6 +67,45 @@ class ScoreManager(ScoreManagerObject):
         hidden_section.append(('mb', 'show mothballed scores only'))
         hidden_section.append(('profile', 'profile packages'))
         return menu
+
+    def _run(self, user_input=None, clear=True, cache=False):
+        type(self).__init__(self)
+        self._io.assign_user_input(user_input=user_input)
+        self._session.cache_breadcrumbs(cache=cache)
+        self._session.push_breadcrumb(self.breadcrumb)
+        run_main_menu = True
+        while True:
+            self._session.push_breadcrumb(self.score_status_string)
+            if run_main_menu:
+                menu = self._make_main_menu()
+                result = menu._run(clear=clear)
+            else:
+                run_main_menu = True
+            if self._session.backtrack(source='home'):
+                self._session.pop_breadcrumb()
+                self._session.clean_up()
+                break
+            elif self._session.is_navigating_to_next_score:
+                self._session.is_navigating_to_next_score = False
+                self._session.is_backtracking_to_score_manager = False
+                result = self.get_next_score_package_name()
+            elif self._session.is_navigating_to_prev_score:
+                self._session.is_navigating_to_prev_score = False
+                self._session.is_backtracking_to_score_manager = False
+                result = self.get_prev_score_package_name()
+            elif not result:
+                self._session.pop_breadcrumb()
+                continue
+            self._handle_main_menu_result(result)
+            if self._session.backtrack(source='home'):
+                self._session.pop_breadcrumb()
+                self._session.clean_up()
+                break
+            elif self._session.is_navigating_to_sibling_score:
+                run_main_menu = False
+            self._session.pop_breadcrumb()
+        self._session.pop_breadcrumb()
+        self._session.restore_breadcrumbs(cache=cache)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -107,7 +146,7 @@ class ScoreManager(ScoreManagerObject):
     def edit_score_interactively(self, score_package_path):
         score_package_proxy = self.score_package_wrangler.get_asset_proxy(score_package_path)
         score_package_proxy._session.underscore_delimited_current_score_name = score_package_path
-        score_package_proxy.run(cache=True)
+        score_package_proxy._run(cache=True)
         self._session.underscore_delimited_current_score_name = None
 
     def get_next_score_package_name(self):
@@ -158,7 +197,7 @@ class ScoreManager(ScoreManagerObject):
         while True:
             self._session.push_breadcrumb('repository commands')
             menu = self.make_svn_menu()
-            result = menu.run(clear=clear)
+            result = menu._run(clear=clear)
             if self._session.is_backtracking_to_score:
                 self._session.is_backtracking_to_score = False
                 self._session.pop_breadcrumb()
@@ -170,45 +209,6 @@ class ScoreManager(ScoreManagerObject):
                 break
             self._session.pop_breadcrumb()
         self._session.pop_breadcrumb()
-
-    def run(self, user_input=None, clear=True, cache=False):
-        type(self).__init__(self)
-        self._io.assign_user_input(user_input=user_input)
-        self._session.cache_breadcrumbs(cache=cache)
-        self._session.push_breadcrumb(self.breadcrumb)
-        run_main_menu = True
-        while True:
-            self._session.push_breadcrumb(self.score_status_string)
-            if run_main_menu:
-                menu = self._make_main_menu()
-                result = menu.run(clear=clear)
-            else:
-                run_main_menu = True
-            if self._session.backtrack(source='home'):
-                self._session.pop_breadcrumb()
-                self._session.clean_up()
-                break
-            elif self._session.is_navigating_to_next_score:
-                self._session.is_navigating_to_next_score = False
-                self._session.is_backtracking_to_score_manager = False
-                result = self.get_next_score_package_name()
-            elif self._session.is_navigating_to_prev_score:
-                self._session.is_navigating_to_prev_score = False
-                self._session.is_backtracking_to_score_manager = False
-                result = self.get_prev_score_package_name()
-            elif not result:
-                self._session.pop_breadcrumb()
-                continue
-            self._handle_main_menu_result(result)
-            if self._session.backtrack(source='home'):
-                self._session.pop_breadcrumb()
-                self._session.clean_up()
-                break
-            elif self._session.is_navigating_to_sibling_score:
-                run_main_menu = False
-            self._session.pop_breadcrumb()
-        self._session.pop_breadcrumb()
-        self._session.restore_breadcrumbs(cache=cache)
 
     # TODO: this probably isn't working any more bc of self.score_package_wrangler.path;
     #       just fix that at some point to run tests again from within score manager.

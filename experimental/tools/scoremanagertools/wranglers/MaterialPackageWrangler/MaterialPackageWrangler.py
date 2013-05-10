@@ -39,7 +39,7 @@ class MaterialPackageWrangler(PackageWrangler):
             self.profile_visible_assets()
         else:
             material_package_proxy = self.get_asset_proxy(result)
-            material_package_proxy.run()
+            material_package_proxy._run()
 
     def _make_main_menu(self, head=None):
         menu, section = self._io.make_menu(where=self.where(), is_numbered=True, is_keyed=False)
@@ -101,7 +101,7 @@ class MaterialPackageWrangler(PackageWrangler):
             getter = self._io.make_getter(where=self.where())
             getter.append_space_delimited_lowercase_string('material name')
             self._session.push_backtrack()
-            package_name = getter.run()
+            package_name = getter._run()
             self._session.pop_backtrack()
             if self._session.backtrack():
                 return

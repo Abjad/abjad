@@ -35,6 +35,18 @@ class UserInputGetter(MenuSectionAggregator):
     def __repr__(self):
         return '{}({})'.format(type(self).__name__, len(self.prompts))
 
+    ### PRIVATE METHODS ###
+
+    def _run(self, user_input=None, include_chevron=True):
+        self._io.assign_user_input(user_input=user_input)
+        self._session.push_backtrack()
+        self.present_prompts_and_store_values(include_chevron=include_chevron)
+        self._session.pop_backtrack()
+        if len(self.values) == 1:
+            return self.values[0]
+        else:
+            return self.values
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
@@ -416,16 +428,6 @@ class UserInputGetter(MenuSectionAggregator):
         while self.prompt_index < len(self.prompts):
             if not self.present_prompt_and_store_value(include_chevron=include_chevron):
                 break
-
-    def run(self, user_input=None, include_chevron=True):
-        self._io.assign_user_input(user_input=user_input)
-        self._session.push_backtrack()
-        self.present_prompts_and_store_values(include_chevron=include_chevron)
-        self._session.pop_backtrack()
-        if len(self.values) == 1:
-            return self.values[0]
-        else:
-            return self.values
 
     def show_help(self):
         lines = []

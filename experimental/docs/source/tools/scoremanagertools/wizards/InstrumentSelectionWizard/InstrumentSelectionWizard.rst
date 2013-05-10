@@ -18,9 +18,6 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentSelectionWizard.InstrumentSelectionWizard.InstrumentSelectionWizard.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentSelectionWizard.InstrumentSelectionWizard.InstrumentSelectionWizard.where
    :noindex:
 

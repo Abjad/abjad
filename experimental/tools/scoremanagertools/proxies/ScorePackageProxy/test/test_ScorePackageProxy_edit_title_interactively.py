@@ -7,12 +7,12 @@ def test_ScorePackageProxy_edit_title_interactively_01():
 
     try:
         score_manager = scoremanagertools.scoremanager.ScoreManager()
-        score_manager.run(user_input='betorung setup title Foo q')
+        score_manager._run(user_input='betorung setup title Foo q')
         assert score_manager._session.transcript.signature == (9,)
         assert score_manager._session.transcript[-5][1][0] == 'Betörung (2012) - setup'
         assert score_manager._session.transcript[-2][1][0] == 'Foo (2012) - setup'
     finally:
-        score_manager.run(user_input='foo setup title Betörung q')
+        score_manager._run(user_input='foo setup title Betörung q')
         assert score_manager._session.transcript.signature == (9,)
         assert score_manager._session.transcript[-5][1][0] == 'Foo (2012) - setup'
         assert score_manager._session.transcript[-2][1][0] == 'Betörung (2012) - setup'

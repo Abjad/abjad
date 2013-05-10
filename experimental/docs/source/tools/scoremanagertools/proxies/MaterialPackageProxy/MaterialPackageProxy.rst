@@ -414,9 +414,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.rename_material_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.run_first_time
    :noindex:
 

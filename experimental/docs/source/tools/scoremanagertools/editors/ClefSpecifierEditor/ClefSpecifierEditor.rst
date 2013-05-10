@@ -81,9 +81,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.menu_key_to_existing_value
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor.target_args_to_target_summary_lines
    :noindex:
 

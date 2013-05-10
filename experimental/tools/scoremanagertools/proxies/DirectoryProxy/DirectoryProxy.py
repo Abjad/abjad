@@ -24,7 +24,7 @@ class DirectoryProxy(FilesystemAssetProxy):
     def get_filesystem_path_interactively(self):
         getter = self._io.make_getter(where=self.where())
         getter.append_string('directory path')
-        result = getter.run()
+        result = getter._run()
         if self._session.backtrack():
             return
         self.filesystem_path = result

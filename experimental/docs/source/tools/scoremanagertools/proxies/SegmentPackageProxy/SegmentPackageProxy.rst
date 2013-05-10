@@ -165,9 +165,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.rename_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy.run_first_time
    :noindex:
 

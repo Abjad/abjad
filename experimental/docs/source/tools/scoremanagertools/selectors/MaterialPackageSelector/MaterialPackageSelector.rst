@@ -45,9 +45,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.make_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.where
    :noindex:
 

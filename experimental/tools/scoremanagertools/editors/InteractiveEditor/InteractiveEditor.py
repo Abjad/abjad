@@ -34,7 +34,7 @@ class InteractiveEditor(ScoreManagerObject):
         editor = self.target_manifest.menu_key_to_editor(
             result, session=self._session, existing_value=existing_value, **kwargs)
         if editor is not None:
-            result = editor.run()
+            result = editor._run()
             if self._session.backtrack():
                 self.is_autoadvancing = False
                 return
@@ -52,6 +52,60 @@ class InteractiveEditor(ScoreManagerObject):
         hidden_section = menu.hidden_section
         hidden_section.append(('done', 'done'))
         return menu
+
+    def _run(self, breadcrumb=None, cache=False, clear=True, is_autoadding=False,
+        is_autoadvancing=False, is_autostarting=False, user_input=None):
+        self._io.assign_user_input(user_input=user_input)
+        self._session.cache_breadcrumbs(cache=cache)
+        self._session.push_breadcrumb(self.breadcrumb)
+        self._session.push_backtrack()
+        self.conditionally_initialize_target()
+        self._session.pop_backtrack()
+        self._session.pop_breadcrumb()
+        if self._session.backtrack():
+            self._session.restore_breadcrumbs(cache=cache)
+            return
+        result, entry_point, self.is_autoadvancing, is_first_pass = None, None, is_autoadvancing, True
+        if is_autoadding:
+            self._session.is_autoadding = True
+        while True:
+            breadcrumb = breadcrumb or self.breadcrumb
+            self._session.push_breadcrumb(breadcrumb=breadcrumb)
+            if self._session.is_autoadding:
+                menu = self._make_main_menu()
+                result = 'add'
+                menu._run(clear=clear, flamingo_input=result)
+                is_first_pass = False
+            elif is_first_pass and is_autostarting:
+                menu = self._make_main_menu()
+                result = menu.first_nonhidden_return_value_in_menu
+                menu._run(clear=clear, flamingo_input=result)
+                is_first_pass = False
+            elif result and self.is_autoadvancing:
+                entry_point = entry_point or result
+                result = menu.return_value_to_next_return_value_in_section(result)
+                if result == entry_point:
+                    self.is_autoadvancing = False
+                    self._session.pop_breadcrumb()
+                    continue
+            else:
+                menu = self._make_main_menu()
+                result = menu._run(clear=clear)
+                if self._session.backtrack():
+                    break
+                elif not result:
+                    self._session.pop_breadcrumb()
+                    continue
+            if result == 'done':
+                break
+            self._handle_main_menu_result(result)
+            if self._session.backtrack():
+                break
+            self._session.pop_breadcrumb()
+        self._session.is_autoadding = False
+        self._session.pop_breadcrumb()
+        self._session.restore_breadcrumbs(cache=cache)
+        self.clean_up_attributes_in_memory()
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -248,60 +302,6 @@ class InteractiveEditor(ScoreManagerObject):
     def menu_key_to_existing_value(self, menu_key):
         attribute_name = self.target_manifest.menu_key_to_attribute_name(menu_key)
         return getattr(self.target, attribute_name, None)
-
-    def run(self, breadcrumb=None, cache=False, clear=True, is_autoadding=False,
-        is_autoadvancing=False, is_autostarting=False, user_input=None):
-        self._io.assign_user_input(user_input=user_input)
-        self._session.cache_breadcrumbs(cache=cache)
-        self._session.push_breadcrumb(self.breadcrumb)
-        self._session.push_backtrack()
-        self.conditionally_initialize_target()
-        self._session.pop_backtrack()
-        self._session.pop_breadcrumb()
-        if self._session.backtrack():
-            self._session.restore_breadcrumbs(cache=cache)
-            return
-        result, entry_point, self.is_autoadvancing, is_first_pass = None, None, is_autoadvancing, True
-        if is_autoadding:
-            self._session.is_autoadding = True
-        while True:
-            breadcrumb = breadcrumb or self.breadcrumb
-            self._session.push_breadcrumb(breadcrumb=breadcrumb)
-            if self._session.is_autoadding:
-                menu = self._make_main_menu()
-                result = 'add'
-                menu.run(clear=clear, flamingo_input=result)
-                is_first_pass = False
-            elif is_first_pass and is_autostarting:
-                menu = self._make_main_menu()
-                result = menu.first_nonhidden_return_value_in_menu
-                menu.run(clear=clear, flamingo_input=result)
-                is_first_pass = False
-            elif result and self.is_autoadvancing:
-                entry_point = entry_point or result
-                result = menu.return_value_to_next_return_value_in_section(result)
-                if result == entry_point:
-                    self.is_autoadvancing = False
-                    self._session.pop_breadcrumb()
-                    continue
-            else:
-                menu = self._make_main_menu()
-                result = menu.run(clear=clear)
-                if self._session.backtrack():
-                    break
-                elif not result:
-                    self._session.pop_breadcrumb()
-                    continue
-            if result == 'done':
-                break
-            self._handle_main_menu_result(result)
-            if self._session.backtrack():
-                break
-            self._session.pop_breadcrumb()
-        self._session.is_autoadding = False
-        self._session.pop_breadcrumb()
-        self._session.restore_breadcrumbs(cache=cache)
-        self.clean_up_attributes_in_memory()
 
     def target_args_to_target_summary_lines(self, target):
         result = []

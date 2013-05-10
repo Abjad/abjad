@@ -9,7 +9,7 @@ def test_SargassoMeasureMaterialPackageMaker_01():
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     assert not packagepathtools.package_exists('system_materials.testsargasso')
     try:
-        score_manager.run(user_input=
+        score_manager._run(user_input=
             'materials maker sargasso testsargasso default '
             'q'
             )
@@ -27,7 +27,7 @@ def test_SargassoMeasureMaterialPackageMaker_01():
             ('measures_are_shuffled', None)])
         assert mpp.user_input_wrapper_in_memory == user_input_wrapper
     finally:
-        score_manager.run(user_input='m testsargasso del remove default q')
+        score_manager._run(user_input='m testsargasso del remove default q')
         assert not packagepathtools.package_exists('system_materials.testsargasso')
 
 
@@ -38,7 +38,7 @@ def test_SargassoMeasureMaterialPackageMaker_02():
     assert not packagepathtools.package_exists('system_materials.testsargasso')
 
     try:
-        score_manager.run(user_input=
+        score_manager._run(user_input=
             'materials maker sargasso testsargasso default '
             'testsargasso uil '
             'q'
@@ -57,7 +57,7 @@ def test_SargassoMeasureMaterialPackageMaker_02():
             ('measures_are_shuffled', True)])
         assert mpp.user_input_wrapper_in_memory == user_input_wrapper
     finally:
-        score_manager.run(user_input='m testsargasso del remove default q')
+        score_manager._run(user_input='m testsargasso del remove default q')
         assert not packagepathtools.package_exists('system_materials.testsargasso')
 
 
@@ -67,7 +67,7 @@ def test_SargassoMeasureMaterialPackageMaker_03():
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     assert not packagepathtools.package_exists('system_materials.testsargasso')
     try:
-        score_manager.run(user_input=
+        score_manager._run(user_input=
             'materials maker sargasso testsargasso default '
             'testsargasso uil uic '
             'q'
@@ -86,7 +86,7 @@ def test_SargassoMeasureMaterialPackageMaker_03():
             ('measures_are_shuffled', None)])
         assert mpp.user_input_wrapper_in_memory == user_input_wrapper
     finally:
-        score_manager.run(user_input='m testsargasso del remove default q')
+        score_manager._run(user_input='m testsargasso del remove default q')
         assert not packagepathtools.package_exists('system_materials.testsargasso')
 
 
@@ -96,7 +96,7 @@ def test_SargassoMeasureMaterialPackageMaker_04():
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     assert not packagepathtools.package_exists('system_materials.testsargasso')
     try:
-        score_manager.run(user_input=
+        score_manager._run(user_input=
             'materials maker sargasso testsargasso default '
             'testsargasso 3 16 '
             'q'
@@ -115,7 +115,7 @@ def test_SargassoMeasureMaterialPackageMaker_04():
             ('measures_are_shuffled', None)])
         assert mpp.user_input_wrapper_in_memory == user_input_wrapper
     finally:
-        score_manager.run(user_input='m testsargasso del remove default q')
+        score_manager._run(user_input='m testsargasso del remove default q')
         assert not packagepathtools.package_exists('system_materials.testsargasso')
 
 
@@ -125,7 +125,7 @@ def test_SargassoMeasureMaterialPackageMaker_05():
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     assert not packagepathtools.package_exists('system_materials.testsargasso')
     try:
-        score_manager.run(user_input=
+        score_manager._run(user_input=
             'materials maker sargasso testsargasso default '
             'testsargasso uip 5 '
             'Duration(11, 2) False True True 4 [2, 2, 2, 2, 1, 1, 4, 4] 16 [1, 1, 2, 3, 4] '
@@ -145,7 +145,7 @@ def test_SargassoMeasureMaterialPackageMaker_05():
             ('measures_are_shuffled', True)])
         assert mpp.user_input_wrapper_in_memory == user_input_wrapper
     finally:
-        score_manager.run(user_input='m testsargasso del remove default q')
+        score_manager._run(user_input='m testsargasso del remove default q')
         assert not packagepathtools.package_exists('system_materials.testsargasso')
 
 
@@ -155,7 +155,7 @@ def test_SargassoMeasureMaterialPackageMaker_06():
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     assert not packagepathtools.package_exists('system_materials.testsargasso')
     try:
-        score_manager.run(user_input=
+        score_manager._run(user_input=
             'materials maker sargasso testsargasso default '
             'testsargasso uip 1 '
             '4 [2, 2, 3, 3] 16 [1, 1, 1, 1, 6, 6] b '
@@ -175,7 +175,7 @@ def test_SargassoMeasureMaterialPackageMaker_06():
             ('measures_are_shuffled', None)])
         assert mpp.user_input_wrapper_in_memory == user_input_wrapper
     finally:
-        score_manager.run(user_input='m testsargasso del remove default q')
+        score_manager._run(user_input='m testsargasso del remove default q')
         assert not packagepathtools.package_exists('system_materials.testsargasso')
 
 
@@ -185,7 +185,7 @@ def test_SargassoMeasureMaterialPackageMaker_07():
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     assert not packagepathtools.package_exists('system_materials.testsargasso')
     try:
-        score_manager.run(user_input=
+        score_manager._run(user_input=
             'materials maker sargasso testsargasso default '
             'testsargasso uil 6 None 7 None 8 None '
             'q'
@@ -204,7 +204,7 @@ def test_SargassoMeasureMaterialPackageMaker_07():
             ('measures_are_shuffled', None)])
         assert mpp.user_input_wrapper_in_memory == user_input_wrapper
     finally:
-        score_manager.run(user_input='m testsargasso del remove default q')
+        score_manager._run(user_input='m testsargasso del remove default q')
         assert not packagepathtools.package_exists('system_materials.testsargasso')
 
 
@@ -214,7 +214,7 @@ def test_SargassoMeasureMaterialPackageMaker_08():
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     assert not packagepathtools.package_exists('system_materials.testsargasso')
     try:
-        score_manager.run(user_input=
+        score_manager._run(user_input=
             'materials maker sargasso testsargasso default '
             'testsargasso uil omm default '
             'q'
@@ -243,5 +243,5 @@ def test_SargassoMeasureMaterialPackageMaker_08():
             measuretools.Measure((9, 19), "c'16 c'4 c'16 c'16 c'8")]
         assert Staff(mpp.output_material).lilypond_format == Staff(measures).lilypond_format
     finally:
-        score_manager.run(user_input='m testsargasso del remove default q')
+        score_manager._run(user_input='m testsargasso del remove default q')
         assert not packagepathtools.package_exists('system_materials.testsargasso')

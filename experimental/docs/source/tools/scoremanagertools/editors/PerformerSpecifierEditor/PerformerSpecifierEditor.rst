@@ -81,9 +81,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.PerformerSpecifierEditor.PerformerSpecifierEditor.PerformerSpecifierEditor.menu_key_to_existing_value
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.PerformerSpecifierEditor.PerformerSpecifierEditor.PerformerSpecifierEditor.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.PerformerSpecifierEditor.PerformerSpecifierEditor.PerformerSpecifierEditor.target_args_to_target_summary_lines
    :noindex:
 

@@ -81,9 +81,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.StaffSpecifierEditor.StaffSpecifierEditor.StaffSpecifierEditor.menu_key_to_existing_value
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.StaffSpecifierEditor.StaffSpecifierEditor.StaffSpecifierEditor.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.StaffSpecifierEditor.StaffSpecifierEditor.StaffSpecifierEditor.target_args_to_target_summary_lines
    :noindex:
 

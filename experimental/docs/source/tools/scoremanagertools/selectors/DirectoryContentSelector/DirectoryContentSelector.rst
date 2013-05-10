@@ -36,9 +36,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.make_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector.where
    :noindex:
 

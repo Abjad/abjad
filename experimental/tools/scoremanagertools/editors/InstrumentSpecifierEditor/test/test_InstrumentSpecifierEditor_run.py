@@ -7,7 +7,7 @@ def test_InstrumentSpecifierEditor_run_01():
 
     editor = scoremanagertools.editors.InstrumentSpecifierEditor()
     editor._session.underscore_delimited_current_score_name = 'example_score_1'
-    editor.run(user_input='name foo instrument horn done')
+    editor._run(user_input='name foo instrument horn done')
 
     r'''
     specifiers.InstrumentSpecifier(
@@ -24,7 +24,7 @@ def test_InstrumentSpecifierEditor_run_02():
     '''
 
     editor = scoremanagertools.editors.InstrumentSpecifierEditor()
-    editor.run(user_input='name foo instrument untuned ratt done')
+    editor._run(user_input='name foo instrument untuned ratt done')
 
     r'''
     specifiers.InstrumentSpecifier(

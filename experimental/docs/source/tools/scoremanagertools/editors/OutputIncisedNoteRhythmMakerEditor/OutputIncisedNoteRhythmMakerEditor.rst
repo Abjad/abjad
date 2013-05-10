@@ -81,9 +81,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.menu_key_to_existing_value
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.target_args_to_target_summary_lines
    :noindex:
 

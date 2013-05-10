@@ -15,14 +15,14 @@ class InstrumentSelectionWizard(Wizard):
 
     ### PUBLIC METHODS ###
 
-    def run(self, cache=False, clear=True, head=None, user_input=None):
+    def _run(self, cache=False, clear=True, head=None, user_input=None):
         self._io.assign_user_input(user_input=user_input)
         self._session.cache_breadcrumbs(cache=cache)
         self._session.push_breadcrumb(self.breadcrumb)
         if self._session.is_in_score:
             selector = selectors.ScoreInstrumentSelector(session=self._session)
             self._session.push_backtrack()
-            result = selector.run(clear=clear)
+            result = selector._run(clear=clear)
             self._session.pop_backtrack()
             if self._session.backtrack():
                 self._session.pop_breadcrumb()
@@ -37,7 +37,7 @@ class InstrumentSelectionWizard(Wizard):
                 raise ValueError
         wizard = InstrumentCreationWizard(session=self._session)
         self._session.push_backtrack()
-        result = wizard.run()
+        result = wizard._run()
         self._session.pop_backtrack()
         if self._session.backtrack():
             self._session.pop_breadcrumb()

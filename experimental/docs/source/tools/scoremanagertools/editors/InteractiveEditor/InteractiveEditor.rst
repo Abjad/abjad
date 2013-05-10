@@ -81,9 +81,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.InteractiveEditor.InteractiveEditor.InteractiveEditor.menu_key_to_existing_value
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.InteractiveEditor.InteractiveEditor.InteractiveEditor.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.InteractiveEditor.InteractiveEditor.InteractiveEditor.target_args_to_target_summary_lines
    :noindex:
 

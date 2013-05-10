@@ -81,9 +81,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.TerracedDynamicsHandlerEditor.TerracedDynamicsHandlerEditor.TerracedDynamicsHandlerEditor.menu_key_to_existing_value
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.TerracedDynamicsHandlerEditor.TerracedDynamicsHandlerEditor.TerracedDynamicsHandlerEditor.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.TerracedDynamicsHandlerEditor.TerracedDynamicsHandlerEditor.TerracedDynamicsHandlerEditor.target_args_to_target_summary_lines
    :noindex:
 

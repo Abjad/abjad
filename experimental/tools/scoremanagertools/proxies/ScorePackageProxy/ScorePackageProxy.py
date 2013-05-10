@@ -29,11 +29,11 @@ class ScorePackageProxy(PackageProxy):
     def _handle_main_menu_result(self, result):
         assert isinstance(result, str)
         if result == 'h':
-            self.segment_wrangler.run(head=self.filesystem_basename)
+            self.segment_wrangler._run(head=self.filesystem_basename)
         elif  result == 'm':
-            self.material_package_wrangler.run(head=self.filesystem_basename)
+            self.material_package_wrangler._run(head=self.filesystem_basename)
         elif result == 'f':
-            self.music_specifier_module_wrangler.run()
+            self.music_specifier_module_wrangler._run()
         elif result == 's':
             self.manage_setup(cache=True)
         elif result == 'fix':
@@ -257,7 +257,7 @@ class ScorePackageProxy(PackageProxy):
     def edit_forces_tagline_interactively(self):
         getter = self._io.make_getter(where=self.where())
         getter.append_string('Forces tagline')
-        result = getter.run()
+        result = getter._run()
         if self._session.backtrack():
             return
         self.add_tag('forces_tagline', result)
@@ -266,13 +266,13 @@ class ScorePackageProxy(PackageProxy):
         from experimental.tools import scoremanagertools
         target = self.get_tag('instrumentation')
         editor = scoremanagertools.editors.InstrumentationEditor(session=self._session, target=target)
-        editor.run() # maybe check for backtracking after this?
+        editor._run() # maybe check for backtracking after this?
         self.add_tag('instrumentation', editor.target)
 
     def edit_title_interactively(self):
         getter = self._io.make_getter(where=self.where())
         getter.append_string('new title')
-        result = getter.run()
+        result = getter._run()
         if self._session.backtrack():
             return
         self.add_tag('title', result)
@@ -280,7 +280,7 @@ class ScorePackageProxy(PackageProxy):
     def edit_year_of_completion_interactively(self):
         getter = self._io.make_getter(where=self.where())
         getter.append_integer_in_range('year of completion', start=1, allow_none=True)
-        result = getter.run()
+        result = getter._run()
         if self._session.backtrack():
             return
         self.add_tag('year_of_completion', result)
@@ -404,7 +404,7 @@ class ScorePackageProxy(PackageProxy):
         while True:
             self._session.push_breadcrumb('{} - setup'.format(self.annotated_title))
             setup_menu = self.make_setup_menu()
-            result = setup_menu.run(clear=clear)
+            result = setup_menu._run(clear=clear)
             if self._session.backtrack():
                 break
             elif not result:
@@ -422,7 +422,7 @@ class ScorePackageProxy(PackageProxy):
         while True:
             self._session.push_breadcrumb('repository commands')
             menu = self.make_svn_menu()
-            result = menu.run(clear=clear)
+            result = menu._run(clear=clear)
             if self._session.backtrack():
                 break
             elif not result:
@@ -455,7 +455,7 @@ class ScorePackageProxy(PackageProxy):
         getter = self._io.make_getter(where=self.where())
         getter.append_string("type 'clobberscore' to proceed")
         self._session.push_backtrack()
-        should_clobber = getter.run()
+        should_clobber = getter._run()
         self._session.pop_backtrack()
         if self._session.backtrack():
             return

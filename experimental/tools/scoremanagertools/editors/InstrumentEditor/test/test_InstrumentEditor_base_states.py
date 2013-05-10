@@ -7,7 +7,7 @@ def test_InstrumentEditor_base_states_01():
     '''
 
     editor = scoremanagertools.editors.InstrumentEditor()
-    editor.run(user_input='1 q')
+    editor._run(user_input='1 q')
     assert editor._session.transcript.signature == (4,)
     assert editor._session.transcript[-2][1] == \
     ['Accordion',

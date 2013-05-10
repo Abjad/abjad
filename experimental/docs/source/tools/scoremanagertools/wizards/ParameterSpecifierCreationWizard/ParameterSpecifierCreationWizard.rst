@@ -21,9 +21,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wizards.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.get_target_editor
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.where
    :noindex:
 

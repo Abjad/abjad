@@ -4,6 +4,33 @@ from experimental.tools.scoremanagertools.wizards.Wizard import Wizard
 
 class ParameterSpecifierCreationWizard(Wizard):
 
+    ### PRIVATE METHODS ###
+
+    def _run(self, cache=False, clear=True, head=None, user_input=None):
+        self._io.assign_user_input(user_input=user_input)
+        self._session.cache_breadcrumbs(cache=cache)
+        self._session.push_breadcrumb(self.breadcrumb)
+        selector = selectors.ParameterSpecifierClassNameSelector(session=self._session)
+        self._session.push_backtrack()
+        target_class_name = selector._run()
+        self._session.pop_backtrack()
+        if self._session.backtrack():
+            self._session.pop_breadcrumb()
+            self._session.restore_breadcrumbs(cache=cache)
+            return
+        target_editor = self.get_target_editor(target_class_name)
+        self._session.push_backtrack()
+        target_editor._run()
+        self._session.pop_backtrack()
+        if self._session.backtrack():
+            self._session.pop_breadcrumb()
+            self._session.restore_breadcrumbs(cache=cache)
+            return
+        self._session.pop_breadcrumb()
+        self._session.restore_breadcrumbs(cache=cache)
+        self.target = target_editor.target
+        return self.target
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
@@ -19,28 +46,3 @@ class ParameterSpecifierCreationWizard(Wizard):
         exec(command)
         target_editor = target_editor_class(session=self._session, target=target)
         return target_editor
-
-    def run(self, cache=False, clear=True, head=None, user_input=None):
-        self._io.assign_user_input(user_input=user_input)
-        self._session.cache_breadcrumbs(cache=cache)
-        self._session.push_breadcrumb(self.breadcrumb)
-        selector = selectors.ParameterSpecifierClassNameSelector(session=self._session)
-        self._session.push_backtrack()
-        target_class_name = selector.run()
-        self._session.pop_backtrack()
-        if self._session.backtrack():
-            self._session.pop_breadcrumb()
-            self._session.restore_breadcrumbs(cache=cache)
-            return
-        target_editor = self.get_target_editor(target_class_name)
-        self._session.push_backtrack()
-        target_editor.run()
-        self._session.pop_backtrack()
-        if self._session.backtrack():
-            self._session.pop_breadcrumb()
-            self._session.restore_breadcrumbs(cache=cache)
-            return
-        self._session.pop_breadcrumb()
-        self._session.restore_breadcrumbs(cache=cache)
-        self.target = target_editor.target
-        return self.target

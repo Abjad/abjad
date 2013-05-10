@@ -35,7 +35,7 @@ class IO(AbjadObject):
         getter = self.make_getter(where=None)
         getter.append_yes_no_string(prompt_string)
         getter.include_newlines = False
-        result = getter.run(include_chevron=include_chevron)
+        result = getter._run(include_chevron=include_chevron)
         if self._session.backtrack():
             return
         return 'yes'.startswith(result.lower())

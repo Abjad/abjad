@@ -7,19 +7,19 @@ def test_PerformerEditor_delete_instruments_01():
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    score_manager.run(user_input='example~score~i setup perf hornist rm q')
+    score_manager._run(user_input='example~score~i setup perf hornist rm q')
     assert score_manager._session.transcript.signature == (11,)
 
-    score_manager.run(user_input='example~score~i setup perf hornist rm b q')
+    score_manager._run(user_input='example~score~i setup perf hornist rm b q')
     assert score_manager._session.transcript.signature == (13, (8, 11))
 
-    score_manager.run(user_input='example~score~i setup perf hornist rm home q')
+    score_manager._run(user_input='example~score~i setup perf hornist rm home q')
     assert score_manager._session.transcript.signature == (13, (0, 11))
 
-    score_manager.run(user_input='example~score~i setup perf hornist rm score q')
+    score_manager._run(user_input='example~score~i setup perf hornist rm score q')
     assert score_manager._session.transcript.signature == (13, (2, 11))
 
-    score_manager.run(user_input='example~score~i setup perf hornist rm foo q')
+    score_manager._run(user_input='example~score~i setup perf hornist rm foo q')
     assert score_manager._session.transcript.signature == (13,)
 
 
@@ -28,7 +28,7 @@ def test_PerformerEditor_delete_instruments_02():
     '''
 
     editor = scoremanagertools.editors.PerformerEditor()
-    editor.run(user_input='add flute add acc rm flute q')
+    editor._run(user_input='add flute add acc rm flute q')
     assert editor.target == scoretools.Performer(instruments=[instrumenttools.Accordion()])
 
 
@@ -37,5 +37,5 @@ def test_PerformerEditor_delete_instruments_03():
     '''
 
     editor = scoremanagertools.editors.PerformerEditor()
-    editor.run(user_input='add 1-3 rm 1,3 q')
+    editor._run(user_input='add 1-3 rm 1,3 q')
     assert editor.target == scoretools.Performer(instruments=[instrumenttools.AltoFlute()])

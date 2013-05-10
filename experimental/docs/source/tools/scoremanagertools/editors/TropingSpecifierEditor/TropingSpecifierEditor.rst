@@ -81,9 +81,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.menu_key_to_existing_value
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.target_args_to_target_summary_lines
    :noindex:
 

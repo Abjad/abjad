@@ -9,7 +9,7 @@ def test_ScorePackageWrangler_run_01():
     assert not packagepathtools.package_exists('testscore')
 
     try:
-        score_manager.run(user_input=
+        score_manager._run(user_input=
             'new Test~score testscore 2012 '
             'q'
             )
@@ -19,5 +19,5 @@ def test_ScorePackageWrangler_run_01():
         assert spp.composer is None
         assert spp.instrumentation is None
     finally:
-        score_manager.run(user_input='test removescore clobberscore remove default q')
+        score_manager._run(user_input='test removescore clobberscore remove default q')
         assert not packagepathtools.package_exists('testscore')

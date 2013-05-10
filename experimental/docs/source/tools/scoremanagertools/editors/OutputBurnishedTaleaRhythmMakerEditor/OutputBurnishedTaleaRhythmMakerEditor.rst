@@ -81,9 +81,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.OutputBurnishedTaleaRhythmMakerEditor.OutputBurnishedTaleaRhythmMakerEditor.OutputBurnishedTaleaRhythmMakerEditor.menu_key_to_existing_value
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.OutputBurnishedTaleaRhythmMakerEditor.OutputBurnishedTaleaRhythmMakerEditor.OutputBurnishedTaleaRhythmMakerEditor.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.OutputBurnishedTaleaRhythmMakerEditor.OutputBurnishedTaleaRhythmMakerEditor.OutputBurnishedTaleaRhythmMakerEditor.target_args_to_target_summary_lines
    :noindex:
 

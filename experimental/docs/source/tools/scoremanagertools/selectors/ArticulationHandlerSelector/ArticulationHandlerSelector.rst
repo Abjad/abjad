@@ -45,9 +45,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector.make_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector.where
    :noindex:
 

@@ -4,7 +4,7 @@ from experimental import *
 def test_ScoreManager_show_hidden_menu_entries_01():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    score_manager.run(user_input='hidden q')
+    score_manager._run(user_input='hidden q')
     assert score_manager._session.transcript[-2][1] == \
      ['     back (b)',
       '     exec statement (exec)',

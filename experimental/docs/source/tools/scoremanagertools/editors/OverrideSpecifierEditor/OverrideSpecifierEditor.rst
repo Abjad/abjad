@@ -81,9 +81,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.menu_key_to_existing_value
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.target_args_to_target_summary_lines
    :noindex:
 

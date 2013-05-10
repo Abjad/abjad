@@ -36,9 +36,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.make_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector.where
    :noindex:
 

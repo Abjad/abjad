@@ -9,7 +9,7 @@ def test_MaterialPackageWrangler_run_data_only_package_01():
     assert not packagepathtools.package_exists('system_materials.testnumbers')
 
     try:
-        score_manager.run(user_input='m d testnumbers default q')
+        score_manager._run(user_input='m d testnumbers default q')
         assert packagepathtools.package_exists('system_materials.testnumbers')
         mpp = scoremanagertools.proxies.MaterialPackageProxy('system_materials.testnumbers')
         assert mpp.is_data_only
@@ -22,7 +22,7 @@ def test_MaterialPackageWrangler_run_data_only_package_01():
         assert mpp.material_definition is None
         assert mpp.output_material is None
     finally:
-        score_manager.run(user_input='m testnumbers del remove default q')
+        score_manager._run(user_input='m testnumbers del remove default q')
         assert not packagepathtools.package_exists('system_materials.testnumbers')
 
 
@@ -35,7 +35,7 @@ def test_MaterialPackageWrangler_run_data_only_package_02():
     assert not packagepathtools.package_exists('system_materials.testnumbers')
 
     try:
-        score_manager.run(user_input=
+        score_manager._run(user_input=
             'm d testnumbers default '
             'testnumbers incanned canned_exception.py default q')
         assert packagepathtools.package_exists('system_materials.testnumbers')
@@ -50,7 +50,7 @@ def test_MaterialPackageWrangler_run_data_only_package_02():
         assert mpp.material_definition is None
         assert mpp.output_material is None
     finally:
-        score_manager.run(user_input='m testnumbers del remove default q')
+        score_manager._run(user_input='m testnumbers del remove default q')
         assert not packagepathtools.package_exists('system_materials.testnumbers')
 
 
@@ -63,7 +63,7 @@ def test_MaterialPackageWrangler_run_data_only_package_03():
     assert not packagepathtools.package_exists('system_materials.testnumbers')
 
     try:
-        score_manager.run(user_input=
+        score_manager._run(user_input=
             'm d testnumbers default '
             'testnumbers incanned canned_exception.py default '
             'inr yes no default q')
@@ -79,7 +79,7 @@ def test_MaterialPackageWrangler_run_data_only_package_03():
         assert mpp.material_definition is None
         assert mpp.output_material is None
     finally:
-        score_manager.run(user_input='m testnumbers del remove default q')
+        score_manager._run(user_input='m testnumbers del remove default q')
         assert not packagepathtools.package_exists('system_materials.testnumbers')
 
 
@@ -92,7 +92,7 @@ def test_MaterialPackageWrangler_run_data_only_package_04():
     assert not packagepathtools.package_exists('system_materials.testnumbers')
 
     try:
-        score_manager.run(user_input=
+        score_manager._run(user_input=
             'm d testnumbers default '
             'testnumbers mdcanned canned_testnumbers_material_definition.py default '
             'omm default q')
@@ -109,7 +109,7 @@ def test_MaterialPackageWrangler_run_data_only_package_04():
         assert mpp.material_definition == [1, 2, 3, 4, 5]
         assert mpp.output_material == [1, 2, 3, 4, 5]
     finally:
-        score_manager.run(user_input='m testnumbers del remove default q')
+        score_manager._run(user_input='m testnumbers del remove default q')
         assert not packagepathtools.package_exists('system_materials.testnumbers')
 
 
@@ -122,7 +122,7 @@ def test_MaterialPackageWrangler_run_data_only_package_05():
     assert not packagepathtools.package_exists('system_materials.testnumbers')
 
     try:
-        score_manager.run(user_input=
+        score_manager._run(user_input=
             'm d testnumbers default '
             'testnumbers mddelete remove default q')
         assert packagepathtools.package_exists('system_materials.testnumbers')
@@ -137,7 +137,7 @@ def test_MaterialPackageWrangler_run_data_only_package_05():
         assert mpp.material_definition is None
         assert mpp.output_material is None
     finally:
-        score_manager.run(user_input='m testnumbers del remove default q')
+        score_manager._run(user_input='m testnumbers del remove default q')
         assert not packagepathtools.package_exists('system_materials.testnumbers')
 
 
@@ -150,7 +150,7 @@ def test_MaterialPackageWrangler_run_data_only_package_06():
     assert not packagepathtools.package_exists('system_materials.testnumbers')
 
     try:
-        score_manager.run(user_input=
+        score_manager._run(user_input=
             'm d testnumbers default '
             'testnumbers mdstub default q')
         assert packagepathtools.package_exists('system_materials.testnumbers')
@@ -165,7 +165,7 @@ def test_MaterialPackageWrangler_run_data_only_package_06():
         assert mpp.material_definition is None
         assert mpp.output_material is None
     finally:
-        score_manager.run(user_input='m testnumbers del remove default q')
+        score_manager._run(user_input='m testnumbers del remove default q')
         assert not packagepathtools.package_exists('system_materials.testnumbers')
 
 
@@ -178,7 +178,7 @@ def test_MaterialPackageWrangler_run_data_only_package_07():
     assert not packagepathtools.package_exists('system_materials.testnumbers')
 
     try:
-        score_manager.run(user_input=
+        score_manager._run(user_input=
             'm d testnumbers default '
             'testnumbers mdcanned canned_testnumbers_material_definition.py default '
             'omm default '
@@ -195,7 +195,7 @@ def test_MaterialPackageWrangler_run_data_only_package_07():
         assert mpp.material_definition == [1, 2, 3, 4, 5]
         assert mpp.output_material is None
     finally:
-        score_manager.run(user_input='m testnumbers del remove default q')
+        score_manager._run(user_input='m testnumbers del remove default q')
         assert not packagepathtools.package_exists('system_materials.testnumbers')
 
 
@@ -208,7 +208,7 @@ def test_MaterialPackageWrangler_run_data_only_package_08():
     assert not packagepathtools.package_exists('system_materials.testnumbers')
 
     try:
-        score_manager.run(user_input=
+        score_manager._run(user_input=
             'm d testnumbers default '
             'testnumbers mdcanned canned_testnumbers_material_definition_with_exception.py default q')
         assert packagepathtools.package_exists('system_materials.testnumbers')
@@ -223,7 +223,7 @@ def test_MaterialPackageWrangler_run_data_only_package_08():
         assert mpp.material_definition is None
         assert mpp.output_material is None
     finally:
-        score_manager.run(user_input='m testnumbers del remove default q')
+        score_manager._run(user_input='m testnumbers del remove default q')
         assert not packagepathtools.package_exists('system_materials.testnumbers')
 
 
@@ -236,7 +236,7 @@ def test_MaterialPackageWrangler_run_data_only_package_09():
     assert not packagepathtools.package_exists('system_materials.testnumbers')
 
     try:
-        score_manager.run(user_input=
+        score_manager._run(user_input=
             'm d testnumbers default '
             'testnumbers mdcanned canned_testnumbers_material_definition.py default '
             'omm default '
@@ -254,5 +254,5 @@ def test_MaterialPackageWrangler_run_data_only_package_09():
         assert mpp.material_definition == [1, 2, 3, 4, 5]
         assert mpp.output_material is None
     finally:
-        score_manager.run(user_input='m testnumbers del remove default q')
+        score_manager._run(user_input='m testnumbers del remove default q')
         assert not packagepathtools.package_exists('system_materials.testnumbers')

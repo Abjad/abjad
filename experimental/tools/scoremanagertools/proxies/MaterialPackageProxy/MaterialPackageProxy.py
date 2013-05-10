@@ -665,7 +665,7 @@ class MaterialPackageProxy(PackageProxy):
             output_material_handler_callable = self.output_material_editor
         output_material_handler = output_material_handler_callable(
             target=output_material, session=self._session)
-        output_material_handler.run()
+        output_material_handler._run()
         if self._session.backtrack():
             return
         output_material_module_import_statements = self.output_material_module_import_statements
@@ -688,7 +688,7 @@ class MaterialPackageProxy(PackageProxy):
 
     def manage_stylesheets(self):
         stylesheet_file_wrangler = StylesheetFileWrangler(session=self._session)
-        stylesheet_file_wrangler.run()
+        stylesheet_file_wrangler._run()
 
     def overwrite_output_material_module(self):
         file(self.output_material_module_file_name, 'w').write('')
@@ -767,7 +767,7 @@ class MaterialPackageProxy(PackageProxy):
         self._io.display(line)
         getter = self._io.make_getter(where=self.where())
         getter.append_underscore_delimited_lowercase_package_name('new material name')
-        new_material_package_name = getter.run()
+        new_material_package_name = getter._run()
         if self._session.backtrack():
             return
         lines = []
@@ -805,7 +805,7 @@ class MaterialPackageProxy(PackageProxy):
             raise NotImplementedError('commit to repository and then rename.')
 
     def run_first_time(self):
-        self.run(user_input='omi')
+        self._run(user_input='omi')
 
     def select_material_package_maker_interactively(self, prompt=True):
         material_proxy_wrangler = MaterialPackageMakerWrangler(session=self._session)

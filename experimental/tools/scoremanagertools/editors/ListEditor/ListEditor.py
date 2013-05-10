@@ -84,7 +84,7 @@ class ListEditor(InteractiveEditor):
             item_creator = self.item_creator_class(
                 session=self._session, **self.item_creator_class_kwargs)
             self._session.push_backtrack()
-            result = item_creator.run()
+            result = item_creator._run()
             self._session.pop_backtrack()
             if self._session.backtrack():
                 return
@@ -96,7 +96,7 @@ class ListEditor(InteractiveEditor):
             getter = self._io.make_getter(where=self.where())
             self.item_getter_configuration_method(getter, self.item_identifier)
             self._session.push_backtrack()
-            item_initialization_token = getter.run()
+            item_initialization_token = getter._run()
             self._session.pop_backtrack()
             if self._session.backtrack():
                 return
@@ -127,7 +127,7 @@ class ListEditor(InteractiveEditor):
         item = self.get_item_from_item_number(item_number)
         if item is not None:
             item_editor = self.item_editor_class(session=self._session, target=item)
-            item_editor.run()
+            item_editor._run()
             item_index = int(item_number) - 1
             self.items[item_index] = item_editor.target
 
@@ -141,7 +141,7 @@ class ListEditor(InteractiveEditor):
         getter = self._io.make_getter(where=self.where())
         getter.append_integer_in_range('old number', 1, len(self.items))
         getter.append_integer_in_range('new number', 1, len(self.items))
-        result = getter.run()
+        result = getter._run()
         if self._session.backtrack():
             return
         old_number, new_number = result
@@ -153,7 +153,7 @@ class ListEditor(InteractiveEditor):
     def remove_items_interactively(self):
         getter = self._io.make_getter(where=self.where())
         getter.append_argument_range(self.items_identifier, self.target_summary_lines)
-        argument_range = getter.run()
+        argument_range = getter._run()
         if self._session.backtrack():
             return
         indices = [argument_number - 1 for argument_number in argument_range]

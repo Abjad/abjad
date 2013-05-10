@@ -101,6 +101,27 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         bodies = self.list_space_delimited_lowercase_visible_asset_names(head=head)
         return zip(keys, bodies)
 
+    def _run(self, cache=False, clear=True, head=None, rollback=None, user_input=None):
+        self._io.assign_user_input(user_input=user_input)
+        breadcrumb = self._session.pop_breadcrumb(rollback=rollback)
+        self._session.cache_breadcrumbs(cache=cache)
+        while True:
+            self._session.push_breadcrumb(self.breadcrumb)
+            menu = self._make_main_menu(head=head)
+            result = menu._run(clear=clear)
+            if self._session.backtrack():
+                break
+            elif not result:
+                self._session.pop_breadcrumb()
+                continue
+            self._handle_main_menu_result(result)
+            if self._session.backtrack():
+                break
+            self._session.pop_breadcrumb()
+        self._session.pop_breadcrumb()
+        self._session.push_breadcrumb(breadcrumb=breadcrumb, rollback=rollback)
+        self._session.restore_breadcrumbs(cache=cache)
+
     def _strip_file_extension_from_file_name(self, file_name):
         if '.' in file_name:
             return file_name[:file_name.rindex('.')]
@@ -150,9 +171,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                 asset_proxy.profile()
         return results
 
-    def get_asset_proxy(self, asset_filesystem_path):
-        return self.asset_class(asset_filesystem_path, session=self._session)
-
     def get_asset_container_proxies(self, head=None):
         result = []
         result.extend(self.get_score_external_asset_container_proxies(head=head))
@@ -165,6 +183,9 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             asset_proxy = self.get_asset_proxy(filesystem_path)
             result.append(asset_proxy)
         return result
+
+    def get_asset_proxy(self, asset_filesystem_path):
+        return self.asset_class(asset_filesystem_path, session=self._session)
 
     def get_score_external_asset_container_proxies(self, head=None):
         result = []
@@ -338,7 +359,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         plural_space_delimited_lowercase_asset_class_name = stringtools.pluralize_string(
             space_delimited_lowercase_asset_class_name)
         getter.append_argument_range(plural_space_delimited_lowercase_asset_class_name, argument_list)
-        result = getter.run()
+        result = getter._run()
         if self._session.backtrack():
             return
         asset_indices = [asset_number - 1 for asset_number in result]
@@ -351,27 +372,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             total_assets_removed += 1
         self._io.proceed('{} asset(s) removed.'.format(total_assets_removed))
 
-    def run(self, cache=False, clear=True, head=None, rollback=None, user_input=None):
-        self._io.assign_user_input(user_input=user_input)
-        breadcrumb = self._session.pop_breadcrumb(rollback=rollback)
-        self._session.cache_breadcrumbs(cache=cache)
-        while True:
-            self._session.push_breadcrumb(self.breadcrumb)
-            menu = self._make_main_menu(head=head)
-            result = menu.run(clear=clear)
-            if self._session.backtrack():
-                break
-            elif not result:
-                self._session.pop_breadcrumb()
-                continue
-            self._handle_main_menu_result(result)
-            if self._session.backtrack():
-                break
-            self._session.pop_breadcrumb()
-        self._session.pop_breadcrumb()
-        self._session.push_breadcrumb(breadcrumb=breadcrumb, rollback=rollback)
-        self._session.restore_breadcrumbs(cache=cache)
-
     def svn_add(self, is_interactive=True):
         for asset_proxy in self.get_visible_asset_proxies():
             asset_proxy.svn_add(is_interactive=False)
@@ -380,7 +380,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def svn_ci(self, is_interactive=True):
         getter = self._io.make_getter(where=self.where())
         getter.append_string('commit message')
-        commit_message = getter.run()
+        commit_message = getter._run()
         if self._session.backtrack():
             return
         line = 'commit message will be: "{}"\n'.format(commit_message)

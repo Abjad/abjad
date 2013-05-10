@@ -9,7 +9,7 @@ def test_OctaveTranspositionMappingInventoryMaterialPackageMaker_01():
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     assert not packagepathtools.package_exists('system_materials.testoctavetrans')
     try:
-        score_manager.run(user_input=
+        score_manager._run(user_input=
             'materials maker octave testoctavetrans default '
             'q'
             )
@@ -17,7 +17,7 @@ def test_OctaveTranspositionMappingInventoryMaterialPackageMaker_01():
         assert mpp.list_directory() == ['__init__.py', 'tags.py']
         assert mpp.output_material is None
     finally:
-        score_manager.run(user_input='m testoctavetrans del remove default q')
+        score_manager._run(user_input='m testoctavetrans del remove default q')
         assert not packagepathtools.package_exists('system_materials.testoctavetrans')
 
 
@@ -28,7 +28,7 @@ def test_OctaveTranspositionMappingInventoryMaterialPackageMaker_02():
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     assert not packagepathtools.package_exists('system_materials.testoctavetrans')
     try:
-        score_manager.run(user_input=
+        score_manager._run(user_input=
             'materials maker octave testoctavetrans '
             'testoctavetrans omi add add source [A0, C4) target 15 done '
             'add source [C4, C8) target 27 done done '
@@ -42,5 +42,5 @@ def test_OctaveTranspositionMappingInventoryMaterialPackageMaker_02():
         inventory = pitchtools.OctaveTranspositionMappingInventory([mapping_1, mapping_2])
         assert mpp.output_material == inventory
     finally:
-        score_manager.run(user_input='m testoctavetrans del remove default q')
+        score_manager._run(user_input='m testoctavetrans del remove default q')
         assert not packagepathtools.package_exists('system_materials.testoctavetrans')

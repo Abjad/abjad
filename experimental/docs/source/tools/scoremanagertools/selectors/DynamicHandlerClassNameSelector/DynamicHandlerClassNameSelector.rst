@@ -36,9 +36,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.make_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.where
    :noindex:
 

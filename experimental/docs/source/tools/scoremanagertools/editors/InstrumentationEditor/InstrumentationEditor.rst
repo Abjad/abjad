@@ -105,9 +105,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.remove_items_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.target_args_to_target_summary_lines
    :noindex:
 

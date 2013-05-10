@@ -81,9 +81,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.DivisionIncisedRestRhythmMakerEditor.DivisionIncisedRestRhythmMakerEditor.DivisionIncisedRestRhythmMakerEditor.menu_key_to_existing_value
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.DivisionIncisedRestRhythmMakerEditor.DivisionIncisedRestRhythmMakerEditor.DivisionIncisedRestRhythmMakerEditor.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.DivisionIncisedRestRhythmMakerEditor.DivisionIncisedRestRhythmMakerEditor.DivisionIncisedRestRhythmMakerEditor.target_args_to_target_summary_lines
    :noindex:
 

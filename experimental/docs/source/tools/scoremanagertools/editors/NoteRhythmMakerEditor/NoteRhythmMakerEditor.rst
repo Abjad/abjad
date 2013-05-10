@@ -81,9 +81,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.NoteRhythmMakerEditor.NoteRhythmMakerEditor.NoteRhythmMakerEditor.menu_key_to_existing_value
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.NoteRhythmMakerEditor.NoteRhythmMakerEditor.NoteRhythmMakerEditor.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.NoteRhythmMakerEditor.NoteRhythmMakerEditor.NoteRhythmMakerEditor.target_args_to_target_summary_lines
    :noindex:
 

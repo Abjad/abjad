@@ -7,7 +7,7 @@ def test_RhythmMakerMaterialPackageMaker_01():
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     assert not packagepathtools.package_exists('system_materials.testrhythmmaker')
     try:
-        score_manager.run(user_input=
+        score_manager._run(user_input=
             'materials maker rhythm testrhythmmaker default '
             'testrhythmmaker omi talearhythmmaker '
             '[-1, 2, -3, 4] 16 [2, 3] [6] b default '
@@ -22,5 +22,5 @@ def test_RhythmMakerMaterialPackageMaker_01():
             secondary_divisions=[6])
         assert mpp.output_material == maker
     finally:
-        score_manager.run(user_input='m testrhythmmaker del remove default q')
+        score_manager._run(user_input='m testrhythmmaker del remove default q')
         assert not packagepathtools.package_exists('system_materials.testrhythmmaker')

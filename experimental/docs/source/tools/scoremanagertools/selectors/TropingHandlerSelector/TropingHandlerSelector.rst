@@ -36,9 +36,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.make_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.where
    :noindex:
 

@@ -6,7 +6,7 @@ from experimental import *
 def test_ArticulationHandlerCreationWziard_run_01():
 
     wizard = scoremanagertools.wizards.ArticulationHandlerCreationWizard()
-    wizard.run(user_input="reit ['^', '.'] (1, 64) (1, 4) c c'''' done")
+    wizard._run(user_input="reit ['^', '.'] (1, 64) (1, 4) c c'''' done")
 
     handler = handlertools.ReiteratedArticulationHandler(
         articulation_list=['^', '.'],

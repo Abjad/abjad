@@ -7,16 +7,16 @@ def test_ScorePackageProxy_edit_forces_tagline_interactively_01():
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    score_manager.run(user_input='example~score~i setup tagline q')
+    score_manager._run(user_input='example~score~i setup tagline q')
     assert score_manager._session.transcript.signature == (7,)
 
-    score_manager.run(user_input='example~score~i setup tagline b q')
+    score_manager._run(user_input='example~score~i setup tagline b q')
     assert score_manager._session.transcript.signature == (9, (4, 7))
 
-    score_manager.run(user_input='example~score~i setup tagline score q')
+    score_manager._run(user_input='example~score~i setup tagline score q')
     assert score_manager._session.transcript.signature == (9, (2, 7))
 
-    score_manager.run(user_input='example~score~i setup tagline home q')
+    score_manager._run(user_input='example~score~i setup tagline home q')
     assert score_manager._session.transcript.signature == (9, (0, 7))
 
 
@@ -24,10 +24,10 @@ def test_ScorePackageProxy_edit_forces_tagline_interactively_02():
 
     try:
         score_manager = scoremanagertools.scoremanager.ScoreManager()
-        score_manager.run(user_input='example~score~i setup tagline for~foo~bar q')
+        score_manager._run(user_input='example~score~i setup tagline for~foo~bar q')
         example_score_1 = scoremanagertools.proxies.ScorePackageProxy('example_score_1')
         assert example_score_1.forces_tagline == 'for foo bar'
     finally:
-        score_manager.run(user_input='example~score~i setup tagline for~six~players q')
+        score_manager._run(user_input='example~score~i setup tagline for~six~players q')
         example_score_1 = scoremanagertools.proxies.ScorePackageProxy('example_score_1')
         assert example_score_1.forces_tagline == 'for six players'

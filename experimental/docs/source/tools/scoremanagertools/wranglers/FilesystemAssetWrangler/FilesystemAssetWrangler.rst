@@ -123,9 +123,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler.FilesystemAssetWrangler.FilesystemAssetWrangler.remove_assets_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler.FilesystemAssetWrangler.FilesystemAssetWrangler.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler.FilesystemAssetWrangler.FilesystemAssetWrangler.svn_add
    :noindex:
 

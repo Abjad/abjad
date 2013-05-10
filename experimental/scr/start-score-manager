@@ -5,4 +5,4 @@ from experimental.tools import scoremanagertools
 
 studio = scoremanagertools.scoremanager.ScoreManager()
 studio._session.dump_transcript = True
-studio.run(user_input=' '.join(sys.argv[1:]))
+studio._run(user_input=' '.join(sys.argv[1:]))

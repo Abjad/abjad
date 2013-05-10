@@ -19,6 +19,23 @@ class Menu(MenuSectionAggregator):
     def __len__(self):
         return len(self.sections)
 
+    ### PRIVATE METHODS ###
+
+    def _run(self, clear=True, flamingo_input=None, user_input=None):
+        self._io.assign_user_input(user_input=user_input)
+        clear, hide_current_run = clear, False
+        while True:
+            self.should_clear_terminal, self.hide_current_run = clear, hide_current_run
+            clear, hide_current_run = False, True
+            result = self.conditionally_display_menu(flamingo_input=flamingo_input)
+            if self._session.is_complete:
+                break
+            elif result == 'r':
+                clear, hide_current_run = True, False
+            else:
+                break
+        return result
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
@@ -226,21 +243,6 @@ class Menu(MenuSectionAggregator):
         section = self.sections[section_index]
         entry_index = (entry_index + 1) % len(section)
         return section.menu_entry_return_values[entry_index]
-
-    def run(self, clear=True, flamingo_input=None, user_input=None):
-        self._io.assign_user_input(user_input=user_input)
-        clear, hide_current_run = clear, False
-        while True:
-            self.should_clear_terminal, self.hide_current_run = clear, hide_current_run
-            clear, hide_current_run = False, True
-            result = self.conditionally_display_menu(flamingo_input=flamingo_input)
-            if self._session.is_complete:
-                break
-            elif result == 'r':
-                clear, hide_current_run = True, False
-            else:
-                break
-        return result
 
     # TODO: apply default indicators at display time so this can be completely removed
     def strip_default_indicators_from_strings(self, expr):

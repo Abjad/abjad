@@ -52,7 +52,7 @@ class InstrumentEditor(InteractiveEditor):
         if self.target is None:
             self._session.push_backtrack()
             wizard = wizards.InstrumentCreationWizard(is_ranged=True, session=self._session)
-            instruments = wizard.run()
+            instruments = wizard._run()
             self._session.pop_backtrack()
             if self._session.backtrack():
                 return

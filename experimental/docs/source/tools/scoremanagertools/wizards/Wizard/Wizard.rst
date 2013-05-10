@@ -18,9 +18,6 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.where
    :noindex:
 

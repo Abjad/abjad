@@ -246,7 +246,7 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
             self._session.push_breadcrumb(self._make_asset_selection_breadcrumb(
                 infinitival_phrase=infinitival_phrase))
             menu = self._make_asset_selection_menu(head=head)
-            result = menu.run(clear=clear)
+            result = menu._run(clear=clear)
             if self._session.backtrack():
                 break
             elif not result:

@@ -8,4 +8,4 @@ def test_DirectoryContentSelector_run_01():
     selector.asset_container_directory_paths = [os.path.join(
         selector.configuration.abjad_configuration.abjad_directory_path, 'tools', 'rhythmmakertools')]
 
-    assert selector.run(user_input='note') == 'NoteRhythmMaker'
+    assert selector._run(user_input='note') == 'NoteRhythmMaker'

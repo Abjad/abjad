@@ -153,9 +153,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusicPackageProxy.MusicPackageProxy.MusicPackageProxy.rename_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.MusicPackageProxy.MusicPackageProxy.MusicPackageProxy.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusicPackageProxy.MusicPackageProxy.MusicPackageProxy.run_first_time
    :noindex:
 

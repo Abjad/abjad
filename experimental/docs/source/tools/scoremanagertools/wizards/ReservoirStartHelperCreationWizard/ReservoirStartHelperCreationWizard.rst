@@ -21,9 +21,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wizards.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.get_function_arguments
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wizards.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.where
    :noindex:
 

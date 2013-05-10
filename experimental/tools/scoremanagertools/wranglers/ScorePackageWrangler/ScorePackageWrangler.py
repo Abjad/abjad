@@ -58,6 +58,19 @@ class ScorePackageWrangler(PackageWrangler):
 
     ### PUBLIC METHODS ###
 
+    def get_visible_asset_proxies(self, head=None):
+        result = []
+        scores_to_show = self._session.scores_to_show
+        for asset_proxy in PackageWrangler.get_asset_proxies(self, head=head):
+            is_mothballed = asset_proxy.get_tag('is_mothballed')
+            if scores_to_show == 'all':
+                result.append(asset_proxy)
+            elif scores_to_show == 'active' and not is_mothballed:
+                result.append(asset_proxy)
+            elif scores_to_show == 'mothballed' and is_mothballed:
+                result.append(asset_proxy)
+        return result
+
     def list_visible_asset_filesystem_paths(self, head=None):
         result = []
         for visible_asset_proxy in self.get_visible_asset_proxies(head=head):
@@ -87,19 +100,6 @@ class ScorePackageWrangler(PackageWrangler):
                 result.append((asset_proxy.package_path, title_with_year))
         return result
 
-    def get_visible_asset_proxies(self, head=None):
-        result = []
-        scores_to_show = self._session.scores_to_show
-        for asset_proxy in PackageWrangler.get_asset_proxies(self, head=head):
-            is_mothballed = asset_proxy.get_tag('is_mothballed')
-            if scores_to_show == 'all':
-                result.append(asset_proxy)
-            elif scores_to_show == 'active' and not is_mothballed:
-                result.append(asset_proxy)
-            elif scores_to_show == 'mothballed' and is_mothballed:
-                result.append(asset_proxy)
-        return result
-
     def make_asset_interactively(self, rollback=False):
         breadcrumb = self._session.pop_breadcrumb(rollback=rollback)
         getter = self._io.make_getter(where=self.where())
@@ -111,7 +111,7 @@ class ScorePackageWrangler(PackageWrangler):
         getter.append_string('score title')
         getter.append_underscore_delimited_lowercase_package_name('package name')
         getter.append_integer_in_range('year', start=1, allow_none=True)
-        result = getter.run()
+        result = getter._run()
         if self._session.backtrack():
             return
         title, score_package_name, year = result

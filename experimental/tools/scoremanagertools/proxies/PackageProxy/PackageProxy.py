@@ -20,6 +20,27 @@ class PackageProxy(DirectoryProxy):
     def _space_delimited_lowercase_name(self):
         return self.filesystem_basename.replace('_', ' ')
 
+    ### PRIVATE METHODS ###
+
+    def _run(self, cache=False, clear=True, user_input=None):
+        self._io.assign_user_input(user_input=user_input)
+        self._session.cache_breadcrumbs(cache=cache)
+        while True:
+            self._session.push_breadcrumb(self.breadcrumb)
+            menu = self._make_main_menu()
+            result = menu._run(clear=clear)
+            if self._session.backtrack(source=self._backtracking_source):
+                break
+            elif not result:
+                self._session.pop_breadcrumb()
+                continue
+            self._handle_main_menu_result(result)
+            if self._session.backtrack(source=self._backtracking_source):
+                break
+            self._session.pop_breadcrumb()
+        self._session.pop_breadcrumb()
+        self._session.restore_breadcrumbs(cache=cache)
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
@@ -131,7 +152,7 @@ class PackageProxy(DirectoryProxy):
         getter = self._io.make_getter(where=self.where())
         getter.append_string('tag name')
         getter.append_expr('tag value')
-        result = getter.run()
+        result = getter._run()
         if self._session.backtrack():
             return
         if result:
@@ -146,7 +167,7 @@ class PackageProxy(DirectoryProxy):
     def get_tag_interactively(self):
         getter = self._io.make_getter(where=self.where())
         getter.append_string('tag name')
-        result = getter.run()
+        result = getter._run()
         if self._session.backtrack():
             return
         tag = self.get_tag(result)
@@ -190,7 +211,7 @@ class PackageProxy(DirectoryProxy):
         while True:
             self._session.push_breadcrumb('tags')
             menu = self.make_tags_menu()
-            result = menu.run(clear=clear)
+            result = menu._run(clear=clear)
             if self._session.backtrack():
                 break
             self.handle_tags_menu_result(result)
@@ -214,39 +235,20 @@ class PackageProxy(DirectoryProxy):
     def remove_tag_interactively(self):
         getter = self._io.make_getter(where=self.where())
         getter.append_string('tag name')
-        result = getter.run()
+        result = getter._run()
         if self._session.backtrack():
             return
         if result:
             tag_name = result
             self.remove_tag(tag_name)
 
-    def run(self, cache=False, clear=True, user_input=None):
-        self._io.assign_user_input(user_input=user_input)
-        self._session.cache_breadcrumbs(cache=cache)
-        while True:
-            self._session.push_breadcrumb(self.breadcrumb)
-            menu = self._make_main_menu()
-            result = menu.run(clear=clear)
-            if self._session.backtrack(source=self._backtracking_source):
-                break
-            elif not result:
-                self._session.pop_breadcrumb()
-                continue
-            self._handle_main_menu_result(result)
-            if self._session.backtrack(source=self._backtracking_source):
-                break
-            self._session.pop_breadcrumb()
-        self._session.pop_breadcrumb()
-        self._session.restore_breadcrumbs(cache=cache)
-
     def run_first_time(self, **kwargs):
-        self.run(**kwargs)
+        self._run(**kwargs)
 
     def set_package_path_interactively(self):
         getter = self._io.make_getter(where=self.where())
         getter.append_underscore_delimited_lowercase_package_name('package name')
-        result = getter.run()
+        result = getter._run()
         if self._session.backtrack():
             return
         self.package_path = result

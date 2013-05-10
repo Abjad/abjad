@@ -11,7 +11,7 @@ def test_MaterialPackageWrangler_run_makermade_package_01():
     assert not packagepathtools.package_exists('system_materials.testsargasso')
 
     try:
-        score_manager.run(user_input='m m sargasso testsargasso default q')
+        score_manager._run(user_input='m m sargasso testsargasso default q')
         assert packagepathtools.package_exists('system_materials.testsargasso')
         mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker(
             'system_materials.testsargasso')
@@ -24,7 +24,7 @@ def test_MaterialPackageWrangler_run_makermade_package_01():
         assert not mpp.parent_initializer_has_output_material_safe_import_statement
         assert mpp.output_material is None
     finally:
-        score_manager.run(user_input='m testsargasso del remove default q')
+        score_manager._run(user_input='m testsargasso del remove default q')
         assert not packagepathtools.package_exists('system_materials.testsargasso')
 
 
@@ -36,7 +36,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
     assert not packagepathtools.package_exists('example_score_1.music.materials.testsargasso')
 
     try:
-        score_manager.run(user_input='example~score~i m m sargasso testsargasso default q')
+        score_manager._run(user_input='example~score~i m m sargasso testsargasso default q')
         assert packagepathtools.package_exists('example_score_1.music.materials.testsargasso')
         mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker(
             'example_score_1.music.materials.testsargasso')
@@ -49,7 +49,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
         assert not mpp.parent_initializer_has_output_material_safe_import_statement
         assert mpp.output_material is None
     finally:
-        score_manager.run(user_input='example~score~i m testsargasso del remove default q')
+        score_manager._run(user_input='example~score~i m testsargasso del remove default q')
         assert not packagepathtools.package_exists('example_score_1.music.materials.testsargasso')
 
 
@@ -62,7 +62,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #    assert not packagepathtools.package_exists('system_materials.testsargasso')
 #
 #    try:
-#        score_manager.run(user_input=
+#        score_manager._run(user_input=
 #            'm m testsargasso default default '
 #            'testsargasso incanned canned_exception.py default q')
 #        assert packagepathtools.package_exists('system_materials.testsargasso')
@@ -79,7 +79,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #        assert mpp.output_material is None
 #        assert mpp.illustration is None
 #    finally:
-#        score_manager.run(user_input='m testsargasso del remove default q')
+#        score_manager._run(user_input='m testsargasso del remove default q')
 #        assert not packagepathtools.package_exists('system_materials.testsargasso')
 #
 #
@@ -92,7 +92,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #    assert not packagepathtools.package_exists('system_materials.testsargasso')
 #
 #    try:
-#        score_manager.run(user_input=
+#        score_manager._run(user_input=
 #            'm m testsargasso default default '
 #            'testsargasso incanned canned_exception.py default '
 #            'inr yes yes default q')
@@ -109,7 +109,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #        assert mpp.material_definition is None
 #        assert mpp.output_material is None
 #    finally:
-#        score_manager.run(user_input='m testsargasso del remove default q')
+#        score_manager._run(user_input='m testsargasso del remove default q')
 #        assert not packagepathtools.package_exists('system_materials.testsargasso')
 #
 #
@@ -122,7 +122,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #    assert not packagepathtools.package_exists('system_materials.testsargasso')
 #
 #    try:
-#        score_manager.run(user_input=
+#        score_manager._run(user_input=
 #            'm m testsargasso default default '
 #            'testsargasso mdcanned canned_testsargasso_material_definition.py default '
 #            'omm default q')
@@ -140,7 +140,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #        assert mpp.material_definition and notetools.all_are_notes(mpp.material_definition)
 #        assert mpp.output_material and notetools.all_are_notes(mpp.output_material)
 #    finally:
-#        score_manager.run(user_input='m testsargasso del remove default q')
+#        score_manager._run(user_input='m testsargasso del remove default q')
 #        assert not packagepathtools.package_exists('system_materials.testsargasso')
 #
 #
@@ -153,7 +153,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #    assert not packagepathtools.package_exists('system_materials.testsargasso')
 #
 #    try:
-#        score_manager.run(user_input=
+#        score_manager._run(user_input=
 #            'm m testsargasso default default '
 #            'testsargasso mddelete default q')
 #        assert packagepathtools.package_exists('system_materials.testsargasso')
@@ -169,7 +169,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #        assert mpp.material_definition is None
 #        assert mpp.output_material is None
 #    finally:
-#        score_manager.run(user_input='m testsargasso del remove default q')
+#        score_manager._run(user_input='m testsargasso del remove default q')
 #        assert not packagepathtools.package_exists('system_materials.testsargasso')
 #
 #
@@ -182,7 +182,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #    assert not packagepathtools.package_exists('system_materials.testsargasso')
 #
 #    try:
-#        score_manager.run(user_input=
+#        score_manager._run(user_input=
 #            'm m testsargasso default default '
 #            'testsargasso mdstub default q')
 #        assert packagepathtools.package_exists('system_materials.testsargasso')
@@ -198,7 +198,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #        assert mpp.material_definition is None
 #        assert mpp.output_material is None
 #    finally:
-#        score_manager.run(user_input='m testsargasso del remove default q')
+#        score_manager._run(user_input='m testsargasso del remove default q')
 #        assert not packagepathtools.package_exists('system_materials.testsargasso')
 #
 #
@@ -211,7 +211,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #    assert not packagepathtools.package_exists('system_materials.testsargasso')
 #
 #    try:
-#        score_manager.run(user_input=
+#        score_manager._run(user_input=
 #            'm m testsargasso default default '
 #            'testsargasso mdcanned canned_testsargasso_material_definition.py default '
 #            'omm default '
@@ -229,7 +229,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #        assert mpp.material_definition and notetools.all_are_notes(mpp.material_definition)
 #        assert mpp.output_material is None
 #    finally:
-#        score_manager.run(user_input='m testsargasso del remove default q')
+#        score_manager._run(user_input='m testsargasso del remove default q')
 #        assert not packagepathtools.package_exists('system_materials.testsargasso')
 #
 #
@@ -242,7 +242,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #    assert not packagepathtools.package_exists('system_materials.testsargasso')
 #
 #    try:
-#        score_manager.run(user_input=
+#        score_manager._run(user_input=
 #            'm m testsargasso default default '
 #            'testsargasso mdcanned canned_exception.py default q')
 #        assert packagepathtools.package_exists('system_materials.testsargasso')
@@ -258,7 +258,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #        assert mpp.material_definition is None
 #        assert mpp.output_material is None
 #    finally:
-#        score_manager.run(user_input='m testsargasso del remove default q')
+#        score_manager._run(user_input='m testsargasso del remove default q')
 #        assert not packagepathtools.package_exists('system_materials.testsargasso')
 #
 #
@@ -271,7 +271,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #    assert not packagepathtools.package_exists('system_materials.testsargasso')
 #
 #    try:
-#        score_manager.run(user_input=
+#        score_manager._run(user_input=
 #            'm m testsargasso default default '
 #            'testsargasso mdcanned canned_testsargasso_material_definition.py default '
 #            'omm default '
@@ -290,7 +290,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #        assert mpp.material_definition and notetools.all_are_notes(mpp.material_definition)
 #        assert mpp.output_material is None
 #    finally:
-#        score_manager.run(user_input='m testsargasso del remove default q')
+#        score_manager._run(user_input='m testsargasso del remove default q')
 #        assert not packagepathtools.package_exists('system_materials.testsargasso')
 #
 #
@@ -303,7 +303,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #    assert not packagepathtools.package_exists('system_materials.testsargasso')
 #
 #    try:
-#        score_manager.run(user_input=
+#        score_manager._run(user_input=
 #            'm m testsargasso default default '
 #            'testsargasso mdcanned canned_testsargasso_material_definition.py default '
 #            'omm default '
@@ -326,5 +326,5 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #        assert mpp.material_definition and notetools.all_are_notes(mpp.material_definition)
 #        assert mpp.output_material and notetools.all_are_notes(mpp.output_material)
 #    finally:
-#        score_manager.run(user_input='m testsargasso del remove default q')
+#        score_manager._run(user_input='m testsargasso del remove default q')
 #        assert not packagepathtools.package_exists('system_materials.testsargasso')

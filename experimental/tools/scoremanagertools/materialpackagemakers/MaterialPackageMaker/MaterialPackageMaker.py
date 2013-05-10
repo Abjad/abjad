@@ -117,7 +117,7 @@ class MaterialPackageMaker(MaterialPackageProxy):
         getter.execs[-1].append(exec_string)
         getter.include_newlines = include_newline
         getter.allow_none = True
-        new_value = getter.run()
+        new_value = getter._run()
         if self._session.backtrack():
             return
         self.user_input_wrapper_in_memory[key] = new_value
@@ -158,7 +158,7 @@ class MaterialPackageMaker(MaterialPackageProxy):
         getter = self._io.make_getter(where=self.where())
         getter.append_integer_in_range('start at element number', 1, total_elements, default=1)
         self._session.push_backtrack()
-        start_element_number = getter.run()
+        start_element_number = getter._run()
         self._session.pop_backtrack()
         if self._session.backtrack():
             return

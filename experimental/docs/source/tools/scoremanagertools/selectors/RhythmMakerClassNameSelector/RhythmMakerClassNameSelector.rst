@@ -36,9 +36,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.make_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.where
    :noindex:
 

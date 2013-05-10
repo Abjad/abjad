@@ -7,13 +7,13 @@ def test_PerformerEditor_name_01():
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    score_manager.run(user_input='example~score~i setup performers hornist name q')
+    score_manager._run(user_input='example~score~i setup performers hornist name q')
     assert score_manager._session.transcript.signature == (11,)
 
-    score_manager.run(user_input='example~score~i setup performers hornist name b q')
+    score_manager._run(user_input='example~score~i setup performers hornist name b q')
     assert score_manager._session.transcript.signature == (13, (8, 11))
 
-    score_manager.run(user_input='example~score~i setup performers hornist name home q')
+    score_manager._run(user_input='example~score~i setup performers hornist name home q')
     assert score_manager._session.transcript.signature == (13, (0, 11))
 
 
@@ -22,7 +22,7 @@ def test_PerformerEditor_name_02():
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    score_manager.run(user_input='example~score~i setup performers hornist name -99 q')
+    score_manager._run(user_input='example~score~i setup performers hornist name -99 q')
     assert score_manager._session.transcript.signature == (13,)
 
 
@@ -31,5 +31,5 @@ def test_PerformerEditor_name_03():
     '''
 
     editor = scoremanagertools.editors.PerformerEditor()
-    editor.run(user_input='name foo name bar q')
+    editor._run(user_input='name foo name bar q')
     assert editor.target == scoretools.Performer(name='bar')

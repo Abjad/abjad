@@ -105,9 +105,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.remove_items_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor.target_args_to_target_summary_lines
    :noindex:
 

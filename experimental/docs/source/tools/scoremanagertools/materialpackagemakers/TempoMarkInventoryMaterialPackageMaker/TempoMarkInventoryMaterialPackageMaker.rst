@@ -435,9 +435,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.rename_material_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.run_first_time
    :noindex:
 

@@ -129,9 +129,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.remove_assets_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.select_stylesheet_file_name_interactively
    :noindex:
 

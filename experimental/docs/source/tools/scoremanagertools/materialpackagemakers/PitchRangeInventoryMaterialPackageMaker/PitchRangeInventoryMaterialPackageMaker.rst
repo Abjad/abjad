@@ -435,9 +435,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.rename_material_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.run_first_time
    :noindex:
 

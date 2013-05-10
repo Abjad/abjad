@@ -435,9 +435,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.rename_material_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.run_first_time
    :noindex:
 

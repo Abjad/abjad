@@ -36,9 +36,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.make_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector.where
    :noindex:
 

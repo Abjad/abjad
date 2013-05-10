@@ -36,9 +36,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.make_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.where
    :noindex:
 

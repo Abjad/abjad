@@ -81,9 +81,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.menu_key_to_existing_value
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.target_args_to_target_summary_lines
    :noindex:
 

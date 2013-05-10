@@ -105,9 +105,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.remove_items_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.target_args_to_target_summary_lines
    :noindex:
 

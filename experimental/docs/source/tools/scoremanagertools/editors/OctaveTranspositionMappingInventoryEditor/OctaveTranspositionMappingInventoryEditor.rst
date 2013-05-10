@@ -105,9 +105,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.remove_items_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.target_args_to_target_summary_lines
    :noindex:
 

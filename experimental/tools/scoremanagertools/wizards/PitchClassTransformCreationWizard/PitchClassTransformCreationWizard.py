@@ -4,6 +4,37 @@ from experimental.tools.scoremanagertools import selectors
 
 class PitchClassTransformCreationWizard(Wizard):
 
+    ### PRIVATE METHODS ###
+
+    def _run(self, cache=False, clear=True, head=None, user_input=None):
+        self._io.assign_user_input(user_input=user_input)
+        self._session.cache_breadcrumbs(cache=cache)
+        function_application_pairs = []
+        while True:
+            breadcrumb = self.function_application_pairs_to_breadcrumb(function_application_pairs)
+            self._session.push_breadcrumb(breadcrumb=breadcrumb)
+            selector = selectors.PitchClassTransformSelector(session=self._session)
+            selector.explicit_breadcrumb = self.get_explicit_breadcrumb(function_application_pairs)
+            self._session.push_backtrack()
+            function_name = selector._run(clear=clear)
+            self._session.pop_backtrack()
+            if self._session.backtrack():
+                break
+            elif not function_name:
+                self._session.pop_breadcrumb()
+                continue
+            function_arguments = self.get_function_arguments(function_name)
+            if self._session.backtrack():
+                break
+            elif function_arguments is None:
+                self._session.pop_breadcrumb()
+                continue
+            function_application_pairs.append((function_name, function_arguments))
+            self._session.pop_breadcrumb()
+        self._session.pop_breadcrumb()
+        self._session.restore_breadcrumbs(cache=cache)
+        self.target = function_application_pairs
+        return self.target
     ### READ-ONLY PROPERTIES ###
 
     @property
@@ -34,38 +65,8 @@ class PitchClassTransformCreationWizard(Wizard):
         if function_name in ('transpose', 'multiply'):
             getter = self._io.make_getter(where=self.where())
             getter.append_integer_in_range('index', start=0, stop=11)
-            result = getter.run()
+            result = getter._run()
             if self._session.backtrack():
                 return
             arguments.append(result)
         return tuple(arguments)
-
-    def run(self, cache=False, clear=True, head=None, user_input=None):
-        self._io.assign_user_input(user_input=user_input)
-        self._session.cache_breadcrumbs(cache=cache)
-        function_application_pairs = []
-        while True:
-            breadcrumb = self.function_application_pairs_to_breadcrumb(function_application_pairs)
-            self._session.push_breadcrumb(breadcrumb=breadcrumb)
-            selector = selectors.PitchClassTransformSelector(session=self._session)
-            selector.explicit_breadcrumb = self.get_explicit_breadcrumb(function_application_pairs)
-            self._session.push_backtrack()
-            function_name = selector.run(clear=clear)
-            self._session.pop_backtrack()
-            if self._session.backtrack():
-                break
-            elif not function_name:
-                self._session.pop_breadcrumb()
-                continue
-            function_arguments = self.get_function_arguments(function_name)
-            if self._session.backtrack():
-                break
-            elif function_arguments is None:
-                self._session.pop_breadcrumb()
-                continue
-            function_application_pairs.append((function_name, function_arguments))
-            self._session.pop_breadcrumb()
-        self._session.pop_breadcrumb()
-        self._session.restore_breadcrumbs(cache=cache)
-        self.target = function_application_pairs
-        return self.target

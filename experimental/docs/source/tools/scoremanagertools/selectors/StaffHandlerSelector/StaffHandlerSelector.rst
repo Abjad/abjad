@@ -36,9 +36,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.make_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.run
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.where
    :noindex:
 
