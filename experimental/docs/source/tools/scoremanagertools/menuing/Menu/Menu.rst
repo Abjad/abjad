@@ -84,9 +84,6 @@ Read/write properties
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.title
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.where
-   :noindex:
-
 Methods
 -------
 
