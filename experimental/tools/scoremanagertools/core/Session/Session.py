@@ -17,6 +17,18 @@ class Session(abctools.AbjadObject):
         >>> session
         Session()
 
+    Session in score:
+
+    ::
+
+        >>> session_in_score = scoremanagertools.core.Session()
+        >>> session_in_score.underscore_delimited_current_score_name = 'foo'
+
+    ::
+
+        >>> session_in_score
+        Session()
+
     Return session.
     '''
 
@@ -145,6 +157,15 @@ class Session(abctools.AbjadObject):
             >>> session.current_materials_directory_path
             '.../abjad/experimental/system_materials'
 
+        Session in score:
+
+        ::
+
+            >>> session_in_score.current_materials_directory_path
+            '.../scores/foo/music/materials'
+
+        (Output will vary according to configuration.)
+
         Return string.
         '''
         if self.is_in_score:
@@ -165,6 +186,13 @@ class Session(abctools.AbjadObject):
             >>> session.current_materials_package_path
             'system_materials'
 
+        Session in score:
+
+        ::
+
+            >>> session_in_score.current_materials_package_path
+            'foo.music.materials'
+
         Return string.
         '''
         if self.is_in_score:
@@ -184,6 +212,15 @@ class Session(abctools.AbjadObject):
             >>> session.current_score_package_proxy is None
             True
 
+        Session in score:
+
+        ::
+
+            >>> session_in_score.current_score_package_proxy
+            ScorePackageProxy('.../scores/foo')
+
+        (Ouput will vary according to configuration.)
+
         Return score package proxy or none.
         '''
         from experimental.tools.scoremanagertools.proxies.ScorePackageProxy import ScorePackageProxy
@@ -199,6 +236,15 @@ class Session(abctools.AbjadObject):
 
             >>> session.current_segments_directory_path # doctest: +SKIP
             '~/score_manager/sketches'
+
+        (Output will vary according to configuration.)
+
+        Session in score:
+
+        ::
+
+            >>> session_in_score.current_segments_directory_path
+            '.../scores/foo/music/segments'
 
         (Output will vary according to configuration.)
 
@@ -222,6 +268,13 @@ class Session(abctools.AbjadObject):
             >>> session.current_segments_package_path
             'sketches'
 
+        Session in score:
+
+        ::
+
+            >>> session_in_score.current_segments_package_path
+            'foo.music.segments'
+
         Return string.
         '''
         if self.is_in_score:
@@ -241,6 +294,15 @@ class Session(abctools.AbjadObject):
             >>> session.current_specifiers_directory_path
             '.../abjad/experimental/system_specifiers'
 
+        Session in score:
+
+        ::
+
+            >>> session_in_score.current_specifiers_directory_path
+            '.../scores/foo/music/specifiers'
+
+        (Output will vary according to configuration.)
+
         Return string.
         '''
         if self.is_in_score:
@@ -259,6 +321,13 @@ class Session(abctools.AbjadObject):
 
             >>> session.current_specifiers_package_path
             'system_specifiers'
+
+        Session in score:
+
+        ::
+
+            >>> session_in_score.current_specifiers_package_path
+            'foo.music.specifiers'
 
         Return string.
         '''
