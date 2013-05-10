@@ -99,7 +99,6 @@ class ScoreManagerConfiguration(Configuration):
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
-    # TODO: make user-settable
     @property
     def configuration_directory_path(self):
         '''Configuration directory path:
@@ -207,20 +206,6 @@ class ScoreManagerConfiguration(Configuration):
         '''
         return os.path.join(self.score_manager_tools_directory_path, 'editors')
 
-    # TODO: maybe remove because unused?
-    @property
-    def system_editors_package_path(self):
-        '''Editors package path:
-
-        ::
-
-            >>> configuration.system_editors_package_path
-            'scoremanagertools.editors'
-
-        Return string.
-        '''
-        return '.'.join(['scoremanagertools', 'editors'])
-
     @property
     def system_material_package_makers_directory_path(self):
         '''Makers directory path:
@@ -233,19 +218,6 @@ class ScoreManagerConfiguration(Configuration):
         Return string.
         '''
         return os.path.join(self.score_manager_tools_directory_path, 'materialpackagemakers')
-
-    @property
-    def system_material_package_makers_package_path(self):
-        '''Makers package path:
-
-        ::
-
-            >>> configuration.system_material_package_makers_package_path
-            'scoremanagertools.materialpackagemakers'
-
-        Return string.
-        '''
-        return 'scoremanagertools.materialpackagemakers'
 
     @property
     def system_materials_directory_path(self):
@@ -285,20 +257,6 @@ class ScoreManagerConfiguration(Configuration):
         Return string.
         '''
         return os.path.join(self.score_manager_tools_directory_path, 'specifiers')
-
-    # TODO: maybe remove because unused?
-    @property
-    def system_specifier_classes_package_path(self):
-        '''Specifier classes package path:
-
-        ::
-
-            >>> configuration.system_specifier_classes_package_path
-            'scoremanagertools.specifiers'
-
-        Return string.
-        '''
-        return '.'.join(['scoremanagertools', 'specifiers'])
 
     @property
     def system_specifiers_directory_path(self):

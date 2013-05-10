@@ -104,3 +104,5 @@
 37. Reimplement self._handle_main_menu_result methods around dictionaries.
 
 38. Rename flamingo_input to something semantic.
+
+39. Add ScoreManagerConfiguration.user_directory property.

@@ -11,7 +11,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
 
     def __init__(self, session=None):
         PackageWrangler.__init__(self,
-            system_asset_container_package_paths=[self.configuration.system_material_package_makers_package_path],
+            system_asset_container_package_paths=['scoremanagertools.materialpackagemakers'],
             asset_container_path_infix_parts=None,
             user_asset_container_package_paths=[self.configuration.user_material_package_makers_package_path],
             user_asset_container_directory_paths=[self.configuration.user_material_package_makers_directory_path],
