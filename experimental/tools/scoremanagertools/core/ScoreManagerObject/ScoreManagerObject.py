@@ -34,9 +34,8 @@ class ScoreManagerObject(AbjadObject):
     @property
     def _spaced_class_name(self):
         return stringtools.string_to_space_delimited_lowercase(self._class_name)
-
-    ### PUBLIC METHODS ###
-
-    def where(self):
+    
+    @property
+    def _where(self):
         if self._session.enable_where:
             return inspect.stack()[1]

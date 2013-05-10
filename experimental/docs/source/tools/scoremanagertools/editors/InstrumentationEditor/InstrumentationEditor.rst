@@ -111,9 +111,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.target_kwargs_to_target_summary_lines
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.InstrumentationEditor.InstrumentationEditor.InstrumentationEditor.where
-   :noindex:
-
 Special methods
 ---------------
 

@@ -189,9 +189,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableFilesystemAssetWrangler.ImportableFilesystemAssetWrangler.ImportableFilesystemAssetWrangler.svn_up
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableFilesystemAssetWrangler.ImportableFilesystemAssetWrangler.ImportableFilesystemAssetWrangler.where
-   :noindex:
-
 Special methods
 ---------------
 

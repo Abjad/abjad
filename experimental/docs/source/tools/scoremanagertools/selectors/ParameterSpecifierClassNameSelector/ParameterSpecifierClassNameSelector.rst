@@ -36,9 +36,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.ParameterSpecifierClassNameSelector.ParameterSpecifierClassNameSelector.ParameterSpecifierClassNameSelector.make_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.ParameterSpecifierClassNameSelector.ParameterSpecifierClassNameSelector.ParameterSpecifierClassNameSelector.where
-   :noindex:
-
 Special methods
 ---------------
 

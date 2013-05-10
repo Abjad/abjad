@@ -40,7 +40,7 @@ class MusicSpecifierModuleWrangler(ModuleWrangler):
             package_proxy.edit()
 
     def _make_main_menu(self, head=None):
-        menu, section = self._io.make_menu(where=self.where(), is_keyed=False, is_parenthetically_numbered=True)
+        menu, section = self._io.make_menu(where=self._where, is_keyed=False, is_parenthetically_numbered=True)
         section.tokens = self._make_visible_asset_menu_tokens(head=head)
         section = menu.make_section()
         section.append(('new', 'new music specifier'))

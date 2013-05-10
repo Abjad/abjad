@@ -45,9 +45,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector.make_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector.where
-   :noindex:
-
 Special methods
 ---------------
 

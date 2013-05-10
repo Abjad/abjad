@@ -177,9 +177,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.touch
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.where
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.write_boilerplate
    :noindex:
 

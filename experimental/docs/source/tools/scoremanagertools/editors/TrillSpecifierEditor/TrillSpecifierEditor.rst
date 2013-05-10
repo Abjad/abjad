@@ -87,9 +87,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.target_kwargs_to_target_summary_lines
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor.where
-   :noindex:
-
 Special methods
 ---------------
 

@@ -105,9 +105,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.view
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.where
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy.write_boilerplate
    :noindex:
 

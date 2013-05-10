@@ -15,12 +15,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.wizards.InstrumentSelectionWizard.InstrumentSelectionWizard.InstrumentSelectionWizard.storage_format
    :noindex:
 
-Methods
--------
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentSelectionWizard.InstrumentSelectionWizard.InstrumentSelectionWizard.where
-   :noindex:
-
 Special methods
 ---------------
 

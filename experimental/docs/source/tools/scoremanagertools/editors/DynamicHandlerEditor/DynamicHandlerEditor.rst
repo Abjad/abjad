@@ -87,9 +87,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.target_kwargs_to_target_summary_lines
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.where
-   :noindex:
-
 Special methods
 ---------------
 

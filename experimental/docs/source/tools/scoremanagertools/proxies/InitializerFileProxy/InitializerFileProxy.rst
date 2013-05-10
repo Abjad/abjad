@@ -141,9 +141,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.view
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.where
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.write_boilerplate
    :noindex:
 

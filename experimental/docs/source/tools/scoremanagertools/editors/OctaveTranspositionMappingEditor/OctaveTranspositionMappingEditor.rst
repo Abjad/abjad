@@ -111,9 +111,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingEditor.OctaveTranspositionMappingEditor.OctaveTranspositionMappingEditor.target_kwargs_to_target_summary_lines
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingEditor.OctaveTranspositionMappingEditor.OctaveTranspositionMappingEditor.where
-   :noindex:
-
 Special methods
 ---------------
 

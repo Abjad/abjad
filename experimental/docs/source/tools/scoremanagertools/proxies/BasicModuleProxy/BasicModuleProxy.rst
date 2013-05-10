@@ -174,9 +174,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.view
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.where
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.write_boilerplate
    :noindex:
 

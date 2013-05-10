@@ -144,9 +144,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.svn_up
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.where
-   :noindex:
-
 Special methods
 ---------------
 

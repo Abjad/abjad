@@ -192,9 +192,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.svn_up
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.where
-   :noindex:
-
 Special methods
 ---------------
 

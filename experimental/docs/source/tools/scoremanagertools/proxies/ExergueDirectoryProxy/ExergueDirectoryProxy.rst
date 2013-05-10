@@ -87,9 +87,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.ExergueDirectoryProxy.ExergueDirectoryProxy.ExergueDirectoryProxy.touch
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.ExergueDirectoryProxy.ExergueDirectoryProxy.ExergueDirectoryProxy.where
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.ExergueDirectoryProxy.ExergueDirectoryProxy.ExergueDirectoryProxy.write_boilerplate
    :noindex:
 

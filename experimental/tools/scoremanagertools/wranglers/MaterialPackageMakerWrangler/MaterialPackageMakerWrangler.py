@@ -27,7 +27,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             raise ValueError
 
     def _make_main_menu(self, head=None):
-        menu, section = self._io.make_menu(where=self.where(), is_numbered=True)
+        menu, section = self._io.make_menu(where=self._where, is_numbered=True)
         section.tokens = self.list_space_delimited_lowercase_asset_names(head=head)
         section = menu.make_section()
         section.append(('new', 'new material package maker'))
@@ -173,7 +173,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         initializer.close()
 
     def make_asset_interactively(self):
-        getter = self._io.make_getter(where=self.where())
+        getter = self._io.make_getter(where=self._where)
         getter.append_material_package_maker_class_name('material proxy name')
         getter.append_space_delimited_lowercase_string('generic output product')
         result = getter._run()

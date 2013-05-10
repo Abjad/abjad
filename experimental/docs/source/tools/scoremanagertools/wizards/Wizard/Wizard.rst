@@ -15,12 +15,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.storage_format
    :noindex:
 
-Methods
--------
-
-.. automethod:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.where
-   :noindex:
-
 Special methods
 ---------------
 

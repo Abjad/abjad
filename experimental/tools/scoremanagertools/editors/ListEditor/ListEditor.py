@@ -36,7 +36,7 @@ class ListEditor(InteractiveEditor):
             InteractiveEditor._handle_main_menu_result(self, result)
 
     def _make_main_menu(self):
-        menu, attribute_management_section = self._io.make_menu(where=self.where(),
+        menu, attribute_management_section = self._io.make_menu(where=self._where,
             is_keyed=getattr(self.target_manifest, 'is_keyed', False))
         attribute_management_section.tokens = self.target_attribute_tokens
         attribute_management_section.show_existing_values = True
@@ -93,7 +93,7 @@ class ListEditor(InteractiveEditor):
                 return
             result = result or item_creator.target
         elif self.item_getter_configuration_method:
-            getter = self._io.make_getter(where=self.where())
+            getter = self._io.make_getter(where=self._where)
             self.item_getter_configuration_method(getter, self.item_identifier)
             self._session.push_backtrack()
             item_initialization_token = getter._run()
@@ -138,7 +138,7 @@ class ListEditor(InteractiveEditor):
             pass
 
     def move_item_interactively(self):
-        getter = self._io.make_getter(where=self.where())
+        getter = self._io.make_getter(where=self._where)
         getter.append_integer_in_range('old number', 1, len(self.items))
         getter.append_integer_in_range('new number', 1, len(self.items))
         result = getter._run()
@@ -151,7 +151,7 @@ class ListEditor(InteractiveEditor):
         self.items.insert(new_index, item)
 
     def remove_items_interactively(self):
-        getter = self._io.make_getter(where=self.where())
+        getter = self._io.make_getter(where=self._where)
         getter.append_argument_range(self.items_identifier, self.target_summary_lines)
         argument_range = getter._run()
         if self._session.backtrack():

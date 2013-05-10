@@ -315,9 +315,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.touch
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.where
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy.write_boilerplate
    :noindex:
 

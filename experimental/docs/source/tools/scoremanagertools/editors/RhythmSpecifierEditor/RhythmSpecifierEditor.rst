@@ -87,9 +87,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.RhythmSpecifierEditor.RhythmSpecifierEditor.RhythmSpecifierEditor.target_kwargs_to_target_summary_lines
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.RhythmSpecifierEditor.RhythmSpecifierEditor.RhythmSpecifierEditor.where
-   :noindex:
-
 Special methods
 ---------------
 

@@ -87,7 +87,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             return 'select {}:'.format(self.asset_class._generic_class_name)
 
     def _make_asset_selection_menu(self, head=None):
-        menu, section = self._io.make_menu(where=self.where(), is_keyed=False, is_parenthetically_numbered=True)
+        menu, section = self._io.make_menu(where=self._where, is_keyed=False, is_parenthetically_numbered=True)
         section.tokens = self._make_visible_asset_menu_tokens(head=head)
         section.return_value_attribute = 'key'
         return menu
@@ -352,7 +352,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     # TODO: write test
     def remove_assets_interactively(self, head=None):
-        getter = self._io.make_getter(where=self.where())
+        getter = self._io.make_getter(where=self._where)
         argument_list = self.list_visible_asset_filesystem_paths(head=head)
         space_delimited_lowercase_asset_class_name = stringtools.string_to_space_delimited_lowercase(
             self.asset_class.__name__)
@@ -378,7 +378,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         self._io.proceed(is_interactive=is_interactive)
 
     def svn_ci(self, is_interactive=True):
-        getter = self._io.make_getter(where=self.where())
+        getter = self._io.make_getter(where=self._where)
         getter.append_string('commit message')
         commit_message = getter._run()
         if self._session.backtrack():

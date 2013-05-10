@@ -36,9 +36,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.make_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.where
-   :noindex:
-
 Special methods
 ---------------
 

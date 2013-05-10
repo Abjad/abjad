@@ -111,9 +111,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.target_kwargs_to_target_summary_lines
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor.where
-   :noindex:
-
 Special methods
 ---------------
 

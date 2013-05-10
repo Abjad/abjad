@@ -36,9 +36,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.make_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.where
-   :noindex:
-
 Special methods
 ---------------
 

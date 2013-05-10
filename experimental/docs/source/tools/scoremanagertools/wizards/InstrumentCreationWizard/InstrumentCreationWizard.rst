@@ -24,9 +24,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.name_untuned_percussion
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard.InstrumentCreationWizard.InstrumentCreationWizard.where
-   :noindex:
-
 Special methods
 ---------------
 

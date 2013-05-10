@@ -87,9 +87,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.ArticulationSpecifierEditor.ArticulationSpecifierEditor.ArticulationSpecifierEditor.target_kwargs_to_target_summary_lines
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ArticulationSpecifierEditor.ArticulationSpecifierEditor.ArticulationSpecifierEditor.where
-   :noindex:
-
 Special methods
 ---------------
 

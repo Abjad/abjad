@@ -45,7 +45,7 @@ class ReservoirStartHelperCreationWizard(Wizard):
     def get_function_arguments(self, function_name):
         arguments = []
         if function_name in ('start at index n'):
-            getter = self._io.make_getter(where=self.where())
+            getter = self._io.make_getter(where=self._where)
             getter.append_integer('index')
             result = getter._run()
             if self._session.backtrack():

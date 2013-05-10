@@ -87,9 +87,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.target_kwargs_to_target_summary_lines
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.where
-   :noindex:
-
 Special methods
 ---------------
 

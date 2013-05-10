@@ -87,9 +87,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkEditor.ClefMarkEditor.ClefMarkEditor.target_kwargs_to_target_summary_lines
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkEditor.ClefMarkEditor.ClefMarkEditor.where
-   :noindex:
-
 Special methods
 ---------------
 

@@ -36,9 +36,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.make_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.where
-   :noindex:
-
 Special methods
 ---------------
 

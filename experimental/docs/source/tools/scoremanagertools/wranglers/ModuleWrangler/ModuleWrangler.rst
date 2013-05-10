@@ -189,9 +189,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.svn_up
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.where
-   :noindex:
-
 Special methods
 ---------------
 

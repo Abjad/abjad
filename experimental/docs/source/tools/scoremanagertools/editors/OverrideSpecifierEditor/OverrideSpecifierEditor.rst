@@ -87,9 +87,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.target_kwargs_to_target_summary_lines
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.where
-   :noindex:
-
 Special methods
 ---------------
 

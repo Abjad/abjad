@@ -207,9 +207,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.svn_up
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.where
-   :noindex:
-
 Special methods
 ---------------
 

@@ -177,9 +177,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusicPackageProxy.MusicPackageProxy.MusicPackageProxy.touch
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.MusicPackageProxy.MusicPackageProxy.MusicPackageProxy.where
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusicPackageProxy.MusicPackageProxy.MusicPackageProxy.write_boilerplate
    :noindex:
 

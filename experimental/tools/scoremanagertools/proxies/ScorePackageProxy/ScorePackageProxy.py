@@ -52,7 +52,7 @@ class ScorePackageProxy(PackageProxy):
             raise ValueError
 
     def _make_main_menu(self):
-        menu, section = self._io.make_menu(where=self.where(), is_numbered=True)
+        menu, section = self._io.make_menu(where=self._where, is_numbered=True)
         section = menu.make_section()
         section.append(('h', 'segments'))
         section.append(('m', 'materials'))
@@ -255,7 +255,7 @@ class ScorePackageProxy(PackageProxy):
     ### PUBLIC METHODS ###
 
     def edit_forces_tagline_interactively(self):
-        getter = self._io.make_getter(where=self.where())
+        getter = self._io.make_getter(where=self._where)
         getter.append_string('Forces tagline')
         result = getter._run()
         if self._session.backtrack():
@@ -270,7 +270,7 @@ class ScorePackageProxy(PackageProxy):
         self.add_tag('instrumentation', editor.target)
 
     def edit_title_interactively(self):
-        getter = self._io.make_getter(where=self.where())
+        getter = self._io.make_getter(where=self._where)
         getter.append_string('new title')
         result = getter._run()
         if self._session.backtrack():
@@ -278,7 +278,7 @@ class ScorePackageProxy(PackageProxy):
         self.add_tag('title', result)
 
     def edit_year_of_completion_interactively(self):
-        getter = self._io.make_getter(where=self.where())
+        getter = self._io.make_getter(where=self._where)
         getter.append_integer_in_range('year of completion', start=1, allow_none=True)
         result = getter._run()
         if self._session.backtrack():
@@ -385,14 +385,14 @@ class ScorePackageProxy(PackageProxy):
         self.print_not_yet_implemented()
 
     def make_setup_menu(self):
-        setup_menu, section = self._io.make_menu(where=self.where(),
+        setup_menu, section = self._io.make_menu(where=self._where,
             is_parenthetically_numbered=True, is_keyed=False)
         section.tokens = self.setup_value_menu_tokens
         section.return_value_attribute = 'key'
         return setup_menu
 
     def make_svn_menu(self):
-        menu, section = self._io.make_menu(where=self.where(), is_keyed=False)
+        menu, section = self._io.make_menu(where=self._where, is_keyed=False)
         section.return_value_attribute = 'key'
         section.append(('st', 'st'))
         section.append(('add', 'add'))
@@ -452,7 +452,7 @@ class ScorePackageProxy(PackageProxy):
     def remove_interactively(self):
         line = 'WARNING! Score package {!r} will be completely removed.'.format(self.package_path)
         self._io.display([line, ''])
-        getter = self._io.make_getter(where=self.where())
+        getter = self._io.make_getter(where=self._where)
         getter.append_string("type 'clobberscore' to proceed")
         self._session.push_backtrack()
         should_clobber = getter._run()

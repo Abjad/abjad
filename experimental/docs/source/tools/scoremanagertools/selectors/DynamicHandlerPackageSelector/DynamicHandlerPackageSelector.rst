@@ -45,9 +45,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.make_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.where
-   :noindex:
-
 Special methods
 ---------------
 

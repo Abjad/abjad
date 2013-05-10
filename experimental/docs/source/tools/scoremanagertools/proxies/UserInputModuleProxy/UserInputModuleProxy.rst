@@ -165,9 +165,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.view
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.where
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy.write_boilerplate
    :noindex:
 

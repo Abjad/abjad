@@ -210,9 +210,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.svn_up
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.where
-   :noindex:
-
 Special methods
 ---------------
 

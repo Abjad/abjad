@@ -36,9 +36,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.TempoMarkSelector.TempoMarkSelector.TempoMarkSelector.make_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.TempoMarkSelector.TempoMarkSelector.TempoMarkSelector.where
-   :noindex:
-
 Special methods
 ---------------
 

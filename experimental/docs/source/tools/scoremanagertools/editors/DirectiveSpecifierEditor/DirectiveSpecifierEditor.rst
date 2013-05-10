@@ -87,9 +87,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.target_kwargs_to_target_summary_lines
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.where
-   :noindex:
-
 Special methods
 ---------------
 

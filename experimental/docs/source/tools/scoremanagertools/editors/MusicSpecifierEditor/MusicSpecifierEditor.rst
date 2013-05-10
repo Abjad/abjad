@@ -111,9 +111,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.target_kwargs_to_target_summary_lines
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.where
-   :noindex:
-
 Special methods
 ---------------
 

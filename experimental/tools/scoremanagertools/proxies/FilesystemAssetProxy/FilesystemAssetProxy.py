@@ -151,7 +151,7 @@ class FilesystemAssetProxy(ScoreManagerObject):
     def remove_interactively(self, user_input=None):
         self._io.assign_user_input(user_input=user_input)
         self._io.display(['{} will be removed.'.format(self.filesystem_path), ''])
-        getter = self._io.make_getter(where=self.where())
+        getter = self._io.make_getter(where=self._where)
         getter.append_string("type 'remove' to proceed")
         result = getter._run()
         if self._session.backtrack():
@@ -175,7 +175,7 @@ class FilesystemAssetProxy(ScoreManagerObject):
 
     def rename_interactively(self, user_input=None):
         self._io.assign_user_input(user_input=user_input)
-        getter = self._io.make_getter(where=self.where())
+        getter = self._io.make_getter(where=self._where)
         getter.append_underscore_delimited_lowercase_file_name('new name')
         getter.include_newlines = False
         result = getter._run()
@@ -200,7 +200,7 @@ class FilesystemAssetProxy(ScoreManagerObject):
 
     def svn_ci(self, commit_message=None, is_interactive=True):
         if commit_message is None:
-            getter = self._io.make_getter(where=self.where())
+            getter = self._io.make_getter(where=self._where)
             getter.append_string('commit message')
             commit_message = getter._run()
             if self._session.backtrack():
@@ -251,7 +251,7 @@ class FilesystemAssetProxy(ScoreManagerObject):
 
     def write_boilerplate_interactively(self, user_input=None):
         self._io.assign_user_input(user_input=user_input)
-        getter = self._io.make_getter(where=self.where())
+        getter = self._io.make_getter(where=self._where)
         getter.append_underscore_delimited_lowercase_file_name('name of boilerplate asset')
         self._session.push_backtrack()
         boilerplate_filesystem_asset_name = getter._run()

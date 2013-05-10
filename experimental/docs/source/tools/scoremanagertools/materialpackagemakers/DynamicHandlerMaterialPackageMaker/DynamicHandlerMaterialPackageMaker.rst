@@ -471,9 +471,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.touch_parent_initializer
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.where
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.write_boilerplate
    :noindex:
 

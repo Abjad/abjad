@@ -87,9 +87,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.target_kwargs_to_target_summary_lines
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.where
-   :noindex:
-
 Special methods
 ---------------
 

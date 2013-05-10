@@ -181,12 +181,12 @@ class ScoreManager(ScoreManagerObject):
         return this_result
 
     def make_score_selection_menu(self):
-        menu, section = self._io.make_menu(where=self.where(), is_numbered=True, is_keyed=False)
+        menu, section = self._io.make_menu(where=self._where, is_numbered=True, is_keyed=False)
         section.tokens = self.score_package_wrangler._make_visible_asset_menu_tokens()
         return menu
 
     def make_svn_menu(self):
-        menu, section = self._io.make_menu(where=self.where())
+        menu, section = self._io.make_menu(where=self._where)
         section.append(('add', 'svn add scores'))
         section.append(('ci', 'svn commit scores'))
         section.append(('st', 'svn status scores'))

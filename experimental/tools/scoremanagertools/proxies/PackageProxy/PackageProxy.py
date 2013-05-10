@@ -149,7 +149,7 @@ class PackageProxy(DirectoryProxy):
         self.tags_file_proxy.write_tags_to_disk(tags)
 
     def add_tag_interactively(self):
-        getter = self._io.make_getter(where=self.where())
+        getter = self._io.make_getter(where=self._where)
         getter.append_string('tag name')
         getter.append_expr('tag value')
         result = getter._run()
@@ -165,7 +165,7 @@ class PackageProxy(DirectoryProxy):
         return tag
 
     def get_tag_interactively(self):
-        getter = self._io.make_getter(where=self.where())
+        getter = self._io.make_getter(where=self._where)
         getter.append_string('tag name')
         result = getter._run()
         if self._session.backtrack():
@@ -198,7 +198,7 @@ class PackageProxy(DirectoryProxy):
         return bool(tag_name in tags)
 
     def make_tags_menu(self):
-        menu, section = self._io.make_menu(where=self.where(), is_keyed=False)
+        menu, section = self._io.make_menu(where=self._where, is_keyed=False)
         section.tokens = self.formatted_tags
         section = menu.make_section()
         section.append(('add', 'add tag'))
@@ -233,7 +233,7 @@ class PackageProxy(DirectoryProxy):
         self.tags_file_proxy.write_tags_to_disk(tags)
 
     def remove_tag_interactively(self):
-        getter = self._io.make_getter(where=self.where())
+        getter = self._io.make_getter(where=self._where)
         getter.append_string('tag name')
         result = getter._run()
         if self._session.backtrack():
@@ -246,7 +246,7 @@ class PackageProxy(DirectoryProxy):
         self._run(**kwargs)
 
     def set_package_path_interactively(self):
-        getter = self._io.make_getter(where=self.where())
+        getter = self._io.make_getter(where=self._where)
         getter.append_underscore_delimited_lowercase_package_name('package name')
         result = getter._run()
         if self._session.backtrack():

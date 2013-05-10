@@ -36,9 +36,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.RegistrationHandlerSelector.RegistrationHandlerSelector.RegistrationHandlerSelector.make_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.RegistrationHandlerSelector.RegistrationHandlerSelector.RegistrationHandlerSelector.where
-   :noindex:
-
 Special methods
 ---------------
 

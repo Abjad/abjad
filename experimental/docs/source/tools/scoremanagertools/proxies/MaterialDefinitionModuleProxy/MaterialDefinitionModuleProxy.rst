@@ -183,9 +183,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy.view
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy.where
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy.write_boilerplate
    :noindex:
 

@@ -471,9 +471,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.touch_parent_initializer
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.where
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.TempoMarkInventoryMaterialPackageMaker.write_boilerplate
    :noindex:
 

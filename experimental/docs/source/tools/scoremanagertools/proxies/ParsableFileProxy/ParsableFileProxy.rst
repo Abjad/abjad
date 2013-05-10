@@ -123,9 +123,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.view
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.where
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.write_boilerplate
    :noindex:
 

@@ -36,9 +36,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.make_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.where
-   :noindex:
-
 Special methods
 ---------------
 

@@ -87,9 +87,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.target_kwargs_to_target_summary_lines
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.RestRhythmMakerEditor.RestRhythmMakerEditor.RestRhythmMakerEditor.where
-   :noindex:
-
 Special methods
 ---------------
 

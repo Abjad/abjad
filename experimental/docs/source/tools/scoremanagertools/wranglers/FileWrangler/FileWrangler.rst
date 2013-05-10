@@ -135,9 +135,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.svn_up
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.where
-   :noindex:
-
 Special methods
 ---------------
 

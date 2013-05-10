@@ -14,8 +14,8 @@ class MenuObject(ScoreManagerObject):
         self.indent_level = 0
         self.prompt_default = None
         self.should_clear_terminal = False
-        self.where = where
         self.title = title
+        self.where = where
 
     ### READ / WRITE PUBLIC PROPERTIES ###
 
@@ -44,14 +44,6 @@ class MenuObject(ScoreManagerObject):
         def fset(self, title):
             assert isinstance(title, (str, list, type(None)))
             self._title = title
-        return property(**locals())
-
-    @apply
-    def where():
-        def fget(self):
-            return self._where
-        def fset(self, where):
-            self._where = where
         return property(**locals())
 
     ### PUBLIC METHODS ###

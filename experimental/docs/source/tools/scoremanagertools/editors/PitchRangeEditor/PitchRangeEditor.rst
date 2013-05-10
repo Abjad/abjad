@@ -87,9 +87,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeEditor.PitchRangeEditor.PitchRangeEditor.target_kwargs_to_target_summary_lines
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeEditor.PitchRangeEditor.PitchRangeEditor.where
-   :noindex:
-
 Special methods
 ---------------
 

@@ -186,9 +186,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.view
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.where
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.write_boilerplate
    :noindex:
 

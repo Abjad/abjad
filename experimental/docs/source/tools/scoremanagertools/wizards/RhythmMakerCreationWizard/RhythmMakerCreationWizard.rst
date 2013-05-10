@@ -21,9 +21,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wizards.RhythmMakerCreationWizard.RhythmMakerCreationWizard.RhythmMakerCreationWizard.get_handler_editor
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.RhythmMakerCreationWizard.RhythmMakerCreationWizard.RhythmMakerCreationWizard.where
-   :noindex:
-
 Special methods
 ---------------
 

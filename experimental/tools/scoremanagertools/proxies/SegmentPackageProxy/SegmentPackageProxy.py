@@ -20,7 +20,7 @@ class SegmentPackageProxy(PackageProxy):
             self.initializer_file_proxy.view()
 
     def _make_main_menu(self):
-        menu, section = self._io.make_menu(where=self.where())
+        menu, section = self._io.make_menu(where=self._where)
         section.append(('n', 'initializer'))
         section = menu.make_section()
         section.append(('d', 'delete'))

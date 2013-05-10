@@ -471,9 +471,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.touch_parent_initializer
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.where
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.write_boilerplate
    :noindex:
 

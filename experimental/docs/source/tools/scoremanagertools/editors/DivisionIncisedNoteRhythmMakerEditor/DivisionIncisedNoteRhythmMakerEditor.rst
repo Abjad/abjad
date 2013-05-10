@@ -87,9 +87,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.DivisionIncisedNoteRhythmMakerEditor.DivisionIncisedNoteRhythmMakerEditor.DivisionIncisedNoteRhythmMakerEditor.target_kwargs_to_target_summary_lines
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.DivisionIncisedNoteRhythmMakerEditor.DivisionIncisedNoteRhythmMakerEditor.DivisionIncisedNoteRhythmMakerEditor.where
-   :noindex:
-
 Special methods
 ---------------
 

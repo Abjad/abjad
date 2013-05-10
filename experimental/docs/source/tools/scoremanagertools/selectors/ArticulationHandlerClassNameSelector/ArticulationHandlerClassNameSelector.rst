@@ -36,9 +36,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.make_menu_tokens
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.ArticulationHandlerClassNameSelector.where
-   :noindex:
-
 Special methods
 ---------------
 

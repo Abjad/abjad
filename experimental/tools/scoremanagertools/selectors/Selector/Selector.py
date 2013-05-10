@@ -19,7 +19,7 @@ class Selector(ScoreManagerObject):
     ### PRIVATE PROPERTIES ###
 
     def _make_main_menu(self, head=None):
-        menu, section = self._io.make_menu(where=self.where(),
+        menu, section = self._io.make_menu(where=self._where,
             is_keyed=self.is_keyed,
             is_numbered=self.is_numbered,
             is_parenthetically_numbered=self.is_parenthetically_numbered,

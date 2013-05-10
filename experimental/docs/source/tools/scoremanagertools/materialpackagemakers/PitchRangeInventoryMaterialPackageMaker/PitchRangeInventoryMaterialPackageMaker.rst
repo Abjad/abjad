@@ -471,9 +471,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.touch_parent_initializer
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.where
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.write_boilerplate
    :noindex:
 

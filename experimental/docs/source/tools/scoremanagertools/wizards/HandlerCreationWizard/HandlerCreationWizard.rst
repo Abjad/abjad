@@ -21,9 +21,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.get_handler_editor
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard.where
-   :noindex:
-
 Special methods
 ---------------
 

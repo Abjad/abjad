@@ -87,9 +87,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.StaffSpecifierEditor.StaffSpecifierEditor.StaffSpecifierEditor.target_kwargs_to_target_summary_lines
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.StaffSpecifierEditor.StaffSpecifierEditor.StaffSpecifierEditor.where
-   :noindex:
-
 Special methods
 ---------------
 

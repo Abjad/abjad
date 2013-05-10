@@ -12,12 +12,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.storage_format
    :noindex:
 
-Methods
--------
-
-.. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.where
-   :noindex:
-
 Special methods
 ---------------
 

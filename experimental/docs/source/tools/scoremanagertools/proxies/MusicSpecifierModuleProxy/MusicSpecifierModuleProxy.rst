@@ -174,9 +174,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.view
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.where
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.write_boilerplate
    :noindex:
 

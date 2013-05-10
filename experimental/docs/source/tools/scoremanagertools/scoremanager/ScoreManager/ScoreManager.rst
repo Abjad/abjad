@@ -63,9 +63,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.run_py_test_all
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.where
-   :noindex:
-
 Special methods
 ---------------
 

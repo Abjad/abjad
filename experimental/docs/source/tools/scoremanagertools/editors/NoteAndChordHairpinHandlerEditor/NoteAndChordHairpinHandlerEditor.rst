@@ -87,9 +87,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.target_kwargs_to_target_summary_lines
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.where
-   :noindex:
-
 Special methods
 ---------------
 

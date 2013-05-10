@@ -42,7 +42,7 @@ class MaterialPackageWrangler(PackageWrangler):
             material_package_proxy._run()
 
     def _make_main_menu(self, head=None):
-        menu, section = self._io.make_menu(where=self.where(), is_numbered=True, is_keyed=False)
+        menu, section = self._io.make_menu(where=self._where, is_numbered=True, is_keyed=False)
         section.tokens = self._make_visible_asset_menu_tokens(head=head)
         section = menu.make_section()
         section.append(('d', 'data-only'))
@@ -98,7 +98,7 @@ class MaterialPackageWrangler(PackageWrangler):
     def get_available_material_package_path_interactively(self, user_input=None):
         self._io.assign_user_input(user_input=user_input)
         while True:
-            getter = self._io.make_getter(where=self.where())
+            getter = self._io.make_getter(where=self._where)
             getter.append_space_delimited_lowercase_string('material name')
             self._session.push_backtrack()
             package_name = getter._run()

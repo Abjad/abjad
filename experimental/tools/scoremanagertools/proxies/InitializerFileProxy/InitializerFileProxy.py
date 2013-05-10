@@ -137,14 +137,14 @@ class InitializerFileProxy(ParsableFileProxy):
     # TODO: move to TagsFileProxy
     def restore_interactively(self, prompt=True):
         from experimental.tools import scoremanagertools
-        getter = self._io.make_getter(where=self.where())
+        getter = self._io.make_getter(where=self._where)
         getter.append_yes_no_string('handmade')
         result = getter._run()
         if self._session.backtrack():
             return
         if 'yes'.startswith(result.lower()):
             material_package_maker_class_name = None
-            getter = self._io.make_getter(where=self.where())
+            getter = self._io.make_getter(where=self._where)
             getter.append_yes_no_string('should have illustration')
             result = getter._run()
             if self._session.backtrack():

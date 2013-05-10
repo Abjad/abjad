@@ -127,7 +127,7 @@ class MaterialPackageProxy(PackageProxy):
             raise ValueError
 
     def _make_main_menu(self):
-        menu, hidden_section = self._io.make_menu(where=self.where(), is_hidden=True)
+        menu, hidden_section = self._io.make_menu(where=self._where, is_hidden=True)
         self._make_main_menu_section_for_initializer(menu, hidden_section)
         self._make_main_menu_sections(menu, hidden_section)
         self._make_main_menu_section_for_illustration_ly(hidden_section)
@@ -765,7 +765,7 @@ class MaterialPackageProxy(PackageProxy):
     def rename_material_interactively(self):
         line = 'current material name: {}'.format(self.material_package_name)
         self._io.display(line)
-        getter = self._io.make_getter(where=self.where())
+        getter = self._io.make_getter(where=self._where)
         getter.append_underscore_delimited_lowercase_package_name('new material name')
         new_material_package_name = getter._run()
         if self._session.backtrack():

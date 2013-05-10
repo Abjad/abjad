@@ -22,7 +22,7 @@ class DirectoryProxy(FilesystemAssetProxy):
         pass
 
     def get_filesystem_path_interactively(self):
-        getter = self._io.make_getter(where=self.where())
+        getter = self._io.make_getter(where=self._where)
         getter.append_string('directory path')
         result = getter._run()
         if self._session.backtrack():

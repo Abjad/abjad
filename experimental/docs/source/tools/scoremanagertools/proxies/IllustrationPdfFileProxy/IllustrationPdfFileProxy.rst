@@ -105,9 +105,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.view
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.where
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.write_boilerplate
    :noindex:
 

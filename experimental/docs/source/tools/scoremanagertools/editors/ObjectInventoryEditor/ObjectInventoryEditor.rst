@@ -111,9 +111,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.ObjectInventoryEditor.ObjectInventoryEditor.ObjectInventoryEditor.target_kwargs_to_target_summary_lines
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ObjectInventoryEditor.ObjectInventoryEditor.ObjectInventoryEditor.where
-   :noindex:
-
 Special methods
 ---------------
 

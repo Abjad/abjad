@@ -24,9 +24,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.make_performer_configuration_menu
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard.where
-   :noindex:
-
 Special methods
 ---------------
 

@@ -105,9 +105,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationLyFileProxy.IllustrationLyFileProxy.IllustrationLyFileProxy.view
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationLyFileProxy.IllustrationLyFileProxy.IllustrationLyFileProxy.where
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.IllustrationLyFileProxy.IllustrationLyFileProxy.IllustrationLyFileProxy.write_boilerplate
    :noindex:
 

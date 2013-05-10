@@ -87,9 +87,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.InstrumentEditor.InstrumentEditor.InstrumentEditor.target_kwargs_to_target_summary_lines
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.InstrumentEditor.InstrumentEditor.InstrumentEditor.where
-   :noindex:
-
 Special methods
 ---------------
 

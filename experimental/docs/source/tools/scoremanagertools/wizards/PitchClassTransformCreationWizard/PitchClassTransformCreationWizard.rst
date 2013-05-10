@@ -27,9 +27,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wizards.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.get_function_arguments
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wizards.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.where
-   :noindex:
-
 Special methods
 ---------------
 
