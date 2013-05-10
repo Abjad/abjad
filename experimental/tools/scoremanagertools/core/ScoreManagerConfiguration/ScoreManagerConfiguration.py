@@ -297,12 +297,12 @@ class ScoreManagerConfiguration(Configuration):
         return os.path.basename(self.system_materials_directory_path)
 
     @property
-    def system_package_paths(self):
+    def system_resource_directory_basenames(self):
         '''System package paths:
 
         ::
 
-            >>> for package_path in configuration.system_package_paths:
+            >>> for package_path in configuration.system_resource_directory_basenames:
             ...     package_path
             'sketches'
             'system_materials'

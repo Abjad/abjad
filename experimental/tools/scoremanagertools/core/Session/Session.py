@@ -217,15 +217,6 @@ class Session(abctools.AbjadObject):
     ### READ / WRITE PUBLIC PROPERTIES ###
 
     @apply
-    def underscore_delimited_current_score_name():
-        def fget(self):
-            return self._underscore_delimited_current_score_name
-        def fset(self, underscore_delimited_current_score_name):
-            assert isinstance(underscore_delimited_current_score_name, (str, type(None)))
-            self._underscore_delimited_current_score_name = underscore_delimited_current_score_name
-        return property(**locals())
-
-    @apply
     def dump_transcript():
         def fget(self):
             return self._dump_transcript
@@ -286,6 +277,15 @@ class Session(abctools.AbjadObject):
         def fset(self, nonnumbered_menu_sections_are_hidden):
             assert isinstance(nonnumbered_menu_sections_are_hidden, bool)
             self._nonnumbered_menu_sections_are_hidden = nonnumbered_menu_sections_are_hidden
+        return property(**locals())
+
+    @apply
+    def underscore_delimited_current_score_name():
+        def fget(self):
+            return self._underscore_delimited_current_score_name
+        def fset(self, underscore_delimited_current_score_name):
+            assert isinstance(underscore_delimited_current_score_name, (str, type(None)))
+            self._underscore_delimited_current_score_name = underscore_delimited_current_score_name
         return property(**locals())
 
     @apply

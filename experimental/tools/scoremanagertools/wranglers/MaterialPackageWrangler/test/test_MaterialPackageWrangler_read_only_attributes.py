@@ -57,15 +57,15 @@ def test_MaterialPackageWrangler_read_only_attributes_06():
     '''Infix.
     '''
 
-    assert wrangler.score_internal_asset_container_path_infix_parts == ('music', 'materials')
+    assert wrangler.asset_container_path_infix_parts == ('music', 'materials')
 
 
 def test_MaterialPackageWrangler_read_only_attributes_07():
     '''Temporary asset.
     '''
 
-    assert wrangler.temporary_asset_package_path == 'system_materials.__temporary_package'
-    assert wrangler.temporary_asset_filesystem_path == \
+    assert wrangler._temporary_asset_package_path == 'system_materials.__temporary_package'
+    assert wrangler._temporary_asset_filesystem_path == \
         os.path.join(wrangler.configuration.system_materials_directory_path, '__temporary_package')
     assert wrangler._temporary_asset_name == '__temporary_package'
 
@@ -81,8 +81,8 @@ def test_MaterialPackageWrangler_read_only_attributes_08():
 
     assert 'example_score_1.music.materials' in wrangler.list_asset_container_package_paths()
     assert wrangler.current_asset_container_package_path == 'example_score_1.music.materials'
-    assert wrangler.temporary_asset_package_path == 'example_score_1.music.materials.__temporary_package'
+    assert wrangler._temporary_asset_package_path == 'example_score_1.music.materials.__temporary_package'
     directory_path = os.path.join(
          wrangler.configuration.user_scores_directory_path,
         'example_score_1', 'music', 'materials', '__temporary_package')
-    assert wrangler.temporary_asset_filesystem_path == directory_path
+    assert wrangler._temporary_asset_filesystem_path == directory_path

@@ -15,16 +15,13 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.asset_container_class
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.asset_container_path_infix_parts
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.current_asset_container_directory_path
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.current_asset_container_proxy
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.io
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.score_internal_asset_container_path_infix_parts
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.session
@@ -34,12 +31,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.system_asset_container_directory_paths
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.temporary_asset_filesystem_path
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.temporary_asset_proxy
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.user_asset_container_directory_paths

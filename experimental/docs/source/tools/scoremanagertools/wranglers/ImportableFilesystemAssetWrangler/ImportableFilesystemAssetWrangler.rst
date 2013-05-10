@@ -15,19 +15,16 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.ImportableFilesystemAssetWrangler.ImportableFilesystemAssetWrangler.ImportableFilesystemAssetWrangler.asset_container_class
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.wranglers.ImportableFilesystemAssetWrangler.ImportableFilesystemAssetWrangler.ImportableFilesystemAssetWrangler.asset_container_path_infix_parts
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.ImportableFilesystemAssetWrangler.ImportableFilesystemAssetWrangler.ImportableFilesystemAssetWrangler.current_asset_container_directory_path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.ImportableFilesystemAssetWrangler.ImportableFilesystemAssetWrangler.ImportableFilesystemAssetWrangler.current_asset_container_package_path
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.ImportableFilesystemAssetWrangler.ImportableFilesystemAssetWrangler.ImportableFilesystemAssetWrangler.current_asset_container_proxy
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.ImportableFilesystemAssetWrangler.ImportableFilesystemAssetWrangler.ImportableFilesystemAssetWrangler.io
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.ImportableFilesystemAssetWrangler.ImportableFilesystemAssetWrangler.ImportableFilesystemAssetWrangler.score_internal_asset_container_path_infix_parts
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.ImportableFilesystemAssetWrangler.ImportableFilesystemAssetWrangler.ImportableFilesystemAssetWrangler.session
@@ -40,15 +37,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.ImportableFilesystemAssetWrangler.ImportableFilesystemAssetWrangler.ImportableFilesystemAssetWrangler.system_asset_container_package_paths
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.ImportableFilesystemAssetWrangler.ImportableFilesystemAssetWrangler.ImportableFilesystemAssetWrangler.temporary_asset_filesystem_path
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.ImportableFilesystemAssetWrangler.ImportableFilesystemAssetWrangler.ImportableFilesystemAssetWrangler.temporary_asset_package_path
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.ImportableFilesystemAssetWrangler.ImportableFilesystemAssetWrangler.ImportableFilesystemAssetWrangler.temporary_asset_proxy
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.ImportableFilesystemAssetWrangler.ImportableFilesystemAssetWrangler.ImportableFilesystemAssetWrangler.user_asset_container_directory_paths

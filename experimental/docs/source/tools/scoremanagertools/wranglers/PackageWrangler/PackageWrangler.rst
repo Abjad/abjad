@@ -15,22 +15,19 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.asset_container_class
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.asset_container_path_infix_parts
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.current_asset_container_directory_path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.current_asset_container_package_path
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.current_asset_container_proxy
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.io
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.score_external_asset_proxies
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.score_internal_asset_container_path_infix_parts
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.session
@@ -43,15 +40,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.system_asset_container_package_paths
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.temporary_asset_filesystem_path
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.temporary_asset_package_path
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.temporary_asset_proxy
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.user_asset_container_directory_paths

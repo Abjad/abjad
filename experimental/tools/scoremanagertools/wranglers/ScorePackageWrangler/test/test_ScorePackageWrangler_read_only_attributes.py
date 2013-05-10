@@ -47,14 +47,14 @@ def test_ScorePackageWrangler_read_only_attributes_06():
     '''Infix.
     '''
 
-    assert wrangler.score_internal_asset_container_path_infix_parts is None
+    assert wrangler.asset_container_path_infix_parts is None
 
 
 def test_ScorePackageWrangler_read_only_attributes_07():
     '''Temporary asset.
     '''
 
-    assert wrangler.temporary_asset_package_path == '__temporary_package'
+    assert wrangler._temporary_asset_package_path == '__temporary_package'
 
 
 def test_ScorePackageWrangler_read_only_attributes_08():

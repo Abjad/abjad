@@ -15,19 +15,16 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.asset_container_class
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.asset_container_path_infix_parts
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.breadcrumb
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.current_asset_container_directory_path
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.current_asset_container_proxy
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.io
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.score_internal_asset_container_path_infix_parts
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.session
@@ -40,12 +37,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.system_asset_container_directory_paths
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.temporary_asset_filesystem_path
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.temporary_asset_proxy
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler.user_asset_container_directory_paths
