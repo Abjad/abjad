@@ -226,14 +226,14 @@ class PackageProxy(DirectoryProxy):
         self._session.cache_breadcrumbs(cache=cache)
         while True:
             self._session.push_breadcrumb(self.breadcrumb)
-            menu = self.make_main_menu()
+            menu = self._make_main_menu()
             result = menu.run(clear=clear)
             if self._session.backtrack(source=self._backtracking_source):
                 break
             elif not result:
                 self._session.pop_breadcrumb()
                 continue
-            self.handle_main_menu_result(result)
+            self._handle_main_menu_result(result)
             if self._session.backtrack(source=self._backtracking_source):
                 break
             self._session.pop_breadcrumb()

@@ -22,6 +22,23 @@ class InstrumentEditor(InteractiveEditor):
         is_keyed=True,
         )
 
+    ### PRIVATE METHODS ###
+
+    def _handle_main_menu_result(self, result):
+        if result == 'tprd':
+            if self._session.display_pitch_ranges_with_numbered_pitches:
+                self._session.display_pitch_ranges_with_numbered_pitches = False
+            else:
+                self._session.display_pitch_ranges_with_numbered_pitches = True
+        else:
+            InteractiveEditor._handle_main_menu_result(self, result)
+
+    def _make_main_menu(self):
+        menu = InteractiveEditor._make_main_menu(self)
+        hidden_section = menu.hidden_section
+        hidden_section.append(('tprd', 'toggle pitch range display'))
+        return menu
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
@@ -43,18 +60,3 @@ class InstrumentEditor(InteractiveEditor):
                 self.target = instruments[0]
             else:
                 self.target = None
-
-    def handle_main_menu_result(self, result):
-        if result == 'tprd':
-            if self._session.display_pitch_ranges_with_numbered_pitches:
-                self._session.display_pitch_ranges_with_numbered_pitches = False
-            else:
-                self._session.display_pitch_ranges_with_numbered_pitches = True
-        else:
-            InteractiveEditor.handle_main_menu_result(self, result)
-
-    def make_main_menu(self):
-        menu = InteractiveEditor.make_main_menu(self)
-        hidden_section = menu.hidden_section
-        hidden_section.append(('tprd', 'toggle pitch range display'))
-        return menu

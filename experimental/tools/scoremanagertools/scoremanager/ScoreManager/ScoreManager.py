@@ -25,6 +25,49 @@ class ScoreManager(ScoreManagerObject):
         self._score_package_wrangler = ScorePackageWrangler(session=self._session)
         self._stylesheet_file_wrangler = StylesheetFileWrangler(session=self._session)
 
+    ### PRIVATE METHODS ###
+
+    def _handle_main_menu_result(self, result):
+        if not isinstance(result, str):
+            raise TypeError('result must be string.')
+        if result == 'active':
+            self._session.show_active_scores()
+        elif result == 'all':
+            self._session.show_all_scores()
+        elif result == 'm':
+            self.material_package_wrangler.run(
+                rollback=True, head=self.configuration.system_materials_package_path)
+        elif result == 'f':
+            self.music_specifier_module_wrangler.run(
+                rollback=True, head=self.configuration.system_specifiers_package_path)
+        elif result == 'k':
+            self.print_not_yet_implemented()
+        elif result == 'new':
+            self.score_package_wrangler.make_asset_interactively(rollback=True)
+        elif result == 'mb':
+            self._session.show_mothballed_scores()
+        elif result == 'svn':
+            self.manage_svn()
+        elif result == 'profile':
+            self.score_package_wrangler.profile_visible_assets()
+        elif result in self.score_package_wrangler.list_visible_asset_names():
+            self.edit_score_interactively(result)
+
+    def _make_main_menu(self):
+        menu = self.make_score_selection_menu()
+        section = menu.make_section()
+        section.append(('m', 'materials'))
+        section.append(('f', 'specifiers'))
+        section.append(('k', 'sketches'))
+        section.append(('new', 'new score'))
+        hidden_section = menu.make_section(is_hidden=True)
+        hidden_section.append(('svn', 'work with repository'))
+        hidden_section.append(('active', 'show active scores only'))
+        hidden_section.append(('all', 'show all scores'))
+        hidden_section.append(('mb', 'show mothballed scores only'))
+        hidden_section.append(('profile', 'profile packages'))
+        return menu
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
@@ -83,32 +126,6 @@ class ScoreManager(ScoreManagerObject):
         prev_index = (index - 1) % len(score_package_names)
         return score_package_names[prev_index]
 
-    def handle_main_menu_result(self, result):
-        if not isinstance(result, str):
-            raise TypeError('result must be string.')
-        if result == 'active':
-            self._session.show_active_scores()
-        elif result == 'all':
-            self._session.show_all_scores()
-        elif result == 'm':
-            self.material_package_wrangler.run(
-                rollback=True, head=self.configuration.system_materials_package_path)
-        elif result == 'f':
-            self.music_specifier_module_wrangler.run(
-                rollback=True, head=self.configuration.system_specifiers_package_path)
-        elif result == 'k':
-            self.print_not_yet_implemented()
-        elif result == 'new':
-            self.score_package_wrangler.make_asset_interactively(rollback=True)
-        elif result == 'mb':
-            self._session.show_mothballed_scores()
-        elif result == 'svn':
-            self.manage_svn()
-        elif result == 'profile':
-            self.score_package_wrangler.profile_visible_assets()
-        elif result in self.score_package_wrangler.list_visible_asset_names():
-            self.edit_score_interactively(result)
-
     def handle_svn_menu_result(self, result):
         '''Return true to exit the svn menu.
         '''
@@ -124,24 +141,9 @@ class ScoreManager(ScoreManagerObject):
             return True
         return this_result
 
-    def make_main_menu(self):
-        menu = self.make_score_selection_menu()
-        section = menu.make_section()
-        section.append(('m', 'materials'))
-        section.append(('f', 'specifiers'))
-        section.append(('k', 'sketches'))
-        section.append(('new', 'new score'))
-        hidden_section = menu.make_section(is_hidden=True)
-        hidden_section.append(('svn', 'work with repository'))
-        hidden_section.append(('active', 'show active scores only'))
-        hidden_section.append(('all', 'show all scores'))
-        hidden_section.append(('mb', 'show mothballed scores only'))
-        hidden_section.append(('profile', 'profile packages'))
-        return menu
-
     def make_score_selection_menu(self):
         menu, section = self._io.make_menu(where=self.where(), is_numbered=True, is_keyed=False)
-        section.tokens = self.score_package_wrangler.make_visible_asset_menu_tokens()
+        section.tokens = self.score_package_wrangler._make_visible_asset_menu_tokens()
         return menu
 
     def make_svn_menu(self):
@@ -178,7 +180,7 @@ class ScoreManager(ScoreManagerObject):
         while True:
             self._session.push_breadcrumb(self.score_status_string)
             if run_main_menu:
-                menu = self.make_main_menu()
+                menu = self._make_main_menu()
                 result = menu.run(clear=clear)
             else:
                 run_main_menu = True
@@ -197,7 +199,7 @@ class ScoreManager(ScoreManagerObject):
             elif not result:
                 self._session.pop_breadcrumb()
                 continue
-            self.handle_main_menu_result(result)
+            self._handle_main_menu_result(result)
             if self._session.backtrack(source='home'):
                 self._session.pop_breadcrumb()
                 self._session.clean_up()

@@ -76,6 +76,31 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         asset_name = self._strip_file_extension_from_file_name(asset_name)
         return stringtools.string_to_space_delimited_lowercase(asset_name)
 
+    @abc.abstractmethod
+    def _handle_main_menu_result(self, result):
+        pass
+
+    def _make_asset_selection_breadcrumb(self, infinitival_phrase=None):
+        if infinitival_phrase:
+            return 'select {} {}:'.format(self.asset_class._generic_class_name, infinitival_phrase)
+        else:
+            return 'select {}:'.format(self.asset_class._generic_class_name)
+
+    def _make_asset_selection_menu(self, head=None):
+        menu, section = self._io.make_menu(where=self.where(), is_keyed=False, is_parenthetically_numbered=True)
+        section.tokens = self._make_visible_asset_menu_tokens(head=head)
+        section.return_value_attribute = 'key'
+        return menu
+
+    @abc.abstractmethod
+    def _make_main_menu(self):
+        pass
+
+    def _make_visible_asset_menu_tokens(self, head=None):
+        keys = self.list_visible_asset_filesystem_paths(head=head)
+        bodies = self.list_space_delimited_lowercase_visible_asset_names(head=head)
+        return zip(keys, bodies)
+
     def _strip_file_extension_from_file_name(self, file_name):
         if '.' in file_name:
             return file_name[:file_name.rindex('.')]
@@ -127,10 +152,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     def get_asset_proxy(self, asset_filesystem_path):
         return self.asset_class(asset_filesystem_path, session=self._session)
-
-    @abc.abstractmethod
-    def handle_main_menu_result(self, result):
-        pass
 
     def list_asset_container_directory_paths(self, head=None):
         result = []
@@ -304,27 +325,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def make_asset_interactively(self):
         pass
 
-    def make_asset_selection_breadcrumb(self, infinitival_phrase=None):
-        if infinitival_phrase:
-            return 'select {} {}:'.format(self.asset_class._generic_class_name, infinitival_phrase)
-        else:
-            return 'select {}:'.format(self.asset_class._generic_class_name)
-
-    def make_asset_selection_menu(self, head=None):
-        menu, section = self._io.make_menu(where=self.where(), is_keyed=False, is_parenthetically_numbered=True)
-        section.tokens = self.make_visible_asset_menu_tokens(head=head)
-        section.return_value_attribute = 'key'
-        return menu
-
-    @abc.abstractmethod
-    def make_main_menu(self):
-        pass
-
-    def make_visible_asset_menu_tokens(self, head=None):
-        keys = self.list_visible_asset_filesystem_paths(head=head)
-        bodies = self.list_space_delimited_lowercase_visible_asset_names(head=head)
-        return zip(keys, bodies)
-
     def profile_visible_assets(self):
         for asset_proxy in self.list_visible_asset_proxies():
             asset_proxy.profile()
@@ -357,14 +357,14 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         self._session.cache_breadcrumbs(cache=cache)
         while True:
             self._session.push_breadcrumb(self.breadcrumb)
-            menu = self.make_main_menu(head=head)
+            menu = self._make_main_menu(head=head)
             result = menu.run(clear=clear)
             if self._session.backtrack():
                 break
             elif not result:
                 self._session.pop_breadcrumb()
                 continue
-            self.handle_main_menu_result(result)
+            self._handle_main_menu_result(result)
             if self._session.backtrack():
                 break
             self._session.pop_breadcrumb()

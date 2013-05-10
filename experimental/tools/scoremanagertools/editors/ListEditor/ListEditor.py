@@ -9,7 +9,7 @@ from experimental.tools.scoremanagertools.editors.TargetManifest import TargetMa
 
 class ListEditor(InteractiveEditor):
 
-    ### READ-ONLY PROPERTIES ###
+    ### CLASS ATTRIBUTES ###
 
     item_class = None
     item_creator_class = None
@@ -18,6 +18,40 @@ class ListEditor(InteractiveEditor):
     item_getter_configuration_method = menuing.UserInputGetter.append_expr
     item_identifier = 'element'
     target_manifest = TargetManifest(list,)
+
+    ### PRIVATE METHODS ###
+
+    def _handle_main_menu_result(self, result):
+        if not isinstance(result, str):
+            raise TypeError('result must be string.')
+        if result == 'add':
+            self.add_items_interactively()
+        elif result == 'rm':
+            self.remove_items_interactively()
+        elif result == 'mv':
+            self.move_item_interactively()
+        elif mathtools.is_integer_equivalent_expr(result):
+            self.edit_item_interactively(result)
+        else:
+            InteractiveEditor._handle_main_menu_result(self, result)
+
+    def _make_main_menu(self):
+        menu, attribute_management_section = self._io.make_menu(where=self.where(),
+            is_keyed=getattr(self.target_manifest, 'is_keyed', False))
+        attribute_management_section.tokens = self.target_attribute_tokens
+        attribute_management_section.show_existing_values = True
+        item_management_section = menu.make_section(is_parenthetically_numbered=True)
+        item_management_section.tokens = self.target_summary_lines
+        item_management_section.return_value_attribute = 'number'
+        command_section = menu.make_section()
+        command_section.append(('add', 'add elements'))
+        if 0 < len(self.items):
+            command_section.append(('rm', 'remove elements'))
+        if 1 < len(self.items):
+            command_section.append(('mv', 'move elements'))
+        hidden_section = menu.make_section(is_hidden=True)
+        hidden_section.append(('done', 'done'))
+        return menu
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -102,38 +136,6 @@ class ListEditor(InteractiveEditor):
             return self.items[int(item_number) - 1]
         except:
             pass
-
-    def handle_main_menu_result(self, result):
-        if not isinstance(result, str):
-            raise TypeError('result must be string.')
-        if result == 'add':
-            self.add_items_interactively()
-        elif result == 'rm':
-            self.remove_items_interactively()
-        elif result == 'mv':
-            self.move_item_interactively()
-        elif mathtools.is_integer_equivalent_expr(result):
-            self.edit_item_interactively(result)
-        else:
-            InteractiveEditor.handle_main_menu_result(self, result)
-
-    def make_main_menu(self):
-        menu, attribute_management_section = self._io.make_menu(where=self.where(),
-            is_keyed=getattr(self.target_manifest, 'is_keyed', False))
-        attribute_management_section.tokens = self.target_attribute_tokens
-        attribute_management_section.show_existing_values = True
-        item_management_section = menu.make_section(is_parenthetically_numbered=True)
-        item_management_section.tokens = self.target_summary_lines
-        item_management_section.return_value_attribute = 'number'
-        command_section = menu.make_section()
-        command_section.append(('add', 'add elements'))
-        if 0 < len(self.items):
-            command_section.append(('rm', 'remove elements'))
-        if 1 < len(self.items):
-            command_section.append(('mv', 'move elements'))
-        hidden_section = menu.make_section(is_hidden=True)
-        hidden_section.append(('done', 'done'))
-        return menu
 
     def move_item_interactively(self):
         getter = self._io.make_getter(where=self.where())

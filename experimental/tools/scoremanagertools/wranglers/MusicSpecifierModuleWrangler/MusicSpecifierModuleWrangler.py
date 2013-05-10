@@ -22,19 +22,9 @@ class MusicSpecifierModuleWrangler(ModuleWrangler):
     def _temporary_asset_name(self):
         return '__temporary_specifier_module.py'
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PRIVATE METHODS ###
 
-    @property
-    def asset_class(self):
-        return MusicSpecifierModuleProxy
-
-    @property
-    def breadcrumb(self):
-        return 'music specifiers'
-
-    ### PUBLIC METHODS ###
-
-    def handle_main_menu_result(self, result):
+    def _handle_main_menu_result(self, result):
         if result == 'new':
             self.make_asset_interactively()
         elif result == 'ren':
@@ -49,6 +39,30 @@ class MusicSpecifierModuleWrangler(ModuleWrangler):
             package_proxy = self.get_asset_proxy(result)
             package_proxy.edit()
 
+    def _make_main_menu(self, head=None):
+        menu, section = self._io.make_menu(where=self.where(), is_keyed=False, is_parenthetically_numbered=True)
+        section.tokens = self._make_visible_asset_menu_tokens(head=head)
+        section = menu.make_section()
+        section.append(('new', 'new music specifier'))
+        section.append(('ren', 'rename music specifier'))
+        section.append(('rm', 'remove music specifiers'))
+        hidden_section = menu.make_section(is_hidden=True)
+        hidden_section.append(('missing', 'create missing packages'))
+        hidden_section.append(('profile', 'profile packages'))
+        return menu
+
+    ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def asset_class(self):
+        return MusicSpecifierModuleProxy
+
+    @property
+    def breadcrumb(self):
+        return 'music specifiers'
+
+    ### PUBLIC METHODS ###
+
     def make_asset_interactively(self):
         getter = self._io.make_getter()
         getter.append_space_delimited_lowercase_string('music specifier name')
@@ -59,15 +73,3 @@ class MusicSpecifierModuleWrangler(ModuleWrangler):
         self.debug(package_name)
         self.make_asset(package_name)
         self.debug('foo')
-
-    def make_main_menu(self, head=None):
-        menu, section = self._io.make_menu(where=self.where(), is_keyed=False, is_parenthetically_numbered=True)
-        section.tokens = self.make_visible_asset_menu_tokens(head=head)
-        section = menu.make_section()
-        section.append(('new', 'new music specifier'))
-        section.append(('ren', 'rename music specifier'))
-        section.append(('rm', 'remove music specifiers'))
-        hidden_section = menu.make_section(is_hidden=True)
-        hidden_section.append(('missing', 'create missing packages'))
-        hidden_section.append(('profile', 'profile packages'))
-        return menu

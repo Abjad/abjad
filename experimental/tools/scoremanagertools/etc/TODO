@@ -98,3 +98,7 @@
 34. Remove (or rename) Specifier.format, TargetManifest.format and FileProxy.format properties.
 
 35. Reduce (or completely remove!) calls to packagepathtools in ImportableFilesystemAssetWrangler.
+
+36. Clean up top-level imports in all classfiles; allow late imports like musicexpressiontools.
+
+37. Reimplement self._handle_main_menu_result methods around dictionaries.

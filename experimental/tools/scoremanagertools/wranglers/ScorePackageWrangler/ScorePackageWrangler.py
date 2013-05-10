@@ -14,6 +14,20 @@ class ScorePackageWrangler(PackageWrangler):
             asset_container_path_infix_parts=None,
             session=session)
 
+    ### PRIVATE METHODS ###
+
+    def _handle_main_menu_result(self):
+        self.print_not_yet_implemented()
+
+    def _make_main_menu(self):
+        self.print_not_yet_implemented()
+
+    def _make_visible_asset_menu_tokens(self, head=None):
+        menuing_pairs = self.list_visible_asset_package_path_and_score_title_pairs()
+        tmp = stringtools.strip_diacritics_from_binary_string
+        menuing_pairs.sort(lambda x, y: cmp(tmp(x[1]), tmp(y[1])))
+        return menuing_pairs
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
@@ -43,9 +57,6 @@ class ScorePackageWrangler(PackageWrangler):
         return result
 
     ### PUBLIC METHODS ###
-
-    def handle_main_menu_result(self):
-        self.print_not_yet_implemented()
 
     def list_visible_asset_filesystem_paths(self, head=None):
         result = []
@@ -109,12 +120,3 @@ class ScorePackageWrangler(PackageWrangler):
         score_package_proxy.add_tag('title', title)
         score_package_proxy.year_of_completion = year
         self._session.push_breadcrumb(breadcrumb=breadcrumb, rollback=rollback)
-
-    def make_main_menu(self):
-        self.print_not_yet_implemented()
-
-    def make_visible_asset_menu_tokens(self, head=None):
-        menuing_pairs = self.list_visible_asset_package_path_and_score_title_pairs()
-        tmp = stringtools.strip_diacritics_from_binary_string
-        menuing_pairs.sort(lambda x, y: cmp(tmp(x[1]), tmp(y[1])))
-        return menuing_pairs

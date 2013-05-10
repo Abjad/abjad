@@ -110,13 +110,13 @@ def test_MaterialPackageWrangler_iteration_11():
     py.test.skip('TODO: add time_signatures package to Example Score I.')
 
     assert ('system_materials.red_sargasso_measures', 'red sargasso measures') in \
-        wrangler.make_visible_asset_menu_tokens()
+        wrangler._make_visible_asset_menu_tokens()
     assert ('example_score_1.music.materials.time_signatures', 'time signatures') in \
-        wrangler.make_visible_asset_menu_tokens()
+        wrangler._make_visible_asset_menu_tokens()
     assert ('system_materials.red_sargasso_measures', 'red sargasso measures') not in \
-        wrangler.make_visible_asset_menu_tokens(head='example_score_1')
+        wrangler._make_visible_asset_menu_tokens(head='example_score_1')
     assert ('example_score_1.music.materials.time_signatures', 'time signatures') not in \
-        wrangler.make_visible_asset_menu_tokens(head='example_score_2')
+        wrangler._make_visible_asset_menu_tokens(head='example_score_2')
 
 
 def test_MaterialPackageWrangler_iteration_12():

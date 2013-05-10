@@ -60,6 +60,13 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
         parts = ', '.join([repr(part) for part in parts])
         return '{}({})'.format(self._class_name, parts)
 
+    ### PRIVATE METHODS ###
+
+    def _make_visible_asset_menu_tokens(self, head=None):
+        keys = self.list_visible_asset_package_paths(head=head)
+        bodies = self.list_space_delimited_lowercase_visible_asset_names(head=head)
+        return zip(keys, bodies)
+
     ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
@@ -221,11 +228,6 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
             self.list_score_internal_asset_container_package_paths(head=head):
             self.make_empty_package(score_internal_asset_container_package_path)
 
-    def make_visible_asset_menu_tokens(self, head=None):
-        keys = self.list_visible_asset_package_paths(head=head)
-        bodies = self.list_space_delimited_lowercase_visible_asset_names(head=head)
-        return zip(keys, bodies)
-
     # TODO: write test
     def rename_asset_interactively(self, head=None):
         self._session.push_backtrack()
@@ -241,9 +243,9 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
         self, clear=True, cache=False, head=None, infinitival_phrase=None, user_input=None):
         self._session.cache_breadcrumbs(cache=cache)
         while True:
-            self._session.push_breadcrumb(self.make_asset_selection_breadcrumb(
+            self._session.push_breadcrumb(self._make_asset_selection_breadcrumb(
                 infinitival_phrase=infinitival_phrase))
-            menu = self.make_asset_selection_menu(head=head)
+            menu = self._make_asset_selection_menu(head=head)
             result = menu.run(clear=clear)
             if self._session.backtrack():
                 break

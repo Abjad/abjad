@@ -22,6 +22,38 @@ class MaterialPackageWrangler(PackageWrangler):
         self._material_package_maker_wrangler = \
             scoremanagertools.wranglers.MaterialPackageMakerWrangler(session=self._session)
 
+    ### PRIVATE METHODS ###
+
+    def _handle_main_menu_result(self, result):
+        if result == 'd':
+            self.make_data_package_interactively()
+        elif result == 's':
+            self.make_numeric_sequence_package_interactively()
+        elif result == 'h':
+            self.make_handmade_material_package_interactively()
+        elif result == 'm':
+            self.make_makermade_material_package_interactively()
+        elif result == 'missing':
+            self.make_asset_container_packages(is_interactive=True)
+        elif result == 'profile':
+            self.profile_visible_assets()
+        else:
+            material_package_proxy = self.get_asset_proxy(result)
+            material_package_proxy.run()
+
+    def _make_main_menu(self, head=None):
+        menu, section = self._io.make_menu(where=self.where(), is_numbered=True, is_keyed=False)
+        section.tokens = self._make_visible_asset_menu_tokens(head=head)
+        section = menu.make_section()
+        section.append(('d', 'data-only'))
+        section.append(('h', 'handmade'))
+        section.append(('m', 'maker-made'))
+        hidden_section = menu.make_section(is_hidden=True)
+        hidden_section.append(('s', 'create numeric sequence'))
+        hidden_section.append(('missing', 'create missing packages'))
+        hidden_section.append(('profile', 'profile packages'))
+        return menu
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
@@ -82,23 +114,6 @@ class MaterialPackageWrangler(PackageWrangler):
             else:
                 return material_package_path
 
-    def handle_main_menu_result(self, result):
-        if result == 'd':
-            self.make_data_package_interactively()
-        elif result == 's':
-            self.make_numeric_sequence_package_interactively()
-        elif result == 'h':
-            self.make_handmade_material_package_interactively()
-        elif result == 'm':
-            self.make_makermade_material_package_interactively()
-        elif result == 'missing':
-            self.make_asset_container_packages(is_interactive=True)
-        elif result == 'profile':
-            self.profile_visible_assets()
-        else:
-            material_package_proxy = self.get_asset_proxy(result)
-            material_package_proxy.run()
-
     def make_asset_interactively(self):
         return NotImplemented
 
@@ -133,19 +148,6 @@ class MaterialPackageWrangler(PackageWrangler):
         if self._session.backtrack():
             return
         self.make_handmade_material_package(material_package_path)
-
-    def make_main_menu(self, head=None):
-        menu, section = self._io.make_menu(where=self.where(), is_numbered=True, is_keyed=False)
-        section.tokens = self.make_visible_asset_menu_tokens(head=head)
-        section = menu.make_section()
-        section.append(('d', 'data-only'))
-        section.append(('h', 'handmade'))
-        section.append(('m', 'maker-made'))
-        hidden_section = menu.make_section(is_hidden=True)
-        hidden_section.append(('s', 'create numeric sequence'))
-        hidden_section.append(('missing', 'create missing packages'))
-        hidden_section.append(('profile', 'profile packages'))
-        return menu
 
     def make_makermade_material_package(self,
         material_package_path, material_package_maker_class_name, tags=None):

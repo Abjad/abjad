@@ -17,6 +17,14 @@ class PackageWrangler(ImportableFilesystemAssetWrangler):
     def _temporary_asset_name(self):
         return '__temporary_package'
 
+    ### PRIVATE METHODS ###
+
+    def _handle_main_menu_result(self, result):
+        self.print_not_yet_implemented()
+
+    def _make_main_menu(self):
+        self.print_not_yet_implemented()
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @abc.abstractproperty
@@ -35,9 +43,6 @@ class PackageWrangler(ImportableFilesystemAssetWrangler):
 
     ### PUBLIC METHODS ###
 
-    def handle_main_menu_result(self, result):
-        self.print_not_yet_implemented()
-
     def make_asset(self, asset_name):
         assert stringtools.is_underscore_delimited_lowercase_package_name(asset_name)
         asset_filesystem_path = os.path.join(self.current_asset_container_directory_path, asset_name)
@@ -46,7 +51,4 @@ class PackageWrangler(ImportableFilesystemAssetWrangler):
         package_proxy.fix(is_interactive=False)
 
     def make_asset_interactively(self):
-        self.print_not_yet_implemented()
-
-    def make_main_menu(self):
         self.print_not_yet_implemented()

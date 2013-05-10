@@ -15,6 +15,23 @@ class SegmentPackageWrangler(PackageWrangler):
                 self.configuration._score_internal_segments_path_infix_parts,
             session=session)
 
+    ### PRIVATE METHODS ###
+
+    def _handle_main_menu_result(self, result):
+        assert isinstance(result, str)
+        if result == 'new':
+            self.make_asset_interactively()
+        else:
+            segment_package_proxy = self.get_asset_proxy(result)
+            segment_package_proxy.run()
+
+    def _make_main_menu(self, head=None):
+        menu, section = self._io.make_menu(where=self.where(), is_numbered=True)
+        section.tokens = self.list_space_delimited_lowercase_asset_names(head=head)
+        section = menu.make_section()
+        section.append(('new', 'new segment'))
+        return menu
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
@@ -30,21 +47,6 @@ class SegmentPackageWrangler(PackageWrangler):
 
     ### PUBLIC METHODS ###
 
-    def handle_main_menu_result(self, result):
-        assert isinstance(result, str)
-        if result == 'new':
-            self.make_asset_interactively()
-        else:
-            segment_package_proxy = self.get_asset_proxy(result)
-            segment_package_proxy.run()
-
     def make_asset_interactively(self):
         segment_package_proxy = SegmentPackageProxy(session=self._session)
         segment_package_proxy.make_asset_interactively()
-
-    def make_main_menu(self, head=None):
-        menu, section = self._io.make_menu(where=self.where(), is_numbered=True)
-        section.tokens = self.list_space_delimited_lowercase_asset_names(head=head)
-        section = menu.make_section()
-        section.append(('new', 'new segment'))
-        return menu

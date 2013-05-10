@@ -16,6 +16,19 @@ class Selector(ScoreManagerObject):
         self.is_ranged = is_ranged
         self.items = items or []
 
+    ### PRIVATE PROPERTIES ###
+
+    def _make_main_menu(self, head=None):
+        menu, section = self._io.make_menu(where=self.where(),
+            is_keyed=self.is_keyed,
+            is_numbered=self.is_numbered,
+            is_parenthetically_numbered=self.is_parenthetically_numbered,
+            is_ranged=self.is_ranged,
+            )
+        section.tokens = self.make_menu_tokens(head=head)
+        section.return_value_attribute = 'prepopulated'
+        return menu
+
     ### READ-ONLY PROPERTIES ###
 
     @property
@@ -59,17 +72,6 @@ class Selector(ScoreManagerObject):
         result = []
         return result
 
-    def make_main_menu(self, head=None):
-        menu, section = self._io.make_menu(where=self.where(),
-            is_keyed=self.is_keyed,
-            is_numbered=self.is_numbered,
-            is_parenthetically_numbered=self.is_parenthetically_numbered,
-            is_ranged=self.is_ranged,
-            )
-        section.tokens = self.make_menu_tokens(head=head)
-        section.return_value_attribute = 'prepopulated'
-        return menu
-
     def make_menu_tokens(self, head=None):
         return [self.change_expr_to_menu_token(item) for item in self.items]
 
@@ -78,7 +80,7 @@ class Selector(ScoreManagerObject):
         self._session.cache_breadcrumbs(cache=cache)
         while True:
             self._session.push_breadcrumb(self.breadcrumb)
-            menu = self.make_main_menu(head=head)
+            menu = self._make_main_menu(head=head)
             result = menu.run(clear=clear)
             if self._session.backtrack():
                 break

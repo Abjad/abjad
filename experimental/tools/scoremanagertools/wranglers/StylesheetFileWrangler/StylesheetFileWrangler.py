@@ -18,6 +18,25 @@ class StylesheetFileWrangler(FileWrangler):
     def _temporary_asset_name(self):
         return '__temporary_stylesheet.ly'
 
+    ### PRIVATE METHODS ###
+
+    def _handle_main_menu_result(self, result):
+        from experimental.tools import scoremanagertools
+        if result == 'new':
+            self.make_asset_interactively()
+        else:
+            stylesheet_file_name = os.path.join(self.configuration.system_stylesheets_directory_path, result)
+            stylesheet_proxy = scoremanagertools.proxies.StylesheetFileProxy(
+                stylesheet_file_name, session=self._session)
+            stylesheet_proxy.run()
+
+    def _make_main_menu(self):
+        menu, section = self._io.make_menu(where=self.where(), is_parenthetically_numbered=True)
+        section.tokens = self.stylesheet_file_names
+        section = menu.make_section()
+        section.append(('new', 'new stylesheet'))
+        return menu
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
@@ -40,16 +59,6 @@ class StylesheetFileWrangler(FileWrangler):
 
     ### PUBLIC METHODS ###
 
-    def handle_main_menu_result(self, result):
-        from experimental.tools import scoremanagertools
-        if result == 'new':
-            self.make_asset_interactively()
-        else:
-            stylesheet_file_name = os.path.join(self.configuration.system_stylesheets_directory_path, result)
-            stylesheet_proxy = scoremanagertools.proxies.StylesheetFileProxy(
-                stylesheet_file_name, session=self._session)
-            stylesheet_proxy.run()
-
     # TODO: write test
     def make_asset_interactively(self):
         from experimental.tools import scoremanagertools
@@ -67,13 +76,6 @@ class StylesheetFileWrangler(FileWrangler):
         stylesheet_proxy = scoremanagertools.proxies.StylesheetFileProxy(
             stylesheet_file_name, session=self._session)
         stylesheet_proxy.edit()
-
-    def make_main_menu(self):
-        menu, section = self._io.make_menu(where=self.where(), is_parenthetically_numbered=True)
-        section.tokens = self.stylesheet_file_names
-        section = menu.make_section()
-        section.append(('new', 'new stylesheet'))
-        return menu
 
     # TODO: write test
     def select_stylesheet_file_name_interactively(self, clear=True, cache=False):

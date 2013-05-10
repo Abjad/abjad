@@ -42,6 +42,24 @@ class MaterialPackageMaker(MaterialPackageProxy):
             user_input_wrapper = self.initialize_empty_user_input_wrapper()
         return user_input_wrapper
 
+    def _make_main_menu_section_for_user_input_module(self, main_menu, hidden_section):
+        section = main_menu.make_section(is_parenthetically_numbered=True)
+        section.tokens = self.user_input_wrapper_in_memory.editable_lines
+        section.return_value_attribute = 'number'
+        section = main_menu.make_section()
+        section.append(('uic', 'user input - clear'))
+        section.append(('uil', 'user input - load demo values'))
+        section.append(('uip', 'user input - populate'))
+        section.append(('uis', 'user input - show demo values'))
+        section.append(('uimv', 'user input module - view'))
+        hidden_section.append(('uit','user input - toggle default mode'))
+        hidden_section.append(('uimdelete', 'user input module - delete'))
+
+    def _make_main_menu_sections(self, menu, hidden_section):
+        if not self.has_output_material_editor:
+            self._make_main_menu_section_for_user_input_module(menu, hidden_section)
+        self._make_main_menu_section_for_output_material(menu, hidden_section)
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
@@ -119,24 +137,6 @@ class MaterialPackageMaker(MaterialPackageProxy):
             self.user_input_wrapper_in_memory[key] = value
         self.user_input_module_proxy.write_user_input_wrapper_to_disk(self.user_input_wrapper_in_memory)
         self._io.proceed('demo values loaded and written to disk.', is_interactive=prompt)
-
-    def make_main_menu_section_for_user_input_module(self, main_menu, hidden_section):
-        section = main_menu.make_section(is_parenthetically_numbered=True)
-        section.tokens = self.user_input_wrapper_in_memory.editable_lines
-        section.return_value_attribute = 'number'
-        section = main_menu.make_section()
-        section.append(('uic', 'user input - clear'))
-        section.append(('uil', 'user input - load demo values'))
-        section.append(('uip', 'user input - populate'))
-        section.append(('uis', 'user input - show demo values'))
-        section.append(('uimv', 'user input module - view'))
-        hidden_section.append(('uit','user input - toggle default mode'))
-        hidden_section.append(('uimdelete', 'user input module - delete'))
-
-    def make_main_menu_sections(self, menu, hidden_section):
-        if not self.has_output_material_editor:
-            self.make_main_menu_section_for_user_input_module(menu, hidden_section)
-        self.make_main_menu_section_for_output_material(menu, hidden_section)
 
     def make_output_material_from_user_input_wrapper_in_memory(self):
         output_material = self.output_material_maker(*self.user_input_wrapper_in_memory.list_values())

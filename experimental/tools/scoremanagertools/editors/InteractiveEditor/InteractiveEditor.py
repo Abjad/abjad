@@ -25,6 +25,34 @@ class InteractiveEditor(ScoreManagerObject):
             summary = 'target={!r}'.format(self.target)
         return '{}({})'.format(self._class_name, summary)
 
+    ### PRIVATE METHODS ###
+
+    def _handle_main_menu_result(self, result):
+        attribute_name = self.target_manifest.menu_key_to_attribute_name(result)
+        existing_value = self.menu_key_to_existing_value(result)
+        kwargs = self.menu_key_to_delegated_editor_kwargs(result)
+        editor = self.target_manifest.menu_key_to_editor(
+            result, session=self._session, existing_value=existing_value, **kwargs)
+        if editor is not None:
+            result = editor.run()
+            if self._session.backtrack():
+                self.is_autoadvancing = False
+                return
+            if hasattr(editor, 'target'):
+                attribute_value = editor.target
+            else:
+                attribute_value = result
+            self.conditionally_set_target_attribute(attribute_name, attribute_value)
+
+    def _make_main_menu(self):
+        menu, section = self._io.make_menu(where=self.where(),
+            is_keyed=self.target_manifest.is_keyed, is_parenthetically_numbered=True)
+        section.tokens = self.target_attribute_tokens
+        section.show_existing_values = True
+        hidden_section = menu.hidden_section
+        hidden_section.append(('done', 'done'))
+        return menu
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
@@ -174,23 +202,6 @@ class InteractiveEditor(ScoreManagerObject):
                 self.attributes_in_memory[attribute_name] = attribute_value
         self.target = None
 
-    def handle_main_menu_result(self, result):
-        attribute_name = self.target_manifest.menu_key_to_attribute_name(result)
-        existing_value = self.menu_key_to_existing_value(result)
-        kwargs = self.menu_key_to_delegated_editor_kwargs(result)
-        editor = self.target_manifest.menu_key_to_editor(
-            result, session=self._session, existing_value=existing_value, **kwargs)
-        if editor is not None:
-            result = editor.run()
-            if self._session.backtrack():
-                self.is_autoadvancing = False
-                return
-            if hasattr(editor, 'target'):
-                attribute_value = editor.target
-            else:
-                attribute_value = result
-            self.conditionally_set_target_attribute(attribute_name, attribute_value)
-
     def initialize_attributes_in_memory(self):
         self._attributes_in_memory = {}
 
@@ -207,15 +218,6 @@ class InteractiveEditor(ScoreManagerObject):
             self.target = self.target_class(*args, **kwargs)
         except:
             pass
-
-    def make_main_menu(self):
-        menu, section = self._io.make_menu(where=self.where(),
-            is_keyed=self.target_manifest.is_keyed, is_parenthetically_numbered=True)
-        section.tokens = self.target_attribute_tokens
-        section.show_existing_values = True
-        hidden_section = menu.hidden_section
-        hidden_section.append(('done', 'done'))
-        return menu
 
     def make_target_attribute_tokens_from_target_manifest(self):
         result = []
@@ -266,12 +268,12 @@ class InteractiveEditor(ScoreManagerObject):
             breadcrumb = breadcrumb or self.breadcrumb
             self._session.push_breadcrumb(breadcrumb=breadcrumb)
             if self._session.is_autoadding:
-                menu = self.make_main_menu()
+                menu = self._make_main_menu()
                 result = 'add'
                 menu.run(clear=clear, flamingo_input=result)
                 is_first_pass = False
             elif is_first_pass and is_autostarting:
-                menu = self.make_main_menu()
+                menu = self._make_main_menu()
                 result = menu.first_nonhidden_return_value_in_menu
                 menu.run(clear=clear, flamingo_input=result)
                 is_first_pass = False
@@ -283,7 +285,7 @@ class InteractiveEditor(ScoreManagerObject):
                     self._session.pop_breadcrumb()
                     continue
             else:
-                menu = self.make_main_menu()
+                menu = self._make_main_menu()
                 result = menu.run(clear=clear)
                 if self._session.backtrack():
                     break
@@ -292,7 +294,7 @@ class InteractiveEditor(ScoreManagerObject):
                     continue
             if result == 'done':
                 break
-            self.handle_main_menu_result(result)
+            self._handle_main_menu_result(result)
             if self._session.backtrack():
                 break
             self._session.pop_breadcrumb()

@@ -18,6 +18,26 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             session=session
             )
 
+    ### PRIVATE METHODS ###
+
+    def _handle_main_menu_result(self, result):
+        if result == 'new':
+            self.make_asset_interactively()
+        else:
+            raise ValueError
+
+    def _make_main_menu(self, head=None):
+        menu, section = self._io.make_menu(where=self.where(), is_numbered=True)
+        section.tokens = self.list_space_delimited_lowercase_asset_names(head=head)
+        section = menu.make_section()
+        section.append(('new', 'new material package maker'))
+        return menu
+
+    def _make_visible_asset_menu_tokens(self, head=None):
+        keys = self.list_asset_package_paths(head=head)
+        bodies = self.list_space_delimited_lowercase_asset_names(head=head)
+        return zip(keys, bodies)
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
@@ -63,12 +83,6 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             material_package_proxy = material_package_maker_class(
                 package_path, session=self._session)
         return material_package_proxy
-
-    def handle_main_menu_result(self, result):
-        if result == 'new':
-            self.make_asset_interactively()
-        else:
-            raise ValueError
 
     def list_score_external_asset_package_paths(self, head=None):
         result = PackageWrangler.list_score_external_asset_package_paths(self, head=head)
@@ -192,15 +206,3 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         stylesheet_file_pointer = file(stylesheet_file_name, 'w')
         stylesheet_file_pointer.write(stylesheet.format)
         stylesheet_file_pointer.close()
-
-    def make_main_menu(self, head=None):
-        menu, section = self._io.make_menu(where=self.where(), is_numbered=True)
-        section.tokens = self.list_space_delimited_lowercase_asset_names(head=head)
-        section = menu.make_section()
-        section.append(('new', 'new material package maker'))
-        return menu
-
-    def make_visible_asset_menu_tokens(self, head=None):
-        keys = self.list_asset_package_paths(head=head)
-        bodies = self.list_space_delimited_lowercase_asset_names(head=head)
-        return zip(keys, bodies)

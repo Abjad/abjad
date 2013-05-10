@@ -30,6 +30,215 @@ class MaterialPackageProxy(PackageProxy):
         self._generic_output_name = None
         self.stylesheet_file_name_in_memory = None
 
+    ### PRIVATE METHODS ###
+
+    # TODO: audit
+    def _handle_main_menu_result(self, result):
+        assert isinstance(result, str)
+        if result == 'uic':
+            self.clear_user_input_wrapper(prompt=False)
+        elif result == 'uid':
+            self.remove_user_input_module(prompt=True)
+        elif result == 'uil':
+            self.load_user_input_wrapper_demo_values(prompt=False)
+        elif result == 'uip':
+            self.populate_user_input_wrapper(prompt=False)
+        elif result == 'uis':
+            self.show_user_input_demo_values(prompt=True)
+        elif result == 'uit':
+            self._session.swap_user_input_values_default_status()
+        elif result == 'uimv':
+            self.user_input_module_proxy.view()
+        elif result == 'mdcanned':
+            self.material_definition_module_proxy.write_boilerplate_interactively()
+        elif result == 'mddelete':
+            self.remove_material_definition_module(prompt=True)
+        elif result == 'mde':
+            self.material_definition_module_proxy.edit()
+        elif result == 'mdstub':
+            self.write_stub_material_definition_module_to_disk()
+        elif result == 'mdx':
+            self.material_definition_module_proxy.run_python(prompt=True)
+        elif result == 'mdxe':
+            self.material_definition_module_proxy.run_abjad(prompt=True)
+        elif result == 'ibd':
+            self.remove_illustration_builder_module(prompt=True)
+        elif result == 'ibe':
+            self.illustration_builder_module_proxy.edit()
+        elif result == 'ibt':
+            self.illustration_builder_module_proxy.write_stub_to_disk(prompt=True)
+        elif result == 'ibx':
+            self.illustration_builder_module_proxy.run_python(prompt=True)
+        elif result == 'ibxi':
+            self.illustration_builder_module_proxy.run_abjad(prompt=True)
+        elif result == 'ssm':
+            self.stylesheet_file_proxy.edit()
+        elif result == 'sss':
+            self.select_stylesheet_interactively()
+        elif result == 'stl':
+            self.manage_stylesheets()
+        elif result == 'omm':
+            self.write_output_material_to_disk()
+        elif result == 'omi':
+            self.edit_output_material_interactively()
+        elif result == 'omcanned':
+            self.output_material_module_proxy.write_boilerplate_interactively()
+        elif result == 'omdelete':
+            self.remove_output_material_module(prompt=True)
+        elif result == 'omv':
+            self.output_material_module_proxy.view()
+        elif result == 'omfetch':
+            self.output_material_module_proxy.display_output_material()
+        elif result == 'lym':
+            self.write_illustration_ly_to_disk(True)
+        elif result == 'lyd':
+            self.remove_illustration_ly(prompt=True)
+        elif result == 'lyv':
+            self.illustration_ly_file_proxy.view()
+        elif result == 'pdfm':
+            self.write_illustration_ly_and_pdf_to_disk(True)
+        elif result == 'pdfd':
+            self.remove_illustration_pdf(prompt=True)
+        elif result == 'pdfv':
+            self.illustration_pdf_file_proxy.view()
+        elif result == 'rm':
+            self.remove_material_package()
+        elif result == 'inr':
+            self.initializer_file_proxy.restore_interactively(prompt=True)
+        elif result == 'inv':
+            self.initializer_file_proxy.view()
+        elif result == 'incanned':
+            self.initializer_file_proxy.write_boilerplate_interactively()
+        elif result == 'instub':
+            self.initializer_file_proxy.write_stub_file_to_disk(prompt=True)
+        elif result == 'ren':
+            self.rename_material_interactively()
+        elif result == 'reg':
+            self.regenerate_everything(prompt=True)
+        # TODO: add to package-level hidden menu
+        elif result == 'tags':
+            self.manage_tags()
+        # TODO: add to directory-level hidden menu
+        elif result == 'ls':
+            self.print_directory_entries()
+        elif mathtools.is_integer_equivalent_expr(result):
+            self.edit_user_input_wrapper_at_number(result, include_newline=False)
+        else:
+            raise ValueError
+
+    def _make_main_menu(self):
+        menu, hidden_section = self._io.make_menu(where=self.where(), is_hidden=True)
+        self._make_main_menu_section_for_initializer(menu, hidden_section)
+        self._make_main_menu_sections(menu, hidden_section)
+        self._make_main_menu_section_for_illustration_ly(hidden_section)
+        self._make_main_menu_section_for_illustration_pdf(menu, hidden_section)
+        self._make_main_menu_section_for_hidden_entries(menu)
+        return menu
+
+    def _make_main_menu_section_for_hidden_entries(self, main_menu):
+        hidden_section = main_menu.make_section(is_hidden=True)
+        hidden_section.append(('rm', 'delete package'))
+        hidden_section.append(('ls', 'list package'))
+        hidden_section.append(('reg', 'regenerate package'))
+        hidden_section.append(('ren', 'rename package'))
+        hidden_section.append(('stl', 'manage stylesheets'))
+        hidden_section.append(('tags', 'manage tags'))
+
+    def _make_main_menu_section_for_illustration_builder(self, main_menu, hidden_section):
+        section = main_menu.make_section()
+        if self.has_output_material:
+            if self.should_have_illustration:
+                if not self.has_illustration_builder_module:
+                    self.illustration_builder_module_proxy.write_stub_to_disk(prompt=False)
+                section.append(('ibe', 'illustration builder - edit'))
+                if self.has_output_material:
+                    section.append(('ibx', 'illustration builder - execute'))
+                hidden_section.append(('ibd', 'illustration builder - delete'))
+                hidden_section.append(('ibt', 'illustration builder - stub'))
+                hidden_section.append(('ibex', 'illustration builder - edit & execute'))
+                section.append(('sss', 'score stylesheet - select'))
+                hidden_section.append(('ssm', 'source stylesheet - edit'))
+
+    def _make_main_menu_section_for_illustration_ly(self, hidden_section):
+        if self.has_output_material:
+            if self.has_illustration_builder_module or self.has_material_package_maker:
+                hidden_section.append(('lym', 'output ly - make'))
+        if self.has_illustration_ly:
+            hidden_section.append(('lyd', 'output ly - delete'))
+            hidden_section.append(('lyv', 'output ly - view'))
+
+    def _make_main_menu_section_for_illustration_pdf(self, main_menu, hidden_section):
+        has_illustration_pdf_section = False
+        if self.has_output_material:
+            if self.has_illustration_builder_module or \
+                (self.has_material_package_maker and getattr(self, 'illustration_maker', None)):
+                section = main_menu.make_section()
+                has_illustration_pdf_section = True
+                section.append(('pdfm', 'output pdf - make'))
+        if self.has_illustration_pdf:
+            if not has_illustration_pdf_section:
+                section = main_menu.make_section()
+            hidden_section.append(('pdfd', 'output pdf - delete'))
+            section.append(('pdfv', 'output pdf - view'))
+
+    def _make_main_menu_section_for_initializer(self, main_menu, hidden_section):
+        if not self.has_initializer:
+            section = main_menu.make_section()
+            section.title = '(Note: package has no initializer.)'
+        hidden_section.append(('inr', 'initializer - restore'))
+        hidden_section.append(('inv', 'view package initializer'))
+        hidden_section.append(('incanned', 'copy canned package initializer'))
+        hidden_section.append(('instub', 'write stub package initializer'))
+
+    def _make_main_menu_section_for_material_definition(self, main_menu, hidden_section):
+        if not self.has_initializer:
+            return
+        section = main_menu.make_section()
+        if self.has_material_definition_module:
+            section.append(('mde', 'material definition - edit'))
+            section.append(('mdx', 'material definition - execute'))
+            hidden_section.append(('mdcanned', 'material definition - copy canned module'))
+            hidden_section.append(('mddelete', 'material definition - delete'))
+            hidden_section.append(('mdstub', 'material definition - stub'))
+            hidden_section.append(('mdxe', 'material definition - execute & edit'))
+        elif self.material_package_maker_class_name is None:
+            section.append(('mdstub', 'material definition - stub'))
+
+    def _make_main_menu_section_for_output_material(self, main_menu, hidden_section):
+        if not self.has_initializer:
+            return
+        has_output_material_section = False
+        if self.has_material_definition_module or \
+            self.has_complete_user_input_wrapper_in_memory or \
+            self.has_output_material_editor:
+            if self.has_material_definition or \
+                self.has_complete_user_input_wrapper_in_memory:
+                section = main_menu.make_section()
+                section.append(('omm', 'output material - make'))
+                has_output_material_section = True
+            if self.has_output_material_editor:
+                section = main_menu.make_section()
+                if self.has_output_material:
+                    output_material_editor = self.output_material_editor(
+                        target=self.output_material, session=self._session)
+                    target_summary_lines = output_material_editor.target_summary_lines
+                    if target_summary_lines:
+                        section.title = target_summary_lines
+                section.append(('omi', 'output material - interact'))
+                has_output_material_section = True
+            if self.has_output_material_module:
+                if not has_output_material_section:
+                    section = main_menu.make_section()
+                section.append(('omv', 'output material - view'))
+                hidden_section.append(('omdelete', 'output material - delete'))
+                hidden_section.append(('omfetch', 'output material - fetch'))
+        hidden_section.append(('omcanned', 'output material - copy canned module'))
+
+    def _make_main_menu_sections(self, menu, hidden_section):
+        self._make_main_menu_section_for_material_definition(menu, hidden_section)
+        self._make_main_menu_section_for_output_material(menu, hidden_section)
+        self._make_main_menu_section_for_illustration_builder(menu, hidden_section)
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
@@ -474,215 +683,8 @@ class MaterialPackageProxy(PackageProxy):
     def get_tools_package_qualified_repr(self, expr):
         return getattr(expr, '_tools_package_qualified_repr', repr(expr))
 
-    # TODO: audit
-    def handle_main_menu_result(self, result):
-        assert isinstance(result, str)
-        if result == 'uic':
-            self.clear_user_input_wrapper(prompt=False)
-        elif result == 'uid':
-            self.remove_user_input_module(prompt=True)
-        elif result == 'uil':
-            self.load_user_input_wrapper_demo_values(prompt=False)
-        elif result == 'uip':
-            self.populate_user_input_wrapper(prompt=False)
-        elif result == 'uis':
-            self.show_user_input_demo_values(prompt=True)
-        elif result == 'uit':
-            self._session.swap_user_input_values_default_status()
-        elif result == 'uimv':
-            self.user_input_module_proxy.view()
-        elif result == 'mdcanned':
-            self.material_definition_module_proxy.write_boilerplate_interactively()
-        elif result == 'mddelete':
-            self.remove_material_definition_module(prompt=True)
-        elif result == 'mde':
-            self.material_definition_module_proxy.edit()
-        elif result == 'mdstub':
-            self.write_stub_material_definition_module_to_disk()
-        elif result == 'mdx':
-            self.material_definition_module_proxy.run_python(prompt=True)
-        elif result == 'mdxe':
-            self.material_definition_module_proxy.run_abjad(prompt=True)
-        elif result == 'ibd':
-            self.remove_illustration_builder_module(prompt=True)
-        elif result == 'ibe':
-            self.illustration_builder_module_proxy.edit()
-        elif result == 'ibt':
-            self.illustration_builder_module_proxy.write_stub_to_disk(prompt=True)
-        elif result == 'ibx':
-            self.illustration_builder_module_proxy.run_python(prompt=True)
-        elif result == 'ibxi':
-            self.illustration_builder_module_proxy.run_abjad(prompt=True)
-        elif result == 'ssm':
-            self.stylesheet_file_proxy.edit()
-        elif result == 'sss':
-            self.select_stylesheet_interactively()
-        elif result == 'stl':
-            self.manage_stylesheets()
-        elif result == 'omm':
-            self.write_output_material_to_disk()
-        elif result == 'omi':
-            self.edit_output_material_interactively()
-        elif result == 'omcanned':
-            self.output_material_module_proxy.write_boilerplate_interactively()
-        elif result == 'omdelete':
-            self.remove_output_material_module(prompt=True)
-        elif result == 'omv':
-            self.output_material_module_proxy.view()
-        elif result == 'omfetch':
-            self.output_material_module_proxy.display_output_material()
-        elif result == 'lym':
-            self.write_illustration_ly_to_disk(True)
-        elif result == 'lyd':
-            self.remove_illustration_ly(prompt=True)
-        elif result == 'lyv':
-            self.illustration_ly_file_proxy.view()
-        elif result == 'pdfm':
-            self.write_illustration_ly_and_pdf_to_disk(True)
-        elif result == 'pdfd':
-            self.remove_illustration_pdf(prompt=True)
-        elif result == 'pdfv':
-            self.illustration_pdf_file_proxy.view()
-        elif result == 'rm':
-            self.remove_material_package()
-        elif result == 'inr':
-            self.initializer_file_proxy.restore_interactively(prompt=True)
-        elif result == 'inv':
-            self.initializer_file_proxy.view()
-        elif result == 'incanned':
-            self.initializer_file_proxy.write_boilerplate_interactively()
-        elif result == 'instub':
-            self.initializer_file_proxy.write_stub_file_to_disk(prompt=True)
-        elif result == 'ren':
-            self.rename_material_interactively()
-        elif result == 'reg':
-            self.regenerate_everything(prompt=True)
-        # TODO: add to package-level hidden menu
-        elif result == 'tags':
-            self.manage_tags()
-        # TODO: add to directory-level hidden menu
-        elif result == 'ls':
-            self.print_directory_entries()
-        elif mathtools.is_integer_equivalent_expr(result):
-            self.edit_user_input_wrapper_at_number(result, include_newline=False)
-        else:
-            raise ValueError
-
     def load_user_input_wrapper_demo_values(self, prompt=False):
         pass
-
-    def make_main_menu(self):
-        menu, hidden_section = self._io.make_menu(where=self.where(), is_hidden=True)
-        self.make_main_menu_section_for_initializer(menu, hidden_section)
-        self.make_main_menu_sections(menu, hidden_section)
-        self.make_main_menu_section_for_illustration_ly(hidden_section)
-        self.make_main_menu_section_for_illustration_pdf(menu, hidden_section)
-        self.make_main_menu_section_for_hidden_entries(menu)
-        return menu
-
-    def make_main_menu_section_for_hidden_entries(self, main_menu):
-        hidden_section = main_menu.make_section(is_hidden=True)
-        hidden_section.append(('rm', 'delete package'))
-        hidden_section.append(('ls', 'list package'))
-        hidden_section.append(('reg', 'regenerate package'))
-        hidden_section.append(('ren', 'rename package'))
-        hidden_section.append(('stl', 'manage stylesheets'))
-        hidden_section.append(('tags', 'manage tags'))
-
-    def make_main_menu_section_for_illustration_builder(self, main_menu, hidden_section):
-        section = main_menu.make_section()
-        if self.has_output_material:
-            if self.should_have_illustration:
-                if not self.has_illustration_builder_module:
-                    self.illustration_builder_module_proxy.write_stub_to_disk(prompt=False)
-                section.append(('ibe', 'illustration builder - edit'))
-                if self.has_output_material:
-                    section.append(('ibx', 'illustration builder - execute'))
-                hidden_section.append(('ibd', 'illustration builder - delete'))
-                hidden_section.append(('ibt', 'illustration builder - stub'))
-                hidden_section.append(('ibex', 'illustration builder - edit & execute'))
-                section.append(('sss', 'score stylesheet - select'))
-                hidden_section.append(('ssm', 'source stylesheet - edit'))
-
-    def make_main_menu_section_for_illustration_ly(self, hidden_section):
-        if self.has_output_material:
-            if self.has_illustration_builder_module or self.has_material_package_maker:
-                hidden_section.append(('lym', 'output ly - make'))
-        if self.has_illustration_ly:
-            hidden_section.append(('lyd', 'output ly - delete'))
-            hidden_section.append(('lyv', 'output ly - view'))
-
-    def make_main_menu_section_for_illustration_pdf(self, main_menu, hidden_section):
-        has_illustration_pdf_section = False
-        if self.has_output_material:
-            if self.has_illustration_builder_module or \
-                (self.has_material_package_maker and getattr(self, 'illustration_maker', None)):
-                section = main_menu.make_section()
-                has_illustration_pdf_section = True
-                section.append(('pdfm', 'output pdf - make'))
-        if self.has_illustration_pdf:
-            if not has_illustration_pdf_section:
-                section = main_menu.make_section()
-            hidden_section.append(('pdfd', 'output pdf - delete'))
-            section.append(('pdfv', 'output pdf - view'))
-
-    def make_main_menu_section_for_initializer(self, main_menu, hidden_section):
-        if not self.has_initializer:
-            section = main_menu.make_section()
-            section.title = '(Note: package has no initializer.)'
-        hidden_section.append(('inr', 'initializer - restore'))
-        hidden_section.append(('inv', 'view package initializer'))
-        hidden_section.append(('incanned', 'copy canned package initializer'))
-        hidden_section.append(('instub', 'write stub package initializer'))
-
-    def make_main_menu_section_for_material_definition(self, main_menu, hidden_section):
-        if not self.has_initializer:
-            return
-        section = main_menu.make_section()
-        if self.has_material_definition_module:
-            section.append(('mde', 'material definition - edit'))
-            section.append(('mdx', 'material definition - execute'))
-            hidden_section.append(('mdcanned', 'material definition - copy canned module'))
-            hidden_section.append(('mddelete', 'material definition - delete'))
-            hidden_section.append(('mdstub', 'material definition - stub'))
-            hidden_section.append(('mdxe', 'material definition - execute & edit'))
-        elif self.material_package_maker_class_name is None:
-            section.append(('mdstub', 'material definition - stub'))
-
-    def make_main_menu_section_for_output_material(self, main_menu, hidden_section):
-        if not self.has_initializer:
-            return
-        has_output_material_section = False
-        if self.has_material_definition_module or \
-            self.has_complete_user_input_wrapper_in_memory or \
-            self.has_output_material_editor:
-            if self.has_material_definition or \
-                self.has_complete_user_input_wrapper_in_memory:
-                section = main_menu.make_section()
-                section.append(('omm', 'output material - make'))
-                has_output_material_section = True
-            if self.has_output_material_editor:
-                section = main_menu.make_section()
-                if self.has_output_material:
-                    output_material_editor = self.output_material_editor(
-                        target=self.output_material, session=self._session)
-                    target_summary_lines = output_material_editor.target_summary_lines
-                    if target_summary_lines:
-                        section.title = target_summary_lines
-                section.append(('omi', 'output material - interact'))
-                has_output_material_section = True
-            if self.has_output_material_module:
-                if not has_output_material_section:
-                    section = main_menu.make_section()
-                section.append(('omv', 'output material - view'))
-                hidden_section.append(('omdelete', 'output material - delete'))
-                hidden_section.append(('omfetch', 'output material - fetch'))
-        hidden_section.append(('omcanned', 'output material - copy canned module'))
-
-    def make_main_menu_sections(self, menu, hidden_section):
-        self.make_main_menu_section_for_material_definition(menu, hidden_section)
-        self.make_main_menu_section_for_output_material(menu, hidden_section)
-        self.make_main_menu_section_for_illustration_builder(menu, hidden_section)
 
     def manage_stylesheets(self):
         stylesheet_file_wrangler = StylesheetFileWrangler(session=self._session)

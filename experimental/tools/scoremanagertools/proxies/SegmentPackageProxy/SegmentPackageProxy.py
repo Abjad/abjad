@@ -10,6 +10,22 @@ class SegmentPackageProxy(PackageProxy):
         PackageProxy.__init__(self, package_path=package_path, session=session)
         self.score_template = score_template
 
+    ### PRIVATE METHODS ###
+
+    def _handle_main_menu_result(self, result):
+        if result == 'd':
+            self.remove()
+            return False
+        elif result == 'n':
+            self.initializer_file_proxy.view()
+
+    def _make_main_menu(self):
+        menu, section = self._io.make_menu(where=self.where())
+        section.append(('n', 'initializer'))
+        section = menu.make_section()
+        section.append(('d', 'delete'))
+        return menu
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
@@ -30,25 +46,11 @@ class SegmentPackageProxy(PackageProxy):
 
     ### PUBLIC METHODS ###
 
-    def handle_main_menu_result(self, result):
-        if result == 'd':
-            self.remove()
-            return False
-        elif result == 'n':
-            self.initializer_file_proxy.view()
-
     def make_asset(self):
         self.print_not_yet_implemented()
 
     def make_asset_interactively(self, prompt=True):
         self.print_not_yet_implemented()
-
-    def make_main_menu(self):
-        menu, section = self._io.make_menu(where=self.where())
-        section.append(('n', 'initializer'))
-        section = menu.make_section()
-        section.append(('d', 'delete'))
-        return menu
 
     def set_score_template_interactively(self):
         self.print_not_yet_implemented()

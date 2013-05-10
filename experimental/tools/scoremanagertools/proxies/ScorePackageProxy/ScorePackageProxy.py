@@ -24,6 +24,49 @@ class ScorePackageProxy(PackageProxy):
         self._music_specifier_module_wrangler = scoremanagertools.wranglers.MusicSpecifierModuleWrangler(
             session=self._session)
 
+    ### PRIVATE METHODS ###
+
+    def _handle_main_menu_result(self, result):
+        assert isinstance(result, str)
+        if result == 'h':
+            self.segment_wrangler.run(head=self.filesystem_basename)
+        elif  result == 'm':
+            self.material_package_wrangler.run(head=self.filesystem_basename)
+        elif result == 'f':
+            self.music_specifier_module_wrangler.run()
+        elif result == 's':
+            self.manage_setup(cache=True)
+        elif result == 'fix':
+            self.fix()
+        elif result == 'ls':
+            self.print_directory_entries()
+        elif result == 'profile':
+            self.profile()
+        elif result == 'removescore':
+            self.remove_interactively()
+        elif result == 'svn':
+            self.manage_svn()
+        elif result == 'tags':
+            self.manage_tags()
+        else:
+            raise ValueError
+
+    def _make_main_menu(self):
+        menu, section = self._io.make_menu(where=self.where(), is_numbered=True)
+        section = menu.make_section()
+        section.append(('h', 'segments'))
+        section.append(('m', 'materials'))
+        section.append(('f', 'specifiers'))
+        section.append(('s', 'setup'))
+        hidden_section = menu.make_section(is_hidden=True)
+        hidden_section.append(('fix', 'fix package structure'))
+        hidden_section.append(('ls', 'list directory contents'))
+        hidden_section.append(('profile', 'profile package structure'))
+        hidden_section.append(('removescore', 'remove score package'))
+        hidden_section.append(('svn', 'manage repository'))
+        hidden_section.append(('tags', 'manage tags'))
+        return menu
+
     ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
@@ -311,31 +354,6 @@ class ScorePackageProxy(PackageProxy):
         self._io.proceed('packaged structure fixed.', is_interactive=is_interactive)
         return result
 
-    def handle_main_menu_result(self, result):
-        assert isinstance(result, str)
-        if result == 'h':
-            self.segment_wrangler.run(head=self.filesystem_basename)
-        elif  result == 'm':
-            self.material_package_wrangler.run(head=self.filesystem_basename)
-        elif result == 'f':
-            self.music_specifier_module_wrangler.run()
-        elif result == 's':
-            self.manage_setup(cache=True)
-        elif result == 'fix':
-            self.fix()
-        elif result == 'ls':
-            self.print_directory_entries()
-        elif result == 'profile':
-            self.profile()
-        elif result == 'removescore':
-            self.remove_interactively()
-        elif result == 'svn':
-            self.manage_svn()
-        elif result == 'tags':
-            self.manage_tags()
-        else:
-            raise ValueError
-
     def handle_setup_menu_result(self, result):
         assert isinstance(result, str)
         if result == 'title':
@@ -362,22 +380,6 @@ class ScorePackageProxy(PackageProxy):
 
     def make_asset_structure(self):
         self.fix_score_package_directory_structure(is_interactive=False)
-
-    def make_main_menu(self):
-        menu, section = self._io.make_menu(where=self.where(), is_numbered=True)
-        section = menu.make_section()
-        section.append(('h', 'segments'))
-        section.append(('m', 'materials'))
-        section.append(('f', 'specifiers'))
-        section.append(('s', 'setup'))
-        hidden_section = menu.make_section(is_hidden=True)
-        hidden_section.append(('fix', 'fix package structure'))
-        hidden_section.append(('ls', 'list directory contents'))
-        hidden_section.append(('profile', 'profile package structure'))
-        hidden_section.append(('removescore', 'remove score package'))
-        hidden_section.append(('svn', 'manage repository'))
-        hidden_section.append(('tags', 'manage tags'))
-        return menu
 
     def make_score_interactively(self):
         self.print_not_yet_implemented()
