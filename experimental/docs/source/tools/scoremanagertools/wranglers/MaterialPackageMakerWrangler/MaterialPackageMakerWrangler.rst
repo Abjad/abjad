@@ -180,6 +180,9 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.rename_asset_interactively
    :noindex:
 
+.. automethod:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.select_asset_filesystem_path_interactively
+   :noindex:
+
 .. automethod:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.select_asset_package_path_interactively
    :noindex:
 

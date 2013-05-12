@@ -302,26 +302,3 @@ class StylesheetFileWrangler(FileWrangler):
         stylesheet_proxy = scoremanagertools.proxies.StylesheetFileProxy(
             stylesheet_file_name, session=self._session)
         stylesheet_proxy.edit()
-
-    # TODO: rename to something general without 'stylesheet' in name
-    # TODO: write test
-    def select_stylesheet_file_name_interactively(self, clear=True, cache=False):
-        self._session.cache_breadcrumbs(cache=cache)
-        menu, section = self._io.make_menu(where=self._where, is_parenthetically_numbered=True)
-        tokens = [os.path.basename(x) for x in self.list_visible_asset_filesystem_paths()]
-        section.tokens = tokens
-        while True:
-            self._session.push_breadcrumb('select stylesheet')
-            result = menu._run(clear=clear)
-            if self._session.backtrack():
-                break
-            elif not result:
-                self._session.pop_breadcrumb()
-                continue
-            else:
-                break
-        self._session.pop_breadcrumb()
-        self._session.restore_breadcrumbs(cache=cache)
-        if result is not None:
-            result = os.path.join(self.built_in_stylesheets_directory_path, result)
-            return result

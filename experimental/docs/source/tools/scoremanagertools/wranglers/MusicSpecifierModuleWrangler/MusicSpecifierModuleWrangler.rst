@@ -162,6 +162,9 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.rename_asset_interactively
    :noindex:
 
+.. automethod:: experimental.tools.scoremanagertools.wranglers.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.select_asset_filesystem_path_interactively
+   :noindex:
+
 .. automethod:: experimental.tools.scoremanagertools.wranglers.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.MusicSpecifierModuleWrangler.select_asset_package_path_interactively
    :noindex:
 

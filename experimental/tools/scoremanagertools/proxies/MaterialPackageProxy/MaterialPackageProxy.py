@@ -821,7 +821,7 @@ class MaterialPackageProxy(PackageProxy):
     def select_stylesheet_interactively(self, prompt=True):
         stylesheet_file_wrangler = StylesheetFileWrangler(session=self._session)
         self._session.push_backtrack()
-        stylesheet_file_name = stylesheet_file_wrangler.select_stylesheet_file_name_interactively()
+        stylesheet_file_name = stylesheet_file_wrangler.select_asset_filesystem_path_interactively()
         self._session.pop_backtrack()
         if self._session.backtrack():
             return

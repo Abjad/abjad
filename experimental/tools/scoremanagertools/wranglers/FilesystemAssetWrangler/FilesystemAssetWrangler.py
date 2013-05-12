@@ -362,6 +362,30 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             total_assets_removed += 1
         self._io.proceed('{} asset(s) removed.'.format(total_assets_removed))
 
+    # TODO: write test
+    def select_asset_filesystem_path_interactively(self, clear=True, cache=False):
+        self._session.cache_breadcrumbs(cache=cache)
+        menu, section = self._io.make_menu(where=self._where, is_parenthetically_numbered=True)
+        tokens = [os.path.basename(x) for x in self.list_visible_asset_filesystem_paths()]
+        section.tokens = tokens
+        while True:
+            breadcrumb = 'select {}'.format(self.asset_proxy_class._generic_class_name)
+            self._session.push_breadcrumb(breadcrumb)
+            result = menu._run(clear=clear)
+            if self._session.backtrack():
+                break
+            elif not result:
+                self._session.pop_breadcrumb()
+                continue
+            else:
+                break
+        self._session.pop_breadcrumb()
+        self._session.restore_breadcrumbs(cache=cache)
+        if result is not None:
+            # TODO: this is a hack and will break on user assets
+            result = os.path.join(self.built_in_asset_container_directory_paths[0], result)
+            return result
+
     def svn_add(self, is_interactive=True):
         for asset_proxy in self.get_visible_asset_proxies():
             asset_proxy.svn_add(is_interactive=False)
