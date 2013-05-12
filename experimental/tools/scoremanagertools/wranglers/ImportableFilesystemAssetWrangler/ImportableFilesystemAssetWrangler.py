@@ -152,7 +152,7 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
 
     def list_score_internal_asset_container_package_paths(self, head=None):
         result = []
-        for score_package_name in self.list_score_directory_basenames(head=head):
+        for score_package_name in self._list_score_directory_basenames(head=head):
             parts = [score_package_name]
             if self.asset_container_path_infix_parts:
                 parts.extend(self.asset_container_path_infix_parts)
