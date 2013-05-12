@@ -220,30 +220,30 @@ class ScoreManagerConfiguration(Configuration):
         return os.path.join(self.score_manager_tools_directory_path, 'materialpackagemakers')
 
     @property
-    def system_materials_directory_path(self):
+    def built_in_materials_directory_path(self):
         '''System materials directory path:
 
         ::
 
-            >>> configuration.system_materials_directory_path
-            '.../abjad/experimental/system_materials'
+            >>> configuration.built_in_materials_directory_path
+            '.../abjad/experimental/built_in_materials'
 
         Return string.
         '''
-        return os.path.join(self.abjad_configuration.abjad_experimental_directory_path, 'system_materials')
+        return os.path.join(self.abjad_configuration.abjad_experimental_directory_path, 'built_in_materials')
 
     @property
-    def system_materials_package_path(self):
+    def built_in_materials_package_path(self):
         '''System materials package path:
 
         ::
 
-            >>> configuration.system_materials_package_path
-            'system_materials'
+            >>> configuration.built_in_materials_package_path
+            'built_in_materials'
 
         Return string.
         '''
-        return os.path.basename(self.system_materials_directory_path)
+        return os.path.basename(self.built_in_materials_directory_path)
 
     @property
     def system_specifier_classes_directory_path(self):
@@ -259,32 +259,32 @@ class ScoreManagerConfiguration(Configuration):
         return os.path.join(self.score_manager_tools_directory_path, 'specifiers')
 
     @property
-    def system_specifiers_directory_path(self):
+    def built_in_specifiers_directory_path(self):
         '''Score manager sketches directory path:
 
         ::
 
-            >>> configuration.system_specifiers_directory_path
-            '.../abjad/experimental/system_specifiers'
+            >>> configuration.built_in_specifiers_directory_path
+            '.../abjad/experimental/built_in_specifiers'
 
         Return string.
         '''
         return os.path.join(
             self.abjad_configuration.abjad_experimental_directory_path, 
-            'system_specifiers')
+            'built_in_specifiers')
 
     @property
-    def system_specifiers_package_path(self):
+    def built_in_specifiers_package_path(self):
         '''Score-external specifiers package path:
 
         ::
 
-            >>> configuration.system_specifiers_package_path
-            'system_specifiers'
+            >>> configuration.built_in_specifiers_package_path
+            'built_in_specifiers'
 
         Return string.
         '''
-        return os.path.basename(self.system_specifiers_directory_path)
+        return os.path.basename(self.built_in_specifiers_directory_path)
 
     @property
     def transcripts_directory_path(self):

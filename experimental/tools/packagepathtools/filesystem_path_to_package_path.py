@@ -20,15 +20,15 @@ def filesystem_path_to_package_path(filesystem_path):
     if filesystem_path.startswith(configuration.score_manager_tools_directory_path):
         prefix_length = \
             len(os.path.dirname(configuration.score_manager_tools_directory_path)) + 1
-    elif filesystem_path.startswith(configuration.system_materials_directory_path):
+    elif filesystem_path.startswith(configuration.built_in_materials_directory_path):
         prefix_length = \
-            len(os.path.dirname(configuration.system_materials_directory_path)) + 1
+            len(os.path.dirname(configuration.built_in_materials_directory_path)) + 1
     elif filesystem_path.startswith(configuration.user_sketches_directory_path):
         prefix_length = \
             len(os.path.dirname(configuration.user_sketches_directory_path)) + 1
-    elif filesystem_path.startswith(configuration.system_specifiers_directory_path):
+    elif filesystem_path.startswith(configuration.built_in_specifiers_directory_path):
         prefix_length = \
-            len(os.path.dirname(configuration.system_specifiers_directory_path)) + 1
+            len(os.path.dirname(configuration.built_in_specifiers_directory_path)) + 1
     elif filesystem_path.startswith(configuration.user_scores_directory_path):
         prefix_length = len(configuration.user_scores_directory_path) + 1
     else:

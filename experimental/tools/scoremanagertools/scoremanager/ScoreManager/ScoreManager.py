@@ -36,10 +36,10 @@ class ScoreManager(ScoreManagerObject):
             self._session.show_all_scores()
         elif result == 'm':
             self.material_package_wrangler._run(
-                rollback=True, head=self.configuration.system_materials_package_path)
+                rollback=True, head=self.configuration.built_in_materials_package_path)
         elif result == 'f':
             self.music_specifier_module_wrangler._run(
-                rollback=True, head=self.configuration.system_specifiers_package_path)
+                rollback=True, head=self.configuration.built_in_specifiers_package_path)
         elif result == 'k':
             self.print_not_yet_implemented()
         elif result == 'new':

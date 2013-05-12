@@ -37,29 +37,29 @@ def test_ModuleProxy_public_attributes_02():
 
     configuration = scoremanagertools.core.ScoreManagerConfiguration()
     module_path = '.'.join([
-        configuration.system_materials_package_path, 'red_notes', 'material_definition'])
+        configuration.built_in_materials_package_path, 'red_notes', 'material_definition'])
     proxy = scoremanagertools.proxies.ModuleProxy(module_path=module_path)
 
     assert proxy.breadcrumb == 'material_definition.py'
     assert proxy.exists
     assert proxy.file_lines
     assert proxy._generic_class_name == 'module'
-    assert proxy.grandparent_directory_path == proxy.configuration.system_materials_directory_path
-    assert proxy.grandparent_package_path == proxy.configuration.system_materials_package_path
+    assert proxy.grandparent_directory_path == proxy.configuration.built_in_materials_directory_path
+    assert proxy.grandparent_package_path == proxy.configuration.built_in_materials_package_path
     assert proxy._space_delimited_lowercase_name == 'material definition'
     assert proxy.is_versioned
     assert proxy.module_path == module_path
     assert proxy.module_name == 'material_definition'
     assert proxy.filesystem_directory_name == os.path.join(
-        proxy.configuration.system_materials_directory_path, 'red_notes')
+        proxy.configuration.built_in_materials_directory_path, 'red_notes')
     assert proxy.filesystem_directory_name == os.path.join(
-        proxy.configuration.system_materials_directory_path, 'red_notes')
+        proxy.configuration.built_in_materials_directory_path, 'red_notes')
     assert proxy.parent_package_path == '.'.join([
-        proxy.configuration.system_materials_package_path, 'red_notes'])
+        proxy.configuration.built_in_materials_package_path, 'red_notes'])
     assert proxy.parent_package_initializer_file_name == os.path.join(
-        proxy.configuration.system_materials_directory_path, 'red_notes', '__init__.py')
+        proxy.configuration.built_in_materials_directory_path, 'red_notes', '__init__.py')
     assert proxy.file_path == os.path.join(
-        proxy.configuration.system_materials_directory_path, 'red_notes', 'material_definition.py')
+        proxy.configuration.built_in_materials_directory_path, 'red_notes', 'material_definition.py')
     assert proxy._plural_generic_class_name == 'modules'
     assert proxy.filesystem_basename == 'material_definition.py'
     assert proxy.name_without_extension == 'material_definition'

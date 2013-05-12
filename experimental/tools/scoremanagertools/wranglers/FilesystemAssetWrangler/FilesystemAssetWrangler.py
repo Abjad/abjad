@@ -12,9 +12,9 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     __metaclass__ = abc.ABCMeta
     system_resource_directory_basenames = (
-        'system_materials',
+        'built_in_materials',
         'system_sketches',
-        'system_specifiers',
+        'built_in_specifiers',
         ) 
 
     ### INITIALIZER ###

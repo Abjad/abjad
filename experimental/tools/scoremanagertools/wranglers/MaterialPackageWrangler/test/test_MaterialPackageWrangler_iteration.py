@@ -19,17 +19,17 @@ def test_MaterialPackageWrangler_iteration_01():
 
 def test_MaterialPackageWrangler_iteration_02():
 
-    assert 'system_materials.red_sargasso_measures' in \
+    assert 'built_in_materials.red_sargasso_measures' in \
         wrangler.list_asset_package_paths()
-    assert 'system_materials.red_sargasso_measures' not in \
+    assert 'built_in_materials.red_sargasso_measures' not in \
         wrangler.list_asset_package_paths(head='example_score_1')
 
 
 def test_MaterialPackageWrangler_iteration_03():
 
-    assert os.path.join(wrangler.configuration.system_materials_directory_path, 'red_notes') in \
+    assert os.path.join(wrangler.configuration.built_in_materials_directory_path, 'red_notes') in \
         wrangler.list_asset_filesystem_paths()
-    assert os.path.join(wrangler.configuration.system_materials_directory_path, 'red_notes') not in \
+    assert os.path.join(wrangler.configuration.built_in_materials_directory_path, 'red_notes') not in \
         wrangler.list_asset_filesystem_paths(head='example_score_1')
     assert wrangler.list_asset_filesystem_paths(head='asdf') == []
 
@@ -109,11 +109,11 @@ def test_MaterialPackageWrangler_iteration_10():
 def test_MaterialPackageWrangler_iteration_11():
     py.test.skip('TODO: add time_signatures package to Example Score I.')
 
-    assert ('system_materials.red_sargasso_measures', 'red sargasso measures') in \
+    assert ('built_in_materials.red_sargasso_measures', 'red sargasso measures') in \
         wrangler._make_visible_asset_menu_tokens()
     assert ('example_score_1.music.materials.time_signatures', 'time signatures') in \
         wrangler._make_visible_asset_menu_tokens()
-    assert ('system_materials.red_sargasso_measures', 'red sargasso measures') not in \
+    assert ('built_in_materials.red_sargasso_measures', 'red sargasso measures') not in \
         wrangler._make_visible_asset_menu_tokens(head='example_score_1')
     assert ('example_score_1.music.materials.time_signatures', 'time signatures') not in \
         wrangler._make_visible_asset_menu_tokens(head='example_score_2')

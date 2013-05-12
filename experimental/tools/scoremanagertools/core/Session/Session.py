@@ -155,7 +155,7 @@ class Session(abctools.AbjadObject):
         ::
 
             >>> session.current_materials_directory_path
-            '.../abjad/experimental/system_materials'
+            '.../abjad/experimental/built_in_materials'
 
         Session in score:
 
@@ -175,7 +175,7 @@ class Session(abctools.AbjadObject):
             parts.extend(self.configuration._score_internal_materials_path_infix_parts)
             return os.path.join(*parts)
         else:
-            return self.configuration.system_materials_directory_path
+            return self.configuration.built_in_materials_directory_path
 
     @property
     def current_materials_package_path(self):
@@ -184,7 +184,7 @@ class Session(abctools.AbjadObject):
         ::
 
             >>> session.current_materials_package_path
-            'system_materials'
+            'built_in_materials'
 
         Session in score:
 
@@ -201,7 +201,7 @@ class Session(abctools.AbjadObject):
             parts.extend(self.configuration._score_internal_materials_path_infix_parts)
             return '.'.join(parts)
         else:
-            return self.configuration.system_materials_package_path
+            return self.configuration.built_in_materials_package_path
 
     @property
     def current_score_package_proxy(self):
@@ -292,7 +292,7 @@ class Session(abctools.AbjadObject):
         ::
 
             >>> session.current_specifiers_directory_path
-            '.../abjad/experimental/system_specifiers'
+            '.../abjad/experimental/built_in_specifiers'
 
         Session in score:
 
@@ -311,7 +311,7 @@ class Session(abctools.AbjadObject):
                 self.underscore_delimited_current_score_name, 
                 'music', 'specifiers')
         else:
-            return self.configuration.system_specifiers_directory_path
+            return self.configuration.built_in_specifiers_directory_path
 
     @property
     def current_specifiers_package_path(self):
@@ -320,7 +320,7 @@ class Session(abctools.AbjadObject):
         ::
 
             >>> session.current_specifiers_package_path
-            'system_specifiers'
+            'built_in_specifiers'
 
         Session in score:
 
@@ -337,7 +337,7 @@ class Session(abctools.AbjadObject):
             parts.extend(self.configuration._score_internal_specifiers_path_infix_parts)
             return '.'.join(parts)
         else:
-            return self.configuration.system_specifiers_package_path
+            return self.configuration.built_in_specifiers_package_path
 
     @property
     def explicit_command_history(self):

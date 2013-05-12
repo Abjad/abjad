@@ -8,9 +8,9 @@ user_scores_directory_path = configuration.user_scores_directory_path
 def test_filesystem_path_to_package_path_01():
 
     assert packagepathtools.filesystem_path_to_package_path(
-        configuration.system_materials_directory_path) == 'system_materials'
+        configuration.built_in_materials_directory_path) == 'built_in_materials'
     assert packagepathtools.filesystem_path_to_package_path(
-        configuration.system_specifiers_directory_path) == 'system_specifiers'
+        configuration.built_in_specifiers_directory_path) == 'built_in_specifiers'
     assert packagepathtools.filesystem_path_to_package_path(
         configuration.user_sketches_directory_path) == 'sketches'
 

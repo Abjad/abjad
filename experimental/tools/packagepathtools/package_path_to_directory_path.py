@@ -19,9 +19,9 @@ def package_path_to_directory_path(package_path, configuration=None):
         directory_parts = [configuration.score_manager_tools_directory_path] + \
             package_path_parts[1:]
     elif package_path_parts[0] == \
-        configuration.system_materials_package_path:
+        configuration.built_in_materials_package_path:
         directory_parts = \
-            [configuration.system_materials_directory_path] + \
+            [configuration.built_in_materials_directory_path] + \
             package_path_parts[1:]
     elif package_path_parts[0] == \
         configuration.user_sketches_package_path:
@@ -29,9 +29,9 @@ def package_path_to_directory_path(package_path, configuration=None):
             [configuration.user_sketches_directory_path] + \
             package_path_parts[1:]
     elif package_path_parts[0] == \
-        configuration.system_specifiers_package_path:
+        configuration.built_in_specifiers_package_path:
         directory_parts = \
-            [configuration.system_specifiers_directory_path] + \
+            [configuration.built_in_specifiers_directory_path] + \
             package_path_parts[1:]
     else:
         directory_parts = [configuration.user_scores_directory_path] + package_path_parts[:]
