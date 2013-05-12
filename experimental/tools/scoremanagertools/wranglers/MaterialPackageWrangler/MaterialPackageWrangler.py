@@ -9,6 +9,10 @@ from experimental.tools.scoremanagertools.wranglers.PackageWrangler import Packa
 # TODO: write all iteration tests
 class MaterialPackageWrangler(PackageWrangler):
 
+    ### CLASS ATTRIBUTES ###
+    
+    asset_container_path_infix_parts = ('music', 'materials')
+
     ### INITIALIZER ###
 
     def __init__(self, session=None):
@@ -16,8 +20,6 @@ class MaterialPackageWrangler(PackageWrangler):
         PackageWrangler.__init__(self,
             built_in_asset_container_package_paths= \
                 [self.configuration.built_in_materials_package_path],
-            asset_container_path_infix_parts= \
-                self.configuration._score_internal_materials_path_infix_parts,
             session=session)
         self._material_package_maker_wrangler = \
             scoremanagertools.wranglers.MaterialPackageMakerWrangler(session=self._session)

@@ -11,6 +11,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     ### CLASS ATTRIBUTES ###
 
     __metaclass__ = abc.ABCMeta
+    asset_container_path_infix_parts = ()
     built_in_resource_directory_basenames = (
         'built_in_materials',
         'built_in_sketches',
@@ -22,7 +23,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def __init__(self,
         built_in_asset_container_directory_paths=None,
         user_asset_container_directory_paths=None,
-        asset_container_path_infix_parts=None,
         session=None,
         ):
         ScoreManagerObject.__init__(self, session=session)
@@ -30,8 +30,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             built_in_asset_container_directory_paths or []
         self._user_asset_container_directory_paths = \
             user_asset_container_directory_paths or []
-        self._asset_container_path_infix_parts = \
-            asset_container_path_infix_parts
 
     ### SPECIAL METHODS ###
 
@@ -133,10 +131,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         return file_name
 
     ### READ-ONLY PUBLIC PROPERTIES ###
-
-    @property
-    def asset_container_path_infix_parts(self):
-        return self._asset_container_path_infix_parts
 
     @property
     def asset_container_proxy_class(self):

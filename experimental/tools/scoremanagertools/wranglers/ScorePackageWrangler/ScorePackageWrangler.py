@@ -11,7 +11,6 @@ class ScorePackageWrangler(PackageWrangler):
     def __init__(self, session=None):
         PackageWrangler.__init__(self,
             built_in_asset_container_package_paths=[],
-            asset_container_path_infix_parts=None,
             session=session)
 
     ### PRIVATE METHODS ###

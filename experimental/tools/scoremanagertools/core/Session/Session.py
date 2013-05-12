@@ -168,11 +168,13 @@ class Session(abctools.AbjadObject):
 
         Return string.
         '''
+        from experimental.tools import scoremanagertools
         if self.is_in_score:
             parts = []
             parts.append(self.configuration.user_scores_directory_path)
             parts.append(self.underscore_delimited_current_score_name)
-            parts.extend(self.configuration._score_internal_materials_path_infix_parts)
+            parts.extend(
+                scoremanagertools.wranglers.MaterialPackageWrangler.asset_container_path_infix_parts)
             return os.path.join(*parts)
         else:
             return self.configuration.built_in_materials_directory_path
@@ -195,10 +197,12 @@ class Session(abctools.AbjadObject):
 
         Return string.
         '''
+        from experimental.tools import scoremanagertools
         if self.is_in_score:
             parts = []
             parts.append(self.underscore_delimited_current_score_name)
-            parts.extend(self.configuration._score_internal_materials_path_infix_parts)
+            parts.extend(
+                scoremanagertools.wranglers.MaterialPackageWrangler.asset_container_path_infix_parts)
             return '.'.join(parts)
         else:
             return self.configuration.built_in_materials_package_path
@@ -250,11 +254,13 @@ class Session(abctools.AbjadObject):
 
         Return string.
         '''
+        from experimental.tools import scoremanagertools
         if self.is_in_score:
             parts = []
             parts.append(self.configuration.user_scores_directory_path)
             parts.append(self.underscore_delimited_current_score_name)
-            parts.extend(self.configuration._score_internal_segments_path_infix_parts)
+            parts.extend(
+                scoremanagertools.wranglers.SegmentPackageWrangler.asset_container_path_infix_parts)
             return os.path.join(*parts)
         else:
             return self.configuration.user_sketches_directory_path
@@ -277,10 +283,12 @@ class Session(abctools.AbjadObject):
 
         Return string.
         '''
+        from experimental.tools import scoremanagertools
         if self.is_in_score:
             parts = []
             parts.append(self.underscore_delimited_current_score_name)
-            parts.extend(self.configuration._score_internal_segments_path_infix_parts)
+            parts.extend(
+                scoremanagertools.wranglers.SegmentPackageWrangler.asset_container_path_infix_parts)
             return '.'.join(parts)
         else:
             return self.configuration.user_sketches_package_path
@@ -305,11 +313,14 @@ class Session(abctools.AbjadObject):
 
         Return string.
         '''
+        from experimental.tools import scoremanagertools
         if self.is_in_score:
-            return os.path.join(
-                self.configuration.user_scores_directory_path, 
-                self.underscore_delimited_current_score_name, 
-                'music', 'specifiers')
+            parts = []
+            parts.append(self.configuration.user_scores_directory_path)
+            parts.append(self.underscore_delimited_current_score_name)
+            parts.extend(
+                scoremanagertools.wranglers.MusicSpecifierModuleWrangler.asset_container_path_infix_parts)
+            return os.path.join(*parts)
         else:
             return self.configuration.built_in_specifiers_directory_path
 
@@ -331,10 +342,12 @@ class Session(abctools.AbjadObject):
 
         Return string.
         '''
+        from experimental.tools import scoremanagertools
         if self.is_in_score:
             parts = []
             parts.append(self.underscore_delimited_current_score_name)
-            parts.extend(self.configuration._score_internal_specifiers_path_infix_parts)
+            parts.extend(
+                scoremanagertools.wranglers.MusicSpecifierModuleWrangler.asset_container_path_infix_parts)
             return '.'.join(parts)
         else:
             return self.configuration.built_in_specifiers_package_path

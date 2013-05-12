@@ -5,14 +5,15 @@ from experimental.tools.scoremanagertools.wranglers.PackageWrangler import Packa
 
 class SegmentPackageWrangler(PackageWrangler):
 
+    ### CLASS ATTRIBUTES ###
+    
+    asset_container_path_infix_parts = ('music', 'segments')
+
     ### INITIALIZER ###
 
     def __init__(self, session=None):
         PackageWrangler.__init__(self,
-            built_in_asset_container_package_paths= \
-                [self.configuration.user_sketches_package_path],
-            asset_container_path_infix_parts= \
-                self.configuration._score_internal_segments_path_infix_parts,
+            built_in_asset_container_package_paths= [self.configuration.user_sketches_package_path],
             session=session)
 
     ### PRIVATE METHODS ###

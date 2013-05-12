@@ -10,7 +10,6 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
         built_in_asset_container_package_paths=None,
         user_asset_container_directory_paths=None,
         user_asset_container_package_paths=None,
-        asset_container_path_infix_parts=None,
         session=None,
         ):
         built_in_asset_container_directory_paths = built_in_asset_container_directory_paths or \
@@ -23,7 +22,6 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
         FilesystemAssetWrangler.__init__(self,
             built_in_asset_container_directory_paths=built_in_asset_container_directory_paths,
             user_asset_container_directory_paths=user_asset_container_directory_paths,
-            asset_container_path_infix_parts=asset_container_path_infix_parts,
             session=session,
             )
         self._built_in_asset_container_package_paths = \

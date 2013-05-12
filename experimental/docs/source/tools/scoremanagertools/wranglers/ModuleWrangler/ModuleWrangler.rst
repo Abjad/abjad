@@ -9,9 +9,6 @@ scoremanagertools.wranglers.ModuleWrangler
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.asset_container_path_infix_parts
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.asset_container_proxy_class
    :noindex:
 

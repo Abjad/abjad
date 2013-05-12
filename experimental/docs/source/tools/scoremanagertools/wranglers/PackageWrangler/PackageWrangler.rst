@@ -9,9 +9,6 @@ scoremanagertools.wranglers.PackageWrangler
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.asset_container_path_infix_parts
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.asset_container_proxy_class
    :noindex:
 

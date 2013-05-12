@@ -6,14 +6,16 @@ from experimental.tools.scoremanagertools.wranglers.ModuleWrangler import Module
 
 class MusicSpecifierModuleWrangler(ModuleWrangler):
 
+    ### CLASS ATTRIBUTES ###
+
+    asset_container_path_infix_parts = ('music', 'specifiers')
+
     ### INITIALIZER ###
 
     def __init__(self, session=None):
         ModuleWrangler.__init__(self,
             built_in_asset_container_package_paths=\
                 [self.configuration.built_in_specifiers_package_path],
-            asset_container_path_infix_parts=\
-                self.configuration._score_internal_specifiers_path_infix_parts,
             session=session)
 
     ### READ-ONLY PRIVATE PROPERTIES ###

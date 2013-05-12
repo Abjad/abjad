@@ -47,7 +47,7 @@ def test_ScorePackageWrangler_read_only_attributes_06():
     '''Infix.
     '''
 
-    assert wrangler.asset_container_path_infix_parts is None
+    assert wrangler.asset_container_path_infix_parts == ()
 
 
 def test_ScorePackageWrangler_read_only_attributes_07():
