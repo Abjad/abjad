@@ -20,7 +20,7 @@ def make_illustration_from_output_material(output_material, **kwargs):
 
     score_manager_configuration = scoremanagertools.core.ScoreManagerConfiguration()
     directory_path = score_manager_configuration.score_manager_tools_directory_path
-    stylesheet_file_path = os.path.join(directory_path, 'stylesheets', 'rhythm_letter_16.ly')
+    stylesheet_file_path = os.path.join(directory_path, 'built_in_stylesheets', 'rhythm_letter_16.ly')
     illustration.file_initial_user_includes.append(stylesheet_file_path)
     scoretools.add_double_bar_to_end_of_score(score)
 

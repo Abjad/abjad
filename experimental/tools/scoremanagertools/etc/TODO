@@ -107,4 +107,4 @@
 
 39. Add ScoreManagerConfiguration.user_directory property.
 
-40. Change scoremanagertools/stylesheets to scoremaangertools/built_in_stylesheets.
+40. Document StylesheetFileProxy next.

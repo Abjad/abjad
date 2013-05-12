@@ -29,7 +29,7 @@ def test_FileProxy_public_attributes_02():
     score_manager_configuration = scoremanagertools.core.ScoreManagerConfiguration()
     file_path = os.path.join(
         score_manager_configuration.score_manager_tools_directory_path,
-        'stylesheets', file_name)
+        'built_in_stylesheets', file_name)
     file_proxy = scoremanagertools.proxies.FileProxy(file_path)
 
     assert file_proxy.file_lines

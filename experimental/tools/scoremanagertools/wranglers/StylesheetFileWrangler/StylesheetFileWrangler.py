@@ -8,7 +8,7 @@ class StylesheetFileWrangler(FileWrangler):
 
         >>> wrangler = scoremanagertools.wranglers.StylesheetFileWrangler()
         >>> wrangler
-        StylesheetFileWrangler('.../abjad/experimental/tools/scoremanagertools/stylesheets')
+        StylesheetFileWrangler('.../abjad/experimental/tools/scoremanagertools/built_in_stylesheets')
 
     Return stylesheet file wrangler.
     '''
@@ -16,7 +16,7 @@ class StylesheetFileWrangler(FileWrangler):
     ### CLASS ATTRIBUTES ###
 
     built_in_stylesheets_directory_path = os.path.join(
-        FileWrangler.configuration.score_manager_tools_directory_path, 'stylesheets')
+        FileWrangler.configuration.score_manager_tools_directory_path, 'built_in_stylesheets')
 
     ### INITIALIZER ###
 
@@ -90,7 +90,7 @@ class StylesheetFileWrangler(FileWrangler):
         ::
 
             >>> wrangler.built_in_asset_container_directory_paths
-            ['.../abjad/experimental/tools/scoremanagertools/stylesheets']
+            ['.../abjad/experimental/tools/scoremanagertools/built_in_stylesheets']
 
         Return list.
         '''
@@ -103,7 +103,7 @@ class StylesheetFileWrangler(FileWrangler):
         ::
 
             >>> wrangler.current_asset_container_directory_path
-            '.../abjad/experimental/tools/scoremanagertools/stylesheets'
+            '.../abjad/experimental/tools/scoremanagertools/built_in_stylesheets'
 
         Return string.
         '''

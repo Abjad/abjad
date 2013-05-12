@@ -191,7 +191,7 @@ def test_MaterialPackageProxy_read_only_attributes_03():
     assert not  mpp.should_have_user_input_module
     assert      mpp.stylesheet_file_name_on_disk == \
         os.path.join(mpp.configuration.score_manager_tools_directory_path,
-            'stylesheets', 'clean_letter_14.ly')
+            'built_in_stylesheets', 'clean_letter_14.ly')
     # TODO:
     #assert      mpp.stylesheet_file_proxy is not None
     assert      mpp.user_input_module_file_name is None
