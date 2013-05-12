@@ -17,6 +17,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         'built_in_sketches',
         'built_in_specifiers',
         ) 
+    score_internal_assets_exist = True
 
     ### INITIALIZER ###
 
@@ -188,7 +189,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     def get_score_external_asset_container_proxies(self, head=None):
         result = []
-        for directory_path in self.list_built_in_asset_container_directory_paths(head=head):
+        for directory_path in self.list_score_external_asset_container_directory_paths(head=head):
             asset_container_proxy = self.asset_container_proxy_class(directory_path)
             result.append(asset_container_proxy)
         return result
@@ -242,7 +243,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         if head is None or head in self.built_in_resource_directory_basenames:
             result.extend(self.list_score_external_asset_filesystem_paths(head=head))
         result.extend(self.list_score_internal_asset_filesystem_paths(head=head))
-        result.extend(self.list_user_asset_filesystem_paths(head=head))
         return result
 
     def list_built_in_asset_container_directory_paths(self, head=None):
@@ -271,6 +271,8 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         result = []
         for directory_path in self.list_built_in_asset_container_directory_paths(head=head):
             result.append(directory_path)
+        for directory_path in self.list_user_asset_container_directory_paths(head=head):
+            result.append(directory_path)
         return result
 
     def list_score_external_asset_filesystem_paths(self, head=None):
@@ -284,12 +286,13 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     def list_score_internal_asset_container_directory_paths(self, head=None):
         result = []
-        for score_directory_path in self.list_score_directory_paths(head=head):
-            parts = [score_directory_path]
-            if self.asset_container_path_infix_parts:
-                parts.extend(self.asset_container_path_infix_parts)
-            score_internal_directory_path = os.path.join(*parts)
-            result.append(score_internal_directory_path)
+        if self.score_internal_assets_exist:
+            for score_directory_path in self.list_score_directory_paths(head=head):
+                parts = [score_directory_path]
+                if self.asset_container_path_infix_parts:
+                    parts.extend(self.asset_container_path_infix_parts)
+                score_internal_directory_path = os.path.join(*parts)
+                result.append(score_internal_directory_path)
         return result
 
     def list_score_internal_asset_filesystem_paths(self, head=None):

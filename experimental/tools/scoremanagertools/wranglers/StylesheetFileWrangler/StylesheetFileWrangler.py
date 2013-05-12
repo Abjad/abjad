@@ -8,7 +8,7 @@ class StylesheetFileWrangler(FileWrangler):
 
         >>> wrangler = scoremanagertools.wranglers.StylesheetFileWrangler()
         >>> wrangler
-        StylesheetFileWrangler('.../abjad/experimental/tools/scoremanagertools/built_in_stylesheets')
+        StylesheetFileWrangler('.../tools/scoremanagertools/built_in_stylesheets')
 
     Return stylesheet file wrangler.
     '''
@@ -17,13 +17,16 @@ class StylesheetFileWrangler(FileWrangler):
 
     built_in_stylesheets_directory_path = os.path.join(
         FileWrangler.configuration.score_manager_tools_directory_path, 'built_in_stylesheets')
+    score_internal_assets_exist = False
 
     ### INITIALIZER ###
 
     def __init__(self, session=None):
         FileWrangler.__init__(self,
             built_in_asset_container_directory_paths=[self.built_in_stylesheets_directory_path],
-            session=session)
+            user_asset_container_directory_paths=[self.configuration.user_stylesheets_directory_path],
+            session=session,
+            )
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 
@@ -49,7 +52,8 @@ class StylesheetFileWrangler(FileWrangler):
 
     def _make_main_menu(self):
         menu, section = self._io.make_menu(where=self._where, is_parenthetically_numbered=True)
-        section.tokens = self.stylesheet_file_names
+        tokens = [os.path.basename(x) for x in self.list_visible_asset_filesystem_paths()]
+        section.tokens = tokens
         section = menu.make_section()
         section.append(('new', 'new stylesheet'))
         return menu
@@ -90,7 +94,7 @@ class StylesheetFileWrangler(FileWrangler):
         ::
 
             >>> wrangler.built_in_asset_container_directory_paths
-            ['.../abjad/experimental/tools/scoremanagertools/built_in_stylesheets']
+            ['.../tools/scoremanagertools/built_in_stylesheets']
 
         Return list.
         '''
@@ -103,7 +107,7 @@ class StylesheetFileWrangler(FileWrangler):
         ::
 
             >>> wrangler.current_asset_container_directory_path
-            '.../abjad/experimental/tools/scoremanagertools/built_in_stylesheets'
+            '.../tools/scoremanagertools/built_in_stylesheets'
 
         Return string.
         '''
@@ -122,25 +126,6 @@ class StylesheetFileWrangler(FileWrangler):
         '''
         return super(type(self), self).storage_format
 
-    # TODO: rename to something general without 'stylesheet' in name
-    @property
-    def stylesheet_file_names(self):
-        '''Stylesheet file wrangler stylesheet file names:
-
-            >>> for x in wrangler.stylesheet_file_names:
-            ...     x
-            'clean_letter_14.ly'
-            'clean_letter_16.ly'
-            'rhythm_letter_16.ly'
-
-        Return list.
-        '''
-        result = []
-        for directory_entry in os.listdir(self.built_in_stylesheets_directory_path):
-            if directory_entry.endswith('.ly'):
-                result.append(directory_entry)
-        return result
-
     @property
     def user_asset_container_directory_paths(self):
         '''Stylesheet file wrangler built-in asset container directory paths:
@@ -148,7 +133,7 @@ class StylesheetFileWrangler(FileWrangler):
         ::
 
             >>> wrangler.user_asset_container_directory_paths
-            []
+            ['.../score_manager/stylesheets']
 
         (Output will vary according to configuration.)
 
@@ -157,6 +142,148 @@ class StylesheetFileWrangler(FileWrangler):
         return super(type(self), self).user_asset_container_directory_paths
 
     ### PUBLIC METHODS ###
+
+    def get_asset_container_proxies(self, head=None):
+        '''Stylesheet file wrangler get asset container proxies:
+
+        ::
+
+            >>> for x in wrangler.get_asset_container_proxies():
+            ...     x
+            DirectoryProxy('.../tools/scoremanagertools/built_in_stylesheets')
+            DirectoryProxy('.../score_manager/stylesheets')
+
+        Return list.
+        '''
+        return super(type(self), self).get_asset_container_proxies(head=head)
+
+    def get_asset_proxies(self, head=None):
+        '''Stylesheet file wrangler get asset proxies:
+
+        ::
+
+            >>> for x in wrangler.get_asset_proxies():
+            ...     x
+            StylesheetFileProxy('.../tools/scoremanagertools/built_in_stylesheets/clean_letter_14.ly')
+            StylesheetFileProxy('.../tools/scoremanagertools/built_in_stylesheets/clean_letter_16.ly')
+            StylesheetFileProxy('.../tools/scoremanagertools/built_in_stylesheets/rhythm_letter_16.ly')
+            StylesheetFileProxy('.../score_manager/stylesheets/baca_letter_14.ly')
+
+        Return list.
+        '''
+        return super(type(self), self).get_asset_proxies(head=head)
+
+    def get_score_external_asset_container_proxies(self, head=None):
+        '''Stylesheet file wrangler get score-external asset container proxies:
+
+        ::
+
+            >>> for x in wrangler.get_score_external_asset_container_proxies():
+            ...     x
+            DirectoryProxy('.../tools/scoremanagertools/built_in_stylesheets')
+            DirectoryProxy('.../score_manager/stylesheets')
+
+        Return list.
+        '''
+        return super(type(self), self).get_score_external_asset_container_proxies(head=head)
+
+    def list_asset_container_directory_paths(self, head=None):
+        '''Stylesheet file wrangler list asset container directory paths:
+
+        ::
+
+            >>> for x in wrangler.list_asset_container_directory_paths():
+            ...     x
+            '.../tools/scoremanagertools/built_in_stylesheets'
+            '.../score_manager/stylesheets'
+
+        Return list.
+        '''
+        return super(type(self), self).list_asset_container_directory_paths(head=head)
+
+    def list_asset_filesystem_paths(self, head=None):
+        '''Stylesheet file wrangler list asset filesystem paths:
+
+        ::
+
+            >>> for x in wrangler.list_asset_filesystem_paths():
+            ...     x
+            '.../tools/scoremanagertools/built_in_stylesheets/clean_letter_14.ly'
+            '.../tools/scoremanagertools/built_in_stylesheets/clean_letter_16.ly'
+            '.../tools/scoremanagertools/built_in_stylesheets/rhythm_letter_16.ly'
+            '.../score_manager/stylesheets/baca_letter_14.ly'
+
+        Return list.
+        '''
+        return super(type(self), self).list_asset_filesystem_paths(head=head)
+        
+    def list_score_external_asset_container_directory_paths(self, head=None):
+        '''Stylesheet file wrangler list score-external asset container directory paths:
+
+        ::
+
+            >>> for x in wrangler.list_score_external_asset_container_directory_paths():
+            ...     x
+            '.../tools/scoremanagertools/built_in_stylesheets'
+            '.../score_manager/stylesheets'
+
+        Return list.
+        '''
+        return super(type(self), self).list_score_external_asset_container_directory_paths(head=head)
+
+    def list_score_internal_asset_container_directory_paths(self, head=None):
+        '''Stylesheet file wrangler list score-internal asset container directory paths:
+
+        ::
+
+            >>> wrangler.list_score_internal_asset_container_directory_paths()
+            []
+
+        Return list.
+        '''
+        return super(type(self), self).list_score_internal_asset_container_directory_paths(head=head)
+
+    def get_score_internal_asset_container_proxies(self, head=None):
+        '''Stylesheet file wrangler get score-internal asset container proxies:
+
+        ::
+
+            >>> wrangler.get_score_internal_asset_container_proxies()
+            []
+
+        Return list.
+        '''
+        return super(type(self), self).get_score_internal_asset_container_proxies(head=head)
+        
+    def list_user_asset_container_directory_paths(self, head=None):
+        '''Stylesheet file wrangler list user asset container directory paths:
+
+        ::
+
+            >>> wrangler.list_user_asset_container_directory_paths()
+            ['.../score_manager/stylesheets']
+
+        (Output will vary according to configuration.)
+
+        Return list.
+        '''
+        return super(type(self), self).list_user_asset_container_directory_paths(head=head) 
+
+    def list_visible_asset_filesystem_paths(self, head=None):
+        '''Stylesheet file wrangler list visible asset filesystem paths:
+
+        ::
+
+            >>> for x in wrangler.list_visible_asset_filesystem_paths():
+            ...     x
+            '.../tools/scoremanagertools/built_in_stylesheets/clean_letter_14.ly'
+            '.../tools/scoremanagertools/built_in_stylesheets/clean_letter_16.ly'
+            '.../tools/scoremanagertools/built_in_stylesheets/rhythm_letter_16.ly'
+            '.../score_manager/stylesheets/baca_letter_14.ly'
+
+        Return list.
+        '''
+        return super(type(self), self).list_visible_asset_filesystem_paths(head=head)
 
     # TODO: write test
     def make_asset_interactively(self):
@@ -176,11 +303,13 @@ class StylesheetFileWrangler(FileWrangler):
             stylesheet_file_name, session=self._session)
         stylesheet_proxy.edit()
 
+    # TODO: rename to something general without 'stylesheet' in name
     # TODO: write test
     def select_stylesheet_file_name_interactively(self, clear=True, cache=False):
         self._session.cache_breadcrumbs(cache=cache)
         menu, section = self._io.make_menu(where=self._where, is_parenthetically_numbered=True)
-        section.tokens = self.stylesheet_file_names
+        tokens = [os.path.basename(x) for x in self.list_visible_asset_filesystem_paths()]
+        section.tokens = tokens
         while True:
             self._session.push_breadcrumb('select stylesheet')
             result = menu._run(clear=clear)
