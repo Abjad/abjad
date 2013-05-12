@@ -193,5 +193,6 @@ class StylesheetFileWrangler(FileWrangler):
                 break
         self._session.pop_breadcrumb()
         self._session.restore_breadcrumbs(cache=cache)
-        result = os.path.join(self.built_in_stylesheets_directory_path, result)
-        return result
+        if result is not None:
+            result = os.path.join(self.built_in_stylesheets_directory_path, result)
+            return result

@@ -39,15 +39,6 @@ class ScoreManagerConfiguration(Configuration):
     @property
     def _option_definitions(self):
         options = {
-            'user_sketches_directory_path': {
-                'comment': [
-                    '',
-                    'Set to the directory where you want score manager to store sketches.',
-                    'Defaults to $HOME/score_manager/sketches/.'
-                ],
-                'spec': 'string(default={!r})'.format(
-                    os.path.join(self.configuration_directory_path, 'sketches'))
-            },
             'transcripts_directory_path': {
                 'comment': [
                     '',
@@ -56,13 +47,6 @@ class ScoreManagerConfiguration(Configuration):
                 ],
                 'spec': 'string(default={!r})'.format(
                     os.path.join(self.configuration_directory_path, 'transcripts'))
-            },
-            'user_scores_directory_path': {
-                'comment': [
-                    '',
-                    'Set to the directory where you house your scores. No default provided.'
-                ],
-                'spec': "string(default='')"
             },
             'user_material_package_makers_directory_path': {
                 'comment': [
@@ -81,6 +65,24 @@ class ScoreManagerConfiguration(Configuration):
                     'Defaults to none.'
                 ],
                 'spec': "string(default='')"
+            },
+            'user_scores_directory_path': {
+                'comment': [
+                    '',
+                    'Set to the directory where you house your scores. No default provided.',
+                    'Defaults to $HOME/Documents/scores/.'
+                ],
+                'spec': 'string(default={!r})'.format(
+                    os.path.join(self.home_directory_path, 'Documents', 'scores'))
+            },
+            'user_sketches_directory_path': {
+                'comment': [
+                    '',
+                    'Set to the directory where you want score manager to store sketches.',
+                    'Defaults to $HOME/score_manager/sketches/.'
+                ],
+                'spec': 'string(default={!r})'.format(
+                    os.path.join(self.configuration_directory_path, 'sketches'))
             },
         }
         return options
@@ -302,7 +304,9 @@ class ScoreManagerConfiguration(Configuration):
 
         Return string.
         '''
-        return self._settings['user_material_package_makers_directory_path']
+        return os.path.normpath(os.path.expanduser(
+            self._settings['user_material_package_makers_directory_path']
+            ))
 
     @property
     def user_material_package_makers_package_path(self):
@@ -317,7 +321,9 @@ class ScoreManagerConfiguration(Configuration):
 
         Return string.
         '''
-        return self._settings['user_material_package_makers_package_path']
+        return os.path.normpath(os.path.expanduser(
+            self._settings['user_material_package_makers_package_path']
+            ))
 
     @property
     def user_scores_directory_path(self):
@@ -326,13 +332,17 @@ class ScoreManagerConfiguration(Configuration):
         ::
 
             >>> configuration.user_scores_directory_path # doctest: +SKIP
-            '~/scores'
+            '.../Documents/scores'
+
+        Defaults to ``~/Documents/scores``.
 
         (Output will vary according to configuration.)
 
         Return string.
         '''
-        return os.path.normpath(self._settings['user_scores_directory_path'])
+        return os.path.normpath(os.path.expanduser(
+            self._settings['user_scores_directory_path']
+            ))
 
     @property
     def user_sketches_directory_path(self):
@@ -347,7 +357,9 @@ class ScoreManagerConfiguration(Configuration):
 
         Return string.
         '''
-        return self._settings['user_sketches_directory_path']
+        return os.path.normpath(os.path.expanduser(
+            self._settings['user_sketches_directory_path']
+            ))
 
     @property
     def user_sketches_package_path(self):
