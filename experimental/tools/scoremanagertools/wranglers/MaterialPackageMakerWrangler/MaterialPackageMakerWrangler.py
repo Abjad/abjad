@@ -36,14 +36,14 @@ class MaterialPackageMakerWrangler(PackageWrangler):
 
     def _make_main_menu(self, head=None):
         menu, section = self._io.make_menu(where=self._where, is_numbered=True)
-        section.tokens = self.list_space_delimited_lowercase_asset_names(head=head)
+        section.tokens = self.list_space_delimited_lowercase_visible_asset_names(head=head)
         section = menu.make_section()
         section.append(('new', 'new material package maker'))
         return menu
 
     def _make_visible_asset_menu_tokens(self, head=None):
         keys = self.list_asset_package_paths(head=head)
-        bodies = self.list_space_delimited_lowercase_asset_names(head=head)
+        bodies = self.list_space_delimited_lowercase_visible_asset_names(head=head)
         return zip(keys, bodies)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
@@ -100,9 +100,9 @@ class MaterialPackageMakerWrangler(PackageWrangler):
     def list_score_internal_asset_container_package_paths(self, head=None):
         return []
 
-    def list_space_delimited_lowercase_asset_names(self, head=None):
+    def list_space_delimited_lowercase_visible_asset_names(self, head=None):
         result = []
-        for asset_filesystem_path in self.list_asset_filesystem_paths(head=head):
+        for asset_filesystem_path in self.list_visible_asset_filesystem_paths(head=head):
             asset_filesystem_path = os.path.normpath(asset_filesystem_path)
             asset_name = os.path.basename(asset_filesystem_path)
             if asset_name in self.forbidden_class_names:

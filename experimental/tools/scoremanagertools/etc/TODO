@@ -108,3 +108,7 @@
 39. Add ScoreManagerConfiguration.user_directory property.
 
 40. Document StylesheetFileProxy next.
+
+41. Maybe make all asset container properties private.
+    This will help clean up the (documented) wrangler public interface.
+    And the container properties are always used only privately by the class in question.

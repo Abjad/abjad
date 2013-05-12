@@ -296,12 +296,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                     result.append(os.path.join(asset_filesystem_path, directory_entry))
         return result
 
-    def list_space_delimited_lowercase_asset_names(self, head=None):
-        result = []
-        for filesystem_path in self.list_asset_filesystem_paths(head=head):
-            result.append(self._filesystem_path_to_space_delimited_lowercase_name(filesystem_path))
-        return result
-
     def list_space_delimited_lowercase_visible_asset_names(self, head=None):
         result = []
         for filesystem_path in self.list_visible_asset_filesystem_paths(head=head):

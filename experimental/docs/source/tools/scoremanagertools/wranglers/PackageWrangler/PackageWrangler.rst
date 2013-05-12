@@ -108,9 +108,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.list_score_internal_asset_package_paths
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.list_space_delimited_lowercase_asset_names
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.list_space_delimited_lowercase_visible_asset_names
    :noindex:
 

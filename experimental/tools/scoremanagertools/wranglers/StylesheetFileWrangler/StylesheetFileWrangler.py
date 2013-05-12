@@ -135,7 +135,7 @@ class StylesheetFileWrangler(FileWrangler):
             >>> wrangler.user_asset_container_directory_paths
             ['.../score_manager/stylesheets']
 
-        (Output will vary according to configuration.)
+        (Output will vary according to user configuration.)
 
         Return list.
         '''
@@ -369,6 +369,24 @@ class StylesheetFileWrangler(FileWrangler):
         '''
         return super(type(self), self).list_score_internal_asset_filesystem_paths(head=head)
 
+    def list_space_delimited_lowercase_visible_asset_names(self, head=None):
+        '''Stylesheet file wrangler list space-delimited lowercase visible asset names:
+
+        ::
+
+            >>> for x in wrangler.list_space_delimited_lowercase_visible_asset_names():
+            ...     x
+            'clean letter 14'
+            'clean letter 16'
+            'rhythm letter 16'
+            ...
+
+        (Output will vary with to user collateral.)
+
+        Return list.
+        '''
+        return super(type(self), self).list_space_delimited_lowercase_visible_asset_names(head=head)
+
     def list_user_asset_container_directory_paths(self, head=None):
         '''Stylesheet file wrangler list user asset container directory paths:
 
@@ -391,7 +409,7 @@ class StylesheetFileWrangler(FileWrangler):
             >>> wrangler.list_user_asset_filesystem_paths()
             ['.../score_manager/stylesheets/baca_letter_14.ly']
 
-        (Output will vary according to user collateral.)
+        (Output will vary with user collateral.)
 
         Return list.
         '''
