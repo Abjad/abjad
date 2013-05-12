@@ -69,7 +69,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
 
     ### PUBLIC METHODS ###
 
-    def get_asset_proxy(self, package_path):
+    def _get_asset_proxy(self, package_path):
         from experimental.tools.scoremanagertools.proxies.MaterialPackageProxy import MaterialPackageProxy
         material_package_proxy = MaterialPackageProxy(package_path, session=self._session)
         material_package_maker_class_name = material_package_proxy.material_package_maker_class_name

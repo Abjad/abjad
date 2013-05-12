@@ -32,7 +32,7 @@ class SegmentPackageWrangler(PackageWrangler):
         if result == 'new':
             self.make_asset_interactively()
         else:
-            segment_package_proxy = self.get_asset_proxy(result)
+            segment_package_proxy = self._get_asset_proxy(result)
             segment_package_proxy._run()
 
     def _make_main_menu(self, head=None):

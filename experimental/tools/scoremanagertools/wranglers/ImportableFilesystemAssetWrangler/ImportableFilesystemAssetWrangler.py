@@ -78,7 +78,7 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
 
     @property
     def _temporary_asset_proxy(self):
-        return self.get_asset_proxy(self._temporary_asset_package_path)
+        return self._get_asset_proxy(self._temporary_asset_package_path)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -110,7 +110,7 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
     def get_asset_proxies(self, head=None):
         result = []
         for package_path in self.list_asset_package_paths(head=head):
-            asset_proxy = self.get_asset_proxy(package_path)
+            asset_proxy = self._get_asset_proxy(package_path)
             result.append(asset_proxy)
         return result
 
@@ -234,7 +234,7 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
         self._session.pop_backtrack()
         if self._session.backtrack():
             return
-        asset_proxy = self.get_asset_proxy(asset_package_path)
+        asset_proxy = self._get_asset_proxy(asset_package_path)
         asset_proxy.rename_interactively()
 
     def select_asset_package_path_interactively(

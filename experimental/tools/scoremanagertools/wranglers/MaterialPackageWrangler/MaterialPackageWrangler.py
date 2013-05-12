@@ -32,6 +32,9 @@ class MaterialPackageWrangler(PackageWrangler):
 
     ### PRIVATE METHODS ###
 
+    def _get_asset_proxy(self, package_path):
+        return self.material_package_maker_wrangler._get_asset_proxy(package_path)
+
     def _handle_main_menu_result(self, result):
         if result == 'd':
             self.make_data_package_interactively()
@@ -46,7 +49,7 @@ class MaterialPackageWrangler(PackageWrangler):
         elif result == 'profile':
             self.profile_visible_assets()
         else:
-            material_package_proxy = self.get_asset_proxy(result)
+            material_package_proxy = self._get_asset_proxy(result)
             material_package_proxy._run()
 
     def _make_main_menu(self, head=None):
@@ -95,9 +98,6 @@ class MaterialPackageWrangler(PackageWrangler):
                 material_package_proxy = material_package_maker_class(
                     material_package_path, session=self._session)
         return material_package_proxy
-
-    def get_asset_proxy(self, package_path):
-        return self.material_package_maker_wrangler.get_asset_proxy(package_path)
 
     def get_available_material_package_path_interactively(self, user_input=None):
         self._io.assign_user_input(user_input=user_input)

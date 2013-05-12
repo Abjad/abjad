@@ -48,9 +48,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableFilesystemAssetWrangler.ImportableFilesystemAssetWrangler.ImportableFilesystemAssetWrangler.get_asset_proxies
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableFilesystemAssetWrangler.ImportableFilesystemAssetWrangler.ImportableFilesystemAssetWrangler.get_asset_proxy
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableFilesystemAssetWrangler.ImportableFilesystemAssetWrangler.ImportableFilesystemAssetWrangler.get_score_external_asset_container_proxies
    :noindex:
 

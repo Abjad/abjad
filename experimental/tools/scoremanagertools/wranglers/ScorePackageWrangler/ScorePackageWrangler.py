@@ -117,7 +117,7 @@ class ScorePackageWrangler(PackageWrangler):
             return
         title, score_package_name, year = result
         self.make_asset(score_package_name)
-        score_package_proxy = self.get_asset_proxy(score_package_name)
+        score_package_proxy = self._get_asset_proxy(score_package_name)
         score_package_proxy.add_tag('title', title)
         score_package_proxy.year_of_completion = year
         self._session.push_breadcrumb(breadcrumb=breadcrumb, rollback=rollback)

@@ -70,7 +70,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     @property
     def _temporary_asset_proxy(self):
-        return self.get_asset_proxy(self._temporary_asset_filesystem_path)
+        return self._get_asset_proxy(self._temporary_asset_filesystem_path)
 
     ### PRIVATE METHODS ###
 
@@ -79,6 +79,9 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         asset_name = os.path.basename(filesystem_path)
         asset_name = self._strip_file_extension_from_file_name(asset_name)
         return stringtools.string_to_space_delimited_lowercase(asset_name)
+
+    def _get_asset_proxy(self, asset_filesystem_path):
+        return self.asset_proxy_class(asset_filesystem_path, session=self._session)
 
     @abc.abstractmethod
     def _handle_main_menu_result(self, result):
@@ -180,12 +183,9 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def get_asset_proxies(self, head=None):
         result = []
         for filesystem_path in self.list_asset_filesystem_paths(head=head):
-            asset_proxy = self.get_asset_proxy(filesystem_path)
+            asset_proxy = self._get_asset_proxy(filesystem_path)
             result.append(asset_proxy)
         return result
-
-    def get_asset_proxy(self, asset_filesystem_path):
-        return self.asset_proxy_class(asset_filesystem_path, session=self._session)
 
     def get_score_external_asset_container_proxies(self, head=None):
         result = []
@@ -197,7 +197,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def get_score_external_asset_proxies(self, head=None):
         result = []
         for filesystem_path in self.list_score_external_asset_filesystem_paths(head=head):
-            asset_proxy = self.get_asset_proxy(filesystem_path)
+            asset_proxy = self._get_asset_proxy(filesystem_path)
             result.append(asset_proxy)
         return result
 
@@ -225,7 +225,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def get_user_asset_proxies(self, head=None):
         result = []
         for asset_filesystem_path in self.list_user_asset_filesystem_paths(head=head):
-            asset_proxy = self.get_asset_proxy(asset_filesystem_path)
+            asset_proxy = self._get_asset_proxy(asset_filesystem_path)
             result.append(asset_proxy)
         return result
 
@@ -341,7 +341,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def make_asset(self, asset_name):
         assert stringtools.is_underscore_delimited_lowercase_string(asset_name)
         asset_filesystem_path = os.path.join(self.current_asset_container_directory_path, asset_name)
-        asset_proxy = self.get_asset_proxy(asset_filesystem_path)
+        asset_proxy = self._get_asset_proxy(asset_filesystem_path)
         asset_proxy.write_stub_to_disk()
 
     @abc.abstractmethod
@@ -369,7 +369,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         for asset_number in result:
             asset_index = asset_number - 1
             asset_filesystem_path = argument_list[asset_index]
-            asset_proxy = self.get_asset_proxy(asset_filesystem_path)
+            asset_proxy = self._get_asset_proxy(asset_filesystem_path)
             asset_proxy.remove()
             total_assets_removed += 1
         self._io.proceed('{} asset(s) removed.'.format(total_assets_removed))
