@@ -2,7 +2,7 @@ import os
 from experimental import *
 
 
-def test_ExergueDirectoryProxy_01():
+def test_AssemblyDirectoryProxy_01():
 
     exergue_directory_proxy = scoremanagertools.proxies.ExergueDirectoryProxy('example_score_1')
 

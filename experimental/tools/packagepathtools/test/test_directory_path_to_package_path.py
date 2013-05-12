@@ -5,7 +5,7 @@ configuration = scoremanagertools.core.ScoreManagerConfiguration()
 user_scores_directory_path = configuration.user_scores_directory_path
 
 
-def test_filesystem_path_to_package_path_01():
+def test_directory_path_to_package_path_01():
 
     assert packagepathtools.filesystem_path_to_package_path(
         configuration.built_in_materials_directory_path) == 'built_in_materials'
@@ -15,7 +15,7 @@ def test_filesystem_path_to_package_path_01():
         configuration.user_sketches_directory_path) == 'sketches'
 
 
-def test_filesystem_path_to_package_path_02():
+def test_directory_path_to_package_path_02():
 
     directory_path = os.path.join(user_scores_directory_path, 'example_score_1')
     assert packagepathtools.filesystem_path_to_package_path(directory_path) == 'example_score_1'
@@ -28,7 +28,7 @@ def test_filesystem_path_to_package_path_02():
         'example_score_1.music.materials'
 
 
-def test_filesystem_path_to_package_path_03():
+def test_directory_path_to_package_path_03():
 
     directory_path = os.path.join(user_scores_directory_path, 'example_score_1', 'foo')
     assert packagepathtools.filesystem_path_to_package_path(directory_path) == 'example_score_1.foo'

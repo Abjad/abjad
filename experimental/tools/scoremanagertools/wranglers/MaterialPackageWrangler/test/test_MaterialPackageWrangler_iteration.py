@@ -9,15 +9,6 @@ assert not wrangler._session.is_in_score
 
 
 def test_MaterialPackageWrangler_iteration_01():
-    '''Assets (all).
-    '''
-
-    assert 'red sargasso measures' in wrangler.list_space_delimited_lowercase_asset_names()
-    assert 'red sargasso measures' not in wrangler.list_space_delimited_lowercase_asset_names(
-        head='example_score_1')
-
-
-def test_MaterialPackageWrangler_iteration_02():
 
     assert 'built_in_materials.red_sargasso_measures' in \
         wrangler.list_asset_package_paths()
@@ -25,7 +16,7 @@ def test_MaterialPackageWrangler_iteration_02():
         wrangler.list_asset_package_paths(head='example_score_1')
 
 
-def test_MaterialPackageWrangler_iteration_03():
+def test_MaterialPackageWrangler_iteration_02():
 
     assert os.path.join(wrangler.configuration.built_in_materials_directory_path, 'red_notes') in \
         wrangler.list_asset_filesystem_paths()
@@ -34,13 +25,13 @@ def test_MaterialPackageWrangler_iteration_03():
     assert wrangler.list_asset_filesystem_paths(head='asdf') == []
 
 
-def test_MaterialPackageWrangler_iteration_04():
+def test_MaterialPackageWrangler_iteration_03():
 
     # wrangler.get_asset_proxies()
     pass
 
 
-def test_MaterialPackageWrangler_iteration_05():
+def test_MaterialPackageWrangler_iteration_04():
     '''Score-internal asset containers.
     '''
 
@@ -55,7 +46,7 @@ def test_MaterialPackageWrangler_iteration_05():
     assert wrangler.list_score_internal_asset_container_package_paths(head='asdf') == []
 
 
-def test_MaterialPackageWrangler_iteration_06():
+def test_MaterialPackageWrangler_iteration_05():
 
     directory_path = os.path.join(
         wrangler.configuration.user_scores_directory_path, 'example_score_1', 'music', 'materials')
@@ -64,7 +55,7 @@ def test_MaterialPackageWrangler_iteration_06():
     assert wrangler.list_score_internal_asset_container_directory_paths(head='asdf') == []
 
 
-def test_MaterialPackageWrangler_iteration_07():
+def test_MaterialPackageWrangler_iteration_06():
     '''Score-internal assets.
     '''
     py.test.skip('TODO: add time_signatures package to Example Score I.')
@@ -76,7 +67,7 @@ def test_MaterialPackageWrangler_iteration_07():
     assert wrangler.list_score_internal_asset_package_paths(head='asdf') == []
 
 
-def test_MaterialPackageWrangler_iteration_08():
+def test_MaterialPackageWrangler_iteration_07():
     py.test.skip('TODO: add time_signatures package to Example Score I.')
 
     directory_path = os.path.join(
@@ -87,7 +78,7 @@ def test_MaterialPackageWrangler_iteration_08():
     assert wrangler.list_score_internal_asset_filesystem_paths(head='asdf') == []
 
 
-def test_MaterialPackageWrangler_iteration_09():
+def test_MaterialPackageWrangler_iteration_08():
     '''Visible assets.
     '''
 
@@ -96,7 +87,7 @@ def test_MaterialPackageWrangler_iteration_09():
     assert wrangler.list_space_delimited_lowercase_visible_asset_names(head='asdf') == []
 
 
-def test_MaterialPackageWrangler_iteration_10():
+def test_MaterialPackageWrangler_iteration_09():
    py.test.skip('TODO: add time_signatures package to Example Score I.')
 
    assert 'example_score_1.music.materials.time_signatures' in \
@@ -106,7 +97,7 @@ def test_MaterialPackageWrangler_iteration_10():
    assert wrangler.list_visible_asset_package_paths(head='asdf') == []
 
 
-def test_MaterialPackageWrangler_iteration_11():
+def test_MaterialPackageWrangler_iteration_10():
     py.test.skip('TODO: add time_signatures package to Example Score I.')
 
     assert ('built_in_materials.red_sargasso_measures', 'red sargasso measures') in \
@@ -119,7 +110,7 @@ def test_MaterialPackageWrangler_iteration_11():
         wrangler._make_visible_asset_menu_tokens(head='example_score_2')
 
 
-def test_MaterialPackageWrangler_iteration_12():
+def test_MaterialPackageWrangler_iteration_11():
 
     # wrangler.get_visible_asset_proxies()
     pass

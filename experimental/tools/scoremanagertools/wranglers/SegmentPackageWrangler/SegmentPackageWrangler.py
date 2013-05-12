@@ -37,7 +37,7 @@ class SegmentPackageWrangler(PackageWrangler):
 
     def _make_main_menu(self, head=None):
         menu, section = self._io.make_menu(where=self._where, is_numbered=True)
-        section.tokens = self.list_space_delimited_lowercase_asset_names(head=head)
+        section.tokens = self.list_space_delimited_lowercase_visible_asset_names(head=head)
         section = menu.make_section()
         section.append(('new', 'new segment'))
         return menu

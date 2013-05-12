@@ -2,7 +2,7 @@ import os
 from experimental import *
 
 
-def test_FileProxy_write_boilerplate_01():
+def test_FileProxy_write_boilerplate_asset_to_disk_01():
 
     score_manager_configuration = scoremanagertools.core.ScoreManagerConfiguration()
     file_path = os.path.join(

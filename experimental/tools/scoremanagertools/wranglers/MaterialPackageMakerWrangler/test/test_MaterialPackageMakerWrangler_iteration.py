@@ -24,8 +24,3 @@ def test_MaterialPackageMakerWrangler_iteration_04():
 
     assert ('scoremanagertools.materialpackagemakers.PitchRangeInventoryMaterialPackageMaker',
         'pitch range inventory material package maker') in wrangler._make_visible_asset_menu_tokens()
-
-
-def test_MaterialPackageMakerWrangler_iteration_05():
-
-    assert 'pitch range inventory material package maker' in wrangler.list_space_delimited_lowercase_asset_names()
