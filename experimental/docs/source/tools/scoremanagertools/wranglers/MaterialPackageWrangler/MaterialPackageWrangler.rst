@@ -15,9 +15,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.MaterialPackageWrangler.MaterialPackageWrangler.MaterialPackageWrangler.asset_proxy_class
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.MaterialPackageWrangler.MaterialPackageWrangler.MaterialPackageWrangler.breadcrumb
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.MaterialPackageWrangler.MaterialPackageWrangler.MaterialPackageWrangler.built_in_asset_container_directory_paths
    :noindex:
 

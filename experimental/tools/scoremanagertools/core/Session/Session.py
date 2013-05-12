@@ -102,7 +102,7 @@ class Session(abctools.AbjadObject):
 
         ::
 
-            >>> session.breadcrumb_cache_stack
+            >>> session._breadcrumb_cache_stack
             []
 
         Return list.
@@ -115,7 +115,7 @@ class Session(abctools.AbjadObject):
 
         ::
 
-            >>> session.breadcrumb_stack
+            >>> session._breadcrumb_stack
             []
 
         Return list.
@@ -667,7 +667,7 @@ class Session(abctools.AbjadObject):
 
     def cache_breadcrumbs(self, cache=False):
         if cache:
-            self.breadcrumb_cache_stack.append(self._breadcrumb_stack[:])
+            self._breadcrumb_cache_stack.append(self._breadcrumb_stack[:])
             self._breadcrumb_stack[:] = []
 
     def clean_up(self):
@@ -713,7 +713,7 @@ class Session(abctools.AbjadObject):
 
     def restore_breadcrumbs(self, cache=False):
         if cache:
-            self._breadcrumb_stack[:] = self.breadcrumb_cache_stack.pop()
+            self._breadcrumb_stack[:] = self._breadcrumb_cache_stack.pop()
 
     def show_active_scores(self):
         self._scores_to_show = 'active'

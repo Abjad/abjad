@@ -9,9 +9,6 @@ scoremanagertools.proxies.ParsableFileProxy
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.breadcrumb
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.ParsableFileProxy.ParsableFileProxy.ParsableFileProxy.exists
    :noindex:
 

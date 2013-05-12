@@ -6,7 +6,7 @@ def test_MaterialPackageMakerWrangler_read_only_attributes_01():
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     wrangler = score_manager.material_package_maker_wrangler
 
-    assert wrangler.breadcrumb == 'material package makers'
+    assert wrangler._breadcrumb == 'material package makers'
     assert wrangler.current_asset_container_package_path == 'scoremanagertools.materialpackagemakers'
     assert all([
         x.startswith('scoremanagertools.materialpackagemakers.') 

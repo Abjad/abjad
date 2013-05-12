@@ -9,9 +9,6 @@ scoremanagertools.selectors.DirectiveHandlerSelector
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.breadcrumb
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.storage_format
    :noindex:
 

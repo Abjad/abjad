@@ -9,9 +9,6 @@ scoremanagertools.wizards.ArticulationHandlerCreationWizard
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.breadcrumb
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.storage_format
    :noindex:
 

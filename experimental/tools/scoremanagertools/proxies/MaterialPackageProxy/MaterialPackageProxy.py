@@ -242,7 +242,7 @@ class MaterialPackageProxy(PackageProxy):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def breadcrumb(self):
+    def _breadcrumb(self):
         return self._space_delimited_lowercase_name
 
     @property

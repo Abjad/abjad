@@ -12,9 +12,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.attributes_in_memory
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.breadcrumb
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.editors.DynamicHandlerEditor.DynamicHandlerEditor.DynamicHandlerEditor.has_target
    :noindex:
 

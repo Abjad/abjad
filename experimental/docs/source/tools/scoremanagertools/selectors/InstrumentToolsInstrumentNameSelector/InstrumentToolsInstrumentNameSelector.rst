@@ -9,9 +9,6 @@ scoremanagertools.selectors.InstrumentToolsInstrumentNameSelector
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.selectors.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.breadcrumb
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.storage_format
    :noindex:
 

@@ -9,9 +9,6 @@ scoremanagertools.selectors.TempoMarkSelector
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.selectors.TempoMarkSelector.TempoMarkSelector.TempoMarkSelector.breadcrumb
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.TempoMarkSelector.TempoMarkSelector.TempoMarkSelector.storage_format
    :noindex:
 

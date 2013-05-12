@@ -12,9 +12,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.attributes_in_memory
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.breadcrumb
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.editors.PerformerEditor.PerformerEditor.PerformerEditor.has_target
    :noindex:
 

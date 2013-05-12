@@ -9,9 +9,6 @@ scoremanagertools.proxies.MaterialPackageProxy
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.breadcrumb
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.directory_path
    :noindex:
 

@@ -9,9 +9,6 @@ scoremanagertools.selectors.RhythmMakerClassNameSelector
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.selectors.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.breadcrumb
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.storage_format
    :noindex:
 

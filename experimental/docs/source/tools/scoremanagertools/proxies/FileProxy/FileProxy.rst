@@ -9,9 +9,6 @@ scoremanagertools.proxies.FileProxy
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.breadcrumb
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy.exists
    :noindex:
 

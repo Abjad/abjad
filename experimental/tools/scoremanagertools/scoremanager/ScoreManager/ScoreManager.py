@@ -72,7 +72,7 @@ class ScoreManager(ScoreManagerObject):
         type(self).__init__(self)
         self._io.assign_user_input(user_input=user_input)
         self._session.cache_breadcrumbs(cache=cache)
-        self._session.push_breadcrumb(self.breadcrumb)
+        self._session.push_breadcrumb(self._breadcrumb)
         run_main_menu = True
         while True:
             self._session.push_breadcrumb(self.score_status_string)
@@ -110,7 +110,7 @@ class ScoreManager(ScoreManagerObject):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def breadcrumb(self):
+    def _breadcrumb(self):
         return 'scores'
 
     @property

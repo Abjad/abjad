@@ -12,9 +12,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.editors.ObjectInventoryEditor.ObjectInventoryEditor.ObjectInventoryEditor.attributes_in_memory
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.editors.ObjectInventoryEditor.ObjectInventoryEditor.ObjectInventoryEditor.breadcrumb
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.editors.ObjectInventoryEditor.ObjectInventoryEditor.ObjectInventoryEditor.has_target
    :noindex:
 

@@ -21,7 +21,7 @@ class InstrumentationEditor(ListEditor):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def breadcrumb(self):
+    def _breadcrumb(self):
         return self.target_name or 'performers'
 
     @property

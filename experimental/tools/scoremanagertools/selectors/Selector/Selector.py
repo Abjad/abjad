@@ -35,7 +35,7 @@ class Selector(ScoreManagerObject):
         self._io.assign_user_input(user_input=user_input)
         self._session.cache_breadcrumbs(cache=cache)
         while True:
-            self._session.push_breadcrumb(self.breadcrumb)
+            self._session.push_breadcrumb(self._breadcrumb)
             menu = self._make_main_menu(head=head)
             result = menu._run(clear=clear)
             if self._session.backtrack():
@@ -52,7 +52,7 @@ class Selector(ScoreManagerObject):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def breadcrumb(self):
+    def _breadcrumb(self):
         if getattr(self, 'explicit_breadcrumb', None):
             return self.explicit_breadcrumb
         elif hasattr(self, 'space_delimited_lowercase_target_name'):

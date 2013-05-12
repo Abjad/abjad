@@ -7,7 +7,7 @@ def test_MusicSpecifierEditor_public_attributes_01():
 
     editor = scoremanagertools.editors.MusicSpecifierEditor()
 
-    assert editor.breadcrumb == 'music specifier'
+    assert editor._breadcrumb == 'music specifier'
     assert not editor.has_target
     assert editor.target is None
     assert editor.target_attribute_tokens == [
@@ -51,7 +51,7 @@ def test_MusicSpecifierEditor_public_attributes_02():
 
     editor = scoremanagertools.editors.MusicSpecifierEditor(target=ms)
 
-    assert editor.breadcrumb == 'music specifier'
+    assert editor._breadcrumb == 'music specifier'
     assert editor.has_target
     assert editor.target is ms
     assert editor.target_attribute_tokens == [

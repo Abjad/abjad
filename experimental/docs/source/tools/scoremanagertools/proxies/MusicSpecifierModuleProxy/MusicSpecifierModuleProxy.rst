@@ -9,9 +9,6 @@ scoremanagertools.proxies.MusicSpecifierModuleProxy
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.breadcrumb
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.editor
    :noindex:
 

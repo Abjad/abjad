@@ -9,9 +9,6 @@ scoremanagertools.proxies.PackageProxy
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.breadcrumb
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.directory_path
    :noindex:
 

@@ -9,9 +9,6 @@ scoremanagertools.selectors.OverrideHandlerSelector
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.breadcrumb
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector.storage_format
    :noindex:
 

@@ -9,7 +9,7 @@ class ParameterSpecifierCreationWizard(Wizard):
     def _run(self, cache=False, clear=True, head=None, user_input=None):
         self._io.assign_user_input(user_input=user_input)
         self._session.cache_breadcrumbs(cache=cache)
-        self._session.push_breadcrumb(self.breadcrumb)
+        self._session.push_breadcrumb(self._breadcrumb)
         selector = selectors.ParameterSpecifierClassNameSelector(session=self._session)
         self._session.push_backtrack()
         target_class_name = selector._run()
@@ -34,7 +34,7 @@ class ParameterSpecifierCreationWizard(Wizard):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def breadcrumb(self):
+    def _breadcrumb(self):
         return 'parameter specifier creation wizard'
 
     ### PUBLIC METHODS ###

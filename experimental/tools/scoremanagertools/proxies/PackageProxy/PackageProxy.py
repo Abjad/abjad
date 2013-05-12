@@ -26,7 +26,7 @@ class PackageProxy(DirectoryProxy):
         self._io.assign_user_input(user_input=user_input)
         self._session.cache_breadcrumbs(cache=cache)
         while True:
-            self._session.push_breadcrumb(self.breadcrumb)
+            self._session.push_breadcrumb(self._breadcrumb)
             menu = self._make_main_menu()
             result = menu._run(clear=clear)
             if self._session.backtrack(source=self._backtracking_source):

@@ -9,9 +9,6 @@ scoremanagertools.selectors.PackageContentSelector
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.breadcrumb
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector.storage_format
    :noindex:
 

@@ -23,7 +23,7 @@ class MusicContributionSpecifierEditor(ObjectInventoryEditor):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def breadcrumb(self):
+    def _breadcrumb(self):
         if self.target:
             return self.target.one_line_menuing_summary
         return 'unknown contribution'

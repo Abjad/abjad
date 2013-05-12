@@ -11,7 +11,7 @@ class ReservoirStartHelperCreationWizard(Wizard):
         self._session.cache_breadcrumbs(cache=cache)
         while True:
             function_application_pairs = []
-            self._session.push_breadcrumb(self.breadcrumb)
+            self._session.push_breadcrumb(self._breadcrumb)
             selector = selectors.ReservoirStartHelperSelector(session=self._session)
             self._session.push_backtrack()
             function_name = selector._run(clear=clear)
@@ -37,7 +37,7 @@ class ReservoirStartHelperCreationWizard(Wizard):
     ### READ-ONLY PROPERTIES ###
 
     @property
-    def breadcrumb(self):
+    def _breadcrumb(self):
         return 'reservoir start helpers creation wizard'
 
     ### PUBLIC METHODS ###

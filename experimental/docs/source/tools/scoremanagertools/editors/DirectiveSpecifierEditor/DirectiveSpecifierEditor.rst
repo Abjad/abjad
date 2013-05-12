@@ -12,9 +12,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.attributes_in_memory
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.breadcrumb
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.editors.DirectiveSpecifierEditor.DirectiveSpecifierEditor.DirectiveSpecifierEditor.has_target
    :noindex:
 

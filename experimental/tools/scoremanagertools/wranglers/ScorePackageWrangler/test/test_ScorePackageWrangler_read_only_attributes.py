@@ -9,7 +9,7 @@ def test_ScorePackageWrangler_read_only_attributes_01():
     '''Breadcrumb.
     '''
 
-    assert wrangler.breadcrumb == 'scores'
+    assert wrangler._breadcrumb == 'scores'
 
 
 def test_ScorePackageWrangler_read_only_attributes_02():

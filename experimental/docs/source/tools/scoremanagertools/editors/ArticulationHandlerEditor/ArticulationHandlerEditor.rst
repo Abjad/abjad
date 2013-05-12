@@ -12,9 +12,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.attributes_in_memory
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.breadcrumb
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.editors.ArticulationHandlerEditor.ArticulationHandlerEditor.ArticulationHandlerEditor.has_target
    :noindex:
 

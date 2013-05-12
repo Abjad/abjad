@@ -9,9 +9,6 @@ scoremanagertools.wizards.Wizard
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.breadcrumb
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard.storage_format
    :noindex:
 

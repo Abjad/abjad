@@ -28,6 +28,10 @@ class StylesheetFileWrangler(FileWrangler):
     ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
+    def _breadcrumb(self):
+        return 'stylesheets'
+
+    @property
     def _temporary_asset_name(self):
         return '__temporary_stylesheet.ly'
 
@@ -65,19 +69,6 @@ class StylesheetFileWrangler(FileWrangler):
         '''
         from experimental.tools import scoremanagertools
         return scoremanagertools.proxies.StylesheetFileProxy
-
-    @property
-    def breadcrumb(self):
-        '''Stylesheet file wrangler breadcrumb:
-
-        ::
-
-            >>> wrangler.breadcrumb
-            'stylesheets'
-
-        Return string.
-        '''
-        return 'stylesheets'
 
     # TODO: write test; also rename to something general without 'stylehsset' in name
     @property

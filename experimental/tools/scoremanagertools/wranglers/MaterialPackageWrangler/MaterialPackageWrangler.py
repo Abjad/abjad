@@ -24,6 +24,12 @@ class MaterialPackageWrangler(PackageWrangler):
         self._material_package_maker_wrangler = \
             scoremanagertools.wranglers.MaterialPackageMakerWrangler(session=self._session)
 
+    ### READ-ONLY PRIVATE PROPERTIES ###
+
+    @property
+    def _breadcrumb(self):
+        return 'materials'
+
     ### PRIVATE METHODS ###
 
     def _handle_main_menu_result(self, result):
@@ -62,10 +68,6 @@ class MaterialPackageWrangler(PackageWrangler):
     def asset_proxy_class(self):
         from experimental.tools import scoremanagertools
         return scoremanagertools.proxies.PackageProxy
-
-    @property
-    def breadcrumb(self):
-        return 'materials'
 
     @property
     def material_package_maker_wrangler(self):

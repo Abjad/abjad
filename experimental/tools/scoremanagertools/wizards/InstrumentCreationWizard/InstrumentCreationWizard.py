@@ -16,7 +16,7 @@ class InstrumentCreationWizard(Wizard):
     def _run(self, cache=False, clear=True, head=None, user_input=None):
         self._io.assign_user_input(user_input=user_input)
         self._session.cache_breadcrumbs(cache=cache)
-        self._session.push_breadcrumb(self.breadcrumb)
+        self._session.push_breadcrumb(self._breadcrumb)
         kwargs = {'session': self._session, 'is_ranged': self.is_ranged}
         selector = selectors.InstrumentToolsInstrumentNameSelector(**kwargs)
         self._session.push_backtrack()
@@ -47,7 +47,7 @@ class InstrumentCreationWizard(Wizard):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def breadcrumb(self):
+    def _breadcrumb(self):
         return 'instrument creation wiard'
 
     ### PUBLIC METHODS ###

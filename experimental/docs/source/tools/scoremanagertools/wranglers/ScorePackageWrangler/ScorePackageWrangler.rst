@@ -15,9 +15,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.asset_proxy_class
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.breadcrumb
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.built_in_asset_container_directory_paths
    :noindex:
 

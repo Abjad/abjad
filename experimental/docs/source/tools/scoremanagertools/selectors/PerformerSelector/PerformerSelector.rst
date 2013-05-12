@@ -9,9 +9,6 @@ scoremanagertools.selectors.PerformerSelector
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.selectors.PerformerSelector.PerformerSelector.PerformerSelector.breadcrumb
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.PerformerSelector.PerformerSelector.PerformerSelector.storage_format
    :noindex:
 

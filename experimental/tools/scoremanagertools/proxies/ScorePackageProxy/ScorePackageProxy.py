@@ -73,6 +73,10 @@ class ScorePackageProxy(PackageProxy):
     def _backtracking_source(self):
         return 'score'
 
+    @property
+    def _breadcrumb(self):
+        return self.annotated_title
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
@@ -81,10 +85,6 @@ class ScorePackageProxy(PackageProxy):
             return self.title_with_year
         else:
             return self.title
-
-    @property
-    def breadcrumb(self):
-        return self.annotated_title
 
     @property
     def composer(self):

@@ -9,9 +9,6 @@ scoremanagertools.selectors.PitchClassTransformSelector
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.breadcrumb
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.storage_format
    :noindex:
 

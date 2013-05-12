@@ -9,9 +9,6 @@ scoremanagertools.proxies.MusicPackageProxy
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.MusicPackageProxy.MusicPackageProxy.MusicPackageProxy.breadcrumb
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.MusicPackageProxy.MusicPackageProxy.MusicPackageProxy.directory_path
    :noindex:
 

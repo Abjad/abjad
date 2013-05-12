@@ -56,7 +56,7 @@ class ListEditor(InteractiveEditor):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def breadcrumb(self):
+    def _breadcrumb(self):
         return self.target_name or self.space_delimited_lowercase_target_class_name
 
     @property

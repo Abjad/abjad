@@ -9,9 +9,6 @@ scoremanagertools.selectors.StaffHandlerSelector
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.breadcrumb
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector.storage_format
    :noindex:
 

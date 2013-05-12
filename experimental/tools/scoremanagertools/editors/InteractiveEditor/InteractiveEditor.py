@@ -25,6 +25,12 @@ class InteractiveEditor(ScoreManagerObject):
             summary = 'target={!r}'.format(self.target)
         return '{}({})'.format(self._class_name, summary)
 
+    ### READ-ONLY PRIVATE PROPERTIES ###
+
+    @property
+    def _breadcrumb(self):
+        return self.target_name or self.space_delimited_lowercase_target_class_name
+
     ### PRIVATE METHODS ###
 
     def _handle_main_menu_result(self, result):
@@ -57,7 +63,7 @@ class InteractiveEditor(ScoreManagerObject):
         is_autoadvancing=False, is_autostarting=False, user_input=None):
         self._io.assign_user_input(user_input=user_input)
         self._session.cache_breadcrumbs(cache=cache)
-        self._session.push_breadcrumb(self.breadcrumb)
+        self._session.push_breadcrumb(self._breadcrumb)
         self._session.push_backtrack()
         self.conditionally_initialize_target()
         self._session.pop_backtrack()
@@ -69,7 +75,7 @@ class InteractiveEditor(ScoreManagerObject):
         if is_autoadding:
             self._session.is_autoadding = True
         while True:
-            breadcrumb = breadcrumb or self.breadcrumb
+            breadcrumb = breadcrumb or self._breadcrumb
             self._session.push_breadcrumb(breadcrumb=breadcrumb)
             if self._session.is_autoadding:
                 menu = self._make_main_menu()
@@ -112,10 +118,6 @@ class InteractiveEditor(ScoreManagerObject):
     @property
     def attributes_in_memory(self):
         return self._attributes_in_memory
-
-    @property
-    def breadcrumb(self):
-        return self.target_name or self.space_delimited_lowercase_target_class_name
 
     @property
     def has_target(self):

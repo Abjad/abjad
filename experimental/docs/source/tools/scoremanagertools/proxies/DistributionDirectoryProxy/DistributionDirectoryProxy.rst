@@ -9,9 +9,6 @@ scoremanagertools.proxies.DistributionDirectoryProxy
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.DistributionDirectoryProxy.DistributionDirectoryProxy.DistributionDirectoryProxy.breadcrumb
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.DistributionDirectoryProxy.DistributionDirectoryProxy.DistributionDirectoryProxy.exists
    :noindex:
 

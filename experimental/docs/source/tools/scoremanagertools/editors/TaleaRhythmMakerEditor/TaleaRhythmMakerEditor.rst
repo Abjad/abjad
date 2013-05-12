@@ -12,9 +12,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.attributes_in_memory
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.breadcrumb
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.has_target
    :noindex:
 

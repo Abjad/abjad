@@ -7,7 +7,7 @@ def test_MaterialPackageProxy_read_only_attributes_01():
     '''
 
     mpp = scoremanagertools.proxies.MaterialPackageProxy('built_in_materials.red_numbers')
-    assert     mpp.breadcrumb == 'red numbers'
+    assert     mpp._breadcrumb == 'red numbers'
     assert not mpp.has_illustration_builder_module
     assert not mpp.has_illustration_ly
     assert not mpp.has_illustration_pdf
@@ -69,7 +69,7 @@ def test_MaterialPackageProxy_read_only_attributes_02():
     '''
 
     mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker('built_in_materials.red_sargasso_measures')
-    assert     mpp.breadcrumb == 'red sargasso measures'
+    assert     mpp._breadcrumb == 'red sargasso measures'
     assert not mpp.has_illustration_builder_module
     assert     mpp.has_illustration_ly
     assert     mpp.has_illustration_pdf
@@ -135,7 +135,7 @@ def test_MaterialPackageProxy_read_only_attributes_03():
     '''
 
     mpp = scoremanagertools.proxies.MaterialPackageProxy('built_in_materials.red_notes')
-    assert     mpp.breadcrumb == 'red notes'
+    assert     mpp._breadcrumb == 'red notes'
     assert     mpp.has_illustration_builder_module
     assert     mpp.has_illustration_ly
     assert     mpp.has_illustration_pdf

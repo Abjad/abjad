@@ -38,7 +38,7 @@ class PitchClassTransformCreationWizard(Wizard):
     ### READ-ONLY PROPERTIES ###
 
     @property
-    def breadcrumb(self):
+    def _breadcrumb(self):
         return 'pitch class transform creation wizard'
 
     ### PUBLIC METHODS ###
@@ -52,9 +52,9 @@ class PitchClassTransformCreationWizard(Wizard):
                     string = string + str(function_arguments[0])
                 result.append(string)
             result = ''.join(result)
-            return '{} - {}'.format(self.breadcrumb, result)
+            return '{} - {}'.format(self._breadcrumb, result)
         else:
-            return self.breadcrumb
+            return self._breadcrumb
 
     def get_explicit_breadcrumb(self, function_application_pairs):
         if function_application_pairs:

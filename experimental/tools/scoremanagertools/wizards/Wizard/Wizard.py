@@ -19,7 +19,7 @@ class Wizard(ScoreManagerObject):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @abc.abstractproperty
-    def breadcrumb(self):
+    def _breadcrumb(self):
         pass
 
     ### PUBLIC METHODS ###

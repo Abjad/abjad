@@ -12,9 +12,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.attributes_in_memory
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.breadcrumb
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.has_target
    :noindex:
 

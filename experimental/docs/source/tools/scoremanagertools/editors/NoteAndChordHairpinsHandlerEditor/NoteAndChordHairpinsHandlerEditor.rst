@@ -12,9 +12,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.attributes_in_memory
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.breadcrumb
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.has_target
    :noindex:
 

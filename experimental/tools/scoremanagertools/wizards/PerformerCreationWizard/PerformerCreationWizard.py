@@ -21,7 +21,7 @@ class PerformerCreationWizard(Wizard):
         try_again = False
         performers = []
         while True:
-            self._session.push_breadcrumb(self.breadcrumb)
+            self._session.push_breadcrumb(self._breadcrumb)
             kwargs = {'session': self._session, 'is_ranged': self.is_ranged}
             selector = selectors.ScoreToolsPerformerNameSelector(**kwargs)
             self._session.push_backtrack()
@@ -35,7 +35,7 @@ class PerformerCreationWizard(Wizard):
                 performer_names = [result]
             performers = []
             for performer_name in performer_names:
-                self._session.push_breadcrumb(self.breadcrumb)
+                self._session.push_breadcrumb(self._breadcrumb)
                 self._session.push_backtrack()
                 performer = scoretools.Performer(performer_name)
                 self.initialize_performer_interactively(performer)
@@ -73,7 +73,7 @@ class PerformerCreationWizard(Wizard):
     ### READ-ONLY PROPERTIES ###
 
     @property
-    def breadcrumb(self):
+    def _breadcrumb(self):
         return 'instrument creation wizard'
 
     ### PUBLIC METHODS ###

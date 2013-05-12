@@ -21,6 +21,10 @@ class MusicSpecifierModuleWrangler(ModuleWrangler):
     ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
+    def _breadcrumb(self):
+        return 'music specifiers'
+
+    @property
     def _temporary_asset_name(self):
         return '__temporary_specifier_module.py'
 
@@ -58,10 +62,6 @@ class MusicSpecifierModuleWrangler(ModuleWrangler):
     @property
     def asset_proxy_class(self):
         return MusicSpecifierModuleProxy
-
-    @property
-    def breadcrumb(self):
-        return 'music specifiers'
 
     ### PUBLIC METHODS ###
 

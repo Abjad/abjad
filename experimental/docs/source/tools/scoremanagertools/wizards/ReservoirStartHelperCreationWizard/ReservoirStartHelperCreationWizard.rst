@@ -9,9 +9,6 @@ scoremanagertools.wizards.ReservoirStartHelperCreationWizard
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.wizards.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.breadcrumb
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.wizards.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.storage_format
    :noindex:
 

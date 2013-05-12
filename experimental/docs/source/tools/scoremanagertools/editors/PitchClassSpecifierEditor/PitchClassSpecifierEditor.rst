@@ -12,9 +12,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.attributes_in_memory
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.breadcrumb
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor.has_target
    :noindex:
 

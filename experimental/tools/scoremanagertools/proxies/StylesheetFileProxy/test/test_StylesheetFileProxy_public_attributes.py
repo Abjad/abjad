@@ -8,7 +8,7 @@ def test_StylesheetFileProxy_public_attributes_01():
 
     proxy = scoremanagertools.proxies.StylesheetFileProxy()
 
-    assert proxy.breadcrumb == 'stylesheet file proxy'
+    assert proxy._breadcrumb == 'stylesheet file proxy'
     assert not proxy.exists
     assert not proxy.file_lines
     assert proxy._generic_class_name == 'stylesheet'
@@ -34,7 +34,7 @@ def test_StylesheetFileProxy_public_attributes_02():
         'stylesheets', file_name)
     proxy = scoremanagertools.proxies.StylesheetFileProxy(file_path)
 
-    assert proxy.breadcrumb == 'clean_letter_14.ly'
+    assert proxy._breadcrumb == 'clean_letter_14.ly'
     assert proxy.exists
     assert proxy.file_lines
     assert proxy._generic_class_name == 'stylesheet'

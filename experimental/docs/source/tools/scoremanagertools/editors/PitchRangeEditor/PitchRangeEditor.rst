@@ -12,9 +12,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.editors.PitchRangeEditor.PitchRangeEditor.PitchRangeEditor.attributes_in_memory
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.editors.PitchRangeEditor.PitchRangeEditor.PitchRangeEditor.breadcrumb
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.editors.PitchRangeEditor.PitchRangeEditor.PitchRangeEditor.has_target
    :noindex:
 

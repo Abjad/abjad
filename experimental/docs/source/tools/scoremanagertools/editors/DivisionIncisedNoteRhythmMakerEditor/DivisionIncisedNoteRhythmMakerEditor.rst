@@ -12,9 +12,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.editors.DivisionIncisedNoteRhythmMakerEditor.DivisionIncisedNoteRhythmMakerEditor.DivisionIncisedNoteRhythmMakerEditor.attributes_in_memory
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.editors.DivisionIncisedNoteRhythmMakerEditor.DivisionIncisedNoteRhythmMakerEditor.DivisionIncisedNoteRhythmMakerEditor.breadcrumb
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.editors.DivisionIncisedNoteRhythmMakerEditor.DivisionIncisedNoteRhythmMakerEditor.DivisionIncisedNoteRhythmMakerEditor.has_target
    :noindex:
 

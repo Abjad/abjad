@@ -12,9 +12,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.attributes_in_memory
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.breadcrumb
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.has_target
    :noindex:
 

@@ -9,9 +9,6 @@ scoremanagertools.materialpackagemakers.PitchRangeInventoryMaterialPackageMaker
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.materialpackagemakers.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.breadcrumb
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.materialpackagemakers.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.PitchRangeInventoryMaterialPackageMaker.directory_path
    :noindex:
 

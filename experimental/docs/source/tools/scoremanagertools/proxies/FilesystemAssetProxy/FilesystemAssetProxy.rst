@@ -9,9 +9,6 @@ scoremanagertools.proxies.FilesystemAssetProxy
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy.FilesystemAssetProxy.FilesystemAssetProxy.breadcrumb
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy.FilesystemAssetProxy.FilesystemAssetProxy.exists
    :noindex:
 

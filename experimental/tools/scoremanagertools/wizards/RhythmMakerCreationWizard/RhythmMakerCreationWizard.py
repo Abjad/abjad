@@ -12,5 +12,5 @@ class RhythmMakerCreationWizard(HandlerCreationWizard):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def breadcrumb(self):
+    def _breadcrumb(self):
         return 'time-token maker creation wizard'

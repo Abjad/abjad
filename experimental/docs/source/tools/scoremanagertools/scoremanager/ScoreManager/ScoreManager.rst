@@ -9,9 +9,6 @@ scoremanagertools.scoremanager.ScoreManager
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.breadcrumb
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.material_package_maker_wrangler
    :noindex:
 

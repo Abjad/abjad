@@ -109,7 +109,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         breadcrumb = self._session.pop_breadcrumb(rollback=rollback)
         self._session.cache_breadcrumbs(cache=cache)
         while True:
-            self._session.push_breadcrumb(self.breadcrumb)
+            self._session.push_breadcrumb(self._breadcrumb)
             menu = self._make_main_menu(head=head)
             result = menu._run(clear=clear)
             if self._session.backtrack():

@@ -9,9 +9,6 @@ scoremanagertools.selectors.TrillHandlerSelector
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.breadcrumb
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector.storage_format
    :noindex:
 

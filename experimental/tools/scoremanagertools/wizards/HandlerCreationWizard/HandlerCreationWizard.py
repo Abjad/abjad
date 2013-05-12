@@ -13,7 +13,7 @@ class HandlerCreationWizard(Wizard):
     def _run(self, cache=False, clear=True, head=None, user_input=None):
         self._io.assign_user_input(user_input=user_input)
         self._session.cache_breadcrumbs(cache=cache)
-        self._session.push_breadcrumb(self.breadcrumb)
+        self._session.push_breadcrumb(self._breadcrumb)
         selector = self.handler_class_name_selector(session=self._session)
         handler_class_name = selector._run()
         if not self._session.backtrack():

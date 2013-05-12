@@ -13,6 +13,12 @@ class ScorePackageWrangler(PackageWrangler):
             built_in_asset_container_package_paths=[],
             session=session)
 
+    ### READ-ONLY PRIVATE PROPERTIES ###
+
+    @property
+    def _breadcrumb(self):
+        return 'scores'
+
     ### PRIVATE METHODS ###
 
     def _handle_main_menu_result(self):
@@ -32,10 +38,6 @@ class ScorePackageWrangler(PackageWrangler):
     @property
     def asset_proxy_class(self):
         return ScorePackageProxy
-
-    @property
-    def breadcrumb(self):
-        return 'scores'
 
     @property
     def current_asset_container_directory_path(self):

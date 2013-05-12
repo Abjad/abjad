@@ -9,7 +9,7 @@ def test_ModuleProxy_public_attributes_01():
 
     proxy = scoremanagertools.proxies.ModuleProxy()
 
-    assert proxy.breadcrumb == 'module proxy'
+    assert proxy._breadcrumb == 'module proxy'
     assert not proxy.exists
     assert not proxy.file_lines
     assert proxy._generic_class_name == 'module'
@@ -40,7 +40,7 @@ def test_ModuleProxy_public_attributes_02():
         configuration.built_in_materials_package_path, 'red_notes', 'material_definition'])
     proxy = scoremanagertools.proxies.ModuleProxy(module_path=module_path)
 
-    assert proxy.breadcrumb == 'material_definition.py'
+    assert proxy._breadcrumb == 'material_definition.py'
     assert proxy.exists
     assert proxy.file_lines
     assert proxy._generic_class_name == 'module'

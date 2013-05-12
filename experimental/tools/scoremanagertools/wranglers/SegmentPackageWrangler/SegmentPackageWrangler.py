@@ -16,6 +16,15 @@ class SegmentPackageWrangler(PackageWrangler):
             built_in_asset_container_package_paths= [self.configuration.user_sketches_package_path],
             session=session)
 
+    ### READ-ONLY PRIVATE PROPERTIES ###
+
+    @property
+    def _breadcrumb(self):
+        if self._session.is_in_score:
+            return 'segments'
+        else:
+            return 'sketches'
+
     ### PRIVATE METHODS ###
 
     def _handle_main_menu_result(self, result):
@@ -38,13 +47,6 @@ class SegmentPackageWrangler(PackageWrangler):
     @property
     def asset_proxy_class(self):
         return SegmentPackageProxy
-
-    @property
-    def breadcrumb(self):
-        if self._session.is_in_score:
-            return 'segments'
-        else:
-            return 'sketches'
 
     ### PUBLIC METHODS ###
 

@@ -9,9 +9,6 @@ scoremanagertools.selectors.DynamicHandlerPackageSelector
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.selectors.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.breadcrumb
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.storage_format
    :noindex:
 

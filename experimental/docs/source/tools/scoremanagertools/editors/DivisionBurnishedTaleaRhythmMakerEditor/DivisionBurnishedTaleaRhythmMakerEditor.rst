@@ -12,9 +12,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.editors.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.attributes_in_memory
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.editors.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.breadcrumb
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.editors.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.has_target
    :noindex:
 

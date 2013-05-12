@@ -10,7 +10,7 @@ def test_MaterialPackageWrangler_read_only_attributes_01():
     '''Breadcrumb.
     '''
 
-    assert wrangler.breadcrumb == 'materials'
+    assert wrangler._breadcrumb == 'materials'
 
 
 def test_MaterialPackageWrangler_read_only_attributes_02():

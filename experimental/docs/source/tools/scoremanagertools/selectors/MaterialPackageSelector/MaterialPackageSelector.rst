@@ -9,9 +9,6 @@ scoremanagertools.selectors.MaterialPackageSelector
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.breadcrumb
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector.storage_format
    :noindex:
 

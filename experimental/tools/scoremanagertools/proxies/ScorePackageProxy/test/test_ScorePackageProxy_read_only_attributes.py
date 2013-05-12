@@ -33,7 +33,7 @@ def test_ScorePackageProxy_read_only_attributes_01():
 #    instrumentation.performers.append(performer_2)
 
     assert score_proxy.annotated_title == 'Example Score I (2013)'
-    assert score_proxy.breadcrumb == 'Example Score I (2013)'
+    assert score_proxy._breadcrumb == 'Example Score I (2013)'
     assert score_proxy.composer is None
     # TODO: create Example Score I instrumentation
     #assert score_proxy.instrumentation == instrumentation

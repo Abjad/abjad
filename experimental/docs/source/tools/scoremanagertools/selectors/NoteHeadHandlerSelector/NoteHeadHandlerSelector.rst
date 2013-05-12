@@ -9,9 +9,6 @@ scoremanagertools.selectors.NoteHeadHandlerSelector
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.selectors.NoteHeadHandlerSelector.NoteHeadHandlerSelector.NoteHeadHandlerSelector.breadcrumb
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.NoteHeadHandlerSelector.NoteHeadHandlerSelector.NoteHeadHandlerSelector.storage_format
    :noindex:
 
