@@ -166,14 +166,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     
     ### PUBLIC METHODS ###
 
-    def fix_visible_assets(self, is_interactive=True):
-        results = []
-        for asset_proxy in self.get_visible_asset_proxies():
-            results.append(asset_proxy.fix(is_interactive=is_interactive))
-            if is_interactive:
-                asset_proxy.profile()
-        return results
-
     def get_asset_container_proxies(self, head=None):
         result = []
         result.extend(self.get_score_external_asset_container_proxies(head=head))

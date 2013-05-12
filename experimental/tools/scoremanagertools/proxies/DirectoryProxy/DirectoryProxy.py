@@ -18,9 +18,6 @@ class DirectoryProxy(FilesystemAssetProxy):
 
     ### PUBLIC METHODS ###
 
-    def fix(self, is_interactive=False):
-        pass
-
     def get_filesystem_path_interactively(self):
         getter = self._io.make_getter(where=self._where)
         getter.append_string('directory path')

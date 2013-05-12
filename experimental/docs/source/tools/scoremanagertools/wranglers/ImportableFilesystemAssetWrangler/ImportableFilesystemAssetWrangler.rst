@@ -39,9 +39,6 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableFilesystemAssetWrangler.ImportableFilesystemAssetWrangler.ImportableFilesystemAssetWrangler.fix_visible_assets
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ImportableFilesystemAssetWrangler.ImportableFilesystemAssetWrangler.ImportableFilesystemAssetWrangler.get_asset_container_proxies
    :noindex:
 

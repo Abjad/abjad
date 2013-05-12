@@ -59,6 +59,14 @@ class ScorePackageWrangler(PackageWrangler):
 
     ### PUBLIC METHODS ###
 
+    def fix_visible_assets(self, is_interactive=True):
+        results = []
+        for asset_proxy in self.get_visible_asset_proxies():
+            results.append(asset_proxy.fix(is_interactive=is_interactive))
+            if is_interactive:
+                asset_proxy.profile()
+        return results
+
     def get_visible_asset_proxies(self, head=None):
         result = []
         scores_to_show = self._session.scores_to_show

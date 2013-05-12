@@ -50,8 +50,5 @@ class StylesheetFileProxy(FileProxy):
 
     ### PUBLIC METHODS ###
 
-    def fix(self):
-        self.print_not_yet_implemented()
-
     def profile(self):
         self.print_not_yet_implemented()

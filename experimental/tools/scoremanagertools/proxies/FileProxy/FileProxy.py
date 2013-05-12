@@ -58,9 +58,6 @@ class FileProxy(FilesystemAssetProxy):
     def edit(self):
         os.system('vi + {}'.format(self.file_path))
 
-    def fix(self):
-        pass
-
     def has_line(self, line):
         file_reference = open(self.file_path, 'r')
         for file_line in file_reference.readlines():

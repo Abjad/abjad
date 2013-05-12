@@ -127,10 +127,6 @@ class FilesystemAssetProxy(ScoreManagerObject):
         self._io.proceed('asset copied.')
 
     @abc.abstractmethod
-    def fix(self):
-        pass
-
-    @abc.abstractmethod
     def make_empty_asset(self, is_interactive=False):
         pass
 

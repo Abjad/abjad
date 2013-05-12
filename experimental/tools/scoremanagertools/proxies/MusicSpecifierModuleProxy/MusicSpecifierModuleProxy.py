@@ -50,9 +50,6 @@ class MusicSpecifierModuleProxy(ModuleProxy):
         self._target_in_memory = self.editor.target
         self.write_target_to_disk(self.target_in_memory)
 
-    def fix(self):
-        self.print_not_yet_implemented()
-
     def load_target_into_memory(self):
         self._target_in_memory = self.read_target_from_disk() or self.target_class()
 
