@@ -386,12 +386,12 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             result = os.path.join(self.built_in_asset_container_directory_paths[0], result)
             return result
 
-    def svn_add(self, is_interactive=True):
+    def svn_add_visible_assets(self, is_interactive=True):
         for asset_proxy in self.get_visible_asset_proxies():
             asset_proxy.svn_add(is_interactive=False)
         self._io.proceed(is_interactive=is_interactive)
 
-    def svn_ci(self, is_interactive=True):
+    def svn_ci_visible_assets(self, is_interactive=True):
         getter = self._io.make_getter(where=self._where)
         getter.append_string('commit message')
         commit_message = getter._run()
@@ -405,12 +405,12 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             asset_proxy.svn_ci(commit_message=commit_message, is_interactive=False)
         self._io.proceed(is_interactive=is_interactive)
 
-    def svn_st(self, is_interactive=True):
+    def svn_st_visible_assets(self, is_interactive=True):
         for asset_proxy in self.get_visible_asset_proxies():
             asset_proxy.svn_st(is_interactive=False)
         self._io.proceed(is_interactive=is_interactive)
 
-    def svn_up(self, is_interactive=True):
+    def svn_up_visible_assets(self, is_interactive=True):
         for asset_proxy in self.get_visible_asset_proxies():
             asset_proxy.svn_up(is_interactive=False)
         self._io.proceed(is_interactive=is_interactive)
