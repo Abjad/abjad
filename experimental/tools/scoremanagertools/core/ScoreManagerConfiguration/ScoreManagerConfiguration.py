@@ -84,6 +84,15 @@ class ScoreManagerConfiguration(Configuration):
                 'spec': 'string(default={!r})'.format(
                     os.path.join(self.configuration_directory_path, 'sketches'))
             },
+            'user_stylesheets_directory_path': {
+                'comment': [
+                    '',
+                    'Set to the directory where you house user-specific stylesheets.',
+                    'Defaults to $HOME/score_manager/stylesheets/.' 
+                ],
+                'spec': 'string(default={!r})'.format(
+                    os.path.join(self.configuration_directory_path, 'stylesheets'))
+            },
         }
         return options
 
@@ -375,3 +384,20 @@ class ScoreManagerConfiguration(Configuration):
         Return string.
         '''
         return os.path.basename(self.user_sketches_directory_path)
+
+    @property
+    def user_stylesheets_directory_path(self):
+        '''User stylesheets directory path:
+
+        ::
+
+            >>> configuration.user_stylesheets_directory_path
+            '.../score_manager/stylesheets'
+
+        (Output will vary according to configuration.)
+
+        Return string.
+        '''
+        return os.path.normpath(os.path.expanduser(
+            self._settings['user_stylesheets_directory_path']
+            ))
