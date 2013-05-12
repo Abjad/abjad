@@ -194,12 +194,12 @@ class ScoreManagerConfiguration(Configuration):
         return Configuration.storage_format.fget(self)
 
     @property
-    def system_editors_directory_path(self):
+    def built_in_editors_directory_path(self):
         '''Editors directory path:
 
         ::
 
-            >>> configuration.system_editors_directory_path
+            >>> configuration.built_in_editors_directory_path
             '.../abjad/experimental/tools/scoremanagertools/editors'
 
         Return string.
@@ -207,12 +207,12 @@ class ScoreManagerConfiguration(Configuration):
         return os.path.join(self.score_manager_tools_directory_path, 'editors')
 
     @property
-    def system_material_package_makers_directory_path(self):
+    def built_in_material_package_makers_directory_path(self):
         '''Makers directory path:
 
         ::
 
-            >>> configuration.system_material_package_makers_directory_path
+            >>> configuration.built_in_material_package_makers_directory_path
             '.../abjad/experimental/tools/scoremanagertools/materialpackagemakers'
 
         Return string.
@@ -246,12 +246,12 @@ class ScoreManagerConfiguration(Configuration):
         return os.path.basename(self.built_in_materials_directory_path)
 
     @property
-    def system_specifier_classes_directory_path(self):
+    def built_in_specifier_classes_directory_path(self):
         '''Specifier classes directory path:
 
         ::
 
-            >>> configuration.system_specifier_classes_directory_path
+            >>> configuration.built_in_specifier_classes_directory_path
             '.../abjad/experimental/tools/scoremanagertools/specifiers'
 
         Return string.

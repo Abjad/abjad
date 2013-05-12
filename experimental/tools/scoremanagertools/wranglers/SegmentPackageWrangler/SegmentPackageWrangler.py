@@ -9,7 +9,7 @@ class SegmentPackageWrangler(PackageWrangler):
 
     def __init__(self, session=None):
         PackageWrangler.__init__(self,
-            system_asset_container_package_paths= \
+            built_in_asset_container_package_paths= \
                 [self.configuration.user_sketches_package_path],
             asset_container_path_infix_parts= \
                 self.configuration._score_internal_segments_path_infix_parts,

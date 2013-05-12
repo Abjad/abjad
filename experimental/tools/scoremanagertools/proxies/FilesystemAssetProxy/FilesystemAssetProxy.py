@@ -243,12 +243,12 @@ class FilesystemAssetProxy(ScoreManagerObject):
     def touch(self):
         os.system('touch {}'.format(self.filesystem_path))
 
-    def write_boilerplate(self, boilerplate_filesystem_asset_name):
-        if not os.path.exists(boilerplate_filesystem_asset_name):
-            boilerplate_filesystem_asset_name = os.path.join(
-                self.boilerplate_directory_path, boilerplate_filesystem_asset_name)
-        if os.path.exists(boilerplate_filesystem_asset_name):
-            shutil.copyfile(boilerplate_filesystem_asset_name, self.filesystem_path)
+    def write_boilerplate(self, boilerplate_filebuilt_in_asset_name):
+        if not os.path.exists(boilerplate_filebuilt_in_asset_name):
+            boilerplate_filebuilt_in_asset_name = os.path.join(
+                self.boilerplate_directory_path, boilerplate_filebuilt_in_asset_name)
+        if os.path.exists(boilerplate_filebuilt_in_asset_name):
+            shutil.copyfile(boilerplate_filebuilt_in_asset_name, self.filesystem_path)
             return True
 
     def write_boilerplate_interactively(self, user_input=None):
@@ -256,11 +256,11 @@ class FilesystemAssetProxy(ScoreManagerObject):
         getter = self._io.make_getter(where=self._where)
         getter.append_underscore_delimited_lowercase_file_name('name of boilerplate asset')
         self._session.push_backtrack()
-        boilerplate_filesystem_asset_name = getter._run()
+        boilerplate_filebuilt_in_asset_name = getter._run()
         self._session.pop_backtrack()
         if self._session.backtrack():
             return
-        if self.write_boilerplate(boilerplate_filesystem_asset_name):
+        if self.write_boilerplate(boilerplate_filebuilt_in_asset_name):
             self._io.proceed('boilerplate asset copied.')
         else:
-            self._io.proceed('boilerplate asset {!r} does not exist.'.format(boilerplate_filesystem_asset_name))
+            self._io.proceed('boilerplate asset {!r} does not exist.'.format(boilerplate_filebuilt_in_asset_name))

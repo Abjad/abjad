@@ -33,7 +33,7 @@ def test_ScorePackageWrangler_read_only_attributes_04():
     '''Score-external asset container.
     '''
 
-    assert wrangler.list_system_asset_container_package_paths() == []
+    assert wrangler.list_built_in_asset_container_package_paths() == []
 
 
 def test_ScorePackageWrangler_read_only_attributes_05():
