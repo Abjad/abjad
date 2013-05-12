@@ -130,10 +130,6 @@ class FilesystemAssetProxy(ScoreManagerObject):
     def make_empty_asset(self, is_interactive=False):
         pass
 
-    @abc.abstractmethod
-    def profile(self):
-        pass
-
     def remove(self):
         if self.is_versioned:
             command = 'svn --force rm {}'.format(self.filesystem_path)

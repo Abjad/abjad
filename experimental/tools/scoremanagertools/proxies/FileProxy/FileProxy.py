@@ -74,8 +74,5 @@ class FileProxy(FilesystemAssetProxy):
             file_reference.close()
         self._io.proceed(is_interactive=is_interactive)
 
-    def profile(self):
-        pass
-
     def view(self):
         os.system('vi -R {}'.format(self.file_path))

@@ -340,10 +340,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def make_asset_interactively(self):
         pass
 
-    def profile_visible_assets(self):
-        for asset_proxy in self.get_visible_asset_proxies():
-            asset_proxy.profile()
-
     # TODO: write test
     def remove_assets_interactively(self, head=None):
         getter = self._io.make_getter(where=self._where)

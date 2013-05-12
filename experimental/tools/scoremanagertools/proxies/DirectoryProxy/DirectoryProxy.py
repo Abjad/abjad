@@ -50,9 +50,6 @@ class DirectoryProxy(FilesystemAssetProxy):
         self._io.display('')
         self._session.hide_next_redraw = True
 
-    def profile(self):
-        pass
-
     def run_py_test(self, prompt=True):
         proc = subprocess.Popen('py.test {}'.format(self.filesystem_path), shell=True, stdout=subprocess.PIPE)
         lines = [line.strip() for line in proc.stdout.readlines()]

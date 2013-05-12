@@ -44,11 +44,7 @@ class StylesheetFileProxy(FileProxy):
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
+    # TODO: change to class attribute
     @property
     def extension(self):
         return '.ly'
-
-    ### PUBLIC METHODS ###
-
-    def profile(self):
-        self.print_not_yet_implemented()

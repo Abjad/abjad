@@ -129,3 +129,7 @@ class ScorePackageWrangler(PackageWrangler):
         score_package_proxy.add_tag('title', title)
         score_package_proxy.year_of_completion = year
         self._session.push_breadcrumb(breadcrumb=breadcrumb, rollback=rollback)
+
+    def profile_visible_assets(self):
+        for asset_proxy in self.get_visible_asset_proxies():
+            asset_proxy.profile()
