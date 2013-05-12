@@ -90,6 +90,10 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
         return scoremanagertools.proxies.PackageProxy
 
     @property
+    def built_in_asset_container_package_paths(self):
+        return self._built_in_asset_container_package_paths
+
+    @property
     def current_asset_container_package_path(self):
         if self._session.is_in_score:
             parts = []
@@ -98,10 +102,6 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
             return '.'.join(parts)
         if self.list_built_in_asset_container_package_paths():
             return self.list_built_in_asset_container_package_paths()[0]
-
-    @property
-    def built_in_asset_container_package_paths(self):
-        return self._built_in_asset_container_package_paths
 
     @property
     def user_asset_container_package_paths(self):
@@ -127,6 +127,13 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
         result.extend(self.list_score_external_asset_package_paths(head=head))
         result.extend(self.list_score_internal_asset_package_paths(head=head))
         result.extend(self.list_user_asset_package_paths(head=head))
+        return result
+
+    def list_built_in_asset_container_package_paths(self, head=None):
+        result = []
+        for package_path in self.built_in_asset_container_package_paths:
+            if head is None or package_path.startswith(head):
+                result.append(package_path)
         return result
 
     # TODO: eventually remove altogether
@@ -169,13 +176,6 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
                             asset_container_package_path, package_name))
             else:
                 result.append(asset_container_package_path)
-        return result
-
-    def list_built_in_asset_container_package_paths(self, head=None):
-        result = []
-        for package_path in self.built_in_asset_container_package_paths:
-            if head is None or package_path.startswith(head):
-                result.append(package_path)
         return result
 
     def list_user_asset_container_package_paths(self, head=None):

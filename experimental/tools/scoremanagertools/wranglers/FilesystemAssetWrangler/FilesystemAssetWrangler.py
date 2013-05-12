@@ -134,18 +134,22 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
-    @abc.abstractproperty
-    def asset_proxy_class(self):
-        pass
+    @property
+    def asset_container_path_infix_parts(self):
+        return self._asset_container_path_infix_parts
 
     @property
     def asset_container_proxy_class(self):
         from experimental.tools import scoremanagertools
         return scoremanagertools.proxies.DirectoryProxy
 
+    @abc.abstractproperty
+    def asset_proxy_class(self):
+        pass
+
     @property
-    def asset_container_path_infix_parts(self):
-        return self._asset_container_path_infix_parts
+    def built_in_asset_container_directory_paths(self):
+        return self._built_in_asset_container_directory_paths
 
     @property
     def current_asset_container_directory_path(self):
@@ -157,10 +161,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             return os.path.join(*parts)
         if self.list_built_in_asset_container_directory_paths():
             return self.list_built_in_asset_container_directory_paths()[0]
-
-    @property
-    def built_in_asset_container_directory_paths(self):
-        return self._built_in_asset_container_directory_paths
 
     @property
     def user_asset_container_directory_paths(self):
@@ -251,6 +251,9 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         result.extend(self.list_user_asset_filesystem_paths(head=head))
         return result
 
+    def list_built_in_asset_container_directory_paths(self, head=None):
+        return self.built_in_asset_container_directory_paths[:]
+
     def list_score_directory_basenames(self, head=None):
         result = []
         for directory_entry in os.listdir(self.configuration.user_scores_directory_path):
@@ -323,9 +326,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         for filesystem_path in self.list_visible_asset_filesystem_paths(head=head):
             result.append(self._filesystem_path_to_space_delimited_lowercase_name(filesystem_path))
         return result
-
-    def list_built_in_asset_container_directory_paths(self, head=None):
-        return self.built_in_asset_container_directory_paths[:]
 
     def list_user_asset_container_directory_paths(self, head=None):
         return self.user_asset_container_directory_paths[:]

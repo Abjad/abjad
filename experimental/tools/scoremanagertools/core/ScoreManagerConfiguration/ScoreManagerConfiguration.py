@@ -100,6 +100,99 @@ class ScoreManagerConfiguration(Configuration):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
+    def built_in_editors_directory_path(self):
+        '''Editors directory path:
+
+        ::
+
+            >>> configuration.built_in_editors_directory_path
+            '.../abjad/experimental/tools/scoremanagertools/editors'
+
+        Return string.
+        '''
+        return os.path.join(self.score_manager_tools_directory_path, 'editors')
+
+    @property
+    def built_in_material_package_makers_directory_path(self):
+        '''Makers directory path:
+
+        ::
+
+            >>> configuration.built_in_material_package_makers_directory_path
+            '.../abjad/experimental/tools/scoremanagertools/materialpackagemakers'
+
+        Return string.
+        '''
+        return os.path.join(self.score_manager_tools_directory_path, 'materialpackagemakers')
+
+    @property
+    def built_in_materials_directory_path(self):
+        '''System materials directory path:
+
+        ::
+
+            >>> configuration.built_in_materials_directory_path
+            '.../abjad/experimental/built_in_materials'
+
+        Return string.
+        '''
+        return os.path.join(self.abjad_configuration.abjad_experimental_directory_path, 'built_in_materials')
+
+    @property
+    def built_in_materials_package_path(self):
+        '''System materials package path:
+
+        ::
+
+            >>> configuration.built_in_materials_package_path
+            'built_in_materials'
+
+        Return string.
+        '''
+        return os.path.basename(self.built_in_materials_directory_path)
+
+    @property
+    def built_in_specifier_classes_directory_path(self):
+        '''Specifier classes directory path:
+
+        ::
+
+            >>> configuration.built_in_specifier_classes_directory_path
+            '.../abjad/experimental/tools/scoremanagertools/specifiers'
+
+        Return string.
+        '''
+        return os.path.join(self.score_manager_tools_directory_path, 'specifiers')
+
+    @property
+    def built_in_specifiers_directory_path(self):
+        '''Score manager sketches directory path:
+
+        ::
+
+            >>> configuration.built_in_specifiers_directory_path
+            '.../abjad/experimental/built_in_specifiers'
+
+        Return string.
+        '''
+        return os.path.join(
+            self.abjad_configuration.abjad_experimental_directory_path, 
+            'built_in_specifiers')
+
+    @property
+    def built_in_specifiers_package_path(self):
+        '''Score-external specifiers package path:
+
+        ::
+
+            >>> configuration.built_in_specifiers_package_path
+            'built_in_specifiers'
+
+        Return string.
+        '''
+        return os.path.basename(self.built_in_specifiers_directory_path)
+
+    @property
     def configuration_directory_path(self):
         '''Configuration directory path:
 
@@ -192,99 +285,6 @@ class ScoreManagerConfiguration(Configuration):
         Return string.
         '''
         return Configuration.storage_format.fget(self)
-
-    @property
-    def built_in_editors_directory_path(self):
-        '''Editors directory path:
-
-        ::
-
-            >>> configuration.built_in_editors_directory_path
-            '.../abjad/experimental/tools/scoremanagertools/editors'
-
-        Return string.
-        '''
-        return os.path.join(self.score_manager_tools_directory_path, 'editors')
-
-    @property
-    def built_in_material_package_makers_directory_path(self):
-        '''Makers directory path:
-
-        ::
-
-            >>> configuration.built_in_material_package_makers_directory_path
-            '.../abjad/experimental/tools/scoremanagertools/materialpackagemakers'
-
-        Return string.
-        '''
-        return os.path.join(self.score_manager_tools_directory_path, 'materialpackagemakers')
-
-    @property
-    def built_in_materials_directory_path(self):
-        '''System materials directory path:
-
-        ::
-
-            >>> configuration.built_in_materials_directory_path
-            '.../abjad/experimental/built_in_materials'
-
-        Return string.
-        '''
-        return os.path.join(self.abjad_configuration.abjad_experimental_directory_path, 'built_in_materials')
-
-    @property
-    def built_in_materials_package_path(self):
-        '''System materials package path:
-
-        ::
-
-            >>> configuration.built_in_materials_package_path
-            'built_in_materials'
-
-        Return string.
-        '''
-        return os.path.basename(self.built_in_materials_directory_path)
-
-    @property
-    def built_in_specifier_classes_directory_path(self):
-        '''Specifier classes directory path:
-
-        ::
-
-            >>> configuration.built_in_specifier_classes_directory_path
-            '.../abjad/experimental/tools/scoremanagertools/specifiers'
-
-        Return string.
-        '''
-        return os.path.join(self.score_manager_tools_directory_path, 'specifiers')
-
-    @property
-    def built_in_specifiers_directory_path(self):
-        '''Score manager sketches directory path:
-
-        ::
-
-            >>> configuration.built_in_specifiers_directory_path
-            '.../abjad/experimental/built_in_specifiers'
-
-        Return string.
-        '''
-        return os.path.join(
-            self.abjad_configuration.abjad_experimental_directory_path, 
-            'built_in_specifiers')
-
-    @property
-    def built_in_specifiers_package_path(self):
-        '''Score-external specifiers package path:
-
-        ::
-
-            >>> configuration.built_in_specifiers_package_path
-            'built_in_specifiers'
-
-        Return string.
-        '''
-        return os.path.basename(self.built_in_specifiers_directory_path)
 
     @property
     def transcripts_directory_path(self):
