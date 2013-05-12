@@ -28,6 +28,13 @@ class ScoreManagerObject(AbjadObject):
         return
 
     @property
+    def _keyword_argument_names(self):
+        result = []
+        result.extend(AbjadObject._keyword_argument_names.fget(self))
+        result.remove('session')
+        return tuple(result)
+        
+    @property
     def _space_delimited_lowercase_class_name(self):
         return stringtools.string_to_space_delimited_lowercase(self._class_name)
 

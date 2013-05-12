@@ -106,3 +106,5 @@
 38. Rename flamingo_input to something semantic.
 
 39. Add ScoreManagerConfiguration.user_directory property.
+
+40. Change scoremanagertools/stylesheets to scoremaangertools/built_in_stylesheets.

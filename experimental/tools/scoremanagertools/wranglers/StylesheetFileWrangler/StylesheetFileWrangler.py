@@ -57,6 +57,19 @@ class StylesheetFileWrangler(FileWrangler):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
+    def asset_container_proxy_class(self):
+        '''Stylesheet file wrangler asset container proxy class:
+
+        ::
+
+            >>> wrangler.asset_container_proxy_class.__name__
+            'DirectoryProxy'
+
+        Return class.
+        '''
+        return super(type(self), self).asset_container_proxy_class
+        
+    @property
     def asset_proxy_class(self):
         '''Stylesheet file wrangler asset class:
 
@@ -65,12 +78,51 @@ class StylesheetFileWrangler(FileWrangler):
             >>> wrangler.asset_proxy_class.__name__
             'StylesheetFileProxy'
 
-        Return proxy class.
+        Return class.
         '''
         from experimental.tools import scoremanagertools
         return scoremanagertools.proxies.StylesheetFileProxy
 
-    # TODO: write test; also rename to something general without 'stylehsset' in name
+    @property
+    def built_in_asset_container_directory_paths(self):
+        '''Stylesheet file wrangler built-in asset container directory paths:
+
+        ::
+
+            >>> wrangler.built_in_asset_container_directory_paths
+            ['.../abjad/experimental/tools/scoremanagertools/stylesheets']
+
+        Return list.
+        '''
+        return super(type(self), self).built_in_asset_container_directory_paths
+
+    @property
+    def current_asset_container_directory_path(self):
+        '''Stylesheet file wrangler current asset container directory path:
+
+        ::
+
+            >>> wrangler.current_asset_container_directory_path
+            '.../abjad/experimental/tools/scoremanagertools/stylesheets'
+
+        Return string.
+        '''
+        return super(type(self), self).current_asset_container_directory_path
+
+    @property
+    def storage_format(self):
+        '''Stylesheet file wrangler storage format:
+
+        ::
+
+            >>> z(wrangler)
+            wranglers.StylesheetFileWrangler()
+    
+        Return string.
+        '''
+        return super(type(self), self).storage_format
+
+    # TODO: rename to something general without 'stylesheet' in name
     @property
     def stylesheet_file_names(self):
         '''Stylesheet file wrangler stylesheet file names:
@@ -88,6 +140,21 @@ class StylesheetFileWrangler(FileWrangler):
             if directory_entry.endswith('.ly'):
                 result.append(directory_entry)
         return result
+
+    @property
+    def user_asset_container_directory_paths(self):
+        '''Stylesheet file wrangler built-in asset container directory paths:
+
+        ::
+
+            >>> wrangler.user_asset_container_directory_paths
+            []
+
+        (Output will vary according to configuration.)
+
+        Return list.
+        '''
+        return super(type(self), self).user_asset_container_directory_paths
 
     ### PUBLIC METHODS ###
 
