@@ -24,9 +24,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.format
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.formatted_lines
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy.storage_format
    :noindex:
 

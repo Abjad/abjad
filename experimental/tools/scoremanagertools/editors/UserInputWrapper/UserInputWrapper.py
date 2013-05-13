@@ -36,7 +36,8 @@ class UserInputWrapper(collections.OrderedDict):
             for name, value in items[:-1]:
                 line = '\t({!r}, {}),'.format(name, self.get_tools_package_qualified_repr(value))
                 result.append(line)
-            result.append('\t({!r}, {})])'.format(items[-1][0], self.get_tools_package_qualified_repr(items[-1][1])))
+            result.append('\t({!r}, {})])'.format(
+                items[-1][0], self.get_tools_package_qualified_repr(items[-1][1])))
         return result
 
     @property

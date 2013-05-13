@@ -24,9 +24,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.IllustrationLyFileProxy.IllustrationLyFileProxy.IllustrationLyFileProxy.format
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.IllustrationLyFileProxy.IllustrationLyFileProxy.IllustrationLyFileProxy.formatted_lines
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.IllustrationLyFileProxy.IllustrationLyFileProxy.IllustrationLyFileProxy.storage_format
    :noindex:
 

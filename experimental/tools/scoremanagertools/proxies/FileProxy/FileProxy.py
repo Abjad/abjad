@@ -26,10 +26,6 @@ class FileProxy(FilesystemAssetProxy):
     def format(self):
         return ''.join(self.formatted_lines)
 
-    @property
-    def formatted_lines(self):
-        return self.file_lines
-
     ### PUBLIC METHODS ###
 
     def display_formatted_lines(self):
