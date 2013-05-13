@@ -8,9 +8,6 @@ def test_MaterialPackageMakerWrangler_read_only_attributes_01():
 
     assert wrangler._breadcrumb == 'material package makers'
     assert wrangler.current_asset_container_package_path == 'scoremanagertools.materialpackagemakers'
-    assert all([
-        x.startswith('scoremanagertools.materialpackagemakers.') 
-        for x in wrangler.list_score_external_asset_package_paths()])
 
     assert wrangler.list_built_in_asset_container_package_paths() == \
         ['scoremanagertools.materialpackagemakers']

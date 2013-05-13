@@ -31,8 +31,10 @@ def filesystem_path_to_package_path(filesystem_path):
             len(os.path.dirname(configuration.built_in_specifiers_directory_path)) + 1
     elif filesystem_path.startswith(configuration.user_scores_directory_path):
         prefix_length = len(configuration.user_scores_directory_path) + 1
+    elif filesystem_path.startswith(configuration.user_material_package_makers_directory_path):
+        return configuration.user_material_package_makers_package_path
     else:
-        return
+        raise Exception('can not change to package path: {!r}'.format(filesystem_path))
 
     package_path = filesystem_path[prefix_length:]
     package_path = package_path.replace(os.path.sep, '.')

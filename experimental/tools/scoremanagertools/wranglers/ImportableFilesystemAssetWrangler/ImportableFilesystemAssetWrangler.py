@@ -61,13 +61,6 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
 
     ### PRIVATE METHODS ###
 
-    # TODO: eventually remove altogether
-    def _list_score_external_asset_container_directory_paths(self, head=None):
-        result = []
-        for package_path in self.list_built_in_asset_container_package_paths(head=head):
-            result.append(packagepathtools.package_path_to_directory_path(package_path))
-        return result
-
     def _make_visible_asset_menu_tokens(self, head=None):
         keys = self.list_visible_asset_package_paths(head=head)
         bodies = self.list_space_delimited_lowercase_visible_asset_names(head=head)
@@ -145,10 +138,11 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
     def list_score_external_asset_package_paths(self, head=None):
         result = []
         for directory_path in self._list_score_external_asset_container_directory_paths(head=head):
-            for directory_entry in os.listdir(directory_path):
-                package_path = packagepathtools.filesystem_path_to_package_path(directory_path)
-                if directory_entry[0].isalpha():
-                    result.append('.'.join([package_path, directory_entry]))
+            package_path = packagepathtools.filesystem_path_to_package_path(directory_path)
+            if head is None or package_path.startswith(head):
+                for directory_entry in os.listdir(directory_path):
+                    if directory_entry[0].isalpha():
+                        result.append('.'.join([package_path, directory_entry]))
         return result
 
     def list_score_internal_asset_container_package_paths(self, head=None):
