@@ -230,9 +230,6 @@ class FilesystemAssetProxy(ScoreManagerObject):
         self._io.display(lines)
         self._io.proceed(is_interactive=is_interactive)
 
-    def touch(self):
-        os.system('touch {}'.format(self.filesystem_path))
-
     def write_boilerplate(self, boilerplate_filebuilt_in_asset_name):
         if not os.path.exists(boilerplate_filebuilt_in_asset_name):
             boilerplate_filebuilt_in_asset_name = os.path.join(

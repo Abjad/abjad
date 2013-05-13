@@ -828,11 +828,6 @@ class MaterialPackageProxy(PackageProxy):
         self.stylesheet_file_name_in_memory = stylesheet_file_name
         self._io.proceed('stylesheet selected.', is_interactive=prompt)
 
-    # NOTE: not currently used
-    def touch_parent_initializer(self):
-        if self.has_parent_initializer:
-            self.parent_initializer_file_proxy.touch()
-
     def write_illustration_ly_and_pdf_to_disk(self, prompt=True):
         illustration = self.illustration_with_stylesheet
         iotools.write_expr_to_pdf(illustration, self.illustration_pdf_file_name, print_status=False)
