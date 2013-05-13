@@ -14,11 +14,15 @@ class ParsableFileProxy(FileProxy):
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
+    @property
+    def file_sections(self):
+        return ()
+
     # TODO: make into method
     @property
     def formatted_lines(self):
         lines = []
-        for section, is_sorted, blank_line_count in self.sections:
+        for section, is_sorted, blank_line_count in self.file_sections:
             if section:
                 section = section[:]
                 if is_sorted:
@@ -35,16 +39,10 @@ class ParsableFileProxy(FileProxy):
     def is_parsable(self):
         return self.parse()
 
-    # TODO: rename to something more explicit to avoid conflict with Menu.sections
-    # TODO: perhaps just ParsableFileProxy.section_tokens?
-    @property
-    def sections(self):
-        return ()
-
     ### PUBLIC METHODS ###
 
     def clear(self):
-        for section, is_sorted, blank_line_count  in self.sections:
+        for section, is_sorted, blank_line_count  in self.file_sections:
             section[:] = []
 
     def write_to_disk(self):

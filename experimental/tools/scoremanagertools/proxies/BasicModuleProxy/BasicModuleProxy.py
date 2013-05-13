@@ -13,7 +13,7 @@ class BasicModuleProxy(MaterialModuleProxy):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def sections(self):
+    def file_sections(self):
         return (
             (self.encoding_directives, False, 0),
             (self.docstring_lines, False, 1),

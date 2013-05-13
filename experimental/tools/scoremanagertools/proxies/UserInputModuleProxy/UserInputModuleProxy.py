@@ -22,7 +22,7 @@ class UserInputModuleProxy(ModuleProxy):
         return False
 
     @property
-    def sections(self):
+    def file_sections(self):
         return (
             (self.encoding_directives, False, 0),
             (self.docstring_lines, False, 1),

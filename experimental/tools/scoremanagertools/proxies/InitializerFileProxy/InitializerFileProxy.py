@@ -24,7 +24,7 @@ class InitializerFileProxy(ParsableFileProxy):
         return self.is_parsable
 
     @property
-    def sections(self):
+    def file_sections(self):
         return (
             (self.encoding_directives, True, 0),
             (self.docstring_lines, False, 1),
