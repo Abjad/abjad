@@ -30,14 +30,6 @@ class FileProxy(FilesystemAssetProxy):
     def formatted_lines(self):
         return self.file_lines
 
-    @property
-    def name_without_extension(self):
-        if self.filesystem_basename:
-            if '.' in self.filesystem_basename:
-                return self.filesystem_basename[:self.filesystem_basename.rindex('.')]
-            else:
-                return self.filesystem_basename
-
     ### PUBLIC METHODS ###
 
     def display_formatted_lines(self):

@@ -18,7 +18,6 @@ def test_StylesheetFileProxy_public_attributes_01():
     assert proxy.filesystem_path is None
     assert proxy._plural_generic_class_name == 'stylesheets'
     assert proxy.filesystem_basename is None
-    assert proxy.name_without_extension is None
     assert proxy._svn_add_command is None
     assert proxy._temporary_asset_name == 'temporary_stylesheet.ly'
 
@@ -43,6 +42,5 @@ def test_StylesheetFileProxy_public_attributes_02():
     assert proxy.filesystem_path == filesystem_path
     assert proxy._plural_generic_class_name == 'stylesheets'
     assert proxy.filesystem_basename == file_name
-    assert proxy.name_without_extension == file_name[:-3]
     assert proxy._svn_add_command == 'svn add {}'.format(proxy.filesystem_path)
     assert proxy._temporary_asset_name == 'temporary_stylesheet.ly'

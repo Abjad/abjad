@@ -24,7 +24,9 @@ class ModuleProxy(ParsableFileProxy):
 
     @property
     def _space_delimited_lowercase_name(self):
-        return stringtools.string_to_space_delimited_lowercase(self.name_without_extension)
+        if self.filesystem_basename:
+            name_without_extension = self.filesystem_basename.strip(self.extension)
+            return stringtools.string_to_space_delimited_lowercase(name_without_extension)
 
     ### PRIVATE METHODS ###
 
