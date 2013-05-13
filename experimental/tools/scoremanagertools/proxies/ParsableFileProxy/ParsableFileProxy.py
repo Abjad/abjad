@@ -32,7 +32,6 @@ class ParsableFileProxy(FileProxy):
     # TODO: move down to ModuleProxy?
     @property
     def is_exceptionless(self):
-        #self.execute_file_lines()
         try:
             self.execute_file_lines()
             return True
@@ -71,7 +70,7 @@ class ParsableFileProxy(FileProxy):
             #print file_contents_string
             exec(file_contents_string)
 
-    # TODO: move up to FileProxy
     def write_to_disk(self):
         initializer = file(self.filesystem_path, 'w')
-        initializer.write(self.format)
+        formatted_lines = ''.join(self.formatted_lines)
+        initializer.write(formatted_lines)
