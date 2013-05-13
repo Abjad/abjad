@@ -1,7 +1,6 @@
 import os
 from experimental.tools import packagepathtools
 from experimental.tools.scoremanagertools.proxies.DirectoryProxy import DirectoryProxy
-from experimental.tools.scoremanagertools.helpers import safe_import
 
 
 class PackageProxy(DirectoryProxy):
@@ -92,9 +91,7 @@ class PackageProxy(DirectoryProxy):
     @property
     def parent_initializer_file_name(self):
         if self.parent_package_path:
-            filesystem_directory_name = packagepathtools.package_path_to_directory_path(
-                self.parent_package_path, self.configuration)
-            return os.path.join(filesystem_directory_name, '__init__.py')
+            return os.path.join(self.filesystem_directory_name, '__init__.py')
 
     # TODO: write test
     @property
