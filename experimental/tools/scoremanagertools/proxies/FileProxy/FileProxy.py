@@ -10,11 +10,6 @@ class FileProxy(FilesystemAssetProxy):
     _temporary_asset_name = 'temporary_file.txt'
     extension = ''
 
-    ### INITIALIZER ###
-
-    def __init__(self, filesystem_path=None, session=None):
-        FilesystemAssetProxy.__init__(self, filesystem_path=filesystem_path, session=session)
-
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property

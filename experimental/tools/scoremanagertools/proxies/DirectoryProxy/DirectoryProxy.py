@@ -5,16 +5,11 @@ from experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy import Fi
 
 class DirectoryProxy(FilesystemAssetProxy):
 
-    ### INITIALIZER ###
-
-    def __init__(self, directory_path=None, session=None):
-        FilesystemAssetProxy.__init__(self, filesystem_path=directory_path, session=session)
-
     ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
     def _svn_add_command(self):
-        return 'cd {} && svn-add-all'.format(self.directory_path)
+        return 'cd {} && svn-add-all'.format(self.filesystem_path)
 
     ### PUBLIC METHODS ###
 

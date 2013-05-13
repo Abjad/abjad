@@ -10,8 +10,8 @@ class PackageProxy(DirectoryProxy):
     ### INITIALIZER ###
 
     def __init__(self, package_path=None, session=None):
-        directory_path = packagepathtools.package_path_to_directory_path(package_path)
-        DirectoryProxy.__init__(self, directory_path=directory_path, session=session)
+        filesystem_path = packagepathtools.package_path_to_directory_path(package_path)
+        DirectoryProxy.__init__(self, filesystem_path=filesystem_path, session=session)
         self._package_path = package_path
 
     ### READ-ONLY PRIVATE PROPERTIES ###
