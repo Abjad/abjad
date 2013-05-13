@@ -3,6 +3,7 @@ import os
 from experimental.tools.scoremanagertools.proxies.ParsableFileProxy import ParsableFileProxy
 
 
+# TODO: maybe rewire to inherit from ModuleProxy?
 class InitializerFileProxy(ParsableFileProxy):
 
     ### INITIALIZER ###
@@ -37,7 +38,8 @@ class InitializerFileProxy(ParsableFileProxy):
     ### PUBLIC METHODS ###
 
     def add_safe_import_statement(self, source_module_name, source_attribute_name):
-        safe_import_import_statement = 'from experimental.tools.scoremanagertools.helpers import safe_import\n'
+        safe_import_import_statement = \
+            'from experimental.tools.scoremanagertools.helpers import safe_import\n'
         if safe_import_import_statement not in self.setup_statements:
             self.setup_statements.append(safe_import_import_statement)
         safe_import_statement = 'safe_import(globals(), {!r}, {!r})\n'
@@ -46,6 +48,15 @@ class InitializerFileProxy(ParsableFileProxy):
         if safe_import_statement not in self.safe_import_statements:
             self.safe_import_statements.append(safe_import_statement)
         self.write_to_disk()
+
+    def has_line(self, line):
+        file_reference = open(self.filesystem_path, 'r')
+        for file_line in file_reference.readlines():
+            if file_line == line:
+                file_reference.close()
+                return True
+        file_reference.close()
+        return False
 
     def has_safe_import_statement(self, source_module_name, source_module_attribute_name):
         safe_import_line = 'safe_import(globals(), {!r}, {!r})\n'
@@ -151,7 +162,8 @@ class InitializerFileProxy(ParsableFileProxy):
                 return
             should_have_illustration = 'yes'.startswith(result.lower())
         else:
-            material_package_maker_wrangler = scoremanagertools.wranglers.MaterialPackageMakerWrangler(session=self._session)
+            material_package_maker_wrangler = scoremanagertools.wranglers.MaterialPackageMakerWrangler(
+                session=self._session)
             self._session.push_backtrack()
             material_package_maker_class_name = \
                 material_package_maker_wrangler.select_material_proxy_class_name_interactively(

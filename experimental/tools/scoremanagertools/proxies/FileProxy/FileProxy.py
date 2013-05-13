@@ -15,15 +15,6 @@ class FileProxy(FilesystemAssetProxy):
     def edit(self):
         os.system('vi + {}'.format(self.filesystem_path))
 
-    def has_line(self, line):
-        file_reference = open(self.filesystem_path, 'r')
-        for file_line in file_reference.readlines():
-            if file_line == line:
-                file_reference.close()
-                return True
-        file_reference.close()
-        return False
-
     def make_empty_asset(self, is_interactive=False):
         if not self.exists():
             file_reference = file(self.filesystem_path, 'w')
