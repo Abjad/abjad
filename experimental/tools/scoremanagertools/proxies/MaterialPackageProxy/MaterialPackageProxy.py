@@ -777,7 +777,7 @@ class MaterialPackageProxy(PackageProxy):
         self._io.display(lines)
         if not self._io.confirm():
             return
-        if self.is_versioned:
+        if self.is_versioned():
             # rename package directory
             new_directory_path = self.filesystem_path.replace(
                 self.material_package_name, new_material_package_name)

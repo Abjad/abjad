@@ -15,7 +15,7 @@ def test_FileProxy_rename_interactively_01():
     try:
         file_proxy.make_empty_asset()
         assert os.path.exists(filesystem_path)
-        assert not file_proxy.is_versioned
+        assert not file_proxy.is_versioned()
         new_filesystem_path = os.path.join(
             score_manager_configuration.score_manager_tools_directory_path, 'new_test_file.txt')
         file_proxy.rename_interactively(user_input='new_test_file.txt y q')
@@ -42,7 +42,7 @@ def test_FileProxy_rename_interactively_02():
         file_proxy.make_empty_asset()
         assert os.path.exists(filesystem_path)
         file_proxy.svn_add()
-        assert file_proxy.is_versioned
+        assert file_proxy.is_versioned()
         new_filesystem_path = os.path.join(
             score_manager_configuration.score_manager_tools_directory_path, 'new_test_file.txt')
         file_proxy.rename_interactively(user_input='new_test_file.txt y q')

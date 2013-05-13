@@ -13,7 +13,7 @@ def test_StylesheetFileProxy_public_attributes_01():
     assert not proxy.file_lines
     assert proxy._generic_class_name == 'stylesheet'
     assert proxy._space_delimited_lowercase_name is None
-    assert not proxy.is_versioned
+    assert not proxy.is_versioned()
     assert proxy.filesystem_directory_name is None
     assert proxy.filesystem_path is None
     assert proxy._plural_generic_class_name == 'stylesheets'
@@ -39,7 +39,7 @@ def test_StylesheetFileProxy_public_attributes_02():
     assert proxy.file_lines
     assert proxy._generic_class_name == 'stylesheet'
     assert proxy._space_delimited_lowercase_name == file_name
-    assert proxy.is_versioned
+    assert proxy.is_versioned()
     assert proxy.filesystem_path == filesystem_path
     assert proxy._plural_generic_class_name == 'stylesheets'
     assert proxy.filesystem_basename == file_name

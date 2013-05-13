@@ -37,7 +37,7 @@ def test_FileProxy_remove_interactively_02():
         file_proxy.make_empty_asset()
         assert os.path.exists(filesystem_path)
         file_proxy.svn_add()
-        assert file_proxy.is_versioned
+        assert file_proxy.is_versioned()
         file_proxy.remove_interactively(user_input='remove default q')
         assert not os.path.exists(filesystem_path)
     finally:

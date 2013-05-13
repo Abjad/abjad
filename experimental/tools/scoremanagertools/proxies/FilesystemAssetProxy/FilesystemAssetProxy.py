@@ -86,20 +86,6 @@ class FilesystemAssetProxy(ScoreManagerObject):
     def filesystem_path(self):
         return self._filesystem_path
 
-    @property
-    def is_versioned(self):
-        if self.filesystem_path is None:
-            return False
-        if not os.path.exists(self.filesystem_path):
-            return False
-        command = 'svn st {}'.format(self.filesystem_path)
-        proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-        first_line = proc.stdout.readline()
-        if first_line.startswith(('?', 'svn: warning:')):
-            return False
-        else:
-            return True
-
     ### PUBLIC METHODS ###
 
     def copy(self, new_filesystem_path):
@@ -125,12 +111,25 @@ class FilesystemAssetProxy(ScoreManagerObject):
             return os.path.exists(self.filesystem_path)
         return False
 
+    def is_versioned(self):
+        if self.filesystem_path is None:
+            return False
+        if not os.path.exists(self.filesystem_path):
+            return False
+        command = 'svn st {}'.format(self.filesystem_path)
+        proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        first_line = proc.stdout.readline()
+        if first_line.startswith(('?', 'svn: warning:')):
+            return False
+        else:
+            return True
+
     @abc.abstractmethod
     def make_empty_asset(self, is_interactive=False):
         pass
 
     def remove(self):
-        if self.is_versioned:
+        if self.is_versioned():
             command = 'svn --force rm {}'.format(self.filesystem_path)
             proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
             proc.stdout.readline()
@@ -155,7 +154,7 @@ class FilesystemAssetProxy(ScoreManagerObject):
             self._io.proceed('{} removed.'.format(self.filesystem_path))
 
     def rename(self, new_path):
-        if self.is_versioned:
+        if self.is_versioned():
             command = 'svn --force mv {} {}'.format(self.filesystem_path, new_path)
             proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
             proc.stdout.readline()

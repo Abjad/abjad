@@ -16,7 +16,7 @@ def test_StylesheetFileProxy_rename_interactively_01():
     try:
         proxy.make_empty_asset()
         assert proxy.exists()
-        assert not proxy.is_versioned
+        assert not proxy.is_versioned()
         new_filesystem_path = os.path.join(
             score_manager_configuration.score_manager_tools_directory_path,
             'built_in_stylesheets', 'new_test_stylesheet.ly')
@@ -45,7 +45,7 @@ def test_StylesheetFileProxy_rename_interactively_02():
         proxy.make_empty_asset()
         assert os.path.exists(filesystem_path)
         proxy.svn_add()
-        assert proxy.is_versioned
+        assert proxy.is_versioned()
         new_filesystem_path = os.path.join(
             score_manager_configuration.score_manager_tools_directory_path,
             'built_in_stylesheets', 'new_test_stylesheet.ly')
