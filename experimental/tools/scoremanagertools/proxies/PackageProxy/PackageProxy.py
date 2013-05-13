@@ -1,5 +1,4 @@
 import os
-from abjad.tools import iotools
 from experimental.tools import packagepathtools
 from experimental.tools.scoremanagertools.proxies.DirectoryProxy import DirectoryProxy
 from experimental.tools.scoremanagertools.helpers import safe_import
@@ -44,11 +43,6 @@ class PackageProxy(DirectoryProxy):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def directory_path(self):
-        if self.package_path is not None:
-            return packagepathtools.package_path_to_directory_path(self.package_path, self.configuration)
-
-    @property
     def formatted_tags(self):
         formatted_tags = []
         tags = self.get_tags()
@@ -77,8 +71,8 @@ class PackageProxy(DirectoryProxy):
 
     @property
     def initializer_file_name(self):
-        if self.directory_path is not None:
-            return os.path.join(self.directory_path, '__init__.py')
+        if self.filesystem_path is not None:
+            return os.path.join(self.filesystem_path, '__init__.py')
 
     # TODO: write test
     @property
@@ -128,7 +122,7 @@ class PackageProxy(DirectoryProxy):
 
     @property
     def tags_file_name(self):
-        return os.path.join(self.directory_path, 'tags.py')
+        return os.path.join(self.filesystem_path, 'tags.py')
 
     @property
     def tags_file_proxy(self):

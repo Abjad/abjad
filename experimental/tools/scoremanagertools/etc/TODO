@@ -109,6 +109,6 @@
 
 40. Document StylesheetFileProxy next.
 
-41. Maybe make all asset container properties private.
-    This will help clean up the (documented) wrangler public interface.
-    And the container properties are always used only privately by the class in question.
+41. Change asset_container_directory_path to asset_container_filesystem_path globally.
+
+42. Thin out the top-level imports in just MaterialPackageProxy before other classfiles.

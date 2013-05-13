@@ -7,7 +7,7 @@ def test_PackageProxy_read_only_attributes_01():
     '''
 
     package_proxy = scoremanagertools.proxies.PackageProxy('built_in_materials.red_sargasso_measures')
-    assert package_proxy.directory_path == os.path.join(
+    assert package_proxy.filesystem_path == os.path.join(
         package_proxy.configuration.built_in_materials_directory_path, 'red_sargasso_measures')
     assert package_proxy.get_tag('foo') is None
     assert package_proxy.initializer_file_name == \

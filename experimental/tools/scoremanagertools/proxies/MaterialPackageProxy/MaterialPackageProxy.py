@@ -386,7 +386,7 @@ class MaterialPackageProxy(PackageProxy):
     @property
     def illustration_builder_module_file_name(self):
         if self.should_have_illustration_builder_module:
-            return os.path.join(self.directory_path, 'illustration_builder.py')
+            return os.path.join(self.filesystem_path, 'illustration_builder.py')
 
     @property
     def illustration_builder_module_path(self):
@@ -404,7 +404,7 @@ class MaterialPackageProxy(PackageProxy):
     @property
     def illustration_ly_file_name(self):
         if self.should_have_illustration_ly:
-            return os.path.join(self.directory_path, 'illustration.ly')
+            return os.path.join(self.filesystem_path, 'illustration.ly')
 
     @property
     def illustration_ly_file_proxy(self):
@@ -416,7 +416,7 @@ class MaterialPackageProxy(PackageProxy):
     @property
     def illustration_pdf_file_name(self):
         if self.should_have_illustration_pdf:
-            return os.path.join(self.directory_path, 'illustration.pdf')
+            return os.path.join(self.filesystem_path, 'illustration.pdf')
 
     @property
     def illustration_pdf_file_proxy(self):
@@ -469,7 +469,7 @@ class MaterialPackageProxy(PackageProxy):
     @property
     def material_definition_module_file_name(self):
         if self.should_have_material_definition_module:
-            return os.path.join(self.directory_path, 'material_definition.py')
+            return os.path.join(self.filesystem_path, 'material_definition.py')
 
     @property
     def material_definition_module_path(self):
@@ -518,7 +518,7 @@ class MaterialPackageProxy(PackageProxy):
     @property
     def output_material_module_file_name(self):
         if self.should_have_output_material_module:
-            return os.path.join(self.directory_path, 'output_material.py')
+            return os.path.join(self.filesystem_path, 'output_material.py')
 
     @property
     def output_material_module_import_statements_and_material_definition(self):
@@ -617,7 +617,7 @@ class MaterialPackageProxy(PackageProxy):
     @property
     def user_input_module_file_name(self):
         if self.should_have_user_input_module:
-            return os.path.join(self.directory_path, 'user_input.py')
+            return os.path.join(self.filesystem_path, 'user_input.py')
 
     @property
     def user_input_module_path(self):
@@ -779,12 +779,12 @@ class MaterialPackageProxy(PackageProxy):
             return
         if self.is_versioned:
             # rename package directory
-            new_directory_path = self.directory_path.replace(
+            new_directory_path = self.filesystem_path.replace(
                 self.material_package_name, new_material_package_name)
-            command = 'svn mv {} {}'.format(self.directory_path, new_directory_path)
+            command = 'svn mv {} {}'.format(self.filesystem_path, new_directory_path)
             os.system(command)
             # update package initializer
-            filesystem_directory_name = os.path.dirname(self.directory_path)
+            filesystem_directory_name = os.path.dirname(self.filesystem_path)
             new_package_directory = os.path.join(filesystem_directory_name, new_material_package_name)
             new_initializer = os.path.join(new_package_directory, '__init__.py')
             helpers.globally_replace_in_file(
