@@ -40,6 +40,58 @@ class StylesheetFileWrangler(FileWrangler):
 
     ### PRIVATE METHODS ###
 
+    def _get_asset_container_proxies(self, head=None):
+        '''Stylesheet file wrangler get asset container proxies:
+
+        ::
+
+            >>> for x in wrangler._get_asset_container_proxies():
+            ...     x
+            DirectoryProxy('.../tools/scoremanagertools/built_in_stylesheets')
+            DirectoryProxy('.../score_manager/stylesheets')
+
+        Return list.
+        '''
+        return super(type(self), self)._get_asset_container_proxies(head=head)
+
+    def _get_score_external_asset_container_proxies(self, head=None):
+        '''Stylesheet file wrangler get score-external asset container proxies:
+
+        ::
+
+            >>> for x in wrangler._get_score_external_asset_container_proxies():
+            ...     x
+            DirectoryProxy('.../tools/scoremanagertools/built_in_stylesheets')
+            DirectoryProxy('.../score_manager/stylesheets')
+
+        Return list.
+        '''
+        return super(type(self), self)._get_score_external_asset_container_proxies(head=head)
+
+    def _get_score_internal_asset_container_proxies(self, head=None):
+        '''Stylesheet file wrangler get score-internal asset container proxies:
+
+        ::
+
+            >>> wrangler._get_score_internal_asset_container_proxies()
+            []
+
+        Return list.
+        '''
+        return super(type(self), self)._get_score_internal_asset_container_proxies(head=head)
+
+    def _get_user_asset_container_proxies(self, head=None):
+        '''Stylesheet file wrangler get user asset container proxies:
+
+        ::
+
+            >>> wrangler._get_user_asset_container_proxies()
+            [DirectoryProxy('.../score_manager/stylesheets')]
+
+        Return list.
+        '''
+        return super(type(self), self)._get_user_asset_container_proxies(head=head)
+
     def _handle_main_menu_result(self, result):
         from experimental.tools import scoremanagertools
         if result == 'new':
@@ -49,6 +101,73 @@ class StylesheetFileWrangler(FileWrangler):
             stylesheet_proxy = scoremanagertools.proxies.StylesheetFileProxy(
                 stylesheet_file_name, session=self._session)
             stylesheet_proxy._run()
+
+    def _list_asset_container_directory_paths(self, head=None):
+        '''Stylesheet file wrangler list asset container directory paths:
+
+        ::
+
+            >>> for x in wrangler._list_asset_container_directory_paths():
+            ...     x
+            '.../tools/scoremanagertools/built_in_stylesheets'
+            '.../score_manager/stylesheets'
+
+        Return list.
+        '''
+        return super(type(self), self)._list_asset_container_directory_paths(head=head)
+
+    def _list_built_in_asset_container_directory_paths(self, head=None):
+        '''Stylesheet file wrangler list built-in asset container directory paths:
+
+        ::
+
+            >>> for x in wrangler._list_built_in_asset_container_directory_paths():
+            ...     x
+            '.../tools/scoremanagertools/built_in_stylesheets'
+
+        Return list.
+        '''
+        return super(type(self), self)._list_built_in_asset_container_directory_paths(head=head)
+
+    def _list_score_external_asset_container_directory_paths(self, head=None):
+        '''Stylesheet file wrangler list score-external asset container directory paths:
+
+        ::
+
+            >>> for x in wrangler._list_score_external_asset_container_directory_paths():
+            ...     x
+            '.../tools/scoremanagertools/built_in_stylesheets'
+            '.../score_manager/stylesheets'
+
+        Return list.
+        '''
+        return super(type(self), self)._list_score_external_asset_container_directory_paths(head=head)
+
+    def _list_score_internal_asset_container_directory_paths(self, head=None):
+        '''Stylesheet file wrangler list score-internal asset container directory paths:
+
+        ::
+
+            >>> wrangler._list_score_internal_asset_container_directory_paths()
+            []
+
+        Return list.
+        '''
+        return super(type(self), self)._list_score_internal_asset_container_directory_paths(head=head)
+
+    def _list_user_asset_container_directory_paths(self, head=None):
+        '''Stylesheet file wrangler list user asset container directory paths:
+
+        ::
+
+            >>> wrangler._list_user_asset_container_directory_paths()
+            ['.../score_manager/stylesheets']
+
+        (Output will vary according to configuration.)
+
+        Return list.
+        '''
+        return super(type(self), self)._list_user_asset_container_directory_paths(head=head) 
 
     def _make_main_menu(self):
         menu, section = self._io.make_menu(where=self._where, is_parenthetically_numbered=True)
@@ -143,20 +262,6 @@ class StylesheetFileWrangler(FileWrangler):
 
     ### PUBLIC METHODS ###
 
-    def get_asset_container_proxies(self, head=None):
-        '''Stylesheet file wrangler get asset container proxies:
-
-        ::
-
-            >>> for x in wrangler.get_asset_container_proxies():
-            ...     x
-            DirectoryProxy('.../tools/scoremanagertools/built_in_stylesheets')
-            DirectoryProxy('.../score_manager/stylesheets')
-
-        Return list.
-        '''
-        return super(type(self), self).get_asset_container_proxies(head=head)
-
     def get_asset_proxies(self, head=None):
         '''Stylesheet file wrangler get asset proxies:
 
@@ -172,20 +277,6 @@ class StylesheetFileWrangler(FileWrangler):
         Return list.
         '''
         return super(type(self), self).get_asset_proxies(head=head)
-
-    def get_score_external_asset_container_proxies(self, head=None):
-        '''Stylesheet file wrangler get score-external asset container proxies:
-
-        ::
-
-            >>> for x in wrangler.get_score_external_asset_container_proxies():
-            ...     x
-            DirectoryProxy('.../tools/scoremanagertools/built_in_stylesheets')
-            DirectoryProxy('.../score_manager/stylesheets')
-
-        Return list.
-        '''
-        return super(type(self), self).get_score_external_asset_container_proxies(head=head)
 
     def get_score_external_asset_proxies(self, head=None):
         '''Stylesheet file wrangler get score-external asset container proxies:
@@ -203,18 +294,6 @@ class StylesheetFileWrangler(FileWrangler):
         '''
         return super(type(self), self).get_score_external_asset_proxies(head=head)
 
-    def get_score_internal_asset_container_proxies(self, head=None):
-        '''Stylesheet file wrangler get score-internal asset container proxies:
-
-        ::
-
-            >>> wrangler.get_score_internal_asset_container_proxies()
-            []
-
-        Return list.
-        '''
-        return super(type(self), self).get_score_internal_asset_container_proxies(head=head)
-        
     def get_score_internal_asset_proxies(self, head=None):
         '''Stylesheet file wrangler get score-internal asset container proxies:
 
@@ -226,18 +305,6 @@ class StylesheetFileWrangler(FileWrangler):
         Return list.
         '''
         return super(type(self), self).get_score_internal_asset_proxies(head=head)
-
-    def get_user_asset_container_proxies(self, head=None):
-        '''Stylesheet file wrangler get user asset container proxies:
-
-        ::
-
-            >>> wrangler.get_user_asset_container_proxies()
-            [DirectoryProxy('.../score_manager/stylesheets')]
-
-        Return list.
-        '''
-        return super(type(self), self).get_user_asset_container_proxies(head=head)
 
     def get_user_asset_proxies(self, head=None):
         '''Stylesheet file wrangler get user asset proxies:
@@ -272,20 +339,6 @@ class StylesheetFileWrangler(FileWrangler):
         '''
         return super(type(self), self).get_visible_asset_proxies(head=head)
 
-    def list_asset_container_directory_paths(self, head=None):
-        '''Stylesheet file wrangler list asset container directory paths:
-
-        ::
-
-            >>> for x in wrangler.list_asset_container_directory_paths():
-            ...     x
-            '.../tools/scoremanagertools/built_in_stylesheets'
-            '.../score_manager/stylesheets'
-
-        Return list.
-        '''
-        return super(type(self), self).list_asset_container_directory_paths(head=head)
-
     def list_asset_filesystem_paths(self, head=None):
         '''Stylesheet file wrangler list asset filesystem paths:
 
@@ -302,33 +355,6 @@ class StylesheetFileWrangler(FileWrangler):
         '''
         return super(type(self), self).list_asset_filesystem_paths(head=head)
         
-    def list_built_in_asset_container_directory_paths(self, head=None):
-        '''Stylesheet file wrangler list built-in asset container directory paths:
-
-        ::
-
-            >>> for x in wrangler.list_built_in_asset_container_directory_paths():
-            ...     x
-            '.../tools/scoremanagertools/built_in_stylesheets'
-
-        Return list.
-        '''
-        return super(type(self), self).list_built_in_asset_container_directory_paths(head=head)
-
-    def list_score_external_asset_container_directory_paths(self, head=None):
-        '''Stylesheet file wrangler list score-external asset container directory paths:
-
-        ::
-
-            >>> for x in wrangler.list_score_external_asset_container_directory_paths():
-            ...     x
-            '.../tools/scoremanagertools/built_in_stylesheets'
-            '.../score_manager/stylesheets'
-
-        Return list.
-        '''
-        return super(type(self), self).list_score_external_asset_container_directory_paths(head=head)
-
     def list_score_external_asset_filesystem_paths(self, head=None):
         '''Stylesheet file wrangler list score-external asset container directory paths:
 
@@ -344,18 +370,6 @@ class StylesheetFileWrangler(FileWrangler):
         Return list.
         '''
         return super(type(self), self).list_score_external_asset_filesystem_paths(head=head)
-
-    def list_score_internal_asset_container_directory_paths(self, head=None):
-        '''Stylesheet file wrangler list score-internal asset container directory paths:
-
-        ::
-
-            >>> wrangler.list_score_internal_asset_container_directory_paths()
-            []
-
-        Return list.
-        '''
-        return super(type(self), self).list_score_internal_asset_container_directory_paths(head=head)
 
     def list_score_internal_asset_filesystem_paths(self, head=None):
         '''Stylesheet file wrangler list score-internal asset container directory paths:
@@ -386,20 +400,6 @@ class StylesheetFileWrangler(FileWrangler):
         Return list.
         '''
         return super(type(self), self).list_space_delimited_lowercase_visible_asset_names(head=head)
-
-    def list_user_asset_container_directory_paths(self, head=None):
-        '''Stylesheet file wrangler list user asset container directory paths:
-
-        ::
-
-            >>> wrangler.list_user_asset_container_directory_paths()
-            ['.../score_manager/stylesheets']
-
-        (Output will vary according to configuration.)
-
-        Return list.
-        '''
-        return super(type(self), self).list_user_asset_container_directory_paths(head=head) 
 
     def list_user_asset_filesystem_paths(self, head=None):
         '''Stylesheet file wrangler list user asset container directory paths:
