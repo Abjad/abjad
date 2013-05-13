@@ -12,9 +12,6 @@ class FileProxy(FilesystemAssetProxy):
 
     ### PUBLIC METHODS ###
 
-    def display_formatted_lines(self):
-        self._io.display(self.formatted_lines)
-
     def edit(self):
         os.system('vi + {}'.format(self.filesystem_path))
 
