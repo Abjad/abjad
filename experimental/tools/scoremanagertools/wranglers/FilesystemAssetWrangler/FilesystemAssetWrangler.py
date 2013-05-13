@@ -126,20 +126,18 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def _list_score_directory_basenames(self, head=None):
         result = []
         for directory_entry in os.listdir(self.configuration.user_scores_directory_path):
-            if directory_entry[0].isalpha():
-                if head and directory_entry == head:
-                    return [directory_entry]
-                elif not head:
-                    result.append(directory_entry)
+            if (head is not None and directory_entry.startswith(head)) or \
+                (head is None and directory_entry[0].isalpha()):
+                result.append(directory_entry)
         return result
 
     def _list_score_directory_paths(self, head=None):
         result = []
-        for score_directory_basename in self._list_score_directory_basenames(head=head):
-            score_directory_path = os.path.join(
+        for directory_basename in self._list_score_directory_basenames(head=head):
+            directory_path = os.path.join(
                 self.configuration.user_scores_directory_path,
-                score_directory_basename)
-            result.append(score_directory_path) 
+                directory_basename)
+            result.append(directory_path) 
         return result
 
     def _list_score_external_asset_container_directory_paths(self, head=None):

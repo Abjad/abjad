@@ -59,13 +59,6 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
         parts = ', '.join([repr(part) for part in parts])
         return '{}({})'.format(self._class_name, parts)
 
-    ### PRIVATE METHODS ###
-
-    def _make_visible_asset_menu_tokens(self, head=None):
-        keys = self.list_visible_asset_package_paths(head=head)
-        bodies = self.list_space_delimited_lowercase_visible_asset_names(head=head)
-        return zip(keys, bodies)
-
     ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
@@ -80,6 +73,13 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
     @property
     def _temporary_asset_proxy(self):
         return self._get_asset_proxy(self._temporary_asset_package_path)
+
+    ### PRIVATE METHODS ###
+
+    def _make_visible_asset_menu_tokens(self, head=None):
+        keys = self.list_visible_asset_package_paths(head=head)
+        bodies = self.list_space_delimited_lowercase_visible_asset_names(head=head)
+        return zip(keys, bodies)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
