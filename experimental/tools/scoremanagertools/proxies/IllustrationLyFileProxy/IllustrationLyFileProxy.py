@@ -3,8 +3,6 @@ from experimental.tools.scoremanagertools.proxies.FileProxy import FileProxy
 
 class IllustrationLyFileProxy(FileProxy):
 
-    ### READ-ONLY PROPERTIES ###
+    ### CLASS ATTRIBUTES ###
 
-    @property
-    def extension(self):
-        return '.ly'
+    extension = '.ly'

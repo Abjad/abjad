@@ -13,11 +13,11 @@ class InitializerFileProxy(ParsableFileProxy):
         self.tag_lines = []
         self.parse()
 
-    ### READ-ONLY PUBLIC PROPERTIES ##
+    ### CLASS ATTRIBUTES ###
 
-    @property
-    def extension(self):
-        return '.py'
+    extension = '.py'
+
+    ### READ-ONLY PUBLIC PROPERTIES ##
 
     @property
     def is_readable(self):

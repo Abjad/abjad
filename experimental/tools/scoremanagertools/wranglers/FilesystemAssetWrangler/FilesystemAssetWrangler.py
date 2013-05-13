@@ -74,6 +74,11 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     ### PRIVATE METHODS ###
 
+    def _fancy_list_asset_container_directory_paths(self, head=None,
+        built_in_score_external=False, built_in_score_internal=False,
+        user_score_external=False, user_score_internal=False):
+        raise NotImplementedError('TODO: implement me soon.')
+
     def _filesystem_path_to_space_delimited_lowercase_name(self, filesystem_path):
         filesystem_path = os.path.normpath(filesystem_path)
         asset_name = os.path.basename(filesystem_path)

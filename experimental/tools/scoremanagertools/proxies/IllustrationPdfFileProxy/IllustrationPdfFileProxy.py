@@ -4,11 +4,9 @@ from experimental.tools.scoremanagertools.proxies.FileProxy import FileProxy
 
 class IllustrationPdfFileProxy(FileProxy):
 
-    ### READ-ONLY PROPERTIES ###
+    ### CLASS ATTRIBUTES ###
 
-    @property
-    def extension(self):
-        return '.pdf'
+    extension = '.pdf'
 
     ### PUBLIC METHODS ###
 

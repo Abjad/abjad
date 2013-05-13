@@ -7,6 +7,7 @@ class StylesheetFileProxy(FileProxy):
 
     _generic_class_name = 'stylesheet'
     _temporary_asset_name = 'temporary_stylesheet.ly'
+    extension = '.ly'
 
     ### PRIVATE METHODS ###
 
@@ -41,10 +42,3 @@ class StylesheetFileProxy(FileProxy):
         if not asset_name.endswith(self.extension):
             asset_name += self.extension
         return asset_name
-
-    ### READ-ONLY PUBLIC PROPERTIES ###
-
-    # TODO: change to class attribute
-    @property
-    def extension(self):
-        return '.ly'
