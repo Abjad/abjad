@@ -14,6 +14,7 @@ class ParsableFileProxy(FileProxy):
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
+    # TODO: make into method
     @property
     def formatted_lines(self):
         lines = []
@@ -29,25 +30,10 @@ class ParsableFileProxy(FileProxy):
             lines[-1] = lines[-1].strip('\n')
         return lines
 
-    # TODO: move down to ModuleProxy?
-    @property
-    def is_exceptionless(self):
-        try:
-            self.execute_file_lines()
-            return True
-        except:
-            return False
-
+    # TODO: make into method
     @property
     def is_parsable(self):
         return self.parse()
-
-    @property
-    def is_readable(self):
-        if self.is_parsable:
-            if self.is_exceptionless:
-                return True
-        return False
 
     # TODO: rename to something more explicit to avoid conflict with Menu.sections
     # TODO: perhaps just ParsableFileProxy.section_tokens?
@@ -60,15 +46,6 @@ class ParsableFileProxy(FileProxy):
     def clear(self):
         for section, is_sorted, blank_line_count  in self.sections:
             section[:] = []
-
-    # TODO: move down to ModuleProxy?
-    def execute_file_lines(self):
-        if self.filesystem_path:
-            file_pointer = open(self.filesystem_path, 'r')
-            file_contents_string = file_pointer.read()
-            file_pointer.close()
-            #print file_contents_string
-            exec(file_contents_string)
 
     def write_to_disk(self):
         initializer = file(self.filesystem_path, 'w')

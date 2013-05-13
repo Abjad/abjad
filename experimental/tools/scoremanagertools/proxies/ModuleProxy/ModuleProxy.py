@@ -60,6 +60,23 @@ class ModuleProxy(ParsableFileProxy):
         if self.module_path:
             return '.'.join(self.module_path.split('.')[:-2])
 
+    # TODO: make into method
+    @property
+    def is_exceptionless(self):
+        try:
+            self.execute_file_lines()
+            return True
+        except:
+            return False
+
+    # TODO: make into method
+    @property
+    def is_readable(self):
+        if self.is_parsable:
+            if self.is_exceptionless:
+                return True
+        return False
+
     @property
     def module_name(self):
         if self.module_path:
@@ -85,6 +102,13 @@ class ModuleProxy(ParsableFileProxy):
             return '.'.join(self.module_path.split('.')[:-1])
 
     ### PUBLIC METHODS ###
+
+    def execute_file_lines(self):
+        if self.filesystem_path:
+            file_pointer = open(self.filesystem_path, 'r')
+            file_contents_string = file_pointer.read()
+            file_pointer.close()
+            exec(file_contents_string)
 
     # TODO: remove entirely
     def remove_package_path_from_sys_modules(self, package_path):
