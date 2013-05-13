@@ -72,7 +72,7 @@ class ModuleProxy(ParsableFileProxy):
     # TODO: make into method
     @property
     def is_readable(self):
-        if self.is_parsable:
+        if self.parse():
             if self.is_exceptionless:
                 return True
         return False

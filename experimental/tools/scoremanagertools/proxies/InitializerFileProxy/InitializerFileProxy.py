@@ -21,7 +21,7 @@ class InitializerFileProxy(ParsableFileProxy):
 
     @property
     def is_readable(self):
-        return self.is_parsable
+        return self.parse()
 
     @property
     def file_sections(self):
