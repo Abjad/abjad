@@ -47,18 +47,6 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
                     return True
         return False
 
-    def __repr__(self):
-        '''Importable filesystem asset wrangler repr.
-        
-        Return string.
-        '''
-        parts = []
-        parts.extend(self.list_built_in_asset_container_package_paths())
-        if self.asset_container_path_infix_parts:
-            parts.append('.'.join(self.asset_container_path_infix_parts))
-        parts = ', '.join([repr(part) for part in parts])
-        return '{}({})'.format(self._class_name, parts)
-
     ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property

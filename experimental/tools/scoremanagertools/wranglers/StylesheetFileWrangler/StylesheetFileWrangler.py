@@ -8,7 +8,7 @@ class StylesheetFileWrangler(FileWrangler):
 
         >>> wrangler = scoremanagertools.wranglers.StylesheetFileWrangler()
         >>> wrangler
-        StylesheetFileWrangler('.../tools/scoremanagertools/built_in_stylesheets')
+        StylesheetFileWrangler()
 
     Return stylesheet file wrangler.
     '''

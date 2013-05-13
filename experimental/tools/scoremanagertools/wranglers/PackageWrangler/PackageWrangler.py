@@ -1,6 +1,7 @@
 import abc
 import os
 from abjad.tools import stringtools
+from experimental.tools import packagepathtools
 from experimental.tools.scoremanagertools.wranglers.ImportableFilesystemAssetWrangler import \
     ImportableFilesystemAssetWrangler
 
@@ -35,9 +36,8 @@ class PackageWrangler(ImportableFilesystemAssetWrangler):
     @property
     def score_external_asset_proxies(self):
         result = []
-        for filesystem_path in self.score_external_asset_filesystem_paths:
-            package_path = packagepathtools.filesystem_path_to_package_path(filesystem_path)
-            asset_proxy = self._get_asset_proxy(package_path)
+        for filesystem_path in self.list_score_external_asset_filesystem_paths():
+            asset_proxy = self._get_asset_proxy(filesystem_path)
             result.append(asset_proxy)
         return result
 

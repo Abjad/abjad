@@ -1,17 +1,34 @@
 import os
 from abjad.tools import stringtools
+from experimental.tools import packagepathtools
 from experimental.tools.scoremanagertools.wranglers.PackageWrangler import PackageWrangler
-from experimental.tools.scoremanagertools.proxies.ScorePackageProxy import ScorePackageProxy
 
 
 class ScorePackageWrangler(PackageWrangler):
+    '''Score package wrangler:
+
+    ::
+
+        >>> wrangler = scoremanagertools.wranglers.ScorePackageWrangler()
+        >>> wrangler
+        ScorePackageWrangler()
+
+    ::
+
+        >>> wrangler_in_built_in_score = scoremanagertools.wranglers.ScorePackageWrangler()
+        >>> wrangler_in_built_in_score._session._underscore_delimited_current_score_name = 'example_score_1'
+        >>> wrangler_in_built_in_score
+        ScorePackageWrangler()
+
+    Return score package wrangler.
+    '''
 
     ### INITIALIZER ###
 
     def __init__(self, session=None):
         PackageWrangler.__init__(
             self,
-            built_in_asset_container_package_paths=['scoremanagertools.built_in_scores'],
+            built_in_asset_container_package_paths=['experimental.tools.scoremanagertools.built_in_scores'],
             session=session,
             )
 
@@ -38,15 +55,172 @@ class ScorePackageWrangler(PackageWrangler):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
+    def asset_container_proxy_class(self):
+        '''Score package wrangler asset proxy class:
+
+        ::
+
+            >>> wrangler.asset_container_proxy_class.__name__
+            'PackageProxy'
+
+        Return class.
+        '''
+        return super(type(self), self).asset_container_proxy_class
+
+    @property
     def asset_proxy_class(self):
-        return ScorePackageProxy
+        '''Score package wrangler asset proxy class:
+
+        ::
+
+            >>> wrangler.asset_proxy_class.__name__
+            'ScorePackageProxy'
+
+        Return class.
+        '''
+        from experimental.tools import scoremanagertools
+        return scoremanagertools.proxies.ScorePackageProxy
+
+    @property
+    def built_in_asset_container_directory_paths(self):
+        '''Score package wrangler built-in asset container directory paths:
+
+        ::
+
+            >>> wrangler.built_in_asset_container_directory_paths
+            ['.../tools/scoremanagertools/built_in_scores']
+
+        Return list.
+        '''
+        return super(type(self), self).built_in_asset_container_directory_paths
+
+    @property
+    def built_in_asset_container_package_paths(self):
+        '''Score package wrangler built-in asset container package paths:
+
+        ::
+
+            >>> wrangler.built_in_asset_container_package_paths
+            ['experimental.tools.scoremanagertools.built_in_scores']
+
+        Return list.
+        '''
+        return super(type(self), self).built_in_asset_container_package_paths
 
     @property
     def current_asset_container_directory_path(self):
-        return self.configuration.user_scores_directory_path
+        '''Score package wrangler current asset container directory path:
+
+        ::
+
+            >>> wrangler.current_asset_container_directory_path
+            '.../Documents/scores'
+
+        While in built-in score:
+
+        ::
+
+            >>> wrangler_in_built_in_score.current_asset_container_directory_path
+            '.../tools/scoremanagertools/built_in_scores'
+
+        Return string.
+        '''
+        if self._session.is_in_score:
+            if self._session.underscore_delimited_current_score_name in os.listdir(
+                self.configuration.built_in_scores_directory_path):
+                return self.configuration.built_in_scores_directory_path
+            else:
+                return self.configuration.user_scores_directory_path
+        else:
+            return self.configuration.user_scores_directory_path
+
+    @property
+    def current_asset_container_package_path(self):
+        '''Score package wrangler current asset container package path:
+
+        ::
+
+            >>> wrangler.current_asset_container_package_path
+            ''
+
+        While in built-in score:
+
+        ::
+
+            >>> wrangler_in_built_in_score.current_asset_container_package_path
+            'scoremanagertools.built_in_scores'
+
+        Return string.
+        '''
+        package_path = packagepathtools.filesystem_path_to_package_path(
+            self.current_asset_container_directory_path)
+        return package_path
+
+    @property
+    def score_external_asset_proxies(self):
+        '''Score package wrangler score-external asset proxies:
+
+        ::
+
+            >>> wrangler.score_external_asset_proxies
+            []
+
+        Return list.
+        '''
+        return super(type(self), self).score_external_asset_proxies
+
+    @property
+    def storage_format(self):
+        '''Score package wrangler storage format:
+
+        ::
+
+            >>> wrangler.storage_format
+            'wranglers.ScorePackageWrangler()'
+
+        Return string.
+        '''
+        return super(type(self), self).storage_format
+
+    @property
+    def user_asset_container_directory_paths(self):
+        '''Score package wrangler user asset container directory paths:
+
+        ::
+
+            >>> wrangler.user_asset_container_directory_paths
+            ['.../Documents/scores']
+
+        .. note:: should return the user scores directory path, as shown above.
+
+        Return list.
+        '''
+        return []
+
+    @property
+    def user_asset_container_package_paths(self):
+        '''Score package wrangler user asset container package paths:
+
+        ::
+
+            >>> wrangler.user_asset_container_package_paths
+            []
+
+        Return list.
+        '''
+        return super(type(self), self).user_asset_container_package_paths
 
     @property
     def visible_score_titles(self):
+        '''Score package wrangler visible score titles:
+
+        ::
+
+            >>> 'Example Score I' in wrangler.visible_score_titles
+            True
+
+        Return list.
+        '''
         result = []
         for score_package_proxy in self.get_visible_asset_proxies():
             result.append(score_package_proxy.title or '(untitled score)')
@@ -54,6 +228,15 @@ class ScorePackageWrangler(PackageWrangler):
 
     @property
     def visible_score_titles_with_years(self):
+        '''Score package wrangler visible score titles with years:
+
+        ::
+
+            >>> 'Example Score I (2013)' in wrangler.visible_score_titles_with_years
+            True
+
+        Return list.
+        '''
         result = []
         for score_package_proxy in self.get_visible_asset_proxies():
             result.append(score_package_proxy.title_with_year or '(untitled score)')
@@ -81,6 +264,18 @@ class ScorePackageWrangler(PackageWrangler):
             elif scores_to_show == 'mothballed' and is_mothballed:
                 result.append(asset_proxy)
         return result
+
+    def list_score_external_asset_filesystem_paths(self, head=None):
+        '''Score package wrangler list score-external asset filesystem paths:
+
+        ::
+
+            >>> wrangler.list_score_external_asset_filesystem_paths()
+            []
+        
+        Return list.
+        '''
+        return []
 
     def list_visible_asset_filesystem_paths(self, head=None):
         result = []

@@ -48,16 +48,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                         return True
         return False
 
-    def __repr__(self):
-        '''Filesystem asset wrangler repr.
-
-        Return string.
-        '''
-        parts = []
-        parts.extend(self.built_in_asset_container_directory_paths)
-        parts = ', '.join([repr(part) for part in parts])
-        return '{}({})'.format(self._class_name, parts)
-
     ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property

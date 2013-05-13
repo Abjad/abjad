@@ -119,3 +119,5 @@
 44. Replace stray Assembly with Exergue.
 
 45. Replace stray MusPackageProxy with MusicPackageProxy.
+
+46. Change user_asset_container_directory_paths (plural) to user_asset_container_directory_path (singular).
