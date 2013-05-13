@@ -65,7 +65,7 @@ class FileProxy(FilesystemAssetProxy):
         return False
 
     def make_empty_asset(self, is_interactive=False):
-        if not self.exists:
+        if not self.exists():
             file_reference = file(self.file_path, 'w')
             file_reference.write('')
             file_reference.close()

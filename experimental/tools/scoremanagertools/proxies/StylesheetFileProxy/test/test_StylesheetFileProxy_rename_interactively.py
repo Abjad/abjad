@@ -11,11 +11,11 @@ def test_StylesheetFileProxy_rename_interactively_01():
         score_manager_configuration.score_manager_tools_directory_path,
         'built_in_stylesheets', 'test_stylesheet.ly')
     proxy = scoremanagertools.proxies.StylesheetFileProxy(file_path=file_path)
-    assert not proxy.exists
+    assert not proxy.exists()
 
     try:
         proxy.make_empty_asset()
-        assert proxy.exists
+        assert proxy.exists()
         assert not proxy.is_versioned
         new_file_path = os.path.join(
             score_manager_configuration.score_manager_tools_directory_path,

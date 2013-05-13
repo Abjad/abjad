@@ -47,6 +47,10 @@ class FilesystemAssetProxy(ScoreManagerObject):
     ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
+    def _breadcrumb(self):
+        return self.filesystem_basename or self._space_delimited_lowercase_class_name
+
+    @property
     def _plural_generic_class_name(self):
         return stringtools.pluralize_string(self._generic_class_name)
 
@@ -67,16 +71,6 @@ class FilesystemAssetProxy(ScoreManagerObject):
         return asset_name
 
     ### READ-ONLY PUBLIC PROPERTIES ###
-
-    @property
-    def _breadcrumb(self):
-        return self.filesystem_basename or self._space_delimited_lowercase_class_name
-
-    @property
-    def exists(self):
-        if self.filesystem_path:
-            return os.path.exists(self.filesystem_path)
-        return False
 
     @property
     def filesystem_basename(self):
@@ -125,6 +119,11 @@ class FilesystemAssetProxy(ScoreManagerObject):
             return
         self.copy(new_path)
         self._io.proceed('asset copied.')
+
+    def exists(self):
+        if self.filesystem_path:
+            return os.path.exists(self.filesystem_path)
+        return False
 
     @abc.abstractmethod
     def make_empty_asset(self, is_interactive=False):

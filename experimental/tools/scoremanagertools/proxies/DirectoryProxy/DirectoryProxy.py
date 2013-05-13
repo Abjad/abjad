@@ -41,7 +41,7 @@ class DirectoryProxy(FilesystemAssetProxy):
         return result
 
     def make_empty_asset(self, is_interactive=False):
-        if not self.exists:
+        if not self.exists():
             os.mkdir(self.filesystem_path)
         self._io.proceed(is_interactive=is_interactive)
 

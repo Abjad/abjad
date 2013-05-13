@@ -60,7 +60,7 @@ class MaterialDefinitionModuleProxy(MaterialModuleProxy):
 
     def parse(self):
         is_parsable = True
-        if not self.exists:
+        if not self.exists():
             return
         material_definition_module = file(self.file_path, 'r')
         encoding_directives = []
