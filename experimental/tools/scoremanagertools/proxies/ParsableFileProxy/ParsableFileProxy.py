@@ -12,15 +12,9 @@ class ParsableFileProxy(FileProxy):
         self.setup_statements = []
         self.teardown_statements = []
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PRIVATE METHODS ###
 
-    @property
-    def file_sections(self):
-        return ()
-
-    # TODO: make into method
-    @property
-    def formatted_lines(self):
+    def _format_lines(self):
         lines = []
         for section, is_sorted, blank_line_count in self.file_sections:
             if section:
@@ -34,6 +28,12 @@ class ParsableFileProxy(FileProxy):
             lines[-1] = lines[-1].strip('\n')
         return lines
 
+    ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def file_sections(self):
+        return ()
+
     ### PUBLIC METHODS ###
 
     def clear(self):
@@ -42,5 +42,6 @@ class ParsableFileProxy(FileProxy):
 
     def write_to_disk(self):
         initializer = file(self.filesystem_path, 'w')
-        formatted_lines = ''.join(self.formatted_lines)
+        formatted_lines = self._format_lines()
+        formatted_lines = ''.join(formatted_lines)
         initializer.write(formatted_lines)
