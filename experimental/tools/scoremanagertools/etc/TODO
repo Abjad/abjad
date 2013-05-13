@@ -112,3 +112,10 @@
 41. Change asset_container_directory_path to asset_container_filesystem_path globally.
 
 42. Thin out the top-level imports in just MaterialPackageProxy before other classfiles.
+    Same with ScoreManager.
+
+43. Update wrangler reprs.
+
+44. Replace stray Assembly with Exergue.
+
+45. Replace stray MusPackageProxy with MusicPackageProxy.

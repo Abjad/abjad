@@ -92,6 +92,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         return result
 
     def _get_asset_proxy(self, asset_filesystem_path):
+        assert os.path.sep in asset_filesystem_path, repr(asset_filesystem_path)
         return self.asset_proxy_class(asset_filesystem_path, session=self._session)
 
     def _get_score_external_asset_container_proxies(self, head=None):
@@ -127,6 +128,41 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     def _list_built_in_asset_container_directory_paths(self, head=None):
         return self.built_in_asset_container_directory_paths[:]
+
+    def _list_built_in_score_asset_container_directory_paths(self, head=None):
+        result = []
+        for score_directory_path in self._list_built_in_score_directory_paths(head=head):
+            parts = [score_directory_path]
+            parts.extend(self.asset_container_path_infix_parts)
+            asset_container_directory_path = os.path.join(*parts)
+            result.append(asset_container_directory_path)
+        return result 
+
+    def list_built_in_score_internal_asset_filesystem_paths(self, head=None):
+        result = []
+        for directory_path in self._list_built_in_score_asset_container_directory_paths(head=head):
+            for directory_entry in os.listdir(directory_path):
+                if directory_entry[0].isalpha():
+                    filesystem_path = os.path.join(directory_path, directory_entry)
+                    result.append(filesystem_path)
+        return result
+
+    def _list_built_in_score_directory_basenames(self, head=None):
+        result = []
+        for directory_entry in os.listdir(self.configuration.built_in_scores_directory_path):
+            package_path = 'scoremanagertools.built_in_scores.{}'.format(directory_entry)
+            if (head is not None and package_path.startswith(head)) or \
+                (head is None and directory_entry[0].isalpha()):
+                result.append(directory_entry)
+        return result
+
+    def _list_built_in_score_directory_paths(self, head=None):
+        result = []
+        basenames = self._list_built_in_score_directory_basenames(head=head)
+        for basename in basenames:
+            directory_path = os.path.join(self.configuration.built_in_scores_directory_path, basename)
+            result.append(directory_path)
+        return result
 
     def _list_score_directory_basenames(self, head=None):
         result = []

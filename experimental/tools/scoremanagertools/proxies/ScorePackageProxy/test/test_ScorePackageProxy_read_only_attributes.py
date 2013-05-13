@@ -7,7 +7,8 @@ def test_ScorePackageProxy_read_only_attributes_01():
     '''Read-only public attributes.
     '''
 
-    score_proxy = scoremanagertools.proxies.ScorePackageProxy('example_score_1')
+    score_proxy = scoremanagertools.proxies.ScorePackageProxy(
+        'scoremanagertools.built_in_scores.example_score_1')
 
 
     assert isinstance(score_proxy.segment_wrangler, scoremanagertools.wranglers.SegmentPackageWrangler)
@@ -37,11 +38,12 @@ def test_ScorePackageProxy_read_only_attributes_01():
     assert score_proxy.composer is None
     # TODO: create Example Score I instrumentation
     #assert score_proxy.instrumentation == instrumentation
-    assert score_proxy.materials_package_path == 'example_score_1.music.materials'
+    assert score_proxy.materials_package_path == \
+        'scoremanagertools.built_in_scores.example_score_1.music.materials'
     assert score_proxy.title == 'Example Score I'
     assert score_proxy.year_of_completion == 2013
 
-    directory_path = score_proxy.configuration.user_scores_directory_path
+    directory_path = score_proxy.configuration.built_in_scores_directory_path
     assert score_proxy.score_initializer_file_names == (
         os.path.join(directory_path, 'example_score_1', '__init__.py'),
         os.path.join(directory_path, 'example_score_1', 'music', '__init__.py'))
@@ -51,6 +53,9 @@ def test_ScorePackageProxy_read_only_attributes_01():
         scoremanagertools.wranglers.MaterialPackageWrangler())
 
     assert score_proxy.top_level_directory_proxies == (
-        scoremanagertools.proxies.DistributionDirectoryProxy('example_score_1'),
-        scoremanagertools.proxies.ExergueDirectoryProxy('example_score_1'),
-        scoremanagertools.proxies.MusicPackageProxy('example_score_1'))
+        scoremanagertools.proxies.DistributionDirectoryProxy(
+            'scoremanagertools.built_in_scores.example_score_1'),
+        scoremanagertools.proxies.ExergueDirectoryProxy(
+            'scoremanagertools.built_in_scores.example_score_1'),
+        scoremanagertools.proxies.MusicPackageProxy(
+            'scoremanagertools.built_in_scores.example_score_1'))

@@ -151,6 +151,32 @@ class ScoreManagerConfiguration(Configuration):
         return os.path.basename(self.built_in_materials_directory_path)
 
     @property
+    def built_in_scores_directory_path(self):
+        '''Built-in scores directory path:
+
+        ::
+
+            >>> configuration.built_in_scores_directory_path
+            '.../abjad/experimental/tools/scoremanagertools/built_in_scores'
+
+        Return string.
+        '''
+        return os.path.join(self.score_manager_tools_directory_path, 'built_in_scores')
+
+    @property
+    def built_in_scores_package_path(self):
+        '''Built-in scores package path:
+
+        ::
+
+            >>> configuration.built_in_scores_package_path
+            'scoremanagertools.built_in_scores'
+
+        Return string.
+        '''
+        return 'scoremanagertools.built_in_scores'
+
+    @property
     def built_in_specifier_classes_directory_path(self):
         '''Specifier classes directory path:
 

@@ -9,9 +9,11 @@ class ScorePackageWrangler(PackageWrangler):
     ### INITIALIZER ###
 
     def __init__(self, session=None):
-        PackageWrangler.__init__(self,
-            built_in_asset_container_package_paths=[],
-            session=session)
+        PackageWrangler.__init__(
+            self,
+            built_in_asset_container_package_paths=['scoremanagertools.built_in_scores'],
+            session=session,
+            )
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 
@@ -86,6 +88,7 @@ class ScorePackageWrangler(PackageWrangler):
             result.append(visible_asset_proxy.filesystem_path)
         return result
 
+    # TODO: change name to self.list_visible_asset_basenames() ... or remove if unused?
     def list_visible_asset_names(self, head=None):
         result = []
         for asset_filesystem_path in self.list_visible_asset_filesystem_paths(head=head):
@@ -96,6 +99,7 @@ class ScorePackageWrangler(PackageWrangler):
         result = []
         scores_to_show = self._session.scores_to_show
         for asset_proxy in PackageWrangler.get_asset_proxies(self, head=head):
+            print asset_proxy, 'AP'
             tags = asset_proxy.get_tags()
             is_mothballed = tags.get('is_mothballed', False)
             if scores_to_show == 'all' or \

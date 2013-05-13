@@ -111,7 +111,8 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
     def get_asset_proxies(self, head=None):
         result = []
         for package_path in self.list_asset_package_paths(head=head):
-            asset_proxy = self._get_asset_proxy(package_path)
+            filesystem_path = packagepathtools.package_path_to_directory_path(package_path)
+            asset_proxy = self._get_asset_proxy(filesystem_path)
             result.append(asset_proxy)
         return result
 
@@ -124,6 +125,7 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
     def list_asset_package_paths(self, head=None):
         result = []
         result.extend(self.list_score_external_asset_package_paths(head=head))
+        #result.extend(self.list_built_in_score_internal_asset_package_paths(head=head))
         result.extend(self.list_score_internal_asset_package_paths(head=head))
         result.extend(self.list_user_asset_package_paths(head=head))
         return result
@@ -133,6 +135,26 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
         for package_path in self.built_in_asset_container_package_paths:
             if head is None or package_path.startswith(head):
                 result.append(package_path)
+        return result
+
+    def list_built_in_score_interal_asset_container_package_paths(self, head=None):
+        result = []
+        for package_path in self._list_built_in_score_package_paths(head=head):
+            asset_container_package_path = '.'.join(package_path, self.asset_container_path_infix_parts)
+            result.append(asset_container_package_path)
+        return result
+
+    def list_built_in_score_internal_asset_package_paths(self, head=None):
+        result = []
+        for filesystem_path in self.list_built_in_score_internal_asset_filesystem_paths(head=head):
+            package_path = packagepathtools.filesystem_path_to_package_path(filesystem_path)
+            result.append(package_path)
+        return result
+
+    def _list_built_in_score_package_paths(self, head=None):
+        result = []
+        basenames = self._list_built_in_score_directory_basenames(head=head)
+        result = ['scoremanagertools.built_in_scores.{}'.format(basename) for basename in basenames]
         return result
 
     def list_score_external_asset_package_paths(self, head=None):

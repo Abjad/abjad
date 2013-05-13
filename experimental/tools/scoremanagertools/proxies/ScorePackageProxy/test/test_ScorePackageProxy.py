@@ -6,7 +6,8 @@ def test_ScorePackageProxy_01():
     '''Main menu.
     '''
 
-    example_score_1 = scoremanagertools.proxies.ScorePackageProxy('example_score_1')
+    example_score_1 = scoremanagertools.proxies.ScorePackageProxy(
+        'scoremanagertools.built_in_scores.example_score_1')
     example_score_1._run(user_input='q')
 
     assert example_score_1._session.transcript[-2][1] == \
@@ -23,7 +24,8 @@ def test_ScorePackageProxy_02():
     '''Manage tags menu.
     '''
 
-    example_score_1 = scoremanagertools.proxies.ScorePackageProxy('example_score_1')
+    example_score_1 = scoremanagertools.proxies.ScorePackageProxy(
+        'scoremanagertools.built_in_scores.example_score_1')
     example_score_1._session.user_input = 'q'
     example_score_1.manage_tags()
     assert example_score_1._session.transcript.signature == (2,)
@@ -33,12 +35,14 @@ def test_ScorePackageProxy_03():
     '''Add and delete tag interactively.
     '''
 
-    example_score_1 = scoremanagertools.proxies.ScorePackageProxy('example_score_1')
+    example_score_1 = scoremanagertools.proxies.ScorePackageProxy(
+        'scoremanagertools.built_in_scores.example_score_1')
     example_score_1._session.user_input = 'add foo bar q'
     example_score_1.manage_tags()
     assert example_score_1.get_tag('foo') == 'bar'
 
-    example_score_1 = scoremanagertools.proxies.ScorePackageProxy('example_score_1')
+    example_score_1 = scoremanagertools.proxies.ScorePackageProxy(
+        'scoremanagertools.built_in_scores.example_score_1')
     example_score_1._session.user_input = 'del foo q'
     example_score_1.manage_tags()
     assert example_score_1.get_tag('foo') is None
@@ -61,7 +65,8 @@ def test_ScorePackageProxy_05():
     '''User 'home' input terminates execution (when score not managed from home).
     '''
 
-    example_score_1 = scoremanagertools.proxies.ScorePackageProxy('example_score_1')
+    example_score_1 = scoremanagertools.proxies.ScorePackageProxy(
+        'scoremanagertools.built_in_scores.example_score_1')
     example_score_1._run(user_input='home')
 
     assert example_score_1._session.transcript.signature == (2,)
@@ -86,7 +91,8 @@ def test_ScorePackageProxy_07():
     '''Shared session.
     '''
 
-    spp = scoremanagertools.proxies.ScorePackageProxy('example_score_1')
+    spp = scoremanagertools.proxies.ScorePackageProxy(
+        'scoremanagertools.built_in_scores.example_score_1')
 
     assert spp._session is spp.distribution_proxy._session
     assert spp._session is spp.exergue_directory_proxy._session

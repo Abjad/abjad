@@ -25,9 +25,11 @@ def test_ScorePackageProxy_edit_forces_tagline_interactively_02():
     try:
         score_manager = scoremanagertools.scoremanager.ScoreManager()
         score_manager._run(user_input='example~score~i setup tagline for~foo~bar q')
-        example_score_1 = scoremanagertools.proxies.ScorePackageProxy('example_score_1')
+        example_score_1 = scoremanagertools.proxies.ScorePackageProxy(
+            'scoremanagertools.built_in_scores.example_score_1')
         assert example_score_1.forces_tagline == 'for foo bar'
     finally:
         score_manager._run(user_input='example~score~i setup tagline for~six~players q')
-        example_score_1 = scoremanagertools.proxies.ScorePackageProxy('example_score_1')
+        example_score_1 = scoremanagertools.proxies.ScorePackageProxy(
+            'scoremanagertools.built_in_scores.example_score_1')
         assert example_score_1.forces_tagline == 'for six players'
