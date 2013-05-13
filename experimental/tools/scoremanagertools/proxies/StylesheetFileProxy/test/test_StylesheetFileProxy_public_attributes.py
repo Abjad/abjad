@@ -10,7 +10,7 @@ def test_StylesheetFileProxy_public_attributes_01():
 
     assert proxy._breadcrumb == 'stylesheet file proxy'
     assert not proxy.exists()
-    assert not proxy.file_lines
+    assert not proxy.read_lines()
     assert proxy._generic_class_name == 'stylesheet'
     assert proxy._space_delimited_lowercase_name is None
     assert not proxy.is_versioned()
@@ -35,7 +35,7 @@ def test_StylesheetFileProxy_public_attributes_02():
 
     assert proxy._breadcrumb == 'clean_letter_14.ly'
     assert proxy.exists()
-    assert proxy.file_lines
+    assert proxy.read_lines()
     assert proxy._generic_class_name == 'stylesheet'
     assert proxy._space_delimited_lowercase_name == file_name
     assert proxy.is_versioned()

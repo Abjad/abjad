@@ -11,7 +11,7 @@ def test_ModuleProxy_public_attributes_01():
 
     assert proxy._breadcrumb == 'module proxy'
     assert not proxy.exists()
-    assert not proxy.file_lines
+    assert not proxy.read_lines()
     assert proxy._generic_class_name == 'module'
     assert proxy.grandparent_directory_path is None
     assert proxy.grandparent_package_path is None
@@ -41,7 +41,7 @@ def test_ModuleProxy_public_attributes_02():
 
     assert proxy._breadcrumb == 'material_definition.py'
     assert proxy.exists()
-    assert proxy.file_lines
+    assert proxy.read_lines()
     assert proxy._generic_class_name == 'module'
     assert proxy.grandparent_directory_path == proxy.configuration.built_in_materials_directory_path
     assert proxy.grandparent_package_path == proxy.configuration.built_in_materials_package_path

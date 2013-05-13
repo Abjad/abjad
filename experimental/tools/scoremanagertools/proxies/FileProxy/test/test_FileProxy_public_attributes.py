@@ -8,7 +8,6 @@ def test_FileProxy_public_attributes_01():
 
     file_proxy = scoremanagertools.proxies.FileProxy()
 
-    assert not file_proxy.file_lines
     assert file_proxy._generic_class_name == 'file'
     assert file_proxy._space_delimited_lowercase_name is None
     assert not file_proxy.is_versioned()
@@ -31,7 +30,6 @@ def test_FileProxy_public_attributes_02():
         'built_in_stylesheets', file_name)
     file_proxy = scoremanagertools.proxies.FileProxy(filesystem_path)
 
-    assert file_proxy.file_lines
     assert file_proxy._generic_class_name == 'file'
     assert file_proxy._space_delimited_lowercase_name == file_name
     assert file_proxy.is_versioned()

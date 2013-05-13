@@ -10,18 +10,6 @@ class FileProxy(FilesystemAssetProxy):
     _temporary_asset_name = 'temporary_file.txt'
     extension = ''
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
-
-    @property
-    def file_lines(self):
-        result = []
-        if self.filesystem_path:
-            if os.path.exists(self.filesystem_path):
-                file_pointer = file(self.filesystem_path)
-                result.extend(file_pointer.readlines())
-                file_pointer.close()
-        return result
-
     ### PUBLIC METHODS ###
 
     def display_formatted_lines(self):
@@ -45,6 +33,15 @@ class FileProxy(FilesystemAssetProxy):
             file_reference.write('')
             file_reference.close()
         self._io.proceed(is_interactive=is_interactive)
+
+    def read_lines(self):
+        result = []
+        if self.filesystem_path:
+            if os.path.exists(self.filesystem_path):
+                file_pointer = file(self.filesystem_path)
+                result.extend(file_pointer.readlines())
+                file_pointer.close()
+        return result
 
     def view(self):
         os.system('vi -R {}'.format(self.filesystem_path))

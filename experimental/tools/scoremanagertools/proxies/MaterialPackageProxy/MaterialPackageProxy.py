@@ -604,7 +604,7 @@ class MaterialPackageProxy(PackageProxy):
     @property
     def stylesheet_file_name_on_disk(self):
         if self.has_illustration_ly:
-            for line in self.illustration_ly_file_proxy.file_lines:
+            for line in self.illustration_ly_file_proxy.read_lines():
                 if line.startswith(r'\include') and 'stylesheets' in line:
                     file_name = line.split()[-1].replace('"', '')
                     return file_name
