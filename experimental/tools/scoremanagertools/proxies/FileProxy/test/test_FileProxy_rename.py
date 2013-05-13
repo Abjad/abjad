@@ -7,28 +7,28 @@ def test_FileProxy_rename_01():
     '''
 
     score_manager_configuration = scoremanagertools.core.ScoreManagerConfiguration()
-    file_path = os.path.join(
+    filesystem_path = os.path.join(
         score_manager_configuration.score_manager_tools_directory_path, 'temporary_file.txt')
-    file_proxy = scoremanagertools.proxies.FileProxy(file_path=file_path)
-    assert not os.path.exists(file_path)
+    file_proxy = scoremanagertools.proxies.FileProxy(filesystem_path=filesystem_path)
+    assert not os.path.exists(filesystem_path)
 
     try:
         file_proxy.make_empty_asset()
-        assert os.path.exists(file_path)
+        assert os.path.exists(filesystem_path)
         assert not file_proxy.is_versioned
-        new_file_path = os.path.join(
+        new_filesystem_path = os.path.join(
             score_manager_configuration.score_manager_tools_directory_path, 'new_temporary_file.txt')
-        file_proxy.rename(new_file_path)
-        assert not os.path.exists(file_path)
-        assert os.path.exists(new_file_path)
+        file_proxy.rename(new_filesystem_path)
+        assert not os.path.exists(filesystem_path)
+        assert os.path.exists(new_filesystem_path)
         file_proxy.remove()
     finally:
-        if os.path.exists(file_path):
-            os.remove(file_path)
-        if os.path.exists(new_file_path):
-            os.remove(new_file_path)
-        assert not os.path.exists(file_path)
-        assert not os.path.exists(new_file_path)
+        if os.path.exists(filesystem_path):
+            os.remove(filesystem_path)
+        if os.path.exists(new_filesystem_path):
+            os.remove(new_filesystem_path)
+        assert not os.path.exists(filesystem_path)
+        assert not os.path.exists(new_filesystem_path)
 
 
 def test_FileProxy_rename_02():
@@ -36,22 +36,22 @@ def test_FileProxy_rename_02():
     '''
 
     score_manager_configuration = scoremanagertools.core.ScoreManagerConfiguration()
-    file_path = os.path.join(
+    filesystem_path = os.path.join(
         score_manager_configuration.score_manager_tools_directory_path, 'temporary_file.txt')
-    file_proxy = scoremanagertools.proxies.FileProxy(file_path=file_path)
-    assert not os.path.exists(file_path)
+    file_proxy = scoremanagertools.proxies.FileProxy(filesystem_path=filesystem_path)
+    assert not os.path.exists(filesystem_path)
 
     try:
         file_proxy.make_empty_asset()
-        assert os.path.exists(file_path)
+        assert os.path.exists(filesystem_path)
         file_proxy.svn_add()
         assert file_proxy.is_versioned
-        new_file_path = os.path.join(
+        new_filesystem_path = os.path.join(
             score_manager_configuration.score_manager_tools_directory_path, 'new_temporary_file.txt')
-        file_proxy.rename(new_file_path)
-        assert os.path.exists(new_file_path)
-        assert file_proxy.file_path == new_file_path
+        file_proxy.rename(new_filesystem_path)
+        assert os.path.exists(new_filesystem_path)
+        assert file_proxy.filesystem_path == new_filesystem_path
     finally:
         file_proxy.remove()
-        assert not os.path.exists(file_path)
-        assert not os.path.exists(new_file_path)
+        assert not os.path.exists(filesystem_path)
+        assert not os.path.exists(new_filesystem_path)

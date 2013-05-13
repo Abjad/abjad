@@ -23,7 +23,7 @@ def test_ModuleProxy_public_attributes_01():
     assert proxy.filesystem_directory_name is None
     assert proxy.parent_package_path is None
     assert proxy.parent_package_initializer_file_name is None
-    assert proxy.file_path is None
+    assert proxy.filesystem_path is None
     assert proxy._plural_generic_class_name == 'modules'
     assert proxy.filesystem_basename is None
     assert proxy.name_without_extension is None
@@ -58,7 +58,7 @@ def test_ModuleProxy_public_attributes_02():
         proxy.configuration.built_in_materials_package_path, 'red_notes'])
     assert proxy.parent_package_initializer_file_name == os.path.join(
         proxy.configuration.built_in_materials_directory_path, 'red_notes', '__init__.py')
-    assert proxy.file_path == os.path.join(
+    assert proxy.filesystem_path == os.path.join(
         proxy.configuration.built_in_materials_directory_path, 'red_notes', 'material_definition.py')
     assert proxy._plural_generic_class_name == 'modules'
     assert proxy.filesystem_basename == 'material_definition.py'

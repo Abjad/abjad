@@ -15,7 +15,7 @@ def test_StylesheetFileProxy_public_attributes_01():
     assert proxy._space_delimited_lowercase_name is None
     assert not proxy.is_versioned
     assert proxy.filesystem_directory_name is None
-    assert proxy.file_path is None
+    assert proxy.filesystem_path is None
     assert proxy._plural_generic_class_name == 'stylesheets'
     assert proxy.filesystem_basename is None
     assert proxy.name_without_extension is None
@@ -29,10 +29,10 @@ def test_StylesheetFileProxy_public_attributes_02():
 
     file_name = 'clean_letter_14.ly'
     score_manager_configuration = scoremanagertools.core.ScoreManagerConfiguration()
-    file_path = os.path.join(
+    filesystem_path = os.path.join(
         score_manager_configuration.score_manager_tools_directory_path,
         'built_in_stylesheets', file_name)
-    proxy = scoremanagertools.proxies.StylesheetFileProxy(file_path)
+    proxy = scoremanagertools.proxies.StylesheetFileProxy(filesystem_path)
 
     assert proxy._breadcrumb == 'clean_letter_14.ly'
     assert proxy.exists()
@@ -40,9 +40,9 @@ def test_StylesheetFileProxy_public_attributes_02():
     assert proxy._generic_class_name == 'stylesheet'
     assert proxy._space_delimited_lowercase_name == file_name
     assert proxy.is_versioned
-    assert proxy.file_path == file_path
+    assert proxy.filesystem_path == filesystem_path
     assert proxy._plural_generic_class_name == 'stylesheets'
     assert proxy.filesystem_basename == file_name
     assert proxy.name_without_extension == file_name[:-3]
-    assert proxy._svn_add_command == 'svn add {}'.format(proxy.file_path)
+    assert proxy._svn_add_command == 'svn add {}'.format(proxy.filesystem_path)
     assert proxy._temporary_asset_name == 'temporary_stylesheet.ly'

@@ -11,8 +11,8 @@ class ModuleProxy(ParsableFileProxy):
 
     def __init__(self, module_path=None, session=None):
         self._module_path = module_path
-        file_path = packagepathtools.module_path_to_file_path(self.module_path, self.configuration)
-        ParsableFileProxy.__init__(self, file_path=file_path, session=session)
+        filesystem_path = packagepathtools.module_path_to_file_path(self.module_path, self.configuration)
+        ParsableFileProxy.__init__(self, filesystem_path=filesystem_path, session=session)
 
     ### CLASS ATTRIBUTES ###
 
@@ -93,11 +93,11 @@ class ModuleProxy(ParsableFileProxy):
         exec(command)
 
     def run_abjad(self, prompt=True):
-        os.system('abjad {}'.format(self.file_path))
+        os.system('abjad {}'.format(self.filesystem_path))
         self._io.proceed('file executed', is_interactive=prompt)
 
     def run_python(self, prompt=True):
-        os.system('python {}'.format(self.file_path))
+        os.system('python {}'.format(self.filesystem_path))
         self._io.proceed('file executed.', is_interactive=prompt)
 
     # TODO: remove entirely

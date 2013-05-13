@@ -12,24 +12,20 @@ class FileProxy(FilesystemAssetProxy):
 
     ### INITIALIZER ###
 
-    def __init__(self, file_path=None, session=None):
-        FilesystemAssetProxy.__init__(self, filesystem_path=file_path, session=session)
+    def __init__(self, filesystem_path=None, session=None):
+        FilesystemAssetProxy.__init__(self, filesystem_path=filesystem_path, session=session)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def file_lines(self):
         result = []
-        if self.file_path:
-            if os.path.exists(self.file_path):
-                file_pointer = file(self.file_path)
+        if self.filesystem_path:
+            if os.path.exists(self.filesystem_path):
+                file_pointer = file(self.filesystem_path)
                 result.extend(file_pointer.readlines())
                 file_pointer.close()
         return result
-
-    @property
-    def file_path(self):
-        return self.filesystem_path
 
     @property
     def format(self):
@@ -53,10 +49,10 @@ class FileProxy(FilesystemAssetProxy):
         self._io.display(self.formatted_lines)
 
     def edit(self):
-        os.system('vi + {}'.format(self.file_path))
+        os.system('vi + {}'.format(self.filesystem_path))
 
     def has_line(self, line):
-        file_reference = open(self.file_path, 'r')
+        file_reference = open(self.filesystem_path, 'r')
         for file_line in file_reference.readlines():
             if file_line == line:
                 file_reference.close()
@@ -66,10 +62,10 @@ class FileProxy(FilesystemAssetProxy):
 
     def make_empty_asset(self, is_interactive=False):
         if not self.exists():
-            file_reference = file(self.file_path, 'w')
+            file_reference = file(self.filesystem_path, 'w')
             file_reference.write('')
             file_reference.close()
         self._io.proceed(is_interactive=is_interactive)
 
     def view(self):
-        os.system('vi -R {}'.format(self.file_path))
+        os.system('vi -R {}'.format(self.filesystem_path))
