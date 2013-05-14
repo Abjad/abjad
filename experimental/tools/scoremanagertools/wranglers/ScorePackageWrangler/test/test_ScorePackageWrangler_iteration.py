@@ -10,7 +10,7 @@ def test_ScorePackageWrangler_iteration_01():
         wrangler.list_score_internal_asset_package_paths()
     assert 'experimental.tools.scoremanagertools.built_in_scores.examle_score_1' not in \
         wrangler.list_score_internal_asset_package_paths(
-            head='experimental.tools.scoremanagertools.built_in_scores.example_score_2')
+            head='experimental.tools.scoremanagertools.built_in_scores.green_example_score')
     assert wrangler.list_score_internal_asset_package_paths(head='asdf') == []
 
 
@@ -20,5 +20,5 @@ def test_ScorePackageWrangler_iteration_02():
         wrangler.list_score_internal_asset_container_package_paths()
     assert 'experimental.tools.scoremanagertools.built_in_scores.example_score_1' not in \
         wrangler.list_score_internal_asset_container_package_paths(
-        head='experimental.tools.scoremanagertools.built_in_scores.example_score_2')
+        head='experimental.tools.scoremanagertools.built_in_scores.green_example_score')
     assert wrangler.list_score_internal_asset_container_package_paths(head='asdf') == []

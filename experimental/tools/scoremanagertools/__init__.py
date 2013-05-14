@@ -123,7 +123,7 @@ You should see the following:
 Repeat the steps listed for #5, above:
 
     (1/3) score title: Example Score II
-    (2/3) package name: example_score_2
+    (2/3) package name: green_example_score
     (3/3) year of completion: 2013
 
 

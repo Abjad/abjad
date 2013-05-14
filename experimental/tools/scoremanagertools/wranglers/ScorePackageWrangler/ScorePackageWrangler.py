@@ -260,7 +260,7 @@ class ScorePackageWrangler(PackageWrangler):
             ...     x
             ScorePackageProxy('.../tools/scoremanagertools/built_in_scores/blue_example_score')
             ScorePackageProxy('.../tools/scoremanagertools/built_in_scores/example_score_1')
-            ScorePackageProxy('.../tools/scoremanagertools/built_in_scores/example_score_2')
+            ScorePackageProxy('.../tools/scoremanagertools/built_in_scores/green_example_score')
             ...
 
         Output lists built-in scores followed by user scores.
@@ -278,7 +278,7 @@ class ScorePackageWrangler(PackageWrangler):
             ...     x
             ScorePackageProxy('.../tools/scoremanagertools/built_in_scores/blue_example_score')
             ScorePackageProxy('.../tools/scoremanagertools/built_in_scores/example_score_1')
-            ScorePackageProxy('.../tools/scoremanagertools/built_in_scores/example_score_2')
+            ScorePackageProxy('.../tools/scoremanagertools/built_in_scores/green_example_score')
             ...
         
         Output lists built-in scores followed by user scores.
@@ -306,7 +306,7 @@ class ScorePackageWrangler(PackageWrangler):
             ...     x
             'experimental.tools.scoremanagertools.built_in_scores.blue_example_score'
             'experimental.tools.scoremanagertools.built_in_scores.example_score_1'
-            'experimental.tools.scoremanagertools.built_in_scores.example_score_2'
+            'experimental.tools.scoremanagertools.built_in_scores.green_example_score'
             ...
 
         Output lists built-in scores followed by user scores.
@@ -350,7 +350,7 @@ class ScorePackageWrangler(PackageWrangler):
             ...     x
             '.../tools/scoremanagertools/built_in_scores/blue_example_score'
             '.../tools/scoremanagertools/built_in_scores/example_score_1'
-            '.../tools/scoremanagertools/built_in_scores/example_score_2'
+            '.../tools/scoremanagertools/built_in_scores/green_example_score'
             ...
 
         Output lists built-in scores followed by user scores.

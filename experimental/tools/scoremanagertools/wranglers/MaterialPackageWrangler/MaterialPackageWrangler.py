@@ -169,7 +169,7 @@ class MaterialPackageWrangler(PackageWrangler):
             'built_in_materials'
             'experimental.tools.scoremanagertools.built_in_scores.blue_example_score.music.materials'
             'experimental.tools.scoremanagertools.built_in_scores.example_score_1.music.materials'
-            'experimental.tools.scoremanagertools.built_in_scores.example_score_2.music.materials'
+            'experimental.tools.scoremanagertools.built_in_scores.green_example_score.music.materials'
             ...
 
         Output lists built-in materials, followed by built-in scores,
@@ -188,7 +188,7 @@ class MaterialPackageWrangler(PackageWrangler):
             ...     x
             '.../tools/scoremanagertools/built_in_scores/blue_example_score/music/materials'
             '.../tools/scoremanagertools/built_in_scores/example_score_1/music/materials'
-            '.../tools/scoremanagertools/built_in_scores/example_score_2/music/materials'
+            '.../tools/scoremanagertools/built_in_scores/green_example_score/music/materials'
             ...
 
         Return list.
@@ -204,7 +204,7 @@ class MaterialPackageWrangler(PackageWrangler):
             ...     x
             'experimental.tools.scoremanagertools.built_in_scores.blue_example_score.music.materials'
             'experimental.tools.scoremanagertools.built_in_scores.example_score_1.music.materials'
-            'experimental.tools.scoremanagertools.built_in_scores.example_score_2.music.materials'
+            'experimental.tools.scoremanagertools.built_in_scores.green_example_score.music.materials'
             ...
 
         Output lists built-in scores followed by user scores.

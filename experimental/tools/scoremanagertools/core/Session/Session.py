@@ -39,7 +39,7 @@ class Session(abctools.AbjadObject):
     # this will eventually be replaced with something more robust, perhaps a real cache.
     cache_of_built_in_score_names = (
         'example_score_1',
-        'example_score_2',
+        'green_example_score',
         'blue_example_score',
         )
 
