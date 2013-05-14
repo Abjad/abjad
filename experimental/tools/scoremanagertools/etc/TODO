@@ -130,3 +130,8 @@
 49. Change 'head' globally to something like 'score_package_path' to be explicit.
 
 50. Replace all _read_only_attributes.py and _public_attributes.py test files with doctests.
+
+51. Replace os.listdir() calls in Session with hardcoded list of built-in scores to increase performance.
+
+52. Rename example_score_1 to just example_score.
+    Rename example_score_2 to something other than example.
