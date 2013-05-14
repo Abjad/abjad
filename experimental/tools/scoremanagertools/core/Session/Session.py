@@ -265,9 +265,8 @@ class Session(abctools.AbjadObject):
         '''
         from experimental.tools.scoremanagertools.proxies.ScorePackageProxy import ScorePackageProxy
         if self.is_in_score:
-            # TODO: change from underscore-delimited name to package path
             return ScorePackageProxy(
-                package_path=self.underscore_delimited_current_score_name, session=self)
+                package_path=self.current_score_package_path, session=self)
 
     @property
     def current_segments_directory_path(self):
