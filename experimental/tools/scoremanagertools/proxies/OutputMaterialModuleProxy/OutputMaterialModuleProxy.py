@@ -4,6 +4,140 @@ from experimental.tools.scoremanagertools.helpers import safe_import
 
 
 class OutputMaterialModuleProxy(BasicModuleProxy):
+    '''Output material module proxy:
+
+    ::
+
+        >>> proxy = scoremanagertools.proxies.OutputMaterialModuleProxy(
+        ...     'built_in_materials.red_numbers.output_material')
+        >>> proxy
+        OutputMaterialModuleProxy('.../built_in_materials/red_numbers/output_material.py')
+
+    Return output material module proxy.
+    '''
+
+    ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def file_sections(self):
+        '''Output material module proxy file sections:
+
+        ::
+
+            >>> for x in proxy.file_sections: x
+            ... 
+            ([], False, 0)
+            ([], False, 1)
+            ([], True, 2)
+            (['red_numbers = [1, 2, 3, 4, 5]'], False, 0)
+    
+        Return tuple.
+        '''
+        return super(type(self), self).file_sections
+
+    @property
+    def filesystem_basename(self):
+        '''Output material module proxy filesystem basename:
+
+        ::
+
+            >>> proxy.filesystem_basename
+            'output_material.py'
+
+        Return string.
+        '''
+        return super(type(self), self).filesystem_basename
+
+    @property
+    def filesystem_directory_name(self):
+        '''Output material module proxy filesystem directory_name:
+
+        ::
+
+            >>> proxy.filesystem_directory_name
+            '.../built_in_materials/red_numbers'
+
+        Return string.
+        '''
+        return super(type(self), self).filesystem_directory_name
+
+    @property
+    def filesystem_path(self):
+        '''Output material module proxy filesystem path:
+
+        ::
+
+            >>> proxy.filesystem_path
+            '.../built_in_materials/red_numbers/output_material.py'
+
+        Return string.
+        '''
+        return super(type(self), self).filesystem_path
+
+    @property
+    def material_package_name(self):
+        '''Output material module proxy material package name:
+
+        ::
+
+            >>> proxy.material_package_name
+            'red_numbers'
+
+        Return string.
+        '''
+        return super(type(self), self).material_package_name
+
+    @property
+    def material_package_path(self):
+        '''Output material module proxy material package path:
+
+        ::
+
+            >>> proxy.material_package_path
+            'built_in_materials.red_numbers'
+
+        Return string.
+        '''
+        return super(type(self), self).material_package_path
+
+    @property
+    def module_name(self):
+        '''Output material module proxy module name:
+
+        ::
+
+            >>> proxy.module_name
+            'output_material'
+
+        Return string.
+        '''
+        return super(type(self), self).module_name
+
+    @property
+    def module_path(self):
+        '''Output material module proxy module path:
+
+        ::
+
+            >>> proxy.module_path
+            'built_in_materials.red_numbers.output_material'
+
+        Return string.
+        '''
+        return super(type(self), self).module_path
+
+    @property
+    def package_path(self):
+        '''Output material package proxy package path:
+
+        ::
+
+            >>> proxy.package_path
+            'built_in_materials.red_numbers.output_material'
+
+        Return string.
+        '''
+        return super(type(self), self).package_path
 
     ### PUBLIC METHODS ###
 

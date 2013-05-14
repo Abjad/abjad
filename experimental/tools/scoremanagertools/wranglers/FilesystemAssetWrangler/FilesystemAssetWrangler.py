@@ -1,6 +1,7 @@
 import abc
 import os
 from abjad.tools import stringtools
+from experimental.tools import packagepathtools
 from experimental.tools.scoremanagertools.core.ScoreManagerObject import ScoreManagerObject
 
 
@@ -81,9 +82,9 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         result.extend(self._get_score_internal_asset_container_proxies(head=head))
         return result
 
-    def _get_asset_proxy(self, asset_filesystem_path):
-        assert os.path.sep in asset_filesystem_path, repr(asset_filesystem_path)
-        return self.asset_proxy_class(asset_filesystem_path, session=self._session)
+    def _get_asset_proxy(self, filesystem_path):
+        assert os.path.sep in filesystem_path, repr(filesystem_path)
+        return self.asset_proxy_class(filesystem_path=filesystem_path, session=self._session)
 
     def _get_score_external_asset_container_proxies(self, head=None):
         result = []

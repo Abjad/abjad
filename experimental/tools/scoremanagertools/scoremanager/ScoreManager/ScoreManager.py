@@ -145,8 +145,7 @@ class ScoreManager(ScoreManagerObject):
     ### PUBLIC METHODS ###
 
     def edit_score_interactively(self, score_package_path):
-        score_directory_path = packagepathtools.package_path_to_directory_path(score_package_path)
-        score_package_proxy = self.score_package_wrangler._get_asset_proxy(score_directory_path)
+        score_package_proxy = self.score_package_wrangler._get_asset_proxy(score_package_path)
         score_package_proxy._session.underscore_delimited_current_score_name = score_package_path
         score_package_proxy._run(cache=True)
         self._session.underscore_delimited_current_score_name = None

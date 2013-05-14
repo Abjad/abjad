@@ -3,7 +3,7 @@ from experimental.tools.scoremanagertools.proxies.ModuleProxy import ModuleProxy
 
 class MaterialModuleProxy(ModuleProxy):
 
-    ### READ-ONLY PROPERTIES ###
+    ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def material_package_name(self):

@@ -64,6 +64,10 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
 
     ### PRIVATE METHODS ###
 
+    def _get_asset_proxy(self, package_path):
+        assert os.path.sep not in package_path, repr(package_path)
+        return self.asset_proxy_class(package_path=package_path, session=self._session)
+
     def _make_visible_asset_menu_tokens(self, head=None):
         keys = self.list_visible_asset_package_paths(head=head)
         bodies = self.list_space_delimited_lowercase_visible_asset_names(head=head)
@@ -99,8 +103,7 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
     def get_asset_proxies(self, head=None):
         result = []
         for package_path in self.list_asset_package_paths(head=head):
-            filesystem_path = packagepathtools.package_path_to_directory_path(package_path)
-            asset_proxy = self._get_asset_proxy(filesystem_path)
+            asset_proxy = self._get_asset_proxy(package_path)
             result.append(asset_proxy)
         return result
 
