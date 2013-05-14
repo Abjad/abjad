@@ -35,6 +35,13 @@ class Session(abctools.AbjadObject):
     ### CLASS ATTRIBUTES ###
 
     configuration = ScoreManagerConfiguration()
+    # this is a temporary hack to avoid constantly reading from disk;
+    # this will eventually be replaced with something more robust, perhaps a real cache.
+    cache_of_built_in_score_names = (
+        'example_score_1',
+        'example_score_2',
+        'etude_score',
+        )
 
     ### INITIALIZER ###
 
@@ -216,8 +223,8 @@ class Session(abctools.AbjadObject):
         Return string.
         '''
         if self.underscore_delimited_current_score_name:
-            if self.underscore_delimited_current_score_name in os.listdir(
-                self.configuration.built_in_scores_directory_path):
+            if self.underscore_delimited_current_score_name in \
+                self.cache_of_built_in_score_names:
                 return os.path.join(
                     self.configuration.built_in_scores_directory_path,
                     self.underscore_delimited_current_score_name)
@@ -235,8 +242,8 @@ class Session(abctools.AbjadObject):
         Return string.
         '''
         if self.underscore_delimited_current_score_name:
-            if self.underscore_delimited_current_score_name in os.listdir(
-                self.configuration.built_in_scores_directory_path):
+            if self.underscore_delimited_current_score_name in \
+                self.cache_of_built_in_score_names:
                 return '.'.join([
                     self.configuration.built_in_scores_package_path,
                     self.underscore_delimited_current_score_name])
