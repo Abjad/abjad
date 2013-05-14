@@ -57,7 +57,7 @@ def test_MaterialPackageWrangler_iteration_04():
 def test_MaterialPackageWrangler_iteration_05():
     '''Score-internal assets.
     '''
-    py.test.skip('TODO: add time_signatures package to Example Score I.')
+    py.test.skip('TODO: add time_signatures package to Red Example Score.')
 
     assert 'experimental.tools.scoremanagertools.built_in_scores.red_example_score.music.materials.time_signatures' in \
         wrangler.list_score_internal_asset_package_paths()
@@ -68,7 +68,7 @@ def test_MaterialPackageWrangler_iteration_05():
 
 
 def test_MaterialPackageWrangler_iteration_06():
-    py.test.skip('TODO: add time_signatures package to Example Score I.')
+    py.test.skip('TODO: add time_signatures package to Red Example Score.')
 
     directory_path = os.path.join(
         wrangler.configuration.built_in_scores_directory_path,
@@ -90,7 +90,7 @@ def test_MaterialPackageWrangler_iteration_07():
 
 
 def test_MaterialPackageWrangler_iteration_08():
-   py.test.skip('TODO: add time_signatures package to Example Score I.')
+   py.test.skip('TODO: add time_signatures package to Red Example Score.')
 
    assert 'experimental.tools.scoremanagertools.built_in_scores.red_example_score.music.materials.time_signatures' in \
         wrangler.list_visible_asset_package_paths()
@@ -101,7 +101,7 @@ def test_MaterialPackageWrangler_iteration_08():
 
 
 def test_MaterialPackageWrangler_iteration_09():
-    py.test.skip('TODO: add time_signatures package to Example Score I.')
+    py.test.skip('TODO: add time_signatures package to Red Example Score.')
 
     assert ('built_in_materials.red_sargasso_measures', 'red sargasso measures') in \
         wrangler._make_visible_asset_menu_tokens()

@@ -45,13 +45,7 @@
     The file will test 'import red_example_score', 'import green_example_score', and so on.
     This will be a very high-level test to make sure that entire score packages remain importable.
 
-20. Extend stuff to allow makers to be stored in multiple directories.
-
-21. Extend stuff to allow scores to be stored in multiple directories.
-    Then create scoremanagertoolstestscores directory somewhere.
-    Then check Example Score I, Example Score II, Étude Score I in to directory.
-
-22. Simplify custom_score/music/materials/__init__.py files.
+20. Simplify custom_score/music/materials/__init__.py files.
     File should probably contain nothing.
     What is the design goal?
     The design goal is that the score manager should always start.
@@ -61,67 +55,60 @@
     Ultimately this should mean that safe_import() can be removed from *all* __init__.py files everywhere.
     The system might preserve safe_import() to be used in direct response to user request for explicit import.
 
-23. Implement example_score_i.music.materials.divisions to import 
+21. Implement example_score_i.music.materials.divisions to import 
     example_score_i.music.materials.time_signatures.
     This will implement an intrapackage material import.
     Implement example_score_ii.music.materials.divisions to 
     import example_score_i.music.materials.time_signatures.
     This will implement an interpackage material import.
 
-24. Remove the has_readable_... and is_readable_... properties from the system entirely.
+22. Remove the has_readable_... and is_readable_... properties from the system entirely.
     Force such functionality to be method calls that will be noticeably expensive.
 
-25. Migrate all build_illustration.py modules from separate modules to bound class methods.
+23. Migrate all build_illustration.py modules from separate modules to bound class methods.
 
-26. Audit the UI of the entire materials management system by hand.
+24. Audit the UI of the entire materials management system by hand.
 
-27. Currently MaterialPackageMaker inherits from MaterialPackageProxy.
+25. Currently MaterialPackageMaker inherits from MaterialPackageProxy.
     Maybe MaterialPackageMaker should *have* a MaterialPackageProxy instead.
     This would clean up the inheritance schema somewhat.
 
-28. The wrangler inheritance hierarchy is confused.
+26. The wrangler inheritance hierarchy is confused.
     Look at the inheritance diagram given at FilesystemAssetWrangler.html and rewire as appropriate.
 
-29. Sweep inline scoremanagertools TODO items.
+27. Sweep inline scoremanagertools TODO items.
 
-30. Remove 'grandparent_directory_path'.
+28. Remove 'grandparent_directory_path'.
 
-31. Remove ModuleProxy.unimport() entirely.
+29. Remove ModuleProxy.unimport() entirely.
 
-32. Replace 'score-internal' with something else.
-    Replace 'score-external' with something else.
-    Perhaps 'score-external' becomes 'system' and 'score-internal' becomes 'score'.
+30. Author a test that captures "home > specifiers" in the UI.
 
-33. Find out why "home > specifiers" raises an exception.
-    Then write a test to capture that movement through the user interface.
+31. Remove (or rename) Specifier.format and TargetManifest.format properties.
 
-34. Remove (or rename) Specifier.format, TargetManifest.format and FileProxy.format properties.
+32. Reduce (or completely remove!) calls to packagepathtools in ImportableFilesystemAssetWrangler.
 
-35. Reduce (or completely remove!) calls to packagepathtools in ImportableFilesystemAssetWrangler.
+33. Clean up top-level imports in all classfiles; allow late imports like musicexpressiontools.
 
-36. Clean up top-level imports in all classfiles; allow late imports like musicexpressiontools.
+34. Reimplement self._handle_main_menu_result methods around dictionaries.
 
-37. Reimplement self._handle_main_menu_result methods around dictionaries.
+35. Rename flamingo_input to something semantic.
 
-38. Rename flamingo_input to something semantic.
+36. Add ScoreManagerConfiguration.user_directory property.
 
-39. Add ScoreManagerConfiguration.user_directory property.
+37. Document StylesheetFileProxy next.
 
-40. Document StylesheetFileProxy next.
+38. Change asset_container_directory_path to asset_container_filesystem_path globally.
 
-41. Change asset_container_directory_path to asset_container_filesystem_path globally.
-
-42. Thin out the top-level imports in just MaterialPackageProxy before other classfiles.
+39. Thin out the top-level imports in just MaterialPackageProxy before other classfiles.
     Same with ScoreManager.
 
-43. Change user_asset_container_directory_paths (plural) to user_asset_container_directory_path (singular).
+40. Change user_asset_container_directory_paths (plural) to user_asset_container_directory_path (singular).
 
-44. Author ScorePackageProxy docstrings.
+41. Author ScorePackageProxy docstrings.
 
-45. Change 'head' globally to something like 'score_package_path' to be explicit.
+42. Change 'head' globally to something like 'score_package_path' to be explicit.
 
-46. Replace all _read_only_attributes.py and _public_attributes.py test files with doctests.
+43. Replace all _read_only_attributes.py and _public_attributes.py test files with doctests.
 
-47. Rename red_example_score to red_example_score.
-
-48. Remove etc directories from example scores.
+44. Remove etc directories from example scores.

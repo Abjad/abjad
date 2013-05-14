@@ -23,7 +23,7 @@ def test_ScorePackageProxy_read_only_attributes_01():
 
     assert score_proxy.has_correct_initializers
 
-    # TODO: create Example Score I instrumentation
+    # TODO: create Red Example Score instrumentation
 #    instrumentation = scoretools.InstrumentationSpecifier()
 #    performer_1 = scoretools.Performer('flutist')
 #    performer_1.instruments.append(instrumenttools.AltoFlute())
@@ -32,14 +32,14 @@ def test_ScorePackageProxy_read_only_attributes_01():
 #    performer_2.instruments.append(instrumenttools.Guitar())
 #    instrumentation.performers.append(performer_2)
 
-    assert score_proxy.annotated_title == 'Example Score I (2013)'
-    assert score_proxy._breadcrumb == 'Example Score I (2013)'
+    assert score_proxy.annotated_title == 'Red Example Score (2013)'
+    assert score_proxy._breadcrumb == 'Red Example Score (2013)'
     assert score_proxy.composer is None
-    # TODO: create Example Score I instrumentation
+    # TODO: create Red Example Score instrumentation
     #assert score_proxy.instrumentation == instrumentation
     assert score_proxy.materials_package_path == \
         'experimental.tools.scoremanagertools.built_in_scores.red_example_score.music.materials'
-    assert score_proxy.title == 'Example Score I'
+    assert score_proxy.title == 'Red Example Score'
     assert score_proxy.year_of_completion == 2013
 
     directory_path = score_proxy.configuration.built_in_scores_directory_path

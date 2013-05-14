@@ -63,4 +63,4 @@ def test_ScorePackageWrangler_read_only_attributes_08():
     '''Other read-only attributes.
     '''
 
-    assert 'Example Score I (2013)' in wrangler.visible_score_titles_with_years
+    assert 'Red Example Score (2013)' in wrangler.visible_score_titles_with_years

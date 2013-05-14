@@ -215,7 +215,7 @@ class ScorePackageWrangler(PackageWrangler):
 
         ::
 
-            >>> 'Example Score I' in wrangler.visible_score_titles
+            >>> 'Red Example Score' in wrangler.visible_score_titles
             True
 
         Return list.
@@ -231,7 +231,7 @@ class ScorePackageWrangler(PackageWrangler):
 
         ::
 
-            >>> 'Example Score I (2013)' in wrangler.visible_score_titles_with_years
+            >>> 'Red Example Score (2013)' in wrangler.visible_score_titles_with_years
             True
 
         Return list.
@@ -259,8 +259,8 @@ class ScorePackageWrangler(PackageWrangler):
             >>> for x in wrangler.get_asset_proxies():
             ...     x
             ScorePackageProxy('.../tools/scoremanagertools/built_in_scores/blue_example_score')
-            ScorePackageProxy('.../tools/scoremanagertools/built_in_scores/red_example_score')
             ScorePackageProxy('.../tools/scoremanagertools/built_in_scores/green_example_score')
+            ScorePackageProxy('.../tools/scoremanagertools/built_in_scores/red_example_score')
             ...
 
         Output lists built-in scores followed by user scores.
@@ -277,8 +277,8 @@ class ScorePackageWrangler(PackageWrangler):
             >>> for x in wrangler.get_visible_asset_proxies():
             ...     x
             ScorePackageProxy('.../tools/scoremanagertools/built_in_scores/blue_example_score')
-            ScorePackageProxy('.../tools/scoremanagertools/built_in_scores/red_example_score')
             ScorePackageProxy('.../tools/scoremanagertools/built_in_scores/green_example_score')
+            ScorePackageProxy('.../tools/scoremanagertools/built_in_scores/red_example_score')
             ...
         
         Output lists built-in scores followed by user scores.
@@ -305,8 +305,8 @@ class ScorePackageWrangler(PackageWrangler):
             >>> for x in wrangler.list_asset_package_paths():
             ...     x
             'experimental.tools.scoremanagertools.built_in_scores.blue_example_score'
-            'experimental.tools.scoremanagertools.built_in_scores.red_example_score'
             'experimental.tools.scoremanagertools.built_in_scores.green_example_score'
+            'experimental.tools.scoremanagertools.built_in_scores.red_example_score'
             ...
 
         Output lists built-in scores followed by user scores.
@@ -349,8 +349,8 @@ class ScorePackageWrangler(PackageWrangler):
             >>> for x in wrangler.list_visible_asset_filesystem_paths():
             ...     x
             '.../tools/scoremanagertools/built_in_scores/blue_example_score'
-            '.../tools/scoremanagertools/built_in_scores/red_example_score'
             '.../tools/scoremanagertools/built_in_scores/green_example_score'
+            '.../tools/scoremanagertools/built_in_scores/red_example_score'
             ...
 
         Output lists built-in scores followed by user scores.

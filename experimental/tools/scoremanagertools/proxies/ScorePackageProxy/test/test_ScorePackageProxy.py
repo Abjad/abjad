@@ -11,7 +11,7 @@ def test_ScorePackageProxy_01():
     red_example_score._run(user_input='q')
 
     assert red_example_score._session.transcript[-2][1] == \
-    ['Example Score I (2013)',
+    ['Red Example Score (2013)',
       '',
       '     segments (h)',
       '     materials (m)',
@@ -57,7 +57,7 @@ def test_ScorePackageProxy_04():
 
     assert score_manager._session.transcript.signature == (6, (0, 4))
     assert score_manager._session.transcript[0][1][0] == 'Scores - active scores'
-    assert score_manager._session.transcript[2][1][0] == 'Example Score I (2013)'
+    assert score_manager._session.transcript[2][1][0] == 'Red Example Score (2013)'
     assert score_manager._session.transcript[4][1][0] == 'Scores - active scores'
 
 
@@ -70,7 +70,7 @@ def test_ScorePackageProxy_05():
     red_example_score._run(user_input='home')
 
     assert red_example_score._session.transcript.signature == (2,)
-    assert red_example_score._session.transcript[0][1][0] == "Example Score I (2013)"
+    assert red_example_score._session.transcript[0][1][0] == "Red Example Score (2013)"
     assert red_example_score._session.transcript[1][1][0] == '> home'
 
 
@@ -83,7 +83,7 @@ def test_ScorePackageProxy_06():
 
     assert score_manager._session.transcript.signature == (6, (0, 4))
     assert score_manager._session.transcript[0][1][0] == 'Scores - active scores'
-    assert score_manager._session.transcript[2][1][0] == 'Example Score I (2013)'
+    assert score_manager._session.transcript[2][1][0] == 'Red Example Score (2013)'
     assert score_manager._session.transcript[4][1][0] == 'Scores - active scores'
 
 

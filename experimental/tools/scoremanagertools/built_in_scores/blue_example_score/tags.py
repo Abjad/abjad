@@ -4,5 +4,5 @@ from collections import OrderedDict
 
 
 tags = OrderedDict([
-    ('title', '\xc3\x89tude Score I'),
+    ('title', 'Blue Example Score'),
     ('year_of_completion', 2013)])

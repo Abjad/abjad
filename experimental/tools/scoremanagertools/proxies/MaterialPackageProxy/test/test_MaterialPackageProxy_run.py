@@ -36,7 +36,7 @@ def test_MaterialPackageProxy_run_02():
 def test_MaterialPackageProxy_run_03():
     '''Score materials: quit, back, home, score & junk all work.
     '''
-    py.test.skip('TODO: add Example Score I time signatures.')
+    py.test.skip('TODO: add Red Example Score time signatures.')
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     score_manager._run(user_input='all red_example_score m 2 q')
@@ -58,8 +58,8 @@ def test_MaterialPackageProxy_run_03():
 def test_MaterialPackageProxy_run_04():
     '''Score materials: breadcrumbs work.
     '''
-    py.test.skip('TODO: add Example Score I time signatures.')
+    py.test.skip('TODO: add Red Example Score time signatures.')
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     score_manager._run(user_input='all red_example_score m time_signatures q')
-    assert score_manager._session.transcript[-2][1][0] == 'Example Score I - materials - time signatures'
+    assert score_manager._session.transcript[-2][1][0] == 'Red Example Score - materials - time signatures'
