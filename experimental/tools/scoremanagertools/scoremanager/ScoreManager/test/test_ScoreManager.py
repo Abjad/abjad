@@ -15,7 +15,7 @@ def test_ScoreManager_02():
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    score_manager._run(user_input='example tags q')
+    score_manager._run(user_input='red~example~score tags q')
     assert score_manager._session.transcript.signature == (6,)
 
 

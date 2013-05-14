@@ -72,7 +72,7 @@ def test_MaterialPackageWrangler_iteration_06():
 
     directory_path = os.path.join(
         wrangler.configuration.built_in_scores_directory_path,
-        'example_scores_1', 'music', 'materials', 'time_signatures')
+        'red_example_score', 'music', 'materials', 'time_signatures')
     assert directory_path in wrangler.list_score_internal_asset_filesystem_paths()
     assert directory_path in wrangler.list_score_internal_asset_filesystem_paths(
         head='experimental.tools.scoremanagertools.built_in_scores.green_example_score')
