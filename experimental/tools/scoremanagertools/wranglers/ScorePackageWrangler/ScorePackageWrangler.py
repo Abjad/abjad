@@ -29,6 +29,7 @@ class ScorePackageWrangler(PackageWrangler):
         PackageWrangler.__init__(
             self,
             built_in_asset_container_package_paths=['experimental.tools.scoremanagertools.built_in_scores'],
+            user_asset_container_directory_paths=[self.configuration.user_scores_directory_path],
             session=session,
             )
 
@@ -191,8 +192,6 @@ class ScorePackageWrangler(PackageWrangler):
             >>> wrangler.user_asset_container_directory_paths
             ['.../Documents/scores']
 
-        .. note:: should return the user scores directory path, as shown above.
-
         Return list.
         '''
         return super(type(self), self).user_asset_container_directory_paths
@@ -251,6 +250,24 @@ class ScorePackageWrangler(PackageWrangler):
             if is_interactive:
                 asset_proxy.profile()
         return results
+
+    def get_asset_proxies(self, head=None):
+        '''Score package wrangler get asset proxies:
+
+        ::
+
+            >>> for x in wrangler.get_asset_proxies():
+            ...     x
+            ScorePackageProxy('.../tools/scoremanagertools/built_in_scores/etude_score_1')
+            ScorePackageProxy('.../tools/scoremanagertools/built_in_scores/example_score_1')
+            ScorePackageProxy('.../tools/scoremanagertools/built_in_scores/example_score_2')
+            ...
+
+        Output lists built-in scores followed by user scores.
+
+        Return list.
+        '''
+        return super(type(self), self).get_asset_proxies(head=head)        
 
     def get_visible_asset_proxies(self, head=None):
         '''Score package wrangler get visible asset proxies:
