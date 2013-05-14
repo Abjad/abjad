@@ -1,4 +1,3 @@
-from abjad.tools import notetools
 from experimental import *
 import py
 
@@ -33,13 +32,15 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    assert not packagepathtools.package_exists('example_score_1.music.materials.testsargasso')
+    assert not packagepathtools.package_exists(
+        'experimental.tools.scoremanagertools.built_in_scores.example_score_1.music.materials.testsargasso')
 
     try:
         score_manager._run(user_input='example~score~i m m sargasso testsargasso default q')
-        assert packagepathtools.package_exists('example_score_1.music.materials.testsargasso')
+        assert packagepathtools.package_exists(
+            'experimental.tools.scoremanagertools.built_in_scores.example_score_1.music.materials.testsargasso')
         mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker(
-            'example_score_1.music.materials.testsargasso')
+            'experimental.tools.scoremanagertools.built_in_scores.example_score_1.music.materials.testsargasso')
         assert mpp.is_makermade
         assert mpp.list_directory() == ['__init__.py', 'tags.py', 'user_input.py']
         assert mpp.has_initializer
@@ -50,7 +51,8 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
         assert mpp.output_material is None
     finally:
         score_manager._run(user_input='example~score~i m testsargasso del remove default q')
-        assert not packagepathtools.package_exists('example_score_1.music.materials.testsargasso')
+        assert not packagepathtools.package_exists(
+            'experimental.tools.scoremanagertools.built_in_scores.example_score_1.music.materials.testsargasso')
 
 
 #def test_MaterialPackageWrangler_run_makermade_package_03():

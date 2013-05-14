@@ -29,9 +29,9 @@ class ScorePackageProxy(PackageProxy):
     def _handle_main_menu_result(self, result):
         assert isinstance(result, str)
         if result == 'h':
-            self.segment_wrangler._run(head=self.filesystem_basename)
+            self.segment_wrangler._run(head=self.package_path)
         elif  result == 'm':
-            self.material_package_wrangler._run(head=self.filesystem_basename)
+            self.material_package_wrangler._run(head=self.package_path)
         elif result == 'f':
             self.music_specifier_module_wrangler._run()
         elif result == 's':

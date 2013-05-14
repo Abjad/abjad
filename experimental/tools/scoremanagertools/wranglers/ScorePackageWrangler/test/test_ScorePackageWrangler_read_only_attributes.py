@@ -13,11 +13,12 @@ def test_ScorePackageWrangler_read_only_attributes_01():
 
 
 def test_ScorePackageWrangler_read_only_attributes_02():
-    '''Asset containers (all).
+    '''Asset containers.
     '''
 
-    assert 'example_score_1' in wrangler.list_asset_container_package_paths()
-    directory_path = os.path.join(wrangler.configuration.user_scores_directory_path, 'example_score_1')
+    assert 'experimental.tools.scoremanagertools.built_in_scores.example_score_1' in \
+        wrangler.list_asset_container_package_paths()
+    directory_path = os.path.join(wrangler.configuration.built_in_scores_directory_path, 'example_score_1')
     assert directory_path in wrangler._list_asset_container_directory_paths()
 
 
@@ -25,7 +26,7 @@ def test_ScorePackageWrangler_read_only_attributes_03():
     '''Current asset container.
     '''
 
-    assert wrangler.current_asset_container_package_path is None
+    assert wrangler.current_asset_container_package_path == ''
     assert wrangler.current_asset_container_directory_path == wrangler.configuration.user_scores_directory_path
 
 
@@ -33,7 +34,8 @@ def test_ScorePackageWrangler_read_only_attributes_04():
     '''Score-external asset container.
     '''
 
-    assert wrangler.list_built_in_asset_container_package_paths() == []
+    assert wrangler.list_built_in_asset_container_package_paths() == [
+        'experimental.tools.scoremanagertools.built_in_scores']
 
 
 def test_ScorePackageWrangler_read_only_attributes_05():

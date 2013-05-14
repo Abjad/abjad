@@ -114,24 +114,22 @@
 42. Thin out the top-level imports in just MaterialPackageProxy before other classfiles.
     Same with ScoreManager.
 
-43. Update wrangler reprs.
+43. Replace stray Assembly with Exergue.
 
-44. Replace stray Assembly with Exergue.
+44. Replace stray MusPackageProxy with MusicPackageProxy.
 
-45. Replace stray MusPackageProxy with MusicPackageProxy.
+45. Change user_asset_container_directory_paths (plural) to user_asset_container_directory_path (singular).
 
-46. Change user_asset_container_directory_paths (plural) to user_asset_container_directory_path (singular).
-
-47. Maybe see if absolutely everything can be handled by just passing around filesystem paths???
+46. Maybe see if absolutely everything can be handled by just passing around filesystem paths???
     They should always be convertible (through only a fast in-memory string operation) to everything else.
 
-48. Author ScorePackageProxy docstrings.
+47. Author ScorePackageProxy docstrings.
 
-49. Change 'head' globally to something like 'score_package_path' to be explicit.
+48. Change 'head' globally to something like 'score_package_path' to be explicit.
 
-50. Replace all _read_only_attributes.py and _public_attributes.py test files with doctests.
+49. Replace all _read_only_attributes.py and _public_attributes.py test files with doctests.
 
-51. Replace os.listdir() calls in Session with hardcoded list of built-in scores to increase performance.
+50. Replace os.listdir() calls in Session with hardcoded list of built-in scores to increase performance.
 
-52. Rename example_score_1 to just example_score.
+51. Rename example_score_1 to just example_score.
     Rename example_score_2 to something other than example.
