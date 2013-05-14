@@ -195,7 +195,7 @@ class ScorePackageWrangler(PackageWrangler):
 
         Return list.
         '''
-        return []
+        return super(type(self), self).user_asset_container_directory_paths
 
     @property
     def user_asset_container_package_paths(self):
@@ -253,6 +253,21 @@ class ScorePackageWrangler(PackageWrangler):
         return results
 
     def get_visible_asset_proxies(self, head=None):
+        '''Score package wrangler get visible asset proxies:
+
+        ::
+
+            >>> for x in wrangler.get_visible_asset_proxies():
+            ...     x
+            ScorePackageProxy('.../tools/scoremanagertools/built_in_scores/etude_score_1')
+            ScorePackageProxy('.../tools/scoremanagertools/built_in_scores/example_score_1')
+            ScorePackageProxy('.../tools/scoremanagertools/built_in_scores/example_score_2')
+            ...
+        
+        Output lists built-in scores followed by user scores.
+
+        Return list.
+        '''
         result = []
         scores_to_show = self._session.scores_to_show
         for asset_proxy in PackageWrangler.get_asset_proxies(self, head=head):
@@ -265,6 +280,24 @@ class ScorePackageWrangler(PackageWrangler):
                 result.append(asset_proxy)
         return result
 
+    def list_asset_package_paths(self, head=None):
+        '''Score package wrangler list asset package paths:
+
+        ::
+
+            >>> for x in wrangler.list_asset_package_paths():
+            ...     x
+            'experimental.tools.scoremanagertools.built_in_scores.etude_score_1'
+            'experimental.tools.scoremanagertools.built_in_scores.example_score_1'
+            'experimental.tools.scoremanagertools.built_in_scores.example_score_2'
+            ...
+
+        Output lists built-in scores followed by user scores.
+
+        Return list.
+        '''
+        return super(type(self), self).list_asset_package_paths(head=head)
+
     def list_score_external_asset_filesystem_paths(self, head=None):
         '''Score package wrangler list score-external asset filesystem paths:
 
@@ -275,9 +308,38 @@ class ScorePackageWrangler(PackageWrangler):
         
         Return list.
         '''
+        # TODO: this should not have to be hard-coded
+        return []
+
+    def list_score_external_asset_package_paths(self, head=None):
+        '''Score package wrangler list score-external asset package paths:
+
+        ::
+
+            >>> wrangler.list_score_external_asset_package_paths()
+            []
+        
+        Return list.
+        '''
+        # TODO: this should not have to be hard-coded
         return []
 
     def list_visible_asset_filesystem_paths(self, head=None):
+        '''Score package wrangler list visible asset filesystem paths:
+
+        ::
+
+            >>> for x in wrangler.list_visible_asset_filesystem_paths():
+            ...     x
+            '.../tools/scoremanagertools/built_in_scores/etude_score_1'
+            '.../tools/scoremanagertools/built_in_scores/example_score_1'
+            '.../tools/scoremanagertools/built_in_scores/example_score_2'
+            ...
+
+        Output lists built-in scores followed by user scores.
+
+        Return list.
+        '''
         result = []
         for visible_asset_proxy in self.get_visible_asset_proxies(head=head):
             result.append(visible_asset_proxy.filesystem_path)

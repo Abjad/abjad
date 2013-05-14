@@ -113,8 +113,8 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
     def list_asset_package_paths(self, head=None):
         result = []
         result.extend(self.list_score_external_asset_package_paths(head=head))
-        #result.extend(self.list_built_in_score_internal_asset_package_paths(head=head))
         result.extend(self.list_score_internal_asset_package_paths(head=head))
+        # TODO: seems like the following line should probably be removed
         result.extend(self.list_user_asset_package_paths(head=head))
         return result
 

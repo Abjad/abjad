@@ -121,3 +121,6 @@
 45. Replace stray MusPackageProxy with MusicPackageProxy.
 
 46. Change user_asset_container_directory_paths (plural) to user_asset_container_directory_path (singular).
+
+47. Maybe see if absolutely everything can be handled by just passing around filesystem paths???
+    They should always be convertible (through only a fast in-memory string operation) to everything else.
