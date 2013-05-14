@@ -258,7 +258,7 @@ class ScorePackageWrangler(PackageWrangler):
 
             >>> for x in wrangler.get_asset_proxies():
             ...     x
-            ScorePackageProxy('.../tools/scoremanagertools/built_in_scores/etude_score_1')
+            ScorePackageProxy('.../tools/scoremanagertools/built_in_scores/blue_example_score')
             ScorePackageProxy('.../tools/scoremanagertools/built_in_scores/example_score_1')
             ScorePackageProxy('.../tools/scoremanagertools/built_in_scores/example_score_2')
             ...
@@ -276,7 +276,7 @@ class ScorePackageWrangler(PackageWrangler):
 
             >>> for x in wrangler.get_visible_asset_proxies():
             ...     x
-            ScorePackageProxy('.../tools/scoremanagertools/built_in_scores/etude_score_1')
+            ScorePackageProxy('.../tools/scoremanagertools/built_in_scores/blue_example_score')
             ScorePackageProxy('.../tools/scoremanagertools/built_in_scores/example_score_1')
             ScorePackageProxy('.../tools/scoremanagertools/built_in_scores/example_score_2')
             ...
@@ -304,7 +304,7 @@ class ScorePackageWrangler(PackageWrangler):
 
             >>> for x in wrangler.list_asset_package_paths():
             ...     x
-            'experimental.tools.scoremanagertools.built_in_scores.etude_score_1'
+            'experimental.tools.scoremanagertools.built_in_scores.blue_example_score'
             'experimental.tools.scoremanagertools.built_in_scores.example_score_1'
             'experimental.tools.scoremanagertools.built_in_scores.example_score_2'
             ...
@@ -348,7 +348,7 @@ class ScorePackageWrangler(PackageWrangler):
 
             >>> for x in wrangler.list_visible_asset_filesystem_paths():
             ...     x
-            '.../tools/scoremanagertools/built_in_scores/etude_score_1'
+            '.../tools/scoremanagertools/built_in_scores/blue_example_score'
             '.../tools/scoremanagertools/built_in_scores/example_score_1'
             '.../tools/scoremanagertools/built_in_scores/example_score_2'
             ...

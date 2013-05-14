@@ -114,17 +114,13 @@
 42. Thin out the top-level imports in just MaterialPackageProxy before other classfiles.
     Same with ScoreManager.
 
-43. Replace stray Assembly with Exergue.
+43. Change user_asset_container_directory_paths (plural) to user_asset_container_directory_path (singular).
 
-44. Replace stray MusPackageProxy with MusicPackageProxy.
+44. Author ScorePackageProxy docstrings.
 
-45. Change user_asset_container_directory_paths (plural) to user_asset_container_directory_path (singular).
+45. Change 'head' globally to something like 'score_package_path' to be explicit.
 
-46. Author ScorePackageProxy docstrings.
+46. Replace all _read_only_attributes.py and _public_attributes.py test files with doctests.
 
-47. Change 'head' globally to something like 'score_package_path' to be explicit.
-
-48. Replace all _read_only_attributes.py and _public_attributes.py test files with doctests.
-
-49. Rename example_score_1 to just example_score.
+47. Rename example_score_1 to just example_score.
     Rename example_score_2 to something other than example.

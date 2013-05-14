@@ -2,7 +2,7 @@ import os
 from experimental import *
 
 
-def test_MusPackageProxy_01():
+def test_MusicPackageProxy_01():
 
     music_proxy = scoremanagertools.proxies.MusicPackageProxy(
         'scoremanagertools.built_in_scores.example_score_1')

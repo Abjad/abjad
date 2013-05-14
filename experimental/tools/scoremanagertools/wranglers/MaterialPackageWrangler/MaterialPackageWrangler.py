@@ -167,7 +167,7 @@ class MaterialPackageWrangler(PackageWrangler):
             >>> for x in wrangler.list_asset_container_package_paths():
             ...     x
             'built_in_materials'
-            'experimental.tools.scoremanagertools.built_in_scores.etude_score_1.music.materials'
+            'experimental.tools.scoremanagertools.built_in_scores.blue_example_score.music.materials'
             'experimental.tools.scoremanagertools.built_in_scores.example_score_1.music.materials'
             'experimental.tools.scoremanagertools.built_in_scores.example_score_2.music.materials'
             ...
@@ -186,7 +186,7 @@ class MaterialPackageWrangler(PackageWrangler):
 
             >>> for x in wrangler._list_score_internal_asset_container_directory_paths():
             ...     x
-            '.../tools/scoremanagertools/built_in_scores/etude_score_1/music/materials'
+            '.../tools/scoremanagertools/built_in_scores/blue_example_score/music/materials'
             '.../tools/scoremanagertools/built_in_scores/example_score_1/music/materials'
             '.../tools/scoremanagertools/built_in_scores/example_score_2/music/materials'
             ...
@@ -202,7 +202,7 @@ class MaterialPackageWrangler(PackageWrangler):
 
             >>> for x in wrangler.list_score_internal_asset_container_package_paths():
             ...     x
-            'experimental.tools.scoremanagertools.built_in_scores.etude_score_1.music.materials'
+            'experimental.tools.scoremanagertools.built_in_scores.blue_example_score.music.materials'
             'experimental.tools.scoremanagertools.built_in_scores.example_score_1.music.materials'
             'experimental.tools.scoremanagertools.built_in_scores.example_score_2.music.materials'
             ...
