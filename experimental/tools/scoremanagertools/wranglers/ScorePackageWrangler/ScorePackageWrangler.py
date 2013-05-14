@@ -148,7 +148,7 @@ class ScorePackageWrangler(PackageWrangler):
         ::
 
             >>> wrangler_in_built_in_score.current_asset_container_package_path
-            'scoremanagertools.built_in_scores'
+            'experimental.tools.scoremanagertools.built_in_scores'
 
         Return string.
         '''

@@ -30,6 +30,12 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.current_materials_package_path
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.current_score_directory_path
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.current_score_package_path
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.current_score_package_proxy
    :noindex:
 

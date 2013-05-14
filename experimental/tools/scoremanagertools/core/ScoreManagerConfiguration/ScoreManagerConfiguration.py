@@ -170,11 +170,11 @@ class ScoreManagerConfiguration(Configuration):
         ::
 
             >>> configuration.built_in_scores_package_path
-            'scoremanagertools.built_in_scores'
+            'experimental.tools.scoremanagertools.built_in_scores'
 
         Return string.
         '''
-        return 'scoremanagertools.built_in_scores'
+        return 'experimental.tools.scoremanagertools.built_in_scores'
 
     @property
     def built_in_specifier_classes_directory_path(self):

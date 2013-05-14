@@ -84,7 +84,7 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
     def current_asset_container_package_path(self):
         if self._session.is_in_score:
             parts = []
-            parts.append(self._session.underscore_delimited_current_score_name)
+            parts.append(self._session.current_score_package_path)
             parts.extend(self.asset_container_path_infix_parts)
             return '.'.join(parts)
         if self.list_built_in_asset_container_package_paths():
@@ -155,9 +155,16 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
                         result.append('.'.join([package_path, directory_entry]))
         return result
 
+    def _list_all_score_directory_package_paths(self, head=None):
+        result = []
+        for directory_path in self._list_all_score_directory_paths(head=head):
+            package_path = packagepathtools.filesystem_path_to_package_path(directory_path)
+            result.append(package_path)
+        return result
+
     def list_score_internal_asset_container_package_paths(self, head=None):
         result = []
-        for score_package_name in self._list_score_directory_basenames(head=head):
+        for score_package_name in self._list_all_score_directory_package_paths(head=head):
             parts = [score_package_name]
             if self.asset_container_path_infix_parts:
                 parts.extend(self.asset_container_path_infix_parts)

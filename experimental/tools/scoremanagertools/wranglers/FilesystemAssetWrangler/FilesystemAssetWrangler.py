@@ -162,6 +162,18 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                 result.append(directory_entry)
         return result
 
+    def _list_all_score_directory_basenames(self, head=None):
+        result = []
+        result.extend(self._list_built_in_score_directory_basenames(head=head))
+        result.extend(self._list_score_directory_basenames(head=head))
+        return result
+
+    def _list_all_score_directory_paths(self, head=None):
+        result = []
+        result.extend(self._list_built_in_score_directory_paths(head=head))
+        result.extend(self._list_score_directory_paths(head=head))
+        return result
+
     def _list_score_directory_paths(self, head=None):
         result = []
         for directory_basename in self._list_score_directory_basenames(head=head):
@@ -182,7 +194,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def _list_score_internal_asset_container_directory_paths(self, head=None):
         result = []
         if self.score_internal_assets_exist:
-            for score_directory_path in self._list_score_directory_paths(head=head):
+            for score_directory_path in self._list_all_score_directory_paths(head=head):
                 parts = [score_directory_path]
                 if self.asset_container_path_infix_parts:
                     parts.extend(self.asset_container_path_infix_parts)
@@ -260,8 +272,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def current_asset_container_directory_path(self):
         if self._session.is_in_score:
             parts = []
-            parts.append(self.configuration.user_scores_directory_path)
-            parts.append(self._session.underscore_delimited_current_score_name)
+            parts.append(self._session.current_score_directory_path)
             parts.extend(self.asset_container_path_infix_parts)
             return os.path.join(*parts)
         if self._list_built_in_asset_container_directory_paths():

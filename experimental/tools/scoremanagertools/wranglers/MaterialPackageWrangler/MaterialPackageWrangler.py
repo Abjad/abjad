@@ -8,6 +8,25 @@ from experimental.tools.scoremanagertools.wranglers.PackageWrangler import Packa
 
 # TODO: write all iteration tests
 class MaterialPackageWrangler(PackageWrangler):
+    '''Material package wrangler:
+
+    ::
+
+        >>> wrangler = scoremanagertools.wranglers.MaterialPackageWrangler()
+        >>> wrangler
+        MaterialPackageWrangler()
+
+    Wrangler in built-in score:
+
+    ::
+
+        >>> wrangler_in_built_in_score = scoremanagertools.wranglers.MaterialPackageWrangler()
+        >>> wrangler_in_built_in_score._session.underscore_delimited_current_score_name = 'example_score_1'
+        >>> wrangler_in_built_in_score
+        MaterialPackageWrangler()
+    
+    Return material package wrangler.
+    '''
 
     ### CLASS ATTRIBUTES ###
     
@@ -73,6 +92,26 @@ class MaterialPackageWrangler(PackageWrangler):
         return scoremanagertools.proxies.PackageProxy
 
     @property
+    def current_asset_container_package_path(self):
+        '''Material package wrangler current asset container package path:
+
+        ::
+
+            >>> wrangler.current_asset_container_package_path
+            'built_in_materials'
+
+        While in built-in score:
+
+        ::
+
+            >>> wrangler_in_built_in_score.current_asset_container_package_path
+            'experimental.tools.scoremanagertools.built_in_scores.example_score_1.music.materials'
+
+        Return string.
+        '''
+        return super(type(self), self).current_asset_container_package_path
+
+    @property
     def material_package_maker_wrangler(self):
         return self._material_package_maker_wrangler
 
@@ -93,7 +132,8 @@ class MaterialPackageWrangler(PackageWrangler):
             except AttributeError:
                 command = 'import {}.{} as material_package_maker_class'
                 command = command.format(
-                    self.configuration.user_material_package_makers_package_path, material_package_maker_class_name)
+                    self.configuration.user_material_package_makers_package_path, 
+                    material_package_maker_class_name)
                 exec(command)
                 material_package_proxy = material_package_maker_class(
                     material_package_path, session=self._session)
@@ -109,7 +149,8 @@ class MaterialPackageWrangler(PackageWrangler):
             self._session.pop_backtrack()
             if self._session.backtrack():
                 return
-            material_package_name = stringtools.string_to_accent_free_underscored_delimited_lowercase(package_name)
+            material_package_name = stringtools.string_to_accent_free_underscored_delimited_lowercase(
+                package_name)
             material_package_path = '.'.join([
                 self.current_asset_container_package_path, material_package_name])
             if packagepathtools.package_exists(material_package_path):
@@ -117,6 +158,60 @@ class MaterialPackageWrangler(PackageWrangler):
                 self._io.display([line, ''])
             else:
                 return material_package_path
+
+    def list_asset_container_package_paths(self, head=None):
+        '''Material package wrangler list asset container package paths:
+
+        ::
+
+            >>> for x in wrangler.list_asset_container_package_paths():
+            ...     x
+            'built_in_materials'
+            'experimental.tools.scoremanagertools.built_in_scores.etude_score_1.music.materials'
+            'experimental.tools.scoremanagertools.built_in_scores.example_score_1.music.materials'
+            'experimental.tools.scoremanagertools.built_in_scores.example_score_2.music.materials'
+            ...
+
+        Output lists built-in materials, followed by built-in scores,
+        followed by user scores.
+
+        Return list.
+        '''
+        return super(type(self), self).list_asset_container_package_paths(head=head)
+
+    def _list_score_internal_asset_container_directory_paths(self, head=None):
+        '''Material package wrangler list score internal asset container directory paths:
+
+        ::
+
+            >>> for x in wrangler._list_score_internal_asset_container_directory_paths():
+            ...     x
+            '.../tools/scoremanagertools/built_in_scores/etude_score_1/music/materials'
+            '.../tools/scoremanagertools/built_in_scores/example_score_1/music/materials'
+            '.../tools/scoremanagertools/built_in_scores/example_score_2/music/materials'
+            ...
+
+        Return list.
+        '''
+        return super(type(self), self)._list_score_internal_asset_container_directory_paths(head=head)
+
+    def list_score_internal_asset_container_package_paths(self, head=None):
+        '''Material package wrangler list score internal asset container package paths:
+
+        ::
+
+            >>> for x in wrangler.list_score_internal_asset_container_package_paths():
+            ...     x
+            'experimental.tools.scoremanagertools.built_in_scores.etude_score_1.music.materials'
+            'experimental.tools.scoremanagertools.built_in_scores.example_score_1.music.materials'
+            'experimental.tools.scoremanagertools.built_in_scores.example_score_2.music.materials'
+            ...
+
+        Output lists built-in scores followed by user scores.
+
+        Return list.
+        '''
+        return super(type(self), self).list_score_internal_asset_container_package_paths(head=head)
 
     def make_asset_interactively(self):
         return NotImplemented
@@ -162,7 +257,8 @@ class MaterialPackageWrangler(PackageWrangler):
             exec(command)
         except ImportError:
             command = 'from {} import {} as material_package_maker_class'.format(
-                self.configuration.user_material_package_makers_package_path, material_package_maker_class_name)
+                self.configuration.user_material_package_makers_package_path, 
+                material_package_maker_class_name)
             exec(command)
         should_have_user_input_module = getattr(
             material_package_maker_class, 'should_have_user_input_module', True)

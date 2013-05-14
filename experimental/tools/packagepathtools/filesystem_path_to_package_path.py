@@ -17,7 +17,10 @@ def filesystem_path_to_package_path(filesystem_path):
 
     if filesystem_path.endswith('.py'):
         filesystem_path = filesystem_path[:-3]
-    if filesystem_path.startswith(configuration.score_manager_tools_directory_path):
+    # TODO: maybe elif here instead of if?
+    if filesystem_path.startswith(configuration.built_in_scores_directory_path):
+        prefix_length = len(configuration.abjad_configuration.abjad_root_directory_path) + 1
+    elif filesystem_path.startswith(configuration.score_manager_tools_directory_path):
         prefix_length = \
             len(os.path.dirname(configuration.score_manager_tools_directory_path)) + 1
     elif filesystem_path.startswith(configuration.built_in_materials_directory_path):

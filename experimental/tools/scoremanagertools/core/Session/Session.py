@@ -208,6 +208,42 @@ class Session(abctools.AbjadObject):
             return self.configuration.built_in_materials_package_path
 
     @property
+    def current_score_directory_path(self):
+        '''Session current score directory path:
+
+        .. note:: add example.
+
+        Return string.
+        '''
+        if self.underscore_delimited_current_score_name:
+            if self.underscore_delimited_current_score_name in os.listdir(
+                self.configuration.built_in_scores_directory_path):
+                return os.path.join(
+                    self.configuration.built_in_scores_directory_path,
+                    self.underscore_delimited_current_score_name)
+            else:
+                return os.path.join(
+                    self.configuration.user_scores_directory_path,
+                    self.underscore_delimited_current_score_name)
+
+    @property
+    def current_score_package_path(self):
+        '''Session current score package path:
+
+        .. note:: add example.
+
+        Return string.
+        '''
+        if self.underscore_delimited_current_score_name:
+            if self.underscore_delimited_current_score_name in os.listdir(
+                self.configuration.built_in_scores_directory_path):
+                return '.'.join([
+                    self.configuration.built_in_scores_package_path,
+                    self.underscore_delimited_current_score_name])
+            else:
+                return self.underscore_delimited_current_score_name
+
+    @property
     def current_score_package_proxy(self):
         '''Session current score package proxy:
 
