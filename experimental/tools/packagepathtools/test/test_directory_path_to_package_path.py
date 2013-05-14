@@ -17,21 +17,21 @@ def test_directory_path_to_package_path_01():
 
 def test_directory_path_to_package_path_02():
 
-    directory_path = os.path.join(user_scores_directory_path, 'example_score_1')
-    assert packagepathtools.filesystem_path_to_package_path(directory_path) == 'example_score_1'
+    directory_path = os.path.join(user_scores_directory_path, 'red_example_score')
+    assert packagepathtools.filesystem_path_to_package_path(directory_path) == 'red_example_score'
 
-    directory_path = os.path.join(user_scores_directory_path, 'example_score_1', 'music')
-    assert packagepathtools.filesystem_path_to_package_path(directory_path) == 'example_score_1.music'
+    directory_path = os.path.join(user_scores_directory_path, 'red_example_score', 'music')
+    assert packagepathtools.filesystem_path_to_package_path(directory_path) == 'red_example_score.music'
 
-    directory_path = os.path.join(user_scores_directory_path, 'example_score_1', 'music', 'materials')
+    directory_path = os.path.join(user_scores_directory_path, 'red_example_score', 'music', 'materials')
     assert packagepathtools.filesystem_path_to_package_path(directory_path) == \
-        'example_score_1.music.materials'
+        'red_example_score.music.materials'
 
 
 def test_directory_path_to_package_path_03():
 
-    directory_path = os.path.join(user_scores_directory_path, 'example_score_1', 'foo')
-    assert packagepathtools.filesystem_path_to_package_path(directory_path) == 'example_score_1.foo'
+    directory_path = os.path.join(user_scores_directory_path, 'red_example_score', 'foo')
+    assert packagepathtools.filesystem_path_to_package_path(directory_path) == 'red_example_score.foo'
 
-    file_path = os.path.join(user_scores_directory_path, 'example_score_1', 'foo.py')
-    assert packagepathtools.filesystem_path_to_package_path(file_path) == 'example_score_1.foo'
+    file_path = os.path.join(user_scores_directory_path, 'red_example_score', 'foo.py')
+    assert packagepathtools.filesystem_path_to_package_path(file_path) == 'red_example_score.foo'

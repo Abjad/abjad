@@ -76,7 +76,7 @@ Type 'new'. You should then be presented with a 3-step score creation wizard.
 Complete the wizard exactly as follows:
 
     (1/3) score title: Example Score I
-    (2/3) package name: example_score_1
+    (2/3) package name: red_example_score
     (3/3) year of completion: 2013
 
 Then set up instrumentation for Example Score I as follows:
@@ -111,11 +111,11 @@ Then add the following four tempo marks:
 
 Quit the score manager when you finish.
 Check your scores directory.
-You should see a example_score_1 directory.
-List the contents of the example_score_1 score directory.
+You should see a red_example_score directory.
+List the contents of the red_example_score score directory.
 You should see the following:
 
-    scores$ ls example_score_1/
+    scores$ ls red_example_score/
     __init__.py     distribution    exergue     music         tags.py
 
 

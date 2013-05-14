@@ -7,19 +7,19 @@ def test_InstrumentationEditor_add_performers_01():
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    score_manager._run(user_input='example~score~i setup performers add q')
+    score_manager._run(user_input='red~example~score setup performers add q')
     assert score_manager._session.transcript.signature == (10,)
 
-    score_manager._run(user_input='example~score~i setup performers add b q')
+    score_manager._run(user_input='red~example~score setup performers add b q')
     assert score_manager._session.transcript.signature == (12, (6, 10))
 
-    score_manager._run(user_input='example~score~i setup performers add home q')
+    score_manager._run(user_input='red~example~score setup performers add home q')
     assert score_manager._session.transcript.signature == (12, (0, 10))
 
-    score_manager._run(user_input='example~score~i setup performers add score q')
+    score_manager._run(user_input='red~example~score setup performers add score q')
     assert score_manager._session.transcript.signature == (12, (2, 10))
 
-    score_manager._run(user_input='example~score~i setup performers add foo q')
+    score_manager._run(user_input='red~example~score setup performers add foo q')
     assert score_manager._session.transcript.signature == (12, (8, 10))
 
 

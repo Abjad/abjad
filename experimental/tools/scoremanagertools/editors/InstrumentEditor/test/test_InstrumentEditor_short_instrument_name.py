@@ -7,13 +7,13 @@ def test_InstrumentEditor_short_instrument_name_01():
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    score_manager._run(user_input='example~score~i setup perf hornist horn sn q')
+    score_manager._run(user_input='red~example~score setup perf hornist horn sn q')
     assert score_manager._session.transcript.signature == (13,)
 
-    score_manager._run(user_input='example~score~i setup performers hornist horn sn b q')
+    score_manager._run(user_input='red~example~score setup performers hornist horn sn b q')
     assert score_manager._session.transcript.signature == (15, (10, 13))
 
-    score_manager._run(user_input='example~score~i setup performers hornist horn sn home q')
+    score_manager._run(user_input='red~example~score setup performers hornist horn sn home q')
     assert score_manager._session.transcript.signature == (15, (0, 13))
 
 
@@ -22,7 +22,7 @@ def test_InstrumentEditor_short_instrument_name_02():
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    score_manager._run(user_input='example~score~i setup performers hornist horn sn -99 q')
+    score_manager._run(user_input='red~example~score setup performers hornist horn sn -99 q')
     assert score_manager._session.transcript.signature == (15,)
 
 

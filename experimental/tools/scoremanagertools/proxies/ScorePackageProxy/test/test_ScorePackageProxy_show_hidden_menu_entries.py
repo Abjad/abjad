@@ -4,7 +4,7 @@ from experimental import *
 def test_ScorePackageProxy_show_hidden_menu_entries_01():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    score_manager._run(user_input='example~score~i hidden q')
+    score_manager._run(user_input='red~example~score hidden q')
 
     assert score_manager._session.transcript[-2][1] == \
      ['     back (b)',

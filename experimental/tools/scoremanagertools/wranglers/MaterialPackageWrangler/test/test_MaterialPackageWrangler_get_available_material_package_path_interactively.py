@@ -15,10 +15,10 @@ def test_MaterialPackageWrangler_get_available_material_package_path_interactive
 def test_MaterialPackageWrangler_get_available_material_package_path_interactively_02():
 
     wrangler = scoremanagertools.wranglers.MaterialPackageWrangler()
-    wrangler._session._underscore_delimited_current_score_name = 'example_score_1'
+    wrangler._session._underscore_delimited_current_score_name = 'red_example_score'
 
     result = wrangler.get_available_material_package_path_interactively(user_input='foo')
-    assert result == 'experimental.tools.scoremanagertools.built_in_scores.example_score_1.music.materials.foo'
+    assert result == 'experimental.tools.scoremanagertools.built_in_scores.red_example_score.music.materials.foo'
 
 
 def test_MaterialPackageWrangler_get_available_material_package_path_interactively_03():

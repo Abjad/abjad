@@ -9,7 +9,7 @@ def test_MaterialPackageProxy_screenscrapes_01():
 
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    score_manager._run(user_input='all example_score_1 m black q')
+    score_manager._run(user_input='all red_example_score m black q')
 
     assert score_manager.transcript[-2] == \
     ['Example Score I (2013) - materials - time signatures',
@@ -35,7 +35,7 @@ def test_MaterialPackageProxy_screenscrapes_02():
     py.test.skip('TODO: add Example Score I time signatures.')
 
     material_proxy = scoremanagertools.proxies.MaterialPackageProxy(
-        'example_score_1.music.materials.time_signatures')
+        'red_example_score.music.materials.time_signatures')
     material_proxy._run(user_input='q')
 
     assert material_proxy.transcript[-2] == \

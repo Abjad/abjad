@@ -7,19 +7,19 @@ def test_PerformerEditor_delete_instruments_01():
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    score_manager._run(user_input='example~score~i setup perf hornist rm q')
+    score_manager._run(user_input='red~example~score setup perf hornist rm q')
     assert score_manager._session.transcript.signature == (11,)
 
-    score_manager._run(user_input='example~score~i setup perf hornist rm b q')
+    score_manager._run(user_input='red~example~score setup perf hornist rm b q')
     assert score_manager._session.transcript.signature == (13, (8, 11))
 
-    score_manager._run(user_input='example~score~i setup perf hornist rm home q')
+    score_manager._run(user_input='red~example~score setup perf hornist rm home q')
     assert score_manager._session.transcript.signature == (13, (0, 11))
 
-    score_manager._run(user_input='example~score~i setup perf hornist rm score q')
+    score_manager._run(user_input='red~example~score setup perf hornist rm score q')
     assert score_manager._session.transcript.signature == (13, (2, 11))
 
-    score_manager._run(user_input='example~score~i setup perf hornist rm foo q')
+    score_manager._run(user_input='red~example~score setup perf hornist rm foo q')
     assert score_manager._session.transcript.signature == (13,)
 
 

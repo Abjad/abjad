@@ -38,7 +38,7 @@ class Session(abctools.AbjadObject):
     # this is a temporary hack to avoid constantly reading from disk;
     # this will eventually be replaced with something more robust, perhaps a real cache.
     cache_of_built_in_score_names = (
-        'example_score_1',
+        'red_example_score',
         'green_example_score',
         'blue_example_score',
         )

@@ -6,7 +6,7 @@ def test_InstrumentSpecifierEditor_run_01():
     '''
 
     editor = scoremanagertools.editors.InstrumentSpecifierEditor()
-    editor._session.underscore_delimited_current_score_name = 'example_score_1'
+    editor._session.underscore_delimited_current_score_name = 'red_example_score'
     editor._run(user_input='name foo instrument horn done')
 
     r'''

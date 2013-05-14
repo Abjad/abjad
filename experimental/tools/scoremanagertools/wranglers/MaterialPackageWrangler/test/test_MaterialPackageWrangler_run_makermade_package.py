@@ -33,14 +33,14 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     assert not packagepathtools.package_exists(
-        'experimental.tools.scoremanagertools.built_in_scores.example_score_1.music.materials.testsargasso')
+        'experimental.tools.scoremanagertools.built_in_scores.red_example_score.music.materials.testsargasso')
 
     try:
-        score_manager._run(user_input='example~score~i m m sargasso testsargasso default q')
+        score_manager._run(user_input='red~example~score m m sargasso testsargasso default q')
         assert packagepathtools.package_exists(
-            'experimental.tools.scoremanagertools.built_in_scores.example_score_1.music.materials.testsargasso')
+            'experimental.tools.scoremanagertools.built_in_scores.red_example_score.music.materials.testsargasso')
         mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker(
-            'experimental.tools.scoremanagertools.built_in_scores.example_score_1.music.materials.testsargasso')
+            'experimental.tools.scoremanagertools.built_in_scores.red_example_score.music.materials.testsargasso')
         assert mpp.is_makermade
         assert mpp.list_directory() == ['__init__.py', 'tags.py', 'user_input.py']
         assert mpp.has_initializer
@@ -50,9 +50,9 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
         assert not mpp.parent_initializer_has_output_material_safe_import_statement
         assert mpp.output_material is None
     finally:
-        score_manager._run(user_input='example~score~i m testsargasso del remove default q')
+        score_manager._run(user_input='red~example~score m testsargasso del remove default q')
         assert not packagepathtools.package_exists(
-            'experimental.tools.scoremanagertools.built_in_scores.example_score_1.music.materials.testsargasso')
+            'experimental.tools.scoremanagertools.built_in_scores.red_example_score.music.materials.testsargasso')
 
 
 #def test_MaterialPackageWrangler_run_makermade_package_03():

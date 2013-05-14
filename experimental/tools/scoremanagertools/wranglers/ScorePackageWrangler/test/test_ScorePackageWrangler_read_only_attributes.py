@@ -16,9 +16,9 @@ def test_ScorePackageWrangler_read_only_attributes_02():
     '''Asset containers.
     '''
 
-    assert 'experimental.tools.scoremanagertools.built_in_scores.example_score_1' in \
+    assert 'experimental.tools.scoremanagertools.built_in_scores.red_example_score' in \
         wrangler.list_asset_container_package_paths()
-    directory_path = os.path.join(wrangler.configuration.built_in_scores_directory_path, 'example_score_1')
+    directory_path = os.path.join(wrangler.configuration.built_in_scores_directory_path, 'red_example_score')
     assert directory_path in wrangler._list_asset_container_directory_paths()
 
 

@@ -42,7 +42,7 @@
 
 19. Add a scores/test directory and check it into the scores repository.
     Then add a scores/test/test_scores_import_scores.py file.
-    The file will test 'import example_score_1', 'import green_example_score', and so on.
+    The file will test 'import red_example_score', 'import green_example_score', and so on.
     This will be a very high-level test to make sure that entire score packages remain importable.
 
 20. Extend stuff to allow makers to be stored in multiple directories.
@@ -122,4 +122,6 @@
 
 46. Replace all _read_only_attributes.py and _public_attributes.py test files with doctests.
 
-47. Rename example_score_1 to red_example_score.
+47. Rename red_example_score to red_example_score.
+
+48. Remove etc directories from example scores.
