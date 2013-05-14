@@ -124,3 +124,5 @@
 
 47. Maybe see if absolutely everything can be handled by just passing around filesystem paths???
     They should always be convertible (through only a fast in-memory string operation) to everything else.
+
+48. Author ScorePackageProxy docstrings.
