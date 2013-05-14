@@ -138,20 +138,25 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                     result.append(filesystem_path)
         return result
 
-    def _list_built_in_score_directory_basenames(self, head=None):
+    #def _list_built_in_score_directory_basenames(self, head=None):
+    def _list_built_in_score_directory_basenames(self):
         result = []
         for directory_entry in os.listdir(self.configuration.built_in_scores_directory_path):
             package_path = 'scoremanagertools.built_in_scores.{}'.format(directory_entry)
-            if (head is not None and package_path.startswith(head)) or \
-                (head is None and directory_entry[0].isalpha()):
+            #if (head is not None and package_path.startswith(head)) or \
+            #    (head is None and directory_entry[0].isalpha()):
+            if directory_entry[0].isalpha():
                 result.append(directory_entry)
         return result
 
     def _list_built_in_score_directory_paths(self, head=None):
         result = []
-        basenames = self._list_built_in_score_directory_basenames(head=head)
-        for basename in basenames:
-            directory_path = os.path.join(self.configuration.built_in_scores_directory_path, basename)
+        #basenames = self._list_built_in_score_directory_basenames()
+        #for basename in basenames:
+        #    directory_path = os.path.join(self.configuration.built_in_scores_directory_path, basename)
+        #    result.append(directory_path)
+        for package_path in self._list_built_in_score_package_paths(head=head):
+            directory_path = packagepathtools.package_path_to_directory_path(package_path)
             result.append(directory_path)
         return result
 

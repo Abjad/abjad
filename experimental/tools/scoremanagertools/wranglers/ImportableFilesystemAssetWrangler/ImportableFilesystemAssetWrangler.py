@@ -142,8 +142,11 @@ class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
 
     def _list_built_in_score_package_paths(self, head=None):
         result = []
-        basenames = self._list_built_in_score_directory_basenames(head=head)
-        result = ['scoremanagertools.built_in_scores.{}'.format(basename) for basename in basenames]
+        for basename in self._list_built_in_score_directory_basenames():
+            package_path = 'experimental.tools.scoremanagertools.built_in_scores.{}'
+            package_path = package_path.format(basename)
+            if head is None or package_path == head:
+                result.append(package_path)
         return result
 
     def list_score_external_asset_package_paths(self, head=None):

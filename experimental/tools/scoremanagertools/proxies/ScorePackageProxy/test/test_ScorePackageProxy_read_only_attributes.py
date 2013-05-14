@@ -10,7 +10,6 @@ def test_ScorePackageProxy_read_only_attributes_01():
     score_proxy = scoremanagertools.proxies.ScorePackageProxy(
         'scoremanagertools.built_in_scores.example_score_1')
 
-
     assert isinstance(score_proxy.segment_wrangler, scoremanagertools.wranglers.SegmentPackageWrangler)
     assert isinstance(score_proxy.distribution_proxy, scoremanagertools.proxies.DirectoryProxy)
     assert isinstance(score_proxy.exergue_directory_proxy, scoremanagertools.proxies.DirectoryProxy)
@@ -39,7 +38,7 @@ def test_ScorePackageProxy_read_only_attributes_01():
     # TODO: create Example Score I instrumentation
     #assert score_proxy.instrumentation == instrumentation
     assert score_proxy.materials_package_path == \
-        'scoremanagertools.built_in_scores.example_score_1.music.materials'
+        'experimental.tools.scoremanagertools.built_in_scores.example_score_1.music.materials'
     assert score_proxy.title == 'Example Score I'
     assert score_proxy.year_of_completion == 2013
 

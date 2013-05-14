@@ -126,3 +126,7 @@
     They should always be convertible (through only a fast in-memory string operation) to everything else.
 
 48. Author ScorePackageProxy docstrings.
+
+49. Change 'head' globally to something like 'score_package_path' to be explicit.
+
+50. Replace all _read_only_attributes.py and _public_attributes.py test files with doctests.
