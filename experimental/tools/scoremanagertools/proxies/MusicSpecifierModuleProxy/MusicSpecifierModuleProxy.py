@@ -53,7 +53,7 @@ class MusicSpecifierModuleProxy(ModuleProxy):
 
     def parse(self):
         is_parsable = True
-        output_material_module = file(self.file_path, 'r')
+        output_material_module = file(self.filesystem_path, 'r')
         encoding_directives = []
         docstring_lines = []
         setup_statements = []
@@ -97,8 +97,8 @@ class MusicSpecifierModuleProxy(ModuleProxy):
 
     def read_target_from_disk(self):
         self.unimport()
-        if os.path.exists(self.file_path):
-            file_pointer = open(self.file_path, 'r')
+        if os.path.exists(self.filesystem_path):
+            file_pointer = open(self.filesystem_path, 'r')
             file_contents_string = file_pointer.read()
             file_pointer.close()
             print file_contents_string

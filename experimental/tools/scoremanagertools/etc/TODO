@@ -73,40 +73,35 @@
     Maybe MaterialPackageMaker should *have* a MaterialPackageProxy instead.
     This would clean up the inheritance schema somewhat.
 
-26. The wrangler inheritance hierarchy is confused.
-    Look at the inheritance diagram given at FilesystemAssetWrangler.html and rewire as appropriate.
+26. Sweep inline scoremanagertools TODO items.
 
-27. Sweep inline scoremanagertools TODO items.
+27. Remove 'grandparent_directory_path'.
 
-28. Remove 'grandparent_directory_path'.
+28. Remove ModuleProxy.unimport() entirely.
 
-29. Remove ModuleProxy.unimport() entirely.
+29. Remove (or rename) Specifier.format and TargetManifest.format properties.
 
-30. Author a test that captures "home > specifiers" in the UI.
+30. Reduce (or completely remove!) calls to packagesystemtools in FilesystemAssetWrangler.
 
-31. Remove (or rename) Specifier.format and TargetManifest.format properties.
+31. Reimplement self._handle_main_menu_result methods around dictionaries.
 
-32. Reduce (or completely remove!) calls to packagesystemtools in PackagesystemAssetWrangler.
+32. Rename flamingo_input to something semantic.
 
-33. Reimplement self._handle_main_menu_result methods around dictionaries.
+33. Add ScoreManagerConfiguration.user_directory property.
 
-34. Rename flamingo_input to something semantic.
+34. Document StylesheetFileProxy next.
 
-35. Add ScoreManagerConfiguration.user_directory property.
+35. Change asset_container_directory_path to asset_container_filesystem_path globally.
 
-36. Document StylesheetFileProxy next.
+36. Change user_asset_container_directory_paths (plural) to user_asset_container_directory_path (singular).
 
-37. Change asset_container_directory_path to asset_container_filesystem_path globally.
+37. Author ScorePackageProxy docstrings.
 
-38. Change user_asset_container_directory_paths (plural) to user_asset_container_directory_path (singular).
+38. Replace all _read_only_attributes.py and _public_attributes.py test files with doctests.
 
-39. Author ScorePackageProxy docstrings.
+39. Make ScoreManagerConfiguration READ ONLY!
 
-40. Replace all _read_only_attributes.py and _public_attributes.py test files with doctests.
-
-41. Make ScoreManagerConfiguration READ ONLY!
-
-42. Revisit score_manager/configuration.py file.
+40. Revisit score_manager/configuration.py file.
     The only necessary user settings should be these:
         user_collateral_directory_path = /Users/trevorbaca/collateral
         user_scores_directory_path = /Users/trevorbaca/Documents/scores
@@ -117,8 +112,8 @@
     * store user material package makers in user collateral directory
     * store user stylesheets in user collateral directory
 
-43. Add PackageystemAssetProxy to superclass ModuleProxy and PackageProxy.
+41. Add PackageystemAssetProxy to superclass ModuleProxy and PackageProxy.
 
-44. Change DistributionDirectoryProxy.__init__(score_package_name=None) to score_package_path.
+42. Change DistributionDirectoryProxy.__init__(score_package_name=None) to score_package_path.
     Same with ExergueDirectoryProxy.
     Same with MusicPackageProxy.
