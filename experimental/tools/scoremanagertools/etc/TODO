@@ -116,5 +116,3 @@
     * store transcripts in ~/.score_manager
     * store user material package makers in user collateral directory
     * store user stylesheets in user collateral directory
-
-43. Rename packagesystemtools.package_exists() to packagesystemtools.exists().

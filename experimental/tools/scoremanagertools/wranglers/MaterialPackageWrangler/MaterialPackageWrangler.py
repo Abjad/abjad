@@ -153,7 +153,7 @@ class MaterialPackageWrangler(PackageWrangler):
                 package_name)
             material_package_path = '.'.join([
                 self.current_asset_container_package_path, material_package_name])
-            if packagesystemtools.package_exists(material_package_path):
+            if packagesystemtools.exists(material_package_path):
                 line = 'Material package {!r} already exists.'.format(material_package_path)
                 self._io.display([line, ''])
             else:

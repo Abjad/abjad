@@ -4,8 +4,6 @@ import os
 def packagesystem_path_to_filesystem_path(package_path, is_module=False):
     '''Change `package_path` to directory path.
     
-    When score manager configuration variables when `configuration` is none.
-
     Return string.
     '''
     from experimental.tools import scoremanagertools
