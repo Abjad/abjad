@@ -12,7 +12,10 @@ class ModuleProxy(ParsableFileProxy):
     def __init__(self, module_path=None, session=None):
         assert module_path is None or os.path.sep not in module_path, repr(module_path)
         self._module_path = module_path
-        filesystem_path = packagesystemtools.module_path_to_file_path(self.module_path, self.configuration)
+        filesystem_path = packagesystemtools.package_path_to_directory_path(
+            self.module_path, self.configuration)
+        if filesystem_path:
+            filesystem_path += '.py'
         ParsableFileProxy.__init__(self, filesystem_path=filesystem_path, session=session)
 
     ### CLASS ATTRIBUTES ###

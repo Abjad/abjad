@@ -29,8 +29,10 @@ class MaterialPackageMaker(MaterialPackageProxy):
         if not self.should_have_user_input_module:
             return
         user_input_module_path = '.'.join([self.package_path, 'user_input'])
-        user_input_module_file_path = packagesystemtools.module_path_to_file_path(
+        user_input_module_file_path = packagesystemtools.package_path_to_directory_path(
             user_input_module_path, self.configuration)
+        if user_input_module_file_path:
+            user_input_module_file_path += '.py'
         if not os.path.exists(user_input_module_file_path):
             file(user_input_module_file_path, 'w').write('')
         proxy = scoremanagertools.proxies.UserInputModuleProxy(user_input_module_path, session=self._session)
