@@ -40,10 +40,6 @@ class TargetManifest(object):
         return result
 
     @property
-    def format(self):
-        return '\n'.join(self.format_pieces)
-
-    @property
     def format_pieces(self):
         result = []
         result.append('{}({},'.format(type(self).__name__, self.target_class.__name__))

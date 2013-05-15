@@ -18,9 +18,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.editors.TargetManifest.TargetManifest.TargetManifest.attribute_names
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.editors.TargetManifest.TargetManifest.TargetManifest.format
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.editors.TargetManifest.TargetManifest.TargetManifest.format_pieces
    :noindex:
 

@@ -79,27 +79,25 @@
 
 28. Remove ModuleProxy.unimport() entirely.
 
-29. Remove (or rename) TargetManifest.format property.
+29. Reimplement self._handle_main_menu_result methods around dictionaries.
 
-30. Reimplement self._handle_main_menu_result methods around dictionaries.
+30. Rename flamingo_input to something semantic.
 
-31. Rename flamingo_input to something semantic.
+31. Add ScoreManagerConfiguration.user_directory property.
 
-32. Add ScoreManagerConfiguration.user_directory property.
+32. Document StylesheetFileProxy next.
 
-33. Document StylesheetFileProxy next.
+33. Change asset_container_directory_path to asset_container_filesystem_path globally.
 
-34. Change asset_container_directory_path to asset_container_filesystem_path globally.
+34. Change user_asset_container_directory_paths (plural) to user_asset_container_directory_path (singular).
 
-35. Change user_asset_container_directory_paths (plural) to user_asset_container_directory_path (singular).
+35. Author ScorePackageProxy docstrings.
 
-36. Author ScorePackageProxy docstrings.
+36. Replace all _read_only_attributes.py and _public_attributes.py test files with doctests.
 
-37. Replace all _read_only_attributes.py and _public_attributes.py test files with doctests.
+37. Make ScoreManagerConfiguration READ ONLY!
 
-38. Make ScoreManagerConfiguration READ ONLY!
-
-39. Revisit score_manager/configuration.py file.
+38. Revisit score_manager/configuration.py file.
     The only necessary user settings should be these:
         user_collateral_directory_path = /Users/trevorbaca/collateral
         user_scores_directory_path = /Users/trevorbaca/Documents/scores
@@ -110,8 +108,8 @@
     * store user material package makers in user collateral directory
     * store user stylesheets in user collateral directory
 
-40. Add PackageystemAssetProxy to superclass ModuleProxy and PackageProxy.
+39. Add PackageystemAssetProxy to superclass ModuleProxy and PackageProxy.
 
-41. Change DistributionDirectoryProxy.__init__(score_package_name=None) to score_package_path.
+40. Change DistributionDirectoryProxy.__init__(score_package_name=None) to score_package_path.
     Same with ExergueDirectoryProxy.
     Same with MusicPackageProxy.
