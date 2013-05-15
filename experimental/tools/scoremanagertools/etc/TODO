@@ -115,3 +115,6 @@
     Same with MusicPackageProxy.
 
 41. Maybe change scoremanagertools/specifiers to scoremanagertools/specifiermakers?
+
+42. Add MaterialPackageProxy docstrings. Then add MaterialPackageWrangler docstrings.
+    Then move experimental/built_in_materials to experimental/tools/scoremanagertools/built_in_materials.
