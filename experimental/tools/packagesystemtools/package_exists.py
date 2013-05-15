@@ -6,7 +6,7 @@ def package_exists(package_path, configuration=None):
 
     Return boolean.
     '''
-    from experimental.tools import packagepathtools
+    from experimental.tools import packagesystemtools
     from experimental.tools.scoremanagertools import core
 
     # check input
@@ -14,7 +14,7 @@ def package_exists(package_path, configuration=None):
     configuration = configuration or core.ScoreManagerConfiguration()
 
     # find directory path
-    directory_path = packagepathtools.package_path_to_directory_path(package_path, configuration)
+    directory_path = packagesystemtools.package_path_to_directory_path(package_path, configuration)
 
     # return result
     return os.path.exists(directory_path)

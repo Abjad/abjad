@@ -4,11 +4,11 @@ from experimental import *
 def test_MaterialPackageWrangler_make_numeric_sequence_package_01():
 
     wrangler = scoremanagertools.wranglers.MaterialPackageWrangler()
-    assert not packagepathtools.package_exists('built_in_materials.testsequence')
+    assert not packagesystemtools.package_exists('built_in_materials.testsequence')
 
     try:
         wrangler.make_numeric_sequence_package('built_in_materials.testsequence')
-        assert packagepathtools.package_exists('built_in_materials.testsequence')
+        assert packagesystemtools.package_exists('built_in_materials.testsequence')
         mpp = scoremanagertools.proxies.MaterialPackageProxy('built_in_materials.testsequence')
         assert mpp.is_data_only
         assert mpp.list_directory() == ['__init__.py', 'material_definition.py', 'tags.py']
@@ -16,7 +16,7 @@ def test_MaterialPackageWrangler_make_numeric_sequence_package_01():
         assert mpp.get_tag('is_material_package')
     finally:
         mpp.remove()
-        assert not packagepathtools.package_exists('built_in_materials.testsequence')
+        assert not packagesystemtools.package_exists('built_in_materials.testsequence')
 
 
 def test_MaterialPackageWrangler_make_numeric_sequence_package_02():
@@ -24,11 +24,11 @@ def test_MaterialPackageWrangler_make_numeric_sequence_package_02():
     '''
 
     wrangler = scoremanagertools.wranglers.MaterialPackageWrangler()
-    assert not packagepathtools.package_exists('built_in_materials.testsequence')
+    assert not packagesystemtools.package_exists('built_in_materials.testsequence')
 
     try:
         wrangler.make_numeric_sequence_package_interactively(user_input='testsequence')
-        assert packagepathtools.package_exists('built_in_materials.testsequence')
+        assert packagesystemtools.package_exists('built_in_materials.testsequence')
         mpp = scoremanagertools.proxies.MaterialPackageProxy('built_in_materials.testsequence')
         assert mpp.is_data_only
         assert mpp.list_directory() == ['__init__.py', 'material_definition.py', 'tags.py']
@@ -36,4 +36,4 @@ def test_MaterialPackageWrangler_make_numeric_sequence_package_02():
         assert mpp.get_tag('is_material_package')
     finally:
         mpp.remove()
-        assert not packagepathtools.package_exists('built_in_materials.testsequence')
+        assert not packagesystemtools.package_exists('built_in_materials.testsequence')

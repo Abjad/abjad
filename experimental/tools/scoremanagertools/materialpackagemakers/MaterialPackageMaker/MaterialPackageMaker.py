@@ -1,6 +1,6 @@
 import copy
 import os
-from experimental.tools import packagepathtools
+from experimental.tools import packagesystemtools
 from experimental.tools.scoremanagertools.proxies.MaterialPackageProxy import MaterialPackageProxy
 from experimental.tools.scoremanagertools.editors.UserInputWrapper import UserInputWrapper
 
@@ -29,7 +29,7 @@ class MaterialPackageMaker(MaterialPackageProxy):
         if not self.should_have_user_input_module:
             return
         user_input_module_path = '.'.join([self.package_path, 'user_input'])
-        user_input_module_file_path = packagepathtools.module_path_to_file_path(
+        user_input_module_file_path = packagesystemtools.module_path_to_file_path(
             user_input_module_path, self.configuration)
         if not os.path.exists(user_input_module_file_path):
             file(user_input_module_file_path, 'w').write('')

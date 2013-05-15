@@ -443,18 +443,18 @@ Unstable packages (load manually)
       tools/musicexpressiontools/VoiceDictionary/VoiceDictionary
       tools/musicexpressiontools/VoiceProxy/VoiceProxy
 
-:py:mod:`packagepathtools <experimental.tools.packagepathtools>`
-================================================================
+:py:mod:`packagesystemtools <experimental.tools.packagesystemtools>`
+====================================================================
 
 .. only:: html
 
    .. toctree::
       :maxdepth: 1
 
-      tools/packagepathtools/filesystem_path_to_packagesystem_path
-      tools/packagepathtools/module_path_to_file_path
-      tools/packagepathtools/package_exists
-      tools/packagepathtools/package_path_to_directory_path
+      tools/packagesystemtools/filesystem_path_to_packagesystem_path
+      tools/packagesystemtools/module_path_to_file_path
+      tools/packagesystemtools/package_exists
+      tools/packagesystemtools/package_path_to_directory_path
 
 .. only:: latex
 
@@ -463,10 +463,10 @@ Unstable packages (load manually)
 
    .. toctree::
 
-      tools/packagepathtools/filesystem_path_to_packagesystem_path
-      tools/packagepathtools/module_path_to_file_path
-      tools/packagepathtools/package_exists
-      tools/packagepathtools/package_path_to_directory_path
+      tools/packagesystemtools/filesystem_path_to_packagesystem_path
+      tools/packagesystemtools/module_path_to_file_path
+      tools/packagesystemtools/package_exists
+      tools/packagesystemtools/package_path_to_directory_path
 
 :py:mod:`parsertools <experimental.tools.parsertools>`
 ======================================================

@@ -5,9 +5,9 @@ def module_path_to_file_path(module_path, configuration):
 
     Return string.
     '''
-    from experimental.tools import packagepathtools
+    from experimental.tools import packagesystemtools
 
     if module_path is not None:
-        file_path = packagepathtools.package_path_to_directory_path(module_path, configuration)
+        file_path = packagesystemtools.package_path_to_directory_path(module_path, configuration)
         file_path += '.py'
         return file_path
