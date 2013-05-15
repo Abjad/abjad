@@ -117,4 +117,4 @@
     * store user material package makers in user collateral directory
     * store user stylesheets in user collateral directory
 
-43. Remove configuration=None keyword from packagesystemtools functions.
+43. Rename packagesystemtools.package_exists() to packagesystemtools.exists().

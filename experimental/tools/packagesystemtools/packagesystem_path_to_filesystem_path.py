@@ -1,16 +1,16 @@
 import os
 
 
-def package_path_to_directory_path(package_path, configuration=None):
+def packagesystem_path_to_filesystem_path(package_path, is_module=False):
     '''Change `package_path` to directory path.
     
     When score manager configuration variables when `configuration` is none.
 
     Return string.
     '''
-    from experimental.tools.scoremanagertools import core
+    from experimental.tools import scoremanagertools
 
-    configuration = configuration or core.ScoreManagerConfiguration()
+    configuration = scoremanagertools.core.ScoreManagerConfiguration()
     
     if package_path is None:
         return
@@ -39,4 +39,8 @@ def package_path_to_directory_path(package_path, configuration=None):
     else:
         directory_parts = [configuration.user_scores_directory_path] + package_path_parts[:]
     directory_path = os.path.join(*directory_parts)
+    
+    if is_module:
+        directory_path += '.py'
+
     return directory_path

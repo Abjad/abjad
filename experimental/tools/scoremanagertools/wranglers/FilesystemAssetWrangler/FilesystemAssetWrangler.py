@@ -158,7 +158,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         #    directory_path = os.path.join(self.configuration.built_in_scores_directory_path, basename)
         #    result.append(directory_path)
         for package_path in self._list_built_in_score_package_paths(head=head):
-            directory_path = packagesystemtools.package_path_to_directory_path(package_path)
+            directory_path = packagesystemtools.packagesystem_path_to_filesystem_path(package_path)
             result.append(directory_path)
         return result
 

@@ -6,9 +6,9 @@ def filesystem_path_to_packagesystem_path(filesystem_path):
 
     Return string.
     '''
-    from experimental.tools.scoremanagertools import core
+    from experimental.tools import scoremanagertools
 
-    configuration = core.ScoreManagerConfiguration()
+    configuration = scoremanagertools.core.ScoreManagerConfiguration()
 
     if filesystem_path is None:
         return

@@ -453,7 +453,7 @@ Unstable packages (load manually)
 
       tools/packagesystemtools/filesystem_path_to_packagesystem_path
       tools/packagesystemtools/package_exists
-      tools/packagesystemtools/package_path_to_directory_path
+      tools/packagesystemtools/packagesystem_path_to_filesystem_path
 
 .. only:: latex
 
@@ -464,7 +464,7 @@ Unstable packages (load manually)
 
       tools/packagesystemtools/filesystem_path_to_packagesystem_path
       tools/packagesystemtools/package_exists
-      tools/packagesystemtools/package_path_to_directory_path
+      tools/packagesystemtools/packagesystem_path_to_filesystem_path
 
 :py:mod:`parsertools <experimental.tools.parsertools>`
 ======================================================

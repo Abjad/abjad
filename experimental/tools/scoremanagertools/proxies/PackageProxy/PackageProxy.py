@@ -9,7 +9,7 @@ class PackageProxy(DirectoryProxy):
 
     def __init__(self, package_path=None, session=None):
         assert package_path is None or os.path.sep not in package_path, repr(package_path)
-        filesystem_path = packagesystemtools.package_path_to_directory_path(package_path)
+        filesystem_path = packagesystemtools.packagesystem_path_to_filesystem_path(package_path)
         DirectoryProxy.__init__(self, filesystem_path=filesystem_path, session=session)
         package_path = packagesystemtools.filesystem_path_to_packagesystem_path(filesystem_path)
         self._package_path = package_path

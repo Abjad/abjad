@@ -292,8 +292,8 @@ class MaterialPackageWrangler(PackageWrangler):
     def make_material_package(self, material_package_path, is_interactive=False, tags=None):
         tags = collections.OrderedDict(tags or {})
         tags['is_material_package'] = True
-        directory_path = packagesystemtools.package_path_to_directory_path(
-            material_package_path, self.configuration)
+        directory_path = packagesystemtools.packagesystem_path_to_filesystem_path(
+            material_package_path)
         assert not os.path.exists(directory_path)
         os.mkdir(directory_path)
         material_package_maker_class_name = tags.get('material_package_maker_class_name')

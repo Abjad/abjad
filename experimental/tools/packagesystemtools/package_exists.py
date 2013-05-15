@@ -1,20 +1,18 @@
 import os
 
 
-def package_exists(package_path, configuration=None):
+def package_exists(package_path):
     '''True when `package_path` exists. Otherwise false.
 
     Return boolean.
     '''
     from experimental.tools import packagesystemtools
-    from experimental.tools.scoremanagertools import core
 
     # check input
-    assert isinstance(package_path, str), repr(package_path)
-    configuration = configuration or core.ScoreManagerConfiguration()
+    assert os.path.sep not in package_path, repr(package_path)
 
     # find directory path
-    directory_path = packagesystemtools.package_path_to_directory_path(package_path, configuration)
+    directory_path = packagesystemtools.packagesystem_path_to_filesystem_path(package_path)
 
     # return result
     return os.path.exists(directory_path)
