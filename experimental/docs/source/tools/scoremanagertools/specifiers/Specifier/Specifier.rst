@@ -9,9 +9,6 @@ scoremanagertools.specifiers.Specifier
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.specifiers.Specifier.Specifier.Specifier.format
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.specifiers.Specifier.Specifier.Specifier.one_line_menuing_summary
    :noindex:
 

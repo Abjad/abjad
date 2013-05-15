@@ -27,17 +27,7 @@ class Specifier(AbjadObject):
                     return True
         return False
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
-
-    @property
-    def _space_delimited_lowercase_class_name(self):
-        return iotools.uppercamelcase_to_space_delimited_lowercase(self._class_name)
-
     ### READ-ONLY PUBLIC PROPERTIES ###
-
-    @property
-    def format(self):
-        return self._tools_package_qualified_indented_repr
 
     @abc.abstractproperty
     def one_line_menuing_summary(self):

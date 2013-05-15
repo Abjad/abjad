@@ -9,9 +9,6 @@ scoremanagertools.specifiers.InstrumentSpecifier
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.specifiers.InstrumentSpecifier.InstrumentSpecifier.InstrumentSpecifier.format
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.specifiers.InstrumentSpecifier.InstrumentSpecifier.InstrumentSpecifier.one_line_menuing_summary
    :noindex:
 

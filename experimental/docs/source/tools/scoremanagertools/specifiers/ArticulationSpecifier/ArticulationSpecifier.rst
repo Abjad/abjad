@@ -9,9 +9,6 @@ scoremanagertools.specifiers.ArticulationSpecifier
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.specifiers.ArticulationSpecifier.ArticulationSpecifier.ArticulationSpecifier.format
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.specifiers.ArticulationSpecifier.ArticulationSpecifier.ArticulationSpecifier.one_line_menuing_summary
    :noindex:
 

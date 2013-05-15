@@ -9,9 +9,6 @@ scoremanagertools.specifiers.OverrideSpecifier
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.specifiers.OverrideSpecifier.OverrideSpecifier.OverrideSpecifier.format
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.specifiers.OverrideSpecifier.OverrideSpecifier.OverrideSpecifier.one_line_menuing_summary
    :noindex:
 

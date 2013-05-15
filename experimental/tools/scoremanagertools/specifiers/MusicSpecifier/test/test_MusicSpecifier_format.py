@@ -49,7 +49,7 @@ def test_MusicSpecifier_format_03():
         ])
     '''
 
-    assert ms.format == "specifiers.MusicSpecifier([\n\tspecifiers.MusicContributionSpecifier([\n\t\tspecifiers.ArticulationSpecifier(\n\t\t\tarticulation_handler_name='foo articulations'\n\t\t\t)\n\t\t]),\n\tspecifiers.MusicContributionSpecifier([\n\t\tspecifiers.ArticulationSpecifier(\n\t\t\tarticulation_handler_name='bar articulations'\n\t\t\t)\n\t\t])\n\t])"
+    assert ms.storage_format == "specifiers.MusicSpecifier([\n\tspecifiers.MusicContributionSpecifier([\n\t\tspecifiers.ArticulationSpecifier(\n\t\t\tarticulation_handler_name='foo articulations'\n\t\t\t)\n\t\t]),\n\tspecifiers.MusicContributionSpecifier([\n\t\tspecifiers.ArticulationSpecifier(\n\t\t\tarticulation_handler_name='bar articulations'\n\t\t\t)\n\t\t])\n\t])"
 
 
 def test_MusicSpecifier_format_04():

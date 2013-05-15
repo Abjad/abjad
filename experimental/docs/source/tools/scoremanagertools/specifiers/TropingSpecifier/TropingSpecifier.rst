@@ -9,9 +9,6 @@ scoremanagertools.specifiers.TropingSpecifier
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.specifiers.TropingSpecifier.TropingSpecifier.TropingSpecifier.format
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.specifiers.TropingSpecifier.TropingSpecifier.TropingSpecifier.one_line_menuing_summary
    :noindex:
 

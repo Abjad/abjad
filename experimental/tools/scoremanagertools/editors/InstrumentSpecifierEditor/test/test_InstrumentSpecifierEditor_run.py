@@ -16,7 +16,7 @@ def test_InstrumentSpecifierEditor_run_01():
         )
     '''
 
-    assert editor.target.format == "specifiers.InstrumentSpecifier(\n\tinstrument=instrumenttools.FrenchHorn(),\n\tname='foo'\n\t)"
+    assert editor.target.storage_format == "specifiers.InstrumentSpecifier(\n\tinstrument=instrumenttools.FrenchHorn(),\n\tname='foo'\n\t)"
 
 
 def test_InstrumentSpecifierEditor_run_02():
@@ -36,4 +36,4 @@ def test_InstrumentSpecifierEditor_run_02():
         )
     '''
 
-    assert editor.target.format == "specifiers.InstrumentSpecifier(\n\tinstrument=instrumenttools.UntunedPercussion(\n\t\tinstrument_name='rattle',\n\t\tshort_instrument_name='rattle'\n\t\t),\n\tname='foo'\n\t)"
+    assert editor.target.storage_format == "specifiers.InstrumentSpecifier(\n\tinstrument=instrumenttools.UntunedPercussion(\n\t\tinstrument_name='rattle',\n\t\tshort_instrument_name='rattle'\n\t\t),\n\tname='foo'\n\t)"

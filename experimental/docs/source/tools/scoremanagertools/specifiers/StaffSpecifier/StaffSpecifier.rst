@@ -9,9 +9,6 @@ scoremanagertools.specifiers.StaffSpecifier
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.specifiers.StaffSpecifier.StaffSpecifier.StaffSpecifier.format
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.specifiers.StaffSpecifier.StaffSpecifier.StaffSpecifier.one_line_menuing_summary
    :noindex:
 

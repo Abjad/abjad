@@ -9,9 +9,6 @@ scoremanagertools.specifiers.MusicSpecifier
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.specifiers.MusicSpecifier.MusicSpecifier.MusicSpecifier.format
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.specifiers.MusicSpecifier.MusicSpecifier.MusicSpecifier.one_line_menuing_summary
    :noindex:
 
