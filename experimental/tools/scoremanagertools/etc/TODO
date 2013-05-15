@@ -88,29 +88,25 @@
 
 32. Reduce (or completely remove!) calls to packagepathtools in ImportableFilesystemAssetWrangler.
 
-33. Clean up top-level imports in all classfiles; allow late imports like musicexpressiontools.
+33. Reimplement self._handle_main_menu_result methods around dictionaries.
 
-34. Reimplement self._handle_main_menu_result methods around dictionaries.
+34. Rename flamingo_input to something semantic.
 
-35. Rename flamingo_input to something semantic.
+35. Add ScoreManagerConfiguration.user_directory property.
 
-36. Add ScoreManagerConfiguration.user_directory property.
+36. Document StylesheetFileProxy next.
 
-37. Document StylesheetFileProxy next.
+37. Change asset_container_directory_path to asset_container_filesystem_path globally.
 
-38. Change asset_container_directory_path to asset_container_filesystem_path globally.
+38. Change user_asset_container_directory_paths (plural) to user_asset_container_directory_path (singular).
 
-39. Thin out the top-level imports in just MaterialPackageProxy before other classfiles.
+39. Author ScorePackageProxy docstrings.
 
-40. Change user_asset_container_directory_paths (plural) to user_asset_container_directory_path (singular).
+40. Replace all _read_only_attributes.py and _public_attributes.py test files with doctests.
 
-41. Author ScorePackageProxy docstrings.
+41. Make ScoreManagerConfiguration READ ONLY!
 
-42. Replace all _read_only_attributes.py and _public_attributes.py test files with doctests.
-
-43. Make ScoreManagerConfiguration READ ONLY!
-
-44. Revisit score_manager/configuration.py file.
+42. Revisit score_manager/configuration.py file.
     The only necessary user settings should be these:
         user_collateral_directory_path = /Users/trevorbaca/collateral
         user_scores_directory_path = /Users/trevorbaca/Documents/scores

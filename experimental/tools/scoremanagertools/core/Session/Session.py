@@ -4,7 +4,6 @@ from abjad.tools import stringtools
 from abjad.tools import abctools
 from experimental.tools.scoremanagertools.core.ScoreManagerConfiguration import \
     ScoreManagerConfiguration
-from experimental.tools.scoremanagertools.core.Transcript import Transcript
 
 
 class Session(abctools.AbjadObject):
@@ -46,12 +45,13 @@ class Session(abctools.AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self, user_input=None):
+        from experimental.tools import scoremanagertools
         self._backtracking_stack = []
         self._breadcrumb_cache_stack = []
         self._breadcrumb_stack = []
         self._command_history = []
         self._session_once_had_user_input = False
-        self._transcript = Transcript()
+        self._transcript = scoremanagertools.core.Transcript()
         self.underscore_delimited_current_score_name = None
         self.display_pitch_ranges_with_numbered_pitches = False
         self.dump_transcript = False
