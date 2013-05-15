@@ -155,3 +155,26 @@ CONCLUSION: these are extremely good results. The packagesystemtools inefficienc
 
 It is possible that turning caching back on could increase py.test battery performance.
 Such will results will be recorded in a future entry to this log.
+
+
+### r10,252 ###
+
+Revision r10,252 turns caching back on.
+
+RESULTS: py.test battery time decreases from 46 seconds to 37 seconds. Also these:
+
+    >>> iotools.profile_expr('score_manager = scoremanagertools.scoremanager.ScoreManager()')
+    760 function calls in 0.001 seconds
+
+    >>> iotools.profile_expr("score_manager._run(user_input='q')")
+    2663 function calls (2640 primitive calls) in 0.003 seconds
+
+    >>> iotools.profile_expr("score_manager._run(user_input='q')")
+    2415 function calls in 0.002 seconds
+
+    >>> iotools.profile_expr("score_manager._run(user_input='q')")
+    2415 function calls in 0.002 seconds
+
+CONCLUSION: quick-and-dirty caching saves about 20% of py.test run time for scoremanagertools.
+So a reasonable path forward is to leave caching on *during development* and then turn
+it off before shipping public releases.
