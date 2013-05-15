@@ -1,5 +1,7 @@
 # -*- encoding: utf-8 -*-
 from experimental import *
+import py
+py.test.skip('unskip me after making decision about cache.')     
 
 
 def test_ScorePackageProxy_edit_title_interactively_01():

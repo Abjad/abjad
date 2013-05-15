@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import os
 import subprocess
 from experimental.tools.scoremanagertools.core.ScoreManagerObject import ScoreManagerObject
 
@@ -108,6 +109,16 @@ class ScoreManager(ScoreManagerObject):
         self._session.pop_breadcrumb()
         self._session.restore_breadcrumbs(cache=cache)
 
+    def _write_cache(self):
+        cache_file_path = os.path.join(self.configuration.configuration_directory_path, 'cache.py')
+        cache_file_pointer = file(cache_file_path, 'w')
+        cache_file_pointer.write('start_menu_tokens = [\n')
+        tokens = self.score_package_wrangler._make_visible_asset_menu_tokens()
+        for token in tokens:
+            cache_file_pointer.write('{},\n'.format(token))
+        cache_file_pointer.write(']\n')
+        cache_file_pointer.close()
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
@@ -184,6 +195,11 @@ class ScoreManager(ScoreManagerObject):
     def make_score_selection_menu(self):
         menu, section = self._io.make_menu(where=self._where, is_numbered=True, is_keyed=False)
         section.tokens = self.score_package_wrangler._make_visible_asset_menu_tokens()
+#        if self._session.is_first_run:
+#            section.tokens = self.start_menu_tokens
+#            self._session.is_first_run = False
+#        else:
+#            section.tokens = self.score_package_wrangler._make_visible_asset_menu_tokens()
         return menu
 
     def make_svn_menu(self):

@@ -62,6 +62,7 @@ class Session(abctools.AbjadObject):
         self.is_backtracking_locally = False
         self.is_backtracking_to_score = False
         self.is_backtracking_to_score_manager = False
+        self.is_first_run = True
         self.is_navigating_to_next_score = False
         self.is_navigating_to_prev_score = False
         self.last_command_was_composite = False
