@@ -1,7 +1,8 @@
+from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental.tools.scoremanagertools.editors.AttributeDetail import AttributeDetail
 
 
-class TargetManifest(object):
+class TargetManifest(AbjadObject):
 
     ### INITIALIZER ###
 

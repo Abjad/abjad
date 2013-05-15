@@ -33,6 +33,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.editors.TargetManifest.TargetManifest.TargetManifest.space_delimited_lowercase_attribute_names
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.editors.TargetManifest.TargetManifest.TargetManifest.storage_format
+   :noindex:
+
 Methods
 -------
 
@@ -59,6 +62,24 @@ Methods
 
 Special methods
 ---------------
+
+.. automethod:: experimental.tools.scoremanagertools.editors.TargetManifest.TargetManifest.TargetManifest.__eq__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.editors.TargetManifest.TargetManifest.TargetManifest.__ge__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.editors.TargetManifest.TargetManifest.TargetManifest.__gt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.editors.TargetManifest.TargetManifest.TargetManifest.__le__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.editors.TargetManifest.TargetManifest.TargetManifest.__lt__
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.editors.TargetManifest.TargetManifest.TargetManifest.__ne__
+   :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.TargetManifest.TargetManifest.TargetManifest.__repr__
    :noindex:

@@ -1,10 +1,11 @@
 import types
+from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental.tools.scoremanagertools.editors.InteractiveEditor import InteractiveEditor
 from experimental.tools.scoremanagertools.selectors.Selector import Selector
 from experimental.tools.scoremanagertools.wizards.Wizard import Wizard
 
 
-class AttributeDetail(object):
+class AttributeDetail(AbjadObject):
 
     ### INITIALIZER ###
 
