@@ -1,7 +1,6 @@
 import abc
 import os
 from abjad.tools import stringtools
-from experimental.tools import packagesystemtools
 from experimental.tools.scoremanagertools.core.ScoreManagerObject import ScoreManagerObject
 
 
@@ -140,26 +139,20 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                     result.append(filesystem_path)
         return result
 
-    #def _list_built_in_score_directory_basenames(self, head=None):
     def _list_built_in_score_directory_basenames(self):
         result = []
         for directory_entry in os.listdir(self.configuration.built_in_scores_directory_path):
-            package_path = 'scoremanagertools.built_in_scores.{}'.format(directory_entry)
-            #if (head is not None and package_path.startswith(head)) or \
-            #    (head is None and directory_entry[0].isalpha()):
             if directory_entry[0].isalpha():
                 result.append(directory_entry)
         return result
 
     def _list_built_in_score_directory_paths(self, head=None):
         result = []
-        #basenames = self._list_built_in_score_directory_basenames()
-        #for basename in basenames:
-        #    directory_path = os.path.join(self.configuration.built_in_scores_directory_path, basename)
-        #    result.append(directory_path)
-        for package_path in self._list_built_in_score_package_paths(head=head):
-            directory_path = packagesystemtools.packagesystem_path_to_filesystem_path(package_path)
-            result.append(directory_path)
+        for basename in self._list_built_in_score_directory_basenames():
+            score_package_path = '.'.join([self.configuration.built_in_scores_package_path, basename])
+            if head is None or score_package_path == head:
+                directory_path = os.path.join(self.configuration.built_in_scores_directory_path, basename)
+                result.append(directory_path)
         return result
 
     def _list_score_directory_basenames(self, head=None):
