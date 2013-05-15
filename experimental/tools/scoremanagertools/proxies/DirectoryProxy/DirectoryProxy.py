@@ -46,7 +46,8 @@ class DirectoryProxy(FilesystemAssetProxy):
         self._session.hide_next_redraw = True
 
     def run_py_test(self, prompt=True):
-        proc = subprocess.Popen('py.test {}'.format(self.filesystem_path), shell=True, stdout=subprocess.PIPE)
+        command = 'py.test {}'.format(self.filesystem_path)
+        proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
         lines = [line.strip() for line in proc.stdout.readlines()]
         if lines:
             self._io.display(lines)

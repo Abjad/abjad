@@ -42,6 +42,8 @@ class ScorePackageProxy(PackageProxy):
             self.print_directory_entries()
         elif result == 'profile':
             self.profile()
+        elif result == 'py.test':
+            self.run_py_test()
         elif result == 'removescore':
             self.remove_interactively()
         elif result == 'svn':
@@ -62,6 +64,7 @@ class ScorePackageProxy(PackageProxy):
         hidden_section.append(('fix', 'fix package structure'))
         hidden_section.append(('ls', 'list directory contents'))
         hidden_section.append(('profile', 'profile package structure'))
+        hidden_section.append(('py.test', 'run py.test'))
         hidden_section.append(('removescore', 'remove score package'))
         hidden_section.append(('svn', 'manage repository'))
         hidden_section.append(('tags', 'manage tags'))

@@ -1,16 +1,6 @@
 # -*- encoding: utf-8 -*-
-import os
 import subprocess
-from abjad.tools import iotools
-from abjad.tools import mathtools
-from experimental.tools import packagepathtools
 from experimental.tools.scoremanagertools.core.ScoreManagerObject import ScoreManagerObject
-from experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler import SegmentPackageWrangler
-from experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler import MaterialPackageMakerWrangler
-from experimental.tools.scoremanagertools.wranglers.MaterialPackageWrangler import MaterialPackageWrangler
-from experimental.tools.scoremanagertools.wranglers.MusicSpecifierModuleWrangler import MusicSpecifierModuleWrangler
-from experimental.tools.scoremanagertools.wranglers.ScorePackageWrangler import ScorePackageWrangler
-from experimental.tools.scoremanagertools.wranglers.StylesheetFileWrangler import StylesheetFileWrangler
 
 
 class ScoreManager(ScoreManagerObject):
@@ -18,13 +8,20 @@ class ScoreManager(ScoreManagerObject):
     ### INITIALIZER ###
 
     def __init__(self, session=None):
+        from experimental.tools import scoremanagertools
         ScoreManagerObject.__init__(self, session=session)
-        self._segment_package_wrangler = SegmentPackageWrangler(session=self._session)
-        self._material_package_maker_wrangler = MaterialPackageMakerWrangler(session=self._session)
-        self._material_package_wrangler = MaterialPackageWrangler(session=self._session)
-        self._music_specifier_module_wrangler = MusicSpecifierModuleWrangler(session=self._session)
-        self._score_package_wrangler = ScorePackageWrangler(session=self._session)
-        self._stylesheet_file_wrangler = StylesheetFileWrangler(session=self._session)
+        self._segment_package_wrangler = scoremanagertools.wranglers.SegmentPackageWrangler(
+            session=self._session)
+        self._material_package_maker_wrangler = scoremanagertools.wranglers.MaterialPackageMakerWrangler(
+            session=self._session)
+        self._material_package_wrangler = scoremanagertools.wranglers.MaterialPackageWrangler(
+            session=self._session)
+        self._music_specifier_module_wrangler = scoremanagertools.wranglers.MusicSpecifierModuleWrangler(
+            session=self._session)
+        self._score_package_wrangler = scoremanagertools.wranglers.ScorePackageWrangler(
+            session=self._session)
+        self._stylesheet_file_wrangler = scoremanagertools.wranglers.StylesheetFileWrangler(
+            session=self._session)
 
     ### PRIVATE METHODS ###
 
@@ -51,6 +48,8 @@ class ScoreManager(ScoreManagerObject):
             self.manage_svn()
         elif result == 'profile':
             self.score_package_wrangler.profile_visible_assets()
+        elif result == 'py.test':
+            self.run_py_test_on_all_user_scores()
         elif result in self.score_package_wrangler.list_visible_asset_package_paths():
             self.edit_score_interactively(result)
 
@@ -62,11 +61,12 @@ class ScoreManager(ScoreManagerObject):
         section.append(('k', 'sketches'))
         section.append(('new', 'new score'))
         hidden_section = menu.make_section(is_hidden=True)
-        hidden_section.append(('svn', 'work with repository'))
         hidden_section.append(('active', 'show active scores only'))
         hidden_section.append(('all', 'show all scores'))
         hidden_section.append(('mb', 'show mothballed scores only'))
         hidden_section.append(('profile', 'profile packages'))
+        hidden_section.append(('py.test', 'run py.test on all scores'))
+        hidden_section.append(('svn', 'work with repository'))
         return menu
 
     def _run(self, user_input=None, clear=True, cache=False):
@@ -211,12 +211,9 @@ class ScoreManager(ScoreManagerObject):
             self._session.pop_breadcrumb()
         self._session.pop_breadcrumb()
 
-    # TODO: this probably isn't working any more bc of self.score_package_wrangler.path;
-    #       just fix that at some point to run tests again from within score manager.
-    def run_py_test_all(self, prompt=True):
-        proc = subprocess.Popen(
-            'py.test {} {}'.format(self.filesystem_path, self.score_package_wrangler.filesystem_path),
-            shell=True, stdout=subprocess.PIPE)
+    def run_py_test_on_all_user_scores(self, prompt=True):
+        command = 'py.test {}'.format(self.configuration.user_scores_directory_path)
+        proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
         lines = [line.strip() for line in proc.stdout.readlines()]
         if lines:
             self._io.display(lines, capitalize_first_character=False)

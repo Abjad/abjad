@@ -101,19 +101,16 @@
 38. Change asset_container_directory_path to asset_container_filesystem_path globally.
 
 39. Thin out the top-level imports in just MaterialPackageProxy before other classfiles.
-    Same with ScoreManager.
 
 40. Change user_asset_container_directory_paths (plural) to user_asset_container_directory_path (singular).
 
 41. Author ScorePackageProxy docstrings.
 
-42. Change 'head' globally to something like 'score_package_path' to be explicit.
+42. Replace all _read_only_attributes.py and _public_attributes.py test files with doctests.
 
-43. Replace all _read_only_attributes.py and _public_attributes.py test files with doctests.
+43. Make ScoreManagerConfiguration READ ONLY!
 
-44. Make ScoreManagerConfiguration READ ONLY!
-
-45. Revisit score_manager/configuration.py file.
+44. Revisit score_manager/configuration.py file.
     The only necessary user settings should be these:
         user_collateral_directory_path = /Users/trevorbaca/collateral
         user_scores_directory_path = /Users/trevorbaca/Documents/scores
