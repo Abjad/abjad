@@ -1,4 +1,4 @@
-Note that as of r9872 it takes only 181 function calls to initialize the score manager ...
+Note that as of r9,872 it takes only 181 function calls to initialize the score manager ...
 
     >>> iotools.profile_expr('score_manager = scoremanagertools.scoremanager.ScoreManager()')
     181 function calls in 0.000 seconds
@@ -40,9 +40,9 @@ CONCLUSION: Stack inspection can not be a mandatory part of menu creation
 because stack inspection is expensive.
 
 
-### r10247 ###
+### r10,249 ###
 
-As of r10247 it takes 6,658 function calls to initialize the score manager ...
+As of r10,249 it takes 6,658 function calls to initialize the score manager ...
 
     >>> iotools.profile_expr('score_manager = scoremanagertools.scoremanager.ScoreManager()')
      6658 function calls (6646 primitive calls) in 0.008 seconds
@@ -64,7 +64,24 @@ As of r10247 it takes 6,658 function calls to initialize the score manager ...
         6    0.000    0.000    0.002    0.000 configobj.py:2116(validate)
        12    0.001    0.000    0.002    0.000 configobj.py:1533(_parse)
 
-... as opposed to the 181 function calls it took in r9872.
+... as opposed to the 181 function calls it took in r9,872.
 
 This is most likely due to the integration of ScoreManagerConfiguration.
 This increase from 181 to 6,658 is probably nothing to worry about.
+
+But note that it takes between 325,000 and 323,000 function calls to start and then
+immediately quit the score manager, totaling ~0.4 seconds on the iMac:
+
+    >>> iotools.profile_expr("score_manager._run(user_input='q')")
+    325311 function calls (324734 primitive calls) in 0.407 seconds
+
+    >>> iotools.profile_expr("score_manager._run(user_input='q')")
+    323222 function calls (322706 primitive calls) in 0.435 seconds
+
+    >>> iotools.profile_expr("score_manager._run(user_input='q')")
+    323222 function calls (322706 primitive calls) in 0.395 seconds
+
+This represents an increase from 240,000 function calls to 323,000 function
+calls (or 0.22 seconds to 0.40 seconds) from r9,872 to r10,249.
+The performance of r10,249 is only half as fast as r9,872 at the basic
+task of starting the score manager and then immediately quitting.
