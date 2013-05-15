@@ -1,14 +1,13 @@
 import os
 
 
-def packagesystem_path_to_filesystem_path(package_path, is_module=False):
+def packagesystem_path_to_filesystem_path(package_path, configuration, is_module=False):
     '''Change `package_path` to directory path.
     
     Return string.
     '''
-    from experimental.tools import scoremanagertools
-
-    configuration = scoremanagertools.core.ScoreManagerConfiguration()
+    #from experimental.tools import scoremanagertools
+    #configuration = scoremanagertools.core.ScoreManagerConfiguration()
     
     if package_path is None:
         return

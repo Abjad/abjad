@@ -13,7 +13,7 @@ class ModuleProxy(ParsableFileProxy):
         assert packagesystem_path is None or os.path.sep not in packagesystem_path, repr(packagesystem_path)
         self._module_path = packagesystem_path
         filesystem_path = packagesystemtools.packagesystem_path_to_filesystem_path(
-            self.module_path, is_module=True)
+            self.module_path, self.configuration, is_module=True)
         ParsableFileProxy.__init__(self, filesystem_path=filesystem_path, session=session)
 
     ### CLASS ATTRIBUTES ###
@@ -44,13 +44,13 @@ class ModuleProxy(ParsableFileProxy):
     def filesystem_directory_name(self):
         if self.module_path:
             return packagesystemtools.packagesystem_path_to_filesystem_path(
-                self.parent_package_path)
+                self.parent_package_path, self.configuration)
 
     @property
     def grandparent_directory_path(self):
         if self.module_path:
             return packagesystemtools.packagesystem_path_to_filesystem_path(
-                self.grandparent_package_path)
+                self.grandparent_package_path, self.configuration)
 
     @property
     def grandparent_package_initializer_file_name(self):

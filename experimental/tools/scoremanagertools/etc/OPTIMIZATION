@@ -124,3 +124,34 @@ Probably what should happen is that ...
 ... should be optimized and caching should be left permanently turned on. Why?
 Because leaving caching turned on gives almost a 80% speed *when running the test battery*.
 That reason alone is probably enough to leave caching turned on.
+
+
+### r10,251 ###
+
+Revision r10,251 fives an inefficiency in packagesystemtools.packagesystem_path_to_filesystem_path()
+and the same inefficiency in packagesystemtools.filesystem_path_to_packagesystem_path().
+Specifically, a ScoreManagerConfiguration object was being instantiated for each and every
+call to both of these functions; note that there is disk read time incurred every time
+a ScoreManagerConfiguration object is istantiated.
+
+RESULTS: correcting the packagesystemtools inefficiency produces the following results.
+Note that all of these results are with caching turned off:
+
+    >>> iotools.profile_expr('score_manager = scoremanagertools.scoremanager.ScoreManager()')
+    760 function calls in 0.001 seconds
+
+    >>> iotools.profile_expr("score_manager._run(user_input='q')")
+    77889 function calls (77828 primitive calls) in 0.097 seconds
+
+    >>> iotools.profile_expr("score_manager._run(user_input='q')")
+    75800 function calls in 0.073 seconds
+
+    >>> iotools.profile_expr("score_manager._run(user_input='q')")
+    75800 function calls in 0.073 seconds
+
+Also, the py.test battery now runs in 46 seconds on the iMac.
+
+CONCLUSION: these are extremely good results. The packagesystemtools inefficiency was the problem.
+
+It is possible that turning caching back on could increase py.test battery performance.
+Such will results will be recorded in a future entry to this log.
