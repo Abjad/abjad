@@ -1,7 +1,7 @@
 import os
 
 
-def filesystem_path_to_package_path(filesystem_path):
+def filesystem_path_to_packagesystem_path(filesystem_path):
     '''Change `filesystem_path` to package path.
 
     Return string.

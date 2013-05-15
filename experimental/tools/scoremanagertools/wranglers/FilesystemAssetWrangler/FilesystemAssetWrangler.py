@@ -7,6 +7,8 @@ from experimental.tools.scoremanagertools.core.ScoreManagerObject import ScoreMa
 
 class FilesystemAssetWrangler(ScoreManagerObject):
     '''Filesystem asset wrangler.
+
+    Return filesystem asset wrangler.
     '''
 
     ### CLASS ATTRIBUTES ###

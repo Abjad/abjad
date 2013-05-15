@@ -136,7 +136,7 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
     def list_built_in_score_internal_asset_package_paths(self, head=None):
         result = []
         for filesystem_path in self.list_built_in_score_internal_asset_filesystem_paths(head=head):
-            package_path = packagepathtools.filesystem_path_to_package_path(filesystem_path)
+            package_path = packagepathtools.filesystem_path_to_packagesystem_path(filesystem_path)
             result.append(package_path)
         return result
 
@@ -152,7 +152,7 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
     def list_score_external_asset_package_paths(self, head=None):
         result = []
         for directory_path in self._list_score_external_asset_container_directory_paths(head=head):
-            package_path = packagepathtools.filesystem_path_to_package_path(directory_path)
+            package_path = packagepathtools.filesystem_path_to_packagesystem_path(directory_path)
             if head is None or package_path.startswith(head):
                 for directory_entry in os.listdir(directory_path):
                     if directory_entry[0].isalpha():
@@ -162,7 +162,7 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
     def _list_all_score_directory_package_paths(self, head=None):
         result = []
         for directory_path in self._list_all_score_directory_paths(head=head):
-            package_path = packagepathtools.filesystem_path_to_package_path(directory_path)
+            package_path = packagepathtools.filesystem_path_to_packagesystem_path(directory_path)
             result.append(package_path)
         return result
 

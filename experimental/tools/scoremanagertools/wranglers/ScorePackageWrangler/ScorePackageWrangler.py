@@ -153,7 +153,7 @@ class ScorePackageWrangler(PackageWrangler):
 
         Return string.
         '''
-        package_path = packagepathtools.filesystem_path_to_package_path(
+        package_path = packagepathtools.filesystem_path_to_packagesystem_path(
             self.current_asset_container_directory_path)
         return package_path
 

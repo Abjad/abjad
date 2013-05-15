@@ -451,7 +451,7 @@ Unstable packages (load manually)
    .. toctree::
       :maxdepth: 1
 
-      tools/packagepathtools/filesystem_path_to_package_path
+      tools/packagepathtools/filesystem_path_to_packagesystem_path
       tools/packagepathtools/module_path_to_file_path
       tools/packagepathtools/package_exists
       tools/packagepathtools/package_path_to_directory_path
@@ -463,7 +463,7 @@ Unstable packages (load manually)
 
    .. toctree::
 
-      tools/packagepathtools/filesystem_path_to_package_path
+      tools/packagepathtools/filesystem_path_to_packagesystem_path
       tools/packagepathtools/module_path_to_file_path
       tools/packagepathtools/package_exists
       tools/packagepathtools/package_path_to_directory_path
