@@ -113,3 +113,5 @@
 40. Change DistributionDirectoryProxy.__init__(score_package_name=None) to score_package_path.
     Same with ExergueDirectoryProxy.
     Same with MusicPackageProxy.
+
+41. Maybe change scoremanagertools/specifiers to scoremanagertools/specifiermakers?

@@ -10,7 +10,8 @@ def test_filesystem_path_to_packagesystem_path_01():
     assert packagesystemtools.filesystem_path_to_packagesystem_path(
         configuration.built_in_materials_directory_path) == 'built_in_materials'
     assert packagesystemtools.filesystem_path_to_packagesystem_path(
-        configuration.built_in_specifiers_directory_path) == 'built_in_specifiers'
+        configuration.built_in_specifiers_directory_path) == \
+        'experimental.tools.scoremanagertools.built_in_specifiers'
     assert packagesystemtools.filesystem_path_to_packagesystem_path(
         configuration.user_sketches_directory_path) == 'sketches'
 

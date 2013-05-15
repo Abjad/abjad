@@ -343,7 +343,7 @@ class Session(abctools.AbjadObject):
         ::
 
             >>> session.current_specifiers_directory_path
-            '.../abjad/experimental/built_in_specifiers'
+            '.../tools/scoremanagertools/built_in_specifiers'
 
         Session in score:
 
@@ -374,7 +374,7 @@ class Session(abctools.AbjadObject):
         ::
 
             >>> session.current_specifiers_package_path
-            'built_in_specifiers'
+            'experimental.tools.scoremanagertools.built_in_specifiers'
 
         Session in score:
 

@@ -196,12 +196,12 @@ class ScoreManagerConfiguration(Configuration):
         ::
 
             >>> configuration.built_in_specifiers_directory_path
-            '.../abjad/experimental/built_in_specifiers'
+            '.../abjad/experimental/tools/scoremanagertools/built_in_specifiers'
 
         Return string.
         '''
         return os.path.join(
-            self.abjad_configuration.abjad_experimental_directory_path, 
+            self.score_manager_tools_directory_path,
             'built_in_specifiers')
 
     @property
@@ -211,11 +211,11 @@ class ScoreManagerConfiguration(Configuration):
         ::
 
             >>> configuration.built_in_specifiers_package_path
-            'built_in_specifiers'
+            'experimental.tools.scoremanagertools.built_in_specifiers'
 
         Return string.
         '''
-        return os.path.basename(self.built_in_specifiers_directory_path)
+        return 'experimental.tools.scoremanagertools.built_in_specifiers'
 
     @property
     def configuration_directory_path(self):
