@@ -111,11 +111,9 @@
 
 43. Replace all _read_only_attributes.py and _public_attributes.py test files with doctests.
 
-44. Remove etc directories from example scores.
+44. Make ScoreManagerConfiguration READ ONLY!
 
-45. Make ScoreManagerConfiguration READ ONLY!
-
-46. Revisit score_manager/configuration.py file.
+45. Revisit score_manager/configuration.py file.
     The only necessary user settings should be these:
         user_collateral_directory_path = /Users/trevorbaca/collateral
         user_scores_directory_path = /Users/trevorbaca/Documents/scores
