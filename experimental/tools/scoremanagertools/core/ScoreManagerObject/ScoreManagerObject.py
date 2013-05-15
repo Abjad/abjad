@@ -14,11 +14,11 @@ class ScoreManagerObject(AbjadObject):
     __meta__ = abc.ABCMeta
     configuration = ScoreManagerConfiguration()
 
-#    cache_file_path = os.path.join(configuration.configuration_directory_path, 'cache.py')
-#    cache_file_pointer = file(cache_file_path, 'r')
-#    cache_lines = cache_file_pointer.read()
-#    cache_file_pointer.close()
-#    exec(cache_lines)
+    cache_file_path = os.path.join(configuration.configuration_directory_path, 'cache.py')
+    cache_file_pointer = file(cache_file_path, 'r')
+    cache_lines = cache_file_pointer.read()
+    cache_file_pointer.close()
+    exec(cache_lines)
 
     ### INITIALIZER ###
 

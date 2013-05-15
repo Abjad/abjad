@@ -45,7 +45,7 @@ because stack inspection is expensive.
 As of r10,249 it takes 6,658 function calls to initialize the score manager ...
 
     >>> iotools.profile_expr('score_manager = scoremanagertools.scoremanager.ScoreManager()')
-     6658 function calls (6646 primitive calls) in 0.008 seconds
+    6658 function calls (6646 primitive calls) in 0.008 seconds
 
    Ordered by: cumulative time
    List reduced from 147 to 12 due to restriction <12>
@@ -85,3 +85,42 @@ This represents an increase from 240,000 function calls to 323,000 function
 calls (or 0.22 seconds to 0.40 seconds) from r9,872 to r10,249.
 The performance of r10,249 is only half as fast as r9,872 at the basic
 task of starting the score manager and then immediately quitting.
+
+
+### r10,250 ###
+
+Turning on the quick-and-dirty caching code included in r10,250 gives the following results:
+
+    >>> iotools.profile_expr('score_manager = scoremanagertools.scoremanager.ScoreManager()')
+    6658 function calls (6646 primitive calls) in 0.008 seconds
+
+    >>> iotools.profile_expr("score_manager._run(user_input='q')")
+    8417 function calls (8382 primitive calls) in 0.009 seconds
+
+    >>> iotools.profile_expr("score_manager._run(user_input='q')")
+    8169 function calls (8157 primitive calls) in 0.009 seconds
+
+    >>> iotools.profile_expr("score_manager._run(user_input='q')")
+    8169 function calls (8157 primitive calls) in 0.009 seconds
+
+CONCLUSION: the quick-and-dirty caching code turned on in r10,250 effectively eliminates
+*all* the effort associated with starting the score manager. This shows that the
+effort involved in starting the score manager comes exclusively from the call ...
+    section.tokens = self.score_package_wrangler._make_visible_asset_menu_tokens()
+... found in the score manager. The py.test battery runs in 160 seconds on the 
+iMac with caching turned off; the py.test battery runs in 94 seconds on the iMac
+with caching turned on.
+
+PROSPECTUS: Should caching become a permament part of the system? There are risks 
+associated with caching; these all come from the work necessary to keep the cache
+up to date. Perhaps more to the point is the fact that every rebuild of the main menu ...
+    section.tokens = self.score_package_wrangler._make_visible_asset_menu_tokens()
+... now costs ~320,000 fuction calls (~0.4 seconds). So whether caching is left
+permanently turned on or not, it is clear that ...
+    section.tokens = self.score_package_wrangler._make_visible_asset_menu_tokens()
+... must be optimized regardless.
+Probably what should happen is that ...
+    section.tokens = self.score_package_wrangler._make_visible_asset_menu_tokens()
+... should be optimized and caching should be left permanently turned on. Why?
+Because leaving caching turned on gives almost a 80% speed *when running the test battery*.
+That reason alone is probably enough to leave caching turned on.
