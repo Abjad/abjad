@@ -86,7 +86,7 @@
 
 31. Remove (or rename) Specifier.format and TargetManifest.format properties.
 
-32. Reduce (or completely remove!) calls to packagepathtools in ImportableFilesystemAssetWrangler.
+32. Reduce (or completely remove!) calls to packagepathtools in PackagesystemAssetWrangler.
 
 33. Reimplement self._handle_main_menu_result methods around dictionaries.
 

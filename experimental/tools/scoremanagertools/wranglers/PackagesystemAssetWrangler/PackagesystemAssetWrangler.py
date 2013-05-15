@@ -3,7 +3,7 @@ from experimental.tools import packagepathtools
 from experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler import FilesystemAssetWrangler
 
 
-class ImportableFilesystemAssetWrangler(FilesystemAssetWrangler):
+class PackagesystemAssetWrangler(FilesystemAssetWrangler):
 
     def __init__(self,
         built_in_asset_container_directory_paths=None,
