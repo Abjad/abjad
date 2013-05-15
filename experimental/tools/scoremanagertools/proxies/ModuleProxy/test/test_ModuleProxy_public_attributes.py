@@ -35,9 +35,9 @@ def test_ModuleProxy_public_attributes_02():
     '''
 
     configuration = scoremanagertools.core.ScoreManagerConfiguration()
-    module_path = '.'.join([
+    packagesystem_path = '.'.join([
         configuration.built_in_materials_package_path, 'red_notes', 'material_definition'])
-    proxy = scoremanagertools.proxies.ModuleProxy(module_path=module_path)
+    proxy = scoremanagertools.proxies.ModuleProxy(packagesystem_path=packagesystem_path)
 
     assert proxy._breadcrumb == 'material_definition.py'
     assert proxy.exists()
@@ -47,7 +47,7 @@ def test_ModuleProxy_public_attributes_02():
     assert proxy.grandparent_package_path == proxy.configuration.built_in_materials_package_path
     assert proxy._space_delimited_lowercase_name == 'material definition'
     assert proxy.is_versioned()
-    assert proxy.module_path == module_path
+    assert proxy.module_path == packagesystem_path
     assert proxy.module_name == 'material_definition'
     assert proxy.filesystem_directory_name == os.path.join(
         proxy.configuration.built_in_materials_directory_path, 'red_notes')

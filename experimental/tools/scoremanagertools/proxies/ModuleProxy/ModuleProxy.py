@@ -9,9 +9,9 @@ class ModuleProxy(ParsableFileProxy):
 
     ### INITIALIZER ###
 
-    def __init__(self, module_path=None, session=None):
-        assert module_path is None or os.path.sep not in module_path, repr(module_path)
-        self._module_path = module_path
+    def __init__(self, packagesystem_path=None, session=None):
+        assert packagesystem_path is None or os.path.sep not in packagesystem_path, repr(packagesystem_path)
+        self._module_path = packagesystem_path
         filesystem_path = packagesystemtools.packagesystem_path_to_filesystem_path(
             self.module_path, is_module=True)
         ParsableFileProxy.__init__(self, filesystem_path=filesystem_path, session=session)

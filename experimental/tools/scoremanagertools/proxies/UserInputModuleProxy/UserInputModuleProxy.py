@@ -7,8 +7,8 @@ class UserInputModuleProxy(ModuleProxy):
 
     ### INITIALIZER ###
 
-    def __init__(self, module_path=None, session=None):
-        ModuleProxy.__init__(self, module_path=module_path, session=session)
+    def __init__(self, packagesystem_path=None, session=None):
+        ModuleProxy.__init__(self, packagesystem_path=packagesystem_path, session=session)
         self.user_input_wrapper_lines = []
         self.parse()
 

@@ -64,9 +64,9 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
 
     ### PRIVATE METHODS ###
 
-    def _get_asset_proxy(self, package_path):
-        assert os.path.sep not in package_path, repr(package_path)
-        return self.asset_proxy_class(package_path=package_path, session=self._session)
+    def _get_asset_proxy(self, packagesystem_path):
+        assert os.path.sep not in packagesystem_path, repr(packagesystem_path)
+        return self.asset_proxy_class(packagesystem_path=packagesystem_path, session=self._session)
 
     def _make_visible_asset_menu_tokens(self, head=None):
         keys = self.list_visible_asset_package_paths(head=head)

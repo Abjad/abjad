@@ -16,6 +16,6 @@ class PackageContentSelector(DirectoryContentSelector):
         result = []
         for package_path in self.asset_container_package_paths:
             package_proxy = PackageProxy(
-                package_path=package_path, session=self._session)
+                packagesystem_path=package_path, session=self._session)
             result.extend(package_proxy.public_names)
         return result

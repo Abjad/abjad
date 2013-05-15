@@ -15,8 +15,8 @@ class MaterialPackageProxy(PackageProxy):
 
     ### INTIALIZER ###
 
-    def __init__(self, package_path=None, session=None):
-        PackageProxy.__init__(self, package_path=package_path, session=session)
+    def __init__(self, packagesystem_path=None, session=None):
+        PackageProxy.__init__(self, packagesystem_path=packagesystem_path, session=session)
         self._generic_output_name = None
         self.stylesheet_file_name_in_memory = None
 

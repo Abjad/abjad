@@ -2,7 +2,6 @@ import copy
 import os
 from experimental.tools import packagesystemtools
 from experimental.tools.scoremanagertools.proxies.MaterialPackageProxy import MaterialPackageProxy
-from experimental.tools.scoremanagertools.editors.UserInputWrapper import UserInputWrapper
 
 
 class MaterialPackageMaker(MaterialPackageProxy):
@@ -18,8 +17,8 @@ class MaterialPackageMaker(MaterialPackageProxy):
 
     ### INITIALIZER ###
 
-    def __init__(self, package_path=None, session=None):
-        MaterialPackageProxy.__init__(self, package_path=package_path, session=session)
+    def __init__(self, packagesystem_path=None, session=None):
+        MaterialPackageProxy.__init__(self, packagesystem_path=packagesystem_path, session=session)
         self._user_input_wrapper_in_memory = self._initialize_user_input_wrapper_in_memory()
 
     ### PRIVATE METHODS ###
@@ -124,7 +123,8 @@ class MaterialPackageMaker(MaterialPackageProxy):
         self.user_input_module_proxy.write_user_input_wrapper_to_disk(self.user_input_wrapper_in_memory)
 
     def initialize_empty_user_input_wrapper(self):
-        user_input_wrapper = UserInputWrapper()
+        from experimental.tools import scoremanagertools
+        user_input_wrapper = scoremanagertools.editors.UserInputWrapper()
         user_input_wrapper._user_input_module_import_statements = \
             getattr(self, 'user_input_module_import_statements', [])[:]
         for user_input_attribute_name in self.user_input_attribute_names:

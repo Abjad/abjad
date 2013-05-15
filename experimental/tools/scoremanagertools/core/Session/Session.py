@@ -273,7 +273,7 @@ class Session(abctools.AbjadObject):
         from experimental.tools.scoremanagertools.proxies.ScorePackageProxy import ScorePackageProxy
         if self.is_in_score:
             return ScorePackageProxy(
-                package_path=self.current_score_package_path, session=self)
+                packagesystem_path=self.current_score_package_path, session=self)
 
     @property
     def current_segments_directory_path(self):
