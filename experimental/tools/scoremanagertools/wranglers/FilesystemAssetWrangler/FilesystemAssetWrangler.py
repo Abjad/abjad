@@ -66,11 +66,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     ### PRIVATE METHODS ###
 
-    def _fancy_list_asset_container_filesystem_paths(self, head=None,
-        built_in_score_external=False, built_in_score_internal=False,
-        user_score_external=False, user_score_internal=False):
-        raise NotImplementedError('TODO: implement me soon.')
-
     def _filesystem_path_to_space_delimited_lowercase_name(self, filesystem_path):
         filesystem_path = os.path.normpath(filesystem_path)
         asset_name = os.path.basename(filesystem_path)
@@ -112,6 +107,18 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def _handle_main_menu_result(self, result):
         pass
 
+    def _list_all_score_directory_basenames(self, head=None):
+        result = []
+        result.extend(self._list_built_in_score_directory_basenames(head=head))
+        result.extend(self._list_score_directory_basenames(head=head))
+        return result
+
+    def _list_all_score_directory_paths(self, head=None):
+        result = []
+        result.extend(self._list_built_in_score_directory_paths(head=head))
+        result.extend(self._list_score_directory_paths(head=head))
+        return result
+
     def _list_asset_container_filesystem_paths(self, head=None):
         result = []
         result.extend(self._list_score_external_asset_container_filesystem_paths(head=head))
@@ -129,15 +136,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             asset_container_filesystem_path = os.path.join(*parts)
             result.append(asset_container_filesystem_path)
         return result 
-
-    def list_built_in_score_internal_asset_filesystem_paths(self, head=None):
-        result = []
-        for directory_path in self._list_built_in_score_asset_container_filesystem_paths(head=head):
-            for directory_entry in os.listdir(directory_path):
-                if directory_entry[0].isalpha():
-                    filesystem_path = os.path.join(directory_path, directory_entry)
-                    result.append(filesystem_path)
-        return result
 
     def _list_built_in_score_directory_basenames(self):
         result = []
@@ -161,18 +159,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             if (head is not None and directory_entry.startswith(head)) or \
                 (head is None and directory_entry[0].isalpha()):
                 result.append(directory_entry)
-        return result
-
-    def _list_all_score_directory_basenames(self, head=None):
-        result = []
-        result.extend(self._list_built_in_score_directory_basenames(head=head))
-        result.extend(self._list_score_directory_basenames(head=head))
-        return result
-
-    def _list_all_score_directory_paths(self, head=None):
-        result = []
-        result.extend(self._list_built_in_score_directory_paths(head=head))
-        result.extend(self._list_score_directory_paths(head=head))
         return result
 
     def _list_score_directory_paths(self, head=None):
@@ -321,6 +307,15 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         if head is None or head in self.built_in_resource_directory_basenames:
             result.extend(self.list_score_external_asset_filesystem_paths(head=head))
         result.extend(self.list_score_internal_asset_filesystem_paths(head=head))
+        return result
+
+    def list_built_in_score_internal_asset_filesystem_paths(self, head=None):
+        result = []
+        for directory_path in self._list_built_in_score_asset_container_filesystem_paths(head=head):
+            for directory_entry in os.listdir(directory_path):
+                if directory_entry[0].isalpha():
+                    filesystem_path = os.path.join(directory_path, directory_entry)
+                    result.append(filesystem_path)
         return result
 
     def list_score_external_asset_filesystem_paths(self, head=None):

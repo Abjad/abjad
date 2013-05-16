@@ -21,10 +21,6 @@ class InitializerFileProxy(ParsableFileProxy):
     ### READ-ONLY PUBLIC PROPERTIES ##
 
     @property
-    def is_readable(self):
-        return self.parse()
-
-    @property
     def file_sections(self):
         return (
             (self.encoding_directives, True, 0),
@@ -34,6 +30,10 @@ class InitializerFileProxy(ParsableFileProxy):
             (self.tag_lines, False, 1),
             (self.teardown_statements, True, 0),
             )
+
+    @property
+    def is_readable(self):
+        return self.parse()
 
     ### PUBLIC METHODS ###
 

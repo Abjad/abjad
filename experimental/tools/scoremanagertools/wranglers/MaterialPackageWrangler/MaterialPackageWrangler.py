@@ -70,6 +70,60 @@ class MaterialPackageWrangler(PackageWrangler):
             material_package_proxy = self._get_asset_proxy(result)
             material_package_proxy._run()
 
+    def _list_asset_container_package_paths(self, head=None):
+        '''Material package wrangler list asset container package paths:
+
+        ::
+
+            >>> for x in wrangler._list_asset_container_package_paths():
+            ...     x
+            'built_in_materials'
+            'experimental.tools.scoremanagertools.built_in_scores.blue_example_score.music.materials'
+            'experimental.tools.scoremanagertools.built_in_scores.green_example_score.music.materials'
+            'experimental.tools.scoremanagertools.built_in_scores.red_example_score.music.materials'
+            ...
+
+        Output lists built-in materials, followed by built-in scores,
+        followed by user scores.
+
+        Return list.
+        '''
+        return super(type(self), self)._list_asset_container_package_paths(head=head)
+
+    def _list_score_internal_asset_container_filesystem_paths(self, head=None):
+        '''Material package wrangler list score internal asset container directory paths:
+
+        ::
+
+            >>> for x in wrangler._list_score_internal_asset_container_filesystem_paths():
+            ...     x
+            '.../tools/scoremanagertools/built_in_scores/blue_example_score/music/materials'
+            '.../tools/scoremanagertools/built_in_scores/green_example_score/music/materials'
+            '.../tools/scoremanagertools/built_in_scores/red_example_score/music/materials'
+            ...
+
+        Return list.
+        '''
+        return super(type(self), self)._list_score_internal_asset_container_filesystem_paths(head=head)
+
+    def _list_score_internal_asset_container_package_paths(self, head=None):
+        '''Material package wrangler list score internal asset container package paths:
+
+        ::
+
+            >>> for x in wrangler._list_score_internal_asset_container_package_paths():
+            ...     x
+            'experimental.tools.scoremanagertools.built_in_scores.blue_example_score.music.materials'
+            'experimental.tools.scoremanagertools.built_in_scores.green_example_score.music.materials'
+            'experimental.tools.scoremanagertools.built_in_scores.red_example_score.music.materials'
+            ...
+
+        Output lists built-in scores followed by user scores.
+
+        Return list.
+        '''
+        return super(type(self), self)._list_score_internal_asset_container_package_paths(head=head)
+
     def _make_main_menu(self, head=None):
         menu, section = self._io.make_menu(where=self._where, is_numbered=True, is_keyed=False)
         section.tokens = self._make_visible_asset_menu_tokens(head=head)
@@ -201,6 +255,26 @@ class MaterialPackageWrangler(PackageWrangler):
         '''
         return super(type(self), self).get_asset_proxies(head=head)
 
+    def get_available_material_package_path_interactively(self, user_input=None):
+        self._io.assign_user_input(user_input=user_input)
+        while True:
+            getter = self._io.make_getter(where=self._where)
+            getter.append_space_delimited_lowercase_string('material name')
+            self._session.push_backtrack()
+            package_name = getter._run()
+            self._session.pop_backtrack()
+            if self._session.backtrack():
+                return
+            material_package_name = stringtools.string_to_accent_free_underscored_delimited_lowercase(
+                package_name)
+            material_package_path = '.'.join([
+                self.current_asset_container_package_path, material_package_name])
+            if self.configuration.packagesystem_path_exists(material_package_path):
+                line = 'Material package {!r} already exists.'.format(material_package_path)
+                self._io.display([line, ''])
+            else:
+                return material_package_path
+
     def get_score_external_asset_proxies(self, head=None):
         '''Material package wrangler get score-external asset proxies:
 
@@ -239,80 +313,6 @@ class MaterialPackageWrangler(PackageWrangler):
         Return list.
         '''
         return super(type(self), self).get_score_internal_asset_proxies(head=head)
-
-    def get_available_material_package_path_interactively(self, user_input=None):
-        self._io.assign_user_input(user_input=user_input)
-        while True:
-            getter = self._io.make_getter(where=self._where)
-            getter.append_space_delimited_lowercase_string('material name')
-            self._session.push_backtrack()
-            package_name = getter._run()
-            self._session.pop_backtrack()
-            if self._session.backtrack():
-                return
-            material_package_name = stringtools.string_to_accent_free_underscored_delimited_lowercase(
-                package_name)
-            material_package_path = '.'.join([
-                self.current_asset_container_package_path, material_package_name])
-            if self.configuration.packagesystem_path_exists(material_package_path):
-                line = 'Material package {!r} already exists.'.format(material_package_path)
-                self._io.display([line, ''])
-            else:
-                return material_package_path
-
-    def list_asset_container_package_paths(self, head=None):
-        '''Material package wrangler list asset container package paths:
-
-        ::
-
-            >>> for x in wrangler.list_asset_container_package_paths():
-            ...     x
-            'built_in_materials'
-            'experimental.tools.scoremanagertools.built_in_scores.blue_example_score.music.materials'
-            'experimental.tools.scoremanagertools.built_in_scores.green_example_score.music.materials'
-            'experimental.tools.scoremanagertools.built_in_scores.red_example_score.music.materials'
-            ...
-
-        Output lists built-in materials, followed by built-in scores,
-        followed by user scores.
-
-        Return list.
-        '''
-        return super(type(self), self).list_asset_container_package_paths(head=head)
-
-    def _list_score_internal_asset_container_filesystem_paths(self, head=None):
-        '''Material package wrangler list score internal asset container directory paths:
-
-        ::
-
-            >>> for x in wrangler._list_score_internal_asset_container_filesystem_paths():
-            ...     x
-            '.../tools/scoremanagertools/built_in_scores/blue_example_score/music/materials'
-            '.../tools/scoremanagertools/built_in_scores/green_example_score/music/materials'
-            '.../tools/scoremanagertools/built_in_scores/red_example_score/music/materials'
-            ...
-
-        Return list.
-        '''
-        return super(type(self), self)._list_score_internal_asset_container_filesystem_paths(head=head)
-
-    def list_score_internal_asset_container_package_paths(self, head=None):
-        '''Material package wrangler list score internal asset container package paths:
-
-        ::
-
-            >>> for x in wrangler.list_score_internal_asset_container_package_paths():
-            ...     x
-            'experimental.tools.scoremanagertools.built_in_scores.blue_example_score.music.materials'
-            'experimental.tools.scoremanagertools.built_in_scores.green_example_score.music.materials'
-            'experimental.tools.scoremanagertools.built_in_scores.red_example_score.music.materials'
-            ...
-
-        Output lists built-in scores followed by user scores.
-
-        Return list.
-        '''
-        return super(type(self), self).list_score_internal_asset_container_package_paths(head=head)
 
     def make_asset_interactively(self):
         return NotImplemented

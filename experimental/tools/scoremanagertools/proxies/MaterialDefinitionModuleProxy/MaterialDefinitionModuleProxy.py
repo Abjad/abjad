@@ -16,6 +16,16 @@ class MaterialDefinitionModuleProxy(MaterialModuleProxy):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
+    def file_sections(self):
+        return (
+            (self.encoding_directives, False, 0),
+            (self.docstring_lines, False, 1),
+            (self.setup_statements, True, 0),
+            (self.output_material_module_import_lines, True, 2),
+            (self.body_lines, False, 0),
+            )
+
+    @property
     def is_user_finalized(self):
         # TODO: maybe replace with bool(self.material_definition)
         return bool(self.import_output_material_module_import_statements_and_material_definition()[1])
@@ -30,16 +40,6 @@ class MaterialDefinitionModuleProxy(MaterialModuleProxy):
         if result:
             result = list(result)
             return result
-
-    @property
-    def file_sections(self):
-        return (
-            (self.encoding_directives, False, 0),
-            (self.docstring_lines, False, 1),
-            (self.setup_statements, True, 0),
-            (self.output_material_module_import_lines, True, 2),
-            (self.body_lines, False, 0),
-            )
 
     ### PUBLIC METHODS ###
 

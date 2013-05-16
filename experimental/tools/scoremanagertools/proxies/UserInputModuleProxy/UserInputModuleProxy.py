@@ -15,13 +15,6 @@ class UserInputModuleProxy(ModuleProxy):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def has_complete_user_input_wrapper_on_disk(self):
-        user_input_wrapper = self.read_user_input_wrapper_from_disk()
-        if user_input_wrapper is not None:
-            return user_input_wrapper.is_complete
-        return False
-
-    @property
     def file_sections(self):
         return (
             (self.encoding_directives, False, 0),
@@ -29,6 +22,13 @@ class UserInputModuleProxy(ModuleProxy):
             (self.setup_statements, True, 2),
             (self.user_input_wrapper_lines, False, 0),
             )
+
+    @property
+    def has_complete_user_input_wrapper_on_disk(self):
+        user_input_wrapper = self.read_user_input_wrapper_from_disk()
+        if user_input_wrapper is not None:
+            return user_input_wrapper.is_complete
+        return False
 
     ### PUBLIC METHODS ###
 

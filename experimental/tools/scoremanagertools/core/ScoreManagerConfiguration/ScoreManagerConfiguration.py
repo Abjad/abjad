@@ -430,45 +430,6 @@ class ScoreManagerConfiguration(Configuration):
 
     ### PUBLIC METHODS ###
 
-    def packagesystem_path_to_filesystem_path(self, package_path, is_module=False):
-        '''Change `package_path` to directory path.
-        
-        Return string.
-        '''
-
-        if package_path is None:
-            return
-        package_path_parts = package_path.split('.')
-        if package_path_parts[0] == 'scoremanagertools':
-            directory_parts = [self.score_manager_tools_directory_path] + \
-                package_path_parts[1:]
-        elif package_path_parts[:3] == ['experimental', 'tools', 'scoremanagertools']:
-            directory_parts = [self.score_manager_tools_directory_path] + \
-                package_path_parts[3:]
-        elif package_path_parts[0] == \
-            self.built_in_materials_package_path:
-            directory_parts = \
-                [self.built_in_materials_directory_path] + \
-                package_path_parts[1:]
-        elif package_path_parts[0] == \
-            self.user_sketches_package_path:
-            directory_parts = \
-                [self.user_sketches_directory_path] + \
-                package_path_parts[1:]
-        elif package_path_parts[0] == \
-            self.built_in_specifiers_package_path:
-            directory_parts = \
-                [self.built_in_specifiers_directory_path] + \
-                package_path_parts[1:]
-        else:
-            directory_parts = [self.user_scores_directory_path] + package_path_parts[:]
-        directory_path = os.path.join(*directory_parts)
-
-        if is_module:
-            directory_path += '.py'
-
-        return directory_path
-
     def filesystem_path_to_packagesystem_path(self, filesystem_path):
         '''Change `filesystem_path` to package path.
 
@@ -514,3 +475,42 @@ class ScoreManagerConfiguration(Configuration):
         assert os.path.sep not in packagesystem_path, repr(packagesystem_path)
         filesystem_path = self.packagesystem_path_to_filesystem_path(packagesystem_path)
         return os.path.exists(filesystem_path)
+
+    def packagesystem_path_to_filesystem_path(self, package_path, is_module=False):
+        '''Change `package_path` to directory path.
+        
+        Return string.
+        '''
+
+        if package_path is None:
+            return
+        package_path_parts = package_path.split('.')
+        if package_path_parts[0] == 'scoremanagertools':
+            directory_parts = [self.score_manager_tools_directory_path] + \
+                package_path_parts[1:]
+        elif package_path_parts[:3] == ['experimental', 'tools', 'scoremanagertools']:
+            directory_parts = [self.score_manager_tools_directory_path] + \
+                package_path_parts[3:]
+        elif package_path_parts[0] == \
+            self.built_in_materials_package_path:
+            directory_parts = \
+                [self.built_in_materials_directory_path] + \
+                package_path_parts[1:]
+        elif package_path_parts[0] == \
+            self.user_sketches_package_path:
+            directory_parts = \
+                [self.user_sketches_directory_path] + \
+                package_path_parts[1:]
+        elif package_path_parts[0] == \
+            self.built_in_specifiers_package_path:
+            directory_parts = \
+                [self.built_in_specifiers_directory_path] + \
+                package_path_parts[1:]
+        else:
+            directory_parts = [self.user_scores_directory_path] + package_path_parts[:]
+        directory_path = os.path.join(*directory_parts)
+
+        if is_module:
+            directory_path += '.py'
+
+        return directory_path

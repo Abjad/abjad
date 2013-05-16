@@ -11,14 +11,14 @@ def test_SegmentPackageWrangler_read_only_attributes_01():
     assert wrangler.current_asset_container_package_path == 'sketches'
     assert all([x.startswith('sketches') for x in wrangler.list_score_external_asset_package_paths()])
 
-    assert wrangler.list_built_in_asset_container_package_paths() == ['sketches']
+    assert wrangler._list_built_in_asset_container_package_paths() == ['sketches']
     assert wrangler.asset_container_path_infix_parts == ('music', 'segments')
 
     assert wrangler._temporary_asset_package_path == 'sketches.__temporary_package'
 
-    assert 'sketches' in wrangler.list_asset_container_package_paths()
+    assert 'sketches' in wrangler._list_asset_container_package_paths()
     assert 'experimental.tools.scoremanagertools.built_in_scores.red_example_score.music.segments' \
-        in wrangler.list_asset_container_package_paths()
+        in wrangler._list_asset_container_package_paths()
 
 
 def test_SegmentPackageWrangler_read_only_attributes_02():
@@ -35,7 +35,7 @@ def test_SegmentPackageWrangler_read_only_attributes_02():
 
     assert all([
         x.startswith('sketches.') for x in wrangler.list_score_external_asset_package_paths()])
-    assert wrangler.list_built_in_asset_container_package_paths() == \
+    assert wrangler._list_built_in_asset_container_package_paths() == \
         ['sketches']
 
     assert wrangler.asset_container_path_infix_parts == ('music', 'segments')
@@ -43,6 +43,6 @@ def test_SegmentPackageWrangler_read_only_attributes_02():
     assert wrangler._temporary_asset_package_path == \
         'experimental.tools.scoremanagertools.built_in_scores.red_example_score.music.segments.__temporary_package'
 
-    assert 'sketches' in wrangler.list_asset_container_package_paths()
+    assert 'sketches' in wrangler._list_asset_container_package_paths()
     assert 'experimental.tools.scoremanagertools.built_in_scores.red_example_score.music.segments' \
-        in wrangler.list_asset_container_package_paths()
+        in wrangler._list_asset_container_package_paths()

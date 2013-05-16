@@ -87,17 +87,15 @@
 
 32. Document StylesheetFileProxy next.
 
-33. Change asset_container_filesystem_path to asset_container_filesystem_path globally.
+33. Change user_asset_container_filesystem_paths (plural) to user_asset_container_filesystem_path (singular).
 
-34. Change user_asset_container_filesystem_paths (plural) to user_asset_container_filesystem_path (singular).
+34. Author ScorePackageProxy docstrings.
 
-35. Author ScorePackageProxy docstrings.
+35. Replace all _read_only_attributes.py and _public_attributes.py test files with doctests.
 
-36. Replace all _read_only_attributes.py and _public_attributes.py test files with doctests.
+36. Make ScoreManagerConfiguration READ ONLY!
 
-37. Make ScoreManagerConfiguration READ ONLY!
-
-38. Revisit score_manager/configuration.py file.
+37. Revisit score_manager/configuration.py file.
     The only necessary user settings should be these:
         user_collateral_directory_path = /Users/trevorbaca/collateral
         user_scores_directory_path = /Users/trevorbaca/Documents/scores
@@ -108,15 +106,15 @@
     * store user material package makers in user collateral directory
     * store user stylesheets in user collateral directory
 
-39. Add PackageystemAssetProxy to superclass ModuleProxy and PackageProxy.
+38. Add PackageystemAssetProxy to superclass ModuleProxy and PackageProxy.
 
-40. Change DistributionDirectoryProxy.__init__(score_package_name=None) to score_package_path.
+39. Change DistributionDirectoryProxy.__init__(score_package_name=None) to score_package_path.
     Same with ExergueDirectoryProxy.
     Same with MusicPackageProxy.
 
-41. Add MaterialPackageWrangler docstrings.
+40. Add MaterialPackageWrangler docstrings.
     Then move experimental/built_in_materials to experimental/tools/scoremanagertools/built_in_materials.
 
-42. Add ~/score_manager/materials directory.
+41. Add ~/score_manager/materials directory.
     Populate with two or three materials for testing.
     Rerun MaterialPackageWrangler doctests and py.test battery.

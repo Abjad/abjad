@@ -17,9 +17,9 @@ def test_MaterialPackageWrangler_read_only_attributes_02():
     '''Asset containers (all).
     '''
 
-    assert 'built_in_materials' in wrangler.list_asset_container_package_paths()
+    assert 'built_in_materials' in wrangler._list_asset_container_package_paths()
     assert 'experimental.tools.scoremanagertools.built_in_scores.red_example_score.music.materials' in \
-        wrangler.list_asset_container_package_paths()
+        wrangler._list_asset_container_package_paths()
     assert wrangler.configuration.built_in_materials_directory_path in \
         wrangler._list_asset_container_filesystem_paths()
     directory_path = os.path.join(
@@ -41,7 +41,7 @@ def test_MaterialPackageWrangler_read_only_attributes_04():
     '''Score-external asset container
     '''
 
-    assert wrangler.list_built_in_asset_container_package_paths() == ['built_in_materials']
+    assert wrangler._list_built_in_asset_container_package_paths() == ['built_in_materials']
     assert wrangler._list_score_external_asset_container_filesystem_paths() == \
         [wrangler.configuration.built_in_materials_directory_path]
 
@@ -82,7 +82,7 @@ def test_MaterialPackageWrangler_read_only_attributes_08():
     assert wrangler._session.is_in_score
 
     assert 'experimental.tools.scoremanagertools.built_in_scores.red_example_score.music.materials' in \
-        wrangler.list_asset_container_package_paths()
+        wrangler._list_asset_container_package_paths()
     assert wrangler.current_asset_container_package_path == \
         'experimental.tools.scoremanagertools.built_in_scores.red_example_score.music.materials'
     assert wrangler._temporary_asset_package_path == \
