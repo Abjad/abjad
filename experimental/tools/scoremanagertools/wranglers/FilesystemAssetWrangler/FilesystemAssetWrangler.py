@@ -26,8 +26,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def __init__(self,
         built_in_asset_container_filesystem_paths=None,
         user_asset_container_filesystem_paths=None,
-        session=None,
-        ):
+        session=None,):
         ScoreManagerObject.__init__(self, session=session)
         self._built_in_asset_container_filesystem_paths = \
             built_in_asset_container_filesystem_paths or []

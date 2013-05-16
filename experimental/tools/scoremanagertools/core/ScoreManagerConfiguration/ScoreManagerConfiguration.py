@@ -66,6 +66,15 @@ class ScoreManagerConfiguration(Configuration):
                 ],
                 'spec': "string(default='')"
             },
+            'user_score_external_assets_package_path': {
+                'comment': [
+                    '',
+                    'Set to the directory where you house your user-specific assets.',
+                    'Always set together with user_score_external_assets_directory_path.',
+                    'Defaults to none.'
+                ],
+                'spec': "string(default='')"
+            },
             'user_scores_directory_path': {
                 'comment': [
                     '',
@@ -356,10 +365,63 @@ class ScoreManagerConfiguration(Configuration):
 
         Return string.
         '''
-        return os.path.normpath(os.path.expanduser(
-            self._settings['user_material_package_makers_package_path']
-            ))
+        return self._settings['user_material_package_makers_package_path']
 
+    @property
+    def user_materials_directory_path(self):
+        '''User materials directory path:
+
+        ::
+
+            >>> configuration.user_materials_directory_path
+            '.../score_manager/materials'
+    
+        Return string.
+        '''
+        return os.path.join(self.user_score_external_assets_directory_path, 'materials')
+
+    @property
+    def user_materials_package_path(self):
+        '''Use materials package path:
+
+        ::
+
+            >>> configuration.user_materials_package_path
+            'baca.music.materials'
+
+        (Output will vary with user configuration.)
+
+        Return string.
+        '''
+        return '.'.join([self.user_score_external_assets_package_path, 'materials'])
+
+    @property
+    def user_score_external_assets_directory_path(self):
+        '''User score-external assets directory path:
+
+        ::
+
+            >>> configuration.user_score_external_assets_directory_path
+            '.../score_manager'
+
+        Return string.
+        '''
+        # TODO: eventually read from configuation file
+        return self.configuration_directory_path
+
+    @property
+    def user_score_external_assets_package_path(self):
+        '''User score-external assets package path:
+
+        ::
+
+            >>> configuration.user_score_external_assets_package_path # doctest: +SKIP
+            '~.music'
+
+        Return string.
+        '''
+        return self._settings['user_score_external_assets_package_path']
+        
     @property
     def user_scores_directory_path(self):
         '''Scores directory path:

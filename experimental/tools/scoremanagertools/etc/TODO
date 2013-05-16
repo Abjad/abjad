@@ -118,3 +118,8 @@
 41. Add ~/score_manager/materials directory.
     Populate with two or three materials for testing.
     Rerun MaterialPackageWrangler doctests and py.test battery.
+
+42. Create ~/Documents/baca/scoremanagerextensions to house subdirectories:
+        ~/Documents/baca/scoremanagerextensions/editors
+        ~/Documents/baca/scoremanagerextensions/materialpackagemakers
+        ~/Documents/baca/scoremanagerextensions/materials
