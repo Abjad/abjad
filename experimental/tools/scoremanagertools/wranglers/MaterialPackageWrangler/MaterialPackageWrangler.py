@@ -102,8 +102,9 @@ class MaterialPackageWrangler(PackageWrangler):
             ...     x
             '/Users/trevorbaca/Documents/abjad/experimental/built_in_materials'
             '/Users/trevorbaca/Documents/baca/music/materials'
+            ...
 
-        Output lists two filesystem paths.
+        Output lists score-external materials followed by score internal materials.
 
         Return list.
         '''
@@ -151,8 +152,10 @@ class MaterialPackageWrangler(PackageWrangler):
             >>> for x in wrangler._list_user_asset_container_filesystem_paths():
             ...     x
             '/Users/trevorbaca/Documents/baca/music/materials'
+            ...
 
-        .. note:: FIXME: score-internal materials directories should show up here.
+        Output lists score-external path followed
+        by any score-internal paths.
 
         Return list.
         '''
@@ -344,15 +347,12 @@ class MaterialPackageWrangler(PackageWrangler):
             MaterialPackageProxy('.../abjad/experimental/built_in_materials/red_numbers')
             SargassoMeasureMaterialPackageMaker('.../abjad/experimental/built_in_materials/red_sargasso_measures')
             MaterialPackageProxy('.../abjad/experimental/built_in_materials/sargasso_multipliers')
+            ...
             TempoMarkInventoryMaterialPackageMaker('.../tools/scoremanagertools/built_in_scores/red_example_score/music/materials/tempo_inventory')
             ...
 
-        Output lists (score-external) built-in materials first
-        followed by built-in score materials second.
+        Output lists score-external materials followed by score-internal materials. 
 
-        Output lists (score-external) user materials third
-        followed by user score materials last.
-        
         Return list.
         '''
         return super(type(self), self).get_asset_proxies(head=head)
@@ -391,9 +391,9 @@ class MaterialPackageWrangler(PackageWrangler):
             MaterialPackageProxy('.../abjad/experimental/built_in_materials/red_numbers')
             SargassoMeasureMaterialPackageMaker('.../abjad/experimental/built_in_materials/red_sargasso_measures')
             MaterialPackageProxy('.../abjad/experimental/built_in_materials/sargasso_multipliers')
+            ...
 
-        Output lists built-in score-external materials
-        followed by user score-external materials.
+        Output lists built-in materials followed by user materials.
 
         Return list.
         '''
@@ -421,10 +421,8 @@ class MaterialPackageWrangler(PackageWrangler):
 
         ::
 
-            >>> for x in wrangler.get_user_asset_proxies():
-            ...     x
-
-        .. note:: FIXME: score-internal materials should show up here.
+            >>> 1 <= len(wrangler.get_user_asset_proxies())
+            True
 
         Return list.
         '''
@@ -437,8 +435,8 @@ class MaterialPackageWrangler(PackageWrangler):
 
             >>> for x in wrangler.list_user_asset_filesystem_paths():
             ...     x
-
-        .. note:: FIXME: score-internal materials should show up here.
+            '...'
+            ...
 
         Return list.
         '''

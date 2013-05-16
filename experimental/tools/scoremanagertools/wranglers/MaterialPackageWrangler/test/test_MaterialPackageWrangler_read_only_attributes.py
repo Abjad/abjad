@@ -38,17 +38,6 @@ def test_MaterialPackageWrangler_read_only_attributes_03():
 
 
 def test_MaterialPackageWrangler_read_only_attributes_04():
-    '''Score-external asset container
-    '''
-
-    assert wrangler._list_built_in_score_external_asset_container_packagesystem_path() == ['built_in_materials']
-    assert wrangler._list_score_external_asset_container_filesystem_paths() == [
-        wrangler.configuration.built_in_materials_directory_path,
-        wrangler.configuration.user_materials_directory_path,
-        ]
-
-
-def test_MaterialPackageWrangler_read_only_attributes_05():
     '''Score-external assets.
     '''
 
@@ -57,14 +46,14 @@ def test_MaterialPackageWrangler_read_only_attributes_05():
         wrangler.list_score_external_asset_filesystem_paths()
 
 
-def test_MaterialPackageWrangler_read_only_attributes_06():
+def test_MaterialPackageWrangler_read_only_attributes_05():
     '''Infix.
     '''
 
     assert wrangler.asset_container_path_infix_parts == ('music', 'materials')
 
 
-def test_MaterialPackageWrangler_read_only_attributes_07():
+def test_MaterialPackageWrangler_read_only_attributes_06():
     '''Temporary asset.
     '''
 
@@ -74,7 +63,7 @@ def test_MaterialPackageWrangler_read_only_attributes_07():
     assert wrangler._temporary_asset_name == '__temporary_package'
 
 
-def test_MaterialPackageWrangler_read_only_attributes_08():
+def test_MaterialPackageWrangler_read_only_attributes_07():
     '''In-score wrangler.
     '''
 

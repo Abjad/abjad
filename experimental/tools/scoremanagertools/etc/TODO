@@ -121,3 +121,5 @@
         ~/Documents/baca/scoremanagerextensions/editors
         ~/Documents/baca/scoremanagerextensions/materialpackagemakers
         ~/Documents/baca/scoremanagerextensions/materials
+
+42. Split recursif repositories. Then remove recursif hardcoding.

@@ -172,11 +172,12 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
     def list_score_external_asset_package_paths(self, head=None):
         result = []
         for directory_path in self._list_score_external_asset_container_filesystem_paths(head=head):
-            package_path = self.configuration.filesystem_path_to_packagesystem_path(directory_path)
-            if head is None or package_path.startswith(head):
-                for directory_entry in os.listdir(directory_path):
-                    if directory_entry[0].isalpha():
-                        result.append('.'.join([package_path, directory_entry]))
+            if 'recursif' not in directory_path:
+                package_path = self.configuration.filesystem_path_to_packagesystem_path(directory_path)
+                if head is None or package_path.startswith(head):
+                    for directory_entry in os.listdir(directory_path):
+                        if directory_entry[0].isalpha():
+                            result.append('.'.join([package_path, directory_entry]))
         return result
 
     def list_score_internal_asset_package_paths(self, head=None):
