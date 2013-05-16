@@ -124,6 +124,20 @@ class MaterialPackageWrangler(PackageWrangler):
         '''
         return super(type(self), self)._list_score_internal_asset_container_package_paths(head=head)
 
+    def _list_user_asset_container_filesystem_paths(self, head=None):
+        '''Material package wrangler list user asset container filesystem paths:
+
+        ::
+
+            >>> for x in wrangler._list_user_asset_container_filesystem_paths():
+            ...     x
+
+        .. note:: FIXME: score-internal material containers should show up here.
+
+        Return list.
+        '''
+        return super(type(self), self)._list_user_asset_container_filesystem_paths(head=head)
+
     def _make_main_menu(self, head=None):
         menu, section = self._io.make_menu(where=self._where, is_numbered=True, is_keyed=False)
         section.tokens = self._make_visible_asset_menu_tokens(head=head)
@@ -203,6 +217,21 @@ class MaterialPackageWrangler(PackageWrangler):
     @property
     def material_package_maker_wrangler(self):
         return self._material_package_maker_wrangler
+
+    @property
+    def user_asset_container_filesystem_paths(self):
+        '''Material package wrangler user asset container filesystem paths:
+
+        ::
+
+            >>> wrangler.user_asset_container_filesystem_paths
+            []
+    
+        .. note:: FIXME: score-internal material directories should show up here.
+
+        Return list.
+        '''
+        return super(type(self), self).user_asset_container_filesystem_paths
 
     ### PUBLIC METHODS ###
 
@@ -314,8 +343,33 @@ class MaterialPackageWrangler(PackageWrangler):
         '''
         return super(type(self), self).get_score_internal_asset_proxies(head=head)
 
-    def make_asset_interactively(self):
-        return NotImplemented
+    def get_user_asset_proxies(self, head=None):
+        '''Material package wranglger get user asset proxies:
+
+        ::
+
+            >>> for x in wrangler.get_user_asset_proxies():
+            ...     x
+
+        .. note:: FIXME: score-internal materials should show up here.
+
+        Return list.
+        '''
+        return super(type(self), self).get_user_asset_proxies(head=head)
+
+    def list_user_asset_filesystem_paths(self, head=None):
+        '''Material package wrangler list user asset filesystem paths:
+
+        ::
+
+            >>> for x in wrangler.list_user_asset_filesystem_paths():
+            ...     x
+
+        .. note:: FIXME: score-internal materials should show up here.
+
+        Return list.
+        '''
+        return super(type(self), self).list_user_asset_filesystem_paths(head=head)
 
     def make_data_package(self, material_package_path, tags=None):
         tags = tags or {}
