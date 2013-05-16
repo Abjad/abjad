@@ -427,3 +427,90 @@ class ScoreManagerConfiguration(Configuration):
         return os.path.normpath(os.path.expanduser(
             self._settings['user_stylesheets_directory_path']
             ))
+
+    ### PUBLIC METHODS ###
+
+    def packagesystem_path_to_filesystem_path(self, package_path, is_module=False):
+        '''Change `package_path` to directory path.
+        
+        Return string.
+        '''
+
+        if package_path is None:
+            return
+        package_path_parts = package_path.split('.')
+        if package_path_parts[0] == 'scoremanagertools':
+            directory_parts = [self.score_manager_tools_directory_path] + \
+                package_path_parts[1:]
+        elif package_path_parts[:3] == ['experimental', 'tools', 'scoremanagertools']:
+            directory_parts = [self.score_manager_tools_directory_path] + \
+                package_path_parts[3:]
+        elif package_path_parts[0] == \
+            self.built_in_materials_package_path:
+            directory_parts = \
+                [self.built_in_materials_directory_path] + \
+                package_path_parts[1:]
+        elif package_path_parts[0] == \
+            self.user_sketches_package_path:
+            directory_parts = \
+                [self.user_sketches_directory_path] + \
+                package_path_parts[1:]
+        elif package_path_parts[0] == \
+            self.built_in_specifiers_package_path:
+            directory_parts = \
+                [self.built_in_specifiers_directory_path] + \
+                package_path_parts[1:]
+        else:
+            directory_parts = [self.user_scores_directory_path] + package_path_parts[:]
+        directory_path = os.path.join(*directory_parts)
+
+        if is_module:
+            directory_path += '.py'
+
+        return directory_path
+
+    def filesystem_path_to_packagesystem_path(self, filesystem_path):
+        '''Change `filesystem_path` to package path.
+
+        Return string.
+        '''
+
+        if filesystem_path is None:
+            return
+        filesystem_path = os.path.normpath(filesystem_path)
+        if filesystem_path.endswith('.py'):
+            filesystem_path = filesystem_path[:-3]
+        # TODO: maybe elif here instead of if?
+        if filesystem_path.startswith(self.built_in_scores_directory_path):
+            prefix_length = len(self.abjad_self.abjad_root_directory_path) + 1
+        elif filesystem_path.startswith(self.built_in_specifiers_directory_path):
+            prefix_length = len(self.abjad_self.abjad_root_directory_path) + 1
+        elif filesystem_path.startswith(self.built_in_materials_directory_path):
+            prefix_length = \
+                len(os.path.dirname(self.built_in_materials_directory_path)) + 1
+        elif filesystem_path.startswith(self.score_manager_tools_directory_path):
+            prefix_length = \
+                len(os.path.dirname(self.score_manager_tools_directory_path)) + 1
+        elif filesystem_path.startswith(self.user_sketches_directory_path):
+            prefix_length = \
+                len(os.path.dirname(self.user_sketches_directory_path)) + 1
+        elif filesystem_path.startswith(self.user_scores_directory_path):
+            prefix_length = len(self.user_scores_directory_path) + 1
+        elif filesystem_path.startswith(self.user_material_package_makers_directory_path):
+            return self.user_material_package_makers_package_path
+        else:
+            raise Exception('can not change to package path: {!r}'.format(filesystem_path))
+
+        package_path = filesystem_path[prefix_length:]
+        package_path = package_path.replace(os.path.sep, '.')
+
+        return package_path
+
+    def packagesystem_path_exists(self, packagesystem_path):
+        '''True when `packagesystem_path` exists. Otherwise false.
+
+        Return boolean.
+        '''
+        assert os.path.sep not in packagesystem_path, repr(packagesystem_path)
+        filesystem_path = self.packagesystem_path_to_filesystem_path(packagesystem_path)
+        return os.path.exists(filesystem_path)
