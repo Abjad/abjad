@@ -301,8 +301,8 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     def get_score_internal_asset_proxies(self, head=None):
         result = []
-        for directory_path in self.list_score_internal_asset_filesystem_paths(head=head):
-            asset_proxy = self.asset_class_name(directory_path)
+        for filesystem_path in self.list_score_internal_asset_filesystem_paths(head=head):
+            asset_proxy = self._get_asset_proxy(filesystem_path)
             result.append(asset_proxy)
         return result
 

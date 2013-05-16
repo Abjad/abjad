@@ -279,7 +279,7 @@ class StylesheetFileWrangler(FileWrangler):
         return super(type(self), self).get_asset_proxies(head=head)
 
     def get_score_external_asset_proxies(self, head=None):
-        '''Stylesheet file wrangler get score-external asset container proxies:
+        '''Stylesheet file wrangler get score-external asset proxies:
 
         ::
 
@@ -295,7 +295,7 @@ class StylesheetFileWrangler(FileWrangler):
         return super(type(self), self).get_score_external_asset_proxies(head=head)
 
     def get_score_internal_asset_proxies(self, head=None):
-        '''Stylesheet file wrangler get score-internal asset container proxies:
+        '''Stylesheet file wrangler get score-internal asset proxies:
 
         ::
 
@@ -356,7 +356,7 @@ class StylesheetFileWrangler(FileWrangler):
         return super(type(self), self).list_asset_filesystem_paths(head=head)
         
     def list_score_external_asset_filesystem_paths(self, head=None):
-        '''Stylesheet file wrangler list score-external asset container directory paths:
+        '''Stylesheet file wrangler list score-external asset filesystem paths:
 
         ::
 
@@ -372,7 +372,7 @@ class StylesheetFileWrangler(FileWrangler):
         return super(type(self), self).list_score_external_asset_filesystem_paths(head=head)
 
     def list_score_internal_asset_filesystem_paths(self, head=None):
-        '''Stylesheet file wrangler list score-internal asset container directory paths:
+        '''Stylesheet file wrangler list score-internal asset filesystem paths:
 
         ::
 
@@ -402,7 +402,7 @@ class StylesheetFileWrangler(FileWrangler):
         return super(type(self), self).list_space_delimited_lowercase_visible_asset_names(head=head)
 
     def list_user_asset_filesystem_paths(self, head=None):
-        '''Stylesheet file wrangler list user asset container directory paths:
+        '''Stylesheet file wrangler list user asset filesystem paths:
 
         ::
 

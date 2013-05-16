@@ -114,7 +114,9 @@
     Same with ExergueDirectoryProxy.
     Same with MusicPackageProxy.
 
-41. Maybe change scoremanagertools/specifiers to scoremanagertools/specifiermakers?
-
-42. Add MaterialPackageProxy docstrings. Then add MaterialPackageWrangler docstrings.
+41. Add MaterialPackageWrangler docstrings.
     Then move experimental/built_in_materials to experimental/tools/scoremanagertools/built_in_materials.
+
+42. Add ~/score_manager/materials directory.
+    Populate with two or three materials for testing.
+    Rerun MaterialPackageWrangler doctests and py.test battery.

@@ -86,9 +86,45 @@ class MaterialPackageWrangler(PackageWrangler):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def asset_proxy_class(self):
+    def asset_container_proxy_class(self):
+        '''Material package wrangler asset proxy class:
+
+        ::
+
+            >>> wrangler.asset_container_proxy_class.__name__
+            'PackageProxy'
+
+        Return class.
+        '''
         from experimental.tools import scoremanagertools
         return scoremanagertools.proxies.PackageProxy
+
+    @property
+    def asset_proxy_class(self):
+        '''Material package wrangler asset proxy class:
+
+        ::
+
+            >>> wrangler.asset_proxy_class.__name__
+            'PackageProxy'
+
+        Return class.
+        '''
+        from experimental.tools import scoremanagertools
+        return scoremanagertools.proxies.PackageProxy
+
+    @property
+    def built_in_asset_container_directory_paths(self):
+        '''Material package wrangler built-in asset container directory paths:
+
+        ::
+
+            >>> wrangler.built_in_asset_container_directory_paths
+            ['.../abjad/experimental/built_in_materials']
+
+        Return list.
+        '''
+        return super(type(self), self).built_in_asset_container_directory_paths
 
     @property
     def current_asset_container_package_path(self):
@@ -137,6 +173,72 @@ class MaterialPackageWrangler(PackageWrangler):
                 material_package_proxy = material_package_maker_class(
                     material_package_path, session=self._session)
         return material_package_proxy
+
+    def get_asset_proxies(self, head=None):
+        '''Material package wranglger get asset proxies:
+
+        ::
+
+            >>> for x in wrangler.get_asset_proxies():
+            ...     x
+            MarkupInventoryMaterialPackageMaker('.../abjad/experimental/built_in_materials/red_directives')
+            DynamicHandlerMaterialPackageMaker('.../abjad/experimental/built_in_materials/red_forte')
+            ArticulationHandlerMaterialPackageMaker('.../abjad/experimental/built_in_materials/red_marcati')
+            MaterialPackageProxy('.../abjad/experimental/built_in_materials/red_notes')
+            MaterialPackageProxy('.../abjad/experimental/built_in_materials/red_numbers')
+            SargassoMeasureMaterialPackageMaker('.../abjad/experimental/built_in_materials/red_sargasso_measures')
+            MaterialPackageProxy('.../abjad/experimental/built_in_materials/sargasso_multipliers')
+            TempoMarkInventoryMaterialPackageMaker('.../tools/scoremanagertools/built_in_scores/red_example_score/music/materials/tempo_inventory')
+            ...
+
+        Output lists (score-external) built-in materials first
+        followed by built-in score materials second.
+
+        Output lists (score-external) user materials third
+        followed by user score materials last.
+        
+        Return list.
+        '''
+        return super(type(self), self).get_asset_proxies(head=head)
+
+    def get_score_external_asset_proxies(self, head=None):
+        '''Material package wrangler get score-external asset proxies:
+
+        ::
+
+            >>> for x in wrangler.get_score_external_asset_proxies():
+            ...     x
+            MarkupInventoryMaterialPackageMaker('.../abjad/experimental/built_in_materials/red_directives')
+            DynamicHandlerMaterialPackageMaker('.../abjad/experimental/built_in_materials/red_forte')
+            ArticulationHandlerMaterialPackageMaker('.../abjad/experimental/built_in_materials/red_marcati')
+            MaterialPackageProxy('.../abjad/experimental/built_in_materials/red_notes')
+            MaterialPackageProxy('.../abjad/experimental/built_in_materials/red_numbers')
+            SargassoMeasureMaterialPackageMaker('.../abjad/experimental/built_in_materials/red_sargasso_measures')
+            MaterialPackageProxy('.../abjad/experimental/built_in_materials/sargasso_multipliers')
+
+        Output lists built-in score-external materials
+        followed by user score-external materials.
+
+        Return list.
+        '''
+        return super(type(self), self).get_score_external_asset_proxies(head=head)
+
+    def get_score_internal_asset_proxies(self, head=None):
+        '''Material package wrangler get score-internal asset proxies:
+
+        ::
+
+            >>> for x in wrangler.get_score_internal_asset_proxies():
+            ...     x
+            TempoMarkInventoryMaterialPackageMaker('.../tools/scoremanagertools/built_in_scores/red_example_score/music/materials/tempo_inventory')
+            ...
+
+        Output lists proxies for built-in score-internal materials
+        followed by proxies for user score-internal materials.
+
+        Return list.
+        '''
+        return super(type(self), self).get_score_internal_asset_proxies(head=head)
 
     def get_available_material_package_path_interactively(self, user_input=None):
         self._io.assign_user_input(user_input=user_input)
