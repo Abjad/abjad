@@ -13,7 +13,7 @@ class SegmentPackageWrangler(PackageWrangler):
 
     def __init__(self, session=None):
         PackageWrangler.__init__(self,
-            built_in_score_external_asset_container_package_path=\
+            built_in_score_external_asset_container_packagesystem_path=\
                 self.configuration.user_sketches_package_path,
             user_score_external_asset_container_package_path=\
                 self.configuration.user_sketches_package_path,

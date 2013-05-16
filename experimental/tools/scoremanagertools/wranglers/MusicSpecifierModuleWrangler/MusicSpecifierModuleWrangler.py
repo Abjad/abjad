@@ -14,7 +14,7 @@ class MusicSpecifierModuleWrangler(ModuleWrangler):
 
     def __init__(self, session=None):
         ModuleWrangler.__init__(self,
-            built_in_score_external_asset_container_package_path=\
+            built_in_score_external_asset_container_packagesystem_path=\
                 self.configuration.built_in_specifiers_package_path,
             user_score_external_asset_container_package_path=\
                 self.configuration.user_score_external_specifiers_directory_path,

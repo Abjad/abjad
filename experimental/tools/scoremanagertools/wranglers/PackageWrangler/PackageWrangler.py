@@ -32,14 +32,6 @@ class PackageWrangler(PackagesystemAssetWrangler):
         from experimental.tools import scoremanagertools
         return scoremanagertools.proxies.PackageProxy
 
-    @property
-    def score_external_asset_proxies(self):
-        result = []
-        for filesystem_path in self.list_score_external_asset_filesystem_paths():
-            asset_proxy = self._get_asset_proxy(filesystem_path)
-            result.append(asset_proxy)
-        return result
-
     ### PUBLIC METHODS ###
 
     def make_asset(self, asset_name):

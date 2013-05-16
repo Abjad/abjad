@@ -36,7 +36,7 @@ class MaterialPackageWrangler(PackageWrangler):
     def __init__(self, session=None):
         from experimental.tools import scoremanagertools
         PackageWrangler.__init__(self,
-            built_in_score_external_asset_container_package_path=\
+            built_in_score_external_asset_container_packagesystem_path=\
                 self.configuration.built_in_materials_package_path,
             user_score_external_asset_container_package_path=\
                 self.configuration.user_materials_package_path,
@@ -54,7 +54,7 @@ class MaterialPackageWrangler(PackageWrangler):
     ### PRIVATE METHODS ###
 
     def _get_asset_proxy(self, package_path):
-        return self.material_package_maker_wrangler._get_asset_proxy(package_path)
+        return self._material_package_maker_wrangler._get_asset_proxy(package_path)
 
     def _handle_main_menu_result(self, result):
         if result == 'd':
@@ -215,28 +215,70 @@ class MaterialPackageWrangler(PackageWrangler):
         return super(type(self), self).built_in_score_external_asset_container_filesystem_path
 
     @property
-    def current_asset_container_package_path(self):
+    def built_in_score_external_asset_container_packagesystem_path(self):
+        '''Material package wrangler built-in asset container package path:
+
+        ::
+
+            >>> wrangler.built_in_score_external_asset_container_packagesystem_path
+            'built_in_materials'
+
+        Return string.
+        '''
+        return super(type(self), self).built_in_score_external_asset_container_packagesystem_path
+
+    @property
+    def current_asset_container_filesystem_path(self):
+        '''Material filesystem wrangler current asset container filesystem path:
+
+        ::
+
+            >>> wrangler.current_asset_container_filesystem_path
+            '/Users/trevorbaca/Documents/abjad/experimental/built_in_materials'
+
+        While in built-in score:
+
+        ::
+
+            >>> wrangler_in_built_in_score.current_asset_container_filesystem_path
+            '.../tools/scoremanagertools/built_in_scores/red_example_score/music/materials'
+
+        Return string.
+        '''
+        return super(type(self), self).current_asset_container_filesystem_path
+
+    @property
+    def current_asset_container_packagesystem_path(self):
         '''Material package wrangler current asset container package path:
 
         ::
 
-            >>> wrangler.current_asset_container_package_path
+            >>> wrangler.current_asset_container_packagesystem_path
             'built_in_materials'
 
         While in built-in score:
 
         ::
 
-            >>> wrangler_in_built_in_score.current_asset_container_package_path
+            >>> wrangler_in_built_in_score.current_asset_container_packagesystem_path
             'experimental.tools.scoremanagertools.built_in_scores.red_example_score.music.materials'
 
         Return string.
         '''
-        return super(type(self), self).current_asset_container_package_path
+        return super(type(self), self).current_asset_container_packagesystem_path
 
     @property
-    def material_package_maker_wrangler(self):
-        return self._material_package_maker_wrangler
+    def storage_format(self):
+        '''Material package wrangler storage format:
+
+        ::
+
+            >>> wrangler.storage_format
+            'wranglers.MaterialPackageWrangler()'
+
+        Return string.
+        '''
+        return super(type(self), self).storage_format
 
     @property
     def user_score_external_asset_container_filesystem_path(self):
@@ -328,7 +370,7 @@ class MaterialPackageWrangler(PackageWrangler):
             material_package_name = stringtools.string_to_accent_free_underscored_delimited_lowercase(
                 package_name)
             material_package_path = '.'.join([
-                self.current_asset_container_package_path, material_package_name])
+                self.current_asset_container_packagesystem_path, material_package_name])
             if self.configuration.packagesystem_path_exists(material_package_path):
                 line = 'Material package {!r} already exists.'.format(material_package_path)
                 self._io.display([line, ''])
@@ -457,7 +499,7 @@ class MaterialPackageWrangler(PackageWrangler):
     def make_makermade_material_package_interactively(self, user_input=None):
         self._io.assign_user_input(user_input=user_input)
         self._session.push_backtrack()
-        result = self.material_package_maker_wrangler.select_asset_package_path_interactively(
+        result = self._material_package_maker_wrangler.select_asset_package_path_interactively(
             cache=True, clear=False)
         self._session.pop_backtrack()
         if self._session.backtrack():
