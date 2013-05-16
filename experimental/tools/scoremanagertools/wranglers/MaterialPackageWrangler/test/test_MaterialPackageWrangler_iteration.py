@@ -48,10 +48,10 @@ def test_MaterialPackageWrangler_iteration_04():
 
     directory_path = os.path.join(
         wrangler.configuration.built_in_scores_directory_path, 'red_example_score', 'music', 'materials')
-    assert directory_path in wrangler._list_score_internal_asset_container_directory_paths()
-    assert directory_path not in wrangler._list_score_internal_asset_container_directory_paths(
+    assert directory_path in wrangler._list_score_internal_asset_container_filesystem_paths()
+    assert directory_path not in wrangler._list_score_internal_asset_container_filesystem_paths(
         head='experimental.tools.scoremanagertools.built_in_scores.green_example_score')
-    assert wrangler._list_score_internal_asset_container_directory_paths(head='asdf') == []
+    assert wrangler._list_score_internal_asset_container_filesystem_paths(head='asdf') == []
 
 
 def test_MaterialPackageWrangler_iteration_05():

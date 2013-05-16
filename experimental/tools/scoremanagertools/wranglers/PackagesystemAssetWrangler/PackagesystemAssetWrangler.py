@@ -5,23 +5,23 @@ from experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler impo
 class PackagesystemAssetWrangler(FilesystemAssetWrangler):
 
     def __init__(self,
-        built_in_asset_container_directory_paths=None,
+        built_in_asset_container_filesystem_paths=None,
         built_in_asset_container_package_paths=None,
-        user_asset_container_directory_paths=None,
+        user_asset_container_filesystem_paths=None,
         user_asset_container_package_paths=None,
         session=None,
         ):
-        built_in_asset_container_directory_paths = built_in_asset_container_directory_paths or \
+        built_in_asset_container_filesystem_paths = built_in_asset_container_filesystem_paths or \
             [self.configuration.packagesystem_path_to_filesystem_path(x) for 
             x in built_in_asset_container_package_paths]
-        if user_asset_container_directory_paths is None and \
+        if user_asset_container_filesystem_paths is None and \
             user_asset_container_package_paths is not None:
-            user_asset_container_directory_paths = [
+            user_asset_container_filesystem_paths = [
                 self.configuration.packagesystem_path_to_filesystem_path(x)
                 for x in user_asset_container_package_paths]
         FilesystemAssetWrangler.__init__(self,
-            built_in_asset_container_directory_paths=built_in_asset_container_directory_paths,
-            user_asset_container_directory_paths=user_asset_container_directory_paths,
+            built_in_asset_container_filesystem_paths=built_in_asset_container_filesystem_paths,
+            user_asset_container_filesystem_paths=user_asset_container_filesystem_paths,
             session=session,
             )
         self._built_in_asset_container_package_paths = \
@@ -151,7 +151,7 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
 
     def list_score_external_asset_package_paths(self, head=None):
         result = []
-        for directory_path in self._list_score_external_asset_container_directory_paths(head=head):
+        for directory_path in self._list_score_external_asset_container_filesystem_paths(head=head):
             package_path = self.configuration.filesystem_path_to_packagesystem_path(directory_path)
             if head is None or package_path.startswith(head):
                 for directory_entry in os.listdir(directory_path):
@@ -201,7 +201,7 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
 
     def list_user_asset_package_paths(self, head=None):
         result = []
-        for asset_filesystem_path in self._list_user_asset_container_directory_paths(head=head):
+        for asset_filesystem_path in self._list_user_asset_container_filesystem_paths(head=head):
             for directory_entry in os.listdir(asset_filesystem_path):
                 if directory_entry[0].isalpha():
                     result.append('.'.join([

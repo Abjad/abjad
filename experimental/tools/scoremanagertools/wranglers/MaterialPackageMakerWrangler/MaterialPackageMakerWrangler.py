@@ -15,7 +15,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
                 'scoremanagertools.materialpackagemakers'],
             user_asset_container_package_paths=[
                 self.configuration.user_material_package_makers_package_path],
-            user_asset_container_directory_paths=[
+            user_asset_container_filesystem_paths=[
                 self.configuration.user_material_package_makers_directory_path],
             session=session
             )

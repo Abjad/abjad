@@ -114,17 +114,17 @@ class MaterialPackageWrangler(PackageWrangler):
         return scoremanagertools.proxies.PackageProxy
 
     @property
-    def built_in_asset_container_directory_paths(self):
+    def built_in_asset_container_filesystem_paths(self):
         '''Material package wrangler built-in asset container directory paths:
 
         ::
 
-            >>> wrangler.built_in_asset_container_directory_paths
+            >>> wrangler.built_in_asset_container_filesystem_paths
             ['.../abjad/experimental/built_in_materials']
 
         Return list.
         '''
-        return super(type(self), self).built_in_asset_container_directory_paths
+        return super(type(self), self).built_in_asset_container_filesystem_paths
 
     @property
     def current_asset_container_package_path(self):
@@ -280,12 +280,12 @@ class MaterialPackageWrangler(PackageWrangler):
         '''
         return super(type(self), self).list_asset_container_package_paths(head=head)
 
-    def _list_score_internal_asset_container_directory_paths(self, head=None):
+    def _list_score_internal_asset_container_filesystem_paths(self, head=None):
         '''Material package wrangler list score internal asset container directory paths:
 
         ::
 
-            >>> for x in wrangler._list_score_internal_asset_container_directory_paths():
+            >>> for x in wrangler._list_score_internal_asset_container_filesystem_paths():
             ...     x
             '.../tools/scoremanagertools/built_in_scores/blue_example_score/music/materials'
             '.../tools/scoremanagertools/built_in_scores/green_example_score/music/materials'
@@ -294,7 +294,7 @@ class MaterialPackageWrangler(PackageWrangler):
 
         Return list.
         '''
-        return super(type(self), self)._list_score_internal_asset_container_directory_paths(head=head)
+        return super(type(self), self)._list_score_internal_asset_container_filesystem_paths(head=head)
 
     def list_score_internal_asset_container_package_paths(self, head=None):
         '''Material package wrangler list score internal asset container package paths:

@@ -87,9 +87,9 @@
 
 32. Document StylesheetFileProxy next.
 
-33. Change asset_container_directory_path to asset_container_filesystem_path globally.
+33. Change asset_container_filesystem_path to asset_container_filesystem_path globally.
 
-34. Change user_asset_container_directory_paths (plural) to user_asset_container_directory_path (singular).
+34. Change user_asset_container_filesystem_paths (plural) to user_asset_container_filesystem_path (singular).
 
 35. Author ScorePackageProxy docstrings.
 
