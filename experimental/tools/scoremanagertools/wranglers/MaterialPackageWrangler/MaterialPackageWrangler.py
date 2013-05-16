@@ -36,11 +36,12 @@ class MaterialPackageWrangler(PackageWrangler):
     def __init__(self, session=None):
         from experimental.tools import scoremanagertools
         PackageWrangler.__init__(self,
-            built_in_asset_container_package_paths= \
-                [self.configuration.built_in_materials_package_path],
+            built_in_score_external_asset_container_package_path=\
+                self.configuration.built_in_materials_package_path,
             user_score_external_asset_container_package_path=\
                 self.configuration.user_materials_package_path,
-            session=session)
+            session=session,
+            )
         self._material_package_maker_wrangler = \
             scoremanagertools.wranglers.MaterialPackageMakerWrangler(session=self._session)
 
@@ -100,11 +101,9 @@ class MaterialPackageWrangler(PackageWrangler):
             >>> for x in wrangler._list_score_external_asset_container_filesystem_paths():
             ...     x
             '/Users/trevorbaca/Documents/abjad/experimental/built_in_materials'
-            '/Users/trevorbaca/Documents/scores/baca/music/materials'
+            '/Users/trevorbaca/Documents/baca/music/materials'
 
-        .. note:: FIXME: the user score-external path is incorrect.
-
-        Output lists two filesystem paths exactly.
+        Output lists two filesystem paths.
 
         Return list.
         '''
@@ -203,17 +202,17 @@ class MaterialPackageWrangler(PackageWrangler):
         return scoremanagertools.proxies.PackageProxy
 
     @property
-    def built_in_asset_container_filesystem_paths(self):
-        '''Material package wrangler built-in asset container directory paths:
+    def built_in_score_external_asset_container_filesystem_path(self):
+        '''Material package wrangler built-in asset container filesystem path:
 
         ::
 
-            >>> wrangler.built_in_asset_container_filesystem_paths
-            ['.../abjad/experimental/built_in_materials']
+            >>> wrangler.built_in_score_external_asset_container_filesystem_path
+            '.../abjad/experimental/built_in_materials'
 
-        Return list.
+        Return string.
         '''
-        return super(type(self), self).built_in_asset_container_filesystem_paths
+        return super(type(self), self).built_in_score_external_asset_container_filesystem_path
 
     @property
     def current_asset_container_package_path(self):
@@ -240,17 +239,17 @@ class MaterialPackageWrangler(PackageWrangler):
         return self._material_package_maker_wrangler
 
     @property
-    def user_asset_container_filesystem_paths(self):
-        '''Material package wrangler user asset container filesystem paths:
+    def user_score_external_asset_container_filesystem_path(self):
+        '''Material package wrangler user asset container filesystem path:
 
         ::
 
-            >>> wrangler.user_asset_container_filesystem_paths
-            ['.../materials']
+            >>> wrangler.user_score_external_asset_container_filesystem_path
+            '/Users/trevorbaca/Documents/baca/music/materials'
 
-        Return list.
+        Return string.
         '''
-        return super(type(self), self).user_asset_container_filesystem_paths
+        return super(type(self), self).user_score_external_asset_container_filesystem_path
 
     @property
     def user_score_external_asset_container_package_path(self):

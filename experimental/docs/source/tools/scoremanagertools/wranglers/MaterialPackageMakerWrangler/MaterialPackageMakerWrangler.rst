@@ -15,10 +15,10 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.asset_proxy_class
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.built_in_asset_container_filesystem_paths
+.. autoattribute:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.built_in_score_external_asset_container_filesystem_path
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.built_in_asset_container_package_paths
+.. autoattribute:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.built_in_score_external_asset_container_package_path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.current_asset_container_filesystem_path
@@ -39,7 +39,7 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.storage_format
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.user_asset_container_filesystem_paths
+.. autoattribute:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.user_score_external_asset_container_filesystem_path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.user_score_external_asset_container_package_path

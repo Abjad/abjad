@@ -41,9 +41,11 @@ def test_MaterialPackageWrangler_read_only_attributes_04():
     '''Score-external asset container
     '''
 
-    assert wrangler._list_built_in_asset_container_package_paths() == ['built_in_materials']
-    assert wrangler._list_score_external_asset_container_filesystem_paths() == \
-        [wrangler.configuration.built_in_materials_directory_path]
+    assert wrangler._list_built_in_score_external_asset_container_package_path() == ['built_in_materials']
+    assert wrangler._list_score_external_asset_container_filesystem_paths() == [
+        wrangler.configuration.built_in_materials_directory_path,
+        wrangler.configuration.user_materials_directory_path,
+        ]
 
 
 def test_MaterialPackageWrangler_read_only_attributes_05():

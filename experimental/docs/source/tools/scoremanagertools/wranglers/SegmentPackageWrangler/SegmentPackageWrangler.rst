@@ -15,10 +15,10 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.asset_proxy_class
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.built_in_asset_container_filesystem_paths
+.. autoattribute:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.built_in_score_external_asset_container_filesystem_path
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.built_in_asset_container_package_paths
+.. autoattribute:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.built_in_score_external_asset_container_package_path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.current_asset_container_filesystem_path
@@ -33,7 +33,7 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.storage_format
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.user_asset_container_filesystem_paths
+.. autoattribute:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.user_score_external_asset_container_filesystem_path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.user_score_external_asset_container_package_path

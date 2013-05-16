@@ -87,15 +87,13 @@
 
 32. Document StylesheetFileProxy next.
 
-33. Change user_asset_container_filesystem_paths (plural) to user_asset_container_filesystem_path (singular).
+33. Author ScorePackageProxy docstrings.
 
-34. Author ScorePackageProxy docstrings.
+34. Replace all _read_only_attributes.py and _public_attributes.py test files with doctests.
 
-35. Replace all _read_only_attributes.py and _public_attributes.py test files with doctests.
+35. Make ScoreManagerConfiguration READ ONLY!
 
-36. Make ScoreManagerConfiguration READ ONLY!
-
-37. Revisit score_manager/configuration.py file.
+36. Revisit score_manager/configuration.py file.
     The only necessary user settings should be these:
         user_collateral_directory_path = /Users/trevorbaca/collateral
         user_scores_directory_path = /Users/trevorbaca/Documents/scores
@@ -106,20 +104,20 @@
     * store user material package makers in user collateral directory
     * store user stylesheets in user collateral directory
 
-38. Add PackageystemAssetProxy to superclass ModuleProxy and PackageProxy.
+37. Add PackageystemAssetProxy to superclass ModuleProxy and PackageProxy.
 
-39. Change DistributionDirectoryProxy.__init__(score_package_name=None) to score_package_path.
+38. Change DistributionDirectoryProxy.__init__(score_package_name=None) to score_package_path.
     Same with ExergueDirectoryProxy.
     Same with MusicPackageProxy.
 
-40. Add MaterialPackageWrangler docstrings.
+39. Add MaterialPackageWrangler docstrings.
     Then move experimental/built_in_materials to experimental/tools/scoremanagertools/built_in_materials.
 
-41. Add ~/score_manager/materials directory.
+40. Add ~/score_manager/materials directory.
     Populate with two or three materials for testing.
     Rerun MaterialPackageWrangler doctests and py.test battery.
 
-42. Create ~/Documents/baca/scoremanagerextensions to house subdirectories:
+41. Create ~/Documents/baca/scoremanagerextensions to house subdirectories:
         ~/Documents/baca/scoremanagerextensions/editors
         ~/Documents/baca/scoremanagerextensions/materialpackagemakers
         ~/Documents/baca/scoremanagerextensions/materials

@@ -34,7 +34,7 @@ def test_ScorePackageWrangler_read_only_attributes_04():
     '''Score-external asset container.
     '''
 
-    assert wrangler._list_built_in_asset_container_package_paths() == [
+    assert wrangler._list_built_in_score_external_asset_container_package_path() == [
         'experimental.tools.scoremanagertools.built_in_scores']
 
 

@@ -9,7 +9,7 @@ def test_MaterialPackageMakerWrangler_read_only_attributes_01():
     assert wrangler._breadcrumb == 'material package makers'
     assert wrangler.current_asset_container_package_path == 'scoremanagertools.materialpackagemakers'
 
-    assert wrangler._list_built_in_asset_container_package_paths() == \
+    assert wrangler._list_built_in_score_external_asset_container_package_path() == \
         ['scoremanagertools.materialpackagemakers']
     assert wrangler.asset_container_path_infix_parts == ()
 

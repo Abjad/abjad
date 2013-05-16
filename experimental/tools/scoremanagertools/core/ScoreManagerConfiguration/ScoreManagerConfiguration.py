@@ -66,6 +66,15 @@ class ScoreManagerConfiguration(Configuration):
                 ],
                 'spec': "string(default='')"
             },
+            'user_score_external_assets_directory_path': {
+                'comment': [
+                    '',
+                    'Set to the directory where you house your user-specific assets.',
+                    'Always set together with user_score_external_assets_package_path.',
+                    'Defaults to none.'
+                ],
+                'spec': "string(default='')"
+            },
             'user_score_external_assets_package_path': {
                 'comment': [
                     '',
@@ -374,8 +383,8 @@ class ScoreManagerConfiguration(Configuration):
         ::
 
             >>> configuration.user_materials_directory_path
-            '.../score_manager/materials'
-    
+            '/Users/trevorbaca/Documents/baca/music/materials'
+
         Return string.
         '''
         return os.path.join(self.user_score_external_assets_directory_path, 'materials')
@@ -402,12 +411,11 @@ class ScoreManagerConfiguration(Configuration):
         ::
 
             >>> configuration.user_score_external_assets_directory_path
-            '.../score_manager'
+            '/Users/trevorbaca/Documents/baca/music'
 
         Return string.
         '''
-        # TODO: eventually read from configuation file
-        return self.configuration_directory_path
+        return self._settings['user_score_external_assets_directory_path']
 
     @property
     def user_score_external_assets_package_path(self):
@@ -474,6 +482,32 @@ class ScoreManagerConfiguration(Configuration):
         return os.path.basename(self.user_sketches_directory_path)
 
     @property
+    def user_score_external_specifiers_directory_path(self):
+        '''User score-external specifiers directory path:
+
+        ::
+
+            >>> configuration.user_score_external_specifiers_directory_path
+            '/Users/trevorbaca/Documents/baca/music/specifiers'
+
+        Return string.
+        '''
+        return os.path.join(self.user_score_external_assets_directory_path, 'specifiers')
+
+    @property
+    def user_score_external_specifiers_package_path(self):
+        '''User score-external specifiers package path:
+
+        ::
+
+            >>> configuration.user_score_external_specifiers_package_path
+            'baca.music.specifiers'
+
+        Return string.
+        '''
+        return '.'.join([self.user_score_external_assets_package_path, 'specifiers'])
+
+    @property
     def user_stylesheets_directory_path(self):
         '''User stylesheets directory path:
 
@@ -500,12 +534,15 @@ class ScoreManagerConfiguration(Configuration):
 
         if filesystem_path is None:
             return
+        assert isinstance(filesystem_path, str), repr(filesystem_path)
         filesystem_path = os.path.normpath(filesystem_path)
         if filesystem_path.endswith('.py'):
             filesystem_path = filesystem_path[:-3]
         # TODO: maybe elif here instead of if?
         if filesystem_path.startswith(self.built_in_scores_directory_path):
             prefix_length = len(self.abjad_configuration.abjad_root_directory_path) + 1
+        elif filesystem_path.startswith(self.user_score_external_assets_directory_path):
+            prefix_length = len(self.user_score_external_assets_directory_path) + 1
         elif filesystem_path.startswith(self.built_in_specifiers_directory_path):
             prefix_length = len(self.abjad_configuration.abjad_root_directory_path) + 1
         elif filesystem_path.startswith(self.built_in_materials_directory_path):
@@ -546,6 +583,7 @@ class ScoreManagerConfiguration(Configuration):
 
         if package_path is None:
             return
+        assert isinstance(package_path, str), repr(package_path)
         package_path_parts = package_path.split('.')
         if package_path_parts[0] == 'scoremanagertools':
             directory_parts = [self.score_manager_tools_directory_path] + \
@@ -568,6 +606,12 @@ class ScoreManagerConfiguration(Configuration):
             directory_parts = \
                 [self.built_in_specifiers_directory_path] + \
                 package_path_parts[1:]
+        elif package_path.startswith(self.user_score_external_assets_package_path):
+            prefix_length = len(self.user_score_external_assets_package_path)
+            trimmed_package_path = package_path[prefix_length:]     
+            directory_parts = []
+            directory_parts.append(self.user_score_external_assets_directory_path)
+            directory_parts.extend(trimmed_package_path.split('.'))
         else:
             directory_parts = [self.user_scores_directory_path] + package_path_parts[:]
         directory_path = os.path.join(*directory_parts)

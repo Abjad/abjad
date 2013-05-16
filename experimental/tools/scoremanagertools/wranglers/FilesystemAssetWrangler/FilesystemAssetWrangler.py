@@ -24,14 +24,15 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     ### INITIALIZER ###
 
     def __init__(self,
-        built_in_asset_container_filesystem_paths=None,
-        user_asset_container_filesystem_paths=None,
-        session=None,):
+        built_in_score_external_asset_container_filesystem_path=None,
+        user_score_external_asset_container_filesystem_path=None,
+        session=None,
+        ):
         ScoreManagerObject.__init__(self, session=session)
-        self._built_in_asset_container_filesystem_paths = \
-            built_in_asset_container_filesystem_paths or []
-        self._user_asset_container_filesystem_paths = \
-            user_asset_container_filesystem_paths or []
+        self._built_in_score_external_asset_container_filesystem_path = \
+            built_in_score_external_asset_container_filesystem_path or ''
+        self._user_score_external_asset_container_filesystem_path = \
+            user_score_external_asset_container_filesystem_path or ''
 
     ### SPECIAL METHODS ###
 
@@ -42,10 +43,10 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         Return boolean.
         '''
         if isinstance(expr, type(self)):
-            if self.built_in_asset_container_filesystem_paths == \
-                expr.built_in_asset_container_filesystem_paths:
-                if self.user_asset_container_filesystem_paths == \
-                    expr.user_asset_container_filesystem_paths:
+            if self.built_in_score_external_asset_container_filesystem_path == \
+                expr.built_in_score_external_asset_container_filesystem_path:
+                if self.user_score_external_asset_container_filesystem_path == \
+                    expr.user_score_external_asset_container_filesystem_path:
                         return True
         return False
 
@@ -125,7 +126,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         return result
 
     def _list_built_in_asset_container_filesystem_paths(self, head=None):
-        return self.built_in_asset_container_filesystem_paths[:]
+        return [self.built_in_score_external_asset_container_filesystem_path]
 
     def _list_built_in_score_asset_container_filesystem_paths(self, head=None):
         result = []
@@ -189,7 +190,9 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         return result
 
     def _list_user_asset_container_filesystem_paths(self, head=None):
-        return self.user_asset_container_filesystem_paths[:]
+        result = []
+        result.append(self.user_score_external_asset_container_filesystem_path)
+        return result
 
     def _make_asset_selection_breadcrumb(self, infinitival_phrase=None):
         if infinitival_phrase:
@@ -251,8 +254,8 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         pass
 
     @property
-    def built_in_asset_container_filesystem_paths(self):
-        return self._built_in_asset_container_filesystem_paths
+    def built_in_score_external_asset_container_filesystem_path(self):
+        return self._built_in_score_external_asset_container_filesystem_path
 
     @property
     def current_asset_container_filesystem_path(self):
@@ -265,8 +268,8 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             return self._list_built_in_asset_container_filesystem_paths()[0]
 
     @property
-    def user_asset_container_filesystem_paths(self):
-        return self._user_asset_container_filesystem_paths
+    def user_score_external_asset_container_filesystem_path(self):
+        return self._user_score_external_asset_container_filesystem_path
     
     ### PUBLIC METHODS ###
 
@@ -404,7 +407,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         self._session.restore_breadcrumbs(cache=cache)
         if result is not None:
             # TODO: this is a hack and will break on user assets
-            result = os.path.join(self.built_in_asset_container_filesystem_paths[0], result)
+            result = os.path.join(self.built_in_score_external_asset_container_filesystem_path[0], result)
             return result
 
     def svn_add_visible_assets(self, is_interactive=True):

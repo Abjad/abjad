@@ -27,8 +27,10 @@ class ScorePackageWrangler(PackageWrangler):
     def __init__(self, session=None):
         PackageWrangler.__init__(
             self,
-            built_in_asset_container_package_paths=['experimental.tools.scoremanagertools.built_in_scores'],
-            user_asset_container_filesystem_paths=[self.configuration.user_scores_directory_path],
+            built_in_score_external_asset_container_package_path=\
+                'experimental.tools.scoremanagertools.built_in_scores',
+            user_score_external_asset_container_filesystem_path=\
+                self.configuration.user_scores_directory_path,
             session=session,
             )
 
@@ -82,30 +84,30 @@ class ScorePackageWrangler(PackageWrangler):
         return scoremanagertools.proxies.ScorePackageProxy
 
     @property
-    def built_in_asset_container_filesystem_paths(self):
-        '''Score package wrangler built-in asset container directory paths:
+    def built_in_score_external_asset_container_filesystem_path(self):
+        '''Score package wrangler built-in asset container directory path:
 
         ::
 
-            >>> wrangler.built_in_asset_container_filesystem_paths
-            ['.../tools/scoremanagertools/built_in_scores']
+            >>> wrangler.built_in_score_external_asset_container_filesystem_path
+            '.../tools/scoremanagertools/built_in_scores'
 
-        Return list.
+        Return string.
         '''
-        return super(type(self), self).built_in_asset_container_filesystem_paths
+        return super(type(self), self).built_in_score_external_asset_container_filesystem_path
 
     @property
-    def built_in_asset_container_package_paths(self):
-        '''Score package wrangler built-in asset container package paths:
+    def built_in_score_external_asset_container_package_path(self):
+        '''Score package wrangler built-in asset container package path:
 
         ::
 
-            >>> wrangler.built_in_asset_container_package_paths
-            ['experimental.tools.scoremanagertools.built_in_scores']
+            >>> wrangler.built_in_score_external_asset_container_package_path
+            'experimental.tools.scoremanagertools.built_in_scores'
 
-        Return list.
+        Return string.
         '''
-        return super(type(self), self).built_in_asset_container_package_paths
+        return super(type(self), self).built_in_score_external_asset_container_package_path
 
     @property
     def current_asset_container_filesystem_path(self):
@@ -183,17 +185,17 @@ class ScorePackageWrangler(PackageWrangler):
         return super(type(self), self).storage_format
 
     @property
-    def user_asset_container_filesystem_paths(self):
-        '''Score package wrangler user asset container directory paths:
+    def user_score_external_asset_container_filesystem_path(self):
+        '''Score package wrangler user asset container directory path:
 
         ::
 
-            >>> wrangler.user_asset_container_filesystem_paths
-            ['.../Documents/scores']
+            >>> wrangler.user_score_external_asset_container_filesystem_path
+            '.../Documents/scores'
 
-        Return list.
+        Return string.
         '''
-        return super(type(self), self).user_asset_container_filesystem_paths
+        return super(type(self), self).user_score_external_asset_container_filesystem_path
 
     @property
     def user_score_external_asset_container_package_path(self):
