@@ -8,17 +8,17 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
         built_in_asset_container_filesystem_paths=None,
         built_in_asset_container_package_paths=None,
         user_asset_container_filesystem_paths=None,
-        user_asset_container_package_paths=None,
+        user_score_external_asset_container_package_path=None,
         session=None,
         ):
         built_in_asset_container_filesystem_paths = built_in_asset_container_filesystem_paths or \
             [self.configuration.packagesystem_path_to_filesystem_path(x) for 
             x in built_in_asset_container_package_paths]
         if user_asset_container_filesystem_paths is None and \
-            user_asset_container_package_paths is not None:
+            user_score_external_asset_container_package_path is not None:
             user_asset_container_filesystem_paths = [
-                self.configuration.packagesystem_path_to_filesystem_path(x)
-                for x in user_asset_container_package_paths]
+                self.configuration.packagesystem_path_to_filesystem_path(
+                user_score_external_asset_container_package_path)]
         FilesystemAssetWrangler.__init__(self,
             built_in_asset_container_filesystem_paths=built_in_asset_container_filesystem_paths,
             user_asset_container_filesystem_paths=user_asset_container_filesystem_paths,
@@ -26,8 +26,8 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
             )
         self._built_in_asset_container_package_paths = \
             built_in_asset_container_package_paths or []
-        self._user_asset_container_package_paths = \
-            user_asset_container_package_paths or []
+        self._user_score_external_asset_container_package_path = \
+            user_score_external_asset_container_package_path or ''
 
     ### SPECIAL METHODS ###
 
@@ -109,7 +109,7 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
 
     def _list_user_asset_container_package_paths(self, head=None):
         result = []
-        for package_path in self.user_asset_container_package_paths:
+        for package_path in [self.user_score_external_asset_container_package_path]:
             if head is None or package_path.startswith(head):
                 result.append(package_path)
         return result
@@ -141,8 +141,8 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
             return self._list_built_in_asset_container_package_paths()[0]
 
     @property
-    def user_asset_container_package_paths(self):
-        return self._user_asset_container_package_paths
+    def user_score_external_asset_container_package_path(self):
+        return self._user_score_external_asset_container_package_path
 
     ### PUBLIC METHODS ###
 

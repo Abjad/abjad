@@ -33,7 +33,7 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler.PackagesystemAssetWrangler.PackagesystemAssetWrangler.user_asset_container_filesystem_paths
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler.PackagesystemAssetWrangler.PackagesystemAssetWrangler.user_asset_container_package_paths
+.. autoattribute:: experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler.PackagesystemAssetWrangler.PackagesystemAssetWrangler.user_score_external_asset_container_package_path
    :noindex:
 
 Methods

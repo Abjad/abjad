@@ -196,17 +196,17 @@ class ScorePackageWrangler(PackageWrangler):
         return super(type(self), self).user_asset_container_filesystem_paths
 
     @property
-    def user_asset_container_package_paths(self):
-        '''Score package wrangler user asset container package paths:
+    def user_score_external_asset_container_package_path(self):
+        '''Score package wrangler user score-external asset container package path:
 
         ::
 
-            >>> wrangler.user_asset_container_package_paths
-            []
+            >>> wrangler.user_score_external_asset_container_package_path
+            ''
 
-        Return list.
+        Return string.
         '''
-        return super(type(self), self).user_asset_container_package_paths
+        return super(type(self), self).user_score_external_asset_container_package_path
 
     @property
     def visible_score_titles(self):
