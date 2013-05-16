@@ -1,12 +1,11 @@
-from abjad import *
-from experimental.tools import handlertools
 from experimental import *
 
 
 def test_DynamicHandlerMaterialPackageMaker_01():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    assert not packagesystemtools.exists('built_in_materials.testdynamichandler')
+    assert not score_manager.configuration.packagesystem_path_exists(
+        'built_in_materials.testdynamichandler')
     try:
         score_manager._run(user_input=
             'materials maker dynamic testdynamichandler default '
@@ -14,7 +13,8 @@ def test_DynamicHandlerMaterialPackageMaker_01():
             'f (1, 16) done default '
             'q '
             )
-        mpp = scoremanagertools.materialpackagemakers.DynamicHandlerMaterialPackageMaker('built_in_materials.testdynamichandler')
+        mpp = scoremanagertools.materialpackagemakers.DynamicHandlerMaterialPackageMaker(
+            'built_in_materials.testdynamichandler')
         assert mpp.list_directory() == ['__init__.py', 'output_material.py', 'tags.py']
         handler = handlertools.ReiteratedDynamicHandler(
             dynamic_name='f',
@@ -23,4 +23,5 @@ def test_DynamicHandlerMaterialPackageMaker_01():
         assert mpp.output_material == handler
     finally:
         score_manager._run(user_input='m testdynamichandler del remove default q')
-        assert not packagesystemtools.exists('built_in_materials.testdynamichandler')
+        assert not score_manager.configuration.packagesystem_path_exists(
+            'built_in_materials.testdynamichandler')

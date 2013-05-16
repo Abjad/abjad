@@ -443,29 +443,6 @@ Unstable packages (load manually)
       tools/musicexpressiontools/VoiceDictionary/VoiceDictionary
       tools/musicexpressiontools/VoiceProxy/VoiceProxy
 
-:py:mod:`packagesystemtools <experimental.tools.packagesystemtools>`
-====================================================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/packagesystemtools/exists
-      tools/packagesystemtools/filesystem_path_to_packagesystem_path
-      tools/packagesystemtools/packagesystem_path_to_filesystem_path
-
-.. only:: latex
-
-   Functions
-   ---------
-
-   .. toctree::
-
-      tools/packagesystemtools/exists
-      tools/packagesystemtools/filesystem_path_to_packagesystem_path
-      tools/packagesystemtools/packagesystem_path_to_filesystem_path
-
 :py:mod:`parsertools <experimental.tools.parsertools>`
 ======================================================
 

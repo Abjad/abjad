@@ -1,5 +1,4 @@
 import os
-from experimental.tools import packagesystemtools
 from experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler import FilesystemAssetWrangler
 
 
@@ -13,12 +12,12 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
         session=None,
         ):
         built_in_asset_container_directory_paths = built_in_asset_container_directory_paths or \
-            [packagesystemtools.packagesystem_path_to_filesystem_path(x, self.configuration) for 
+            [self.configuration.packagesystem_path_to_filesystem_path(x) for 
             x in built_in_asset_container_package_paths]
         if user_asset_container_directory_paths is None and \
             user_asset_container_package_paths is not None:
             user_asset_container_directory_paths = [
-                packagesystemtools.packagesystem_path_to_filesystem_path(x, self.configuration) 
+                self.configuration.packagesystem_path_to_filesystem_path(x)
                 for x in user_asset_container_package_paths]
         FilesystemAssetWrangler.__init__(self,
             built_in_asset_container_directory_paths=built_in_asset_container_directory_paths,
@@ -136,8 +135,7 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
     def list_built_in_score_internal_asset_package_paths(self, head=None):
         result = []
         for filesystem_path in self.list_built_in_score_internal_asset_filesystem_paths(head=head):
-            package_path = packagesystemtools.filesystem_path_to_packagesystem_path(
-                filesystem_path, self.configuration)
+            package_path = self.configuration.filesystem_path_to_packagesystem_path(filesystem_path)
             result.append(package_path)
         return result
 
@@ -153,8 +151,7 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
     def list_score_external_asset_package_paths(self, head=None):
         result = []
         for directory_path in self._list_score_external_asset_container_directory_paths(head=head):
-            package_path = packagesystemtools.filesystem_path_to_packagesystem_path(
-                directory_path, self.configuration)
+            package_path = self.configuration.filesystem_path_to_packagesystem_path(directory_path)
             if head is None or package_path.startswith(head):
                 for directory_entry in os.listdir(directory_path):
                     if directory_entry[0].isalpha():
@@ -164,8 +161,7 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
     def _list_all_score_directory_package_paths(self, head=None):
         result = []
         for directory_path in self._list_all_score_directory_paths(head=head):
-            package_path = packagesystemtools.filesystem_path_to_packagesystem_path(
-                directory_path, self.configuration)
+            package_path = self.configuration.filesystem_path_to_packagesystem_path(directory_path)
             result.append(package_path)
         return result
 
@@ -184,8 +180,8 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
         for asset_container_package_path in \
             self.list_score_internal_asset_container_package_paths(head=head):
             if self.asset_container_path_infix_parts:
-                asset_filesystem_path = packagesystemtools.packagesystem_path_to_filesystem_path(
-                    asset_container_package_path, self.configuration)
+                asset_filesystem_path = self.configuration.packagesystem_path_to_filesystem_path(
+                    asset_container_package_path)
                 for directory_entry in os.listdir(asset_filesystem_path):
                     if directory_entry[0].isalpha():
                         package_name = self._strip_file_extension_from_file_name(directory_entry)
@@ -228,8 +224,8 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
     def make_empty_package(self, package_path):
         if package_path is None:
             return
-        directory_path = packagesystemtools.packagesystem_path_to_filesystem_path(
-            package_path, self.configuration)
+        directory_path = self.configuration.packagesystem_path_to_filesystem_path(
+            package_path)
         if not os.path.exists(directory_path):
             os.mkdir(directory_path)
             initializer_file_name = os.path.join(directory_path, '__init__.py')

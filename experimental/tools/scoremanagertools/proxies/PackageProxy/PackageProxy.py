@@ -1,5 +1,4 @@
 import os
-from experimental.tools import packagesystemtools
 from experimental.tools.scoremanagertools.proxies.DirectoryProxy import DirectoryProxy
 
 
@@ -9,11 +8,11 @@ class PackageProxy(DirectoryProxy):
 
     def __init__(self, packagesystem_path=None, session=None):
         assert packagesystem_path is None or os.path.sep not in packagesystem_path, repr(packagesystem_path)
-        filesystem_path = packagesystemtools.packagesystem_path_to_filesystem_path(
-            packagesystem_path, self.configuration)
+        filesystem_path = self.configuration.packagesystem_path_to_filesystem_path(
+            packagesystem_path)
         DirectoryProxy.__init__(self, filesystem_path=filesystem_path, session=session)
-        packagesystem_path = packagesystemtools.filesystem_path_to_packagesystem_path(
-            filesystem_path, self.configuration)
+        packagesystem_path = self.configuration.filesystem_path_to_packagesystem_path(
+            filesystem_path)
         self._package_path = packagesystem_path
 
     ### READ-ONLY PRIVATE PROPERTIES ###

@@ -1,6 +1,5 @@
 import os
 from abjad.tools import stringtools
-from experimental.tools import packagesystemtools
 from experimental.tools.scoremanagertools.wranglers.PackageWrangler import PackageWrangler
 
 
@@ -153,8 +152,8 @@ class ScorePackageWrangler(PackageWrangler):
 
         Return string.
         '''
-        package_path = packagesystemtools.filesystem_path_to_packagesystem_path(
-            self.current_asset_container_directory_path, self.configuration)
+        package_path = self.configuration.filesystem_path_to_packagesystem_path(
+            self.current_asset_container_directory_path)
         return package_path
 
     @property

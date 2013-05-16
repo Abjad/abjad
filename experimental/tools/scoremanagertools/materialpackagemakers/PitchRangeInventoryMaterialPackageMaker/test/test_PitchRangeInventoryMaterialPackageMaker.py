@@ -1,4 +1,3 @@
-from abjad.tools import pitchtools
 from experimental import *
 
 
@@ -7,18 +6,19 @@ def test_PitchRangeInventoryMaterialPackageMaker_01():
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    assert not packagesystemtools.exists('built_in_materials.testpir')
+    assert not score_manager.configuration.packagesystem_path_exists('built_in_materials.testpir')
     try:
         score_manager._run(user_input=
             'materials maker pitch testpir default '
             'q'
             )
-        mpp = scoremanagertools.materialpackagemakers.PitchRangeInventoryMaterialPackageMaker('built_in_materials.testpir')
+        mpp = scoremanagertools.materialpackagemakers.PitchRangeInventoryMaterialPackageMaker(
+            'built_in_materials.testpir')
         assert mpp.list_directory() == ['__init__.py', 'tags.py']
         assert mpp.output_material is None
     finally:
         score_manager._run(user_input='m testpir del remove default q')
-        assert not packagesystemtools.exists('built_in_materials.testpir')
+        assert not score_manager.configuration.packagesystem_path_exists('built_in_materials.testpir')
 
 
 def test_PitchRangeInventoryMaterialPackageMaker_02():
@@ -26,7 +26,7 @@ def test_PitchRangeInventoryMaterialPackageMaker_02():
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    assert not packagesystemtools.exists('built_in_materials.testpir')
+    assert not score_manager.configuration.packagesystem_path_exists('built_in_materials.testpir')
     try:
         score_manager._run(user_input=
             'materials maker pitch testpir default '
@@ -42,4 +42,4 @@ def test_PitchRangeInventoryMaterialPackageMaker_02():
         assert mpp.output_material == pitch_range_inventory
     finally:
         score_manager._run(user_input='m testpir del remove default q')
-        assert not packagesystemtools.exists('built_in_materials.testpir')
+        assert not score_manager.configuration.packagesystem_path_exists('built_in_materials.testpir')

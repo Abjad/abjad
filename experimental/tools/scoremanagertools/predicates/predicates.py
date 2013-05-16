@@ -1,6 +1,7 @@
-from abjad import *
-from experimental.tools import packagesystemtools
 import re
+from abjad import *
+from experimental.tools.scoremanagertools.core.ScoreManagerConfiguration import ScoreManagerConfiguration
+configuration = ScoreManagerConfiguration()
 
 
 def is_argument_range_string(expr):
@@ -17,7 +18,7 @@ def is_articulation_token(expr):
 def is_available_underscore_delimited_lowercase_package_name(expr):
     if stringtools.is_underscore_delimited_lowercase_package_name(expr):
         if 3 <= len(expr):
-            return not packagesystemtools.exists(expr)
+            return not configuration.packagesystem_path_exists(expr)
     return False
 
 def is_boolean(expr):
@@ -51,7 +52,7 @@ def is_dynamic_token(expr):
         return False
 
 def is_existing_package_name(expr):
-    return packagesystemtools.exists(expr)
+    return configuration.packagesystem_path_exists(expr)
 
 def is_hairpin_token(expr):
     return spannertools.HairpinSpanner.is_hairpin_token(expr)

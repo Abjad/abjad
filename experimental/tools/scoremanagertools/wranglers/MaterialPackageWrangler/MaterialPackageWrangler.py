@@ -1,7 +1,6 @@
 import collections
 import os
 from abjad.tools import stringtools
-from experimental.tools import packagesystemtools
 from experimental.tools.scoremanagertools import predicates
 from experimental.tools.scoremanagertools.wranglers.PackageWrangler import PackageWrangler
 
@@ -153,7 +152,7 @@ class MaterialPackageWrangler(PackageWrangler):
                 package_name)
             material_package_path = '.'.join([
                 self.current_asset_container_package_path, material_package_name])
-            if packagesystemtools.exists(material_package_path):
+            if self.configuration.packagesystem_path_exists(material_package_path):
                 line = 'Material package {!r} already exists.'.format(material_package_path)
                 self._io.display([line, ''])
             else:
@@ -292,8 +291,8 @@ class MaterialPackageWrangler(PackageWrangler):
     def make_material_package(self, material_package_path, is_interactive=False, tags=None):
         tags = collections.OrderedDict(tags or {})
         tags['is_material_package'] = True
-        directory_path = packagesystemtools.packagesystem_path_to_filesystem_path(
-            material_package_path, self.configuration)
+        directory_path = self.configuration.packagesystem_path_to_filesystem_path(
+            material_package_path)
         assert not os.path.exists(directory_path)
         os.mkdir(directory_path)
         material_package_maker_class_name = tags.get('material_package_maker_class_name')

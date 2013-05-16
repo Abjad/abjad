@@ -1,5 +1,4 @@
 import os
-from experimental.tools import packagesystemtools
 from experimental.tools.scoremanagertools.selectors.Selector import Selector
 
 
@@ -24,8 +23,7 @@ class MaterialPackageSelector(Selector):
     def list_items(self):
         result = []
         for directory_path in self.list_current_material_directory_paths():
-            package_path = packagesystemtools.filesystem_path_to_packagesystem_path(
-                directory_path, self.configuration)
+            package_path = self.configuration.filesystem_path_to_packagesystem_path(directory_path)
             result.append(package_path)
         return result
 

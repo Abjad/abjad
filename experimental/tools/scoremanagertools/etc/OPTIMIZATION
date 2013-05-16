@@ -128,13 +128,13 @@ That reason alone is probably enough to leave caching turned on.
 
 ### r10,251 ###
 
-Revision r10,251 fives an inefficiency in packagesystemtools.packagesystem_path_to_filesystem_path()
-and the same inefficiency in packagesystemtools.filesystem_path_to_packagesystem_path().
+Revision r10,251 fives an inefficiency in packagesystem_path_to_filesystem_path()
+and the same inefficiency in filesystem_path_to_packagesystem_path().
 Specifically, a ScoreManagerConfiguration object was being instantiated for each and every
 call to both of these functions; note that there is disk read time incurred every time
 a ScoreManagerConfiguration object is istantiated.
 
-RESULTS: correcting the packagesystemtools inefficiency produces the following results.
+RESULTS: correcting the inefficiency produces the following results.
 Note that all of these results are with caching turned off:
 
     >>> iotools.profile_expr('score_manager = scoremanagertools.scoremanager.ScoreManager()')
@@ -151,7 +151,7 @@ Note that all of these results are with caching turned off:
 
 Also, the py.test battery now runs in 46 seconds on the iMac.
 
-CONCLUSION: these are extremely good results. The packagesystemtools inefficiency was the problem.
+CONCLUSION: these are extremely good results. The identified inefficiency was the problem.
 
 It is possible that turning caching back on could increase py.test battery performance.
 Such will results will be recorded in a future entry to this log.

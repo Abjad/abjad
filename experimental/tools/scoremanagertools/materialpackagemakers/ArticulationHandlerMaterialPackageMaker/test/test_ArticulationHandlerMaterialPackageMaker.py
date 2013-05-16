@@ -1,12 +1,11 @@
-from abjad import *
-from experimental.tools import handlertools
 from experimental import *
 
 
 def test_ArticulationHandlerMaterialPackageMaker_01():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    assert not packagesystemtools.exists('built_in_materials.testarticulationhandler')
+    assert not score_manager.configuration.packagesystem_path_exists(
+        'built_in_materials.testarticulationhandler')
     try:
         score_manager._run(user_input=
             'materials maker articulation testarticulationhandler default '
@@ -14,7 +13,8 @@ def test_ArticulationHandlerMaterialPackageMaker_01():
             "['^', '.'] (1, 64) (1, 4) c c'''' done default "
             'q '
             )
-        mpp = scoremanagertools.materialpackagemakers.ArticulationHandlerMaterialPackageMaker('built_in_materials.testarticulationhandler')
+        mpp = scoremanagertools.materialpackagemakers.ArticulationHandlerMaterialPackageMaker(
+            'built_in_materials.testarticulationhandler')
         assert mpp.list_directory() == ['__init__.py', 'output_material.py', 'tags.py']
         handler = handlertools.ReiteratedArticulationHandler(
             articulation_list=['^', '.'],
@@ -26,4 +26,5 @@ def test_ArticulationHandlerMaterialPackageMaker_01():
         assert mpp.output_material == handler
     finally:
         score_manager._run(user_input='m testarticulationhandler del remove default q')
-        assert not packagesystemtools.exists('built_in_materials.testarticulationhandler')
+        assert not score_manager.configuration.packagesystem_path_exists(
+            'built_in_materials.testarticulationhandler')

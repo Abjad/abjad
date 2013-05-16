@@ -1,7 +1,6 @@
 import abc
 import os
 from abjad.tools import stringtools
-from experimental.tools import packagesystemtools
 from experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler import \
     PackagesystemAssetWrangler
 
