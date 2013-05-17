@@ -76,50 +76,50 @@
 
 27. Sweep inline scoremanagertools TODO items.
 
-28. Document StylesheetFileProxy next.
+28. Author ScorePackageProxy docstrings.
 
-29. Author ScorePackageProxy docstrings.
+29. Remove 'grandparent_directory_path'.
 
-30. Remove 'grandparent_directory_path'.
+30. Make ScoreManagerConfiguration READ ONLY!
 
-31. Make ScoreManagerConfiguration READ ONLY!
-
-32. Add ScoreManagerConfiguration.user_directory property.
-
-33. Revisit score_manager/configuration.py file.
+31. Revisit score_manager/configuration.py file.
     The only necessary user settings should be these:
-        user_collateral_directory_path = /Users/trevorbaca/collateral
+        user_extensions_directory_path = /Users/trevorbaca/Documents/baca/scoremanager/extensions
+        user_collateral_directory_path = /Users/trevorbaca/Documents/baca/scoremanager/collateral
         user_scores_directory_path = /Users/trevorbaca/Documents/scores
         user_sketches_directory_path = /Users/trevorbaca/Documents/sketches
     * create ~/.score_manager by default and store configuration in it
     * store configuration.py in  ~/.score_manager
     * store transcripts in ~/.score_manager
-    * store user material package makers in user collateral directory
+    * store user editors in user extensions directory
+    * store user material package makers in user extensions directory
+    * store user materials in user collateral directory
+    * store user specifiers in user collateral directory
     * store user stylesheets in user collateral directory
 
-34. Add MaterialPackageWrangler docstrings.
-    Then move experimental/built_in_materials to experimental/tools/scoremanagertools/built_in_materials.
-
-35. Add ~/score_manager/materials directory.
-    Populate with two or three materials for testing.
+32. Populate ~/Documents/baca/scoremanager/materials with
+    two or three materials for testing.
     Rerun MaterialPackageWrangler doctests and py.test battery.
 
-36. Create ~/Documents/baca/scoremanagerextensions to house subdirectories:
-        ~/Documents/baca/scoremanagerextensions/editors
-        ~/Documents/baca/scoremanagerextensions/materialpackagemakers
-        ~/Documents/baca/scoremanagerextensions/materials
+33. Create ~/Documents/baca/scoremanager to house these subdirectories:
+        ~/Documents/baca/scoremanager/editors
+        ~/Documents/baca/scoremanager/materialpackagemakers
+        ~/Documents/baca/scoremanager/materials
+        ~/Documents/baca/scoremanager/stylesheets
 
-37. Remove the has_readable_... and is_readable_... properties from the system entirely.
+34. Remove the has_readable_... and is_readable_... properties from the system entirely.
     Force such functionality to be method calls that will be noticeably expensive.
 
-38. Migrate all build_illustration.py modules from separate modules to bound class methods.
+35. Migrate all build_illustration.py modules from separate modules to bound class methods.
 
-39. Add PackageystemAssetProxy to superclass ModuleProxy and PackageProxy.
+36. Add PackageystemAssetProxy to superclass ModuleProxy and PackageProxy.
 
-40. Change DistributionDirectoryProxy.__init__(score_package_name=None) to score_package_path.
+37. Change DistributionDirectoryProxy.__init__(score_package_name=None) to score_package_path.
     Same with ExergueDirectoryProxy.
     Same with MusicPackageProxy.
 
-41. Reimplement self._handle_main_menu_result methods around dictionaries.
+38. Reimplement self._handle_main_menu_result methods around dictionaries.
 
-42. Rename flamingo_input to something semantic.
+39. Rename flamingo_input to something semantic.
+
+40. Document StylesheetFileProxy next.
