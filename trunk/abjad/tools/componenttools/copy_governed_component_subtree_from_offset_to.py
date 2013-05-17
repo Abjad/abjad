@@ -214,9 +214,9 @@ def _get_lcopy(container, start, stop):
         if stop <= total_dur and stop_leaf is None:
             stop_leaf = i + 1
             #second_dif = leaf.duration - (total_dur - stop)
-            flamingo = total_dur - stop
-            if flamingo != 0:
-                second_dif = leaf.duration - flamingo
+            remaining_duration = total_dur - stop
+            if remaining_duration != 0:
+                second_dif = leaf.duration - remaining_duration
             #print second_dif
             #print 'breaking after stop'
             break
