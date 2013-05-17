@@ -80,12 +80,12 @@ class InteractiveEditor(ScoreManagerObject):
             if self._session.is_autoadding:
                 menu = self._make_main_menu()
                 result = 'add'
-                menu._run(clear=clear, flamingo_input=result)
+                menu._run(clear=clear, automatically_determined_user_input=result)
                 is_first_pass = False
             elif is_first_pass and is_autostarting:
                 menu = self._make_main_menu()
                 result = menu.first_nonhidden_return_value_in_menu
-                menu._run(clear=clear, flamingo_input=result)
+                menu._run(clear=clear, automatically_determined_user_input=result)
                 is_first_pass = False
             elif result and self.is_autoadvancing:
                 entry_point = entry_point or result

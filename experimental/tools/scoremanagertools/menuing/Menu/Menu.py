@@ -21,13 +21,13 @@ class Menu(MenuSectionAggregator):
 
     ### PRIVATE METHODS ###
 
-    def _run(self, clear=True, flamingo_input=None, user_input=None):
+    def _run(self, clear=True, automatically_determined_user_input=None, user_input=None):
         self._io.assign_user_input(user_input=user_input)
         clear, hide_current_run = clear, False
         while True:
             self.should_clear_terminal, self.hide_current_run = clear, hide_current_run
             clear, hide_current_run = False, True
-            result = self.conditionally_display_menu(flamingo_input=flamingo_input)
+            result = self.conditionally_display_menu(automatically_determined_user_input=automatically_determined_user_input)
             if self._session.is_complete:
                 break
             elif result == 'r':
@@ -190,11 +190,11 @@ class Menu(MenuSectionAggregator):
                     (3 <= len(user_input) and body.startswith(user_input)):
                     return self.conditionally_enclose_in_list(return_value)
 
-    def conditionally_display_menu(self, flamingo_input=None):
+    def conditionally_display_menu(self, automatically_determined_user_input=None):
         self.conditionally_clear_terminal()
         self._io.display(self.menu_lines, capitalize_first_character=False)
-        if flamingo_input is not None:
-            return flamingo_input
+        if automatically_determined_user_input is not None:
+            return automatically_determined_user_input
         user_response = self._io.handle_raw_input_with_default('', default=self.prompt_default)
         directive = self.change_user_input_to_directive(user_response)
         directive = self.strip_default_indicators_from_strings(directive)

@@ -120,6 +120,4 @@
 
 38. Reimplement self._handle_main_menu_result methods around dictionaries.
 
-39. Rename flamingo_input to something semantic.
-
-40. Document StylesheetFileProxy next.
+39. Document StylesheetFileProxy next.
