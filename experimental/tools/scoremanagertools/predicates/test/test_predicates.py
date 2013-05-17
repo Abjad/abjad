@@ -5,7 +5,7 @@ def test_predicates_01():
 
     assert predicates.is_available_underscore_delimited_lowercase_package_name('asdf')
     assert predicates.is_available_underscore_delimited_lowercase_package_name('scoremanagertools.asdf')
-    assert predicates.is_available_underscore_delimited_lowercase_package_name('built_in_materials.asdf')
+    assert predicates.is_available_underscore_delimited_lowercase_package_name('experimental.tools.scoremanagertools.built_in_materials.asdf')
 
     assert not predicates.is_available_underscore_delimited_lowercase_package_name('scoremanagertools')
     assert not predicates.is_available_underscore_delimited_lowercase_package_name('built_in_materials')
@@ -18,7 +18,7 @@ def test_predicates_02():
 
     assert not predicates.is_existing_package_name('asdf')
     assert not predicates.is_existing_package_name('scoremanagertools.asdf')
-    assert not predicates.is_existing_package_name('built_in_materials.asdf')
+    assert not predicates.is_existing_package_name('experimental.tools.scoremanagertools.built_in_materials.asdf')
 
 
 

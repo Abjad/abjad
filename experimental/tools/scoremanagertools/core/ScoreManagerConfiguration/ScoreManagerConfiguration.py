@@ -149,11 +149,11 @@ class ScoreManagerConfiguration(Configuration):
         ::
 
             >>> configuration.built_in_materials_directory_path
-            '.../abjad/experimental/built_in_materials'
+            '.../abjad/experimental/tools/scoremanagertools/built_in_materials'
 
         Return string.
         '''
-        return os.path.join(self.abjad_configuration.abjad_experimental_directory_path, 'built_in_materials')
+        return os.path.join(self.score_manager_tools_directory_path, 'built_in_materials')
 
     @property
     def built_in_materials_package_path(self):
@@ -162,11 +162,11 @@ class ScoreManagerConfiguration(Configuration):
         ::
 
             >>> configuration.built_in_materials_package_path
-            'built_in_materials'
+            'experimental.tools.scoremanagertools.built_in_materials'
 
         Return string.
         '''
-        return os.path.basename(self.built_in_materials_directory_path)
+        return '.'.join([self.score_manager_tools_package_path, 'built_in_materials'])
 
     @property
     def built_in_scores_directory_path(self):
@@ -546,8 +546,7 @@ class ScoreManagerConfiguration(Configuration):
         elif filesystem_path.startswith(self.built_in_specifiers_directory_path):
             prefix_length = len(self.abjad_configuration.abjad_root_directory_path) + 1
         elif filesystem_path.startswith(self.built_in_materials_directory_path):
-            prefix_length = \
-                len(os.path.dirname(self.built_in_materials_directory_path)) + 1
+            prefix_length = len(self.abjad_configuration.abjad_root_directory_path) + 1
         elif filesystem_path.startswith(self.score_manager_tools_directory_path):
             prefix_length = \
                 len(os.path.dirname(self.score_manager_tools_directory_path)) + 1

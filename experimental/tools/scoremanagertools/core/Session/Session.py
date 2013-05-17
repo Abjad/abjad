@@ -163,7 +163,7 @@ class Session(abctools.AbjadObject):
         ::
 
             >>> session.current_materials_directory_path
-            '.../abjad/experimental/built_in_materials'
+            '.../abjad/experimental/tools/scoremanagertools/built_in_materials'
 
         Session in score:
 
@@ -194,7 +194,7 @@ class Session(abctools.AbjadObject):
         ::
 
             >>> session.current_materials_package_path
-            'built_in_materials'
+            'experimental.tools.scoremanagertools.built_in_materials'
 
         Session in score:
 

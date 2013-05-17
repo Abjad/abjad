@@ -80,7 +80,7 @@ class MaterialPackageWrangler(PackageWrangler):
 
             >>> for x in wrangler._list_asset_container_package_paths():
             ...     x
-            'built_in_materials'
+            'experimental.tools.scoremanagertools.built_in_materials'
             'experimental.tools.scoremanagertools.built_in_scores.blue_example_score.music.materials'
             'experimental.tools.scoremanagertools.built_in_scores.green_example_score.music.materials'
             'experimental.tools.scoremanagertools.built_in_scores.red_example_score.music.materials'
@@ -100,7 +100,7 @@ class MaterialPackageWrangler(PackageWrangler):
 
             >>> for x in wrangler._list_score_external_asset_container_filesystem_paths():
             ...     x
-            '/Users/trevorbaca/Documents/abjad/experimental/built_in_materials'
+            '/Users/trevorbaca/Documents/abjad/experimental/tools/scoremanagertools/built_in_materials'
             '/Users/trevorbaca/Documents/baca/music/materials'
             ...
 
@@ -211,7 +211,7 @@ class MaterialPackageWrangler(PackageWrangler):
         ::
 
             >>> wrangler.built_in_score_external_asset_container_filesystem_path
-            '.../abjad/experimental/built_in_materials'
+            '.../abjad/experimental/tools/scoremanagertools/built_in_materials'
 
         Return string.
         '''
@@ -224,7 +224,7 @@ class MaterialPackageWrangler(PackageWrangler):
         ::
 
             >>> wrangler.built_in_score_external_asset_container_packagesystem_path
-            'built_in_materials'
+            'experimental.tools.scoremanagertools.built_in_materials'
 
         Return string.
         '''
@@ -237,7 +237,7 @@ class MaterialPackageWrangler(PackageWrangler):
         ::
 
             >>> wrangler.current_asset_container_filesystem_path
-            '/Users/trevorbaca/Documents/abjad/experimental/built_in_materials'
+            '/Users/trevorbaca/Documents/abjad/experimental/tools/scoremanagertools/built_in_materials'
 
         While in built-in score:
 
@@ -257,7 +257,7 @@ class MaterialPackageWrangler(PackageWrangler):
         ::
 
             >>> wrangler.current_asset_container_packagesystem_path
-            'built_in_materials'
+            'experimental.tools.scoremanagertools.built_in_materials'
 
         While in built-in score:
 
@@ -340,13 +340,13 @@ class MaterialPackageWrangler(PackageWrangler):
 
             >>> for x in wrangler.get_asset_proxies():
             ...     x
-            MarkupInventoryMaterialPackageMaker('.../abjad/experimental/built_in_materials/red_directives')
-            DynamicHandlerMaterialPackageMaker('.../abjad/experimental/built_in_materials/red_forte')
-            ArticulationHandlerMaterialPackageMaker('.../abjad/experimental/built_in_materials/red_marcati')
-            MaterialPackageProxy('.../abjad/experimental/built_in_materials/red_notes')
-            MaterialPackageProxy('.../abjad/experimental/built_in_materials/red_numbers')
-            SargassoMeasureMaterialPackageMaker('.../abjad/experimental/built_in_materials/red_sargasso_measures')
-            MaterialPackageProxy('.../abjad/experimental/built_in_materials/sargasso_multipliers')
+            MarkupInventoryMaterialPackageMaker('.../abjad/experimental/tools/scoremanagertools/built_in_materials/red_directives')
+            DynamicHandlerMaterialPackageMaker('.../abjad/experimental/tools/scoremanagertools/built_in_materials/red_forte')
+            ArticulationHandlerMaterialPackageMaker('.../abjad/experimental/tools/scoremanagertools/built_in_materials/red_marcati')
+            MaterialPackageProxy('.../abjad/experimental/tools/scoremanagertools/built_in_materials/red_notes')
+            MaterialPackageProxy('.../abjad/experimental/tools/scoremanagertools/built_in_materials/red_numbers')
+            SargassoMeasureMaterialPackageMaker('.../abjad/experimental/tools/scoremanagertools/built_in_materials/red_sargasso_measures')
+            MaterialPackageProxy('.../abjad/experimental/tools/scoremanagertools/built_in_materials/sargasso_multipliers')
             ...
             TempoMarkInventoryMaterialPackageMaker('.../tools/scoremanagertools/built_in_scores/red_example_score/music/materials/tempo_inventory')
             ...
@@ -384,13 +384,13 @@ class MaterialPackageWrangler(PackageWrangler):
 
             >>> for x in wrangler.get_score_external_asset_proxies():
             ...     x
-            MarkupInventoryMaterialPackageMaker('.../abjad/experimental/built_in_materials/red_directives')
-            DynamicHandlerMaterialPackageMaker('.../abjad/experimental/built_in_materials/red_forte')
-            ArticulationHandlerMaterialPackageMaker('.../abjad/experimental/built_in_materials/red_marcati')
-            MaterialPackageProxy('.../abjad/experimental/built_in_materials/red_notes')
-            MaterialPackageProxy('.../abjad/experimental/built_in_materials/red_numbers')
-            SargassoMeasureMaterialPackageMaker('.../abjad/experimental/built_in_materials/red_sargasso_measures')
-            MaterialPackageProxy('.../abjad/experimental/built_in_materials/sargasso_multipliers')
+            MarkupInventoryMaterialPackageMaker('.../abjad/experimental/tools/scoremanagertools/built_in_materials/red_directives')
+            DynamicHandlerMaterialPackageMaker('.../abjad/experimental/tools/scoremanagertools/built_in_materials/red_forte')
+            ArticulationHandlerMaterialPackageMaker('.../abjad/experimental/tools/scoremanagertools/built_in_materials/red_marcati')
+            MaterialPackageProxy('.../abjad/experimental/tools/scoremanagertools/built_in_materials/red_notes')
+            MaterialPackageProxy('.../abjad/experimental/tools/scoremanagertools/built_in_materials/red_numbers')
+            SargassoMeasureMaterialPackageMaker('.../abjad/experimental/tools/scoremanagertools/built_in_materials/red_sargasso_measures')
+            MaterialPackageProxy('.../abjad/experimental/tools/scoremanagertools/built_in_materials/sargasso_multipliers')
             ...
 
         Output lists built-in materials followed by user materials.
@@ -435,13 +435,13 @@ class MaterialPackageWrangler(PackageWrangler):
 
             >>> for x in wrangler.list_asset_filesystem_paths():
             ...     x
-            '.../abjad/experimental/built_in_materials/red_directives'
-            '.../abjad/experimental/built_in_materials/red_forte'
-            '.../abjad/experimental/built_in_materials/red_marcati'
-            '.../abjad/experimental/built_in_materials/red_notes'
-            '.../abjad/experimental/built_in_materials/red_numbers'
-            '.../abjad/experimental/built_in_materials/red_sargasso_measures'
-            '.../abjad/experimental/built_in_materials/sargasso_multipliers'
+            '.../abjad/experimental/tools/scoremanagertools/built_in_materials/red_directives'
+            '.../abjad/experimental/tools/scoremanagertools/built_in_materials/red_forte'
+            '.../abjad/experimental/tools/scoremanagertools/built_in_materials/red_marcati'
+            '.../abjad/experimental/tools/scoremanagertools/built_in_materials/red_notes'
+            '.../abjad/experimental/tools/scoremanagertools/built_in_materials/red_numbers'
+            '.../abjad/experimental/tools/scoremanagertools/built_in_materials/red_sargasso_measures'
+            '.../abjad/experimental/tools/scoremanagertools/built_in_materials/sargasso_multipliers'
             ...
 
         User-specific output elided above.
@@ -457,13 +457,13 @@ class MaterialPackageWrangler(PackageWrangler):
 
             >>> for x in wrangler.list_asset_packagesystem_paths():
             ...     x
-            'built_in_materials.red_directives'
-            'built_in_materials.red_forte'
-            'built_in_materials.red_marcati'
-            'built_in_materials.red_notes'
-            'built_in_materials.red_numbers'
-            'built_in_materials.red_sargasso_measures'
-            'built_in_materials.sargasso_multipliers'
+            'experimental.tools.scoremanagertools.built_in_materials.red_directives'
+            'experimental.tools.scoremanagertools.built_in_materials.red_forte'
+            'experimental.tools.scoremanagertools.built_in_materials.red_marcati'
+            'experimental.tools.scoremanagertools.built_in_materials.red_notes'
+            'experimental.tools.scoremanagertools.built_in_materials.red_numbers'
+            'experimental.tools.scoremanagertools.built_in_materials.red_sargasso_measures'
+            'experimental.tools.scoremanagertools.built_in_materials.sargasso_multipliers'
             ...
             'experimental.tools.scoremanagertools.built_in_scores.red_example_score.music.materials.tempo_inventory'
             ...
@@ -507,13 +507,13 @@ class MaterialPackageWrangler(PackageWrangler):
 
             >>> for x in wrangler.list_score_external_asset_filesystem_paths():
             ...     x
-            '.../abjad/experimental/built_in_materials/red_directives'
-            '.../abjad/experimental/built_in_materials/red_forte'
-            '.../abjad/experimental/built_in_materials/red_marcati'
-            '.../abjad/experimental/built_in_materials/red_notes'
-            '.../abjad/experimental/built_in_materials/red_numbers'
-            '.../abjad/experimental/built_in_materials/red_sargasso_measures'
-            '.../abjad/experimental/built_in_materials/sargasso_multipliers'
+            '.../abjad/experimental/tools/scoremanagertools/built_in_materials/red_directives'
+            '.../abjad/experimental/tools/scoremanagertools/built_in_materials/red_forte'
+            '.../abjad/experimental/tools/scoremanagertools/built_in_materials/red_marcati'
+            '.../abjad/experimental/tools/scoremanagertools/built_in_materials/red_notes'
+            '.../abjad/experimental/tools/scoremanagertools/built_in_materials/red_numbers'
+            '.../abjad/experimental/tools/scoremanagertools/built_in_materials/red_sargasso_measures'
+            '.../abjad/experimental/tools/scoremanagertools/built_in_materials/sargasso_multipliers'
             ...
 
         (User-specific output elided.)
@@ -529,13 +529,13 @@ class MaterialPackageWrangler(PackageWrangler):
 
             >>> for x in wrangler.list_score_external_asset_packagesystem_paths():
             ...     x
-            'built_in_materials.red_directives'
-            'built_in_materials.red_forte'
-            'built_in_materials.red_marcati'
-            'built_in_materials.red_notes'
-            'built_in_materials.red_numbers'
-            'built_in_materials.red_sargasso_measures'
-            'built_in_materials.sargasso_multipliers'
+            'experimental.tools.scoremanagertools.built_in_materials.red_directives'
+            'experimental.tools.scoremanagertools.built_in_materials.red_forte'
+            'experimental.tools.scoremanagertools.built_in_materials.red_marcati'
+            'experimental.tools.scoremanagertools.built_in_materials.red_notes'
+            'experimental.tools.scoremanagertools.built_in_materials.red_numbers'
+            'experimental.tools.scoremanagertools.built_in_materials.red_sargasso_measures'
+            'experimental.tools.scoremanagertools.built_in_materials.sargasso_multipliers'
             ...
 
         (User-specific output elided.)

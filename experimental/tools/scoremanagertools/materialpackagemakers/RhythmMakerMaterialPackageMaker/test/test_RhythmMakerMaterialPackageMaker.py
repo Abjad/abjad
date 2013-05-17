@@ -5,7 +5,7 @@ def test_RhythmMakerMaterialPackageMaker_01():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     assert not score_manager.configuration.packagesystem_path_exists(
-        'built_in_materials.testrhythmmaker')
+        'experimental.tools.scoremanagertools.built_in_materials.testrhythmmaker')
     try:
         score_manager._run(user_input=
             'materials maker rhythm testrhythmmaker default '
@@ -14,7 +14,7 @@ def test_RhythmMakerMaterialPackageMaker_01():
             'q '
             )
         mpp = scoremanagertools.materialpackagemakers.RhythmMakerMaterialPackageMaker(
-            'built_in_materials.testrhythmmaker')
+            'experimental.tools.scoremanagertools.built_in_materials.testrhythmmaker')
         assert mpp.list_directory() == ['__init__.py', 'output_material.py', 'tags.py']
         maker = rhythmmakertools.TaleaRhythmMaker(
             [-1, 2, -3, 4],
@@ -25,4 +25,4 @@ def test_RhythmMakerMaterialPackageMaker_01():
     finally:
         score_manager._run(user_input='m testrhythmmaker del remove default q')
         assert not score_manager.configuration.packagesystem_path_exists(
-            'built_in_materials.testrhythmmaker')
+            'experimental.tools.scoremanagertools.built_in_materials.testrhythmmaker')

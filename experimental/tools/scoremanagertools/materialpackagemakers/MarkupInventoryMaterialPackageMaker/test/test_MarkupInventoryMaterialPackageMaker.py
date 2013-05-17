@@ -5,7 +5,7 @@ def test_MarkupInventoryMaterialPackageMaker_01():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     assert not score_manager.configuration.packagesystem_path_exists(
-        'built_in_materials.testmarkupinventory')
+        'experimental.tools.scoremanagertools.built_in_materials.testmarkupinventory')
     try:
         score_manager._run(user_input=
             "materials maker markup testmarkupinventory "
@@ -14,7 +14,7 @@ def test_MarkupInventoryMaterialPackageMaker_01():
             "add arg r'\\italic~{~presto~}' name presto done done default q"
             )
         mpp = scoremanagertools.materialpackagemakers.ArticulationHandlerMaterialPackageMaker(
-            'built_in_materials.testmarkupinventory')
+            'experimental.tools.scoremanagertools.built_in_materials.testmarkupinventory')
         assert mpp.list_directory() == ['__init__.py', 'output_material.py', 'tags.py']
         inventory = markuptools.MarkupInventory([
             markuptools.Markup(
@@ -32,4 +32,4 @@ def test_MarkupInventoryMaterialPackageMaker_01():
     finally:
         score_manager._run(user_input='m testmarkupinventory del remove default q')
         assert not score_manager.configuration.packagesystem_path_exists(
-            'built_in_materials.testmarkupinventory')
+            'experimental.tools.scoremanagertools.built_in_materials.testmarkupinventory')
