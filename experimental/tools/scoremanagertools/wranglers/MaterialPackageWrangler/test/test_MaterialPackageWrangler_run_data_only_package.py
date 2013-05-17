@@ -6,12 +6,15 @@ def test_MaterialPackageWrangler_run_data_only_package_01():
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    assert not score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.built_in_materials.testnumbers')
+    assert not score_manager.configuration.packagesystem_path_exists(
+        'experimental.tools.scoremanagertools.built_in_materials.testnumbers')
 
     try:
         score_manager._run(user_input='m d testnumbers default q')
-        assert score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.built_in_materials.testnumbers')
-        mpp = scoremanagertools.proxies.MaterialPackageProxy('experimental.tools.scoremanagertools.built_in_materials.testnumbers')
+        assert score_manager.configuration.packagesystem_path_exists(
+            'experimental.tools.scoremanagertools.built_in_materials.testnumbers')
+        mpp = scoremanagertools.proxies.MaterialPackageProxy(
+            'experimental.tools.scoremanagertools.built_in_materials.testnumbers')
         assert mpp.is_data_only
         assert mpp.list_directory() == ['__init__.py', 'material_definition.py', 'tags.py']
         assert mpp.has_readable_initializer
@@ -23,7 +26,8 @@ def test_MaterialPackageWrangler_run_data_only_package_01():
         assert mpp.output_material is None
     finally:
         score_manager._run(user_input='m testnumbers del remove default q')
-        assert not score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.built_in_materials.testnumbers')
+        assert not score_manager.configuration.packagesystem_path_exists(
+            'experimental.tools.scoremanagertools.built_in_materials.testnumbers')
 
 
 def test_MaterialPackageWrangler_run_data_only_package_02():
@@ -32,14 +36,17 @@ def test_MaterialPackageWrangler_run_data_only_package_02():
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    assert not score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.built_in_materials.testnumbers')
+    assert not score_manager.configuration.packagesystem_path_exists(
+        'experimental.tools.scoremanagertools.built_in_materials.testnumbers')
 
     try:
         score_manager._run(user_input=
             'm d testnumbers default '
             'testnumbers incanned canned_exception.py default q')
-        assert score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.built_in_materials.testnumbers')
-        mpp = scoremanagertools.proxies.MaterialPackageProxy('experimental.tools.scoremanagertools.built_in_materials.testnumbers')
+        assert score_manager.configuration.packagesystem_path_exists(
+            'experimental.tools.scoremanagertools.built_in_materials.testnumbers')
+        mpp = scoremanagertools.proxies.MaterialPackageProxy(
+            'experimental.tools.scoremanagertools.built_in_materials.testnumbers')
         assert mpp.is_data_only
         assert mpp.list_directory() == ['__init__.py', 'material_definition.py', 'tags.py']
         assert not mpp.has_readable_initializer
@@ -51,7 +58,8 @@ def test_MaterialPackageWrangler_run_data_only_package_02():
         assert mpp.output_material is None
     finally:
         score_manager._run(user_input='m testnumbers del remove default q')
-        assert not score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.built_in_materials.testnumbers')
+        assert not score_manager.configuration.packagesystem_path_exists(
+            'experimental.tools.scoremanagertools.built_in_materials.testnumbers')
 
 
 def test_MaterialPackageWrangler_run_data_only_package_03():
@@ -60,15 +68,18 @@ def test_MaterialPackageWrangler_run_data_only_package_03():
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    assert not score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.built_in_materials.testnumbers')
+    assert not score_manager.configuration.packagesystem_path_exists(
+        'experimental.tools.scoremanagertools.built_in_materials.testnumbers')
 
     try:
         score_manager._run(user_input=
             'm d testnumbers default '
             'testnumbers incanned canned_exception.py default '
             'inr yes no default q')
-        assert score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.built_in_materials.testnumbers')
-        mpp = scoremanagertools.proxies.MaterialPackageProxy('experimental.tools.scoremanagertools.built_in_materials.testnumbers')
+        assert score_manager.configuration.packagesystem_path_exists(
+            'experimental.tools.scoremanagertools.built_in_materials.testnumbers')
+        mpp = scoremanagertools.proxies.MaterialPackageProxy(
+            'experimental.tools.scoremanagertools.built_in_materials.testnumbers')
         assert mpp.is_data_only
         assert mpp.list_directory() == ['__init__.py', 'material_definition.py', 'tags.py']
         assert mpp.has_readable_initializer
@@ -80,7 +91,8 @@ def test_MaterialPackageWrangler_run_data_only_package_03():
         assert mpp.output_material is None
     finally:
         score_manager._run(user_input='m testnumbers del remove default q')
-        assert not score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.built_in_materials.testnumbers')
+        assert not score_manager.configuration.packagesystem_path_exists(
+            'experimental.tools.scoremanagertools.built_in_materials.testnumbers')
 
 
 def test_MaterialPackageWrangler_run_data_only_package_04():
@@ -89,15 +101,18 @@ def test_MaterialPackageWrangler_run_data_only_package_04():
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    assert not score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.built_in_materials.testnumbers')
+    assert not score_manager.configuration.packagesystem_path_exists(
+        'experimental.tools.scoremanagertools.built_in_materials.testnumbers')
 
     try:
         score_manager._run(user_input=
             'm d testnumbers default '
             'testnumbers mdcanned canned_testnumbers_material_definition.py default '
             'omm default q')
-        assert score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.built_in_materials.testnumbers')
-        mpp = scoremanagertools.proxies.MaterialPackageProxy('experimental.tools.scoremanagertools.built_in_materials.testnumbers')
+        assert score_manager.configuration.packagesystem_path_exists(
+            'experimental.tools.scoremanagertools.built_in_materials.testnumbers')
+        mpp = scoremanagertools.proxies.MaterialPackageProxy(
+            'experimental.tools.scoremanagertools.built_in_materials.testnumbers')
         assert mpp.is_data_only
         assert mpp.list_directory() == [
             '__init__.py', 'material_definition.py', 'output_material.py', 'tags.py']
@@ -110,7 +125,8 @@ def test_MaterialPackageWrangler_run_data_only_package_04():
         assert mpp.output_material == [1, 2, 3, 4, 5]
     finally:
         score_manager._run(user_input='m testnumbers del remove default q')
-        assert not score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.built_in_materials.testnumbers')
+        assert not score_manager.configuration.packagesystem_path_exists(
+            'experimental.tools.scoremanagertools.built_in_materials.testnumbers')
 
 
 def test_MaterialPackageWrangler_run_data_only_package_05():
@@ -119,14 +135,17 @@ def test_MaterialPackageWrangler_run_data_only_package_05():
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    assert not score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.built_in_materials.testnumbers')
+    assert not score_manager.configuration.packagesystem_path_exists(
+        'experimental.tools.scoremanagertools.built_in_materials.testnumbers')
 
     try:
         score_manager._run(user_input=
             'm d testnumbers default '
             'testnumbers mddelete remove default q')
-        assert score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.built_in_materials.testnumbers')
-        mpp = scoremanagertools.proxies.MaterialPackageProxy('experimental.tools.scoremanagertools.built_in_materials.testnumbers')
+        assert score_manager.configuration.packagesystem_path_exists(
+            'experimental.tools.scoremanagertools.built_in_materials.testnumbers')
+        mpp = scoremanagertools.proxies.MaterialPackageProxy(
+            'experimental.tools.scoremanagertools.built_in_materials.testnumbers')
         assert mpp.is_data_only
         assert mpp.list_directory() == ['__init__.py', 'tags.py']
         assert mpp.has_readable_initializer
@@ -138,7 +157,8 @@ def test_MaterialPackageWrangler_run_data_only_package_05():
         assert mpp.output_material is None
     finally:
         score_manager._run(user_input='m testnumbers del remove default q')
-        assert not score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.built_in_materials.testnumbers')
+        assert not score_manager.configuration.packagesystem_path_exists(
+            'experimental.tools.scoremanagertools.built_in_materials.testnumbers')
 
 
 def test_MaterialPackageWrangler_run_data_only_package_06():
@@ -147,14 +167,17 @@ def test_MaterialPackageWrangler_run_data_only_package_06():
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    assert not score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.built_in_materials.testnumbers')
+    assert not score_manager.configuration.packagesystem_path_exists(
+        'experimental.tools.scoremanagertools.built_in_materials.testnumbers')
 
     try:
         score_manager._run(user_input=
             'm d testnumbers default '
             'testnumbers mdstub default q')
-        assert score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.built_in_materials.testnumbers')
-        mpp = scoremanagertools.proxies.MaterialPackageProxy('experimental.tools.scoremanagertools.built_in_materials.testnumbers')
+        assert score_manager.configuration.packagesystem_path_exists(
+            'experimental.tools.scoremanagertools.built_in_materials.testnumbers')
+        mpp = scoremanagertools.proxies.MaterialPackageProxy(
+            'experimental.tools.scoremanagertools.built_in_materials.testnumbers')
         assert mpp.is_data_only
         assert mpp.list_directory() == ['__init__.py', 'material_definition.py', 'tags.py']
         assert mpp.has_readable_initializer
@@ -166,7 +189,8 @@ def test_MaterialPackageWrangler_run_data_only_package_06():
         assert mpp.output_material is None
     finally:
         score_manager._run(user_input='m testnumbers del remove default q')
-        assert not score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.built_in_materials.testnumbers')
+        assert not score_manager.configuration.packagesystem_path_exists(
+            'experimental.tools.scoremanagertools.built_in_materials.testnumbers')
 
 
 def test_MaterialPackageWrangler_run_data_only_package_07():
@@ -175,7 +199,8 @@ def test_MaterialPackageWrangler_run_data_only_package_07():
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    assert not score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.built_in_materials.testnumbers')
+    assert not score_manager.configuration.packagesystem_path_exists(
+        'experimental.tools.scoremanagertools.built_in_materials.testnumbers')
 
     try:
         score_manager._run(user_input=
@@ -183,8 +208,10 @@ def test_MaterialPackageWrangler_run_data_only_package_07():
             'testnumbers mdcanned canned_testnumbers_material_definition.py default '
             'omm default '
             'omdelete remove default q')
-        assert score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.built_in_materials.testnumbers')
-        mpp = scoremanagertools.proxies.MaterialPackageProxy('experimental.tools.scoremanagertools.built_in_materials.testnumbers')
+        assert score_manager.configuration.packagesystem_path_exists(
+            'experimental.tools.scoremanagertools.built_in_materials.testnumbers')
+        mpp = scoremanagertools.proxies.MaterialPackageProxy(
+            'experimental.tools.scoremanagertools.built_in_materials.testnumbers')
         assert mpp.is_data_only
         assert mpp.list_directory() == ['__init__.py', 'material_definition.py', 'tags.py']
         assert mpp.has_readable_initializer
@@ -196,7 +223,8 @@ def test_MaterialPackageWrangler_run_data_only_package_07():
         assert mpp.output_material is None
     finally:
         score_manager._run(user_input='m testnumbers del remove default q')
-        assert not score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.built_in_materials.testnumbers')
+        assert not score_manager.configuration.packagesystem_path_exists(
+            'experimental.tools.scoremanagertools.built_in_materials.testnumbers')
 
 
 def test_MaterialPackageWrangler_run_data_only_package_08():
@@ -205,14 +233,17 @@ def test_MaterialPackageWrangler_run_data_only_package_08():
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    assert not score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.built_in_materials.testnumbers')
+    assert not score_manager.configuration.packagesystem_path_exists(
+        'experimental.tools.scoremanagertools.built_in_materials.testnumbers')
 
     try:
         score_manager._run(user_input=
             'm d testnumbers default '
             'testnumbers mdcanned canned_testnumbers_material_definition_with_exception.py default q')
-        assert score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.built_in_materials.testnumbers')
-        mpp = scoremanagertools.proxies.MaterialPackageProxy('experimental.tools.scoremanagertools.built_in_materials.testnumbers')
+        assert score_manager.configuration.packagesystem_path_exists(
+            'experimental.tools.scoremanagertools.built_in_materials.testnumbers')
+        mpp = scoremanagertools.proxies.MaterialPackageProxy(
+            'experimental.tools.scoremanagertools.built_in_materials.testnumbers')
         assert mpp.is_data_only
         assert mpp.list_directory() == ['__init__.py', 'material_definition.py', 'tags.py']
         assert mpp.has_readable_initializer
@@ -224,7 +255,8 @@ def test_MaterialPackageWrangler_run_data_only_package_08():
         assert mpp.output_material is None
     finally:
         score_manager._run(user_input='m testnumbers del remove default q')
-        assert not score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.built_in_materials.testnumbers')
+        assert not score_manager.configuration.packagesystem_path_exists(
+            'experimental.tools.scoremanagertools.built_in_materials.testnumbers')
 
 
 def test_MaterialPackageWrangler_run_data_only_package_09():
@@ -233,7 +265,8 @@ def test_MaterialPackageWrangler_run_data_only_package_09():
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    assert not score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.built_in_materials.testnumbers')
+    assert not score_manager.configuration.packagesystem_path_exists(
+        'experimental.tools.scoremanagertools.built_in_materials.testnumbers')
 
     try:
         score_manager._run(user_input=
@@ -241,8 +274,10 @@ def test_MaterialPackageWrangler_run_data_only_package_09():
             'testnumbers mdcanned canned_testnumbers_material_definition.py default '
             'omm default '
             'omcanned canned_exception.py default q')
-        assert score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.built_in_materials.testnumbers')
-        mpp = scoremanagertools.proxies.MaterialPackageProxy('experimental.tools.scoremanagertools.built_in_materials.testnumbers')
+        assert score_manager.configuration.packagesystem_path_exists(
+            'experimental.tools.scoremanagertools.built_in_materials.testnumbers')
+        mpp = scoremanagertools.proxies.MaterialPackageProxy(
+            'experimental.tools.scoremanagertools.built_in_materials.testnumbers')
         assert mpp.is_data_only
         assert mpp.list_directory() == [
             '__init__.py', 'material_definition.py', 'output_material.py', 'tags.py']
@@ -255,4 +290,5 @@ def test_MaterialPackageWrangler_run_data_only_package_09():
         assert mpp.output_material is None
     finally:
         score_manager._run(user_input='m testnumbers del remove default q')
-        assert not score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.built_in_materials.testnumbers')
+        assert not score_manager.configuration.packagesystem_path_exists(
+            'experimental.tools.scoremanagertools.built_in_materials.testnumbers')

@@ -126,7 +126,15 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         return result
 
     def _list_built_in_asset_container_filesystem_paths(self, head=None):
-        return [self.built_in_score_external_asset_container_filesystem_path]
+        result = []
+        if head is None:
+            result.append(self.built_in_score_external_asset_container_filesystem_path)
+        else:
+            filesystem_path = self.configuration.packagesystem_path_to_filesystem_path(head)
+            if self.built_in_score_external_asset_container_filesystem_path.startswith(
+                filesystem_path):
+                result.append(self.built_in_score_external_asset_container_filesystem_path)
+        return result
 
     def _list_built_in_score_asset_container_filesystem_paths(self, head=None):
         result = []
