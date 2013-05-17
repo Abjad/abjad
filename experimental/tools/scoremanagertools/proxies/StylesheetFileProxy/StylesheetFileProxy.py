@@ -2,6 +2,28 @@ from experimental.tools.scoremanagertools.proxies.FileProxy import FileProxy
 
 
 class StylesheetFileProxy(FileProxy):
+    '''Stylesheet file proxy:
+
+    ::
+
+        >>> import os
+
+    ::
+
+        >>> score_manager = scoremanagertools.scoremanager.ScoreManager()
+        >>> wrangler = score_manager.stylesheet_file_wrangler
+        >>> directory_name = wrangler.built_in_score_external_asset_container_filesystem_path
+        >>> filesystem_path = os.path.join(directory_name, 'clean_letter_14.ly')
+        >>> proxy = scoremanagertools.proxies.StylesheetFileProxy(filesystem_path=filesystem_path)
+
+    ::
+
+        >>> proxy
+        StylesheetFileProxy('/Users/trevorbaca/Documents/abjad/experimental/tools/scoremanagertools/built_in_stylesheets/clean_letter_14.ly')
+
+
+    Return stylesheet proxy.
+    '''
 
     ### CLASS ATTRIBUTES ###
 

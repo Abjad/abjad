@@ -42,6 +42,9 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler.PackagesystemAssetWrangler.PackagesystemAssetWrangler.get_asset_proxies
    :noindex:
 
+.. automethod:: experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler.PackagesystemAssetWrangler.PackagesystemAssetWrangler.get_built_in_asset_proxies
+   :noindex:
+
 .. automethod:: experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler.PackagesystemAssetWrangler.PackagesystemAssetWrangler.get_score_external_asset_proxies
    :noindex:
 
