@@ -101,8 +101,12 @@ class MaterialPackageWrangler(PackageWrangler):
             >>> for x in wrangler._list_score_external_asset_container_filesystem_paths():
             ...     x
             '/Users/trevorbaca/Documents/abjad/experimental/tools/scoremanagertools/built_in_materials'
-            '/Users/trevorbaca/Documents/baca/music/materials'
             ...
+
+        ::
+
+            >>> len(wrangler._list_score_external_asset_container_filesystem_paths())
+            2
 
         Output lists score-external materials followed by score internal materials.
 

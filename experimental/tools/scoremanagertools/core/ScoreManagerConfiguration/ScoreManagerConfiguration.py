@@ -541,6 +541,15 @@ class ScoreManagerConfiguration(Configuration):
         # TODO: maybe elif here instead of if?
         if filesystem_path.startswith(self.built_in_scores_directory_path):
             prefix_length = len(self.abjad_configuration.abjad_root_directory_path) + 1
+        elif filesystem_path.startswith(self.user_materials_directory_path):
+            prefix_length = len(self.user_materials_directory_path) + 1
+            remainder = filesystem_path[prefix_length:]
+            if remainder:
+                remainder = remainder.replace(os.path.sep, '.')
+                result = '{}.{}'.format(self.user_materials_package_path, remainder)
+            else:
+                result = self.user_materials_package_path
+            return result
         elif filesystem_path.startswith(self.user_score_external_assets_directory_path):
             prefix_length = len(self.user_score_external_assets_directory_path) + 1
         elif filesystem_path.startswith(self.built_in_specifiers_directory_path):
