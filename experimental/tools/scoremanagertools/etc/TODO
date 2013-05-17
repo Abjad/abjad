@@ -38,14 +38,31 @@
 
 * * *
 
-18. Consolidate scores to single repository.
+18. Audit the UI of the entire materials management system by hand.
 
-19. Add a scores/test directory and check it into the scores repository.
+19. Currently MaterialPackageMaker inherits from MaterialPackageProxy.
+    Maybe MaterialPackageMaker should *have* a MaterialPackageProxy instead.
+    This would clean up the inheritance schema somewhat.
+
+20. Add a scores/test directory and check it into the scores repository.
     Then add a scores/test/test_scores_import_scores.py file.
     The file will test 'import red_example_score', 'import green_example_score', and so on.
     This will be a very high-level test to make sure that entire score packages remain importable.
 
-20. Simplify custom_score/music/materials/__init__.py files.
+21. Consolidate scores to single repository.
+
+22. Split recursif repositories. Then remove recursif hardcoding.
+
+23. Implement example_score_i.music.materials.divisions to import 
+    example_score_i.music.materials.time_signatures.
+    This will implement an intrapackage material import.
+    Implement example_score_ii.music.materials.divisions to 
+    import example_score_i.music.materials.time_signatures.
+    This will implement an interpackage material import.
+
+24. Remove ModuleProxy.unimport() entirely.
+
+25. Simplify custom_score/music/materials/__init__.py files.
     File should probably contain nothing.
     What is the design goal?
     The design goal is that the score manager should always start.
@@ -55,45 +72,21 @@
     Ultimately this should mean that safe_import() can be removed from *all* __init__.py files everywhere.
     The system might preserve safe_import() to be used in direct response to user request for explicit import.
 
-21. Implement example_score_i.music.materials.divisions to import 
-    example_score_i.music.materials.time_signatures.
-    This will implement an intrapackage material import.
-    Implement example_score_ii.music.materials.divisions to 
-    import example_score_i.music.materials.time_signatures.
-    This will implement an interpackage material import.
+26. Replace all _read_only_attributes.py and _public_attributes.py test files with doctests.
 
-22. Remove the has_readable_... and is_readable_... properties from the system entirely.
-    Force such functionality to be method calls that will be noticeably expensive.
+27. Sweep inline scoremanagertools TODO items.
 
-23. Migrate all build_illustration.py modules from separate modules to bound class methods.
+28. Document StylesheetFileProxy next.
 
-24. Audit the UI of the entire materials management system by hand.
+29. Author ScorePackageProxy docstrings.
 
-25. Currently MaterialPackageMaker inherits from MaterialPackageProxy.
-    Maybe MaterialPackageMaker should *have* a MaterialPackageProxy instead.
-    This would clean up the inheritance schema somewhat.
+30. Remove 'grandparent_directory_path'.
 
-26. Sweep inline scoremanagertools TODO items.
+31. Make ScoreManagerConfiguration READ ONLY!
 
-27. Remove 'grandparent_directory_path'.
+32. Add ScoreManagerConfiguration.user_directory property.
 
-28. Remove ModuleProxy.unimport() entirely.
-
-29. Reimplement self._handle_main_menu_result methods around dictionaries.
-
-30. Rename flamingo_input to something semantic.
-
-31. Add ScoreManagerConfiguration.user_directory property.
-
-32. Document StylesheetFileProxy next.
-
-33. Author ScorePackageProxy docstrings.
-
-34. Replace all _read_only_attributes.py and _public_attributes.py test files with doctests.
-
-35. Make ScoreManagerConfiguration READ ONLY!
-
-36. Revisit score_manager/configuration.py file.
+33. Revisit score_manager/configuration.py file.
     The only necessary user settings should be these:
         user_collateral_directory_path = /Users/trevorbaca/collateral
         user_scores_directory_path = /Users/trevorbaca/Documents/scores
@@ -104,22 +97,29 @@
     * store user material package makers in user collateral directory
     * store user stylesheets in user collateral directory
 
-37. Add PackageystemAssetProxy to superclass ModuleProxy and PackageProxy.
-
-38. Change DistributionDirectoryProxy.__init__(score_package_name=None) to score_package_path.
-    Same with ExergueDirectoryProxy.
-    Same with MusicPackageProxy.
-
-39. Add MaterialPackageWrangler docstrings.
+34. Add MaterialPackageWrangler docstrings.
     Then move experimental/built_in_materials to experimental/tools/scoremanagertools/built_in_materials.
 
-40. Add ~/score_manager/materials directory.
+35. Add ~/score_manager/materials directory.
     Populate with two or three materials for testing.
     Rerun MaterialPackageWrangler doctests and py.test battery.
 
-41. Create ~/Documents/baca/scoremanagerextensions to house subdirectories:
+36. Create ~/Documents/baca/scoremanagerextensions to house subdirectories:
         ~/Documents/baca/scoremanagerextensions/editors
         ~/Documents/baca/scoremanagerextensions/materialpackagemakers
         ~/Documents/baca/scoremanagerextensions/materials
 
-42. Split recursif repositories. Then remove recursif hardcoding.
+37. Remove the has_readable_... and is_readable_... properties from the system entirely.
+    Force such functionality to be method calls that will be noticeably expensive.
+
+38. Migrate all build_illustration.py modules from separate modules to bound class methods.
+
+39. Add PackageystemAssetProxy to superclass ModuleProxy and PackageProxy.
+
+40. Change DistributionDirectoryProxy.__init__(score_package_name=None) to score_package_path.
+    Same with ExergueDirectoryProxy.
+    Same with MusicPackageProxy.
+
+41. Reimplement self._handle_main_menu_result methods around dictionaries.
+
+42. Rename flamingo_input to something semantic.
