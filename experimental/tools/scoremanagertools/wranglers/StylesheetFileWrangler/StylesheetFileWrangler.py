@@ -18,7 +18,6 @@ class StylesheetFileWrangler(FileWrangler):
     asset_container_path_infix_parts = ('music', 'stylesheets')
     built_in_stylesheets_directory_path = os.path.join(
         FileWrangler.configuration.score_manager_tools_directory_path, 'built_in_stylesheets')
-    score_internal_assets_exist = False
 
     ### INITIALIZER ###
 
@@ -51,7 +50,8 @@ class StylesheetFileWrangler(FileWrangler):
             >>> for x in wrangler._get_asset_container_proxies():
             ...     x
             DirectoryProxy('.../tools/scoremanagertools/built_in_stylesheets')
-            DirectoryProxy('.../score_manager/stylesheets')
+            DirectoryProxy('.../stylesheets')
+            ...
 
         Return list.
         '''
@@ -65,7 +65,8 @@ class StylesheetFileWrangler(FileWrangler):
             >>> for x in wrangler._get_score_external_asset_container_proxies():
             ...     x
             DirectoryProxy('.../tools/scoremanagertools/built_in_stylesheets')
-            DirectoryProxy('.../score_manager/stylesheets')
+            DirectoryProxy('.../stylesheets')
+            ...
 
         Return list.
         '''
@@ -76,8 +77,12 @@ class StylesheetFileWrangler(FileWrangler):
 
         ::
 
-            >>> wrangler._get_score_internal_asset_container_proxies()
-            []
+            >>> for x in wrangler._get_score_internal_asset_container_proxies():
+            ...     x
+            DirectoryProxy('.../tools/scoremanagertools/built_in_scores/blue_example_score/music/stylesheets')
+            DirectoryProxy('.../tools/scoremanagertools/built_in_scores/green_example_score/music/stylesheets')
+            DirectoryProxy('.../tools/scoremanagertools/built_in_scores/red_example_score/music/stylesheets')
+            ...
 
         Return list.
         '''
@@ -88,8 +93,10 @@ class StylesheetFileWrangler(FileWrangler):
 
         ::
 
-            >>> wrangler._get_user_asset_container_proxies()
-            [DirectoryProxy('.../score_manager/stylesheets')]
+            >>> for x in wrangler._get_user_asset_container_proxies():
+            ...     x
+            DirectoryProxy('.../stylesheets')
+            ...
 
         Return list.
         '''
@@ -113,7 +120,8 @@ class StylesheetFileWrangler(FileWrangler):
             >>> for x in wrangler._list_asset_container_filesystem_paths():
             ...     x
             '.../tools/scoremanagertools/built_in_stylesheets'
-            '.../score_manager/stylesheets'
+            '.../stylesheets'
+            ...
 
         Return list.
         '''
@@ -140,7 +148,8 @@ class StylesheetFileWrangler(FileWrangler):
             >>> for x in wrangler._list_score_external_asset_container_filesystem_paths():
             ...     x
             '.../tools/scoremanagertools/built_in_stylesheets'
-            '.../score_manager/stylesheets'
+            '.../stylesheets'
+            ...
 
         Return list.
         '''
@@ -151,8 +160,12 @@ class StylesheetFileWrangler(FileWrangler):
 
         ::
 
-            >>> wrangler._list_score_internal_asset_container_filesystem_paths()
-            []
+            >>> for x in wrangler._list_score_internal_asset_container_filesystem_paths():
+            ...     x
+            '.../tools/scoremanagertools/built_in_scores/blue_example_score/music/stylesheets'
+            '.../tools/scoremanagertools/built_in_scores/green_example_score/music/stylesheets'
+            '.../tools/scoremanagertools/built_in_scores/red_example_score/music/stylesheets'
+            ...
 
         Return list.
         '''
@@ -163,8 +176,10 @@ class StylesheetFileWrangler(FileWrangler):
 
         ::
 
-            >>> wrangler._list_user_asset_container_filesystem_paths()
-            ['.../score_manager/stylesheets']
+            >>> for x in wrangler._list_user_asset_container_filesystem_paths():
+            ...     x
+            '.../stylesheets'
+            ...
 
         (Output will vary according to configuration.)
 
@@ -276,6 +291,7 @@ class StylesheetFileWrangler(FileWrangler):
             StylesheetFileProxy('.../tools/scoremanagertools/built_in_stylesheets/clean_letter_16.ly')
             StylesheetFileProxy('.../tools/scoremanagertools/built_in_stylesheets/rhythm_letter_16.ly')
             StylesheetFileProxy('.../score_manager/stylesheets/baca_letter_14.ly')
+            StylesheetFileProxy('.../tools/scoremanagertools/built_in_scores/red_example_score/music/stylesheets/red_example_score_stylesheet.ly')
 
         Return list.
         '''
@@ -302,8 +318,9 @@ class StylesheetFileWrangler(FileWrangler):
 
         ::
 
-            >>> wrangler.get_score_internal_asset_proxies()
-            []
+            >>> for x in wrangler.get_score_internal_asset_proxies():
+            ...     x
+            StylesheetFileProxy('.../tools/scoremanagertools/built_in_scores/red_example_score/music/stylesheets/red_example_score_stylesheet.ly')
 
         Return list.
         '''
@@ -353,6 +370,7 @@ class StylesheetFileWrangler(FileWrangler):
             '.../tools/scoremanagertools/built_in_stylesheets/clean_letter_16.ly'
             '.../tools/scoremanagertools/built_in_stylesheets/rhythm_letter_16.ly'
             '.../score_manager/stylesheets/baca_letter_14.ly'
+            '.../tools/scoremanagertools/built_in_scores/red_example_score/music/stylesheets/red_example_score_stylesheet.ly'
 
         Return list.
         '''
@@ -379,8 +397,9 @@ class StylesheetFileWrangler(FileWrangler):
 
         ::
 
-            >>> wrangler.list_score_internal_asset_filesystem_paths()
-            []
+            >>> for x in wrangler.list_score_internal_asset_filesystem_paths():
+            ...     x
+            '.../tools/scoremanagertools/built_in_scores/red_example_score/music/stylesheets/red_example_score_stylesheet.ly'
 
         Return list.
         '''
@@ -429,6 +448,7 @@ class StylesheetFileWrangler(FileWrangler):
             '.../tools/scoremanagertools/built_in_stylesheets/clean_letter_16.ly'
             '.../tools/scoremanagertools/built_in_stylesheets/rhythm_letter_16.ly'
             '.../score_manager/stylesheets/baca_letter_14.ly'
+            '.../tools/scoremanagertools/built_in_scores/red_example_score/music/stylesheets/red_example_score_stylesheet.ly'
 
         Return list.
         '''

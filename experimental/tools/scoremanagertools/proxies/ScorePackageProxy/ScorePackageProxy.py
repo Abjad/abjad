@@ -180,6 +180,10 @@ class ScorePackageProxy(PackageProxy):
         return '.'.join([self.package_path, 'music', 'segments'])
 
     @property
+    def stylesheets_directory_path(self):
+        return os.path.join(self.filesystem_path, 'music', 'stylesheets')
+
+    @property
     def tempo_inventory(self):
         for material_package_proxy in self.material_package_wrangler.get_asset_proxies(
             head=self.package_path):
@@ -353,6 +357,11 @@ class ScorePackageProxy(PackageProxy):
         if not os.path.exists(self.segments_package_initializer_file_name):
             result = False
             file(self.segments_package_initializer_file_name, 'w').write('')
+        if not os.path.exists(self.stylesheets_directory_path):
+            result = False
+            prompt = 'create {}'.format(self.stylesheets_directory_path)
+            if not is_interactive or self._io.confirm(prompt):
+                os.mkdir(self.stylesheets_directory_path)
         self._io.proceed('packaged structure fixed.', is_interactive=is_interactive)
         return result
 
