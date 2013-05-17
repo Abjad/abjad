@@ -15,6 +15,7 @@ class StylesheetFileWrangler(FileWrangler):
 
     ### CLASS ATTRIBUTES ###
 
+    asset_container_path_infix_parts = ('music', 'stylesheets')
     built_in_stylesheets_directory_path = os.path.join(
         FileWrangler.configuration.score_manager_tools_directory_path, 'built_in_stylesheets')
     score_internal_assets_exist = False

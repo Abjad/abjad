@@ -23,6 +23,7 @@ def test_ScoreManager_show_hidden_menu_entries_01():
          '',
          '     show active scores only (active)',
          '     show all scores (all)',
+         '     fix all score package structures (fix)',
          '     show mothballed scores only (mb)',
          '     profile packages (profile)',
          '     run py.test on all scores (py.test)',

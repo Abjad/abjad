@@ -33,24 +33,26 @@ class ScoreManager(ScoreManagerObject):
             self._session.show_active_scores()
         elif result == 'all':
             self._session.show_all_scores()
-        elif result == 'm':
-            self.material_package_wrangler._run(
-                rollback=True, head=self.configuration.built_in_materials_package_path)
         elif result == 'f':
             self.music_specifier_module_wrangler._run(
                 rollback=True, head=self.configuration.built_in_specifiers_package_path)
+        elif result == 'fix':
+            self.score_package_wrangler.fix_visible_assets()
         elif result == 'k':
             self.print_not_yet_implemented()
-        elif result == 'new':
-            self.score_package_wrangler.make_asset_interactively(rollback=True)
+        elif result == 'm':
+            self.material_package_wrangler._run(
+                rollback=True, head=self.configuration.built_in_materials_package_path)
         elif result == 'mb':
             self._session.show_mothballed_scores()
-        elif result == 'svn':
-            self.manage_svn()
+        elif result == 'new':
+            self.score_package_wrangler.make_asset_interactively(rollback=True)
         elif result == 'profile':
             self.score_package_wrangler.profile_visible_assets()
         elif result == 'py.test':
             self.run_py_test_on_all_user_scores()
+        elif result == 'svn':
+            self.manage_svn()
         elif result in self.score_package_wrangler.list_visible_asset_packagesystem_paths():
             self.edit_score_interactively(result)
 
@@ -64,6 +66,7 @@ class ScoreManager(ScoreManagerObject):
         hidden_section = menu.make_section(is_hidden=True)
         hidden_section.append(('active', 'show active scores only'))
         hidden_section.append(('all', 'show all scores'))
+        hidden_section.append(('fix', 'fix all score package structures'))
         hidden_section.append(('mb', 'show mothballed scores only'))
         hidden_section.append(('profile', 'profile packages'))
         hidden_section.append(('py.test', 'run py.test on all scores'))
