@@ -120,6 +120,8 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
     def _make_visible_asset_menu_tokens(self, head=None):
         keys = self.list_visible_asset_packagesystem_paths(head=head)
         bodies = self.list_space_delimited_lowercase_visible_asset_names(head=head)
+        # TODO:
+        #assert len(keys) == len(bodies)
         return zip(keys, bodies)
 
     ### READ-ONLY PUBLIC PROPERTIES ###

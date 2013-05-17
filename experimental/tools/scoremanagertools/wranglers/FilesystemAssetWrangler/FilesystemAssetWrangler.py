@@ -318,8 +318,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     def list_asset_filesystem_paths(self, head=None):
         result = []
-        if head is None or head in self.built_in_resource_directory_basenames:
-            result.extend(self.list_score_external_asset_filesystem_paths(head=head))
+        result.extend(self.list_score_external_asset_filesystem_paths(head=head))
         result.extend(self.list_score_internal_asset_filesystem_paths(head=head))
         return result
 
