@@ -51,7 +51,7 @@ class ScoreManager(ScoreManagerObject):
             self.score_package_wrangler.profile_visible_assets()
         elif result == 'py.test':
             self.run_py_test_on_all_user_scores()
-        elif result in self.score_package_wrangler.list_visible_asset_package_paths():
+        elif result in self.score_package_wrangler.list_visible_asset_packagesystem_paths():
             self.edit_score_interactively(result)
 
     def _make_main_menu(self):

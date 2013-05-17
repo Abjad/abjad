@@ -185,17 +185,17 @@ class ScorePackageWrangler(PackageWrangler):
         return super(type(self), self).user_score_external_asset_container_filesystem_path
 
     @property
-    def user_score_external_asset_container_package_path(self):
+    def user_score_external_asset_container_packagesystem_path(self):
         '''Score package wrangler user score-external asset container package path:
 
         ::
 
-            >>> wrangler.user_score_external_asset_container_package_path
+            >>> wrangler.user_score_external_asset_container_packagesystem_path
             ''
 
         Return string.
         '''
-        return super(type(self), self).user_score_external_asset_container_package_path
+        return super(type(self), self).user_score_external_asset_container_packagesystem_path
 
     @property
     def visible_score_titles(self):
@@ -285,12 +285,12 @@ class ScorePackageWrangler(PackageWrangler):
                 result.append(asset_proxy)
         return result
 
-    def list_asset_package_paths(self, head=None):
+    def list_asset_packagesystem_paths(self, head=None):
         '''Score package wrangler list asset package paths:
 
         ::
 
-            >>> for x in wrangler.list_asset_package_paths():
+            >>> for x in wrangler.list_asset_packagesystem_paths():
             ...     x
             'experimental.tools.scoremanagertools.built_in_scores.blue_example_score'
             'experimental.tools.scoremanagertools.built_in_scores.green_example_score'
@@ -301,7 +301,7 @@ class ScorePackageWrangler(PackageWrangler):
 
         Return list.
         '''
-        return super(type(self), self).list_asset_package_paths(head=head)
+        return super(type(self), self).list_asset_packagesystem_paths(head=head)
 
     def list_score_external_asset_filesystem_paths(self, head=None):
         '''Score package wrangler list score-external asset filesystem paths:
@@ -316,12 +316,12 @@ class ScorePackageWrangler(PackageWrangler):
         # TODO: this should not have to be hard-coded
         return []
 
-    def list_score_external_asset_package_paths(self, head=None):
+    def list_score_external_asset_packagesystem_paths(self, head=None):
         '''Score package wrangler list score-external asset package paths:
 
         ::
 
-            >>> wrangler.list_score_external_asset_package_paths()
+            >>> wrangler.list_score_external_asset_packagesystem_paths()
             []
         
         Return list.

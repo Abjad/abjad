@@ -38,7 +38,7 @@ class MaterialPackageWrangler(PackageWrangler):
         PackageWrangler.__init__(self,
             built_in_score_external_asset_container_packagesystem_path=\
                 self.configuration.built_in_materials_package_path,
-            user_score_external_asset_container_package_path=\
+            user_score_external_asset_container_packagesystem_path=\
                 self.configuration.user_materials_package_path,
             session=session,
             )
@@ -297,17 +297,17 @@ class MaterialPackageWrangler(PackageWrangler):
         return super(type(self), self).user_score_external_asset_container_filesystem_path
 
     @property
-    def user_score_external_asset_container_package_path(self):
+    def user_score_external_asset_container_packagesystem_path(self):
         '''Material package wrangler user score-external asset container package path:
 
         ::
 
-            >>> wrangler.user_score_external_asset_container_package_path
+            >>> wrangler.user_score_external_asset_container_packagesystem_path
             '...materials'
 
         Return string.
         '''
-        return super(type(self), self).user_score_external_asset_container_package_path
+        return super(type(self), self).user_score_external_asset_container_packagesystem_path
 
     ### PUBLIC METHODS ###
 
@@ -357,7 +357,7 @@ class MaterialPackageWrangler(PackageWrangler):
         '''
         return super(type(self), self).get_asset_proxies(head=head)
 
-    def get_available_material_package_path_interactively(self, user_input=None):
+    def get_available_material_packagesystem_path_interactively(self, user_input=None):
         self._io.assign_user_input(user_input=user_input)
         while True:
             getter = self._io.make_getter(where=self._where)
@@ -428,6 +428,154 @@ class MaterialPackageWrangler(PackageWrangler):
         '''
         return super(type(self), self).get_user_asset_proxies(head=head)
 
+    def list_asset_filesystem_paths(self, head=None):
+        '''Material package wrangler list asset filesystem paths:
+
+        ::
+
+            >>> for x in wrangler.list_asset_filesystem_paths():
+            ...     x
+            '.../abjad/experimental/built_in_materials/red_directives'
+            '.../abjad/experimental/built_in_materials/red_forte'
+            '.../abjad/experimental/built_in_materials/red_marcati'
+            '.../abjad/experimental/built_in_materials/red_notes'
+            '.../abjad/experimental/built_in_materials/red_numbers'
+            '.../abjad/experimental/built_in_materials/red_sargasso_measures'
+            '.../abjad/experimental/built_in_materials/sargasso_multipliers'
+            ...
+
+        User-specific output elided above.
+
+        Return list.
+        '''
+        return super(type(self), self).list_asset_filesystem_paths(head=head) 
+
+    def list_asset_packagesystem_paths(self, head=None):
+        '''Material package wrangler list asset package paths:
+
+        ::
+
+            >>> for x in wrangler.list_asset_packagesystem_paths():
+            ...     x
+            'built_in_materials.red_directives'
+            'built_in_materials.red_forte'
+            'built_in_materials.red_marcati'
+            'built_in_materials.red_notes'
+            'built_in_materials.red_numbers'
+            'built_in_materials.red_sargasso_measures'
+            'built_in_materials.sargasso_multipliers'
+            ...
+            'experimental.tools.scoremanagertools.built_in_scores.red_example_score.music.materials.tempo_inventory'
+            ...
+
+        User-specific output elided above.
+
+        Return list.
+        '''
+        return super(type(self), self).list_asset_packagesystem_paths(head=head) 
+
+    def list_built_in_score_internal_asset_filesystem_paths(self, head=None):
+        '''Material package wrangler list built-in score-internal asset filesystem paths:
+
+        ::
+
+            >>> for x in wrangler.list_built_in_score_internal_asset_filesystem_paths():
+            ...     x
+            '.../experimental/tools/scoremanagertools/built_in_scores/red_example_score/music/materials/tempo_inventory'
+
+        Return list.
+        '''
+        return super(type(self), self).list_built_in_score_internal_asset_filesystem_paths(head=head)
+
+    def list_built_in_score_internal_asset_packagesystem_paths(self, head=None):
+        '''Material package wrangler list built-in score-internal asset package paths:
+
+        ::
+
+            >>> for x in wrangler.list_built_in_score_internal_asset_packagesystem_paths():
+            ...     x
+            'experimental.tools.scoremanagertools.built_in_scores.red_example_score.music.materials.tempo_inventory'
+
+        Return list.
+        '''
+        return super(type(self), self).list_built_in_score_internal_asset_packagesystem_paths(head=head)
+
+    def list_score_external_asset_filesystem_paths(self, head=None):
+        '''Material package wrangler list score-external asset filesystem paths:
+
+        ::
+
+            >>> for x in wrangler.list_score_external_asset_filesystem_paths():
+            ...     x
+            '.../abjad/experimental/built_in_materials/red_directives'
+            '.../abjad/experimental/built_in_materials/red_forte'
+            '.../abjad/experimental/built_in_materials/red_marcati'
+            '.../abjad/experimental/built_in_materials/red_notes'
+            '.../abjad/experimental/built_in_materials/red_numbers'
+            '.../abjad/experimental/built_in_materials/red_sargasso_measures'
+            '.../abjad/experimental/built_in_materials/sargasso_multipliers'
+            ...
+
+        (User-specific output elided.)
+
+        Return list.
+        '''
+        return super(type(self), self).list_score_external_asset_filesystem_paths(head=head)
+
+    def list_score_external_asset_packagesystem_paths(self, head=None):
+        '''Material package wrangler list score-external asset package paths:
+
+        ::
+
+            >>> for x in wrangler.list_score_external_asset_packagesystem_paths():
+            ...     x
+            'built_in_materials.red_directives'
+            'built_in_materials.red_forte'
+            'built_in_materials.red_marcati'
+            'built_in_materials.red_notes'
+            'built_in_materials.red_numbers'
+            'built_in_materials.red_sargasso_measures'
+            'built_in_materials.sargasso_multipliers'
+            ...
+
+        (User-specific output elided.)
+
+        Return list.
+        '''
+        return super(type(self), self).list_score_external_asset_packagesystem_paths(head=head)
+
+    def list_score_internal_asset_filesystem_paths(self, head=None):
+        '''Material package wrangler list score-internal asset filesystem paths:
+
+        ::
+
+            >>> for x in wrangler.list_score_internal_asset_filesystem_paths():
+            ...     x
+            '.../experimental/tools/scoremanagertools/built_in_scores/red_example_score/music/materials/tempo_inventory'
+            ...
+
+        (User-specific output elided.)
+
+        Return list.
+        '''
+        return super(type(self), self).list_score_internal_asset_filesystem_paths(head=head)
+
+    def list_score_internal_asset_packagesystem_paths(self, head=None):
+        '''Material package wrangler list score-internal asset package paths:
+
+        ::
+
+            >>> for x in wrangler.list_score_internal_asset_packagesystem_paths():
+            ...     x
+            'experimental.tools.scoremanagertools.built_in_scores.red_example_score.music.materials.tempo_inventory'
+            ...
+
+        (User-specific output elided.)
+
+        Return list.
+        '''
+        return super(type(self), self).list_score_internal_asset_packagesystem_paths(head=head)
+
     def list_user_asset_filesystem_paths(self, head=None):
         '''Material package wrangler list user asset filesystem paths:
 
@@ -452,7 +600,7 @@ class MaterialPackageWrangler(PackageWrangler):
     def make_data_package_interactively(self, tags=None, user_input=None):
         self._io.assign_user_input(user_input=user_input)
         self._session.push_backtrack()
-        material_package_path = self.get_available_material_package_path_interactively()
+        material_package_path = self.get_available_material_packagesystem_path_interactively()
         self._session.pop_backtrack()
         if self._session.backtrack():
             return
@@ -468,7 +616,7 @@ class MaterialPackageWrangler(PackageWrangler):
     def make_handmade_material_package_interactively(self, user_input=None):
         self._io.assign_user_input(user_input=user_input)
         self._session.push_backtrack()
-        material_package_path = self.get_available_material_package_path_interactively()
+        material_package_path = self.get_available_material_packagesystem_path_interactively()
         self._session.pop_backtrack()
         if self._session.backtrack():
             return
@@ -497,7 +645,7 @@ class MaterialPackageWrangler(PackageWrangler):
     def make_makermade_material_package_interactively(self, user_input=None):
         self._io.assign_user_input(user_input=user_input)
         self._session.push_backtrack()
-        result = self._material_package_maker_wrangler.select_asset_package_path_interactively(
+        result = self._material_package_maker_wrangler.select_asset_packagesystem_path_interactively(
             cache=True, clear=False)
         self._session.pop_backtrack()
         if self._session.backtrack():
@@ -505,7 +653,7 @@ class MaterialPackageWrangler(PackageWrangler):
         material_package_maker_package_path = result
         material_package_maker_class_name = material_package_maker_package_path.split('.')[-1]
         self._session.push_backtrack()
-        material_package_path = self.get_available_material_package_path_interactively()
+        material_package_path = self.get_available_material_packagesystem_path_interactively()
         self._session.pop_backtrack()
         if self._session.backtrack():
             return

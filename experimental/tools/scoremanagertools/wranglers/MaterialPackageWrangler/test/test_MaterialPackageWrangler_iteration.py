@@ -11,9 +11,9 @@ assert not wrangler._session.is_in_score
 def test_MaterialPackageWrangler_iteration_01():
 
     assert 'built_in_materials.red_sargasso_measures' in \
-        wrangler.list_asset_package_paths()
+        wrangler.list_asset_packagesystem_paths()
     assert 'built_in_materials.red_sargasso_measures' not in \
-        wrangler.list_asset_package_paths(
+        wrangler.list_asset_packagesystem_paths(
             head='experimental.tools.scoremanagertools.built_in_scores.red_example_score')
 
 
@@ -60,11 +60,11 @@ def test_MaterialPackageWrangler_iteration_05():
     py.test.skip('TODO: add time_signatures package to Red Example Score.')
 
     assert 'experimental.tools.scoremanagertools.built_in_scores.red_example_score.music.materials.time_signatures' in \
-        wrangler.list_score_internal_asset_package_paths()
+        wrangler.list_score_internal_asset_packagesystem_paths()
     assert 'experimental.tools.scoremanagertools.built_in_scores.red_example_score.music.materials.time_signatures' not in \
-        wrangler.list_score_internal_asset_package_paths(
+        wrangler.list_score_internal_asset_packagesystem_paths(
             head='experimental.tools.scoremanagertools.built_in_scores.green_example_score')
-    assert wrangler.list_score_internal_asset_package_paths(head='asdf') == []
+    assert wrangler.list_score_internal_asset_packagesystem_paths(head='asdf') == []
 
 
 def test_MaterialPackageWrangler_iteration_06():
@@ -93,11 +93,11 @@ def test_MaterialPackageWrangler_iteration_08():
    py.test.skip('TODO: add time_signatures package to Red Example Score.')
 
    assert 'experimental.tools.scoremanagertools.built_in_scores.red_example_score.music.materials.time_signatures' in \
-        wrangler.list_visible_asset_package_paths()
+        wrangler.list_visible_asset_packagesystem_paths()
    assert 'experimental.tools.scoremanagertools.built_in_scores.red_example_score.music.materials.time_signatures' not in \
-        wrangler.list_visible_asset_package_paths(
+        wrangler.list_visible_asset_packagesystem_paths(
             head='experimental.tools.scoremanagertools.built_in_scores.green_example_score')
-   assert wrangler.list_visible_asset_package_paths(head='asdf') == []
+   assert wrangler.list_visible_asset_packagesystem_paths(head='asdf') == []
 
 
 def test_MaterialPackageWrangler_iteration_09():

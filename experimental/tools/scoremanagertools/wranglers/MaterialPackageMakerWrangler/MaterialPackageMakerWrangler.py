@@ -13,7 +13,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         PackageWrangler.__init__(self,
             built_in_score_external_asset_container_packagesystem_path=\
                 'scoremanagertools.materialpackagemakers',
-            user_score_external_asset_container_package_path=\
+            user_score_external_asset_container_packagesystem_path=\
                 self.configuration.user_material_package_makers_package_path,
             user_score_external_asset_container_filesystem_path=\
                 self.configuration.user_material_package_makers_directory_path,
@@ -45,7 +45,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         return menu
 
     def _make_visible_asset_menu_tokens(self, head=None):
-        keys = self.list_asset_package_paths(head=head)
+        keys = self.list_asset_packagesystem_paths(head=head)
         bodies = self.list_space_delimited_lowercase_visible_asset_names(head=head)
         return zip(keys, bodies)
 
@@ -95,8 +95,8 @@ class MaterialPackageMakerWrangler(PackageWrangler):
                 package_path, session=self._session)
         return material_package_proxy
 
-    def list_score_external_asset_package_paths(self, head=None):
-        result = PackageWrangler.list_score_external_asset_package_paths(self, head=head)
+    def list_score_external_asset_packagesystem_paths(self, head=None):
+        result = PackageWrangler.list_score_external_asset_packagesystem_paths(self, head=head)
         #if self.base_class_name in result:
         #    result.remove(self.base_class_name)
         for forbidden_package_path in self.forbidden_package_paths:
