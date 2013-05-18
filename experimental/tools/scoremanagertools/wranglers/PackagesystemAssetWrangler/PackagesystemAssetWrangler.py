@@ -88,12 +88,6 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
             result.append(package_path)
         return result
 
-    def _list_storehouse_package_paths(self, head=None):
-        result = []
-        result.extend(self._list_built_in_external_storehouse_packagesystem_path(head=head))
-        result.extend(self._list_score_storehouse_package_paths(head=head))
-        return result
-
     def _list_built_in_external_storehouse_packagesystem_path(self, head=None):
         result = []
         for package_path in [self.built_in_external_storehouse_packagesystem_path]:
@@ -120,6 +114,12 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
             result.append(score_score_package_path)
         return result
 
+    def _list_storehouse_package_paths(self, head=None):
+        result = []
+        result.extend(self._list_built_in_external_storehouse_packagesystem_path(head=head))
+        result.extend(self._list_score_storehouse_package_paths(head=head))
+        return result
+
     def _list_user_storehouse_package_paths(self, head=None):
         result = []
         for package_path in [self.user_external_storehouse_packagesystem_path]:
@@ -136,13 +136,13 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
+    def built_in_external_storehouse_packagesystem_path(self):
+        return self._built_in_external_storehouse_packagesystem_path
+
+    @property
     def storehouse_proxy_class(self):
         from experimental.tools import scoremanagertools
         return scoremanagertools.proxies.PackageProxy
-
-    @property
-    def built_in_external_storehouse_packagesystem_path(self):
-        return self._built_in_external_storehouse_packagesystem_path
 
     @property
     def user_external_storehouse_packagesystem_path(self):
@@ -215,11 +215,6 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
             result.append(asset_proxy.package_path)
         return result
 
-    def make_storehouse_packages(self, is_interactive=False):
-        self.make_external_storehouse_package()
-        self.make_score_storehouse_packages()
-        self._io.proceed('missing packages created.', is_interactive=is_interactive)
-
     # TODO: write test
     def make_empty_package(self, package_path):
         if package_path is None:
@@ -241,6 +236,11 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
         for score_storehouse_package_path in \
             self._list_score_storehouse_package_paths(head=head):
             self.make_empty_package(score_storehouse_package_path)
+
+    def make_storehouse_packages(self, is_interactive=False):
+        self.make_external_storehouse_package()
+        self.make_score_storehouse_packages()
+        self._io.proceed('missing packages created.', is_interactive=is_interactive)
 
     # TODO: write test
     def rename_asset_interactively(self, head=None):

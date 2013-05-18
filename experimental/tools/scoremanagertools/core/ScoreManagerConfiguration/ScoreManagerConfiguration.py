@@ -345,6 +345,58 @@ class ScoreManagerConfiguration(Configuration):
         return self._settings['transcripts_directory_path']
 
     @property
+    def user_external_assets_directory_path(self):
+        '''User external assets directory path:
+
+        ::
+
+            >>> configuration.user_external_assets_directory_path
+            '/Users/trevorbaca/Documents/baca/music'
+
+        Return string.
+        '''
+        return self._settings['user_external_assets_directory_path']
+
+    @property
+    def user_external_assets_package_path(self):
+        '''User external assets package path:
+
+        ::
+
+            >>> configuration.user_external_assets_package_path # doctest: +SKIP
+            '~.music'
+
+        Return string.
+        '''
+        return self._settings['user_external_assets_package_path']
+        
+    @property
+    def user_external_specifiers_directory_path(self):
+        '''User external specifiers directory path:
+
+        ::
+
+            >>> configuration.user_external_specifiers_directory_path
+            '/Users/trevorbaca/Documents/baca/music/specifiers'
+
+        Return string.
+        '''
+        return os.path.join(self.user_external_assets_directory_path, 'specifiers')
+
+    @property
+    def user_external_specifiers_package_path(self):
+        '''User external specifiers package path:
+
+        ::
+
+            >>> configuration.user_external_specifiers_package_path
+            'baca.music.specifiers'
+
+        Return string.
+        '''
+        return '.'.join([self.user_external_assets_package_path, 'specifiers'])
+
+    @property
     def user_material_package_makers_directory_path(self):
         '''User material package makers directory path:
 
@@ -403,58 +455,6 @@ class ScoreManagerConfiguration(Configuration):
         Return string.
         '''
         return '.'.join([self.user_external_assets_package_path, 'materials'])
-
-    @property
-    def user_external_assets_directory_path(self):
-        '''User external assets directory path:
-
-        ::
-
-            >>> configuration.user_external_assets_directory_path
-            '/Users/trevorbaca/Documents/baca/music'
-
-        Return string.
-        '''
-        return self._settings['user_external_assets_directory_path']
-
-    @property
-    def user_external_assets_package_path(self):
-        '''User external assets package path:
-
-        ::
-
-            >>> configuration.user_external_assets_package_path # doctest: +SKIP
-            '~.music'
-
-        Return string.
-        '''
-        return self._settings['user_external_assets_package_path']
-        
-    @property
-    def user_external_specifiers_directory_path(self):
-        '''User external specifiers directory path:
-
-        ::
-
-            >>> configuration.user_external_specifiers_directory_path
-            '/Users/trevorbaca/Documents/baca/music/specifiers'
-
-        Return string.
-        '''
-        return os.path.join(self.user_external_assets_directory_path, 'specifiers')
-
-    @property
-    def user_external_specifiers_package_path(self):
-        '''User external specifiers package path:
-
-        ::
-
-            >>> configuration.user_external_specifiers_package_path
-            'baca.music.specifiers'
-
-        Return string.
-        '''
-        return '.'.join([self.user_external_assets_package_path, 'specifiers'])
 
     @property
     def user_scores_directory_path(self):

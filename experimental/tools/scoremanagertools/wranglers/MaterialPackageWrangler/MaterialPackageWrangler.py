@@ -72,26 +72,6 @@ class MaterialPackageWrangler(PackageWrangler):
             material_package_proxy = self._get_asset_proxy(result)
             material_package_proxy._run()
 
-    def _list_storehouse_package_paths(self, head=None):
-        '''Material package wrangler list storehouse package paths:
-
-        ::
-
-            >>> for x in wrangler._list_storehouse_package_paths():
-            ...     x
-            'experimental.tools.scoremanagertools.built_in_materials'
-            'experimental.tools.scoremanagertools.built_in_scores.blue_example_score.music.materials'
-            'experimental.tools.scoremanagertools.built_in_scores.green_example_score.music.materials'
-            'experimental.tools.scoremanagertools.built_in_scores.red_example_score.music.materials'
-            ...
-
-        Output lists built-in materials, followed by built-in scores,
-        followed by user scores.
-
-        Return list.
-        '''
-        return super(type(self), self)._list_storehouse_package_paths(head=head)
-
     def _list_external_storehouse_filesystem_paths(self, head=None):
         '''Material package wrangler list external storehouse directory paths:
 
@@ -147,6 +127,26 @@ class MaterialPackageWrangler(PackageWrangler):
         '''
         return super(type(self), self)._list_score_storehouse_package_paths(head=head)
 
+    def _list_storehouse_package_paths(self, head=None):
+        '''Material package wrangler list storehouse package paths:
+
+        ::
+
+            >>> for x in wrangler._list_storehouse_package_paths():
+            ...     x
+            'experimental.tools.scoremanagertools.built_in_materials'
+            'experimental.tools.scoremanagertools.built_in_scores.blue_example_score.music.materials'
+            'experimental.tools.scoremanagertools.built_in_scores.green_example_score.music.materials'
+            'experimental.tools.scoremanagertools.built_in_scores.red_example_score.music.materials'
+            ...
+
+        Output lists built-in materials, followed by built-in scores,
+        followed by user scores.
+
+        Return list.
+        '''
+        return super(type(self), self)._list_storehouse_package_paths(head=head)
+
     def _list_user_storehouse_filesystem_paths(self, head=None):
         '''Material package wrangler list user storehouse filesystem paths:
 
@@ -178,20 +178,6 @@ class MaterialPackageWrangler(PackageWrangler):
         return menu
 
     ### READ-ONLY PUBLIC PROPERTIES ###
-
-    @property
-    def storehouse_proxy_class(self):
-        '''Material package wrangler asset proxy class:
-
-        ::
-
-            >>> wrangler.storehouse_proxy_class.__name__
-            'PackageProxy'
-
-        Return class.
-        '''
-        from experimental.tools import scoremanagertools
-        return scoremanagertools.proxies.PackageProxy
 
     @property
     def asset_proxy_class(self):
@@ -245,6 +231,20 @@ class MaterialPackageWrangler(PackageWrangler):
         Return string.
         '''
         return super(type(self), self).storage_format
+
+    @property
+    def storehouse_proxy_class(self):
+        '''Material package wrangler asset proxy class:
+
+        ::
+
+            >>> wrangler.storehouse_proxy_class.__name__
+            'PackageProxy'
+
+        Return class.
+        '''
+        from experimental.tools import scoremanagertools
+        return scoremanagertools.proxies.PackageProxy
 
     @property
     def user_external_storehouse_filesystem_path(self):

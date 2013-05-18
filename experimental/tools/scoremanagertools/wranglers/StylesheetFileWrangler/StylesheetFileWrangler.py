@@ -42,21 +42,6 @@ class StylesheetFileWrangler(FileWrangler):
 
     ### PRIVATE METHODS ###
 
-    def _get_storehouse_proxies(self, head=None):
-        '''Stylesheet file wrangler get storehouse proxies:
-
-        ::
-
-            >>> for x in wrangler._get_storehouse_proxies():
-            ...     x
-            DirectoryProxy('.../tools/scoremanagertools/built_in_stylesheets')
-            DirectoryProxy('.../stylesheets')
-            ...
-
-        Return list.
-        '''
-        return super(type(self), self)._get_storehouse_proxies(head=head)
-
     def _get_external_storehouse_proxies(self, head=None):
         '''Stylesheet file wrangler get external storehouse proxies:
 
@@ -87,6 +72,21 @@ class StylesheetFileWrangler(FileWrangler):
         '''
         return super(type(self), self)._get_score_storehouse_proxies(head=head)
 
+    def _get_storehouse_proxies(self, head=None):
+        '''Stylesheet file wrangler get storehouse proxies:
+
+        ::
+
+            >>> for x in wrangler._get_storehouse_proxies():
+            ...     x
+            DirectoryProxy('.../tools/scoremanagertools/built_in_stylesheets')
+            DirectoryProxy('.../stylesheets')
+            ...
+
+        Return list.
+        '''
+        return super(type(self), self)._get_storehouse_proxies(head=head)
+
     def _get_user_storehouse_proxies(self, head=None):
         '''Stylesheet file wrangler get user storehouse proxies:
 
@@ -110,21 +110,6 @@ class StylesheetFileWrangler(FileWrangler):
             stylesheet_proxy = scoremanagertools.proxies.StylesheetFileProxy(
                 stylesheet_file_name, session=self._session)
             stylesheet_proxy._run()
-
-    def _list_storehouse_filesystem_paths(self, head=None):
-        '''Stylesheet file wrangler list storehouse directory paths:
-
-        ::
-
-            >>> for x in wrangler._list_storehouse_filesystem_paths():
-            ...     x
-            '.../tools/scoremanagertools/built_in_stylesheets'
-            '.../stylesheets'
-            ...
-
-        Return list.
-        '''
-        return super(type(self), self)._list_storehouse_filesystem_paths(head=head)
 
     def _list_built_in_storehouse_filesystem_paths(self, head=None):
         '''Stylesheet file wrangler list built-in storehouse directory paths:
@@ -172,6 +157,21 @@ class StylesheetFileWrangler(FileWrangler):
         '''
         return super(type(self), self)._list_score_storehouse_filesystem_paths(head=head)
 
+    def _list_storehouse_filesystem_paths(self, head=None):
+        '''Stylesheet file wrangler list storehouse directory paths:
+
+        ::
+
+            >>> for x in wrangler._list_storehouse_filesystem_paths():
+            ...     x
+            '.../tools/scoremanagertools/built_in_stylesheets'
+            '.../stylesheets'
+            ...
+
+        Return list.
+        '''
+        return super(type(self), self)._list_storehouse_filesystem_paths(head=head)
+
     def _list_user_storehouse_filesystem_paths(self, head=None):
         '''Stylesheet file wrangler list user storehouse directory paths:
 
@@ -198,19 +198,6 @@ class StylesheetFileWrangler(FileWrangler):
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
-    @property
-    def storehouse_proxy_class(self):
-        '''Stylesheet file wrangler storehouse proxy class:
-
-        ::
-
-            >>> wrangler.storehouse_proxy_class.__name__
-            'DirectoryProxy'
-
-        Return class.
-        '''
-        return super(type(self), self).storehouse_proxy_class
-        
     @property
     def asset_proxy_class(self):
         '''Stylesheet file wrangler asset class:
@@ -251,6 +238,19 @@ class StylesheetFileWrangler(FileWrangler):
         '''
         return super(type(self), self).storage_format
 
+    @property
+    def storehouse_proxy_class(self):
+        '''Stylesheet file wrangler storehouse proxy class:
+
+        ::
+
+            >>> wrangler.storehouse_proxy_class.__name__
+            'DirectoryProxy'
+
+        Return class.
+        '''
+        return super(type(self), self).storehouse_proxy_class
+        
     ### PUBLIC METHODS ###
 
     def get_asset_proxies(self, head=None):

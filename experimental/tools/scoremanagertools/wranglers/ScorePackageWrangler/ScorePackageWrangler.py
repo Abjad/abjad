@@ -74,19 +74,6 @@ class ScorePackageWrangler(PackageWrangler):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def storehouse_proxy_class(self):
-        '''Score package wrangler asset proxy class:
-
-        ::
-
-            >>> wrangler.storehouse_proxy_class.__name__
-            'PackageProxy'
-
-        Return class.
-        '''
-        return super(type(self), self).storehouse_proxy_class
-
-    @property
     def asset_proxy_class(self):
         '''Score package wrangler asset proxy class:
 
@@ -138,6 +125,19 @@ class ScorePackageWrangler(PackageWrangler):
         Return string.
         '''
         return super(type(self), self).storage_format
+
+    @property
+    def storehouse_proxy_class(self):
+        '''Score package wrangler asset proxy class:
+
+        ::
+
+            >>> wrangler.storehouse_proxy_class.__name__
+            'PackageProxy'
+
+        Return class.
+        '''
+        return super(type(self), self).storehouse_proxy_class
 
     @property
     def user_external_storehouse_filesystem_path(self):
