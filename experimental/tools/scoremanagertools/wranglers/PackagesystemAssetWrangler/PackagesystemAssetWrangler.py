@@ -165,7 +165,7 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
 
     def list_built_in_score_internal_asset_packagesystem_paths(self, head=None):
         result = []
-        for filesystem_path in self.list_specific_asset_filesystem_paths(
+        for filesystem_path in self.list_asset_filesystem_paths(
             built_in_score_internal=True, head=head):
             package_path = self.configuration.filesystem_path_to_packagesystem_path(filesystem_path)
             result.append(package_path)

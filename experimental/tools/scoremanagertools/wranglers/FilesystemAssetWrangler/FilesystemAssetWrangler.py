@@ -184,15 +184,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                 result.append(directory_entry)
         return result
 
-    def _list_user_score_directory_paths(self, head=None):
-        result = []
-        for directory_basename in self._list_score_directory_basenames(head=head):
-            directory_path = os.path.join(
-                self.configuration.user_scores_directory_path,
-                directory_basename)
-            result.append(directory_path) 
-        return result
-
     def _list_score_external_asset_container_filesystem_paths(self, head=None):
         result = []
         result.extend(self._list_built_in_score_external_asset_container_filesystem_paths(head=head))
@@ -214,6 +205,15 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         result = []
         result.extend(self._list_user_score_external_asset_container_filesystem_paths(head=head))
         result.extend(self._list_user_score_internal_asset_container_filesystem_paths(head=head))
+        return result
+
+    def _list_user_score_directory_paths(self, head=None):
+        result = []
+        for directory_basename in self._list_score_directory_basenames(head=head):
+            directory_path = os.path.join(
+                self.configuration.user_scores_directory_path,
+                directory_basename)
+            result.append(directory_path) 
         return result
 
     def _list_user_score_external_asset_container_filesystem_paths(self, head=None):
@@ -319,7 +319,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     def get_asset_proxies(self, head=None):
         result = []
-        for filesystem_path in self.list_specific_asset_filesystem_paths(
+        for filesystem_path in self.list_asset_filesystem_paths(
             built_in_score_external=True, user_score_external=True,
             built_in_score_internal=True, user_score_internal=True, head=head):
             asset_proxy = self._get_asset_proxy(filesystem_path)
@@ -329,13 +329,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def get_visible_asset_proxies(self, head=None):
         return self.get_asset_proxies(head=head)
 
-    def list_space_delimited_lowercase_visible_asset_names(self, head=None):
-        result = []
-        for filesystem_path in self.list_visible_asset_filesystem_paths(head=head):
-            result.append(self._filesystem_path_to_space_delimited_lowercase_name(filesystem_path))
-        return result
-
-    def list_specific_asset_filesystem_paths(self, 
+    def list_asset_filesystem_paths(self, 
         built_in_score_external=False, user_score_external=False,
         built_in_score_internal=False, user_score_internal=False, head=None):
         result = []
@@ -369,8 +363,14 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                         result.append(filesystem_path)
         return result
 
+    def list_space_delimited_lowercase_visible_asset_names(self, head=None):
+        result = []
+        for filesystem_path in self.list_visible_asset_filesystem_paths(head=head):
+            result.append(self._filesystem_path_to_space_delimited_lowercase_name(filesystem_path))
+        return result
+
     def list_visible_asset_filesystem_paths(self, head=None):
-        return self.list_specific_asset_filesystem_paths(
+        return self.list_asset_filesystem_paths(
             built_in_score_external=True, user_score_external=True,
             built_in_score_internal=True, user_score_internal=True, head=head)
 

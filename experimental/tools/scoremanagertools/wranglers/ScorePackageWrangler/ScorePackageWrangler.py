@@ -285,6 +285,34 @@ class ScorePackageWrangler(PackageWrangler):
                 result.append(asset_proxy)
         return result
 
+    # TODO: FIXME
+    def list_asset_filesystem_paths(self,
+        built_in_score_external=False, user_score_external=False,
+        built_in_score_internal=False, user_score_internal=False, head=None):
+        '''Score package manager list specific asset filesystem paths:
+
+        ::
+
+            >>> for x in wrangler.list_asset_filesystem_paths(
+            ...     built_in_score_external=True, user_score_external=True,
+            ...     built_in_score_internal=True, user_score_internal=True):
+            ...     x
+            '.../tools/scoremanagertools/built_in_scores/blue_example_score'
+            '.../tools/scoremanagertools/built_in_scores/green_example_score'
+            '.../tools/scoremanagertools/built_in_scores/red_example_score'
+            ...
+    
+        .. note:: FIXME: this lists a crazy number of extra directories and files.
+
+        Return list.
+        '''
+        return super(type(self), self).list_asset_filesystem_paths(
+            built_in_score_external=built_in_score_external, 
+            user_score_external=user_score_external,
+            built_in_score_internal=built_in_score_internal, 
+            user_score_internal=user_score_internal, 
+            head=head)
+
     def list_asset_packagesystem_paths(self, head=None):
         '''Score package wrangler list asset package paths:
 
@@ -318,34 +346,6 @@ class ScorePackageWrangler(PackageWrangler):
         '''
         # TODO: this should not have to be hard-coded
         return []
-
-    # TODO: FIXME
-    def list_specific_asset_filesystem_paths(self,
-        built_in_score_external=False, user_score_external=False,
-        built_in_score_internal=False, user_score_internal=False, head=None):
-        '''Score package manager list specific asset filesystem paths:
-
-        ::
-
-            >>> for x in wrangler.list_specific_asset_filesystem_paths(
-            ...     built_in_score_external=True, user_score_external=True,
-            ...     built_in_score_internal=True, user_score_internal=True):
-            ...     x
-            '.../tools/scoremanagertools/built_in_scores/blue_example_score'
-            '.../tools/scoremanagertools/built_in_scores/green_example_score'
-            '.../tools/scoremanagertools/built_in_scores/red_example_score'
-            ...
-    
-        .. note:: FIXME: this lists a crazy number of extra directories and files.
-
-        Return list.
-        '''
-        return super(type(self), self).list_specific_asset_filesystem_paths(
-            built_in_score_external=built_in_score_external, 
-            user_score_external=user_score_external,
-            built_in_score_internal=built_in_score_internal, 
-            user_score_internal=user_score_internal, 
-            head=head)
 
     def list_visible_asset_filesystem_paths(self, head=None):
         '''Score package wrangler list visible asset filesystem paths:

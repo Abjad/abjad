@@ -321,14 +321,14 @@ class StylesheetFileWrangler(FileWrangler):
         '''
         return super(type(self), self).get_visible_asset_proxies(head=head)
 
-    def list_specific_asset_filesystem_paths(self,
+    def list_asset_filesystem_paths(self,
         built_in_score_external=False, user_score_external=False,
         built_in_score_internal=False, user_score_internal=False, head=None):
         '''Stylesheet file wrangler list asset filesystem paths:
 
         ::
 
-            >>> for x in wrangler.list_specific_asset_filesystem_paths(
+            >>> for x in wrangler.list_asset_filesystem_paths(
             ...     built_in_score_external=True, user_score_external=True,
             ...     built_in_score_internal=True, user_score_internal=True):
             ...     x
@@ -343,7 +343,7 @@ class StylesheetFileWrangler(FileWrangler):
 
         Return list.
         '''
-        return super(type(self), self).list_specific_asset_filesystem_paths(
+        return super(type(self), self).list_asset_filesystem_paths(
             built_in_score_external=built_in_score_external,
             user_score_external=user_score_external,
             built_in_score_internal=built_in_score_internal,

@@ -381,14 +381,14 @@ class MaterialPackageWrangler(PackageWrangler):
             else:
                 return material_package_path
 
-    def list_specific_asset_filesystem_paths(self,
+    def list_asset_filesystem_paths(self,
         built_in_score_external=False, user_score_external=False,
         built_in_score_internal=False, user_score_internal=False, head=None):
         '''Material package wrangler list asset filesystem paths:
 
         ::
 
-            >>> for x in wrangler.list_specific_asset_filesystem_paths(
+            >>> for x in wrangler.list_asset_filesystem_paths(
             ...     built_in_score_external=True, user_score_external=True,
             ...     built_in_score_internal=True, user_score_internal=True):
             ...     x
@@ -405,7 +405,7 @@ class MaterialPackageWrangler(PackageWrangler):
 
         Return list.
         '''
-        return super(type(self), self).list_specific_asset_filesystem_paths(
+        return super(type(self), self).list_asset_filesystem_paths(
             built_in_score_external=built_in_score_external,
             user_score_external=user_score_external,
             built_in_score_internal=built_in_score_internal,

@@ -431,6 +431,32 @@ class ScoreManagerConfiguration(Configuration):
         return self._settings['user_score_external_assets_package_path']
         
     @property
+    def user_score_external_specifiers_directory_path(self):
+        '''User score-external specifiers directory path:
+
+        ::
+
+            >>> configuration.user_score_external_specifiers_directory_path
+            '/Users/trevorbaca/Documents/baca/music/specifiers'
+
+        Return string.
+        '''
+        return os.path.join(self.user_score_external_assets_directory_path, 'specifiers')
+
+    @property
+    def user_score_external_specifiers_package_path(self):
+        '''User score-external specifiers package path:
+
+        ::
+
+            >>> configuration.user_score_external_specifiers_package_path
+            'baca.music.specifiers'
+
+        Return string.
+        '''
+        return '.'.join([self.user_score_external_assets_package_path, 'specifiers'])
+
+    @property
     def user_scores_directory_path(self):
         '''Scores directory path:
 
@@ -480,32 +506,6 @@ class ScoreManagerConfiguration(Configuration):
         Return string.
         '''
         return os.path.basename(self.user_sketches_directory_path)
-
-    @property
-    def user_score_external_specifiers_directory_path(self):
-        '''User score-external specifiers directory path:
-
-        ::
-
-            >>> configuration.user_score_external_specifiers_directory_path
-            '/Users/trevorbaca/Documents/baca/music/specifiers'
-
-        Return string.
-        '''
-        return os.path.join(self.user_score_external_assets_directory_path, 'specifiers')
-
-    @property
-    def user_score_external_specifiers_package_path(self):
-        '''User score-external specifiers package path:
-
-        ::
-
-            >>> configuration.user_score_external_specifiers_package_path
-            'baca.music.specifiers'
-
-        Return string.
-        '''
-        return '.'.join([self.user_score_external_assets_package_path, 'specifiers'])
 
     @property
     def user_stylesheets_directory_path(self):
