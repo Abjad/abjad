@@ -58,9 +58,8 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             parts.append(self._session.current_score_directory_path)
             parts.extend(self.storehouse_path_infix_parts)
             return os.path.join(*parts)
-        # TODO: hack. can this be eliminated?
-        if self._list_built_in_storehouse_filesystem_paths():
-            return self._list_built_in_storehouse_filesystem_paths()[0]
+        else:
+            return self.built_in_external_storehouse_filesystem_path
 
     @property
     def _temporary_asset_filesystem_path(self):
