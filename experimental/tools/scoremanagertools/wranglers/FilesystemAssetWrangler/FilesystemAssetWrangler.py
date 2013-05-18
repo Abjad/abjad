@@ -53,8 +53,19 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
+    def _current_asset_container_filesystem_path(self):
+        if self._session.is_in_score:
+            parts = []
+            parts.append(self._session.current_score_directory_path)
+            parts.extend(self.asset_container_path_infix_parts)
+            return os.path.join(*parts)
+        # TODO: hack. can this be eliminated?
+        if self._list_built_in_asset_container_filesystem_paths():
+            return self._list_built_in_asset_container_filesystem_paths()[0]
+
+    @property
     def _temporary_asset_filesystem_path(self):
-        return os.path.join(self.current_asset_container_filesystem_path, self._temporary_asset_name)
+        return os.path.join(self._current_asset_container_filesystem_path, self._temporary_asset_name)
 
     @abc.abstractproperty
     def _temporary_asset_name(self):
@@ -302,16 +313,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         return self._built_in_score_external_asset_container_filesystem_path
 
     @property
-    def current_asset_container_filesystem_path(self):
-        if self._session.is_in_score:
-            parts = []
-            parts.append(self._session.current_score_directory_path)
-            parts.extend(self.asset_container_path_infix_parts)
-            return os.path.join(*parts)
-        if self._list_built_in_asset_container_filesystem_paths():
-            return self._list_built_in_asset_container_filesystem_paths()[0]
-
-    @property
     def user_score_external_asset_container_filesystem_path(self):
         return self._user_score_external_asset_container_filesystem_path
     
@@ -376,7 +377,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     def make_asset(self, asset_name):
         assert stringtools.is_underscore_delimited_lowercase_string(asset_name)
-        asset_filesystem_path = os.path.join(self.current_asset_container_filesystem_path, asset_name)
+        asset_filesystem_path = os.path.join(self._current_asset_container_filesystem_path, asset_name)
         asset_proxy = self._get_asset_proxy(asset_filesystem_path)
         asset_proxy.write_stub_to_disk()
 

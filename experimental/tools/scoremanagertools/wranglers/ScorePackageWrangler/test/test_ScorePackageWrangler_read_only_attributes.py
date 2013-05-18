@@ -26,8 +26,8 @@ def test_ScorePackageWrangler_read_only_attributes_03():
     '''Current asset container.
     '''
 
-    assert wrangler.current_asset_container_packagesystem_path == ''
-    assert wrangler.current_asset_container_filesystem_path == wrangler.configuration.user_scores_directory_path
+    assert wrangler._current_asset_container_packagesystem_path == ''
+    assert wrangler._current_asset_container_filesystem_path == wrangler.configuration.user_scores_directory_path
 
 
 def test_ScorePackageWrangler_read_only_attributes_04():

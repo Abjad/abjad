@@ -5,7 +5,6 @@ from experimental.tools.scoremanagertools import predicates
 from experimental.tools.scoremanagertools.wranglers.PackageWrangler import PackageWrangler
 
 
-# TODO: write all iteration tests
 class MaterialPackageWrangler(PackageWrangler):
     '''Material package wrangler:
 
@@ -235,46 +234,6 @@ class MaterialPackageWrangler(PackageWrangler):
         return super(type(self), self).built_in_score_external_asset_container_packagesystem_path
 
     @property
-    def current_asset_container_filesystem_path(self):
-        '''Material filesystem wrangler current asset container filesystem path:
-
-        ::
-
-            >>> wrangler.current_asset_container_filesystem_path
-            '/Users/trevorbaca/Documents/abjad/experimental/tools/scoremanagertools/built_in_materials'
-
-        While in built-in score:
-
-        ::
-
-            >>> wrangler_in_built_in_score.current_asset_container_filesystem_path
-            '.../tools/scoremanagertools/built_in_scores/red_example_score/music/materials'
-
-        Return string.
-        '''
-        return super(type(self), self).current_asset_container_filesystem_path
-
-    @property
-    def current_asset_container_packagesystem_path(self):
-        '''Material package wrangler current asset container package path:
-
-        ::
-
-            >>> wrangler.current_asset_container_packagesystem_path
-            'experimental.tools.scoremanagertools.built_in_materials'
-
-        While in built-in score:
-
-        ::
-
-            >>> wrangler_in_built_in_score.current_asset_container_packagesystem_path
-            'experimental.tools.scoremanagertools.built_in_scores.red_example_score.music.materials'
-
-        Return string.
-        '''
-        return super(type(self), self).current_asset_container_packagesystem_path
-
-    @property
     def storage_format(self):
         '''Material package wrangler storage format:
 
@@ -374,7 +333,7 @@ class MaterialPackageWrangler(PackageWrangler):
             material_package_name = stringtools.string_to_accent_free_underscored_delimited_lowercase(
                 package_name)
             material_package_path = '.'.join([
-                self.current_asset_container_packagesystem_path, material_package_name])
+                self._current_asset_container_packagesystem_path, material_package_name])
             if self.configuration.packagesystem_path_exists(material_package_path):
                 line = 'Material package {!r} already exists.'.format(material_package_path)
                 self._io.display([line, ''])

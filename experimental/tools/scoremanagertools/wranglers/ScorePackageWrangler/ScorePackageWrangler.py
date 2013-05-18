@@ -40,6 +40,23 @@ class ScorePackageWrangler(PackageWrangler):
     def _breadcrumb(self):
         return 'scores'
 
+    @property
+    def _current_asset_container_filesystem_path(self):
+        if self._session.is_in_score:
+            if self._session.underscore_delimited_current_score_name in os.listdir(
+                self.configuration.built_in_scores_directory_path):
+                return self.configuration.built_in_scores_directory_path
+            else:
+                return self.configuration.user_scores_directory_path
+        else:
+            return self.configuration.user_scores_directory_path
+
+    @property
+    def _current_asset_container_packagesystem_path(self):
+        package_path = self.configuration.filesystem_path_to_packagesystem_path(
+            self._current_asset_container_filesystem_path)
+        return package_path
+
     ### PRIVATE METHODS ###
 
     def _handle_main_menu_result(self):
@@ -108,55 +125,6 @@ class ScorePackageWrangler(PackageWrangler):
         Return string.
         '''
         return super(type(self), self).built_in_score_external_asset_container_packagesystem_path
-
-    @property
-    def current_asset_container_filesystem_path(self):
-        '''Score package wrangler current asset container directory path:
-
-        ::
-
-            >>> wrangler.current_asset_container_filesystem_path
-            '.../Documents/scores'
-
-        While in built-in score:
-
-        ::
-
-            >>> wrangler_in_built_in_score.current_asset_container_filesystem_path
-            '.../tools/scoremanagertools/built_in_scores'
-
-        Return string.
-        '''
-        if self._session.is_in_score:
-            if self._session.underscore_delimited_current_score_name in os.listdir(
-                self.configuration.built_in_scores_directory_path):
-                return self.configuration.built_in_scores_directory_path
-            else:
-                return self.configuration.user_scores_directory_path
-        else:
-            return self.configuration.user_scores_directory_path
-
-    @property
-    def current_asset_container_packagesystem_path(self):
-        '''Score package wrangler current asset container package path:
-
-        ::
-
-            >>> wrangler.current_asset_container_packagesystem_path
-            ''
-
-        While in built-in score:
-
-        ::
-
-            >>> wrangler_in_built_in_score.current_asset_container_packagesystem_path
-            'experimental.tools.scoremanagertools.built_in_scores'
-
-        Return string.
-        '''
-        package_path = self.configuration.filesystem_path_to_packagesystem_path(
-            self.current_asset_container_filesystem_path)
-        return package_path
 
     @property
     def storage_format(self):

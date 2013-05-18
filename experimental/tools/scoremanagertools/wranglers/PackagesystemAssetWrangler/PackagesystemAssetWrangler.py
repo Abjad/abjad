@@ -52,10 +52,20 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
     ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
+    def _current_asset_container_packagesystem_path(self):
+        if self._session.is_in_score:
+            parts = []
+            parts.append(self._session.current_score_package_path)
+            parts.extend(self.asset_container_path_infix_parts)
+            return '.'.join(parts)
+        if self._list_built_in_score_external_asset_container_packagesystem_path():
+            return self._list_built_in_score_external_asset_container_packagesystem_path()[0]
+
+    @property
     def _temporary_asset_package_path(self):
-        if self.current_asset_container_packagesystem_path:
+        if self._current_asset_container_packagesystem_path:
             return '.'.join([
-                self.current_asset_container_packagesystem_path,
+                self._current_asset_container_packagesystem_path,
                 self._temporary_asset_name])
         else:
             return self._temporary_asset_name
@@ -133,16 +143,6 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
     @property
     def built_in_score_external_asset_container_packagesystem_path(self):
         return self._built_in_score_external_asset_container_packagesystem_path
-
-    @property
-    def current_asset_container_packagesystem_path(self):
-        if self._session.is_in_score:
-            parts = []
-            parts.append(self._session.current_score_package_path)
-            parts.extend(self.asset_container_path_infix_parts)
-            return '.'.join(parts)
-        if self._list_built_in_score_external_asset_container_packagesystem_path():
-            return self._list_built_in_score_external_asset_container_packagesystem_path()[0]
 
     @property
     def user_score_external_asset_container_packagesystem_path(self):

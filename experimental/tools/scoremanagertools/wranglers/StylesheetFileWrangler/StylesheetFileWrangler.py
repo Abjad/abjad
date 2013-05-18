@@ -239,19 +239,6 @@ class StylesheetFileWrangler(FileWrangler):
         return super(type(self), self).built_in_score_external_asset_container_filesystem_path
 
     @property
-    def current_asset_container_filesystem_path(self):
-        '''Stylesheet file wrangler current asset container directory path:
-
-        ::
-
-            >>> wrangler.current_asset_container_filesystem_path
-            '.../tools/scoremanagertools/built_in_stylesheets'
-
-        Return string.
-        '''
-        return super(type(self), self).current_asset_container_filesystem_path
-
-    @property
     def storage_format(self):
         '''Stylesheet file wrangler storage format:
 
