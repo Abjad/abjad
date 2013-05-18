@@ -8,15 +8,15 @@ class MusicSpecifierModuleWrangler(ModuleWrangler):
 
     ### CLASS ATTRIBUTES ###
 
-    asset_container_path_infix_parts = ('music', 'specifiers')
+    storehouse_path_infix_parts = ('music', 'specifiers')
 
     ### INITIALIZER ###
 
     def __init__(self, session=None):
         ModuleWrangler.__init__(self,
-            built_in_score_external_asset_container_packagesystem_path=\
+            built_in_score_external_storehouse_packagesystem_path=\
                 self.configuration.built_in_specifiers_package_path,
-            user_score_external_asset_container_packagesystem_path=\
+            user_score_external_storehouse_packagesystem_path=\
                 self.configuration.user_score_external_specifiers_directory_path,
             session=session,
             )
@@ -41,7 +41,7 @@ class MusicSpecifierModuleWrangler(ModuleWrangler):
         elif result == 'rm':
             self.remove_assets_interactively()
         elif result == 'missing':
-            self.make_asset_container_packages(is_interactive=True)
+            self.make_storehouse_packages(is_interactive=True)
         elif result == 'profile':
             self.profile_visible_assets()
         else:

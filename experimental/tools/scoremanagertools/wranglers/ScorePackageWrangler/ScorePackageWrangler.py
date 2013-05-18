@@ -27,9 +27,9 @@ class ScorePackageWrangler(PackageWrangler):
     def __init__(self, session=None):
         PackageWrangler.__init__(
             self,
-            built_in_score_external_asset_container_packagesystem_path=\
+            built_in_score_external_storehouse_packagesystem_path=\
                 'experimental.tools.scoremanagertools.built_in_scores',
-            user_score_external_asset_container_filesystem_path=\
+            user_score_external_storehouse_filesystem_path=\
                 self.configuration.user_scores_directory_path,
             session=session,
             )
@@ -41,7 +41,7 @@ class ScorePackageWrangler(PackageWrangler):
         return 'scores'
 
     @property
-    def _current_asset_container_filesystem_path(self):
+    def _current_storehouse_filesystem_path(self):
         if self._session.is_in_score:
             if self._session.underscore_delimited_current_score_name in os.listdir(
                 self.configuration.built_in_scores_directory_path):
@@ -52,9 +52,9 @@ class ScorePackageWrangler(PackageWrangler):
             return self.configuration.user_scores_directory_path
 
     @property
-    def _current_asset_container_packagesystem_path(self):
+    def _current_storehouse_packagesystem_path(self):
         package_path = self.configuration.filesystem_path_to_packagesystem_path(
-            self._current_asset_container_filesystem_path)
+            self._current_storehouse_filesystem_path)
         return package_path
 
     ### PRIVATE METHODS ###
@@ -74,17 +74,17 @@ class ScorePackageWrangler(PackageWrangler):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def asset_container_proxy_class(self):
+    def storehouse_proxy_class(self):
         '''Score package wrangler asset proxy class:
 
         ::
 
-            >>> wrangler.asset_container_proxy_class.__name__
+            >>> wrangler.storehouse_proxy_class.__name__
             'PackageProxy'
 
         Return class.
         '''
-        return super(type(self), self).asset_container_proxy_class
+        return super(type(self), self).storehouse_proxy_class
 
     @property
     def asset_proxy_class(self):
@@ -101,30 +101,30 @@ class ScorePackageWrangler(PackageWrangler):
         return scoremanagertools.proxies.ScorePackageProxy
 
     @property
-    def built_in_score_external_asset_container_filesystem_path(self):
-        '''Score package wrangler built-in asset container directory path:
+    def built_in_score_external_storehouse_filesystem_path(self):
+        '''Score package wrangler built-in storehouse directory path:
 
         ::
 
-            >>> wrangler.built_in_score_external_asset_container_filesystem_path
+            >>> wrangler.built_in_score_external_storehouse_filesystem_path
             '.../tools/scoremanagertools/built_in_scores'
 
         Return string.
         '''
-        return super(type(self), self).built_in_score_external_asset_container_filesystem_path
+        return super(type(self), self).built_in_score_external_storehouse_filesystem_path
 
     @property
-    def built_in_score_external_asset_container_packagesystem_path(self):
-        '''Score package wrangler built-in asset container package path:
+    def built_in_score_external_storehouse_packagesystem_path(self):
+        '''Score package wrangler built-in storehouse package path:
 
         ::
 
-            >>> wrangler.built_in_score_external_asset_container_packagesystem_path
+            >>> wrangler.built_in_score_external_storehouse_packagesystem_path
             'experimental.tools.scoremanagertools.built_in_scores'
 
         Return string.
         '''
-        return super(type(self), self).built_in_score_external_asset_container_packagesystem_path
+        return super(type(self), self).built_in_score_external_storehouse_packagesystem_path
 
     @property
     def storage_format(self):
@@ -140,30 +140,30 @@ class ScorePackageWrangler(PackageWrangler):
         return super(type(self), self).storage_format
 
     @property
-    def user_score_external_asset_container_filesystem_path(self):
-        '''Score package wrangler user asset container directory path:
+    def user_score_external_storehouse_filesystem_path(self):
+        '''Score package wrangler user storehouse directory path:
 
         ::
 
-            >>> wrangler.user_score_external_asset_container_filesystem_path
+            >>> wrangler.user_score_external_storehouse_filesystem_path
             '.../Documents/scores'
 
         Return string.
         '''
-        return super(type(self), self).user_score_external_asset_container_filesystem_path
+        return super(type(self), self).user_score_external_storehouse_filesystem_path
 
     @property
-    def user_score_external_asset_container_packagesystem_path(self):
-        '''Score package wrangler user score-external asset container package path:
+    def user_score_external_storehouse_packagesystem_path(self):
+        '''Score package wrangler user score-external storehouse package path:
 
         ::
 
-            >>> wrangler.user_score_external_asset_container_packagesystem_path
+            >>> wrangler.user_score_external_storehouse_packagesystem_path
             ''
 
         Return string.
         '''
-        return super(type(self), self).user_score_external_asset_container_packagesystem_path
+        return super(type(self), self).user_score_external_storehouse_packagesystem_path
 
     @property
     def visible_score_titles(self):

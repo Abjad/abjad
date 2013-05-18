@@ -7,15 +7,15 @@ class SegmentPackageWrangler(PackageWrangler):
 
     ### CLASS ATTRIBUTES ###
     
-    asset_container_path_infix_parts = ('music', 'segments')
+    storehouse_path_infix_parts = ('music', 'segments')
 
     ### INITIALIZER ###
 
     def __init__(self, session=None):
         PackageWrangler.__init__(self,
-            built_in_score_external_asset_container_packagesystem_path=\
+            built_in_score_external_storehouse_packagesystem_path=\
                 self.configuration.user_sketches_package_path,
-            user_score_external_asset_container_packagesystem_path=\
+            user_score_external_storehouse_packagesystem_path=\
                 self.configuration.user_sketches_package_path,
             session=session,
             )

@@ -17,24 +17,24 @@ def test_ScorePackageWrangler_read_only_attributes_02():
     '''
 
     assert 'experimental.tools.scoremanagertools.built_in_scores.red_example_score' in \
-        wrangler._list_asset_container_package_paths()
+        wrangler._list_storehouse_package_paths()
     directory_path = os.path.join(wrangler.configuration.built_in_scores_directory_path, 'red_example_score')
-    assert directory_path in wrangler._list_asset_container_filesystem_paths()
+    assert directory_path in wrangler._list_storehouse_filesystem_paths()
 
 
 def test_ScorePackageWrangler_read_only_attributes_03():
-    '''Current asset container.
+    '''Current storehouse.
     '''
 
-    assert wrangler._current_asset_container_packagesystem_path == ''
-    assert wrangler._current_asset_container_filesystem_path == wrangler.configuration.user_scores_directory_path
+    assert wrangler._current_storehouse_packagesystem_path == ''
+    assert wrangler._current_storehouse_filesystem_path == wrangler.configuration.user_scores_directory_path
 
 
 def test_ScorePackageWrangler_read_only_attributes_04():
-    '''Score-external asset container.
+    '''Score-external storehouse.
     '''
 
-    assert wrangler._list_built_in_score_external_asset_container_packagesystem_path() == [
+    assert wrangler._list_built_in_score_external_storehouse_packagesystem_path() == [
         'experimental.tools.scoremanagertools.built_in_scores']
 
 
@@ -49,7 +49,7 @@ def test_ScorePackageWrangler_read_only_attributes_06():
     '''Infix.
     '''
 
-    assert wrangler.asset_container_path_infix_parts == ()
+    assert wrangler.storehouse_path_infix_parts == ()
 
 
 def test_ScorePackageWrangler_read_only_attributes_07():

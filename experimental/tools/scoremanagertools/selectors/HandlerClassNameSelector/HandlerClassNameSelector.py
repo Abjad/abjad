@@ -11,4 +11,4 @@ class HandlerClassNameSelector(DirectoryContentSelector):
         'tools', 
         'handlertools')
 
-    asset_container_filesystem_paths = [handler_tools_directory_path]
+    storehouse_filesystem_paths = [handler_tools_directory_path]
