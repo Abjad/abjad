@@ -295,39 +295,11 @@ class StylesheetFileWrangler(FileWrangler):
             StylesheetFileProxy('.../tools/scoremanagertools/built_in_scores/red_example_score/music/stylesheets/red_example_score_stylesheet.ly')
             ...
 
+        (User collateral elided.)
+
         Return list.
         '''
         return super(type(self), self).get_asset_proxies(head=head)
-
-    def get_score_external_asset_proxies(self, head=None):
-        '''Stylesheet file wrangler get score-external asset proxies:
-
-        ::
-
-            >>> for x in wrangler.get_score_external_asset_proxies():
-            ...     x
-            StylesheetFileProxy('.../tools/scoremanagertools/built_in_stylesheets/clean_letter_14.ly')
-            StylesheetFileProxy('.../tools/scoremanagertools/built_in_stylesheets/clean_letter_16.ly')
-            StylesheetFileProxy('.../tools/scoremanagertools/built_in_stylesheets/rhythm_letter_16.ly')
-            StylesheetFileProxy('.../score_manager/stylesheets/baca_letter_14.ly')
-
-        Return list.
-        '''
-        return super(type(self), self).get_score_external_asset_proxies(head=head)
-
-    def get_score_internal_asset_proxies(self, head=None):
-        '''Stylesheet file wrangler get score-internal asset proxies:
-
-        ::
-
-            >>> for x in wrangler.get_score_internal_asset_proxies():
-            ...     x
-            StylesheetFileProxy('.../tools/scoremanagertools/built_in_scores/red_example_score/music/stylesheets/red_example_score_stylesheet.ly')
-            ...
-
-        Return list.
-        '''
-        return super(type(self), self).get_score_internal_asset_proxies(head=head)
 
     def get_visible_asset_proxies(self, head=None):
         '''Stylesheet file wrangler get visible asset proxies:
@@ -340,8 +312,10 @@ class StylesheetFileWrangler(FileWrangler):
             StylesheetFileProxy('.../tools/scoremanagertools/built_in_stylesheets/clean_letter_16.ly')
             StylesheetFileProxy('.../tools/scoremanagertools/built_in_stylesheets/rhythm_letter_16.ly')
             ...
+            StylesheetFileProxy('.../tools/scoremanagertools/built_in_scores/red_example_score/music/stylesheets/red_example_score_stylesheet.ly')
+            ...
 
-        (Output will vary with user collateral.)
+        (User collateral elided.)
 
         Return list.
         '''

@@ -381,57 +381,6 @@ class MaterialPackageWrangler(PackageWrangler):
             else:
                 return material_package_path
 
-    def get_score_external_asset_proxies(self, head=None):
-        '''Material package wrangler get score-external asset proxies:
-
-        ::
-
-            >>> for x in wrangler.get_score_external_asset_proxies():
-            ...     x
-            MarkupInventoryMaterialPackageMaker('.../abjad/experimental/tools/scoremanagertools/built_in_materials/red_directives')
-            DynamicHandlerMaterialPackageMaker('.../abjad/experimental/tools/scoremanagertools/built_in_materials/red_forte')
-            ArticulationHandlerMaterialPackageMaker('.../abjad/experimental/tools/scoremanagertools/built_in_materials/red_marcati')
-            MaterialPackageProxy('.../abjad/experimental/tools/scoremanagertools/built_in_materials/red_notes')
-            MaterialPackageProxy('.../abjad/experimental/tools/scoremanagertools/built_in_materials/red_numbers')
-            SargassoMeasureMaterialPackageMaker('.../abjad/experimental/tools/scoremanagertools/built_in_materials/red_sargasso_measures')
-            MaterialPackageProxy('.../abjad/experimental/tools/scoremanagertools/built_in_materials/sargasso_multipliers')
-            ...
-
-        Output lists built-in materials followed by user materials.
-
-        Return list.
-        '''
-        return super(type(self), self).get_score_external_asset_proxies(head=head)
-
-    def get_score_internal_asset_proxies(self, head=None):
-        '''Material package wrangler get score-internal asset proxies:
-
-        ::
-
-            >>> for x in wrangler.get_score_internal_asset_proxies():
-            ...     x
-            TempoMarkInventoryMaterialPackageMaker('.../tools/scoremanagertools/built_in_scores/red_example_score/music/materials/tempo_inventory')
-            ...
-
-        Output lists proxies for built-in score-internal materials
-        followed by proxies for user score-internal materials.
-
-        Return list.
-        '''
-        return super(type(self), self).get_score_internal_asset_proxies(head=head)
-
-    def get_user_asset_proxies(self, head=None):
-        '''Material package wranglger get user asset proxies:
-
-        ::
-
-            >>> 1 <= len(wrangler.get_user_asset_proxies())
-            True
-
-        Return list.
-        '''
-        return super(type(self), self).get_user_asset_proxies(head=head)
-
     def list_asset_filesystem_paths(self, head=None):
         '''Material package wrangler list asset filesystem paths:
 
