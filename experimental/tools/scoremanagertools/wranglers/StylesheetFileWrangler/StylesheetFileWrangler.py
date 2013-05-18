@@ -339,36 +339,6 @@ class StylesheetFileWrangler(FileWrangler):
         '''
         return super(type(self), self).list_asset_filesystem_paths(head=head)
         
-    def list_score_external_asset_filesystem_paths(self, head=None):
-        '''Stylesheet file wrangler list score-external asset filesystem paths:
-
-        ::
-
-            >>> for x in wrangler.list_score_external_asset_filesystem_paths():
-            ...     x
-            '.../tools/scoremanagertools/built_in_stylesheets/clean_letter_14.ly'
-            '.../tools/scoremanagertools/built_in_stylesheets/clean_letter_16.ly'
-            '.../tools/scoremanagertools/built_in_stylesheets/rhythm_letter_16.ly'
-            '.../score_manager/stylesheets/baca_letter_14.ly'
-
-        Return list.
-        '''
-        return super(type(self), self).list_score_external_asset_filesystem_paths(head=head)
-
-    def list_score_internal_asset_filesystem_paths(self, head=None):
-        '''Stylesheet file wrangler list score-internal asset filesystem paths:
-
-        ::
-
-            >>> for x in wrangler.list_score_internal_asset_filesystem_paths():
-            ...     x
-            '.../tools/scoremanagertools/built_in_scores/red_example_score/music/stylesheets/red_example_score_stylesheet.ly'
-            ...
-
-        Return list.
-        '''
-        return super(type(self), self).list_score_internal_asset_filesystem_paths(head=head)
-
     def list_space_delimited_lowercase_visible_asset_names(self, head=None):
         '''Stylesheet file wrangler list space-delimited lowercase visible asset names:
 

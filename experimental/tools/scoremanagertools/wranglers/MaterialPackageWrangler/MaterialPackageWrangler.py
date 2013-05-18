@@ -440,28 +440,6 @@ class MaterialPackageWrangler(PackageWrangler):
         '''
         return super(type(self), self).list_built_in_score_internal_asset_packagesystem_paths(head=head)
 
-    def list_score_external_asset_filesystem_paths(self, head=None):
-        '''Material package wrangler list score-external asset filesystem paths:
-
-        ::
-
-            >>> for x in wrangler.list_score_external_asset_filesystem_paths():
-            ...     x
-            '.../abjad/experimental/tools/scoremanagertools/built_in_materials/red_directives'
-            '.../abjad/experimental/tools/scoremanagertools/built_in_materials/red_forte'
-            '.../abjad/experimental/tools/scoremanagertools/built_in_materials/red_marcati'
-            '.../abjad/experimental/tools/scoremanagertools/built_in_materials/red_notes'
-            '.../abjad/experimental/tools/scoremanagertools/built_in_materials/red_numbers'
-            '.../abjad/experimental/tools/scoremanagertools/built_in_materials/red_sargasso_measures'
-            '.../abjad/experimental/tools/scoremanagertools/built_in_materials/sargasso_multipliers'
-            ...
-
-        (User-specific output elided.)
-
-        Return list.
-        '''
-        return super(type(self), self).list_score_external_asset_filesystem_paths(head=head)
-
     def list_score_external_asset_packagesystem_paths(self, head=None):
         '''Material package wrangler list score-external asset package paths:
 
@@ -483,22 +461,6 @@ class MaterialPackageWrangler(PackageWrangler):
         Return list.
         '''
         return super(type(self), self).list_score_external_asset_packagesystem_paths(head=head)
-
-    def list_score_internal_asset_filesystem_paths(self, head=None):
-        '''Material package wrangler list score-internal asset filesystem paths:
-
-        ::
-
-            >>> for x in wrangler.list_score_internal_asset_filesystem_paths():
-            ...     x
-            '.../experimental/tools/scoremanagertools/built_in_scores/red_example_score/music/materials/tempo_inventory'
-            ...
-
-        (User-specific output elided.)
-
-        Return list.
-        '''
-        return super(type(self), self).list_score_internal_asset_filesystem_paths(head=head)
 
     def list_score_internal_asset_packagesystem_paths(self, head=None):
         '''Material package wrangler list score-internal asset package paths:

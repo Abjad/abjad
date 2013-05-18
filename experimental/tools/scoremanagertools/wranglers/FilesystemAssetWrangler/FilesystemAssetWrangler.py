@@ -332,14 +332,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             built_in_score_external=True, user_score_external=True,
             built_in_score_internal=True, user_score_internal=True, head=head)
 
-    def list_score_external_asset_filesystem_paths(self, head=None):
-        return self.list_specific_asset_filesystem_paths(
-            built_in_score_external=True, user_score_external=True, head=head)
-
-    def list_score_internal_asset_filesystem_paths(self, head=None):
-        return self.list_specific_asset_filesystem_paths(
-            built_in_score_internal=True, user_score_internal=True, head=head)
-
     def list_space_delimited_lowercase_visible_asset_names(self, head=None):
         result = []
         for filesystem_path in self.list_visible_asset_filesystem_paths(head=head):
