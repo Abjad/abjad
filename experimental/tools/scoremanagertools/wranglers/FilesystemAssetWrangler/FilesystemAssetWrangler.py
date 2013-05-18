@@ -332,16 +332,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             built_in_score_external=True, user_score_external=True,
             built_in_score_internal=True, user_score_internal=True, head=head)
 
-    def list_built_in_asset_filesystem_paths(self, head=None):
-        return self.list_specific_asset_filesystem_paths(
-            built_in_score_external=True, built_in_score_internal=True, head=head)
-
-    def list_built_in_score_external_asset_filesystem_paths(self, head=None):
-        return self.list_specific_asset_filesystem_paths(built_in_score_external=True, head=head)
-        
-    def list_built_in_score_internal_asset_filesystem_paths(self, head=None):
-        return self.list_specific_asset_filesystem_paths(built_in_score_internal=True, head=head)
-
     def list_score_external_asset_filesystem_paths(self, head=None):
         return self.list_specific_asset_filesystem_paths(
             built_in_score_external=True, user_score_external=True, head=head)
@@ -368,7 +358,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                         filesystem_path = os.path.join(directory_path, directory_entry)
                         result.append(filesystem_path)
         if user_score_external:
-            #result.extend(self.list_user_score_external_asset_filesystem_paths(head=head))
             for directory_path in self._list_user_score_external_asset_container_filesystem_paths(
                 head=head):
                 for directory_entry in os.listdir(directory_path):
@@ -383,7 +372,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                         filesystem_path = os.path.join(directory_path, directory_entry)
                         result.append(filesystem_path)
         if user_score_internal:
-            #result.extend(self.list_user_score_internal_asset_filesystem_paths(head=head))
             for directory_path in self._list_user_score_internal_asset_container_filesystem_paths(
                 head=head):
                 for directory_entry in os.listdir(directory_path):
@@ -391,16 +379,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                         filesystem_path = os.path.join(directory_path, directory_entry)
                         result.append(filesystem_path)
         return result
-
-    def list_user_asset_filesystem_paths(self, head=None):
-        return self.list_specific_asset_filesystem_paths(
-            user_score_external=True, user_score_internal=True, head=head)
-    
-    def list_user_score_external_asset_filesystem_paths(self, head=None):
-        return self.list_specific_asset_filesystem_paths(user_score_external=True, head=head)
-
-    def list_user_score_internal_asset_filesystem_paths(self, head=None):
-        return self.list_specific_asset_filesystem_paths(user_score_internal=True, head=head)
 
     def list_visible_asset_filesystem_paths(self, head=None):
         return self.list_asset_filesystem_paths(head=head)

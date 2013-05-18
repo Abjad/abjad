@@ -39,15 +39,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler.FilesystemAssetWrangler.FilesystemAssetWrangler.list_asset_filesystem_paths
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler.FilesystemAssetWrangler.FilesystemAssetWrangler.list_built_in_asset_filesystem_paths
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler.FilesystemAssetWrangler.FilesystemAssetWrangler.list_built_in_score_external_asset_filesystem_paths
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler.FilesystemAssetWrangler.FilesystemAssetWrangler.list_built_in_score_internal_asset_filesystem_paths
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler.FilesystemAssetWrangler.FilesystemAssetWrangler.list_score_external_asset_filesystem_paths
    :noindex:
 
@@ -58,15 +49,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler.FilesystemAssetWrangler.FilesystemAssetWrangler.list_specific_asset_filesystem_paths
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler.FilesystemAssetWrangler.FilesystemAssetWrangler.list_user_asset_filesystem_paths
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler.FilesystemAssetWrangler.FilesystemAssetWrangler.list_user_score_external_asset_filesystem_paths
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler.FilesystemAssetWrangler.FilesystemAssetWrangler.list_user_score_internal_asset_filesystem_paths
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler.FilesystemAssetWrangler.FilesystemAssetWrangler.list_visible_asset_filesystem_paths

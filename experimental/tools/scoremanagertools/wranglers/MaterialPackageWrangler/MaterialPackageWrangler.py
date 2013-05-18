@@ -427,19 +427,6 @@ class MaterialPackageWrangler(PackageWrangler):
         '''
         return super(type(self), self).list_asset_packagesystem_paths(head=head) 
 
-    def list_built_in_score_internal_asset_filesystem_paths(self, head=None):
-        '''Material package wrangler list built-in score-internal asset filesystem paths:
-
-        ::
-
-            >>> for x in wrangler.list_built_in_score_internal_asset_filesystem_paths():
-            ...     x
-            '.../experimental/tools/scoremanagertools/built_in_scores/red_example_score/music/materials/tempo_inventory'
-
-        Return list.
-        '''
-        return super(type(self), self).list_built_in_score_internal_asset_filesystem_paths(head=head)
-
     def list_built_in_score_internal_asset_packagesystem_paths(self, head=None):
         '''Material package wrangler list built-in score-internal asset package paths:
 
@@ -528,20 +515,6 @@ class MaterialPackageWrangler(PackageWrangler):
         Return list.
         '''
         return super(type(self), self).list_score_internal_asset_packagesystem_paths(head=head)
-
-    def list_user_asset_filesystem_paths(self, head=None):
-        '''Material package wrangler list user asset filesystem paths:
-
-        ::
-
-            >>> for x in wrangler.list_user_asset_filesystem_paths():
-            ...     x
-            '...'
-            ...
-
-        Return list.
-        '''
-        return super(type(self), self).list_user_asset_filesystem_paths(head=head)
 
     def make_data_package(self, material_package_path, tags=None):
         tags = tags or {}

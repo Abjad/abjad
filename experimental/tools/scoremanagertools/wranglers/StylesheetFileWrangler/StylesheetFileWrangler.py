@@ -339,20 +339,6 @@ class StylesheetFileWrangler(FileWrangler):
         '''
         return super(type(self), self).list_asset_filesystem_paths(head=head)
         
-    def list_built_in_score_internal_asset_filesystem_paths(self, head=None):
-        '''Stylesheet file wrangler list built-in score-internal asset filesystem paths:
-
-        ::
-
-            >>> for x in wrangler.list_built_in_score_internal_asset_filesystem_paths():
-            ...     x
-            '.../tools/scoremanagertools/built_in_scores/red_example_score/music/stylesheets/red_example_score_stylesheet.ly'
-
-
-        Return list.
-        '''
-        return super(type(self), self).list_built_in_score_internal_asset_filesystem_paths(head=head)
-
     def list_score_external_asset_filesystem_paths(self, head=None):
         '''Stylesheet file wrangler list score-external asset filesystem paths:
 
