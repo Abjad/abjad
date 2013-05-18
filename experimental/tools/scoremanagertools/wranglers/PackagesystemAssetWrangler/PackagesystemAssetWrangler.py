@@ -81,13 +81,6 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
             pacakgesystem_path = self.configuration.filesystem_path_to_packagesystem_path(packagesystem_path)
         return self.asset_proxy_class(packagesystem_path=packagesystem_path, session=self._session)
 
-    def _list_all_score_directory_package_paths(self, head=None):
-        result = []
-        for directory_path in self._list_all_score_directory_paths(head=head):
-            package_path = self.configuration.filesystem_path_to_packagesystem_path(directory_path)
-            result.append(package_path)
-        return result
-
     def _list_built_in_external_storehouse_packagesystem_path(self, head=None):
         result = []
         for package_path in [self.built_in_external_storehouse_packagesystem_path]:
@@ -104,9 +97,16 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
                 result.append(package_path)
         return result
 
+    def _list_score_directory_package_paths(self, head=None):
+        result = []
+        for directory_path in self._list_score_directory_paths(head=head):
+            package_path = self.configuration.filesystem_path_to_packagesystem_path(directory_path)
+            result.append(package_path)
+        return result
+
     def _list_score_storehouse_package_paths(self, head=None):
         result = []
-        for score_package_name in self._list_all_score_directory_package_paths(head=head):
+        for score_package_name in self._list_score_directory_package_paths(head=head):
             parts = [score_package_name]
             if self.storehouse_path_infix_parts:
                 parts.extend(self.storehouse_path_infix_parts)

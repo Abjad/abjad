@@ -116,18 +116,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def _handle_main_menu_result(self, result):
         pass
 
-    def _list_all_score_directory_basenames(self, head=None):
-        result = []
-        result.extend(self._list_built_in_score_directory_basenames(head=head))
-        result.extend(self._list_user_score_directory_basenames(head=head))
-        return result
-
-    def _list_all_score_directory_paths(self, head=None):
-        result = []
-        result.extend(self._list_built_in_score_directory_paths(head=head))
-        result.extend(self._list_user_score_directory_paths(head=head))
-        return result
-
     def _list_built_in_external_storehouse_filesystem_paths(self, head=None):
         result = []
         if head is None:
@@ -148,11 +136,13 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     def _list_built_in_score_directory_paths(self, head=None):
         result = []
-        for basename in self._list_built_in_score_directory_basenames():
-            score_package_path = '.'.join([self.configuration.built_in_scores_package_path, basename])
-            if head is None or score_package_path == head:
-                directory_path = os.path.join(self.configuration.built_in_scores_directory_path, basename)
-                result.append(directory_path)
+        for directory_entry in os.listdir(self.configuration.built_in_scores_directory_path):
+            if directory_entry[0].isalpha():
+                package_path = '.'.join([self.configuration.built_in_scores_package_path, directory_entry])
+                if head is None or package_path.startswith(head):
+                    filesystem_path = os.path.join(
+                        self.configuration.built_in_scores_directory_path, directory_entry)
+                    result.append(filesystem_path)
         return result
 
     def _list_built_in_score_storehouse_filesystem_paths(self, head=None):
@@ -176,9 +166,15 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         result.extend(self._list_user_external_storehouse_filesystem_paths(head=head))
         return result
 
+    def _list_score_directory_paths(self, head=None):
+        result = []
+        result.extend(self._list_built_in_score_directory_paths(head=head))
+        result.extend(self._list_user_score_directory_paths(head=head))
+        return result
+
     def _list_score_storehouse_filesystem_paths(self, head=None):
         result = []
-        for score_directory_path in self._list_all_score_directory_paths(head=head):
+        for score_directory_path in self._list_score_directory_paths(head=head):
             parts = [score_directory_path]
             if self.storehouse_path_infix_parts:
                 parts.extend(self.storehouse_path_infix_parts)
