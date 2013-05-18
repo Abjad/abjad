@@ -23,15 +23,15 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     ### INITIALIZER ###
 
     def __init__(self,
-        built_in_score_external_storehouse_filesystem_path=None,
-        user_score_external_storehouse_filesystem_path=None,
+        built_in_external_storehouse_filesystem_path=None,
+        user_external_storehouse_filesystem_path=None,
         session=None,
         ):
         ScoreManagerObject.__init__(self, session=session)
-        self._built_in_score_external_storehouse_filesystem_path = \
-            built_in_score_external_storehouse_filesystem_path or ''
-        self._user_score_external_storehouse_filesystem_path = \
-            user_score_external_storehouse_filesystem_path or ''
+        self._built_in_external_storehouse_filesystem_path = \
+            built_in_external_storehouse_filesystem_path or ''
+        self._user_external_storehouse_filesystem_path = \
+            user_external_storehouse_filesystem_path or ''
 
     ### SPECIAL METHODS ###
 
@@ -42,10 +42,10 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         Return boolean.
         '''
         if isinstance(expr, type(self)):
-            if self.built_in_score_external_storehouse_filesystem_path == \
-                expr.built_in_score_external_storehouse_filesystem_path:
-                if self.user_score_external_storehouse_filesystem_path == \
-                    expr.user_score_external_storehouse_filesystem_path:
+            if self.built_in_external_storehouse_filesystem_path == \
+                expr.built_in_external_storehouse_filesystem_path:
+                if self.user_external_storehouse_filesystem_path == \
+                    expr.user_external_storehouse_filesystem_path:
                         return True
         return False
 
@@ -84,24 +84,24 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     def _get_storehouse_proxies(self, head=None):
         result = []
-        result.extend(self._get_score_external_storehouse_proxies(head=head))
-        result.extend(self._get_score_internal_storehouse_proxies(head=head))
+        result.extend(self._get_external_storehouse_proxies(head=head))
+        result.extend(self._get_score_storehouse_proxies(head=head))
         return result
 
     def _get_asset_proxy(self, filesystem_path):
         assert os.path.sep in filesystem_path, repr(filesystem_path)
         return self.asset_proxy_class(filesystem_path=filesystem_path, session=self._session)
 
-    def _get_score_external_storehouse_proxies(self, head=None):
+    def _get_external_storehouse_proxies(self, head=None):
         result = []
-        for directory_path in self._list_score_external_storehouse_filesystem_paths(head=head):
+        for directory_path in self._list_external_storehouse_filesystem_paths(head=head):
             storehouse_proxy = self.storehouse_proxy_class(directory_path)
             result.append(storehouse_proxy)
         return result
 
-    def _get_score_internal_storehouse_proxies(self, head=None):
+    def _get_score_storehouse_proxies(self, head=None):
         result = []
-        for directory_path in self._list_score_internal_storehouse_filesystem_paths(head=head):
+        for directory_path in self._list_score_storehouse_filesystem_paths(head=head):
             storehouse_proxy = self.storehouse_proxy_class(directory_path)
             result.append(storehouse_proxy)
         return result
@@ -131,14 +131,14 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     def _list_storehouse_filesystem_paths(self, head=None):
         result = []
-        result.extend(self._list_score_external_storehouse_filesystem_paths(head=head))
-        result.extend(self._list_score_internal_storehouse_filesystem_paths(head=head))
+        result.extend(self._list_external_storehouse_filesystem_paths(head=head))
+        result.extend(self._list_score_storehouse_filesystem_paths(head=head))
         return result
 
     def _list_built_in_storehouse_filesystem_paths(self, head=None):
         result = []
-        result.extend(self._list_built_in_score_external_storehouse_filesystem_paths(head=head))
-        result.extend(self._list_built_in_score_internal_storehouse_filesystem_paths(head=head))
+        result.extend(self._list_built_in_external_storehouse_filesystem_paths(head=head))
+        result.extend(self._list_built_in_score_storehouse_filesystem_paths(head=head))
         return result
 
     def _list_built_in_score_storehouse_filesystem_paths(self, head=None):
@@ -166,18 +166,18 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                 result.append(directory_path)
         return result
 
-    def _list_built_in_score_external_storehouse_filesystem_paths(self, head=None):
+    def _list_built_in_external_storehouse_filesystem_paths(self, head=None):
         result = []
         if head is None:
-            result.append(self.built_in_score_external_storehouse_filesystem_path)
+            result.append(self.built_in_external_storehouse_filesystem_path)
         else:
             filesystem_path = self.configuration.packagesystem_path_to_filesystem_path(head)
-            if self.built_in_score_external_storehouse_filesystem_path.startswith(
+            if self.built_in_external_storehouse_filesystem_path.startswith(
                 filesystem_path):
-                result.append(self.built_in_score_external_storehouse_filesystem_path)
+                result.append(self.built_in_external_storehouse_filesystem_path)
         return result
         
-    def _list_built_in_score_internal_storehouse_filesystem_paths(self, head=None):
+    def _list_built_in_score_storehouse_filesystem_paths(self, head=None):
         result = []
         for directory_path in self._list_built_in_score_directory_paths(head=head):
             parts = [directory_path]
@@ -194,26 +194,26 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                 result.append(directory_entry)
         return result
 
-    def _list_score_external_storehouse_filesystem_paths(self, head=None):
+    def _list_external_storehouse_filesystem_paths(self, head=None):
         result = []
-        result.extend(self._list_built_in_score_external_storehouse_filesystem_paths(head=head))
-        result.extend(self._list_user_score_external_storehouse_filesystem_paths(head=head))
+        result.extend(self._list_built_in_external_storehouse_filesystem_paths(head=head))
+        result.extend(self._list_user_external_storehouse_filesystem_paths(head=head))
         return result
 
-    def _list_score_internal_storehouse_filesystem_paths(self, head=None):
+    def _list_score_storehouse_filesystem_paths(self, head=None):
         result = []
         for score_directory_path in self._list_all_score_directory_paths(head=head):
             parts = [score_directory_path]
             if self.storehouse_path_infix_parts:
                 parts.extend(self.storehouse_path_infix_parts)
-            score_internal_directory_path = os.path.join(*parts)
-            result.append(score_internal_directory_path)
+            score_directory_path = os.path.join(*parts)
+            result.append(score_directory_path)
         return result
 
     def _list_user_storehouse_filesystem_paths(self, head=None):
         result = []
-        result.extend(self._list_user_score_external_storehouse_filesystem_paths(head=head))
-        result.extend(self._list_user_score_internal_storehouse_filesystem_paths(head=head))
+        result.extend(self._list_user_external_storehouse_filesystem_paths(head=head))
+        result.extend(self._list_user_score_storehouse_filesystem_paths(head=head))
         return result
 
     def _list_user_score_directory_paths(self, head=None):
@@ -225,18 +225,18 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             result.append(directory_path) 
         return result
 
-    def _list_user_score_external_storehouse_filesystem_paths(self, head=None):
+    def _list_user_external_storehouse_filesystem_paths(self, head=None):
         result = []
         if head is None:
-            result.append(self.user_score_external_storehouse_filesystem_path)
+            result.append(self.user_external_storehouse_filesystem_path)
         else:
             filesystem_path = self.configuration.packagesystem_path_to_filesystem_path(head)
-            if self.user_score_external_storehouse_filesystem_path.startswith(
+            if self.user_external_storehouse_filesystem_path.startswith(
                 filesystem_path):
-                result.append(self.user_score_external_storehouse_filesystem_path)
+                result.append(self.user_external_storehouse_filesystem_path)
         return result
 
-    def _list_user_score_internal_storehouse_filesystem_paths(self, head=None):
+    def _list_user_score_storehouse_filesystem_paths(self, head=None):
         result = []
         for directory_path in self._list_user_score_directory_paths(head=head):
             parts = [directory_path]
@@ -306,28 +306,28 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         pass
 
     @property
-    def built_in_score_external_storehouse_filesystem_path(self):
-        '''Filesystem asset wrangler user score-internal storehouse filesystem path.
+    def built_in_external_storehouse_filesystem_path(self):
+        '''Filesystem asset wrangler user score storehouse filesystem path.
 
         Return string.
         '''
-        return self._built_in_score_external_storehouse_filesystem_path
+        return self._built_in_external_storehouse_filesystem_path
 
     @property
-    def user_score_external_storehouse_filesystem_path(self):
-        '''Filesystem asset wrangler user score-external storehouse filesystem path.
+    def user_external_storehouse_filesystem_path(self):
+        '''Filesystem asset wrangler user external storehouse filesystem path.
 
         Return string.
         '''
-        return self._user_score_external_storehouse_filesystem_path
+        return self._user_external_storehouse_filesystem_path
     
     ### PUBLIC METHODS ###
 
     def get_asset_proxies(self, head=None):
         result = []
         for filesystem_path in self.list_asset_filesystem_paths(
-            built_in_score_external=True, user_score_external=True,
-            built_in_score_internal=True, user_score_internal=True, head=head):
+            built_in_external=True, user_external=True,
+            built_in_score=True, user_score=True, head=head):
             asset_proxy = self._get_asset_proxy(filesystem_path)
             result.append(asset_proxy)
         return result
@@ -336,32 +336,32 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         return self.get_asset_proxies(head=head)
 
     def list_asset_filesystem_paths(self, 
-        built_in_score_external=False, user_score_external=False,
-        built_in_score_internal=False, user_score_internal=False, head=None):
+        built_in_external=False, user_external=False,
+        built_in_score=False, user_score=False, head=None):
         result = []
-        if built_in_score_external:
-            for directory_path in self._list_built_in_score_external_storehouse_filesystem_paths(
+        if built_in_external:
+            for directory_path in self._list_built_in_external_storehouse_filesystem_paths(
                 head=head):
                 for directory_entry in os.listdir(directory_path):
                     if directory_entry[0].isalpha():
                         filesystem_path = os.path.join(directory_path, directory_entry)
                         result.append(filesystem_path)
-        if user_score_external:
-            for directory_path in self._list_user_score_external_storehouse_filesystem_paths(
+        if user_external:
+            for directory_path in self._list_user_external_storehouse_filesystem_paths(
                 head=head):
                 for directory_entry in os.listdir(directory_path):
                     if directory_entry[0].isalpha():
                         filesystem_path = os.path.join(directory_path, directory_entry)
                         result.append(filesystem_path)
-        if built_in_score_internal:
-            for directory_path in self._list_built_in_score_internal_storehouse_filesystem_paths(
+        if built_in_score:
+            for directory_path in self._list_built_in_score_storehouse_filesystem_paths(
                 head=head):
                 for directory_entry in os.listdir(directory_path):
                     if directory_entry[0].isalpha():
                         filesystem_path = os.path.join(directory_path, directory_entry)
                         result.append(filesystem_path)
-        if user_score_internal:
-            for directory_path in self._list_user_score_internal_storehouse_filesystem_paths(
+        if user_score:
+            for directory_path in self._list_user_score_storehouse_filesystem_paths(
                 head=head):
                 for directory_entry in os.listdir(directory_path):
                     if directory_entry[0].isalpha():
@@ -377,8 +377,8 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     def list_visible_asset_filesystem_paths(self, head=None):
         return self.list_asset_filesystem_paths(
-            built_in_score_external=True, user_score_external=True,
-            built_in_score_internal=True, user_score_internal=True, head=head)
+            built_in_external=True, user_external=True,
+            built_in_score=True, user_score=True, head=head)
 
     def make_asset(self, asset_name):
         assert stringtools.is_underscore_delimited_lowercase_string(asset_name)
@@ -433,7 +433,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         self._session.restore_breadcrumbs(cache=cache)
         if result is not None:
             # TODO: this is a hack and will break on user assets
-            result = os.path.join(self.built_in_score_external_storehouse_filesystem_path[0], result)
+            result = os.path.join(self.built_in_external_storehouse_filesystem_path[0], result)
             return result
 
     def svn_add_visible_assets(self, is_interactive=True):

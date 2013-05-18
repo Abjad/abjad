@@ -23,9 +23,9 @@ class StylesheetFileWrangler(FileWrangler):
 
     def __init__(self, session=None):
         FileWrangler.__init__(self,
-            built_in_score_external_storehouse_filesystem_path=\
+            built_in_external_storehouse_filesystem_path=\
                 self.built_in_stylesheets_directory_path,
-            user_score_external_storehouse_filesystem_path=\
+            user_external_storehouse_filesystem_path=\
                 self.configuration.user_stylesheets_directory_path,
             session=session,
             )
@@ -57,26 +57,26 @@ class StylesheetFileWrangler(FileWrangler):
         '''
         return super(type(self), self)._get_storehouse_proxies(head=head)
 
-    def _get_score_external_storehouse_proxies(self, head=None):
-        '''Stylesheet file wrangler get score-external storehouse proxies:
+    def _get_external_storehouse_proxies(self, head=None):
+        '''Stylesheet file wrangler get external storehouse proxies:
 
         ::
 
-            >>> for x in wrangler._get_score_external_storehouse_proxies():
+            >>> for x in wrangler._get_external_storehouse_proxies():
             ...     x
             DirectoryProxy('.../tools/scoremanagertools/built_in_stylesheets')
             DirectoryProxy('.../stylesheets')
 
         Return list.
         '''
-        return super(type(self), self)._get_score_external_storehouse_proxies(head=head)
+        return super(type(self), self)._get_external_storehouse_proxies(head=head)
 
-    def _get_score_internal_storehouse_proxies(self, head=None):
-        '''Stylesheet file wrangler get score-internal storehouse proxies:
+    def _get_score_storehouse_proxies(self, head=None):
+        '''Stylesheet file wrangler get score storehouse proxies:
 
         ::
 
-            >>> for x in wrangler._get_score_internal_storehouse_proxies():
+            >>> for x in wrangler._get_score_storehouse_proxies():
             ...     x
             DirectoryProxy('.../tools/scoremanagertools/built_in_scores/blue_example_score/music/stylesheets')
             DirectoryProxy('.../tools/scoremanagertools/built_in_scores/green_example_score/music/stylesheets')
@@ -85,7 +85,7 @@ class StylesheetFileWrangler(FileWrangler):
 
         Return list.
         '''
-        return super(type(self), self)._get_score_internal_storehouse_proxies(head=head)
+        return super(type(self), self)._get_score_storehouse_proxies(head=head)
 
     def _get_user_storehouse_proxies(self, head=None):
         '''Stylesheet file wrangler get user storehouse proxies:
@@ -142,26 +142,26 @@ class StylesheetFileWrangler(FileWrangler):
         '''
         return super(type(self), self)._list_built_in_storehouse_filesystem_paths(head=head)
 
-    def _list_score_external_storehouse_filesystem_paths(self, head=None):
-        '''Stylesheet file wrangler list score-external storehouse directory paths:
+    def _list_external_storehouse_filesystem_paths(self, head=None):
+        '''Stylesheet file wrangler list external storehouse directory paths:
 
         ::
 
-            >>> for x in wrangler._list_score_external_storehouse_filesystem_paths():
+            >>> for x in wrangler._list_external_storehouse_filesystem_paths():
             ...     x
             '.../tools/scoremanagertools/built_in_stylesheets'
             '.../stylesheets'
 
         Return list.
         '''
-        return super(type(self), self)._list_score_external_storehouse_filesystem_paths(head=head)
+        return super(type(self), self)._list_external_storehouse_filesystem_paths(head=head)
 
-    def _list_score_internal_storehouse_filesystem_paths(self, head=None):
-        '''Stylesheet file wrangler list score-internal storehouse directory paths:
+    def _list_score_storehouse_filesystem_paths(self, head=None):
+        '''Stylesheet file wrangler list score storehouse directory paths:
 
         ::
 
-            >>> for x in wrangler._list_score_internal_storehouse_filesystem_paths():
+            >>> for x in wrangler._list_score_storehouse_filesystem_paths():
             ...     x
             '.../tools/scoremanagertools/built_in_scores/blue_example_score/music/stylesheets'
             '.../tools/scoremanagertools/built_in_scores/green_example_score/music/stylesheets'
@@ -170,7 +170,7 @@ class StylesheetFileWrangler(FileWrangler):
 
         Return list.
         '''
-        return super(type(self), self)._list_score_internal_storehouse_filesystem_paths(head=head)
+        return super(type(self), self)._list_score_storehouse_filesystem_paths(head=head)
 
     def _list_user_storehouse_filesystem_paths(self, head=None):
         '''Stylesheet file wrangler list user storehouse directory paths:
@@ -226,17 +226,17 @@ class StylesheetFileWrangler(FileWrangler):
         return scoremanagertools.proxies.StylesheetFileProxy
 
     @property
-    def built_in_score_external_storehouse_filesystem_path(self):
+    def built_in_external_storehouse_filesystem_path(self):
         '''Stylesheet file wrangler built-in storehouse directory path:
 
         ::
 
-            >>> wrangler.built_in_score_external_storehouse_filesystem_path
+            >>> wrangler.built_in_external_storehouse_filesystem_path
             '.../tools/scoremanagertools/built_in_stylesheets'
 
         Return list.
         '''
-        return super(type(self), self).built_in_score_external_storehouse_filesystem_path
+        return super(type(self), self).built_in_external_storehouse_filesystem_path
 
     @property
     def storage_format(self):
@@ -294,15 +294,15 @@ class StylesheetFileWrangler(FileWrangler):
         return super(type(self), self).get_visible_asset_proxies(head=head)
 
     def list_asset_filesystem_paths(self,
-        built_in_score_external=False, user_score_external=False,
-        built_in_score_internal=False, user_score_internal=False, head=None):
+        built_in_external=False, user_external=False,
+        built_in_score=False, user_score=False, head=None):
         '''Stylesheet file wrangler list asset filesystem paths:
 
         ::
 
             >>> for x in wrangler.list_asset_filesystem_paths(
-            ...     built_in_score_external=True, user_score_external=True,
-            ...     built_in_score_internal=True, user_score_internal=True):
+            ...     built_in_external=True, user_external=True,
+            ...     built_in_score=True, user_score=True):
             ...     x
             '.../tools/scoremanagertools/built_in_stylesheets/clean_letter_14.ly'
             '.../tools/scoremanagertools/built_in_stylesheets/clean_letter_16.ly'
@@ -316,10 +316,10 @@ class StylesheetFileWrangler(FileWrangler):
         Return list.
         '''
         return super(type(self), self).list_asset_filesystem_paths(
-            built_in_score_external=built_in_score_external,
-            user_score_external=user_score_external,
-            built_in_score_internal=built_in_score_internal,
-            user_score_internal=user_score_internal,
+            built_in_external=built_in_external,
+            user_external=user_external,
+            built_in_score=built_in_score,
+            user_score=user_score,
             head=head)
 
     def list_space_delimited_lowercase_visible_asset_names(self, head=None):

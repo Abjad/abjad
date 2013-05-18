@@ -27,9 +27,9 @@ class ScorePackageWrangler(PackageWrangler):
     def __init__(self, session=None):
         PackageWrangler.__init__(
             self,
-            built_in_score_external_storehouse_packagesystem_path=\
+            built_in_external_storehouse_packagesystem_path=\
                 'experimental.tools.scoremanagertools.built_in_scores',
-            user_score_external_storehouse_filesystem_path=\
+            user_external_storehouse_filesystem_path=\
                 self.configuration.user_scores_directory_path,
             session=session,
             )
@@ -101,30 +101,30 @@ class ScorePackageWrangler(PackageWrangler):
         return scoremanagertools.proxies.ScorePackageProxy
 
     @property
-    def built_in_score_external_storehouse_filesystem_path(self):
+    def built_in_external_storehouse_filesystem_path(self):
         '''Score package wrangler built-in storehouse directory path:
 
         ::
 
-            >>> wrangler.built_in_score_external_storehouse_filesystem_path
+            >>> wrangler.built_in_external_storehouse_filesystem_path
             '.../tools/scoremanagertools/built_in_scores'
 
         Return string.
         '''
-        return super(type(self), self).built_in_score_external_storehouse_filesystem_path
+        return super(type(self), self).built_in_external_storehouse_filesystem_path
 
     @property
-    def built_in_score_external_storehouse_packagesystem_path(self):
+    def built_in_external_storehouse_packagesystem_path(self):
         '''Score package wrangler built-in storehouse package path:
 
         ::
 
-            >>> wrangler.built_in_score_external_storehouse_packagesystem_path
+            >>> wrangler.built_in_external_storehouse_packagesystem_path
             'experimental.tools.scoremanagertools.built_in_scores'
 
         Return string.
         '''
-        return super(type(self), self).built_in_score_external_storehouse_packagesystem_path
+        return super(type(self), self).built_in_external_storehouse_packagesystem_path
 
     @property
     def storage_format(self):
@@ -140,30 +140,30 @@ class ScorePackageWrangler(PackageWrangler):
         return super(type(self), self).storage_format
 
     @property
-    def user_score_external_storehouse_filesystem_path(self):
+    def user_external_storehouse_filesystem_path(self):
         '''Score package wrangler user storehouse directory path:
 
         ::
 
-            >>> wrangler.user_score_external_storehouse_filesystem_path
+            >>> wrangler.user_external_storehouse_filesystem_path
             '.../Documents/scores'
 
         Return string.
         '''
-        return super(type(self), self).user_score_external_storehouse_filesystem_path
+        return super(type(self), self).user_external_storehouse_filesystem_path
 
     @property
-    def user_score_external_storehouse_packagesystem_path(self):
-        '''Score package wrangler user score-external storehouse package path:
+    def user_external_storehouse_packagesystem_path(self):
+        '''Score package wrangler user external storehouse package path:
 
         ::
 
-            >>> wrangler.user_score_external_storehouse_packagesystem_path
+            >>> wrangler.user_external_storehouse_packagesystem_path
             ''
 
         Return string.
         '''
-        return super(type(self), self).user_score_external_storehouse_packagesystem_path
+        return super(type(self), self).user_external_storehouse_packagesystem_path
 
     @property
     def visible_score_titles(self):
@@ -255,15 +255,15 @@ class ScorePackageWrangler(PackageWrangler):
 
     # TODO: FIXME
     def list_asset_filesystem_paths(self,
-        built_in_score_external=False, user_score_external=False,
-        built_in_score_internal=False, user_score_internal=False, head=None):
+        built_in_external=False, user_external=False,
+        built_in_score=False, user_score=False, head=None):
         '''Score package manager list specific asset filesystem paths:
 
         ::
 
             >>> for x in wrangler.list_asset_filesystem_paths(
-            ...     built_in_score_external=True, user_score_external=True,
-            ...     built_in_score_internal=True, user_score_internal=True):
+            ...     built_in_external=True, user_external=True,
+            ...     built_in_score=True, user_score=True):
             ...     x
             '.../tools/scoremanagertools/built_in_scores/blue_example_score'
             '.../tools/scoremanagertools/built_in_scores/green_example_score'
@@ -275,10 +275,10 @@ class ScorePackageWrangler(PackageWrangler):
         Return list.
         '''
         return super(type(self), self).list_asset_filesystem_paths(
-            built_in_score_external=built_in_score_external, 
-            user_score_external=user_score_external,
-            built_in_score_internal=built_in_score_internal, 
-            user_score_internal=user_score_internal, 
+            built_in_external=built_in_external, 
+            user_external=user_external,
+            built_in_score=built_in_score, 
+            user_score=user_score, 
             head=head)
 
     def list_asset_packagesystem_paths(self, head=None):
@@ -300,12 +300,12 @@ class ScorePackageWrangler(PackageWrangler):
         return super(type(self), self).list_asset_packagesystem_paths(head=head)
 
     # TODO: FIXME
-    def list_score_external_asset_packagesystem_paths(self, head=None):
-        '''Score package wrangler list score-external asset package paths:
+    def list_external_asset_packagesystem_paths(self, head=None):
+        '''Score package wrangler list external asset package paths:
 
         ::
 
-            >>> wrangler.list_score_external_asset_packagesystem_paths()
+            >>> wrangler.list_external_asset_packagesystem_paths()
             []
 
         .. note:: FIXME: this is hard-coded and shouldn't have to be.

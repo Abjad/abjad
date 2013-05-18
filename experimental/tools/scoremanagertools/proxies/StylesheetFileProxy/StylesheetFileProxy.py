@@ -12,7 +12,7 @@ class StylesheetFileProxy(FileProxy):
 
         >>> score_manager = scoremanagertools.scoremanager.ScoreManager()
         >>> wrangler = score_manager.stylesheet_file_wrangler
-        >>> directory_name = wrangler.built_in_score_external_storehouse_filesystem_path
+        >>> directory_name = wrangler.built_in_external_storehouse_filesystem_path
         >>> filesystem_path = os.path.join(directory_name, 'clean_letter_14.ly')
         >>> proxy = scoremanagertools.proxies.StylesheetFileProxy(filesystem_path=filesystem_path)
 

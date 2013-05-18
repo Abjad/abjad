@@ -10,7 +10,7 @@ def test_SegmentPackageWrangler_read_only_attributes_01():
     assert wrangler._breadcrumb == 'sketches'
     assert wrangler._current_storehouse_packagesystem_path == 'sketches'
 
-    assert wrangler._list_built_in_score_external_storehouse_packagesystem_path() == ['sketches']
+    assert wrangler._list_built_in_external_storehouse_packagesystem_path() == ['sketches']
     assert wrangler.storehouse_path_infix_parts == ('music', 'segments')
 
     assert wrangler._temporary_asset_package_path == 'sketches.__temporary_package'
@@ -32,7 +32,7 @@ def test_SegmentPackageWrangler_read_only_attributes_02():
     assert wrangler._current_storehouse_packagesystem_path == \
         'experimental.tools.scoremanagertools.built_in_scores.red_example_score.music.segments'
 
-    assert wrangler._list_built_in_score_external_storehouse_packagesystem_path() == \
+    assert wrangler._list_built_in_external_storehouse_packagesystem_path() == \
         ['sketches']
 
     assert wrangler.storehouse_path_infix_parts == ('music', 'segments')

@@ -35,9 +35,9 @@ class MaterialPackageWrangler(PackageWrangler):
     def __init__(self, session=None):
         from experimental.tools import scoremanagertools
         PackageWrangler.__init__(self,
-            built_in_score_external_storehouse_packagesystem_path=\
+            built_in_external_storehouse_packagesystem_path=\
                 self.configuration.built_in_materials_package_path,
-            user_score_external_storehouse_packagesystem_path=\
+            user_external_storehouse_packagesystem_path=\
                 self.configuration.user_materials_package_path,
             session=session,
             )
@@ -92,33 +92,33 @@ class MaterialPackageWrangler(PackageWrangler):
         '''
         return super(type(self), self)._list_storehouse_package_paths(head=head)
 
-    def _list_score_external_storehouse_filesystem_paths(self, head=None):
-        '''Material package wrangler list score external storehouse directory paths:
+    def _list_external_storehouse_filesystem_paths(self, head=None):
+        '''Material package wrangler list external storehouse directory paths:
 
         ::
 
-            >>> for x in wrangler._list_score_external_storehouse_filesystem_paths():
+            >>> for x in wrangler._list_external_storehouse_filesystem_paths():
             ...     x
             '/Users/trevorbaca/Documents/abjad/experimental/tools/scoremanagertools/built_in_materials'
             ...
 
         ::
 
-            >>> len(wrangler._list_score_external_storehouse_filesystem_paths())
+            >>> len(wrangler._list_external_storehouse_filesystem_paths())
             2
 
-        Output lists score-external materials followed by score internal materials.
+        Output lists external materials followed by score internal materials.
 
         Return list.
         '''
-        return super(type(self), self)._list_score_external_storehouse_filesystem_paths(head=head)
+        return super(type(self), self)._list_external_storehouse_filesystem_paths(head=head)
 
-    def _list_score_internal_storehouse_filesystem_paths(self, head=None):
+    def _list_score_storehouse_filesystem_paths(self, head=None):
         '''Material package wrangler list score internal storehouse directory paths:
 
         ::
 
-            >>> for x in wrangler._list_score_internal_storehouse_filesystem_paths():
+            >>> for x in wrangler._list_score_storehouse_filesystem_paths():
             ...     x
             '.../tools/scoremanagertools/built_in_scores/blue_example_score/music/materials'
             '.../tools/scoremanagertools/built_in_scores/green_example_score/music/materials'
@@ -127,14 +127,14 @@ class MaterialPackageWrangler(PackageWrangler):
 
         Return list.
         '''
-        return super(type(self), self)._list_score_internal_storehouse_filesystem_paths(head=head)
+        return super(type(self), self)._list_score_storehouse_filesystem_paths(head=head)
 
-    def _list_score_internal_storehouse_package_paths(self, head=None):
+    def _list_score_storehouse_package_paths(self, head=None):
         '''Material package wrangler list score internal storehouse package paths:
 
         ::
 
-            >>> for x in wrangler._list_score_internal_storehouse_package_paths():
+            >>> for x in wrangler._list_score_storehouse_package_paths():
             ...     x
             'experimental.tools.scoremanagertools.built_in_scores.blue_example_score.music.materials'
             'experimental.tools.scoremanagertools.built_in_scores.green_example_score.music.materials'
@@ -145,7 +145,7 @@ class MaterialPackageWrangler(PackageWrangler):
 
         Return list.
         '''
-        return super(type(self), self)._list_score_internal_storehouse_package_paths(head=head)
+        return super(type(self), self)._list_score_storehouse_package_paths(head=head)
 
     def _list_user_storehouse_filesystem_paths(self, head=None):
         '''Material package wrangler list user storehouse filesystem paths:
@@ -157,8 +157,8 @@ class MaterialPackageWrangler(PackageWrangler):
             '/Users/trevorbaca/Documents/baca/music/materials'
             ...
 
-        Output lists score-external path followed
-        by any score-internal paths.
+        Output lists external path followed
+        by any score paths.
 
         Return list.
         '''
@@ -208,30 +208,30 @@ class MaterialPackageWrangler(PackageWrangler):
         return scoremanagertools.proxies.PackageProxy
 
     @property
-    def built_in_score_external_storehouse_filesystem_path(self):
+    def built_in_external_storehouse_filesystem_path(self):
         '''Material package wrangler built-in storehouse filesystem path:
 
         ::
 
-            >>> wrangler.built_in_score_external_storehouse_filesystem_path
+            >>> wrangler.built_in_external_storehouse_filesystem_path
             '.../abjad/experimental/tools/scoremanagertools/built_in_materials'
 
         Return string.
         '''
-        return super(type(self), self).built_in_score_external_storehouse_filesystem_path
+        return super(type(self), self).built_in_external_storehouse_filesystem_path
 
     @property
-    def built_in_score_external_storehouse_packagesystem_path(self):
+    def built_in_external_storehouse_packagesystem_path(self):
         '''Material package wrangler built-in storehouse package path:
 
         ::
 
-            >>> wrangler.built_in_score_external_storehouse_packagesystem_path
+            >>> wrangler.built_in_external_storehouse_packagesystem_path
             'experimental.tools.scoremanagertools.built_in_materials'
 
         Return string.
         '''
-        return super(type(self), self).built_in_score_external_storehouse_packagesystem_path
+        return super(type(self), self).built_in_external_storehouse_packagesystem_path
 
     @property
     def storage_format(self):
@@ -247,30 +247,30 @@ class MaterialPackageWrangler(PackageWrangler):
         return super(type(self), self).storage_format
 
     @property
-    def user_score_external_storehouse_filesystem_path(self):
+    def user_external_storehouse_filesystem_path(self):
         '''Material package wrangler user storehouse filesystem path:
 
         ::
 
-            >>> wrangler.user_score_external_storehouse_filesystem_path
+            >>> wrangler.user_external_storehouse_filesystem_path
             '/Users/trevorbaca/Documents/baca/music/materials'
 
         Return string.
         '''
-        return super(type(self), self).user_score_external_storehouse_filesystem_path
+        return super(type(self), self).user_external_storehouse_filesystem_path
 
     @property
-    def user_score_external_storehouse_packagesystem_path(self):
-        '''Material package wrangler user score-external storehouse package path:
+    def user_external_storehouse_packagesystem_path(self):
+        '''Material package wrangler user external storehouse package path:
 
         ::
 
-            >>> wrangler.user_score_external_storehouse_packagesystem_path
+            >>> wrangler.user_external_storehouse_packagesystem_path
             '...materials'
 
         Return string.
         '''
-        return super(type(self), self).user_score_external_storehouse_packagesystem_path
+        return super(type(self), self).user_external_storehouse_packagesystem_path
 
     ### PUBLIC METHODS ###
 
@@ -314,7 +314,7 @@ class MaterialPackageWrangler(PackageWrangler):
             TempoMarkInventoryMaterialPackageMaker('.../tools/scoremanagertools/built_in_scores/red_example_score/music/materials/tempo_inventory')
             ...
 
-        Output lists score-external materials followed by score-internal materials. 
+        Output lists external materials followed by score materials. 
 
         Return list.
         '''
@@ -341,15 +341,15 @@ class MaterialPackageWrangler(PackageWrangler):
                 return material_package_path
 
     def list_asset_filesystem_paths(self,
-        built_in_score_external=False, user_score_external=False,
-        built_in_score_internal=False, user_score_internal=False, head=None):
+        built_in_external=False, user_external=False,
+        built_in_score=False, user_score=False, head=None):
         '''Material package wrangler list asset filesystem paths:
 
         ::
 
             >>> for x in wrangler.list_asset_filesystem_paths(
-            ...     built_in_score_external=True, user_score_external=True,
-            ...     built_in_score_internal=True, user_score_internal=True):
+            ...     built_in_external=True, user_external=True,
+            ...     built_in_score=True, user_score=True):
             ...     x
             '.../abjad/experimental/tools/scoremanagertools/built_in_materials/red_directives'
             '.../abjad/experimental/tools/scoremanagertools/built_in_materials/red_forte'
@@ -365,10 +365,10 @@ class MaterialPackageWrangler(PackageWrangler):
         Return list.
         '''
         return super(type(self), self).list_asset_filesystem_paths(
-            built_in_score_external=built_in_score_external,
-            user_score_external=user_score_external,
-            built_in_score_internal=built_in_score_internal,
-            user_score_internal=user_score_internal,
+            built_in_external=built_in_external,
+            user_external=user_external,
+            built_in_score=built_in_score,
+            user_score=user_score,
             head=head)
 
     def list_asset_packagesystem_paths(self, head=None):
@@ -395,25 +395,25 @@ class MaterialPackageWrangler(PackageWrangler):
         '''
         return super(type(self), self).list_asset_packagesystem_paths(head=head) 
 
-    def list_built_in_score_internal_asset_packagesystem_paths(self, head=None):
-        '''Material package wrangler list built-in score-internal asset package paths:
+    def list_built_in_score_asset_packagesystem_paths(self, head=None):
+        '''Material package wrangler list built-in score asset package paths:
 
         ::
 
-            >>> for x in wrangler.list_built_in_score_internal_asset_packagesystem_paths():
+            >>> for x in wrangler.list_built_in_score_asset_packagesystem_paths():
             ...     x
             'experimental.tools.scoremanagertools.built_in_scores.red_example_score.music.materials.tempo_inventory'
 
         Return list.
         '''
-        return super(type(self), self).list_built_in_score_internal_asset_packagesystem_paths(head=head)
+        return super(type(self), self).list_built_in_score_asset_packagesystem_paths(head=head)
 
-    def list_score_external_asset_packagesystem_paths(self, head=None):
-        '''Material package wrangler list score-external asset package paths:
+    def list_external_asset_packagesystem_paths(self, head=None):
+        '''Material package wrangler list external asset package paths:
 
         ::
 
-            >>> for x in wrangler.list_score_external_asset_packagesystem_paths():
+            >>> for x in wrangler.list_external_asset_packagesystem_paths():
             ...     x
             'experimental.tools.scoremanagertools.built_in_materials.red_directives'
             'experimental.tools.scoremanagertools.built_in_materials.red_forte'
@@ -428,14 +428,14 @@ class MaterialPackageWrangler(PackageWrangler):
 
         Return list.
         '''
-        return super(type(self), self).list_score_external_asset_packagesystem_paths(head=head)
+        return super(type(self), self).list_external_asset_packagesystem_paths(head=head)
 
-    def list_score_internal_asset_packagesystem_paths(self, head=None):
-        '''Material package wrangler list score-internal asset package paths:
+    def list_score_asset_packagesystem_paths(self, head=None):
+        '''Material package wrangler list score asset package paths:
 
         ::
 
-            >>> for x in wrangler.list_score_internal_asset_packagesystem_paths():
+            >>> for x in wrangler.list_score_asset_packagesystem_paths():
             ...     x
             'experimental.tools.scoremanagertools.built_in_scores.red_example_score.music.materials.tempo_inventory'
             ...
@@ -444,7 +444,7 @@ class MaterialPackageWrangler(PackageWrangler):
 
         Return list.
         '''
-        return super(type(self), self).list_score_internal_asset_packagesystem_paths(head=head)
+        return super(type(self), self).list_score_asset_packagesystem_paths(head=head)
 
     def make_data_package(self, material_package_path, tags=None):
         tags = tags or {}

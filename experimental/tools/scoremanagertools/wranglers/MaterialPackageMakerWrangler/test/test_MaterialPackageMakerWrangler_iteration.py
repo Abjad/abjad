@@ -6,12 +6,12 @@ wrangler = score_manager.material_package_maker_wrangler
 
 def test_MaterialPackageMakerWrangler_iteration_01():
 
-    assert wrangler.list_score_internal_asset_packagesystem_paths() == []
+    assert wrangler.list_score_asset_packagesystem_paths() == []
 
 
 def test_MaterialPackageMakerWrangler_iteration_02():
 
-    assert wrangler._list_score_internal_storehouse_package_paths() == []
+    assert wrangler._list_score_storehouse_package_paths() == []
 
 
 def test_MaterialPackageMakerWrangler_iteration_03():

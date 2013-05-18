@@ -11,11 +11,11 @@ class MaterialPackageMakerWrangler(PackageWrangler):
 
     def __init__(self, session=None):
         PackageWrangler.__init__(self,
-            built_in_score_external_storehouse_packagesystem_path=\
+            built_in_external_storehouse_packagesystem_path=\
                 'scoremanagertools.materialpackagemakers',
-            user_score_external_storehouse_packagesystem_path=\
+            user_external_storehouse_packagesystem_path=\
                 self.configuration.user_material_package_makers_package_path,
-            user_score_external_storehouse_filesystem_path=\
+            user_external_storehouse_filesystem_path=\
                 self.configuration.user_material_package_makers_directory_path,
             session=session
             )
@@ -34,7 +34,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         else:
             raise ValueError
 
-    def _list_score_internal_storehouse_package_paths(self, head=None):
+    def _list_score_storehouse_package_paths(self, head=None):
         return []
 
     def _make_main_menu(self, head=None):
@@ -95,8 +95,8 @@ class MaterialPackageMakerWrangler(PackageWrangler):
                 package_path, session=self._session)
         return material_package_proxy
 
-    def list_score_external_asset_packagesystem_paths(self, head=None):
-        result = PackageWrangler.list_score_external_asset_packagesystem_paths(self, head=head)
+    def list_external_asset_packagesystem_paths(self, head=None):
+        result = PackageWrangler.list_external_asset_packagesystem_paths(self, head=head)
         #if self.base_class_name in result:
         #    result.remove(self.base_class_name)
         for forbidden_package_path in self.forbidden_package_paths:
@@ -119,7 +119,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
     # TODO: implement MaterialPackageProxyClassFile object to model and customize these settings
     def make_asset_class_file(self, package_name, generic_output_name):
         class_file_name = os.path.join(
-            self._list_built_in_score_external_storehouse_packagesystem_path()[0],
+            self._list_built_in_external_storehouse_packagesystem_path()[0],
             package_name, package_name + '.py')
         class_file = file(class_file_name, 'w')
         lines = []
@@ -171,7 +171,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
     # TODO: change to boilerplate file stored in material_package_maker package
     def make_asset_initializer(self, package_name):
         initializer_file_name = os.path.join(
-            self._list_built_in_score_external_storehouse_packagesystem_path()[0],
+            self._list_built_in_external_storehouse_packagesystem_path()[0],
             package_name, '__init__.py')
         initializer = file(initializer_file_name, 'w')
         line = 'from abjad.tools import importtools\n'
@@ -189,7 +189,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             return
         material_package_maker_class_name, generic_output_product_name = result
         material_package_maker_directory = os.path.join(
-            self._list_built_in_score_external_storehouse_packagesystem_path[0],
+            self._list_built_in_external_storehouse_packagesystem_path[0],
             material_package_maker_class_name)
         os.mkdir(material_package_maker_directory)
         self.make_asset_initializer(material_package_maker_class_name)
@@ -209,7 +209,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         stylesheet.paper_block.markup_system_spacing = layouttools.make_spacing_vector(0, 0, 12, 0)
         stylesheet.paper_block.system_system_spacing = layouttools.make_spacing_vector(0, 0, 10, 0)
         stylesheet_file_name = os.path.join(
-            self._list_built_in_score_external_storehouse_packagesystem_path()[0],
+            self._list_built_in_external_storehouse_packagesystem_path()[0],
             package_name, 'stylesheet.ly')
         stylesheet_file_pointer = file(stylesheet_file_name, 'w')
         stylesheet_file_pointer.write(stylesheet.format)

@@ -13,9 +13,9 @@ class SegmentPackageWrangler(PackageWrangler):
 
     def __init__(self, session=None):
         PackageWrangler.__init__(self,
-            built_in_score_external_storehouse_packagesystem_path=\
+            built_in_external_storehouse_packagesystem_path=\
                 self.configuration.user_sketches_package_path,
-            user_score_external_storehouse_packagesystem_path=\
+            user_external_storehouse_packagesystem_path=\
                 self.configuration.user_sketches_package_path,
             session=session,
             )

@@ -34,7 +34,7 @@ def test_ScorePackageWrangler_read_only_attributes_04():
     '''Score-external storehouse.
     '''
 
-    assert wrangler._list_built_in_score_external_storehouse_packagesystem_path() == [
+    assert wrangler._list_built_in_external_storehouse_packagesystem_path() == [
         'experimental.tools.scoremanagertools.built_in_scores']
 
 
@@ -42,7 +42,7 @@ def test_ScorePackageWrangler_read_only_attributes_05():
     '''Score-external assets.
     '''
 
-    assert wrangler.list_score_external_asset_packagesystem_paths() == []
+    assert wrangler.list_external_asset_packagesystem_paths() == []
 
 
 def test_ScorePackageWrangler_read_only_attributes_06():
