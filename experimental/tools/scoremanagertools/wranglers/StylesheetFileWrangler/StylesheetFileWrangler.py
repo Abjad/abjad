@@ -321,12 +321,16 @@ class StylesheetFileWrangler(FileWrangler):
         '''
         return super(type(self), self).get_visible_asset_proxies(head=head)
 
-    def list_asset_filesystem_paths(self, head=None):
+    def list_specific_asset_filesystem_paths(self,
+        built_in_score_external=False, user_score_external=False,
+        built_in_score_internal=False, user_score_internal=False, head=None):
         '''Stylesheet file wrangler list asset filesystem paths:
 
         ::
 
-            >>> for x in wrangler.list_asset_filesystem_paths():
+            >>> for x in wrangler.list_specific_asset_filesystem_paths(
+            ...     built_in_score_external=True, user_score_external=True,
+            ...     built_in_score_internal=True, user_score_internal=True):
             ...     x
             '.../tools/scoremanagertools/built_in_stylesheets/clean_letter_14.ly'
             '.../tools/scoremanagertools/built_in_stylesheets/clean_letter_16.ly'
@@ -335,10 +339,17 @@ class StylesheetFileWrangler(FileWrangler):
             '.../tools/scoremanagertools/built_in_scores/red_example_score/music/stylesheets/red_example_score_stylesheet.ly'
             ...
 
+        User collateral elided.
+
         Return list.
         '''
-        return super(type(self), self).list_asset_filesystem_paths(head=head)
-        
+        return super(type(self), self).list_specific_asset_filesystem_paths(
+            built_in_score_external=built_in_score_external,
+            user_score_external=user_score_external,
+            built_in_score_internal=built_in_score_internal,
+            user_score_internal=user_score_internal,
+            head=head)
+
     def list_space_delimited_lowercase_visible_asset_names(self, head=None):
         '''Stylesheet file wrangler list space-delimited lowercase visible asset names:
 

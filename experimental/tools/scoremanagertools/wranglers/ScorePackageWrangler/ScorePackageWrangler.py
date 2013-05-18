@@ -345,7 +345,7 @@ class ScorePackageWrangler(PackageWrangler):
             user_score_external=user_score_external,
             built_in_score_internal=built_in_score_internal, 
             user_score_internal=user_score_internal, 
-            head=None)
+            head=head)
 
     def list_visible_asset_filesystem_paths(self, head=None):
         '''Score package wrangler list visible asset filesystem paths:

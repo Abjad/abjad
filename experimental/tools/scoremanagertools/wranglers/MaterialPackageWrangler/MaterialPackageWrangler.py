@@ -381,12 +381,16 @@ class MaterialPackageWrangler(PackageWrangler):
             else:
                 return material_package_path
 
-    def list_asset_filesystem_paths(self, head=None):
+    def list_specific_asset_filesystem_paths(self,
+        built_in_score_external=False, user_score_external=False,
+        built_in_score_internal=False, user_score_internal=False, head=None):
         '''Material package wrangler list asset filesystem paths:
 
         ::
 
-            >>> for x in wrangler.list_asset_filesystem_paths():
+            >>> for x in wrangler.list_specific_asset_filesystem_paths(
+            ...     built_in_score_external=True, user_score_external=True,
+            ...     built_in_score_internal=True, user_score_internal=True):
             ...     x
             '.../abjad/experimental/tools/scoremanagertools/built_in_materials/red_directives'
             '.../abjad/experimental/tools/scoremanagertools/built_in_materials/red_forte'
@@ -397,11 +401,16 @@ class MaterialPackageWrangler(PackageWrangler):
             '.../abjad/experimental/tools/scoremanagertools/built_in_materials/sargasso_multipliers'
             ...
 
-        User-specific output elided above.
+        User collateral elided.
 
         Return list.
         '''
-        return super(type(self), self).list_asset_filesystem_paths(head=head) 
+        return super(type(self), self).list_specific_asset_filesystem_paths(
+            built_in_score_external=built_in_score_external,
+            user_score_external=user_score_external,
+            built_in_score_internal=built_in_score_internal,
+            user_score_internal=user_score_internal,
+            head=head)
 
     def list_asset_packagesystem_paths(self, head=None):
         '''Material package wrangler list asset package paths:

@@ -319,18 +319,15 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     def get_asset_proxies(self, head=None):
         result = []
-        for filesystem_path in self.list_asset_filesystem_paths(head=head):
+        for filesystem_path in self.list_specific_asset_filesystem_paths(
+            built_in_score_external=True, user_score_external=True,
+            built_in_score_internal=True, user_score_internal=True, head=head):
             asset_proxy = self._get_asset_proxy(filesystem_path)
             result.append(asset_proxy)
         return result
 
     def get_visible_asset_proxies(self, head=None):
         return self.get_asset_proxies(head=head)
-
-    def list_asset_filesystem_paths(self, head=None):
-        return self.list_specific_asset_filesystem_paths(
-            built_in_score_external=True, user_score_external=True,
-            built_in_score_internal=True, user_score_internal=True, head=head)
 
     def list_space_delimited_lowercase_visible_asset_names(self, head=None):
         result = []
@@ -373,7 +370,9 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         return result
 
     def list_visible_asset_filesystem_paths(self, head=None):
-        return self.list_asset_filesystem_paths(head=head)
+        return self.list_specific_asset_filesystem_paths(
+            built_in_score_external=True, user_score_external=True,
+            built_in_score_internal=True, user_score_internal=True, head=head)
 
     def make_asset(self, asset_name):
         assert stringtools.is_underscore_delimited_lowercase_string(asset_name)
