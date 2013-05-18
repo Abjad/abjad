@@ -19,7 +19,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         'built_in_sketches',
         'built_in_specifiers',
         ) 
-    score_internal_assets_exist = True
 
     ### INITIALIZER ###
 
@@ -203,13 +202,12 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     def _list_score_internal_storehouse_filesystem_paths(self, head=None):
         result = []
-        if self.score_internal_assets_exist:
-            for score_directory_path in self._list_all_score_directory_paths(head=head):
-                parts = [score_directory_path]
-                if self.storehouse_path_infix_parts:
-                    parts.extend(self.storehouse_path_infix_parts)
-                score_internal_directory_path = os.path.join(*parts)
-                result.append(score_internal_directory_path)
+        for score_directory_path in self._list_all_score_directory_paths(head=head):
+            parts = [score_directory_path]
+            if self.storehouse_path_infix_parts:
+                parts.extend(self.storehouse_path_infix_parts)
+            score_internal_directory_path = os.path.join(*parts)
+            result.append(score_internal_directory_path)
         return result
 
     def _list_user_storehouse_filesystem_paths(self, head=None):
@@ -240,13 +238,12 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     def _list_user_score_internal_storehouse_filesystem_paths(self, head=None):
         result = []
-        if self.score_internal_assets_exist:
-            for directory_path in self._list_user_score_directory_paths(head=head):
-                parts = [directory_path]
-                if self.storehouse_path_infix_parts:
-                    parts.extend(self.storehouse_path_infix_parts)
-                filesystem_path = os.path.join(*parts)
-                result.append(filesystem_path)
+        for directory_path in self._list_user_score_directory_paths(head=head):
+            parts = [directory_path]
+            if self.storehouse_path_infix_parts:
+                parts.extend(self.storehouse_path_infix_parts)
+            filesystem_path = os.path.join(*parts)
+            result.append(filesystem_path)
         return result
 
     def _make_asset_selection_breadcrumb(self, infinitival_phrase=None):
