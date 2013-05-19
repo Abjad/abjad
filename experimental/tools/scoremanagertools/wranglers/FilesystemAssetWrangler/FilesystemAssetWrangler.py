@@ -118,12 +118,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def _handle_main_menu_result(self, result):
         pass
 
-    def _list_built_in_external_storehouse_filesystem_paths(self, head=None):
-        return self._list_storehouse_filesystem_paths(built_in_external=True, head=head)
-        
-    def _list_built_in_score_storehouse_filesystem_paths(self, head=None):
-        return self._list_storehouse_filesystem_paths(built_in_score=True, head=head)
-
     def _list_score_directory_paths(self, built_in=False, user=False, head=None):
         result = []
         if built_in:
@@ -148,8 +142,8 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     def _list_score_storehouse_filesystem_paths(self, head=None):
         result = []
-        result.extend(self._list_built_in_score_storehouse_filesystem_paths(head=head))
-        result.extend(self._list_user_score_storehouse_filesystem_paths(head=head))
+        result.extend(self._list_storehouse_filesystem_paths(built_in_score=True, head=head))
+        result.extend(self._list_storehouse_filesystem_paths(user_score=True, head=head))
         return result
 
     def _list_storehouse_filesystem_paths(self, 
@@ -186,12 +180,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                 filesystem_path = os.path.join(*parts)
                 result.append(filesystem_path)
         return result
-
-    def _list_user_external_storehouse_filesystem_paths(self, head=None):
-        return self._list_storehouse_filesystem_paths(user_external=True, head=head)
-
-    def _list_user_score_storehouse_filesystem_paths(self, head=None):
-        return self._list_storehouse_filesystem_paths(user_score=True, head=head)
 
     def _make_asset_selection_breadcrumb(self, infinitival_phrase=None):
         if infinitival_phrase:
@@ -287,29 +275,31 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         built_in_score=False, user_score=False, head=None):
         result = []
         if built_in_external:
-            for directory_path in self._list_built_in_external_storehouse_filesystem_paths(
-                head=head):
+            for directory_path in self._list_storehouse_filesystem_paths(
+                built_in_external=True, head=head):
                 for directory_entry in os.listdir(directory_path):
                     if directory_entry[0].isalpha():
                         filesystem_path = os.path.join(directory_path, directory_entry)
                         result.append(filesystem_path)
         if user_external:
-            for directory_path in self._list_user_external_storehouse_filesystem_paths(
-                head=head):
+            #for directory_path in self._list_user_external_storehouse_filesystem_paths(
+            #    head=head):
+            for directory_path in self._list_storehouse_filesystem_paths(
+                user_external=True, head=head):
                 for directory_entry in os.listdir(directory_path):
                     if directory_entry[0].isalpha():
                         filesystem_path = os.path.join(directory_path, directory_entry)
                         result.append(filesystem_path)
         if built_in_score:
-            for directory_path in self._list_built_in_score_storehouse_filesystem_paths(
-                head=head):
+            for directory_path in self._list_storehouse_filesystem_paths(
+                built_in_score=True, head=head):
                 for directory_entry in os.listdir(directory_path):
                     if directory_entry[0].isalpha():
                         filesystem_path = os.path.join(directory_path, directory_entry)
                         result.append(filesystem_path)
         if user_score:
-            for directory_path in self._list_user_score_storehouse_filesystem_paths(
-                head=head):
+            for directory_path in self._list_storehouse_filesystem_paths(
+                user_score=True, head=head):
                 for directory_entry in os.listdir(directory_path):
                     if directory_entry[0].isalpha():
                         filesystem_path = os.path.join(directory_path, directory_entry)
