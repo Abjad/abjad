@@ -57,6 +57,9 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.list_space_delimited_lowercase_visible_asset_names
    :noindex:
 
+.. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.list_storehouse_filesystem_paths
+   :noindex:
+
 .. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.list_user_asset_packagesystem_paths
    :noindex:
 

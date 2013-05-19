@@ -111,14 +111,14 @@ class StylesheetFileWrangler(FileWrangler):
                 stylesheet_file_name, session=self._session)
             stylesheet_proxy._run()
 
-    def _list_storehouse_filesystem_paths(self, 
+    def list_storehouse_filesystem_paths(self, 
         built_in_external=False, user_external=False,
         built_in_score=False, user_score=False, head=None):
         '''Stylesheet file wrangler list storehouse directory paths:
 
         ::
 
-            >>> for x in wrangler._list_storehouse_filesystem_paths(
+            >>> for x in wrangler.list_storehouse_filesystem_paths(
             ...     built_in_external=True, user_external=True,
             ...     built_in_score=True, user_score=True):
             ...     x
@@ -128,7 +128,7 @@ class StylesheetFileWrangler(FileWrangler):
 
         Return list.
         '''
-        return super(type(self), self)._list_storehouse_filesystem_paths(
+        return super(type(self), self).list_storehouse_filesystem_paths(
             built_in_external=built_in_external,
             user_external=user_external,
             built_in_score=built_in_score,
