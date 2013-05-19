@@ -90,14 +90,15 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
 
     def _list_built_in_score_package_paths(self, head=None):
         result = []
-        for directory_path in self._list_built_in_score_directory_paths(head=head):
+        for directory_path in self._list_score_directory_paths(built_in=True, head=head):
             package_path = self.configuration.filesystem_path_to_packagesystem_path(directory_path)
             reuslt.append(package_path)
         return result
 
     def _list_score_directory_package_paths(self, head=None):
         result = []
-        for directory_path in self._list_score_directory_paths(head=head):
+        for directory_path in self._list_score_directory_paths(
+            built_in=True, user=True, head=head):
             package_path = self.configuration.filesystem_path_to_packagesystem_path(directory_path)
             result.append(package_path)
         return result

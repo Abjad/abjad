@@ -476,6 +476,21 @@ class ScoreManagerConfiguration(Configuration):
             ))
 
     @property
+    def user_scores_package_path(self):
+        '''Scores package path:
+
+        ::
+
+            >>> configuration.user_scores_package_path 
+            ''
+
+        User scores must be directly importable.
+
+        Return string.
+        '''
+        return ''
+
+    @property
     def user_sketches_directory_path(self):
         '''Score-external segments directory path:
 

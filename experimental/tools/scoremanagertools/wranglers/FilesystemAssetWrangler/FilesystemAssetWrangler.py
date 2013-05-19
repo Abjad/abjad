@@ -127,20 +127,9 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                 result.append(self.built_in_external_storehouse_filesystem_path)
         return result
         
-    def _list_built_in_score_directory_paths(self, head=None):
-        result = []
-        for directory_entry in os.listdir(self.configuration.built_in_scores_directory_path):
-            if directory_entry[0].isalpha():
-                package_path = '.'.join([self.configuration.built_in_scores_package_path, directory_entry])
-                if head is None or package_path.startswith(head):
-                    filesystem_path = os.path.join(
-                        self.configuration.built_in_scores_directory_path, directory_entry)
-                    result.append(filesystem_path)
-        return result
-
     def _list_built_in_score_storehouse_filesystem_paths(self, head=None):
         result = []
-        for score_directory_path in self._list_built_in_score_directory_paths(head=head):
+        for score_directory_path in self._list_score_directory_paths(built_in=True, head=head):
             parts = [score_directory_path]
             parts.extend(self.storehouse_path_infix_parts)
             storehouse_filesystem_path = os.path.join(*parts)
@@ -159,20 +148,32 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         result.extend(self._list_user_external_storehouse_filesystem_paths(head=head))
         return result
 
-    def _list_score_directory_paths(self, head=None):
+    def _list_score_directory_paths(self, built_in=False, user=False, head=None):
         result = []
-        result.extend(self._list_built_in_score_directory_paths(head=head))
-        result.extend(self._list_user_score_directory_paths(head=head))
+        if built_in:
+            for directory_entry in os.listdir(self.configuration.built_in_scores_directory_path):
+                if directory_entry[0].isalpha():
+                    package_path = '.'.join([
+                        self.configuration.built_in_scores_package_path, directory_entry])
+                    if head is None or package_path.startswith(head):
+                        filesystem_path = os.path.join(
+                            self.configuration.built_in_scores_directory_path, directory_entry)
+                        result.append(filesystem_path)
+        if user:
+            for directory_entry in os.listdir(self.configuration.user_scores_directory_path):
+                if directory_entry[0].isalpha():
+                    package_path = '.'.join([
+                        self.configuration.user_scores_package_path, directory_entry])
+                    if head is None or package_path.startswith(head):
+                        filesystem_path = os.path.join(
+                            self.configuration.user_scores_directory_path, directory_entry)
+                        result.append(filesystem_path)
         return result
 
     def _list_score_storehouse_filesystem_paths(self, head=None):
         result = []
-        for score_directory_path in self._list_score_directory_paths(head=head):
-            parts = [score_directory_path]
-            if self.storehouse_path_infix_parts:
-                parts.extend(self.storehouse_path_infix_parts)
-            score_directory_path = os.path.join(*parts)
-            result.append(score_directory_path)
+        result.extend(self._list_built_in_score_storehouse_filesystem_paths(head=head))
+        result.extend(self._list_user_score_storehouse_filesystem_paths(head=head))
         return result
 
     def _list_storehouse_filesystem_paths(self, head=None):
@@ -192,26 +193,9 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                 result.append(self.user_external_storehouse_filesystem_path)
         return result
 
-    def _list_user_score_directory_basenames(self, head=None):
-        result = []
-        for directory_entry in os.listdir(self.configuration.user_scores_directory_path):
-            if (head is not None and directory_entry.startswith(head)) or \
-                (head is None and directory_entry[0].isalpha()):
-                result.append(directory_entry)
-        return result
-
-    def _list_user_score_directory_paths(self, head=None):
-        result = []
-        for directory_basename in self._list_user_score_directory_basenames(head=head):
-            directory_path = os.path.join(
-                self.configuration.user_scores_directory_path,
-                directory_basename)
-            result.append(directory_path) 
-        return result
-
     def _list_user_score_storehouse_filesystem_paths(self, head=None):
         result = []
-        for directory_path in self._list_user_score_directory_paths(head=head):
+        for directory_path in self._list_score_directory_paths(user=True, head=head):
             parts = [directory_path]
             if self.storehouse_path_infix_parts:
                 parts.extend(self.storehouse_path_infix_parts)
