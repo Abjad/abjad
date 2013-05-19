@@ -127,13 +127,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                 result.append(self.built_in_external_storehouse_filesystem_path)
         return result
         
-    def _list_built_in_score_directory_basenames(self):
-        result = []
-        for directory_entry in os.listdir(self.configuration.built_in_scores_directory_path):
-            if directory_entry[0].isalpha():
-                result.append(directory_entry)
-        return result
-
     def _list_built_in_score_directory_paths(self, head=None):
         result = []
         for directory_entry in os.listdir(self.configuration.built_in_scores_directory_path):

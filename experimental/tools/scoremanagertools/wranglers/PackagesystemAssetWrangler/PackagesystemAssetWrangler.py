@@ -90,11 +90,9 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
 
     def _list_built_in_score_package_paths(self, head=None):
         result = []
-        for basename in self._list_built_in_score_directory_basenames():
-            package_path = 'experimental.tools.scoremanagertools.built_in_scores.{}'
-            package_path = package_path.format(basename)
-            if head is None or package_path == head:
-                result.append(package_path)
+        for directory_path in self._list_built_in_score_directory_paths(head=head):
+            package_path = self.configuration.filesystem_path_to_packagesystem_path(directory_path)
+            reuslt.append(package_path)
         return result
 
     def _list_score_directory_package_paths(self, head=None):
