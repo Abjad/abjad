@@ -18,8 +18,6 @@ def test_ScorePackageWrangler_read_only_attributes_02():
 
     assert 'experimental.tools.scoremanagertools.built_in_scores.red_example_score' in \
         wrangler._list_storehouse_package_paths()
-    directory_path = os.path.join(wrangler.configuration.built_in_scores_directory_path, 'red_example_score')
-    assert directory_path in wrangler._list_storehouse_filesystem_paths()
 
 
 def test_ScorePackageWrangler_read_only_attributes_03():

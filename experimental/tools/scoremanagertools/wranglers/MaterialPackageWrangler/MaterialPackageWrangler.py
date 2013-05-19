@@ -72,27 +72,6 @@ class MaterialPackageWrangler(PackageWrangler):
             material_package_proxy = self._get_asset_proxy(result)
             material_package_proxy._run()
 
-    def _list_external_storehouse_filesystem_paths(self, head=None):
-        '''Material package wrangler list external storehouse directory paths:
-
-        ::
-
-            >>> for x in wrangler._list_external_storehouse_filesystem_paths():
-            ...     x
-            '/Users/trevorbaca/Documents/abjad/experimental/tools/scoremanagertools/built_in_materials'
-            ...
-
-        ::
-
-            >>> len(wrangler._list_external_storehouse_filesystem_paths())
-            2
-
-        Output lists external materials followed by score internal materials.
-
-        Return list.
-        '''
-        return super(type(self), self)._list_external_storehouse_filesystem_paths(head=head)
-
     def _list_score_storehouse_filesystem_paths(self, head=None):
         '''Material package wrangler list score internal storehouse directory paths:
 
@@ -146,23 +125,6 @@ class MaterialPackageWrangler(PackageWrangler):
         Return list.
         '''
         return super(type(self), self)._list_storehouse_package_paths(head=head)
-
-    def _list_user_storehouse_filesystem_paths(self, head=None):
-        '''Material package wrangler list user storehouse filesystem paths:
-
-        ::
-
-            >>> for x in wrangler._list_user_storehouse_filesystem_paths():
-            ...     x
-            '/Users/trevorbaca/Documents/baca/music/materials'
-            ...
-
-        Output lists external path followed
-        by any score paths.
-
-        Return list.
-        '''
-        return super(type(self), self)._list_user_storehouse_filesystem_paths(head=head)
 
     def _make_main_menu(self, head=None):
         menu, section = self._io.make_menu(where=self._where, is_numbered=True, is_keyed=False)
