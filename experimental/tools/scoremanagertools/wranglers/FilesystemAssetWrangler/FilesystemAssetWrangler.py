@@ -95,7 +95,8 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     def _get_score_storehouse_proxies(self, head=None):
         result = []
-        for directory_path in self._list_score_storehouse_filesystem_paths(head=head):
+        for directory_path in self._list_storehouse_filesystem_paths(
+            built_in_score=True, user_score=True, head=head):
             storehouse_proxy = self.storehouse_proxy_class(directory_path)
             result.append(storehouse_proxy)
         return result
@@ -138,12 +139,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                         filesystem_path = os.path.join(
                             self.configuration.user_scores_directory_path, directory_entry)
                         result.append(filesystem_path)
-        return result
-
-    def _list_score_storehouse_filesystem_paths(self, head=None):
-        result = []
-        result.extend(self._list_storehouse_filesystem_paths(built_in_score=True, head=head))
-        result.extend(self._list_storehouse_filesystem_paths(user_score=True, head=head))
         return result
 
     def _list_storehouse_filesystem_paths(self, 

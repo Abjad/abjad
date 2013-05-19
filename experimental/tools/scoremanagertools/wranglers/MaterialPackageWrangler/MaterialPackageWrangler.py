@@ -72,22 +72,6 @@ class MaterialPackageWrangler(PackageWrangler):
             material_package_proxy = self._get_asset_proxy(result)
             material_package_proxy._run()
 
-    def _list_score_storehouse_filesystem_paths(self, head=None):
-        '''Material package wrangler list score internal storehouse directory paths:
-
-        ::
-
-            >>> for x in wrangler._list_score_storehouse_filesystem_paths():
-            ...     x
-            '.../tools/scoremanagertools/built_in_scores/blue_example_score/music/materials'
-            '.../tools/scoremanagertools/built_in_scores/green_example_score/music/materials'
-            '.../tools/scoremanagertools/built_in_scores/red_example_score/music/materials'
-            ...
-
-        Return list.
-        '''
-        return super(type(self), self)._list_score_storehouse_filesystem_paths(head=head)
-
     def _list_score_storehouse_package_paths(self, head=None):
         '''Material package wrangler list score internal storehouse package paths:
 

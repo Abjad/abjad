@@ -111,22 +111,6 @@ class StylesheetFileWrangler(FileWrangler):
                 stylesheet_file_name, session=self._session)
             stylesheet_proxy._run()
 
-    def _list_score_storehouse_filesystem_paths(self, head=None):
-        '''Stylesheet file wrangler list score storehouse directory paths:
-
-        ::
-
-            >>> for x in wrangler._list_score_storehouse_filesystem_paths():
-            ...     x
-            '.../tools/scoremanagertools/built_in_scores/blue_example_score/music/stylesheets'
-            '.../tools/scoremanagertools/built_in_scores/green_example_score/music/stylesheets'
-            '.../tools/scoremanagertools/built_in_scores/red_example_score/music/stylesheets'
-            ...
-
-        Return list.
-        '''
-        return super(type(self), self)._list_score_storehouse_filesystem_paths(head=head)
-
     def _list_storehouse_filesystem_paths(self, 
         built_in_external=False, user_external=False,
         built_in_score=False, user_score=False, head=None):
