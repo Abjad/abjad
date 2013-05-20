@@ -589,6 +589,42 @@ class ScoreManagerConfiguration(Configuration):
 
         return package_path
 
+    def list_score_directory_paths(self, built_in=False, user=False, head=None):
+        '''List score directory paths.
+    
+        Example. List built-in score directory paths:
+
+        ::
+
+            >>> for x in configuration.list_score_directory_paths(built_in=True):
+            ...     x
+            '.../tools/scoremanagertools/built_in_scores/blue_example_score'
+            '.../tools/scoremanagertools/built_in_scores/green_example_score'
+            '.../tools/scoremanagertools/built_in_scores/red_example_score'
+
+        Return list.
+        '''
+        result = []
+        if built_in:
+            for directory_entry in os.listdir(self.built_in_scores_directory_path):
+                if directory_entry[0].isalpha():
+                    package_path = '.'.join([
+                        self.built_in_scores_package_path, directory_entry])
+                    if head is None or package_path.startswith(head):
+                        filesystem_path = os.path.join(
+                            self.built_in_scores_directory_path, directory_entry)
+                        result.append(filesystem_path)
+        if user:
+            for directory_entry in os.listdir(self.user_scores_directory_path):
+                if directory_entry[0].isalpha():
+                    package_path = '.'.join([
+                        self.user_scores_package_path, directory_entry])
+                    if head is None or package_path.startswith(head):
+                        filesystem_path = os.path.join(
+                            self.user_scores_directory_path, directory_entry)
+                        result.append(filesystem_path)
+        return result
+
     def packagesystem_path_exists(self, packagesystem_path):
         '''True when `packagesystem_path` exists. Otherwise false.
 

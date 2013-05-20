@@ -126,6 +126,9 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.keys
    :noindex:
 
+.. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.list_score_directory_paths
+   :noindex:
+
 .. automethod:: experimental.tools.scoremanagertools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration.packagesystem_path_exists
    :noindex:
 

@@ -89,28 +89,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def _handle_main_menu_result(self, result):
         pass
 
-    def _list_score_directory_paths(self, built_in=False, user=False, head=None):
-        result = []
-        if built_in:
-            for directory_entry in os.listdir(self.configuration.built_in_scores_directory_path):
-                if directory_entry[0].isalpha():
-                    package_path = '.'.join([
-                        self.configuration.built_in_scores_package_path, directory_entry])
-                    if head is None or package_path.startswith(head):
-                        filesystem_path = os.path.join(
-                            self.configuration.built_in_scores_directory_path, directory_entry)
-                        result.append(filesystem_path)
-        if user:
-            for directory_entry in os.listdir(self.configuration.user_scores_directory_path):
-                if directory_entry[0].isalpha():
-                    package_path = '.'.join([
-                        self.configuration.user_scores_package_path, directory_entry])
-                    if head is None or package_path.startswith(head):
-                        filesystem_path = os.path.join(
-                            self.configuration.user_scores_directory_path, directory_entry)
-                        result.append(filesystem_path)
-        return result
-
     def _make_asset_selection_breadcrumb(self, infinitival_phrase=None):
         if infinitival_phrase:
             return 'select {} {}:'.format(self.asset_proxy_class._generic_class_name, infinitival_phrase)
@@ -258,13 +236,15 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                     filesystem_path):
                     result.append(self.user_external_storehouse_filesystem_path)
         if built_in_score:
-            for score_directory_path in self._list_score_directory_paths(built_in=True, head=head):
+            for score_directory_path in self.configuration.list_score_directory_paths(
+                built_in=True, head=head):
                 parts = [score_directory_path]
                 parts.extend(self.storehouse_path_infix_parts)
                 storehouse_filesystem_path = os.path.join(*parts)
                 result.append(storehouse_filesystem_path)
         if user_score:
-            for directory_path in self._list_score_directory_paths(user=True, head=head):
+            for directory_path in self.configuration.list_score_directory_paths(
+                user=True, head=head):
                 parts = [directory_path]
                 if self.storehouse_path_infix_parts:
                     parts.extend(self.storehouse_path_infix_parts)
