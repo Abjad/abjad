@@ -79,19 +79,6 @@ class StylesheetFileWrangler(FileWrangler):
         return scoremanagertools.proxies.StylesheetFileProxy
 
     @property
-    def built_in_external_storehouse_filesystem_path(self):
-        '''Stylesheet file wrangler built-in storehouse directory path:
-
-        ::
-
-            >>> wrangler.built_in_external_storehouse_filesystem_path
-            '.../tools/scoremanagertools/built_in_stylesheets'
-
-        Return list.
-        '''
-        return super(type(self), self).built_in_external_storehouse_filesystem_path
-
-    @property
     def storage_format(self):
         '''Stylesheet file wrangler storage format:
 

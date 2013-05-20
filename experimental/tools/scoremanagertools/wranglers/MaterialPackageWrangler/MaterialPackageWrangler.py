@@ -140,19 +140,6 @@ class MaterialPackageWrangler(PackageWrangler):
         return scoremanagertools.proxies.PackageProxy
 
     @property
-    def built_in_external_storehouse_filesystem_path(self):
-        '''Material package wrangler built-in storehouse filesystem path:
-
-        ::
-
-            >>> wrangler.built_in_external_storehouse_filesystem_path
-            '.../abjad/experimental/tools/scoremanagertools/built_in_materials'
-
-        Return string.
-        '''
-        return super(type(self), self).built_in_external_storehouse_filesystem_path
-
-    @property
     def built_in_external_storehouse_packagesystem_path(self):
         '''Material package wrangler built-in storehouse package path:
 
@@ -177,19 +164,6 @@ class MaterialPackageWrangler(PackageWrangler):
         Return string.
         '''
         return super(type(self), self).storage_format
-
-    @property
-    def user_external_storehouse_filesystem_path(self):
-        '''Material package wrangler user storehouse filesystem path:
-
-        ::
-
-            >>> wrangler.user_external_storehouse_filesystem_path
-            '/Users/trevorbaca/Documents/baca/music/materials'
-
-        Return string.
-        '''
-        return super(type(self), self).user_external_storehouse_filesystem_path
 
     @property
     def user_external_storehouse_packagesystem_path(self):

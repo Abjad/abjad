@@ -88,19 +88,6 @@ class ScorePackageWrangler(PackageWrangler):
         return scoremanagertools.proxies.ScorePackageProxy
 
     @property
-    def built_in_external_storehouse_filesystem_path(self):
-        '''Score package wrangler built-in storehouse directory path:
-
-        ::
-
-            >>> wrangler.built_in_external_storehouse_filesystem_path
-            '.../tools/scoremanagertools/built_in_scores'
-
-        Return string.
-        '''
-        return super(type(self), self).built_in_external_storehouse_filesystem_path
-
-    @property
     def built_in_external_storehouse_packagesystem_path(self):
         '''Score package wrangler built-in storehouse package path:
 
@@ -125,19 +112,6 @@ class ScorePackageWrangler(PackageWrangler):
         Return string.
         '''
         return super(type(self), self).storage_format
-
-    @property
-    def user_external_storehouse_filesystem_path(self):
-        '''Score package wrangler user storehouse directory path:
-
-        ::
-
-            >>> wrangler.user_external_storehouse_filesystem_path
-            '.../Documents/scores'
-
-        Return string.
-        '''
-        return super(type(self), self).user_external_storehouse_filesystem_path
 
     @property
     def user_external_storehouse_packagesystem_path(self):
@@ -222,6 +196,7 @@ class ScorePackageWrangler(PackageWrangler):
             user_score=user_score, 
             head=head)
 
+    # TODO: rename to list_asset_basenames() because list_asset_names() already exists in superclass
     def list_asset_names(self, head=None):
         result = []
         for asset_filesystem_path in self.list_visible_asset_filesystem_paths(head=head):

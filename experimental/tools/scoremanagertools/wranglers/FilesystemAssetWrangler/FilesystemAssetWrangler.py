@@ -23,9 +23,9 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         session=None,
         ):
         ScoreManagerObject.__init__(self, session=session)
-        self._built_in_external_storehouse_filesystem_path = \
+        self.built_in_external_storehouse_filesystem_path = \
             built_in_external_storehouse_filesystem_path or ''
-        self._user_external_storehouse_filesystem_path = \
+        self.user_external_storehouse_filesystem_path = \
             user_external_storehouse_filesystem_path or ''
 
     ### SPECIAL METHODS ###
@@ -134,22 +134,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def asset_proxy_class(self):
         pass
 
-    @property
-    def built_in_external_storehouse_filesystem_path(self):
-        '''Filesystem asset wrangler user score storehouse filesystem path.
-
-        Return string.
-        '''
-        return self._built_in_external_storehouse_filesystem_path
-
-    @property
-    def user_external_storehouse_filesystem_path(self):
-        '''Filesystem asset wrangler user external storehouse filesystem path.
-
-        Return string.
-        '''
-        return self._user_external_storehouse_filesystem_path
-    
     ### PUBLIC METHODS ###
 
     def list_asset_filesystem_paths(self, 
