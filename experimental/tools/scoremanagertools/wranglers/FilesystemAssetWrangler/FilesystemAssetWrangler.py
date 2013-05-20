@@ -168,16 +168,18 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                     result.append(filesystem_path)
         return result
 
-    def list_asset_names(self, head=None):
+    def list_asset_names(self, built_in_external=True, user_external=True,
+        built_in_score=True, user_score=True, head=None):
         result = []
-        for filesystem_path in self.list_asset_filesystem_paths(head=head):
+        for filesystem_path in self.list_asset_filesystem_paths(
+            built_in_external=built_in_external, user_external=user_external,
+            built_in_score=built_in_score, user_score=user_score, head=head):
             result.append(self._filesystem_path_to_space_delimited_lowercase_name(filesystem_path))
         return result
 
     def list_asset_proxies(self, built_in_external=True, user_external=True,
-        built_in_score=True, user_score=True, head=None, visible_only=True):
-        # TODO: generalize this eventually
-        if visible_only and hasattr(self, 'list_visible_asset_proxies'):
+        built_in_score=True, user_score=True, head=None):
+        if hasattr(self, 'list_visible_asset_proxies'):
             return self.list_visible_asset_proxies(head=head)
         result = []
         for filesystem_path in self.list_asset_filesystem_paths(

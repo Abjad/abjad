@@ -222,7 +222,6 @@ class ScorePackageWrangler(PackageWrangler):
             user_score=user_score, 
             head=head)
 
-    # TODO: change name to self.list_visible_asset_basenames() ... or remove if unused?
     def list_asset_names(self, head=None):
         result = []
         for asset_filesystem_path in self.list_visible_asset_filesystem_paths(head=head):

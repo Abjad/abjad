@@ -111,7 +111,7 @@ class StylesheetFileWrangler(FileWrangler):
         built_in_score=True, user_score=True, head=None):
         '''Stylesheet file wrangler list asset filesystem paths.
     
-        Example. List built-in asset filesystem paths:
+        Example. List built-in stylesheet filesystem paths:
 
         ::
 
@@ -132,29 +132,36 @@ class StylesheetFileWrangler(FileWrangler):
             user_score=user_score,
             head=head)
 
-    def list_asset_names(self, head=None):
-        '''Stylesheet file wrangler list asset names:
+    def list_asset_names(self, built_in_external=True, user_external=True,
+        built_in_score=True, user_score=True, head=None):
+        '''Stylesheet file wrangler list asset names.
+    
+        Example. List built-in stylesheet names:
 
         ::
 
-            >>> for x in wrangler.list_asset_names():
+            >>> for x in wrangler.list_asset_names(
+            ...     user_external=False, user_score=False):
             ...     x
             'clean letter 14'
             'clean letter 16'
             'rhythm letter 16'
-            ...
-
-        (Output will vary with to user collateral.)
+            'red example score stylesheet'
 
         Return list.
         '''
-        return super(type(self), self).list_asset_names(head=head)
+        return super(type(self), self).list_asset_names(
+            built_in_external=built_in_external, 
+            user_external=user_external,
+            built_in_score=built_in_score, 
+            user_score=user_score,
+            head=head)
 
     def list_asset_proxies(self, built_in_external=True, user_external=True,
         built_in_score=True, user_score=True, head=None):
-        '''Stylesheet file wrangler initialize asset proxies.
+        '''Stylesheet file wrangler list asset proxies.
 
-        Example. Initialize built-in asset proxies:
+        Example. List built-in stylesheet proxies:
 
         ::
 

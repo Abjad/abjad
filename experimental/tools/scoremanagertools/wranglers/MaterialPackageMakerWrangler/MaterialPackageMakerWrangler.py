@@ -95,13 +95,15 @@ class MaterialPackageMakerWrangler(PackageWrangler):
                 package_path, session=self._session)
         return material_package_proxy
 
-    def list_asset_names(self, head=None):
+    def list_asset_names(self, built_in_external=True, user_external=True,
+        built_in_score=True, user_score=True, head=None):
         result = []
         for asset_filesystem_path in self.list_asset_filesystem_paths(
-            built_in_external=True,
-            user_external=True,
-            built_in_score=True,
-            user_score=True):
+            built_in_external=built_in_external,
+            user_external=user_external,
+            built_in_score=built_in_score,
+            user_score=user_score,
+            head=head):
             asset_filesystem_path = os.path.normpath(asset_filesystem_path)
             asset_name = os.path.basename(asset_filesystem_path)
             if asset_name in self.forbidden_class_names:
