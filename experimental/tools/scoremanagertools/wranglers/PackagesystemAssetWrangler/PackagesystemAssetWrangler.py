@@ -27,9 +27,9 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
                 user_external_storehouse_filesystem_path,
             session=session,
             )
-        self._built_in_external_storehouse_packagesystem_path = \
+        self.built_in_external_storehouse_packagesystem_path = \
             built_in_external_storehouse_packagesystem_path or ''
-        self._user_external_storehouse_packagesystem_path = \
+        self.user_external_storehouse_packagesystem_path = \
             user_external_storehouse_packagesystem_path or ''
 
     ### SPECIAL METHODS ###
@@ -132,16 +132,6 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
         bodies = self.list_asset_names(head=head)
         assert len(keys) == len(bodies), repr((keys, bodies))
         return zip(keys, bodies)
-
-    ### READ-ONLY PUBLIC PROPERTIES ###
-
-    @property
-    def built_in_external_storehouse_packagesystem_path(self):
-        return self._built_in_external_storehouse_packagesystem_path
-
-    @property
-    def user_external_storehouse_packagesystem_path(self):
-        return self._user_external_storehouse_packagesystem_path
 
     ### PUBLIC METHODS ###
 

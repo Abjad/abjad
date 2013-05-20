@@ -88,19 +88,6 @@ class ScorePackageWrangler(PackageWrangler):
         return scoremanagertools.proxies.ScorePackageProxy
 
     @property
-    def built_in_external_storehouse_packagesystem_path(self):
-        '''Score package wrangler built-in storehouse package path:
-
-        ::
-
-            >>> wrangler.built_in_external_storehouse_packagesystem_path
-            'experimental.tools.scoremanagertools.built_in_scores'
-
-        Return string.
-        '''
-        return super(type(self), self).built_in_external_storehouse_packagesystem_path
-
-    @property
     def storage_format(self):
         '''Score package wrangler storage format:
 
@@ -112,19 +99,6 @@ class ScorePackageWrangler(PackageWrangler):
         Return string.
         '''
         return super(type(self), self).storage_format
-
-    @property
-    def user_external_storehouse_packagesystem_path(self):
-        '''Score package wrangler user external storehouse package path:
-
-        ::
-
-            >>> wrangler.user_external_storehouse_packagesystem_path
-            ''
-
-        Return string.
-        '''
-        return super(type(self), self).user_external_storehouse_packagesystem_path
 
     @property
     def visible_score_titles(self):
