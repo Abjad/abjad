@@ -15,20 +15,10 @@ class StylesheetFileWrangler(FileWrangler):
 
     ### CLASS ATTRIBUTES ###
 
-    storehouse_path_infix_parts = ('music', 'stylesheets')
-    built_in_stylesheets_directory_path = os.path.join(
+    built_in_external_storehouse_filesystem_path = os.path.join(
         FileWrangler.configuration.score_manager_tools_directory_path, 'built_in_stylesheets')
-
-    ### INITIALIZER ###
-
-    def __init__(self, session=None):
-        FileWrangler.__init__(self,
-            built_in_external_storehouse_filesystem_path=\
-                self.built_in_stylesheets_directory_path,
-            user_external_storehouse_filesystem_path=\
-                self.configuration.user_stylesheets_directory_path,
-            session=session,
-            )
+    storehouse_path_infix_parts = ('music', 'stylesheets')
+    user_external_storehouse_filesystem_path = FileWrangler.configuration.user_stylesheets_directory_path
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 
