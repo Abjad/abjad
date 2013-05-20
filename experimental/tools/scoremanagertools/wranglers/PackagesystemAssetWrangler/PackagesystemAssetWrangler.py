@@ -145,7 +145,7 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
 
     ### PUBLIC METHODS ###
 
-    def get_asset_proxies(self, built_in_external=False, user_external=False,
+    def initialize_asset_proxies(self, built_in_external=False, user_external=False,
         built_in_score=False, user_score=False, head=None):
         result = []
         for package_path in self.list_asset_packagesystem_paths(head=head):
@@ -221,7 +221,7 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
             for asset_proxy in self.get_visible_asset_proxies(head=head):
                 result.append(asset_proxy.package_path)
         else:
-            for asset_proxy in self.get_asset_proxies(
+            for asset_proxy in self.initialize_asset_proxies(
                 built_in_external=True, user_external=True,
                 built_in_score=True, user_score=True, head=head):
                 result.append(asset_proxy.package_path)

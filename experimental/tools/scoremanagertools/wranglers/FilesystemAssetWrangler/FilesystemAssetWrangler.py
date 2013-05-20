@@ -152,7 +152,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     
     ### PUBLIC METHODS ###
 
-    def get_asset_proxies(self, built_in_external=False, user_external=False,
+    def initialize_asset_proxies(self, built_in_external=False, user_external=False,
         built_in_score=False, user_score=False, head=None):
         result = []
         for filesystem_path in self.list_asset_filesystem_paths(

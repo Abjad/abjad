@@ -104,15 +104,15 @@ class StylesheetFileWrangler(FileWrangler):
 
     ### PUBLIC METHODS ###
 
-    def get_asset_proxies(self, built_in_external=False, user_external=False,
+    def initialize_asset_proxies(self, built_in_external=False, user_external=False,
         built_in_score=False, user_score=False, head=None):
-        '''Stylesheet file wrangler get asset proxies.
+        '''Stylesheet file wrangler initialize asset proxies.
 
-        Example. Get built-in asset proxies:
+        Example. Initialize built-in asset proxies:
 
         ::
 
-            >>> for x in wrangler.get_asset_proxies(
+            >>> for x in wrangler.initialize_asset_proxies(
             ...     built_in_external=True, built_in_score=True):
             ...     x
             StylesheetFileProxy('.../tools/scoremanagertools/built_in_stylesheets/clean_letter_14.ly')
@@ -122,7 +122,7 @@ class StylesheetFileWrangler(FileWrangler):
 
         Return list.
         '''
-        return super(type(self), self).get_asset_proxies(
+        return super(type(self), self).initialize_asset_proxies(
             built_in_external=built_in_external,
             user_external=user_external,
             built_in_score=built_in_score,
@@ -132,22 +132,19 @@ class StylesheetFileWrangler(FileWrangler):
     def list_asset_filesystem_paths(self,
         built_in_external=False, user_external=False,
         built_in_score=False, user_score=False, head=None):
-        '''Stylesheet file wrangler list asset filesystem paths:
+        '''Stylesheet file wrangler list asset filesystem paths.
+    
+        Example. List built-in asset filesystem paths:
 
         ::
 
             >>> for x in wrangler.list_asset_filesystem_paths(
-            ...     built_in_external=True, user_external=True,
-            ...     built_in_score=True, user_score=True):
+            ...     built_in_external=True, built_in_score=True):
             ...     x
             '.../tools/scoremanagertools/built_in_stylesheets/clean_letter_14.ly'
             '.../tools/scoremanagertools/built_in_stylesheets/clean_letter_16.ly'
             '.../tools/scoremanagertools/built_in_stylesheets/rhythm_letter_16.ly'
-            ...
             '.../tools/scoremanagertools/built_in_scores/red_example_score/music/stylesheets/red_example_score_stylesheet.ly'
-            ...
-
-        User collateral elided.
 
         Return list.
         '''

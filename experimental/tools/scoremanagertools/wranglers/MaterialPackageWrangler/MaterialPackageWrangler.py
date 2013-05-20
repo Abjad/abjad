@@ -228,13 +228,13 @@ class MaterialPackageWrangler(PackageWrangler):
                     material_package_path, session=self._session)
         return material_package_proxy
 
-    def get_asset_proxies(self, built_in_external=False, user_external=False,
+    def initialize_asset_proxies(self, built_in_external=False, user_external=False,
         built_in_score=False, user_score=False, head=None):
         '''Material package wranglger get asset proxies:
             
         ::
 
-            >>> for x in wrangler.get_asset_proxies(
+            >>> for x in wrangler.initialize_asset_proxies(
             ...     built_in_external=True, built_in_score=True,
             ...     user_external=True, user_score=True):
             ...     x
@@ -253,7 +253,7 @@ class MaterialPackageWrangler(PackageWrangler):
 
         Return list.
         '''
-        return super(type(self), self).get_asset_proxies(
+        return super(type(self), self).initialize_asset_proxies(
             built_in_external=built_in_external,
             user_external=user_external,
             built_in_score=built_in_score,
