@@ -228,38 +228,6 @@ class MaterialPackageWrangler(PackageWrangler):
                     material_package_path, session=self._session)
         return material_package_proxy
 
-    def initialize_asset_proxies(self, built_in_external=False, user_external=False,
-        built_in_score=False, user_score=False, head=None):
-        '''Material package wranglger get asset proxies:
-            
-        ::
-
-            >>> for x in wrangler.initialize_asset_proxies(
-            ...     built_in_external=True, built_in_score=True,
-            ...     user_external=True, user_score=True):
-            ...     x
-            MarkupInventoryMaterialPackageMaker('.../tools/scoremanagertools/built_in_materials/red_directives')
-            DynamicHandlerMaterialPackageMaker('.../tools/scoremanagertools/built_in_materials/red_forte')
-            ArticulationHandlerMaterialPackageMaker('.../tools/scoremanagertools/built_in_materials/red_marcati')
-            MaterialPackageProxy('.../tools/scoremanagertools/built_in_materials/red_notes')
-            MaterialPackageProxy('.../tools/scoremanagertools/built_in_materials/red_numbers')
-            SargassoMeasureMaterialPackageMaker('.../tools/scoremanagertools/built_in_materials/red_sargasso_measures')
-            MaterialPackageProxy('.../tools/scoremanagertools/built_in_materials/sargasso_multipliers')
-            ...
-            TempoMarkInventoryMaterialPackageMaker('.../tools/scoremanagertools/built_in_scores/red_example_score/music/materials/tempo_inventory')
-            ...
-
-        Output lists external materials followed by score materials. 
-
-        Return list.
-        '''
-        return super(type(self), self).initialize_asset_proxies(
-            built_in_external=built_in_external,
-            user_external=user_external,
-            built_in_score=built_in_score,
-            user_score=user_score,
-            head=head)
-
     def get_available_material_packagesystem_path_interactively(self, user_input=None):
         self._io.assign_user_input(user_input=user_input)
         while True:
@@ -334,6 +302,38 @@ class MaterialPackageWrangler(PackageWrangler):
         Return list.
         '''
         return super(type(self), self).list_asset_packagesystem_paths(head=head) 
+
+    def list_asset_proxies(self, built_in_external=False, user_external=False,
+        built_in_score=False, user_score=False, head=None):
+        '''Material package wranglger get asset proxies:
+            
+        ::
+
+            >>> for x in wrangler.list_asset_proxies(
+            ...     built_in_external=True, built_in_score=True,
+            ...     user_external=True, user_score=True):
+            ...     x
+            MarkupInventoryMaterialPackageMaker('.../tools/scoremanagertools/built_in_materials/red_directives')
+            DynamicHandlerMaterialPackageMaker('.../tools/scoremanagertools/built_in_materials/red_forte')
+            ArticulationHandlerMaterialPackageMaker('.../tools/scoremanagertools/built_in_materials/red_marcati')
+            MaterialPackageProxy('.../tools/scoremanagertools/built_in_materials/red_notes')
+            MaterialPackageProxy('.../tools/scoremanagertools/built_in_materials/red_numbers')
+            SargassoMeasureMaterialPackageMaker('.../tools/scoremanagertools/built_in_materials/red_sargasso_measures')
+            MaterialPackageProxy('.../tools/scoremanagertools/built_in_materials/sargasso_multipliers')
+            ...
+            TempoMarkInventoryMaterialPackageMaker('.../tools/scoremanagertools/built_in_scores/red_example_score/music/materials/tempo_inventory')
+            ...
+
+        Output lists external materials followed by score materials. 
+
+        Return list.
+        '''
+        return super(type(self), self).list_asset_proxies(
+            built_in_external=built_in_external,
+            user_external=user_external,
+            built_in_score=built_in_score,
+            user_score=user_score,
+            head=head)
 
     def list_built_in_score_asset_packagesystem_paths(self, head=None):
         '''Material package wrangler list built-in score asset package paths:

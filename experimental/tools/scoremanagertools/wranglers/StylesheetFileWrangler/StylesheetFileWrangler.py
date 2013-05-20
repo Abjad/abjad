@@ -110,31 +110,6 @@ class StylesheetFileWrangler(FileWrangler):
 
     ### PUBLIC METHODS ###
 
-    def initialize_asset_proxies(self, built_in_external=False, user_external=False,
-        built_in_score=False, user_score=False, head=None):
-        '''Stylesheet file wrangler initialize asset proxies.
-
-        Example. Initialize built-in asset proxies:
-
-        ::
-
-            >>> for x in wrangler.initialize_asset_proxies(
-            ...     built_in_external=True, built_in_score=True):
-            ...     x
-            StylesheetFileProxy('.../tools/scoremanagertools/built_in_stylesheets/clean_letter_14.ly')
-            StylesheetFileProxy('.../tools/scoremanagertools/built_in_stylesheets/clean_letter_16.ly')
-            StylesheetFileProxy('.../tools/scoremanagertools/built_in_stylesheets/rhythm_letter_16.ly')
-            StylesheetFileProxy('.../tools/scoremanagertools/built_in_scores/red_example_score/music/stylesheets/red_example_score_stylesheet.ly')
-
-        Return list.
-        '''
-        return super(type(self), self).initialize_asset_proxies(
-            built_in_external=built_in_external,
-            user_external=user_external,
-            built_in_score=built_in_score,
-            user_score=user_score,
-            head=head)
-
     def list_asset_filesystem_paths(self,
         built_in_external=False, user_external=False,
         built_in_score=False, user_score=False, head=None):
@@ -161,23 +136,30 @@ class StylesheetFileWrangler(FileWrangler):
             user_score=user_score,
             head=head)
 
-    def list_space_delimited_lowercase_visible_asset_names(self, head=None):
-        '''Stylesheet file wrangler list space-delimited lowercase visible asset names:
+    def list_asset_proxies(self, built_in_external=False, user_external=False,
+        built_in_score=False, user_score=False, head=None):
+        '''Stylesheet file wrangler initialize asset proxies.
+
+        Example. Initialize built-in asset proxies:
 
         ::
 
-            >>> for x in wrangler.list_space_delimited_lowercase_visible_asset_names():
+            >>> for x in wrangler.list_asset_proxies(
+            ...     built_in_external=True, built_in_score=True):
             ...     x
-            'clean letter 14'
-            'clean letter 16'
-            'rhythm letter 16'
-            ...
-
-        (Output will vary with to user collateral.)
+            StylesheetFileProxy('.../tools/scoremanagertools/built_in_stylesheets/clean_letter_14.ly')
+            StylesheetFileProxy('.../tools/scoremanagertools/built_in_stylesheets/clean_letter_16.ly')
+            StylesheetFileProxy('.../tools/scoremanagertools/built_in_stylesheets/rhythm_letter_16.ly')
+            StylesheetFileProxy('.../tools/scoremanagertools/built_in_scores/red_example_score/music/stylesheets/red_example_score_stylesheet.ly')
 
         Return list.
         '''
-        return super(type(self), self).list_space_delimited_lowercase_visible_asset_names(head=head)
+        return super(type(self), self).list_asset_proxies(
+            built_in_external=built_in_external,
+            user_external=user_external,
+            built_in_score=built_in_score,
+            user_score=user_score,
+            head=head)
 
     def list_storehouse_filesystem_paths(self, 
         built_in_external=False, user_external=False,
@@ -204,6 +186,24 @@ class StylesheetFileWrangler(FileWrangler):
             built_in_score=built_in_score,
             user_score=user_score,
             head=head)
+
+    def list_visible_asset_names(self, head=None):
+        '''Stylesheet file wrangler list space-delimited lowercase visible asset names:
+
+        ::
+
+            >>> for x in wrangler.list_visible_asset_names():
+            ...     x
+            'clean letter 14'
+            'clean letter 16'
+            'rhythm letter 16'
+            ...
+
+        (Output will vary with to user collateral.)
+
+        Return list.
+        '''
+        return super(type(self), self).list_visible_asset_names(head=head)
 
     # TODO: write test
     def make_asset_interactively(self):

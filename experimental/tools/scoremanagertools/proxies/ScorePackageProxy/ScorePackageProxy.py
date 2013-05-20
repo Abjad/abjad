@@ -185,7 +185,7 @@ class ScorePackageProxy(PackageProxy):
 
     @property
     def tempo_inventory(self):
-        for material_package_proxy in self.material_package_wrangler.initialize_asset_proxies(
+        for material_package_proxy in self.material_package_wrangler.list_asset_proxies(
             head=self.package_path):
             if material_package_proxy.get_tag('material_package_maker_class_name') == \
                 'TempoMarkInventoryMaterialPackageMaker':

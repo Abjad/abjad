@@ -129,7 +129,7 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
 
     def _make_visible_asset_menu_tokens(self, head=None):
         keys = self.list_visible_asset_packagesystem_paths(head=head)
-        bodies = self.list_space_delimited_lowercase_visible_asset_names(head=head)
+        bodies = self.list_visible_asset_names(head=head)
         assert len(keys) == len(bodies), repr((keys, bodies))
         return zip(keys, bodies)
 
@@ -145,14 +145,6 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
 
     ### PUBLIC METHODS ###
 
-    def initialize_asset_proxies(self, built_in_external=False, user_external=False,
-        built_in_score=False, user_score=False, head=None):
-        result = []
-        for package_path in self.list_asset_packagesystem_paths(head=head):
-            asset_proxy = self._get_asset_proxy(package_path)
-            result.append(asset_proxy)
-        return result
-
     def list_asset_packagesystem_paths(self, head=None):
         result = []
         result.extend(self.list_external_asset_packagesystem_paths(head=head))
@@ -165,6 +157,14 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
         #    packagesystem_path = self.configuration.filesystem_path_to_packagesystem_path(filesystem_path)
         #    result.append(packagesystem_path)
         #return result
+
+    def list_asset_proxies(self, built_in_external=False, user_external=False,
+        built_in_score=False, user_score=False, head=None):
+        result = []
+        for package_path in self.list_asset_packagesystem_paths(head=head):
+            asset_proxy = self._get_asset_proxy(package_path)
+            result.append(asset_proxy)
+        return result
 
     def list_built_in_score_asset_packagesystem_paths(self, head=None):
         result = []
@@ -221,7 +221,7 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
             for asset_proxy in self.get_visible_asset_proxies(head=head):
                 result.append(asset_proxy.package_path)
         else:
-            for asset_proxy in self.initialize_asset_proxies(
+            for asset_proxy in self.list_asset_proxies(
                 built_in_external=True, user_external=True,
                 built_in_score=True, user_score=True, head=head):
                 result.append(asset_proxy.package_path)
