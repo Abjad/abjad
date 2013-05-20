@@ -217,8 +217,8 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
 
     def list_visible_asset_packagesystem_paths(self, head=None):
         result = []
-        if hasattr(self, 'get_visible_asset_proxies'):
-            for asset_proxy in self.get_visible_asset_proxies(head=head):
+        if hasattr(self, 'list_visible_asset_proxies'):
+            for asset_proxy in self.list_visible_asset_proxies(head=head):
                 result.append(asset_proxy.package_path)
         else:
             for asset_proxy in self.list_asset_proxies(

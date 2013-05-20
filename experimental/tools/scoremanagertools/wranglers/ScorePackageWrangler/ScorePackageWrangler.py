@@ -164,7 +164,7 @@ class ScorePackageWrangler(PackageWrangler):
         Return list.
         '''
         result = []
-        for score_package_proxy in self.get_visible_asset_proxies():
+        for score_package_proxy in self.list_visible_asset_proxies():
             result.append(score_package_proxy.title or '(untitled score)')
         return result
 
@@ -180,7 +180,7 @@ class ScorePackageWrangler(PackageWrangler):
         Return list.
         '''
         result = []
-        for score_package_proxy in self.get_visible_asset_proxies():
+        for score_package_proxy in self.list_visible_asset_proxies():
             result.append(score_package_proxy.title_with_year or '(untitled score)')
         return result
 
@@ -188,39 +188,11 @@ class ScorePackageWrangler(PackageWrangler):
 
     def fix_visible_assets(self, is_interactive=True):
         results = []
-        for asset_proxy in self.get_visible_asset_proxies():
+        for asset_proxy in self.list_visible_asset_proxies():
             results.append(asset_proxy.fix(is_interactive=is_interactive))
             if is_interactive:
                 asset_proxy.profile()
         return results
-
-    def get_visible_asset_proxies(self, head=None):
-        '''Score package wrangler get visible asset proxies:
-
-        ::
-
-            >>> for x in wrangler.get_visible_asset_proxies():
-            ...     x
-            ScorePackageProxy('.../tools/scoremanagertools/built_in_scores/blue_example_score')
-            ScorePackageProxy('.../tools/scoremanagertools/built_in_scores/green_example_score')
-            ScorePackageProxy('.../tools/scoremanagertools/built_in_scores/red_example_score')
-            ...
-        
-        Output lists built-in scores followed by user scores.
-
-        Return list.
-        '''
-        result = []
-        scores_to_show = self._session.scores_to_show
-        for asset_proxy in PackageWrangler.list_asset_proxies(self, head=head):
-            is_mothballed = asset_proxy.get_tag('is_mothballed')
-            if scores_to_show == 'all':
-                result.append(asset_proxy)
-            elif scores_to_show == 'active' and not is_mothballed:
-                result.append(asset_proxy)
-            elif scores_to_show == 'mothballed' and is_mothballed:
-                result.append(asset_proxy)
-        return result
 
     # TODO: FIXME
     def list_asset_filesystem_paths(self,
@@ -268,23 +240,23 @@ class ScorePackageWrangler(PackageWrangler):
         '''
         return super(type(self), self).list_asset_packagesystem_paths(head=head)
 
-    def list_asset_proxies(self, head=None):
-        '''Score package wrangler get asset proxies:
-
-        ::
-
-            >>> for x in wrangler.list_asset_proxies():
-            ...     x
-            ScorePackageProxy('.../tools/scoremanagertools/built_in_scores/blue_example_score')
-            ScorePackageProxy('.../tools/scoremanagertools/built_in_scores/green_example_score')
-            ScorePackageProxy('.../tools/scoremanagertools/built_in_scores/red_example_score')
-            ...
-
-        Output lists built-in scores followed by user scores.
-
-        Return list.
-        '''
-        return super(type(self), self).list_asset_proxies(head=head)        
+#    def list_asset_proxies(self, head=None):
+#        '''Score package wrangler get asset proxies:
+#
+#        ::
+#
+#            >>> for x in wrangler.list_asset_proxies():
+#            ...     x
+#            ScorePackageProxy('.../tools/scoremanagertools/built_in_scores/blue_example_score')
+#            ScorePackageProxy('.../tools/scoremanagertools/built_in_scores/green_example_score')
+#            ScorePackageProxy('.../tools/scoremanagertools/built_in_scores/red_example_score')
+#            ...
+#
+#        Output lists built-in scores followed by user scores.
+#
+#        Return list.
+#        '''
+#        return super(type(self), self).list_asset_proxies(head=head)        
 
     # TODO: FIXME
     def list_external_asset_packagesystem_paths(self, head=None):
@@ -319,7 +291,7 @@ class ScorePackageWrangler(PackageWrangler):
         Return list.
         '''
         result = []
-        for visible_asset_proxy in self.get_visible_asset_proxies(head=head):
+        for visible_asset_proxy in self.list_visible_asset_proxies(head=head):
             result.append(visible_asset_proxy.filesystem_path)
         return result
 
@@ -347,6 +319,34 @@ class ScorePackageWrangler(PackageWrangler):
                 result.append((asset_proxy.package_path, title_with_year))
         return result
 
+    def list_visible_asset_proxies(self, head=None):
+        '''Score package wrangler get visible asset proxies:
+
+        ::
+
+            >>> for x in wrangler.list_visible_asset_proxies():
+            ...     x
+            ScorePackageProxy('.../tools/scoremanagertools/built_in_scores/blue_example_score')
+            ScorePackageProxy('.../tools/scoremanagertools/built_in_scores/green_example_score')
+            ScorePackageProxy('.../tools/scoremanagertools/built_in_scores/red_example_score')
+            ...
+        
+        Output lists built-in scores followed by user scores.
+
+        Return list.
+        '''
+        result = []
+        scores_to_show = self._session.scores_to_show
+        for asset_proxy in PackageWrangler.list_asset_proxies(self, head=head):
+            is_mothballed = asset_proxy.get_tag('is_mothballed')
+            if scores_to_show == 'all':
+                result.append(asset_proxy)
+            elif scores_to_show == 'active' and not is_mothballed:
+                result.append(asset_proxy)
+            elif scores_to_show == 'mothballed' and is_mothballed:
+                result.append(asset_proxy)
+        return result
+
     def make_asset_interactively(self, rollback=False):
         breadcrumb = self._session.pop_breadcrumb(rollback=rollback)
         getter = self._io.make_getter(where=self._where)
@@ -369,5 +369,5 @@ class ScorePackageWrangler(PackageWrangler):
         self._session.push_breadcrumb(breadcrumb=breadcrumb, rollback=rollback)
 
     def profile_visible_assets(self):
-        for asset_proxy in self.get_visible_asset_proxies():
+        for asset_proxy in self.list_visible_asset_proxies():
             asset_proxy.profile()
