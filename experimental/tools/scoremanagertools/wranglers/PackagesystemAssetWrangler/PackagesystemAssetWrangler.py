@@ -157,6 +157,13 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
         result.extend(self.list_external_asset_packagesystem_paths(head=head))
         result.extend(self.list_score_asset_packagesystem_paths(head=head))
         return result
+        #result = []
+        #for filesystem_path in self.list_asset_filesystem_paths(
+        #    built_in_external=True, user_external=True,
+        #    built_in_score=True, user_score=True, head=head):
+        #    packagesystem_path = self.configuration.filesystem_path_to_packagesystem_path(filesystem_path)
+        #    result.append(packagesystem_path)
+        #return result
 
     def list_built_in_score_asset_packagesystem_paths(self, head=None):
         result = []
@@ -187,7 +194,9 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
                     storehouse_package_path)
                 for directory_entry in os.listdir(asset_filesystem_path):
                     if directory_entry[0].isalpha():
-                        package_name = self._strip_file_extension_from_file_name(directory_entry)
+                        package_name = directory_entry
+                        if '.' in package_name:
+                            package_name = package_name[:package_name.rindex('.')]
                         result.append('{}.{}'.format(
                             storehouse_package_path, package_name))
             else:

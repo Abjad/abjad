@@ -78,7 +78,8 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def _filesystem_path_to_space_delimited_lowercase_name(self, filesystem_path):
         filesystem_path = os.path.normpath(filesystem_path)
         asset_name = os.path.basename(filesystem_path)
-        asset_name = self._strip_file_extension_from_file_name(asset_name)
+        if '.' in asset_name:
+            asset_name = asset_name[:asset_name.rindex('.')]
         return stringtools.string_to_space_delimited_lowercase(asset_name)
 
     def _get_asset_proxy(self, filesystem_path):
@@ -131,11 +132,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         self._session.pop_breadcrumb()
         self._session.push_breadcrumb(breadcrumb=breadcrumb, rollback=rollback)
         self._session.restore_breadcrumbs(cache=cache)
-
-    def _strip_file_extension_from_file_name(self, file_name):
-        if '.' in file_name:
-            return file_name[:file_name.rindex('.')]
-        return file_name
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
