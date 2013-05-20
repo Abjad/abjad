@@ -112,7 +112,7 @@ class MaterialPackageWrangler(PackageWrangler):
 
     def _make_main_menu(self, head=None):
         menu, section = self._io.make_menu(where=self._where, is_numbered=True, is_keyed=False)
-        section.tokens = self._make_visible_asset_menu_tokens(head=head)
+        section.tokens = self._make_menu_tokens(head=head)
         section = menu.make_section()
         section.append(('d', 'data-only'))
         section.append(('h', 'handmade'))

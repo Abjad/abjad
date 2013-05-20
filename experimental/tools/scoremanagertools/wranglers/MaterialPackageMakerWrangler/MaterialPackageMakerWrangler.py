@@ -44,7 +44,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         section.append(('new', 'new material package maker'))
         return menu
 
-    def _make_visible_asset_menu_tokens(self, head=None):
+    def _make_menu_tokens(self, head=None):
         keys = self.list_asset_packagesystem_paths(head=head)
         bodies = self.list_visible_asset_names(head=head)
         return zip(keys, bodies)

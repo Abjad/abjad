@@ -94,7 +94,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def _make_asset_selection_menu(self, head=None):
         menu, section = self._io.make_menu(
             where=self._where, is_keyed=False, is_parenthetically_numbered=True)
-        section.tokens = self._make_visible_asset_menu_tokens(head=head)
+        section.tokens = self._make_menu_tokens(head=head)
         section.return_value_attribute = 'key'
         return menu
 
@@ -102,7 +102,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def _make_main_menu(self):
         pass
 
-    def _make_visible_asset_menu_tokens(self, head=None):
+    def _make_menu_tokens(self, head=None):
         keys = self.list_asset_filesystem_paths(
             built_in_external=True, 
             user_external=True,
