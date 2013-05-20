@@ -139,11 +139,6 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
         return self._built_in_external_storehouse_packagesystem_path
 
     @property
-    def storehouse_proxy_class(self):
-        from experimental.tools import scoremanagertools
-        return scoremanagertools.proxies.PackageProxy
-
-    @property
     def user_external_storehouse_packagesystem_path(self):
         return self._user_external_storehouse_packagesystem_path
 

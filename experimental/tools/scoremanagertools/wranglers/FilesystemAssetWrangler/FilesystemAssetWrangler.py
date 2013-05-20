@@ -85,36 +85,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         assert os.path.sep in filesystem_path, repr(filesystem_path)
         return self.asset_proxy_class(filesystem_path=filesystem_path, session=self._session)
 
-    def _get_external_storehouse_proxies(self, head=None):
-        result = []
-        for directory_path in self.list_storehouse_filesystem_paths(
-            built_in_external=True, user_external=True, head=head):
-            storehouse_proxy = self.storehouse_proxy_class(directory_path)
-            result.append(storehouse_proxy)
-        return result
-
-    def _get_score_storehouse_proxies(self, head=None):
-        result = []
-        for directory_path in self.list_storehouse_filesystem_paths(
-            built_in_score=True, user_score=True, head=head):
-            storehouse_proxy = self.storehouse_proxy_class(directory_path)
-            result.append(storehouse_proxy)
-        return result
-
-    def _get_storehouse_proxies(self, head=None):
-        result = []
-        result.extend(self._get_external_storehouse_proxies(head=head))
-        result.extend(self._get_score_storehouse_proxies(head=head))
-        return result
-
-    def _get_user_storehouse_proxies(self, head=None):
-        result = []
-        for directory_path in self.list_storehouse_filesystem_paths(
-            user_external=True, user_score=True, head=head):
-            storehouse_proxy = self.storehouse_proxy_class(directory_path)
-            result.append(storehouse_proxy)
-        return result
-
     @abc.abstractmethod
     def _handle_main_menu_result(self, result):
         pass
@@ -202,11 +172,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         Return string.
         '''
         return self._built_in_external_storehouse_filesystem_path
-
-    @property
-    def storehouse_proxy_class(self):
-        from experimental.tools import scoremanagertools
-        return scoremanagertools.proxies.DirectoryProxy
 
     @property
     def user_external_storehouse_filesystem_path(self):

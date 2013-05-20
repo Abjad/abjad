@@ -179,20 +179,6 @@ class MaterialPackageWrangler(PackageWrangler):
         return super(type(self), self).storage_format
 
     @property
-    def storehouse_proxy_class(self):
-        '''Material package wrangler asset proxy class:
-
-        ::
-
-            >>> wrangler.storehouse_proxy_class.__name__
-            'PackageProxy'
-
-        Return class.
-        '''
-        from experimental.tools import scoremanagertools
-        return scoremanagertools.proxies.PackageProxy
-
-    @property
     def user_external_storehouse_filesystem_path(self):
         '''Material package wrangler user storehouse filesystem path:
 

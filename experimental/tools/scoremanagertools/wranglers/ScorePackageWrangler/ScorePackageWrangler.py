@@ -127,19 +127,6 @@ class ScorePackageWrangler(PackageWrangler):
         return super(type(self), self).storage_format
 
     @property
-    def storehouse_proxy_class(self):
-        '''Score package wrangler asset proxy class:
-
-        ::
-
-            >>> wrangler.storehouse_proxy_class.__name__
-            'PackageProxy'
-
-        Return class.
-        '''
-        return super(type(self), self).storehouse_proxy_class
-
-    @property
     def user_external_storehouse_filesystem_path(self):
         '''Score package wrangler user storehouse directory path:
 
