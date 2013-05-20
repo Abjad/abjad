@@ -371,3 +371,56 @@ class ScorePackageWrangler(PackageWrangler):
     def profile_visible_assets(self):
         for asset_proxy in self.list_visible_asset_proxies():
             asset_proxy.profile()
+
+    def svn_add_assets(self, is_interactive=True):
+        if hasattr(self, 'list_visible_asset_proxies'):
+            proxies = self.list_visible_asset_proxies()
+        else:
+            proxies = self.list_asset_proxies(
+                built_in_external=True, user_external=True,
+                built_in_score=True, user_score=True)
+        for proxy in proxies:
+            proxy.svn_add(is_interactive=False)
+        self._io.proceed(is_interactive=is_interactive)
+
+    def svn_ci_assets(self, is_interactive=True):
+        getter = self._io.make_getter(where=self._where)
+        getter.append_string('commit message')
+        commit_message = getter._run()
+        if self._session.backtrack():
+            return
+        line = 'commit message will be: "{}"\n'.format(commit_message)
+        self._io.display(line)
+        if not self._io.confirm():
+            return
+        if hasattr(self, 'list_visible_asset_proxies'):
+            proxies = self.list_visible_asset_proxies()
+        else:
+            proxies = self.list_asset_proxies(
+                built_in_external=True, user_external=True,
+                built_in_score=True, user_score=True)
+        for proxy in proxies:
+            proxy.svn_ci(commit_message=commit_message, is_interactive=False)
+        self._io.proceed(is_interactive=is_interactive)
+
+    def svn_st_assets(self, is_interactive=True):
+        if hasattr(self, 'list_visible_asset_proxies'):
+            proxies = self.list_visible_asset_proxies()
+        else:
+            proxies = self.list_asset_proxies(
+                built_in_external=True, user_external=True,
+                built_in_score=True, user_score=True)
+        for proxy in proxies:
+            proxy.svn_st(is_interactive=False)
+        self._io.proceed(is_interactive=is_interactive)
+
+    def svn_up_assets(self, is_interactive=True):
+        if hasattr(self, 'list_visible_asset_proxies'):
+            proxies = self.list_visible_asset_proxies()
+        else:
+            proxies = self.list_asset_proxies(
+                built_in_external=True, user_external=True,
+                built_in_score=True, user_score=True)
+        for proxy in proxies:
+            proxy.svn_up(is_interactive=False)
+        self._io.proceed(is_interactive=is_interactive)

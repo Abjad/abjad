@@ -90,18 +90,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.select_asset_packagesystem_path_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.svn_add_visible_assets
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.svn_ci_visible_assets
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.svn_st_visible_assets
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.ModuleWrangler.ModuleWrangler.ModuleWrangler.svn_up_visible_assets
-   :noindex:
-
 Special methods
 ---------------
 

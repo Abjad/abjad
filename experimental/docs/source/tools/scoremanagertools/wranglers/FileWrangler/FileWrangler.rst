@@ -48,18 +48,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.select_asset_filesystem_path_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.svn_add_visible_assets
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.svn_ci_visible_assets
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.svn_st_visible_assets
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler.svn_up_visible_assets
-   :noindex:
-
 Special methods
 ---------------
 

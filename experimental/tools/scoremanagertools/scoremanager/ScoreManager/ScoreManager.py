@@ -185,13 +185,13 @@ class ScoreManager(ScoreManagerObject):
         '''
         this_result = False
         if result == 'add':
-            self.score_package_wrangler.svn_add_visible_assets()
+            self.score_package_wrangler.svn_add_assets()
         elif result == 'ci':
-            self.score_package_wrangler.svn_ci_visible_assets()
+            self.score_package_wrangler.svn_ci_assets()
         elif result == 'st':
-            self.score_package_wrangler.svn_st_visible_assets()
+            self.score_package_wrangler.svn_st_assets()
         elif result == 'up':
-            self.score_package_wrangler.svn_up_visible_assets()
+            self.score_package_wrangler.svn_up_assets()
             return True
         return this_result
 
