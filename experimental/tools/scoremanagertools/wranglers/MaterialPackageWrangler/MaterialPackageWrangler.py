@@ -29,18 +29,16 @@ class MaterialPackageWrangler(PackageWrangler):
     ### CLASS ATTRIBUTES ###
     
     storehouse_path_infix_parts = ('music', 'materials')
+    built_in_external_storehouse_packagesystem_path = \
+        PackageWrangler.configuration.built_in_materials_package_path
+    user_external_storehouse_packagesystem_path = \
+        PackageWrangler.configuration.user_materials_package_path
 
     ### INITIALIZER ###
 
     def __init__(self, session=None):
         from experimental.tools import scoremanagertools
-        PackageWrangler.__init__(self,
-            built_in_external_storehouse_packagesystem_path=\
-                self.configuration.built_in_materials_package_path,
-            user_external_storehouse_packagesystem_path=\
-                self.configuration.user_materials_package_path,
-            session=session,
-            )
+        PackageWrangler.__init__(self, session=session)
         self._material_package_maker_wrangler = \
             scoremanagertools.wranglers.MaterialPackageMakerWrangler(session=self._session)
 

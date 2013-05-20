@@ -7,19 +7,14 @@ from experimental.tools.scoremanagertools.wranglers.PackageWrangler import Packa
 
 class MaterialPackageMakerWrangler(PackageWrangler):
 
-    ### INITIALIZER ###
+    ### CLASS ATTRIBUTES ###
 
-    def __init__(self, session=None):
-        PackageWrangler.__init__(self,
-            built_in_external_storehouse_packagesystem_path=\
-                'scoremanagertools.materialpackagemakers',
-            user_external_storehouse_packagesystem_path=\
-                self.configuration.user_material_package_makers_package_path,
-            user_external_storehouse_filesystem_path=\
-                self.configuration.user_material_package_makers_directory_path,
-            session=session
-            )
-
+    # TODO: change to 'experimental.tools.scoremanagertools.materialpackagemakers'
+    # TODO: derive symbolically instead of hardcoding
+    built_in_external_storehouse_packagesystem_path = 'scoremanagertools.materialpackagemakers'
+    user_external_storehouse_packagesystem_path = \
+        PackageWrangler.configuration.user_material_package_makers_package_path
+    
     ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
