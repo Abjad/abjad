@@ -36,12 +36,12 @@ class SegmentPackageWrangler(PackageWrangler):
         if result == 'new':
             self.make_asset_interactively()
         else:
-            segment_package_proxy = self._get_asset_proxy(result)
+            segment_package_proxy = self._initialize_asset_proxy(result)
             segment_package_proxy._run()
 
     def _make_main_menu(self, head=None):
         menu, section = self._io.make_menu(where=self._where, is_numbered=True)
-        section.tokens = self.list_visible_asset_names(head=head)
+        section.tokens = self.list_asset_names(head=head)
         section = menu.make_section()
         section.append(('new', 'new segment'))
         return menu

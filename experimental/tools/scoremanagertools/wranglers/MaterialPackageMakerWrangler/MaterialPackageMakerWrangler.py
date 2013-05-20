@@ -39,14 +39,14 @@ class MaterialPackageMakerWrangler(PackageWrangler):
 
     def _make_main_menu(self, head=None):
         menu, section = self._io.make_menu(where=self._where, is_numbered=True)
-        section.tokens = self.list_visible_asset_names(head=head)
+        section.tokens = self.list_asset_names(head=head)
         section = menu.make_section()
         section.append(('new', 'new material package maker'))
         return menu
 
     def _make_menu_tokens(self, head=None):
         keys = self.list_asset_packagesystem_paths(head=head)
-        bodies = self.list_visible_asset_names(head=head)
+        bodies = self.list_asset_names(head=head)
         return zip(keys, bodies)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
@@ -72,7 +72,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
 
     ### PUBLIC METHODS ###
 
-    def _get_asset_proxy(self, package_path):
+    def _initialize_asset_proxy(self, package_path):
         from experimental.tools.scoremanagertools.proxies.MaterialPackageProxy import MaterialPackageProxy
         if os.path.sep in package_path:
             package_path = self.configuration.filesystem_path_to_packagesystem_path(package_path)
@@ -95,14 +95,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
                 package_path, session=self._session)
         return material_package_proxy
 
-    def list_external_asset_packagesystem_paths(self, head=None):
-        result = PackageWrangler.list_external_asset_packagesystem_paths(self, head=head)
-        for forbidden_package_path in self.forbidden_package_paths:
-            if forbidden_package_path in result:
-                result.remove(forbidden_package_path)
-        return result
-
-    def list_visible_asset_names(self, head=None):
+    def list_asset_names(self, head=None):
         result = []
         for asset_filesystem_path in self.list_asset_filesystem_paths(
             built_in_external=True,
@@ -116,6 +109,13 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             space_delimited_lowercase_asset_name = stringtools.uppercamelcase_to_space_delimited_lowercase(
                 asset_name)
             result.append(space_delimited_lowercase_asset_name)
+        return result
+
+    def list_external_asset_packagesystem_paths(self, head=None):
+        result = PackageWrangler.list_external_asset_packagesystem_paths(self, head=head)
+        for forbidden_package_path in self.forbidden_package_paths:
+            if forbidden_package_path in result:
+                result.remove(forbidden_package_path)
         return result
 
     # TODO: implement MaterialPackageProxyClassFile object to model and customize these settings

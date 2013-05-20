@@ -492,7 +492,7 @@ class ScorePackageProxy(PackageProxy):
         self._io.display(lines)
 
     def summarize_segments(self):
-        segments = self.segment_wrangler.list_visible_asset_names()
+        segments = self.segment_wrangler.list_asset_names()
         lines = []
         if not segments:
             lines.append('{}Segments (none yet)'.format(self.make_tab(1)))

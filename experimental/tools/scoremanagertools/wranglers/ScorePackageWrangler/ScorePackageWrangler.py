@@ -222,6 +222,13 @@ class ScorePackageWrangler(PackageWrangler):
             user_score=user_score, 
             head=head)
 
+    # TODO: change name to self.list_visible_asset_basenames() ... or remove if unused?
+    def list_asset_names(self, head=None):
+        result = []
+        for asset_filesystem_path in self.list_visible_asset_filesystem_paths(head=head):
+            result.append(os.path.basename(asset_filesystem_path))
+        return result
+
     def list_asset_packagesystem_paths(self, head=None):
         '''Score package wrangler list asset package paths:
 
@@ -295,13 +302,6 @@ class ScorePackageWrangler(PackageWrangler):
             result.append(visible_asset_proxy.filesystem_path)
         return result
 
-    # TODO: change name to self.list_visible_asset_basenames() ... or remove if unused?
-    def list_visible_asset_names(self, head=None):
-        result = []
-        for asset_filesystem_path in self.list_visible_asset_filesystem_paths(head=head):
-            result.append(os.path.basename(asset_filesystem_path))
-        return result
-
     def list_visible_asset_package_path_and_score_title_pairs(self, head=None):
         result = []
         scores_to_show = self._session.scores_to_show
@@ -363,7 +363,7 @@ class ScorePackageWrangler(PackageWrangler):
             return
         title, score_package_name, year = result
         self.make_asset(score_package_name)
-        score_package_proxy = self._get_asset_proxy(score_package_name)
+        score_package_proxy = self._initialize_asset_proxy(score_package_name)
         score_package_proxy.add_tag('title', title)
         score_package_proxy.year_of_completion = year
         self._session.push_breadcrumb(breadcrumb=breadcrumb, rollback=rollback)

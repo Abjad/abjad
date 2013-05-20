@@ -72,11 +72,11 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
 
     @property
     def _temporary_asset_proxy(self):
-        return self._get_asset_proxy(self._temporary_asset_package_path)
+        return self._initialize_asset_proxy(self._temporary_asset_package_path)
 
     ### PRIVATE METHODS ###
 
-    def _get_asset_proxy(self, packagesystem_path):
+    def _initialize_asset_proxy(self, packagesystem_path):
         if os.path.sep in packagesystem_path:
             pacakgesystem_path = self.configuration.filesystem_path_to_packagesystem_path(packagesystem_path)
         return self.asset_proxy_class(packagesystem_path=packagesystem_path, session=self._session)
@@ -129,7 +129,7 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
 
     def _make_menu_tokens(self, head=None):
         keys = self.list_visible_asset_packagesystem_paths(head=head)
-        bodies = self.list_visible_asset_names(head=head)
+        bodies = self.list_asset_names(head=head)
         assert len(keys) == len(bodies), repr((keys, bodies))
         return zip(keys, bodies)
 
@@ -162,7 +162,7 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
         built_in_score=False, user_score=False, head=None):
         result = []
         for package_path in self.list_asset_packagesystem_paths(head=head):
-            asset_proxy = self._get_asset_proxy(package_path)
+            asset_proxy = self._initialize_asset_proxy(package_path)
             result.append(asset_proxy)
         return result
 
@@ -262,7 +262,7 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
         self._session.pop_backtrack()
         if self._session.backtrack():
             return
-        asset_proxy = self._get_asset_proxy(asset_package_path)
+        asset_proxy = self._initialize_asset_proxy(asset_package_path)
         asset_proxy.rename_interactively()
 
     def select_asset_packagesystem_path_interactively(

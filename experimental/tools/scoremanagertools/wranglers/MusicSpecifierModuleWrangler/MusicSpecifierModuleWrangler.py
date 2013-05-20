@@ -45,7 +45,7 @@ class MusicSpecifierModuleWrangler(ModuleWrangler):
         elif result == 'profile':
             self.profile_visible_assets()
         else:
-            package_proxy = self._get_asset_proxy(result)
+            package_proxy = self._initialize_asset_proxy(result)
             package_proxy.edit()
 
     def _make_main_menu(self, head=None):

@@ -52,9 +52,6 @@ class MaterialPackageWrangler(PackageWrangler):
 
     ### PRIVATE METHODS ###
 
-    def _get_asset_proxy(self, package_path):
-        return self._material_package_maker_wrangler._get_asset_proxy(package_path)
-
     def _handle_main_menu_result(self, result):
         if result == 'd':
             self.make_data_package_interactively()
@@ -69,8 +66,11 @@ class MaterialPackageWrangler(PackageWrangler):
         elif result == 'profile':
             self.profile_visible_assets()
         else:
-            material_package_proxy = self._get_asset_proxy(result)
+            material_package_proxy = self._initialize_asset_proxy(result)
             material_package_proxy._run()
+
+    def _initialize_asset_proxy(self, package_path):
+        return self._material_package_maker_wrangler._initialize_asset_proxy(package_path)
 
     def _list_score_storehouse_package_paths(self, head=None):
         '''Material package wrangler list score internal storehouse package paths:

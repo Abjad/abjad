@@ -159,13 +159,13 @@ class ScoreManager(ScoreManagerObject):
     ### PUBLIC METHODS ###
 
     def edit_score_interactively(self, score_package_path):
-        score_package_proxy = self.score_package_wrangler._get_asset_proxy(score_package_path)
+        score_package_proxy = self.score_package_wrangler._initialize_asset_proxy(score_package_path)
         score_package_proxy._session.underscore_delimited_current_score_name = score_package_path
         score_package_proxy._run(cache=True)
         self._session.underscore_delimited_current_score_name = None
 
     def get_next_score_package_name(self):
-        score_package_names = self.score_package_wrangler.list_visible_asset_names()
+        score_package_names = self.score_package_wrangler.list_asset_names()
         if self._session.underscore_delimited_current_score_name is None:
             return score_package_names[0]
         index = score_package_names.index(self._session.underscore_delimited_current_score_name)
@@ -173,7 +173,7 @@ class ScoreManager(ScoreManagerObject):
         return score_package_names[next_index]
 
     def get_prev_score_package_name(self):
-        score_package_names = self.score_package_wrangler.list_visible_asset_names()
+        score_package_names = self.score_package_wrangler.list_asset_names()
         if self._session.underscore_delimited_current_score_name is None:
             return score_package_names[-1]
         index = score_package_names.index(self._session.underscore_delimited_current_score_name)
