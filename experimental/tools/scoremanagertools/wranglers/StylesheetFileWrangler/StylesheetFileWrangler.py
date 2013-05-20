@@ -176,8 +176,8 @@ class StylesheetFileWrangler(FileWrangler):
             head=head)
 
     def list_storehouse_filesystem_paths(self, 
-        built_in_external=False, user_external=False,
-        built_in_score=False, user_score=False, head=None):
+        built_in_external=True, user_external=True,
+        built_in_score=True, user_score=True, head=None):
         '''Stylesheet file wrangler list storehouse filesystem paths.
 
         Example. List built-in storehouse filesystem paths:
@@ -185,7 +185,7 @@ class StylesheetFileWrangler(FileWrangler):
         ::
 
             >>> for x in wrangler.list_storehouse_filesystem_paths(
-            ...     built_in_external=True, built_in_score=True):
+            ...     user_external=False, user_score=False):
             ...     x
             '.../tools/scoremanagertools/built_in_stylesheets'
             '.../tools/scoremanagertools/built_in_scores/blue_example_score/music/stylesheets'
