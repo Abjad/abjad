@@ -249,15 +249,16 @@ class MaterialPackageWrangler(PackageWrangler):
                 return material_package_path
 
     def list_asset_filesystem_paths(self,
-        built_in_external=False, user_external=False,
-        built_in_score=False, user_score=False, head=None):
-        '''Material package wrangler list asset filesystem paths:
+        built_in_external=True, user_external=True,
+        built_in_score=True, user_score=True, head=None):
+        '''Material package wrangler list asset filesystem paths.
+
+        Example. List built-in material package filesystem paths:
 
         ::
 
             >>> for x in wrangler.list_asset_filesystem_paths(
-            ...     built_in_external=True, user_external=True,
-            ...     built_in_score=True, user_score=True):
+            ...     user_external=False, user_score=False):
             ...     x
             '.../abjad/experimental/tools/scoremanagertools/built_in_materials/red_directives'
             '.../abjad/experimental/tools/scoremanagertools/built_in_materials/red_forte'
@@ -266,9 +267,7 @@ class MaterialPackageWrangler(PackageWrangler):
             '.../abjad/experimental/tools/scoremanagertools/built_in_materials/red_numbers'
             '.../abjad/experimental/tools/scoremanagertools/built_in_materials/red_sargasso_measures'
             '.../abjad/experimental/tools/scoremanagertools/built_in_materials/sargasso_multipliers'
-            ...
-
-        User collateral elided.
+            '.../tools/scoremanagertools/built_in_scores/red_example_score/music/materials/tempo_inventory'
 
         Return list.
         '''

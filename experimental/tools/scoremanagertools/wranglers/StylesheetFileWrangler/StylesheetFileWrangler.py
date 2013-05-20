@@ -55,11 +55,7 @@ class StylesheetFileWrangler(FileWrangler):
     def _make_main_menu(self):
         menu, section = self._io.make_menu(where=self._where, is_parenthetically_numbered=True)
         tokens = []
-        for filesystem_path in self.list_asset_filesystem_paths(
-            built_in_external=True,
-            user_external=True,
-            built_in_score=True,
-            user_score=True):
+        for filesystem_path in self.list_asset_filesystem_paths():
             tokens.append(os.path.basename(filesystem_path))
         section.tokens = tokens
         section = menu.make_section()
@@ -111,8 +107,8 @@ class StylesheetFileWrangler(FileWrangler):
     ### PUBLIC METHODS ###
 
     def list_asset_filesystem_paths(self,
-        built_in_external=False, user_external=False,
-        built_in_score=False, user_score=False, head=None):
+        built_in_external=True, user_external=True,
+        built_in_score=True, user_score=True, head=None):
         '''Stylesheet file wrangler list asset filesystem paths.
     
         Example. List built-in asset filesystem paths:
@@ -120,7 +116,7 @@ class StylesheetFileWrangler(FileWrangler):
         ::
 
             >>> for x in wrangler.list_asset_filesystem_paths(
-            ...     built_in_external=True, built_in_score=True):
+            ...     user_external=False, user_score=False):
             ...     x
             '.../tools/scoremanagertools/built_in_stylesheets/clean_letter_14.ly'
             '.../tools/scoremanagertools/built_in_stylesheets/clean_letter_16.ly'
@@ -154,8 +150,8 @@ class StylesheetFileWrangler(FileWrangler):
         '''
         return super(type(self), self).list_asset_names(head=head)
 
-    def list_asset_proxies(self, built_in_external=False, user_external=False,
-        built_in_score=False, user_score=False, head=None):
+    def list_asset_proxies(self, built_in_external=True, user_external=True,
+        built_in_score=True, user_score=True, head=None):
         '''Stylesheet file wrangler initialize asset proxies.
 
         Example. Initialize built-in asset proxies:
@@ -163,7 +159,7 @@ class StylesheetFileWrangler(FileWrangler):
         ::
 
             >>> for x in wrangler.list_asset_proxies(
-            ...     built_in_external=True, built_in_score=True):
+            ...     user_external=False, user_score=False):
             ...     x
             StylesheetFileProxy('.../tools/scoremanagertools/built_in_stylesheets/clean_letter_14.ly')
             StylesheetFileProxy('.../tools/scoremanagertools/built_in_stylesheets/clean_letter_16.ly')
