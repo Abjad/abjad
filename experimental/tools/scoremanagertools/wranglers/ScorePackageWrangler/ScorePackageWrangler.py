@@ -22,17 +22,13 @@ class ScorePackageWrangler(PackageWrangler):
     Return score package wrangler.
     '''
 
-    ### INITIALIZER ###
+    ### CLASS ATTRIBUTES ###
 
-    def __init__(self, session=None):
-        PackageWrangler.__init__(
-            self,
-            built_in_external_storehouse_packagesystem_path=\
-                'experimental.tools.scoremanagertools.built_in_scores',
-            user_external_storehouse_filesystem_path=\
-                self.configuration.user_scores_directory_path,
-            session=session,
-            )
+    # TODO: derive symbolically instead of hardcoding
+    built_in_external_storehouse_packagesystem_path = \
+        'experimental.tools.scoremanagertools.built_in_scores'
+    user_external_storehouse_filesystem_path = \
+        PackageWrangler.configuration.user_scores_directory_path
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 

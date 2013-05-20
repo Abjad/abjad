@@ -8,17 +8,10 @@ class SegmentPackageWrangler(PackageWrangler):
     ### CLASS ATTRIBUTES ###
     
     storehouse_path_infix_parts = ('music', 'segments')
-
-    ### INITIALIZER ###
-
-    def __init__(self, session=None):
-        PackageWrangler.__init__(self,
-            built_in_external_storehouse_packagesystem_path=\
-                self.configuration.user_sketches_package_path,
-            user_external_storehouse_packagesystem_path=\
-                self.configuration.user_sketches_package_path,
-            session=session,
-            )
+    built_in_external_storehouse_packagesystem_path = \
+        PackageWrangler.configuration.user_sketches_package_path
+    user_external_storehouse_packagesystem_path = \
+        PackageWrangler.configuration.user_sketches_package_path
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 
