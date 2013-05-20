@@ -54,7 +54,13 @@ class StylesheetFileWrangler(FileWrangler):
 
     def _make_main_menu(self):
         menu, section = self._io.make_menu(where=self._where, is_parenthetically_numbered=True)
-        tokens = [os.path.basename(x) for x in self.list_visible_asset_filesystem_paths()]
+        tokens = []
+        for filesystem_path in self.list_asset_filesystem_paths(
+            built_in_external=True,
+            user_external=True,
+            built_in_score=True,
+            user_score=True):
+            tokens.append(os.path.basename(filesystem_path))
         section.tokens = tokens
         section = menu.make_section()
         section.append(('new', 'new stylesheet'))

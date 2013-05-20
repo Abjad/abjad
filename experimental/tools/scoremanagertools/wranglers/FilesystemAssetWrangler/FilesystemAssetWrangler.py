@@ -103,7 +103,12 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         pass
 
     def _make_visible_asset_menu_tokens(self, head=None):
-        keys = self.list_visible_asset_filesystem_paths(head=head)
+        keys = self.list_asset_filesystem_paths(
+            built_in_external=True, 
+            user_external=True,
+            built_in_score=True, 
+            user_score=True, 
+            head=head)
         bodies = self.list_space_delimited_lowercase_visible_asset_names(head=head)
         return zip(keys, bodies)
 
@@ -198,7 +203,12 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     def list_space_delimited_lowercase_visible_asset_names(self, head=None):
         result = []
-        for filesystem_path in self.list_visible_asset_filesystem_paths(head=head):
+        for filesystem_path in self.list_asset_filesystem_paths(
+            built_in_external=True, 
+            user_external=True,
+            built_in_score=True, 
+            user_score=True,
+            head=head):
             result.append(self._filesystem_path_to_space_delimited_lowercase_name(filesystem_path))
         return result
 
@@ -239,11 +249,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                 result.append(filesystem_path)
         return result
 
-    def list_visible_asset_filesystem_paths(self, head=None):
-        return self.list_asset_filesystem_paths(
-            built_in_external=True, user_external=True,
-            built_in_score=True, user_score=True, head=head)
-
     def make_asset(self, asset_name):
         assert stringtools.is_underscore_delimited_lowercase_string(asset_name)
         asset_filesystem_path = os.path.join(self._current_storehouse_filesystem_path, asset_name)
@@ -257,7 +262,12 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     # TODO: write test
     def remove_assets_interactively(self, head=None):
         getter = self._io.make_getter(where=self._where)
-        argument_list = self.list_visible_asset_filesystem_paths(head=head)
+        argument_list = self.list_asset_filesystem_paths(
+            built_in_external=True, 
+            user_external=True,
+            built_in_score=True, 
+            user_score=True,
+            head=head)
         space_delimited_lowercase_asset_class_name = stringtools.string_to_space_delimited_lowercase(
             self.asset_proxy_class.__name__)
         plural_space_delimited_lowercase_asset_class_name = stringtools.pluralize_string(
@@ -280,7 +290,14 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def select_asset_filesystem_path_interactively(self, clear=True, cache=False):
         self._session.cache_breadcrumbs(cache=cache)
         menu, section = self._io.make_menu(where=self._where, is_parenthetically_numbered=True)
-        tokens = [os.path.basename(x) for x in self.list_visible_asset_filesystem_paths()]
+        tokens = []
+        for filesystem_path in self.list_asset_filesystem_paths(
+            built_in_external=True, 
+            user_external=True,
+            built_in_score=True, 
+            user_score=True):
+            tokens.append(os.path.basename(filesystem_path))
+        tokens = self.list_space_delimited_lowercase_visible_asset_names()
         section.tokens = tokens
         while True:
             breadcrumb = 'select {}'.format(self.asset_proxy_class._generic_class_name)

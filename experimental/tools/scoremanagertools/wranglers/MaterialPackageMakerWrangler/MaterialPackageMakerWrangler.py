@@ -97,8 +97,6 @@ class MaterialPackageMakerWrangler(PackageWrangler):
 
     def list_external_asset_packagesystem_paths(self, head=None):
         result = PackageWrangler.list_external_asset_packagesystem_paths(self, head=head)
-        #if self.base_class_name in result:
-        #    result.remove(self.base_class_name)
         for forbidden_package_path in self.forbidden_package_paths:
             if forbidden_package_path in result:
                 result.remove(forbidden_package_path)
@@ -106,7 +104,11 @@ class MaterialPackageMakerWrangler(PackageWrangler):
 
     def list_space_delimited_lowercase_visible_asset_names(self, head=None):
         result = []
-        for asset_filesystem_path in self.list_visible_asset_filesystem_paths(head=head):
+        for asset_filesystem_path in self.list_asset_filesystem_paths(
+            built_in_external=True,
+            user_external=True,
+            built_in_score=True,
+            user_score=True):
             asset_filesystem_path = os.path.normpath(asset_filesystem_path)
             asset_name = os.path.basename(asset_filesystem_path)
             if asset_name in self.forbidden_class_names:
