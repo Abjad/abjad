@@ -14,11 +14,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     __metaclass__ = abc.ABCMeta
     storehouse_path_infix_parts = ()
-    built_in_resource_directory_basenames = (
-        'built_in_materials',
-        'built_in_sketches',
-        'built_in_specifiers',
-        ) 
 
     ### INITIALIZER ###
 
@@ -36,7 +31,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        '''True when system and user storehouse paths are both equal.
+        '''True when built-in and user storehouse paths are both equal.
         Otherwise false.
 
         Return boolean.
@@ -157,17 +152,15 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     
     ### PUBLIC METHODS ###
 
-    def get_asset_proxies(self, head=None):
+    def get_asset_proxies(self, built_in_external=False, user_external=False,
+        built_in_score=False, user_score=False, head=None):
         result = []
         for filesystem_path in self.list_asset_filesystem_paths(
-            built_in_external=True, user_external=True,
-            built_in_score=True, user_score=True, head=head):
+            built_in_external=built_in_external, user_external=user_external,
+            built_in_score=built_in_score, user_score=user_score, head=head):
             asset_proxy = self._get_asset_proxy(filesystem_path)
             result.append(asset_proxy)
         return result
-
-    def get_visible_asset_proxies(self, head=None):
-        return self.get_asset_proxies(head=head)
 
     def list_asset_filesystem_paths(self, 
         built_in_external=False, user_external=False,
@@ -181,8 +174,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                         filesystem_path = os.path.join(directory_path, directory_entry)
                         result.append(filesystem_path)
         if user_external:
-            #for directory_path in self._list_user_external_storehouse_filesystem_paths(
-            #    head=head):
             for directory_path in self.list_storehouse_filesystem_paths(
                 user_external=True, head=head):
                 for directory_entry in os.listdir(directory_path):

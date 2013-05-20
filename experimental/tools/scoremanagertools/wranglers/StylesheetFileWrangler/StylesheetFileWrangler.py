@@ -104,25 +104,30 @@ class StylesheetFileWrangler(FileWrangler):
 
     ### PUBLIC METHODS ###
 
-    def get_asset_proxies(self, head=None):
-        '''Stylesheet file wrangler get asset proxies:
+    def get_asset_proxies(self, built_in_external=False, user_external=False,
+        built_in_score=False, user_score=False, head=None):
+        '''Stylesheet file wrangler get asset proxies.
+
+        Example. Get built-in asset proxies:
 
         ::
 
-            >>> for x in wrangler.get_asset_proxies():
+            >>> for x in wrangler.get_asset_proxies(
+            ...     built_in_external=True, built_in_score=True):
             ...     x
             StylesheetFileProxy('.../tools/scoremanagertools/built_in_stylesheets/clean_letter_14.ly')
             StylesheetFileProxy('.../tools/scoremanagertools/built_in_stylesheets/clean_letter_16.ly')
             StylesheetFileProxy('.../tools/scoremanagertools/built_in_stylesheets/rhythm_letter_16.ly')
-            ...
             StylesheetFileProxy('.../tools/scoremanagertools/built_in_scores/red_example_score/music/stylesheets/red_example_score_stylesheet.ly')
-            ...
-
-        (User collateral elided.)
 
         Return list.
         '''
-        return super(type(self), self).get_asset_proxies(head=head)
+        return super(type(self), self).get_asset_proxies(
+            built_in_external=built_in_external,
+            user_external=user_external,
+            built_in_score=built_in_score,
+            user_score=user_score,
+            head=head)
 
     def list_asset_filesystem_paths(self,
         built_in_external=False, user_external=False,
