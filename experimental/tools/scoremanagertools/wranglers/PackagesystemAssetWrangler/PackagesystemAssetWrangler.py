@@ -156,9 +156,9 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
         for storehouse_package_path in \
             self._list_score_storehouse_package_paths(head=head):
             if self.storehouse_path_infix_parts:
-                asset_filesystem_path = self.configuration.packagesystem_path_to_filesystem_path(
+                filesystem_path = self.configuration.packagesystem_path_to_filesystem_path(
                     storehouse_package_path)
-                for directory_entry in os.listdir(asset_filesystem_path):
+                for directory_entry in os.listdir(filesystem_path):
                     if directory_entry[0].isalpha():
                         package_name = directory_entry
                         if '.' in package_name:
@@ -167,6 +167,10 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
                             storehouse_package_path, package_name))
             else:
                 result.append(storehouse_package_path)
+        #for filesystem_path in self.list_asset_filesystem_paths(
+        #    built_in_external=False, user_external=False, head=head):
+        #    packagesystem_path = self.configuration.filesystem_path_to_packagesystem_path(filesystem_path)
+        #    result.append(packagesystem_path)
         return result
 
     def list_visible_asset_packagesystem_paths(self, head=None):
