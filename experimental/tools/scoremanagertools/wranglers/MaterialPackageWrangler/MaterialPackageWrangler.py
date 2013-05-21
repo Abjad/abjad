@@ -200,7 +200,7 @@ class MaterialPackageWrangler(PackageWrangler):
         built_in_score=True, user_score=True, head=None):
         '''List asset filesystem paths.
 
-        Example. List built-in material packages:
+        Example. List built-in material package filesystem paths:
 
         ::
 
@@ -225,8 +225,40 @@ class MaterialPackageWrangler(PackageWrangler):
             user_score=user_score,
             head=head)
 
+    def list_asset_names(self,
+        built_in_external=True, user_external=True,
+        built_in_score=True, user_score=True, head=None):
+        '''List asset names.
+
+        Example. List built-in material package names:
+
+        ::
+
+            >>> for x in wrangler.list_asset_names(
+            ...     user_external=False, user_score=False):
+            ...     x
+            'red directives'
+            'red forte'
+            'red marcati'
+            'red notes'
+            'red numbers'
+            'red sargasso measures'
+            'sargasso multipliers'
+            'tempo inventory'
+
+        Return list.
+        '''
+        return super(type(self), self).list_asset_names(
+            built_in_external=built_in_external,
+            user_external=user_external,
+            built_in_score=built_in_score,
+            user_score=user_score,
+            head=head)
+
     def list_asset_packagesystem_paths(self, head=None):
-        '''Material package wrangler list asset package paths:
+        '''List asset packagesystem paths.
+
+        Example. List built-in material package packagesystem paths:
 
         ::
 
@@ -243,21 +275,22 @@ class MaterialPackageWrangler(PackageWrangler):
             'experimental.tools.scoremanagertools.built_in_scores.red_example_score.music.materials.tempo_inventory'
             ...
 
-        User-specific output elided above.
+        .. note:: TODO: supply with four keyword filters.
 
         Return list.
         '''
         return super(type(self), self).list_asset_packagesystem_paths(head=head) 
 
-    def list_asset_proxies(self, built_in_external=False, user_external=False,
-        built_in_score=False, user_score=False, head=None):
-        '''Material package wranglger get asset proxies:
+    def list_asset_proxies(self, built_in_external=True, user_external=True,
+        built_in_score=True, user_score=True, head=None):
+        '''List asset proxies.
+
+        Example. List built-in material package proxies:
             
         ::
 
             >>> for x in wrangler.list_asset_proxies(
-            ...     built_in_external=True, built_in_score=True,
-            ...     user_external=True, user_score=True):
+            ...     user_external=False, user_score=False):
             ...     x
             MarkupInventoryMaterialPackageMaker('.../tools/scoremanagertools/built_in_materials/red_directives')
             DynamicHandlerMaterialPackageMaker('.../tools/scoremanagertools/built_in_materials/red_forte')
@@ -270,7 +303,7 @@ class MaterialPackageWrangler(PackageWrangler):
             TempoMarkInventoryMaterialPackageMaker('.../tools/scoremanagertools/built_in_scores/red_example_score/music/materials/tempo_inventory')
             ...
 
-        Output lists external materials followed by score materials. 
+        .. note:: FIXME: user proxies appear in output even when they shouldn't.
 
         Return list.
         '''
@@ -331,6 +364,24 @@ class MaterialPackageWrangler(PackageWrangler):
         Return list.
         '''
         return super(type(self), self).list_score_asset_packagesystem_paths(head=head)
+
+    def list_storehouse_filesystem_paths(self,
+        built_in_external=True, user_external=True,
+        built_in_score=True, user_score=True, head=None):
+        '''List storehouse filesystem paths.
+
+        .. note:: FIXME: user output appears even when keyword specify otherwise.
+
+        .. note:: FIXME: method return packagesystem paths instead of filesystem paths.
+
+        Return list.
+        '''
+        return super(type(self), self).list_storehouse_filesystem_paths(
+            built_in_external=built_in_external,
+            user_external=user_external,
+            built_in_score=built_in_score,
+            user_score=user_score,
+            head=head)
 
     def make_data_package(self, material_package_path, tags=None):
         tags = tags or {}
