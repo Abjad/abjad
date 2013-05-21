@@ -314,19 +314,6 @@ class MaterialPackageWrangler(PackageWrangler):
             user_score=user_score,
             head=head)
 
-    def list_built_in_score_asset_packagesystem_paths(self, head=None):
-        '''Material package wrangler list built-in score asset package paths:
-
-        ::
-
-            >>> for x in wrangler.list_built_in_score_asset_packagesystem_paths():
-            ...     x
-            'experimental.tools.scoremanagertools.built_in_scores.red_example_score.music.materials.tempo_inventory'
-
-        Return list.
-        '''
-        return super(type(self), self).list_built_in_score_asset_packagesystem_paths(head=head)
-
     def list_external_asset_packagesystem_paths(self, head=None):
         '''Material package wrangler list external asset package paths:
 
