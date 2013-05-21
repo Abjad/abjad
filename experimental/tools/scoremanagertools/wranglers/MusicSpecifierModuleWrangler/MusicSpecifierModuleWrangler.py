@@ -1,6 +1,3 @@
-import os
-from experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy import \
-    MusicSpecifierModuleProxy
 from experimental.tools.scoremanagertools.wranglers.ModuleWrangler import ModuleWrangler
 
 
@@ -8,18 +5,13 @@ class MusicSpecifierModuleWrangler(ModuleWrangler):
 
     ### CLASS ATTRIBUTES ###
 
+    built_in_external_storehouse_packagesystem_path = \
+        ModuleWrangler.configuration.built_in_specifiers_package_path
+
     storehouse_path_infix_parts = ('music', 'specifiers')
 
-    ### INITIALIZER ###
-
-    def __init__(self, session=None):
-        ModuleWrangler.__init__(self,
-            built_in_external_storehouse_packagesystem_path=\
-                self.configuration.built_in_specifiers_package_path,
-            user_external_storehouse_packagesystem_path=\
-                self.configuration.user_external_specifiers_directory_path,
-            session=session,
-            )
+    user_external_storehouse_packagesystem_path = \
+        ModuleWrangler.configuration.user_external_specifiers_directory_path
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 
@@ -64,7 +56,8 @@ class MusicSpecifierModuleWrangler(ModuleWrangler):
 
     @property
     def asset_proxy_class(self):
-        return MusicSpecifierModuleProxy
+        from experimental.tools import scoremanagertools
+        return scoremanagertools.proxies.MusicSpecifierModuleProxy
 
     ### PUBLIC METHODS ###
 

@@ -50,6 +50,29 @@ class MaterialPackageWrangler(PackageWrangler):
 
     ### PRIVATE METHODS ###
 
+    def _get_appropriate_material_package_proxy(self,
+        material_package_maker_class_name, material_package_path):
+        from experimental.tools import scoremanagertools
+        if material_package_maker_class_name is None:
+            material_package_proxy = scoremanagertools.proxies.MaterialPackageProxy(
+                material_package_path, session=self._session)
+        else:
+            command = 'material_package_proxy = '
+            command += 'scoremanagertools.materialpackagemakers.{}'
+            command += '(material_package_path, session=self._session)'
+            command = command.format(material_package_maker_class_name)
+            try:
+                exec(command)
+            except AttributeError:
+                command = 'import {}.{} as material_package_maker_class'
+                command = command.format(
+                    self.configuration.user_material_package_makers_package_path, 
+                    material_package_maker_class_name)
+                exec(command)
+                material_package_proxy = material_package_maker_class(
+                    material_package_path, session=self._session)
+        return material_package_proxy
+
     def _handle_main_menu_result(self, result):
         if result == 'd':
             self.make_data_package_interactively()
@@ -152,28 +175,6 @@ class MaterialPackageWrangler(PackageWrangler):
 
     ### PUBLIC METHODS ###
 
-    def get_appropriate_material_package_proxy(self,
-        material_package_maker_class_name, material_package_path):
-        from experimental.tools import scoremanagertools
-        if material_package_maker_class_name is None:
-            material_package_proxy = scoremanagertools.proxies.MaterialPackageProxy(
-                material_package_path, session=self._session)
-        else:
-            command = 'material_package_proxy = '
-            command += 'scoremanagertools.materialpackagemakers.{}(material_package_path, session=self._session)'
-            command = command.format(material_package_maker_class_name)
-            try:
-                exec(command)
-            except AttributeError:
-                command = 'import {}.{} as material_package_maker_class'
-                command = command.format(
-                    self.configuration.user_material_package_makers_package_path, 
-                    material_package_maker_class_name)
-                exec(command)
-                material_package_proxy = material_package_maker_class(
-                    material_package_path, session=self._session)
-        return material_package_proxy
-
     def get_available_material_packagesystem_path_interactively(self, user_input=None):
         self._io.assign_user_input(user_input=user_input)
         while True:
@@ -197,9 +198,9 @@ class MaterialPackageWrangler(PackageWrangler):
     def list_asset_filesystem_paths(self,
         built_in_external=True, user_external=True,
         built_in_score=True, user_score=True, head=None):
-        '''Material package wrangler list asset filesystem paths.
+        '''List asset filesystem paths.
 
-        Example. List built-in material package filesystem paths:
+        Example. List built-in material packages:
 
         ::
 
@@ -400,7 +401,7 @@ class MaterialPackageWrangler(PackageWrangler):
             return
         self.make_makermade_material_package(
             material_package_path, material_package_maker_class_name)
-        proxy = self.get_appropriate_material_package_proxy(
+        proxy = self._get_appropriate_material_package_proxy(
             material_package_maker_class_name, material_package_path)
         proxy.run_first_time()
 
@@ -413,7 +414,7 @@ class MaterialPackageWrangler(PackageWrangler):
         os.mkdir(directory_path)
         material_package_maker_class_name = tags.get('material_package_maker_class_name')
         pair = (material_package_maker_class_name, material_package_path)
-        material_package_proxy = self.get_appropriate_material_package_proxy(*pair)
+        material_package_proxy = self._get_appropriate_material_package_proxy(*pair)
         material_package_proxy.initializer_file_proxy.write_stub_to_disk()
         material_package_proxy.tags_file_proxy.write_tags_to_disk(tags)
         material_package_proxy.conditionally_write_stub_material_definition_module_to_disk()

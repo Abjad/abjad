@@ -17,18 +17,8 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     ### INITIALIZER ###
 
-    def __init__(self,
-        built_in_external_storehouse_filesystem_path=None,
-        user_external_storehouse_filesystem_path=None,
-        session=None,
-        ):
+    def __init__(self, session=None):
         ScoreManagerObject.__init__(self, session=session)
-        if getattr(self, 'built_in_external_storehouse_filesystem_path', None) is None:
-            self.built_in_external_storehouse_filesystem_path = \
-                built_in_external_storehouse_filesystem_path or ''
-        if getattr(self, 'user_external_storehouse_filesystem_path', None) is None:
-            self.user_external_storehouse_filesystem_path = \
-                user_external_storehouse_filesystem_path or ''
 
     ### SPECIAL METHODS ###
 

@@ -24,11 +24,14 @@ class ScorePackageWrangler(PackageWrangler):
 
     ### CLASS ATTRIBUTES ###
 
-    # TODO: derive symbolically instead of hardcoding
+    built_in_external_storehouse_filesystem_path = \
+        PackageWrangler.configuration.built_in_scores_directory_path
     built_in_external_storehouse_packagesystem_path = \
-        'experimental.tools.scoremanagertools.built_in_scores'
+        PackageWrangler.configuration.built_in_scores_package_path
     user_external_storehouse_filesystem_path = \
         PackageWrangler.configuration.user_scores_directory_path
+    user_external_storehouse_packagesystem_path = \
+        PackageWrangler.configuration.user_scores_package_path
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 

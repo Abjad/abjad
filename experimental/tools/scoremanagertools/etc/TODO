@@ -123,3 +123,5 @@
 39. Document StylesheetFileProxy next.
 
 40. Grep for 'recursif' and do whatever is necessary to remove from codebase.
+
+41. Change ### CLASS ATTRIBUTES ### globally to ### CLASS VARIABLES ###
