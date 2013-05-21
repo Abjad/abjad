@@ -6,7 +6,7 @@ from experimental.tools.scoremanagertools.editors.MarkupInventoryEditor import M
 
 class MarkupInventoryMaterialPackageMaker(InventoryMaterialPackageMaker):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     generic_output_name = 'markup inventory'
     illustration_maker = staticmethod(make_illustration_from_output_material)

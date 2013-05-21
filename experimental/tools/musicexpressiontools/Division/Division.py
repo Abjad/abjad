@@ -37,7 +37,7 @@ class Division(NonreducedFraction, BoundedObject):
     to be understood as divisible into parts.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     # slots definition does nothing here because multiple inheritance
     # breaks with multiple slots base classes

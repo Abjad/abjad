@@ -23,7 +23,7 @@ class QTarget(AbjadObject):
     Used internally by the ``Quantizer``.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_items',)
 

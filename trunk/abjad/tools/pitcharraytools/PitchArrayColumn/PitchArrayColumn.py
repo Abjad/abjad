@@ -32,7 +32,7 @@ class PitchArrayColumn(AbjadObject):
     Return pitch array column.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     _default_positional_input_arguments = ([], )
 

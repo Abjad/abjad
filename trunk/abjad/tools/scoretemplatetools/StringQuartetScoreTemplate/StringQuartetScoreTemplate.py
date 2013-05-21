@@ -59,7 +59,7 @@ class StringQuartetScoreTemplate(ScoreTemplate):
     Return score template.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     context_name_abbreviations = collections.OrderedDict({
         'vn1': 'First Violin Voice',

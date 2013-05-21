@@ -43,7 +43,7 @@ class TwoStaffPianoScoreTemplate(ScoreTemplate):
     Return score template.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     context_name_abbreviations = collections.OrderedDict({
         'rh': 'RH Voice',

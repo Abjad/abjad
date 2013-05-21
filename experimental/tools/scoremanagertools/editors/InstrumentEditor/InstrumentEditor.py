@@ -10,7 +10,7 @@ from experimental.tools.scoremanagertools.editors.TargetManifest import TargetMa
 
 class InstrumentEditor(InteractiveEditor):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     target_manifest = TargetManifest(Instrument,
         ('instrument_name', 'in', getters.get_string),

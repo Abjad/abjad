@@ -4,7 +4,7 @@ from experimental.tools.scoremanagertools.proxies.FileProxy import FileProxy
 
 class IllustrationPdfFileProxy(FileProxy):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     extension = '.pdf'
 

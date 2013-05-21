@@ -8,7 +8,7 @@ class Interval(AbjadObject):
     Interval base class.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
     __slots__ = ('_format_string', )

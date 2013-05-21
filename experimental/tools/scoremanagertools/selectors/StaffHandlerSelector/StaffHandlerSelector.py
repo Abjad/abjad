@@ -3,7 +3,7 @@ from experimental.tools.scoremanagertools.selectors.Selector import Selector
 
 class StaffHandlerSelector(Selector):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     space_delimited_lowercase_target_name = 'staff handler'
 

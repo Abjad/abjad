@@ -30,7 +30,7 @@ class Voice(Context):
     Return voice instance.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ()
 

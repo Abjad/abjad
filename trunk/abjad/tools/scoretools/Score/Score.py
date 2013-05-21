@@ -28,7 +28,7 @@ class Score(Context):
     Return Score instance.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ()
 

@@ -26,7 +26,7 @@ class Staff(Context):
     Return Staff instance.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ()
 

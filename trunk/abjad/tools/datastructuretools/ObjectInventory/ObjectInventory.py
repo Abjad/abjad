@@ -16,7 +16,7 @@ class ObjectInventory(list, AbjadObject):
     and should be subclassed.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_name', )
 

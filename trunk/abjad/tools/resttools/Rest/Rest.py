@@ -21,7 +21,7 @@ class Rest(Leaf):
     Return Rest instance.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     # TODO: add vertical positioning pitch only as needed #
     __slots__ = ('_vertical_positioning_pitch', )

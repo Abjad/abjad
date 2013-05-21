@@ -12,7 +12,7 @@ class SortableAttributeEqualityAbjadObject(AttributeEqualityAbjadObject):
     attribute.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
     #__slots__ = ('_comparison_attribute', '_format_string')

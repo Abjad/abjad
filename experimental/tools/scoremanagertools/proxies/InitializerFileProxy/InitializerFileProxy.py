@@ -14,7 +14,7 @@ class InitializerFileProxy(ParsableFileProxy):
         self.tag_lines = []
         self.parse()
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     extension = '.py'
 

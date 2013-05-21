@@ -8,7 +8,7 @@ class DirectedMark(Mark):
     i.e. above or below the staff.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_direction', '_format_slot')
 

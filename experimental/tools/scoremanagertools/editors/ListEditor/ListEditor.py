@@ -9,7 +9,7 @@ from experimental.tools.scoremanagertools.editors.TargetManifest import TargetMa
 
 class ListEditor(InteractiveEditor):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     item_class = None
     item_creator_class = None

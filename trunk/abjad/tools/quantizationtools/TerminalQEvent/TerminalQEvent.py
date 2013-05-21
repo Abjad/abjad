@@ -15,7 +15,7 @@ class TerminalQEvent(QEvent):
     Return ``TerminalQEvent`` instance.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_offset',)
 

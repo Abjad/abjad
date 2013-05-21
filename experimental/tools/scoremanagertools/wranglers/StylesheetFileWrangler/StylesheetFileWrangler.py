@@ -13,7 +13,7 @@ class StylesheetFileWrangler(FileWrangler):
     Return stylesheet file wrangler.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     built_in_external_storehouse_filesystem_path = os.path.join(
         FileWrangler.configuration.score_manager_tools_directory_path, 'built_in_stylesheets')

@@ -48,7 +48,7 @@ class Parentage(Selection):
     Return parentage instance.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_component', '_root')
 

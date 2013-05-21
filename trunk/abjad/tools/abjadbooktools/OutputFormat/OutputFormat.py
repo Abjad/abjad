@@ -5,7 +5,7 @@ from abjad.tools import abctools
 
 class OutputFormat(abctools.AbjadObject):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_code_block_closing', '_code_block_opening', '_code_indent', '_image_block', '_image_format')
 

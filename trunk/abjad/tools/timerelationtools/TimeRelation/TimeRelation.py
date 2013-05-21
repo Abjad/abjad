@@ -38,7 +38,7 @@ class TimeRelation(AbjadObject):
     Time relations are immutable.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
 

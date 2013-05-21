@@ -29,7 +29,7 @@ class Context(Container):
     Return context object.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
     __slots__ = ('_context_name', '_engraver_consists', '_engraver_removals',

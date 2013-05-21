@@ -7,7 +7,7 @@ from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 
 class RhythmMakerMaterialPackageMaker(MaterialPackageMaker):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     generic_output_name = 'time-token maker'
     illustration_maker = staticmethod(make_illustration_from_output_material)

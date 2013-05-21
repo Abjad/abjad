@@ -59,7 +59,7 @@ class HairpinSpanner(DirectedSpanner):
     Return hairpin spanner.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     _hairpin_shape_strings = ('<', '>')
 

@@ -23,7 +23,7 @@ class Selection(AbjadObject):
     Selections are immutable and never change after instantiation.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_music',)
 

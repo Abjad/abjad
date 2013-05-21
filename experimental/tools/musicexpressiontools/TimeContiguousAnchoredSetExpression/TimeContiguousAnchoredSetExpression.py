@@ -8,7 +8,7 @@ class TimeContiguousAnchoredSetExpression(SetExpression, AnchoredExpression):
     '''Anchored set expression.
     '''
 
-    ### CLASS ATTRIBUTES ##
+    ### CLASS VARIABLES ##
 
     __metaclass__ = abc.ABCMeta
 

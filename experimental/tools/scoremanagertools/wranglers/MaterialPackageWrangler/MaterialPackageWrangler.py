@@ -26,7 +26,7 @@ class MaterialPackageWrangler(PackageWrangler):
     Return material package wrangler.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
     
     storehouse_path_infix_parts = ('music', 'materials')
     built_in_external_storehouse_packagesystem_path = \

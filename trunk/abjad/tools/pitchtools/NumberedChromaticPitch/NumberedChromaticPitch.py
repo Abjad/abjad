@@ -13,7 +13,7 @@ class NumberedChromaticPitch(ChromaticPitch, NumberedPitch):
     Numbered chromatic pitches are immutable.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_chromatic_pitch_number', )
 

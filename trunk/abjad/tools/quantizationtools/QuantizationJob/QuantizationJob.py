@@ -45,7 +45,7 @@ class QuantizationJob(AbjadObject):
     Return ``QuantizationJob`` instance.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_job_id', '_q_event_proxies', '_q_grids', '_search_tree')
 

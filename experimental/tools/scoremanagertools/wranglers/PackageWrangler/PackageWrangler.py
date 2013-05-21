@@ -7,7 +7,7 @@ from experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler i
 
 class PackageWrangler(PackagesystemAssetWrangler):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __meta__ = abc.ABCMeta
 

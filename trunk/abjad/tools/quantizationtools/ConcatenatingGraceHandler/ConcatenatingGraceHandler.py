@@ -17,7 +17,7 @@ class ConcatenatingGraceHandler(GraceHandler):
     Return ``ConcatenatingGraceHandler`` instance.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_grace_duration',)
 

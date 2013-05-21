@@ -5,7 +5,7 @@ from experimental.tools.scoremanagertools.proxies.MaterialPackageProxy import Ma
 
 class MaterialPackageMaker(MaterialPackageProxy):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     generic_output_name = None
     illustration_maker = None

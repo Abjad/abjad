@@ -29,7 +29,7 @@ class Cluster(Container):
     Return cluster object.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ()
 

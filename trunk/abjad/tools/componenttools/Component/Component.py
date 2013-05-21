@@ -11,7 +11,7 @@ from abjad.tools.abctools import AbjadObject
 
 class Component(AbjadObject):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
 

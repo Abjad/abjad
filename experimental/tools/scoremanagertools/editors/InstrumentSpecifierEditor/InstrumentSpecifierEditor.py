@@ -12,7 +12,7 @@ class InstrumentSpecifierEditor(ParameterSpecifierEditor):
         ParameterSpecifierEditor.__init__(self, session=session, target=target)
         #self.instruments = instruments or []
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     target_manifest = TargetManifest(specifiers.InstrumentSpecifier,
         ('name', 'nm', getters.get_string),

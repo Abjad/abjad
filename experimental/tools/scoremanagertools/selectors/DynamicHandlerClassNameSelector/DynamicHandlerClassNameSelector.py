@@ -3,7 +3,7 @@ from experimental.tools.scoremanagertools.selectors.HandlerClassNameSelector imp
 
 class DynamicHandlerClassNameSelector(HandlerClassNameSelector):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     space_delimited_lowercase_target_name = 'dynamic handler class name'
     forbidden_directory_entries = (

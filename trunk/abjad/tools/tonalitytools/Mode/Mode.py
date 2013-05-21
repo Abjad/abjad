@@ -11,7 +11,7 @@ class Mode(AbjadObject):
     Modes with different ascending and descending forms not yet implemented.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_melodic_diatonic_interval_segment', '_mode_name')
 

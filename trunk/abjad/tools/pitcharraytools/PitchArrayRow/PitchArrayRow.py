@@ -40,7 +40,7 @@ class PitchArrayRow(AbjadObject):
     Return pitch array row.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     _default_positional_input_arguments = ([], )
 

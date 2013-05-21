@@ -61,7 +61,7 @@ class MarkupCommand(AbjadObject):
     Return markup command.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_args', '_command')
 

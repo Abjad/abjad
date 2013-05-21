@@ -14,7 +14,7 @@ class SchemeVectorConstant(Scheme):
     Scheme vector constants are immutable.
     '''
 
-    ### CLASS ATTRIBUTES ##
+    ### CLASS VARIABLES ##
 
     __slots__ = ()
 

@@ -49,7 +49,7 @@ class Scheme(AbjadObject):
     Scheme is immutable.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_force_quotes', '_quoting', '_value',)
 

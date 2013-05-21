@@ -4,7 +4,7 @@ from abjad.tools import abctools
 
 class Handler(abctools.AbjadObject):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
 

@@ -46,7 +46,7 @@ class TimeSignatureMark(ContextMark):
     Return time signature object.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     _default_positional_input_arguments = ((4, 8), )
 

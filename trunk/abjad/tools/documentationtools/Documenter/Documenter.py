@@ -5,7 +5,7 @@ from abjad.tools import abctools
 class Documenter(abctools.AbjadObject):
     '''Documenter is an abstract base class for documentation classes.'''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
 

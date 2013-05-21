@@ -19,7 +19,7 @@ class SimpleInequality(AbjadObject):
     Return simple inequality.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_template', )
 

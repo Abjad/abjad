@@ -5,7 +5,7 @@ from experimental.tools.scoremanagertools.core.ScoreManagerObject import ScoreMa
 # TODO: extend repr to show target, if any
 class Wizard(ScoreManagerObject):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
     target_editor_class_name_suffix = 'Editor'

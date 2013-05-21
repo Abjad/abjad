@@ -76,7 +76,7 @@ class Markup(DirectedMark):
     Return markup instance.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_contents', '_direction', '_format_slot', '_markup_name')
 

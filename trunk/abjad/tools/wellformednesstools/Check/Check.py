@@ -6,7 +6,7 @@ import re
 
 class Check(AbjadObject):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
 

@@ -28,7 +28,7 @@ class LilyPondComment(Mark):
     LilyPond comments implement ``__slots__``.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_contents_string', '_format_slot', )
 

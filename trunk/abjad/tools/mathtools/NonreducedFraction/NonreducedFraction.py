@@ -70,7 +70,7 @@ class NonreducedFraction(ImmutableAbjadObject, fractions.Fraction):
     Nonreduced fractions are immutable.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_numerator', '_denominator')
 

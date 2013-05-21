@@ -15,7 +15,7 @@ class SilentQEvent(QEvent):
     Return ``SilentQEvent`` instance.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_attachments', '_offset',)
 

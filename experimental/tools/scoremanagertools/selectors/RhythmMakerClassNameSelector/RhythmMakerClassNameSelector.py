@@ -5,7 +5,7 @@ from abjad import ABJCFG
 
 class RhythmMakerClassNameSelector(HandlerClassNameSelector):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     storehouse_package_paths = ['abjad.tools.rhythmmakertools']
     storehouse_filesystem_paths = [os.path.join(ABJCFG.abjad_directory_path, 'tools', 'rhythmmakertools')]

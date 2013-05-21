@@ -4,7 +4,7 @@ from experimental.tools.scoremanagertools.selectors.Selector import Selector
 
 class MaterialPackageSelector(Selector):
 
-	### CLASS ATTRIBUTES ###
+	### CLASS VARIABLES ###
 
     asset_subtree_package_paths = []
     space_delimited_lowercase_target_name = 'material package'

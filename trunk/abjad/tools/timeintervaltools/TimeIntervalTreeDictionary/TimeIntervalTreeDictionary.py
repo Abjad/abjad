@@ -57,7 +57,7 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
     Return `TimeIntervalTreeDictionary` instance.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_composite_tree', '_start', '_stop')
 

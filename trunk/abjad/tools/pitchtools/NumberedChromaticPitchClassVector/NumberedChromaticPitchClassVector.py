@@ -18,7 +18,7 @@ class NumberedChromaticPitchClassVector(Vector):
     Numbered chromatic pitch-class vectors are immutable.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     _default_positional_input_arguments = ([13, 13, 14.5, 14.5, 14.5, 6, 6, 6], )
 

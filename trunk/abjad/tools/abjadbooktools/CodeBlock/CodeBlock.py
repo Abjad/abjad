@@ -5,7 +5,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 class CodeBlock(AbjadObject):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_ending_line_number', '_hide', '_lines', '_processed_results',
         '_starting_line_number', '_strip_prompt')

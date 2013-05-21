@@ -7,7 +7,7 @@ from experimental.tools.scoremanagertools.wranglers.PackageWrangler import Packa
 
 class MaterialPackageMakerWrangler(PackageWrangler):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     # TODO: change to 'experimental.tools.scoremanagertools.materialpackagemakers'
     # TODO: derive symbolically instead of hardcoding

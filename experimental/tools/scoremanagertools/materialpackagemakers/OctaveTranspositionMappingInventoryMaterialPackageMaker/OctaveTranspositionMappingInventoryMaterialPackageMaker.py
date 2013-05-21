@@ -6,7 +6,7 @@ from experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingInve
 
 class OctaveTranspositionMappingInventoryMaterialPackageMaker(InventoryMaterialPackageMaker):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     generic_output_name = 'octave transposition mapping inventory'
     illustration_maker = staticmethod(make_illustration_from_output_material)

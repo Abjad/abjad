@@ -6,7 +6,7 @@ from experimental.tools.scoremanagertools.editors.TargetManifest import TargetMa
 
 class ClefMarkEditor(InteractiveEditor):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     target_manifest = TargetManifest(contexttools.ClefMark,
         ('clef_name', 'nm', getters.get_string),

@@ -6,7 +6,7 @@ from experimental.tools.scoremanagertools.editors.TargetManifest import TargetMa
 
 class MarkupEditor(InteractiveEditor):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     target_manifest = TargetManifest(markuptools.Markup,
         ('arg', 'contents_string', 'arg', 'ag', getters.get_string, True),

@@ -13,7 +13,7 @@ class QEvent(AbjadObject):
     index for disambiguating events which fall on the same offset in a ``QGrid``.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_index', '_offset')
 

@@ -6,7 +6,7 @@ from experimental.tools.scoremanagertools.editors.TargetManifest import TargetMa
 
 class ReiteratedArticulationHandlerEditor(ArticulationHandlerEditor):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     target_manifest = TargetManifest(handlertools.ReiteratedArticulationHandler,
         ('articulation_list', None, 'al', getters.get_articulations, False),

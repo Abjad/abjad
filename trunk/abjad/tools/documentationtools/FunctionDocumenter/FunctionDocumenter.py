@@ -18,7 +18,7 @@ class FunctionDocumenter(Documenter):
     Returns ``FunctionDocumenter``` instance.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_object', '_prefix')
 

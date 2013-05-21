@@ -9,7 +9,7 @@ class PitchClassSegment(Segment):
     Pitch-class segment base class.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
 

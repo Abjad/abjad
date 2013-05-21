@@ -8,7 +8,7 @@ class _IntervalNode(_RedBlackNode):
     Duplicate payloads are supported by maintaining a list of TimeIntervals
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('latest_stop', 'earliest_stop', 'key',
                 'left', 'parent', 'payload', 'red', 'right', )

@@ -6,7 +6,7 @@ from experimental.tools.scoremanagertools import getters
 
 class RestRhythmMakerEditor(RhythmMakerEditor):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     target_manifest = TargetManifest(rhythmmakertools.RestRhythmMaker,
         )

@@ -11,7 +11,7 @@ class SelectExpression(AnchoredExpression, IterablePayloadCallbackMixin, SelectM
     r'''Select expression.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
 

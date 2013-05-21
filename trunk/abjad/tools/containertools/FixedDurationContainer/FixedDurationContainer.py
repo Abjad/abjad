@@ -30,7 +30,7 @@ class FixedDurationContainer(Container):
     Return fixed-duration container.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_target_duration', )
 

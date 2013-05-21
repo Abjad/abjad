@@ -9,7 +9,7 @@ from experimental.tools.scoremanagertools.core.ScoreManagerConfiguration import 
 
 class ScoreManagerObject(AbjadObject):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __meta__ = abc.ABCMeta
     configuration = ScoreManagerConfiguration()

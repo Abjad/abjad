@@ -9,7 +9,7 @@ class ChromaticPitch(Pitch, ChromaticObject):
     Chromatic pitch base class.
     '''
 
-    ### CLASS ATTRIBUTES ##
+    ### CLASS VARIABLES ##
 
     __metaclass__ = abc.ABCMeta
 

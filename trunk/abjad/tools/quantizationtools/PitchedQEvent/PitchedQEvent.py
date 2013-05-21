@@ -20,7 +20,7 @@ class PitchedQEvent(QEvent):
     Return ``PitchedQEvent`` instance.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_attachments', '_index', '_offset', '_pitches')
 

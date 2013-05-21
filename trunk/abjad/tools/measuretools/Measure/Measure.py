@@ -32,7 +32,7 @@ class Measure(FixedDurationContainer):
     Return measure object.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_always_format_time_signature', '_automatically_adjust_time_signature',
         '_measure_number', )

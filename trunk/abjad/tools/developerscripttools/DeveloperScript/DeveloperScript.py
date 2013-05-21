@@ -18,7 +18,7 @@ class DeveloperScript(abctools.AbjadObject):
     to share functionality.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_argument_parser',)
 

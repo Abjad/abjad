@@ -44,7 +44,7 @@ class QTargetBeat(AbjadObject):
     Return ``QTargetBeat`` instance.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_beatspan', '_distances', '_grouping', '_offset_in_ms',
         '_q_events', '_q_grid', '_q_grids', '_search_tree', '_tempo')

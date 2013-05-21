@@ -23,7 +23,7 @@ class PitchRange(AbjadObject):
     Pitch ranges are immutable.
     """
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_start', '_stop', '_pitch_range_name', '_pitch_range_name_markup', )
 
@@ -167,7 +167,7 @@ class PitchRange(AbjadObject):
     def __ne__(self, arg):
         return not self == arg
 
-    ### PRIVATE CLASS ATTRIBUTES ###
+    ### PRIVATE CLASS VARIABLES ###
 
     _start_punctuation_to_inclusivity_string = {
         '[': 'inclusive',

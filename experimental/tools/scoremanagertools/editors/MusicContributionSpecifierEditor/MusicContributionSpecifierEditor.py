@@ -8,7 +8,7 @@ from experimental.tools.scoremanagertools.editors.get_parameter_specifier_editor
 
 class MusicContributionSpecifierEditor(ObjectInventoryEditor):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     item_class = specifiers.ParameterSpecifier
     item_creator_class = wizards.ParameterSpecifierCreationWizard

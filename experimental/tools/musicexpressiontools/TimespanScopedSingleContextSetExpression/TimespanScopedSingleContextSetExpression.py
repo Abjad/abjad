@@ -9,7 +9,7 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
     '''Timespan-scoped single-context set expression.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
 

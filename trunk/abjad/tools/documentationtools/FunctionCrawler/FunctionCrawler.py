@@ -6,7 +6,7 @@ from abjad.tools.documentationtools.ModuleCrawler import ModuleCrawler
 
 class FunctionCrawler(abctools.AbjadObject):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_code_root', '_include_private_objects', '_module_crawler',
         '_root_package_name')

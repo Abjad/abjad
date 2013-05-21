@@ -25,7 +25,7 @@ class RhythmicStaff(Staff):
     Return RhythmicStaff instance.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ()
 

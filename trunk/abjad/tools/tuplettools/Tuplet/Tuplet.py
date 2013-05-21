@@ -87,7 +87,7 @@ class Tuplet(Container):
     Return tuplet object.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_force_fraction', '_is_invisible', '_multiplier', '_preferred_denominator',
         '_signifier', )

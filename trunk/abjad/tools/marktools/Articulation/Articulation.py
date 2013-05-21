@@ -55,7 +55,7 @@ class Articulation(DirectedMark):
     Articulations implement ``__slots__``.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_string', '_direction', '_format_slot')
 

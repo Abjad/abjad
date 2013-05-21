@@ -5,7 +5,7 @@ from abjad.tools.sievetools._BaseResidueClass import _BaseResidueClass
 
 class Sieve(_BaseResidueClass):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_logical_operator', '_rcs')
 

@@ -6,7 +6,7 @@ from experimental.tools.scoremanagertools.editors.TargetManifest import TargetMa
 
 class ReiteratedDynamicHandlerEditor(DynamicHandlerEditor):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     target_manifest = TargetManifest(handlertools.ReiteratedDynamicHandler,
         ('dynamic_name', None, 'dy', getters.get_dynamic, True),

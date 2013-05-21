@@ -82,7 +82,7 @@ class InheritanceGraph(AbjadObject):
     Returns ``InheritanceGraph`` instance.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = (
         '_addresses',

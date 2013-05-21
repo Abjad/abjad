@@ -99,7 +99,7 @@ Organize the definitions of core classes into the nine following major sections:
 
     class FooBar(object):
 
-        ### CLASS ATTRIBUTES ###
+        ### CLASS VARIABLES ###
 
         special_enumeration = ('foo', 'bar', 'blah')
 

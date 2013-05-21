@@ -9,7 +9,7 @@ class ImmutableAbjadObject(AbjadObject):
     immutable builtin classes, such as tuple and frozenset, should inherit.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
     __slots__ = ()

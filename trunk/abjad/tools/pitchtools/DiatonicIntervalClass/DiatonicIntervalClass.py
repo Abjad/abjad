@@ -9,7 +9,7 @@ class DiatonicIntervalClass(IntervalClass, DiatonicObject):
     Diatonic interval-class base class.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
 

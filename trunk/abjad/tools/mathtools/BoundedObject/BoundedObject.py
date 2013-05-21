@@ -8,7 +8,7 @@ class BoundedObject(AbjadObject):
     Bounded object mix-in.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
     __slots__ = ()

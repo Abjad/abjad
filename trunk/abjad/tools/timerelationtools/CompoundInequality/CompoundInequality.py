@@ -43,7 +43,7 @@ class CompoundInequality(ObjectInventory):
     Return compound inequality.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_logical_operator', '_name',
         )

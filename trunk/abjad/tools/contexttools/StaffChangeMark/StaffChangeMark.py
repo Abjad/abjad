@@ -60,7 +60,7 @@ class StaffChangeMark(ContextMark):
     Staff change marks target staff context by default.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     _format_slot = 'opening'
 

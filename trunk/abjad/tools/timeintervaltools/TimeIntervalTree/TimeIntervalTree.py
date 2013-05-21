@@ -42,7 +42,7 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
     Return `TimeIntervalTree` instance.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_root', '_sentinel', '_start', '_stop')
 

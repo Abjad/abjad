@@ -12,7 +12,7 @@ class MultiMeasureRest(Rest):
     Multi-measure rests are immutable.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ()
 

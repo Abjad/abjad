@@ -8,7 +8,7 @@ class IntervalSet(Set):
     Abstract interval set.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
 

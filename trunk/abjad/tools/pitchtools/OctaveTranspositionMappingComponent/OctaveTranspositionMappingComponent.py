@@ -21,7 +21,7 @@ class OctaveTranspositionMappingComponent(AbjadObject):
     Octave transposition mapping components are mutable.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     _default_positional_input_arguments = (
         repr('[A0, C8]'),

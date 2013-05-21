@@ -8,7 +8,7 @@ class CallbackMixin(AbjadObject):
     '''Callback mixin.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
 

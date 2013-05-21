@@ -3,7 +3,7 @@ from experimental.tools.scoremanagertools.selectors.HandlerClassNameSelector imp
 
 class ArticulationHandlerClassNameSelector(HandlerClassNameSelector):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     space_delimited_lowercase_target_name = 'articulation handler class name'
     forbidden_directory_entries = (

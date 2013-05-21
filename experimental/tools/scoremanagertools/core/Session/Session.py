@@ -31,7 +31,7 @@ class Session(abctools.AbjadObject):
     Return session.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     configuration = ScoreManagerConfiguration()
     # this is a temporary hack to avoid constantly reading from disk;

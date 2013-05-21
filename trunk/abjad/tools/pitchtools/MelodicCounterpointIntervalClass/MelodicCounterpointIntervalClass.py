@@ -14,7 +14,7 @@ class MelodicCounterpointIntervalClass(CounterpointIntervalClass, MelodicInterva
     Melodic counterpoint interval-classes are immutable.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_number', )
 

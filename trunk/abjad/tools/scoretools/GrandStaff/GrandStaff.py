@@ -32,7 +32,7 @@ class GrandStaff(StaffGroup):
     Return grand staff.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ()
 

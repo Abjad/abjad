@@ -8,7 +8,7 @@ class MelodicObject(AbjadObject):
     Melodic object base class.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
 

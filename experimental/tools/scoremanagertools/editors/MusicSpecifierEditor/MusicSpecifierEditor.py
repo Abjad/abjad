@@ -7,7 +7,7 @@ from experimental.tools.scoremanagertools.editors.TargetManifest import TargetMa
 
 class MusicSpecifierEditor(ObjectInventoryEditor):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     item_class = specifiers.MusicContributionSpecifier
     item_creator_class = MusicContributionSpecifierEditor

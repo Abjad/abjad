@@ -16,7 +16,7 @@ class LilyPondDimension(abctools.AbjadObject):
     Return LilyPondDimension instance.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_unit', '_value')
 

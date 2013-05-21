@@ -11,7 +11,7 @@ class InversionIndicator(AbjadObject):
     Value object that can not be changed once initialized.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_number')
 

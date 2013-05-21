@@ -10,7 +10,7 @@ class TimespanScopedSingleContextRhythmSetExpression(TimespanScopedSingleContext
     r'''Timespan-scoped single-context rhythm set expression.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
 

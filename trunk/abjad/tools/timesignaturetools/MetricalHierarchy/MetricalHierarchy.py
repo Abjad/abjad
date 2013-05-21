@@ -108,7 +108,7 @@ class MetricalHierarchy(AbjadObject):
     Return metrical hierarchy object.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_decrease_durations_monotonically', '_denominator', '_numerator', '_root_node',)
 

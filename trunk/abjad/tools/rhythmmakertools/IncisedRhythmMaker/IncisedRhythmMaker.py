@@ -21,7 +21,7 @@ class IncisedRhythmMaker(RhythmMaker):
     and the end of the last output cell.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
 

@@ -31,7 +31,7 @@ class KeySignatureMark(ContextMark):
     Key signature marks target staff context by default.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     #__slots__ = ('_tonic', '_mode')
 

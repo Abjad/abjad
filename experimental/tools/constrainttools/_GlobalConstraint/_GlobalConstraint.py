@@ -3,7 +3,7 @@ from experimental.tools.constrainttools._Constraint._Constraint import _Constrai
 
 class _GlobalConstraint(_Constraint):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ()
 

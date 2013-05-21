@@ -6,7 +6,7 @@ from experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor impor
 
 class TempoMarkInventoryMaterialPackageMaker(InventoryMaterialPackageMaker):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     generic_output_name = 'tempo mark inventory'
     illustration_maker = staticmethod(make_illustration_from_output_material)

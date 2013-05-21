@@ -31,7 +31,7 @@ class ImmutableDictionary(dict, AbjadObject):
     Return immutable dictionary.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ()
 

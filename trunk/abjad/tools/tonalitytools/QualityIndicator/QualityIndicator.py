@@ -10,7 +10,7 @@ class QualityIndicator(AbjadObject):
     Value object that can not be changed after instantiation.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_quality_string')
 

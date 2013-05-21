@@ -25,7 +25,7 @@ class StylesheetFileProxy(FileProxy):
     Return stylesheet proxy.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     _generic_class_name = 'stylesheet'
     _temporary_asset_name = 'temporary_stylesheet.ly'

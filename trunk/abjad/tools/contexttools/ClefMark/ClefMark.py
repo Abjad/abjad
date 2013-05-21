@@ -52,7 +52,7 @@ class ClefMark(ContextMark):
     Clef marks target the staff context by default.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     _default_positional_input_arguments = (repr('alto'), )
 

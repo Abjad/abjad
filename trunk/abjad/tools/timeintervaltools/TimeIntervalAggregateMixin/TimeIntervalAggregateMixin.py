@@ -4,7 +4,7 @@ from abjad.tools.timeintervaltools.TimeIntervalMixin import TimeIntervalMixin
 
 class TimeIntervalAggregateMixin(TimeIntervalMixin):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
     __slots__ = ()

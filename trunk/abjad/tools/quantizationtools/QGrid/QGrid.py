@@ -79,7 +79,7 @@ class QGrid(AbjadObject):
     Return ``QGrid`` instance.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_next_downbeat', '_root_node')
 

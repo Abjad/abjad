@@ -47,7 +47,7 @@ class MeasurewiseQSchemaItem(QSchemaItem):
     Return `MeasurewiseQSchemaItem` instance.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ()
     _fields = ('search_tree', 'tempo', 'time_signature', 'use_full_measure')

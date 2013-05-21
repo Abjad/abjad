@@ -53,7 +53,7 @@ class VerticalMoment(Selection):
     Vertical moments are immutable.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_components', '_governors', '_offset')
 

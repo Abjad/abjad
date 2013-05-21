@@ -6,7 +6,7 @@ from experimental.tools.scoremanagertools.editors.TargetManifest import TargetMa
 
 class PatternedArticulationsHandlerEditor(ArticulationHandlerEditor):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     target_manifest = TargetManifest(handlertools.PatternedArticulationsHandler,
         ('articulation_lists', None, 'al', getters.get_lists, False),

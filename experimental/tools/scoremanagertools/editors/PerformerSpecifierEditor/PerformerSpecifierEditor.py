@@ -6,7 +6,7 @@ from experimental.tools.scoremanagertools import selectors
 
 class PerformerSpecifierEditor(ParameterSpecifierEditor):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     target_manifest = TargetManifest(PerformerSpecifier,
         ('performer', 'pf', selectors.PerformerSelector),

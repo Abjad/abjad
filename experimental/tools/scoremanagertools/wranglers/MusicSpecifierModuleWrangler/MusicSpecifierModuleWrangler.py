@@ -3,7 +3,7 @@ from experimental.tools.scoremanagertools.wranglers.ModuleWrangler import Module
 
 class MusicSpecifierModuleWrangler(ModuleWrangler):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     built_in_external_storehouse_packagesystem_path = \
         ModuleWrangler.configuration.built_in_specifiers_package_path

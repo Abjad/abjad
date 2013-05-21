@@ -28,7 +28,7 @@ class QEventProxy(AbjadObject):
     Returns `QEventProxy` instance.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_offset', '_q_event')
 

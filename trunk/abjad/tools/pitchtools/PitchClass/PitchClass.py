@@ -8,7 +8,7 @@ class PitchClass(AttributeEqualityAbjadObject):
     Pitch-class base class.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
 

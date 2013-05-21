@@ -6,7 +6,7 @@ from experimental.tools.scoremanagertools import getters
 
 class OutputIncisedRestRhythmMakerEditor(RhythmMakerEditor):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     target_manifest = TargetManifest(rhythmmakertools.OutputIncisedRestRhythmMaker,
         ('prefix_talea', None, 'ps', getters.get_nonzero_integers, True),

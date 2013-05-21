@@ -5,7 +5,7 @@ from experimental.tools.scoremanagertools.wranglers.PackageWrangler import Packa
 
 class SegmentPackageWrangler(PackageWrangler):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
     
     storehouse_path_infix_parts = ('music', 'segments')
     built_in_external_storehouse_packagesystem_path = \

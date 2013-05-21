@@ -9,7 +9,7 @@ from abjad.tools.componenttools.Component import Component
 
 class Leaf(Component):
 
-    ### CLASS ATTRIBUTES ##
+    ### CLASS VARIABLES ##
 
     __metaclass__ = abc.ABCMeta
 

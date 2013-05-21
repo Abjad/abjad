@@ -9,7 +9,7 @@ class ModuleCrawler(AbjadObject):
     Return `ModuleCrawler` instance.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_code_root', '_ignored_directories', '_root_package_name',
         '_visit_private_modules')

@@ -31,7 +31,7 @@ class PianoPedalSpanner(Spanner):
     Return piano pedal spanner.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     _kinds = {'sustain': (r'\sustainOn', r'\sustainOff'),
             'sostenuto':(r'\sostenutoOn', r'\sostenutoOff'),

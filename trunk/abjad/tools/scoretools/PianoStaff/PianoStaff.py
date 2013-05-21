@@ -32,7 +32,7 @@ class PianoStaff(StaffGroup):
     Return piano staff.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ()
 

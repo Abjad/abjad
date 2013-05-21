@@ -18,7 +18,7 @@ class TwelveToneRow(NumberedChromaticPitchClassSegment):
     Twelve-tone rows are immutable.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     _default_positional_input_arguments = ([0, 1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8], )
 

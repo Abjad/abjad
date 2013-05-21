@@ -8,7 +8,7 @@ class IntervalClassSet(Set):
     Interval-class set base class.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
 

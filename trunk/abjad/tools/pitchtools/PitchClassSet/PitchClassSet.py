@@ -9,7 +9,7 @@ class PitchClassSet(Set):
     Pitch-class set base class.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
 

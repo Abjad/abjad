@@ -3,7 +3,7 @@ from experimental.tools.scoremanagertools.selectors.MaterialPackageSelector impo
 
 class ArticulationHandlerSelector(MaterialPackageSelector):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     generic_output_name = 'articulation handler'
     space_delimited_lowercase_target_name = 'articulation handler'

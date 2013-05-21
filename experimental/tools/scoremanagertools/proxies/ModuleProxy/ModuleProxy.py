@@ -15,7 +15,7 @@ class ModuleProxy(ParsableFileProxy):
             self.module_path, is_module=True)
         ParsableFileProxy.__init__(self, filesystem_path=filesystem_path, session=session)
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     extension = '.py'
     _generic_class_name = 'module'

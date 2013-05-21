@@ -16,7 +16,7 @@ class NamedChromaticPitchClass(PitchClass):
     Named chromatic pitch-classes are immutable.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_chromatic_pitch_class_name', )
 

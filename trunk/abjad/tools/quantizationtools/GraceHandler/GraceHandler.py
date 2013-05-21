@@ -14,7 +14,7 @@ class GraceHandler(AbjadObject):
     second item of the pair is a ``GraceContainer`` instance or None.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ()
 

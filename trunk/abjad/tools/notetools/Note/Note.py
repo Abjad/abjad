@@ -24,7 +24,7 @@ class Note(Leaf):
     Return Note instance.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_note_head', '_pitch', )
 

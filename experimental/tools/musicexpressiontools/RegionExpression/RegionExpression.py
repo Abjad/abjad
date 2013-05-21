@@ -7,7 +7,7 @@ class RegionExpression(Expression):
     '''Region expression.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
 

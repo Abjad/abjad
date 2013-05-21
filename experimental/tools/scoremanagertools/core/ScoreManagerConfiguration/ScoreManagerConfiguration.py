@@ -13,7 +13,7 @@ class ScoreManagerConfiguration(Configuration):
     Treated as a singleton.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     abjad_configuration = AbjadConfiguration()
 

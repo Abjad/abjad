@@ -8,7 +8,7 @@ class LilyPondObjectProxy(AbjadObject):
     Shared LilyPond grob proxy and LilyPond context proxy functionality.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
 

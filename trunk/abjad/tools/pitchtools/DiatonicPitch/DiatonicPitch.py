@@ -10,7 +10,7 @@ class DiatonicPitch(Pitch, DiatonicObject):
     Diatonic pitch base class.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
 

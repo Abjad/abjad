@@ -27,7 +27,7 @@ class Digraph(AbjadObject):
     Return `Digraph` instance.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_child_graph', '_cyclic_nodes', '_parent_graph', '_root_nodes', '_terminal_nodes')
 

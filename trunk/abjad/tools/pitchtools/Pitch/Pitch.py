@@ -9,7 +9,7 @@ class Pitch(SortableAttributeEqualityAbjadObject):
     Pitch base class.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
 

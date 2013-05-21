@@ -73,7 +73,7 @@ class GraceContainer(Container):
     Use ``GraceContainer()`` to attach grace containers to nongrace notes, rests and chords.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_carrier', '_kind', )
 

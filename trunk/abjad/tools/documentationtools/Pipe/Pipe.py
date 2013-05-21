@@ -16,7 +16,7 @@ class Pipe(abctools.AbjadObject, subprocess.Popen):
     Return `Pipe` instance.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_arguments', '_executable', '_timeout')
 

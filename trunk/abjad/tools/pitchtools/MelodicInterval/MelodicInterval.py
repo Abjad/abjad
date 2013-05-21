@@ -10,7 +10,7 @@ class MelodicInterval(Interval):
     Melodic interval base class.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
 

@@ -15,7 +15,7 @@ class TimeIntervalMixin(AbjadObject):
     Time-interval mixins provide time-interval functionality.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
     __slots__ = ()

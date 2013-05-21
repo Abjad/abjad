@@ -33,7 +33,7 @@ class SpacingIndication(AbjadObject):
     Spacing indications are immutable.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     _default_positional_input_arguments = (
         ((1, 8), 44),

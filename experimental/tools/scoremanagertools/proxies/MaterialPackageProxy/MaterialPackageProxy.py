@@ -9,7 +9,7 @@ from experimental.tools.scoremanagertools.helpers import safe_import
 
 class MaterialPackageProxy(PackageProxy):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     should_have_user_input_module = False
 

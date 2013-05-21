@@ -9,7 +9,7 @@ class Interpreter(AbjadObject):
     r'''Interpreter.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
     attributes = AttributeNameEnumeration()

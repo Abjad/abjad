@@ -42,7 +42,7 @@ class TempoMark(ContextMark):
     Initialization allows many different types of input argument structure.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     _format_slot = 'opening'
 

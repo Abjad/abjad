@@ -8,7 +8,7 @@ from experimental.tools.scoremanagertools.editors.TempoMarkEditor import TempoMa
 
 class ClefMarkInventoryEditor(ObjectInventoryEditor):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     item_class = contexttools.ClefMark
     item_editor_class = ClefMarkEditor

@@ -8,7 +8,7 @@ from experimental.tools.scoremanagertools.editors.TargetManifest import TargetMa
 
 class InstrumentationEditor(ListEditor):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     item_class = scoretools.Performer
     item_creator_class = wizards.PerformerCreationWizard

@@ -12,7 +12,7 @@ class SchemePair(Scheme):
     Scheme pairs are immutable.
     '''
 
-    ### CLASS ATTRIBUTES ##
+    ### CLASS VARIABLES ##
 
     __slots__ = ()
 

@@ -19,7 +19,7 @@ class Mark(AbjadObject):
     Marks are immutable.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_start_component', )
 

@@ -24,7 +24,7 @@ class TreeContainer(TreeNode):
     Return `TreeContainer` instance.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     # no __slots__ are possible, due to instance-layout conflicts in subclasses
 

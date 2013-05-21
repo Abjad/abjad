@@ -43,7 +43,7 @@ class ResidueClass(_BaseResidueClass):
     Return residue class.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_modulo', '_residue')
 

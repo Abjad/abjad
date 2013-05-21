@@ -27,7 +27,7 @@ class Lyrics(Context):
     Return `Lyrics` instance.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ()
 

@@ -4,7 +4,7 @@ from experimental.tools.scoremanagertools.wizards.HandlerCreationWizard import H
 
 class RhythmMakerCreationWizard(HandlerCreationWizard):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     handler_class_name_selector = selectors.RhythmMakerClassNameSelector
     handler_editor_class_name_suffix = 'Editor'

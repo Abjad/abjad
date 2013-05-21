@@ -4,7 +4,7 @@ from experimental.tools.scoremanagertools.selectors.DirectoryContentSelector imp
 
 class HandlerClassNameSelector(DirectoryContentSelector):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     handler_tools_directory_path = os.path.join(
         DirectoryContentSelector.configuration.abjad_configuration.abjad_experimental_directory_path, 

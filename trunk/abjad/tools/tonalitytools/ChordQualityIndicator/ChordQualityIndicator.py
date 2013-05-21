@@ -8,7 +8,7 @@ class ChordQualityIndicator(HarmonicDiatonicIntervalSegment):
     Chord quality indicator.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     _default_positional_input_arguments = (repr('major'), )
 

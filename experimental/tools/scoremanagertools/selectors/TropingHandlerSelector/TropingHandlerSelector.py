@@ -3,7 +3,7 @@ from experimental.tools.scoremanagertools.selectors.Selector import Selector
 
 class TropingHandlerSelector(Selector):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     space_delimited_lowercase_target_name = 'troping handler'
 

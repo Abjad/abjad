@@ -26,7 +26,7 @@ class QSchema(AbjadObject):
     `QSchema` is abstract.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_items', '_lookups')
 

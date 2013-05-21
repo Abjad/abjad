@@ -51,7 +51,7 @@ class DynamicMark(ContextMark):
     Dynamic marks target the staff context by default.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     _default_positional_input_arguments = (repr('f'), )
     _format_slot = 'right'

@@ -3,7 +3,7 @@ from experimental.tools.scoremanagertools.materialpackagemakers.MaterialPackageM
 
 class FunctionInputMaterialPackageMaker(MaterialPackageMaker):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     should_have_user_input_module = True
     user_input_demo_values = []

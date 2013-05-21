@@ -9,7 +9,7 @@ class DivisionRegionExpression(RegionExpression):
     '''Division region expression.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
 

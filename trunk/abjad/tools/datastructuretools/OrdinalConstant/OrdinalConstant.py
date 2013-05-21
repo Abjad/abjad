@@ -59,7 +59,7 @@ class OrdinalConstant(ImmutableAbjadObject):
     Ordinal constants are immutable.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = (
         '_dimension',

@@ -7,7 +7,7 @@ from experimental.tools.scoremanagertools.specifiers.RhythmSpecifier import Rhyt
 
 class RhythmSpecifierEditor(ParameterSpecifierEditor):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     target_manifest = TargetManifest(RhythmSpecifier,
         ('name', 'nm', getters.get_string),

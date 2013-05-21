@@ -4,7 +4,7 @@ from experimental.tools.scoremanagertools.wizards.Wizard import Wizard
 
 class HandlerCreationWizard(Wizard):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
 

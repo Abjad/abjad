@@ -8,7 +8,7 @@ class AttributeDictionary(AbjadObject, collections.OrderedDict):
     '''Attribute dictionary.
     '''
 
-    ### CLASS ATTRIBUTES ##
+    ### CLASS VARIABLES ##
 
     attributes = AttributeNameEnumeration()
 

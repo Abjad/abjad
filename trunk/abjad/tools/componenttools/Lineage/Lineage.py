@@ -52,7 +52,7 @@ class Lineage(Selection):
     Return Lineage instance.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_component',)
 

@@ -15,7 +15,7 @@ class NoteHead(SortableAttributeEqualityAbjadObject):
     Note heads are immutable.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_client', '_is_cautionary', '_is_forced', '_tweak', '_written_pitch')
 

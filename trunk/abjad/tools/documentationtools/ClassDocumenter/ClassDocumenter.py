@@ -14,7 +14,7 @@ class ClassDocumenter(Documenter):
     Returns ``ClassDocumenter`` instance.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     _ignored_special_methods = (
         '__format__', '__getattribute__',

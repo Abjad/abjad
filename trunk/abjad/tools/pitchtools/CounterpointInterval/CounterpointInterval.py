@@ -9,7 +9,7 @@ class CounterpointInterval(Interval, CounterpointObject):
     Counterpoint interval base class.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
 

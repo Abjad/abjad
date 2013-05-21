@@ -6,7 +6,7 @@ from experimental.tools.scoremanagertools.editors.TargetManifest import TargetMa
 
 class OctaveTranspositionMappingComponentEditor(InteractiveEditor):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     target_manifest = TargetManifest(pitchtools.OctaveTranspositionMappingComponent,
         ('source_pitch_range', 'pr', getters.get_symbolic_pitch_range_string),

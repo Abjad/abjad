@@ -8,7 +8,7 @@ from experimental.tools.scoremanagertools.menuing.UserInputGetter import UserInp
 
 class TempoMarkInventoryEditor(ObjectInventoryEditor):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     item_class = contexttools.TempoMark
     item_editor_class = TempoMarkEditor

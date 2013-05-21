@@ -7,7 +7,7 @@ class SetExpression(Expression):
     '''Set expression.
     '''
 
-    ### CLASS ATTRIBUTES ##
+    ### CLASS VARIABLES ##
 
     __metaclass__ = abc.ABCMeta
 

@@ -23,7 +23,7 @@ class BendAfter(Mark):
     BendAfter implements ``__slots__``.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     _default_positional_input_arguments = (-4, )
 

@@ -30,7 +30,7 @@ class MetricalKernel(AbjadObject):
 
     Return `MetricalKernel` instance.
     '''
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_kernel', '_offsets')
 

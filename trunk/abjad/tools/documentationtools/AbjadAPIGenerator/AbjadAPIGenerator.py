@@ -17,7 +17,7 @@ class AbjadAPIGenerator(abctools.AbjadObject):
     Returns `AbjadAPIGenerator` instance.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     _api_title = 'Abjad API'
 

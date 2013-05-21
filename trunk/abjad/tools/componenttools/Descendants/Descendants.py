@@ -52,7 +52,7 @@ class Descendants(Selection):
     Return Descendants instance.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_component',)
 

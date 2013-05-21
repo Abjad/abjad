@@ -21,7 +21,7 @@ class Timespan(BoundedObject):
     Timespans are immutable and treated as value objects.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_start_offset', '_stop_offset',
         )

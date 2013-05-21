@@ -56,7 +56,7 @@ class QEventSequence(tuple, ImmutableAbjadObject):
     Return ``QEventSequence`` instance.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ()
 

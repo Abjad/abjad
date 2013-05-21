@@ -23,7 +23,7 @@ class QGridLeaf(RhythmTreeNode):
     Return ``QGridLeaf`` instance.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     #__slots__ = ('_duration', '_is_divisible', '_offset', '_offsets_are_current',
     #    '_parent', '_q_event_proxies')

@@ -3,7 +3,7 @@ from experimental.tools.scoremanagertools.selectors.MaterialPackageSelector impo
 
 class RhythmMakerPackageSelector(MaterialPackageSelector):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     generic_output_name = 'time-token maker'
     space_delimited_lowercase_target_name = 'time-token maker'

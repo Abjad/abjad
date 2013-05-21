@@ -10,7 +10,7 @@ class Scale(NamedChromaticPitchClassSegment):
     Abjad model of diatonic scale.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     _default_positional_input_arguments = (repr('c'), repr('major'))
 

@@ -15,7 +15,7 @@ class MusicGlyph(MarkupCommand):
     Return `MusicGlyph` instance.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ()
 

@@ -6,7 +6,7 @@ from experimental.tools.scoremanagertools import getters
 
 class TaleaRhythmMakerEditor(RhythmMakerEditor):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     target_manifest = TargetManifest(rhythmmakertools.TaleaRhythmMaker,
         ('talea', None, 'ta', getters.get_nonzero_integers, True),

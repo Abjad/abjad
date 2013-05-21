@@ -14,7 +14,7 @@ class NumberedChromaticPitchClassColorMap(AbjadObject):
     Numbered chromatic pitch-class color maps are immutable.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_color_dictionary', '_colors', '_pitch_iterables', )
 

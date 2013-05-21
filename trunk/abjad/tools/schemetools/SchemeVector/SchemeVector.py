@@ -14,7 +14,7 @@ class SchemeVector(Scheme):
     Scheme vectors are immutable.
     '''
 
-    ### CLASS ATTRIBUTES ##
+    ### CLASS VARIABLES ##
 
     __slots__ = ()
 

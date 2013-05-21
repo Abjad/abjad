@@ -9,7 +9,7 @@ from experimental.tools.scoremanagertools.menuing.UserInputGetter import UserInp
 
 class MarkupInventoryEditor(ObjectInventoryEditor):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     item_class = markuptools.Markup
     item_creator_class = MarkupEditor

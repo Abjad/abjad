@@ -7,7 +7,7 @@ from experimental.tools.scoremanagertools.specifiers.DynamicSpecifier import Dyn
 
 class DynamicSpecifierEditor(ParameterSpecifierEditor):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     target_manifest = TargetManifest(DynamicSpecifier,
         ('name', 'nm', getters.get_string),

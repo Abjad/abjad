@@ -22,7 +22,7 @@ class Container(Component):
     Return Container instance.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_formatter', '_music', '_named_children', '_parallel', )
 

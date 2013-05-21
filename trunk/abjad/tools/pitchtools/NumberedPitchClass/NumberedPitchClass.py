@@ -9,7 +9,7 @@ class NumberedPitchClass(PitchClass, NumberedObject):
     Numbered pitch-class base class.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
 

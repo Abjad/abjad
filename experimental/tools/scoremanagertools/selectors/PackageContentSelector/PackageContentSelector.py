@@ -4,7 +4,7 @@ import os
 
 class PackageContentSelector(DirectoryContentSelector):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     storehouse_package_paths = []
     space_delimited_lowercase_target_name = 'item'

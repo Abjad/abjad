@@ -3,7 +3,7 @@ from experimental.tools.scoremanagertools.selectors.Selector import Selector
 
 class NoteHeadHandlerSelector(Selector):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     space_delimited_lowercase_target_name = 'note head handler'
 

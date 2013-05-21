@@ -8,7 +8,7 @@ from experimental.tools.scoremanagertools.specifiers.PitchClassSpecifier import 
 
 class PitchClassSpecifierEditor(ParameterSpecifierEditor):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     target_manifest = TargetManifest(PitchClassSpecifier,
         ('name', 'nm', getters.get_string),

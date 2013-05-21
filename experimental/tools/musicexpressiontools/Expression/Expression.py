@@ -6,7 +6,7 @@ class Expression(AbjadObject):
     '''Expression.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
 

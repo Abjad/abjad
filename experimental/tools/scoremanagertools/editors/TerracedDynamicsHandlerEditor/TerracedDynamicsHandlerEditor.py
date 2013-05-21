@@ -6,7 +6,7 @@ from experimental.tools.scoremanagertools.editors.TargetManifest import TargetMa
 
 class TerracedDynamicsHandlerEditor(DynamicHandlerEditor):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     target_manifest = TargetManifest(handlertools.TerracedDynamicsHandler,
         ('dynamics', None, 'dy', getters.get_dynamics, True),

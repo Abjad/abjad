@@ -8,7 +8,7 @@ class HarmonicObject(AbjadObject):
     Harmonic object base class.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
 

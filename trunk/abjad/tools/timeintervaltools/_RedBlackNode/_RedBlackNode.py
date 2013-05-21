@@ -3,7 +3,7 @@ from abjad.tools.abctools import AbjadObject
 
 class _RedBlackNode(AbjadObject):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('key', 'left', 'red', 'right', 'parent', 'payload',)
 

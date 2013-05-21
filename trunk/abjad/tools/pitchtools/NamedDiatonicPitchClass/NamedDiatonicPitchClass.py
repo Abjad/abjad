@@ -12,7 +12,7 @@ class NamedDiatonicPitchClass(DiatonicPitchClass):
     Named diatonic pitch-classes are immutable.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_diatonic_pitch_class_name', )
 

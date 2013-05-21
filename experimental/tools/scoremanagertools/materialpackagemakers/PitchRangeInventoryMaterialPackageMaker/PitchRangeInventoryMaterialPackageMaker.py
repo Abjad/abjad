@@ -6,7 +6,7 @@ from experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor impo
 
 class PitchRangeInventoryMaterialPackageMaker(InventoryMaterialPackageMaker):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     generic_output_name = 'pitch range inventory'
     illustration_maker = staticmethod(make_illustration_from_output_material)

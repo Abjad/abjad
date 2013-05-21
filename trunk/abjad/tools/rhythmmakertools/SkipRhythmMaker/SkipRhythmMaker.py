@@ -31,7 +31,7 @@ class SkipRhythmMaker(RhythmMaker):
     Usage follows the two-step instantiate-then-call pattern shown here.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     _default_positional_input_arguments = ()
 

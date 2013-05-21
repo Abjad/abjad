@@ -13,7 +13,7 @@ class NumberedChromaticPitchClassSegment(PitchClassSegment):
     Numbered chromatic pitch-class segments are immutable.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ()
 

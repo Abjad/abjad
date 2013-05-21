@@ -4,7 +4,7 @@ from experimental.tools.scoremanagertools.selectors.Selector import Selector
 
 class DirectoryContentSelector(Selector):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     storehouse_filesystem_paths = []
     space_delimited_lowercase_target_name = 'file'

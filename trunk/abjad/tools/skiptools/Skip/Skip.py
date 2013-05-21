@@ -13,7 +13,7 @@ class Skip(Leaf):
     Return Skip instance.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ()
 

@@ -3,7 +3,7 @@ from experimental.tools.scoremanagertools.selectors.MaterialPackageSelector impo
 
 class PitchClassReservoirSelector(MaterialPackageSelector):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     generic_output_name = 'pitch class reservoir'
     tags_to_match = ('is_numeric_sequence', )

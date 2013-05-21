@@ -9,7 +9,7 @@ class QSchemaItem(tuple, ImmutableAbjadObject):
     `QSchemaItem` is abstract and immutable.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ()
 

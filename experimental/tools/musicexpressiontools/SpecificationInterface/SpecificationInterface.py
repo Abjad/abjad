@@ -11,7 +11,7 @@ class SpecificationInterface(SelectMethodMixin, TimeContiguousSetMethodMixin):
     Composers call many methods against score and segment specification interfaces.
     '''
 
-    ### CLASS ATTRIBUTES ##
+    ### CLASS VARIABLES ##
 
     __metaclass__ = abc.ABCMeta
 

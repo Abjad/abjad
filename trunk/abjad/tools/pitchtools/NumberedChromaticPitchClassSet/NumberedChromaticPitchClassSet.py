@@ -22,7 +22,7 @@ class  NumberedChromaticPitchClassSet(PitchClassSet):
     Numbered chromatic pitch-class sets are immutable.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ()
 

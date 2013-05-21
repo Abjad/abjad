@@ -7,7 +7,7 @@ from experimental.tools.scoremanagertools import getters
 
 class TempoMarkEditor(InteractiveEditor):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     target_manifest = TargetManifest(contexttools.TempoMark,
         ('duration', 'd', getters.get_duration),

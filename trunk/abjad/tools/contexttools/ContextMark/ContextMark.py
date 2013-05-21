@@ -19,7 +19,7 @@ class ContextMark(Mark):
     Context marks implement ``__slots__``.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_effective_context', '_target_context', )
 

@@ -6,7 +6,7 @@ from experimental.tools.scoremanagertools.editors.TargetManifest import TargetMa
 
 class NoteAndChordHairpinHandlerEditor(DynamicHandlerEditor):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     target_manifest = TargetManifest(handlertools.NoteAndChordHairpinHandler,
         ('hairpin_token', None, 'ht', getters.get_hairpin_token, True),

@@ -15,7 +15,7 @@ class Parser(AbjadObject):
     For most parsers these properties should simply return `self`.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_debug', '_lexer', '_logger', '_parser')
 

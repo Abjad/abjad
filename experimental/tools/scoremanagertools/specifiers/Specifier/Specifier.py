@@ -5,7 +5,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 class Specifier(AbjadObject):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
 

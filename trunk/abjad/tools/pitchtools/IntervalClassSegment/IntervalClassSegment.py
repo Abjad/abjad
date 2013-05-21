@@ -8,7 +8,7 @@ class IntervalClassSegment(Segment):
     Interval-class segment base class.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
 

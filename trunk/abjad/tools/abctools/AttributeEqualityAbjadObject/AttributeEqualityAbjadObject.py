@@ -12,7 +12,7 @@ class AttributeEqualityAbjadObject(AbjadObject):
     Attribute-equality objects compare equal only with equal comparison attributes.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
     #__slots__ = ('_comparison_attribute', '_format_string')

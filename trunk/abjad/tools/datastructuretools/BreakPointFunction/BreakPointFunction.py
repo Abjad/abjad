@@ -35,7 +35,7 @@ class BreakPointFunction(AbjadObject):
     Return `BreakPointFunction` instance.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_bpf', '_dc_bias', '_x_values', '_y_range')
 

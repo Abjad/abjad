@@ -7,7 +7,7 @@ from experimental.tools.scoremanagertools.editors.TargetManifest import TargetMa
 
 class OctaveTranspositionMappingEditor(ObjectInventoryEditor):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     item_class = pitchtools.OctaveTranspositionMappingComponent
     item_creator_class = OctaveTranspositionMappingComponentEditor

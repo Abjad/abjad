@@ -19,7 +19,7 @@ class SearchTree(AbjadObject):
     other tuplets, to arbitrary levels of nesting.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_definition',)
 

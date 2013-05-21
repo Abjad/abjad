@@ -14,7 +14,7 @@ from experimental.tools.scoremanagertools.music.make_sargasso_measures import \
 
 class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     generic_output_name = 'sargasso measures'
     illustration_maker = staticmethod(make_illustration_from_output_material)

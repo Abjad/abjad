@@ -4,6 +4,6 @@ from abjad.tools.leaftools.Leaf import Leaf
 
 class _LyricLeaf(Leaf):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta

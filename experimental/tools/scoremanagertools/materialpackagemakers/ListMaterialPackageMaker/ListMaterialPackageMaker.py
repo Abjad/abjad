@@ -5,7 +5,7 @@ from experimental.tools.scoremanagertools.materialpackagemakers.MaterialPackageM
 
 class ListMaterialPackageMaker(MaterialPackageMaker):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     generic_output_name = 'list'
     output_material_checker = staticmethod(lambda x: isinstance(x, list))

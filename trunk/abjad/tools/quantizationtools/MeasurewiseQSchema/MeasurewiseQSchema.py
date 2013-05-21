@@ -216,7 +216,7 @@ class MeasurewiseQSchema(QSchema):
     Return ``MeasurewiseQSchema`` instance.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_items', '_lookups', '_search_tree', '_tempo',
         '_time_signature', '_use_full_measure')

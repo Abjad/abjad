@@ -8,7 +8,7 @@ class DiatonicObject(AbjadObject):
     Diatonic object base class.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
 

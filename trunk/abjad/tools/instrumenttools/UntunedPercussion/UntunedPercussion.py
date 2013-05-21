@@ -42,7 +42,7 @@ class UntunedPercussion(PercussionInstrument):
         self._copy_primary_clefs_to_all_clefs()
         self._traditional_pitch_range = pitchtools.PitchRange(-48, 39)
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     known_untuned_percussion = list(sorted(set([
         'agogô',

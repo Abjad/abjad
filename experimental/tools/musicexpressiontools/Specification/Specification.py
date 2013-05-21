@@ -10,7 +10,7 @@ class Specification(AbjadObject):
     Specification properties are immutable.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
 

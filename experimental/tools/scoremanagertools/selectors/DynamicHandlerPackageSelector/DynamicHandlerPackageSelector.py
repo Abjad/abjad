@@ -3,7 +3,7 @@ from experimental.tools.scoremanagertools.selectors.MaterialPackageSelector impo
 
 class DynamicHandlerPackageSelector(MaterialPackageSelector):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     generic_output_name = 'dynamic handler'
     space_delimited_lowercase_target_name = 'dynamic handler'

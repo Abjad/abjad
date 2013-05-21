@@ -45,7 +45,7 @@ class FixedDurationTuplet(Tuplet):
     Return fixed-duration tuplet.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_target_duration', )
 

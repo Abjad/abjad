@@ -6,7 +6,7 @@ class CounterpointObject(AbjadObject):
     '''Counterpoint object base class.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
 

@@ -6,7 +6,7 @@ from experimental.tools.handlertools.Handler import Handler
 
 class ArticulationHandler(Handler):
 
-    ### CLASS ATTRIBUTES ##
+    ### CLASS VARIABLES ##
 
     __metaclass__ = abc.ABCMeta
 

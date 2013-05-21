@@ -10,7 +10,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     Return filesystem asset wrangler.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
     storehouse_path_infix_parts = ()

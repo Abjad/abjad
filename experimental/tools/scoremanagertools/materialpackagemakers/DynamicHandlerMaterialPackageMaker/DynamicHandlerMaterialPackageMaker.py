@@ -6,7 +6,7 @@ from experimental.tools.handlertools.DynamicHandler import DynamicHandler
 
 class DynamicHandlerMaterialPackageMaker(MaterialPackageMaker):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     generic_output_name = 'dynamic handler'
     output_material_checker = staticmethod(lambda x: isinstance(x, DynamicHandler))

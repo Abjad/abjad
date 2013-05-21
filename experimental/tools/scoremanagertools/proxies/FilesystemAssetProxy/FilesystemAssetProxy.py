@@ -10,7 +10,7 @@ class FilesystemAssetProxy(ScoreManagerObject):
     '''Asset proxy.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
     _generic_class_name = 'filesystem asset'

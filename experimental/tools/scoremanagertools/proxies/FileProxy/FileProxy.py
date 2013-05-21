@@ -4,7 +4,7 @@ from experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy import Fi
 
 class FileProxy(FilesystemAssetProxy):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     _generic_class_name = 'file'
     _temporary_asset_name = 'temporary_file.txt'

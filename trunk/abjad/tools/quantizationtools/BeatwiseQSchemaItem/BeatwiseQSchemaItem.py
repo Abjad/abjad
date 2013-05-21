@@ -38,7 +38,7 @@ class BeatwiseQSchemaItem(QSchemaItem):
     Return `BeatwiseQSchemaItem` instance.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ()
     _fields = ('beatspan', 'search_tree', 'tempo')

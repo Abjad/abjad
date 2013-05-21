@@ -8,7 +8,7 @@ class IntervalClass(AbjadObject):
     Interval-class base class.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
 

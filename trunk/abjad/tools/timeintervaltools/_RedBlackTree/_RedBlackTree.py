@@ -4,7 +4,7 @@ from abjad.tools.timeintervaltools._RedBlackNode import _RedBlackNode
 
 class _RedBlackTree(AbjadObject):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ()
 

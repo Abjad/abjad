@@ -12,7 +12,7 @@ class SchemeAssociativeList(Scheme):
     Scheme associative lists are immutable.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ()
 

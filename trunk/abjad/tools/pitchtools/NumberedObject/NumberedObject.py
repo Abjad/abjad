@@ -8,7 +8,7 @@ class NumberedObject(AbjadObject):
     Numbered object base class.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
 

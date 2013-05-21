@@ -76,7 +76,7 @@ class QTargetMeasure(AbjadObject):
     Return ``QTargetMeasure`` instance.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_beats', '_offset_in_ms', '_search_tree', '_tempo', '_time_signature',
         '_use_full_measure')

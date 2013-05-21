@@ -4,7 +4,7 @@ from experimental.tools.scoremanagertools.selectors.Selector import Selector
 
 class InstrumentToolsInstrumentNameSelector(Selector):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     space_delimited_lowercase_target_name = 'instrument'
 

@@ -4,7 +4,7 @@ from experimental.tools.scoremanagertools.wizards.HandlerCreationWizard import H
 
 class ArticulationHandlerCreationWizard(HandlerCreationWizard):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     handler_class_name_selector = selectors.ArticulationHandlerClassNameSelector
     handler_editor_class_name_suffix = 'Editor'

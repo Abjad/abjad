@@ -22,7 +22,7 @@ class ScorePackageWrangler(PackageWrangler):
     Return score package wrangler.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     built_in_external_storehouse_filesystem_path = \
         PackageWrangler.configuration.built_in_scores_directory_path

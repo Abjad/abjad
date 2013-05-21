@@ -22,7 +22,7 @@ class NamedChromaticPitchVector(Vector):
     Named chromatic pitch vectors are immutable.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     _default_positional_input_arguments = (["c''", "c''", "cs''", "cs''", "cs''"], )
 

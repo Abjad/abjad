@@ -9,7 +9,7 @@ class ChromaticIntervalClass(IntervalClass, ChromaticObject):
     Chromatic interval-class base class.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
 

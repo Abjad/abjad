@@ -10,7 +10,7 @@ class NumberedPitch(Pitch, NumberedObject):
     Numbered pitch base class from which concrete classes inherit.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
 

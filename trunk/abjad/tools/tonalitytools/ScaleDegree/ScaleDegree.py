@@ -10,7 +10,7 @@ class ScaleDegree(AbjadObject):
     also chromatic alterations including flat-2, flat-3, flat-6, etc.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_accidental', '_number')
 

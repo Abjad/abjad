@@ -37,7 +37,7 @@ class LilyPondCommandMark(Mark):
     LilyPond command marks implement ``__slots__``.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_command_name', '_format_slot', )
 

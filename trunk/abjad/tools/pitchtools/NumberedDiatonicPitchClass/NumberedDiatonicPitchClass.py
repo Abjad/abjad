@@ -13,7 +13,7 @@ class NumberedDiatonicPitchClass(NumberedPitchClass, DiatonicPitchClass):
     Numbered diatonic pitch-classes are immutable.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_comparison_attribute', '_diatonic_pitch_class_number', '_format_string',
         '_number')

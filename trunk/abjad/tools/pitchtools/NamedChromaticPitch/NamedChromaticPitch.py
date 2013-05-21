@@ -14,7 +14,7 @@ class NamedChromaticPitch(Pitch):
     Named chromatic pitches are immutable.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
 
     # calculate accidental_semitones, diatonic_pitch_number at init

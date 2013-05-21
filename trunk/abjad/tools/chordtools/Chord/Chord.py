@@ -22,7 +22,7 @@ class Chord(Leaf):
     Return Chord instance.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_note_heads', '_written_pitches', )
 

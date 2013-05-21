@@ -6,7 +6,7 @@ from experimental.tools.scoremanagertools.specifiers.Specifier import Specifier
 
 class MusicSpecifier(Specifier, ObjectInventory):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     storage_module_import_statements = [
         'from abjad import *',

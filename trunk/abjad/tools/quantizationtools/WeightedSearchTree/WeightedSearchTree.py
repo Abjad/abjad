@@ -49,7 +49,7 @@ class WeightedSearchTree(SearchTree):
     Return ``WeightedSearchTree`` instance.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_all_compositions', '_compositions', '_definition')
 

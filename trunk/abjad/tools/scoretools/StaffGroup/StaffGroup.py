@@ -32,7 +32,7 @@ class StaffGroup(Context):
     Return staff group.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ()
 

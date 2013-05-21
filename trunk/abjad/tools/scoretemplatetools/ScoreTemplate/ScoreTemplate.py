@@ -8,7 +8,7 @@ class ScoreTemplate(AbjadObject):
     Abstract score template.
     '''
 
-    ### CLASS ATTRIBUTES ##
+    ### CLASS VARIABLES ##
 
     __metaclass__ = abc.ABCMeta
 

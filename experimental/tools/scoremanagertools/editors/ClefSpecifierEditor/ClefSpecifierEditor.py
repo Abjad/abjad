@@ -7,7 +7,7 @@ from experimental.tools.scoremanagertools.specifiers.ClefSpecifier import ClefSp
 
 class ClefSpecifierEditor(ParameterSpecifierEditor):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     target_manifest = TargetManifest(ClefSpecifier,
         #('name', 'nm', getters.get_string),

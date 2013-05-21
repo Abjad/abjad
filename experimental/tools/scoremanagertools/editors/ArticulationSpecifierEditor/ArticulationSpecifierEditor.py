@@ -7,7 +7,7 @@ from experimental.tools.scoremanagertools.specifiers.ArticulationSpecifier impor
 
 class ArticulationSpecifierEditor(ParameterSpecifierEditor):
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     target_manifest = TargetManifest(ArticulationSpecifier,
         #('name', 'nm', getters.get_string),

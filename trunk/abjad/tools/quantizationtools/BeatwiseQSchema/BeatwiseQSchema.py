@@ -197,7 +197,7 @@ class BeatwiseQSchema(QSchema):
     Return ``BeatwiseQSchema`` instance.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('_beatspan', '_items', '_lookups', '_search_tree', '_tempo',)
 

@@ -13,7 +13,7 @@ class SchemeMoment(Scheme):
     Scheme moments are immutable.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ()
 

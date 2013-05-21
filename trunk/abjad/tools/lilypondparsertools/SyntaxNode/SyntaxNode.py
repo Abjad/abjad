@@ -9,7 +9,7 @@ class SyntaxNode(AbjadObject):
     Used internally by LilyPondParser.
     '''
 
-    ### CLASS ATTRIBUTES ###
+    ### CLASS VARIABLES ###
 
     __slots__ = ('type', 'value')
 
