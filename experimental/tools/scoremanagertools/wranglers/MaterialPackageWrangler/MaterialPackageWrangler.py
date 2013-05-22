@@ -357,9 +357,17 @@ class MaterialPackageWrangler(PackageWrangler):
         built_in_score=True, user_score=True, head=None):
         '''List storehouse filesystem paths.
 
-        .. note:: FIXME: user output appears even when keyword specify otherwise.
+        Example. List built-in material package storehouse filesystem paths:
 
-        .. note:: FIXME: method return packagesystem paths instead of filesystem paths.
+        ::
+
+            >>> for x in wrangler.list_storehouse_filesystem_paths(
+            ...     user_external=False, user_score=False):
+            ...     x
+            '.../tools/scoremanagertools/built_in_materials'
+            '.../tools/scoremanagertools/built_in_scores/blue_example_score/music/materials'
+            '.../tools/scoremanagertools/built_in_scores/green_example_score/music/materials'
+            '.../tools/scoremanagertools/built_in_scores/red_example_score/music/materials'
 
         Return list.
         '''

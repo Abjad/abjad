@@ -109,25 +109,20 @@ class ScorePackageWrangler(PackageWrangler):
                 asset_proxy.profile()
         return results
 
-    # TODO: FIXME
     def list_asset_filesystem_paths(self,
-        built_in_external=False, user_external=False,
-        built_in_score=False, user_score=False, head=None):
+        built_in_external=True, user_external=True,
+        built_in_score=True, user_score=True, head=None):
         '''Score package manager list specific asset filesystem paths:
 
         ::
 
             >>> for x in wrangler.list_asset_filesystem_paths(
-            ...     built_in_external=True, user_external=True,
-            ...     built_in_score=True, user_score=True):
+            ...     user_external=False, user_score=False):
             ...     x
             '.../tools/scoremanagertools/built_in_scores/blue_example_score'
             '.../tools/scoremanagertools/built_in_scores/green_example_score'
             '.../tools/scoremanagertools/built_in_scores/red_example_score'
-            ...
     
-        .. note:: FIXME: this lists a crazy number of extra directories and files.
-
         Return list.
         '''
         return super(type(self), self).list_asset_filesystem_paths(
@@ -142,7 +137,16 @@ class ScorePackageWrangler(PackageWrangler):
         built_in_score=True, user_score=True, head=None):
         '''List asset names.
 
-        .. note:: FIXME: this lists many unrelated directories.
+        Example. List built-in score names:
+
+        ::
+
+            >>> for x in wrangler.list_asset_names(
+            ...     user_external=False, user_score=False):
+            ...     x
+            'blue example score'
+            'green example score'
+            'red example score'
 
         Return list.
         '''
@@ -153,25 +157,31 @@ class ScorePackageWrangler(PackageWrangler):
             user_score=user_score,
             head=head)
 
-    def list_asset_packagesystem_paths(self, head=None):
-        '''List asset packagesystem paths.
-
-        ::
-
-            >>> for x in wrangler.list_asset_packagesystem_paths():
-            ...     x
-            'experimental.tools.scoremanagertools.built_in_scores.blue_example_score'
-            'experimental.tools.scoremanagertools.built_in_scores.green_example_score'
-            'experimental.tools.scoremanagertools.built_in_scores.red_example_score'
-            ...
-
-        .. note:: TODO: add keyword filters.
-
-        Output lists built-in scores followed by user scores.
-
-        Return list.
-        '''
-        return super(type(self), self).list_asset_packagesystem_paths(head=head)
+    # TODO: this is fine; just uncomment once MaterialPackageWrangler works the same way
+#    def list_asset_packagesystem_paths(self, 
+#        built_in_external=True, user_external=True,
+#        built_in_score=True, user_score=True, head=None):
+#        '''List asset packagesystem paths.
+#
+#        Example. List built-in score package paths:
+#
+#        ::
+#
+#            >>> for x in wrangler.list_asset_packagesystem_paths(
+#            ...     user_external=False, user_score=False):
+#            ...     x
+#            'experimental.tools.scoremanagertools.built_in_scores.blue_example_score'
+#            'experimental.tools.scoremanagertools.built_in_scores.green_example_score'
+#            'experimental.tools.scoremanagertools.built_in_scores.red_example_score'
+#
+#        Return list.
+#        '''
+#        return super(type(self), self).list_asset_packagesystem_paths(
+#            built_in_external=built_in_external,
+#            user_external=user_external,
+#            built_in_score=built_in_score,
+#            user_score=user_score,
+#            head=head)
 
 #    def list_asset_proxies(self, head=None):
 #        '''Score package wrangler get asset proxies:
@@ -206,6 +216,29 @@ class ScorePackageWrangler(PackageWrangler):
         '''
         # TODO: this should not have to be hard-coded
         return []
+
+    def list_storehouse_filesystem_paths(self,
+        built_in_external=True, user_external=True,
+        built_in_score=True, user_score=True, head=None):
+        '''List storehouse filesystem paths.
+
+        Example. List built-in score storehouse:
+
+        ::
+
+            >>> for x in wrangler.list_storehouse_filesystem_paths(
+            ...     user_external=False, user_score=False):
+            ...     x
+            '.../tools/scoremanagertools/built_in_scores'
+
+        Return list.
+        '''
+        result = []
+        if built_in_score:
+            result.append(self.configuration.built_in_scores_directory_path)
+        if user_score:
+            result.append(self.configuration.user_scores_directory_path)
+        return result
 
     def list_visible_asset_filesystem_paths(self, head=None):
         '''Score package wrangler list visible asset filesystem paths:
