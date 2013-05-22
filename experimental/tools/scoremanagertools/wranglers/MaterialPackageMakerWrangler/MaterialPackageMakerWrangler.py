@@ -115,7 +115,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
                 result.remove(forbidden_package_path)
         return result
 
-    # TODO: implement MaterialPackageProxyClassFile object to model and customize these settings
+    # TODO: change to boilerplate
     def make_asset_class_file(self, package_name, generic_output_name):
         class_file_name = os.path.join(
             self._list_built_in_external_storehouse_packagesystem_path()[0],
@@ -167,7 +167,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         class_file.write('\n'.join(lines))
         class_file.close()
 
-    # TODO: change to boilerplate file stored in material_package_maker package
+    # TODO: change to boilerplate
     def make_asset_initializer(self, package_name):
         initializer_file_name = os.path.join(
             self._list_built_in_external_storehouse_packagesystem_path()[0],
@@ -196,7 +196,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             material_package_maker_class_name, generic_output_product_name)
         self.make_asset_stylesheet(material_package_maker_class_name)
 
-    # TODO: change to boilerplate file stored somewhere
+    # TODO: change to boilerplate
     def make_asset_stylesheet(self, package_name):
         stylesheet = lilypondfiletools.make_basic_lilypond_file()
         stylesheet.pop()

@@ -149,14 +149,10 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
 
     def list_external_asset_packagesystem_paths(self, head=None):
         result = []
-        for directory_path in self.list_storehouse_filesystem_paths(
+        for filesystem_path in self.list_asset_filesystem_paths(
             built_in_score=False, user_score=False, head=head):
-            if 'recursif' not in directory_path:
-                package_path = self.configuration.filesystem_path_to_packagesystem_path(directory_path)
-                if head is None or package_path.startswith(head):
-                    for directory_entry in os.listdir(directory_path):
-                        if directory_entry[0].isalpha():
-                            result.append('.'.join([package_path, directory_entry]))
+            packagesystem_path = self.configuration.filesystem_path_to_packagesystem_path(filesystem_path)
+            result.append(packagesystem_path)
         return result
 
     def list_score_asset_packagesystem_paths(self, head=None):
@@ -175,11 +171,12 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
                             storehouse_package_path, package_name))
             else:
                 result.append(storehouse_package_path)
+        #result = []
         #for filesystem_path in self.list_asset_filesystem_paths(
         #    built_in_external=False, user_external=False, head=head):
         #    packagesystem_path = self.configuration.filesystem_path_to_packagesystem_path(filesystem_path)
         #    result.append(packagesystem_path)
-        return result
+        #return result
 
     def list_visible_asset_packagesystem_paths(self, head=None):
         result = []
