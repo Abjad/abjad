@@ -115,6 +115,9 @@ class MaterialPackageMakerWrangler(PackageWrangler):
                 result.remove(forbidden_package_path)
         return result
 
+    def list_score_asset_packagesystem_paths(self, head=None):
+        return []
+
     # TODO: change to boilerplate
     def make_asset_class_file(self, package_name, generic_output_name):
         class_file_name = os.path.join(
