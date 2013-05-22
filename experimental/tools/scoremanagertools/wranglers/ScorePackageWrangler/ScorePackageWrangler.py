@@ -99,38 +99,6 @@ class ScorePackageWrangler(PackageWrangler):
         '''
         return super(type(self), self).storage_format
 
-    @property
-    def visible_score_titles(self):
-        '''Score package wrangler visible score titles:
-
-        ::
-
-            >>> 'Red Example Score' in wrangler.visible_score_titles
-            True
-
-        Return list.
-        '''
-        result = []
-        for score_package_proxy in self.list_visible_asset_proxies():
-            result.append(score_package_proxy.title or '(untitled score)')
-        return result
-
-    @property
-    def visible_score_titles_with_years(self):
-        '''Score package wrangler visible score titles with years:
-
-        ::
-
-            >>> 'Red Example Score (2013)' in wrangler.visible_score_titles_with_years
-            True
-
-        Return list.
-        '''
-        result = []
-        for score_package_proxy in self.list_visible_asset_proxies():
-            result.append(score_package_proxy.title_with_year or '(untitled score)')
-        return result
-
     ### PUBLIC METHODS ###
 
     def fix_visible_assets(self, is_interactive=True):
@@ -169,15 +137,24 @@ class ScorePackageWrangler(PackageWrangler):
             user_score=user_score, 
             head=head)
 
-    # TODO: rename to list_asset_basenames() because list_asset_names() already exists in superclass
-    def list_asset_names(self, head=None):
-        result = []
-        for asset_filesystem_path in self.list_visible_asset_filesystem_paths(head=head):
-            result.append(os.path.basename(asset_filesystem_path))
-        return result
+    def list_asset_names(self,
+        built_in_external=True, user_external=True,
+        built_in_score=True, user_score=True, head=None):
+        '''List asset names.
+
+        .. note:: FIXME: this lists many unrelated directories.
+
+        Return list.
+        '''
+        return super(type(self), self).list_asset_names(
+            built_in_external=built_in_external,
+            user_external=user_external,
+            built_in_score=built_in_score,
+            user_score=user_score,
+            head=head)
 
     def list_asset_packagesystem_paths(self, head=None):
-        '''Score package wrangler list asset package paths:
+        '''List asset packagesystem paths.
 
         ::
 
@@ -187,6 +164,8 @@ class ScorePackageWrangler(PackageWrangler):
             'experimental.tools.scoremanagertools.built_in_scores.green_example_score'
             'experimental.tools.scoremanagertools.built_in_scores.red_example_score'
             ...
+
+        .. note:: TODO: add keyword filters.
 
         Output lists built-in scores followed by user scores.
 

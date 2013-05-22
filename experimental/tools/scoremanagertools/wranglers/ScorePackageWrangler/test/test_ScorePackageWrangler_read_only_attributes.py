@@ -55,10 +55,3 @@ def test_ScorePackageWrangler_read_only_attributes_07():
     '''
 
     assert wrangler._temporary_asset_package_path == '__temporary_package'
-
-
-def test_ScorePackageWrangler_read_only_attributes_08():
-    '''Other read-only attributes.
-    '''
-
-    assert 'Red Example Score (2013)' in wrangler.visible_score_titles_with_years

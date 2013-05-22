@@ -15,12 +15,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.storage_format
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.visible_score_titles
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.wranglers.ScorePackageWrangler.ScorePackageWrangler.ScorePackageWrangler.visible_score_titles_with_years
-   :noindex:
-
 Methods
 -------
 
