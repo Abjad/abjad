@@ -198,7 +198,8 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             for score_directory_path in self.configuration.list_score_directory_paths(
                 built_in=True, head=head):
                 parts = [score_directory_path]
-                parts.extend(self.storehouse_path_infix_parts)
+                if self.storehouse_path_infix_parts:
+                    parts.extend(self.storehouse_path_infix_parts)
                 storehouse_filesystem_path = os.path.join(*parts)
                 result.append(storehouse_filesystem_path)
         if user_score:

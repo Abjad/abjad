@@ -73,15 +73,7 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
                 result.append(package_path)
         return result
 
-    def _list_built_in_score_package_paths(self, head=None):
-        result = []
-        for directory_path in self.configuration.list_score_directory_paths(
-            built_in=True, head=head):
-            package_path = self.configuration.filesystem_path_to_packagesystem_path(directory_path)
-            reuslt.append(package_path)
-        return result
-
-    def _list_score_directory_package_paths(self, head=None):
+    def _list_score_package_paths(self, head=None):
         result = []
         for directory_path in self.configuration.list_score_directory_paths(
             built_in=True, user=True, head=head):
@@ -91,7 +83,9 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
 
     def _list_score_storehouse_package_paths(self, head=None):
         result = []
-        for score_package_name in self._list_score_directory_package_paths(head=head):
+        if self.storehouse_path_infix_parts is None:
+             return result
+        for score_package_name in self._list_score_package_paths(head=head):
             parts = [score_package_name]
             if self.storehouse_path_infix_parts:
                 parts.extend(self.storehouse_path_infix_parts)
@@ -103,13 +97,6 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
         result = []
         result.extend(self._list_built_in_external_storehouse_packagesystem_path(head=head))
         result.extend(self._list_score_storehouse_package_paths(head=head))
-        return result
-
-    def _list_user_storehouse_package_paths(self, head=None):
-        result = []
-        for package_path in [self.user_external_storehouse_packagesystem_path]:
-            if head is None or package_path.startswith(head):
-                result.append(package_path)
         return result
 
     def _make_menu_tokens(self, head=None):

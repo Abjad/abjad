@@ -11,6 +11,9 @@ class MaterialPackageMakerWrangler(PackageWrangler):
 
     built_in_external_storehouse_packagesystem_path = \
         PackageWrangler.configuration.built_in_material_package_makers_package_path
+
+    storehouse_path_infix_parts = None
+
     user_external_storehouse_packagesystem_path = \
         PackageWrangler.configuration.user_material_package_makers_package_path
     
@@ -27,9 +30,6 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             self.make_asset_interactively()
         else:
             raise ValueError
-
-    def _list_score_storehouse_package_paths(self, head=None):
-        return []
 
     def _make_main_menu(self, head=None):
         menu, section = self._io.make_menu(where=self._where, is_numbered=True)
