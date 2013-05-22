@@ -201,7 +201,6 @@ class ScorePackageWrangler(PackageWrangler):
 #        '''
 #        return super(type(self), self).list_asset_proxies(head=head)        
 
-    # TODO: FIXME
     def list_external_asset_packagesystem_paths(self, head=None):
         '''Score package wrangler list external asset package paths:
 
@@ -210,12 +209,52 @@ class ScorePackageWrangler(PackageWrangler):
             >>> wrangler.list_external_asset_packagesystem_paths()
             []
 
-        .. note:: FIXME: this is hard-coded and shouldn't have to be.
-        
         Return list.
         '''
-        # TODO: this should not have to be hard-coded
-        return []
+        result = []
+        for filesystem_path in self.list_asset_filesystem_paths(
+            built_in_score=False, user_score=False, head=head):
+            packagesystem_path = self.configuration.filesystem_path_to_packagesystem_path(filesystem_path)
+            result.append(packagesystem_path)
+        return result
+
+    def list_score_asset_packagesystem_paths(self, head=None):
+        '''List score asset packagesystem paths.
+
+        ::
+
+            >>> for x in wrangler.list_score_asset_packagesystem_paths():
+            ...     x
+            'experimental.tools.scoremanagertools.built_in_scores.blue_example_score'
+            'experimental.tools.scoremanagertools.built_in_scores.green_example_score'
+            'experimental.tools.scoremanagertools.built_in_scores.red_example_score'
+            'aracilik'
+            'archipel'
+            'betoerung'
+            'cary'
+            'chrysanthemums'
+            'desir'
+            'gebiete'
+            'imaginaire'
+            'jivan'
+            'lidercfeny'
+            'mannigfaltigkeiten'
+            'manos'
+            'recursif'
+            'red_shift'
+            'sekka'
+            'tack'
+            'territoires'
+            'zeit'
+
+        Return list.
+        '''
+        result = []
+        for filesystem_path in self.list_asset_filesystem_paths(
+            built_in_external=False, user_external=False, head=head):
+            packagesystem_path = self.configuration.filesystem_path_to_packagesystem_path(filesystem_path)
+            result.append(packagesystem_path)
+        return result
 
     def list_storehouse_filesystem_paths(self,
         built_in_external=True, user_external=True,

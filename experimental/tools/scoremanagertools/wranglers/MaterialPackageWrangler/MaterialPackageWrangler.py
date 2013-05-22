@@ -328,13 +328,16 @@ class MaterialPackageWrangler(PackageWrangler):
             'experimental.tools.scoremanagertools.built_in_materials.red_numbers'
             'experimental.tools.scoremanagertools.built_in_materials.red_sargasso_measures'
             'experimental.tools.scoremanagertools.built_in_materials.sargasso_multipliers'
-            ...
-
-        (User-specific output elided.)
+            'baca.music.materials.baca_numbers'
 
         Return list.
         '''
-        return super(type(self), self).list_external_asset_packagesystem_paths(head=head)
+        result = []
+        for filesystem_path in self.list_asset_filesystem_paths(
+            built_in_score=False, user_score=False, head=head):
+            packagesystem_path = self.configuration.filesystem_path_to_packagesystem_path(filesystem_path)
+            result.append(packagesystem_path)
+        return result
 
     def list_score_asset_packagesystem_paths(self, head=None):
         '''Material package wrangler list score asset package paths:
@@ -344,14 +347,39 @@ class MaterialPackageWrangler(PackageWrangler):
             >>> for x in wrangler.list_score_asset_packagesystem_paths():
             ...     x
             'experimental.tools.scoremanagertools.built_in_scores.red_example_score.music.materials.tempo_inventory'
-            ...
-
-        (User-specific output elided.)
+            'betoerung.music.materials.aggregates'
+            'betoerung.music.materials.indigo_pitch_classes'
+            'betoerung.music.materials.range_inventory'
+            'betoerung.music.materials.reiterated_forte'
+            'betoerung.music.materials.speckled_rhythm_maker'
+            'betoerung.music.materials.tempo_inventory'
+            'betoerung.music.materials.time_signature_pairs'
+            'betoerung.music.materials.violet_pitch_classes'
+            'gebiete.music.materials.cobalt_divisions'
+            'gebiete.music.materials.end_incised_double_valued_note_maker'
+            'gebiete.music.materials.end_incised_note_maker'
+            'gebiete.music.materials.fused_cobalt_time_signatures'
+            'gebiete.music.materials.fused_yellow_time_signatures'
+            'gebiete.music.materials.pitch_classes'
+            'gebiete.music.materials.split_cobalt_time_signatures'
+            'gebiete.music.materials.split_yellow_time_signatures'
+            'gebiete.music.materials.tempo_inventory'
+            'gebiete.music.materials.time_signature_pairs'
+            'gebiete.music.materials.tratti_del_arco'
+            'gebiete.music.materials.yellow_divisions'
+            'manos.music.materials.aggregates'
+            'manos.music.materials.black_pcs'
+            'manos.music.materials.turquoise_pcs'
 
         Return list.
         '''
-        return super(type(self), self).list_score_asset_packagesystem_paths(head=head)
-
+        result = []
+        for filesystem_path in self.list_asset_filesystem_paths(
+            built_in_external=False, user_external=False, head=head):
+            packagesystem_path = self.configuration.filesystem_path_to_packagesystem_path(filesystem_path)
+            result.append(packagesystem_path)
+        return result
+            
     def list_storehouse_filesystem_paths(self,
         built_in_external=True, user_external=True,
         built_in_score=True, user_score=True, head=None):

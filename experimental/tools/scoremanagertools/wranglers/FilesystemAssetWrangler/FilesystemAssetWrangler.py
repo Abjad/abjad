@@ -141,10 +141,16 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             built_in_score=built_in_score, 
             user_score=user_score, 
             head=head):
+            storehouse_package_path = self.configuration.filesystem_path_to_packagesystem_path(directory_path)
             for directory_entry in os.listdir(directory_path):
                 if directory_entry[0].isalpha():
                     filesystem_path = os.path.join(directory_path, directory_entry)
-                    result.append(filesystem_path)
+                    if head is None:
+                        result.append(filesystem_path)
+                    else:
+                        package_path = '.'.join([storehouse_package_path, directory_entry])
+                        if package_path.startswith(head):
+                            result.append(filesystem_path)
         return result
 
     def list_asset_names(self, built_in_external=True, user_external=True,
