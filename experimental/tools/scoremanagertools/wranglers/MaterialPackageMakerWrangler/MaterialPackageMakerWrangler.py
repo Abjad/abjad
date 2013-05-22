@@ -9,9 +9,8 @@ class MaterialPackageMakerWrangler(PackageWrangler):
 
     ### CLASS VARIABLES ###
 
-    # TODO: change to 'experimental.tools.scoremanagertools.materialpackagemakers'
-    # TODO: derive symbolically instead of hardcoding
-    built_in_external_storehouse_packagesystem_path = 'scoremanagertools.materialpackagemakers'
+    built_in_external_storehouse_packagesystem_path = \
+        PackageWrangler.configuration.built_in_material_package_makers_package_path
     user_external_storehouse_packagesystem_path = \
         PackageWrangler.configuration.user_material_package_makers_package_path
     
