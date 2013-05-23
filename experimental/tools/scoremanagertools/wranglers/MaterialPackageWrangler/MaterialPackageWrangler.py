@@ -315,7 +315,7 @@ class MaterialPackageWrangler(PackageWrangler):
             head=head)
 
     def list_external_asset_packagesystem_paths(self, head=None):
-        '''Material package wrangler list external asset package paths:
+        '''List external asset packagesystem paths:
 
         ::
 
@@ -340,7 +340,7 @@ class MaterialPackageWrangler(PackageWrangler):
         return result
 
     def list_score_asset_packagesystem_paths(self, head=None):
-        '''Material package wrangler list score asset package paths:
+        '''List score asset packagesystem paths:
 
         ::
 

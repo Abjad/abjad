@@ -6,11 +6,28 @@ from experimental.tools.scoremanagertools.wranglers.PackageWrangler import Packa
 
 
 class MaterialPackageMakerWrangler(PackageWrangler):
+    '''Material package maker wrangler.
+
+    ::
+    
+        >>> score_manager = scoremanagertools.scoremanager.ScoreManager()
+        >>> wrangler = score_manager.material_package_maker_wrangler
+        >>> wrangler
+        MaterialPackageMakerWrangler()
+
+    Return material package maker wrangler.
+    '''
 
     ### CLASS VARIABLES ###
 
     built_in_external_storehouse_packagesystem_path = \
         PackageWrangler.configuration.built_in_material_package_makers_package_path
+
+    forbidden_directory_entries = (
+        'FunctionInputMaterialPackageMaker',
+        'InventoryMaterialPackageMaker',
+        'MaterialPackageMaker',
+        )
 
     storehouse_path_infix_parts = None
 
@@ -30,41 +47,6 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             self.make_asset_interactively()
         else:
             raise ValueError
-
-    def _make_main_menu(self, head=None):
-        menu, section = self._io.make_menu(where=self._where, is_numbered=True)
-        section.tokens = self.list_asset_names(head=head)
-        section = menu.make_section()
-        section.append(('new', 'new material package maker'))
-        return menu
-
-    def _make_menu_tokens(self, head=None):
-        keys = self.list_asset_packagesystem_paths(head=head)
-        bodies = self.list_asset_names(head=head)
-        return zip(keys, bodies)
-
-    ### READ-ONLY PUBLIC PROPERTIES ###
-
-    @property
-    def asset_proxy_class(self):
-        from experimental.tools import scoremanagertools
-        return scoremanagertools.proxies.PackageProxy
-
-    # TODO: derive programmatically
-    @property
-    def forbidden_class_names(self):
-        return (
-            'FunctionInputMaterialPackageMaker',
-            'InventoryMaterialPackageMaker',
-            'MaterialPackageMaker',
-            )
-
-    @property
-    def forbidden_package_paths(self):
-        return ['experimental.tools.scoremanagertools.materialpackagemakers.' + class_name for 
-            class_name in self.forbidden_class_names]
-
-    ### PUBLIC METHODS ###
 
     def _initialize_asset_proxy(self, package_path):
         from experimental.tools.scoremanagertools.proxies.MaterialPackageProxy import MaterialPackageProxy
@@ -89,33 +71,236 @@ class MaterialPackageMakerWrangler(PackageWrangler):
                 package_path, session=self._session)
         return material_package_proxy
 
-    def list_asset_names(self, built_in_external=True, user_external=True,
+    def _make_main_menu(self, head=None):
+        menu, section = self._io.make_menu(where=self._where, is_numbered=True)
+        section.tokens = self.list_asset_names(head=head)
+        section = menu.make_section()
+        section.append(('new', 'new material package maker'))
+        return menu
+
+    def _make_menu_tokens(self, head=None):
+        keys = self.list_asset_packagesystem_paths(head=head)
+        bodies = self.list_asset_names(head=head)
+        return zip(keys, bodies)
+
+    ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def asset_proxy_class(self):
+        '''Asset proxy class:
+
+        ::
+
+            >>> wrangler.asset_proxy_class.__name__
+            'PackageProxy'
+
+        Return class.
+        '''
+        from experimental.tools import scoremanagertools
+        return scoremanagertools.proxies.PackageProxy
+
+    @property
+    def storage_format(self):
+        '''Material package maker wrangler storage format:
+
+        ::
+
+            >>> wrangler.storage_format
+            'wranglers.MaterialPackageMakerWrangler()'
+
+        Return string.
+        '''
+        return super(type(self), self).storage_format
+
+    ### PUBLIC METHODS ###
+
+    def list_asset_filesystem_paths(self,
+        built_in_external=True, user_external=True,
         built_in_score=True, user_score=True, head=None):
-        result = []
-        for asset_filesystem_path in self.list_asset_filesystem_paths(
+        '''List asset filesystem paths.
+
+        Example. List built-in material package maker filesystem paths:
+
+        ::
+
+            >>> for x in wrangler.list_asset_filesystem_paths(
+            ...     user_external=False, user_score=False):
+            ...     x
+            '.../tools/scoremanagertools/materialpackagemakers/ArticulationHandlerMaterialPackageMaker'
+            '.../tools/scoremanagertools/materialpackagemakers/DynamicHandlerMaterialPackageMaker'
+            '.../tools/scoremanagertools/materialpackagemakers/ListMaterialPackageMaker'
+            '.../tools/scoremanagertools/materialpackagemakers/MarkupInventoryMaterialPackageMaker'
+            '.../tools/scoremanagertools/materialpackagemakers/OctaveTranspositionMappingInventoryMaterialPackageMaker'
+            '.../tools/scoremanagertools/materialpackagemakers/PitchRangeInventoryMaterialPackageMaker'
+            '.../tools/scoremanagertools/materialpackagemakers/RhythmMakerMaterialPackageMaker'
+            '.../tools/scoremanagertools/materialpackagemakers/SargassoMeasureMaterialPackageMaker'
+            '.../tools/scoremanagertools/materialpackagemakers/TempoMarkInventoryMaterialPackageMaker'
+
+        Return list.
+        '''
+        return super(type(self), self).list_asset_filesystem_paths(
             built_in_external=built_in_external,
             user_external=user_external,
             built_in_score=built_in_score,
             user_score=user_score,
-            head=head):
-            asset_filesystem_path = os.path.normpath(asset_filesystem_path)
-            asset_name = os.path.basename(asset_filesystem_path)
-            if asset_name in self.forbidden_class_names:
-                continue
-            space_delimited_lowercase_asset_name = stringtools.uppercamelcase_to_space_delimited_lowercase(
-                asset_name)
-            result.append(space_delimited_lowercase_asset_name)
-        return result
+            head=head)
+
+    def list_asset_names(self, built_in_external=True, user_external=True,
+        built_in_score=True, user_score=True, head=None):
+        '''List asset names.
+
+        Example. List built-in asset names:
+
+        ::
+
+            >>> for x in wrangler.list_asset_names(
+            ...     user_external=False, user_score=False):
+            ...     x
+            'articulation handler material package maker'
+            'dynamic handler material package maker'
+            'list material package maker'
+            'markup inventory material package maker'
+            'octave transposition mapping inventory material package maker'
+            'pitch range inventory material package maker'
+            'rhythm maker material package maker'
+            'sargasso measure material package maker'
+            'tempo mark inventory material package maker'
+
+        Return list.
+        '''
+        return super(type(self), self).list_asset_names(
+            built_in_external=built_in_external,
+            user_external=user_external,
+            built_in_score=built_in_score,
+            user_score=user_score,
+            head=head)
+
+    def list_asset_packagesystem_paths(self, built_in_external=True, user_external=True,
+        built_in_score=True, user_score=True, head=None):
+        '''List asset packagesystem_paths.
+
+        Example. List built-in asset packagesystem_paths:
+
+        ::
+
+            >>> for x in wrangler.list_asset_packagesystem_paths(
+            ...     user_external=False, user_score=False):
+            ...     x
+            'experimental.tools.scoremanagertools.materialpackagemakers.ArticulationHandlerMaterialPackageMaker'
+            'experimental.tools.scoremanagertools.materialpackagemakers.DynamicHandlerMaterialPackageMaker'
+            'experimental.tools.scoremanagertools.materialpackagemakers.ListMaterialPackageMaker'
+            'experimental.tools.scoremanagertools.materialpackagemakers.MarkupInventoryMaterialPackageMaker'
+            'experimental.tools.scoremanagertools.materialpackagemakers.OctaveTranspositionMappingInventoryMaterialPackageMaker'
+            'experimental.tools.scoremanagertools.materialpackagemakers.PitchRangeInventoryMaterialPackageMaker'
+            'experimental.tools.scoremanagertools.materialpackagemakers.RhythmMakerMaterialPackageMaker'
+            'experimental.tools.scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker'
+            'experimental.tools.scoremanagertools.materialpackagemakers.TempoMarkInventoryMaterialPackageMaker'
+            'materialpackagemakers.ConstellationCircuitSelectionMaterialPackageMaker'
+            'materialpackagemakers.ZaggedPitchClassMaterialPackageMaker'
+
+        .. note:: FIXME: user collateral shows up even when not requested.
+
+        Return list.
+        '''
+#        return super(type(self), self).list_asset_packagesystem_paths(
+#            built_in_external=built_in_external,
+#            user_external=user_external,
+#            built_in_score=built_in_score,
+#            user_score=user_score,
+#            head=head)
+        return super(type(self), self).list_asset_packagesystem_paths()
+
+    # TODO: make this work
+#    def list_asset_proxies(self, built_in_external=True, user_external=True,
+#        built_in_score=True, user_score=True, head=None):
+#        '''List asset proxies.
+#
+#        Example. List built-in material package maker proxies:
+#            
+#        ::
+#
+#            >>> for x in wrangler.list_asset_proxies(
+#            ...     user_external=False, user_score=False):
+#            ...     x
+#
+#        Return list.
+#        '''
+#        return super(type(self), self).list_asset_proxies(
+#            built_in_external=built_in_external,
+#            user_external=user_external,
+#            built_in_score=built_in_score,
+#            user_score=user_score,
+#            head=head)
 
     def list_external_asset_packagesystem_paths(self, head=None):
-        result = PackageWrangler.list_external_asset_packagesystem_paths(self, head=head)
-        for forbidden_package_path in self.forbidden_package_paths:
-            if forbidden_package_path in result:
-                result.remove(forbidden_package_path)
+        '''List external asset packagesystem paths:
+
+        ::
+
+            >>> for x in wrangler.list_external_asset_packagesystem_paths():
+            ...     x
+            'experimental.tools.scoremanagertools.materialpackagemakers.ArticulationHandlerMaterialPackageMaker'
+            'experimental.tools.scoremanagertools.materialpackagemakers.DynamicHandlerMaterialPackageMaker'
+            'experimental.tools.scoremanagertools.materialpackagemakers.ListMaterialPackageMaker'
+            'experimental.tools.scoremanagertools.materialpackagemakers.MarkupInventoryMaterialPackageMaker'
+            'experimental.tools.scoremanagertools.materialpackagemakers.OctaveTranspositionMappingInventoryMaterialPackageMaker'
+            'experimental.tools.scoremanagertools.materialpackagemakers.PitchRangeInventoryMaterialPackageMaker'
+            'experimental.tools.scoremanagertools.materialpackagemakers.RhythmMakerMaterialPackageMaker'
+            'experimental.tools.scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker'
+            'experimental.tools.scoremanagertools.materialpackagemakers.TempoMarkInventoryMaterialPackageMaker'
+            'materialpackagemakers.ConstellationCircuitSelectionMaterialPackageMaker'
+            'materialpackagemakers.ZaggedPitchClassMaterialPackageMaker'
+
+        .. note:: FIXME: user collateral should be fully qualified.
+
+        Return list.
+        '''
+        result = []
+        for filesystem_path in self.list_asset_filesystem_paths(
+            built_in_score=False, user_score=False, head=head):
+            packagesystem_path = self.configuration.filesystem_path_to_packagesystem_path(filesystem_path)
+            result.append(packagesystem_path)
         return result
 
     def list_score_asset_packagesystem_paths(self, head=None):
-        return []
+        '''List score asset package paths:
+
+        ::
+
+            >>> wrangler.list_score_asset_packagesystem_paths()
+            []
+
+        Return list.
+        '''
+        result = []
+        for filesystem_path in self.list_asset_filesystem_paths(
+            built_in_external=False, user_external=False, head=head):
+            packagesystem_path = self.configuration.filesystem_path_to_packagesystem_path(filesystem_path)
+            result.append(packagesystem_path)
+        return result
+
+    def list_storehouse_filesystem_paths(self,
+        built_in_external=True, user_external=True,
+        built_in_score=True, user_score=True, head=None):
+        '''List storehouse filesystem paths.
+
+        Example. List built-in material package maker storehouse filesystem paths:
+
+        ::
+
+            >>> for x in wrangler.list_storehouse_filesystem_paths(
+            ...     user_external=False, user_score=False):
+            ...     x
+            '.../tools/scoremanagertools/materialpackagemakers'
+
+        Return list.
+        '''
+        return super(type(self), self).list_storehouse_filesystem_paths(
+            built_in_external=built_in_external,
+            user_external=user_external,
+            built_in_score=built_in_score,
+            user_score=user_score,
+            head=head)
 
     # TODO: change to boilerplate
     def make_asset_class_file(self, package_name, generic_output_name):

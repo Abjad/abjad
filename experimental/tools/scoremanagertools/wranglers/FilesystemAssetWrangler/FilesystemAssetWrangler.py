@@ -13,6 +13,9 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
+
+    forbidden_directory_entries = ()
+    
     storehouse_path_infix_parts = ()
 
     ### INITIALIZER ###
@@ -141,9 +144,11 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             built_in_score=built_in_score, 
             user_score=user_score, 
             head=head):
-            storehouse_package_path = self.configuration.filesystem_path_to_packagesystem_path(directory_path)
+            storehouse_package_path = self.configuration.filesystem_path_to_packagesystem_path(
+                directory_path)
             for directory_entry in os.listdir(directory_path):
-                if directory_entry[0].isalpha():
+                if directory_entry not in self.forbidden_directory_entries and \
+                    directory_entry[0].isalpha():
                     filesystem_path = os.path.join(directory_path, directory_entry)
                     if head is None:
                         result.append(filesystem_path)
