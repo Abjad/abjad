@@ -61,7 +61,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
 
     @property
     def forbidden_package_paths(self):
-        return ['scoremanagertools.materialpackagemakers.' + class_name for 
+        return ['experimental.tools.scoremanagertools.materialpackagemakers.' + class_name for 
             class_name in self.forbidden_class_names]
 
     ### PUBLIC METHODS ###

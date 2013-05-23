@@ -581,6 +581,8 @@ class ScoreManagerConfiguration(Configuration):
             prefix_length = len(self.user_external_assets_directory_path) + 1
         elif filesystem_path.startswith(self.built_in_specifiers_directory_path):
             prefix_length = len(self.abjad_configuration.abjad_root_directory_path) + 1
+        elif filesystem_path.startswith(self.built_in_material_package_makers_directory_path):
+            prefix_length = len(self.abjad_configuration.abjad_root_directory_path) + 1
         elif filesystem_path.startswith(self.built_in_materials_directory_path):
             prefix_length = len(self.abjad_configuration.abjad_root_directory_path) + 1
         elif filesystem_path.startswith(self.score_manager_tools_directory_path):

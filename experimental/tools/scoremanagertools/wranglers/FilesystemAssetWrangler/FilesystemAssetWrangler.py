@@ -194,7 +194,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                 if self.user_external_storehouse_filesystem_path.startswith(
                     filesystem_path):
                     result.append(self.user_external_storehouse_filesystem_path)
-        if built_in_score:
+        if built_in_score and self.storehouse_path_infix_parts is not None:
             for score_directory_path in self.configuration.list_score_directory_paths(
                 built_in=True, head=head):
                 parts = [score_directory_path]
@@ -202,7 +202,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                     parts.extend(self.storehouse_path_infix_parts)
                 storehouse_filesystem_path = os.path.join(*parts)
                 result.append(storehouse_filesystem_path)
-        if user_score:
+        if user_score and self.storehouse_path_infix_parts is not None:
             for directory_path in self.configuration.list_score_directory_paths(
                 user=True, head=head):
                 parts = [directory_path]

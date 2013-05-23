@@ -43,8 +43,8 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
             parts.append(self._session.current_score_package_path)
             parts.extend(self.storehouse_path_infix_parts)
             return '.'.join(parts)
-        if self._list_built_in_external_storehouse_packagesystem_path():
-            return self._list_built_in_external_storehouse_packagesystem_path()[0]
+        else:
+            return self.built_in_external_storehouse_packagesystem_path
 
     @property
     def _temporary_asset_package_path(self):
@@ -72,25 +72,27 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
             if head is None or package_path.startswith(head):
                 result.append(package_path)
         return result
+#        result = []
+#        for filesystem_path in self.list_storehouse_filesystem_paths(
+#            built_in_score=False, user_external=False, user_score=False, head=head):
+#            packagesystem_path = self.configuration.filesystem_path_to_packagesystem_path(filesystem_path)
+#            result.append(packagesystem_path)
+#        return result
 
-    def _list_score_package_paths(self, head=None):
-        result = []
-        for directory_path in self.configuration.list_score_directory_paths(
-            built_in=True, user=True, head=head):
-            package_path = self.configuration.filesystem_path_to_packagesystem_path(directory_path)
-            result.append(package_path)
-        return result
+#    def _list_score_package_paths(self, head=None):
+#        result = []
+#        for directory_path in self.configuration.list_score_directory_paths(
+#            built_in=True, user=True, head=head):
+#            package_path = self.configuration.filesystem_path_to_packagesystem_path(directory_path)
+#            result.append(package_path)
+#        return result
 
     def _list_score_storehouse_package_paths(self, head=None):
         result = []
-        if self.storehouse_path_infix_parts is None:
-             return result
-        for score_package_name in self._list_score_package_paths(head=head):
-            parts = [score_package_name]
-            if self.storehouse_path_infix_parts:
-                parts.extend(self.storehouse_path_infix_parts)
-            score_score_package_path = '.'.join(parts)
-            result.append(score_score_package_path)
+        for filesystem_path in self.list_storehouse_filesystem_paths(
+            built_in_external=False, user_external=False, head=head):
+            packagesystem_path = self.configuration.filesystem_path_to_packagesystem_path(filesystem_path)
+            result.append(packagesystem_path)
         return result
 
     def _list_storehouse_package_paths(self, head=None):
