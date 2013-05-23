@@ -198,7 +198,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             'baca.music.materialpackagemakers.ConstellationCircuitSelectionMaterialPackageMaker'
             'baca.music.materialpackagemakers.ZaggedPitchClassMaterialPackageMaker'
 
-        .. note:: FIXME: user collateral shows up even when not requested.
+        .. note:: FIXME: user collateral shows up even when it shouldn't.
 
         Return list.
         '''
@@ -210,27 +210,39 @@ class MaterialPackageMakerWrangler(PackageWrangler):
 #            head=head)
         return super(type(self), self).list_asset_packagesystem_paths()
 
-    # TODO: make this work
-#    def list_asset_proxies(self, built_in_external=True, user_external=True,
-#        built_in_score=True, user_score=True, head=None):
-#        '''List asset proxies.
-#
-#        Example. List built-in material package maker proxies:
-#            
-#        ::
-#
-#            >>> for x in wrangler.list_asset_proxies(
-#            ...     user_external=False, user_score=False):
-#            ...     x
-#
-#        Return list.
-#        '''
-#        return super(type(self), self).list_asset_proxies(
-#            built_in_external=built_in_external,
-#            user_external=user_external,
-#            built_in_score=built_in_score,
-#            user_score=user_score,
-#            head=head)
+    def list_asset_proxies(self, built_in_external=True, user_external=True,
+        built_in_score=True, user_score=True, head=None):
+        '''List asset proxies.
+
+        Example. List built-in material package maker proxies:
+            
+        ::
+
+            >>> for x in wrangler.list_asset_proxies(
+            ...     user_external=False, user_score=False):
+            ...     x
+            MaterialPackageProxy('.../tools/scoremanagertools/materialpackagemakers/ArticulationHandlerMaterialPackageMaker')
+            MaterialPackageProxy('.../tools/scoremanagertools/materialpackagemakers/DynamicHandlerMaterialPackageMaker')
+            MaterialPackageProxy('.../tools/scoremanagertools/materialpackagemakers/ListMaterialPackageMaker')
+            MaterialPackageProxy('.../tools/scoremanagertools/materialpackagemakers/MarkupInventoryMaterialPackageMaker')
+            MaterialPackageProxy('.../tools/scoremanagertools/materialpackagemakers/OctaveTranspositionMappingInventoryMaterialPackageMaker')
+            MaterialPackageProxy('.../tools/scoremanagertools/materialpackagemakers/PitchRangeInventoryMaterialPackageMaker')
+            MaterialPackageProxy('.../tools/scoremanagertools/materialpackagemakers/RhythmMakerMaterialPackageMaker')
+            MaterialPackageProxy('.../tools/scoremanagertools/materialpackagemakers/SargassoMeasureMaterialPackageMaker')
+            MaterialPackageProxy('.../tools/scoremanagertools/materialpackagemakers/TempoMarkInventoryMaterialPackageMaker')
+            MaterialPackageProxy('.../baca/music/materialpackagemakers/ConstellationCircuitSelectionMaterialPackageMaker')
+            MaterialPackageProxy('.../baca/music/materialpackagemakers/ZaggedPitchClassMaterialPackageMaker')
+
+        .. note:: FIXME: user collateral shows up even when it shouldn't.
+
+        Return list.
+        '''
+        return super(type(self), self).list_asset_proxies(
+            built_in_external=built_in_external,
+            user_external=user_external,
+            built_in_score=built_in_score,
+            user_score=user_score,
+            head=head)
 
     def list_external_asset_packagesystem_paths(self, head=None):
         '''List external asset packagesystem paths:
