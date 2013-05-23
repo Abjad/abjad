@@ -112,7 +112,7 @@ class TimeSignatureMark(ContextMark):
             partial = self.partial, target_context = self.target_context)
 
     # note that this can not be defined on superclass
-    __deepcopy__ = __copy__
+    #__deepcopy__ = __copy__
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):

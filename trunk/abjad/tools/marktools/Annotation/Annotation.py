@@ -1,6 +1,6 @@
+import copy
 from abjad.tools.componenttools.Component import Component
 from abjad.tools.marktools.Mark import Mark
-import copy
 
 
 class Annotation(Mark):
@@ -43,8 +43,6 @@ class Annotation(Mark):
 
     __slots__ = ('_format_slot', '_name', '_value', )
 
-    _format_slot = None
-
     def __init__(self, *args):
         Mark.__init__(self)
         if len(args) == 1 and isinstance(args[0], type(self)):
@@ -58,13 +56,14 @@ class Annotation(Mark):
             self._value = copy.copy(args[1])
         else:
             raise ValueError('unknown annotation initialization signature.')
+        self._format_slot = None
 
     ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
         return type(self)(self.name, self.value)
 
-    __deepcopy__ = __copy__
+    #__deepcopy__ = __copy__
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):

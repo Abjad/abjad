@@ -96,9 +96,6 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.Oboe.Oboe.Oboe.__copy__
    :noindex:
 
-.. automethod:: abjad.tools.instrumenttools.Oboe.Oboe.Oboe.__deepcopy__
-   :noindex:
-
 .. automethod:: abjad.tools.instrumenttools.Oboe.Oboe.Oboe.__delattr__
    :noindex:
 

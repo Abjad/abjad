@@ -96,9 +96,6 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.EFlatClarinet.EFlatClarinet.EFlatClarinet.__copy__
    :noindex:
 
-.. automethod:: abjad.tools.instrumenttools.EFlatClarinet.EFlatClarinet.EFlatClarinet.__deepcopy__
-   :noindex:
-
 .. automethod:: abjad.tools.instrumenttools.EFlatClarinet.EFlatClarinet.EFlatClarinet.__delattr__
    :noindex:
 

@@ -126,7 +126,7 @@ class Markup(DirectedMark):
             markup_name=self._markup_name,
             )
 
-    __deepcopy__ = __copy__
+    #__deepcopy__ = __copy__
 
     def __eq__(self, expr):
         if isinstance(expr, type(self)):

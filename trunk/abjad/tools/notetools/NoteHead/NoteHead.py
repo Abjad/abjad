@@ -37,10 +37,7 @@ class NoteHead(SortableAttributeEqualityAbjadObject):
     ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
-        #return type(self)(**self.__getnewargs__())
         return type(self)(*self.__getnewargs__())
-
-#    __deepcopy__ = __copy__
 
     def __getnewargs__(self):
         args = (

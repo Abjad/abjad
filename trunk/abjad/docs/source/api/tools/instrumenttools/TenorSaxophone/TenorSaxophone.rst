@@ -96,9 +96,6 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.TenorSaxophone.TenorSaxophone.TenorSaxophone.__copy__
    :noindex:
 
-.. automethod:: abjad.tools.instrumenttools.TenorSaxophone.TenorSaxophone.TenorSaxophone.__deepcopy__
-   :noindex:
-
 .. automethod:: abjad.tools.instrumenttools.TenorSaxophone.TenorSaxophone.TenorSaxophone.__delattr__
    :noindex:
 

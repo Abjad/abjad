@@ -66,7 +66,7 @@ class StemTremolo(Mark):
         new._format_slot = self._format_slot
         return new
 
-    __deepcopy__ = __copy__
+    #__deepcopy__ = __copy__
 
     def __eq__(self, expr):
         '''True when `expr` is a stem tremolo with equal tremolo flags:

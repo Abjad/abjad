@@ -79,8 +79,6 @@ class ClefMark(ContextMark):
     def __copy__(self, *args):
         return type(self)(self._clef_name, target_context=self.target_context)
 
-    __deepcopy__ = __copy__
-
     def __eq__(self, arg):
         if isinstance(arg, type(self)):
             return self._clef_name == arg._clef_name

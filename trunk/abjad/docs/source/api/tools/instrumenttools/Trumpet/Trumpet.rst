@@ -96,9 +96,6 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.Trumpet.Trumpet.Trumpet.__copy__
    :noindex:
 
-.. automethod:: abjad.tools.instrumenttools.Trumpet.Trumpet.Trumpet.__deepcopy__
-   :noindex:
-
 .. automethod:: abjad.tools.instrumenttools.Trumpet.Trumpet.Trumpet.__delattr__
    :noindex:
 

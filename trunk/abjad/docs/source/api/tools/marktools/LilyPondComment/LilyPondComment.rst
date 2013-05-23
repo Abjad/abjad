@@ -45,9 +45,6 @@ Special methods
 .. automethod:: abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment.__copy__
    :noindex:
 
-.. automethod:: abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment.__deepcopy__
-   :noindex:
-
 .. automethod:: abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment.__delattr__
    :noindex:
 

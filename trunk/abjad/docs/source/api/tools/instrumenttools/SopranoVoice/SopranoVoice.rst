@@ -96,9 +96,6 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.SopranoVoice.SopranoVoice.SopranoVoice.__copy__
    :noindex:
 
-.. automethod:: abjad.tools.instrumenttools.SopranoVoice.SopranoVoice.SopranoVoice.__deepcopy__
-   :noindex:
-
 .. automethod:: abjad.tools.instrumenttools.SopranoVoice.SopranoVoice.SopranoVoice.__delattr__
    :noindex:
 

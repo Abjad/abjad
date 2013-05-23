@@ -42,9 +42,6 @@ Special methods
 .. automethod:: abjad.tools.marktools.Annotation.Annotation.Annotation.__copy__
    :noindex:
 
-.. automethod:: abjad.tools.marktools.Annotation.Annotation.Annotation.__deepcopy__
-   :noindex:
-
 .. automethod:: abjad.tools.marktools.Annotation.Annotation.Annotation.__delattr__
    :noindex:
 

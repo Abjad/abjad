@@ -51,9 +51,6 @@ Special methods
 .. automethod:: abjad.tools.contexttools.ClefMark.ClefMark.ClefMark.__copy__
    :noindex:
 
-.. automethod:: abjad.tools.contexttools.ClefMark.ClefMark.ClefMark.__deepcopy__
-   :noindex:
-
 .. automethod:: abjad.tools.contexttools.ClefMark.ClefMark.ClefMark.__delattr__
    :noindex:
 

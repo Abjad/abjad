@@ -96,9 +96,6 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.PercussionInstrument.PercussionInstrument.PercussionInstrument.__copy__
    :noindex:
 
-.. automethod:: abjad.tools.instrumenttools.PercussionInstrument.PercussionInstrument.PercussionInstrument.__deepcopy__
-   :noindex:
-
 .. automethod:: abjad.tools.instrumenttools.PercussionInstrument.PercussionInstrument.PercussionInstrument.__delattr__
    :noindex:
 

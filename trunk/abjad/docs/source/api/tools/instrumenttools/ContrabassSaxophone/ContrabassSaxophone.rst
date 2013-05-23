@@ -96,9 +96,6 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.ContrabassSaxophone.ContrabassSaxophone.ContrabassSaxophone.__copy__
    :noindex:
 
-.. automethod:: abjad.tools.instrumenttools.ContrabassSaxophone.ContrabassSaxophone.ContrabassSaxophone.__deepcopy__
-   :noindex:
-
 .. automethod:: abjad.tools.instrumenttools.ContrabassSaxophone.ContrabassSaxophone.ContrabassSaxophone.__delattr__
    :noindex:
 

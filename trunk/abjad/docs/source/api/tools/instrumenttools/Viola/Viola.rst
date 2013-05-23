@@ -96,9 +96,6 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.Viola.Viola.Viola.__copy__
    :noindex:
 
-.. automethod:: abjad.tools.instrumenttools.Viola.Viola.Viola.__deepcopy__
-   :noindex:
-
 .. automethod:: abjad.tools.instrumenttools.Viola.Viola.Viola.__delattr__
    :noindex:
 

@@ -39,9 +39,6 @@ Special methods
 .. automethod:: abjad.tools.contexttools.ContextMark.ContextMark.ContextMark.__copy__
    :noindex:
 
-.. automethod:: abjad.tools.contexttools.ContextMark.ContextMark.ContextMark.__deepcopy__
-   :noindex:
-
 .. automethod:: abjad.tools.contexttools.ContextMark.ContextMark.ContextMark.__delattr__
    :noindex:
 

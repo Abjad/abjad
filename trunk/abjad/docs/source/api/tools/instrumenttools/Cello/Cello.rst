@@ -96,9 +96,6 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.Cello.Cello.Cello.__copy__
    :noindex:
 
-.. automethod:: abjad.tools.instrumenttools.Cello.Cello.Cello.__deepcopy__
-   :noindex:
-
 .. automethod:: abjad.tools.instrumenttools.Cello.Cello.Cello.__delattr__
    :noindex:
 

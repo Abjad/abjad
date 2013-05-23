@@ -93,8 +93,6 @@ class Spanner(AbjadObject):
         self._copy_keyword_args(new)
         return new
 
-#    __deepcopy__ = __copy__
-
     def __getitem__(self, expr):
         return self._components.__getitem__(expr)
 

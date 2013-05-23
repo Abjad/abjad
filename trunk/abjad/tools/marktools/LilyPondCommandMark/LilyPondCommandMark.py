@@ -68,7 +68,7 @@ class LilyPondCommandMark(Mark):
         new.format_slot = self.format_slot
         return new
 
-    __deepcopy__ = __copy__
+    #__deepcopy__ = __copy__
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):

@@ -96,9 +96,6 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord.__copy__
    :noindex:
 
-.. automethod:: abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord.__deepcopy__
-   :noindex:
-
 .. automethod:: abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord.__delattr__
    :noindex:
 

@@ -96,9 +96,6 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.WindInstrument.WindInstrument.WindInstrument.__copy__
    :noindex:
 
-.. automethod:: abjad.tools.instrumenttools.WindInstrument.WindInstrument.WindInstrument.__deepcopy__
-   :noindex:
-
 .. automethod:: abjad.tools.instrumenttools.WindInstrument.WindInstrument.WindInstrument.__delattr__
    :noindex:
 

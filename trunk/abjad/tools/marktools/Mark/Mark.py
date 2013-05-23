@@ -49,8 +49,6 @@ class Mark(AbjadObject):
         new.format_slot = self.format_slot
         return new
 
-    __deepcopy__ = __copy__
-
     def __delattr__(self, *args):
         raise AttributeError('can not delete %s attributes.' % type(self).__name__)
 

@@ -96,9 +96,6 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.SopranoSaxophone.SopranoSaxophone.SopranoSaxophone.__copy__
    :noindex:
 
-.. automethod:: abjad.tools.instrumenttools.SopranoSaxophone.SopranoSaxophone.SopranoSaxophone.__deepcopy__
-   :noindex:
-
 .. automethod:: abjad.tools.instrumenttools.SopranoSaxophone.SopranoSaxophone.SopranoSaxophone.__delattr__
    :noindex:
 
