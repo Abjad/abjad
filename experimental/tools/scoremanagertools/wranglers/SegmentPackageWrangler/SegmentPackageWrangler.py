@@ -1,15 +1,27 @@
 import os
-from experimental.tools.scoremanagertools.proxies.SegmentPackageProxy import SegmentPackageProxy
 from experimental.tools.scoremanagertools.wranglers.PackageWrangler import PackageWrangler
 
 
 class SegmentPackageWrangler(PackageWrangler):
+    '''Segment package wrangler.
+
+    ::
+
+        >>> score_manager = scoremanagertools.scoremanager.ScoreManager()
+        >>> wrangler = score_manager.segment_package_wrangler
+        >>> wrangler
+        SegmentPackageWrangler()
+
+    Return segment package wrangler.
+    '''
 
     ### CLASS VARIABLES ###
     
-    storehouse_path_infix_parts = ('music', 'segments')
     built_in_external_storehouse_packagesystem_path = \
         PackageWrangler.configuration.user_sketches_package_path
+
+    storehouse_path_infix_parts = ('music', 'segments')
+
     user_external_storehouse_packagesystem_path = \
         PackageWrangler.configuration.user_sketches_package_path
 
@@ -43,9 +55,80 @@ class SegmentPackageWrangler(PackageWrangler):
 
     @property
     def asset_proxy_class(self):
-        return SegmentPackageProxy
+        '''Segment package wrangler asset proxy class:
+
+        ::
+
+            >>> wrangler.asset_proxy_class.__name__
+            'SegmentPackageProxy'
+
+        Return class.
+        '''
+        from experimental.tools import scoremanagertools
+        return scoremanagertools.proxies.SegmentPackageProxy
+
+    @property
+    def storage_format(self):
+        '''Segment package wrangler storage format:
+
+        ::
+
+            >>> wrangler.storage_format
+            'wranglers.SegmentPackageWrangler()'
+
+        Return string.
+        '''
+        return super(type(self), self).storage_format
 
     ### PUBLIC METHODS ###
+
+    def list_asset_filesystem_paths(self,
+        built_in_external=True, user_external=True,
+        built_in_score=True, user_score=True, head=None):
+        '''List asset filesystem paths.
+
+        Example. List built-in segment package filesystem paths:
+
+        ::
+
+            >>> for x in wrangler.list_asset_filesystem_paths(
+            ...     user_external=False, user_score=False):
+            ...     x
+
+        Return list.
+        '''
+        return super(type(self), self).list_asset_filesystem_paths(
+            built_in_external=built_in_external,
+            user_external=user_external,
+            built_in_score=built_in_score,
+            user_score=user_score,
+            head=head)
+
+    def list_storehouse_filesystem_paths(self,
+        built_in_external=True, user_external=True,
+        built_in_score=True, user_score=True, head=None):
+        '''List storehouse filesystem paths.
+
+        Example. List built-in segment package storehouse filesystem paths:
+
+        ::
+
+            >>> for x in wrangler.list_storehouse_filesystem_paths(
+            ...     user_external=False, user_score=False):
+            ...     x
+            '/Users/trevorbaca/score_manager/sketches'
+            '.../tools/scoremanagertools/built_in_scores/blue_example_score/music/segments'
+            '.../tools/scoremanagertools/built_in_scores/green_example_score/music/segments'
+            '.../tools/scoremanagertools/built_in_scores/red_example_score/music/segments'
+
+        Return list.
+        '''
+        return super(type(self), self).list_storehouse_filesystem_paths(
+            built_in_external=built_in_external,
+            user_external=user_external,
+            built_in_score=built_in_score,
+            user_score=user_score,
+            head=head)
 
     def make_asset_interactively(self):
         segment_package_proxy = SegmentPackageProxy(session=self._session)
