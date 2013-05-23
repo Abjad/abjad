@@ -195,8 +195,8 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             'experimental.tools.scoremanagertools.materialpackagemakers.RhythmMakerMaterialPackageMaker'
             'experimental.tools.scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker'
             'experimental.tools.scoremanagertools.materialpackagemakers.TempoMarkInventoryMaterialPackageMaker'
-            'materialpackagemakers.ConstellationCircuitSelectionMaterialPackageMaker'
-            'materialpackagemakers.ZaggedPitchClassMaterialPackageMaker'
+            'baca.music.materialpackagemakers.ConstellationCircuitSelectionMaterialPackageMaker'
+            'baca.music.materialpackagemakers.ZaggedPitchClassMaterialPackageMaker'
 
         .. note:: FIXME: user collateral shows up even when not requested.
 
@@ -248,10 +248,8 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             'experimental.tools.scoremanagertools.materialpackagemakers.RhythmMakerMaterialPackageMaker'
             'experimental.tools.scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker'
             'experimental.tools.scoremanagertools.materialpackagemakers.TempoMarkInventoryMaterialPackageMaker'
-            'materialpackagemakers.ConstellationCircuitSelectionMaterialPackageMaker'
-            'materialpackagemakers.ZaggedPitchClassMaterialPackageMaker'
-
-        .. note:: FIXME: user collateral should be fully qualified.
+            'baca.music.materialpackagemakers.ConstellationCircuitSelectionMaterialPackageMaker'
+            'baca.music.materialpackagemakers.ZaggedPitchClassMaterialPackageMaker'
 
         Return list.
         '''
