@@ -303,11 +303,7 @@ class MaterialPackageWrangler(PackageWrangler):
             MaterialPackageProxy('.../tools/scoremanagertools/built_in_materials/red_numbers')
             SargassoMeasureMaterialPackageMaker('.../tools/scoremanagertools/built_in_materials/red_sargasso_measures')
             MaterialPackageProxy('.../tools/scoremanagertools/built_in_materials/sargasso_multipliers')
-            ...
             TempoMarkInventoryMaterialPackageMaker('.../tools/scoremanagertools/built_in_scores/red_example_score/music/materials/tempo_inventory')
-            ...
-
-        .. note:: FIXME: user proxies appear in output even when they shouldn't.
 
         Return list.
         '''
@@ -318,72 +314,6 @@ class MaterialPackageWrangler(PackageWrangler):
             user_score=user_score,
             head=head)
 
-    def list_external_asset_packagesystem_paths(self, head=None):
-        '''List external asset packagesystem paths:
-
-        ::
-
-            >>> for x in wrangler.list_external_asset_packagesystem_paths():
-            ...     x
-            'experimental.tools.scoremanagertools.built_in_materials.red_directives'
-            'experimental.tools.scoremanagertools.built_in_materials.red_forte'
-            'experimental.tools.scoremanagertools.built_in_materials.red_marcati'
-            'experimental.tools.scoremanagertools.built_in_materials.red_notes'
-            'experimental.tools.scoremanagertools.built_in_materials.red_numbers'
-            'experimental.tools.scoremanagertools.built_in_materials.red_sargasso_measures'
-            'experimental.tools.scoremanagertools.built_in_materials.sargasso_multipliers'
-            'baca.music.materials.baca_numbers'
-
-        Return list.
-        '''
-        result = []
-        for filesystem_path in self.list_asset_filesystem_paths(
-            built_in_score=False, user_score=False, head=head):
-            packagesystem_path = self.configuration.filesystem_path_to_packagesystem_path(filesystem_path)
-            result.append(packagesystem_path)
-        return result
-
-    def list_score_asset_packagesystem_paths(self, head=None):
-        '''List score asset packagesystem paths:
-
-        ::
-
-            >>> for x in wrangler.list_score_asset_packagesystem_paths():
-            ...     x
-            'experimental.tools.scoremanagertools.built_in_scores.red_example_score.music.materials.tempo_inventory'
-            'betoerung.music.materials.aggregates'
-            'betoerung.music.materials.indigo_pitch_classes'
-            'betoerung.music.materials.range_inventory'
-            'betoerung.music.materials.reiterated_forte'
-            'betoerung.music.materials.speckled_rhythm_maker'
-            'betoerung.music.materials.tempo_inventory'
-            'betoerung.music.materials.time_signature_pairs'
-            'betoerung.music.materials.violet_pitch_classes'
-            'gebiete.music.materials.cobalt_divisions'
-            'gebiete.music.materials.end_incised_double_valued_note_maker'
-            'gebiete.music.materials.end_incised_note_maker'
-            'gebiete.music.materials.fused_cobalt_time_signatures'
-            'gebiete.music.materials.fused_yellow_time_signatures'
-            'gebiete.music.materials.pitch_classes'
-            'gebiete.music.materials.split_cobalt_time_signatures'
-            'gebiete.music.materials.split_yellow_time_signatures'
-            'gebiete.music.materials.tempo_inventory'
-            'gebiete.music.materials.time_signature_pairs'
-            'gebiete.music.materials.tratti_del_arco'
-            'gebiete.music.materials.yellow_divisions'
-            'manos.music.materials.aggregates'
-            'manos.music.materials.black_pcs'
-            'manos.music.materials.turquoise_pcs'
-
-        Return list.
-        '''
-        result = []
-        for filesystem_path in self.list_asset_filesystem_paths(
-            built_in_external=False, user_external=False, head=head):
-            packagesystem_path = self.configuration.filesystem_path_to_packagesystem_path(filesystem_path)
-            result.append(packagesystem_path)
-        return result
-            
     def list_storehouse_filesystem_paths(self,
         built_in_external=True, user_external=True,
         built_in_score=True, user_score=True, head=None):

@@ -184,11 +184,6 @@ class SegmentPackageWrangler(PackageWrangler):
             SegmentPackageProxy('.../tools/scoremanagertools/built_in_scores/red_example_score/music/segments/segment_01')
             SegmentPackageProxy('.../tools/scoremanagertools/built_in_scores/red_example_score/music/segments/segment_02')
             SegmentPackageProxy('.../tools/scoremanagertools/built_in_scores/red_example_score/music/segments/segment_03')
-            SegmentPackageProxy('/Users/trevorbaca/Documents/scores/betoerung/music/segments/BetoerungChunk')
-            SegmentPackageProxy('/Users/trevorbaca/Documents/scores/gebiete/music/segments/segment_01')
-            SegmentPackageProxy('/Users/trevorbaca/Documents/scores/manos/music/segments/test_chunk')
-
-        .. note:: FIXME: user collateral shows up even when it shouldn't.
 
         Example 2. List red example score segment package proxies:
 

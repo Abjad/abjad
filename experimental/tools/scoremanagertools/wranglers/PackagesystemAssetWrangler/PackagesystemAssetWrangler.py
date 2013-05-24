@@ -105,7 +105,12 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
     def list_asset_proxies(self, built_in_external=True, user_external=True,
         built_in_score=True, user_score=True, head=None):
         result = []
-        for package_path in self.list_asset_packagesystem_paths(head=head):
+        for package_path in self.list_asset_packagesystem_paths(
+            built_in_external=built_in_external,
+            user_external=user_external,
+            built_in_score=built_in_score,
+            user_score=user_score,
+            head=head):
             asset_proxy = self._initialize_asset_proxy(package_path)
             result.append(asset_proxy)
         return result
