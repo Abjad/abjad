@@ -147,6 +147,7 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
                             storehouse_package_path, package_name))
             else:
                 result.append(storehouse_package_path)
+        return result
         #result = []
         #for filesystem_path in self.list_asset_filesystem_paths(
         #    built_in_external=False, user_external=False, head=head):

@@ -17,22 +17,17 @@ class SegmentPackageWrangler(PackageWrangler):
 
     ### CLASS VARIABLES ###
     
-    built_in_external_storehouse_packagesystem_path = \
-        PackageWrangler.configuration.user_sketches_package_path
+    built_in_external_storehouse_packagesystem_path = None
 
     storehouse_path_infix_parts = ('music', 'segments')
 
-    user_external_storehouse_packagesystem_path = \
-        PackageWrangler.configuration.user_sketches_package_path
+    user_external_storehouse_packagesystem_path = None
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
     def _breadcrumb(self):
-        if self._session.is_in_score:
-            return 'segments'
-        else:
-            return 'sketches'
+        return 'segments'
 
     ### PRIVATE METHODS ###
 
@@ -104,6 +99,23 @@ class SegmentPackageWrangler(PackageWrangler):
             user_score=user_score,
             head=head)
 
+    def list_asset_packagesystem_paths(self, head=None):
+        '''List asset packagesystem paths.
+
+        ::
+
+            >>> for x in wrangler.list_asset_packagesystem_paths():
+            ...     x
+            'betoerung.music.segments.BetoerungChunk'
+            'gebiete.music.segments.segment_01'
+            'manos.music.segments.test_chunk'
+
+        .. note:: TODO: supply with four keyword filters.
+
+        Return list.
+        '''
+        return super(type(self), self).list_asset_packagesystem_paths(head=head)
+
     def list_storehouse_filesystem_paths(self,
         built_in_external=True, user_external=True,
         built_in_score=True, user_score=True, head=None):
@@ -116,7 +128,6 @@ class SegmentPackageWrangler(PackageWrangler):
             >>> for x in wrangler.list_storehouse_filesystem_paths(
             ...     user_external=False, user_score=False):
             ...     x
-            '/Users/trevorbaca/score_manager/sketches'
             '.../tools/scoremanagertools/built_in_scores/blue_example_score/music/segments'
             '.../tools/scoremanagertools/built_in_scores/green_example_score/music/segments'
             '.../tools/scoremanagertools/built_in_scores/red_example_score/music/segments'

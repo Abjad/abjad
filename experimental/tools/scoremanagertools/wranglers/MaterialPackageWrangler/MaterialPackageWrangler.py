@@ -258,8 +258,6 @@ class MaterialPackageWrangler(PackageWrangler):
     def list_asset_packagesystem_paths(self, head=None):
         '''List asset packagesystem paths.
 
-        Example. List built-in material package packagesystem paths:
-
         ::
 
             >>> for x in wrangler.list_asset_packagesystem_paths():

@@ -144,18 +144,19 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             built_in_score=built_in_score, 
             user_score=user_score, 
             head=head):
-            storehouse_package_path = self.configuration.filesystem_path_to_packagesystem_path(
-                directory_path)
-            for directory_entry in os.listdir(directory_path):
-                if directory_entry not in self.forbidden_directory_entries and \
-                    directory_entry[0].isalpha():
-                    filesystem_path = os.path.join(directory_path, directory_entry)
-                    if head is None:
-                        result.append(filesystem_path)
-                    else:
-                        package_path = '.'.join([storehouse_package_path, directory_entry])
-                        if package_path.startswith(head):
+            if directory_path:
+                storehouse_package_path = self.configuration.filesystem_path_to_packagesystem_path(
+                    directory_path)
+                for directory_entry in os.listdir(directory_path):
+                    if directory_entry not in self.forbidden_directory_entries and \
+                        directory_entry[0].isalpha():
+                        filesystem_path = os.path.join(directory_path, directory_entry)
+                        if head is None:
                             result.append(filesystem_path)
+                        else:
+                            package_path = '.'.join([storehouse_package_path, directory_entry])
+                            if package_path.startswith(head):
+                                result.append(filesystem_path)
         return result
 
     def list_asset_names(self, built_in_external=True, user_external=True,
@@ -183,7 +184,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         built_in_external=True, user_external=True,
         built_in_score=True, user_score=True, head=None):
         result = []
-        if built_in_external:
+        if built_in_external and self.built_in_external_storehouse_filesystem_path is not None:
             if head is None:
                 result.append(self.built_in_external_storehouse_filesystem_path)
             else:
@@ -191,7 +192,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                 if self.built_in_external_storehouse_filesystem_path.startswith(
                     filesystem_path):
                     result.append(self.built_in_external_storehouse_filesystem_path)
-        if user_external:
+        if user_external and self.user_external_storehouse_filesystem_path is not None:
             if head is None:
                 result.append(self.user_external_storehouse_filesystem_path)
             else:
