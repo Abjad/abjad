@@ -39,7 +39,7 @@ class ScoreManager(ScoreManagerObject):
         elif result == 'fix':
             self.score_package_wrangler.fix_visible_assets()
         elif result == 'k':
-            self.print_not_yet_implemented()
+            self._io.print_not_yet_implemented()
         elif result == 'm':
             self.material_package_wrangler._run(
                 rollback=True, head=self.configuration.built_in_materials_package_path)

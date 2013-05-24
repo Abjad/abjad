@@ -436,7 +436,7 @@ class MaterialPackageProxy(PackageProxy):
     # TODO: port
     @property
     def is_changed(self):
-        self.print_not_yet_implemented()
+        self._io.print_not_yet_implemented()
         material_definition = self.material_definition_module_proxy.import_material_definition()
         output_material = self.output_material_module_proxy.import_output_material_safely()
         return material_definition != output_material
@@ -701,7 +701,7 @@ class MaterialPackageProxy(PackageProxy):
 
     # TODO: port
     def regenerate_everything(self, prompt=True):
-        self.print_not_yet_implemented()
+        self._io.print_not_yet_implemented()
         self._io.proceed(is_interactive=prompt)
 
     def remove(self):

@@ -418,7 +418,7 @@ class UserInputGetter(MenuSectionAggregator):
                 if self.store_value(user_response):
                     break
             else:
-                self.print_not_yet_implemented()
+                self._io.print_not_yet_implemented()
         return True
 
     def present_prompts_and_store_values(self, include_chevron=True):

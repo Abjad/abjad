@@ -393,7 +393,7 @@ class ScorePackageProxy(PackageProxy):
         self.fix_score_package_directory_structure(is_interactive=False)
 
     def make_score_interactively(self):
-        self.print_not_yet_implemented()
+        self._io.print_not_yet_implemented()
 
     def make_setup_menu(self):
         setup_menu, section = self._io.make_menu(where=self._where,

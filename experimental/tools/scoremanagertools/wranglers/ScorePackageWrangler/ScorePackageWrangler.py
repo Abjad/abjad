@@ -62,10 +62,10 @@ class ScorePackageWrangler(PackageWrangler):
     ### PRIVATE METHODS ###
 
     def _handle_main_menu_result(self):
-        self.print_not_yet_implemented()
+        self._io.print_not_yet_implemented()
 
     def _make_main_menu(self):
-        self.print_not_yet_implemented()
+        self._io.print_not_yet_implemented()
 
     def _make_menu_tokens(self, head=None):
         menuing_pairs = self.list_visible_asset_package_path_and_score_title_pairs()

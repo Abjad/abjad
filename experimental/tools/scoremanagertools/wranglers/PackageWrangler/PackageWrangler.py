@@ -20,10 +20,10 @@ class PackageWrangler(PackagesystemAssetWrangler):
     ### PRIVATE METHODS ###
 
     def _handle_main_menu_result(self, result):
-        self.print_not_yet_implemented()
+        self._io.print_not_yet_implemented()
 
     def _make_main_menu(self):
-        self.print_not_yet_implemented()
+        self._io.print_not_yet_implemented()
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -42,4 +42,4 @@ class PackageWrangler(PackagesystemAssetWrangler):
         package_proxy.fix(is_interactive=False)
 
     def make_asset_interactively(self):
-        self.print_not_yet_implemented()
+        self._io.print_not_yet_implemented()
