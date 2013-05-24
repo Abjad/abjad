@@ -108,11 +108,7 @@ class MusicSpecifierModuleWrangler(ModuleWrangler):
             ...     user_external=False, user_score=False):
             ...     x
             '.../tools/scoremanagertools/built_in_specifiers/black_music.py'
-            '.../tools/scoremanagertools/built_in_specifiers/black_music.pyc'
             '.../tools/scoremanagertools/built_in_specifiers/green_music.py'
-            '.../tools/scoremanagertools/built_in_specifiers/green_music.pyc'
-
-        .. note:: FIXME: output includes .pyc files.
 
         Return list.
         '''
@@ -136,12 +132,7 @@ class MusicSpecifierModuleWrangler(ModuleWrangler):
             ...     user_external=False, user_score=False):
             ...     x
             'black music'
-            'black music'
             'green music'
-            'green music'
-
-        .. note:: FIXME: output inclues duplicate entries because of the presence of .pyc files.
-
 
         Return list.
         '''
@@ -165,11 +156,7 @@ class MusicSpecifierModuleWrangler(ModuleWrangler):
             ...     user_external=False, user_score=False):
             ...     x
             'experimental.tools.scoremanagertools.built_in_specifiers.black_music'
-            'experimental.tools.scoremanagertools.built_in_specifiers.black_music.pyc'
             'experimental.tools.scoremanagertools.built_in_specifiers.green_music'
-            'experimental.tools.scoremanagertools.built_in_specifiers.green_music.pyc'
-
-        .. note:: FIXME: output includes .pyc files.
 
         Return list.
         '''
@@ -180,7 +167,8 @@ class MusicSpecifierModuleWrangler(ModuleWrangler):
             user_score=user_score,
             head=head)
 
-    def list_asset_proxies(self, built_in_external=True, user_external=True,
+    def list_asset_proxies(self, 
+        built_in_external=True, user_external=True,
         built_in_score=True, user_score=True, head=None):
         '''List asset proxies.
 

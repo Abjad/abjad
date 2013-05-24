@@ -83,6 +83,12 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         assert os.path.sep in filesystem_path, repr(filesystem_path)
         return self.asset_proxy_class(filesystem_path=filesystem_path, session=self._session)
 
+    def _is_valid_directory_entry(self, directory_entry):
+        if directory_entry not in self.forbidden_directory_entries:
+            if directory_entry[0].isalpha():
+                return True
+        return False
+
     def _make_asset_selection_breadcrumb(self, infinitival_phrase=None):
         if infinitival_phrase:
             return 'select {} {}:'.format(self.asset_proxy_class._generic_class_name, infinitival_phrase)
@@ -148,8 +154,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                 storehouse_package_path = self.configuration.filesystem_path_to_packagesystem_path(
                     directory_path)
                 for directory_entry in os.listdir(directory_path):
-                    if directory_entry not in self.forbidden_directory_entries and \
-                        directory_entry[0].isalpha():
+                    if self._is_valid_directory_entry(directory_entry):
                         filesystem_path = os.path.join(directory_path, directory_entry)
                         if head is None:
                             result.append(filesystem_path)
