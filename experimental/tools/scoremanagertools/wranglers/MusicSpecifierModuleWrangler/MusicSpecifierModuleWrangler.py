@@ -176,11 +176,11 @@ class MusicSpecifierModuleWrangler(ModuleWrangler):
             
         ::
 
-            >>> for x in wrangler.list_asset_proxies( # doctest: +SKIP
+            >>> for x in wrangler.list_asset_proxies(
             ...     user_external=False, user_score=False):
             ...     x
-
-        .. note:: FIXME: this returns total insanity (in the form of lines read from file).
+            MusicSpecifierModuleProxy('.../tools/scoremanagertools/built_in_specifiers/black_music.py')
+            MusicSpecifierModuleProxy('.../tools/scoremanagertools/built_in_specifiers/green_music.py')
 
         Return list.
         '''
