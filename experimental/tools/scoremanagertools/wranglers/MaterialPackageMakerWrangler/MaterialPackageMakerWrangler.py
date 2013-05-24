@@ -145,11 +145,12 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             user_score=user_score,
             head=head)
 
-    def list_asset_names(self, built_in_external=True, user_external=True,
+    def list_asset_names(self, 
+        built_in_external=True, user_external=True,
         built_in_score=True, user_score=True, head=None):
         '''List asset names.
 
-        Example. List built-in asset names:
+        Example. List built-in material package maker names:
 
         ::
 
@@ -175,11 +176,12 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             user_score=user_score,
             head=head)
 
-    def list_asset_packagesystem_paths(self, built_in_external=True, user_external=True,
+    def list_asset_packagesystem_paths(self, 
+        built_in_external=True, user_external=True,
         built_in_score=True, user_score=True, head=None):
         '''List asset packagesystem_paths.
 
-        Example. List built-in asset packagesystem_paths:
+        Example. List built-in material package maker package paths:
 
         ::
 
@@ -195,22 +197,18 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             'experimental.tools.scoremanagertools.materialpackagemakers.RhythmMakerMaterialPackageMaker'
             'experimental.tools.scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker'
             'experimental.tools.scoremanagertools.materialpackagemakers.TempoMarkInventoryMaterialPackageMaker'
-            'baca.music.materialpackagemakers.ConstellationCircuitSelectionMaterialPackageMaker'
-            'baca.music.materialpackagemakers.ZaggedPitchClassMaterialPackageMaker'
-
-        .. note:: FIXME: user collateral shows up even when it shouldn't.
 
         Return list.
         '''
-#        return super(type(self), self).list_asset_packagesystem_paths(
-#            built_in_external=built_in_external,
-#            user_external=user_external,
-#            built_in_score=built_in_score,
-#            user_score=user_score,
-#            head=head)
-        return super(type(self), self).list_asset_packagesystem_paths()
+        return super(type(self), self).list_asset_packagesystem_paths(
+            built_in_external=built_in_external,
+            user_external=user_external,
+            built_in_score=built_in_score,
+            user_score=user_score,
+            head=head)
 
-    def list_asset_proxies(self, built_in_external=True, user_external=True,
+    def list_asset_proxies(self, 
+        built_in_external=True, user_external=True,
         built_in_score=True, user_score=True, head=None):
         '''List asset proxies.
 
@@ -230,10 +228,6 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             MaterialPackageProxy('.../tools/scoremanagertools/materialpackagemakers/RhythmMakerMaterialPackageMaker')
             MaterialPackageProxy('.../tools/scoremanagertools/materialpackagemakers/SargassoMeasureMaterialPackageMaker')
             MaterialPackageProxy('.../tools/scoremanagertools/materialpackagemakers/TempoMarkInventoryMaterialPackageMaker')
-            MaterialPackageProxy('.../baca/music/materialpackagemakers/ConstellationCircuitSelectionMaterialPackageMaker')
-            MaterialPackageProxy('.../baca/music/materialpackagemakers/ZaggedPitchClassMaterialPackageMaker')
-
-        .. note:: FIXME: user collateral shows up even when it shouldn't.
 
         Return list.
         '''
@@ -244,57 +238,12 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             user_score=user_score,
             head=head)
 
-    def list_external_asset_packagesystem_paths(self, head=None):
-        '''List external asset packagesystem paths:
-
-        ::
-
-            >>> for x in wrangler.list_external_asset_packagesystem_paths():
-            ...     x
-            'experimental.tools.scoremanagertools.materialpackagemakers.ArticulationHandlerMaterialPackageMaker'
-            'experimental.tools.scoremanagertools.materialpackagemakers.DynamicHandlerMaterialPackageMaker'
-            'experimental.tools.scoremanagertools.materialpackagemakers.ListMaterialPackageMaker'
-            'experimental.tools.scoremanagertools.materialpackagemakers.MarkupInventoryMaterialPackageMaker'
-            'experimental.tools.scoremanagertools.materialpackagemakers.OctaveTranspositionMappingInventoryMaterialPackageMaker'
-            'experimental.tools.scoremanagertools.materialpackagemakers.PitchRangeInventoryMaterialPackageMaker'
-            'experimental.tools.scoremanagertools.materialpackagemakers.RhythmMakerMaterialPackageMaker'
-            'experimental.tools.scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker'
-            'experimental.tools.scoremanagertools.materialpackagemakers.TempoMarkInventoryMaterialPackageMaker'
-            'baca.music.materialpackagemakers.ConstellationCircuitSelectionMaterialPackageMaker'
-            'baca.music.materialpackagemakers.ZaggedPitchClassMaterialPackageMaker'
-
-        Return list.
-        '''
-        result = []
-        for filesystem_path in self.list_asset_filesystem_paths(
-            built_in_score=False, user_score=False, head=head):
-            packagesystem_path = self.configuration.filesystem_path_to_packagesystem_path(filesystem_path)
-            result.append(packagesystem_path)
-        return result
-
-    def list_score_asset_packagesystem_paths(self, head=None):
-        '''List score asset package paths:
-
-        ::
-
-            >>> wrangler.list_score_asset_packagesystem_paths()
-            []
-
-        Return list.
-        '''
-        result = []
-        for filesystem_path in self.list_asset_filesystem_paths(
-            built_in_external=False, user_external=False, head=head):
-            packagesystem_path = self.configuration.filesystem_path_to_packagesystem_path(filesystem_path)
-            result.append(packagesystem_path)
-        return result
-
     def list_storehouse_filesystem_paths(self,
         built_in_external=True, user_external=True,
         built_in_score=True, user_score=True, head=None):
         '''List storehouse filesystem paths.
 
-        Example. List built-in material package maker storehouse filesystem paths:
+        Example. List built-in material package maker storehouses:
 
         ::
 
