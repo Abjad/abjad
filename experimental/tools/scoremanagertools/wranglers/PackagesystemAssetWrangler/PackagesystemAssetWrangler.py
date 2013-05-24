@@ -20,19 +20,11 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        '''True when system storehouse package paths and score
-        storehouse package path infixes are both equal.
-        Otherwise false.
+        '''True when types are the same. Otherwise false.
 
         Return boolean.
         '''
-        if isinstance(expr, type(self)):
-            if self._list_built_in_external_storehouse_packagesystem_path() == \
-                expr._list_built_in_external_storehouse_packagesystem_path():
-                if self.storehouse_path_infix_parts == \
-                    expr.storehouse_path_infix_parts:
-                    return True
-        return False
+        return type(self) is type(expr)
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 
@@ -96,24 +88,19 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
 
     ### PUBLIC METHODS ###
 
-    def list_asset_packagesystem_paths(self, head=None):
+    def list_asset_packagesystem_paths(self, 
+        built_in_external=True, user_external=True,
+        built_in_score=True, user_score=True, head=None):
         result = []
-        result.extend(self.list_external_asset_packagesystem_paths(head=head))
-        result.extend(self.list_score_asset_packagesystem_paths(head=head))
+        for filesystem_path in self.list_asset_filesystem_paths(
+            built_in_external=built_in_external,
+            user_external=user_external,
+            built_in_score=built_in_score,
+            user_score=user_score,
+            head=head):
+            packagesystem_path = self.configuration.filesystem_path_to_packagesystem_path(filesystem_path)
+            result.append(packagesystem_path)
         return result
-#    def list_asset_packagesystem_paths(self, 
-#        built_in_external=True, user_external=True,
-#        built_in_score=True, user_score=True, head=None):
-#        result = []
-#        for filesystem_path in self.list_asset_filesystem_paths(
-#            built_in_external=built_in_external,
-#            user_external=user_external,
-#            built_in_score=built_in_score,
-#            user_score=user_score,
-#            head=head):
-#            packagesystem_path = self.configuration.filesystem_path_to_packagesystem_path(filesystem_path)
-#            result.append(packagesystem_path)
-#        return result
 
     def list_asset_proxies(self, built_in_external=True, user_external=True,
         built_in_score=True, user_score=True, head=None):
@@ -133,27 +120,11 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
 
     def list_score_asset_packagesystem_paths(self, head=None):
         result = []
-        for storehouse_package_path in \
-            self._list_score_storehouse_package_paths(head=head):
-            if self.storehouse_path_infix_parts:
-                filesystem_path = self.configuration.packagesystem_path_to_filesystem_path(
-                    storehouse_package_path)
-                for directory_entry in os.listdir(filesystem_path):
-                    if directory_entry[0].isalpha():
-                        package_name = directory_entry
-                        if '.' in package_name:
-                            package_name = package_name[:package_name.rindex('.')]
-                        result.append('{}.{}'.format(
-                            storehouse_package_path, package_name))
-            else:
-                result.append(storehouse_package_path)
+        for filesystem_path in self.list_asset_filesystem_paths(
+            built_in_external=False, user_external=False, head=head):
+            packagesystem_path = self.configuration.filesystem_path_to_packagesystem_path(filesystem_path)
+            result.append(packagesystem_path)
         return result
-        #result = []
-        #for filesystem_path in self.list_asset_filesystem_paths(
-        #    built_in_external=False, user_external=False, head=head):
-        #    packagesystem_path = self.configuration.filesystem_path_to_packagesystem_path(filesystem_path)
-        #    result.append(packagesystem_path)
-        #return result
 
     def list_visible_asset_packagesystem_paths(self, head=None):
         result = []
@@ -167,7 +138,6 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
                 result.append(asset_proxy.package_path)
         return result
 
-    # TODO: write test
     def make_empty_package(self, package_path):
         if package_path is None:
             return
@@ -194,7 +164,6 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
         self.make_score_storehouse_packages()
         self._io.proceed('missing packages created.', is_interactive=is_interactive)
 
-    # TODO: write test
     def rename_asset_interactively(self, head=None):
         self._session.push_backtrack()
         asset_package_path = self.select_asset_packagesystem_path_interactively(
