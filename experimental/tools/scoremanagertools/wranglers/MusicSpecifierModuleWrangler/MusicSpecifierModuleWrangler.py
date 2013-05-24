@@ -2,6 +2,17 @@ from experimental.tools.scoremanagertools.wranglers.ModuleWrangler import Module
 
 
 class MusicSpecifierModuleWrangler(ModuleWrangler):
+    '''Music specifier module wrangler.
+
+    ::
+
+        >>> score_manager = scoremanagertools.scoremanager.ScoreManager()
+        >>> wrangler = score_manager.music_specifier_module_wrangler
+        >>> wrangler
+        MusicSpecifierModuleWrangler()
+
+    Return music specifier module wrangler.
+    '''
 
     ### CLASS VARIABLES ###
 
@@ -57,13 +68,166 @@ class MusicSpecifierModuleWrangler(ModuleWrangler):
 
     @property
     def asset_proxy_class(self):
+        '''Music specifier module wrangler proxy class:
+
+        ::
+
+            >>> wrangler.asset_proxy_class.__name__
+            'MusicSpecifierModuleProxy'
+
+        Return class.
+        '''
         from experimental.tools import scoremanagertools
         return scoremanagertools.proxies.MusicSpecifierModuleProxy
 
+    @property
+    def storage_format(self):
+        '''Music specifier module wrangler storage format:
+
+        ::
+
+            >>> wrangler.storage_format
+            'wranglers.MusicSpecifierModuleWrangler()'
+
+        Return string.
+        '''
+        return super(type(self), self).storage_format
+
     ### PUBLIC METHODS ###
 
-    def list_score_asset_packagesystem_paths(self, head=None):
-        return []
+    def list_asset_filesystem_paths(self,
+        built_in_external=True, user_external=True,
+        built_in_score=True, user_score=True, head=None):
+        '''List asset filesystem paths.
+
+        Example. List built-in music specifier module filesystem paths:
+
+        ::
+
+            >>> for x in wrangler.list_asset_filesystem_paths(
+            ...     user_external=False, user_score=False):
+            ...     x
+            '.../tools/scoremanagertools/built_in_specifiers/black_music.py'
+            '.../tools/scoremanagertools/built_in_specifiers/black_music.pyc'
+            '.../tools/scoremanagertools/built_in_specifiers/green_music.py'
+            '.../tools/scoremanagertools/built_in_specifiers/green_music.pyc'
+
+        .. note:: FIXME: output includes .pyc files.
+
+        Return list.
+        '''
+        return super(type(self), self).list_asset_filesystem_paths(
+            built_in_external=built_in_external,
+            user_external=user_external,
+            built_in_score=built_in_score,
+            user_score=user_score,
+            head=head)
+
+    def list_asset_names(self,
+        built_in_external=True, user_external=True,
+        built_in_score=True, user_score=True, head=None):
+        '''List asset names.
+
+        Example. List built-in music specifier module names:
+
+        ::
+
+            >>> for x in wrangler.list_asset_names(
+            ...     user_external=False, user_score=False):
+            ...     x
+            'black music'
+            'black music'
+            'green music'
+            'green music'
+
+        .. note:: FIXME: output inclues duplicate entries because of the presence of .pyc files.
+
+
+        Return list.
+        '''
+        return super(type(self), self).list_asset_names(
+            built_in_external=built_in_external,
+            user_external=user_external,
+            built_in_score=built_in_score,
+            user_score=user_score,
+            head=head)
+
+    def list_asset_packagesystem_paths(self,
+        built_in_external=True, user_external=True,
+        built_in_score=True, user_score=True, head=None):
+        '''List asset packagesystem paths.
+
+        Example. List built-in music specifier module paths:
+
+        ::
+
+            >>> for x in wrangler.list_asset_packagesystem_paths(
+            ...     user_external=False, user_score=False):
+            ...     x
+            'experimental.tools.scoremanagertools.built_in_specifiers.black_music'
+            'experimental.tools.scoremanagertools.built_in_specifiers.black_music.pyc'
+            'experimental.tools.scoremanagertools.built_in_specifiers.green_music'
+            'experimental.tools.scoremanagertools.built_in_specifiers.green_music.pyc'
+
+        .. note:: FIXME: output includes .pyc files.
+
+        Return list.
+        '''
+        return super(type(self), self).list_asset_packagesystem_paths(
+            built_in_external=built_in_external,
+            user_external=user_external,
+            built_in_score=built_in_score,
+            user_score=user_score,
+            head=head)
+
+    def list_asset_proxies(self, built_in_external=True, user_external=True,
+        built_in_score=True, user_score=True, head=None):
+        '''List asset proxies.
+
+        Example. List built-in music specifier module proxies:
+            
+        ::
+
+            >>> for x in wrangler.list_asset_proxies( # doctest: +SKIP
+            ...     user_external=False, user_score=False):
+            ...     x
+
+        .. note:: FIXME: this returns total insanity (in the form of lines read from file).
+
+        Return list.
+        '''
+        return super(type(self), self).list_asset_proxies(
+            built_in_external=built_in_external,
+            user_external=user_external,
+            built_in_score=built_in_score,
+            user_score=user_score,
+            head=head)
+
+    def list_storehouse_filesystem_paths(self,
+        built_in_external=True, user_external=True,
+        built_in_score=True, user_score=True, head=None):
+        '''List storehouse filesystem paths.
+
+        Example. List built-in music specifier module storehouses:
+
+        ::
+
+            >>> for x in wrangler.list_storehouse_filesystem_paths(
+            ...     user_external=False, user_score=False):
+            ...     x
+            '.../tools/scoremanagertools/built_in_specifiers'
+            '.../tools/scoremanagertools/built_in_scores/blue_example_score/music/specifiers'
+            '.../tools/scoremanagertools/built_in_scores/green_example_score/music/specifiers'
+            '.../tools/scoremanagertools/built_in_scores/red_example_score/music/specifiers'
+
+        Return list.
+        '''
+        return super(type(self), self).list_storehouse_filesystem_paths(
+            built_in_external=built_in_external,
+            user_external=user_external,
+            built_in_score=built_in_score,
+            user_score=user_score,
+            head=head)
 
     def make_asset_interactively(self):
         getter = self._io.make_getter()

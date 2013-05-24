@@ -319,7 +319,7 @@ class MaterialPackageWrangler(PackageWrangler):
         built_in_score=True, user_score=True, head=None):
         '''List storehouse filesystem paths.
 
-        Example. List built-in material package storehouse filesystem paths:
+        Example. List built-in material package storehouses:
 
         ::
 
@@ -375,7 +375,8 @@ class MaterialPackageWrangler(PackageWrangler):
     def make_makermade_material_package(self,
         material_package_path, material_package_maker_class_name, tags=None):
         tags = tags or {}
-        command = 'from experimental.tools.scoremanagertools.materialpackagemakers import {} as material_package_maker_class'.format(
+        command = 'from experimental.tools.scoremanagertools.materialpackagemakers '
+        command += 'import {} as material_package_maker_class'.format(
             material_package_maker_class_name)
         try:
             exec(command)
