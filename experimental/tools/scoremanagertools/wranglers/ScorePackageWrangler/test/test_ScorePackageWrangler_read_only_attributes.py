@@ -21,13 +21,6 @@ def test_ScorePackageWrangler_read_only_attributes_02():
 
 
 def test_ScorePackageWrangler_read_only_attributes_03():
-    '''Infix.
-    '''
-
-    assert wrangler.storehouse_path_infix_parts == ()
-
-
-def test_ScorePackageWrangler_read_only_attributes_04():
     '''Temporary asset.
     '''
 

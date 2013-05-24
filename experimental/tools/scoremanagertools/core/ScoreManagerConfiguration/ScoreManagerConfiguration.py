@@ -465,8 +465,8 @@ class ScoreManagerConfiguration(Configuration):
 
         ::
 
-            >>> configuration.user_scores_directory_path # doctest: +SKIP
-            '.../Documents/scores'
+            >>> configuration.user_scores_directory_path
+            '.../scores'
 
         Defaults to ``~/Documents/scores``.
 
@@ -638,6 +638,7 @@ class ScoreManagerConfiguration(Configuration):
         else:
             directory_parts = [self.user_scores_directory_path] + package_path_parts[:]
         directory_path = os.path.join(*directory_parts)
+        directory_path = os.path.normpath(directory_path)
 
         if is_module:
             directory_path += '.py'

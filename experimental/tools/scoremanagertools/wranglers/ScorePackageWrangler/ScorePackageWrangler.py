@@ -30,6 +30,8 @@ class ScorePackageWrangler(PackageWrangler):
     built_in_external_storehouse_packagesystem_path = \
         PackageWrangler.configuration.built_in_scores_package_path
 
+    storehouse_path_infix_parts = None
+
     user_external_storehouse_filesystem_path = \
         PackageWrangler.configuration.user_scores_directory_path
 
@@ -226,22 +228,14 @@ class ScorePackageWrangler(PackageWrangler):
             ...     x
             '.../tools/scoremanagertools/built_in_scores'
 
-        .. note:: TODO: inherit directory from superclass.
-
         Return list.
         '''
-        result = []
-        if built_in_score:
-            result.append(self.configuration.built_in_scores_directory_path)
-        if user_score:
-            result.append(self.configuration.user_scores_directory_path)
-        return result
-#        return super(type(self), self).list_storehouse_filesystem_paths(
-#            built_in_external=built_in_external,
-#            user_external=user_external,
-#            built_in_score=built_in_score,
-#            user_score=user_score,
-#            head=head)
+        return super(type(self), self).list_storehouse_filesystem_paths(
+            built_in_external=built_in_external,
+            user_external=user_external,
+            built_in_score=built_in_score,
+            user_score=user_score,
+            head=head)
 
     def list_visible_asset_filesystem_paths(self, head=None):
         '''Score package wrangler list visible asset filesystem paths:
