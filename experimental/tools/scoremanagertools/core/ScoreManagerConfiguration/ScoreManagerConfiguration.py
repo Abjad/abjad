@@ -93,15 +93,6 @@ class ScoreManagerConfiguration(Configuration):
                 'spec': 'string(default={!r})'.format(
                     os.path.join(self.home_directory_path, 'Documents', 'scores'))
             },
-            'user_sketches_directory_path': {
-                'comment': [
-                    '',
-                    'Set to the directory where you want score manager to store sketches.',
-                    'Defaults to $HOME/score_manager/sketches/.'
-                ],
-                'spec': 'string(default={!r})'.format(
-                    os.path.join(self.configuration_directory_path, 'sketches'))
-            },
             'user_stylesheets_directory_path': {
                 'comment': [
                     '',
@@ -221,7 +212,7 @@ class ScoreManagerConfiguration(Configuration):
 
     @property
     def built_in_specifiers_directory_path(self):
-        '''Score manager sketches directory path:
+        '''Built-in specifiers directory path:
 
         ::
 
@@ -503,38 +494,6 @@ class ScoreManagerConfiguration(Configuration):
         return ''
 
     @property
-    def user_sketches_directory_path(self):
-        '''Score-external segments directory path:
-
-        ::
-
-            >>> configuration.user_sketches_directory_path # doctest: +SKIP
-            '~/score_manager/sketches'
-
-        (Output will vary according to configuration.)
-
-        Return string.
-        '''
-        return os.path.normpath(os.path.expanduser(
-            self._settings['user_sketches_directory_path']
-            ))
-
-    @property
-    def user_sketches_package_path(self):
-        '''Score-external segments package path:
-
-        ::
-
-            >>> configuration.user_sketches_package_path # doctest: +SKIP
-            'sketches'
-
-        (Output will vary according to configuration.)
-
-        Return string.
-        '''
-        return os.path.basename(self.user_sketches_directory_path)
-
-    @property
     def user_stylesheets_directory_path(self):
         '''User stylesheets directory path:
 
@@ -589,9 +548,6 @@ class ScoreManagerConfiguration(Configuration):
         elif filesystem_path.startswith(self.score_manager_tools_directory_path):
             prefix_length = \
                 len(os.path.dirname(self.score_manager_tools_directory_path)) + 1
-        elif filesystem_path.startswith(self.user_sketches_directory_path):
-            prefix_length = \
-                len(os.path.dirname(self.user_sketches_directory_path)) + 1
         elif filesystem_path.startswith(self.user_scores_directory_path):
             prefix_length = len(self.user_scores_directory_path) + 1
         else:
@@ -667,11 +623,6 @@ class ScoreManagerConfiguration(Configuration):
             self.built_in_materials_package_path:
             directory_parts = \
                 [self.built_in_materials_directory_path] + \
-                package_path_parts[1:]
-        elif package_path_parts[0] == \
-            self.user_sketches_package_path:
-            directory_parts = \
-                [self.user_sketches_directory_path] + \
                 package_path_parts[1:]
         elif package_path_parts[0] == \
             self.built_in_specifiers_package_path:

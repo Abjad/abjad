@@ -18,7 +18,7 @@ So what's the formalization?
 We must first make decisions about zero-length timespans. Do we allow them or not?
 On the one hand, the most intuitive cases all make reference to timespans with positive
 duration. On the other hand, hard-won experience suggests that zero-duration whatevers
-will eventually make themselves useful. Additionally, prelimiary sketches from the last
+will eventually make themselves useful. Additionally, prelimiary thoughts from the last
 couple of days' work suggest that the cases of positively durated timespans are actually
 trickier to work out that the case that allows for zero-duration timespans.
 

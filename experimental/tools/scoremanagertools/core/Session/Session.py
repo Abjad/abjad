@@ -282,8 +282,8 @@ class Session(abctools.AbjadObject):
 
         ::
 
-            >>> session.current_segments_directory_path # doctest: +SKIP
-            '~/score_manager/sketches'
+            >>> session.current_segments_directory_path is None
+            True
 
         (Output will vary according to configuration.)
 
@@ -306,17 +306,17 @@ class Session(abctools.AbjadObject):
             parts.extend(
                 scoremanagertools.wranglers.SegmentPackageWrangler.storehouse_path_infix_parts)
             return os.path.join(*parts)
-        else:
-            return self.configuration.user_sketches_directory_path
 
     @property
     def current_segments_package_path(self):
-        '''Session current segments package path:
+        '''Session current segments package path.
+
+        Session out of score:
 
         ::
 
-            >>> session.current_segments_package_path
-            'sketches'
+            >>> session.current_segments_package_path is None
+            True
 
         Session in score:
 
@@ -325,7 +325,7 @@ class Session(abctools.AbjadObject):
             >>> session_in_score.current_segments_package_path
             'foo.music.segments'
 
-        Return string.
+        Return none or string.
         '''
         from experimental.tools import scoremanagertools
         if self.is_in_score:
@@ -334,8 +334,6 @@ class Session(abctools.AbjadObject):
             parts.extend(
                 scoremanagertools.wranglers.SegmentPackageWrangler.storehouse_path_infix_parts)
             return '.'.join(parts)
-        else:
-            return self.configuration.user_sketches_package_path
 
     @property
     def current_specifiers_directory_path(self):

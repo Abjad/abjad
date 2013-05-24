@@ -51,7 +51,7 @@ Type start-score-manager from the commandline and the score manager should start
 What you see here probably won't be very interesting because you
 won't yet have any score manager scores created on your system.
 But you should see an empty list of scores as well as three or four menu options.
-The menu options will allow you to manage materials, specifiers and sketches.
+The menu options will allow you to manage materials and specifiers.
 There will also be a menu option to create a new score.
 If the shell can't find start-score-manager then make sure you added 
 the abjad/experimental/scr directory to your PATH.

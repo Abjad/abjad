@@ -38,8 +38,6 @@ class ScoreManager(ScoreManagerObject):
                 rollback=True, head=self.configuration.built_in_specifiers_package_path)
         elif result == 'fix':
             self.score_package_wrangler.fix_visible_assets()
-        elif result == 'k':
-            self._io.print_not_yet_implemented()
         elif result == 'm':
             self.material_package_wrangler._run(
                 rollback=True, head=self.configuration.built_in_materials_package_path)
@@ -61,7 +59,6 @@ class ScoreManager(ScoreManagerObject):
         section = menu.make_section()
         section.append(('m', 'materials'))
         section.append(('f', 'specifiers'))
-        section.append(('k', 'sketches'))
         section.append(('new', 'new score'))
         hidden_section = menu.make_section(is_hidden=True)
         hidden_section.append(('active', 'show active scores only'))
