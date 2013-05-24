@@ -12,7 +12,7 @@ def test_ScorePackageWrangler_read_only_attributes_01():
     assert wrangler._breadcrumb == 'scores'
 
 
-def test_ScorePackageWrangler_read_only_attributes_03():
+def test_ScorePackageWrangler_read_only_attributes_02():
     '''Current storehouse.
     '''
 
@@ -20,21 +20,14 @@ def test_ScorePackageWrangler_read_only_attributes_03():
     assert wrangler._current_storehouse_filesystem_path == wrangler.configuration.user_scores_directory_path
 
 
-def test_ScorePackageWrangler_read_only_attributes_05():
-    '''Score-external assets.
-    '''
-
-    assert wrangler.list_external_asset_packagesystem_paths() == []
-
-
-def test_ScorePackageWrangler_read_only_attributes_06():
+def test_ScorePackageWrangler_read_only_attributes_03():
     '''Infix.
     '''
 
     assert wrangler.storehouse_path_infix_parts == ()
 
 
-def test_ScorePackageWrangler_read_only_attributes_07():
+def test_ScorePackageWrangler_read_only_attributes_04():
     '''Temporary asset.
     '''
 

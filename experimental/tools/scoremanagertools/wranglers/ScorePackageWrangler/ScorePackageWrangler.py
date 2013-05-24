@@ -115,7 +115,9 @@ class ScorePackageWrangler(PackageWrangler):
     def list_asset_filesystem_paths(self,
         built_in_external=True, user_external=True,
         built_in_score=True, user_score=True, head=None):
-        '''Score package manager list specific asset filesystem paths:
+        '''List asset filesystem paths.
+    
+        Example. List built-in score package filesystem paths:
 
         ::
 
@@ -140,7 +142,7 @@ class ScorePackageWrangler(PackageWrangler):
         built_in_score=True, user_score=True, head=None):
         '''List asset names.
 
-        Example. List built-in score names:
+        Example. List built-in score package names:
 
         ::
 
@@ -160,104 +162,55 @@ class ScorePackageWrangler(PackageWrangler):
             user_score=user_score,
             head=head)
 
-    # TODO: this is fine; just uncomment once MaterialPackageWrangler works the same way
-#    def list_asset_packagesystem_paths(self, 
-#        built_in_external=True, user_external=True,
-#        built_in_score=True, user_score=True, head=None):
-#        '''List asset packagesystem paths.
-#
-#        Example. List built-in score package paths:
-#
-#        ::
-#
-#            >>> for x in wrangler.list_asset_packagesystem_paths(
-#            ...     user_external=False, user_score=False):
-#            ...     x
-#            'experimental.tools.scoremanagertools.built_in_scores.blue_example_score'
-#            'experimental.tools.scoremanagertools.built_in_scores.green_example_score'
-#            'experimental.tools.scoremanagertools.built_in_scores.red_example_score'
-#
-#        Return list.
-#        '''
-#        return super(type(self), self).list_asset_packagesystem_paths(
-#            built_in_external=built_in_external,
-#            user_external=user_external,
-#            built_in_score=built_in_score,
-#            user_score=user_score,
-#            head=head)
+    def list_asset_packagesystem_paths(self, 
+        built_in_external=True, user_external=True,
+        built_in_score=True, user_score=True, head=None):
+        '''List asset packagesystem paths.
 
-#    def list_asset_proxies(self, head=None):
-#        '''Score package wrangler get asset proxies:
-#
-#        ::
-#
-#            >>> for x in wrangler.list_asset_proxies():
-#            ...     x
-#            ScorePackageProxy('.../tools/scoremanagertools/built_in_scores/blue_example_score')
-#            ScorePackageProxy('.../tools/scoremanagertools/built_in_scores/green_example_score')
-#            ScorePackageProxy('.../tools/scoremanagertools/built_in_scores/red_example_score')
-#            ...
-#
-#        Output lists built-in scores followed by user scores.
-#
-#        Return list.
-#        '''
-#        return super(type(self), self).list_asset_proxies(head=head)        
-
-    def list_external_asset_packagesystem_paths(self, head=None):
-        '''Score package wrangler list external asset package paths:
+        Example. List built-in score package paths:
 
         ::
 
-            >>> wrangler.list_external_asset_packagesystem_paths()
-            []
-
-        Return list.
-        '''
-        result = []
-        for filesystem_path in self.list_asset_filesystem_paths(
-            built_in_score=False, user_score=False, head=head):
-            packagesystem_path = self.configuration.filesystem_path_to_packagesystem_path(filesystem_path)
-            result.append(packagesystem_path)
-        return result
-
-    def list_score_asset_packagesystem_paths(self, head=None):
-        '''List score asset packagesystem paths.
-
-        ::
-
-            >>> for x in wrangler.list_score_asset_packagesystem_paths():
+            >>> for x in wrangler.list_asset_packagesystem_paths(
+            ...     user_external=False, user_score=False):
             ...     x
             'experimental.tools.scoremanagertools.built_in_scores.blue_example_score'
             'experimental.tools.scoremanagertools.built_in_scores.green_example_score'
             'experimental.tools.scoremanagertools.built_in_scores.red_example_score'
-            'aracilik'
-            'archipel'
-            'betoerung'
-            'cary'
-            'chrysanthemums'
-            'desir'
-            'gebiete'
-            'imaginaire'
-            'jivan'
-            'lidercfeny'
-            'mannigfaltigkeiten'
-            'manos'
-            'recursif'
-            'red_shift'
-            'sekka'
-            'tack'
-            'territoires'
-            'zeit'
 
         Return list.
         '''
-        result = []
-        for filesystem_path in self.list_asset_filesystem_paths(
-            built_in_external=False, user_external=False, head=head):
-            packagesystem_path = self.configuration.filesystem_path_to_packagesystem_path(filesystem_path)
-            result.append(packagesystem_path)
-        return result
+        return super(type(self), self).list_asset_packagesystem_paths(
+            built_in_external=built_in_external,
+            user_external=user_external,
+            built_in_score=built_in_score,
+            user_score=user_score,
+            head=head)
+
+    def list_asset_proxies(self, 
+        built_in_external=True, user_external=True,
+        built_in_score=True, user_score=True, head=None):
+        '''List asset proxies.
+
+        Example. List built-in score package proxies:
+
+        ::
+
+            >>> for x in wrangler.list_asset_proxies(
+            ...     user_external=False, user_score=False):
+            ...     x
+            ScorePackageProxy('.../tools/scoremanagertools/built_in_scores/blue_example_score')
+            ScorePackageProxy('.../tools/scoremanagertools/built_in_scores/green_example_score')
+            ScorePackageProxy('.../tools/scoremanagertools/built_in_scores/red_example_score')
+
+        Return list.
+        '''
+        return super(type(self), self).list_asset_proxies(
+            built_in_external=built_in_external,
+            user_external=user_external,
+            built_in_score=built_in_score,
+            user_score=user_score,
+            head=head)
 
     def list_storehouse_filesystem_paths(self,
         built_in_external=True, user_external=True,
@@ -273,6 +226,8 @@ class ScorePackageWrangler(PackageWrangler):
             ...     x
             '.../tools/scoremanagertools/built_in_scores'
 
+        .. note:: TODO: inherit directory from superclass.
+
         Return list.
         '''
         result = []
@@ -281,6 +236,12 @@ class ScorePackageWrangler(PackageWrangler):
         if user_score:
             result.append(self.configuration.user_scores_directory_path)
         return result
+#        return super(type(self), self).list_storehouse_filesystem_paths(
+#            built_in_external=built_in_external,
+#            user_external=user_external,
+#            built_in_score=built_in_score,
+#            user_score=user_score,
+#            head=head)
 
     def list_visible_asset_filesystem_paths(self, head=None):
         '''Score package wrangler list visible asset filesystem paths:
@@ -294,7 +255,9 @@ class ScorePackageWrangler(PackageWrangler):
             '.../tools/scoremanagertools/built_in_scores/red_example_score'
             ...
 
-        Output lists built-in scores followed by user scores.
+        User collateral elided.
+
+        .. note:: TODO: supply with four keywords.
 
         Return list.
         '''
@@ -304,6 +267,12 @@ class ScorePackageWrangler(PackageWrangler):
         return result
 
     def list_visible_asset_package_path_and_score_title_pairs(self, head=None):
+        '''List visible asset package path and score title pairs.
+
+        .. note:: TODO: supply with four keywords.
+
+        Return list.
+        '''
         result = []
         scores_to_show = self._session.scores_to_show
         for asset_proxy in PackageWrangler.list_asset_proxies(self, head=head):
@@ -332,7 +301,9 @@ class ScorePackageWrangler(PackageWrangler):
             ScorePackageProxy('.../tools/scoremanagertools/built_in_scores/red_example_score')
             ...
         
-        Output lists built-in scores followed by user scores.
+        User collateral elided.
+        
+        .. note:: supply with four keywords.
 
         Return list.
         '''
