@@ -255,12 +255,17 @@ class MaterialPackageWrangler(PackageWrangler):
             user_score=user_score,
             head=head)
 
-    def list_asset_packagesystem_paths(self, head=None):
+    def list_asset_packagesystem_paths(self,
+        built_in_external=True, user_external=True,
+        built_in_score=True, user_score=True, head=None):
         '''List asset packagesystem paths.
+
+        Example. List built-in material package paths:
 
         ::
 
-            >>> for x in wrangler.list_asset_packagesystem_paths():
+            >>> for x in wrangler.list_asset_packagesystem_paths(
+            ...     user_external=False, user_score=False):
             ...     x
             'experimental.tools.scoremanagertools.built_in_materials.red_directives'
             'experimental.tools.scoremanagertools.built_in_materials.red_forte'
@@ -269,15 +274,16 @@ class MaterialPackageWrangler(PackageWrangler):
             'experimental.tools.scoremanagertools.built_in_materials.red_numbers'
             'experimental.tools.scoremanagertools.built_in_materials.red_sargasso_measures'
             'experimental.tools.scoremanagertools.built_in_materials.sargasso_multipliers'
-            ...
             'experimental.tools.scoremanagertools.built_in_scores.red_example_score.music.materials.tempo_inventory'
-            ...
-
-        .. note:: TODO: supply with four keyword filters.
 
         Return list.
         '''
-        return super(type(self), self).list_asset_packagesystem_paths(head=head) 
+        return super(type(self), self).list_asset_packagesystem_paths(
+            built_in_external=built_in_external,
+            user_external=user_external,
+            built_in_score=built_in_score,
+            user_score=user_score,
+            head=head)
 
     def list_asset_proxies(self, built_in_external=True, user_external=True,
         built_in_score=True, user_score=True, head=None):

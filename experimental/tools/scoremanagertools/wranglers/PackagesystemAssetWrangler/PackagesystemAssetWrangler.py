@@ -110,22 +110,6 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
             result.append(asset_proxy)
         return result
 
-    def list_external_asset_packagesystem_paths(self, head=None):
-        result = []
-        for filesystem_path in self.list_asset_filesystem_paths(
-            built_in_score=False, user_score=False, head=head):
-            packagesystem_path = self.configuration.filesystem_path_to_packagesystem_path(filesystem_path)
-            result.append(packagesystem_path)
-        return result
-
-    def list_score_asset_packagesystem_paths(self, head=None):
-        result = []
-        for filesystem_path in self.list_asset_filesystem_paths(
-            built_in_external=False, user_external=False, head=head):
-            packagesystem_path = self.configuration.filesystem_path_to_packagesystem_path(filesystem_path)
-            result.append(packagesystem_path)
-        return result
-
     def list_visible_asset_packagesystem_paths(self, head=None):
         result = []
         if hasattr(self, 'list_visible_asset_proxies'):

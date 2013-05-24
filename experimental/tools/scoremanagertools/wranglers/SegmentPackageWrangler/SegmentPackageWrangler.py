@@ -140,27 +140,32 @@ class SegmentPackageWrangler(PackageWrangler):
             user_score=user_score,
             head=head)
 
-    def list_asset_packagesystem_paths(self, head=None):
+    def list_asset_packagesystem_paths(self,
+        built_in_external=True, user_external=True,
+        built_in_score=True, user_score=True, head=None):
         '''List asset packagesystem paths.
+
+        Example. List built-in segment package paths:
 
         ::
 
-            >>> for x in wrangler.list_asset_packagesystem_paths():
+            >>> for x in wrangler.list_asset_packagesystem_paths(
+            ...     user_external=False, user_score=False):
             ...     x
             'experimental.tools.scoremanagertools.built_in_scores.blue_example_score.music.segments.segment_01'
             'experimental.tools.scoremanagertools.built_in_scores.blue_example_score.music.segments.segment_02'
             'experimental.tools.scoremanagertools.built_in_scores.red_example_score.music.segments.segment_01'
             'experimental.tools.scoremanagertools.built_in_scores.red_example_score.music.segments.segment_02'
             'experimental.tools.scoremanagertools.built_in_scores.red_example_score.music.segments.segment_03'
-            'betoerung.music.segments.BetoerungChunk'
-            'gebiete.music.segments.segment_01'
-            'manos.music.segments.test_chunk'
-
-        .. note:: TODO: supply with four keyword filters.
 
         Return list.
         '''
-        return super(type(self), self).list_asset_packagesystem_paths(head=head)
+        return super(type(self), self).list_asset_packagesystem_paths(
+            built_in_external=built_in_external,
+            user_external=user_external,
+            built_in_score=built_in_score,
+            user_score=user_score,
+            head=head)
 
     def list_asset_proxies(self,
         built_in_external=True, user_external=True,
