@@ -121,3 +121,6 @@
     The head filter can not beused on *storhouse* paths alone.
 
 39. Add styleshset management to score manager main menu.
+
+40. Might make sense to implement an SvnManager class.
+    This will encapsulate all svn management functionality.

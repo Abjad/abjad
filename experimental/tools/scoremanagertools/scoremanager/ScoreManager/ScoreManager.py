@@ -5,6 +5,16 @@ from experimental.tools.scoremanagertools.core.ScoreManagerObject import ScoreMa
 
 
 class ScoreManager(ScoreManagerObject):
+    '''Score manager.
+
+    ::
+
+        >>> score_manager = scoremanagertools.scoremanager.ScoreManager()
+        >>> score_manager
+        ScoreManager()
+
+    Return score manager.
+    '''
 
     ### INITIALIZER ###
 
@@ -24,38 +34,57 @@ class ScoreManager(ScoreManagerObject):
         self._stylesheet_file_wrangler = scoremanagertools.wranglers.StylesheetFileWrangler(
             session=self._session)
 
+    ### READ-ONLY PRIVATE PROPERTIES ###
+
+    @property
+    def _breadcrumb(self):
+        return 'scores'
+
+    @property
+    def _score_status_string(self):
+        return '{} scores'.format(self._session.scores_to_show)
+
     ### PRIVATE METHODS ###
 
+    def _get_next_score_package_name(self):
+        score_package_names = self.score_package_wrangler.list_asset_names()
+        if self._session.underscore_delimited_current_score_name is None:
+            return score_package_names[0]
+        index = score_package_names.index(self._session.underscore_delimited_current_score_name)
+        next_index = (index + 1) % len(score_package_names)
+        return score_package_names[next_index]
+
+    def _get_prev_score_package_name(self):
+        score_package_names = self.score_package_wrangler.list_asset_names()
+        if self._session.underscore_delimited_current_score_name is None:
+            return score_package_names[-1]
+        index = score_package_names.index(self._session.underscore_delimited_current_score_name)
+        prev_index = (index - 1) % len(score_package_names)
+        return score_package_names[prev_index]
+
     def _handle_main_menu_result(self, result):
-        if not isinstance(result, str):
-            raise TypeError('result must be string.')
-        if result == 'active':
-            self._session.show_active_scores()
-        elif result == 'all':
-            self._session.show_all_scores()
-        elif result == 'f':
-            self.music_specifier_module_wrangler._run(
-                rollback=True, head=self.configuration.built_in_specifiers_package_path)
-        elif result == 'fix':
-            self.score_package_wrangler.fix_visible_assets()
-        elif result == 'm':
-            self.material_package_wrangler._run(
-                rollback=True, head=self.configuration.built_in_materials_package_path)
-        elif result == 'mb':
-            self._session.show_mothballed_scores()
-        elif result == 'new':
-            self.score_package_wrangler.make_asset_interactively(rollback=True)
-        elif result == 'profile':
-            self.score_package_wrangler.profile_visible_assets()
-        elif result == 'py.test':
-            self.run_py_test_on_all_user_scores()
-        elif result == 'svn':
-            self.manage_svn()
+        if result in self.user_input_to_action:
+            self.user_input_to_action[result](self)
         elif result in self.score_package_wrangler.list_visible_asset_packagesystem_paths():
             self.edit_score_interactively(result)
 
+    def _handle_svn_menu_result(self, result):
+        '''Return true to exit the svn menu.
+        '''
+        this_result = False
+        if result == 'add':
+            self.score_package_wrangler.svn_add_assets()
+        elif result == 'ci':
+            self.score_package_wrangler.svn_ci_assets()
+        elif result == 'st':
+            self.score_package_wrangler.svn_st_assets()
+        elif result == 'up':
+            self.score_package_wrangler.svn_up_assets()
+            return True
+        return this_result
+
     def _make_main_menu(self):
-        menu = self.make_score_selection_menu()
+        menu = self._make_score_selection_menu()
         section = menu.make_section()
         section.append(('m', 'materials'))
         section.append(('f', 'specifiers'))
@@ -70,6 +99,23 @@ class ScoreManager(ScoreManagerObject):
         hidden_section.append(('svn', 'work with repository'))
         return menu
 
+    def _make_score_selection_menu(self):
+        menu, section = self._io.make_menu(where=self._where, is_numbered=True, is_keyed=False)
+        if self._session.is_first_run:
+            section.tokens = self.start_menu_tokens
+            self._session.is_first_run = False
+        else:
+            section.tokens = self.score_package_wrangler._make_menu_tokens()
+        return menu
+
+    def _make_svn_menu(self):
+        menu, section = self._io.make_menu(where=self._where)
+        section.append(('add', 'svn add scores'))
+        section.append(('ci', 'svn commit scores'))
+        section.append(('st', 'svn status scores'))
+        section.append(('up', 'svn update scores'))
+        return menu
+
     def _run(self, user_input=None, clear=True, cache=False):
         type(self).__init__(self)
         self._io.assign_user_input(user_input=user_input)
@@ -77,7 +123,7 @@ class ScoreManager(ScoreManagerObject):
         self._session.push_breadcrumb(self._breadcrumb)
         run_main_menu = True
         while True:
-            self._session.push_breadcrumb(self.score_status_string)
+            self._session.push_breadcrumb(self._score_status_string)
             if run_main_menu:
                 menu = self._make_main_menu()
                 result = menu._run(clear=clear)
@@ -90,11 +136,11 @@ class ScoreManager(ScoreManagerObject):
             elif self._session.is_navigating_to_next_score:
                 self._session.is_navigating_to_next_score = False
                 self._session.is_backtracking_to_score_manager = False
-                result = self.get_next_score_package_name()
+                result = self._get_next_score_package_name()
             elif self._session.is_navigating_to_prev_score:
                 self._session.is_navigating_to_prev_score = False
                 self._session.is_backtracking_to_score_manager = False
-                result = self.get_prev_score_package_name()
+                result = self._get_prev_score_package_name()
             elif not result:
                 self._session.pop_breadcrumb()
                 continue
@@ -122,35 +168,94 @@ class ScoreManager(ScoreManagerObject):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def _breadcrumb(self):
-        return 'scores'
-
-    @property
     def material_package_maker_wrangler(self):
+        '''Score manager material package maker wrangler:
+
+        ::
+
+            >>> score_manager.material_package_maker_wrangler
+            MaterialPackageMakerWrangler()
+
+        Return material package maker wrangler.
+        '''
         return self._material_package_maker_wrangler
 
     @property
     def material_package_wrangler(self):
+        '''Score manager material package wrangler:
+
+        ::
+
+            >>> score_manager.material_package_wrangler
+            MaterialPackageWrangler()
+
+        Return material package wrangler.
+        '''
         return self._material_package_wrangler
 
     @property
     def music_specifier_module_wrangler(self):
+        '''Score manager music specifier module wrangler:
+
+        ::
+
+            >>> score_manager.music_specifier_module_wrangler
+            MusicSpecifierModuleWrangler()
+
+        Return music specifier module wrangler.
+        '''
         return self._music_specifier_module_wrangler
 
     @property
     def score_package_wrangler(self):
+        '''Score manager score package wrangler:
+
+        ::
+
+            >>> score_manager.score_package_wrangler
+            ScorePackageWrangler()
+
+        Return score package wrangler.
+        '''
         return self._score_package_wrangler
 
     @property
-    def score_status_string(self):
-        return '{} scores'.format(self._session.scores_to_show)
-
-    @property
     def segment_package_wrangler(self):
+        '''Score manager segment package wrangler:
+
+        ::
+
+            >>> score_manager.segment_package_wrangler
+            SegmentPackageWrangler()
+
+        Return segment package wrangler.
+        '''
         return self._segment_package_wrangler
 
     @property
+    def storage_format(self):
+        '''Score manager storage format:
+
+        ::
+
+            >>> score_manager.storage_format
+            'scoremanager.ScoreManager()'
+
+        Return string.
+        '''
+        return super(type(self), self).storage_format
+
+    @property
     def stylesheet_file_wrangler(self):
+        '''Score manager stylesheet file wrangler:
+
+        ::
+
+            >>> score_manager.stylesheet_file_wrangler
+            StylesheetFileWrangler()
+
+        Return stylesheet file wrangler.
+        '''
         return self._stylesheet_file_wrangler
 
     ### PUBLIC METHODS ###
@@ -161,59 +266,24 @@ class ScoreManager(ScoreManagerObject):
         score_package_proxy._run(cache=True)
         self._session.underscore_delimited_current_score_name = None
 
-    def get_next_score_package_name(self):
-        score_package_names = self.score_package_wrangler.list_asset_names()
-        if self._session.underscore_delimited_current_score_name is None:
-            return score_package_names[0]
-        index = score_package_names.index(self._session.underscore_delimited_current_score_name)
-        next_index = (index + 1) % len(score_package_names)
-        return score_package_names[next_index]
+    def fix_visible_scores(self):
+        self.score_package_wrangler.fix_visible_assets()
 
-    def get_prev_score_package_name(self):
-        score_package_names = self.score_package_wrangler.list_asset_names()
-        if self._session.underscore_delimited_current_score_name is None:
-            return score_package_names[-1]
-        index = score_package_names.index(self._session.underscore_delimited_current_score_name)
-        prev_index = (index - 1) % len(score_package_names)
-        return score_package_names[prev_index]
+    def make_new_score_interactively(self):
+        self.score_package_wrangler.make_asset_interactively(rollback=True)
 
-    def handle_svn_menu_result(self, result):
-        '''Return true to exit the svn menu.
-        '''
-        this_result = False
-        if result == 'add':
-            self.score_package_wrangler.svn_add_assets()
-        elif result == 'ci':
-            self.score_package_wrangler.svn_ci_assets()
-        elif result == 'st':
-            self.score_package_wrangler.svn_st_assets()
-        elif result == 'up':
-            self.score_package_wrangler.svn_up_assets()
-            return True
-        return this_result
+    def manage_materials(self):
+        self.material_package_wrangler._run(
+            rollback=True, head=self.configuration.built_in_materials_package_path) 
 
-    def make_score_selection_menu(self):
-        menu, section = self._io.make_menu(where=self._where, is_numbered=True, is_keyed=False)
-        #section.tokens = self.score_package_wrangler._make_menu_tokens()
-        if self._session.is_first_run:
-            section.tokens = self.start_menu_tokens
-            self._session.is_first_run = False
-        else:
-            section.tokens = self.score_package_wrangler._make_menu_tokens()
-        return menu
-
-    def make_svn_menu(self):
-        menu, section = self._io.make_menu(where=self._where)
-        section.append(('add', 'svn add scores'))
-        section.append(('ci', 'svn commit scores'))
-        section.append(('st', 'svn status scores'))
-        section.append(('up', 'svn update scores'))
-        return menu
-
+    def manage_specifiers(self):
+        self.music_specifier_module_wrangler._run(
+            rollback=True, head=self.configuration.built_in_specifiers_package_path),
+        
     def manage_svn(self, clear=True):
         while True:
             self._session.push_breadcrumb('repository commands')
-            menu = self.make_svn_menu()
+            menu = self._make_svn_menu()
             result = menu._run(clear=clear)
             if self._session.is_backtracking_to_score:
                 self._session.is_backtracking_to_score = False
@@ -221,11 +291,14 @@ class ScoreManager(ScoreManagerObject):
                 continue
             elif self._session.backtrack():
                 break
-            self.handle_svn_menu_result(result)
+            self._handle_svn_menu_result(result)
             if self._session.backtrack():
                 break
             self._session.pop_breadcrumb()
         self._session.pop_breadcrumb()
+
+    def profile_visible_scores(self):
+        self.score_package_wrangler.profile_visible_assets()
 
     def run_py_test_on_all_user_scores(self, prompt=True):
         command = 'py.test {}'.format(self.configuration.user_scores_directory_path)
@@ -235,3 +308,27 @@ class ScoreManager(ScoreManagerObject):
             self._io.display(lines, capitalize_first_character=False)
         line = 'tests complete.'
         self._io.proceed(line, is_interactive=prompt)
+
+    def show_active_scores(self):
+        self._session.show_active_scores()
+
+    def show_all_scores(self):
+        self._session.show_all_scores()
+
+    def show_mothballed_scores(self):
+        self._session.show_mothballed_scores()
+
+    ### USER INPUT MAPPING ###
+
+    user_input_to_action = {
+        'active':   show_active_scores,
+        'all':      show_all_scores,
+        'f':        manage_specifiers,
+        'fix':      fix_visible_scores,
+        'm':        manage_materials,
+        'mb':       show_mothballed_scores,
+        'new':      make_new_score_interactively,
+        'profile':  profile_visible_scores,
+        'py.test':  run_py_test_on_all_user_scores,
+        'svn':      manage_svn,
+        }
