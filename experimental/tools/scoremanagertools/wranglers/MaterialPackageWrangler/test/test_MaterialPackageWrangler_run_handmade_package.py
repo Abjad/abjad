@@ -20,8 +20,8 @@ def test_MaterialPackageWrangler_run_handmade_package_01():
         assert mpp.has_readable_material_definition_module
         assert not mpp.has_output_material_module
         assert not mpp.has_illustration_builder_module
-        assert not mpp.initializer_has_output_material_safe_import_statement
-        assert not mpp.parent_initializer_has_output_material_safe_import_statement
+        #assert not mpp.initializer_has_output_material_safe_import_statement
+        #assert not mpp.parent_initializer_has_output_material_safe_import_statement
         assert mpp.material_definition is None
         assert mpp.output_material is None
     finally:
@@ -48,8 +48,8 @@ def test_MaterialPackageWrangler_run_handmade_package_02():
         assert mpp.has_readable_material_definition_module
         assert not mpp.has_output_material_module
         assert not mpp.has_illustration_builder_module
-        assert not mpp.initializer_has_output_material_safe_import_statement
-        assert not mpp.parent_initializer_has_output_material_safe_import_statement
+        #assert not mpp.initializer_has_output_material_safe_import_statement
+        #assert not mpp.parent_initializer_has_output_material_safe_import_statement
         assert mpp.material_definition is None
         assert mpp.output_material is None
         assert mpp.illustration is None
@@ -79,8 +79,8 @@ def test_MaterialPackageWrangler_run_handmade_package_03():
         assert mpp.has_readable_material_definition_module
         assert not mpp.has_output_material_module
         assert not mpp.has_illustration_builder_module
-        assert not mpp.initializer_has_output_material_safe_import_statement
-        assert not mpp.parent_initializer_has_output_material_safe_import_statement
+        #assert not mpp.initializer_has_output_material_safe_import_statement
+        #assert not mpp.parent_initializer_has_output_material_safe_import_statement
         assert mpp.material_definition is None
         assert mpp.output_material is None
     finally:
@@ -110,8 +110,8 @@ def test_MaterialPackageWrangler_run_handmade_package_04():
         assert mpp.has_user_finalized_material_definition_module
         assert mpp.has_readable_output_material_module
         assert mpp.has_illustration_builder_module
-        assert mpp.initializer_has_output_material_safe_import_statement
-        assert mpp.parent_initializer_has_output_material_safe_import_statement
+        #assert mpp.initializer_has_output_material_safe_import_statement
+        #assert mpp.parent_initializer_has_output_material_safe_import_statement
         assert mpp.material_definition and notetools.all_are_notes(mpp.material_definition)
         assert mpp.output_material and notetools.all_are_notes(mpp.output_material)
     finally:
@@ -139,8 +139,8 @@ def test_MaterialPackageWrangler_run_handmade_package_05():
         assert not mpp.has_material_definition_module
         assert not mpp.has_output_material_module
         assert not mpp.has_illustration_builder_module
-        assert not mpp.initializer_has_output_material_safe_import_statement
-        assert not mpp.parent_initializer_has_output_material_safe_import_statement
+        #assert not mpp.initializer_has_output_material_safe_import_statement
+        #assert not mpp.parent_initializer_has_output_material_safe_import_statement
         assert mpp.material_definition is None
         assert mpp.output_material is None
     finally:
@@ -168,8 +168,8 @@ def test_MaterialPackageWrangler_run_handmade_package_06():
         assert mpp.has_readable_material_definition_module
         assert not mpp.has_output_material_module
         assert not mpp.has_illustration_builder_module
-        assert not mpp.initializer_has_output_material_safe_import_statement
-        assert not mpp.parent_initializer_has_output_material_safe_import_statement
+        #assert not mpp.initializer_has_output_material_safe_import_statement
+        #assert not mpp.parent_initializer_has_output_material_safe_import_statement
         assert mpp.material_definition is None
         assert mpp.output_material is None
     finally:
@@ -199,8 +199,8 @@ def test_MaterialPackageWrangler_run_handmade_package_07():
         assert mpp.has_user_finalized_material_definition_module
         assert not mpp.has_output_material_module
         assert not mpp.has_illustration_builder_module
-        assert not mpp.initializer_has_output_material_safe_import_statement
-        assert not mpp.parent_initializer_has_output_material_safe_import_statement
+        #assert not mpp.initializer_has_output_material_safe_import_statement
+        #assert not mpp.parent_initializer_has_output_material_safe_import_statement
         assert mpp.material_definition and notetools.all_are_notes(mpp.material_definition)
         assert mpp.output_material is None
     finally:
@@ -228,8 +228,8 @@ def test_MaterialPackageWrangler_run_handmade_package_08():
         assert not mpp.has_readable_material_definition_module
         assert not mpp.has_output_material_module
         assert not mpp.has_illustration_builder_module
-        assert not mpp.initializer_has_output_material_safe_import_statement
-        assert not mpp.parent_initializer_has_output_material_safe_import_statement
+        #assert not mpp.initializer_has_output_material_safe_import_statement
+        #assert not mpp.parent_initializer_has_output_material_safe_import_statement
         assert mpp.material_definition is None
         assert mpp.output_material is None
     finally:
@@ -260,8 +260,8 @@ def test_MaterialPackageWrangler_run_handmade_package_09():
         assert mpp.has_user_finalized_material_definition_module
         assert not mpp.has_readable_output_material_module
         assert mpp.has_illustration_builder_module
-        assert mpp.initializer_has_output_material_safe_import_statement
-        assert mpp.parent_initializer_has_output_material_safe_import_statement
+        #assert mpp.initializer_has_output_material_safe_import_statement
+        #assert mpp.parent_initializer_has_output_material_safe_import_statement
         assert mpp.material_definition and notetools.all_are_notes(mpp.material_definition)
         assert mpp.output_material is None
     finally:
@@ -297,8 +297,8 @@ def test_MaterialPackageWrangler_run_handmade_package_10():
         assert mpp.has_user_finalized_illustration_builder_module
         assert mpp.has_illustration_ly
         assert mpp.has_illustration_pdf
-        assert mpp.initializer_has_output_material_safe_import_statement
-        assert mpp.parent_initializer_has_output_material_safe_import_statement
+        #assert mpp.initializer_has_output_material_safe_import_statement
+        #assert mpp.parent_initializer_has_output_material_safe_import_statement
         assert mpp.material_definition and notetools.all_are_notes(mpp.material_definition)
         assert mpp.output_material and notetools.all_are_notes(mpp.output_material)
     finally:

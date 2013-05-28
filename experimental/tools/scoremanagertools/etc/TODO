@@ -124,3 +124,5 @@
 
 40. Might make sense to implement an SvnManager class.
     This will encapsulate all svn management functionality.
+
+41. Create a PackagesystemAssetProxy to parallel PacakagesystemAssetWrangler.

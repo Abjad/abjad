@@ -1,5 +1,6 @@
 def safe_import(target_namespace, source_module_name, source_attribute_name,
     source_parent_package_path=None):
+    raise Exception('deprecated.')
 
     #print repr(target_namespace.keys())
     #print repr(source_module_name)

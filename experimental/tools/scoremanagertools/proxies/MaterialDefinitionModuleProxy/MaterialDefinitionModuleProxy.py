@@ -1,6 +1,5 @@
 import os
 from experimental.tools.scoremanagertools.proxies.MaterialModuleProxy import MaterialModuleProxy
-from experimental.tools.scoremanagertools.helpers import safe_import
 
 
 class MaterialDefinitionModuleProxy(MaterialModuleProxy):
@@ -33,7 +32,7 @@ class MaterialDefinitionModuleProxy(MaterialModuleProxy):
     @property
     def output_material_module_import_statements(self):
         self.unimport()
-        result = safe_import(
+        result = self._safe_import(
             locals(), self.module_name, 'output_material_module_import_statements',
             source_parent_package_path=self.parent_package_path)
         # keep list from persisting between multiple calls to this method

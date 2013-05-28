@@ -4,7 +4,6 @@ from abjad.tools import mathtools
 from experimental.tools.scoremanagertools import helpers
 from experimental.tools.scoremanagertools import wizards
 from experimental.tools.scoremanagertools.proxies.PackageProxy import PackageProxy
-from experimental.tools.scoremanagertools.helpers import safe_import
 
 
 class MaterialPackageProxy(PackageProxy):
@@ -426,11 +425,11 @@ class MaterialPackageProxy(PackageProxy):
             illustration.file_initial_user_includes.append(self.stylesheet_file_name_in_memory)
         return illustration
 
-    @property
-    def initializer_has_output_material_safe_import_statement(self):
-        if self.has_initializer:
-            return self.initializer_file_proxy.has_safe_import_statement(
-                'output_material', self.material_package_name)
+#    @property
+#    def initializer_has_output_material_safe_import_statement(self):
+#        if self.has_initializer:
+#            return self.initializer_file_proxy.has_safe_import_statement(
+#                'output_material', self.material_package_name)
 
     # TODO: port
     @property
@@ -487,7 +486,7 @@ class MaterialPackageProxy(PackageProxy):
     @property
     def material_package_maker(self):
         if self.material_package_maker_class_name is not None:
-            maker_class = safe_import(
+            maker_class = self._safe_import(
                 locals(), 'materialpackagemakers', self.material_package_maker_class_name,
                 source_parent_package_path=self.configuration.score_manager_tools_package_path)
             return maker_class
@@ -552,11 +551,11 @@ class MaterialPackageProxy(PackageProxy):
                 return scoremanagertools.proxies.OutputMaterialModuleProxy(
                     self.output_material_module_path, session=self._session)
 
-    @property
-    def parent_initializer_has_output_material_safe_import_statement(self):
-        if self.has_parent_initializer:
-            return self.parent_initializer_file_proxy.has_safe_import_statement(
-            self.material_package_name, self.material_package_name)
+#    @property
+#    def parent_initializer_has_output_material_safe_import_statement(self):
+#        if self.has_parent_initializer:
+#            return self.parent_initializer_file_proxy.has_safe_import_statement(
+#            self.material_package_name, self.material_package_name)
 
     @property
     def should_have_illustration(self):
@@ -633,14 +632,14 @@ class MaterialPackageProxy(PackageProxy):
 
     ### PUBLIC METHODS ###
 
-    def add_material_to_material_initializer(self):
-        self.initializer_file_proxy.add_safe_import_statement(
-            'output_material', self.material_package_name)
+#    def add_material_to_material_initializer(self):
+#        self.initializer_file_proxy.add_safe_import_statement(
+#            'output_material', self.material_package_name)
 
-    def add_material_to_materials_initializer(self):
-        parent_package = PackageProxy(self.parent_package_path, session=self._session)
-        parent_package.initializer_file_proxy.add_safe_import_statement(
-            self.material_package_name, self.material_package_name)
+#    def add_material_to_materials_initializer(self):
+#        parent_package = PackageProxy(self.parent_package_path, session=self._session)
+#        parent_package.initializer_file_proxy.add_safe_import_statement(
+#            self.material_package_name, self.material_package_name)
 
     def conditionally_write_stub_material_definition_module_to_disk(self, is_interactive=False):
         if not self.get_tag('material_package_maker_class_name'):
@@ -871,8 +870,8 @@ class MaterialPackageProxy(PackageProxy):
         output_material_module_proxy.setup_statements = output_material_module_import_statements
         output_material_module_proxy.body_lines[:] = output_material_module_body_lines
         output_material_module_proxy.write_to_disk()
-        self.add_material_to_materials_initializer()
-        self.add_material_to_material_initializer()
+        #self.add_material_to_materials_initializer()
+        #self.add_material_to_material_initializer()
         self.write_tags_to_disk()
         self._io.proceed('output material written to disk.', is_interactive=prompt)
 
