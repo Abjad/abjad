@@ -80,9 +80,9 @@ class MaterialPackageMaker(MaterialPackageProxy):
 
     ### PUBLIC METHODS ###
 
-    def clear_user_input_wrapper(self, prompt=True):
+    def clear_user_input_wrapper(self, prompt=False):
         if self.user_input_wrapper_in_memory.is_empty:
-            self._io.proceed('user input already empty.')
+            self._io.proceed('user input already empty.', is_interactive=prompt)
         else:
             self.user_input_wrapper_in_memory.clear()
             self.user_input_module_proxy.write_user_input_wrapper_to_disk(self.user_input_wrapper_in_memory)
@@ -130,7 +130,8 @@ class MaterialPackageMaker(MaterialPackageProxy):
             user_input_wrapper[user_input_attribute_name] = None
         return user_input_wrapper
 
-    def load_user_input_wrapper_demo_values(self, prompt=True):
+    #def load_user_input_wrapper_demo_values(self, prompt=True):
+    def load_user_input_wrapper_demo_values(self, prompt=False):
         user_input_demo_values = copy.deepcopy(type(self).user_input_demo_values)
         for key, value in user_input_demo_values:
             self.user_input_wrapper_in_memory[key] = value
@@ -152,7 +153,7 @@ class MaterialPackageMaker(MaterialPackageProxy):
         lines = [line + '\n' for line in lines]
         return lines
 
-    def populate_user_input_wrapper(self, prompt=True):
+    def populate_user_input_wrapper(self, prompt=False):
         total_elements = len(self.user_input_wrapper_in_memory)
         getter = self._io.make_getter(where=self._where)
         getter.append_integer_in_range('start at element number', 1, total_elements, default=1)
@@ -188,3 +189,21 @@ class MaterialPackageMaker(MaterialPackageProxy):
         empty_user_input_wrapper = self.initialize_empty_user_input_wrapper()
         self.user_input_module_proxy.write_user_input_wrapper_to_disk(empty_user_input_wrapper)
         self._io.proceed('stub user input module written to disk.', is_interactive=is_interactive)
+
+    ### USER INPUT MAPPING ###
+
+    def swap_user_input_values_default_status(self):
+        self._session.swap_user_input_values_default_status()
+
+    def view_user_input_module(self):
+        self.user_input_module_proxy.view()
+
+    user_input_to_action = MaterialPackageProxy.user_input_to_action.copy()
+    user_input_to_action.update({
+        'uic': clear_user_input_wrapper,
+        'uil': load_user_input_wrapper_demo_values,
+        'uip': populate_user_input_wrapper,
+        'uis': show_user_input_demo_values,
+        'uit': swap_user_input_values_default_status,
+        'uimv': view_user_input_module,
+        })
