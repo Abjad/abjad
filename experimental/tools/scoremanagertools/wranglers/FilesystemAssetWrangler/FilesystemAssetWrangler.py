@@ -39,9 +39,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                         return True
         return False
 
-    def __repr__(self):
-        return '{}()'.format(self._class_name)
-
     ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property

@@ -28,6 +28,15 @@ class ScoreManagerObject(AbjadObject):
         self._session = session or scoremanagertools.core.Session()
         self._io = scoremanagertools.core.IO(session=self._session)
 
+    ### SPECIAL METHODS ###
+
+    def __repr__(self):
+        '''Score manager object repr.
+
+        Return string.
+        '''
+        return '{}()'.format(self._class_name)
+
     ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property

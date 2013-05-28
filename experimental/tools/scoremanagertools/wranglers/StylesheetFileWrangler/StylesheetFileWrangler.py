@@ -17,7 +17,9 @@ class StylesheetFileWrangler(FileWrangler):
 
     built_in_external_storehouse_filesystem_path = os.path.join(
         FileWrangler.configuration.score_manager_tools_directory_path, 'built_in_stylesheets')
+
     storehouse_path_infix_parts = ('music', 'stylesheets')
+
     user_external_storehouse_filesystem_path = FileWrangler.configuration.user_stylesheets_directory_path
 
     ### READ-ONLY PRIVATE PROPERTIES ###
@@ -33,14 +35,10 @@ class StylesheetFileWrangler(FileWrangler):
     ### PRIVATE METHODS ###
 
     def _handle_main_menu_result(self, result):
-        from experimental.tools import scoremanagertools
-        if result == 'new':
-            self.make_asset_interactively()
+        if result in self.user_input_to_action:
+            self.user_input_to_action[result](self)
         else:
-            stylesheet_file_name = os.path.join(self.built_in_stylesheets_directory_path, result)
-            stylesheet_proxy = scoremanagertools.proxies.StylesheetFileProxy(
-                stylesheet_file_name, session=self._session)
-            stylesheet_proxy._run()
+            self.edit_asset_interactively(result)
 
     def _make_main_menu(self):
         menu, section = self._io.make_menu(where=self._where, is_parenthetically_numbered=True)
@@ -82,6 +80,11 @@ class StylesheetFileWrangler(FileWrangler):
         return super(type(self), self).storage_format
 
     ### PUBLIC METHODS ###
+
+    def edit_asset_interactively(self, asset_basename):
+        filesystem_path = os.path.join(self.built_in_stylesheets_directory_path, asset_basename)
+        proxy = self.asset_proxy_class(filesystem_path=filesystem_path, session=self._session)
+        proxy._run()
 
     def list_asset_filesystem_paths(self,
         built_in_external=True, user_external=True,
@@ -202,3 +205,9 @@ class StylesheetFileWrangler(FileWrangler):
         stylesheet_proxy = scoremanagertools.proxies.StylesheetFileProxy(
             stylesheet_file_name, session=self._session)
         stylesheet_proxy.edit()
+
+    ### USER INPUT MAPPING ###
+
+    user_input_to_action = {
+        'new':      make_asset_interactively,
+        }
