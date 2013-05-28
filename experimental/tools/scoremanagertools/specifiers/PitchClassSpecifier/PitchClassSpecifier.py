@@ -23,4 +23,4 @@ class PitchClassSpecifier(ParameterSpecifier):
 
     @property
     def _one_line_menuing_summary(self):
-        return self.name or helpers.get_one_line_menuing_summary(self.pitch_class_reservoir)
+        return self.name or self.pitch_class_reservoir._one_line_menuing_summary

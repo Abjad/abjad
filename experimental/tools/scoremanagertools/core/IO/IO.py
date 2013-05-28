@@ -1,5 +1,7 @@
+import abc
 import os
 import readline
+import types
 from abjad.tools import iotools
 from abjad.tools import stringtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
@@ -94,6 +96,21 @@ class IO(AbjadObject):
                 capitalize_prompt=capitalize_prompt)
         finally:
             readline.set_startup_hook()
+
+    @staticmethod
+    def get_one_line_menuing_summary(expr):
+        '''Get one-line menuing summary of `expr`.
+
+        Return string.
+        '''
+        if isinstance(expr, (types.ClassType, abc.ABCMeta, types.TypeType)):
+            return expr.__name__
+        elif getattr(expr, '_one_line_menuing_summary', None):
+            return expr._one_line_menuing_summary
+        elif isinstance(expr, str):
+            return expr
+        else:
+            return repr(expr)
 
     def make_getter(self, where=None):
         from experimental.tools import scoremanagertools
