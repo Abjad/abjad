@@ -31,84 +31,6 @@ class MaterialPackageProxy(PackageProxy):
         assert isinstance(result, str)
         if result in self.user_input_to_action:
             self.user_input_to_action[result](self)
-        #elif result == 'uic':
-        #    self.clear_user_input_wrapper(prompt=False)
-        #elif result == 'uid':
-        #    self.remove_user_input_module(prompt=True)
-        #elif result == 'uil':
-        #    self.load_user_input_wrapper_demo_values(prompt=False)
-        #elif result == 'uip':
-        #    self.populate_user_input_wrapper(prompt=False)
-        #elif result == 'uis':
-        #    self.show_user_input_demo_values(prompt=True)
-        #elif result == 'uit':
-        #    self._session.swap_user_input_values_default_status()
-        #elif result == 'uimv':
-        #    self.user_input_module_proxy.view()
-        elif result == 'mdcanned':
-            self.material_definition_module_proxy.write_boilerplate_interactively()
-        elif result == 'mddelete':
-            self.remove_material_definition_module(prompt=True)
-        elif result == 'mde':
-            self.material_definition_module_proxy.edit()
-        elif result == 'mdstub':
-            self.write_stub_material_definition_module_to_disk()
-        elif result == 'mdx':
-            self.material_definition_module_proxy.run_python(prompt=True)
-        elif result == 'mdxe':
-            self.material_definition_module_proxy.run_abjad(prompt=True)
-        elif result == 'ibd':
-            self.remove_illustration_builder_module(prompt=True)
-        elif result == 'ibe':
-            self.illustration_builder_module_proxy.edit()
-        elif result == 'ibt':
-            self.illustration_builder_module_proxy.write_stub_to_disk(prompt=True)
-        elif result == 'ibx':
-            self.illustration_builder_module_proxy.run_python(prompt=True)
-        elif result == 'ibxi':
-            self.illustration_builder_module_proxy.run_abjad(prompt=True)
-        elif result == 'ssm':
-            self.stylesheet_file_proxy.edit()
-        elif result == 'sss':
-            self.select_stylesheet_interactively()
-        elif result == 'stl':
-            self.manage_stylesheets()
-        elif result == 'omm':
-            self.write_output_material_to_disk()
-        elif result == 'omi':
-            self.edit_output_material_interactively()
-        elif result == 'omcanned':
-            self.output_material_module_proxy.write_boilerplate_interactively()
-        elif result == 'omdelete':
-            self.remove_output_material_module(prompt=True)
-        elif result == 'omv':
-            self.output_material_module_proxy.view()
-        elif result == 'omfetch':
-            self.output_material_module_proxy.display_output_material()
-        elif result == 'lym':
-            self.write_illustration_ly_to_disk(True)
-        elif result == 'lyd':
-            self.remove_illustration_ly(prompt=True)
-        elif result == 'lyv':
-            self.illustration_ly_file_proxy.view()
-        elif result == 'pdfm':
-            self.write_illustration_ly_and_pdf_to_disk(True)
-        elif result == 'pdfd':
-            self.remove_illustration_pdf(prompt=True)
-        elif result == 'pdfv':
-            self.illustration_pdf_file_proxy.view()
-        elif result == 'rm':
-            self.remove_material_package()
-        elif result == 'inr':
-            self.initializer_file_proxy.restore_interactively(prompt=True)
-        elif result == 'inv':
-            self.initializer_file_proxy.view()
-        elif result == 'incanned':
-            self.initializer_file_proxy.write_boilerplate_interactively()
-        elif result == 'instub':
-            self.initializer_file_proxy.write_stub_file_to_disk(prompt=True)
-        elif result == 'ren':
-            self.rename_material_interactively()
         # TODO: add to package-level hidden menu
         elif result == 'tags':
             self.manage_tags()
@@ -920,27 +842,18 @@ class MaterialPackageProxy(PackageProxy):
         'mdxe': run_abjad_on_material_definition_module,
         'ibd': remove_illustration_builder_module,
         'ibe': edit_illustration_builder_module,
-            #self.illustration_builder_module_proxy.edit()
         'ibt': write_stub_illustration_builder_module_to_disk,
-            #self.illustration_builder_module_proxy.write_stub_to_disk(prompt=True)
         'ibx': run_python_on_illustration_builder_module,
-            #self.illustration_builder_module_proxy.run_python(prompt=True)
         'ibxi': run_abjad_on_illustration_builder_module,
-            #self.illustration_builder_module_proxy.run_abjad(prompt=True)
         'ssm': edit_stylesheet_file,
-            #self.stylesheet_file_proxy.edit()
         'sss': select_stylesheet_interactively,
         'stl': manage_stylesheets,
         'omm': write_output_material_to_disk,
         'omi': edit_output_material_interactively,
         'omcanned': write_output_material_module_boilerplate_interactively,
-            #self.output_material_module_proxy.write_boilerplate_interactively()
         'omdelete': remove_output_material_module,
-            #self.remove_output_material_module(prompt=True)
         'omv': view_output_material_module,
-            #self.output_material_module_proxy.view()
         'omfetch': display_output_material,
-            #self.output_material_module_proxy.display_output_material()
         'lym': write_illustration_ly_to_disk,
         'lyd': remove_illustration_ly,
         'lyv': illustration_ly_file_proxy,
@@ -949,15 +862,10 @@ class MaterialPackageProxy(PackageProxy):
         'pdfv': illustration_pdf_file_proxy,
         'rm': remove_material_package,
         'inr': restore_initializer_interactively,
-            #self.initializer_file_proxy.restore_interactively(prompt=True)
         'inv': view_initializer,
-            #self.initializer_file_proxy.view()
         'incanned': write_initializer_boilerplate_interactively,
-            #self.initializer_file_proxy.write_boilerplate_interactively()
         'instub': write_initializer_stub_file_to_disk,
-            #self.initializer_file_proxy.write_stub_file_to_disk(prompt=True)
         'ren': rename_material_interactively,
-            #self.rename_material_interactively()
 #        # TODO: add to package-level hidden menu
 #        'tags': manage_tags,
 #            #self.manage_tags()
