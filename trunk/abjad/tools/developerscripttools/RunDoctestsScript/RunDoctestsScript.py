@@ -51,7 +51,7 @@ class RunDoctestsScript(DirectoryScript):
         try:
             globs.update(importlib.import_module('experimental').__dict__)
             globs.update(importlib.import_module('experimental.demos').__dict__)
-        except ImportError:
+        except:
             pass
         if args.diff:
             optionflags = doctest.NORMALIZE_WHITESPACE|doctest.ELLIPSIS|doctest.REPORT_NDIFF
