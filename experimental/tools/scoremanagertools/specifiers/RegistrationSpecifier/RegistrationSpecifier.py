@@ -12,5 +12,5 @@ class RegistrationSpecifier(ParameterSpecifier):
     ### READ-ONLY PROPERTIES ###
 
     @property
-    def one_line_menuing_summary(self):
+    def _one_line_menuing_summary(self):
         return self.name or self.registration_handler_name

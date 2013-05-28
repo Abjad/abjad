@@ -9,9 +9,6 @@ scoremanagertools.specifiers.RhythmSpecifier
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.specifiers.RhythmSpecifier.RhythmSpecifier.RhythmSpecifier.one_line_menuing_summary
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.specifiers.RhythmSpecifier.RhythmSpecifier.RhythmSpecifier.storage_format
    :noindex:
 

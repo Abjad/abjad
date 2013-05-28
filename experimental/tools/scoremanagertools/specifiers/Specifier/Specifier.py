@@ -30,5 +30,5 @@ class Specifier(AbjadObject):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @abc.abstractproperty
-    def one_line_menuing_summary(self):
+    def _one_line_menuing_summary(self):
         pass

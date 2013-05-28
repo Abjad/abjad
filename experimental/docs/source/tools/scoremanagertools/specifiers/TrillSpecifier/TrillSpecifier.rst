@@ -9,9 +9,6 @@ scoremanagertools.specifiers.TrillSpecifier
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.specifiers.TrillSpecifier.TrillSpecifier.TrillSpecifier.one_line_menuing_summary
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.specifiers.TrillSpecifier.TrillSpecifier.TrillSpecifier.storage_format
    :noindex:
 

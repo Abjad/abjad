@@ -9,9 +9,6 @@ scoremanagertools.specifiers.ClefSpecifier
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.specifiers.ClefSpecifier.ClefSpecifier.ClefSpecifier.one_line_menuing_summary
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.specifiers.ClefSpecifier.ClefSpecifier.ClefSpecifier.storage_format
    :noindex:
 

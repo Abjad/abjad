@@ -9,9 +9,6 @@ scoremanagertools.specifiers.RegistrationSpecifier
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.specifiers.RegistrationSpecifier.RegistrationSpecifier.RegistrationSpecifier.one_line_menuing_summary
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.specifiers.RegistrationSpecifier.RegistrationSpecifier.RegistrationSpecifier.storage_format
    :noindex:
 

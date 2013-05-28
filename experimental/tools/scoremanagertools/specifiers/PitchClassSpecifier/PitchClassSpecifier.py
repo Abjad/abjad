@@ -22,5 +22,5 @@ class PitchClassSpecifier(ParameterSpecifier):
     ### READ-ONLY PROPERTIES ###
 
     @property
-    def one_line_menuing_summary(self):
+    def _one_line_menuing_summary(self):
         return self.name or helpers.get_one_line_menuing_summary(self.pitch_class_reservoir)

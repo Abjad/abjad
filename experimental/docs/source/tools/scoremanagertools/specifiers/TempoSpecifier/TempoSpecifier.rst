@@ -9,9 +9,6 @@ scoremanagertools.specifiers.TempoSpecifier
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.specifiers.TempoSpecifier.TempoSpecifier.TempoSpecifier.one_line_menuing_summary
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.specifiers.TempoSpecifier.TempoSpecifier.TempoSpecifier.storage_format
    :noindex:
 

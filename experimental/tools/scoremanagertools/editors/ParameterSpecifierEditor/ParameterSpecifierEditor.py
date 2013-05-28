@@ -8,4 +8,4 @@ class ParameterSpecifierEditor(InteractiveEditor):
     @property
     def target_name(self):
         if self.target:
-            return self.target.one_line_menuing_summary
+            return self.target._one_line_menuing_summary

@@ -13,7 +13,7 @@ class MusicContributionSpecifier(Specifier, ObjectInventory):
     ### PIVATE READ-ONLY PROPERTIES ###
 
     @property
-    def one_line_menuing_summary(self):
+    def _one_line_menuing_summary(self):
         return self.name or 'unknown contribution'
 
     ### READ-ONLY PUBLIC PROPERTIES ###

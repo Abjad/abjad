@@ -10,6 +10,6 @@ class InstrumentSpecifier(ParameterSpecifier):
     ### READ-ONLY PROPERTIES ###
 
     @property
-    def one_line_menuing_summary(self):
+    def _one_line_menuing_summary(self):
         value = self.name or self.instrument.instrument_name
         return 'instrument: {}'.format(value)

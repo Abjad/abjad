@@ -9,9 +9,6 @@ scoremanagertools.specifiers.DynamicSpecifier
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.specifiers.DynamicSpecifier.DynamicSpecifier.DynamicSpecifier.one_line_menuing_summary
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.specifiers.DynamicSpecifier.DynamicSpecifier.DynamicSpecifier.storage_format
    :noindex:
 

@@ -9,9 +9,6 @@ scoremanagertools.specifiers.DirectiveSpecifier
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.specifiers.DirectiveSpecifier.DirectiveSpecifier.DirectiveSpecifier.one_line_menuing_summary
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.specifiers.DirectiveSpecifier.DirectiveSpecifier.DirectiveSpecifier.storage_format
    :noindex:
 

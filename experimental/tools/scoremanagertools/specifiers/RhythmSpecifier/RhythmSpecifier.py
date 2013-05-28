@@ -12,5 +12,5 @@ class RhythmSpecifier(ParameterSpecifier):
     ### READ-ONLY PROPERTIES ###
 
     @property
-    def one_line_menuing_summary(self):
+    def _one_line_menuing_summary(self):
         return self.name or self.rhythm_maker_package_path

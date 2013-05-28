@@ -9,9 +9,6 @@ scoremanagertools.specifiers.PerformerSpecifier
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.specifiers.PerformerSpecifier.PerformerSpecifier.PerformerSpecifier.one_line_menuing_summary
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.specifiers.PerformerSpecifier.PerformerSpecifier.PerformerSpecifier.storage_format
    :noindex:
 

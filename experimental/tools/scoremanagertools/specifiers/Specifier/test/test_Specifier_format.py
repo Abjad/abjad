@@ -7,7 +7,7 @@ class ConcreteSpecifier(Specifier):
     def _tools_package_name(self):
         return 'specialtools'
     @property
-    def one_line_menuing_summary(self):
+    def _one_line_menuing_summary(self):
         pass
 
 

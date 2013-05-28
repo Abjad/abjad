@@ -12,5 +12,5 @@ class ArticulationSpecifier(ParameterSpecifier):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def one_line_menuing_summary(self):
+    def _one_line_menuing_summary(self):
         return self.name or self.articulation_handler_name

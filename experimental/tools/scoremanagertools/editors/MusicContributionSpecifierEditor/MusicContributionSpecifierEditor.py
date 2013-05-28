@@ -25,7 +25,7 @@ class MusicContributionSpecifierEditor(ObjectInventoryEditor):
     @property
     def _breadcrumb(self):
         if self.target:
-            return self.target.one_line_menuing_summary
+            return self.target._one_line_menuing_summary
         return 'unknown contribution'
 
     ### PUBLIC METHODS ###

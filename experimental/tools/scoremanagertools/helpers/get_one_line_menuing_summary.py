@@ -7,14 +7,10 @@ def get_one_line_menuing_summary(expr):
 
     Return string.
     '''
-    if isinstance(expr, (types.ClassType, abc.ABCMeta)):
+    if isinstance(expr, (types.ClassType, abc.ABCMeta, types.TypeType)):
         return expr.__name__
-    elif getattr(expr, 'one_line_menuing_summary', None):
-        return expr.one_line_menuing_summary
     elif getattr(expr, '_one_line_menuing_summary', None):
         return expr._one_line_menuing_summary
-    elif isinstance(expr, type(type)):
-        return expr.__name__
     elif isinstance(expr, str):
         return expr
     else:

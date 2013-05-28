@@ -9,9 +9,6 @@ scoremanagertools.specifiers.PitchClassSpecifier
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.specifiers.PitchClassSpecifier.PitchClassSpecifier.PitchClassSpecifier.one_line_menuing_summary
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.specifiers.PitchClassSpecifier.PitchClassSpecifier.PitchClassSpecifier.storage_format
    :noindex:
 

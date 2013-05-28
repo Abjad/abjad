@@ -10,7 +10,7 @@ class PerformerSpecifier(ParameterSpecifier):
     ### READ-ONLY PROPERTIES ###
 
     @property
-    def one_line_menuing_summary(self):
+    def _one_line_menuing_summary(self):
         if self.name:
             return self.name
         elif self.performer:

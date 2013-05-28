@@ -9,9 +9,6 @@ scoremanagertools.specifiers.NoteHeadSpecifier
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.specifiers.NoteHeadSpecifier.NoteHeadSpecifier.NoteHeadSpecifier.one_line_menuing_summary
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.specifiers.NoteHeadSpecifier.NoteHeadSpecifier.NoteHeadSpecifier.storage_format
    :noindex:
 
