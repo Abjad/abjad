@@ -23,16 +23,12 @@ class ListEditor(InteractiveEditor):
     def _handle_main_menu_result(self, result):
         if not isinstance(result, str):
             raise TypeError('result must be string.')
-        if result == 'add':
-            self.add_items_interactively()
-        elif result == 'rm':
-            self.remove_items_interactively()
-        elif result == 'mv':
-            self.move_item_interactively()
+        if result in self.user_input_to_action:
+            self.user_input_to_action[result](self)
         elif mathtools.is_integer_equivalent_expr(result):
             self.edit_item_interactively(result)
         else:
-            InteractiveEditor._handle_main_menu_result(self, result)
+            super(ListEditor, self)._handle_main_menu_result(result)
 
     def _make_main_menu(self):
         menu, attribute_management_section = self._io.make_menu(where=self._where,
@@ -160,3 +156,11 @@ class ListEditor(InteractiveEditor):
         items = self.items[:]
         items = sequencetools.remove_sequence_elements_at_indices(items, indices)
         self.items[:] = items
+
+    ### USER INPUT MAPPING ###
+
+    user_input_to_action = {
+        'add':  add_items_interactively,
+        'rm':   remove_items_interactively,
+        'mv':   move_item_interactively,
+    }

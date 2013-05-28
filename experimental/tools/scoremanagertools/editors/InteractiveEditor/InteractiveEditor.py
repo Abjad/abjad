@@ -157,14 +157,6 @@ class InteractiveEditor(ScoreManagerObject):
         if target_name_attribute:
             return getattr(self.target, self.target_manifest.target_name_attribute, None)
 
-    # TODO: deprecate and use two more specific labels instead
-#    @property
-#    def target_positional_attribute_names(self):
-#        result = []
-#        if hasattr(self, 'target_manifest'):
-#            result.extend(self.target_manifest.positional_attribute_names)
-#        return result
-
     @property
     def target_positional_initializer_argument_names(self):
         result = []
@@ -203,16 +195,12 @@ class InteractiveEditor(ScoreManagerObject):
         return menu_key
 
     def clean_up_attributes_in_memory(self):
-        #self.debug('cleaning up!')
         if self.target is None:
             try:
                 self.initialize_target_from_attributes_in_memory()
             except ValueError:
                 pass
         self.initialize_attributes_in_memory()
-        #self.debug(self.target)
-        #self.debug(self.attributes_in_memory)
-        #self.debug('')
 
     def conditionally_initialize_target(self):
         if self.target is not None:
@@ -223,9 +211,6 @@ class InteractiveEditor(ScoreManagerObject):
             pass
 
     def conditionally_set_target_attribute(self, attribute_name, attribute_value):
-        #self.debug((attribute_name, attribute_value))
-        #self.debug(self.target, 'target')
-        #self.debug(self.attributes_in_memory, 'attrs')
         if self.target is not None:
             if not self._session.is_complete:
                 # if the attribute is read / write
@@ -237,13 +222,9 @@ class InteractiveEditor(ScoreManagerObject):
                     self.attributes_in_memory[attribute_name] = attribute_value
         else:
             self.attributes_in_memory[attribute_name] = attribute_value
-        #self.debug(self.target, 'target')
-        #self.debug(self.attributes_in_memory, 'attrs')
-        #self.debug('')
 
     def copy_target_attributes_to_memory(self):
         self.initialize_attributes_in_memory()
-        #for attribute_name in self.target_positional_attribute_names:
         for attribute_name in self.target_positional_initializer_retrievable_attribute_names:
             attribute_value = getattr(self.target, attribute_name, None)
             if attribute_value is not None:
@@ -262,7 +243,6 @@ class InteractiveEditor(ScoreManagerObject):
 
     def initialize_target_from_attributes_in_memory(self):
         args, kwargs = [], {}
-        #for attribute_name in self.target_positional_attribute_names:
         for attribute_name in self.target_positional_initializer_argument_names:
             if attribute_name in self.attributes_in_memory:
                 args.append(self.attributes_in_memory.get(attribute_name))
