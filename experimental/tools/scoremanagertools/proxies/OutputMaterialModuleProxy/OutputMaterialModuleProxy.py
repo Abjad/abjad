@@ -32,7 +32,7 @@ class OutputMaterialModuleProxy(BasicModuleProxy):
     
         Return tuple.
         '''
-        return super(type(self), self).file_sections
+        return super(OutputMaterialModuleProxy, self).file_sections
 
     @property
     def filesystem_basename(self):
@@ -45,7 +45,7 @@ class OutputMaterialModuleProxy(BasicModuleProxy):
 
         Return string.
         '''
-        return super(type(self), self).filesystem_basename
+        return super(OutputMaterialModuleProxy, self).filesystem_basename
 
     @property
     def filesystem_directory_name(self):
@@ -58,7 +58,7 @@ class OutputMaterialModuleProxy(BasicModuleProxy):
 
         Return string.
         '''
-        return super(type(self), self).filesystem_directory_name
+        return super(OutputMaterialModuleProxy, self).filesystem_directory_name
 
     @property
     def filesystem_path(self):
@@ -71,7 +71,7 @@ class OutputMaterialModuleProxy(BasicModuleProxy):
 
         Return string.
         '''
-        return super(type(self), self).filesystem_path
+        return super(OutputMaterialModuleProxy, self).filesystem_path
 
     @property
     def material_package_name(self):
@@ -84,7 +84,7 @@ class OutputMaterialModuleProxy(BasicModuleProxy):
 
         Return string.
         '''
-        return super(type(self), self).material_package_name
+        return super(OutputMaterialModuleProxy, self).material_package_name
 
     @property
     def material_package_path(self):
@@ -97,7 +97,7 @@ class OutputMaterialModuleProxy(BasicModuleProxy):
 
         Return string.
         '''
-        return super(type(self), self).material_package_path
+        return super(OutputMaterialModuleProxy, self).material_package_path
 
     @property
     def module_name(self):
@@ -110,7 +110,7 @@ class OutputMaterialModuleProxy(BasicModuleProxy):
 
         Return string.
         '''
-        return super(type(self), self).module_name
+        return super(OutputMaterialModuleProxy, self).module_name
 
     @property
     def module_path(self):
@@ -123,7 +123,7 @@ class OutputMaterialModuleProxy(BasicModuleProxy):
 
         Return string.
         '''
-        return super(type(self), self).module_path
+        return super(OutputMaterialModuleProxy, self).module_path
 
     @property
     def package_path(self):
@@ -136,7 +136,7 @@ class OutputMaterialModuleProxy(BasicModuleProxy):
 
         Return string.
         '''
-        return super(type(self), self).package_path
+        return super(OutputMaterialModuleProxy, self).package_path
 
     ### PUBLIC METHODS ###
 

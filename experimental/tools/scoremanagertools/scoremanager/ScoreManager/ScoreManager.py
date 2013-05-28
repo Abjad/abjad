@@ -243,7 +243,7 @@ class ScoreManager(ScoreManagerObject):
 
         Return string.
         '''
-        return super(type(self), self).storage_format
+        return super(ScoreManager, self).storage_format
 
     @property
     def stylesheet_file_wrangler(self):

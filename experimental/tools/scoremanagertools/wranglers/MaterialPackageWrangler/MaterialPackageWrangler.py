@@ -109,7 +109,7 @@ class MaterialPackageWrangler(PackageWrangler):
 
         Return list.
         '''
-        return super(type(self), self)._list_score_storehouse_package_paths(head=head)
+        return super(MaterialPackageWrangler, self)._list_score_storehouse_package_paths(head=head)
 
     def _list_storehouse_package_paths(self, head=None):
         '''Material package wrangler list storehouse package paths:
@@ -129,7 +129,7 @@ class MaterialPackageWrangler(PackageWrangler):
 
         Return list.
         '''
-        return super(type(self), self)._list_storehouse_package_paths(head=head)
+        return super(MaterialPackageWrangler, self)._list_storehouse_package_paths(head=head)
 
     def _make_main_menu(self, head=None):
         menu, section = self._io.make_menu(where=self._where, is_numbered=True, is_keyed=False)
@@ -171,7 +171,7 @@ class MaterialPackageWrangler(PackageWrangler):
 
         Return string.
         '''
-        return super(type(self), self).storage_format
+        return super(MaterialPackageWrangler, self).storage_format
 
     ### PUBLIC METHODS ###
 
@@ -218,7 +218,7 @@ class MaterialPackageWrangler(PackageWrangler):
 
         Return list.
         '''
-        return super(type(self), self).list_asset_filesystem_paths(
+        return super(MaterialPackageWrangler, self).list_asset_filesystem_paths(
             built_in_external=built_in_external,
             user_external=user_external,
             built_in_score=built_in_score,
@@ -248,7 +248,7 @@ class MaterialPackageWrangler(PackageWrangler):
 
         Return list.
         '''
-        return super(type(self), self).list_asset_names(
+        return super(MaterialPackageWrangler, self).list_asset_names(
             built_in_external=built_in_external,
             user_external=user_external,
             built_in_score=built_in_score,
@@ -278,7 +278,7 @@ class MaterialPackageWrangler(PackageWrangler):
 
         Return list.
         '''
-        return super(type(self), self).list_asset_packagesystem_paths(
+        return super(MaterialPackageWrangler, self).list_asset_packagesystem_paths(
             built_in_external=built_in_external,
             user_external=user_external,
             built_in_score=built_in_score,
@@ -307,7 +307,7 @@ class MaterialPackageWrangler(PackageWrangler):
 
         Return list.
         '''
-        return super(type(self), self).list_asset_proxies(
+        return super(MaterialPackageWrangler, self).list_asset_proxies(
             built_in_external=built_in_external,
             user_external=user_external,
             built_in_score=built_in_score,
@@ -333,7 +333,7 @@ class MaterialPackageWrangler(PackageWrangler):
 
         Return list.
         '''
-        return super(type(self), self).list_storehouse_filesystem_paths(
+        return super(MaterialPackageWrangler, self).list_storehouse_filesystem_paths(
             built_in_external=built_in_external,
             user_external=user_external,
             built_in_score=built_in_score,

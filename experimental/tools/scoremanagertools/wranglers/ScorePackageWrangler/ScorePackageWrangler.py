@@ -102,7 +102,7 @@ class ScorePackageWrangler(PackageWrangler):
 
         Return string.
         '''
-        return super(type(self), self).storage_format
+        return super(ScorePackageWrangler, self).storage_format
 
     ### PUBLIC METHODS ###
 
@@ -132,7 +132,7 @@ class ScorePackageWrangler(PackageWrangler):
     
         Return list.
         '''
-        return super(type(self), self).list_asset_filesystem_paths(
+        return super(ScorePackageWrangler, self).list_asset_filesystem_paths(
             built_in_external=built_in_external, 
             user_external=user_external,
             built_in_score=built_in_score, 
@@ -157,7 +157,7 @@ class ScorePackageWrangler(PackageWrangler):
 
         Return list.
         '''
-        return super(type(self), self).list_asset_names(
+        return super(ScorePackageWrangler, self).list_asset_names(
             built_in_external=built_in_external,
             user_external=user_external,
             built_in_score=built_in_score,
@@ -182,7 +182,7 @@ class ScorePackageWrangler(PackageWrangler):
 
         Return list.
         '''
-        return super(type(self), self).list_asset_packagesystem_paths(
+        return super(ScorePackageWrangler, self).list_asset_packagesystem_paths(
             built_in_external=built_in_external,
             user_external=user_external,
             built_in_score=built_in_score,
@@ -207,7 +207,7 @@ class ScorePackageWrangler(PackageWrangler):
 
         Return list.
         '''
-        return super(type(self), self).list_asset_proxies(
+        return super(ScorePackageWrangler, self).list_asset_proxies(
             built_in_external=built_in_external,
             user_external=user_external,
             built_in_score=built_in_score,
@@ -230,7 +230,7 @@ class ScorePackageWrangler(PackageWrangler):
 
         Return list.
         '''
-        return super(type(self), self).list_storehouse_filesystem_paths(
+        return super(ScorePackageWrangler, self).list_storehouse_filesystem_paths(
             built_in_external=built_in_external,
             user_external=user_external,
             built_in_score=built_in_score,

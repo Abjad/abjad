@@ -77,7 +77,7 @@ class StylesheetFileWrangler(FileWrangler):
     
         Return string.
         '''
-        return super(type(self), self).storage_format
+        return super(StylesheetFileWrangler, self).storage_format
 
     ### PUBLIC METHODS ###
 
@@ -105,7 +105,7 @@ class StylesheetFileWrangler(FileWrangler):
 
         Return list.
         '''
-        return super(type(self), self).list_asset_filesystem_paths(
+        return super(StylesheetFileWrangler, self).list_asset_filesystem_paths(
             built_in_external=built_in_external,
             user_external=user_external,
             built_in_score=built_in_score,
@@ -130,7 +130,7 @@ class StylesheetFileWrangler(FileWrangler):
 
         Return list.
         '''
-        return super(type(self), self).list_asset_names(
+        return super(StylesheetFileWrangler, self).list_asset_names(
             built_in_external=built_in_external, 
             user_external=user_external,
             built_in_score=built_in_score, 
@@ -155,7 +155,7 @@ class StylesheetFileWrangler(FileWrangler):
 
         Return list.
         '''
-        return super(type(self), self).list_asset_proxies(
+        return super(StylesheetFileWrangler, self).list_asset_proxies(
             built_in_external=built_in_external,
             user_external=user_external,
             built_in_score=built_in_score,
@@ -181,7 +181,7 @@ class StylesheetFileWrangler(FileWrangler):
 
         Return list.
         '''
-        return super(type(self), self).list_storehouse_filesystem_paths(
+        return super(StylesheetFileWrangler, self).list_storehouse_filesystem_paths(
             built_in_external=built_in_external,
             user_external=user_external,
             built_in_score=built_in_score,

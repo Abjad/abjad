@@ -28,10 +28,10 @@ class InstrumentEditor(InteractiveEditor):
         if result in self.user_input_to_action:
             self.user_input_to_action[result](self)
         else:
-            super(type(self), self)._handle_main_menu_result(result)
+            super(InstrumentEditor, self)._handle_main_menu_result(result)
 
     def _make_main_menu(self):
-        menu = super(type(self), self)._make_main_menu()
+        menu = super(InstrumentEditor, self)._make_main_menu()
         hidden_section = menu.hidden_section
         hidden_section.append(('tprd', 'toggle pitch range display'))
         return menu
