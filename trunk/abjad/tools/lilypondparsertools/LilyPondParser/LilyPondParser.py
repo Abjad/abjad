@@ -580,7 +580,7 @@ class LilyPondParser(abctools.Parser):
         }
 
     def _get_span_events(self, leaf):
-        annotations = marktools.get_annotations_attached_to_component(leaf)
+        annotations = marktools.detach_annotations_attached_to_component(leaf)
         if annotations:
             spanners_annotations = [x for x in annotations if x.name == 'spanners']
             if 1 == len(spanners_annotations):
