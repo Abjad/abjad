@@ -4815,6 +4815,15 @@ Abjad internal packages
    .. toctree::
       :maxdepth: 1
 
+      tools/lilypondparsertools/Music/Music
+      tools/lilypondparsertools/SimultaneousMusic/SimultaneousMusic
+
+   --------
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/lilypondparsertools/ContextSpeccedMusic/ContextSpeccedMusic
       tools/lilypondparsertools/GuileProxy/GuileProxy
       tools/lilypondparsertools/LilyPondDuration/LilyPondDuration
       tools/lilypondparsertools/LilyPondEvent/LilyPondEvent
@@ -4824,6 +4833,7 @@ Abjad internal packages
       tools/lilypondparsertools/LilyPondSyntacticalDefinition/LilyPondSyntacticalDefinition
       tools/lilypondparsertools/ReducedLyParser/ReducedLyParser
       tools/lilypondparsertools/SchemeParser/SchemeParser
+      tools/lilypondparsertools/SequentialMusic/SequentialMusic
       tools/lilypondparsertools/SyntaxNode/SyntaxNode
 
    --------
@@ -4841,11 +4851,20 @@ Abjad internal packages
 
 .. only:: latex
 
+   Abstract Classes
+   ----------------
+
+   .. toctree::
+
+      tools/lilypondparsertools/Music/Music
+      tools/lilypondparsertools/SimultaneousMusic/SimultaneousMusic
+
    Concrete Classes
    ----------------
 
    .. toctree::
 
+      tools/lilypondparsertools/ContextSpeccedMusic/ContextSpeccedMusic
       tools/lilypondparsertools/GuileProxy/GuileProxy
       tools/lilypondparsertools/LilyPondDuration/LilyPondDuration
       tools/lilypondparsertools/LilyPondEvent/LilyPondEvent
@@ -4855,6 +4874,7 @@ Abjad internal packages
       tools/lilypondparsertools/LilyPondSyntacticalDefinition/LilyPondSyntacticalDefinition
       tools/lilypondparsertools/ReducedLyParser/ReducedLyParser
       tools/lilypondparsertools/SchemeParser/SchemeParser
+      tools/lilypondparsertools/SequentialMusic/SequentialMusic
       tools/lilypondparsertools/SyntaxNode/SyntaxNode
 
    Functions

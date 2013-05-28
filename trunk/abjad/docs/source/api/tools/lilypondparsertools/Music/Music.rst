@@ -1,0 +1,43 @@
+lilypondparsertools.Music
+=========================
+
+.. abjad-lineage:: abjad.tools.lilypondparsertools.Music.Music.Music
+
+.. autoclass:: abjad.tools.lilypondparsertools.Music.Music.Music
+   :noindex:
+
+Read-only properties
+--------------------
+
+.. autoattribute:: abjad.tools.lilypondparsertools.Music.Music.Music.storage_format
+   :noindex:
+
+Methods
+-------
+
+.. automethod:: abjad.tools.lilypondparsertools.Music.Music.Music.construct
+   :noindex:
+
+Special methods
+---------------
+
+.. automethod:: abjad.tools.lilypondparsertools.Music.Music.Music.__eq__
+   :noindex:
+
+.. automethod:: abjad.tools.lilypondparsertools.Music.Music.Music.__ge__
+   :noindex:
+
+.. automethod:: abjad.tools.lilypondparsertools.Music.Music.Music.__gt__
+   :noindex:
+
+.. automethod:: abjad.tools.lilypondparsertools.Music.Music.Music.__le__
+   :noindex:
+
+.. automethod:: abjad.tools.lilypondparsertools.Music.Music.Music.__lt__
+   :noindex:
+
+.. automethod:: abjad.tools.lilypondparsertools.Music.Music.Music.__ne__
+   :noindex:
+
+.. automethod:: abjad.tools.lilypondparsertools.Music.Music.Music.__repr__
+   :noindex:
