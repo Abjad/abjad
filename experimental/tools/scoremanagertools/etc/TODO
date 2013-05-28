@@ -116,3 +116,5 @@
     This will encapsulate all svn management functionality.
 
 40. Create a PackagesystemAssetProxy to parallel PacakagesystemAssetWrangler.
+
+41. Harmonize user input strings with method names in MaterialPackageProxy.user_input_to_action dictionary.
