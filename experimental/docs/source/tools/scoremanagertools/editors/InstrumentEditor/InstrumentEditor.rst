@@ -84,6 +84,9 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.InstrumentEditor.InstrumentEditor.InstrumentEditor.target_kwargs_to_target_summary_lines
    :noindex:
 
+.. automethod:: experimental.tools.scoremanagertools.editors.InstrumentEditor.InstrumentEditor.InstrumentEditor.toggle_pitch_range_display
+   :noindex:
+
 Special methods
 ---------------
 

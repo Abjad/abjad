@@ -25,16 +25,13 @@ class InstrumentEditor(InteractiveEditor):
     ### PRIVATE METHODS ###
 
     def _handle_main_menu_result(self, result):
-        if result == 'tprd':
-            if self._session.display_pitch_ranges_with_numbered_pitches:
-                self._session.display_pitch_ranges_with_numbered_pitches = False
-            else:
-                self._session.display_pitch_ranges_with_numbered_pitches = True
+        if result in self.user_input_to_action:
+            self.user_input_to_action[result](self)
         else:
-            InteractiveEditor._handle_main_menu_result(self, result)
+            super(type(self), self)._handle_main_menu_result(result)
 
     def _make_main_menu(self):
-        menu = InteractiveEditor._make_main_menu(self)
+        menu = super(type(self), self)._make_main_menu()
         hidden_section = menu.hidden_section
         hidden_section.append(('tprd', 'toggle pitch range display'))
         return menu
@@ -60,3 +57,15 @@ class InstrumentEditor(InteractiveEditor):
                 self.target = instruments[0]
             else:
                 self.target = None
+
+    def toggle_pitch_range_display(self):
+        if self._session.display_pitch_ranges_with_numbered_pitches:
+            self._session.display_pitch_ranges_with_numbered_pitches = False
+        else:
+            self._session.display_pitch_ranges_with_numbered_pitches = True
+
+    ### USER INPUT MAPPING ###
+
+    user_input_to_action = {
+        'tprd':     toggle_pitch_range_display,
+        }
