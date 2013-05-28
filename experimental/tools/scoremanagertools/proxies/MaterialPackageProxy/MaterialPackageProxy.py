@@ -20,6 +20,12 @@ class MaterialPackageProxy(PackageProxy):
         self._generic_output_name = None
         self.stylesheet_file_name_in_memory = None
 
+    ### READ-ONLY PRIVATE PROPERTIES ###
+
+    @property
+    def _breadcrumb(self):
+        return self._space_delimited_lowercase_name
+
     ### PRIVATE METHODS ###
 
     # TODO: audit
@@ -103,8 +109,6 @@ class MaterialPackageProxy(PackageProxy):
             self.initializer_file_proxy.write_stub_file_to_disk(prompt=True)
         elif result == 'ren':
             self.rename_material_interactively()
-        elif result == 'reg':
-            self.regenerate_everything(prompt=True)
         # TODO: add to package-level hidden menu
         elif result == 'tags':
             self.manage_tags()
@@ -129,7 +133,6 @@ class MaterialPackageProxy(PackageProxy):
         hidden_section = main_menu.make_section(is_hidden=True)
         hidden_section.append(('rm', 'delete package'))
         hidden_section.append(('ls', 'list package'))
-        hidden_section.append(('reg', 'regenerate package'))
         hidden_section.append(('ren', 'rename package'))
         hidden_section.append(('stl', 'manage stylesheets'))
         hidden_section.append(('tags', 'manage tags'))
@@ -230,10 +233,6 @@ class MaterialPackageProxy(PackageProxy):
         self._make_main_menu_section_for_illustration_builder(menu, hidden_section)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
-
-    @property
-    def _breadcrumb(self):
-        return self._space_delimited_lowercase_name
 
     @property
     def has_complete_user_input_wrapper_in_memory(self):
@@ -699,11 +698,6 @@ class MaterialPackageProxy(PackageProxy):
     def populate_user_input_wrapper(self, prompt=False):
         pass
 
-    # TODO: port
-    def regenerate_everything(self, prompt=True):
-        self._io.print_not_yet_implemented()
-        self._io.proceed(is_interactive=prompt)
-
     def remove(self):
         self.remove_material_from_materials_initializer()
         PackageProxy.remove(self)
@@ -790,11 +784,11 @@ class MaterialPackageProxy(PackageProxy):
             filesystem_directory_name = os.path.dirname(self.filesystem_path)
             new_package_directory = os.path.join(filesystem_directory_name, new_material_package_name)
             new_initializer = os.path.join(new_package_directory, '__init__.py')
-            helpers.globally_replace_in_file(
+            self.replace_in_file(
                 new_initializer, self.material_package_name, new_material_package_name)
             # rename output material
             new_output_material = os.path.join(new_package_directory, 'output_material.py')
-            helpers.globally_replace_in_file(
+            self.replace_in_file(
                 new_output_material, self.material_package_name, new_material_package_name)
             # commit
             commit_message = 'renamed {} to {}.'.format(
@@ -806,6 +800,18 @@ class MaterialPackageProxy(PackageProxy):
             self._path = new_package_directory
         else:
             raise NotImplementedError('commit to repository and then rename.')
+
+    @staticmethod
+    def replace_in_file(file_path, old, new):
+        file_pointer = file(file_path, 'r')
+        new_file_lines = []
+        for line in file_pointer.readlines():
+            line = line.replace(old, new)
+            new_file_lines.append(line)
+        file_pointer.close()
+        file_pointer = file(file_path, 'w')
+        file_pointer.write(''.join(new_file_lines))
+        file_pointer.close()
 
     def run_first_time(self):
         self._run(user_input='omi')
@@ -860,7 +866,8 @@ class MaterialPackageProxy(PackageProxy):
             output_material_module_body_lines is None:
             pair = self.output_material_module_import_statements_and_output_material_module_body_lines
             output_material_module_import_statements, output_material_module_body_lines = pair
-        output_material_module_import_statements = [x + '\n' for x in output_material_module_import_statements]
+        output_material_module_import_statements = [
+            x + '\n' for x in output_material_module_import_statements]
         output_material_module_proxy.setup_statements = output_material_module_import_statements
         output_material_module_proxy.body_lines[:] = output_material_module_body_lines
         output_material_module_proxy.write_to_disk()
@@ -872,7 +879,8 @@ class MaterialPackageProxy(PackageProxy):
     def write_stub_material_definition_module_to_disk(self):
         if self.should_have_material_definition_module:
             file(self.material_definition_module_file_name, 'w').write('')
-            self.material_definition_module_proxy.write_stub_to_disk(self.is_data_only, is_interactive=True)
+            self.material_definition_module_proxy.write_stub_to_disk(
+                self.is_data_only, is_interactive=True)
 
     def write_tags_to_disk(self):
         self.add_tag('is_material_package', True)
