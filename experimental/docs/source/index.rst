@@ -658,7 +658,6 @@ Unstable packages (load manually)
       tools/scoremanagertools/editors/get_dynamic_handler_editor
       tools/scoremanagertools/editors/get_parameter_specifier_editor
       tools/scoremanagertools/editors/get_rhythm_maker_editor
-      tools/scoremanagertools/helpers/get_current_date
       tools/scoremanagertools/helpers/globally_replace_in_file
       tools/scoremanagertools/helpers/safe_import
       tools/scoremanagertools/materialpackagemakers/MarkupInventoryMaterialPackageMaker/make_illustration_from_output_material
@@ -863,7 +862,6 @@ Unstable packages (load manually)
       tools/scoremanagertools/editors/get_dynamic_handler_editor
       tools/scoremanagertools/editors/get_parameter_specifier_editor
       tools/scoremanagertools/editors/get_rhythm_maker_editor
-      tools/scoremanagertools/helpers/get_current_date
       tools/scoremanagertools/helpers/globally_replace_in_file
       tools/scoremanagertools/helpers/safe_import
       tools/scoremanagertools/materialpackagemakers/MarkupInventoryMaterialPackageMaker/make_illustration_from_output_material
