@@ -1,7 +1,6 @@
 import os
 from abjad.tools import iotools
 from abjad.tools import mathtools
-from experimental.tools.scoremanagertools import helpers
 from experimental.tools.scoremanagertools import wizards
 from experimental.tools.scoremanagertools.proxies.PackageProxy import PackageProxy
 
@@ -425,12 +424,6 @@ class MaterialPackageProxy(PackageProxy):
             illustration.file_initial_user_includes.append(self.stylesheet_file_name_in_memory)
         return illustration
 
-#    @property
-#    def initializer_has_output_material_safe_import_statement(self):
-#        if self.has_initializer:
-#            return self.initializer_file_proxy.has_safe_import_statement(
-#                'output_material', self.material_package_name)
-
     # TODO: port
     @property
     def is_changed(self):
@@ -551,12 +544,6 @@ class MaterialPackageProxy(PackageProxy):
                 return scoremanagertools.proxies.OutputMaterialModuleProxy(
                     self.output_material_module_path, session=self._session)
 
-#    @property
-#    def parent_initializer_has_output_material_safe_import_statement(self):
-#        if self.has_parent_initializer:
-#            return self.parent_initializer_file_proxy.has_safe_import_statement(
-#            self.material_package_name, self.material_package_name)
-
     @property
     def should_have_illustration(self):
         return self.get_tag('should_have_illustration')
@@ -631,15 +618,6 @@ class MaterialPackageProxy(PackageProxy):
                 self.user_input_module_path, session=self._session)
 
     ### PUBLIC METHODS ###
-
-#    def add_material_to_material_initializer(self):
-#        self.initializer_file_proxy.add_safe_import_statement(
-#            'output_material', self.material_package_name)
-
-#    def add_material_to_materials_initializer(self):
-#        parent_package = PackageProxy(self.parent_package_path, session=self._session)
-#        parent_package.initializer_file_proxy.add_safe_import_statement(
-#            self.material_package_name, self.material_package_name)
 
     def conditionally_write_stub_material_definition_module_to_disk(self, is_interactive=False):
         if not self.get_tag('material_package_maker_class_name'):

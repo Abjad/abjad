@@ -60,27 +60,17 @@
 
 23. Remove ModuleProxy.unimport() entirely.
 
-24. Simplify custom_score/music/materials/__init__.py files.
-    File should probably contain nothing.
-    What is the design goal?
-    The design goal is that the score manager should always start.
-    The score manager should start even when a score directory contains explosively bad code.
-    This means that the score manager should basically import no code.
-    If the user requests explicit import then the score manager should use safe import.
-    Ultimately this should mean that safe_import() can be removed from *all* __init__.py files everywhere.
-    The system might preserve safe_import() to be used in direct response to user request for explicit import.
+24. Replace all _read_only_attributes.py and _public_attributes.py test files with doctests.
 
-25. Replace all _read_only_attributes.py and _public_attributes.py test files with doctests.
+25. Sweep inline scoremanagertools TODO items.
 
-26. Sweep inline scoremanagertools TODO items.
+26. Author ScorePackageProxy docstrings.
 
-27. Author ScorePackageProxy docstrings.
+27. Remove 'grandparent_directory_path'.
 
-28. Remove 'grandparent_directory_path'.
+28. Make ScoreManagerConfiguration READ ONLY!
 
-29. Make ScoreManagerConfiguration READ ONLY!
-
-30. Revisit score_manager/configuration.py file.
+29. Revisit score_manager/configuration.py file.
     The only necessary user settings should be these:
         user_extensions_directory_path = /Users/trevorbaca/Documents/baca/scoremanager/extensions
         user_collateral_directory_path = /Users/trevorbaca/Documents/baca/scoremanager/collateral
@@ -94,35 +84,35 @@
     * store user specifiers in user collateral directory
     * store user stylesheets in user collateral directory
 
-31. Create ~/Documents/baca/scoremanager to house these subdirectories:
+30. Create ~/Documents/baca/scoremanager to house these subdirectories:
         ~/Documents/baca/scoremanager/editors
         ~/Documents/baca/scoremanager/materialpackagemakers
         ~/Documents/baca/scoremanager/materials
         ~/Documents/baca/scoremanager/stylesheets
 
-32. Remove the has_readable_... and is_readable_... properties from the system entirely.
+31. Remove the has_readable_... and is_readable_... properties from the system entirely.
     Force such functionality to be method calls that will be noticeably expensive.
 
-33. Migrate all build_illustration.py modules from separate modules to bound class methods.
+32. Migrate all build_illustration.py modules from separate modules to bound class methods.
 
-34. Add PackageystemAssetProxy to superclass ModuleProxy and PackageProxy.
+33. Add PackageystemAssetProxy to superclass ModuleProxy and PackageProxy.
 
-35. Change DistributionDirectoryProxy.__init__(score_package_name=None) to score_package_path.
+34. Change DistributionDirectoryProxy.__init__(score_package_name=None) to score_package_path.
     Same with ExergueDirectoryProxy.
     Same with MusicPackageProxy.
 
-36. Reimplement self._handle_main_menu_result methods around dictionaries.
+35. Reimplement self._handle_main_menu_result methods around dictionaries.
 
-37. Split recursif repositories.
+36. Split recursif repositories.
     Then grep for 'recursif' and do whatever is necessary to remove from codebase.
 
-38. Remove head=None keyword from list_storehouse_filesystem_paths().
+37. Remove head=None keyword from list_storehouse_filesystem_paths().
     The head filter can be used only on complete *asset* paths (whether filesystem or packagesystem).
     The head filter can not beused on *storhouse* paths alone.
 
-39. Add styleshset management to score manager main menu.
+38. Add styleshset management to score manager main menu.
 
-40. Might make sense to implement an SvnManager class.
+39. Might make sense to implement an SvnManager class.
     This will encapsulate all svn management functionality.
 
-41. Create a PackagesystemAssetProxy to parallel PacakagesystemAssetWrangler.
+40. Create a PackagesystemAssetProxy to parallel PacakagesystemAssetWrangler.

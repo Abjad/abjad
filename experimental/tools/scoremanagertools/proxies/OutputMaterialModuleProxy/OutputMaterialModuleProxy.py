@@ -163,15 +163,3 @@ class OutputMaterialModuleProxy(BasicModuleProxy):
             return self.import_output_material()
         except:
             pass
-
-#    def remove(self):
-#        from experimental.tools import scoremanagertools
-#        parent_package_initializer_file_proxy = scoremanagertools.proxies.InitializerFileProxy(
-#            self.parent_package_initializer_file_name)
-#        parent_package_initializer_file_proxy.remove_safe_import_statement(
-#            'output_material', self.material_package_name)
-#        grandparent_package_initializer = scoremanagertools.proxies.InitializerFileProxy(
-#            self.grandparent_package_initializer_file_name)
-#        grandparent_package_initializer.remove_safe_import_statement(
-#            self.material_package_name, self.material_package_name)
-#        BasicModuleProxy.remove(self)

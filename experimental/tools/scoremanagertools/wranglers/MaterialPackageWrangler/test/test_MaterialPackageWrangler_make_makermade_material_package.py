@@ -17,8 +17,6 @@ def test_MaterialPackageWrangler_make_makermade_material_package_01():
         assert mpp.has_initializer
         assert not mpp.has_output_material_module
         assert mpp.has_user_input_module
-        #assert not mpp.initializer_has_output_material_safe_import_statement
-        #assert not mpp.parent_initializer_has_output_material_safe_import_statement
         assert mpp.output_material is None
     finally:
         mpp.remove()

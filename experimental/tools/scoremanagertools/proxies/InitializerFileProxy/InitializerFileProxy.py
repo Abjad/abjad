@@ -37,18 +37,6 @@ class InitializerFileProxy(ParsableFileProxy):
 
     ### PUBLIC METHODS ###
 
-#    def add_safe_import_statement(self, source_module_name, source_attribute_name):
-#        safe_import_import_statement = \
-#            'from experimental.tools.scoremanagertools.helpers import safe_import\n'
-#        if safe_import_import_statement not in self.setup_statements:
-#            self.setup_statements.append(safe_import_import_statement)
-#        safe_import_statement = 'safe_import(globals(), {!r}, {!r})\n'
-#        safe_import_statement = safe_import_statement.format(
-#            source_module_name, source_attribute_name)
-#        if safe_import_statement not in self.safe_import_statements:
-#            self.safe_import_statements.append(safe_import_statement)
-#        self.write_to_disk()
-
     def has_line(self, line):
         file_reference = open(self.filesystem_path, 'r')
         for file_line in file_reference.readlines():
@@ -57,11 +45,6 @@ class InitializerFileProxy(ParsableFileProxy):
                 return True
         file_reference.close()
         return False
-
-#    def has_safe_import_statement(self, source_module_name, source_module_attribute_name):
-#        safe_import_line = 'safe_import(globals(), {!r}, {!r})\n'
-#        safe_import_line = safe_import_line.format(source_module_name, source_module_attribute_name)
-#        return self.has_line(safe_import_line)
 
     # TODO: move to TagsFileProxy
     def make_tag_lines(self, tags):
@@ -133,17 +116,6 @@ class InitializerFileProxy(ParsableFileProxy):
         self.tag_lines = tag_lines[:]
         self.teardown_statements = teardown_statements[:]
         return is_parsable
-
-#    def remove_safe_import_statement(self, source_module_name, source_attribute_name):
-#        safe_import_statement = 'safe_import(globals(), {!r}, {!r})\n'
-#        safe_import_statement = safe_import_statement.format(
-#            source_module_name, source_attribute_name)
-#        safe_import_statements = []
-#        for current_safe_import_statement in self.safe_import_statements:
-#            if not current_safe_import_statement == safe_import_statement:
-#                safe_import_statements.append(current_safe_import_statement)
-#        self.safe_import_statements[:] = safe_import_statements
-#        self.write_to_disk()
 
     # TODO: move to TagsFileProxy
     def restore_interactively(self, prompt=True):

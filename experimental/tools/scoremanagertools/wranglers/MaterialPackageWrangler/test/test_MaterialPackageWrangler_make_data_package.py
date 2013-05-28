@@ -16,8 +16,6 @@ def test_MaterialPackageWrangler_make_data_package_01():
         assert mpp.has_readable_initializer
         assert mpp.has_readable_material_definition_module
         assert not mpp.has_output_material_module
-        #assert not mpp.initializer_has_output_material_safe_import_statement
-        #assert not mpp.parent_initializer_has_output_material_safe_import_statement
         assert mpp.material_definition is None
         assert mpp.output_material is None
     finally:
