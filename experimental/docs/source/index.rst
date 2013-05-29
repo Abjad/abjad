@@ -658,11 +658,6 @@ Unstable packages (load manually)
       tools/scoremanagertools/editors/get_dynamic_handler_editor
       tools/scoremanagertools/editors/get_parameter_specifier_editor
       tools/scoremanagertools/editors/get_rhythm_maker_editor
-      tools/scoremanagertools/materialpackagemakers/MarkupInventoryMaterialPackageMaker/make_illustration_from_output_material
-      tools/scoremanagertools/materialpackagemakers/OctaveTranspositionMappingInventoryMaterialPackageMaker/make_illustration_from_output_material
-      tools/scoremanagertools/materialpackagemakers/PitchRangeInventoryMaterialPackageMaker/make_illustration_from_output_material
-      tools/scoremanagertools/materialpackagemakers/RhythmMakerMaterialPackageMaker/make_illustration_from_output_material
-      tools/scoremanagertools/materialpackagemakers/TempoMarkInventoryMaterialPackageMaker/make_illustration_from_output_material
       tools/scoremanagertools/music/make_sargasso_measures
 
 .. only:: latex
@@ -860,9 +855,4 @@ Unstable packages (load manually)
       tools/scoremanagertools/editors/get_dynamic_handler_editor
       tools/scoremanagertools/editors/get_parameter_specifier_editor
       tools/scoremanagertools/editors/get_rhythm_maker_editor
-      tools/scoremanagertools/materialpackagemakers/MarkupInventoryMaterialPackageMaker/make_illustration_from_output_material
-      tools/scoremanagertools/materialpackagemakers/OctaveTranspositionMappingInventoryMaterialPackageMaker/make_illustration_from_output_material
-      tools/scoremanagertools/materialpackagemakers/PitchRangeInventoryMaterialPackageMaker/make_illustration_from_output_material
-      tools/scoremanagertools/materialpackagemakers/RhythmMakerMaterialPackageMaker/make_illustration_from_output_material
-      tools/scoremanagertools/materialpackagemakers/TempoMarkInventoryMaterialPackageMaker/make_illustration_from_output_material
       tools/scoremanagertools/music/make_sargasso_measures
