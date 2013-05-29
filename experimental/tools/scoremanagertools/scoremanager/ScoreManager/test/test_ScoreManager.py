@@ -34,13 +34,13 @@ def test_ScoreManager_04():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     score_manager._run(user_input='q')
-    assert score_manager._session.transcript[-2][1][0] == 'Scores - active scores'
+    assert score_manager._session.transcript[-2][1][0] == 'Score manager - active scores'
 
     score_manager._run(user_input='svn q')
-    assert score_manager._session.transcript[-2][1][0] == 'Scores - active scores - repository commands'
+    assert score_manager._session.transcript[-2][1][0] == 'Score manager - active scores - repository commands'
 
     score_manager._run(user_input='svn b q')
-    assert score_manager._session.transcript[-2][1][0] == 'Scores - active scores'
+    assert score_manager._session.transcript[-2][1][0] == 'Score manager - active scores'
 
 
 def test_ScoreManager_05():

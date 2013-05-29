@@ -239,6 +239,19 @@ class ScoreManagerConfiguration(Configuration):
         return 'experimental.tools.scoremanagertools.built_in_specifiers'
 
     @property
+    def built_in_stylesheets_directory_path(self):
+        '''Built-in stylesheets directory path:
+
+        ::
+
+            >>> configuration.built_in_stylesheets_directory_path
+            '.../tools/scoremanagertools/built_in_stylesheets'
+
+        Return string.
+        '''
+        return os.path.join(self.score_manager_tools_directory_path, 'built_in_stylesheets')
+
+    @property
     def configuration_directory_path(self):
         '''Configuration directory path:
 
@@ -550,8 +563,10 @@ class ScoreManagerConfiguration(Configuration):
                 len(os.path.dirname(self.score_manager_tools_directory_path)) + 1
         elif filesystem_path.startswith(self.user_scores_directory_path):
             prefix_length = len(self.user_scores_directory_path) + 1
+        elif filesystem_path.startswith(self.user_stylesheets_directory_path):
+            prefix_length = len(os.path.dirname(self.user_stylesheets_directory_path)) + 1
         else:
-            raise Exception('can not change to package path: {!r}'.format(filesystem_path))
+            raise Exception('can not change filesystem path {!r} to packagesystem path.'.format(filesystem_path))
 
         package_path = filesystem_path[prefix_length:]
         package_path = package_path.replace(os.path.sep, '.')

@@ -40,7 +40,7 @@ class StylesheetFileWrangler(FileWrangler):
         else:
             self.edit_asset_interactively(result)
 
-    def _make_main_menu(self):
+    def _make_main_menu(self, head=None):
         menu, section = self._io.make_menu(where=self._where, is_parenthetically_numbered=True)
         tokens = []
         for filesystem_path in self.list_asset_filesystem_paths():

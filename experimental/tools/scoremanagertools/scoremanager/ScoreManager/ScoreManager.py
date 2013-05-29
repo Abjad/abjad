@@ -38,7 +38,7 @@ class ScoreManager(ScoreManagerObject):
 
     @property
     def _breadcrumb(self):
-        return 'scores'
+        return 'score manager'
 
     @property
     def _score_status_string(self):
@@ -88,6 +88,7 @@ class ScoreManager(ScoreManagerObject):
         section = menu.make_section()
         section.append(('m', 'materials'))
         section.append(('f', 'specifiers'))
+        section.append(('y', 'stylesheets'))
         section.append(('new', 'new score'))
         hidden_section = menu.make_section(is_hidden=True)
         hidden_section.append(('active', 'show active scores only'))
@@ -278,7 +279,11 @@ class ScoreManager(ScoreManagerObject):
 
     def manage_specifiers(self):
         self.music_specifier_module_wrangler._run(
-            rollback=True, head=self.configuration.built_in_specifiers_package_path),
+            rollback=True, head=self.configuration.built_in_specifiers_package_path)
+
+    def manage_stylesheets(self):
+        self.stylesheet_file_wrangler._run(
+            rollback=True, head=self.configuration.built_in_stylesheets_directory_path)
         
     def manage_svn(self, clear=True):
         while True:
@@ -331,4 +336,5 @@ class ScoreManager(ScoreManagerObject):
         'profile':  profile_visible_scores,
         'py.test':  run_py_test_on_all_user_scores,
         'svn':      manage_svn,
+        'y':        manage_stylesheets,
         }

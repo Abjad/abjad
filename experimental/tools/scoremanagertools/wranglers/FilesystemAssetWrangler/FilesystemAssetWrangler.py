@@ -100,7 +100,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         return menu
 
     @abc.abstractmethod
-    def _make_main_menu(self):
+    def _make_main_menu(self, head=None):
         pass
 
     def _make_menu_tokens(self, head=None):

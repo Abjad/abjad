@@ -30,7 +30,7 @@ def test_MaterialPackageProxy_run_02():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     score_manager._run(user_input='m sargasso q')
-    assert score_manager._session.transcript[-2][1][0] == 'Scores - materials - sargasso multipliers'
+    assert score_manager._session.transcript[-2][1][0] == 'Score manager - materials - sargasso multipliers'
 
 
 def test_MaterialPackageProxy_run_03():

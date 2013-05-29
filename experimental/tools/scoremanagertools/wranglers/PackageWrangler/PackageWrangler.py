@@ -22,7 +22,7 @@ class PackageWrangler(PackagesystemAssetWrangler):
     def _handle_main_menu_result(self, result):
         self._io.print_not_yet_implemented()
 
-    def _make_main_menu(self):
+    def _make_main_menu(self, head=None):
         self._io.print_not_yet_implemented()
 
     ### READ-ONLY PUBLIC PROPERTIES ###

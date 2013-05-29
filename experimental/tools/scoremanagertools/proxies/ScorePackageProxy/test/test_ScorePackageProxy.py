@@ -56,9 +56,9 @@ def test_ScorePackageProxy_04():
     score_manager._run(user_input="red~example~score home q")
 
     assert score_manager._session.transcript.signature == (6, (0, 4))
-    assert score_manager._session.transcript[0][1][0] == 'Scores - active scores'
+    assert score_manager._session.transcript[0][1][0] == 'Score manager - active scores'
     assert score_manager._session.transcript[2][1][0] == 'Red Example Score (2013)'
-    assert score_manager._session.transcript[4][1][0] == 'Scores - active scores'
+    assert score_manager._session.transcript[4][1][0] == 'Score manager - active scores'
 
 
 def test_ScorePackageProxy_05():
@@ -82,9 +82,9 @@ def test_ScorePackageProxy_06():
     score_manager._run(user_input='red~example~score b q')
 
     assert score_manager._session.transcript.signature == (6, (0, 4))
-    assert score_manager._session.transcript[0][1][0] == 'Scores - active scores'
+    assert score_manager._session.transcript[0][1][0] == 'Score manager - active scores'
     assert score_manager._session.transcript[2][1][0] == 'Red Example Score (2013)'
-    assert score_manager._session.transcript[4][1][0] == 'Scores - active scores'
+    assert score_manager._session.transcript[4][1][0] == 'Score manager - active scores'
 
 
 def test_ScorePackageProxy_07():
