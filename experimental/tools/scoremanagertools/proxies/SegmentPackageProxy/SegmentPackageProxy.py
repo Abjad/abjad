@@ -13,11 +13,8 @@ class SegmentPackageProxy(PackageProxy):
     ### PRIVATE METHODS ###
 
     def _handle_main_menu_result(self, result):
-        if result == 'd':
-            self.remove()
-            return False
-        elif result == 'n':
-            self.initializer_file_proxy.view()
+        if result in self.user_input_to_action:
+            self.user_input_to_action[result](self)
 
     def _make_main_menu(self):
         menu, section = self._io.make_menu(where=self._where)
@@ -52,5 +49,16 @@ class SegmentPackageProxy(PackageProxy):
     def make_asset_interactively(self, prompt=True):
         self._io.print_not_yet_implemented()
 
+    def remove_segment_package(self):
+        self.remove()
+        return False
+
     def set_score_template_interactively(self):
         self._io.print_not_yet_implemented()
+
+    ### USER INPUT MAPPING ###
+
+    user_input_to_action = PackageProxy.user_input_to_action.copy()
+    user_input_to_action.update({
+        'd': remove_segment_package,
+        })

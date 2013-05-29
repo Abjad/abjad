@@ -721,9 +721,6 @@ class MaterialPackageProxy(PackageProxy):
         file_pointer.write(''.join(new_file_lines))
         file_pointer.close()
 
-    def restore_initializer_interactively(self):
-        self.initializer_file_proxy.restore_interactively(prompt=True)
-
     def run_abjad_on_illustration_builder_module(self):
         self.illustration_builder_module_proxy.run_abjad(prompt=True)
 
@@ -770,9 +767,6 @@ class MaterialPackageProxy(PackageProxy):
     def view_illustration_pdf(self):
         self.illustration_pdf_file_proxy.view()
 
-    def view_initializer(self):
-        self.initializer_file_proxy.view()
-
     def view_output_material_module(self):
         self.output_material_module_proxy.view()
     
@@ -791,12 +785,6 @@ class MaterialPackageProxy(PackageProxy):
         illustration = self.illustration_with_stylesheet
         iotools.write_expr_to_pdf(illustration, self.illustration_pdf_file_name, print_status=False)
         self._io.proceed('PDF written to disk.', is_interactive=prompt)
-
-    def write_initializer_boilerplate_interactively(self):
-        self.initializer_file_proxy.write_boilerplate_interactively()
-
-    def write_initializer_stub_file_to_disk(self):
-        self.initializer_file_proxy.write_stub_file_to_disk(prompt=True)
 
     def write_material_definition_module_boilerplate_interactively(self):
         self.material_definition_module_proxy.write_boilerplate_interactively()
@@ -844,10 +832,6 @@ class MaterialPackageProxy(PackageProxy):
         'ibt': write_stub_illustration_builder_module_to_disk,
         'ibx': run_python_on_illustration_builder_module,
         'ibxi': run_abjad_on_illustration_builder_module,
-        'incanned': write_initializer_boilerplate_interactively,
-        'inr': restore_initializer_interactively,
-        'instub': write_initializer_stub_file_to_disk,
-        'inv': view_initializer,
         'lyd': remove_illustration_ly,
         'lym': write_illustration_ly_to_disk,
         'lyv': illustration_ly_file_proxy,

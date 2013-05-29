@@ -141,6 +141,9 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.rename_interactively
    :noindex:
 
+.. automethod:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.restore_initializer_interactively
+   :noindex:
+
 .. automethod:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.run_first_time
    :noindex:
 
@@ -162,10 +165,19 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.svn_up
    :noindex:
 
+.. automethod:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.view_initializer
+   :noindex:
+
 .. automethod:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.write_boilerplate
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.write_boilerplate_interactively
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.write_initializer_boilerplate_interactively
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy.write_initializer_stub_file_to_disk
    :noindex:
 
 Special methods

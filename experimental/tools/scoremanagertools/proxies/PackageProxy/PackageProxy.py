@@ -236,6 +236,9 @@ class PackageProxy(DirectoryProxy):
             tag_name = result
             self.remove_tag(tag_name)
 
+    def restore_initializer_interactively(self):
+        self.initializer_file_proxy.restore_interactively(prompt=True)
+
     def run_first_time(self, **kwargs):
         self._run(**kwargs)
 
@@ -247,9 +250,22 @@ class PackageProxy(DirectoryProxy):
             return
         self.package_path = result
 
+    def view_initializer(self):
+        self.initializer_file_proxy.view()
+
+    def write_initializer_boilerplate_interactively(self):
+        self.initializer_file_proxy.write_boilerplate_interactively()
+
+    def write_initializer_stub_file_to_disk(self):
+        self.initializer_file_proxy.write_stub_file_to_disk(prompt=True)
+
     ### USER INPUT MAPPING ###
 
     user_input_to_action = DirectoryProxy.user_input_to_action.copy()
     user_input_to_action.update({
+        'incanned': write_initializer_boilerplate_interactively,
+        'inr': restore_initializer_interactively,
+        'instub': write_initializer_stub_file_to_disk,
+        'inv': view_initializer,
         'tags': manage_tags,
         })

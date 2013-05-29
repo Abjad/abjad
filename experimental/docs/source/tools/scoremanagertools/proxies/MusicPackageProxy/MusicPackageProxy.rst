@@ -141,6 +141,9 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusicPackageProxy.MusicPackageProxy.MusicPackageProxy.rename_interactively
    :noindex:
 
+.. automethod:: experimental.tools.scoremanagertools.proxies.MusicPackageProxy.MusicPackageProxy.MusicPackageProxy.restore_initializer_interactively
+   :noindex:
+
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusicPackageProxy.MusicPackageProxy.MusicPackageProxy.run_first_time
    :noindex:
 
@@ -162,10 +165,19 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusicPackageProxy.MusicPackageProxy.MusicPackageProxy.svn_up
    :noindex:
 
+.. automethod:: experimental.tools.scoremanagertools.proxies.MusicPackageProxy.MusicPackageProxy.MusicPackageProxy.view_initializer
+   :noindex:
+
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusicPackageProxy.MusicPackageProxy.MusicPackageProxy.write_boilerplate
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.MusicPackageProxy.MusicPackageProxy.MusicPackageProxy.write_boilerplate_interactively
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.proxies.MusicPackageProxy.MusicPackageProxy.MusicPackageProxy.write_initializer_boilerplate_interactively
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.proxies.MusicPackageProxy.MusicPackageProxy.MusicPackageProxy.write_initializer_stub_file_to_disk
    :noindex:
 
 Special methods
