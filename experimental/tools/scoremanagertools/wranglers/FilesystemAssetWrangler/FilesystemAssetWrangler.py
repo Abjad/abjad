@@ -253,14 +253,20 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         self._io.proceed('{} {} removed.'.format(total_assets_removed, asset_string))
 
     # TODO: write test
+    def rename_asset_interactively(self):
+        self._session.push_backtrack()
+        asset_filesystem_path = self.select_asset_filesystem_path_interactively()
+        self._session.pop_backtrack()
+        if self._session.backtrack():
+            return
+        asset_proxy = self._initialize_asset_proxy(asset_filesystem_path)
+        asset_proxy.rename_interactively()
+
+    # TODO: write test
     def select_asset_filesystem_path_interactively(self, clear=True, cache=False):
         self._session.cache_breadcrumbs(cache=cache)
-        menu, section = self._io.make_menu(where=self._where, is_parenthetically_numbered=True)
-        tokens = []
-        for filesystem_path in self.list_asset_filesystem_paths():
-            tokens.append(os.path.basename(filesystem_path))
-        tokens = self.list_asset_names()
-        section.tokens = tokens
+        menu, section = self._io.make_menu(where=self._where, is_parenthetically_numbered=True, is_keyed=False)
+        section.tokens = self._make_menu_tokens()
         while True:
             breadcrumb = 'select {}'.format(self.asset_proxy_class._generic_class_name)
             self._session.push_breadcrumb(breadcrumb)
@@ -282,5 +288,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     ### UI MANIFEST ###
 
     user_input_to_action = {
+        'ren': rename_asset_interactively,
         'rm': remove_assets_interactively,
         }

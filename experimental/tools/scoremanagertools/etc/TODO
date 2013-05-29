@@ -111,3 +111,8 @@
 
 38. Author StylesheetFileWrangler.remove_assets_interactively() test.
     Will involve making user_input='... rm ...' work with named arguments instead of just numeric arguments.
+
+39. Make a menuing.Token class.
+    This will name all token attributes.
+    This will also make all attribute extraction methods explicit.
+    This will also eliminate all numeric tuple field references.

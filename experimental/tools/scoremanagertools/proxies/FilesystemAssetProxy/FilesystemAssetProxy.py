@@ -213,8 +213,7 @@ class FilesystemAssetProxy(ScoreManagerObject):
 
     def rename_interactively(self, user_input=None):
         self._io.assign_user_input(user_input=user_input)
-        getter = self._io.make_getter(where=self._where)
-        getter.append_underscore_delimited_lowercase_file_name('new name')
+        getter = self._initialize_file_name_getter()
         getter.include_newlines = False
         result = getter._run()
         if self._session.backtrack():

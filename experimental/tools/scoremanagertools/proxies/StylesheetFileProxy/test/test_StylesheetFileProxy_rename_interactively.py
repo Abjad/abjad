@@ -9,7 +9,7 @@ def test_StylesheetFileProxy_rename_interactively_01():
     score_manager_configuration = scoremanagertools.core.ScoreManagerConfiguration()
     filesystem_path = os.path.join(
         score_manager_configuration.score_manager_tools_directory_path,
-        'built_in_stylesheets', 'test_stylesheet.ly')
+        'built_in_stylesheets', 'test-stylesheet.ly')
     proxy = scoremanagertools.proxies.StylesheetFileProxy(filesystem_path=filesystem_path)
     assert not proxy.exists()
 
@@ -19,8 +19,8 @@ def test_StylesheetFileProxy_rename_interactively_01():
         assert not proxy.is_versioned()
         new_filesystem_path = os.path.join(
             score_manager_configuration.score_manager_tools_directory_path,
-            'built_in_stylesheets', 'new_test_stylesheet.ly')
-        proxy.rename_interactively(user_input='new_test_stylesheet.ly y q')
+            'built_in_stylesheets', 'new-test-stylesheet.ly')
+        proxy.rename_interactively(user_input='new-test-stylesheet.ly y q')
         assert proxy.filesystem_path == new_filesystem_path
         assert not os.path.exists(filesystem_path)
         assert os.path.exists(new_filesystem_path)
@@ -37,7 +37,7 @@ def test_StylesheetFileProxy_rename_interactively_02():
     score_manager_configuration = scoremanagertools.core.ScoreManagerConfiguration()
     filesystem_path = os.path.join(
         score_manager_configuration.score_manager_tools_directory_path,
-        'built_in_stylesheets', 'test_stylesheet.ly')
+        'built_in_stylesheets', 'test-stylesheet.ly')
     proxy = scoremanagertools.proxies.StylesheetFileProxy(filesystem_path=filesystem_path)
     assert not os.path.exists(filesystem_path)
 
@@ -48,8 +48,8 @@ def test_StylesheetFileProxy_rename_interactively_02():
         assert proxy.is_versioned()
         new_filesystem_path = os.path.join(
             score_manager_configuration.score_manager_tools_directory_path,
-            'built_in_stylesheets', 'new_test_stylesheet.ly')
-        proxy.rename_interactively(user_input='new_test_stylesheet.ly y q')
+            'built_in_stylesheets', 'new-test-stylesheet.ly')
+        proxy.rename_interactively(user_input='new-test-stylesheet.ly y q')
         assert proxy.filesystem_path == new_filesystem_path
         assert os.path.exists(new_filesystem_path)
     finally:
