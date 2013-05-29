@@ -93,26 +93,24 @@
 31. Remove the has_readable_... and is_readable_... properties from the system entirely.
     Force such functionality to be method calls that will be noticeably expensive.
 
-32. Migrate all build_illustration.py modules from separate modules to bound class methods.
+32. Add PackageystemAssetProxy to superclass ModuleProxy and PackageProxy.
 
-33. Add PackageystemAssetProxy to superclass ModuleProxy and PackageProxy.
-
-34. Change DistributionDirectoryProxy.__init__(score_package_name=None) to score_package_path.
+33. Change DistributionDirectoryProxy.__init__(score_package_name=None) to score_package_path.
     Same with ExergueDirectoryProxy.
     Same with MusicPackageProxy.
 
-35. Split recursif repositories.
+34. Split recursif repositories.
     Then grep for 'recursif' and do whatever is necessary to remove from codebase.
 
-36. Remove head=None keyword from list_storehouse_filesystem_paths().
+35. Remove head=None keyword from list_storehouse_filesystem_paths().
     The head filter can be used only on complete *asset* paths (whether filesystem or packagesystem).
     The head filter can not be used on *storhouse* paths alone.
 
-37. Add styleshset management to score manager main menu.
+36. Add styleshset management to score manager main menu.
 
-38. Might make sense to implement an SvnManager class.
+37. Might make sense to implement an SvnManager class.
     This will encapsulate all svn management functionality.
 
-39. Create a PackagesystemAssetProxy to parallel PacakagesystemAssetWrangler.
+38. Create a PackagesystemAssetProxy to parallel PacakagesystemAssetWrangler.
 
-40. Harmonize user input strings with method names in MaterialPackageProxy.user_input_to_action dictionary.
+39. Harmonize user input strings with method names in MaterialPackageProxy.user_input_to_action dictionary.
