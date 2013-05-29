@@ -43,3 +43,10 @@ class PackageWrangler(PackagesystemAssetWrangler):
 
     def make_asset_interactively(self):
         self._io.print_not_yet_implemented()
+
+    ### UI MANIFEST ###
+
+    user_input_to_action = PackagesystemAssetWrangler.user_input_to_action.copy()
+    user_input_to_action.update({
+
+        })

@@ -181,3 +181,10 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
         self._session.pop_breadcrumb()
         self._session.restore_breadcrumbs(cache=cache)
         return result
+
+    ### UI MANIFEST ###
+
+    user_input_to_action = FilesystemAssetWrangler.user_input_to_action.copy()
+    user_input_to_action.update({
+
+        })

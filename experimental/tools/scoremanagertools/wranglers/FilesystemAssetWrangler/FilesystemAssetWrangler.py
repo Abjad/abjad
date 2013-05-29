@@ -278,3 +278,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             # TODO: this is a hack and will break on user assets
             result = os.path.join(self.built_in_external_storehouse_filesystem_path[0], result)
             return result
+
+    ### UI MANIFEST ###
+
+    user_input_to_action = {}

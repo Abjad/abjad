@@ -74,18 +74,20 @@ class MaterialPackageWrangler(PackageWrangler):
         return material_package_proxy
 
     def _handle_main_menu_result(self, result):
-        if result == 'd':
-            self.make_data_package_interactively()
-        elif result == 's':
-            self.make_numeric_sequence_package_interactively()
-        elif result == 'h':
-            self.make_handmade_material_package_interactively()
-        elif result == 'm':
-            self.make_makermade_material_package_interactively()
-        elif result == 'missing':
-            self.make_storehouse_packages(is_interactive=True)
-        elif result == 'profile':
-            self.profile_visible_assets()
+#        if result == 'd':
+#            self.make_data_package_interactively()
+#        elif result == 's':
+#            self.make_numeric_sequence_package_interactively()
+#        elif result == 'h':
+#            self.make_handmade_material_package_interactively()
+#        elif result == 'm':
+#            self.make_makermade_material_package_interactively()
+#        elif result == 'missing':
+#            self.make_storehouse_packages(is_interactive=True)
+#        elif result == 'profile':
+#            self.profile_visible_assets()
+        if result in self.user_input_to_action:
+            self.user_input_to_action[result](self)
         else:
             material_package_proxy = self._initialize_asset_proxy(result)
             material_package_proxy._run()
@@ -438,3 +440,13 @@ class MaterialPackageWrangler(PackageWrangler):
     def make_numeric_sequence_package_interactively(self, user_input=None):
         tags = {'is_numeric_sequence': True}
         self.make_data_package_interactively(tags=tags, user_input=user_input)
+
+    ### UI MANIFEST ###
+
+    user_input_to_action = PackageWrangler.user_input_to_action.copy()
+    user_input_to_action.update({
+        'd': make_data_package_interactively,
+        's': make_numeric_sequence_package_interactively,
+        'h': make_handmade_material_package_interactively,
+        'm': make_makermade_material_package_interactively,
+        })
