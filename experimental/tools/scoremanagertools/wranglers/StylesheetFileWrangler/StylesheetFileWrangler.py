@@ -38,7 +38,7 @@ class StylesheetFileWrangler(FileWrangler):
         if result in self.user_input_to_action:
             self.user_input_to_action[result](self)
         else:
-            self.edit_asset_interactively(result)
+            self.edit_asset(result)
 
     def _make_main_menu(self, head=None):
         menu, section = self._io.make_menu(where=self._where, is_parenthetically_numbered=True)
@@ -47,7 +47,8 @@ class StylesheetFileWrangler(FileWrangler):
             tokens.append(os.path.basename(filesystem_path))
         section.tokens = tokens
         section = menu.make_section()
-        section.append(('new', 'new stylesheet'))
+        section.append(('new', 'new'))
+        section.append(('rm', 'remove'))
         return menu
 
     ### READ-ONLY PUBLIC PROPERTIES ###
@@ -81,10 +82,11 @@ class StylesheetFileWrangler(FileWrangler):
 
     ### PUBLIC METHODS ###
 
-    def edit_asset_interactively(self, asset_basename):
-        filesystem_path = os.path.join(self.built_in_stylesheets_directory_path, asset_basename)
+    def edit_asset(self, asset_basename):
+        filesystem_path = os.path.join(
+            self.configuration.built_in_stylesheets_directory_path, asset_basename)
         proxy = self.asset_proxy_class(filesystem_path=filesystem_path, session=self._session)
-        proxy._run()
+        proxy.edit()
 
     def list_asset_filesystem_paths(self,
         built_in_external=True, user_external=True,
@@ -201,7 +203,7 @@ class StylesheetFileWrangler(FileWrangler):
         if not stylesheet_file_name.endswith('.ly'):
             stylesheet_file_name = stylesheet_file_name + '.ly'
         stylesheet_file_name = os.path.join(
-            self.built_in_stylesheets_directory_path, stylesheet_file_name)
+            self.configuration.built_in_stylesheets_directory_path, stylesheet_file_name)
         stylesheet_proxy = scoremanagertools.proxies.StylesheetFileProxy(
             stylesheet_file_name, session=self._session)
         stylesheet_proxy.edit()

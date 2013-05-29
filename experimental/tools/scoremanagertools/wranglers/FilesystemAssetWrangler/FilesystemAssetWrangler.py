@@ -234,11 +234,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def remove_assets_interactively(self, head=None):
         getter = self._io.make_getter(where=self._where)
         argument_list = self.list_asset_filesystem_paths(head=head)
-        space_delimited_lowercase_asset_class_name = stringtools.string_to_space_delimited_lowercase(
-            self.asset_proxy_class.__name__)
-        plural_space_delimited_lowercase_asset_class_name = stringtools.pluralize_string(
-            space_delimited_lowercase_asset_class_name)
-        getter.append_argument_range(plural_space_delimited_lowercase_asset_class_name, argument_list)
+        getter.append_argument_range('number(s) to remove', argument_list)
         result = getter._run()
         if self._session.backtrack():
             return
@@ -250,7 +246,11 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             asset_proxy = self._initialize_asset_proxy(asset_filesystem_path)
             asset_proxy.remove()
             total_assets_removed += 1
-        self._io.proceed('{} asset(s) removed.'.format(total_assets_removed))
+        if total_assets_removed == 1:
+            asset_string = 'asset'
+        else:
+            asset_string = 'assets'
+        self._io.proceed('{} {} removed.'.format(total_assets_removed, asset_string))
 
     # TODO: write test
     def select_asset_filesystem_path_interactively(self, clear=True, cache=False):
