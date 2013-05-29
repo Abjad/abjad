@@ -190,7 +190,6 @@ class StylesheetFileWrangler(FileWrangler):
             user_score=user_score,
             head=head)
 
-    # TODO: write test
     def make_asset_interactively(self):
         from experimental.tools import scoremanagertools
         getter = self._io.make_getter(where=self._where)
@@ -206,7 +205,10 @@ class StylesheetFileWrangler(FileWrangler):
             self.configuration.built_in_stylesheets_directory_path, stylesheet_file_name)
         stylesheet_proxy = scoremanagertools.proxies.StylesheetFileProxy(
             stylesheet_file_name, session=self._session)
-        stylesheet_proxy.edit()
+        if self._session.is_test:
+            stylesheet_proxy.make_empty_asset()
+        else:
+            stylesheet_proxy.edit()
 
     ### UI MANIFEST ###
 

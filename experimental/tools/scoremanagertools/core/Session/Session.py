@@ -65,6 +65,7 @@ class Session(abctools.AbjadObject):
         self.is_first_run = True
         self.is_navigating_to_next_score = False
         self.is_navigating_to_prev_score = False
+        self.is_test = False
         self.last_command_was_composite = False
         self.menu_header_width = 100
         self.nonnumbered_menu_sections_are_hidden = False

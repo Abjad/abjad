@@ -105,3 +105,9 @@
 35. Create a PackagesystemAssetProxy to parallel PacakagesystemAssetWrangler.
 
 36. Harmonize user input strings with method names in MaterialPackageProxy.user_input_to_action dictionary.
+
+37. Change all edit*() methods to edit*interactively().
+    This is the right thing to do because all edit methods require user input.
+
+38. Author StylesheetFileWrangler.remove_assets_interactively() test.
+    Will involve making user_input='... rm ...' work with named arguments instead of just numeric arguments.

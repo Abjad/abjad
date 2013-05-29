@@ -117,11 +117,13 @@ class ScoreManager(ScoreManagerObject):
         section.append(('up', 'svn update scores'))
         return menu
 
-    def _run(self, user_input=None, clear=True, cache=False):
+    def _run(self, user_input=None, clear=True, cache=False, is_test=False):
         type(self).__init__(self)
         self._io.assign_user_input(user_input=user_input)
         self._session.cache_breadcrumbs(cache=cache)
         self._session.push_breadcrumb(self._breadcrumb)
+        if is_test:
+            self._session.is_test = True
         run_main_menu = True
         while True:
             self._session.push_breadcrumb(self._score_status_string)
