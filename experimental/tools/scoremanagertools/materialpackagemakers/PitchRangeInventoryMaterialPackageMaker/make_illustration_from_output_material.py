@@ -1,5 +1,4 @@
 from abjad import *
-from abjad.tools import skiptools
 
 
 def make_illustration_from_output_material(pitch_range_inventory, **kwargs):

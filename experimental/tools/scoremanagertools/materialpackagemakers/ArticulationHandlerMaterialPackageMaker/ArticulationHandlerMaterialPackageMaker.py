@@ -1,7 +1,8 @@
 from experimental.tools.handlertools.ArticulationHandler import ArticulationHandler
 from experimental.tools.scoremanagertools.editors.get_articulation_handler_editor import get_articulation_handler_editor
 from experimental.tools.scoremanagertools.materialpackagemakers.MaterialPackageMaker import MaterialPackageMaker
-from experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard import ArticulationHandlerCreationWizard
+from experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard import \
+    ArticulationHandlerCreationWizard
 
 
 class ArticulationHandlerMaterialPackageMaker(MaterialPackageMaker):

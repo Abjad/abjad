@@ -1,13 +1,14 @@
-from abjad.tools import durationtools
-from abjad.tools import mathtools
-from abjad.tools import measuretools
-from abjad.tools import sequencetools
+from abjad import *
+#from abjad.tools import durationtools
+#from abjad.tools import mathtools
+#from abjad.tools import measuretools
+#from abjad.tools import sequencetools
 from experimental.tools.scoremanagertools import predicates
 from experimental.tools.scoremanagertools.editors.UserInputWrapper import UserInputWrapper
 from experimental.tools.scoremanagertools.materialpackagemakers.FunctionInputMaterialPackageMaker import \
     FunctionInputMaterialPackageMaker
-from experimental.tools.scoremanagertools.music.make_sargasso_measures import \
-    make_illustration_from_output_material
+#from experimental.tools.scoremanagertools.music.make_sargasso_measures import \
+#    make_illustration_from_output_material
 from experimental.tools.scoremanagertools.music.make_sargasso_measures import \
     make_sargasso_measures
 
@@ -17,7 +18,7 @@ class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
     ### CLASS VARIABLES ###
 
     generic_output_name = 'sargasso measures'
-    illustration_maker = staticmethod(make_illustration_from_output_material)
+    #illustration_maker = staticmethod(make_illustration_from_output_material)
     output_material_checker = staticmethod(measuretools.all_are_measures)
     output_material_maker = staticmethod(make_sargasso_measures)
     output_material_module_import_statements = ['from abjad.tools import measuretools']
@@ -47,6 +48,18 @@ class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
         ]
 
     ### PUBLIC METHODS ###
+
+    @staticmethod
+    #def make_illustration_from_output_material(measures, **kwargs):
+    def illustration_maker(measures, **kwargs):
+        staff = stafftools.RhythmicStaff(measures)
+        score = scoretools.Score([staff])
+        illustration = lilypondfiletools.make_basic_lilypond_file(score)
+        illustration.file_initial_system_comments = []
+        illustration.file_initial_system_includes = []
+        beamtools.apply_beam_spanners_to_measures_in_expr(score)
+        scoretools.add_double_bar_to_end_of_score(score)
+        return illustration
 
     def make_output_material_module_body_lines(self, output_material):
         lines = []

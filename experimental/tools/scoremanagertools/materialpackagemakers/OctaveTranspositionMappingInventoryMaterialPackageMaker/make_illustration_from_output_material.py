@@ -1,6 +1,4 @@
 from abjad import *
-from abjad.tools import layouttools
-import copy
 
 
 def make_illustration_from_output_material(octave_transposition_mapping_inventory, **kwargs):
