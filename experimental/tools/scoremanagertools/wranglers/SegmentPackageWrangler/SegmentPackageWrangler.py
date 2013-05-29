@@ -32,9 +32,8 @@ class SegmentPackageWrangler(PackageWrangler):
     ### PRIVATE METHODS ###
 
     def _handle_main_menu_result(self, result):
-        assert isinstance(result, str)
-        if result == 'new':
-            self.make_asset_interactively()
+        if result in self.user_input_to_action:
+            self.user_input_to_action[result](self)
         else:
             segment_package_proxy = self._initialize_asset_proxy(result)
             segment_package_proxy._run()
@@ -231,3 +230,10 @@ class SegmentPackageWrangler(PackageWrangler):
     def make_asset_interactively(self):
         segment_package_proxy = self.asset_proxy_class(session=self._session)
         segment_package_proxy.make_asset_interactively()
+
+    ### UI MANIFEST ###
+
+    user_input_to_action = PackageWrangler.user_input_to_action.copy()
+    user_input_to_action.update({
+        'new': make_asset_interactively,
+        })

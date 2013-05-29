@@ -101,20 +101,18 @@
     Same with ExergueDirectoryProxy.
     Same with MusicPackageProxy.
 
-35. Reimplement self._handle_main_menu_result methods around dictionaries.
-
-36. Split recursif repositories.
+35. Split recursif repositories.
     Then grep for 'recursif' and do whatever is necessary to remove from codebase.
 
-37. Remove head=None keyword from list_storehouse_filesystem_paths().
+36. Remove head=None keyword from list_storehouse_filesystem_paths().
     The head filter can be used only on complete *asset* paths (whether filesystem or packagesystem).
-    The head filter can not beused on *storhouse* paths alone.
+    The head filter can not be used on *storhouse* paths alone.
 
-38. Add styleshset management to score manager main menu.
+37. Add styleshset management to score manager main menu.
 
-39. Might make sense to implement an SvnManager class.
+38. Might make sense to implement an SvnManager class.
     This will encapsulate all svn management functionality.
 
-40. Create a PackagesystemAssetProxy to parallel PacakagesystemAssetWrangler.
+39. Create a PackagesystemAssetProxy to parallel PacakagesystemAssetWrangler.
 
-41. Harmonize user input strings with method names in MaterialPackageProxy.user_input_to_action dictionary.
+40. Harmonize user input strings with method names in MaterialPackageProxy.user_input_to_action dictionary.

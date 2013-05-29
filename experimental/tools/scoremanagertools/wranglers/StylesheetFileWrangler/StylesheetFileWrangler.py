@@ -208,6 +208,7 @@ class StylesheetFileWrangler(FileWrangler):
 
     ### UI MANIFEST ###
 
-    user_input_to_action = {
-        'new':      make_asset_interactively,
-        }
+    user_input_to_action = FileWrangler.user_input_to_action.copy()
+    user_input_to_action.update({
+        'new': make_asset_interactively,
+        })

@@ -28,28 +28,6 @@ class ScorePackageProxy(PackageProxy):
 
     def _handle_main_menu_result(self, result):
         assert isinstance(result, str)
-#        if result == 'h':
-#            self.segment_wrangler._run(head=self.package_path)
-#        elif  result == 'm':
-#            self.material_package_wrangler._run(head=self.package_path)
-#        elif result == 'f':
-#            self.music_specifier_module_wrangler._run()
-#        elif result == 's':
-#            self.manage_setup(cache=True)
-#        elif result == 'fix':
-#            self.fix()
-#        elif result == 'ls':
-#            self.print_directory_entries()
-#        elif result == 'profile':
-#            self.profile()
-#        elif result == 'py.test':
-#            self.run_py_test()
-#        elif result == 'removescore':
-#            self.remove_interactively()
-#        elif result == 'svn':
-#            self.manage_svn()
-#        elif result == 'tags':
-#            self.manage_tags()
         if result in self.user_input_to_action:
             self.user_input_to_action[result](self)
         else:

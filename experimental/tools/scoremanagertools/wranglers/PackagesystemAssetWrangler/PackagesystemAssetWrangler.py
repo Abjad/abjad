@@ -186,5 +186,6 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
 
     user_input_to_action = FilesystemAssetWrangler.user_input_to_action.copy()
     user_input_to_action.update({
-
+        'missing': make_storehouse_packages,
+        'ren': rename_asset_interactively,
         })

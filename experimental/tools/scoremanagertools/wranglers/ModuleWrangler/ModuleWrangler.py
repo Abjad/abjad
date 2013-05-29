@@ -1,5 +1,6 @@
 import os
-from experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler import PackagesystemAssetWrangler
+from experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler import \
+    PackagesystemAssetWrangler
 
 
 class ModuleWrangler(PackagesystemAssetWrangler):

@@ -74,18 +74,6 @@ class MaterialPackageWrangler(PackageWrangler):
         return material_package_proxy
 
     def _handle_main_menu_result(self, result):
-#        if result == 'd':
-#            self.make_data_package_interactively()
-#        elif result == 's':
-#            self.make_numeric_sequence_package_interactively()
-#        elif result == 'h':
-#            self.make_handmade_material_package_interactively()
-#        elif result == 'm':
-#            self.make_makermade_material_package_interactively()
-#        elif result == 'missing':
-#            self.make_storehouse_packages(is_interactive=True)
-#        elif result == 'profile':
-#            self.profile_visible_assets()
         if result in self.user_input_to_action:
             self.user_input_to_action[result](self)
         else:

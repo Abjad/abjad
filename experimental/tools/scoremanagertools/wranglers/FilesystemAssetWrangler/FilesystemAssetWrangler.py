@@ -281,4 +281,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     ### UI MANIFEST ###
 
-    user_input_to_action = {}
+    user_input_to_action = {
+        'rm': remove_assets_interactively,
+        }

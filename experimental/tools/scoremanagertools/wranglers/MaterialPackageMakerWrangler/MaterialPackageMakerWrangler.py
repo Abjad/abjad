@@ -43,8 +43,8 @@ class MaterialPackageMakerWrangler(PackageWrangler):
     ### PRIVATE METHODS ###
 
     def _handle_main_menu_result(self, result):
-        if result == 'new':
-            self.make_asset_interactively()
+        if result in self.user_input_to_action:
+            self.user_input_to_action[result](self)
         else:
             raise ValueError
 
@@ -359,3 +359,10 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         stylesheet_file_pointer = file(stylesheet_file_name, 'w')
         stylesheet_file_pointer.write(stylesheet.format)
         stylesheet_file_pointer.close()
+
+    ### UI MANIFEST ###
+
+    user_input_to_action = PackageWrangler.user_input_to_action.copy()
+    user_input_to_action.update({
+        'new': make_asset_interactively,
+        })

@@ -37,16 +37,8 @@ class MusicSpecifierModuleWrangler(ModuleWrangler):
     ### PRIVATE METHODS ###
 
     def _handle_main_menu_result(self, result):
-        if result == 'new':
-            self.make_asset_interactively()
-        elif result == 'ren':
-            self.rename_asset_interactively()
-        elif result == 'rm':
-            self.remove_assets_interactively()
-        elif result == 'missing':
-            self.make_storehouse_packages(is_interactive=True)
-        elif result == 'profile':
-            self.profile_visible_assets()
+        if result in self.user_input_to_action:
+            self.user_input_to_action[result](self)
         else:
             package_proxy = self._initialize_asset_proxy(result)
             package_proxy.edit()
@@ -227,3 +219,10 @@ class MusicSpecifierModuleWrangler(ModuleWrangler):
         self.debug(package_name)
         self.make_asset(package_name)
         self.debug('foo')
+
+    ### UI MANIFEST ###
+
+    user_input_to_action = ModuleWrangler.user_input_to_action.copy()
+    user_input_to_action.update({ 
+        'new': make_asset_interactively,
+        })
