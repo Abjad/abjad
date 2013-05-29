@@ -4,11 +4,11 @@ from experimental import *
 
 class ConcreteSpecifier(Specifier):
     @property
-    def _tools_package_name(self):
-        return 'specialtools'
-    @property
     def _one_line_menuing_summary(self):
         pass
+    @property
+    def _tools_package_name(self):
+        return 'specialtools'
 
 
 def test_Specifier_format_01():

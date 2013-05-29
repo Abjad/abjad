@@ -246,3 +246,10 @@ class PackageProxy(DirectoryProxy):
         if self._session.backtrack():
             return
         self.package_path = result
+
+    ### USER INPUT MAPPING ###
+
+    user_input_to_action = DirectoryProxy.user_input_to_action.copy()
+    user_input_to_action.update({
+        'tags': manage_tags,
+        })

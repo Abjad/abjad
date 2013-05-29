@@ -6,6 +6,17 @@ from experimental.tools.scoremanagertools.proxies.PackageProxy import PackagePro
 
 
 class MaterialPackageProxy(PackageProxy):
+    '''Material package proxy:
+
+    ::
+
+        >>> package_path = 'experimental.tools.scoremanagertools.built_in_materials.red_numbers'
+        >>> mpp = scoremanagertools.proxies.MaterialPackageProxy(package_path)
+        >>> mpp
+        MaterialPackageProxy('.../tools/scoremanagertools/built_in_materials/red_numbers')
+
+    Return material package proxy.
+    '''
 
     ### CLASS VARIABLES ###
 
@@ -31,12 +42,6 @@ class MaterialPackageProxy(PackageProxy):
         assert isinstance(result, str)
         if result in self.user_input_to_action:
             self.user_input_to_action[result](self)
-        # TODO: add to package-level hidden menu
-        elif result == 'tags':
-            self.manage_tags()
-        # TODO: add to directory-level hidden menu
-        elif result == 'ls':
-            self.print_directory_entries()
         elif mathtools.is_integer_equivalent_expr(result):
             self.edit_user_input_wrapper_at_number(result, include_newline=False)
         else:
@@ -553,6 +558,15 @@ class MaterialPackageProxy(PackageProxy):
         if self.should_have_user_input_module:
             self.write_stub_user_input_module_to_disk(is_interactive=is_interactive)
 
+    def display_output_material(self):
+        self.output_material_module_proxy.display_output_material()
+
+    def edit_illustration_builder_module(self):
+        self.illustration_builder_module_proxy.edit() 
+
+    def edit_material_definition_module(self):
+        self.material_definition_module_proxy.edit()
+
     def edit_output_material_interactively(self):
         if not self.has_output_material_editor:
             return
@@ -581,6 +595,9 @@ class MaterialPackageProxy(PackageProxy):
             output_material_module_import_statements=output_material_module_import_statements,
             output_material_module_body_lines=output_material_module_body_lines)
 
+    def edit_stylesheet_file(self):
+        self.stylesheet_file_proxy.edit()
+   
     def get_tools_package_qualified_repr(self, expr):
         return getattr(expr, '_tools_package_qualified_repr', repr(expr))
 
@@ -704,8 +721,23 @@ class MaterialPackageProxy(PackageProxy):
         file_pointer.write(''.join(new_file_lines))
         file_pointer.close()
 
+    def restore_initializer_interactively(self):
+        self.initializer_file_proxy.restore_interactively(prompt=True)
+
+    def run_abjad_on_illustration_builder_module(self):
+        self.illustration_builder_module_proxy.run_abjad(prompt=True)
+
+    def run_abjad_on_material_definition_module(self):
+        self.material_definition_module_proxy.run_abjad()
+
     def run_first_time(self):
         self._run(user_input='omi')
+
+    def run_python_on_illustration_builder_module(self):
+        self.illustration_builder_module_proxy.run_python(prompt=True)
+
+    def run_python_on_material_definition_module(self):
+        self.material_definition_module_proxy.run_python()
 
     def select_material_package_maker_interactively(self, prompt=True):
         from experimental.tools import scoremanagertools
@@ -732,6 +764,18 @@ class MaterialPackageProxy(PackageProxy):
         self.stylesheet_file_name_in_memory = stylesheet_file_name
         self._io.proceed('stylesheet selected.', is_interactive=prompt)
 
+    def view_illustration_ly(self):
+        self.illustration_ly_file_proxy.view()
+
+    def view_illustration_pdf(self):
+        self.illustration_pdf_file_proxy.view()
+
+    def view_initializer(self):
+        self.initializer_file_proxy.view()
+
+    def view_output_material_module(self):
+        self.output_material_module_proxy.view()
+    
     def write_illustration_ly_and_pdf_to_disk(self, prompt=True):
         illustration = self.illustration_with_stylesheet
         iotools.write_expr_to_pdf(illustration, self.illustration_pdf_file_name, print_status=False)
@@ -747,6 +791,18 @@ class MaterialPackageProxy(PackageProxy):
         illustration = self.illustration_with_stylesheet
         iotools.write_expr_to_pdf(illustration, self.illustration_pdf_file_name, print_status=False)
         self._io.proceed('PDF written to disk.', is_interactive=prompt)
+
+    def write_initializer_boilerplate_interactively(self):
+        self.initializer_file_proxy.write_boilerplate_interactively()
+
+    def write_initializer_stub_file_to_disk(self):
+        self.initializer_file_proxy.write_stub_file_to_disk(prompt=True)
+
+    def write_material_definition_module_boilerplate_interactively(self):
+        self.material_definition_module_proxy.write_boilerplate_interactively()
+
+    def write_output_material_module_boilerplate_interactively(self):
+        self.output_material_module_proxy.write_boilerplate_interactively()
 
     def write_output_material_to_disk(self, output_material_module_import_statements=None,
         output_material_module_body_lines=None, prompt=True):
@@ -765,6 +821,9 @@ class MaterialPackageProxy(PackageProxy):
         self.write_tags_to_disk()
         self._io.proceed('output material written to disk.', is_interactive=prompt)
 
+    def write_stub_illustration_builder_module_to_disk(self):
+        self.illustration_builder_module_proxy.write_stub_to_disk(prompt=True)
+
     def write_stub_material_definition_module_to_disk(self):
         if self.should_have_material_definition_module:
             file(self.material_definition_module_file_name, 'w').write('')
@@ -778,98 +837,39 @@ class MaterialPackageProxy(PackageProxy):
 
     ### USER INPUT MAPPING ###
 
-    def write_material_definition_module_boilerplate_interactively(self):
-        self.material_definition_module_proxy.write_boilerplate_interactively()
-
-    def edit_material_definition_module(self):
-        self.material_definition_module_proxy.edit()
-
-    def run_abjad_on_material_definition_module(self):
-        self.material_definition_module_proxy.run_abjad()
-
-    def run_python_on_material_definition_module(self):
-        self.material_definition_module_proxy.run_python()
-
-    def edit_illustration_builder_module(self):
-        self.illustration_builder_module_proxy.edit() 
-
-    def write_stub_illustration_builder_module_to_disk(self):
-        self.illustration_builder_module_proxy.write_stub_to_disk(prompt=True)
-
-    def run_python_on_illustration_builder_module(self):
-        self.illustration_builder_module_proxy.run_python(prompt=True)
-
-    def run_abjad_on_illustration_builder_module(self):
-        self.illustration_builder_module_proxy.run_abjad(prompt=True)
-
-    def edit_stylesheet_file(self):
-        self.stylesheet_file_proxy.edit()
-   
-    def write_output_material_module_boilerplate_interactively(self):
-        self.output_material_module_proxy.write_boilerplate_interactively()
-
-    def display_output_material(self):
-        self.output_material_module_proxy.display_output_material()
-
-    def view_output_material_module(self):
-        self.output_material_module_proxy.view()
-    
-    def view_illustration_ly(self):
-        self.illustration_ly_file_proxy.view()
-
-    def view_illustration_pdf(self):
-        self.illustration_pdf_file_proxy.view()
-
-    def restore_initializer_interactively(self):
-        self.initializer_file_proxy.restore_interactively(prompt=True)
-
-    def view_initializer(self):
-        self.initializer_file_proxy.view()
-
-    def write_initializer_boilerplate_interactively(self):
-        self.initializer_file_proxy.write_boilerplate_interactively()
-
-    def write_initializer_stub_file_to_disk(self):
-        self.initializer_file_proxy.write_stub_file_to_disk(prompt=True)
-
-    user_input_to_action = {
-        'uid': remove_user_input_module,
-        'mdcanned': write_material_definition_module_boilerplate_interactively,
-        'mddelete': remove_material_definition_module,
-        'mde': edit_material_definition_module,
-        'mdstub': write_stub_material_definition_module_to_disk,
-        'mdx': run_python_on_material_definition_module,
-        'mdxe': run_abjad_on_material_definition_module,
+    user_input_to_action = PackageProxy.user_input_to_action.copy()
+    user_input_to_action.update({
         'ibd': remove_illustration_builder_module,
         'ibe': edit_illustration_builder_module,
         'ibt': write_stub_illustration_builder_module_to_disk,
         'ibx': run_python_on_illustration_builder_module,
         'ibxi': run_abjad_on_illustration_builder_module,
-        'ssm': edit_stylesheet_file,
-        'sss': select_stylesheet_interactively,
-        'stl': manage_stylesheets,
-        'omm': write_output_material_to_disk,
-        'omi': edit_output_material_interactively,
+        'incanned': write_initializer_boilerplate_interactively,
+        'inr': restore_initializer_interactively,
+        'instub': write_initializer_stub_file_to_disk,
+        'inv': view_initializer,
+        'lyd': remove_illustration_ly,
+        'lym': write_illustration_ly_to_disk,
+        'lyv': illustration_ly_file_proxy,
+        'mdcanned': write_material_definition_module_boilerplate_interactively,
+        'mde': edit_material_definition_module,
+        'mddelete': remove_material_definition_module,
+        'mdstub': write_stub_material_definition_module_to_disk,
+        'mdx': run_python_on_material_definition_module,
+        'mdxe': run_abjad_on_material_definition_module,
         'omcanned': write_output_material_module_boilerplate_interactively,
         'omdelete': remove_output_material_module,
-        'omv': view_output_material_module,
         'omfetch': display_output_material,
-        'lym': write_illustration_ly_to_disk,
-        'lyd': remove_illustration_ly,
-        'lyv': illustration_ly_file_proxy,
+        'omm': write_output_material_to_disk,
+        'omi': edit_output_material_interactively,
+        'omv': view_output_material_module,
         'pdfm': write_illustration_ly_and_pdf_to_disk,
         'pdfd': remove_illustration_pdf,
         'pdfv': illustration_pdf_file_proxy,
-        'rm': remove_material_package,
-        'inr': restore_initializer_interactively,
-        'inv': view_initializer,
-        'incanned': write_initializer_boilerplate_interactively,
-        'instub': write_initializer_stub_file_to_disk,
         'ren': rename_material_interactively,
-#        # TODO: add to package-level hidden menu
-#        'tags': manage_tags,
-#            #self.manage_tags()
-#        # TODO: add to directory-level hidden menu
-#        'ls': print_directory_entries,
-#            #self.print_directory_entries()
-        }
+        'rm': remove_material_package,
+        'ssm': edit_stylesheet_file,
+        'sss': select_stylesheet_interactively,
+        'stl': manage_stylesheets,
+        'uid': remove_user_input_module,
+        })
