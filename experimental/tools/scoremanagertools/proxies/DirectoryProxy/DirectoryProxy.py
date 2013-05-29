@@ -58,4 +58,5 @@ class DirectoryProxy(FilesystemAssetProxy):
 
     user_input_to_action = {
         'ls': print_directory_entries,
+        'py.test': run_py_test,
         }

@@ -28,28 +28,30 @@ class ScorePackageProxy(PackageProxy):
 
     def _handle_main_menu_result(self, result):
         assert isinstance(result, str)
-        if result == 'h':
-            self.segment_wrangler._run(head=self.package_path)
-        elif  result == 'm':
-            self.material_package_wrangler._run(head=self.package_path)
-        elif result == 'f':
-            self.music_specifier_module_wrangler._run()
-        elif result == 's':
-            self.manage_setup(cache=True)
-        elif result == 'fix':
-            self.fix()
-        elif result == 'ls':
-            self.print_directory_entries()
-        elif result == 'profile':
-            self.profile()
-        elif result == 'py.test':
-            self.run_py_test()
-        elif result == 'removescore':
-            self.remove_interactively()
-        elif result == 'svn':
-            self.manage_svn()
-        elif result == 'tags':
-            self.manage_tags()
+#        if result == 'h':
+#            self.segment_wrangler._run(head=self.package_path)
+#        elif  result == 'm':
+#            self.material_package_wrangler._run(head=self.package_path)
+#        elif result == 'f':
+#            self.music_specifier_module_wrangler._run()
+#        elif result == 's':
+#            self.manage_setup(cache=True)
+#        elif result == 'fix':
+#            self.fix()
+#        elif result == 'ls':
+#            self.print_directory_entries()
+#        elif result == 'profile':
+#            self.profile()
+#        elif result == 'py.test':
+#            self.run_py_test()
+#        elif result == 'removescore':
+#            self.remove_interactively()
+#        elif result == 'svn':
+#            self.manage_svn()
+#        elif result == 'tags':
+#            self.manage_tags()
+        if result in self.user_input_to_action:
+            self.user_input_to_action[result](self)
         else:
             raise ValueError
 
@@ -410,7 +412,13 @@ class ScorePackageProxy(PackageProxy):
         section.append(('ci', 'ci'))
         return menu
 
-    def manage_setup(self, clear=True, cache=False):
+    def manage_materials(self):
+        self.material_package_wrangler._run(head=self.package_path)
+
+    def manage_segments(self):
+        self.segment_wrangler._run(head=self.package_path)
+
+    def manage_setup(self, clear=True, cache=True):
         self._session.cache_breadcrumbs(cache=cache)
         while True:
             self._session.push_breadcrumb('{} - setup'.format(self.annotated_title))
@@ -427,6 +435,9 @@ class ScorePackageProxy(PackageProxy):
             self._session.pop_breadcrumb()
         self._session.pop_breadcrumb()
         self._session.restore_breadcrumbs(cache=cache)
+
+    def manage_specifiers(self):
+        self.music_speicifer_module_wrangler._run()
 
     def manage_svn(self, clear=True, cache=False):
         self._session.cache_breadcrumbs(cache=cache)
@@ -502,3 +513,17 @@ class ScorePackageProxy(PackageProxy):
             lines.append('{}{}'.format(self.make_tab(2), segment))
         lines.append('')
         self._io.display(lines)
+
+    ### USER INPUT MAPPING ###
+
+    user_input_to_action = PackageProxy.user_input_to_action.copy()
+    user_input_to_action.update({
+        'h': manage_segments,
+        'm': manage_materials,
+        'f': manage_specifiers,
+        's': manage_setup,
+        'fix': fix,
+        'profile': profile,
+        'removescore': remove_interactively,
+        'svn': manage_svn,
+        })
