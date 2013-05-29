@@ -658,7 +658,6 @@ Unstable packages (load manually)
       tools/scoremanagertools/editors/get_dynamic_handler_editor
       tools/scoremanagertools/editors/get_parameter_specifier_editor
       tools/scoremanagertools/editors/get_rhythm_maker_editor
-      tools/scoremanagertools/music/make_sargasso_measures
 
 .. only:: latex
 
@@ -855,4 +854,3 @@ Unstable packages (load manually)
       tools/scoremanagertools/editors/get_dynamic_handler_editor
       tools/scoremanagertools/editors/get_parameter_specifier_editor
       tools/scoremanagertools/editors/get_rhythm_maker_editor
-      tools/scoremanagertools/music/make_sargasso_measures
