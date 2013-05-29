@@ -3273,6 +3273,8 @@ Core composition packages
       tools/stringtools/capitalize_string_start
       tools/stringtools/format_input_lines_as_doc_string
       tools/stringtools/format_input_lines_as_regression_test
+      tools/stringtools/is_hyphen_delimited_lowercase_file_name
+      tools/stringtools/is_hyphen_delimited_lowercase_string
       tools/stringtools/is_lowercamelcase_string
       tools/stringtools/is_space_delimited_lowercase_string
       tools/stringtools/is_underscore_delimited_lowercase_file_name
@@ -3306,6 +3308,8 @@ Core composition packages
       tools/stringtools/capitalize_string_start
       tools/stringtools/format_input_lines_as_doc_string
       tools/stringtools/format_input_lines_as_regression_test
+      tools/stringtools/is_hyphen_delimited_lowercase_file_name
+      tools/stringtools/is_hyphen_delimited_lowercase_string
       tools/stringtools/is_lowercamelcase_string
       tools/stringtools/is_space_delimited_lowercase_string
       tools/stringtools/is_underscore_delimited_lowercase_file_name
