@@ -273,8 +273,6 @@ class ScorePackageProxy(PackageProxy):
 
     def fix(self, is_interactive=True):
         result = True
-        if self.filesystem_basename == 'recursif':
-            return True
         for path in self.top_level_directory_paths:
             if not os.path.exists(path):
                 result = False
@@ -438,8 +436,6 @@ class ScorePackageProxy(PackageProxy):
     def profile(self, prompt=True):
         if not os.path.exists(self.filesystem_path):
             raise OSError('directory {!r} does not exist.'.format(self.filesystem_path))
-        if self.filesystem_basename == 'recursif':
-            return
         lines = []
         for subdirectory_path in self.top_level_directory_paths:
             lines.append('{} {}'.format(subdirectory_path.ljust(80), os.path.exists(subdirectory_path)))
