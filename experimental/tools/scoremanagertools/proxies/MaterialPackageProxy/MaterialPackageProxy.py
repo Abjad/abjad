@@ -823,7 +823,7 @@ class MaterialPackageProxy(PackageProxy):
         if hasattr(self, 'generic_output_name'):
             self.add_tag('generic_output_name', self.generic_output_name)
 
-    ### USER INPUT MAPPING ###
+    ### UI MANIFEST ###
 
     user_input_to_action = PackageProxy.user_input_to_action.copy()
     user_input_to_action.update({

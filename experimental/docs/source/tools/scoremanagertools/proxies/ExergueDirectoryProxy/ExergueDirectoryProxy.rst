@@ -54,6 +54,9 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.ExergueDirectoryProxy.ExergueDirectoryProxy.ExergueDirectoryProxy.remove_interactively
    :noindex:
 
+.. automethod:: experimental.tools.scoremanagertools.proxies.ExergueDirectoryProxy.ExergueDirectoryProxy.ExergueDirectoryProxy.remove_interactively_and_backtrack_locally
+   :noindex:
+
 .. automethod:: experimental.tools.scoremanagertools.proxies.ExergueDirectoryProxy.ExergueDirectoryProxy.ExergueDirectoryProxy.rename
    :noindex:
 

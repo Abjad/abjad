@@ -33,3 +33,10 @@ class FileProxy(FilesystemAssetProxy):
 
     def view(self):
         os.system('vi -R {}'.format(self.filesystem_path))
+
+    ### UI MANIFEST ###
+
+    user_input_to_action = FilesystemAssetProxy.user_input_to_action.copy()
+    user_input_to_action.update({
+        'vi': edit,
+        })

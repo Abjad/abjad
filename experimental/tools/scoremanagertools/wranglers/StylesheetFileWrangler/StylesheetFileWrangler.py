@@ -206,7 +206,7 @@ class StylesheetFileWrangler(FileWrangler):
             stylesheet_file_name, session=self._session)
         stylesheet_proxy.edit()
 
-    ### USER INPUT MAPPING ###
+    ### UI MANIFEST ###
 
     user_input_to_action = {
         'new':      make_asset_interactively,

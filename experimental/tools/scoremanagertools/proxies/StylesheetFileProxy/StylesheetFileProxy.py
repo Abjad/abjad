@@ -19,8 +19,7 @@ class StylesheetFileProxy(FileProxy):
     ::
 
         >>> proxy
-        StylesheetFileProxy('/Users/trevorbaca/Documents/abjad/experimental/tools/scoremanagertools/built_in_stylesheets/clean_letter_14.ly')
-
+        StylesheetFileProxy('.../tools/scoremanagertools/built_in_stylesheets/clean_letter_14.ly')
 
     Return stylesheet proxy.
     '''
@@ -34,25 +33,14 @@ class StylesheetFileProxy(FileProxy):
     ### PRIVATE METHODS ###
 
     def _handle_main_menu_result(self, result):
-        assert isinstance(result, str)
-        if result == 'cp':
-            self.copy_interactively()
-        elif result == 'pr':
-            self.profile()
-        elif result == 'rm':
-            self.remove_interactively()
-            self._session.is_backtracking_locally = True
-        elif result == 'ren':
-            self.rename_interactively()
-        elif result == 'vi':
-            self.edit()
+        if result in self.user_input_to_action:
+            self.user_input_to_action[result](self)
         else:
             raise ValueError
 
     def _make_main_menu(self):
         menu, section = self._io.make_menu(where=self.where)
         section.append(('cp', 'copy stylesheet'))
-        section.append(('pr', 'profile stylesheet'))
         section.append(('rm', 'delete stylesheet'))
         section.append(('ren', 'rename stylesheet'))
         section.append(('vi', 'vi stylesheet'))

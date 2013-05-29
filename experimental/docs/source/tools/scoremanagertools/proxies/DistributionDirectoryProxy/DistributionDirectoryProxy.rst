@@ -54,6 +54,9 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.DistributionDirectoryProxy.DistributionDirectoryProxy.DistributionDirectoryProxy.remove_interactively
    :noindex:
 
+.. automethod:: experimental.tools.scoremanagertools.proxies.DistributionDirectoryProxy.DistributionDirectoryProxy.DistributionDirectoryProxy.remove_interactively_and_backtrack_locally
+   :noindex:
+
 .. automethod:: experimental.tools.scoremanagertools.proxies.DistributionDirectoryProxy.DistributionDirectoryProxy.DistributionDirectoryProxy.rename
    :noindex:
 

@@ -157,7 +157,7 @@ class ListEditor(InteractiveEditor):
         items = sequencetools.remove_sequence_elements_at_indices(items, indices)
         self.items[:] = items
 
-    ### USER INPUT MAPPING ###
+    ### UI MANIFEST ###
 
     user_input_to_action = {
         'add':  add_items_interactively,

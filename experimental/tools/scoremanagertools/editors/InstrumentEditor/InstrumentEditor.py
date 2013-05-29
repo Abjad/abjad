@@ -64,7 +64,7 @@ class InstrumentEditor(InteractiveEditor):
         else:
             self._session.display_pitch_ranges_with_numbered_pitches = True
 
-    ### USER INPUT MAPPING ###
+    ### UI MANIFEST ###
 
     user_input_to_action = {
         'tprd':     toggle_pitch_range_display,

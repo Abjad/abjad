@@ -56,7 +56,7 @@ class SegmentPackageProxy(PackageProxy):
     def set_score_template_interactively(self):
         self._io.print_not_yet_implemented()
 
-    ### USER INPUT MAPPING ###
+    ### UI MANIFEST ###
 
     user_input_to_action = PackageProxy.user_input_to_action.copy()
     user_input_to_action.update({

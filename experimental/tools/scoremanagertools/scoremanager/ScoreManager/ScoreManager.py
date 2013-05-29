@@ -318,7 +318,7 @@ class ScoreManager(ScoreManagerObject):
     def show_mothballed_scores(self):
         self._session.show_mothballed_scores()
 
-    ### USER INPUT MAPPING ###
+    ### UI MANIFEST ###
 
     user_input_to_action = {
         'active':   show_active_scores,

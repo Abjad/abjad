@@ -190,7 +190,7 @@ class MaterialPackageMaker(MaterialPackageProxy):
         self.user_input_module_proxy.write_user_input_wrapper_to_disk(empty_user_input_wrapper)
         self._io.proceed('stub user input module written to disk.', is_interactive=is_interactive)
 
-    ### USER INPUT MAPPING ###
+    ### UI MANIFEST ###
 
     def swap_user_input_values_default_status(self):
         self._session.swap_user_input_values_default_status()

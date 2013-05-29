@@ -191,6 +191,10 @@ class FilesystemAssetProxy(ScoreManagerObject):
         if self.remove():
             self._io.proceed('{} removed.'.format(self.filesystem_path))
 
+    def remove_interactively_and_backtrack_locally(self):
+        self.remove_interactively()
+        self._session.is_backtracking_locally = True
+
     def rename(self, new_path):
         if self.is_versioned():
             command = 'svn --force mv {} {}'.format(self.filesystem_path, new_path)
@@ -288,4 +292,13 @@ class FilesystemAssetProxy(ScoreManagerObject):
         if self.write_boilerplate(boilerplate_filebuilt_in_asset_name):
             self._io.proceed('boilerplate asset copied.')
         else:
-            self._io.proceed('boilerplate asset {!r} does not exist.'.format(boilerplate_filebuilt_in_asset_name))
+            self._io.proceed('boilerplate asset {!r} does not exist.'.format(
+                boilerplate_filebuilt_in_asset_name))
+
+    ### UI MANIFEST ###
+
+    user_input_to_action = {
+        'cp': copy_interactively,
+        'rm': remove_interactively_and_backtrack_locally,
+        'ren': rename_interactively,
+        }

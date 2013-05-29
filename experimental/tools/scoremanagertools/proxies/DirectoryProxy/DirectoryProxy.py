@@ -54,7 +54,7 @@ class DirectoryProxy(FilesystemAssetProxy):
         line = 'tests run.'
         self._io.proceed(line, is_interactive=prompt)
 
-    ### USER INPUT MAPPING ###
+    ### UI MANIFEST ###
 
     user_input_to_action = {
         'ls': print_directory_entries,

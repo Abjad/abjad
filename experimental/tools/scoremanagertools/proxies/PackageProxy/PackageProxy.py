@@ -259,7 +259,7 @@ class PackageProxy(DirectoryProxy):
     def write_initializer_stub_file_to_disk(self):
         self.initializer_file_proxy.write_stub_file_to_disk(prompt=True)
 
-    ### USER INPUT MAPPING ###
+    ### UI MANIFEST ###
 
     user_input_to_action = DirectoryProxy.user_input_to_action.copy()
     user_input_to_action.update({

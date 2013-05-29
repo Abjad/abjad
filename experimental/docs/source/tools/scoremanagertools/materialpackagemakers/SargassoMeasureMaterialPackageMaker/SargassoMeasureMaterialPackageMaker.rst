@@ -387,6 +387,9 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.remove_interactively
    :noindex:
 
+.. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.remove_interactively_and_backtrack_locally
+   :noindex:
+
 .. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.remove_material_definition_module
    :noindex:
 

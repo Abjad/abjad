@@ -45,6 +45,9 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy.FilesystemAssetProxy.FilesystemAssetProxy.remove_interactively
    :noindex:
 
+.. automethod:: experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy.FilesystemAssetProxy.FilesystemAssetProxy.remove_interactively_and_backtrack_locally
+   :noindex:
+
 .. automethod:: experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy.FilesystemAssetProxy.FilesystemAssetProxy.rename
    :noindex:
 
