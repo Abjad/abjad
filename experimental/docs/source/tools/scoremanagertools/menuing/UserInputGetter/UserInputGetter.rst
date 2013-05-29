@@ -96,6 +96,9 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.append_hairpin_tokens
    :noindex:
 
+.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.append_hyphen_delimited_lowercase_file_name
+   :noindex:
+
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.append_integer
    :noindex:
 

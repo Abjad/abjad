@@ -6,7 +6,8 @@ def test_MaterialPackageProxy_read_only_attributes_01():
     '''Data-only package.
     '''
 
-    mpp = scoremanagertools.proxies.MaterialPackageProxy('experimental.tools.scoremanagertools.built_in_materials.red_numbers')
+    mpp = scoremanagertools.proxies.MaterialPackageProxy(
+        'experimental.tools.scoremanagertools.built_in_materials.red_numbers')
     assert     mpp._breadcrumb == 'red numbers'
     assert not mpp.has_illustration_builder_module
     assert not mpp.has_illustration_ly
@@ -68,7 +69,8 @@ def test_MaterialPackageProxy_read_only_attributes_02():
     '''Makermade material.
     '''
 
-    mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker('experimental.tools.scoremanagertools.built_in_materials.red_sargasso_measures')
+    mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker(
+        'experimental.tools.scoremanagertools.built_in_materials.red_sargasso_measures')
     assert     mpp._breadcrumb == 'red sargasso measures'
     assert not mpp.has_illustration_builder_module
     assert     mpp.has_illustration_ly
@@ -134,7 +136,8 @@ def test_MaterialPackageProxy_read_only_attributes_03():
     '''Handmade material.
     '''
 
-    mpp = scoremanagertools.proxies.MaterialPackageProxy('experimental.tools.scoremanagertools.built_in_materials.red_notes')
+    mpp = scoremanagertools.proxies.MaterialPackageProxy(
+        'experimental.tools.scoremanagertools.built_in_materials.red_notes')
     assert     mpp._breadcrumb == 'red notes'
     assert     mpp.has_illustration_builder_module
     assert     mpp.has_illustration_ly
@@ -192,7 +195,7 @@ def test_MaterialPackageProxy_read_only_attributes_03():
     assert not  mpp.should_have_user_input_module
     assert      mpp.stylesheet_file_name_on_disk == \
         os.path.join(mpp.configuration.score_manager_tools_directory_path,
-            'built_in_stylesheets', 'clean_letter_14.ly')
+            'built_in_stylesheets', 'clean-letter-14.ly')
     # TODO:
     #assert      mpp.stylesheet_file_proxy is not None
     assert      mpp.user_input_module_file_name is None

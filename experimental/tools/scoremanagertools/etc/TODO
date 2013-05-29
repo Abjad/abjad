@@ -105,6 +105,3 @@
 35. Create a PackagesystemAssetProxy to parallel PacakagesystemAssetWrangler.
 
 36. Harmonize user input strings with method names in MaterialPackageProxy.user_input_to_action dictionary.
-
-37. Change clean_letter_14.ly, clean_letter_16.ly, rhythm_letter_16.ly from underscore-delimited to
-    to hyphen-delimited clean-letter-14.ly, clean-letter-16.ly, rhythm-letter-16.ly.

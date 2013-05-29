@@ -98,10 +98,10 @@ class StylesheetFileWrangler(FileWrangler):
             >>> for x in wrangler.list_asset_filesystem_paths(
             ...     user_external=False, user_score=False):
             ...     x
-            '.../tools/scoremanagertools/built_in_stylesheets/clean_letter_14.ly'
-            '.../tools/scoremanagertools/built_in_stylesheets/clean_letter_16.ly'
-            '.../tools/scoremanagertools/built_in_stylesheets/rhythm_letter_16.ly'
-            '.../tools/scoremanagertools/built_in_scores/red_example_score/music/stylesheets/red_example_score_stylesheet.ly'
+            '.../tools/scoremanagertools/built_in_stylesheets/clean-letter-14.ly'
+            '.../tools/scoremanagertools/built_in_stylesheets/clean-letter-16.ly'
+            '.../tools/scoremanagertools/built_in_stylesheets/rhythm-letter-16.ly'
+            '.../tools/scoremanagertools/built_in_scores/red_example_score/music/stylesheets/red-example-score-stylesheet.ly'
 
         Return list.
         '''
@@ -123,10 +123,10 @@ class StylesheetFileWrangler(FileWrangler):
             >>> for x in wrangler.list_asset_names(
             ...     user_external=False, user_score=False):
             ...     x
-            'clean letter 14'
-            'clean letter 16'
-            'rhythm letter 16'
-            'red example score stylesheet'
+            'clean-letter-14'
+            'clean-letter-16'
+            'rhythm-letter-16'
+            'red-example-score-stylesheet'
 
         Return list.
         '''
@@ -148,10 +148,10 @@ class StylesheetFileWrangler(FileWrangler):
             >>> for x in wrangler.list_asset_proxies(
             ...     user_external=False, user_score=False):
             ...     x
-            StylesheetFileProxy('.../tools/scoremanagertools/built_in_stylesheets/clean_letter_14.ly')
-            StylesheetFileProxy('.../tools/scoremanagertools/built_in_stylesheets/clean_letter_16.ly')
-            StylesheetFileProxy('.../tools/scoremanagertools/built_in_stylesheets/rhythm_letter_16.ly')
-            StylesheetFileProxy('.../tools/scoremanagertools/built_in_scores/red_example_score/music/stylesheets/red_example_score_stylesheet.ly')
+            StylesheetFileProxy('.../tools/scoremanagertools/built_in_stylesheets/clean-letter-14.ly')
+            StylesheetFileProxy('.../tools/scoremanagertools/built_in_stylesheets/clean-letter-16.ly')
+            StylesheetFileProxy('.../tools/scoremanagertools/built_in_stylesheets/rhythm-letter-16.ly')
+            StylesheetFileProxy('.../tools/scoremanagertools/built_in_scores/red_example_score/music/stylesheets/red-example-score-stylesheet.ly')
 
         Return list.
         '''

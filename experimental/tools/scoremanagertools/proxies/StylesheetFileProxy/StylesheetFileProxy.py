@@ -13,13 +13,13 @@ class StylesheetFileProxy(FileProxy):
         >>> score_manager = scoremanagertools.scoremanager.ScoreManager()
         >>> wrangler = score_manager.stylesheet_file_wrangler
         >>> directory_name = wrangler.built_in_external_storehouse_filesystem_path
-        >>> filesystem_path = os.path.join(directory_name, 'clean_letter_14.ly')
+        >>> filesystem_path = os.path.join(directory_name, 'clean-letter-14.ly')
         >>> proxy = scoremanagertools.proxies.StylesheetFileProxy(filesystem_path=filesystem_path)
 
     ::
 
         >>> proxy
-        StylesheetFileProxy('.../tools/scoremanagertools/built_in_stylesheets/clean_letter_14.ly')
+        StylesheetFileProxy('.../tools/scoremanagertools/built_in_stylesheets/clean-letter-14.ly')
 
     Return stylesheet proxy.
     '''
@@ -37,6 +37,11 @@ class StylesheetFileProxy(FileProxy):
             self.user_input_to_action[result](self)
         else:
             raise ValueError
+
+    def _initialize_file_name_getter(self):
+        getter = self._io.make_getter()
+        getter.append_hyphen_delimited_lowercase_file_name('new name')
+        return getter
 
     def _make_main_menu(self):
         menu, section = self._io.make_menu(where=self.where)

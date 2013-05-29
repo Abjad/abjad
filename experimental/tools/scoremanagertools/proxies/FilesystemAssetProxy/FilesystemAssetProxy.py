@@ -65,6 +65,11 @@ class FilesystemAssetProxy(ScoreManagerObject):
 
     ### PRIVATE METHODS ###
 
+    def _initialize_file_name_getter(self):
+        getter = self._io.make_getter()
+        getter.append_underscore_delimited_lowercase_file_name('new name')
+        return getter
+
     @staticmethod
     def _safe_import(target_namespace, source_module_name, source_attribute_name,
         source_parent_package_path=None):
@@ -131,8 +136,7 @@ class FilesystemAssetProxy(ScoreManagerObject):
 
     def copy_interactively(self, user_input=None):
         self._io.assign_user_input(user_input=user_input)
-        getter = self._io.make_getter()
-        getter.append_underscore_delimited_lowercase_file_name('new name')
+        getter = self._initialize_file_name_getter()
         result = getter._run()
         if self._session.backtrack():
             return

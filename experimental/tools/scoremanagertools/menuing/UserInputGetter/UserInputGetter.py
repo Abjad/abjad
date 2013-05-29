@@ -161,6 +161,11 @@ class UserInputGetter(MenuSectionAggregator):
         self.append_something(spaced_attribute_name, message, default=default)
         self.tests.append(predicates.are_hairpin_tokens)
 
+    def append_hyphen_delimited_lowercase_file_name(self, spaced_attribute_name, default=None):
+        message = 'value for {!r} must be hyphen-delimited lowercase file name.'
+        self.append_something(spaced_attribute_name, message, default=default)
+        self.tests.append(stringtools.is_hyphen_delimited_lowercase_file_name)
+
     def append_integer(self, spaced_attribute_name, default=None):
         message = 'value for {!r} must be integer.'
         self.append_something(spaced_attribute_name, message, default=default)
