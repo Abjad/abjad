@@ -10,11 +10,11 @@ class ScorePackageProxy(PackageProxy):
         from experimental.tools import scoremanagertools
         PackageProxy.__init__(self, packagesystem_path, session=session)
         self._distribution_proxy = scoremanagertools.proxies.DistributionDirectoryProxy(
-            score_package_name=packagesystem_path, session=self._session)
+            score_package_path=packagesystem_path, session=self._session)
         self._exergue_directory_proxy = scoremanagertools.proxies.ExergueDirectoryProxy(
-            score_package_name=packagesystem_path, session=self._session)
+            score_package_path=packagesystem_path, session=self._session)
         self._music_proxy = scoremanagertools.proxies.MusicPackageProxy(
-            score_package_name=packagesystem_path, session=self._session)
+            score_package_path=packagesystem_path, session=self._session)
         self._segment_wrangler = scoremanagertools.wranglers.SegmentPackageWrangler(
             session=self._session)
         self._material_package_wrangler = scoremanagertools.wranglers.MaterialPackageWrangler(

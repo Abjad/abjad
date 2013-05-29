@@ -95,19 +95,15 @@
 
 32. Add PackageystemAssetProxy to superclass ModuleProxy and PackageProxy.
 
-33. Change DistributionDirectoryProxy.__init__(score_package_name=None) to score_package_path.
-    Same with ExergueDirectoryProxy.
-    Same with MusicPackageProxy.
-
-34. Remove head=None keyword from list_storehouse_filesystem_paths().
+33. Remove head=None keyword from list_storehouse_filesystem_paths().
     The head filter can be used only on complete *asset* paths (whether filesystem or packagesystem).
     The head filter can not be used on *storhouse* paths alone.
 
-35. Add styleshset management to score manager main menu.
+34. Add styleshset management to score manager main menu.
 
-36. Might make sense to implement an SvnManager class.
+35. Might make sense to implement an SvnManager class.
     This will encapsulate all svn management functionality.
 
-37. Create a PackagesystemAssetProxy to parallel PacakagesystemAssetWrangler.
+36. Create a PackagesystemAssetProxy to parallel PacakagesystemAssetWrangler.
 
-38. Harmonize user input strings with method names in MaterialPackageProxy.user_input_to_action dictionary.
+37. Harmonize user input strings with method names in MaterialPackageProxy.user_input_to_action dictionary.
