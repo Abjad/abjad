@@ -66,6 +66,9 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.select_asset_packagesystem_path_interactively
    :noindex:
 
+.. automethod:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler.select_user_storehouse_filesystem_path_interactively
+   :noindex:
+
 Special methods
 ---------------
 

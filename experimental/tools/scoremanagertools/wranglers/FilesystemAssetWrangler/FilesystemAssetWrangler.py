@@ -111,9 +111,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def _make_user_storehouse_menu_tokens(self):
         from experimental.tools import scoremanagertools
         keys, bodies = [], [] 
-        key = os.path.join(self.configuration.user_external_assets_directory_path,
-            self._breadcrumb)
-        keys.append(key)
+        keys.append(self.user_external_storehouse_filesystem_path)
         bodies.append('My {}'.format(self._breadcrumb))
         wrangler = scoremanagertools.wranglers.ScorePackageWrangler(session=self._session)
         for proxy in wrangler.list_asset_proxies(

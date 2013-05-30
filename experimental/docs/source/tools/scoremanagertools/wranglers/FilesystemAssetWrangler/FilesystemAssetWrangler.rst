@@ -45,6 +45,9 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler.FilesystemAssetWrangler.FilesystemAssetWrangler.select_asset_filesystem_path_interactively
    :noindex:
 
+.. automethod:: experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler.FilesystemAssetWrangler.FilesystemAssetWrangler.select_user_storehouse_filesystem_path_interactively
+   :noindex:
+
 Special methods
 ---------------
 

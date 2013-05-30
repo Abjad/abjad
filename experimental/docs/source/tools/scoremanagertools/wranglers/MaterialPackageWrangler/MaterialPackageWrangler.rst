@@ -96,6 +96,9 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.MaterialPackageWrangler.MaterialPackageWrangler.MaterialPackageWrangler.select_asset_packagesystem_path_interactively
    :noindex:
 
+.. automethod:: experimental.tools.scoremanagertools.wranglers.MaterialPackageWrangler.MaterialPackageWrangler.MaterialPackageWrangler.select_user_storehouse_filesystem_path_interactively
+   :noindex:
+
 Special methods
 ---------------
 
