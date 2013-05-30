@@ -1,11 +1,13 @@
 from experimental import *
 from abjad.tools.scoretools import Performer
 from abjad.tools.instrumenttools import *
+import py
 
 
 def test_PerformerEditor_move_instrument_01():
     '''Quit, back, home, score & junk all work.
     '''
+    py.test.skip('remove custom score name.')
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     score_manager._run(user_input="l'arch setup performers flutist move q")
