@@ -103,9 +103,9 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def _make_main_menu(self, head=None):
         pass
 
-    def _make_menu_tokens(self, head=None):
+    def _make_menu_tokens(self, head=None, include_extension=False):
         keys = self.list_asset_filesystem_paths(head=head)
-        bodies = self.list_asset_names(head=head)
+        bodies = self.list_asset_names(head=head, include_extension=include_extension)
         return zip(keys, bodies)
 
     def _run(self, cache=False, clear=True, head=None, rollback=None, user_input=None):
@@ -162,12 +162,15 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         return result
 
     def list_asset_names(self, built_in_external=True, user_external=True,
-        built_in_score=True, user_score=True, head=None):
+        built_in_score=True, user_score=True, head=None, include_extension=False):
         result = []
         for filesystem_path in self.list_asset_filesystem_paths(
             built_in_external=built_in_external, user_external=user_external,
             built_in_score=built_in_score, user_score=user_score, head=head):
-            result.append(self._filesystem_path_to_space_delimited_lowercase_name(filesystem_path))
+            if include_extension:
+                result.append(os.path.basename(filesystem_path))
+            else:
+                result.append(self._filesystem_path_to_space_delimited_lowercase_name(filesystem_path))
         return result
 
     def list_asset_proxies(self, built_in_external=True, user_external=True,

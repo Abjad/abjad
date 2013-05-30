@@ -41,11 +41,13 @@ class StylesheetFileWrangler(FileWrangler):
             self.edit_asset(result)
 
     def _make_main_menu(self, head=None):
-        menu, section = self._io.make_menu(where=self._where, is_parenthetically_numbered=True)
+        menu, section = self._io.make_menu(
+            where=self._where, is_parenthetically_numbered=True, is_keyed=False)
         tokens = []
-        for filesystem_path in self.list_asset_filesystem_paths():
-            tokens.append(os.path.basename(filesystem_path))
-        section.tokens = tokens
+        #for filesystem_path in self.list_asset_filesystem_paths():
+        #    tokens.append(os.path.basename(filesystem_path))
+        #section.tokens = tokens
+        section.tokens = self._make_menu_tokens(include_extension=True)
         section = menu.make_section()
         section.append(('new', 'new'))
         section.append(('ren', 'rename'))
@@ -117,7 +119,7 @@ class StylesheetFileWrangler(FileWrangler):
             head=head)
 
     def list_asset_names(self, built_in_external=True, user_external=True,
-        built_in_score=True, user_score=True, head=None):
+        built_in_score=True, user_score=True, head=None, include_extension=False):
         '''Stylesheet file wrangler list asset names.
     
         Example. List built-in stylesheet names:
@@ -125,12 +127,12 @@ class StylesheetFileWrangler(FileWrangler):
         ::
 
             >>> for x in wrangler.list_asset_names(
-            ...     user_external=False, user_score=False):
+            ...     user_external=False, user_score=False, include_extension=True):
             ...     x
-            'clean-letter-14'
-            'clean-letter-16'
-            'rhythm-letter-16'
-            'red-example-score-stylesheet'
+            'clean-letter-14.ly'
+            'clean-letter-16.ly'
+            'rhythm-letter-16.ly'
+            'red-example-score-stylesheet.ly'
 
         Return list.
         '''
@@ -139,7 +141,8 @@ class StylesheetFileWrangler(FileWrangler):
             user_external=user_external,
             built_in_score=built_in_score, 
             user_score=user_score,
-            head=head)
+            head=head,
+            include_extension=include_extension)
 
     def list_asset_proxies(self, built_in_external=True, user_external=True,
         built_in_score=True, user_score=True, head=None):
