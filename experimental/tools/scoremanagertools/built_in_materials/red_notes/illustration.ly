@@ -5,8 +5,6 @@
 \include "english.ly"
 \include "/Users/trevorbaca/Documents/abjad/trunk/abjad/cfg/abjad.scm"
 
-\include "/Users/trevorbaca/Documents/abjad/experimental/tools/scoremanagertools/built_in_stylesheets/clean-letter-14.ly"
-
 \header {
 	tagline = \markup { "" }
 	title = \markup { red notes }

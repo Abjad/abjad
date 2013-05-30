@@ -193,11 +193,6 @@ def test_MaterialPackageProxy_read_only_attributes_03():
     assert      mpp.should_have_material_definition_module
     assert      mpp.should_have_output_material_module
     assert not  mpp.should_have_user_input_module
-    assert      mpp.stylesheet_file_name_on_disk == \
-        os.path.join(mpp.configuration.score_manager_tools_directory_path,
-            'built_in_stylesheets', 'clean-letter-14.ly')
-    # TODO:
-    #assert      mpp.stylesheet_file_proxy is not None
     assert      mpp.user_input_module_file_name is None
     assert      mpp.user_input_module_path is None
     assert      mpp.user_input_module_proxy is None
