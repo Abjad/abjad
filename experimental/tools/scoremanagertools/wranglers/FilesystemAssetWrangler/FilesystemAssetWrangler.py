@@ -108,6 +108,26 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         bodies = self.list_asset_names(head=head, include_extension=include_extension)
         return zip(keys, bodies)
 
+    def _make_user_storehouse_menu_tokens(self):
+        from experimental.tools import scoremanagertools
+        keys, bodies = [], [] 
+        key = os.path.join(self.configuration.user_external_assets_directory_path,
+            self._breadcrumb)
+        keys.append(key)
+        bodies.append('My {}'.format(self._breadcrumb))
+        wrangler = scoremanagertools.wranglers.ScorePackageWrangler(session=self._session)
+        for proxy in wrangler.list_asset_proxies(
+            built_in_external=False,
+            user_external=False,
+            built_in_score=False,
+            user_score=True,
+            ):
+            bodies.append(proxy.title)
+            path_parts = (proxy.filesystem_path,) + self.storehouse_path_infix_parts
+            key = os.path.join(*path_parts)
+            keys.append(key)
+        return zip(keys, bodies)
+
     def _run(self, cache=False, clear=True, head=None, rollback=None, user_input=None):
         self._io.assign_user_input(user_input=user_input)
         breadcrumb = self._session.pop_breadcrumb(rollback=rollback)
@@ -268,10 +288,40 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     # TODO: write test
     def select_asset_filesystem_path_interactively(self, clear=True, cache=False):
         self._session.cache_breadcrumbs(cache=cache)
-        menu, section = self._io.make_menu(where=self._where, is_parenthetically_numbered=True, is_keyed=False)
+        menu, section = self._io.make_menu(
+            where=self._where, 
+            is_parenthetically_numbered=True, 
+            is_keyed=False,
+            )
         section.tokens = self._make_menu_tokens()
         while True:
             breadcrumb = 'select {}'.format(self.asset_proxy_class._generic_class_name)
+            self._session.push_breadcrumb(breadcrumb)
+            result = menu._run(clear=clear)
+            if self._session.backtrack():
+                break
+            elif not result:
+                self._session.pop_breadcrumb()
+                continue
+            else:
+                break
+        self._session.pop_breadcrumb()
+        self._session.restore_breadcrumbs(cache=cache)
+        if result is not None:
+            # TODO: this is a hack and will break on user assets
+            result = os.path.join(self.built_in_external_storehouse_filesystem_path[0], result)
+            return result
+
+    def select_user_storehouse_filesystem_path_interactively(self, clear=True, cache=False):
+        self._session.cache_breadcrumbs(cache=cache)
+        menu, section = self._io.make_menu(
+            where=self._where,
+            is_parenthetically_numbered=True, 
+            is_keyed=False,
+            )
+        section.tokens = self._make_user_storehouse_menu_tokens()
+        while True:
+            breadcrumb = 'select {} storehouse'.format(self.asset_proxy_class._generic_class_name)
             self._session.push_breadcrumb(breadcrumb)
             result = menu._run(clear=clear)
             if self._session.backtrack():

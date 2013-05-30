@@ -72,6 +72,7 @@ class StylesheetFileWrangler(FileWrangler):
         section.tokens = self._make_menu_tokens(include_extension=True)
         section = menu.make_section()
         section.append(('new', 'new'))
+        section.append(('cp', 'copy'))
         section.append(('ren', 'rename'))
         section.append(('rm', 'remove'))
         return menu
@@ -219,23 +220,37 @@ class StylesheetFileWrangler(FileWrangler):
 
     def make_asset_interactively(self):
         from experimental.tools import scoremanagertools
+
+        self._session.push_backtrack()
+        storehouse_path = self.select_user_storehouse_filesystem_path_interactively()
+        self._session.pop_backtrack()
+        if self._session.backtrack():
+            return
+
         getter = self._io.make_getter(where=self._where)
         getter.append_string('stylesheet name')
         stylesheet_file_name = getter._run()
         if self._session.backtrack():
             return
+
         stylesheet_file_name = stringtools.string_to_accent_free_underscored_delimited_lowercase(
             stylesheet_file_name)
+
         if not stylesheet_file_name.endswith('.ly'):
             stylesheet_file_name = stylesheet_file_name + '.ly'
-        stylesheet_file_name = os.path.join(
-            self.configuration.built_in_stylesheets_directory_path, stylesheet_file_name)
-        stylesheet_proxy = scoremanagertools.proxies.StylesheetFileProxy(
-            stylesheet_file_name, session=self._session)
+
+        stylesheet_file_path = os.path.join(
+            storehouse_path,
+            stylesheet_file_name,
+            )
+
+        proxy = scoremanagertools.proxies.StylesheetFileProxy(
+            stylesheet_file_path, session=self._session)
+
         if self._session.is_test:
-            stylesheet_proxy.make_empty_asset()
+            proxy.make_empty_asset()
         else:
-            stylesheet_proxy.edit()
+            proxy.edit()
 
     ### UI MANIFEST ###
 
