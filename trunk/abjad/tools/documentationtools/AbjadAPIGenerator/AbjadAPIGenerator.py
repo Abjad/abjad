@@ -29,8 +29,8 @@ class AbjadAPIGenerator(abctools.AbjadObject):
     }
 
     _undocumented_packages = (
-        #'lilypondproxytools',
-        'built_in_materials',
+        'materialpackages',
+        'scorepackages',
     )
 
     ### INITIALIZER ###
