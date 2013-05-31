@@ -105,6 +105,15 @@ class ScoreManagerConfiguration(Configuration):
         self.user_external_assets_package_path = \
             self._settings['user_external_assets_package_path']
 
+        self.user_external_editors_directory_path = os.path.join(
+            self.user_external_assets_directory_path, 
+            'editors',
+            )
+        self.user_external_editors_package_path = '.'.join([
+            self.user_external_assets_package_path, 
+            'editors',
+            ])
+
         self.user_external_specifiers_directory_path = os.path.join(
             self.user_external_assets_directory_path, 
             'specifiers',
@@ -152,20 +161,25 @@ class ScoreManagerConfiguration(Configuration):
             'transcripts',
             )
 
-        # make any missing directories and initializers
+        # make missing packages
 
+        for directory_path in (
+            self.user_external_assets_directory_path,
+            self.user_external_editors_directory_path,
+            self.user_material_package_makers_directory_path,
+            self.user_materials_directory_path,
+            self.user_external_specifiers_directory_path):
+            if not os.path.exists(directory_path):
+                os.makedirs(directory_path)
+                file_path = os.path.join(directory_path, '__init__.py')
+                file(file_path, 'w').write('')
+
+        # make missing directories 
+
+        if not os.path.exists(self.user_stylesheets_directory_path):
+            os.makedirs(self.user_stylesheets_directory_path)
         if not os.path.exists(self.transcripts_directory_path):
             os.makedirs(self.transcripts_directory_path)
-
-        # TODO: finish these later
-#        if not os.path.exists(self.user_external_assets_directory_path):
-#            os.makedirs(self.user_external_assets_directory_path)
-#            file_path = os.path.join(self.user_external_assets_directory_path, '__init__.py')
-#            file(file_path, 'w').write('')
-#        if not os.path.exists(self.user_external_editors_directory_path):
-#            os.makedirs(self.user_external_editors_directory_path)
-#            file_path = os.path.join(self.user_external_assets_directory_path, '__init__.py')
-#            file(file_path, 'w').write('')
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 
