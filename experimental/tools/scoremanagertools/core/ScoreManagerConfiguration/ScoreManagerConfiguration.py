@@ -10,7 +10,7 @@ class ScoreManagerConfiguration(Configuration):
         >>> configuration
         ScoreManagerConfiguration()
 
-    Treated as a singleton.
+    Return score manager configuration.
     '''
 
     ### CLASS VARIABLES ###
@@ -21,6 +21,101 @@ class ScoreManagerConfiguration(Configuration):
 
     def __init__(self):
         Configuration.__init__(self)
+        self.score_manager_tools_directory_path = os.path.join(
+            self.abjad_configuration.abjad_experimental_directory_path,
+            'tools',
+            'scoremanagertools',
+            )
+        self.score_manager_tools_package_path = '.'.join([
+            'experimental',
+            'tools',
+            'scoremanagertools',
+            ])
+        self.built_in_editors_directory_path = os.path.join(
+            self.score_manager_tools_directory_path, 
+            'editors',
+            )
+        self.built_in_material_package_makers_directory_path = os.path.join(
+            self.score_manager_tools_directory_path, 
+            'materialpackagemakers',
+            )
+        self.built_in_material_package_makers_package_path = '.'.join([
+            self.score_manager_tools_package_path, 
+            'materialpackagemakers',
+            ])
+        self.built_in_materials_directory_path = os.path.join(
+            self.score_manager_tools_directory_path, 
+            'built_in_materials',
+            )
+        self.built_in_materials_package_path = '.'.join([
+            self.score_manager_tools_package_path, 
+            'built_in_materials',
+            ])
+        self.built_in_scores_directory_path = os.path.join(
+            self.score_manager_tools_directory_path, 
+            'built_in_scores',
+            )
+        self.built_in_scores_package_path = '.'.join([
+            self.score_manager_tools_package_path,
+            'built_in_scores',
+            ])
+        self.built_in_specifier_classes_directory_path = os.path.join(
+            self.score_manager_tools_directory_path, 
+            'specifiers',
+            )
+        self.built_in_specifiers_directory_path = os.path.join(
+            self.score_manager_tools_directory_path,
+            'built_in_specifiers',
+            )
+        self.built_in_specifiers_package_path = '.'.join([
+            self.score_manager_tools_package_path,
+            'built_in_specifiers',
+            ])
+        self.built_in_stylesheets_directory_path = os.path.join(
+            self.score_manager_tools_directory_path, 
+            'built_in_stylesheets',
+            )
+        self.transcripts_directory_path = \
+            os.path.normpath(os.path.expanduser(
+            self._settings['transcripts_directory_path']
+            ))
+        self.user_external_assets_directory_path = \
+            os.path.normpath(os.path.expanduser(
+            self._settings['user_external_assets_directory_path']
+            ))
+        self.user_external_assets_package_path = \
+            self._settings['user_external_assets_package_path']
+        self.user_external_specifiers_directory_path = os.path.join(
+            self.user_external_assets_directory_path, 
+            'specifiers',
+            )
+        self.user_external_specifiers_package_path = '.'.join([
+            self.user_external_assets_package_path, 
+            'specifiers',
+            ])
+        self.user_material_package_makers_directory_path = \
+            os.path.normpath(os.path.expanduser(
+            self._settings['user_material_package_makers_directory_path']
+            ))
+        self.user_material_package_makers_package_path = \
+            self._settings['user_material_package_makers_package_path']
+        self.user_materials_directory_path = os.path.join(
+            self.user_external_assets_directory_path, 
+            'materials',
+            )
+        self.user_materials_package_path = '.'.join([
+            self.user_external_assets_package_path, 
+            'materials',
+            ])
+        self.user_scores_directory_path = \
+            os.path.normpath(os.path.expanduser(
+            self._settings['user_scores_directory_path']
+            ))
+        self.user_scores_package_path = ''
+        self.user_stylesheets_directory_path = \
+            os.path.normpath(os.path.expanduser(
+            self._settings['user_stylesheets_directory_path']
+            ))
         if not os.path.exists(self.transcripts_directory_path):
             os.makedirs(self.transcripts_directory_path)
 
@@ -108,420 +203,12 @@ class ScoreManagerConfiguration(Configuration):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def built_in_editors_directory_path(self):
-        '''Editors directory path:
-
-        ::
-
-            >>> configuration.built_in_editors_directory_path
-            '.../tools/scoremanagertools/editors'
-
-        Return string.
-        '''
-        return os.path.join(self.score_manager_tools_directory_path, 'editors')
-
-    @property
-    def built_in_material_package_makers_directory_path(self):
-        '''Material package makers directory path:
-
-        ::
-
-            >>> configuration.built_in_material_package_makers_directory_path
-            '.../tools/scoremanagertools/materialpackagemakers'
-
-        Return string.
-        '''
-        return os.path.join(self.score_manager_tools_directory_path, 'materialpackagemakers')
-
-    @property
-    def built_in_material_package_makers_package_path(self):
-        '''Material package makers package path:
-
-        ::
-
-            >>> configuration.built_in_material_package_makers_package_path
-            'experimental.tools.scoremanagertools.materialpackagemakers'
-
-        '''
-        return '.'.join([self.score_manager_tools_package_path, 'materialpackagemakers'])
-
-    @property
-    def built_in_materials_directory_path(self):
-        '''System materials directory path:
-
-        ::
-
-            >>> configuration.built_in_materials_directory_path
-            '.../tools/scoremanagertools/built_in_materials'
-
-        Return string.
-        '''
-        return os.path.join(self.score_manager_tools_directory_path, 'built_in_materials')
-
-    @property
-    def built_in_materials_package_path(self):
-        '''System materials package path:
-
-        ::
-
-            >>> configuration.built_in_materials_package_path
-            'experimental.tools.scoremanagertools.built_in_materials'
-
-        Return string.
-        '''
-        return '.'.join([self.score_manager_tools_package_path, 'built_in_materials'])
-
-    @property
-    def built_in_scores_directory_path(self):
-        '''Built-in scores directory path:
-
-        ::
-
-            >>> configuration.built_in_scores_directory_path
-            '.../tools/scoremanagertools/built_in_scores'
-
-        Return string.
-        '''
-        return os.path.join(self.score_manager_tools_directory_path, 'built_in_scores')
-
-    @property
-    def built_in_scores_package_path(self):
-        '''Built-in scores package path:
-
-        ::
-
-            >>> configuration.built_in_scores_package_path
-            'experimental.tools.scoremanagertools.built_in_scores'
-
-        Return string.
-        '''
-        return 'experimental.tools.scoremanagertools.built_in_scores'
-
-    @property
-    def built_in_specifier_classes_directory_path(self):
-        '''Specifier classes directory path:
-
-        ::
-
-            >>> configuration.built_in_specifier_classes_directory_path
-            '.../tools/scoremanagertools/specifiers'
-
-        Return string.
-        '''
-        return os.path.join(self.score_manager_tools_directory_path, 'specifiers')
-
-    @property
-    def built_in_specifiers_directory_path(self):
-        '''Built-in specifiers directory path:
-
-        ::
-
-            >>> configuration.built_in_specifiers_directory_path
-            '.../tools/scoremanagertools/built_in_specifiers'
-
-        Return string.
-        '''
-        return os.path.join(
-            self.score_manager_tools_directory_path,
-            'built_in_specifiers')
-
-    @property
-    def built_in_specifiers_package_path(self):
-        '''Score-external specifiers package path:
-
-        ::
-
-            >>> configuration.built_in_specifiers_package_path
-            'experimental.tools.scoremanagertools.built_in_specifiers'
-
-        Return string.
-        '''
-        return 'experimental.tools.scoremanagertools.built_in_specifiers'
-
-    @property
-    def built_in_stylesheets_directory_path(self):
-        '''Built-in stylesheets directory path:
-
-        ::
-
-            >>> configuration.built_in_stylesheets_directory_path
-            '.../tools/scoremanagertools/built_in_stylesheets'
-
-        Return string.
-        '''
-        return os.path.join(self.score_manager_tools_directory_path, 'built_in_stylesheets')
-
-    @property
     def configuration_directory_path(self):
-        '''Configuration directory path:
-
-        ::
-
-            >>> configuration.configuration_directory_path # doctest: +SKIP
-            '~/score_manager'
-
-        Return string.
-        '''
         return os.path.join(self.home_directory_path, 'score_manager')
 
     @property
     def configuration_file_name(self):
-        '''Configuration file name:
-
-        ::
-
-            >>> configuration.configuration_file_name
-            'score_manager.cfg'
-
-        Return string.
-        '''
         return 'score_manager.cfg'
-
-    @property
-    def configuration_file_path(self):
-        '''Configuration file path:
-
-        ::
-
-            >>> configuration.configuration_file_path # doctest: +SKIP
-            '~/score_manager/score_manager.cfg'
-
-        Return string.
-        '''
-        return Configuration.configuration_file_path.fget(self)
-
-    @property
-    def home_directory_path(self):
-        '''Home directory path:
-
-        ::
-
-            >>> configuration.home_directory_path # doctest: +SKIP
-            '~'
-
-        (Output will vary according to configuration.)
-
-        Return string.
-        '''
-        return Configuration.home_directory_path.fget(self)
-
-    @property
-    def score_manager_tools_directory_path(self):
-        '''Score manager tools directory path:
-
-        ::
-
-            >>> configuration.score_manager_tools_directory_path
-            '.../tools/scoremanagertools'
-
-        Return string.
-        '''
-        return os.path.join(
-            self.abjad_configuration.abjad_experimental_directory_path,
-            'tools',
-            'scoremanagertools')
-
-    @property
-    def score_manager_tools_package_path(self):
-        '''Score manager tools package path:
-
-        ::
-
-            >>> configuration.score_manager_tools_package_path
-            'experimental.tools.scoremanagertools'
-
-        Return string.
-        '''
-        return 'experimental.tools.scoremanagertools'
-
-    @property
-    def storage_format(self):
-        '''Storage format:
-
-            >>> z(configuration)
-            core.ScoreManagerConfiguration()
-
-        Return string.
-        '''
-        return Configuration.storage_format.fget(self)
-
-    @property
-    def transcripts_directory_path(self):
-        '''Score manager transcripts directory path:
-
-        ::
-
-            >>> configuration.transcripts_directory_path # doctest: +SKIP
-            '~/score_manager/transcripts'
-
-        (Output will vary according to configuration.)
-
-        Return string.
-        '''
-        return self._settings['transcripts_directory_path']
-
-    @property
-    def user_external_assets_directory_path(self):
-        '''User external assets directory path:
-
-        ::
-
-            >>> configuration.user_external_assets_directory_path
-            '/Users/trevorbaca/Documents/baca/music'
-
-        Return string.
-        '''
-        return self._settings['user_external_assets_directory_path']
-
-    @property
-    def user_external_assets_package_path(self):
-        '''User external assets package path:
-
-        ::
-
-            >>> configuration.user_external_assets_package_path # doctest: +SKIP
-            '~.music'
-
-        Return string.
-        '''
-        return self._settings['user_external_assets_package_path']
-        
-    @property
-    def user_external_specifiers_directory_path(self):
-        '''User external specifiers directory path:
-
-        ::
-
-            >>> configuration.user_external_specifiers_directory_path
-            '/Users/trevorbaca/Documents/baca/music/specifiers'
-
-        Return string.
-        '''
-        return os.path.join(self.user_external_assets_directory_path, 'specifiers')
-
-    @property
-    def user_external_specifiers_package_path(self):
-        '''User external specifiers package path:
-
-        ::
-
-            >>> configuration.user_external_specifiers_package_path
-            'baca.music.specifiers'
-
-        Return string.
-        '''
-        return '.'.join([self.user_external_assets_package_path, 'specifiers'])
-
-    @property
-    def user_material_package_makers_directory_path(self):
-        '''User material package makers directory path:
-
-        ::
-
-            >>> configuration.user_material_package_makers_directory_path # doctest: +SKIP
-            '~/music/materialpackagemakers'
-
-        (Output will vary according to configuration.)
-
-        Return string.
-        '''
-        return os.path.normpath(os.path.expanduser(
-            self._settings['user_material_package_makers_directory_path']
-            ))
-
-    @property
-    def user_material_package_makers_package_path(self):
-        '''User material package makers package path:
-
-        ::
-
-            >>> configuration.user_material_package_makers_package_path # doctest: +SKIP
-            '~.music.materialpackagemakers'
-
-        (Output will vary according to configuration.)
-
-        Return string.
-        '''
-        return self._settings['user_material_package_makers_package_path']
-
-    @property
-    def user_materials_directory_path(self):
-        '''User materials directory path:
-
-        ::
-
-            >>> configuration.user_materials_directory_path
-            '/Users/trevorbaca/Documents/baca/music/materials'
-
-        Return string.
-        '''
-        return os.path.join(self.user_external_assets_directory_path, 'materials')
-
-    @property
-    def user_materials_package_path(self):
-        '''Use materials package path:
-
-        ::
-
-            >>> configuration.user_materials_package_path
-            'baca.music.materials'
-
-        (Output will vary with user configuration.)
-
-        Return string.
-        '''
-        return '.'.join([self.user_external_assets_package_path, 'materials'])
-
-    @property
-    def user_scores_directory_path(self):
-        '''Scores directory path:
-
-        ::
-
-            >>> configuration.user_scores_directory_path
-            '.../scores'
-
-        Defaults to ``~/Documents/scores``.
-
-        (Output will vary according to configuration.)
-
-        Return string.
-        '''
-        return os.path.normpath(os.path.expanduser(
-            self._settings['user_scores_directory_path']
-            ))
-
-    @property
-    def user_scores_package_path(self):
-        '''Scores package path:
-
-        ::
-
-            >>> configuration.user_scores_package_path 
-            ''
-
-        User scores must be directly importable.
-
-        Return string.
-        '''
-        return ''
-
-    @property
-    def user_stylesheets_directory_path(self):
-        '''User stylesheets directory path:
-
-        ::
-
-            >>> configuration.user_stylesheets_directory_path
-            '.../score_manager/stylesheets'
-
-        (Output will vary according to configuration.)
-
-        Return string.
-        '''
-        return os.path.normpath(os.path.expanduser(
-            self._settings['user_stylesheets_directory_path']
-            ))
 
     ### PUBLIC METHODS ###
 
@@ -530,7 +217,6 @@ class ScoreManagerConfiguration(Configuration):
 
         Return string.
         '''
-
         if filesystem_path is None:
             return
         assert isinstance(filesystem_path, str), repr(filesystem_path)
@@ -566,11 +252,10 @@ class ScoreManagerConfiguration(Configuration):
         elif filesystem_path.startswith(self.user_stylesheets_directory_path):
             prefix_length = len(os.path.dirname(self.user_stylesheets_directory_path)) + 1
         else:
-            raise Exception('can not change filesystem path {!r} to packagesystem path.'.format(filesystem_path))
-
+            raise Exception('can not change filesystem path {!r} to packagesystem path.'.format(
+                filesystem_path))
         package_path = filesystem_path[prefix_length:]
         package_path = package_path.replace(os.path.sep, '.')
-
         return package_path
 
     def list_score_directory_paths(self, built_in=False, user=False, head=None):
@@ -623,7 +308,6 @@ class ScoreManagerConfiguration(Configuration):
         
         Return string.
         '''
-
         if package_path is None:
             return
         assert isinstance(package_path, str), repr(package_path)
@@ -654,8 +338,6 @@ class ScoreManagerConfiguration(Configuration):
             directory_parts = [self.user_scores_directory_path] + package_path_parts[:]
         directory_path = os.path.join(*directory_parts)
         directory_path = os.path.normpath(directory_path)
-
         if is_module:
             directory_path += '.py'
-
         return directory_path
