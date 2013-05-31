@@ -16,7 +16,7 @@ class StylesheetFileWrangler(FileWrangler):
     ### CLASS VARIABLES ###
 
     built_in_external_storehouse_filesystem_path = os.path.join(
-        FileWrangler.configuration.score_manager_tools_directory_path, 'built_in_stylesheets')
+        FileWrangler.configuration.score_manager_tools_directory_path, 'stylesheets')
 
     storehouse_path_infix_parts = ('music', 'stylesheets')
 
@@ -127,9 +127,9 @@ class StylesheetFileWrangler(FileWrangler):
             >>> for x in wrangler.list_asset_filesystem_paths(
             ...     user_external=False, user_score=False):
             ...     x
-            '.../tools/scoremanagertools/built_in_stylesheets/clean-letter-14.ly'
-            '.../tools/scoremanagertools/built_in_stylesheets/clean-letter-16.ly'
-            '.../tools/scoremanagertools/built_in_stylesheets/rhythm-letter-16.ly'
+            '.../tools/scoremanagertools/stylesheets/clean-letter-14.ly'
+            '.../tools/scoremanagertools/stylesheets/clean-letter-16.ly'
+            '.../tools/scoremanagertools/stylesheets/rhythm-letter-16.ly'
             '.../tools/scoremanagertools/built_in_scores/red_example_score/music/stylesheets/red-example-score-stylesheet.ly'
 
         Return list.
@@ -178,9 +178,9 @@ class StylesheetFileWrangler(FileWrangler):
             >>> for x in wrangler.list_asset_proxies(
             ...     user_external=False, user_score=False):
             ...     x
-            StylesheetFileProxy('.../tools/scoremanagertools/built_in_stylesheets/clean-letter-14.ly')
-            StylesheetFileProxy('.../tools/scoremanagertools/built_in_stylesheets/clean-letter-16.ly')
-            StylesheetFileProxy('.../tools/scoremanagertools/built_in_stylesheets/rhythm-letter-16.ly')
+            StylesheetFileProxy('.../tools/scoremanagertools/stylesheets/clean-letter-14.ly')
+            StylesheetFileProxy('.../tools/scoremanagertools/stylesheets/clean-letter-16.ly')
+            StylesheetFileProxy('.../tools/scoremanagertools/stylesheets/rhythm-letter-16.ly')
             StylesheetFileProxy('.../tools/scoremanagertools/built_in_scores/red_example_score/music/stylesheets/red-example-score-stylesheet.ly')
 
         Return list.
@@ -204,7 +204,7 @@ class StylesheetFileWrangler(FileWrangler):
             >>> for x in wrangler.list_storehouse_filesystem_paths(
             ...     user_external=False, user_score=False):
             ...     x
-            '.../tools/scoremanagertools/built_in_stylesheets'
+            '.../tools/scoremanagertools/stylesheets'
             '.../tools/scoremanagertools/built_in_scores/blue_example_score/music/stylesheets'
             '.../tools/scoremanagertools/built_in_scores/green_example_score/music/stylesheets'
             '.../tools/scoremanagertools/built_in_scores/red_example_score/music/stylesheets'

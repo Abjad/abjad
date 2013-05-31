@@ -9,7 +9,7 @@ def test_StylesheetFileProxy_remove_interactively_01():
     score_manager_configuration = scoremanagertools.core.ScoreManagerConfiguration()
     filesystem_path = os.path.join(
         score_manager_configuration.score_manager_tools_directory_path,
-        'built_in_stylesheets', 'test_stylesheet.ly')
+        'stylesheets', 'test_stylesheet.ly')
     proxy = scoremanagertools.proxies.StylesheetFileProxy(filesystem_path=filesystem_path)
     assert not proxy.exists()
 
@@ -32,7 +32,7 @@ def test_StylesheetFileProxy_remove_interactively_02():
     score_manager_configuration = scoremanagertools.core.ScoreManagerConfiguration()
     filesystem_path = os.path.join(
         score_manager_configuration.score_manager_tools_directory_path,
-        'built_in_stylesheets', 'temporary_stylesheet.ly')
+        'stylesheets', 'temporary_stylesheet.ly')
     proxy = scoremanagertools.proxies.StylesheetFileProxy(filesystem_path=filesystem_path)
     assert not proxy.exists()
 

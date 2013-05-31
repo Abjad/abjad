@@ -27,7 +27,7 @@ def test_FileProxy_public_attributes_02():
     score_manager_configuration = scoremanagertools.core.ScoreManagerConfiguration()
     filesystem_path = os.path.join(
         score_manager_configuration.score_manager_tools_directory_path,
-        'built_in_stylesheets', file_name)
+        'stylesheets', file_name)
     file_proxy = scoremanagertools.proxies.FileProxy(filesystem_path)
 
     assert file_proxy._generic_class_name == 'file'

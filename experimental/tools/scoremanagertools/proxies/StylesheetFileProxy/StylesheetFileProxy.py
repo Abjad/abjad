@@ -19,7 +19,7 @@ class StylesheetFileProxy(FileProxy):
     ::
 
         >>> proxy
-        StylesheetFileProxy('.../tools/scoremanagertools/built_in_stylesheets/clean-letter-14.ly')
+        StylesheetFileProxy('.../tools/scoremanagertools/stylesheets/clean-letter-14.ly')
 
     Return stylesheet proxy.
     '''

@@ -84,7 +84,7 @@ class ScoreManagerConfiguration(Configuration):
 
         self.built_in_stylesheets_directory_path = os.path.join(
             self.score_manager_tools_directory_path, 
-            'built_in_stylesheets',
+            'stylesheets',
             )
 
         # user storehouse paths
