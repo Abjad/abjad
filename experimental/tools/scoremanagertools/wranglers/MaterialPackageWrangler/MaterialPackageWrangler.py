@@ -226,6 +226,8 @@ class MaterialPackageWrangler(PackageWrangler):
             >>> for x in wrangler.list_asset_names(
             ...     user_external=False, user_score=False):
             ...     x
+            'black music specifier'
+            'green music specifier'
             'red directives'
             'red forte'
             'red marcati'
@@ -256,6 +258,8 @@ class MaterialPackageWrangler(PackageWrangler):
             >>> for x in wrangler.list_asset_packagesystem_paths(
             ...     user_external=False, user_score=False):
             ...     x
+            'experimental.tools.scoremanagertools.built_in_materials.black_music_specifier'
+            'experimental.tools.scoremanagertools.built_in_materials.green_music_specifier'
             'experimental.tools.scoremanagertools.built_in_materials.red_directives'
             'experimental.tools.scoremanagertools.built_in_materials.red_forte'
             'experimental.tools.scoremanagertools.built_in_materials.red_marcati'
@@ -285,6 +289,8 @@ class MaterialPackageWrangler(PackageWrangler):
             >>> for x in wrangler.list_asset_proxies(
             ...     user_external=False, user_score=False):
             ...     x
+            MaterialPackageProxy('.../tools/scoremanagertools/built_in_materials/black_music_specifier')
+            MaterialPackageProxy('.../tools/scoremanagertools/built_in_materials/green_music_specifier')
             MarkupInventoryMaterialPackageMaker('.../tools/scoremanagertools/built_in_materials/red_directives')
             DynamicHandlerMaterialPackageMaker('.../tools/scoremanagertools/built_in_materials/red_forte')
             ArticulationHandlerMaterialPackageMaker('.../tools/scoremanagertools/built_in_materials/red_marcati')
