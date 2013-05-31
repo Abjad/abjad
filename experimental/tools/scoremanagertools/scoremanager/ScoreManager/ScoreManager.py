@@ -262,7 +262,7 @@ class ScoreManager(ScoreManagerObject):
 
     def manage_materials(self):
         self.material_package_wrangler._run(
-            rollback=True, head=self.configuration.built_in_materials_package_path) 
+            rollback=True, head=self.configuration.built_in_material_packages_package_path) 
 
     def manage_stylesheets(self):
         self.stylesheet_file_wrangler._run(
@@ -289,7 +289,7 @@ class ScoreManager(ScoreManagerObject):
         self.score_package_wrangler.profile_visible_assets()
 
     def run_py_test_on_all_user_scores(self, prompt=True):
-        command = 'py.test {}'.format(self.configuration.user_scores_directory_path)
+        command = 'py.test {}'.format(self.configuration.user_score_packages_directory_path)
         proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
         lines = [line.strip() for line in proc.stdout.readlines()]
         if lines:

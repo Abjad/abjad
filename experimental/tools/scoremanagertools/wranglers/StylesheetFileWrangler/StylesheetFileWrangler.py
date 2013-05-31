@@ -20,7 +20,7 @@ class StylesheetFileWrangler(FileWrangler):
 
     storehouse_path_infix_parts = ('music', 'stylesheets')
 
-    user_external_storehouse_filesystem_path = FileWrangler.configuration.user_stylesheets_directory_path
+    user_external_storehouse_filesystem_path = FileWrangler.configuration.user_external_stylesheets_directory_path
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 
@@ -55,7 +55,7 @@ class StylesheetFileWrangler(FileWrangler):
         from experimental.tools import scoremanagertools
         annotation = None
         if filesystem_path.startswith(self.configuration.built_in_score_packages_directory_path) or \
-            filesystem_path.startswith(self.configuration.user_scores_directory_path):
+            filesystem_path.startswith(self.configuration.user_score_packages_directory_path):
             tmp = os.path.join('music', 'stylesheets')
             score_filesystem_path = filesystem_path.rpartition(tmp)[0]
             packagesystem_path = self.configuration.filesystem_path_to_packagesystem_path(score_filesystem_path)

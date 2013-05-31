@@ -30,9 +30,9 @@ class MaterialPackageWrangler(PackageWrangler):
     
     storehouse_path_infix_parts = ('music', 'materials')
     built_in_external_storehouse_packagesystem_path = \
-        PackageWrangler.configuration.built_in_materials_package_path
+        PackageWrangler.configuration.built_in_material_packages_package_path
     user_external_storehouse_packagesystem_path = \
-        PackageWrangler.configuration.user_materials_package_path
+        PackageWrangler.configuration.user_external_material_packages_package_path
 
     ### INITIALIZER ###
 
@@ -66,7 +66,7 @@ class MaterialPackageWrangler(PackageWrangler):
             except AttributeError:
                 command = 'import {}.{} as material_package_maker_class'
                 command = command.format(
-                    self.configuration.user_material_package_makers_package_path, 
+                    self.configuration.user_external_material_package_makers_package_path, 
                     material_package_maker_class_name)
                 exec(command)
                 material_package_proxy = material_package_maker_class(
@@ -375,7 +375,7 @@ class MaterialPackageWrangler(PackageWrangler):
             exec(command)
         except ImportError:
             command = 'from {} import {} as material_package_maker_class'.format(
-                self.configuration.user_material_package_makers_package_path, 
+                self.configuration.user_external_material_package_makers_package_path, 
                 material_package_maker_class_name)
             exec(command)
         should_have_user_input_module = getattr(

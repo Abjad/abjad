@@ -33,10 +33,10 @@ class ScorePackageWrangler(PackageWrangler):
     storehouse_path_infix_parts = None
 
     user_external_storehouse_filesystem_path = \
-        PackageWrangler.configuration.user_scores_directory_path
+        PackageWrangler.configuration.user_score_packages_directory_path
 
     user_external_storehouse_packagesystem_path = \
-        PackageWrangler.configuration.user_scores_package_path
+        PackageWrangler.configuration.user_score_packages_package_path
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 
@@ -51,9 +51,9 @@ class ScorePackageWrangler(PackageWrangler):
                 self.configuration.built_in_score_packages_directory_path):
                 return self.configuration.built_in_score_packages_directory_path
             else:
-                return self.configuration.user_scores_directory_path
+                return self.configuration.user_score_packages_directory_path
         else:
-            return self.configuration.user_scores_directory_path
+            return self.configuration.user_score_packages_directory_path
 
     @property
     def _current_storehouse_packagesystem_path(self):

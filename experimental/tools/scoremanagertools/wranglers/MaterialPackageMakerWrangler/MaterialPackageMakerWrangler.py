@@ -32,7 +32,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
     storehouse_path_infix_parts = None
 
     user_external_storehouse_packagesystem_path = \
-        PackageWrangler.configuration.user_material_package_makers_package_path
+        PackageWrangler.configuration.user_external_material_package_makers_package_path
     
     ### READ-ONLY PRIVATE PROPERTIES ###
 
@@ -64,7 +64,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             except ImportError:
                 command = 'from {} import {} as material_package_maker_class'
                 command = command.format(
-                    self.configuration.user_material_package_makers_package_path, 
+                    self.configuration.user_external_material_package_makers_package_path, 
                     material_package_maker_class_name)
                 exec(command)
             material_package_proxy = material_package_maker_class(

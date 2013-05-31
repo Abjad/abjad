@@ -55,11 +55,11 @@ class ScoreManagerConfiguration(Configuration):
             'materialpackagemakers',
             ])
 
-        self.built_in_materials_directory_path = os.path.join(
+        self.built_in_material_packages_directory_path = os.path.join(
             self.score_manager_tools_directory_path, 
             'materialpackages',
             )
-        self.built_in_materials_package_path = '.'.join([
+        self.built_in_material_packages_package_path = '.'.join([
             self.score_manager_tools_package_path, 
             'materialpackages',
             ])
@@ -114,36 +114,36 @@ class ScoreManagerConfiguration(Configuration):
             'specifiers',
             ])
 
-        self.user_material_package_makers_directory_path = os.path.join(
+        self.user_external_material_package_makers_directory_path = os.path.join(
             self.user_external_assets_directory_path,
             'material_package_makers',
             )
-        self.user_material_package_makers_package_path = '.'.join([
+        self.user_external_material_package_makers_package_path = '.'.join([
             self.user_external_assets_package_path,
             'material_package_makers',
             ])
 
-        self.user_materials_directory_path = os.path.join(
+        self.user_external_material_packages_directory_path = os.path.join(
             self.user_external_assets_directory_path, 
             'materials',
             )
-        self.user_materials_package_path = '.'.join([
+        self.user_external_material_packages_package_path = '.'.join([
             self.user_external_assets_package_path, 
             'materials',
             ])
 
-        self.user_stylesheets_directory_path = os.path.join(
+        self.user_external_stylesheets_directory_path = os.path.join(
             self.user_external_assets_directory_path,
             'stylesheets',
             )
 
         # user score storehouse paths
 
-        self.user_scores_directory_path = \
+        self.user_score_packages_directory_path = \
             os.path.normpath(os.path.expanduser(
-            self._settings['user_scores_directory_path']
+            self._settings['user_score_packages_directory_path']
             ))
-        self.user_scores_package_path = ''
+        self.user_score_packages_package_path = ''
 
         # transcripts directory path
 
@@ -157,8 +157,8 @@ class ScoreManagerConfiguration(Configuration):
         for directory_path in (
             self.user_external_assets_directory_path,
             self.user_external_editors_directory_path,
-            self.user_material_package_makers_directory_path,
-            self.user_materials_directory_path,
+            self.user_external_material_package_makers_directory_path,
+            self.user_external_material_packages_directory_path,
             self.user_external_specifiers_directory_path):
             if not os.path.exists(directory_path):
                 os.makedirs(directory_path)
@@ -167,8 +167,8 @@ class ScoreManagerConfiguration(Configuration):
 
         # make missing directories 
 
-        if not os.path.exists(self.user_stylesheets_directory_path):
-            os.makedirs(self.user_stylesheets_directory_path)
+        if not os.path.exists(self.user_external_stylesheets_directory_path):
+            os.makedirs(self.user_external_stylesheets_directory_path)
         if not os.path.exists(self.transcripts_directory_path):
             os.makedirs(self.transcripts_directory_path)
 
@@ -204,7 +204,7 @@ class ScoreManagerConfiguration(Configuration):
                 ],
                 'spec': "string(default={!r})".format('score_manager'),
             },
-            'user_scores_directory_path': {
+            'user_score_packages_directory_path': {
                 'comment': [
                     '',
                     'Set to the directory where you house your scores.',
@@ -241,30 +241,30 @@ class ScoreManagerConfiguration(Configuration):
             filesystem_path = filesystem_path[:-3]
         if filesystem_path.startswith(self.built_in_score_packages_directory_path):
             prefix_length = len(self.abjad_configuration.abjad_root_directory_path) + 1
-        elif filesystem_path.startswith(self.user_materials_directory_path):
-            prefix_length = len(self.user_materials_directory_path) + 1
+        elif filesystem_path.startswith(self.user_external_material_packages_directory_path):
+            prefix_length = len(self.user_external_material_packages_directory_path) + 1
             remainder = filesystem_path[prefix_length:]
             if remainder:
                 remainder = remainder.replace(os.path.sep, '.')
-                result = '{}.{}'.format(self.user_materials_package_path, remainder)
+                result = '{}.{}'.format(self.user_external_material_packages_package_path, remainder)
             else:
-                result = self.user_materials_package_path
+                result = self.user_external_material_packages_package_path
             return result
-        elif filesystem_path.startswith(self.user_material_package_makers_directory_path):
+        elif filesystem_path.startswith(self.user_external_material_package_makers_directory_path):
             return '.'.join([
-                self.user_material_package_makers_package_path,
+                self.user_external_material_package_makers_package_path,
                 os.path.basename(filesystem_path)])
         elif filesystem_path.startswith(self.built_in_material_package_makers_directory_path):
             prefix_length = len(self.abjad_configuration.abjad_root_directory_path) + 1
-        elif filesystem_path.startswith(self.built_in_materials_directory_path):
+        elif filesystem_path.startswith(self.built_in_material_packages_directory_path):
             prefix_length = len(self.abjad_configuration.abjad_root_directory_path) + 1
         elif filesystem_path.startswith(self.score_manager_tools_directory_path):
             prefix_length = \
                 len(os.path.dirname(self.score_manager_tools_directory_path)) + 1
-        elif filesystem_path.startswith(self.user_scores_directory_path):
-            prefix_length = len(self.user_scores_directory_path) + 1
-        elif filesystem_path.startswith(self.user_stylesheets_directory_path):
-            prefix_length = len(os.path.dirname(self.user_stylesheets_directory_path)) + 1
+        elif filesystem_path.startswith(self.user_score_packages_directory_path):
+            prefix_length = len(self.user_score_packages_directory_path) + 1
+        elif filesystem_path.startswith(self.user_external_stylesheets_directory_path):
+            prefix_length = len(os.path.dirname(self.user_external_stylesheets_directory_path)) + 1
         else:
             raise Exception('can not change filesystem path {!r} to packagesystem path.'.format(
                 filesystem_path))
@@ -298,13 +298,13 @@ class ScoreManagerConfiguration(Configuration):
                             self.built_in_score_packages_directory_path, directory_entry)
                         result.append(filesystem_path)
         if user:
-            for directory_entry in os.listdir(self.user_scores_directory_path):
+            for directory_entry in os.listdir(self.user_score_packages_directory_path):
                 if directory_entry[0].isalpha():
                     package_path = '.'.join([
-                        self.user_scores_package_path, directory_entry])
+                        self.user_score_packages_package_path, directory_entry])
                     if head is None or package_path.startswith(head):
                         filesystem_path = os.path.join(
-                            self.user_scores_directory_path, directory_entry)
+                            self.user_score_packages_directory_path, directory_entry)
                         result.append(filesystem_path)
         return result
 
@@ -333,9 +333,9 @@ class ScoreManagerConfiguration(Configuration):
             directory_parts = [self.score_manager_tools_directory_path] + \
                 package_path_parts[3:]
         elif package_path_parts[0] == \
-            self.built_in_materials_package_path:
+            self.built_in_material_packages_package_path:
             directory_parts = \
-                [self.built_in_materials_directory_path] + \
+                [self.built_in_material_packages_directory_path] + \
                 package_path_parts[1:]
         elif package_path.startswith(self.user_external_assets_package_path):
             prefix_length = len(self.user_external_assets_package_path)
@@ -344,7 +344,7 @@ class ScoreManagerConfiguration(Configuration):
             directory_parts.append(self.user_external_assets_directory_path)
             directory_parts.extend(trimmed_package_path.split('.'))
         else:
-            directory_parts = [self.user_scores_directory_path] + package_path_parts[:]
+            directory_parts = [self.user_score_packages_directory_path] + package_path_parts[:]
         directory_path = os.path.join(*directory_parts)
         directory_path = os.path.normpath(directory_path)
         if is_module:

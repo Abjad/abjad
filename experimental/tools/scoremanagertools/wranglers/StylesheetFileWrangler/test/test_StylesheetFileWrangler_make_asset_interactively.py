@@ -6,7 +6,7 @@ def test_StylesheetFileWrangler_make_asset_interactively_01():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     filesystem_path = os.path.join(
-        score_manager.configuration.user_stylesheets_directory_path, 'test-stylesheet.ly')
+        score_manager.configuration.user_external_stylesheets_directory_path, 'test-stylesheet.ly')
     assert not os.path.exists(filesystem_path)
 
     try:

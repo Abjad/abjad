@@ -180,13 +180,13 @@ class Session(abctools.AbjadObject):
         from experimental.tools import scoremanagertools
         if self.is_in_score:
             parts = []
-            parts.append(self.configuration.user_scores_directory_path)
+            parts.append(self.configuration.user_score_packages_directory_path)
             parts.append(self.underscore_delimited_current_score_name)
             parts.extend(
                 scoremanagertools.wranglers.MaterialPackageWrangler.storehouse_path_infix_parts)
             return os.path.join(*parts)
         else:
-            return self.configuration.built_in_materials_directory_path
+            return self.configuration.built_in_material_packages_directory_path
 
     @property
     def current_materials_package_path(self):
@@ -214,7 +214,7 @@ class Session(abctools.AbjadObject):
                 scoremanagertools.wranglers.MaterialPackageWrangler.storehouse_path_infix_parts)
             return '.'.join(parts)
         else:
-            return self.configuration.built_in_materials_package_path
+            return self.configuration.built_in_material_packages_package_path
 
     @property
     def current_score_directory_path(self):
@@ -232,7 +232,7 @@ class Session(abctools.AbjadObject):
                     self.underscore_delimited_current_score_name)
             else:
                 return os.path.join(
-                    self.configuration.user_scores_directory_path,
+                    self.configuration.user_score_packages_directory_path,
                     self.underscore_delimited_current_score_name)
 
     @property
@@ -302,7 +302,7 @@ class Session(abctools.AbjadObject):
         from experimental.tools import scoremanagertools
         if self.is_in_score:
             parts = []
-            parts.append(self.configuration.user_scores_directory_path)
+            parts.append(self.configuration.user_score_packages_directory_path)
             parts.append(self.underscore_delimited_current_score_name)
             parts.extend(
                 scoremanagertools.wranglers.SegmentPackageWrangler.storehouse_path_infix_parts)
