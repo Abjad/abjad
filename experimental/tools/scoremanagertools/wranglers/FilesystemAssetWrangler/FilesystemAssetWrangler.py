@@ -116,10 +116,9 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         wrangler = scoremanagertools.wranglers.ScorePackageWrangler(session=self._session)
         for proxy in wrangler.list_asset_proxies(
             built_in_external=False,
-            user_external=False,
+            user_external=True,
             built_in_score=False,
-            user_score=True,
-            ):
+            user_score=False):
             bodies.append(proxy.title)
             path_parts = (proxy.filesystem_path,) + self.storehouse_path_infix_parts
             key = os.path.join(*path_parts)
