@@ -10,7 +10,7 @@ class OutputMaterialModuleProxy(BasicModuleProxy):
         >>> proxy = scoremanagertools.proxies.OutputMaterialModuleProxy(
         ...     'experimental.tools.scoremanagertools.materialpackages.red_numbers.output_material')
         >>> proxy
-        OutputMaterialModuleProxy('.../built_in_materials/red_numbers/output_material.py')
+        OutputMaterialModuleProxy('.../materialpackages/red_numbers/output_material.py')
 
     Return output material module proxy.
     '''
@@ -54,7 +54,7 @@ class OutputMaterialModuleProxy(BasicModuleProxy):
         ::
 
             >>> proxy.filesystem_directory_name
-            '.../built_in_materials/red_numbers'
+            '.../materialpackages/red_numbers'
 
         Return string.
         '''
@@ -67,7 +67,7 @@ class OutputMaterialModuleProxy(BasicModuleProxy):
         ::
 
             >>> proxy.filesystem_path
-            '.../built_in_materials/red_numbers/output_material.py'
+            '.../materialpackages/red_numbers/output_material.py'
 
         Return string.
         '''

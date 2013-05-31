@@ -196,13 +196,13 @@ class MaterialPackageWrangler(PackageWrangler):
             >>> for x in wrangler.list_asset_filesystem_paths(
             ...     user_external=False, user_score=False):
             ...     x
-            '.../abjad/experimental/tools/scoremanagertools/built_in_materials/red_directives'
-            '.../abjad/experimental/tools/scoremanagertools/built_in_materials/red_forte'
-            '.../abjad/experimental/tools/scoremanagertools/built_in_materials/red_marcati'
-            '.../abjad/experimental/tools/scoremanagertools/built_in_materials/red_notes'
-            '.../abjad/experimental/tools/scoremanagertools/built_in_materials/red_numbers'
-            '.../abjad/experimental/tools/scoremanagertools/built_in_materials/red_sargasso_measures'
-            '.../abjad/experimental/tools/scoremanagertools/built_in_materials/sargasso_multipliers'
+            '.../abjad/experimental/tools/scoremanagertools/materialpackages/red_directives'
+            '.../abjad/experimental/tools/scoremanagertools/materialpackages/red_forte'
+            '.../abjad/experimental/tools/scoremanagertools/materialpackages/red_marcati'
+            '.../abjad/experimental/tools/scoremanagertools/materialpackages/red_notes'
+            '.../abjad/experimental/tools/scoremanagertools/materialpackages/red_numbers'
+            '.../abjad/experimental/tools/scoremanagertools/materialpackages/red_sargasso_measures'
+            '.../abjad/experimental/tools/scoremanagertools/materialpackages/sargasso_multipliers'
             '.../tools/scoremanagertools/scorepackages/red_example_score/music/materials/tempo_inventory'
 
         Return list.
@@ -289,15 +289,15 @@ class MaterialPackageWrangler(PackageWrangler):
             >>> for x in wrangler.list_asset_proxies(
             ...     user_external=False, user_score=False):
             ...     x
-            MaterialPackageProxy('.../tools/scoremanagertools/built_in_materials/black_music_specifier')
-            MaterialPackageProxy('.../tools/scoremanagertools/built_in_materials/green_music_specifier')
-            MarkupInventoryMaterialPackageMaker('.../tools/scoremanagertools/built_in_materials/red_directives')
-            DynamicHandlerMaterialPackageMaker('.../tools/scoremanagertools/built_in_materials/red_forte')
-            ArticulationHandlerMaterialPackageMaker('.../tools/scoremanagertools/built_in_materials/red_marcati')
-            MaterialPackageProxy('.../tools/scoremanagertools/built_in_materials/red_notes')
-            MaterialPackageProxy('.../tools/scoremanagertools/built_in_materials/red_numbers')
-            SargassoMeasureMaterialPackageMaker('.../tools/scoremanagertools/built_in_materials/red_sargasso_measures')
-            MaterialPackageProxy('.../tools/scoremanagertools/built_in_materials/sargasso_multipliers')
+            MaterialPackageProxy('.../tools/scoremanagertools/materialpackages/black_music_specifier')
+            MaterialPackageProxy('.../tools/scoremanagertools/materialpackages/green_music_specifier')
+            MarkupInventoryMaterialPackageMaker('.../tools/scoremanagertools/materialpackages/red_directives')
+            DynamicHandlerMaterialPackageMaker('.../tools/scoremanagertools/materialpackages/red_forte')
+            ArticulationHandlerMaterialPackageMaker('.../tools/scoremanagertools/materialpackages/red_marcati')
+            MaterialPackageProxy('.../tools/scoremanagertools/materialpackages/red_notes')
+            MaterialPackageProxy('.../tools/scoremanagertools/materialpackages/red_numbers')
+            SargassoMeasureMaterialPackageMaker('.../tools/scoremanagertools/materialpackages/red_sargasso_measures')
+            MaterialPackageProxy('.../tools/scoremanagertools/materialpackages/sargasso_multipliers')
             TempoMarkInventoryMaterialPackageMaker('.../tools/scoremanagertools/scorepackages/red_example_score/music/materials/tempo_inventory')
 
         Return list.
@@ -321,7 +321,7 @@ class MaterialPackageWrangler(PackageWrangler):
             >>> for x in wrangler.list_storehouse_filesystem_paths(
             ...     user_external=False, user_score=False):
             ...     x
-            '.../tools/scoremanagertools/built_in_materials'
+            '.../tools/scoremanagertools/materialpackages'
             '.../tools/scoremanagertools/scorepackages/blue_example_score/music/materials'
             '.../tools/scoremanagertools/scorepackages/green_example_score/music/materials'
             '.../tools/scoremanagertools/scorepackages/red_example_score/music/materials'
