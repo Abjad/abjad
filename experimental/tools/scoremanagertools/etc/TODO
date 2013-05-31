@@ -66,51 +66,29 @@
 
 26. Remove 'grandparent_directory_path'.
 
-27. Make ScoreManagerConfiguration READ ONLY!
-
-28. Revisit score_manager/configuration.py file.
-    The only necessary user settings should be these:
-        user_extensions_directory_path = /Users/trevorbaca/Documents/baca/scoremanager/extensions
-        user_collateral_directory_path = /Users/trevorbaca/Documents/baca/scoremanager/collateral
-        user_scores_directory_path = /Users/trevorbaca/Documents/scores
-    * create ~/.score_manager by default and store configuration in it
-    * store configuration.py in  ~/.score_manager
-    * store transcripts in ~/.score_manager
-    * store user editors in user extensions directory
-    * store user material package makers in user extensions directory
-    * store user materials in user collateral directory
-    * store user specifiers in user collateral directory
-    * store user stylesheets in user collateral directory
-
-29. Create ~/Documents/baca/scoremanager to house these subdirectories:
-        ~/Documents/baca/scoremanager/editors
-        ~/Documents/baca/scoremanager/materialpackagemakers
-        ~/Documents/baca/scoremanager/materials
-        ~/Documents/baca/scoremanager/stylesheets
-
-30. Remove the has_readable_... and is_readable_... properties from the system entirely.
+27. Remove the has_readable_... and is_readable_... properties from the system entirely.
     Force such functionality to be method calls that will be noticeably expensive.
 
-31. Add PackageystemAssetProxy to superclass ModuleProxy and PackageProxy.
+28. Add PackageystemAssetProxy to superclass ModuleProxy and PackageProxy.
 
-32. Remove head=None keyword from list_storehouse_filesystem_paths().
+29. Remove head=None keyword from list_storehouse_filesystem_paths().
     The head filter can be used only on complete *asset* paths (whether filesystem or packagesystem).
     The head filter can not be used on *storhouse* paths alone.
 
-33. Might make sense to implement an SvnManager class.
+30. Might make sense to implement an SvnManager class.
     This will encapsulate all svn management functionality.
 
-34. Create a PackagesystemAssetProxy to parallel PacakagesystemAssetWrangler.
+31. Create a PackagesystemAssetProxy to parallel PacakagesystemAssetWrangler.
 
-35. Harmonize user input strings with method names in MaterialPackageProxy.user_input_to_action dictionary.
+32. Harmonize user input strings with method names in MaterialPackageProxy.user_input_to_action dictionary.
 
-36. Change all edit*() methods to edit*interactively().
+33. Change all edit*() methods to edit*interactively().
     This is the right thing to do because all edit methods require user input.
 
-37. Author StylesheetFileWrangler.remove_assets_interactively() test.
+34. Author StylesheetFileWrangler.remove_assets_interactively() test.
     Will involve making user_input='... rm ...' work with named arguments instead of just numeric arguments.
 
-38. Make a menuing.Token class.
+35. Make a menuing.Token class.
     This will name all token attributes.
     This will also make all attribute extraction methods explicit.
     This will also eliminate all numeric tuple field references.
