@@ -21,6 +21,9 @@ class ScoreManagerConfiguration(Configuration):
 
     def __init__(self):
         Configuration.__init__(self)
+
+        # score manager tools paths
+
         self.score_manager_tools_directory_path = os.path.join(
             self.abjad_configuration.abjad_experimental_directory_path,
             'tools',
@@ -31,10 +34,18 @@ class ScoreManagerConfiguration(Configuration):
             'tools',
             'scoremanagertools',
             ])
+
+        # built-in storehouse paths
+
         self.built_in_editors_directory_path = os.path.join(
             self.score_manager_tools_directory_path, 
             'editors',
             )
+        self.built_in_editors_package_path = '.'.join([
+            self.score_manager_tools_package_path,
+            'editors',
+            ])
+
         self.built_in_material_package_makers_directory_path = os.path.join(
             self.score_manager_tools_directory_path, 
             'materialpackagemakers',
@@ -43,6 +54,7 @@ class ScoreManagerConfiguration(Configuration):
             self.score_manager_tools_package_path, 
             'materialpackagemakers',
             ])
+
         self.built_in_materials_directory_path = os.path.join(
             self.score_manager_tools_directory_path, 
             'built_in_materials',
@@ -51,6 +63,7 @@ class ScoreManagerConfiguration(Configuration):
             self.score_manager_tools_package_path, 
             'built_in_materials',
             ])
+
         self.built_in_scores_directory_path = os.path.join(
             self.score_manager_tools_directory_path, 
             'built_in_scores',
@@ -59,10 +72,16 @@ class ScoreManagerConfiguration(Configuration):
             self.score_manager_tools_package_path,
             'built_in_scores',
             ])
+
         self.built_in_specifier_classes_directory_path = os.path.join(
             self.score_manager_tools_directory_path, 
             'specifiers',
             )
+        self.built_in_specifier_classes_package_path = '.'.join([
+            self.score_manager_tools_package_path,
+            'specifiers',
+            ])
+
         self.built_in_specifiers_directory_path = os.path.join(
             self.score_manager_tools_directory_path,
             'built_in_specifiers',
@@ -71,20 +90,21 @@ class ScoreManagerConfiguration(Configuration):
             self.score_manager_tools_package_path,
             'built_in_specifiers',
             ])
+
         self.built_in_stylesheets_directory_path = os.path.join(
             self.score_manager_tools_directory_path, 
             'built_in_stylesheets',
             )
-        self.transcripts_directory_path = \
-            os.path.normpath(os.path.expanduser(
-            self._settings['transcripts_directory_path']
-            ))
+
+        # user storehouse paths
+
         self.user_external_assets_directory_path = \
             os.path.normpath(os.path.expanduser(
             self._settings['user_external_assets_directory_path']
             ))
         self.user_external_assets_package_path = \
             self._settings['user_external_assets_package_path']
+
         self.user_external_specifiers_directory_path = os.path.join(
             self.user_external_assets_directory_path, 
             'specifiers',
@@ -93,12 +113,16 @@ class ScoreManagerConfiguration(Configuration):
             self.user_external_assets_package_path, 
             'specifiers',
             ])
-        self.user_material_package_makers_directory_path = \
-            os.path.normpath(os.path.expanduser(
-            self._settings['user_material_package_makers_directory_path']
-            ))
-        self.user_material_package_makers_package_path = \
-            self._settings['user_material_package_makers_package_path']
+
+        self.user_material_package_makers_directory_path = os.path.join(
+            self.user_external_assets_directory_path,
+            'material_package_makers',
+            )
+        self.user_material_package_makers_package_path = '.'.join([
+            self.user_external_assets_package_path,
+            'material_package_makers',
+            ])
+
         self.user_materials_directory_path = os.path.join(
             self.user_external_assets_directory_path, 
             'materials',
@@ -107,17 +131,41 @@ class ScoreManagerConfiguration(Configuration):
             self.user_external_assets_package_path, 
             'materials',
             ])
+
+        self.user_stylesheets_directory_path = os.path.join(
+            self.user_external_assets_directory_path,
+            'stylesheets',
+            )
+
+        # user score storehouse paths
+
         self.user_scores_directory_path = \
             os.path.normpath(os.path.expanduser(
             self._settings['user_scores_directory_path']
             ))
         self.user_scores_package_path = ''
-        self.user_stylesheets_directory_path = \
-            os.path.normpath(os.path.expanduser(
-            self._settings['user_stylesheets_directory_path']
-            ))
+
+        # transcripts directory path
+
+        self.transcripts_directory_path = os.path.join(
+            self.configuration_directory_path,
+            'transcripts',
+            )
+
+        # make any missing directories and initializers
+
         if not os.path.exists(self.transcripts_directory_path):
             os.makedirs(self.transcripts_directory_path)
+
+        # TODO: finish these later
+#        if not os.path.exists(self.user_external_assets_directory_path):
+#            os.makedirs(self.user_external_assets_directory_path)
+#            file_path = os.path.join(self.user_external_assets_directory_path, '__init__.py')
+#            file(file_path, 'w').write('')
+#        if not os.path.exists(self.user_external_editors_directory_path):
+#            os.makedirs(self.user_external_editors_directory_path)
+#            file_path = os.path.join(self.user_external_assets_directory_path, '__init__.py')
+#            file(file_path, 'w').write('')
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 
@@ -134,68 +182,31 @@ class ScoreManagerConfiguration(Configuration):
     @property
     def _option_definitions(self):
         options = {
-            'transcripts_directory_path': {
-                'comment': [
-                    '',
-                    'Set to the directory where you want score manager transcripts written.',
-                    'Defaults to $HOME/score_manager/transcripts/.'
-                ],
-                'spec': 'string(default={!r})'.format(
-                    os.path.join(self.configuration_directory_path, 'transcripts'))
-            },
-            'user_material_package_makers_directory_path': {
-                'comment': [
-                    '',
-                    'Set to the directory where you house your user-specific makers.',
-                    'Always set together with user_material_package_makers_package_path.',
-                    'Defaults to none.'
-                ],
-                'spec': "string(default='')"
-            },
-            'user_material_package_makers_package_path': {
-                'comment': [
-                    '',
-                    'Set to the directory where you house your user-specific makers.',
-                    'Always set together with user_material_package_makers_directory_path.',
-                    'Defaults to none.'
-                ],
-                'spec': "string(default='')"
-            },
             'user_external_assets_directory_path': {
                 'comment': [
                     '',
                     'Set to the directory where you house your user-specific assets.',
-                    'Always set together with user_external_assets_package_path.',
-                    'Defaults to none.'
+                    'Defaults to $HOME/score_manager/.',
                 ],
-                'spec': "string(default='')"
+                'spec': 'string(default={!r})'.format(
+                    os.path.join(self.home_directory_path, 'score_manager')),
             },
             'user_external_assets_package_path': {
                 'comment': [
                     '',
-                    'Set to the directory where you house your user-specific assets.',
-                    'Always set together with user_external_assets_directory_path.',
-                    'Defaults to none.'
+                    'Set to the package where you house your user-specific assets.',
+                    "Defaults to 'score_manager'.",
                 ],
-                'spec': "string(default='')"
+                'spec': "string(default={!r})".format('score_manager'),
             },
             'user_scores_directory_path': {
                 'comment': [
                     '',
-                    'Set to the directory where you house your scores. No default provided.',
-                    'Defaults to $HOME/Documents/scores/.'
+                    'Set to the directory where you house your scores.',
+                    'Defaults to $HOME/scores/.'
                 ],
                 'spec': 'string(default={!r})'.format(
-                    os.path.join(self.home_directory_path, 'Documents', 'scores'))
-            },
-            'user_stylesheets_directory_path': {
-                'comment': [
-                    '',
-                    'Set to the directory where you house user-specific stylesheets.',
-                    'Defaults to $HOME/score_manager/stylesheets/.' 
-                ],
-                'spec': 'string(default={!r})'.format(
-                    os.path.join(self.configuration_directory_path, 'stylesheets'))
+                    os.path.join(self.home_directory_path, 'scores'))
             },
         }
         return options
@@ -204,7 +215,7 @@ class ScoreManagerConfiguration(Configuration):
 
     @property
     def configuration_directory_path(self):
-        return os.path.join(self.home_directory_path, 'score_manager')
+        return os.path.join(self.home_directory_path, '.score_manager')
 
     @property
     def configuration_file_name(self):
