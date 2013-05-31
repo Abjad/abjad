@@ -105,15 +105,6 @@ class ScoreManagerConfiguration(Configuration):
             'editors',
             ])
 
-        self.user_external_specifiers_directory_path = os.path.join(
-            self.user_external_assets_directory_path, 
-            'specifiers',
-            )
-        self.user_external_specifiers_package_path = '.'.join([
-            self.user_external_assets_package_path, 
-            'specifiers',
-            ])
-
         self.user_external_material_package_makers_directory_path = os.path.join(
             self.user_external_assets_directory_path,
             'material_package_makers',
@@ -125,11 +116,20 @@ class ScoreManagerConfiguration(Configuration):
 
         self.user_external_material_packages_directory_path = os.path.join(
             self.user_external_assets_directory_path, 
-            'materials',
+            'material_packages',
             )
         self.user_external_material_packages_package_path = '.'.join([
             self.user_external_assets_package_path, 
-            'materials',
+            'material_packages',
+            ])
+
+        self.user_external_specifiers_directory_path = os.path.join(
+            self.user_external_assets_directory_path, 
+            'specifiers',
+            )
+        self.user_external_specifiers_package_path = '.'.join([
+            self.user_external_assets_package_path, 
+            'specifiers',
             ])
 
         self.user_external_stylesheets_directory_path = os.path.join(
@@ -208,10 +208,10 @@ class ScoreManagerConfiguration(Configuration):
                 'comment': [
                     '',
                     'Set to the directory where you house your scores.',
-                    'Defaults to $HOME/scores/.'
+                    'Defaults to $HOME/score_packages/.'
                 ],
                 'spec': 'string(default={!r})'.format(
-                    os.path.join(self.home_directory_path, 'scores'))
+                    os.path.join(self.home_directory_path, 'score_packages'))
             },
         }
         return options
