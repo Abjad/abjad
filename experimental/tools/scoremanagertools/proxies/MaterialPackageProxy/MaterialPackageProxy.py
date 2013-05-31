@@ -740,9 +740,8 @@ class MaterialPackageProxy(PackageProxy):
         from experimental.tools import scoremanagertools
         material_proxy_wrangler = scoremanagertools.wranglers.MaterialPackageMakerWrangler(
             session=self._session)
-        self._session.push_backtrack()
-        material_package_maker = material_proxy_wrangler.select_material_proxy_class_name_interactively()
-        self._session.pop_backtrack()
+        with self.backtracking:
+            material_package_maker = material_proxy_wrangler.select_material_proxy_class_name_interactively()
         if self._session.backtrack():
             return
         self.add_tag('material_package_maker', material_package_maker.class_name)
@@ -753,9 +752,8 @@ class MaterialPackageProxy(PackageProxy):
         from experimental.tools import scoremanagertools
         stylesheet_file_wrangler = scoremanagertools.wranglers.StylesheetFileWrangler(
             session=self._session)
-        self._session.push_backtrack()
-        stylesheet_file_name = stylesheet_file_wrangler.select_asset_filesystem_path_interactively()
-        self._session.pop_backtrack()
+        with self.backtracking:
+            stylesheet_file_name = stylesheet_file_wrangler.select_asset_filesystem_path_interactively()
         if self._session.backtrack():
             return
         self.stylesheet_file_name_in_memory = stylesheet_file_name

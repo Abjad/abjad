@@ -13,9 +13,8 @@ class ReservoirStartHelperCreationWizard(Wizard):
             function_application_pairs = []
             self._session.push_breadcrumb(self._breadcrumb)
             selector = selectors.ReservoirStartHelperSelector(session=self._session)
-            self._session.push_backtrack()
-            function_name = selector._run(clear=clear)
-            self._session.pop_backtrack()
+            with self.backtracking:
+                function_name = selector._run(clear=clear)
             if self._session.backtrack():
                 break
             elif not function_name:

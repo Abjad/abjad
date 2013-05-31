@@ -24,9 +24,8 @@ class PerformerCreationWizard(Wizard):
             self._session.push_breadcrumb(self._breadcrumb)
             kwargs = {'session': self._session, 'is_ranged': self.is_ranged}
             selector = selectors.ScoreToolsPerformerNameSelector(**kwargs)
-            self._session.push_backtrack()
-            result = selector._run()
-            self._session.pop_backtrack()
+            with self.backtracking:
+                result = selector._run()
             if self._session.backtrack():
                 break
             if isinstance(result, list):
@@ -36,10 +35,9 @@ class PerformerCreationWizard(Wizard):
             performers = []
             for performer_name in performer_names:
                 self._session.push_breadcrumb(self._breadcrumb)
-                self._session.push_backtrack()
-                performer = scoretools.Performer(performer_name)
-                self.initialize_performer_interactively(performer)
-                self._session.pop_backtrack()
+                with self.backtracking:
+                    performer = scoretools.Performer(performer_name)
+                    self.initialize_performer_interactively(performer)
                 self._session.pop_breadcrumb()
                 was_backtracking_locally = self._session.is_backtracking_locally
                 if self._session.backtrack():
@@ -93,10 +91,9 @@ class PerformerCreationWizard(Wizard):
             if result in ('skip', ['skip']):
                 break
             elif result in ('more', ['more']):
-                self._session.push_backtrack()
-                wizard = InstrumentCreationWizard(session=self._session, is_ranged=True)
-                instruments = wizard._run()
-                self._session.pop_backtrack()
+                with self.backtracking:
+                    wizard = InstrumentCreationWizard(session=self._session, is_ranged=True)
+                    instruments = wizard._run()
                 if self._session.backtrack():
                     break
                 if instruments is not None:

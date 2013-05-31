@@ -274,9 +274,8 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     # TODO: write test
     def rename_asset_interactively(self):
-        self._session.push_backtrack()
-        asset_filesystem_path = self.select_asset_filesystem_path_interactively()
-        self._session.pop_backtrack()
+        with self.backtracking:
+            asset_filesystem_path = self.select_asset_filesystem_path_interactively()
         if self._session.backtrack():
             return
         asset_proxy = self._initialize_asset_proxy(asset_filesystem_path)

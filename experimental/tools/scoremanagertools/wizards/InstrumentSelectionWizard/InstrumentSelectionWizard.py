@@ -21,9 +21,8 @@ class InstrumentSelectionWizard(Wizard):
         self._session.push_breadcrumb(self._breadcrumb)
         if self._session.is_in_score:
             selector = selectors.ScoreInstrumentSelector(session=self._session)
-            self._session.push_backtrack()
-            result = selector._run(clear=clear)
-            self._session.pop_backtrack()
+            with self.backtracking:
+                result = selector._run(clear=clear)
             if self._session.backtrack():
                 self._session.pop_breadcrumb()
                 self._session.restore_breadcrumbs(cache=cache)
@@ -36,9 +35,8 @@ class InstrumentSelectionWizard(Wizard):
             elif not result == 'other':
                 raise ValueError
         wizard = InstrumentCreationWizard(session=self._session)
-        self._session.push_backtrack()
-        result = wizard._run()
-        self._session.pop_backtrack()
+        with self.backtracking:
+            result = wizard._run()
         if self._session.backtrack():
             self._session.pop_breadcrumb()
             self._session.restore_breadcrumbs(cache=cache)

@@ -154,10 +154,9 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
         self._io.proceed('missing packages created.', is_interactive=is_interactive)
 
     def rename_asset_interactively(self, head=None):
-        self._session.push_backtrack()
-        asset_package_path = self.select_asset_packagesystem_path_interactively(
-            head=head, infinitival_phrase='to rename')
-        self._session.pop_backtrack()
+        with self.backtracking:
+            asset_package_path = self.select_asset_packagesystem_path_interactively(
+                head=head, infinitival_phrase='to rename')
         if self._session.backtrack():
             return
         asset_proxy = self._initialize_asset_proxy(asset_package_path)

@@ -63,9 +63,8 @@ class InteractiveEditor(ScoreManagerObject):
         self._io.assign_user_input(user_input=user_input)
         self._session.cache_breadcrumbs(cache=cache)
         self._session.push_breadcrumb(self._breadcrumb)
-        self._session.push_backtrack()
-        self.conditionally_initialize_target()
-        self._session.pop_backtrack()
+        with self.backtracking:
+            self.conditionally_initialize_target()
         self._session.pop_breadcrumb()
         if self._session.backtrack():
             self._session.restore_breadcrumbs(cache=cache)

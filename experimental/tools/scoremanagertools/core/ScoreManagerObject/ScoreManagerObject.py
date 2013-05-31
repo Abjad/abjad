@@ -20,6 +20,16 @@ class ScoreManagerObject(AbjadObject):
     cache_file_pointer.close()
     exec(cache_lines)
 
+    ### CONTEXT MANAGER ###
+
+    class backtracking(object):
+        def __init__(self, client):
+            self.client = client
+        def __enter__(self):
+            self.client._session.push_backtrack()
+        def __exit__(self, exg_type, exc_value, trackeback):
+            self.client._session.pop_backtrack()
+
     ### INITIALIZER ###
 
     @abc.abstractmethod
@@ -27,6 +37,7 @@ class ScoreManagerObject(AbjadObject):
         from experimental.tools import scoremanagertools
         self._session = session or scoremanagertools.core.Session()
         self._io = scoremanagertools.core.IO(session=self._session)
+        self.backtracking = ScoreManagerObject.backtracking(self)
 
     ### SPECIAL METHODS ###
 

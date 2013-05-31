@@ -19,9 +19,8 @@ class InstrumentCreationWizard(Wizard):
         self._session.push_breadcrumb(self._breadcrumb)
         kwargs = {'session': self._session, 'is_ranged': self.is_ranged}
         selector = selectors.InstrumentToolsInstrumentNameSelector(**kwargs)
-        self._session.push_backtrack()
-        result = selector._run()
-        self._session.pop_backtrack()
+        with self.backtracking:
+            result = selector._run()
         if self._session.backtrack():
             self._session.pop_breadcrumb()
             self._session.restore_breadcrumbs(cache=cache)
@@ -62,9 +61,8 @@ class InstrumentCreationWizard(Wizard):
     def name_untuned_percussion(self, instrument):
         if isinstance(instrument, instrumenttools.UntunedPercussion):
             selector = selectors.InstrumentToolsUntunedPercussionNameSelector(session=self._session)
-            self._session.push_backtrack()
-            instrument_name = selector._run()
-            self._session.pop_backtrack()
+            with self.backtracking:
+                instrument_name = selector._run()
             if self._session.backtrack():
                 return
             instrument.instrument_name = instrument_name

@@ -221,9 +221,8 @@ class StylesheetFileWrangler(FileWrangler):
     def make_asset_interactively(self):
         from experimental.tools import scoremanagertools
 
-        self._session.push_backtrack()
-        storehouse_path = self.select_user_storehouse_filesystem_path_interactively()
-        self._session.pop_backtrack()
+        with self.backtracking:
+            storehouse_path = self.select_user_storehouse_filesystem_path_interactively()
         if self._session.backtrack():
             return
 

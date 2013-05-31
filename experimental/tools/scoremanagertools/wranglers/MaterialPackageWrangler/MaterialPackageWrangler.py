@@ -170,9 +170,8 @@ class MaterialPackageWrangler(PackageWrangler):
         while True:
             getter = self._io.make_getter(where=self._where)
             getter.append_space_delimited_lowercase_string('material name')
-            self._session.push_backtrack()
-            package_name = getter._run()
-            self._session.pop_backtrack()
+            with self.backtracking:
+                package_name = getter._run()
             if self._session.backtrack():
                 return
             material_package_name = stringtools.string_to_accent_free_underscored_delimited_lowercase(
@@ -339,9 +338,8 @@ class MaterialPackageWrangler(PackageWrangler):
 
     def make_data_package_interactively(self, tags=None, user_input=None):
         self._io.assign_user_input(user_input=user_input)
-        self._session.push_backtrack()
-        material_package_path = self.get_available_material_packagesystem_path_interactively()
-        self._session.pop_backtrack()
+        with self.backtracking:
+            material_package_path = self.get_available_material_packagesystem_path_interactively()
         if self._session.backtrack():
             return
         self.make_data_package(material_package_path, tags=tags)
@@ -355,9 +353,8 @@ class MaterialPackageWrangler(PackageWrangler):
 
     def make_handmade_material_package_interactively(self, user_input=None):
         self._io.assign_user_input(user_input=user_input)
-        self._session.push_backtrack()
-        material_package_path = self.get_available_material_packagesystem_path_interactively()
-        self._session.pop_backtrack()
+        with self.backtracking:
+            material_package_path = self.get_available_material_packagesystem_path_interactively()
         if self._session.backtrack():
             return
         self.make_handmade_material_package(material_package_path)
@@ -385,17 +382,15 @@ class MaterialPackageWrangler(PackageWrangler):
 
     def make_makermade_material_package_interactively(self, user_input=None):
         self._io.assign_user_input(user_input=user_input)
-        self._session.push_backtrack()
-        result = self._material_package_maker_wrangler.select_asset_packagesystem_path_interactively(
-            cache=True, clear=False)
-        self._session.pop_backtrack()
+        with self.backtracking:
+            result = self._material_package_maker_wrangler.select_asset_packagesystem_path_interactively(
+                cache=True, clear=False)
         if self._session.backtrack():
             return
         material_package_maker_package_path = result
         material_package_maker_class_name = material_package_maker_package_path.split('.')[-1]
-        self._session.push_backtrack()
-        material_package_path = self.get_available_material_packagesystem_path_interactively()
-        self._session.pop_backtrack()
+        with self.backtracking:
+            material_package_path = self.get_available_material_packagesystem_path_interactively()
         if self._session.backtrack():
             return
         self.make_makermade_material_package(

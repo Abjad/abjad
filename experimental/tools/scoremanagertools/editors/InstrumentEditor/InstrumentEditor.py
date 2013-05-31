@@ -47,10 +47,9 @@ class InstrumentEditor(InteractiveEditor):
 
     def conditionally_initialize_target(self):
         if self.target is None:
-            self._session.push_backtrack()
-            wizard = wizards.InstrumentCreationWizard(is_ranged=True, session=self._session)
-            instruments = wizard._run()
-            self._session.pop_backtrack()
+            with self.backtracking:
+                wizard = wizards.InstrumentCreationWizard(is_ranged=True, session=self._session)
+                instruments = wizard._run()
             if self._session.backtrack():
                 return
             if instruments:

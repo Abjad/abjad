@@ -287,9 +287,8 @@ class FilesystemAssetProxy(ScoreManagerObject):
         self._io.assign_user_input(user_input=user_input)
         getter = self._io.make_getter(where=self._where)
         getter.append_underscore_delimited_lowercase_file_name('name of boilerplate asset')
-        self._session.push_backtrack()
-        boilerplate_filebuilt_in_asset_name = getter._run()
-        self._session.pop_backtrack()
+        with self.backtracking:
+            boilerplate_filebuilt_in_asset_name = getter._run()
         if self._session.backtrack():
             return
         if self.write_boilerplate(boilerplate_filebuilt_in_asset_name):

@@ -11,17 +11,15 @@ class ParameterSpecifierCreationWizard(Wizard):
         self._session.cache_breadcrumbs(cache=cache)
         self._session.push_breadcrumb(self._breadcrumb)
         selector = selectors.ParameterSpecifierClassNameSelector(session=self._session)
-        self._session.push_backtrack()
-        target_class_name = selector._run()
-        self._session.pop_backtrack()
+        with self.backtracking:
+            target_class_name = selector._run()
         if self._session.backtrack():
             self._session.pop_breadcrumb()
             self._session.restore_breadcrumbs(cache=cache)
             return
         target_editor = self.get_target_editor(target_class_name)
-        self._session.push_backtrack()
-        target_editor._run()
-        self._session.pop_backtrack()
+        with self.backtracking:
+            target_editor._run()
         if self._session.backtrack():
             self._session.pop_breadcrumb()
             self._session.restore_breadcrumbs(cache=cache)

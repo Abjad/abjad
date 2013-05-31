@@ -450,15 +450,13 @@ class ScorePackageProxy(PackageProxy):
         self._io.display([line, ''])
         getter = self._io.make_getter(where=self._where)
         getter.append_string("type 'clobberscore' to proceed")
-        self._session.push_backtrack()
-        should_clobber = getter._run()
-        self._session.pop_backtrack()
+        with self.backtracking:
+            should_clobber = getter._run()
         if self._session.backtrack():
             return
         if should_clobber == 'clobberscore':
-            self._session.push_backtrack()
-            self.remove()
-            self._session.pop_backtrack()
+            with self.backtracking:
+                self.remove()
             if self._session.backtrack():
                 return
             self._session.is_backtracking_locally = True
