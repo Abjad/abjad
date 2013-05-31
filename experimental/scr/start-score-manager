@@ -3,6 +3,5 @@ import sys
 from experimental.tools import scoremanagertools
 
 
-studio = scoremanagertools.scoremanager.ScoreManager()
-studio._session.dump_transcript = True
-studio._run(user_input=' '.join(sys.argv[1:]))
+score_manager = scoremanagertools.scoremanager.ScoreManager()
+score_manager._run(user_input=' '.join(sys.argv[1:]), dump_transcript=True)
