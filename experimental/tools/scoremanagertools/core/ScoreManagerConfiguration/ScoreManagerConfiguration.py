@@ -73,11 +73,11 @@ class ScoreManagerConfiguration(Configuration):
             'built_in_scores',
             ])
 
-        self.built_in_specifier_classes_directory_path = os.path.join(
+        self.built_in_specifiers_directory_path = os.path.join(
             self.score_manager_tools_directory_path, 
             'specifiers',
             )
-        self.built_in_specifier_classes_package_path = '.'.join([
+        self.built_in_specifiers_package_path = '.'.join([
             self.score_manager_tools_package_path,
             'specifiers',
             ])
