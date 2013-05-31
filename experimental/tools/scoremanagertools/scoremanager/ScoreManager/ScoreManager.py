@@ -27,8 +27,6 @@ class ScoreManager(ScoreManagerObject):
             session=self._session)
         self._material_package_wrangler = scoremanagertools.wranglers.MaterialPackageWrangler(
             session=self._session)
-        self._music_specifier_module_wrangler = scoremanagertools.wranglers.MusicSpecifierModuleWrangler(
-            session=self._session)
         self._score_package_wrangler = scoremanagertools.wranglers.ScorePackageWrangler(
             session=self._session)
         self._stylesheet_file_wrangler = scoremanagertools.wranglers.StylesheetFileWrangler(
@@ -87,7 +85,7 @@ class ScoreManager(ScoreManagerObject):
         menu = self._make_score_selection_menu()
         section = menu.make_section()
         section.append(('m', 'materials'))
-        section.append(('f', 'specifiers'))
+#        section.append(('f', 'specifiers'))
         section.append(('y', 'stylesheets'))
         section.append(('new', 'new score'))
         hidden_section = menu.make_section(is_hidden=True)
@@ -198,19 +196,6 @@ class ScoreManager(ScoreManagerObject):
         return self._material_package_wrangler
 
     @property
-    def music_specifier_module_wrangler(self):
-        '''Score manager music specifier module wrangler:
-
-        ::
-
-            >>> score_manager.music_specifier_module_wrangler
-            MusicSpecifierModuleWrangler()
-
-        Return music specifier module wrangler.
-        '''
-        return self._music_specifier_module_wrangler
-
-    @property
     def score_package_wrangler(self):
         '''Score manager score package wrangler:
 
@@ -280,10 +265,6 @@ class ScoreManager(ScoreManagerObject):
         self.material_package_wrangler._run(
             rollback=True, head=self.configuration.built_in_materials_package_path) 
 
-    def manage_specifiers(self):
-        self.music_specifier_module_wrangler._run(
-            rollback=True, head=self.configuration.built_in_specifiers_package_path)
-
     def manage_stylesheets(self):
         self.stylesheet_file_wrangler._run(
             rollback=True, head=self.configuration.built_in_stylesheets_directory_path)
@@ -331,7 +312,7 @@ class ScoreManager(ScoreManagerObject):
     user_input_to_action = {
         'active':   show_active_scores,
         'all':      show_all_scores,
-        'f':        manage_specifiers,
+#        'f':        manage_specifiers,
         'fix':      fix_visible_scores,
         'm':        manage_materials,
         'mb':       show_mothballed_scores,

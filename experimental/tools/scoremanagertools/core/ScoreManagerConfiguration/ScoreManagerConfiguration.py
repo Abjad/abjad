@@ -82,15 +82,6 @@ class ScoreManagerConfiguration(Configuration):
             'specifiers',
             ])
 
-        self.built_in_specifiers_directory_path = os.path.join(
-            self.score_manager_tools_directory_path,
-            'built_in_specifiers',
-            )
-        self.built_in_specifiers_package_path = '.'.join([
-            self.score_manager_tools_package_path,
-            'built_in_specifiers',
-            ])
-
         self.built_in_stylesheets_directory_path = os.path.join(
             self.score_manager_tools_directory_path, 
             'built_in_stylesheets',
@@ -263,8 +254,6 @@ class ScoreManagerConfiguration(Configuration):
             return '.'.join([
                 self.user_material_package_makers_package_path,
                 os.path.basename(filesystem_path)])
-        elif filesystem_path.startswith(self.built_in_specifiers_directory_path):
-            prefix_length = len(self.abjad_configuration.abjad_root_directory_path) + 1
         elif filesystem_path.startswith(self.built_in_material_package_makers_directory_path):
             prefix_length = len(self.abjad_configuration.abjad_root_directory_path) + 1
         elif filesystem_path.startswith(self.built_in_materials_directory_path):
@@ -347,11 +336,6 @@ class ScoreManagerConfiguration(Configuration):
             self.built_in_materials_package_path:
             directory_parts = \
                 [self.built_in_materials_directory_path] + \
-                package_path_parts[1:]
-        elif package_path_parts[0] == \
-            self.built_in_specifiers_package_path:
-            directory_parts = \
-                [self.built_in_specifiers_directory_path] + \
                 package_path_parts[1:]
         elif package_path.startswith(self.user_external_assets_package_path):
             prefix_length = len(self.user_external_assets_package_path)

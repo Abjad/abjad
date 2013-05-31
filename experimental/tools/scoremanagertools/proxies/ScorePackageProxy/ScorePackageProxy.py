@@ -21,8 +21,6 @@ class ScorePackageProxy(PackageProxy):
             session=self._session)
         self._material_package_maker_wrangler = scoremanagertools.wranglers.MaterialPackageMakerWrangler(
             session=self._session)
-        self._music_specifier_module_wrangler = scoremanagertools.wranglers.MusicSpecifierModuleWrangler(
-            session=self._session)
 
     ### PRIVATE METHODS ###
 

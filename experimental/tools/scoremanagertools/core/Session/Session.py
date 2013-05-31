@@ -337,65 +337,6 @@ class Session(abctools.AbjadObject):
             return '.'.join(parts)
 
     @property
-    def current_specifiers_directory_path(self):
-        '''Session current specifiers directory path:
-
-        ::
-
-            >>> session.current_specifiers_directory_path
-            '.../tools/scoremanagertools/built_in_specifiers'
-
-        Session in score:
-
-        ::
-
-            >>> session_in_score.current_specifiers_directory_path
-            '.../scores/foo/music/specifiers'
-
-        (Output will vary according to configuration.)
-
-        Return string.
-        '''
-        from experimental.tools import scoremanagertools
-        if self.is_in_score:
-            parts = []
-            parts.append(self.configuration.user_scores_directory_path)
-            parts.append(self.underscore_delimited_current_score_name)
-            parts.extend(
-                scoremanagertools.wranglers.MusicSpecifierModuleWrangler.storehouse_path_infix_parts)
-            return os.path.join(*parts)
-        else:
-            return self.configuration.built_in_specifiers_directory_path
-
-    @property
-    def current_specifiers_package_path(self):
-        '''Session current specifiers package path:
-
-        ::
-
-            >>> session.current_specifiers_package_path
-            'experimental.tools.scoremanagertools.built_in_specifiers'
-
-        Session in score:
-
-        ::
-
-            >>> session_in_score.current_specifiers_package_path
-            'foo.music.specifiers'
-
-        Return string.
-        '''
-        from experimental.tools import scoremanagertools
-        if self.is_in_score:
-            parts = []
-            parts.append(self.underscore_delimited_current_score_name)
-            parts.extend(
-                scoremanagertools.wranglers.MusicSpecifierModuleWrangler.storehouse_path_infix_parts)
-            return '.'.join(parts)
-        else:
-            return self.configuration.built_in_specifiers_package_path
-
-    @property
     def explicit_command_history(self):
         '''Session explicit command history:
 

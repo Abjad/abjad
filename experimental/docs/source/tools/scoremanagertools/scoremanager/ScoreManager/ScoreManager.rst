@@ -15,9 +15,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.material_package_wrangler
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.music_specifier_module_wrangler
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.score_package_wrangler
    :noindex:
 
@@ -43,9 +40,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.manage_materials
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.manage_specifiers
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.manage_stylesheets

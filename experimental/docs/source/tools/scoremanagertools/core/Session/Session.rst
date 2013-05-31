@@ -45,12 +45,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.current_segments_package_path
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.current_specifiers_directory_path
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.current_specifiers_package_path
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.explicit_command_history
    :noindex:
 
