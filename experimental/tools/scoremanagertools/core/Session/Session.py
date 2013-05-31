@@ -228,7 +228,7 @@ class Session(abctools.AbjadObject):
             if self.underscore_delimited_current_score_name in \
                 self.cache_of_built_in_score_names:
                 return os.path.join(
-                    self.configuration.built_in_scores_directory_path,
+                    self.configuration.built_in_score_packages_directory_path,
                     self.underscore_delimited_current_score_name)
             else:
                 return os.path.join(
@@ -247,7 +247,7 @@ class Session(abctools.AbjadObject):
             if self.underscore_delimited_current_score_name in \
                 self.cache_of_built_in_score_names:
                 return '.'.join([
-                    self.configuration.built_in_scores_package_path,
+                    self.configuration.built_in_score_packages_package_path,
                     self.underscore_delimited_current_score_name])
             else:
                 return self.underscore_delimited_current_score_name

@@ -90,9 +90,9 @@ class MaterialPackageWrangler(PackageWrangler):
 
             >>> for x in wrangler._list_score_storehouse_package_paths():
             ...     x
-            'experimental.tools.scoremanagertools.built_in_scores.blue_example_score.music.materials'
-            'experimental.tools.scoremanagertools.built_in_scores.green_example_score.music.materials'
-            'experimental.tools.scoremanagertools.built_in_scores.red_example_score.music.materials'
+            'experimental.tools.scoremanagertools.scorepackages.blue_example_score.music.materials'
+            'experimental.tools.scoremanagertools.scorepackages.green_example_score.music.materials'
+            'experimental.tools.scoremanagertools.scorepackages.red_example_score.music.materials'
             ...
 
         Output lists built-in scores followed by user scores.
@@ -109,9 +109,9 @@ class MaterialPackageWrangler(PackageWrangler):
             >>> for x in wrangler._list_storehouse_package_paths():
             ...     x
             'experimental.tools.scoremanagertools.built_in_materials'
-            'experimental.tools.scoremanagertools.built_in_scores.blue_example_score.music.materials'
-            'experimental.tools.scoremanagertools.built_in_scores.green_example_score.music.materials'
-            'experimental.tools.scoremanagertools.built_in_scores.red_example_score.music.materials'
+            'experimental.tools.scoremanagertools.scorepackages.blue_example_score.music.materials'
+            'experimental.tools.scoremanagertools.scorepackages.green_example_score.music.materials'
+            'experimental.tools.scoremanagertools.scorepackages.red_example_score.music.materials'
             ...
 
         Output lists built-in materials, followed by built-in scores,
@@ -203,7 +203,7 @@ class MaterialPackageWrangler(PackageWrangler):
             '.../abjad/experimental/tools/scoremanagertools/built_in_materials/red_numbers'
             '.../abjad/experimental/tools/scoremanagertools/built_in_materials/red_sargasso_measures'
             '.../abjad/experimental/tools/scoremanagertools/built_in_materials/sargasso_multipliers'
-            '.../tools/scoremanagertools/built_in_scores/red_example_score/music/materials/tempo_inventory'
+            '.../tools/scoremanagertools/scorepackages/red_example_score/music/materials/tempo_inventory'
 
         Return list.
         '''
@@ -267,7 +267,7 @@ class MaterialPackageWrangler(PackageWrangler):
             'experimental.tools.scoremanagertools.built_in_materials.red_numbers'
             'experimental.tools.scoremanagertools.built_in_materials.red_sargasso_measures'
             'experimental.tools.scoremanagertools.built_in_materials.sargasso_multipliers'
-            'experimental.tools.scoremanagertools.built_in_scores.red_example_score.music.materials.tempo_inventory'
+            'experimental.tools.scoremanagertools.scorepackages.red_example_score.music.materials.tempo_inventory'
 
         Return list.
         '''
@@ -298,7 +298,7 @@ class MaterialPackageWrangler(PackageWrangler):
             MaterialPackageProxy('.../tools/scoremanagertools/built_in_materials/red_numbers')
             SargassoMeasureMaterialPackageMaker('.../tools/scoremanagertools/built_in_materials/red_sargasso_measures')
             MaterialPackageProxy('.../tools/scoremanagertools/built_in_materials/sargasso_multipliers')
-            TempoMarkInventoryMaterialPackageMaker('.../tools/scoremanagertools/built_in_scores/red_example_score/music/materials/tempo_inventory')
+            TempoMarkInventoryMaterialPackageMaker('.../tools/scoremanagertools/scorepackages/red_example_score/music/materials/tempo_inventory')
 
         Return list.
         '''
@@ -322,9 +322,9 @@ class MaterialPackageWrangler(PackageWrangler):
             ...     user_external=False, user_score=False):
             ...     x
             '.../tools/scoremanagertools/built_in_materials'
-            '.../tools/scoremanagertools/built_in_scores/blue_example_score/music/materials'
-            '.../tools/scoremanagertools/built_in_scores/green_example_score/music/materials'
-            '.../tools/scoremanagertools/built_in_scores/red_example_score/music/materials'
+            '.../tools/scoremanagertools/scorepackages/blue_example_score/music/materials'
+            '.../tools/scoremanagertools/scorepackages/green_example_score/music/materials'
+            '.../tools/scoremanagertools/scorepackages/red_example_score/music/materials'
 
         Return list.
         '''

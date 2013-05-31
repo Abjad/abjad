@@ -85,7 +85,6 @@ class ScoreManager(ScoreManagerObject):
         menu = self._make_score_selection_menu()
         section = menu.make_section()
         section.append(('m', 'materials'))
-#        section.append(('f', 'specifiers'))
         section.append(('y', 'stylesheets'))
         section.append(('new', 'new score'))
         hidden_section = menu.make_section(is_hidden=True)
@@ -312,7 +311,6 @@ class ScoreManager(ScoreManagerObject):
     user_input_to_action = {
         'active':   show_active_scores,
         'all':      show_all_scores,
-#        'f':        manage_specifiers,
         'fix':      fix_visible_scores,
         'm':        manage_materials,
         'mb':       show_mothballed_scores,

@@ -88,11 +88,11 @@ class SegmentPackageWrangler(PackageWrangler):
             >>> for x in wrangler.list_asset_filesystem_paths(
             ...     user_external=False, user_score=False):
             ...     x
-            '.../tools/scoremanagertools/built_in_scores/blue_example_score/music/segments/segment_01.py'
-            '.../tools/scoremanagertools/built_in_scores/blue_example_score/music/segments/segment_02.py'
-            '.../tools/scoremanagertools/built_in_scores/red_example_score/music/segments/segment_01.py'
-            '.../tools/scoremanagertools/built_in_scores/red_example_score/music/segments/segment_02.py'
-            '.../tools/scoremanagertools/built_in_scores/red_example_score/music/segments/segment_03.py'
+            '.../tools/scoremanagertools/scorepackages/blue_example_score/music/segments/segment_01.py'
+            '.../tools/scoremanagertools/scorepackages/blue_example_score/music/segments/segment_02.py'
+            '.../tools/scoremanagertools/scorepackages/red_example_score/music/segments/segment_01.py'
+            '.../tools/scoremanagertools/scorepackages/red_example_score/music/segments/segment_02.py'
+            '.../tools/scoremanagertools/scorepackages/red_example_score/music/segments/segment_03.py'
 
         Return list.
         '''
@@ -123,7 +123,7 @@ class SegmentPackageWrangler(PackageWrangler):
 
         Example 2. List red example score segment package names:
 
-            >>> head = 'experimental.tools.scoremanagertools.built_in_scores.red_example_score'
+            >>> head = 'experimental.tools.scoremanagertools.scorepackages.red_example_score'
             >>> for x in wrangler.list_asset_names(head=head):
             ...     x
             'segment 01'
@@ -151,11 +151,11 @@ class SegmentPackageWrangler(PackageWrangler):
             >>> for x in wrangler.list_asset_packagesystem_paths(
             ...     user_external=False, user_score=False):
             ...     x
-            'experimental.tools.scoremanagertools.built_in_scores.blue_example_score.music.segments.segment_01'
-            'experimental.tools.scoremanagertools.built_in_scores.blue_example_score.music.segments.segment_02'
-            'experimental.tools.scoremanagertools.built_in_scores.red_example_score.music.segments.segment_01'
-            'experimental.tools.scoremanagertools.built_in_scores.red_example_score.music.segments.segment_02'
-            'experimental.tools.scoremanagertools.built_in_scores.red_example_score.music.segments.segment_03'
+            'experimental.tools.scoremanagertools.scorepackages.blue_example_score.music.segments.segment_01'
+            'experimental.tools.scoremanagertools.scorepackages.blue_example_score.music.segments.segment_02'
+            'experimental.tools.scoremanagertools.scorepackages.red_example_score.music.segments.segment_01'
+            'experimental.tools.scoremanagertools.scorepackages.red_example_score.music.segments.segment_02'
+            'experimental.tools.scoremanagertools.scorepackages.red_example_score.music.segments.segment_03'
 
         Return list.
         '''
@@ -178,20 +178,20 @@ class SegmentPackageWrangler(PackageWrangler):
             >>> for x in wrangler.list_asset_proxies(
             ...     user_external=False, user_score=False):
             ...     x
-            SegmentPackageProxy('.../tools/scoremanagertools/built_in_scores/blue_example_score/music/segments/segment_01')
-            SegmentPackageProxy('.../tools/scoremanagertools/built_in_scores/blue_example_score/music/segments/segment_02')
-            SegmentPackageProxy('.../tools/scoremanagertools/built_in_scores/red_example_score/music/segments/segment_01')
-            SegmentPackageProxy('.../tools/scoremanagertools/built_in_scores/red_example_score/music/segments/segment_02')
-            SegmentPackageProxy('.../tools/scoremanagertools/built_in_scores/red_example_score/music/segments/segment_03')
+            SegmentPackageProxy('.../tools/scoremanagertools/scorepackages/blue_example_score/music/segments/segment_01')
+            SegmentPackageProxy('.../tools/scoremanagertools/scorepackages/blue_example_score/music/segments/segment_02')
+            SegmentPackageProxy('.../tools/scoremanagertools/scorepackages/red_example_score/music/segments/segment_01')
+            SegmentPackageProxy('.../tools/scoremanagertools/scorepackages/red_example_score/music/segments/segment_02')
+            SegmentPackageProxy('.../tools/scoremanagertools/scorepackages/red_example_score/music/segments/segment_03')
 
         Example 2. List red example score segment package proxies:
 
-            >>> head = 'experimental.tools.scoremanagertools.built_in_scores.red_example_score'
+            >>> head = 'experimental.tools.scoremanagertools.scorepackages.red_example_score'
             >>> for x in wrangler.list_asset_proxies(head=head):
             ...     x
-            SegmentPackageProxy('.../tools/scoremanagertools/built_in_scores/red_example_score/music/segments/segment_01')
-            SegmentPackageProxy('.../tools/scoremanagertools/built_in_scores/red_example_score/music/segments/segment_02')
-            SegmentPackageProxy('.../tools/scoremanagertools/built_in_scores/red_example_score/music/segments/segment_03')
+            SegmentPackageProxy('.../tools/scoremanagertools/scorepackages/red_example_score/music/segments/segment_01')
+            SegmentPackageProxy('.../tools/scoremanagertools/scorepackages/red_example_score/music/segments/segment_02')
+            SegmentPackageProxy('.../tools/scoremanagertools/scorepackages/red_example_score/music/segments/segment_03')
 
         Return list.
         '''
@@ -214,9 +214,9 @@ class SegmentPackageWrangler(PackageWrangler):
             >>> for x in wrangler.list_storehouse_filesystem_paths(
             ...     user_external=False, user_score=False):
             ...     x
-            '.../tools/scoremanagertools/built_in_scores/blue_example_score/music/segments'
-            '.../tools/scoremanagertools/built_in_scores/green_example_score/music/segments'
-            '.../tools/scoremanagertools/built_in_scores/red_example_score/music/segments'
+            '.../tools/scoremanagertools/scorepackages/blue_example_score/music/segments'
+            '.../tools/scoremanagertools/scorepackages/green_example_score/music/segments'
+            '.../tools/scoremanagertools/scorepackages/red_example_score/music/segments'
 
         Return list.
         '''

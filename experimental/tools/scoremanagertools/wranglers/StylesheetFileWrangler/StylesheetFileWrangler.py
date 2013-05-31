@@ -54,7 +54,7 @@ class StylesheetFileWrangler(FileWrangler):
     def _filesystem_path_to_annotation(self, filesystem_path):
         from experimental.tools import scoremanagertools
         annotation = None
-        if filesystem_path.startswith(self.configuration.built_in_scores_directory_path) or \
+        if filesystem_path.startswith(self.configuration.built_in_score_packages_directory_path) or \
             filesystem_path.startswith(self.configuration.user_scores_directory_path):
             tmp = os.path.join('music', 'stylesheets')
             score_filesystem_path = filesystem_path.rpartition(tmp)[0]
@@ -130,7 +130,7 @@ class StylesheetFileWrangler(FileWrangler):
             '.../tools/scoremanagertools/stylesheets/clean-letter-14.ly'
             '.../tools/scoremanagertools/stylesheets/clean-letter-16.ly'
             '.../tools/scoremanagertools/stylesheets/rhythm-letter-16.ly'
-            '.../tools/scoremanagertools/built_in_scores/red_example_score/music/stylesheets/red-example-score-stylesheet.ly'
+            '.../tools/scoremanagertools/scorepackages/red_example_score/music/stylesheets/red-example-score-stylesheet.ly'
 
         Return list.
         '''
@@ -181,7 +181,7 @@ class StylesheetFileWrangler(FileWrangler):
             StylesheetFileProxy('.../tools/scoremanagertools/stylesheets/clean-letter-14.ly')
             StylesheetFileProxy('.../tools/scoremanagertools/stylesheets/clean-letter-16.ly')
             StylesheetFileProxy('.../tools/scoremanagertools/stylesheets/rhythm-letter-16.ly')
-            StylesheetFileProxy('.../tools/scoremanagertools/built_in_scores/red_example_score/music/stylesheets/red-example-score-stylesheet.ly')
+            StylesheetFileProxy('.../tools/scoremanagertools/scorepackages/red_example_score/music/stylesheets/red-example-score-stylesheet.ly')
 
         Return list.
         '''
@@ -205,9 +205,9 @@ class StylesheetFileWrangler(FileWrangler):
             ...     user_external=False, user_score=False):
             ...     x
             '.../tools/scoremanagertools/stylesheets'
-            '.../tools/scoremanagertools/built_in_scores/blue_example_score/music/stylesheets'
-            '.../tools/scoremanagertools/built_in_scores/green_example_score/music/stylesheets'
-            '.../tools/scoremanagertools/built_in_scores/red_example_score/music/stylesheets'
+            '.../tools/scoremanagertools/scorepackages/blue_example_score/music/stylesheets'
+            '.../tools/scoremanagertools/scorepackages/green_example_score/music/stylesheets'
+            '.../tools/scoremanagertools/scorepackages/red_example_score/music/stylesheets'
 
         Return list.
         '''

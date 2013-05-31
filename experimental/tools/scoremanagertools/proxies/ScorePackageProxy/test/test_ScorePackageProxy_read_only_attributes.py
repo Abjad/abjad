@@ -8,7 +8,7 @@ def test_ScorePackageProxy_read_only_attributes_01():
     '''
 
     score_proxy = scoremanagertools.proxies.ScorePackageProxy(
-        'scoremanagertools.built_in_scores.red_example_score')
+        'scoremanagertools.scorepackages.red_example_score')
 
     assert isinstance(score_proxy.segment_wrangler, scoremanagertools.wranglers.SegmentPackageWrangler)
     assert isinstance(score_proxy.distribution_proxy, scoremanagertools.proxies.DirectoryProxy)
@@ -38,11 +38,11 @@ def test_ScorePackageProxy_read_only_attributes_01():
     # TODO: create Red Example Score instrumentation
     #assert score_proxy.instrumentation == instrumentation
     assert score_proxy.materials_package_path == \
-        'experimental.tools.scoremanagertools.built_in_scores.red_example_score.music.materials'
+        'experimental.tools.scoremanagertools.scorepackages.red_example_score.music.materials'
     assert score_proxy.title == 'Red Example Score'
     assert score_proxy.year_of_completion == 2013
 
-    directory_path = score_proxy.configuration.built_in_scores_directory_path
+    directory_path = score_proxy.configuration.built_in_score_packages_directory_path
     assert score_proxy.score_initializer_file_names == (
         os.path.join(directory_path, 'red_example_score', '__init__.py'),
         os.path.join(directory_path, 'red_example_score', 'music', '__init__.py'))
@@ -53,8 +53,8 @@ def test_ScorePackageProxy_read_only_attributes_01():
 
     assert score_proxy.top_level_directory_proxies == (
         scoremanagertools.proxies.DistributionDirectoryProxy(
-            'scoremanagertools.built_in_scores.red_example_score'),
+            'scoremanagertools.scorepackages.red_example_score'),
         scoremanagertools.proxies.ExergueDirectoryProxy(
-            'scoremanagertools.built_in_scores.red_example_score'),
+            'scoremanagertools.scorepackages.red_example_score'),
         scoremanagertools.proxies.MusicPackageProxy(
-            'scoremanagertools.built_in_scores.red_example_score'))
+            'scoremanagertools.scorepackages.red_example_score'))

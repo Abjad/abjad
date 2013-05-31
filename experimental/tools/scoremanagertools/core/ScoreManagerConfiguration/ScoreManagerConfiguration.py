@@ -64,13 +64,13 @@ class ScoreManagerConfiguration(Configuration):
             'built_in_materials',
             ])
 
-        self.built_in_scores_directory_path = os.path.join(
+        self.built_in_score_packages_directory_path = os.path.join(
             self.score_manager_tools_directory_path, 
-            'built_in_scores',
+            'scorepackages',
             )
-        self.built_in_scores_package_path = '.'.join([
+        self.built_in_score_packages_package_path = '.'.join([
             self.score_manager_tools_package_path,
-            'built_in_scores',
+            'scorepackages',
             ])
 
         self.built_in_specifiers_directory_path = os.path.join(
@@ -239,7 +239,7 @@ class ScoreManagerConfiguration(Configuration):
         filesystem_path = os.path.normpath(filesystem_path)
         if filesystem_path.endswith('.py'):
             filesystem_path = filesystem_path[:-3]
-        if filesystem_path.startswith(self.built_in_scores_directory_path):
+        if filesystem_path.startswith(self.built_in_score_packages_directory_path):
             prefix_length = len(self.abjad_configuration.abjad_root_directory_path) + 1
         elif filesystem_path.startswith(self.user_materials_directory_path):
             prefix_length = len(self.user_materials_directory_path) + 1
@@ -281,21 +281,21 @@ class ScoreManagerConfiguration(Configuration):
 
             >>> for x in configuration.list_score_directory_paths(built_in=True):
             ...     x
-            '.../tools/scoremanagertools/built_in_scores/blue_example_score'
-            '.../tools/scoremanagertools/built_in_scores/green_example_score'
-            '.../tools/scoremanagertools/built_in_scores/red_example_score'
+            '.../tools/scoremanagertools/scorepackages/blue_example_score'
+            '.../tools/scoremanagertools/scorepackages/green_example_score'
+            '.../tools/scoremanagertools/scorepackages/red_example_score'
 
         Return list.
         '''
         result = []
         if built_in:
-            for directory_entry in os.listdir(self.built_in_scores_directory_path):
+            for directory_entry in os.listdir(self.built_in_score_packages_directory_path):
                 if directory_entry[0].isalpha():
                     package_path = '.'.join([
-                        self.built_in_scores_package_path, directory_entry])
+                        self.built_in_score_packages_package_path, directory_entry])
                     if head is None or package_path.startswith(head):
                         filesystem_path = os.path.join(
-                            self.built_in_scores_directory_path, directory_entry)
+                            self.built_in_score_packages_directory_path, directory_entry)
                         result.append(filesystem_path)
         if user:
             for directory_entry in os.listdir(self.user_scores_directory_path):

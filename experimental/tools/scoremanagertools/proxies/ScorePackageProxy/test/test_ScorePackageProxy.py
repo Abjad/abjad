@@ -7,7 +7,7 @@ def test_ScorePackageProxy_01():
     '''
 
     red_example_score = scoremanagertools.proxies.ScorePackageProxy(
-        'scoremanagertools.built_in_scores.red_example_score')
+        'scoremanagertools.scorepackages.red_example_score')
     red_example_score._run(user_input='q')
 
     assert red_example_score._session.transcript[-2][1] == \
@@ -25,7 +25,7 @@ def test_ScorePackageProxy_02():
     '''
 
     red_example_score = scoremanagertools.proxies.ScorePackageProxy(
-        'scoremanagertools.built_in_scores.red_example_score')
+        'scoremanagertools.scorepackages.red_example_score')
     red_example_score._session.user_input = 'q'
     red_example_score.manage_tags()
     assert red_example_score._session.transcript.signature == (2,)
@@ -36,13 +36,13 @@ def test_ScorePackageProxy_03():
     '''
 
     red_example_score = scoremanagertools.proxies.ScorePackageProxy(
-        'scoremanagertools.built_in_scores.red_example_score')
+        'scoremanagertools.scorepackages.red_example_score')
     red_example_score._session.user_input = 'add foo bar q'
     red_example_score.manage_tags()
     assert red_example_score.get_tag('foo') == 'bar'
 
     red_example_score = scoremanagertools.proxies.ScorePackageProxy(
-        'scoremanagertools.built_in_scores.red_example_score')
+        'scoremanagertools.scorepackages.red_example_score')
     red_example_score._session.user_input = 'del foo q'
     red_example_score.manage_tags()
     assert red_example_score.get_tag('foo') is None
@@ -66,7 +66,7 @@ def test_ScorePackageProxy_05():
     '''
 
     red_example_score = scoremanagertools.proxies.ScorePackageProxy(
-        'scoremanagertools.built_in_scores.red_example_score')
+        'scoremanagertools.scorepackages.red_example_score')
     red_example_score._run(user_input='home')
 
     assert red_example_score._session.transcript.signature == (2,)
@@ -92,7 +92,7 @@ def test_ScorePackageProxy_07():
     '''
 
     spp = scoremanagertools.proxies.ScorePackageProxy(
-        'scoremanagertools.built_in_scores.red_example_score')
+        'scoremanagertools.scorepackages.red_example_score')
 
     assert spp._session is spp.distribution_proxy._session
     assert spp._session is spp.exergue_directory_proxy._session
