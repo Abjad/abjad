@@ -10,7 +10,7 @@ class MaterialPackageProxy(PackageProxy):
 
     ::
 
-        >>> package_path = 'experimental.tools.scoremanagertools.built_in_materials.red_numbers'
+        >>> package_path = 'experimental.tools.scoremanagertools.materialpackages.red_numbers'
         >>> mpp = scoremanagertools.proxies.MaterialPackageProxy(package_path)
         >>> mpp
         MaterialPackageProxy('.../tools/scoremanagertools/built_in_materials/red_numbers')

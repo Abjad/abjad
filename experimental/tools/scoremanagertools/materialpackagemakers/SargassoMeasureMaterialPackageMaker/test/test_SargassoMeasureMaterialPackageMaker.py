@@ -6,14 +6,14 @@ def test_SargassoMeasureMaterialPackageMaker_01():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     assert not score_manager.configuration.packagesystem_path_exists(
-        'experimental.tools.scoremanagertools.built_in_materials.testsargasso')
+        'experimental.tools.scoremanagertools.materialpackages.testsargasso')
     try:
         score_manager._run(user_input=
             'materials maker sargasso testsargasso default '
             'q'
             )
         mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker(
-            'experimental.tools.scoremanagertools.built_in_materials.testsargasso')
+            'experimental.tools.scoremanagertools.materialpackages.testsargasso')
         assert mpp.list_directory() == ['__init__.py', 'tags.py', 'user_input.py']
         user_input_wrapper = scoremanagertools.editors.UserInputWrapper([
             ('measure_denominator', None),
@@ -28,7 +28,7 @@ def test_SargassoMeasureMaterialPackageMaker_01():
     finally:
         score_manager._run(user_input='m testsargasso del remove default q')
         assert not score_manager.configuration.packagesystem_path_exists(
-            'experimental.tools.scoremanagertools.built_in_materials.testsargasso')
+            'experimental.tools.scoremanagertools.materialpackages.testsargasso')
 
 
 def test_SargassoMeasureMaterialPackageMaker_02():
@@ -36,7 +36,7 @@ def test_SargassoMeasureMaterialPackageMaker_02():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     assert not score_manager.configuration.packagesystem_path_exists(
-        'experimental.tools.scoremanagertools.built_in_materials.testsargasso')
+        'experimental.tools.scoremanagertools.materialpackages.testsargasso')
 
     try:
         score_manager._run(user_input=
@@ -45,7 +45,7 @@ def test_SargassoMeasureMaterialPackageMaker_02():
             'q'
             )
         mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker(
-            'experimental.tools.scoremanagertools.built_in_materials.testsargasso')
+            'experimental.tools.scoremanagertools.materialpackages.testsargasso')
         assert mpp.list_directory() == ['__init__.py', 'tags.py', 'user_input.py']
         user_input_wrapper = scoremanagertools.editors.UserInputWrapper([
             ('measure_denominator', 4),
@@ -60,7 +60,7 @@ def test_SargassoMeasureMaterialPackageMaker_02():
     finally:
         score_manager._run(user_input='m testsargasso del remove default q')
         assert not score_manager.configuration.packagesystem_path_exists(
-            'experimental.tools.scoremanagertools.built_in_materials.testsargasso')
+            'experimental.tools.scoremanagertools.materialpackages.testsargasso')
 
 
 def test_SargassoMeasureMaterialPackageMaker_03():
@@ -68,7 +68,7 @@ def test_SargassoMeasureMaterialPackageMaker_03():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     assert not score_manager.configuration.packagesystem_path_exists(
-        'experimental.tools.scoremanagertools.built_in_materials.testsargasso')
+        'experimental.tools.scoremanagertools.materialpackages.testsargasso')
     try:
         score_manager._run(user_input=
             'materials maker sargasso testsargasso default '
@@ -76,7 +76,7 @@ def test_SargassoMeasureMaterialPackageMaker_03():
             'q'
             )
         mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker(
-            'experimental.tools.scoremanagertools.built_in_materials.testsargasso')
+            'experimental.tools.scoremanagertools.materialpackages.testsargasso')
         assert mpp.list_directory() == ['__init__.py', 'tags.py', 'user_input.py']
         user_input_wrapper = scoremanagertools.editors.UserInputWrapper([
             ('measure_denominator', None),
@@ -91,7 +91,7 @@ def test_SargassoMeasureMaterialPackageMaker_03():
     finally:
         score_manager._run(user_input='m testsargasso del remove default q')
         assert not score_manager.configuration.packagesystem_path_exists(
-            'experimental.tools.scoremanagertools.built_in_materials.testsargasso')
+            'experimental.tools.scoremanagertools.materialpackages.testsargasso')
 
 
 def test_SargassoMeasureMaterialPackageMaker_04():
@@ -99,7 +99,7 @@ def test_SargassoMeasureMaterialPackageMaker_04():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     assert not score_manager.configuration.packagesystem_path_exists(
-        'experimental.tools.scoremanagertools.built_in_materials.testsargasso')
+        'experimental.tools.scoremanagertools.materialpackages.testsargasso')
     try:
         score_manager._run(user_input=
             'materials maker sargasso testsargasso default '
@@ -107,7 +107,7 @@ def test_SargassoMeasureMaterialPackageMaker_04():
             'q'
             )
         mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker(
-            'experimental.tools.scoremanagertools.built_in_materials.testsargasso')
+            'experimental.tools.scoremanagertools.materialpackages.testsargasso')
         assert mpp.list_directory() == ['__init__.py', 'tags.py', 'user_input.py']
         user_input_wrapper = scoremanagertools.editors.UserInputWrapper([
             ('measure_denominator', None),
@@ -122,7 +122,7 @@ def test_SargassoMeasureMaterialPackageMaker_04():
     finally:
         score_manager._run(user_input='m testsargasso del remove default q')
         assert not score_manager.configuration.packagesystem_path_exists(
-            'experimental.tools.scoremanagertools.built_in_materials.testsargasso')
+            'experimental.tools.scoremanagertools.materialpackages.testsargasso')
 
 
 def test_SargassoMeasureMaterialPackageMaker_05():
@@ -130,7 +130,7 @@ def test_SargassoMeasureMaterialPackageMaker_05():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     assert not score_manager.configuration.packagesystem_path_exists(
-        'experimental.tools.scoremanagertools.built_in_materials.testsargasso')
+        'experimental.tools.scoremanagertools.materialpackages.testsargasso')
     try:
         score_manager._run(user_input=
             'materials maker sargasso testsargasso default '
@@ -139,7 +139,7 @@ def test_SargassoMeasureMaterialPackageMaker_05():
             'q'
             )
         mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker(
-            'experimental.tools.scoremanagertools.built_in_materials.testsargasso')
+            'experimental.tools.scoremanagertools.materialpackages.testsargasso')
         assert mpp.list_directory() == ['__init__.py', 'tags.py', 'user_input.py']
         user_input_wrapper = scoremanagertools.editors.UserInputWrapper([
             ('measure_denominator', 4),
@@ -154,7 +154,7 @@ def test_SargassoMeasureMaterialPackageMaker_05():
     finally:
         score_manager._run(user_input='m testsargasso del remove default q')
         assert not score_manager.configuration.packagesystem_path_exists(
-            'experimental.tools.scoremanagertools.built_in_materials.testsargasso')
+            'experimental.tools.scoremanagertools.materialpackages.testsargasso')
 
 
 def test_SargassoMeasureMaterialPackageMaker_06():
@@ -162,7 +162,7 @@ def test_SargassoMeasureMaterialPackageMaker_06():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     assert not score_manager.configuration.packagesystem_path_exists(
-        'experimental.tools.scoremanagertools.built_in_materials.testsargasso')
+        'experimental.tools.scoremanagertools.materialpackages.testsargasso')
     try:
         score_manager._run(user_input=
             'materials maker sargasso testsargasso default '
@@ -171,7 +171,7 @@ def test_SargassoMeasureMaterialPackageMaker_06():
             'q'
             )
         mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker(
-            'experimental.tools.scoremanagertools.built_in_materials.testsargasso')
+            'experimental.tools.scoremanagertools.materialpackages.testsargasso')
         assert mpp.list_directory() == ['__init__.py', 'tags.py', 'user_input.py']
         user_input_wrapper = scoremanagertools.editors.UserInputWrapper([
             ('measure_denominator', 4),
@@ -186,7 +186,7 @@ def test_SargassoMeasureMaterialPackageMaker_06():
     finally:
         score_manager._run(user_input='m testsargasso del remove default q')
         assert not score_manager.configuration.packagesystem_path_exists(
-            'experimental.tools.scoremanagertools.built_in_materials.testsargasso')
+            'experimental.tools.scoremanagertools.materialpackages.testsargasso')
 
 
 def test_SargassoMeasureMaterialPackageMaker_07():
@@ -194,7 +194,7 @@ def test_SargassoMeasureMaterialPackageMaker_07():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     assert not score_manager.configuration.packagesystem_path_exists(
-        'experimental.tools.scoremanagertools.built_in_materials.testsargasso')
+        'experimental.tools.scoremanagertools.materialpackages.testsargasso')
     try:
         score_manager._run(user_input=
             'materials maker sargasso testsargasso default '
@@ -202,7 +202,7 @@ def test_SargassoMeasureMaterialPackageMaker_07():
             'q'
             )
         mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker(
-            'experimental.tools.scoremanagertools.built_in_materials.testsargasso')
+            'experimental.tools.scoremanagertools.materialpackages.testsargasso')
         assert mpp.list_directory() == ['__init__.py', 'tags.py', 'user_input.py']
         user_input_wrapper = scoremanagertools.editors.UserInputWrapper([
             ('measure_denominator', 4),
@@ -217,7 +217,7 @@ def test_SargassoMeasureMaterialPackageMaker_07():
     finally:
         score_manager._run(user_input='m testsargasso del remove default q')
         assert not score_manager.configuration.packagesystem_path_exists(
-            'experimental.tools.scoremanagertools.built_in_materials.testsargasso')
+            'experimental.tools.scoremanagertools.materialpackages.testsargasso')
 
 
 def test_SargassoMeasureMaterialPackageMaker_08():
@@ -225,7 +225,7 @@ def test_SargassoMeasureMaterialPackageMaker_08():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     assert not score_manager.configuration.packagesystem_path_exists(
-        'experimental.tools.scoremanagertools.built_in_materials.testsargasso')
+        'experimental.tools.scoremanagertools.materialpackages.testsargasso')
     try:
         score_manager._run(user_input=
             'materials maker sargasso testsargasso default '
@@ -233,7 +233,7 @@ def test_SargassoMeasureMaterialPackageMaker_08():
             'q'
             )
         mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker(
-            'experimental.tools.scoremanagertools.built_in_materials.testsargasso')
+            'experimental.tools.scoremanagertools.materialpackages.testsargasso')
         assert mpp.list_directory() == ['__init__.py', 'output_material.py', 'tags.py', 'user_input.py']
         measures = [
             measuretools.Measure((4, 16), "c'16 c'16 c'8"),
@@ -259,4 +259,4 @@ def test_SargassoMeasureMaterialPackageMaker_08():
     finally:
         score_manager._run(user_input='m testsargasso del remove default q')
         assert not score_manager.configuration.packagesystem_path_exists(
-            'experimental.tools.scoremanagertools.built_in_materials.testsargasso')
+            'experimental.tools.scoremanagertools.materialpackages.testsargasso')

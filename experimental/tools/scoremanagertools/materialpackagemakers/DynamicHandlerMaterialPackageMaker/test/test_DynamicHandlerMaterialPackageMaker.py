@@ -5,7 +5,7 @@ def test_DynamicHandlerMaterialPackageMaker_01():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     assert not score_manager.configuration.packagesystem_path_exists(
-        'experimental.tools.scoremanagertools.built_in_materials.testdynamichandler')
+        'experimental.tools.scoremanagertools.materialpackages.testdynamichandler')
     try:
         score_manager._run(user_input=
             'materials maker dynamic testdynamichandler default '
@@ -14,7 +14,7 @@ def test_DynamicHandlerMaterialPackageMaker_01():
             'q '
             )
         mpp = scoremanagertools.materialpackagemakers.DynamicHandlerMaterialPackageMaker(
-            'experimental.tools.scoremanagertools.built_in_materials.testdynamichandler')
+            'experimental.tools.scoremanagertools.materialpackages.testdynamichandler')
         assert mpp.list_directory() == ['__init__.py', 'output_material.py', 'tags.py']
         handler = handlertools.ReiteratedDynamicHandler(
             dynamic_name='f',
@@ -24,4 +24,4 @@ def test_DynamicHandlerMaterialPackageMaker_01():
     finally:
         score_manager._run(user_input='m testdynamichandler del remove default q')
         assert not score_manager.configuration.packagesystem_path_exists(
-            'experimental.tools.scoremanagertools.built_in_materials.testdynamichandler')
+            'experimental.tools.scoremanagertools.materialpackages.testdynamichandler')

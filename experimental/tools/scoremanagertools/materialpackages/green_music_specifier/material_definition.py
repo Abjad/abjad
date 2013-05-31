@@ -2,7 +2,7 @@ from abjad import *
 from experimental.tools.scoremanagertools import specifiers
 output_material_module_import_statements = [
     'from abjad import *',
-    'from experimental.tools.scoremanagertoos import specifiers',
+    'from experimental.tools.scoremanagertools import specifiers',
     ]
 
 

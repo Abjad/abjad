@@ -108,7 +108,7 @@ class MaterialPackageWrangler(PackageWrangler):
 
             >>> for x in wrangler._list_storehouse_package_paths():
             ...     x
-            'experimental.tools.scoremanagertools.built_in_materials'
+            'experimental.tools.scoremanagertools.materialpackages'
             'experimental.tools.scoremanagertools.scorepackages.blue_example_score.music.materials'
             'experimental.tools.scoremanagertools.scorepackages.green_example_score.music.materials'
             'experimental.tools.scoremanagertools.scorepackages.red_example_score.music.materials'
@@ -258,15 +258,15 @@ class MaterialPackageWrangler(PackageWrangler):
             >>> for x in wrangler.list_asset_packagesystem_paths(
             ...     user_external=False, user_score=False):
             ...     x
-            'experimental.tools.scoremanagertools.built_in_materials.black_music_specifier'
-            'experimental.tools.scoremanagertools.built_in_materials.green_music_specifier'
-            'experimental.tools.scoremanagertools.built_in_materials.red_directives'
-            'experimental.tools.scoremanagertools.built_in_materials.red_forte'
-            'experimental.tools.scoremanagertools.built_in_materials.red_marcati'
-            'experimental.tools.scoremanagertools.built_in_materials.red_notes'
-            'experimental.tools.scoremanagertools.built_in_materials.red_numbers'
-            'experimental.tools.scoremanagertools.built_in_materials.red_sargasso_measures'
-            'experimental.tools.scoremanagertools.built_in_materials.sargasso_multipliers'
+            'experimental.tools.scoremanagertools.materialpackages.black_music_specifier'
+            'experimental.tools.scoremanagertools.materialpackages.green_music_specifier'
+            'experimental.tools.scoremanagertools.materialpackages.red_directives'
+            'experimental.tools.scoremanagertools.materialpackages.red_forte'
+            'experimental.tools.scoremanagertools.materialpackages.red_marcati'
+            'experimental.tools.scoremanagertools.materialpackages.red_notes'
+            'experimental.tools.scoremanagertools.materialpackages.red_numbers'
+            'experimental.tools.scoremanagertools.materialpackages.red_sargasso_measures'
+            'experimental.tools.scoremanagertools.materialpackages.sargasso_multipliers'
             'experimental.tools.scoremanagertools.scorepackages.red_example_score.music.materials.tempo_inventory'
 
         Return list.

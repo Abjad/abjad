@@ -6,7 +6,7 @@ def test_MaterialPackageWrangler_get_available_material_package_path_interactive
     wrangler = scoremanagertools.wranglers.MaterialPackageWrangler()
 
     result = wrangler.get_available_material_packagesystem_path_interactively(user_input='foo')
-    assert result == 'experimental.tools.scoremanagertools.built_in_materials.foo'
+    assert result == 'experimental.tools.scoremanagertools.materialpackages.foo'
 
     result = wrangler.get_available_material_packagesystem_path_interactively(user_input='red~notes q')
     assert result is None

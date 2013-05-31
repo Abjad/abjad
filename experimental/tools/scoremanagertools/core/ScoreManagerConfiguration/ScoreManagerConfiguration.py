@@ -57,11 +57,11 @@ class ScoreManagerConfiguration(Configuration):
 
         self.built_in_materials_directory_path = os.path.join(
             self.score_manager_tools_directory_path, 
-            'built_in_materials',
+            'materialpackages',
             )
         self.built_in_materials_package_path = '.'.join([
             self.score_manager_tools_package_path, 
-            'built_in_materials',
+            'materialpackages',
             ])
 
         self.built_in_score_packages_directory_path = os.path.join(

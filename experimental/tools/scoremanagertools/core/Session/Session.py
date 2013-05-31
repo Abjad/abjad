@@ -195,7 +195,7 @@ class Session(abctools.AbjadObject):
         ::
 
             >>> session.current_materials_package_path
-            'experimental.tools.scoremanagertools.built_in_materials'
+            'experimental.tools.scoremanagertools.materialpackages'
 
         Session in score:
 
