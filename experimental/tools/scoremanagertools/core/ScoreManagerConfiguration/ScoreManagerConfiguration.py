@@ -89,51 +89,51 @@ class ScoreManagerConfiguration(Configuration):
 
         # user storehouse paths
 
-        self.user_external_assets_directory_path = \
+        self.user_asset_library_directory_path = \
             os.path.normpath(os.path.expanduser(
-            self._settings['user_external_assets_directory_path']
+            self._settings['user_asset_library_directory_path']
             ))
-        self.user_external_assets_package_path = \
-            self._settings['user_external_assets_package_path']
+        self.user_asset_library_package_path = \
+            self._settings['user_asset_library_package_path']
 
         self.user_external_editors_directory_path = os.path.join(
-            self.user_external_assets_directory_path, 
+            self.user_asset_library_directory_path, 
             'editors',
             )
         self.user_external_editors_package_path = '.'.join([
-            self.user_external_assets_package_path, 
+            self.user_asset_library_package_path, 
             'editors',
             ])
 
         self.user_external_material_package_makers_directory_path = os.path.join(
-            self.user_external_assets_directory_path,
+            self.user_asset_library_directory_path,
             'material_package_makers',
             )
         self.user_external_material_package_makers_package_path = '.'.join([
-            self.user_external_assets_package_path,
+            self.user_asset_library_package_path,
             'material_package_makers',
             ])
 
         self.user_external_material_packages_directory_path = os.path.join(
-            self.user_external_assets_directory_path, 
+            self.user_asset_library_directory_path, 
             'material_packages',
             )
         self.user_external_material_packages_package_path = '.'.join([
-            self.user_external_assets_package_path, 
+            self.user_asset_library_package_path, 
             'material_packages',
             ])
 
         self.user_external_specifiers_directory_path = os.path.join(
-            self.user_external_assets_directory_path, 
+            self.user_asset_library_directory_path, 
             'specifiers',
             )
         self.user_external_specifiers_package_path = '.'.join([
-            self.user_external_assets_package_path, 
+            self.user_asset_library_package_path, 
             'specifiers',
             ])
 
         self.user_external_stylesheets_directory_path = os.path.join(
-            self.user_external_assets_directory_path,
+            self.user_asset_library_directory_path,
             'stylesheets',
             )
 
@@ -155,7 +155,7 @@ class ScoreManagerConfiguration(Configuration):
         # make missing packages
 
         for directory_path in (
-            self.user_external_assets_directory_path,
+            self.user_asset_library_directory_path,
             self.user_external_editors_directory_path,
             self.user_external_material_package_makers_directory_path,
             self.user_external_material_packages_directory_path,
@@ -187,22 +187,22 @@ class ScoreManagerConfiguration(Configuration):
     @property
     def _option_definitions(self):
         options = {
-            'user_external_assets_directory_path': {
+            'user_asset_library_directory_path': {
                 'comment': [
                     '',
                     'Set to the directory where you house your user-specific assets.',
-                    'Defaults to $HOME/score_manager/.',
+                    'Defaults to $HOME/score_manager_asset_library/.',
                 ],
                 'spec': 'string(default={!r})'.format(
-                    os.path.join(self.home_directory_path, 'score_manager')),
+                    os.path.join(self.home_directory_path, 'score_manager_asset_library')),
             },
-            'user_external_assets_package_path': {
+            'user_asset_library_package_path': {
                 'comment': [
                     '',
                     'Set to the package where you house your user-specific assets.',
-                    "Defaults to 'score_manager'.",
+                    "Defaults to 'score_manager_asset_library'.",
                 ],
-                'spec': "string(default={!r})".format('score_manager'),
+                'spec': "string(default={!r})".format('score_manager_asset_library'),
             },
             'user_score_packages_directory_path': {
                 'comment': [
@@ -337,11 +337,11 @@ class ScoreManagerConfiguration(Configuration):
             directory_parts = \
                 [self.built_in_material_packages_directory_path] + \
                 package_path_parts[1:]
-        elif package_path.startswith(self.user_external_assets_package_path):
-            prefix_length = len(self.user_external_assets_package_path)
+        elif package_path.startswith(self.user_asset_library_package_path):
+            prefix_length = len(self.user_asset_library_package_path)
             trimmed_package_path = package_path[prefix_length:]     
             directory_parts = []
-            directory_parts.append(self.user_external_assets_directory_path)
+            directory_parts.append(self.user_asset_library_directory_path)
             directory_parts.extend(trimmed_package_path.split('.'))
         else:
             directory_parts = [self.user_score_packages_directory_path] + package_path_parts[:]
