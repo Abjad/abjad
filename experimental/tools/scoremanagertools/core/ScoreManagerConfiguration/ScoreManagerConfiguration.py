@@ -165,6 +165,8 @@ class ScoreManagerConfiguration(Configuration):
 
         # make missing directories 
 
+        if not os.path.exists(self.user_score_packages_directory_path):
+            os.makedirs(self.user_score_packages_directory_path)
         if not os.path.exists(self.user_asset_library_stylesheets_directory_path):
             os.makedirs(self.user_asset_library_stylesheets_directory_path)
         if not os.path.exists(self.transcripts_directory_path):
