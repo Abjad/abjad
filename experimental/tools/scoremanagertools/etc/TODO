@@ -71,7 +71,7 @@
 
 28. Add PackageystemAssetProxy to superclass ModuleProxy and PackageProxy.
 
-29. Remove head=None keyword from list_storehouse_filesystem_paths().
+29. Remove head=None keyword from list_asset_storehouse_filesystem_paths().
     The head filter can be used only on complete *asset* paths (whether filesystem or packagesystem).
     The head filter can not be used on *storhouse* paths alone.
 

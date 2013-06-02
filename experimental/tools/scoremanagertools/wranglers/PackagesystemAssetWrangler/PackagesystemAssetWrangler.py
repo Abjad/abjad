@@ -60,7 +60,7 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
 
     def _list_built_in_external_storehouse_packagesystem_path(self, head=None):
         result = []
-        for filesystem_path in self.list_storehouse_filesystem_paths(
+        for filesystem_path in self.list_asset_storehouse_filesystem_paths(
             in_built_in_score_packages=False, in_user_asset_library=False, in_user_score_packages=False, head=head):
             packagesystem_path = self.configuration.filesystem_path_to_packagesystem_path(filesystem_path)
             result.append(packagesystem_path)
@@ -68,7 +68,7 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
 
     def _list_score_storehouse_package_paths(self, head=None):
         result = []
-        for filesystem_path in self.list_storehouse_filesystem_paths(
+        for filesystem_path in self.list_asset_storehouse_filesystem_paths(
             in_built_in_asset_library=False, in_user_asset_library=False, head=head):
             packagesystem_path = self.configuration.filesystem_path_to_packagesystem_path(filesystem_path)
             result.append(packagesystem_path)

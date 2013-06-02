@@ -202,16 +202,16 @@ class SegmentPackageWrangler(PackageWrangler):
             in_user_score_packages=in_user_score_packages,
             head=head)
 
-    def list_storehouse_filesystem_paths(self,
+    def list_asset_storehouse_filesystem_paths(self,
         in_built_in_asset_library=True, in_user_asset_library=True,
         in_built_in_score_packages=True, in_user_score_packages=True, head=None):
-        '''List storehouse filesystem paths.
+        '''List asset storehouse filesystem paths.
 
         Example. List built-in segment package storehouse filesystem paths:
 
         ::
 
-            >>> for x in wrangler.list_storehouse_filesystem_paths(
+            >>> for x in wrangler.list_asset_storehouse_filesystem_paths(
             ...     in_user_asset_library=False, in_user_score_packages=False):
             ...     x
             '.../tools/scoremanagertools/scorepackages/blue_example_score/music/segments'
@@ -220,7 +220,7 @@ class SegmentPackageWrangler(PackageWrangler):
 
         Return list.
         '''
-        return super(SegmentPackageWrangler, self).list_storehouse_filesystem_paths(
+        return super(SegmentPackageWrangler, self).list_asset_storehouse_filesystem_paths(
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,

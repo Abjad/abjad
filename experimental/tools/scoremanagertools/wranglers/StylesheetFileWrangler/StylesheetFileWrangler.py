@@ -192,7 +192,7 @@ class StylesheetFileWrangler(FileWrangler):
             in_user_score_packages=in_user_score_packages,
             head=head)
 
-    def list_storehouse_filesystem_paths(self, 
+    def list_asset_storehouse_filesystem_paths(self, 
         in_built_in_asset_library=True, in_user_asset_library=True,
         in_built_in_score_packages=True, in_user_score_packages=True, head=None):
         '''Stylesheet file wrangler list storehouse filesystem paths.
@@ -201,7 +201,7 @@ class StylesheetFileWrangler(FileWrangler):
 
         ::
 
-            >>> for x in wrangler.list_storehouse_filesystem_paths(
+            >>> for x in wrangler.list_asset_storehouse_filesystem_paths(
             ...     in_user_asset_library=False, in_user_score_packages=False):
             ...     x
             '.../tools/scoremanagertools/stylesheets'
@@ -211,7 +211,7 @@ class StylesheetFileWrangler(FileWrangler):
 
         Return list.
         '''
-        return super(StylesheetFileWrangler, self).list_storehouse_filesystem_paths(
+        return super(StylesheetFileWrangler, self).list_asset_storehouse_filesystem_paths(
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,

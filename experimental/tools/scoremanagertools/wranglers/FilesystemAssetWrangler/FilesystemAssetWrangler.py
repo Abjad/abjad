@@ -158,7 +158,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         in_built_in_asset_library=True, in_user_asset_library=True,
         in_built_in_score_packages=True, in_user_score_packages=True, head=None):
         result = []
-        for directory_path in self.list_storehouse_filesystem_paths(
+        for directory_path in self.list_asset_storehouse_filesystem_paths(
             in_built_in_asset_library=in_built_in_asset_library, 
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages, 
@@ -202,7 +202,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             result.append(asset_proxy)
         return result
 
-    def list_storehouse_filesystem_paths(self, 
+    def list_asset_storehouse_filesystem_paths(self, 
         in_built_in_asset_library=True, in_user_asset_library=True,
         in_built_in_score_packages=True, in_user_score_packages=True, head=None):
         result = []
