@@ -204,7 +204,7 @@ class SegmentPackageWrangler(PackageWrangler):
 
     def list_asset_storehouse_filesystem_paths(self,
         in_built_in_asset_library=True, in_user_asset_library=True,
-        in_built_in_score_packages=True, in_user_score_packages=True, head=None):
+        in_built_in_score_packages=True, in_user_score_packages=True):
         '''List asset storehouse filesystem paths.
 
         Example. List built-in segment package storehouse filesystem paths:
@@ -224,8 +224,7 @@ class SegmentPackageWrangler(PackageWrangler):
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
-            in_user_score_packages=in_user_score_packages,
-            head=head)
+            in_user_score_packages=in_user_score_packages)
 
     def make_asset_interactively(self):
         segment_package_proxy = self.asset_proxy_class(session=self._session)

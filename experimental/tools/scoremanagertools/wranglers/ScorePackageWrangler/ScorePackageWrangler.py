@@ -216,7 +216,7 @@ class ScorePackageWrangler(PackageWrangler):
 
     def list_asset_storehouse_filesystem_paths(self,
         in_built_in_asset_library=True, in_user_asset_library=True,
-        in_built_in_score_packages=True, in_user_score_packages=True, head=None):
+        in_built_in_score_packages=True, in_user_score_packages=True):
         '''List asset storehouse filesystem paths.
 
         Example. List built-in score storehouse:
@@ -234,8 +234,7 @@ class ScorePackageWrangler(PackageWrangler):
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
-            in_user_score_packages=in_user_score_packages,
-            head=head)
+            in_user_score_packages=in_user_score_packages)
 
     def list_visible_asset_filesystem_paths(self, 
         in_built_in_asset_library=True, in_user_asset_library=True,

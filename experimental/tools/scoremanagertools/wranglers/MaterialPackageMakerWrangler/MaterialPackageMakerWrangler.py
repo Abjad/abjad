@@ -240,7 +240,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
 
     def list_asset_storehouse_filesystem_paths(self,
         in_built_in_asset_library=True, in_user_asset_library=True,
-        in_built_in_score_packages=True, in_user_score_packages=True, head=None):
+        in_built_in_score_packages=True, in_user_score_packages=True):
         '''List asset storehouse filesystem paths.
 
         Example. List built-in material package maker storehouses:
@@ -258,8 +258,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
-            in_user_score_packages=in_user_score_packages,
-            head=head)
+            in_user_score_packages=in_user_score_packages)
 
     # TODO: change to boilerplate
     def make_asset_class_file(self, package_name, generic_output_name):

@@ -71,29 +71,27 @@
 
 28. Add PackageystemAssetProxy to superclass ModuleProxy and PackageProxy.
 
-29. Remove head=None keyword from list_asset_storehouse_filesystem_paths().
-    The head filter can be used only on complete *asset* paths (whether filesystem or packagesystem).
-    The head filter can not be used on *storhouse* paths alone.
-
-30. Might make sense to implement an SvnManager class.
+29. Might make sense to implement an SvnManager class.
     This will encapsulate all svn management functionality.
 
-31. Create a PackagesystemAssetProxy to parallel PacakagesystemAssetWrangler.
+30. Create a PackagesystemAssetProxy to parallel PacakagesystemAssetWrangler.
 
-32. Harmonize user input strings with method names in MaterialPackageProxy.user_input_to_action dictionary.
+31. Harmonize user input strings with method names in MaterialPackageProxy.user_input_to_action dictionary.
 
-33. Change all edit*() methods to edit*interactively().
+32. Change all edit*() methods to edit*interactively().
     This is the right thing to do because all edit methods require user input.
 
-34. Author StylesheetFileWrangler.remove_assets_interactively() test.
+33. Author StylesheetFileWrangler.remove_assets_interactively() test.
     Will involve making user_input='... rm ...' work with named arguments instead of just numeric arguments.
 
-35. Make a menuing.Token class.
+34. Make a menuing.Token class.
     This will name all token attributes.
     This will also make all attribute extraction methods explicit.
     This will also eliminate all numeric tuple field references.
 
-36. Make MaterialPackageMaker classes stop creating materials in tools.scoremanagertools.materialpackages.
-    Those classes should create materials in the user material packages global storehouse.
-    Or in user score packages. But no material packages should ever be created in the system
-    material packages storehouse.
+35. Make MaterialPackageMaker classes stop creating materials in tools.scoremanagertools.materialpackages.
+    Those classes should create material packages in the user asset library material packages directory.
+    Or in user score packages. But no material packages should ever be created in the built-in
+    asset library material packages directory.
+
+36. Remove remaining unused head=None keywords in some private wrangler methods.

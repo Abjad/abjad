@@ -58,18 +58,20 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
             pacakgesystem_path = self.configuration.filesystem_path_to_packagesystem_path(packagesystem_path)
         return self.asset_proxy_class(packagesystem_path=packagesystem_path, session=self._session)
 
+    # TODO: remove unused head=None keyword
     def _list_built_in_external_storehouse_packagesystem_path(self, head=None):
         result = []
         for filesystem_path in self.list_asset_storehouse_filesystem_paths(
-            in_built_in_score_packages=False, in_user_asset_library=False, in_user_score_packages=False, head=head):
+            in_built_in_score_packages=False, in_user_asset_library=False, in_user_score_packages=False):
             packagesystem_path = self.configuration.filesystem_path_to_packagesystem_path(filesystem_path)
             result.append(packagesystem_path)
         return result
 
+    # TODO: remove unused head=None keyword
     def _list_score_storehouse_package_paths(self, head=None):
         result = []
         for filesystem_path in self.list_asset_storehouse_filesystem_paths(
-            in_built_in_asset_library=False, in_user_asset_library=False, head=head):
+            in_built_in_asset_library=False, in_user_asset_library=False):
             packagesystem_path = self.configuration.filesystem_path_to_packagesystem_path(filesystem_path)
             result.append(packagesystem_path)
         return result

@@ -162,8 +162,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             in_built_in_asset_library=in_built_in_asset_library, 
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages, 
-            in_user_score_packages=in_user_score_packages, 
-            head=head):
+            in_user_score_packages=in_user_score_packages):
             if directory_path:
                 storehouse_package_path = self.configuration.filesystem_path_to_packagesystem_path(
                     directory_path)
@@ -196,43 +195,49 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             return self.list_visible_asset_proxies(head=head)
         result = []
         for filesystem_path in self.list_asset_filesystem_paths(
-            in_built_in_asset_library=in_built_in_asset_library, in_user_asset_library=in_user_asset_library,
-            in_built_in_score_packages=in_built_in_score_packages, in_user_score_packages=in_user_score_packages, head=head):
+            in_built_in_asset_library=in_built_in_asset_library, 
+            in_user_asset_library=in_user_asset_library,
+            in_built_in_score_packages=in_built_in_score_packages, 
+            in_user_score_packages=in_user_score_packages, head=head):
             asset_proxy = self._initialize_asset_proxy(filesystem_path)
             result.append(asset_proxy)
         return result
 
     def list_asset_storehouse_filesystem_paths(self, 
         in_built_in_asset_library=True, in_user_asset_library=True,
-        in_built_in_score_packages=True, in_user_score_packages=True, head=None):
+        in_built_in_score_packages=True, in_user_score_packages=True):
         result = []
         if in_built_in_asset_library and self.built_in_external_storehouse_filesystem_path is not None:
-            if head is None:
+            #if head is None:
+            if True:
                 result.append(self.built_in_external_storehouse_filesystem_path)
-            else:
-                filesystem_path = self.configuration.packagesystem_path_to_filesystem_path(head)
-                if self.built_in_external_storehouse_filesystem_path.startswith(
-                    filesystem_path):
-                    result.append(self.built_in_external_storehouse_filesystem_path)
+#            else:
+#                filesystem_path = self.configuration.packagesystem_path_to_filesystem_path(head)
+#                if self.built_in_external_storehouse_filesystem_path.startswith(
+#                    filesystem_path):
+#                    result.append(self.built_in_external_storehouse_filesystem_path)
         if in_user_asset_library and self.user_asset_library_storehouse_filesystem_path is not None:
-            if head is None:
+            #if head is None:
+            if True:
                 result.append(self.user_asset_library_storehouse_filesystem_path)
-            else:
-                filesystem_path = self.configuration.packagesystem_path_to_filesystem_path(head)
-                if self.user_asset_library_storehouse_filesystem_path.startswith(
-                    filesystem_path):
-                    result.append(self.user_asset_library_storehouse_filesystem_path)
+#            else:
+#                filesystem_path = self.configuration.packagesystem_path_to_filesystem_path(head)
+#                if self.user_asset_library_storehouse_filesystem_path.startswith(
+#                    filesystem_path):
+#                    result.append(self.user_asset_library_storehouse_filesystem_path)
         if in_built_in_score_packages and self.storehouse_path_infix_parts is not None:
-            for score_directory_path in self.configuration.list_score_directory_paths(
-                built_in=True, head=head):
+            #for score_directory_path in self.configuration.list_score_directory_paths(
+            #    built_in=True, head=head):
+            for score_directory_path in self.configuration.list_score_directory_paths(built_in=True):
                 parts = [score_directory_path]
                 if self.storehouse_path_infix_parts:
                     parts.extend(self.storehouse_path_infix_parts)
                 storehouse_filesystem_path = os.path.join(*parts)
                 result.append(storehouse_filesystem_path)
         if in_user_score_packages and self.storehouse_path_infix_parts is not None:
-            for directory_path in self.configuration.list_score_directory_paths(
-                user=True, head=head):
+            #for directory_path in self.configuration.list_score_directory_paths(
+            #    user=True, head=head):
+            for directory_path in self.configuration.list_score_directory_paths(user=True):
                 parts = [directory_path]
                 if self.storehouse_path_infix_parts:
                     parts.extend(self.storehouse_path_infix_parts)
