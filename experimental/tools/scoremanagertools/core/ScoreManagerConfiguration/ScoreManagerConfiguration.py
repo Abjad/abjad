@@ -93,8 +93,9 @@ class ScoreManagerConfiguration(Configuration):
             os.path.normpath(os.path.expanduser(
             self._settings['user_asset_library_directory_path']
             ))
-        self.user_asset_library_package_path = \
-            self._settings['user_asset_library_package_path']
+        #self.user_asset_library_package_path = \
+        #    self._settings['user_asset_library_package_path']
+        self.user_asset_library_package_path = 'score_manager_asset_library'
 
         self.user_external_editors_directory_path = os.path.join(
             self.user_asset_library_directory_path, 
@@ -195,14 +196,6 @@ class ScoreManagerConfiguration(Configuration):
                 ],
                 'spec': 'string(default={!r})'.format(
                     os.path.join(self.home_directory_path, 'score_manager_asset_library')),
-            },
-            'user_asset_library_package_path': {
-                'comment': [
-                    '',
-                    'Set to the package where you house your user-specific assets.',
-                    "Defaults to 'score_manager_asset_library'.",
-                ],
-                'spec': "string(default={!r})".format('score_manager_asset_library'),
             },
             'user_score_packages_directory_path': {
                 'comment': [

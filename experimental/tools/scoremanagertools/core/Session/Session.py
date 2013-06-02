@@ -171,7 +171,7 @@ class Session(abctools.AbjadObject):
         ::
 
             >>> session_in_score.current_materials_directory_path
-            '.../scores/foo/music/materials'
+            '.../score_packages/foo/music/materials'
 
         (Output will vary according to configuration.)
 
@@ -266,7 +266,7 @@ class Session(abctools.AbjadObject):
         ::
 
             >>> session_in_score.current_score_package_proxy
-            ScorePackageProxy('.../scores/foo')
+            ScorePackageProxy('.../score_packages/foo')
 
         (Ouput will vary according to configuration.)
 
@@ -293,7 +293,7 @@ class Session(abctools.AbjadObject):
         ::
 
             >>> session_in_score.current_segments_directory_path
-            '.../scores/foo/music/segments'
+            '.../score_packages/foo/music/segments'
 
         (Output will vary according to configuration.)
 
