@@ -116,7 +116,7 @@ class StylesheetFileWrangler(FileWrangler):
         proxy.edit()
 
     def list_asset_filesystem_paths(self,
-        in_built_in_library=True, in_user_library=True,
+        in_built_in_asset_library=True, in_user_asset_library=True,
         in_built_in_score_packages=True, in_user_score_packages=True, head=None):
         '''Stylesheet file wrangler list asset filesystem paths.
     
@@ -125,7 +125,7 @@ class StylesheetFileWrangler(FileWrangler):
         ::
 
             >>> for x in wrangler.list_asset_filesystem_paths(
-            ...     in_user_library=False, in_user_score_packages=False):
+            ...     in_user_asset_library=False, in_user_score_packages=False):
             ...     x
             '.../tools/scoremanagertools/stylesheets/clean-letter-14.ly'
             '.../tools/scoremanagertools/stylesheets/clean-letter-16.ly'
@@ -135,13 +135,13 @@ class StylesheetFileWrangler(FileWrangler):
         Return list.
         '''
         return super(StylesheetFileWrangler, self).list_asset_filesystem_paths(
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
+            in_built_in_asset_library=in_built_in_asset_library,
+            in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
             head=head)
 
-    def list_asset_names(self, in_built_in_library=True, in_user_library=True,
+    def list_asset_names(self, in_built_in_asset_library=True, in_user_asset_library=True,
         in_built_in_score_packages=True, in_user_score_packages=True, head=None, include_extension=False):
         '''Stylesheet file wrangler list asset names.
     
@@ -150,7 +150,7 @@ class StylesheetFileWrangler(FileWrangler):
         ::
 
             >>> for x in wrangler.list_asset_names(
-            ...     in_user_library=False, in_user_score_packages=False, include_extension=True):
+            ...     in_user_asset_library=False, in_user_score_packages=False, include_extension=True):
             ...     x
             'clean-letter-14.ly'
             'clean-letter-16.ly'
@@ -160,14 +160,14 @@ class StylesheetFileWrangler(FileWrangler):
         Return list.
         '''
         return super(StylesheetFileWrangler, self).list_asset_names(
-            in_built_in_library=in_built_in_library, 
-            in_user_library=in_user_library,
+            in_built_in_asset_library=in_built_in_asset_library, 
+            in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages, 
             in_user_score_packages=in_user_score_packages,
             head=head,
             include_extension=include_extension)
 
-    def list_asset_proxies(self, in_built_in_library=True, in_user_library=True,
+    def list_asset_proxies(self, in_built_in_asset_library=True, in_user_asset_library=True,
         in_built_in_score_packages=True, in_user_score_packages=True, head=None):
         '''Stylesheet file wrangler list asset proxies.
 
@@ -176,7 +176,7 @@ class StylesheetFileWrangler(FileWrangler):
         ::
 
             >>> for x in wrangler.list_asset_proxies(
-            ...     in_user_library=False, in_user_score_packages=False):
+            ...     in_user_asset_library=False, in_user_score_packages=False):
             ...     x
             StylesheetFileProxy('.../tools/scoremanagertools/stylesheets/clean-letter-14.ly')
             StylesheetFileProxy('.../tools/scoremanagertools/stylesheets/clean-letter-16.ly')
@@ -186,14 +186,14 @@ class StylesheetFileWrangler(FileWrangler):
         Return list.
         '''
         return super(StylesheetFileWrangler, self).list_asset_proxies(
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
+            in_built_in_asset_library=in_built_in_asset_library,
+            in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
             head=head)
 
     def list_storehouse_filesystem_paths(self, 
-        in_built_in_library=True, in_user_library=True,
+        in_built_in_asset_library=True, in_user_asset_library=True,
         in_built_in_score_packages=True, in_user_score_packages=True, head=None):
         '''Stylesheet file wrangler list storehouse filesystem paths.
 
@@ -202,7 +202,7 @@ class StylesheetFileWrangler(FileWrangler):
         ::
 
             >>> for x in wrangler.list_storehouse_filesystem_paths(
-            ...     in_user_library=False, in_user_score_packages=False):
+            ...     in_user_asset_library=False, in_user_score_packages=False):
             ...     x
             '.../tools/scoremanagertools/stylesheets'
             '.../tools/scoremanagertools/scorepackages/blue_example_score/music/stylesheets'
@@ -212,8 +212,8 @@ class StylesheetFileWrangler(FileWrangler):
         Return list.
         '''
         return super(StylesheetFileWrangler, self).list_storehouse_filesystem_paths(
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
+            in_built_in_asset_library=in_built_in_asset_library,
+            in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
             head=head)

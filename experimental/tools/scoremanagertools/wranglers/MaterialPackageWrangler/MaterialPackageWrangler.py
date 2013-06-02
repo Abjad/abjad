@@ -185,7 +185,7 @@ class MaterialPackageWrangler(PackageWrangler):
                 return material_package_path
 
     def list_asset_filesystem_paths(self,
-        in_built_in_library=True, in_user_library=True,
+        in_built_in_asset_library=True, in_user_asset_library=True,
         in_built_in_score_packages=True, in_user_score_packages=True, head=None):
         '''List asset filesystem paths.
 
@@ -194,7 +194,7 @@ class MaterialPackageWrangler(PackageWrangler):
         ::
 
             >>> for x in wrangler.list_asset_filesystem_paths(
-            ...     in_user_library=False, in_user_score_packages=False):
+            ...     in_user_asset_library=False, in_user_score_packages=False):
             ...     x
             '.../abjad/experimental/tools/scoremanagertools/materialpackages/red_directives'
             '.../abjad/experimental/tools/scoremanagertools/materialpackages/red_forte'
@@ -208,14 +208,14 @@ class MaterialPackageWrangler(PackageWrangler):
         Return list.
         '''
         return super(MaterialPackageWrangler, self).list_asset_filesystem_paths(
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
+            in_built_in_asset_library=in_built_in_asset_library,
+            in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
             head=head)
 
     def list_asset_names(self,
-        in_built_in_library=True, in_user_library=True,
+        in_built_in_asset_library=True, in_user_asset_library=True,
         in_built_in_score_packages=True, in_user_score_packages=True, head=None):
         '''List asset names.
 
@@ -224,7 +224,7 @@ class MaterialPackageWrangler(PackageWrangler):
         ::
 
             >>> for x in wrangler.list_asset_names(
-            ...     in_user_library=False, in_user_score_packages=False):
+            ...     in_user_asset_library=False, in_user_score_packages=False):
             ...     x
             'black music specifier'
             'green music specifier'
@@ -240,14 +240,14 @@ class MaterialPackageWrangler(PackageWrangler):
         Return list.
         '''
         return super(MaterialPackageWrangler, self).list_asset_names(
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
+            in_built_in_asset_library=in_built_in_asset_library,
+            in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
             head=head)
 
     def list_asset_packagesystem_paths(self,
-        in_built_in_library=True, in_user_library=True,
+        in_built_in_asset_library=True, in_user_asset_library=True,
         in_built_in_score_packages=True, in_user_score_packages=True, head=None):
         '''List asset packagesystem paths.
 
@@ -256,7 +256,7 @@ class MaterialPackageWrangler(PackageWrangler):
         ::
 
             >>> for x in wrangler.list_asset_packagesystem_paths(
-            ...     in_user_library=False, in_user_score_packages=False):
+            ...     in_user_asset_library=False, in_user_score_packages=False):
             ...     x
             'experimental.tools.scoremanagertools.materialpackages.black_music_specifier'
             'experimental.tools.scoremanagertools.materialpackages.green_music_specifier'
@@ -272,13 +272,13 @@ class MaterialPackageWrangler(PackageWrangler):
         Return list.
         '''
         return super(MaterialPackageWrangler, self).list_asset_packagesystem_paths(
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
+            in_built_in_asset_library=in_built_in_asset_library,
+            in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
             head=head)
 
-    def list_asset_proxies(self, in_built_in_library=True, in_user_library=True,
+    def list_asset_proxies(self, in_built_in_asset_library=True, in_user_asset_library=True,
         in_built_in_score_packages=True, in_user_score_packages=True, head=None):
         '''List asset proxies.
 
@@ -287,7 +287,7 @@ class MaterialPackageWrangler(PackageWrangler):
         ::
 
             >>> for x in wrangler.list_asset_proxies(
-            ...     in_user_library=False, in_user_score_packages=False):
+            ...     in_user_asset_library=False, in_user_score_packages=False):
             ...     x
             MaterialPackageProxy('.../tools/scoremanagertools/materialpackages/black_music_specifier')
             MaterialPackageProxy('.../tools/scoremanagertools/materialpackages/green_music_specifier')
@@ -303,14 +303,14 @@ class MaterialPackageWrangler(PackageWrangler):
         Return list.
         '''
         return super(MaterialPackageWrangler, self).list_asset_proxies(
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
+            in_built_in_asset_library=in_built_in_asset_library,
+            in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
             head=head)
 
     def list_storehouse_filesystem_paths(self,
-        in_built_in_library=True, in_user_library=True,
+        in_built_in_asset_library=True, in_user_asset_library=True,
         in_built_in_score_packages=True, in_user_score_packages=True, head=None):
         '''List storehouse filesystem paths.
 
@@ -319,7 +319,7 @@ class MaterialPackageWrangler(PackageWrangler):
         ::
 
             >>> for x in wrangler.list_storehouse_filesystem_paths(
-            ...     in_user_library=False, in_user_score_packages=False):
+            ...     in_user_asset_library=False, in_user_score_packages=False):
             ...     x
             '.../tools/scoremanagertools/materialpackages'
             '.../tools/scoremanagertools/scorepackages/blue_example_score/music/materials'
@@ -329,8 +329,8 @@ class MaterialPackageWrangler(PackageWrangler):
         Return list.
         '''
         return super(MaterialPackageWrangler, self).list_storehouse_filesystem_paths(
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
+            in_built_in_asset_library=in_built_in_asset_library,
+            in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
             head=head)

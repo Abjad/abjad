@@ -115,7 +115,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
     ### PUBLIC METHODS ###
 
     def list_asset_filesystem_paths(self,
-        in_built_in_library=True, in_user_library=True,
+        in_built_in_asset_library=True, in_user_asset_library=True,
         in_built_in_score_packages=True, in_user_score_packages=True, head=None):
         '''List asset filesystem paths.
 
@@ -124,7 +124,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         ::
 
             >>> for x in wrangler.list_asset_filesystem_paths(
-            ...     in_user_library=False, in_user_score_packages=False):
+            ...     in_user_asset_library=False, in_user_score_packages=False):
             ...     x
             '.../tools/scoremanagertools/materialpackagemakers/ArticulationHandlerMaterialPackageMaker'
             '.../tools/scoremanagertools/materialpackagemakers/DynamicHandlerMaterialPackageMaker'
@@ -139,14 +139,14 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         Return list.
         '''
         return super(MaterialPackageMakerWrangler, self).list_asset_filesystem_paths(
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
+            in_built_in_asset_library=in_built_in_asset_library,
+            in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
             head=head)
 
     def list_asset_names(self, 
-        in_built_in_library=True, in_user_library=True,
+        in_built_in_asset_library=True, in_user_asset_library=True,
         in_built_in_score_packages=True, in_user_score_packages=True, head=None):
         '''List asset names.
 
@@ -155,7 +155,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         ::
 
             >>> for x in wrangler.list_asset_names(
-            ...     in_user_library=False, in_user_score_packages=False):
+            ...     in_user_asset_library=False, in_user_score_packages=False):
             ...     x
             'articulation handler material package maker'
             'dynamic handler material package maker'
@@ -170,14 +170,14 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         Return list.
         '''
         return super(MaterialPackageMakerWrangler, self).list_asset_names(
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
+            in_built_in_asset_library=in_built_in_asset_library,
+            in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
             head=head)
 
     def list_asset_packagesystem_paths(self, 
-        in_built_in_library=True, in_user_library=True,
+        in_built_in_asset_library=True, in_user_asset_library=True,
         in_built_in_score_packages=True, in_user_score_packages=True, head=None):
         '''List asset packagesystem_paths.
 
@@ -186,7 +186,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         ::
 
             >>> for x in wrangler.list_asset_packagesystem_paths(
-            ...     in_user_library=False, in_user_score_packages=False):
+            ...     in_user_asset_library=False, in_user_score_packages=False):
             ...     x
             'experimental.tools.scoremanagertools.materialpackagemakers.ArticulationHandlerMaterialPackageMaker'
             'experimental.tools.scoremanagertools.materialpackagemakers.DynamicHandlerMaterialPackageMaker'
@@ -201,14 +201,14 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         Return list.
         '''
         return super(MaterialPackageMakerWrangler, self).list_asset_packagesystem_paths(
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
+            in_built_in_asset_library=in_built_in_asset_library,
+            in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
             head=head)
 
     def list_asset_proxies(self, 
-        in_built_in_library=True, in_user_library=True,
+        in_built_in_asset_library=True, in_user_asset_library=True,
         in_built_in_score_packages=True, in_user_score_packages=True, head=None):
         '''List asset proxies.
 
@@ -217,7 +217,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         ::
 
             >>> for x in wrangler.list_asset_proxies(
-            ...     in_user_library=False, in_user_score_packages=False):
+            ...     in_user_asset_library=False, in_user_score_packages=False):
             ...     x
             MaterialPackageProxy('.../tools/scoremanagertools/materialpackagemakers/ArticulationHandlerMaterialPackageMaker')
             MaterialPackageProxy('.../tools/scoremanagertools/materialpackagemakers/DynamicHandlerMaterialPackageMaker')
@@ -232,14 +232,14 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         Return list.
         '''
         return super(MaterialPackageMakerWrangler, self).list_asset_proxies(
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
+            in_built_in_asset_library=in_built_in_asset_library,
+            in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
             head=head)
 
     def list_storehouse_filesystem_paths(self,
-        in_built_in_library=True, in_user_library=True,
+        in_built_in_asset_library=True, in_user_asset_library=True,
         in_built_in_score_packages=True, in_user_score_packages=True, head=None):
         '''List storehouse filesystem paths.
 
@@ -248,15 +248,15 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         ::
 
             >>> for x in wrangler.list_storehouse_filesystem_paths(
-            ...     in_user_library=False, in_user_score_packages=False):
+            ...     in_user_asset_library=False, in_user_score_packages=False):
             ...     x
             '.../tools/scoremanagertools/materialpackagemakers'
 
         Return list.
         '''
         return super(MaterialPackageMakerWrangler, self).list_storehouse_filesystem_paths(
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
+            in_built_in_asset_library=in_built_in_asset_library,
+            in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
             head=head)

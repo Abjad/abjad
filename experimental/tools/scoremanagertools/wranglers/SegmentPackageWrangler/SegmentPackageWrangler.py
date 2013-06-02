@@ -77,7 +77,7 @@ class SegmentPackageWrangler(PackageWrangler):
     ### PUBLIC METHODS ###
 
     def list_asset_filesystem_paths(self,
-        in_built_in_library=True, in_user_library=True,
+        in_built_in_asset_library=True, in_user_asset_library=True,
         in_built_in_score_packages=True, in_user_score_packages=True, head=None):
         '''List asset filesystem paths.
 
@@ -86,7 +86,7 @@ class SegmentPackageWrangler(PackageWrangler):
         ::
 
             >>> for x in wrangler.list_asset_filesystem_paths(
-            ...     in_user_library=False, in_user_score_packages=False):
+            ...     in_user_asset_library=False, in_user_score_packages=False):
             ...     x
             '.../tools/scoremanagertools/scorepackages/blue_example_score/music/segments/segment_01.py'
             '.../tools/scoremanagertools/scorepackages/blue_example_score/music/segments/segment_02.py'
@@ -97,14 +97,14 @@ class SegmentPackageWrangler(PackageWrangler):
         Return list.
         '''
         return super(SegmentPackageWrangler, self).list_asset_filesystem_paths(
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
+            in_built_in_asset_library=in_built_in_asset_library,
+            in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
             head=head)
 
     def list_asset_names(self,
-        in_built_in_library=True, in_user_library=True,
+        in_built_in_asset_library=True, in_user_asset_library=True,
         in_built_in_score_packages=True, in_user_score_packages=True, head=None):
         '''List asset names.
 
@@ -113,7 +113,7 @@ class SegmentPackageWrangler(PackageWrangler):
         ::
 
             >>> for x in wrangler.list_asset_names(
-            ...     in_user_library=False, in_user_score_packages=False):
+            ...     in_user_asset_library=False, in_user_score_packages=False):
             ...     x
             'segment 01'
             'segment 02'
@@ -133,14 +133,14 @@ class SegmentPackageWrangler(PackageWrangler):
         Return list.
         '''
         return super(SegmentPackageWrangler, self).list_asset_names(
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
+            in_built_in_asset_library=in_built_in_asset_library,
+            in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
             head=head)
 
     def list_asset_packagesystem_paths(self,
-        in_built_in_library=True, in_user_library=True,
+        in_built_in_asset_library=True, in_user_asset_library=True,
         in_built_in_score_packages=True, in_user_score_packages=True, head=None):
         '''List asset packagesystem paths.
 
@@ -149,7 +149,7 @@ class SegmentPackageWrangler(PackageWrangler):
         ::
 
             >>> for x in wrangler.list_asset_packagesystem_paths(
-            ...     in_user_library=False, in_user_score_packages=False):
+            ...     in_user_asset_library=False, in_user_score_packages=False):
             ...     x
             'experimental.tools.scoremanagertools.scorepackages.blue_example_score.music.segments.segment_01'
             'experimental.tools.scoremanagertools.scorepackages.blue_example_score.music.segments.segment_02'
@@ -160,14 +160,14 @@ class SegmentPackageWrangler(PackageWrangler):
         Return list.
         '''
         return super(SegmentPackageWrangler, self).list_asset_packagesystem_paths(
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
+            in_built_in_asset_library=in_built_in_asset_library,
+            in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
             head=head)
 
     def list_asset_proxies(self,
-        in_built_in_library=True, in_user_library=True,
+        in_built_in_asset_library=True, in_user_asset_library=True,
         in_built_in_score_packages=True, in_user_score_packages=True, head=None):
         '''List asset proxies.
 
@@ -176,7 +176,7 @@ class SegmentPackageWrangler(PackageWrangler):
         ::
 
             >>> for x in wrangler.list_asset_proxies(
-            ...     in_user_library=False, in_user_score_packages=False):
+            ...     in_user_asset_library=False, in_user_score_packages=False):
             ...     x
             SegmentPackageProxy('.../tools/scoremanagertools/scorepackages/blue_example_score/music/segments/segment_01')
             SegmentPackageProxy('.../tools/scoremanagertools/scorepackages/blue_example_score/music/segments/segment_02')
@@ -196,14 +196,14 @@ class SegmentPackageWrangler(PackageWrangler):
         Return list.
         '''
         return super(SegmentPackageWrangler, self).list_asset_proxies(
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
+            in_built_in_asset_library=in_built_in_asset_library,
+            in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
             head=head)
 
     def list_storehouse_filesystem_paths(self,
-        in_built_in_library=True, in_user_library=True,
+        in_built_in_asset_library=True, in_user_asset_library=True,
         in_built_in_score_packages=True, in_user_score_packages=True, head=None):
         '''List storehouse filesystem paths.
 
@@ -212,7 +212,7 @@ class SegmentPackageWrangler(PackageWrangler):
         ::
 
             >>> for x in wrangler.list_storehouse_filesystem_paths(
-            ...     in_user_library=False, in_user_score_packages=False):
+            ...     in_user_asset_library=False, in_user_score_packages=False):
             ...     x
             '.../tools/scoremanagertools/scorepackages/blue_example_score/music/segments'
             '.../tools/scoremanagertools/scorepackages/green_example_score/music/segments'
@@ -221,8 +221,8 @@ class SegmentPackageWrangler(PackageWrangler):
         Return list.
         '''
         return super(SegmentPackageWrangler, self).list_storehouse_filesystem_paths(
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
+            in_built_in_asset_library=in_built_in_asset_library,
+            in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
             head=head)

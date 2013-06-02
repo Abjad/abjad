@@ -61,7 +61,7 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
     def _list_built_in_external_storehouse_packagesystem_path(self, head=None):
         result = []
         for filesystem_path in self.list_storehouse_filesystem_paths(
-            in_built_in_score_packages=False, in_user_library=False, in_user_score_packages=False, head=head):
+            in_built_in_score_packages=False, in_user_asset_library=False, in_user_score_packages=False, head=head):
             packagesystem_path = self.configuration.filesystem_path_to_packagesystem_path(filesystem_path)
             result.append(packagesystem_path)
         return result
@@ -69,7 +69,7 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
     def _list_score_storehouse_package_paths(self, head=None):
         result = []
         for filesystem_path in self.list_storehouse_filesystem_paths(
-            in_built_in_library=False, in_user_library=False, head=head):
+            in_built_in_asset_library=False, in_user_asset_library=False, head=head):
             packagesystem_path = self.configuration.filesystem_path_to_packagesystem_path(filesystem_path)
             result.append(packagesystem_path)
         return result
@@ -89,12 +89,12 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
     ### PUBLIC METHODS ###
 
     def list_asset_packagesystem_paths(self, 
-        in_built_in_library=True, in_user_library=True,
+        in_built_in_asset_library=True, in_user_asset_library=True,
         in_built_in_score_packages=True, in_user_score_packages=True, head=None):
         result = []
         for filesystem_path in self.list_asset_filesystem_paths(
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
+            in_built_in_asset_library=in_built_in_asset_library,
+            in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
             head=head):
@@ -102,12 +102,12 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
             result.append(packagesystem_path)
         return result
 
-    def list_asset_proxies(self, in_built_in_library=True, in_user_library=True,
+    def list_asset_proxies(self, in_built_in_asset_library=True, in_user_asset_library=True,
         in_built_in_score_packages=True, in_user_score_packages=True, head=None):
         result = []
         for package_path in self.list_asset_packagesystem_paths(
-            in_built_in_library=in_built_in_library,
-            in_user_library=in_user_library,
+            in_built_in_asset_library=in_built_in_asset_library,
+            in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
             head=head):
@@ -122,7 +122,7 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
                 result.append(asset_proxy.package_path)
         else:
             for asset_proxy in self.list_asset_proxies(
-                in_built_in_library=True, in_user_library=True,
+                in_built_in_asset_library=True, in_user_asset_library=True,
                 in_built_in_score_packages=True, in_user_score_packages=True, head=head):
                 result.append(asset_proxy.package_path)
         return result
