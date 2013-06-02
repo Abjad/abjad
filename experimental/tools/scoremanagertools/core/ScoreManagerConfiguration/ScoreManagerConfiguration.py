@@ -22,7 +22,7 @@ class ScoreManagerConfiguration(Configuration):
     def __init__(self):
         Configuration.__init__(self)
 
-        # score manager tools paths
+        # score manager tools
 
         self.score_manager_tools_directory_path = os.path.join(
             self.abjad_configuration.abjad_experimental_directory_path,
@@ -35,34 +35,96 @@ class ScoreManagerConfiguration(Configuration):
             'scoremanagertools',
             ])
 
-        # built-in storehouse paths
+        # built-in asset library directory paths
 
         self.built_in_editors_directory_path = os.path.join(
             self.score_manager_tools_directory_path, 
             'editors',
             )
-        self.built_in_editors_package_path = '.'.join([
-            self.score_manager_tools_package_path,
-            'editors',
-            ])
-
         self.built_in_material_package_makers_directory_path = os.path.join(
             self.score_manager_tools_directory_path, 
             'materialpackagemakers',
             )
-        self.built_in_material_package_makers_package_path = '.'.join([
-            self.score_manager_tools_package_path, 
-            'materialpackagemakers',
-            ])
-
         self.built_in_material_packages_directory_path = os.path.join(
             self.score_manager_tools_directory_path, 
             'materialpackages',
             )
+        self.built_in_specifiers_directory_path = os.path.join(
+            self.score_manager_tools_directory_path, 
+            'specifiers',
+            )
+        self.built_in_stylesheets_directory_path = os.path.join(
+            self.score_manager_tools_directory_path, 
+            'stylesheets',
+            )
+
+        # built-in asset library package paths
+
+        self.built_in_editors_package_path = '.'.join([
+            self.score_manager_tools_package_path,
+            'editors',
+            ])
+        self.built_in_material_package_makers_package_path = '.'.join([
+            self.score_manager_tools_package_path, 
+            'materialpackagemakers',
+            ])
         self.built_in_material_packages_package_path = '.'.join([
             self.score_manager_tools_package_path, 
             'materialpackages',
             ])
+        self.built_in_specifiers_package_path = '.'.join([
+            self.score_manager_tools_package_path,
+            'specifiers',
+            ])
+
+        # user asset library directory paths
+
+        self.user_asset_library_directory_path = \
+            os.path.normpath(os.path.expanduser(
+            self._settings['user_asset_library_directory_path']
+            ))
+        self.user_external_editors_directory_path = os.path.join(
+            self.user_asset_library_directory_path, 
+            'editors',
+            )
+        self.user_external_material_package_makers_directory_path = os.path.join(
+            self.user_asset_library_directory_path,
+            'material_package_makers',
+            )
+        self.user_external_material_packages_directory_path = os.path.join(
+            self.user_asset_library_directory_path, 
+            'material_packages',
+            )
+        self.user_external_specifiers_directory_path = os.path.join(
+            self.user_asset_library_directory_path, 
+            'specifiers',
+            )
+        self.user_external_stylesheets_directory_path = os.path.join(
+            self.user_asset_library_directory_path,
+            'stylesheets',
+            )
+
+        # user asset library package paths
+
+        self.user_asset_library_package_path = 'score_manager_asset_library'
+        self.user_external_editors_package_path = '.'.join([
+            self.user_asset_library_package_path, 
+            'editors',
+            ])
+        self.user_external_material_package_makers_package_path = '.'.join([
+            self.user_asset_library_package_path,
+            'material_package_makers',
+            ])
+        self.user_external_material_packages_package_path = '.'.join([
+            self.user_asset_library_package_path, 
+            'material_packages',
+            ])
+        self.user_external_specifiers_package_path = '.'.join([
+            self.user_asset_library_package_path, 
+            'specifiers',
+            ])
+
+        # built-in score packages
 
         self.built_in_score_packages_directory_path = os.path.join(
             self.score_manager_tools_directory_path, 
@@ -73,72 +135,7 @@ class ScoreManagerConfiguration(Configuration):
             'scorepackages',
             ])
 
-        self.built_in_specifiers_directory_path = os.path.join(
-            self.score_manager_tools_directory_path, 
-            'specifiers',
-            )
-        self.built_in_specifiers_package_path = '.'.join([
-            self.score_manager_tools_package_path,
-            'specifiers',
-            ])
-
-        self.built_in_stylesheets_directory_path = os.path.join(
-            self.score_manager_tools_directory_path, 
-            'stylesheets',
-            )
-
-        # user storehouse paths
-
-        self.user_asset_library_directory_path = \
-            os.path.normpath(os.path.expanduser(
-            self._settings['user_asset_library_directory_path']
-            ))
-        #self.user_asset_library_package_path = \
-        #    self._settings['user_asset_library_package_path']
-        self.user_asset_library_package_path = 'score_manager_asset_library'
-
-        self.user_external_editors_directory_path = os.path.join(
-            self.user_asset_library_directory_path, 
-            'editors',
-            )
-        self.user_external_editors_package_path = '.'.join([
-            self.user_asset_library_package_path, 
-            'editors',
-            ])
-
-        self.user_external_material_package_makers_directory_path = os.path.join(
-            self.user_asset_library_directory_path,
-            'material_package_makers',
-            )
-        self.user_external_material_package_makers_package_path = '.'.join([
-            self.user_asset_library_package_path,
-            'material_package_makers',
-            ])
-
-        self.user_external_material_packages_directory_path = os.path.join(
-            self.user_asset_library_directory_path, 
-            'material_packages',
-            )
-        self.user_external_material_packages_package_path = '.'.join([
-            self.user_asset_library_package_path, 
-            'material_packages',
-            ])
-
-        self.user_external_specifiers_directory_path = os.path.join(
-            self.user_asset_library_directory_path, 
-            'specifiers',
-            )
-        self.user_external_specifiers_package_path = '.'.join([
-            self.user_asset_library_package_path, 
-            'specifiers',
-            ])
-
-        self.user_external_stylesheets_directory_path = os.path.join(
-            self.user_asset_library_directory_path,
-            'stylesheets',
-            )
-
-        # user score storehouse paths
+        # user score packages
 
         self.user_score_packages_directory_path = \
             os.path.normpath(os.path.expanduser(
