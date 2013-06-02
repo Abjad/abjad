@@ -32,10 +32,10 @@ class ScorePackageWrangler(PackageWrangler):
 
     storehouse_path_infix_parts = None
 
-    user_external_storehouse_filesystem_path = \
+    user_asset_library_storehouse_filesystem_path = \
         PackageWrangler.configuration.user_score_packages_directory_path
 
-    user_external_storehouse_packagesystem_path = \
+    user_asset_library_storehouse_packagesystem_path = \
         PackageWrangler.configuration.user_score_packages_package_path
 
     ### READ-ONLY PRIVATE PROPERTIES ###

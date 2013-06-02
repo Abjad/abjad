@@ -20,7 +20,7 @@ class StylesheetFileWrangler(FileWrangler):
 
     storehouse_path_infix_parts = ('music', 'stylesheets')
 
-    user_external_storehouse_filesystem_path = FileWrangler.configuration.user_external_stylesheets_directory_path
+    user_asset_library_storehouse_filesystem_path = FileWrangler.configuration.user_asset_library_stylesheets_directory_path
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 

@@ -10,11 +10,11 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
         built_in_external_storehouse_filesystem_path = \
             self.configuration.packagesystem_path_to_filesystem_path(
                 self.built_in_external_storehouse_packagesystem_path)
-        user_external_storehouse_filesystem_path = \
+        user_asset_library_storehouse_filesystem_path = \
             self.configuration.packagesystem_path_to_filesystem_path(
-            self.user_external_storehouse_packagesystem_path)
+            self.user_asset_library_storehouse_packagesystem_path)
         self.built_in_external_storehouse_filesystem_path = built_in_external_storehouse_filesystem_path
-        self.user_external_storehouse_filesystem_path = user_external_storehouse_filesystem_path
+        self.user_asset_library_storehouse_filesystem_path = user_asset_library_storehouse_filesystem_path
         FilesystemAssetWrangler.__init__(self, session=session)
 
     ### SPECIAL METHODS ###

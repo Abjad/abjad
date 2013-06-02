@@ -34,8 +34,8 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         if isinstance(expr, type(self)):
             if self.built_in_external_storehouse_filesystem_path == \
                 expr.built_in_external_storehouse_filesystem_path:
-                if self.user_external_storehouse_filesystem_path == \
-                    expr.user_external_storehouse_filesystem_path:
+                if self.user_asset_library_storehouse_filesystem_path == \
+                    expr.user_asset_library_storehouse_filesystem_path:
                         return True
         return False
 
@@ -111,7 +111,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def _make_user_storehouse_menu_tokens(self):
         from experimental.tools import scoremanagertools
         keys, bodies = [], [] 
-        keys.append(self.user_external_storehouse_filesystem_path)
+        keys.append(self.user_asset_library_storehouse_filesystem_path)
         bodies.append('My {}'.format(self._breadcrumb))
         wrangler = scoremanagertools.wranglers.ScorePackageWrangler(session=self._session)
         for proxy in wrangler.list_asset_proxies(
@@ -214,14 +214,14 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                 if self.built_in_external_storehouse_filesystem_path.startswith(
                     filesystem_path):
                     result.append(self.built_in_external_storehouse_filesystem_path)
-        if in_user_asset_library and self.user_external_storehouse_filesystem_path is not None:
+        if in_user_asset_library and self.user_asset_library_storehouse_filesystem_path is not None:
             if head is None:
-                result.append(self.user_external_storehouse_filesystem_path)
+                result.append(self.user_asset_library_storehouse_filesystem_path)
             else:
                 filesystem_path = self.configuration.packagesystem_path_to_filesystem_path(head)
-                if self.user_external_storehouse_filesystem_path.startswith(
+                if self.user_asset_library_storehouse_filesystem_path.startswith(
                     filesystem_path):
-                    result.append(self.user_external_storehouse_filesystem_path)
+                    result.append(self.user_asset_library_storehouse_filesystem_path)
         if in_built_in_score_packages and self.storehouse_path_infix_parts is not None:
             for score_directory_path in self.configuration.list_score_directory_paths(
                 built_in=True, head=head):

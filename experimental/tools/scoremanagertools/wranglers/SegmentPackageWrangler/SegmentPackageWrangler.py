@@ -21,7 +21,7 @@ class SegmentPackageWrangler(PackageWrangler):
 
     storehouse_path_infix_parts = ('music', 'segments')
 
-    user_external_storehouse_packagesystem_path = None
+    user_asset_library_storehouse_packagesystem_path = None
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 
