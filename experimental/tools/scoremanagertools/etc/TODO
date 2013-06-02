@@ -92,3 +92,8 @@
     This will name all token attributes.
     This will also make all attribute extraction methods explicit.
     This will also eliminate all numeric tuple field references.
+
+36. Make MaterialPackageMaker classes stop creating materials in tools.scoremanagertools.materialpackages.
+    Those classes should create materials in the user material packages global storehouse.
+    Or in user score packages. But no material packages should ever be created in the system
+    material packages storehouse.
