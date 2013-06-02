@@ -63,6 +63,9 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.show_mothballed_scores
    :noindex:
 
+.. automethod:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.write_cache
+   :noindex:
+
 Special methods
 ---------------
 

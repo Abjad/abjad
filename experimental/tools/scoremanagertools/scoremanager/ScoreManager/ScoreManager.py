@@ -95,12 +95,17 @@ class ScoreManager(ScoreManagerObject):
         hidden_section.append(('profile', 'profile packages'))
         hidden_section.append(('py.test', 'run py.test on all scores'))
         hidden_section.append(('svn', 'work with repository'))
+        hidden_section.append(('wc', 'write cache'))
         return menu
 
     def _make_score_selection_menu(self):
         menu, section = self._io.make_menu(where=self._where, is_numbered=True, is_keyed=False)
         if self._session.is_first_run:
-            section.tokens = self.start_menu_tokens
+            if hasattr(self, 'start_menu_tokens'):
+                section.tokens = self.start_menu_tokens
+            else:
+                self.write_cache()
+                section.tokens = self.score_package_wrangler._make_menu_tokens()
             self._session.is_first_run = False
         else:
             section.tokens = self.score_package_wrangler._make_menu_tokens()
@@ -155,16 +160,6 @@ class ScoreManager(ScoreManagerObject):
             self._session.pop_breadcrumb()
         self._session.pop_breadcrumb()
         self._session.restore_breadcrumbs(cache=cache)
-
-    def _write_cache(self):
-        cache_file_path = os.path.join(self.configuration.configuration_directory_path, 'cache.py')
-        cache_file_pointer = file(cache_file_path, 'w')
-        cache_file_pointer.write('start_menu_tokens = [\n')
-        tokens = self.score_package_wrangler._make_menu_tokens()
-        for token in tokens:
-            cache_file_pointer.write('{},\n'.format(token))
-        cache_file_pointer.write(']\n')
-        cache_file_pointer.close()
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -306,6 +301,16 @@ class ScoreManager(ScoreManagerObject):
     def show_mothballed_scores(self):
         self._session.show_mothballed_scores()
 
+    def write_cache(self):
+        cache_file_path = os.path.join(self.configuration.configuration_directory_path, 'cache.py')
+        cache_file_pointer = file(cache_file_path, 'w')
+        cache_file_pointer.write('start_menu_tokens = [\n')
+        tokens = self.score_package_wrangler._make_menu_tokens()
+        for token in tokens:
+            cache_file_pointer.write('{},\n'.format(token))
+        cache_file_pointer.write(']\n')
+        cache_file_pointer.close()
+
     ### UI MANIFEST ###
 
     user_input_to_action = {
@@ -319,4 +324,5 @@ class ScoreManager(ScoreManagerObject):
         'py.test':  run_py_test_on_all_user_scores,
         'svn':      manage_svn,
         'y':        manage_stylesheets,
+        'wc':       write_cache
         }

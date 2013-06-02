@@ -28,4 +28,5 @@ def test_ScoreManager_show_hidden_menu_entries_01():
          '     profile packages (profile)',
          '     run py.test on all scores (py.test)',
          '     work with repository (svn)',
+         '     write cache (wc)',
          '']
