@@ -115,8 +115,8 @@ class MaterialPackageMakerWrangler(PackageWrangler):
     ### PUBLIC METHODS ###
 
     def list_asset_filesystem_paths(self,
-        built_in_external=True, user_external=True,
-        built_in_score=True, user_score=True, head=None):
+        in_built_in_library=True, in_user_library=True,
+        in_built_in_score_packages=True, in_user_score_packages=True, head=None):
         '''List asset filesystem paths.
 
         Example. List built-in material package maker filesystem paths:
@@ -124,7 +124,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         ::
 
             >>> for x in wrangler.list_asset_filesystem_paths(
-            ...     user_external=False, user_score=False):
+            ...     in_user_library=False, in_user_score_packages=False):
             ...     x
             '.../tools/scoremanagertools/materialpackagemakers/ArticulationHandlerMaterialPackageMaker'
             '.../tools/scoremanagertools/materialpackagemakers/DynamicHandlerMaterialPackageMaker'
@@ -139,15 +139,15 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         Return list.
         '''
         return super(MaterialPackageMakerWrangler, self).list_asset_filesystem_paths(
-            built_in_external=built_in_external,
-            user_external=user_external,
-            built_in_score=built_in_score,
-            user_score=user_score,
+            in_built_in_library=in_built_in_library,
+            in_user_library=in_user_library,
+            in_built_in_score_packages=in_built_in_score_packages,
+            in_user_score_packages=in_user_score_packages,
             head=head)
 
     def list_asset_names(self, 
-        built_in_external=True, user_external=True,
-        built_in_score=True, user_score=True, head=None):
+        in_built_in_library=True, in_user_library=True,
+        in_built_in_score_packages=True, in_user_score_packages=True, head=None):
         '''List asset names.
 
         Example. List built-in material package maker names:
@@ -155,7 +155,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         ::
 
             >>> for x in wrangler.list_asset_names(
-            ...     user_external=False, user_score=False):
+            ...     in_user_library=False, in_user_score_packages=False):
             ...     x
             'articulation handler material package maker'
             'dynamic handler material package maker'
@@ -170,15 +170,15 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         Return list.
         '''
         return super(MaterialPackageMakerWrangler, self).list_asset_names(
-            built_in_external=built_in_external,
-            user_external=user_external,
-            built_in_score=built_in_score,
-            user_score=user_score,
+            in_built_in_library=in_built_in_library,
+            in_user_library=in_user_library,
+            in_built_in_score_packages=in_built_in_score_packages,
+            in_user_score_packages=in_user_score_packages,
             head=head)
 
     def list_asset_packagesystem_paths(self, 
-        built_in_external=True, user_external=True,
-        built_in_score=True, user_score=True, head=None):
+        in_built_in_library=True, in_user_library=True,
+        in_built_in_score_packages=True, in_user_score_packages=True, head=None):
         '''List asset packagesystem_paths.
 
         Example. List built-in material package maker package paths:
@@ -186,7 +186,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         ::
 
             >>> for x in wrangler.list_asset_packagesystem_paths(
-            ...     user_external=False, user_score=False):
+            ...     in_user_library=False, in_user_score_packages=False):
             ...     x
             'experimental.tools.scoremanagertools.materialpackagemakers.ArticulationHandlerMaterialPackageMaker'
             'experimental.tools.scoremanagertools.materialpackagemakers.DynamicHandlerMaterialPackageMaker'
@@ -201,15 +201,15 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         Return list.
         '''
         return super(MaterialPackageMakerWrangler, self).list_asset_packagesystem_paths(
-            built_in_external=built_in_external,
-            user_external=user_external,
-            built_in_score=built_in_score,
-            user_score=user_score,
+            in_built_in_library=in_built_in_library,
+            in_user_library=in_user_library,
+            in_built_in_score_packages=in_built_in_score_packages,
+            in_user_score_packages=in_user_score_packages,
             head=head)
 
     def list_asset_proxies(self, 
-        built_in_external=True, user_external=True,
-        built_in_score=True, user_score=True, head=None):
+        in_built_in_library=True, in_user_library=True,
+        in_built_in_score_packages=True, in_user_score_packages=True, head=None):
         '''List asset proxies.
 
         Example. List built-in material package maker proxies:
@@ -217,7 +217,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         ::
 
             >>> for x in wrangler.list_asset_proxies(
-            ...     user_external=False, user_score=False):
+            ...     in_user_library=False, in_user_score_packages=False):
             ...     x
             MaterialPackageProxy('.../tools/scoremanagertools/materialpackagemakers/ArticulationHandlerMaterialPackageMaker')
             MaterialPackageProxy('.../tools/scoremanagertools/materialpackagemakers/DynamicHandlerMaterialPackageMaker')
@@ -232,15 +232,15 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         Return list.
         '''
         return super(MaterialPackageMakerWrangler, self).list_asset_proxies(
-            built_in_external=built_in_external,
-            user_external=user_external,
-            built_in_score=built_in_score,
-            user_score=user_score,
+            in_built_in_library=in_built_in_library,
+            in_user_library=in_user_library,
+            in_built_in_score_packages=in_built_in_score_packages,
+            in_user_score_packages=in_user_score_packages,
             head=head)
 
     def list_storehouse_filesystem_paths(self,
-        built_in_external=True, user_external=True,
-        built_in_score=True, user_score=True, head=None):
+        in_built_in_library=True, in_user_library=True,
+        in_built_in_score_packages=True, in_user_score_packages=True, head=None):
         '''List storehouse filesystem paths.
 
         Example. List built-in material package maker storehouses:
@@ -248,17 +248,17 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         ::
 
             >>> for x in wrangler.list_storehouse_filesystem_paths(
-            ...     user_external=False, user_score=False):
+            ...     in_user_library=False, in_user_score_packages=False):
             ...     x
             '.../tools/scoremanagertools/materialpackagemakers'
 
         Return list.
         '''
         return super(MaterialPackageMakerWrangler, self).list_storehouse_filesystem_paths(
-            built_in_external=built_in_external,
-            user_external=user_external,
-            built_in_score=built_in_score,
-            user_score=user_score,
+            in_built_in_library=in_built_in_library,
+            in_user_library=in_user_library,
+            in_built_in_score_packages=in_built_in_score_packages,
+            in_user_score_packages=in_user_score_packages,
             head=head)
 
     # TODO: change to boilerplate
