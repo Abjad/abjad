@@ -87,10 +87,10 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.illustration_builder_module_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.illustration_builder_module_path
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.illustration_builder_module_proxy
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.illustration_builder_module_proxy
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.illustration_builder_packagesystem_path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.illustration_ly_file_name
@@ -135,10 +135,10 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.material_definition_module_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.material_definition_module_path
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.material_definition_module_proxy
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.material_definition_module_proxy
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.material_definition_packagesystem_path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.material_package_directory
@@ -237,7 +237,7 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.user_input_module_file_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.user_input_module_path
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.user_input_module_packagesystem_path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.MaterialPackageProxy.MaterialPackageProxy.MaterialPackageProxy.user_input_module_proxy

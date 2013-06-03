@@ -113,30 +113,17 @@ class OutputMaterialModuleProxy(BasicModuleProxy):
         return super(OutputMaterialModuleProxy, self).module_name
 
     @property
-    def module_path(self):
+    def packagesystem_path(self):
         '''Output material module proxy module path:
 
         ::
 
-            >>> proxy.module_path
+            >>> proxy.packagesystem_path
             'experimental.tools.scoremanagertools.materialpackages.red_numbers.output_material'
 
         Return string.
         '''
-        return super(OutputMaterialModuleProxy, self).module_path
-
-    @property
-    def package_path(self):
-        '''Output material package proxy package path:
-
-        ::
-
-            >>> proxy.package_path
-            'experimental.tools.scoremanagertools.materialpackages.red_numbers.output_material'
-
-        Return string.
-        '''
-        return super(OutputMaterialModuleProxy, self).package_path
+        return super(OutputMaterialModuleProxy, self).packagesystem_path
 
     ### PUBLIC METHODS ###
 

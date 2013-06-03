@@ -10,9 +10,9 @@ class ModuleProxy(ParsableFileProxy):
 
     def __init__(self, packagesystem_path=None, session=None):
         assert packagesystem_path is None or os.path.sep not in packagesystem_path, repr(packagesystem_path)
-        self._module_path = packagesystem_path
+        self._packagesystem_path = packagesystem_path
         filesystem_path = self.configuration.packagesystem_path_to_filesystem_path(
-            self.module_path, is_module=True)
+            self.packagesystem_path, is_module=True)
         ParsableFileProxy.__init__(self, filesystem_path=filesystem_path, session=session)
 
     ### CLASS VARIABLES ###
@@ -41,33 +41,28 @@ class ModuleProxy(ParsableFileProxy):
 
     @property
     def filesystem_directory_name(self):
-        if self.module_path:
+        if self.packagesystem_path:
             return self.configuration.packagesystem_path_to_filesystem_path(
                 self.parent_package_path)
 
     @property
     def module_name(self):
-        if self.module_path:
-            return self.module_path.split('.')[-1]
-
-    # TODO: remove and use only self.package_path instead
-    @property
-    def module_path(self):
-        return self._module_path
+        if self.packagesystem_path:
+            return self.packagesystem_path.split('.')[-1]
 
     @property
-    def package_path(self):
-        return self.module_path
+    def packagesystem_path(self):
+        return self._packagesystem_path
 
     @property
     def parent_package_initializer_file_name(self):
-        if self.module_path:
+        if self.packagesystem_path:
             return os.path.join(self.filesystem_directory_name, '__init__.py')
 
     @property
     def parent_package_path(self):
-        if self.module_path:
-            return '.'.join(self.module_path.split('.')[:-1])
+        if self.packagesystem_path:
+            return '.'.join(self.packagesystem_path.split('.')[:-1])
 
     ### PUBLIC METHODS ###
 
@@ -105,4 +100,4 @@ class ModuleProxy(ParsableFileProxy):
 
     # TODO: remove entirely
     def unimport(self):
-        self.remove_package_path_from_sys_modules(self.module_path)
+        self.remove_package_path_from_sys_modules(self.packagesystem_path)

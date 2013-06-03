@@ -30,10 +30,7 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.module_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.module_path
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.package_path
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.packagesystem_path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.BasicModuleProxy.BasicModuleProxy.BasicModuleProxy.parent_package_initializer_file_name

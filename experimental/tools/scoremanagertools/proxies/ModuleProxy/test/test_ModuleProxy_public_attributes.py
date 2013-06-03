@@ -14,7 +14,7 @@ def test_ModuleProxy_public_attributes_01():
     assert proxy._generic_class_name == 'module'
     assert proxy._space_delimited_lowercase_name is None
     assert not proxy.is_versioned()
-    assert proxy.module_path is None
+    assert proxy.packagesystem_path is None
     assert proxy.module_name is None
     assert proxy.filesystem_directory_name is None
     assert proxy.filesystem_directory_name is None
@@ -42,7 +42,7 @@ def test_ModuleProxy_public_attributes_02():
     assert proxy._generic_class_name == 'module'
     assert proxy._space_delimited_lowercase_name == 'material definition'
     assert proxy.is_versioned()
-    assert proxy.module_path == packagesystem_path
+    assert proxy.packagesystem_path == packagesystem_path
     assert proxy.module_name == 'material_definition'
     assert proxy.filesystem_directory_name == os.path.join(
         proxy.configuration.built_in_material_packages_directory_path, 'red_notes')

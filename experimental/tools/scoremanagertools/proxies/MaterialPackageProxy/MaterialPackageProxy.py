@@ -276,7 +276,7 @@ class MaterialPackageProxy(PackageProxy):
             return os.path.join(self.filesystem_path, 'illustration_builder.py')
 
     @property
-    def illustration_builder_module_path(self):
+    def illustration_builder_packagesystem_path(self):
         if self.should_have_illustration_builder_module:
             return '.'.join([self.package_path, 'illustration_builder'])
 
@@ -287,7 +287,7 @@ class MaterialPackageProxy(PackageProxy):
             if not self.has_illustration_builder_module:
                 file(self.illustration_builder_module_file_name, 'w').write('')
             return scoremanagertools.proxies.IllustrationBuilderModuleProxy(
-                self.illustration_builder_module_path, session=self._session)
+                self.illustration_builder_packagesystem_path, session=self._session)
 
     @property
     def illustration_ly_file_name(self):
@@ -360,7 +360,7 @@ class MaterialPackageProxy(PackageProxy):
             return os.path.join(self.filesystem_path, 'material_definition.py')
 
     @property
-    def material_definition_module_path(self):
+    def material_definition_packagesystem_path(self):
         if self.should_have_material_definition_module:
             return '.'.join([self.package_path, 'material_definition'])
 
@@ -369,7 +369,7 @@ class MaterialPackageProxy(PackageProxy):
         from experimental.tools import scoremanagertools
         if self.should_have_material_definition_module:
             return scoremanagertools.proxies.MaterialDefinitionModuleProxy(
-                self.material_definition_module_path, session=self._session)
+                self.material_definition_packagesystem_path, session=self._session)
 
     @property
     def material_package_directory(self):
@@ -507,7 +507,7 @@ class MaterialPackageProxy(PackageProxy):
             return os.path.join(self.filesystem_path, 'user_input.py')
 
     @property
-    def user_input_module_path(self):
+    def user_input_module_packagesystem_path(self):
         if self.should_have_user_input_module:
             return '.'.join([self.package_path, 'user_input'])
 
@@ -518,7 +518,7 @@ class MaterialPackageProxy(PackageProxy):
             if not self.has_user_input_module:
                 file(self.user_input_module_file_name, 'w').write('')
             return scoremanagertools.proxies.UserInputModuleProxy(
-                self.user_input_module_path, session=self._session)
+                self.user_input_module_packagesystem_path, session=self._session)
 
     ### PUBLIC METHODS ###
 

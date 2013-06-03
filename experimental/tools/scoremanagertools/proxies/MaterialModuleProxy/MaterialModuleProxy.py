@@ -7,7 +7,7 @@ class MaterialModuleProxy(ModuleProxy):
 
     @property
     def material_package_name(self):
-        return self.module_path.split('.')[-2]
+        return self.packagesystem_path.split('.')[-2]
 
     @property
     def material_package_path(self):
