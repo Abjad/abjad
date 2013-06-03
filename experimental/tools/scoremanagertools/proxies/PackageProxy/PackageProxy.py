@@ -131,9 +131,8 @@ class PackageProxy(DirectoryProxy):
             tags_file = open(self.tags_file_name, 'w')
             tags_file.write('')
             tags_file.close()
-        if True:
-            return scoremanagertools.proxies.InitializerFileProxy(
-                self.tags_file_name, session=self._session)
+        return scoremanagertools.proxies.TagsFileProxy(
+            self.tags_file_name, session=self._session)
 
     ### PUBLIC METHODS ###
 

@@ -4,14 +4,14 @@ from experimental.tools.scoremanagertools.proxies.ParsableFileProxy import Parsa
 #from experimental.tools.scoremanagertools.proxies.ModuleProxy import ModuleProxy
 
 
-# TODO: maybe rewire to inherit from ModuleProxy?
+# TODO: rewire to inherit from ModuleProxy
 class InitializerFileProxy(ParsableFileProxy):
 #class InitializerFileProxy(ModuleProxy):
 
     ### INITIALIZER ###
 
     def __init__(self, filesystem_path=None, session=None):
-        #assert 'tags' in filesystem_path, repr(filesystem_path)
+        assert 'tags' not in filesystem_path, repr(filesystem_path)
         ParsableFileProxy.__init__(self, filesystem_path=filesystem_path, session=session)
         #packagesystem_path = self.configuration.filesystem_path_to_packagesystem_path(
         #    filesystem_path)
