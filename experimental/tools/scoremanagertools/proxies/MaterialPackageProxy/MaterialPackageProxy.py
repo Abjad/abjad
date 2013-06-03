@@ -69,7 +69,12 @@ class MaterialPackageProxy(PackageProxy):
         if self.has_output_material:
             if self.should_have_illustration:
                 if not self.has_illustration_builder_module:
-                    self.illustration_builder_module_proxy.write_stub_to_disk(prompt=False)
+                    material_package_path = self.package_path
+                    material_package_name = material_package_path.split('.')[-1]
+                    self.illustration_builder_module_proxy.write_stub_to_disk(
+                        material_package_path,
+                        material_package_name,
+                        prompt=False)
                 section.append(('ibe', 'illustration builder - edit'))
                 if self.has_output_material:
                     section.append(('ibx', 'illustration builder - execute'))

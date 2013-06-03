@@ -1,8 +1,8 @@
 from abjad.tools import markuptools
-from experimental.tools.scoremanagertools.proxies.MaterialModuleProxy import MaterialModuleProxy
+from experimental.tools.scoremanagertools.proxies.ModuleProxy import ModuleProxy
 
 
-class IllustrationBuilderModuleProxy(MaterialModuleProxy):
+class IllustrationBuilderModuleProxy(ModuleProxy):
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -30,15 +30,18 @@ class IllustrationBuilderModuleProxy(MaterialModuleProxy):
         illustration.header_block.title = markuptools.Markup(self.space_delimited_material_package_name)
         return illustration
 
-    def write_stub_to_disk(self, prompt=True):
-        self.clear()
-        self.setup_statements.append('from abjad import *\n')
+    def write_stub_to_disk(self, material_package_path, material_package_name, prompt=True):
+        lines = []
+        lines.append('from abjad import *\n')
         line = 'from {}.output_material import {}\n'.format(
-            self.material_package_path, self.material_package_name)
-        self.setup_statements.append(line)
+            material_package_path, material_package_name)
+        lines.append(line)
+        lines.append('\n')
+        lines.append('\n')
         line = 'score, treble_staff, bass_staff = scoretools.make_piano_score_from_leaves({})\n'
-        line = line.format(self.material_package_name)
-        self.body_lines.append(line)
-        self.body_lines.append('illustration = lilypondfiletools.make_basic_lilypond_file(score)\n')
-        self.write_to_disk()
+        line = line.format(material_package_name)
+        lines.append('illustration = lilypondfiletools.make_basic_lilypond_file(score)\n')
+        file_pointer = file(self.filesystem_path, 'w')
+        file_pointer.write(''.join(lines))
+        file_pointer.close()
         self._io.proceed('stub illustration builder written to disk.', is_interactive=prompt)
