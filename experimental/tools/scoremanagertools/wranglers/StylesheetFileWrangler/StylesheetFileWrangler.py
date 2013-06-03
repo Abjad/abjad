@@ -219,12 +219,14 @@ class StylesheetFileWrangler(FileWrangler):
 
     def make_asset_interactively(self):
         from experimental.tools import scoremanagertools
-
         with self.backtracking:
-            storehouse_path = self.select_asset_storehouse_filesystem_path_in_user_asset_library_interactively()
+            storehouse_path = self.select_asset_storehouse_filesystem_path_interactively(
+                in_built_in_asset_library=False,
+                in_user_asset_library=True,
+                in_built_in_score_packages=False,
+                in_user_score_packages=False)
         if self._session.backtrack():
             return
-
         getter = self._io.make_getter(where=self._where)
         getter.append_string('stylesheet name')
         stylesheet_file_name = getter._run()

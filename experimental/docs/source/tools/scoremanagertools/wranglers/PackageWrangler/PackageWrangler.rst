@@ -63,7 +63,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.select_asset_packagesystem_path_interactively
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.select_asset_storehouse_filesystem_path_in_user_asset_library_interactively
+.. automethod:: experimental.tools.scoremanagertools.wranglers.PackageWrangler.PackageWrangler.PackageWrangler.select_asset_storehouse_filesystem_path_interactively
    :noindex:
 
 Special methods

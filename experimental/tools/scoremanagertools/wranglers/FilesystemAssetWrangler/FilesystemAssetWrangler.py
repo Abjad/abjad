@@ -79,9 +79,11 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                 return True
         return False
 
-    def _make_asset_selection_breadcrumb(self, infinitival_phrase=None):
+    def _make_asset_selection_breadcrumb(self, infinitival_phrase=None, is_storehouse=False):
         if infinitival_phrase:
             return 'select {} {}:'.format(self.asset_proxy_class._generic_class_name, infinitival_phrase)
+        elif is_storehouse:
+            return 'select {} storehouse:'.format(self.asset_proxy_class._generic_class_name)
         else:
             return 'select {}:'.format(self.asset_proxy_class._generic_class_name)
 
@@ -101,17 +103,21 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         bodies = self.list_asset_names(head=head, include_extension=include_extension)
         return zip(keys, bodies)
 
-    def _make_menu_tokens_for_asset_storehouses_in_user_asset_library(self):
+    def _make_asset_storehouse_menu_tokens(self,
+        in_built_in_asset_library=True,
+        in_user_asset_library=True,
+        in_built_in_score_packages=True,
+        in_user_score_packages=True):
         from experimental.tools import scoremanagertools
         keys, bodies = [], [] 
         keys.append(self.asset_storehouse_filesystem_path_in_user_asset_library)
         bodies.append('My {}'.format(self._breadcrumb))
         wrangler = scoremanagertools.wranglers.ScorePackageWrangler(session=self._session)
         for proxy in wrangler.list_asset_proxies(
-            in_built_in_asset_library=False,
-            in_user_asset_library=True,
-            in_built_in_score_packages=False,
-            in_user_score_packages=False):
+            in_built_in_asset_library=in_built_in_asset_library,
+            in_user_asset_library=in_user_asset_library,
+            in_built_in_score_packages=in_built_in_score_packages,
+            in_user_score_packages=in_user_score_packages):
             bodies.append(proxy.title)
             path_parts = (proxy.filesystem_path,) + self.score_package_asset_storehouse_path_infix_parts
             key = os.path.join(*path_parts)
@@ -278,7 +284,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             )
         section.tokens = self._make_menu_tokens()
         while True:
-            breadcrumb = 'select {}'.format(self.asset_proxy_class._generic_class_name)
+            breadcrumb = self._make_asset_selection_breadcrumb()
             self._session.push_breadcrumb(breadcrumb)
             result = menu._run(clear=clear)
             if self._session.backtrack():
@@ -295,17 +301,25 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             result = os.path.join(self.asset_storehouse_filesystem_path_in_built_in_asset_library[0], result)
             return result
 
-    def select_asset_storehouse_filesystem_path_in_user_asset_library_interactively(self, 
-        clear=True, cache=False):
+    def select_asset_storehouse_filesystem_path_interactively(self, 
+        clear=True, cache=False,
+        in_built_in_asset_library=True,
+        in_user_asset_library=True,
+        in_built_in_score_packages=True,
+        in_user_score_packages=True):
         self._session.cache_breadcrumbs(cache=cache)
         menu, section = self._io.make_menu(
             where=self._where,
             is_parenthetically_numbered=True, 
             is_keyed=False,
             )
-        section.tokens = self._make_menu_tokens_for_asset_storehouses_in_user_asset_library()
+        section.tokens = self._make_asset_storehouse_menu_tokens(
+            in_built_in_asset_library=False,
+            in_user_asset_library=True,
+            in_built_in_score_packages=False,
+            in_user_score_packages=False)
         while True:
-            breadcrumb = 'select {} storehouse'.format(self.asset_proxy_class._generic_class_name)
+            breadcrumb = self._make_asset_selection_breadcrumb(is_storehouse=True)
             self._session.push_breadcrumb(breadcrumb)
             result = menu._run(clear=clear)
             if self._session.backtrack():
