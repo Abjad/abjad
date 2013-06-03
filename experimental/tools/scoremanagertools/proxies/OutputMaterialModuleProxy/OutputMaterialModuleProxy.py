@@ -100,17 +100,17 @@ class OutputMaterialModuleProxy(BasicModuleProxy):
         return super(OutputMaterialModuleProxy, self).material_package_path
 
     @property
-    def module_name(self):
+    def packagesystem_basename(self):
         '''Output material module proxy module name:
 
         ::
 
-            >>> proxy.module_name
+            >>> proxy.packagesystem_basename
             'output_material'
 
         Return string.
         '''
-        return super(OutputMaterialModuleProxy, self).module_name
+        return super(OutputMaterialModuleProxy, self).packagesystem_basename
 
     @property
     def packagesystem_path(self):

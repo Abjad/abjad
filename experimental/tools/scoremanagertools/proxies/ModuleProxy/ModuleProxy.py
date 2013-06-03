@@ -46,7 +46,7 @@ class ModuleProxy(ParsableFileProxy):
                 self.parent_package_path)
 
     @property
-    def module_name(self):
+    def packagesystem_basename(self):
         if self.packagesystem_path:
             return self.packagesystem_path.split('.')[-1]
 
