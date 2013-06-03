@@ -1,10 +1,11 @@
 import os
 import sys
 from abjad.tools import stringtools
+from experimental.tools.scoremanagertools.proxies.FileProxy import FileProxy
 from experimental.tools.scoremanagertools.proxies.ParsableFileProxy import ParsableFileProxy
 
 
-class ModuleProxy(ParsableFileProxy):
+class ModuleProxy(FileProxy, ParsableFileProxy):
 
     ### INITIALIZER ###
 
@@ -13,6 +14,7 @@ class ModuleProxy(ParsableFileProxy):
         self._packagesystem_path = packagesystem_path
         filesystem_path = self.configuration.packagesystem_path_to_filesystem_path(
             self.packagesystem_path, is_module=True)
+        FileProxy.__init__(self, filesystem_path=filesystem_path, session=session)
         ParsableFileProxy.__init__(self, filesystem_path=filesystem_path, session=session)
 
     ### CLASS VARIABLES ###
@@ -32,7 +34,9 @@ class ModuleProxy(ParsableFileProxy):
     ### PRIVATE METHODS ###
 
     def _space_delimited_lowercase_name_to_asset_name(self, space_delimited_lowercase_name):
-        asset_name = ParsableFileProxy._space_delimited_lowercase_name_to_asset_name(
+        #asset_name = ParsableFileProxy._space_delimited_lowercase_name_to_asset_name(
+        #    self, space_delimited_lowercase_name)
+        asset_name = FileProxy._space_delimited_lowercase_name_to_asset_name(
             self, space_delimited_lowercase_name)
         asset_name += '.py'
         return asset_name

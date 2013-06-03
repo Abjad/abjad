@@ -1,14 +1,16 @@
 import collections
 import os
+from experimental.tools.scoremanagertools.proxies.FileProxy import FileProxy
 from experimental.tools.scoremanagertools.proxies.ParsableFileProxy import ParsableFileProxy
 
 
-class TagsFileProxy(ParsableFileProxy):
+class TagsFileProxy(FileProxy, ParsableFileProxy):
 
     ### INITIALIZER ###
 
     def __init__(self, filesystem_path=None, session=None):
         assert 'tags' in filesystem_path, repr(filesystem_path)
+        FileProxy.__init__(self, filesystem_path=filesystem_path, session=session)
         ParsableFileProxy.__init__(self, filesystem_path=filesystem_path, session=session)
         self.tag_lines = []
         self.parse()

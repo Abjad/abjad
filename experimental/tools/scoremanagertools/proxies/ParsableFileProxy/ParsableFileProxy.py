@@ -1,12 +1,12 @@
-from experimental.tools.scoremanagertools.proxies.FileProxy import FileProxy
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class ParsableFileProxy(FileProxy):
+class ParsableFileProxy(AbjadObject):
 
     ### INITIALIZER ###
 
     def __init__(self, filesystem_path=None, session=None):
-        FileProxy.__init__(self, filesystem_path=filesystem_path, session=session)
+        AbjadObject.__init__(self)
         self.encoding_directives = []
         self.docstring_lines = []
         self.setup_statements = []
