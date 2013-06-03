@@ -15,6 +15,9 @@ class FileProxy(FilesystemAssetProxy):
     def interactively_edit(self):
         os.system('vi + {}'.format(self.filesystem_path))
 
+    def interactively_view(self):
+        os.system('vi -R {}'.format(self.filesystem_path))
+
     def make_empty_asset(self, is_interactive=False):
         if not self.exists():
             file_reference = file(self.filesystem_path, 'w')
@@ -30,9 +33,6 @@ class FileProxy(FilesystemAssetProxy):
                 result.extend(file_pointer.readlines())
                 file_pointer.close()
         return result
-
-    def view(self):
-        os.system('vi -R {}'.format(self.filesystem_path))
 
     ### UI MANIFEST ###
 

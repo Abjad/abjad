@@ -253,7 +253,7 @@ class PackageProxy(DirectoryProxy):
     def run_first_time(self, **kwargs):
         self._run(**kwargs)
 
-    def view_initializer(self):
+    def interactively_view_initializer(self):
         self.initializer_file_proxy.view()
 
     def write_initializer_stub_file_to_disk(self):
@@ -266,6 +266,6 @@ class PackageProxy(DirectoryProxy):
         'incanned': interactively_write_initializer_boilerplate,
         'inr': interactively_restore_initializer,
         'instub': write_initializer_stub_file_to_disk,
-        'inv': view_initializer,
+        'inv': interactively_view_initializer,
         'tags': manage_tags,
         })

@@ -762,13 +762,13 @@ class MaterialPackageProxy(PackageProxy):
     def run_python_on_material_definition_module(self):
         self.material_definition_module_proxy.run_python()
 
-    def view_illustration_ly(self):
+    def interactively_view_illustration_ly(self):
         self.illustration_ly_file_proxy.view()
 
-    def view_illustration_pdf(self):
+    def interactively_view_illustration_pdf(self):
         self.illustration_pdf_file_proxy.view()
 
-    def view_output_material_module(self):
+    def interactively_view_output_material_module(self):
         self.output_material_module_proxy.view()
     
     def write_illustration_ly_and_pdf_to_disk(self, prompt=True):
@@ -841,7 +841,7 @@ class MaterialPackageProxy(PackageProxy):
         'omfetch': display_output_material,
         'omm': write_output_material_to_disk,
         'omi': interactively_edit_output_material,
-        'omv': view_output_material_module,
+        'omv': interactively_view_output_material_module,
         'pdfm': write_illustration_ly_and_pdf_to_disk,
         'pdfd': remove_illustration_pdf,
         'pdfv': illustration_pdf_file_proxy,

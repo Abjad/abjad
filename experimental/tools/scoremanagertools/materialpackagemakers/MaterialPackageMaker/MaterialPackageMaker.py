@@ -193,7 +193,7 @@ class MaterialPackageMaker(MaterialPackageProxy):
     def swap_user_input_values_default_status(self):
         self._session.swap_user_input_values_default_status()
 
-    def view_user_input_module(self):
+    def interactively_view_user_input_module(self):
         self.user_input_module_proxy.view()
 
     user_input_to_action = MaterialPackageProxy.user_input_to_action.copy()
@@ -203,5 +203,5 @@ class MaterialPackageMaker(MaterialPackageProxy):
         'uip': populate_user_input_wrapper,
         'uis': show_user_input_demo_values,
         'uit': swap_user_input_values_default_status,
-        'uimv': view_user_input_module,
+        'uimv': interactively_view_user_input_module,
         })

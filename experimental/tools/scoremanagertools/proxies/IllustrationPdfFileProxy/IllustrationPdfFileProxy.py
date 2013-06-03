@@ -10,6 +10,6 @@ class IllustrationPdfFileProxy(FileProxy):
 
     ### PUBLIC METHODS ###
 
-    def view(self):
+    def interactively_view(self):
         command = 'open {}'.format(self.file_path)
         os.system(command)
