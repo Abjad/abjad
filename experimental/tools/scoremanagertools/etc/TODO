@@ -64,29 +64,27 @@
 
 25. Author ScorePackageProxy docstrings.
 
-26. Remove 'grandparent_directory_path'.
-
-27. Remove the has_readable_... and is_readable_... properties from the system entirely.
+26. Remove the has_readable_... and is_readable_... properties from the system entirely.
     Force such functionality to be method calls that will be noticeably expensive.
 
-28. Add PackageystemAssetProxy to superclass ModuleProxy and PackageProxy.
+27. Add PackageystemAssetProxy to superclass ModuleProxy and PackageProxy.
 
-29. Might make sense to implement an SvnManager class.
+28. Might make sense to implement an SvnManager class.
     This will encapsulate all svn management functionality.
 
-30. Create a PackagesystemAssetProxy to parallel PacakagesystemAssetWrangler.
+29. Create a PackagesystemAssetProxy to parallel PacakagesystemAssetWrangler.
 
-31. Harmonize user input strings with method names in MaterialPackageProxy.user_input_to_action dictionary.
+30. Harmonize user input strings with method names in MaterialPackageProxy.user_input_to_action dictionary.
 
-32. Author StylesheetFileWrangler.interactively_remove_assets() test.
+31. Author StylesheetFileWrangler.interactively_remove_assets() test.
     Will involve making user_input='... rm ...' work with named arguments instead of just numeric arguments.
 
-33. Make a menuing.Token class.
+32. Make a menuing.Token class.
     This will name all token attributes.
     This will also make all attribute extraction methods explicit.
     This will also eliminate all numeric tuple field references.
 
-34. Make MaterialPackageMaker classes stop creating materials in tools.scoremanagertools.materialpackages.
+33. Make MaterialPackageMaker classes stop creating materials in tools.scoremanagertools.materialpackages.
     Those classes should create material packages in the user asset library material packages directory.
     Or in user score packages. But no material packages should ever be created in the built-in
     asset library material packages directory.

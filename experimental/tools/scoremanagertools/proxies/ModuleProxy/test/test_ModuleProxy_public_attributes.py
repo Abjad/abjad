@@ -1,5 +1,4 @@
 import os
-import py
 from experimental import *
 
 
@@ -13,8 +12,6 @@ def test_ModuleProxy_public_attributes_01():
     assert not proxy.exists()
     assert not proxy.read_lines()
     assert proxy._generic_class_name == 'module'
-    assert proxy.grandparent_directory_path is None
-    assert proxy.grandparent_package_path is None
     assert proxy._space_delimited_lowercase_name is None
     assert not proxy.is_versioned()
     assert proxy.module_path is None
@@ -43,8 +40,6 @@ def test_ModuleProxy_public_attributes_02():
     assert proxy.exists()
     assert proxy.read_lines()
     assert proxy._generic_class_name == 'module'
-    assert proxy.grandparent_directory_path == proxy.configuration.built_in_material_packages_directory_path
-    assert proxy.grandparent_package_path == proxy.configuration.built_in_material_packages_package_path
     assert proxy._space_delimited_lowercase_name == 'material definition'
     assert proxy.is_versioned()
     assert proxy.module_path == packagesystem_path

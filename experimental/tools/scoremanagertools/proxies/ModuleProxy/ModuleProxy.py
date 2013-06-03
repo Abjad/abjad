@@ -45,22 +45,6 @@ class ModuleProxy(ParsableFileProxy):
             return self.configuration.packagesystem_path_to_filesystem_path(
                 self.parent_package_path)
 
-    @property
-    def grandparent_directory_path(self):
-        if self.module_path:
-            return self.configuration.packagesystem_path_to_filesystem_path(
-                self.grandparent_package_path)
-
-    @property
-    def grandparent_package_initializer_file_name(self):
-        if self.module_path:
-            return os.path.join(self.grandparent_directory_path, '__init__.py')
-
-    @property
-    def grandparent_package_path(self):
-        if self.module_path:
-            return '.'.join(self.module_path.split('.')[:-2])
-
     # TODO: make into method
     @property
     def is_exceptionless(self):
