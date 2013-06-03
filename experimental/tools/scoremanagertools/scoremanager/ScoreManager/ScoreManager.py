@@ -64,7 +64,7 @@ class ScoreManager(ScoreManagerObject):
         if result in self.user_input_to_action:
             self.user_input_to_action[result](self)
         elif result in self.score_package_wrangler.list_visible_asset_packagesystem_paths():
-            self.edit_score_interactively(result)
+            self.interactively_edit_score(result)
 
     def _handle_svn_menu_result(self, result):
         '''Return true to exit the svn menu.
@@ -243,14 +243,14 @@ class ScoreManager(ScoreManagerObject):
 
     ### PUBLIC METHODS ###
 
-    def edit_score_interactively(self, score_package_path):
+    def fix_visible_scores(self):
+        self.score_package_wrangler.fix_visible_assets()
+
+    def interactively_edit_score(self, score_package_path):
         score_package_proxy = self.score_package_wrangler._initialize_asset_proxy(score_package_path)
         score_package_proxy._session.underscore_delimited_current_score_name = score_package_path
         score_package_proxy._run(cache=True)
         self._session.underscore_delimited_current_score_name = None
-
-    def fix_visible_scores(self):
-        self.score_package_wrangler.fix_visible_assets()
 
     def make_new_score_interactively(self):
         self.score_package_wrangler.make_asset_interactively(rollback=True)

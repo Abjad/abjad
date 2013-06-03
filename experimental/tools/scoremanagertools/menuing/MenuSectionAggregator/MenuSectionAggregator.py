@@ -29,7 +29,7 @@ class MenuSectionAggregator(MenuObject):
         elif key == 'grep':
             self.grep_directories()
         elif key == 'here':
-            self.edit_client_source_file()
+            self.interactively_edit_client_source_file()
         elif key == 'hidden':
             self.show_hidden_menu_entries()
         elif key == 'next':

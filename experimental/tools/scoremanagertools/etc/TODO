@@ -78,18 +78,15 @@
 
 31. Harmonize user input strings with method names in MaterialPackageProxy.user_input_to_action dictionary.
 
-32. Change all edit*() methods to edit*interactively().
-    This is the right thing to do because all edit methods require user input.
-
-33. Author StylesheetFileWrangler.remove_assets_interactively() test.
+32. Author StylesheetFileWrangler.remove_assets_interactively() test.
     Will involve making user_input='... rm ...' work with named arguments instead of just numeric arguments.
 
-34. Make a menuing.Token class.
+33. Make a menuing.Token class.
     This will name all token attributes.
     This will also make all attribute extraction methods explicit.
     This will also eliminate all numeric tuple field references.
 
-35. Make MaterialPackageMaker classes stop creating materials in tools.scoremanagertools.materialpackages.
+34. Make MaterialPackageMaker classes stop creating materials in tools.scoremanagertools.materialpackages.
     Those classes should create material packages in the user asset library material packages directory.
     Or in user score packages. But no material packages should ever be created in the built-in
     asset library material packages directory.

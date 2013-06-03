@@ -238,37 +238,6 @@ class ScorePackageProxy(PackageProxy):
 
     ### PUBLIC METHODS ###
 
-    def edit_forces_tagline_interactively(self):
-        getter = self._io.make_getter(where=self._where)
-        getter.append_string('Forces tagline')
-        result = getter._run()
-        if self._session.backtrack():
-            return
-        self.add_tag('forces_tagline', result)
-
-    def edit_instrumentation_specifier_interactively(self):
-        from experimental.tools import scoremanagertools
-        target = self.get_tag('instrumentation')
-        editor = scoremanagertools.editors.InstrumentationEditor(session=self._session, target=target)
-        editor._run() # maybe check for backtracking after this?
-        self.add_tag('instrumentation', editor.target)
-
-    def edit_title_interactively(self):
-        getter = self._io.make_getter(where=self._where)
-        getter.append_string('new title')
-        result = getter._run()
-        if self._session.backtrack():
-            return
-        self.add_tag('title', result)
-
-    def edit_year_of_completion_interactively(self):
-        getter = self._io.make_getter(where=self._where)
-        getter.append_integer_in_range('year of completion', start=1, allow_none=True)
-        result = getter._run()
-        if self._session.backtrack():
-            return
-        self.add_tag('year_of_completion', result)
-
     def fix(self, is_interactive=True):
         result = True
         for path in self.top_level_directory_paths:
@@ -344,13 +313,13 @@ class ScorePackageProxy(PackageProxy):
     def handle_setup_menu_result(self, result):
         assert isinstance(result, str)
         if result == 'title':
-            self.edit_title_interactively()
+            self.interactively_edit_title()
         elif result == 'year':
-            self.edit_year_of_completion_interactively()
+            self.interactively_edit_year_of_completion()
         elif result == 'tagline':
-            self.edit_forces_tagline_interactively()
+            self.interactively_edit_forces_tagline()
         elif result == 'performers':
-            self.edit_instrumentation_specifier_interactively()
+            self.interactively_edit_instrumentation_specifier()
         else:
             raise ValueError()
 
@@ -364,6 +333,37 @@ class ScorePackageProxy(PackageProxy):
             self.svn_st(is_interactive=True)
         else:
             raise ValueError
+
+    def interactively_edit_forces_tagline(self):
+        getter = self._io.make_getter(where=self._where)
+        getter.append_string('Forces tagline')
+        result = getter._run()
+        if self._session.backtrack():
+            return
+        self.add_tag('forces_tagline', result)
+
+    def interactively_edit_instrumentation_specifier(self):
+        from experimental.tools import scoremanagertools
+        target = self.get_tag('instrumentation')
+        editor = scoremanagertools.editors.InstrumentationEditor(session=self._session, target=target)
+        editor._run() # maybe check for backtracking after this?
+        self.add_tag('instrumentation', editor.target)
+
+    def interactively_edit_title(self):
+        getter = self._io.make_getter(where=self._where)
+        getter.append_string('new title')
+        result = getter._run()
+        if self._session.backtrack():
+            return
+        self.add_tag('title', result)
+
+    def interactively_edit_year_of_completion(self):
+        getter = self._io.make_getter(where=self._where)
+        getter.append_integer_in_range('year of completion', start=1, allow_none=True)
+        result = getter._run()
+        if self._session.backtrack():
+            return
+        self.add_tag('year_of_completion', result)
 
     def make_asset_structure(self):
         self.fix_score_package_directory_structure(is_interactive=False)

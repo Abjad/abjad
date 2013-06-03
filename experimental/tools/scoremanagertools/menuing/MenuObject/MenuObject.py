@@ -53,19 +53,6 @@ class MenuObject(ScoreManagerObject):
             if self.should_clear_terminal:
                 self._io.conditionally_clear_terminal()
 
-    def edit_client_source_file(self):
-        if self.where is not None:
-            file_name = self.where[1]
-            line_number = self.where[2]
-            command = 'vi +{} {}'.format(line_number, file_name)
-            os.system(command)
-        else:
-            lines = []
-            lines.append("where-tracking not enabled. Use 'tw' to toggle where-tracking.")
-            lines.append('')
-            self._io.display(lines)
-            self._session.hide_next_redraw = True
-
     def exec_statement(self):
         lines = []
         statement = self._io.handle_raw_input('XCF', include_newline=False)
@@ -89,6 +76,19 @@ class MenuObject(ScoreManagerObject):
         lines = [line.strip() for line in proc.stdout.readlines()]
         lines.append('')
         self._io.display(lines, capitalize_first_character=False)
+
+    def interactively_edit_client_source_file(self):
+        if self.where is not None:
+            file_name = self.where[1]
+            line_number = self.where[2]
+            command = 'vi +{} {}'.format(line_number, file_name)
+            os.system(command)
+        else:
+            lines = []
+            lines.append("where-tracking not enabled. Use 'tw' to toggle where-tracking.")
+            lines.append('')
+            self._io.display(lines)
+            self._session.hide_next_redraw = True
 
     def make_default_hidden_section(self, session=None, where=None):
         from experimental.tools.scoremanagertools.menuing.MenuSection import MenuSection

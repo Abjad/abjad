@@ -54,7 +54,7 @@ class StylesheetFileWrangler(FileWrangler):
         if result in self.user_input_to_action:
             self.user_input_to_action[result](self)
         else:
-            self.edit_asset(result)
+            self.interactively_edit_asset(result)
 
     def _make_main_menu(self, head=None):
         menu, section = self._io.make_menu(
@@ -109,7 +109,7 @@ class StylesheetFileWrangler(FileWrangler):
 
     ### PUBLIC METHODS ###
 
-    def edit_asset(self, filesystem_path):
+    def interactively_edit_asset(self, filesystem_path):
         proxy = self.asset_proxy_class(filesystem_path=filesystem_path, session=self._session)
         proxy.edit()
 

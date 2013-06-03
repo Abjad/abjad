@@ -26,7 +26,7 @@ class ListEditor(InteractiveEditor):
         if result in self.user_input_to_action:
             self.user_input_to_action[result](self)
         elif mathtools.is_integer_equivalent_expr(result):
-            self.edit_item_interactively(result)
+            self.interactively_edit_item(result)
         else:
             super(ListEditor, self)._handle_main_menu_result(result)
 
@@ -116,19 +116,19 @@ class ListEditor(InteractiveEditor):
         else:
             self.target = self.target_class([])
 
-    def edit_item_interactively(self, item_number):
+    def get_item_from_item_number(self, item_number):
+        try:
+            return self.items[int(item_number) - 1]
+        except:
+            pass
+
+    def interactively_edit_item(self, item_number):
         item = self.get_item_from_item_number(item_number)
         if item is not None:
             item_editor = self.item_editor_class(session=self._session, target=item)
             item_editor._run()
             item_index = int(item_number) - 1
             self.items[item_index] = item_editor.target
-
-    def get_item_from_item_number(self, item_number):
-        try:
-            return self.items[int(item_number) - 1]
-        except:
-            pass
 
     def move_item_interactively(self):
         getter = self._io.make_getter(where=self._where)

@@ -43,7 +43,7 @@ class MaterialPackageProxy(PackageProxy):
         if result in self.user_input_to_action:
             self.user_input_to_action[result](self)
         elif mathtools.is_integer_equivalent_expr(result):
-            self.edit_user_input_wrapper_at_number(result, include_newline=False)
+            self.interactively_edit_user_input_wrapper_at_number(result, include_newline=False)
         else:
             raise ValueError
 
@@ -561,13 +561,16 @@ class MaterialPackageProxy(PackageProxy):
     def display_output_material(self):
         self.output_material_module_proxy.display_output_material()
 
-    def edit_illustration_builder_module(self):
+    def get_tools_package_qualified_repr(self, expr):
+        return getattr(expr, '_tools_package_qualified_repr', repr(expr))
+
+    def interactively_edit_illustration_builder_module(self):
         self.illustration_builder_module_proxy.edit() 
 
-    def edit_material_definition_module(self):
+    def interactively_edit_material_definition_module(self):
         self.material_definition_module_proxy.edit()
 
-    def edit_output_material_interactively(self):
+    def interactively_edit_output_material(self):
         if not self.has_output_material_editor:
             return
         output_material = self.output_material
@@ -595,12 +598,9 @@ class MaterialPackageProxy(PackageProxy):
             output_material_module_import_statements=output_material_module_import_statements,
             output_material_module_body_lines=output_material_module_body_lines)
 
-    def edit_stylesheet_file(self):
+    def interactively_edit_stylesheet_file(self):
         self.stylesheet_file_proxy.edit()
    
-    def get_tools_package_qualified_repr(self, expr):
-        return getattr(expr, '_tools_package_qualified_repr', repr(expr))
-
     def manage_stylesheets(self):
         from experimental.tools import scoremanagertools
         stylesheet_file_wrangler = scoremanagertools.wranglers.StylesheetFileWrangler(
@@ -826,7 +826,7 @@ class MaterialPackageProxy(PackageProxy):
     user_input_to_action = PackageProxy.user_input_to_action.copy()
     user_input_to_action.update({
         'ibd': remove_illustration_builder_module,
-        'ibe': edit_illustration_builder_module,
+        'ibe': interactively_edit_illustration_builder_module,
         'ibt': write_stub_illustration_builder_module_to_disk,
         'ibx': run_python_on_illustration_builder_module,
         'ibxi': run_abjad_on_illustration_builder_module,
@@ -834,7 +834,7 @@ class MaterialPackageProxy(PackageProxy):
         'lym': write_illustration_ly_to_disk,
         'lyv': illustration_ly_file_proxy,
         'mdcanned': write_material_definition_module_boilerplate_interactively,
-        'mde': edit_material_definition_module,
+        'mde': interactively_edit_material_definition_module,
         'mddelete': remove_material_definition_module,
         'mdstub': write_stub_material_definition_module_to_disk,
         'mdx': run_python_on_material_definition_module,
@@ -843,14 +843,14 @@ class MaterialPackageProxy(PackageProxy):
         'omdelete': remove_output_material_module,
         'omfetch': display_output_material,
         'omm': write_output_material_to_disk,
-        'omi': edit_output_material_interactively,
+        'omi': interactively_edit_output_material,
         'omv': view_output_material_module,
         'pdfm': write_illustration_ly_and_pdf_to_disk,
         'pdfd': remove_illustration_pdf,
         'pdfv': illustration_pdf_file_proxy,
         'ren': rename_material_interactively,
         'rm': remove_material_package,
-        'ssm': edit_stylesheet_file,
+        'ssm': interactively_edit_stylesheet_file,
         'sss': select_stylesheet_interactively,
         'stl': manage_stylesheets,
         'uid': remove_user_input_module,

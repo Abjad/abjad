@@ -88,7 +88,16 @@ class MaterialPackageMaker(MaterialPackageProxy):
             self.user_input_module_proxy.write_user_input_wrapper_to_disk(self.user_input_wrapper_in_memory)
             self._io.proceed('user input wrapper cleared and written to disk.', is_interactive=prompt)
 
-    def edit_user_input_wrapper_at_number(self, number, include_newline=True):
+    def initialize_empty_user_input_wrapper(self):
+        from experimental.tools import scoremanagertools
+        user_input_wrapper = scoremanagertools.editors.UserInputWrapper()
+        user_input_wrapper._user_input_module_import_statements = \
+            getattr(self, 'user_input_module_import_statements', [])[:]
+        for user_input_attribute_name in self.user_input_attribute_names:
+            user_input_wrapper[user_input_attribute_name] = None
+        return user_input_wrapper
+
+    def interactively_edit_user_input_wrapper_at_number(self, number, include_newline=True):
         number = int(number)
         if self.user_input_wrapper_in_memory is None:
             return
@@ -121,16 +130,6 @@ class MaterialPackageMaker(MaterialPackageProxy):
         self.user_input_wrapper_in_memory[key] = new_value
         self.user_input_module_proxy.write_user_input_wrapper_to_disk(self.user_input_wrapper_in_memory)
 
-    def initialize_empty_user_input_wrapper(self):
-        from experimental.tools import scoremanagertools
-        user_input_wrapper = scoremanagertools.editors.UserInputWrapper()
-        user_input_wrapper._user_input_module_import_statements = \
-            getattr(self, 'user_input_module_import_statements', [])[:]
-        for user_input_attribute_name in self.user_input_attribute_names:
-            user_input_wrapper[user_input_attribute_name] = None
-        return user_input_wrapper
-
-    #def load_user_input_wrapper_demo_values(self, prompt=True):
     def load_user_input_wrapper_demo_values(self, prompt=False):
         user_input_demo_values = copy.deepcopy(type(self).user_input_demo_values)
         for key, value in user_input_demo_values:
@@ -165,7 +164,8 @@ class MaterialPackageMaker(MaterialPackageProxy):
         current_element_index = current_element_number - 1
         while True:
             with self.backtracking:
-                self.edit_user_input_wrapper_at_number(current_element_number, include_newline=False)
+                self.interactively_edit_user_input_wrapper_at_number(
+                    current_element_number, include_newline=False)
             if self._session.backtrack():
                 return
             current_element_index += 1

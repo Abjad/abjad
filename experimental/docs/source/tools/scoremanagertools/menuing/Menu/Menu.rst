@@ -99,9 +99,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.conditionally_enclose_in_list
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.edit_client_source_file
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.exec_statement
    :noindex:
 
@@ -112,6 +109,9 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.handle_hidden_key
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.interactively_edit_client_source_file
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.make_default_hidden_section
