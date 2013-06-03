@@ -252,8 +252,8 @@ class ScoreManager(ScoreManagerObject):
         score_package_proxy._run(cache=True)
         self._session.underscore_delimited_current_score_name = None
 
-    def make_new_score_interactively(self):
-        self.score_package_wrangler.make_asset_interactively(rollback=True)
+    def interactively_make_new_score(self):
+        self.score_package_wrangler.interactively_make_asset(rollback=True)
 
     def manage_materials(self):
         self.material_package_wrangler._run(
@@ -319,7 +319,7 @@ class ScoreManager(ScoreManagerObject):
         'fix':      fix_visible_scores,
         'm':        manage_materials,
         'mb':       show_mothballed_scores,
-        'new':      make_new_score_interactively,
+        'new':      interactively_make_new_score,
         'profile':  profile_visible_scores,
         'py.test':  run_py_test_on_all_user_scores,
         'svn':      manage_svn,

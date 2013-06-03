@@ -40,7 +40,7 @@ def test_MaterialPackageWrangler_make_makermade_material_package_03():
     assert not wrangler.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testsargasso')
 
     try:
-        wrangler.make_makermade_material_package_interactively(user_input='sargasso testsargasso q')
+        wrangler.interactively_make_makermade_material_package(user_input='sargasso testsargasso q')
         assert wrangler.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testsargasso')
         mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker('experimental.tools.scoremanagertools.materialpackages.testsargasso')
         assert mpp.is_makermade

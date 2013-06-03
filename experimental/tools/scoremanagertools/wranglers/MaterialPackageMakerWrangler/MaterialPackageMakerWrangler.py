@@ -114,6 +114,23 @@ class MaterialPackageMakerWrangler(PackageWrangler):
 
     ### PUBLIC METHODS ###
 
+    def interactively_make_asset(self):
+        getter = self._io.make_getter(where=self._where)
+        getter.append_material_package_maker_class_name('material proxy name')
+        getter.append_space_delimited_lowercase_string('generic output product')
+        result = getter._run()
+        if self._session.backtrack():
+            return
+        material_package_maker_class_name, generic_output_product_name = result
+        material_package_maker_directory = os.path.join(
+            self.asset_storehouse_packagesystem_path_in_built_in_asset_library,
+            material_package_maker_class_name)
+        os.mkdir(material_package_maker_directory)
+        self.make_asset_initializer(material_package_maker_class_name)
+        self.make_asset_class_file(
+            material_package_maker_class_name, generic_output_product_name)
+        self.make_asset_stylesheet(material_package_maker_class_name)
+
     def list_asset_filesystem_paths(self,
         in_built_in_asset_library=True, in_user_asset_library=True,
         in_built_in_score_packages=True, in_user_score_packages=True, head=None):
@@ -324,23 +341,6 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         initializer.write("importtools.import_structured_package(__path__[0], globals())\n")
         initializer.close()
 
-    def make_asset_interactively(self):
-        getter = self._io.make_getter(where=self._where)
-        getter.append_material_package_maker_class_name('material proxy name')
-        getter.append_space_delimited_lowercase_string('generic output product')
-        result = getter._run()
-        if self._session.backtrack():
-            return
-        material_package_maker_class_name, generic_output_product_name = result
-        material_package_maker_directory = os.path.join(
-            self.asset_storehouse_packagesystem_path_in_built_in_asset_library,
-            material_package_maker_class_name)
-        os.mkdir(material_package_maker_directory)
-        self.make_asset_initializer(material_package_maker_class_name)
-        self.make_asset_class_file(
-            material_package_maker_class_name, generic_output_product_name)
-        self.make_asset_stylesheet(material_package_maker_class_name)
-
     # TODO: change to boilerplate
     def make_asset_stylesheet(self, package_name):
         stylesheet = lilypondfiletools.make_basic_lilypond_file()
@@ -363,5 +363,5 @@ class MaterialPackageMakerWrangler(PackageWrangler):
 
     user_input_to_action = PackageWrangler.user_input_to_action.copy()
     user_input_to_action.update({
-        'new': make_asset_interactively,
+        'new': interactively_make_asset,
         })

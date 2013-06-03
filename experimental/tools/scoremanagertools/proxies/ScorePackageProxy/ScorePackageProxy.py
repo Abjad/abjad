@@ -365,11 +365,27 @@ class ScorePackageProxy(PackageProxy):
             return
         self.add_tag('year_of_completion', result)
 
+    def interactively_make_score(self):
+        self._io.print_not_yet_implemented()
+
+    def interactively_remove(self):
+        line = 'WARNING! Score package {!r} will be completely removed.'.format(self.package_path)
+        self._io.display([line, ''])
+        getter = self._io.make_getter(where=self._where)
+        getter.append_string("type 'clobberscore' to proceed")
+        with self.backtracking:
+            should_clobber = getter._run()
+        if self._session.backtrack():
+            return
+        if should_clobber == 'clobberscore':
+            with self.backtracking:
+                self.remove()
+            if self._session.backtrack():
+                return
+            self._session.is_backtracking_locally = True
+
     def make_asset_structure(self):
         self.fix_score_package_directory_structure(is_interactive=False)
-
-    def make_score_interactively(self):
-        self._io.print_not_yet_implemented()
 
     def make_setup_menu(self):
         setup_menu, section = self._io.make_menu(where=self._where,
@@ -443,22 +459,6 @@ class ScorePackageProxy(PackageProxy):
         self._io.display(lines)
         self._io.proceed(is_interactive=prompt)
 
-    def remove_interactively(self):
-        line = 'WARNING! Score package {!r} will be completely removed.'.format(self.package_path)
-        self._io.display([line, ''])
-        getter = self._io.make_getter(where=self._where)
-        getter.append_string("type 'clobberscore' to proceed")
-        with self.backtracking:
-            should_clobber = getter._run()
-        if self._session.backtrack():
-            return
-        if should_clobber == 'clobberscore':
-            with self.backtracking:
-                self.remove()
-            if self._session.backtrack():
-                return
-            self._session.is_backtracking_locally = True
-
     def summarize_materials(self):
         materials = self.material_package_wrangler.space_delimited_lowercase_names
         lines = []
@@ -494,6 +494,6 @@ class ScorePackageProxy(PackageProxy):
         's': manage_setup,
         'fix': fix,
         'profile': profile,
-        'removescore': remove_interactively,
+        'removescore': interactively_remove,
         'svn': manage_svn,
         })

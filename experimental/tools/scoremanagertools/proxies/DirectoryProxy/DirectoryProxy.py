@@ -13,7 +13,7 @@ class DirectoryProxy(FilesystemAssetProxy):
 
     ### PUBLIC METHODS ###
 
-    def get_filesystem_path_interactively(self):
+    def interactively_get_filesystem_path(self):
         getter = self._io.make_getter(where=self._where)
         getter.append_string('directory path')
         result = getter._run()

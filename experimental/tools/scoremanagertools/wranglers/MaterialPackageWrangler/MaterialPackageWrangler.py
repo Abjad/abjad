@@ -129,7 +129,7 @@ class MaterialPackageWrangler(PackageWrangler):
 
     ### PUBLIC METHODS ###
 
-    def get_available_material_packagesystem_path_interactively(self, user_input=None):
+    def interactively_get_available_material_packagesystem_path(self, user_input=None):
         self._io.assign_user_input(user_input=user_input)
         while True:
             getter = self._io.make_getter(where=self._where)
@@ -147,6 +147,45 @@ class MaterialPackageWrangler(PackageWrangler):
                 self._io.display([line, ''])
             else:
                 return material_package_path
+
+    def interactively_make_data_package(self, tags=None, user_input=None):
+        self._io.assign_user_input(user_input=user_input)
+        with self.backtracking:
+            material_package_path = self.interactively_get_available_material_packagesystem_path()
+        if self._session.backtrack():
+            return
+        self.make_data_package(material_package_path, tags=tags)
+
+    def interactively_make_handmade_material_package(self, user_input=None):
+        self._io.assign_user_input(user_input=user_input)
+        with self.backtracking:
+            material_package_path = self.interactively_get_available_material_packagesystem_path()
+        if self._session.backtrack():
+            return
+        self.make_handmade_material_package(material_package_path)
+
+    def interactively_make_makermade_material_package(self, user_input=None):
+        self._io.assign_user_input(user_input=user_input)
+        with self.backtracking:
+            result = self._material_package_maker_wrangler.interactively_select_asset_packagesystem_path(
+                cache=True, clear=False)
+        if self._session.backtrack():
+            return
+        material_package_maker_package_path = result
+        material_package_maker_class_name = material_package_maker_package_path.split('.')[-1]
+        with self.backtracking:
+            material_package_path = self.interactively_get_available_material_packagesystem_path()
+        if self._session.backtrack():
+            return
+        self.make_makermade_material_package(
+            material_package_path, material_package_maker_class_name)
+        proxy = self._get_appropriate_material_package_proxy(
+            material_package_maker_class_name, material_package_path)
+        proxy.run_first_time()
+
+    def interactively_make_numeric_sequence_package(self, user_input=None):
+        tags = {'is_numeric_sequence': True}
+        self.interactively_make_data_package(tags=tags, user_input=user_input)
 
     def list_asset_filesystem_paths(self,
         in_built_in_asset_library=True, in_user_asset_library=True,
@@ -305,28 +344,12 @@ class MaterialPackageWrangler(PackageWrangler):
         tags['should_have_user_input_module'] = False
         self.make_material_package(material_package_path, tags=tags)
 
-    def make_data_package_interactively(self, tags=None, user_input=None):
-        self._io.assign_user_input(user_input=user_input)
-        with self.backtracking:
-            material_package_path = self.get_available_material_packagesystem_path_interactively()
-        if self._session.backtrack():
-            return
-        self.make_data_package(material_package_path, tags=tags)
-
     def make_handmade_material_package(self, material_package_path, tags=None):
         tags = tags or {}
         tags['material_package_maker_class_name'] = None
         tags['should_have_illustration'] = True
         tags['should_have_user_input_module'] = False
         self.make_material_package(material_package_path, tags=tags)
-
-    def make_handmade_material_package_interactively(self, user_input=None):
-        self._io.assign_user_input(user_input=user_input)
-        with self.backtracking:
-            material_package_path = self.get_available_material_packagesystem_path_interactively()
-        if self._session.backtrack():
-            return
-        self.make_handmade_material_package(material_package_path)
 
     def make_makermade_material_package(self,
         material_package_path, material_package_maker_class_name, tags=None):
@@ -349,25 +372,6 @@ class MaterialPackageWrangler(PackageWrangler):
         tags['should_have_user_input_module'] = should_have_user_input_module
         self.make_material_package(material_package_path, tags=tags)
 
-    def make_makermade_material_package_interactively(self, user_input=None):
-        self._io.assign_user_input(user_input=user_input)
-        with self.backtracking:
-            result = self._material_package_maker_wrangler.select_asset_packagesystem_path_interactively(
-                cache=True, clear=False)
-        if self._session.backtrack():
-            return
-        material_package_maker_package_path = result
-        material_package_maker_class_name = material_package_maker_package_path.split('.')[-1]
-        with self.backtracking:
-            material_package_path = self.get_available_material_packagesystem_path_interactively()
-        if self._session.backtrack():
-            return
-        self.make_makermade_material_package(
-            material_package_path, material_package_maker_class_name)
-        proxy = self._get_appropriate_material_package_proxy(
-            material_package_maker_class_name, material_package_path)
-        proxy.run_first_time()
-
     def make_material_package(self, material_package_path, is_interactive=False, tags=None):
         tags = collections.OrderedDict(tags or {})
         tags['is_material_package'] = True
@@ -389,16 +393,12 @@ class MaterialPackageWrangler(PackageWrangler):
         tags = {'is_numeric_sequence': True}
         self.make_data_package(package_path, tags=tags)
 
-    def make_numeric_sequence_package_interactively(self, user_input=None):
-        tags = {'is_numeric_sequence': True}
-        self.make_data_package_interactively(tags=tags, user_input=user_input)
-
     ### UI MANIFEST ###
 
     user_input_to_action = PackageWrangler.user_input_to_action.copy()
     user_input_to_action.update({
-        'd': make_data_package_interactively,
-        's': make_numeric_sequence_package_interactively,
-        'h': make_handmade_material_package_interactively,
-        'm': make_makermade_material_package_interactively,
+        'd': interactively_make_data_package,
+        's': interactively_make_numeric_sequence_package,
+        'h': interactively_make_handmade_material_package,
+        'm': interactively_make_makermade_material_package,
         })

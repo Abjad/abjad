@@ -59,6 +59,34 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
 
     ### PUBLIC METHODS ###
 
+    def interactively_rename_asset(self, head=None):
+        with self.backtracking:
+            asset_package_path = self.interactively_select_asset_packagesystem_path(
+                head=head, infinitival_phrase='to rename')
+        if self._session.backtrack():
+            return
+        asset_proxy = self._initialize_asset_proxy(asset_package_path)
+        asset_proxy.interactively_rename()
+
+    def interactively_select_asset_packagesystem_path(
+        self, clear=True, cache=False, head=None, infinitival_phrase=None, user_input=None):
+        self._session.cache_breadcrumbs(cache=cache)
+        while True:
+            self._session.push_breadcrumb(self._make_asset_selection_breadcrumb(
+                infinitival_phrase=infinitival_phrase))
+            menu = self._make_asset_selection_menu(head=head)
+            result = menu._run(clear=clear)
+            if self._session.backtrack():
+                break
+            elif not result:
+                self._session.pop_breadcrumb()
+                continue
+            else:
+                break
+        self._session.pop_breadcrumb()
+        self._session.restore_breadcrumbs(cache=cache)
+        return result
+
     def list_asset_packagesystem_paths(self, 
         in_built_in_asset_library=True, 
         in_user_asset_library=True,
@@ -146,38 +174,10 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
             file_reference.write('')
             file_reference.close()
 
-    def rename_asset_interactively(self, head=None):
-        with self.backtracking:
-            asset_package_path = self.select_asset_packagesystem_path_interactively(
-                head=head, infinitival_phrase='to rename')
-        if self._session.backtrack():
-            return
-        asset_proxy = self._initialize_asset_proxy(asset_package_path)
-        asset_proxy.rename_interactively()
-
-    def select_asset_packagesystem_path_interactively(
-        self, clear=True, cache=False, head=None, infinitival_phrase=None, user_input=None):
-        self._session.cache_breadcrumbs(cache=cache)
-        while True:
-            self._session.push_breadcrumb(self._make_asset_selection_breadcrumb(
-                infinitival_phrase=infinitival_phrase))
-            menu = self._make_asset_selection_menu(head=head)
-            result = menu._run(clear=clear)
-            if self._session.backtrack():
-                break
-            elif not result:
-                self._session.pop_breadcrumb()
-                continue
-            else:
-                break
-        self._session.pop_breadcrumb()
-        self._session.restore_breadcrumbs(cache=cache)
-        return result
-
     ### UI MANIFEST ###
 
     user_input_to_action = FilesystemAssetWrangler.user_input_to_action.copy()
     user_input_to_action.update({
         'missing': make_asset_storehouse_packages,
-        'ren': rename_asset_interactively,
+        'ren': interactively_rename_asset,
         })

@@ -134,7 +134,12 @@ class FilesystemAssetProxy(ScoreManagerObject):
     def copy(self, new_filesystem_path):
         shutil.copyfile(self.filesystem_path, new_filesystem_path)
 
-    def copy_interactively(self, user_input=None):
+    def exists(self):
+        if self.filesystem_path:
+            return os.path.exists(self.filesystem_path)
+        return False
+
+    def interactively_copy(self, user_input=None):
         self._io.assign_user_input(user_input=user_input)
         getter = self._initialize_file_name_getter()
         result = getter._run()
@@ -148,10 +153,50 @@ class FilesystemAssetProxy(ScoreManagerObject):
         self.copy(new_path)
         self._io.proceed('asset copied.')
 
-    def exists(self):
-        if self.filesystem_path:
-            return os.path.exists(self.filesystem_path)
-        return False
+    def interactively_remove(self, user_input=None):
+        self._io.assign_user_input(user_input=user_input)
+        self._io.display(['{} will be removed.'.format(self.filesystem_path), ''])
+        getter = self._io.make_getter(where=self._where)
+        getter.append_string("type 'remove' to proceed")
+        result = getter._run()
+        if self._session.backtrack():
+            return
+        if not result == 'remove':
+            return
+        if self.remove():
+            self._io.proceed('{} removed.'.format(self.filesystem_path))
+
+    def interactively_remove_and_backtrack_locally(self):
+        self.interactively_remove()
+        self._session.is_backtracking_locally = True
+
+    def interactively_rename(self, user_input=None):
+        self._io.assign_user_input(user_input=user_input)
+        getter = self._initialize_file_name_getter()
+        getter.include_newlines = False
+        result = getter._run()
+        if self._session.backtrack():
+            return
+        new_path = os.path.join(self.filesystem_directory_name, result)
+        self._io.display(['new path name will be: "{}"'.format(new_path), ''])
+        if not self._io.confirm():
+            return
+        if self.rename(new_path):
+            self._io.proceed('asset renamed.')
+
+    def interactively_write_boilerplate(self, user_input=None):
+        self._io.assign_user_input(user_input=user_input)
+        getter = self._io.make_getter(where=self._where)
+        getter.append_underscore_delimited_lowercase_file_name('name of boilerplate asset')
+        with self.backtracking:
+            boilerplate_filebuilt_in_asset_name = getter._run()
+        if self._session.backtrack():
+            return
+        if self.write_boilerplate(boilerplate_filebuilt_in_asset_name):
+            self._io.proceed('boilerplate asset copied.')
+        else:
+            self._io.proceed('boilerplate asset {!r} does not exist.'.format(
+                boilerplate_filebuilt_in_asset_name))
 
     def is_versioned(self):
         if self.filesystem_path is None:
@@ -182,23 +227,6 @@ class FilesystemAssetProxy(ScoreManagerObject):
             proc.stdout.readline()
             return True
 
-    def remove_interactively(self, user_input=None):
-        self._io.assign_user_input(user_input=user_input)
-        self._io.display(['{} will be removed.'.format(self.filesystem_path), ''])
-        getter = self._io.make_getter(where=self._where)
-        getter.append_string("type 'remove' to proceed")
-        result = getter._run()
-        if self._session.backtrack():
-            return
-        if not result == 'remove':
-            return
-        if self.remove():
-            self._io.proceed('{} removed.'.format(self.filesystem_path))
-
-    def remove_interactively_and_backtrack_locally(self):
-        self.remove_interactively()
-        self._session.is_backtracking_locally = True
-
     def rename(self, new_path):
         if self.is_versioned():
             command = 'svn --force mv {} {}'.format(self.filesystem_path, new_path)
@@ -210,20 +238,6 @@ class FilesystemAssetProxy(ScoreManagerObject):
             proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
             proc.stdout.readline()
             self._filesystem_path = new_path
-
-    def rename_interactively(self, user_input=None):
-        self._io.assign_user_input(user_input=user_input)
-        getter = self._initialize_file_name_getter()
-        getter.include_newlines = False
-        result = getter._run()
-        if self._session.backtrack():
-            return
-        new_path = os.path.join(self.filesystem_directory_name, result)
-        self._io.display(['new path name will be: "{}"'.format(new_path), ''])
-        if not self._io.confirm():
-            return
-        if self.rename(new_path):
-            self._io.proceed('asset renamed.')
 
     def svn_add(self, is_interactive=False):
         if is_interactive:
@@ -283,24 +297,10 @@ class FilesystemAssetProxy(ScoreManagerObject):
             shutil.copyfile(boilerplate_filebuilt_in_asset_name, self.filesystem_path)
             return True
 
-    def write_boilerplate_interactively(self, user_input=None):
-        self._io.assign_user_input(user_input=user_input)
-        getter = self._io.make_getter(where=self._where)
-        getter.append_underscore_delimited_lowercase_file_name('name of boilerplate asset')
-        with self.backtracking:
-            boilerplate_filebuilt_in_asset_name = getter._run()
-        if self._session.backtrack():
-            return
-        if self.write_boilerplate(boilerplate_filebuilt_in_asset_name):
-            self._io.proceed('boilerplate asset copied.')
-        else:
-            self._io.proceed('boilerplate asset {!r} does not exist.'.format(
-                boilerplate_filebuilt_in_asset_name))
-
     ### UI MANIFEST ###
 
     user_input_to_action = {
-        'cp': copy_interactively,
-        'rm': remove_interactively_and_backtrack_locally,
-        'ren': rename_interactively,
+        'cp': interactively_copy,
+        'rm': interactively_remove_and_backtrack_locally,
+        'ren': interactively_rename,
         }

@@ -54,9 +54,6 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.add_items_interactively
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.attribute_name_to_menu_key
    :noindex:
 
@@ -81,7 +78,16 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.initialize_target_from_attributes_in_memory
    :noindex:
 
+.. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.interactively_add_items
+   :noindex:
+
 .. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.interactively_edit_item
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.interactively_move_item
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.interactively_remove_items
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.item_getter_configuration_method
@@ -94,12 +100,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.menu_key_to_existing_value
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.move_item_interactively
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.remove_items_interactively
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.target_args_to_target_summary_lines

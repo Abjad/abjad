@@ -154,6 +154,41 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     ### PUBLIC METHODS ###
 
+    @abc.abstractmethod
+    def interactively_make_asset(self):
+        pass
+
+    # TODO: write test
+    def interactively_remove_assets(self, head=None):
+        getter = self._io.make_getter(where=self._where)
+        argument_list = self.list_asset_filesystem_paths(head=head)
+        getter.append_argument_range('number(s) to remove', argument_list)
+        result = getter._run()
+        if self._session.backtrack():
+            return
+        asset_indices = [asset_number - 1 for asset_number in result]
+        total_assets_removed = 0
+        for asset_number in result:
+            asset_index = asset_number - 1
+            asset_filesystem_path = argument_list[asset_index]
+            asset_proxy = self._initialize_asset_proxy(asset_filesystem_path)
+            asset_proxy.remove()
+            total_assets_removed += 1
+        if total_assets_removed == 1:
+            asset_string = 'asset'
+        else:
+            asset_string = 'assets'
+        self._io.proceed('{} {} removed.'.format(total_assets_removed, asset_string))
+
+    # TODO: write test
+    def interactively_rename_asset(self):
+        with self.backtracking:
+            asset_filesystem_path = self.interactively_select_asset_filesystem_path()
+        if self._session.backtrack():
+            return
+        asset_proxy = self._initialize_asset_proxy(asset_filesystem_path)
+        asset_proxy.interactively_rename()
+
     def interactively_select_asset_filesystem_path(self, clear=True, cache=False):
         self._session.cache_breadcrumbs(cache=cache)
         menu, section = self._io.make_menu(
@@ -164,6 +199,38 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         section.tokens = self._make_menu_tokens()
         while True:
             breadcrumb = self._make_asset_selection_breadcrumb()
+            self._session.push_breadcrumb(breadcrumb)
+            result = menu._run(clear=clear)
+            if self._session.backtrack():
+                break
+            elif not result:
+                self._session.pop_breadcrumb()
+                continue
+            else:
+                break
+        self._session.pop_breadcrumb()
+        self._session.restore_breadcrumbs(cache=cache)
+        return result
+
+    def interactively_select_asset_storehouse_filesystem_path(self, 
+        clear=True, cache=False,
+        in_built_in_asset_library=True,
+        in_user_asset_library=True,
+        in_built_in_score_packages=True,
+        in_user_score_packages=True):
+        self._session.cache_breadcrumbs(cache=cache)
+        menu, section = self._io.make_menu(
+            where=self._where,
+            is_parenthetically_numbered=True, 
+            is_keyed=False,
+            )
+        section.tokens = self._make_asset_storehouse_menu_tokens(
+            in_built_in_asset_library=False,
+            in_user_asset_library=True,
+            in_built_in_score_packages=False,
+            in_user_score_packages=False)
+        while True:
+            breadcrumb = self._make_asset_selection_breadcrumb(is_storehouse=True)
             self._session.push_breadcrumb(breadcrumb)
             result = menu._run(clear=clear)
             if self._session.backtrack():
@@ -263,76 +330,9 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         asset_proxy = self._initialize_asset_proxy(asset_filesystem_path)
         asset_proxy.write_stub_to_disk()
 
-    @abc.abstractmethod
-    def make_asset_interactively(self):
-        pass
-
-    # TODO: write test
-    def remove_assets_interactively(self, head=None):
-        getter = self._io.make_getter(where=self._where)
-        argument_list = self.list_asset_filesystem_paths(head=head)
-        getter.append_argument_range('number(s) to remove', argument_list)
-        result = getter._run()
-        if self._session.backtrack():
-            return
-        asset_indices = [asset_number - 1 for asset_number in result]
-        total_assets_removed = 0
-        for asset_number in result:
-            asset_index = asset_number - 1
-            asset_filesystem_path = argument_list[asset_index]
-            asset_proxy = self._initialize_asset_proxy(asset_filesystem_path)
-            asset_proxy.remove()
-            total_assets_removed += 1
-        if total_assets_removed == 1:
-            asset_string = 'asset'
-        else:
-            asset_string = 'assets'
-        self._io.proceed('{} {} removed.'.format(total_assets_removed, asset_string))
-
-    # TODO: write test
-    def rename_asset_interactively(self):
-        with self.backtracking:
-            asset_filesystem_path = self.interactively_select_asset_filesystem_path()
-        if self._session.backtrack():
-            return
-        asset_proxy = self._initialize_asset_proxy(asset_filesystem_path)
-        asset_proxy.rename_interactively()
-
-    def select_asset_storehouse_filesystem_path_interactively(self, 
-        clear=True, cache=False,
-        in_built_in_asset_library=True,
-        in_user_asset_library=True,
-        in_built_in_score_packages=True,
-        in_user_score_packages=True):
-        self._session.cache_breadcrumbs(cache=cache)
-        menu, section = self._io.make_menu(
-            where=self._where,
-            is_parenthetically_numbered=True, 
-            is_keyed=False,
-            )
-        section.tokens = self._make_asset_storehouse_menu_tokens(
-            in_built_in_asset_library=False,
-            in_user_asset_library=True,
-            in_built_in_score_packages=False,
-            in_user_score_packages=False)
-        while True:
-            breadcrumb = self._make_asset_selection_breadcrumb(is_storehouse=True)
-            self._session.push_breadcrumb(breadcrumb)
-            result = menu._run(clear=clear)
-            if self._session.backtrack():
-                break
-            elif not result:
-                self._session.pop_breadcrumb()
-                continue
-            else:
-                break
-        self._session.pop_breadcrumb()
-        self._session.restore_breadcrumbs(cache=cache)
-        return result
-
     ### UI MANIFEST ###
 
     user_input_to_action = {
-        'ren': rename_asset_interactively,
-        'rm': remove_assets_interactively,
+        'ren': interactively_rename_asset,
+        'rm': interactively_remove_assets,
         }

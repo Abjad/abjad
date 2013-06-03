@@ -18,7 +18,22 @@ Read-only properties
 Methods
 -------
 
+.. automethod:: experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler.PackagesystemAssetWrangler.PackagesystemAssetWrangler.interactively_make_asset
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler.PackagesystemAssetWrangler.PackagesystemAssetWrangler.interactively_remove_assets
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler.PackagesystemAssetWrangler.PackagesystemAssetWrangler.interactively_rename_asset
+   :noindex:
+
 .. automethod:: experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler.PackagesystemAssetWrangler.PackagesystemAssetWrangler.interactively_select_asset_filesystem_path
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler.PackagesystemAssetWrangler.PackagesystemAssetWrangler.interactively_select_asset_packagesystem_path
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler.PackagesystemAssetWrangler.PackagesystemAssetWrangler.interactively_select_asset_storehouse_filesystem_path
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler.PackagesystemAssetWrangler.PackagesystemAssetWrangler.list_asset_filesystem_paths
@@ -45,25 +60,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler.PackagesystemAssetWrangler.PackagesystemAssetWrangler.make_asset
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler.PackagesystemAssetWrangler.PackagesystemAssetWrangler.make_asset_interactively
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler.PackagesystemAssetWrangler.PackagesystemAssetWrangler.make_asset_storehouse_packages
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler.PackagesystemAssetWrangler.PackagesystemAssetWrangler.make_empty_package
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler.PackagesystemAssetWrangler.PackagesystemAssetWrangler.remove_assets_interactively
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler.PackagesystemAssetWrangler.PackagesystemAssetWrangler.rename_asset_interactively
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler.PackagesystemAssetWrangler.PackagesystemAssetWrangler.select_asset_packagesystem_path_interactively
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler.PackagesystemAssetWrangler.PackagesystemAssetWrangler.select_asset_storehouse_filesystem_path_interactively
    :noindex:
 
 Special methods

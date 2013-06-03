@@ -76,6 +76,10 @@ class SegmentPackageWrangler(PackageWrangler):
 
     ### PUBLIC METHODS ###
 
+    def interactively_make_asset(self):
+        segment_package_proxy = self.asset_proxy_class(session=self._session)
+        segment_package_proxy.interactively_make_asset()
+
     def list_asset_filesystem_paths(self,
         in_built_in_asset_library=True, in_user_asset_library=True,
         in_built_in_score_packages=True, in_user_score_packages=True, head=None):
@@ -226,13 +230,9 @@ class SegmentPackageWrangler(PackageWrangler):
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages)
 
-    def make_asset_interactively(self):
-        segment_package_proxy = self.asset_proxy_class(session=self._session)
-        segment_package_proxy.make_asset_interactively()
-
     ### UI MANIFEST ###
 
     user_input_to_action = PackageWrangler.user_input_to_action.copy()
     user_input_to_action.update({
-        'new': make_asset_interactively,
+        'new': interactively_make_asset,
         })

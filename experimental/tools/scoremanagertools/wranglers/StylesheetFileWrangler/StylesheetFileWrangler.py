@@ -113,6 +113,41 @@ class StylesheetFileWrangler(FileWrangler):
         proxy = self.asset_proxy_class(filesystem_path=filesystem_path, session=self._session)
         proxy.edit()
 
+    def interactively_make_asset(self):
+        from experimental.tools import scoremanagertools
+        with self.backtracking:
+            storehouse_path = self.interactively_select_asset_storehouse_filesystem_path(
+                in_built_in_asset_library=False,
+                in_user_asset_library=True,
+                in_built_in_score_packages=False,
+                in_user_score_packages=False)
+        if self._session.backtrack():
+            return
+        getter = self._io.make_getter(where=self._where)
+        getter.append_string('stylesheet name')
+        stylesheet_file_name = getter._run()
+        if self._session.backtrack():
+            return
+
+        stylesheet_file_name = stringtools.string_to_accent_free_underscored_delimited_lowercase(
+            stylesheet_file_name)
+
+        if not stylesheet_file_name.endswith('.ly'):
+            stylesheet_file_name = stylesheet_file_name + '.ly'
+
+        stylesheet_file_path = os.path.join(
+            storehouse_path,
+            stylesheet_file_name,
+            )
+
+        proxy = scoremanagertools.proxies.StylesheetFileProxy(
+            stylesheet_file_path, session=self._session)
+
+        if self._session.is_test:
+            proxy.make_empty_asset()
+        else:
+            proxy.edit()
+
     def list_asset_filesystem_paths(self,
         in_built_in_asset_library=True, in_user_asset_library=True,
         in_built_in_score_packages=True, in_user_score_packages=True, head=None):
@@ -215,44 +250,9 @@ class StylesheetFileWrangler(FileWrangler):
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages)
 
-    def make_asset_interactively(self):
-        from experimental.tools import scoremanagertools
-        with self.backtracking:
-            storehouse_path = self.select_asset_storehouse_filesystem_path_interactively(
-                in_built_in_asset_library=False,
-                in_user_asset_library=True,
-                in_built_in_score_packages=False,
-                in_user_score_packages=False)
-        if self._session.backtrack():
-            return
-        getter = self._io.make_getter(where=self._where)
-        getter.append_string('stylesheet name')
-        stylesheet_file_name = getter._run()
-        if self._session.backtrack():
-            return
-
-        stylesheet_file_name = stringtools.string_to_accent_free_underscored_delimited_lowercase(
-            stylesheet_file_name)
-
-        if not stylesheet_file_name.endswith('.ly'):
-            stylesheet_file_name = stylesheet_file_name + '.ly'
-
-        stylesheet_file_path = os.path.join(
-            storehouse_path,
-            stylesheet_file_name,
-            )
-
-        proxy = scoremanagertools.proxies.StylesheetFileProxy(
-            stylesheet_file_path, session=self._session)
-
-        if self._session.is_test:
-            proxy.make_empty_asset()
-        else:
-            proxy.edit()
-
     ### UI MANIFEST ###
 
     user_input_to_action = FileWrangler.user_input_to_action.copy()
     user_input_to_action.update({
-        'new': make_asset_interactively,
+        'new': interactively_make_asset,
         })

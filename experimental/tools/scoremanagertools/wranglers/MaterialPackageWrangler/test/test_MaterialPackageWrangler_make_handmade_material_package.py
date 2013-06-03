@@ -49,7 +49,7 @@ def test_MaterialPackageWrangler_make_handmade_material_package_03():
 
 
     try:
-        wrangler.make_handmade_material_package_interactively(user_input='testnotes q')
+        wrangler.interactively_make_handmade_material_package(user_input='testnotes q')
         assert wrangler.configuration.packagesystem_path_exists(
             'experimental.tools.scoremanagertools.materialpackages.testnotes')
         mpp = scoremanagertools.proxies.MaterialPackageProxy(

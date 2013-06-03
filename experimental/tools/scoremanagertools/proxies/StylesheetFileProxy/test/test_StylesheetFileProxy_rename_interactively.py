@@ -20,7 +20,7 @@ def test_StylesheetFileProxy_rename_interactively_01():
         new_filesystem_path = os.path.join(
             score_manager_configuration.score_manager_tools_directory_path,
             'stylesheets', 'new-test-stylesheet.ly')
-        proxy.rename_interactively(user_input='new-test-stylesheet.ly y q')
+        proxy.interactively_rename(user_input='new-test-stylesheet.ly y q')
         assert proxy.filesystem_path == new_filesystem_path
         assert not os.path.exists(filesystem_path)
         assert os.path.exists(new_filesystem_path)
@@ -49,7 +49,7 @@ def test_StylesheetFileProxy_rename_interactively_02():
         new_filesystem_path = os.path.join(
             score_manager_configuration.score_manager_tools_directory_path,
             'stylesheets', 'new-test-stylesheet.ly')
-        proxy.rename_interactively(user_input='new-test-stylesheet.ly y q')
+        proxy.interactively_rename(user_input='new-test-stylesheet.ly y q')
         assert proxy.filesystem_path == new_filesystem_path
         assert os.path.exists(new_filesystem_path)
     finally:

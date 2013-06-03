@@ -37,7 +37,7 @@ class PerformerCreationWizard(Wizard):
                 self._session.push_breadcrumb(self._breadcrumb)
                 with self.backtracking:
                     performer = scoretools.Performer(performer_name)
-                    self.initialize_performer_interactively(performer)
+                    self.interactively_initialize_performer(performer)
                 self._session.pop_breadcrumb()
                 was_backtracking_locally = self._session.is_backtracking_locally
                 if self._session.backtrack():
@@ -76,7 +76,7 @@ class PerformerCreationWizard(Wizard):
 
     ### PUBLIC METHODS ###
 
-    def initialize_performer_interactively(self, performer, cache=False, clear=True):
+    def interactively_initialize_performer(self, performer, cache=False, clear=True):
         menu = self.make_performer_configuration_menu(performer)
         while True:
             self._session.push_breadcrumb(performer.name)

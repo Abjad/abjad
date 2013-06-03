@@ -47,6 +47,38 @@ class InitializerFileProxy(ParsableFileProxy):
         return False
 
     # TODO: move to TagsFileProxy
+    def interactively_restore(self, prompt=True):
+        from experimental.tools import scoremanagertools
+        getter = self._io.make_getter(where=self._where)
+        getter.append_yes_no_string('handmade')
+        result = getter._run()
+        if self._session.backtrack():
+            return
+        if 'yes'.startswith(result.lower()):
+            material_package_maker_class_name = None
+            getter = self._io.make_getter(where=self._where)
+            getter.append_yes_no_string('should have illustration')
+            result = getter._run()
+            if self._session.backtrack():
+                return
+            should_have_illustration = 'yes'.startswith(result.lower())
+        else:
+            material_package_maker_wrangler = scoremanagertools.wranglers.MaterialPackageMakerWrangler(
+                session=self._session)
+            with self.backtracking:
+                material_package_maker_class_name = \
+                    material_package_maker_wrangler.select_material_proxy_class_name_interactively(
+                        clear=False, cache=True)
+            if self._session.backtrack():
+                return
+            should_have_illustration = True
+        tags = collections.OrderedDict([])
+        tags['should_have_illustration'] = should_have_illustration
+        tags['material_package_maker_class_name'] = material_package_maker_class_name
+        self.write_stub_to_disk()
+        self._io.proceed('initializer restored.', is_interactive=prompt)
+
+    # TODO: move to TagsFileProxy
     def make_tag_lines(self, tags):
         if tags:
             lines = []
@@ -116,38 +148,6 @@ class InitializerFileProxy(ParsableFileProxy):
         self.tag_lines = tag_lines[:]
         self.teardown_statements = teardown_statements[:]
         return is_parsable
-
-    # TODO: move to TagsFileProxy
-    def restore_interactively(self, prompt=True):
-        from experimental.tools import scoremanagertools
-        getter = self._io.make_getter(where=self._where)
-        getter.append_yes_no_string('handmade')
-        result = getter._run()
-        if self._session.backtrack():
-            return
-        if 'yes'.startswith(result.lower()):
-            material_package_maker_class_name = None
-            getter = self._io.make_getter(where=self._where)
-            getter.append_yes_no_string('should have illustration')
-            result = getter._run()
-            if self._session.backtrack():
-                return
-            should_have_illustration = 'yes'.startswith(result.lower())
-        else:
-            material_package_maker_wrangler = scoremanagertools.wranglers.MaterialPackageMakerWrangler(
-                session=self._session)
-            with self.backtracking:
-                material_package_maker_class_name = \
-                    material_package_maker_wrangler.select_material_proxy_class_name_interactively(
-                        clear=False, cache=True)
-            if self._session.backtrack():
-                return
-            should_have_illustration = True
-        tags = collections.OrderedDict([])
-        tags['should_have_illustration'] = should_have_illustration
-        tags['material_package_maker_class_name'] = material_package_maker_class_name
-        self.write_stub_to_disk()
-        self._io.proceed('initializer restored.', is_interactive=prompt)
 
     # TODO: duplicate in TagsFileProxy
     def write_stub_to_disk(self):

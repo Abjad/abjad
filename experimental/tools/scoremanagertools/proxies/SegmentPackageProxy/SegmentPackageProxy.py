@@ -43,18 +43,18 @@ class SegmentPackageProxy(PackageProxy):
 
     ### PUBLIC METHODS ###
 
-    def make_asset(self):
+    def interactively_make_asset(self, prompt=True):
         self._io.print_not_yet_implemented()
 
-    def make_asset_interactively(self, prompt=True):
+    def interactively_set_score_template(self):
+        self._io.print_not_yet_implemented()
+
+    def make_asset(self):
         self._io.print_not_yet_implemented()
 
     def remove_segment_package(self):
         self.remove()
         return False
-
-    def set_score_template_interactively(self):
-        self._io.print_not_yet_implemented()
 
     ### UI MANIFEST ###
 

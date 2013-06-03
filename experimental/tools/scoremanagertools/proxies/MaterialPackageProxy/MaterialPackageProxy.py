@@ -601,73 +601,11 @@ class MaterialPackageProxy(PackageProxy):
     def interactively_edit_stylesheet_file(self):
         self.stylesheet_file_proxy.edit()
    
-    def manage_stylesheets(self):
-        from experimental.tools import scoremanagertools
-        stylesheet_file_wrangler = scoremanagertools.wranglers.StylesheetFileWrangler(
-            session=self._session)
-        stylesheet_file_wrangler._run()
-
-    def overwrite_output_material_module(self):
-        file(self.output_material_module_file_name, 'w').write('')
-
-#    def populate_user_input_wrapper(self, prompt=False):
-#        pass
-
-    def remove(self):
+    def interactively_remove(self):
         self.remove_material_from_materials_initializer()
-        PackageProxy.remove(self)
+        PackageProxy.interactively_remove(self)
 
-    def remove_illustration_builder_module(self, prompt=True):
-        self.remove_illustration_pdf(prompt=False)
-        if self.has_illustration_builder_module:
-            self.illustration_builder_module_proxy.remove()
-
-    def remove_illustration_ly(self, prompt=True):
-        if self.has_illustration_ly:
-            self.illustration_ly_file_proxy.remove()
-
-    def remove_illustration_pdf(self, prompt=True):
-        self.remove_illustration_ly(prompt=False)
-        if self.has_illustration_pdf:
-            self.illustration_pdf_file_proxy.remove()
-
-    def remove_interactively(self):
-        self.remove_material_from_materials_initializer()
-        PackageProxy.remove_interactively(self)
-
-    def remove_material_definition_module(self, prompt=True):
-        self.remove_output_material_module(prompt=False)
-        self.remove_illustration_builder_module(prompt=False)
-        if self.has_material_definition_module:
-            self.material_definition_module_proxy.remove()
-
-    def remove_material_from_materials_initializer(self):
-        import_statement = 'safe_import(globals(), {!r}, {!r})\n'
-        import_statement = import_statement.format(
-            self.material_package_name, self.material_package_name)
-        parent_package = PackageProxy(self.parent_package_path, session=self._session)
-        parent_package_initializer_file_proxy = parent_package.initializer_file_proxy
-        filtered_import_statements = []
-        for safe_import_statement in parent_package_initializer_file_proxy.safe_import_statements:
-            if not safe_import_statement == import_statement:
-                filtered_import_statements.append(safe_import_statement)
-        parent_package_initializer_file_proxy.safe_import_statements[:] = filtered_import_statements
-        parent_package_initializer_file_proxy.write_to_disk()
-
-    def remove_material_package(self):
-        self.remove()
-        self._session.is_backtracking_locally = True
-
-    def remove_output_material_module(self, prompt=True):
-        self.remove_illustration_builder_module(prompt=False)
-        if self.has_output_material_module:
-            self.output_material_module_proxy.remove()
-
-    def remove_user_input_module(self, prompt=True):
-        if self.has_user_input_module:
-            self.user_input_module_proxy.remove()
-
-    def rename_material_interactively(self):
+    def interactively_rename_material(self):
         line = 'current material name: {}'.format(self.material_package_name)
         self._io.display(line)
         getter = self._io.make_getter(where=self._where)
@@ -709,6 +647,94 @@ class MaterialPackageProxy(PackageProxy):
         else:
             raise NotImplementedError('commit to repository and then rename.')
 
+    def interactively_select_material_package_maker(self, prompt=True):
+        from experimental.tools import scoremanagertools
+        material_proxy_wrangler = scoremanagertools.wranglers.MaterialPackageMakerWrangler(
+            session=self._session)
+        with self.backtracking:
+            material_package_maker = material_proxy_wrangler.select_material_proxy_class_name_interactively()
+        if self._session.backtrack():
+            return
+        self.add_tag('material_package_maker', material_package_maker.class_name)
+        line = 'user input handler selected.'
+        self._io.proceed(line, is_interactive=prompt)
+
+    def interactively_select_stylesheet(self, prompt=True):
+        from experimental.tools import scoremanagertools
+        stylesheet_file_wrangler = scoremanagertools.wranglers.StylesheetFileWrangler(
+            session=self._session)
+        with self.backtracking:
+            stylesheet_file_name = stylesheet_file_wrangler.interactively_select_asset_filesystem_path()
+        if self._session.backtrack():
+            return
+        self.stylesheet_file_name_in_memory = stylesheet_file_name
+        self._io.proceed('stylesheet selected.', is_interactive=prompt)
+
+    def interactively_write_material_definition_module_boilerplate(self):
+        self.material_definition_module_proxy.interactively_write_boilerplate()
+
+    def interactively_write_output_material_module_boilerplate(self):
+        self.output_material_module_proxy.interactively_write_boilerplate()
+
+    def manage_stylesheets(self):
+        from experimental.tools import scoremanagertools
+        stylesheet_file_wrangler = scoremanagertools.wranglers.StylesheetFileWrangler(
+            session=self._session)
+        stylesheet_file_wrangler._run()
+
+    def overwrite_output_material_module(self):
+        file(self.output_material_module_file_name, 'w').write('')
+
+    def remove(self):
+        self.remove_material_from_materials_initializer()
+        PackageProxy.remove(self)
+
+    def remove_illustration_builder_module(self, prompt=True):
+        self.remove_illustration_pdf(prompt=False)
+        if self.has_illustration_builder_module:
+            self.illustration_builder_module_proxy.remove()
+
+    def remove_illustration_ly(self, prompt=True):
+        if self.has_illustration_ly:
+            self.illustration_ly_file_proxy.remove()
+
+    def remove_illustration_pdf(self, prompt=True):
+        self.remove_illustration_ly(prompt=False)
+        if self.has_illustration_pdf:
+            self.illustration_pdf_file_proxy.remove()
+
+    def remove_material_definition_module(self, prompt=True):
+        self.remove_output_material_module(prompt=False)
+        self.remove_illustration_builder_module(prompt=False)
+        if self.has_material_definition_module:
+            self.material_definition_module_proxy.remove()
+
+    def remove_material_from_materials_initializer(self):
+        import_statement = 'safe_import(globals(), {!r}, {!r})\n'
+        import_statement = import_statement.format(
+            self.material_package_name, self.material_package_name)
+        parent_package = PackageProxy(self.parent_package_path, session=self._session)
+        parent_package_initializer_file_proxy = parent_package.initializer_file_proxy
+        filtered_import_statements = []
+        for safe_import_statement in parent_package_initializer_file_proxy.safe_import_statements:
+            if not safe_import_statement == import_statement:
+                filtered_import_statements.append(safe_import_statement)
+        parent_package_initializer_file_proxy.safe_import_statements[:] = filtered_import_statements
+        parent_package_initializer_file_proxy.write_to_disk()
+
+    def remove_material_package(self):
+        self.remove()
+        self._session.is_backtracking_locally = True
+
+    def remove_output_material_module(self, prompt=True):
+        self.remove_illustration_builder_module(prompt=False)
+        if self.has_output_material_module:
+            self.output_material_module_proxy.remove()
+
+    def remove_user_input_module(self, prompt=True):
+        if self.has_user_input_module:
+            self.user_input_module_proxy.remove()
+
     @staticmethod
     def replace_in_file(file_path, old, new):
         file_pointer = file(file_path, 'r')
@@ -736,29 +762,6 @@ class MaterialPackageProxy(PackageProxy):
     def run_python_on_material_definition_module(self):
         self.material_definition_module_proxy.run_python()
 
-    def select_material_package_maker_interactively(self, prompt=True):
-        from experimental.tools import scoremanagertools
-        material_proxy_wrangler = scoremanagertools.wranglers.MaterialPackageMakerWrangler(
-            session=self._session)
-        with self.backtracking:
-            material_package_maker = material_proxy_wrangler.select_material_proxy_class_name_interactively()
-        if self._session.backtrack():
-            return
-        self.add_tag('material_package_maker', material_package_maker.class_name)
-        line = 'user input handler selected.'
-        self._io.proceed(line, is_interactive=prompt)
-
-    def select_stylesheet_interactively(self, prompt=True):
-        from experimental.tools import scoremanagertools
-        stylesheet_file_wrangler = scoremanagertools.wranglers.StylesheetFileWrangler(
-            session=self._session)
-        with self.backtracking:
-            stylesheet_file_name = stylesheet_file_wrangler.interactively_select_asset_filesystem_path()
-        if self._session.backtrack():
-            return
-        self.stylesheet_file_name_in_memory = stylesheet_file_name
-        self._io.proceed('stylesheet selected.', is_interactive=prompt)
-
     def view_illustration_ly(self):
         self.illustration_ly_file_proxy.view()
 
@@ -783,12 +786,6 @@ class MaterialPackageProxy(PackageProxy):
         illustration = self.illustration_with_stylesheet
         iotools.write_expr_to_pdf(illustration, self.illustration_pdf_file_name, print_status=False)
         self._io.proceed('PDF written to disk.', is_interactive=prompt)
-
-    def write_material_definition_module_boilerplate_interactively(self):
-        self.material_definition_module_proxy.write_boilerplate_interactively()
-
-    def write_output_material_module_boilerplate_interactively(self):
-        self.output_material_module_proxy.write_boilerplate_interactively()
 
     def write_output_material_to_disk(self, output_material_module_import_statements=None,
         output_material_module_body_lines=None, prompt=True):
@@ -833,13 +830,13 @@ class MaterialPackageProxy(PackageProxy):
         'lyd': remove_illustration_ly,
         'lym': write_illustration_ly_to_disk,
         'lyv': illustration_ly_file_proxy,
-        'mdcanned': write_material_definition_module_boilerplate_interactively,
+        'mdcanned': interactively_write_material_definition_module_boilerplate,
         'mde': interactively_edit_material_definition_module,
         'mddelete': remove_material_definition_module,
         'mdstub': write_stub_material_definition_module_to_disk,
         'mdx': run_python_on_material_definition_module,
         'mdxe': run_abjad_on_material_definition_module,
-        'omcanned': write_output_material_module_boilerplate_interactively,
+        'omcanned': interactively_write_output_material_module_boilerplate,
         'omdelete': remove_output_material_module,
         'omfetch': display_output_material,
         'omm': write_output_material_to_disk,
@@ -848,10 +845,10 @@ class MaterialPackageProxy(PackageProxy):
         'pdfm': write_illustration_ly_and_pdf_to_disk,
         'pdfd': remove_illustration_pdf,
         'pdfv': illustration_pdf_file_proxy,
-        'ren': rename_material_interactively,
+        'ren': interactively_rename_material,
         'rm': remove_material_package,
         'ssm': interactively_edit_stylesheet_file,
-        'sss': select_stylesheet_interactively,
+        'sss': interactively_select_stylesheet,
         'stl': manage_stylesheets,
         'uid': remove_user_input_module,
         })

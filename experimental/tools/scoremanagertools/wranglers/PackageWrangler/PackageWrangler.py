@@ -34,15 +34,15 @@ class PackageWrangler(PackagesystemAssetWrangler):
 
     ### PUBLIC METHODS ###
 
+    def interactively_make_asset(self):
+        self._io.print_not_yet_implemented()
+
     def make_asset(self, asset_name):
         assert stringtools.is_underscore_delimited_lowercase_package_name(asset_name)
         asset_filesystem_path = os.path.join(self._current_storehouse_filesystem_path, asset_name)
         os.mkdir(asset_filesystem_path)
         package_proxy = self._initialize_asset_proxy(asset_name)
         package_proxy.fix(is_interactive=False)
-
-    def make_asset_interactively(self):
-        self._io.print_not_yet_implemented()
 
     ### UI MANIFEST ###
 

@@ -78,7 +78,7 @@
 
 31. Harmonize user input strings with method names in MaterialPackageProxy.user_input_to_action dictionary.
 
-32. Author StylesheetFileWrangler.remove_assets_interactively() test.
+32. Author StylesheetFileWrangler.interactively_remove_assets() test.
     Will involve making user_input='... rm ...' work with named arguments instead of just numeric arguments.
 
 33. Make a menuing.Token class.

@@ -15,7 +15,7 @@ def test_FileProxy_copy_interactively_01():
         assert os.path.exists(filesystem_path)
         new_filesystem_path = os.path.join(
             score_manager_configuration.score_manager_tools_directory_path, 'new_temporary_file.txt')
-        file_proxy.copy_interactively(user_input='new_temporary_file.txt y q')
+        file_proxy.interactively_copy(user_input='new_temporary_file.txt y q')
         assert os.path.exists(filesystem_path)
         assert os.path.exists(new_filesystem_path)
         file_proxy.remove()

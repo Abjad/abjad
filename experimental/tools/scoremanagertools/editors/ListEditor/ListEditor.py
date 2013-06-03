@@ -74,7 +74,19 @@ class ListEditor(InteractiveEditor):
 
     ### PUBLIC METHODS ###
 
-    def add_items_interactively(self):
+    def conditionally_initialize_target(self):
+        if self.target is not None:
+            return
+        else:
+            self.target = self.target_class([])
+
+    def get_item_from_item_number(self, item_number):
+        try:
+            return self.items[int(item_number) - 1]
+        except:
+            pass
+
+    def interactively_add_items(self):
         if self.item_creator_class:
             item_creator = self.item_creator_class(
                 session=self._session, **self.item_creator_class_kwargs)
@@ -110,18 +122,6 @@ class ListEditor(InteractiveEditor):
             items = [result]
         self.items.extend(items)
 
-    def conditionally_initialize_target(self):
-        if self.target is not None:
-            return
-        else:
-            self.target = self.target_class([])
-
-    def get_item_from_item_number(self, item_number):
-        try:
-            return self.items[int(item_number) - 1]
-        except:
-            pass
-
     def interactively_edit_item(self, item_number):
         item = self.get_item_from_item_number(item_number)
         if item is not None:
@@ -130,7 +130,7 @@ class ListEditor(InteractiveEditor):
             item_index = int(item_number) - 1
             self.items[item_index] = item_editor.target
 
-    def move_item_interactively(self):
+    def interactively_move_item(self):
         getter = self._io.make_getter(where=self._where)
         getter.append_integer_in_range('old number', 1, len(self.items))
         getter.append_integer_in_range('new number', 1, len(self.items))
@@ -143,7 +143,7 @@ class ListEditor(InteractiveEditor):
         self.items.remove(item)
         self.items.insert(new_index, item)
 
-    def remove_items_interactively(self):
+    def interactively_remove_items(self):
         getter = self._io.make_getter(where=self._where)
         getter.append_argument_range(self.items_identifier, self.target_summary_lines)
         argument_range = getter._run()
@@ -158,7 +158,7 @@ class ListEditor(InteractiveEditor):
     ### UI MANIFEST ###
 
     user_input_to_action = {
-        'add':  add_items_interactively,
-        'rm':   remove_items_interactively,
-        'mv':   move_item_interactively,
+        'add':  interactively_add_items,
+        'rm':   interactively_remove_items,
+        'mv':   interactively_move_item,
     }

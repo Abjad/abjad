@@ -114,6 +114,27 @@ class ScorePackageWrangler(PackageWrangler):
                 asset_proxy.profile()
         return results
 
+    def interactively_make_asset(self, rollback=False):
+        breadcrumb = self._session.pop_breadcrumb(rollback=rollback)
+        getter = self._io.make_getter(where=self._where)
+        getter.indent_level = 1
+        getter.prompt_character = ':'
+        getter.capitalize_prompts = False
+        getter.include_newlines = False
+        getter.number_prompts = True
+        getter.append_string('score title')
+        getter.append_underscore_delimited_lowercase_package_name('package name')
+        getter.append_integer_in_range('year', start=1, allow_none=True)
+        result = getter._run()
+        if self._session.backtrack():
+            return
+        title, score_package_name, year = result
+        self.make_asset(score_package_name)
+        score_package_proxy = self._initialize_asset_proxy(score_package_name)
+        score_package_proxy.add_tag('title', title)
+        score_package_proxy.year_of_completion = year
+        self._session.push_breadcrumb(breadcrumb=breadcrumb, rollback=rollback)
+
     def list_asset_filesystem_paths(self,
         in_built_in_asset_library=True, in_user_asset_library=True,
         in_built_in_score_packages=True, in_user_score_packages=True, head=None):
@@ -368,27 +389,6 @@ class ScorePackageWrangler(PackageWrangler):
             elif scores_to_show == 'mothballed' and is_mothballed:
                 result.append(asset_proxy)
         return result
-
-    def make_asset_interactively(self, rollback=False):
-        breadcrumb = self._session.pop_breadcrumb(rollback=rollback)
-        getter = self._io.make_getter(where=self._where)
-        getter.indent_level = 1
-        getter.prompt_character = ':'
-        getter.capitalize_prompts = False
-        getter.include_newlines = False
-        getter.number_prompts = True
-        getter.append_string('score title')
-        getter.append_underscore_delimited_lowercase_package_name('package name')
-        getter.append_integer_in_range('year', start=1, allow_none=True)
-        result = getter._run()
-        if self._session.backtrack():
-            return
-        title, score_package_name, year = result
-        self.make_asset(score_package_name)
-        score_package_proxy = self._initialize_asset_proxy(score_package_name)
-        score_package_proxy.add_tag('title', title)
-        score_package_proxy.year_of_completion = year
-        self._session.push_breadcrumb(breadcrumb=breadcrumb, rollback=rollback)
 
     def profile_visible_assets(self):
         for asset_proxy in self.list_visible_asset_proxies():
