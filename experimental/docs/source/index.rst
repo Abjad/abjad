@@ -571,7 +571,7 @@ Unstable packages (load manually)
       tools/scoremanagertools/proxies/IllustrationBuilderModuleProxy/IllustrationBuilderModuleProxy
       tools/scoremanagertools/proxies/IllustrationLyFileProxy/IllustrationLyFileProxy
       tools/scoremanagertools/proxies/IllustrationPdfFileProxy/IllustrationPdfFileProxy
-      tools/scoremanagertools/proxies/InitializerFileProxy/InitializerFileProxy
+      tools/scoremanagertools/proxies/InitializerModuleProxy/InitializerModuleProxy
       tools/scoremanagertools/proxies/MaterialDefinitionModuleProxy/MaterialDefinitionModuleProxy
       tools/scoremanagertools/proxies/MaterialPackageProxy/MaterialPackageProxy
       tools/scoremanagertools/proxies/ModuleProxy/ModuleProxy
@@ -765,7 +765,7 @@ Unstable packages (load manually)
       tools/scoremanagertools/proxies/IllustrationBuilderModuleProxy/IllustrationBuilderModuleProxy
       tools/scoremanagertools/proxies/IllustrationLyFileProxy/IllustrationLyFileProxy
       tools/scoremanagertools/proxies/IllustrationPdfFileProxy/IllustrationPdfFileProxy
-      tools/scoremanagertools/proxies/InitializerFileProxy/InitializerFileProxy
+      tools/scoremanagertools/proxies/InitializerModuleProxy/InitializerModuleProxy
       tools/scoremanagertools/proxies/MaterialDefinitionModuleProxy/MaterialDefinitionModuleProxy
       tools/scoremanagertools/proxies/MaterialPackageProxy/MaterialPackageProxy
       tools/scoremanagertools/proxies/ModuleProxy/ModuleProxy

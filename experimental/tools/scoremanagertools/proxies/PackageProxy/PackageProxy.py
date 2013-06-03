@@ -80,7 +80,7 @@ class PackageProxy(DirectoryProxy):
     @property
     def initializer_file_proxy(self):
         from experimental.tools import scoremanagertools
-        return scoremanagertools.proxies.InitializerFileProxy(
+        return scoremanagertools.proxies.InitializerModuleProxy(
             self.initializer_file_name, session=self._session)
 
     @property
@@ -101,7 +101,7 @@ class PackageProxy(DirectoryProxy):
     def parent_initializer_file_proxy(self):
         from experimental.tools import scoremanagertools
         if self.has_parent_initializer:
-            return scoremanagertools.proxies.InitializerFileProxy(
+            return scoremanagertools.proxies.InitializerModuleProxy(
                 self.parent_initializer_file_name, session=self._session)
 
     @property

@@ -3,7 +3,7 @@ import os
 from experimental.tools.scoremanagertools.proxies.ModuleProxy import ModuleProxy
 
 
-class InitializerFileProxy(ModuleProxy):
+class InitializerModuleProxy(ModuleProxy):
 
     ### INITIALIZER ###
 

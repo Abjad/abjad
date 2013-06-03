@@ -3,6 +3,8 @@ from experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy import Fi
 
 
 class FileProxy(FilesystemAssetProxy):
+    '''File proxy.
+    '''
 
     ### CLASS VARIABLES ###
 
