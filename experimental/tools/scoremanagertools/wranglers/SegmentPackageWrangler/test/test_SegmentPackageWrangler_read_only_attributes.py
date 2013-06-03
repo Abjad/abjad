@@ -14,9 +14,6 @@ def test_SegmentPackageWrangler_read_only_attributes_01():
 
     assert wrangler._temporary_asset_package_path == '__temporary_package'
 
-    assert 'experimental.tools.scoremanagertools.scorepackages.red_example_score.music.segments' \
-        in wrangler._list_storehouse_package_paths()
-
 
 def test_SegmentPackageWrangler_read_only_attributes_02():
 
@@ -34,6 +31,3 @@ def test_SegmentPackageWrangler_read_only_attributes_02():
 
     assert wrangler._temporary_asset_package_path == \
         'experimental.tools.scoremanagertools.scorepackages.red_example_score.music.segments.__temporary_package'
-
-    assert 'experimental.tools.scoremanagertools.scorepackages.red_example_score.music.segments' \
-        in wrangler._list_storehouse_package_paths()

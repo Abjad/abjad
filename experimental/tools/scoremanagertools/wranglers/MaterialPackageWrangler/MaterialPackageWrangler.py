@@ -85,24 +85,6 @@ class MaterialPackageWrangler(PackageWrangler):
     def _initialize_asset_proxy(self, package_path):
         return self._material_package_maker_wrangler._initialize_asset_proxy(package_path)
 
-    def _list_score_storehouse_package_paths(self):
-        '''Material package wrangler list score internal storehouse package paths:
-
-        ::
-
-            >>> for x in wrangler._list_score_storehouse_package_paths():
-            ...     x
-            'experimental.tools.scoremanagertools.scorepackages.blue_example_score.music.materials'
-            'experimental.tools.scoremanagertools.scorepackages.green_example_score.music.materials'
-            'experimental.tools.scoremanagertools.scorepackages.red_example_score.music.materials'
-            ...
-
-        Output lists built-in scores followed by user scores.
-
-        Return list.
-        '''
-        return super(MaterialPackageWrangler, self)._list_score_storehouse_package_paths()
-
     def _make_main_menu(self, head=None):
         menu, section = self._io.make_menu(where=self._where, is_numbered=True, is_keyed=False)
         section.tokens = self._make_menu_tokens(head=head)
