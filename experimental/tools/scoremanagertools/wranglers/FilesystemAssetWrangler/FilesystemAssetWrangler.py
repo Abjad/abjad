@@ -26,18 +26,11 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        '''True when built-in and user storehouse paths are both equal.
-        Otherwise false.
+        '''True when types are the same. Otherwise false.
 
         Return boolean.
         '''
-        if isinstance(expr, type(self)):
-            if self.built_in_external_storehouse_filesystem_path == \
-                expr.built_in_external_storehouse_filesystem_path and \
-                self.user_asset_library_storehouse_filesystem_path == \
-                expr.user_asset_library_storehouse_filesystem_path:
-                return True
-        return False
+        return type(self) is type(expr)
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 

@@ -17,15 +17,6 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
         self.user_asset_library_storehouse_filesystem_path = user_asset_library_storehouse_filesystem_path
         FilesystemAssetWrangler.__init__(self, session=session)
 
-    ### SPECIAL METHODS ###
-
-    def __eq__(self, expr):
-        '''True when types are the same. Otherwise false.
-
-        Return boolean.
-        '''
-        return type(self) is type(expr)
-
     ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
