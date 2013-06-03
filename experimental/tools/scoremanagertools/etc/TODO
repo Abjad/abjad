@@ -1,83 +1,75 @@
-1.  Something takes a bunch of time. So optimize to make stuff take much less time.
-    Possibly by removing unnecessary output_material.py module interpretation.
-    First run profiler to avoid unnecessary tinkering.
+1.  Edit instrument transposition.
 
-2.  Make user input getter defaults work like menu defaults;
+2.  Edit instrument clefs.
+
+3.  Remove extra appearance of B-flat clarinet from clarinetist config menu.
+
+4.  Change Instrument._default_performer_names to house (full, abbreviation) pairs.
+
+5.  Use performer abbreviations to populate performer selection menu.
+
+6.  Make user input getter defaults work like menu defaults.
     Implement default_value on user input getter.
 
-3.  Fix ScoreManagerObject.handle_user_input_with_default() default handling.
+7.  Fix ScoreManagerObject.handle_user_input_with_default() default handling.
 
-4.  Define range inventories for all scores.
-
-5.  Implement material methods to move material packages from one location to another.
-
-6.  Find a way to include tags management in hidden menu of every package proxy.
-
-7.  Port output change awareness.
-
-8.  Implement something to tour all materials everywhere and examine in sequence.
+8.  Define range inventories for all scores.
 
 9.  Make user input handler creation work.
 
-10. Edit instrument transposition.
+10. Find a way dynamcially to present default indicator with default menu entries.
 
-11. Edit instrument clefs.
+11. Distinguish positional editor parameters from keyword editor parameters.
 
-12. Remove extra appearance of B-flat clarinet from clarinetist config menu.
+12.  Implement something to tour all materials everywhere and examine in sequence.
 
-13. Change Instrument._default_performer_names to house (full, abbreviation) pairs.
-
-14. Use performer abbreviations to populate performer selection menu.
-
-15. Find a way to dynamically present (default) indicator to default menu entries.
-
-16. Distinguish positional editor parameters from keyword editor parameters.
-
-* * *
-
-17. Currently MaterialPackageMaker inherits from MaterialPackageProxy.
+13. Currently MaterialPackageMaker inherits from MaterialPackageProxy.
     Maybe MaterialPackageMaker should *have* a MaterialPackageProxy instead.
     This would clean up the inheritance schema somewhat.
 
-18. Audit the UI of the entire materials management system by hand.
+14. Audit the UI of the entire materials management system by hand.
 
-19. Add a scores/test directory and check it into the scores repository.
+15. Add a scores/test directory and check it into the scores repository.
     Then add a scores/test/test_scores_import_scores.py file.
     The file will test 'import red_example_score', 'import green_example_score', and so on.
     This will be a very high-level test to make sure that entire score packages remain importable.
 
-20. Consolidate scores to single repository.
+16. Consolidate scores to single repository.
 
-21. Implement example_score_i.music.materials.divisions to import 
+17. Implement example_score_i.music.materials.divisions to import 
     example_score_i.music.materials.time_signatures.
     This will implement an intrapackage material import.
     Implement example_score_ii.music.materials.divisions to 
     import example_score_i.music.materials.time_signatures.
     This will implement an interpackage material import.
 
-22. Remove ModuleProxy.unimport() entirely.
+18. Remove ModuleProxy.unimport() entirely.
 
-23. Replace all _read_only_attributes.py and _public_attributes.py test files with doctests.
+19. Replace all _read_only_attributes.py and _public_attributes.py test files with doctests.
 
-24. Sweep inline scoremanagertools TODO items.
+20. Sweep inline scoremanagertools TODO items.
 
-25. Author ScorePackageProxy docstrings.
+21. Author ScorePackageProxy docstrings.
 
-26. Add PackageystemAssetProxy to superclass ModuleProxy and PackageProxy.
+22. Add PackageystemAssetProxy to superclass ModuleProxy and PackageProxy.
 
-27. Create a PackagesystemAssetProxy to parallel PacakagesystemAssetWrangler.
+23. Create a PackagesystemAssetProxy to parallel PacakagesystemAssetWrangler.
 
-28. Harmonize user input strings with method names in MaterialPackageProxy.user_input_to_action dictionary.
+24. Harmonize user input strings with method names in MaterialPackageProxy.user_input_to_action dictionary.
 
-29. Author StylesheetFileWrangler.interactively_remove_assets() test.
+25. Author StylesheetFileWrangler.interactively_remove_assets() test.
     Will involve making user_input='... rm ...' work with named arguments instead of just numeric arguments.
 
-30. Make a menuing.Token class.
+26. Make a menuing.Token class.
     This will name all token attributes.
     This will also make all attribute extraction methods explicit.
     This will also eliminate all numeric tuple field references.
 
-31. Make MaterialPackageMaker classes stop creating materials in tools.scoremanagertools.materialpackages.
+27. Make MaterialPackageMaker classes stop creating materials in tools.scoremanagertools.materialpackages.
     Those classes should create material packages in the user asset library material packages directory.
     Or in user score packages. But no material packages should ever be created in the built-in
     asset library material packages directory.
+
+28.  Implement material methods to move material packages from one location to another.
+
+29.  Find a way to include tags management in hidden menu of every package proxy.
