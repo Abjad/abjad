@@ -16,7 +16,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     forbidden_directory_entries = ()
     
-    storehouse_path_infix_parts = ()
+    score_package_asset_storehouse_path_infix_parts = ()
 
     ### INITIALIZER ###
 
@@ -39,10 +39,10 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         if self._session.is_in_score:
             parts = []
             parts.append(self._session.current_score_directory_path)
-            parts.extend(self.storehouse_path_infix_parts)
+            parts.extend(self.score_package_asset_storehouse_path_infix_parts)
             return os.path.join(*parts)
         else:
-            return self.built_in_external_storehouse_filesystem_path
+            return self.built_in_asset_library_storehouse_filesystem_path
 
     @property
     def _temporary_asset_filesystem_path(self):
@@ -113,7 +113,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             in_built_in_score_packages=False,
             in_user_score_packages=False):
             bodies.append(proxy.title)
-            path_parts = (proxy.filesystem_path,) + self.storehouse_path_infix_parts
+            path_parts = (proxy.filesystem_path,) + self.score_package_asset_storehouse_path_infix_parts
             key = os.path.join(*path_parts)
             keys.append(key)
         return zip(keys, bodies)
@@ -207,22 +207,22 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         in_built_in_asset_library=True, in_user_asset_library=True,
         in_built_in_score_packages=True, in_user_score_packages=True):
         result = []
-        if in_built_in_asset_library and self.built_in_external_storehouse_filesystem_path is not None:
-            result.append(self.built_in_external_storehouse_filesystem_path)
+        if in_built_in_asset_library and self.built_in_asset_library_storehouse_filesystem_path is not None:
+            result.append(self.built_in_asset_library_storehouse_filesystem_path)
         if in_user_asset_library and self.user_asset_library_storehouse_filesystem_path is not None:
             result.append(self.user_asset_library_storehouse_filesystem_path)
-        if in_built_in_score_packages and self.storehouse_path_infix_parts is not None:
+        if in_built_in_score_packages and self.score_package_asset_storehouse_path_infix_parts is not None:
             for score_directory_path in self.configuration.list_score_directory_paths(built_in=True):
                 parts = [score_directory_path]
-                if self.storehouse_path_infix_parts:
-                    parts.extend(self.storehouse_path_infix_parts)
+                if self.score_package_asset_storehouse_path_infix_parts:
+                    parts.extend(self.score_package_asset_storehouse_path_infix_parts)
                 storehouse_filesystem_path = os.path.join(*parts)
                 result.append(storehouse_filesystem_path)
-        if in_user_score_packages and self.storehouse_path_infix_parts is not None:
+        if in_user_score_packages and self.score_package_asset_storehouse_path_infix_parts is not None:
             for directory_path in self.configuration.list_score_directory_paths(user=True):
                 parts = [directory_path]
-                if self.storehouse_path_infix_parts:
-                    parts.extend(self.storehouse_path_infix_parts)
+                if self.score_package_asset_storehouse_path_infix_parts:
+                    parts.extend(self.score_package_asset_storehouse_path_infix_parts)
                 filesystem_path = os.path.join(*parts)
                 result.append(filesystem_path)
         return result
@@ -292,7 +292,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         self._session.restore_breadcrumbs(cache=cache)
         if result is not None:
             # TODO: this is a hack and will break on user assets
-            result = os.path.join(self.built_in_external_storehouse_filesystem_path[0], result)
+            result = os.path.join(self.built_in_asset_library_storehouse_filesystem_path[0], result)
             return result
 
     def select_user_storehouse_filesystem_path_interactively(self, clear=True, cache=False):
@@ -318,7 +318,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         self._session.restore_breadcrumbs(cache=cache)
         if result is not None:
             # TODO: this is a hack and will break on user assets
-            result = os.path.join(self.built_in_external_storehouse_filesystem_path[0], result)
+            result = os.path.join(self.built_in_asset_library_storehouse_filesystem_path[0], result)
             return result
 
     ### UI MANIFEST ###

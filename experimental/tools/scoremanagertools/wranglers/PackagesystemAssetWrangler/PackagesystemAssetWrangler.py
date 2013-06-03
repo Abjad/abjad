@@ -7,13 +7,13 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
     ### INITIALIZER ###
 
     def __init__(self, session=None):
-        built_in_external_storehouse_filesystem_path = \
+        built_in_asset_library_storehouse_filesystem_path = \
             self.configuration.packagesystem_path_to_filesystem_path(
-                self.built_in_external_storehouse_packagesystem_path)
+                self.built_in_asset_library_storehouse_packagesystem_path)
         user_asset_library_storehouse_filesystem_path = \
             self.configuration.packagesystem_path_to_filesystem_path(
             self.user_asset_library_storehouse_packagesystem_path)
-        self.built_in_external_storehouse_filesystem_path = built_in_external_storehouse_filesystem_path
+        self.built_in_asset_library_storehouse_filesystem_path = built_in_asset_library_storehouse_filesystem_path
         self.user_asset_library_storehouse_filesystem_path = user_asset_library_storehouse_filesystem_path
         FilesystemAssetWrangler.__init__(self, session=session)
 
@@ -24,10 +24,10 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
         if self._session.is_in_score:
             parts = []
             parts.append(self._session.current_score_package_path)
-            parts.extend(self.storehouse_path_infix_parts)
+            parts.extend(self.score_package_asset_storehouse_path_infix_parts)
             return '.'.join(parts)
         else:
-            return self.built_in_external_storehouse_packagesystem_path
+            return self.built_in_asset_library_storehouse_packagesystem_path
 
     @property
     def _temporary_asset_package_path(self):
@@ -49,7 +49,7 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
             pacakgesystem_path = self.configuration.filesystem_path_to_packagesystem_path(packagesystem_path)
         return self.asset_proxy_class(packagesystem_path=packagesystem_path, session=self._session)
 
-    def _list_built_in_external_storehouse_packagesystem_path(self):
+    def _list_built_in_asset_library_storehouse_packagesystem_path(self):
         result = []
         for filesystem_path in self.list_asset_storehouse_filesystem_paths(
             in_built_in_score_packages=False, in_user_asset_library=False, in_user_score_packages=False):
@@ -67,7 +67,7 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
 
     def _list_storehouse_package_paths(self):
         result = []
-        result.extend(self._list_built_in_external_storehouse_packagesystem_path())
+        result.extend(self._list_built_in_asset_library_storehouse_packagesystem_path())
         result.extend(self._list_score_storehouse_package_paths())
         return result
 
@@ -130,8 +130,8 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
             file_reference.write('')
             file_reference.close()
 
-    def make_external_storehouse_package(self):
-        for package_path in self._list_built_in_external_storehouse_packagesystem_path():
+    def make_asset_storehouse_in_built_in_asset_library(self):
+        for package_path in self._list_built_in_asset_library_storehouse_packagesystem_path():
             self.make_empty_package(package_path)
 
     def make_score_storehouse_packages(self, head=None):
@@ -140,7 +140,7 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
             self.make_empty_package(score_storehouse_package_path)
 
     def make_storehouse_packages(self, is_interactive=False):
-        self.make_external_storehouse_package()
+        self.make_asset_storehouse_in_built_in_asset_library()
         self.make_score_storehouse_packages()
         self._io.proceed('missing packages created.', is_interactive=is_interactive)
 

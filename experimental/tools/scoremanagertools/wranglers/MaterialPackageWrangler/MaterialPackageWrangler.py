@@ -28,9 +28,11 @@ class MaterialPackageWrangler(PackageWrangler):
 
     ### CLASS VARIABLES ###
     
-    storehouse_path_infix_parts = ('music', 'materials')
-    built_in_external_storehouse_packagesystem_path = \
+    score_package_asset_storehouse_path_infix_parts = ('music', 'materials')
+
+    built_in_asset_library_storehouse_packagesystem_path = \
         PackageWrangler.configuration.built_in_material_packages_package_path
+
     user_asset_library_storehouse_packagesystem_path = \
         PackageWrangler.configuration.user_asset_library_material_packages_package_path
 
