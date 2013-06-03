@@ -30,10 +30,10 @@ class MaterialPackageWrangler(PackageWrangler):
     
     score_package_asset_storehouse_path_infix_parts = ('music', 'materials')
 
-    built_in_asset_library_storehouse_packagesystem_path = \
+    asset_storehouse_packagesystem_path_in_built_in_asset_library = \
         PackageWrangler.configuration.built_in_material_packages_package_path
 
-    user_asset_library_storehouse_packagesystem_path = \
+    asset_storehouse_packagesystem_path_in_user_asset_library = \
         PackageWrangler.configuration.user_asset_library_material_packages_package_path
 
     ### INITIALIZER ###

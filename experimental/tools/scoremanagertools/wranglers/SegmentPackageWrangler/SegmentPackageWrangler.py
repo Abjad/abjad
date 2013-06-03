@@ -17,11 +17,11 @@ class SegmentPackageWrangler(PackageWrangler):
 
     ### CLASS VARIABLES ###
     
-    built_in_asset_library_storehouse_packagesystem_path = None
+    asset_storehouse_packagesystem_path_in_built_in_asset_library = None
 
     score_package_asset_storehouse_path_infix_parts = ('music', 'segments')
 
-    user_asset_library_storehouse_packagesystem_path = None
+    asset_storehouse_packagesystem_path_in_user_asset_library = None
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 

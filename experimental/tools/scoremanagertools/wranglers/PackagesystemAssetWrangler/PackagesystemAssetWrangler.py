@@ -7,16 +7,16 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
     ### INITIALIZER ###
 
     def __init__(self, session=None):
-        built_in_asset_library_storehouse_filesystem_path = \
+        asset_storehouse_filesystem_path_in_built_in_asset_library = \
             self.configuration.packagesystem_path_to_filesystem_path(
-                self.built_in_asset_library_storehouse_packagesystem_path)
-        user_asset_library_storehouse_filesystem_path = \
+            self.asset_storehouse_packagesystem_path_in_built_in_asset_library)
+        asset_storehouse_filesystem_path_in_user_asset_library = \
             self.configuration.packagesystem_path_to_filesystem_path(
-            self.user_asset_library_storehouse_packagesystem_path)
-        self.built_in_asset_library_storehouse_filesystem_path = \
-            built_in_asset_library_storehouse_filesystem_path
-        self.user_asset_library_storehouse_filesystem_path = \
-            user_asset_library_storehouse_filesystem_path
+            self.asset_storehouse_packagesystem_path_in_user_asset_library)
+        self.asset_storehouse_filesystem_path_in_built_in_asset_library = \
+            asset_storehouse_filesystem_path_in_built_in_asset_library
+        self.asset_storehouse_filesystem_path_in_user_asset_library = \
+            asset_storehouse_filesystem_path_in_user_asset_library
         FilesystemAssetWrangler.__init__(self, session=session)
 
     ### READ-ONLY PRIVATE PROPERTIES ###
@@ -29,7 +29,7 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
             parts.extend(self.score_package_asset_storehouse_path_infix_parts)
             return '.'.join(parts)
         else:
-            return self.built_in_asset_library_storehouse_packagesystem_path
+            return self.asset_storehouse_packagesystem_path_in_built_in_asset_library
 
     @property
     def _temporary_asset_package_path(self):

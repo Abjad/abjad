@@ -15,12 +15,12 @@ class StylesheetFileWrangler(FileWrangler):
 
     ### CLASS VARIABLES ###
 
-    built_in_asset_library_storehouse_filesystem_path = os.path.join(
+    asset_storehouse_filesystem_path_in_built_in_asset_library = os.path.join(
         FileWrangler.configuration.score_manager_tools_directory_path, 'stylesheets')
 
     score_package_asset_storehouse_path_infix_parts = ('music', 'stylesheets')
 
-    user_asset_library_storehouse_filesystem_path = FileWrangler.configuration.user_asset_library_stylesheets_directory_path
+    asset_storehouse_filesystem_path_in_user_asset_library = FileWrangler.configuration.user_asset_library_stylesheets_directory_path
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 

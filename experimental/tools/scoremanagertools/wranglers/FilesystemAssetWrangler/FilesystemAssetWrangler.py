@@ -42,7 +42,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             parts.extend(self.score_package_asset_storehouse_path_infix_parts)
             return os.path.join(*parts)
         else:
-            return self.built_in_asset_library_storehouse_filesystem_path
+            return self.asset_storehouse_filesystem_path_in_built_in_asset_library
 
     @property
     def _temporary_asset_filesystem_path(self):
@@ -104,7 +104,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def _make_user_storehouse_menu_tokens(self):
         from experimental.tools import scoremanagertools
         keys, bodies = [], [] 
-        keys.append(self.user_asset_library_storehouse_filesystem_path)
+        keys.append(self.asset_storehouse_filesystem_path_in_user_asset_library)
         bodies.append('My {}'.format(self._breadcrumb))
         wrangler = scoremanagertools.wranglers.ScorePackageWrangler(session=self._session)
         for proxy in wrangler.list_asset_proxies(
@@ -207,10 +207,10 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         in_built_in_asset_library=True, in_user_asset_library=True,
         in_built_in_score_packages=True, in_user_score_packages=True):
         result = []
-        if in_built_in_asset_library and self.built_in_asset_library_storehouse_filesystem_path is not None:
-            result.append(self.built_in_asset_library_storehouse_filesystem_path)
-        if in_user_asset_library and self.user_asset_library_storehouse_filesystem_path is not None:
-            result.append(self.user_asset_library_storehouse_filesystem_path)
+        if in_built_in_asset_library and self.asset_storehouse_filesystem_path_in_built_in_asset_library is not None:
+            result.append(self.asset_storehouse_filesystem_path_in_built_in_asset_library)
+        if in_user_asset_library and self.asset_storehouse_filesystem_path_in_user_asset_library is not None:
+            result.append(self.asset_storehouse_filesystem_path_in_user_asset_library)
         if in_built_in_score_packages and self.score_package_asset_storehouse_path_infix_parts is not None:
             for score_directory_path in self.configuration.list_score_directory_paths(built_in=True):
                 parts = [score_directory_path]
@@ -292,7 +292,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         self._session.restore_breadcrumbs(cache=cache)
         if result is not None:
             # TODO: this is a hack and will break on user assets
-            result = os.path.join(self.built_in_asset_library_storehouse_filesystem_path[0], result)
+            result = os.path.join(self.asset_storehouse_filesystem_path_in_built_in_asset_library[0], result)
             return result
 
     def select_user_storehouse_filesystem_path_interactively(self, clear=True, cache=False):
@@ -318,7 +318,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         self._session.restore_breadcrumbs(cache=cache)
         if result is not None:
             # TODO: this is a hack and will break on user assets
-            result = os.path.join(self.built_in_asset_library_storehouse_filesystem_path[0], result)
+            result = os.path.join(self.asset_storehouse_filesystem_path_in_built_in_asset_library[0], result)
             return result
 
     ### UI MANIFEST ###

@@ -20,7 +20,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
 
     ### CLASS VARIABLES ###
 
-    built_in_asset_library_storehouse_packagesystem_path = \
+    asset_storehouse_packagesystem_path_in_built_in_asset_library = \
         PackageWrangler.configuration.built_in_material_package_makers_package_path
 
     forbidden_directory_entries = (
@@ -31,7 +31,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
 
     score_package_asset_storehouse_path_infix_parts = None
 
-    user_asset_library_storehouse_packagesystem_path = \
+    asset_storehouse_packagesystem_path_in_user_asset_library = \
         PackageWrangler.configuration.user_asset_library_material_package_makers_package_path
     
     ### READ-ONLY PRIVATE PROPERTIES ###
@@ -263,7 +263,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
     # TODO: change to boilerplate
     def make_asset_class_file(self, package_name, generic_output_name):
         class_file_name = os.path.join(
-            self.built_in_asset_library_storehouse_packagesystem_path,
+            self.asset_storehouse_packagesystem_path_in_built_in_asset_library,
             package_name, package_name + '.py')
         class_file = file(class_file_name, 'w')
         lines = []
@@ -315,7 +315,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
     # TODO: change to boilerplate
     def make_asset_initializer(self, package_name):
         initializer_file_name = os.path.join(
-            self.built_in_asset_library_storehouse_packagesystem_path,
+            self.asset_storehouse_packagesystem_path_in_built_in_asset_library,
             package_name, '__init__.py')
         initializer = file(initializer_file_name, 'w')
         line = 'from abjad.tools import importtools\n'
@@ -333,7 +333,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             return
         material_package_maker_class_name, generic_output_product_name = result
         material_package_maker_directory = os.path.join(
-            self.built_in_asset_library_storehouse_packagesystem_path,
+            self.asset_storehouse_packagesystem_path_in_built_in_asset_library,
             material_package_maker_class_name)
         os.mkdir(material_package_maker_directory)
         self.make_asset_initializer(material_package_maker_class_name)
@@ -353,7 +353,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         stylesheet.paper_block.markup_system_spacing = layouttools.make_spacing_vector(0, 0, 12, 0)
         stylesheet.paper_block.system_system_spacing = layouttools.make_spacing_vector(0, 0, 10, 0)
         stylesheet_file_name = os.path.join(
-            self.built_in_asset_library_storehouse_packagesystem_path,
+            self.asset_storehouse_packagesystem_path_in_built_in_asset_library,
             package_name, 'stylesheet.ly')
         stylesheet_file_pointer = file(stylesheet_file_name, 'w')
         stylesheet_file_pointer.write(stylesheet.format)
