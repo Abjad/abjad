@@ -753,7 +753,7 @@ class MaterialPackageProxy(PackageProxy):
         stylesheet_file_wrangler = scoremanagertools.wranglers.StylesheetFileWrangler(
             session=self._session)
         with self.backtracking:
-            stylesheet_file_name = stylesheet_file_wrangler.select_asset_filesystem_path_interactively()
+            stylesheet_file_name = stylesheet_file_wrangler.interactively_select_asset_filesystem_path()
         if self._session.backtrack():
             return
         self.stylesheet_file_name_in_memory = stylesheet_file_name

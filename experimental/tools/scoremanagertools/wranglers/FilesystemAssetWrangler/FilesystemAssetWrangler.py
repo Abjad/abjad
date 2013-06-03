@@ -99,6 +99,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         pass
 
     def _make_menu_tokens(self, head=None, include_extension=False):
+        raise Exception('FOO')
         keys = self.list_asset_filesystem_paths(head=head)
         bodies = self.list_asset_names(head=head, include_extension=include_extension)
         return zip(keys, bodies)
@@ -152,6 +153,29 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         pass
 
     ### PUBLIC METHODS ###
+
+    def interactively_select_asset_filesystem_path(self, clear=True, cache=False):
+        self._session.cache_breadcrumbs(cache=cache)
+        menu, section = self._io.make_menu(
+            where=self._where, 
+            is_parenthetically_numbered=True, 
+            is_keyed=False,
+            )
+        section.tokens = self._make_menu_tokens()
+        while True:
+            breadcrumb = self._make_asset_selection_breadcrumb()
+            self._session.push_breadcrumb(breadcrumb)
+            result = menu._run(clear=clear)
+            if self._session.backtrack():
+                break
+            elif not result:
+                self._session.pop_breadcrumb()
+                continue
+            else:
+                break
+        self._session.pop_breadcrumb()
+        self._session.restore_breadcrumbs(cache=cache)
+        return result
 
     def list_asset_filesystem_paths(self, 
         in_built_in_asset_library=True, in_user_asset_library=True,
@@ -268,38 +292,11 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     # TODO: write test
     def rename_asset_interactively(self):
         with self.backtracking:
-            asset_filesystem_path = self.select_asset_filesystem_path_interactively()
+            asset_filesystem_path = self.interactively_select_asset_filesystem_path()
         if self._session.backtrack():
             return
         asset_proxy = self._initialize_asset_proxy(asset_filesystem_path)
         asset_proxy.rename_interactively()
-
-    # TODO: write test
-    def select_asset_filesystem_path_interactively(self, clear=True, cache=False):
-        self._session.cache_breadcrumbs(cache=cache)
-        menu, section = self._io.make_menu(
-            where=self._where, 
-            is_parenthetically_numbered=True, 
-            is_keyed=False,
-            )
-        section.tokens = self._make_menu_tokens()
-        while True:
-            breadcrumb = self._make_asset_selection_breadcrumb()
-            self._session.push_breadcrumb(breadcrumb)
-            result = menu._run(clear=clear)
-            if self._session.backtrack():
-                break
-            elif not result:
-                self._session.pop_breadcrumb()
-                continue
-            else:
-                break
-        self._session.pop_breadcrumb()
-        self._session.restore_breadcrumbs(cache=cache)
-        if result is not None:
-            # TODO: this is a hack and will break on user assets
-            result = os.path.join(self.asset_storehouse_filesystem_path_in_built_in_asset_library[0], result)
-            return result
 
     def select_asset_storehouse_filesystem_path_interactively(self, 
         clear=True, cache=False,
