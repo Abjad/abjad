@@ -1,4 +1,5 @@
-import ply
+from ply import lex
+from ply import yacc
 from abjad.tools import abctools
 from abjad.tools import schemetools
 
@@ -103,14 +104,14 @@ class SchemeParser(abctools.Parser):
             t.value = False
         return t
 
-    @ply.lex.TOKEN(HEX)
+    @lex.TOKEN(HEX)
     def t_HEXADECIMAL(self, t):
         self.cursor += len(t.value)
         t.cursor_end = self.cursor
         t.value = int(t.value[2:], 16)
         return t
 
-    @ply.lex.TOKEN(REAL)
+    @lex.TOKEN(REAL)
     def t_DECIMAL(self, t):
         self.cursor += len(t.value)
         t.cursor_end = self.cursor
@@ -123,7 +124,7 @@ class SchemeParser(abctools.Parser):
         t.cursor_end = self.cursor
         return t
 
-    @ply.lex.TOKEN(INT)
+    @lex.TOKEN(INT)
     def t_INTEGER(self, t):
         self.cursor += len(t.value)
         t.cursor_end = self.cursor
@@ -182,7 +183,7 @@ class SchemeParser(abctools.Parser):
         self.string_accumulator += t.value
         pass
 
-    @ply.lex.TOKEN(IDENTIFIER)
+    @lex.TOKEN(IDENTIFIER)
     def t_IDENTIFIER(self, t):
         self.cursor += len(t.value)
         t.cursor_end = self.cursor
@@ -567,7 +568,7 @@ class SchemeParser(abctools.Parser):
         if p:
             if self.debug:
                 print("SchemeParser-{}: Syntax error at {!r}".format(id(self), p.value))
-            ply.yacc.errok()
+            yacc.errok()
         else:
             if self.debug:
                 print("SchemeParser-{}: Syntax error at EOF".format(id(self)))

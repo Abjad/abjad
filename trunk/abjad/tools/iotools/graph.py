@@ -18,7 +18,7 @@ def graph(expr, image_format='pdf', layout='dot'):
 
     ::
 
-        >>> graph(rhythm_tree) # doctest: +SKIP
+        >>> iotools.graph(rhythm_tree) # doctest: +SKIP
 
     Return None.
     '''
