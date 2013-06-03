@@ -54,14 +54,6 @@ class ModuleProxy(ParsableFileProxy):
         except:
             return False
 
-    # TODO: make into method
-    @property
-    def is_readable(self):
-        if self.parse():
-            if self.is_exceptionless:
-                return True
-        return False
-
     @property
     def module_name(self):
         if self.module_path:
@@ -94,6 +86,12 @@ class ModuleProxy(ParsableFileProxy):
             file_contents_string = file_pointer.read()
             file_pointer.close()
             exec(file_contents_string)
+
+    def read_file(self):
+        if self.parse():
+            if self.is_exceptionless:
+                return True
+        return False
 
     # TODO: remove entirely
     def remove_package_path_from_sys_modules(self, package_path):

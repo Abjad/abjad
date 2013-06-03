@@ -233,31 +233,31 @@ class MaterialPackageProxy(PackageProxy):
     @property
     def has_readable_illustration_builder_module(self):
         if self.has_illustration_builder_module:
-            return self.illustration_builder_module_proxy.is_readable
+            return self.illustration_builder_module_proxy.read_file()
         return False
 
     @property
     def has_readable_initializer(self):
         if self.has_initializer:
-            return self.initializer_file_proxy.is_readable
+            return self.initializer_file_proxy.read_file()
         return False
 
     @property
     def has_readable_material_definition_module(self):
         if self.has_material_definition_module:
-            return self.material_definition_module_proxy.is_readable
+            return self.material_definition_module_proxy.read_file()
         return False
 
     @property
     def has_readable_output_material_module(self):
         if self.has_output_material_module:
-            return self.output_material_module_proxy.is_readable
+            return self.output_material_module_proxy.read_file()
         return False
 
     @property
     def has_readable_user_input_module(self):
         if self.has_user_input_module:
-            return self.user_input_module_proxy.is_readable
+            return self.user_input_module_proxy.read_file()
         return False
 
     # TODO: impelement

@@ -31,10 +31,6 @@ class InitializerFileProxy(ParsableFileProxy):
             (self.teardown_statements, True, 0),
             )
 
-    @property
-    def is_readable(self):
-        return self.parse()
-
     ### PUBLIC METHODS ###
 
     def has_line(self, line):
@@ -46,7 +42,6 @@ class InitializerFileProxy(ParsableFileProxy):
         file_reference.close()
         return False
 
-    # TODO: move to TagsFileProxy
     def interactively_restore(self, prompt=True):
         from experimental.tools import scoremanagertools
         getter = self._io.make_getter(where=self._where)
@@ -78,7 +73,6 @@ class InitializerFileProxy(ParsableFileProxy):
         self.write_stub_to_disk()
         self._io.proceed('initializer restored.', is_interactive=prompt)
 
-    # TODO: move to TagsFileProxy
     def make_tag_lines(self, tags):
         if tags:
             lines = []
@@ -149,12 +143,13 @@ class InitializerFileProxy(ParsableFileProxy):
         self.teardown_statements = teardown_statements[:]
         return is_parsable
 
-    # TODO: duplicate in TagsFileProxy
+    def read_file(self):
+        return self.parse()
+
     def write_stub_to_disk(self):
         self.clear()
         self.write_to_disk()
 
-    # TODO: move to TagsFileProxy
     def write_tags_to_disk(self, tags):
         self.parse()
         ordered_dict_import_statement = 'import collections\n'

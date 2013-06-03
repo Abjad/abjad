@@ -64,7 +64,7 @@
 
 25. Author ScorePackageProxy docstrings.
 
-26. Remove the has_readable_... and is_readable_... properties from the system entirely.
+26. Remove the has_readable_... properties from the system entirely.
     Force such functionality to be method calls that will be noticeably expensive.
 
 27. Add PackageystemAssetProxy to superclass ModuleProxy and PackageProxy.
