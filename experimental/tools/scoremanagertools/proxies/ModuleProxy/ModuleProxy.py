@@ -40,10 +40,10 @@ class ModuleProxy(ParsableFileProxy):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def filesystem_directory_name(self):
+    def parent_directory_filesystem_path(self):
         if self.packagesystem_path:
             return self.configuration.packagesystem_path_to_filesystem_path(
-                self.parent_package_path)
+                self.parent_directory_packagesystem_path)
 
     @property
     def packagesystem_basename(self):
@@ -55,7 +55,7 @@ class ModuleProxy(ParsableFileProxy):
         return self._packagesystem_path
 
     @property
-    def parent_package_path(self):
+    def parent_directory_packagesystem_path(self):
         if self.packagesystem_path:
             return '.'.join(self.packagesystem_path.split('.')[:-1])
 

@@ -21,5 +21,5 @@ def test_PackageProxy_read_only_attributes_01():
     assert package_proxy._space_delimited_lowercase_name == 'red sargasso measures'
     assert package_proxy.parent_initializer_file_name == \
         os.path.join(package_proxy.configuration.built_in_material_packages_directory_path, '__init__.py')
-    assert package_proxy.parent_package_path == \
+    assert package_proxy.parent_directory_packagesystem_path == \
         'experimental.tools.scoremanagertools.materialpackages'

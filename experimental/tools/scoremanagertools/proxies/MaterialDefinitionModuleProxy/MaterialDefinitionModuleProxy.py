@@ -34,7 +34,7 @@ class MaterialDefinitionModuleProxy(MaterialModuleProxy):
         self.unimport()
         result = self._safe_import(
             locals(), self.packagesystem_basename, 'output_material_module_import_statements',
-            source_parent_package_path=self.parent_package_path)
+            source_parent_package_path=self.parent_directory_packagesystem_path)
         # keep list from persisting between multiple calls to this method
         if result:
             result = list(result)

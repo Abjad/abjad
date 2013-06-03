@@ -121,7 +121,7 @@ class FilesystemAssetProxy(ScoreManagerObject):
             return os.path.basename(self.filesystem_path)
 
     @property
-    def filesystem_directory_name(self):
+    def parent_directory_filesystem_path(self):
         if self.filesystem_path:
             return os.path.dirname(self.filesystem_path)
 
@@ -146,7 +146,7 @@ class FilesystemAssetProxy(ScoreManagerObject):
         if self._session.backtrack():
             return
         new_asset_name = self._space_delimited_lowercase_name_to_asset_name(result)
-        new_path = os.path.join(self.filesystem_directory_name, new_asset_name)
+        new_path = os.path.join(self.parent_directory_filesystem_path, new_asset_name)
         self._io.display('new path will be {}'.format(new_path))
         if not self._io.confirm():
             return
@@ -177,7 +177,7 @@ class FilesystemAssetProxy(ScoreManagerObject):
         result = getter._run()
         if self._session.backtrack():
             return
-        new_path = os.path.join(self.filesystem_directory_name, result)
+        new_path = os.path.join(self.parent_directory_filesystem_path, result)
         self._io.display(['new path name will be: "{}"'.format(new_path), ''])
         if not self._io.confirm():
             return

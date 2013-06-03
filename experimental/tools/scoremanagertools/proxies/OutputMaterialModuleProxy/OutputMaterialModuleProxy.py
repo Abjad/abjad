@@ -48,17 +48,17 @@ class OutputMaterialModuleProxy(BasicModuleProxy):
         return super(OutputMaterialModuleProxy, self).filesystem_basename
 
     @property
-    def filesystem_directory_name(self):
+    def parent_directory_filesystem_path(self):
         '''Output material module proxy filesystem directory_name:
 
         ::
 
-            >>> proxy.filesystem_directory_name
+            >>> proxy.parent_directory_filesystem_path
             '.../materialpackages/red_numbers'
 
         Return string.
         '''
-        return super(OutputMaterialModuleProxy, self).filesystem_directory_name
+        return super(OutputMaterialModuleProxy, self).parent_directory_filesystem_path
 
     @property
     def filesystem_path(self):

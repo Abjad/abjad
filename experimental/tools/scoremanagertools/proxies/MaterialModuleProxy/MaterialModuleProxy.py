@@ -11,7 +11,7 @@ class MaterialModuleProxy(ModuleProxy):
 
     @property
     def material_package_path(self):
-        return self.parent_package_path
+        return self.parent_directory_packagesystem_path
 
     @property
     def space_delimited_material_package_name(self):
