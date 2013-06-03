@@ -57,32 +57,6 @@ class OutputMaterialModuleProxy(MaterialModuleProxy):
         return super(OutputMaterialModuleProxy, self).filesystem_path
 
     @property
-    def material_package_name(self):
-        '''Output material module proxy material package name:
-
-        ::
-
-            >>> proxy.material_package_name
-            'red_numbers'
-
-        Return string.
-        '''
-        return super(OutputMaterialModuleProxy, self).material_package_name
-
-    @property
-    def material_package_path(self):
-        '''Output material module proxy material package path:
-
-        ::
-
-            >>> proxy.material_package_path
-            'experimental.tools.scoremanagertools.materialpackages.red_numbers'
-
-        Return string.
-        '''
-        return super(OutputMaterialModuleProxy, self).material_package_path
-
-    @property
     def packagesystem_basename(self):
         '''Output material module proxy module name:
 
@@ -125,7 +99,8 @@ class OutputMaterialModuleProxy(MaterialModuleProxy):
             file_contents_string = file_pointer.read()
             file_pointer.close()
             exec(file_contents_string)
-            result = locals().get(self.material_package_name)
+            material_package_name = self.packagesystem_path.split('.')[-2]
+            result = locals().get(material_package_name)
             return result
 
     def import_output_material_safely(self):
@@ -133,3 +108,11 @@ class OutputMaterialModuleProxy(MaterialModuleProxy):
             return self.import_output_material()
         except:
             pass
+
+    def unimport_material_package(self):
+        self.remove_package_path_from_sys_modules(
+            self.parent_directory_packagesystem_path)
+
+    def unimport_materials_package(self):
+        self.remove_package_path_from_sys_modules(
+            self._session.current_materials_package_path)

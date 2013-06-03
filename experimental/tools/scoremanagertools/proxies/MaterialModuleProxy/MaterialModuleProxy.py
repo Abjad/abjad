@@ -17,18 +17,6 @@ class MaterialModuleProxy(ModuleProxy, ParseableFileMixin):
         return self.packagesystem_path.split('.')[-2]
 
     @property
-    def material_package_path(self):
-        return self.parent_directory_packagesystem_path
-
-    @property
     def space_delimited_material_package_name(self):
-        return self.material_package_name.replace('_', ' ')
-
-    ### PUBLIC METHODS ###
-
-    def unimport_material_package(self):
-        self.remove_package_path_from_sys_modules(self.material_package_path)
-
-    def unimport_materials_package(self):
-        self.remove_package_path_from_sys_modules(
-            self._session.current_materials_package_path)
+        material_package_name = self.packagesystem_path.split('.')[-2]
+        return material_package_name.replace('_', ' ')
