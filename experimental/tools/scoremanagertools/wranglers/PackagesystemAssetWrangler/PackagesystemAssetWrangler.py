@@ -13,8 +13,10 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
         user_asset_library_storehouse_filesystem_path = \
             self.configuration.packagesystem_path_to_filesystem_path(
             self.user_asset_library_storehouse_packagesystem_path)
-        self.built_in_asset_library_storehouse_filesystem_path = built_in_asset_library_storehouse_filesystem_path
-        self.user_asset_library_storehouse_filesystem_path = user_asset_library_storehouse_filesystem_path
+        self.built_in_asset_library_storehouse_filesystem_path = \
+            built_in_asset_library_storehouse_filesystem_path
+        self.user_asset_library_storehouse_filesystem_path = \
+            user_asset_library_storehouse_filesystem_path
         FilesystemAssetWrangler.__init__(self, session=session)
 
     ### READ-ONLY PRIVATE PROPERTIES ###
@@ -49,14 +51,6 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
             pacakgesystem_path = self.configuration.filesystem_path_to_packagesystem_path(packagesystem_path)
         return self.asset_proxy_class(packagesystem_path=packagesystem_path, session=self._session)
 
-    def _list_built_in_asset_library_storehouse_packagesystem_path(self):
-        result = []
-        for filesystem_path in self.list_asset_storehouse_filesystem_paths(
-            in_built_in_score_packages=False, in_user_asset_library=False, in_user_score_packages=False):
-            packagesystem_path = self.configuration.filesystem_path_to_packagesystem_path(filesystem_path)
-            result.append(packagesystem_path)
-        return result
-
     def _list_score_storehouse_package_paths(self):
         result = []
         for filesystem_path in self.list_asset_storehouse_filesystem_paths(
@@ -67,8 +61,11 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
 
     def _list_storehouse_package_paths(self):
         result = []
-        result.extend(self._list_built_in_asset_library_storehouse_packagesystem_path())
-        result.extend(self._list_score_storehouse_package_paths())
+        result.extend(self.list_asset_storehouse_packagesystem_paths(
+            in_built_in_asset_library=True, 
+            in_user_asset_library=True,
+            in_built_in_score_packages=True, 
+            in_user_score_packages=True))
         return result
 
     def _make_menu_tokens(self, head=None):
@@ -81,7 +78,8 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
 
     def list_asset_packagesystem_paths(self, 
         in_built_in_asset_library=True, in_user_asset_library=True,
-        in_built_in_score_packages=True, in_user_score_packages=True, head=None):
+        in_built_in_score_packages=True, in_user_score_packages=True, 
+        head=None):
         result = []
         for filesystem_path in self.list_asset_filesystem_paths(
             in_built_in_asset_library=in_built_in_asset_library,
@@ -106,6 +104,21 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
             result.append(asset_proxy)
         return result
 
+    def list_asset_storehouse_packagesystem_paths(self, 
+        in_built_in_asset_library=True, in_user_asset_library=True,
+        in_built_in_score_packages=True, in_user_score_packages=True):
+        result = []
+        superclass = super(PackagesystemAssetWrangler, self)
+        for filesystem_path in superclass.list_asset_storehouse_filesystem_paths(
+            in_built_in_asset_library=True, 
+            in_user_asset_library=True,
+            in_built_in_score_packages=True, 
+            in_user_score_packages=True):
+            packagesystem_path = self.configuration.filesystem_path_to_packagesystem_path(
+                filesystem_path)
+            result.append(packagesystem_path)
+        return result
+            
     def list_visible_asset_packagesystem_paths(self, head=None):
         result = []
         if hasattr(self, 'list_visible_asset_proxies'):
@@ -131,7 +144,11 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
             file_reference.close()
 
     def make_asset_storehouse_in_built_in_asset_library(self):
-        for package_path in self._list_built_in_asset_library_storehouse_packagesystem_path():
+        for package_path in self.list_asset_storehouse_packagesystem_paths(
+            in_built_in_asset_library=True, 
+            in_user_asset_library=False,
+            in_built_in_score_packages=False, 
+            in_user_score_packages=False):
             self.make_empty_package(package_path)
 
     def make_score_storehouse_packages(self, head=None):

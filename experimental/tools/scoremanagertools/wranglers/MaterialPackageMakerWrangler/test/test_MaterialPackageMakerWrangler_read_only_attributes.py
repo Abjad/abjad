@@ -10,12 +10,7 @@ def test_MaterialPackageMakerWrangler_read_only_attributes_01():
     assert wrangler._current_storehouse_packagesystem_path == \
         'experimental.tools.scoremanagertools.materialpackagemakers'
 
-    assert wrangler._list_built_in_asset_library_storehouse_packagesystem_path() == \
-        ['experimental.tools.scoremanagertools.materialpackagemakers']
     assert wrangler.score_package_asset_storehouse_path_infix_parts is None
 
     assert wrangler._temporary_asset_package_path == \
         'experimental.tools.scoremanagertools.materialpackagemakers.__temporary_package'
-
-    assert wrangler._list_storehouse_package_paths() == [
-        'experimental.tools.scoremanagertools.materialpackagemakers']
