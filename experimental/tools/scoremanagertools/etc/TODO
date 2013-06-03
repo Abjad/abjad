@@ -93,5 +93,3 @@
     Those classes should create material packages in the user asset library material packages directory.
     Or in user score packages. But no material packages should ever be created in the built-in
     asset library material packages directory.
-
-36. Remove remaining unused head=None keywords in some private wrangler methods.

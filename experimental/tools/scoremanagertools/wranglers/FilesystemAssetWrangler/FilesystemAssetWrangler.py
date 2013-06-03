@@ -33,10 +33,10 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         '''
         if isinstance(expr, type(self)):
             if self.built_in_external_storehouse_filesystem_path == \
-                expr.built_in_external_storehouse_filesystem_path:
-                if self.user_asset_library_storehouse_filesystem_path == \
-                    expr.user_asset_library_storehouse_filesystem_path:
-                        return True
+                expr.built_in_external_storehouse_filesystem_path and \
+                self.user_asset_library_storehouse_filesystem_path == \
+                expr.user_asset_library_storehouse_filesystem_path:
+                return True
         return False
 
     ### READ-ONLY PRIVATE PROPERTIES ###
@@ -177,19 +177,25 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                                 result.append(filesystem_path)
         return result
 
-    def list_asset_names(self, in_built_in_asset_library=True, in_user_asset_library=True,
-        in_built_in_score_packages=True, in_user_score_packages=True, head=None, include_extension=False):
+    def list_asset_names(self, 
+        in_built_in_asset_library=True, in_user_asset_library=True,
+        in_built_in_score_packages=True, in_user_score_packages=True, 
+        head=None, include_extension=False):
         result = []
         for filesystem_path in self.list_asset_filesystem_paths(
-            in_built_in_asset_library=in_built_in_asset_library, in_user_asset_library=in_user_asset_library,
-            in_built_in_score_packages=in_built_in_score_packages, in_user_score_packages=in_user_score_packages, head=head):
+            in_built_in_asset_library=in_built_in_asset_library, 
+            in_user_asset_library=in_user_asset_library,
+            in_built_in_score_packages=in_built_in_score_packages, 
+            in_user_score_packages=in_user_score_packages, 
+            head=head):
             if include_extension:
                 result.append(os.path.basename(filesystem_path))
             else:
                 result.append(self._filesystem_path_to_space_delimited_lowercase_name(filesystem_path))
         return result
 
-    def list_asset_proxies(self, in_built_in_asset_library=True, in_user_asset_library=True,
+    def list_asset_proxies(self, 
+        in_built_in_asset_library=True, in_user_asset_library=True,
         in_built_in_score_packages=True, in_user_score_packages=True, head=None):
         if hasattr(self, 'list_visible_asset_proxies'):
             return self.list_visible_asset_proxies(head=head)
@@ -198,7 +204,8 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             in_built_in_asset_library=in_built_in_asset_library, 
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages, 
-            in_user_score_packages=in_user_score_packages, head=head):
+            in_user_score_packages=in_user_score_packages, 
+            head=head):
             asset_proxy = self._initialize_asset_proxy(filesystem_path)
             result.append(asset_proxy)
         return result
@@ -208,26 +215,10 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         in_built_in_score_packages=True, in_user_score_packages=True):
         result = []
         if in_built_in_asset_library and self.built_in_external_storehouse_filesystem_path is not None:
-            #if head is None:
-            if True:
-                result.append(self.built_in_external_storehouse_filesystem_path)
-#            else:
-#                filesystem_path = self.configuration.packagesystem_path_to_filesystem_path(head)
-#                if self.built_in_external_storehouse_filesystem_path.startswith(
-#                    filesystem_path):
-#                    result.append(self.built_in_external_storehouse_filesystem_path)
+            result.append(self.built_in_external_storehouse_filesystem_path)
         if in_user_asset_library and self.user_asset_library_storehouse_filesystem_path is not None:
-            #if head is None:
-            if True:
-                result.append(self.user_asset_library_storehouse_filesystem_path)
-#            else:
-#                filesystem_path = self.configuration.packagesystem_path_to_filesystem_path(head)
-#                if self.user_asset_library_storehouse_filesystem_path.startswith(
-#                    filesystem_path):
-#                    result.append(self.user_asset_library_storehouse_filesystem_path)
+            result.append(self.user_asset_library_storehouse_filesystem_path)
         if in_built_in_score_packages and self.storehouse_path_infix_parts is not None:
-            #for score_directory_path in self.configuration.list_score_directory_paths(
-            #    built_in=True, head=head):
             for score_directory_path in self.configuration.list_score_directory_paths(built_in=True):
                 parts = [score_directory_path]
                 if self.storehouse_path_infix_parts:
@@ -235,8 +226,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                 storehouse_filesystem_path = os.path.join(*parts)
                 result.append(storehouse_filesystem_path)
         if in_user_score_packages and self.storehouse_path_infix_parts is not None:
-            #for directory_path in self.configuration.list_score_directory_paths(
-            #    user=True, head=head):
             for directory_path in self.configuration.list_score_directory_paths(user=True):
                 parts = [directory_path]
                 if self.storehouse_path_infix_parts:

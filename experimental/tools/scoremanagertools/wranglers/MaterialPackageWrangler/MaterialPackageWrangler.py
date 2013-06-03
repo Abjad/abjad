@@ -83,7 +83,7 @@ class MaterialPackageWrangler(PackageWrangler):
     def _initialize_asset_proxy(self, package_path):
         return self._material_package_maker_wrangler._initialize_asset_proxy(package_path)
 
-    def _list_score_storehouse_package_paths(self, head=None):
+    def _list_score_storehouse_package_paths(self):
         '''Material package wrangler list score internal storehouse package paths:
 
         ::
@@ -99,9 +99,9 @@ class MaterialPackageWrangler(PackageWrangler):
 
         Return list.
         '''
-        return super(MaterialPackageWrangler, self)._list_score_storehouse_package_paths(head=head)
+        return super(MaterialPackageWrangler, self)._list_score_storehouse_package_paths()
 
-    def _list_storehouse_package_paths(self, head=None):
+    def _list_storehouse_package_paths(self):
         '''Material package wrangler list storehouse package paths:
 
         ::
@@ -119,7 +119,7 @@ class MaterialPackageWrangler(PackageWrangler):
 
         Return list.
         '''
-        return super(MaterialPackageWrangler, self)._list_storehouse_package_paths(head=head)
+        return super(MaterialPackageWrangler, self)._list_storehouse_package_paths()
 
     def _make_main_menu(self, head=None):
         menu, section = self._io.make_menu(where=self._where, is_numbered=True, is_keyed=False)
