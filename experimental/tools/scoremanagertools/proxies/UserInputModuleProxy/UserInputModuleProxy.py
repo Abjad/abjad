@@ -1,14 +1,16 @@
 import os
 from abjad.tools import stringtools
 from experimental.tools.scoremanagertools.proxies.ModuleProxy import ModuleProxy
+from experimental.tools.scoremanagertools.proxies.ParseableFileMixin import ParseableFileMixin
 
 
-class UserInputModuleProxy(ModuleProxy):
+class UserInputModuleProxy(ModuleProxy, ParseableFileMixin):
 
     ### INITIALIZER ###
 
     def __init__(self, packagesystem_path=None, session=None):
         ModuleProxy.__init__(self, packagesystem_path=packagesystem_path, session=session)
+        ParseableFileMixin.__init__(self)
         self.user_input_wrapper_lines = []
         self.parse()
 
@@ -87,4 +89,4 @@ class UserInputModuleProxy(ModuleProxy):
             user_input_wrapper_in_memory.user_input_module_import_statements)[:]
         self.user_input_wrapper_lines[:] = stringtools.add_terminal_newlines(
             user_input_wrapper_in_memory.formatted_lines)
-        ModuleProxy.write_to_disk(self)
+        ParseableFileMixin.write_to_disk(self)

@@ -5,7 +5,8 @@ class ParseableFileMixin(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, filesystem_path=None, session=None):
+    #def __init__(self, filesystem_path=None, session=None):
+    def __init__(self):
         AbjadObject.__init__(self)
         self.encoding_directives = []
         self.docstring_lines = []

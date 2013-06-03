@@ -11,7 +11,7 @@ class TagsFileProxy(FileProxy, ParseableFileMixin):
     def __init__(self, filesystem_path=None, session=None):
         assert 'tags' in filesystem_path, repr(filesystem_path)
         FileProxy.__init__(self, filesystem_path=filesystem_path, session=session)
-        ParseableFileMixin.__init__(self, filesystem_path=filesystem_path, session=session)
+        ParseableFileMixin.__init__(self)
         self.tag_lines = []
         self.parse()
 
