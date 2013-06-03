@@ -1,6 +1,5 @@
 1.  Something takes a bunch of time. So optimize to make stuff take much less time.
     Possibly by removing unnecessary output_material.py module interpretation.
-    Also possibly by removing all [safe_]imports() from the __init__.py files.
     First run profiler to avoid unnecessary tinkering.
 
 2.  Make user input getter defaults work like menu defaults;
@@ -66,22 +65,19 @@
 
 26. Add PackageystemAssetProxy to superclass ModuleProxy and PackageProxy.
 
-27. Might make sense to implement an SvnManager class.
-    This will encapsulate all svn management functionality.
+27. Create a PackagesystemAssetProxy to parallel PacakagesystemAssetWrangler.
 
-28. Create a PackagesystemAssetProxy to parallel PacakagesystemAssetWrangler.
+28. Harmonize user input strings with method names in MaterialPackageProxy.user_input_to_action dictionary.
 
-29. Harmonize user input strings with method names in MaterialPackageProxy.user_input_to_action dictionary.
-
-30. Author StylesheetFileWrangler.interactively_remove_assets() test.
+29. Author StylesheetFileWrangler.interactively_remove_assets() test.
     Will involve making user_input='... rm ...' work with named arguments instead of just numeric arguments.
 
-31. Make a menuing.Token class.
+30. Make a menuing.Token class.
     This will name all token attributes.
     This will also make all attribute extraction methods explicit.
     This will also eliminate all numeric tuple field references.
 
-32. Make MaterialPackageMaker classes stop creating materials in tools.scoremanagertools.materialpackages.
+31. Make MaterialPackageMaker classes stop creating materials in tools.scoremanagertools.materialpackages.
     Those classes should create material packages in the user asset library material packages directory.
     Or in user score packages. But no material packages should ever be created in the built-in
     asset library material packages directory.

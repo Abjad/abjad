@@ -10,7 +10,6 @@ class TagsFileProxy(ParsableFileProxy):
     def __init__(self, filesystem_path=None, session=None):
         assert 'tags' in filesystem_path, repr(filesystem_path)
         ParsableFileProxy.__init__(self, filesystem_path=filesystem_path, session=session)
-        self.safe_import_statements = []
         self.tag_lines = []
         self.parse()
 
@@ -26,7 +25,6 @@ class TagsFileProxy(ParsableFileProxy):
             (self.encoding_directives, True, 0),
             (self.docstring_lines, False, 1),
             (self.setup_statements, True, 2),
-            (self.safe_import_statements, True, 1),
             (self.tag_lines, False, 1),
             (self.teardown_statements, True, 0),
             )
@@ -101,7 +99,6 @@ class TagsFileProxy(ParsableFileProxy):
         encoding_directives = []
         docstring_lines = []
         setup_statements = []
-        safe_import_statements = []
         tag_lines = []
         teardown_statements = []
         current_section = None
@@ -116,8 +113,6 @@ class TagsFileProxy(ParsableFileProxy):
                 current_section = 'setup'
             elif line.startswith('tags ='):
                 current_section = 'tags'
-            elif line.startswith('safe_import'):
-                current_section = 'protected imports'
             elif line.startswith('rm'):
                 current_section = 'teardown'
             if current_section == 'encoding':
@@ -128,8 +123,6 @@ class TagsFileProxy(ParsableFileProxy):
                 setup_statements.append(line)
             elif current_section == 'tags':
                 tag_lines.append(line)
-            elif current_section == 'protected imports':
-                safe_import_statements.append(line)
             elif current_section == 'teardown':
                 teardown_statements.append(line)
             else:
@@ -138,7 +131,6 @@ class TagsFileProxy(ParsableFileProxy):
         self.encoding_directives = encoding_directives[:]
         self.docstring_lines = docstring_lines[:]
         self.setup_statements = setup_statements[:]
-        self.safe_import_statements = safe_import_statements[:]
         self.tag_lines = tag_lines[:]
         self.teardown_statements = teardown_statements[:]
         return is_parsable
