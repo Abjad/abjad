@@ -1,21 +1,15 @@
 import collections
 import os
 from experimental.tools.scoremanagertools.proxies.ParsableFileProxy import ParsableFileProxy
-#from experimental.tools.scoremanagertools.proxies.ModuleProxy import ModuleProxy
 
 
-# TODO: maybe rewire to inherit from ModuleProxy?
-class InitializerFileProxy(ParsableFileProxy):
-#class InitializerFileProxy(ModuleProxy):
+class TagsFileProxy(ParsableFileProxy):
 
     ### INITIALIZER ###
 
     def __init__(self, filesystem_path=None, session=None):
-        #assert 'tags' in filesystem_path, repr(filesystem_path)
+        assert 'tags' in filesystem_path, repr(filesystem_path)
         ParsableFileProxy.__init__(self, filesystem_path=filesystem_path, session=session)
-        #packagesystem_path = self.configuration.filesystem_path_to_packagesystem_path(
-        #    filesystem_path)
-        #ModuleProxy.__init__(self, packagesystem_path=packagesystem_path, session=session)
         self.safe_import_statements = []
         self.tag_lines = []
         self.parse()
