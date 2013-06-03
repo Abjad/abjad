@@ -1,16 +1,18 @@
 import collections
 import os
-from experimental.tools.scoremanagertools.proxies.FileProxy import FileProxy
+from experimental.tools.scoremanagertools.proxies.ModuleProxy import ModuleProxy
 from experimental.tools.scoremanagertools.proxies.ParseableFileMixin import ParseableFileMixin
 
 
-class TagsFileProxy(FileProxy, ParseableFileMixin):
+class TagsModuleProxy(ModuleProxy, ParseableFileMixin):
 
     ### INITIALIZER ###
 
     def __init__(self, filesystem_path=None, session=None):
         assert 'tags' in filesystem_path, repr(filesystem_path)
-        FileProxy.__init__(self, filesystem_path=filesystem_path, session=session)
+        packagesystem_path = self.configuration.filesystem_path_to_packagesystem_path(
+            filesystem_path)
+        ModuleProxy.__init__(self, packagesystem_path=packagesystem_path, session=session)
         ParseableFileMixin.__init__(self)
         self.tag_lines = []
         self.parse()

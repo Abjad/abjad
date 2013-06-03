@@ -583,7 +583,7 @@ Unstable packages (load manually)
       tools/scoremanagertools/proxies/ScorePackageProxy/ScorePackageProxy
       tools/scoremanagertools/proxies/SegmentPackageProxy/SegmentPackageProxy
       tools/scoremanagertools/proxies/StylesheetFileProxy/StylesheetFileProxy
-      tools/scoremanagertools/proxies/TagsFileProxy/TagsFileProxy
+      tools/scoremanagertools/proxies/TagsModuleProxy/TagsModuleProxy
       tools/scoremanagertools/proxies/UserInputModuleProxy/UserInputModuleProxy
       tools/scoremanagertools/scoremanager/ScoreManager/ScoreManager
       tools/scoremanagertools/selectors/ArticulationHandlerClassNameSelector/ArticulationHandlerClassNameSelector
@@ -777,7 +777,7 @@ Unstable packages (load manually)
       tools/scoremanagertools/proxies/ScorePackageProxy/ScorePackageProxy
       tools/scoremanagertools/proxies/SegmentPackageProxy/SegmentPackageProxy
       tools/scoremanagertools/proxies/StylesheetFileProxy/StylesheetFileProxy
-      tools/scoremanagertools/proxies/TagsFileProxy/TagsFileProxy
+      tools/scoremanagertools/proxies/TagsModuleProxy/TagsModuleProxy
       tools/scoremanagertools/proxies/UserInputModuleProxy/UserInputModuleProxy
       tools/scoremanagertools/scoremanager/ScoreManager/ScoreManager
       tools/scoremanagertools/selectors/ArticulationHandlerClassNameSelector/ArticulationHandlerClassNameSelector
