@@ -1,9 +1,7 @@
 import os
-#from experimental.tools.scoremanagertools.proxies.BasicModuleProxy import BasicModuleProxy
 from experimental.tools.scoremanagertools.proxies.MaterialModuleProxy import MaterialModuleProxy
 
 
-#class OutputMaterialModuleProxy(BasicModuleProxy):
 class OutputMaterialModuleProxy(MaterialModuleProxy):
     '''Output material module proxy:
 

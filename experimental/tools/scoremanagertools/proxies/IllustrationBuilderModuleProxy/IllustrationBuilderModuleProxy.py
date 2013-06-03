@@ -1,8 +1,8 @@
 from abjad.tools import markuptools
-from experimental.tools.scoremanagertools.proxies.BasicModuleProxy import BasicModuleProxy
+from experimental.tools.scoremanagertools.proxies.MaterialModuleProxy import MaterialModuleProxy
 
 
-class IllustrationBuilderModuleProxy(BasicModuleProxy):
+class IllustrationBuilderModuleProxy(MaterialModuleProxy):
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

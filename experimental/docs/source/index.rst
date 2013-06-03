@@ -564,7 +564,6 @@ Unstable packages (load manually)
       tools/scoremanagertools/menuing/MenuSection/MenuSection
       tools/scoremanagertools/menuing/MenuSectionAggregator/MenuSectionAggregator
       tools/scoremanagertools/menuing/UserInputGetter/UserInputGetter
-      tools/scoremanagertools/proxies/BasicModuleProxy/BasicModuleProxy
       tools/scoremanagertools/proxies/DirectoryProxy/DirectoryProxy
       tools/scoremanagertools/proxies/DistributionDirectoryProxy/DistributionDirectoryProxy
       tools/scoremanagertools/proxies/ExergueDirectoryProxy/ExergueDirectoryProxy
@@ -760,7 +759,6 @@ Unstable packages (load manually)
       tools/scoremanagertools/menuing/MenuSection/MenuSection
       tools/scoremanagertools/menuing/MenuSectionAggregator/MenuSectionAggregator
       tools/scoremanagertools/menuing/UserInputGetter/UserInputGetter
-      tools/scoremanagertools/proxies/BasicModuleProxy/BasicModuleProxy
       tools/scoremanagertools/proxies/DirectoryProxy/DirectoryProxy
       tools/scoremanagertools/proxies/DistributionDirectoryProxy/DistributionDirectoryProxy
       tools/scoremanagertools/proxies/ExergueDirectoryProxy/ExergueDirectoryProxy

@@ -5,14 +5,12 @@ class ParseableFileMixin(AbjadObject):
 
     ### INITIALIZER ###
 
-    #def __init__(self, filesystem_path=None, session=None):
     def __init__(self):
         AbjadObject.__init__(self)
         self.encoding_directives = []
         self.docstring_lines = []
         self.setup_statements = []
         self.teardown_statements = []
-        # new
         self.body_line = []
         self.parse()
 
@@ -36,30 +34,19 @@ class ParseableFileMixin(AbjadObject):
 
     @property
     def file_sections(self):
-        return ()
-
-    ### PUBLIC METHODS ###
-
-    def clear(self):
-        for section, is_sorted, blank_line_count  in self.file_sections:
-            section[:] = []
-
-    def write_to_disk(self):
-        initializer = file(self.filesystem_path, 'w')
-        formatted_lines = self._format_lines()
-        formatted_lines = ''.join(formatted_lines)
-        initializer.write(formatted_lines)
-
-    ### NEW ###
-
-    @property
-    def file_sections(self):
         return (
             (self.encoding_directives, False, 0),
             (self.docstring_lines, False, 1),
             (self.setup_statements, True, 2),
             (self.body_lines, False, 0),
             )
+
+
+    ### PUBLIC METHODS ###
+
+    def clear(self):
+        for section, is_sorted, blank_line_count  in self.file_sections:
+            section[:] = []
 
     def parse(self):
         is_parsable = True
@@ -100,3 +87,9 @@ class ParseableFileMixin(AbjadObject):
         self.setup_statements = setup_statements
         self.body_lines = body_lines
         return is_parsable
+
+    def write_to_disk(self):
+        initializer = file(self.filesystem_path, 'w')
+        formatted_lines = self._format_lines()
+        formatted_lines = ''.join(formatted_lines)
+        initializer.write(formatted_lines)
