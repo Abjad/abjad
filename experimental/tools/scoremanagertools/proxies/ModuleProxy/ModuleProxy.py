@@ -55,11 +55,6 @@ class ModuleProxy(ParsableFileProxy):
         return self._packagesystem_path
 
     @property
-    def parent_package_initializer_file_name(self):
-        if self.packagesystem_path:
-            return os.path.join(self.filesystem_directory_name, '__init__.py')
-
-    @property
     def parent_package_path(self):
         if self.packagesystem_path:
             return '.'.join(self.packagesystem_path.split('.')[:-1])

@@ -576,7 +576,7 @@ class MaterialPackageProxy(PackageProxy):
         self.stylesheet_file_proxy.edit()
    
     def interactively_remove(self):
-        self.remove_material_from_materials_initializer()
+        #self.remove_material_from_materials_initializer()
         PackageProxy.interactively_remove(self)
 
     def interactively_rename_material(self):
@@ -660,7 +660,7 @@ class MaterialPackageProxy(PackageProxy):
         file(self.output_material_module_file_name, 'w').write('')
 
     def remove(self):
-        self.remove_material_from_materials_initializer()
+        #self.remove_material_from_materials_initializer()
         PackageProxy.remove(self)
 
     def remove_illustration_builder_module(self, prompt=True):
@@ -682,19 +682,6 @@ class MaterialPackageProxy(PackageProxy):
         self.remove_illustration_builder_module(prompt=False)
         if self.has_material_definition_module:
             self.material_definition_module_proxy.remove()
-
-    def remove_material_from_materials_initializer(self):
-        import_statement = 'safe_import(globals(), {!r}, {!r})\n'
-        import_statement = import_statement.format(
-            self.material_package_name, self.material_package_name)
-        parent_package = PackageProxy(self.parent_package_path, session=self._session)
-        parent_package_initializer_file_proxy = parent_package.initializer_file_proxy
-        filtered_import_statements = []
-        for safe_import_statement in parent_package_initializer_file_proxy.safe_import_statements:
-            if not safe_import_statement == import_statement:
-                filtered_import_statements.append(safe_import_statement)
-        parent_package_initializer_file_proxy.safe_import_statements[:] = filtered_import_statements
-        parent_package_initializer_file_proxy.write_to_disk()
 
     def remove_material_package(self):
         self.remove()
@@ -763,7 +750,7 @@ class MaterialPackageProxy(PackageProxy):
 
     def write_output_material_to_disk(self, output_material_module_import_statements=None,
         output_material_module_body_lines=None, prompt=True):
-        self.remove_material_from_materials_initializer()
+        #self.remove_material_from_materials_initializer()
         self.overwrite_output_material_module()
         output_material_module_proxy = self.output_material_module_proxy
         if output_material_module_import_statements is None or \
