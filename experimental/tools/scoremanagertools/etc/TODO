@@ -64,27 +64,24 @@
 
 25. Author ScorePackageProxy docstrings.
 
-26. Remove the has_readable_... properties from the system entirely.
-    Force such functionality to be method calls that will be noticeably expensive.
+26. Add PackageystemAssetProxy to superclass ModuleProxy and PackageProxy.
 
-27. Add PackageystemAssetProxy to superclass ModuleProxy and PackageProxy.
-
-28. Might make sense to implement an SvnManager class.
+27. Might make sense to implement an SvnManager class.
     This will encapsulate all svn management functionality.
 
-29. Create a PackagesystemAssetProxy to parallel PacakagesystemAssetWrangler.
+28. Create a PackagesystemAssetProxy to parallel PacakagesystemAssetWrangler.
 
-30. Harmonize user input strings with method names in MaterialPackageProxy.user_input_to_action dictionary.
+29. Harmonize user input strings with method names in MaterialPackageProxy.user_input_to_action dictionary.
 
-31. Author StylesheetFileWrangler.interactively_remove_assets() test.
+30. Author StylesheetFileWrangler.interactively_remove_assets() test.
     Will involve making user_input='... rm ...' work with named arguments instead of just numeric arguments.
 
-32. Make a menuing.Token class.
+31. Make a menuing.Token class.
     This will name all token attributes.
     This will also make all attribute extraction methods explicit.
     This will also eliminate all numeric tuple field references.
 
-33. Make MaterialPackageMaker classes stop creating materials in tools.scoremanagertools.materialpackages.
+32. Make MaterialPackageMaker classes stop creating materials in tools.scoremanagertools.materialpackages.
     Those classes should create material packages in the user asset library material packages directory.
     Or in user score packages. But no material packages should ever be created in the built-in
     asset library material packages directory.

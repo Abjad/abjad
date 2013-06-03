@@ -13,8 +13,6 @@ def test_MaterialPackageWrangler_make_data_package_01():
         mpp = scoremanagertools.proxies.MaterialPackageProxy('experimental.tools.scoremanagertools.materialpackages.testnumbers')
         assert mpp.is_data_only
         assert mpp.list_directory() == ['__init__.py', 'material_definition.py', 'tags.py']
-        assert mpp.has_readable_initializer
-        assert mpp.has_readable_material_definition_module
         assert not mpp.has_output_material_module
         assert mpp.material_definition is None
         assert mpp.output_material is None

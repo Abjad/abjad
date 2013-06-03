@@ -230,36 +230,6 @@ class MaterialPackageProxy(PackageProxy):
             return os.path.exists(self.output_material_module_file_name)
         return False
 
-    @property
-    def has_readable_illustration_builder_module(self):
-        if self.has_illustration_builder_module:
-            return self.illustration_builder_module_proxy.read_file()
-        return False
-
-    @property
-    def has_readable_initializer(self):
-        if self.has_initializer:
-            return self.initializer_file_proxy.read_file()
-        return False
-
-    @property
-    def has_readable_material_definition_module(self):
-        if self.has_material_definition_module:
-            return self.material_definition_module_proxy.read_file()
-        return False
-
-    @property
-    def has_readable_output_material_module(self):
-        if self.has_output_material_module:
-            return self.output_material_module_proxy.read_file()
-        return False
-
-    @property
-    def has_readable_user_input_module(self):
-        if self.has_user_input_module:
-            return self.user_input_module_proxy.read_file()
-        return False
-
     # TODO: impelement
     @property
     def has_stylesheet(self):
@@ -267,8 +237,9 @@ class MaterialPackageProxy(PackageProxy):
 
     @property
     def has_user_finalized_illustration_builder_module(self):
-        if self.has_readable_illustration_builder_module:
-            return self.illustration_builder_module_proxy.is_user_finalized
+        if self.has_illustration_builder_module:
+            if self.illustration_builder_module_proxy.read_file():
+                return self.illustration_builder_module_proxy.is_user_finalized
 
     @property
     def has_user_finalized_material_definition_module(self):
@@ -373,13 +344,15 @@ class MaterialPackageProxy(PackageProxy):
     def is_makermade(self):
         return self.has_material_package_maker
 
+    # TODO: replace with method
     # TODO: replace with self.material_definition_module_proxy.material_definition
     @property
     def material_definition(self):
-        if self.has_readable_material_definition_module:
-            pair = self.output_material_module_import_statements_and_material_definition
-            material_definition = pair[1]
-            return material_definition
+        if self.has_material_definition_module:
+            if self.material_definition_module_proxy.read_file():
+                pair = self.output_material_module_import_statements_and_material_definition
+                material_definition = pair[1]
+                return material_definition
 
     @property
     def material_definition_module_file_name(self):
@@ -423,8 +396,9 @@ class MaterialPackageProxy(PackageProxy):
 
     @property
     def output_material(self):
-        if self.has_readable_output_material_module:
-            return self.output_material_module_proxy.import_output_material()
+        if self.has_output_material_module:
+            if self.output_material_module_proxy.read_file():
+                return self.output_material_module_proxy.import_output_material()
 
     @property
     def output_material_module_body_lines(self):

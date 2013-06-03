@@ -67,8 +67,6 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #        mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker('experimental.tools.scoremanagertools.materialpackages.testsargasso')
 #        assert mpp.is_makermade and not mpp.is_data_only
 #        assert mpp.list_directory() == ['__init__.py', 'material_definition.py']
-#        assert not mpp.has_readable_initializer
-#        assert mpp.has_readable_material_definition_module
 #        assert not mpp.has_output_material_module
 #        assert not mpp.has_illustration_builder_module
 #        assert mpp.material_definition is None
@@ -96,8 +94,6 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #        mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker('experimental.tools.scoremanagertools.materialpackages.testsargasso')
 #        assert mpp.is_makermade and not mpp.is_data_only
 #        assert mpp.list_directory() == ['__init__.py', 'material_definition.py']
-#        assert mpp.has_readable_initializer
-#        assert mpp.has_readable_material_definition_module
 #        assert not mpp.has_output_material_module
 #        assert not mpp.has_illustration_builder_module
 #        assert mpp.material_definition is None
@@ -125,9 +121,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #        assert mpp.is_makermade and not mpp.is_data_only
 #        assert mpp.list_directory() == ['__init__.py',
 #            'illustration_builder.py', 'material_definition.py', 'output_material.py']
-#        assert mpp.has_readable_initializer
 #        assert mpp.has_user_finalized_material_definition_module
-#        assert mpp.has_readable_output_material_module
 #        assert mpp.has_illustration_builder_module
 #        assert mpp.material_definition and notetools.all_are_notes(mpp.material_definition)
 #        assert mpp.output_material and notetools.all_are_notes(mpp.output_material)
@@ -152,7 +146,6 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #        mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker('experimental.tools.scoremanagertools.materialpackages.testsargasso')
 #        assert mpp.is_makermade and not mpp.is_data_only
 #        assert mpp.list_directory() == ['__init__.py']
-#        assert mpp.has_readable_initializer
 #        assert not mpp.has_material_definition_module
 #        assert not mpp.has_output_material_module
 #        assert not mpp.has_illustration_builder_module
@@ -179,8 +172,6 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #        mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker('experimental.tools.scoremanagertools.materialpackages.testsargasso')
 #        assert mpp.is_makermade and not mpp.is_data_only
 #        assert mpp.list_directory() == ['__init__.py', 'material_definition.py']
-#        assert mpp.has_readable_initializer
-#        assert mpp.has_readable_material_definition_module
 #        assert not mpp.has_output_material_module
 #        assert not mpp.has_illustration_builder_module
 #        assert mpp.material_definition is None
@@ -208,7 +199,6 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #        mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker('experimental.tools.scoremanagertools.materialpackages.testsargasso')
 #        assert mpp.is_makermade and not mpp.is_data_only
 #        assert mpp.list_directory() == ['__init__.py', 'material_definition.py']
-#        assert mpp.has_readable_initializer
 #        assert mpp.has_user_finalized_material_definition_module
 #        assert not mpp.has_output_material_module
 #        assert not mpp.has_illustration_builder_module
@@ -235,8 +225,6 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #        mpp = scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker('experimental.tools.scoremanagertools.materialpackages.testsargasso')
 #        assert mpp.is_makermade and not mpp.is_data_only
 #        assert mpp.list_directory() == ['__init__.py', 'material_definition.py']
-#        assert mpp.has_readable_initializer
-#        assert not mpp.has_readable_material_definition_module
 #        assert not mpp.has_output_material_module
 #        assert not mpp.has_illustration_builder_module
 #        assert mpp.material_definition is None
@@ -265,9 +253,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #        assert mpp.is_makermade and not mpp.is_data_only
 #        assert mpp.list_directory() == ['__init__.py',
 #            'illustration_builder.py', 'material_definition.py', 'output_material.py']
-#        assert mpp.has_readable_initializer
 #        assert mpp.has_user_finalized_material_definition_module
-#        assert not mpp.has_readable_output_material_module
 #        assert mpp.has_illustration_builder_module
 #        assert mpp.material_definition and notetools.all_are_notes(mpp.material_definition)
 #        assert mpp.output_material is None
@@ -297,9 +283,7 @@ def test_MaterialPackageWrangler_run_makermade_package_02():
 #        assert mpp.list_directory() == [
 #            '__init__.py', 'illustration.ly', 'illustration.pdf',
 #            'illustration_builder.py', 'material_definition.py', 'output_material.py']
-#        assert mpp.has_readable_initializer
 #        assert mpp.has_user_finalized_material_definition_module
-#        assert mpp.has_readable_output_material_module
 #        assert mpp.has_user_finalized_illustration_builder_module
 #        assert mpp.has_illustration_ly
 #        assert mpp.has_illustration_pdf
