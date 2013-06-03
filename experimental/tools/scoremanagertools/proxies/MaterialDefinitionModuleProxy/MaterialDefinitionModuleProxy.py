@@ -1,15 +1,15 @@
 import os
 from experimental.tools.scoremanagertools.proxies.ModuleProxy import ModuleProxy
-from experimental.tools.scoremanagertools.proxies.ParseableFileMixin import ParseableFileMixin
+from experimental.tools.scoremanagertools.proxies.ParseableModuleMixin import ParseableModuleMixin
 
 
-class MaterialDefinitionModuleProxy(ModuleProxy, ParseableFileMixin):
+class MaterialDefinitionModuleProxy(ModuleProxy, ParseableModuleMixin):
 
     ### INITIALIZER ###
 
     def __init__(self, module_path, session=None):
         ModuleProxy.__init__(self, module_path, session=session)
-        ParseableFileMixin.__init__(self)
+        ParseableModuleMixin.__init__(self)
         self.output_material_module_import_lines = []
         self.body_lines = []
         self.parse()

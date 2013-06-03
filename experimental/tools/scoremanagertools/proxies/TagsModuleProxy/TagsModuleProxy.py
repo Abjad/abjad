@@ -1,10 +1,10 @@
 import collections
 import os
 from experimental.tools.scoremanagertools.proxies.ModuleProxy import ModuleProxy
-from experimental.tools.scoremanagertools.proxies.ParseableFileMixin import ParseableFileMixin
+from experimental.tools.scoremanagertools.proxies.ParseableModuleMixin import ParseableModuleMixin
 
 
-class TagsModuleProxy(ModuleProxy, ParseableFileMixin):
+class TagsModuleProxy(ModuleProxy, ParseableModuleMixin):
 
     ### INITIALIZER ###
 
@@ -13,7 +13,7 @@ class TagsModuleProxy(ModuleProxy, ParseableFileMixin):
         packagesystem_path = self.configuration.filesystem_path_to_packagesystem_path(
             filesystem_path)
         ModuleProxy.__init__(self, packagesystem_path=packagesystem_path, session=session)
-        ParseableFileMixin.__init__(self)
+        ParseableModuleMixin.__init__(self)
         self.tag_lines = []
         self.parse()
 

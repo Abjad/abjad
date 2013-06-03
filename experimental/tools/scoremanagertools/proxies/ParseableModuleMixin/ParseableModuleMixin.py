@@ -1,7 +1,7 @@
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class ParseableFileMixin(AbjadObject):
+class ParseableModuleMixin(AbjadObject):
 
     ### INITIALIZER ###
 
