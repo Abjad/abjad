@@ -43,7 +43,7 @@ class MusicSpecifierModuleProxy(ModuleProxy):
 
     ### PUBLIC METHODS ###
 
-    def edit(self):
+    def interactively_edit(self):
         self.editor._run(breadcrumb=self._space_delimited_lowercase_name)
         self._target_in_memory = self.editor.target
         self.write_target_to_disk(self.target_in_memory)

@@ -94,16 +94,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         section.return_value_attribute = 'key'
         return menu
 
-    @abc.abstractmethod
-    def _make_main_menu(self, head=None):
-        pass
-
-    def _make_menu_tokens(self, head=None, include_extension=False):
-        raise Exception('FOO')
-        keys = self.list_asset_filesystem_paths(head=head)
-        bodies = self.list_asset_names(head=head, include_extension=include_extension)
-        return zip(keys, bodies)
-
     def _make_asset_storehouse_menu_tokens(self,
         in_built_in_asset_library=True,
         in_user_asset_library=True,
@@ -123,6 +113,16 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             path_parts = (proxy.filesystem_path,) + self.score_package_asset_storehouse_path_infix_parts
             key = os.path.join(*path_parts)
             keys.append(key)
+        return zip(keys, bodies)
+
+    @abc.abstractmethod
+    def _make_main_menu(self, head=None):
+        pass
+
+    def _make_menu_tokens(self, head=None, include_extension=False):
+        raise Exception('FOO')
+        keys = self.list_asset_filesystem_paths(head=head)
+        bodies = self.list_asset_names(head=head, include_extension=include_extension)
         return zip(keys, bodies)
 
     def _run(self, cache=False, clear=True, head=None, rollback=None, user_input=None):

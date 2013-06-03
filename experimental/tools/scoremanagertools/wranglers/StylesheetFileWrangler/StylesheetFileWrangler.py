@@ -34,23 +34,6 @@ class StylesheetFileWrangler(FileWrangler):
 
     ### PRIVATE METHODS ###
 
-    def _handle_main_menu_result(self, result):
-        if result in self.user_input_to_action:
-            self.user_input_to_action[result](self)
-        else:
-            self.edit_asset(result)
-
-    def _make_menu_tokens(self, head=None, include_extension=False):
-        keys = self.list_asset_filesystem_paths(head=head)
-        bodies = []
-        for filesystem_path in keys:
-            body = os.path.basename(filesystem_path)
-            annotation = self._filesystem_path_to_annotation(filesystem_path)
-            if annotation:
-                body = '{} ({})'.format(body, annotation)
-            bodies.append(body)
-        return zip(keys, bodies)
-
     def _filesystem_path_to_annotation(self, filesystem_path):
         from experimental.tools import scoremanagertools
         annotation = None
@@ -58,13 +41,20 @@ class StylesheetFileWrangler(FileWrangler):
             filesystem_path.startswith(self.configuration.user_score_packages_directory_path):
             tmp = os.path.join('music', 'stylesheets')
             score_filesystem_path = filesystem_path.rpartition(tmp)[0]
-            packagesystem_path = self.configuration.filesystem_path_to_packagesystem_path(score_filesystem_path)
+            packagesystem_path = self.configuration.filesystem_path_to_packagesystem_path(
+                score_filesystem_path)
             score_package_proxy = scoremanagertools.proxies.ScorePackageProxy( 
                 packagesystem_path=packagesystem_path)
             annotation = score_package_proxy.title
         elif filesystem_path.startswith(self.configuration.built_in_stylesheets_directory_path):
             annotation = 'built-in'
         return annotation
+
+    def _handle_main_menu_result(self, result):
+        if result in self.user_input_to_action:
+            self.user_input_to_action[result](self)
+        else:
+            self.edit_asset(result)
 
     def _make_main_menu(self, head=None):
         menu, section = self._io.make_menu(
@@ -76,6 +66,17 @@ class StylesheetFileWrangler(FileWrangler):
         section.append(('ren', 'rename'))
         section.append(('rm', 'remove'))
         return menu
+
+    def _make_menu_tokens(self, head=None, include_extension=False):
+        keys = self.list_asset_filesystem_paths(head=head)
+        bodies = []
+        for filesystem_path in keys:
+            body = os.path.basename(filesystem_path)
+            annotation = self._filesystem_path_to_annotation(filesystem_path)
+            if annotation:
+                body = '{} ({})'.format(body, annotation)
+            bodies.append(body)
+        return zip(keys, bodies)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

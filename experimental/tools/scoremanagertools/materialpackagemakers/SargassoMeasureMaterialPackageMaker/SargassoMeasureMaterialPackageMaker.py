@@ -41,6 +41,14 @@ class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
     ### PUBLIC METHODS ###
 
     @staticmethod
+    def get_possible_meter_multipliers(multiplied_measure_numerator):
+        possible_meter_multipliers = []
+        for denominator in range(multiplied_measure_numerator, 2 * multiplied_measure_numerator):
+            possible_meter_multiplier = fractions.Fraction(multiplied_measure_numerator, denominator)
+            possible_meter_multipliers.append(possible_meter_multiplier)
+        return possible_meter_multipliers
+
+    @staticmethod
     def illustration_maker(measures, **kwargs):
         staff = stafftools.RhythmicStaff(measures)
         score = scoretools.Score([staff])
@@ -62,29 +70,6 @@ class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
         lines.append('\tmeasuretools.{}]'.format(line))
         lines = [line + '\n' for line in lines]
         return lines
-
-    @staticmethod
-    def permute_divided_measure_tokens(divided_measure_tokens):
-        modulus_of_permutation = 5
-        len_divided_measure_tokens = len(divided_measure_tokens)
-        assert mathtools.are_relatively_prime([modulus_of_permutation, len_divided_measure_tokens])
-        permutation = [(5 * x) % len_divided_measure_tokens for x in range(len_divided_measure_tokens)]
-        divided_measure_tokens = sequencetools.permute_sequence(divided_measure_tokens, permutation)
-        return divided_measure_tokens
-
-    @staticmethod
-    def select_meter_multiplier(possible_meter_multipliers, measure_index):
-        possible_meter_multipliers = sequencetools.CyclicTuple(possible_meter_multipliers)
-        meter_multiplier = possible_meter_multipliers[5 * measure_index]
-        return meter_multiplier
-
-    @staticmethod
-    def get_possible_meter_multipliers(multiplied_measure_numerator):
-        possible_meter_multipliers = []
-        for denominator in range(multiplied_measure_numerator, 2 * multiplied_measure_numerator):
-            possible_meter_multiplier = fractions.Fraction(multiplied_measure_numerator, denominator)
-            possible_meter_multipliers.append(possible_meter_multiplier)
-        return possible_meter_multipliers
 
     @staticmethod
     def output_material_maker(measure_denominator, measure_numerator_talea,
@@ -201,3 +186,18 @@ class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
         #print measures
 
         return measures
+
+    @staticmethod
+    def permute_divided_measure_tokens(divided_measure_tokens):
+        modulus_of_permutation = 5
+        len_divided_measure_tokens = len(divided_measure_tokens)
+        assert mathtools.are_relatively_prime([modulus_of_permutation, len_divided_measure_tokens])
+        permutation = [(5 * x) % len_divided_measure_tokens for x in range(len_divided_measure_tokens)]
+        divided_measure_tokens = sequencetools.permute_sequence(divided_measure_tokens, permutation)
+        return divided_measure_tokens
+
+    @staticmethod
+    def select_meter_multiplier(possible_meter_multipliers, measure_index):
+        possible_meter_multipliers = sequencetools.CyclicTuple(possible_meter_multipliers)
+        meter_multiplier = possible_meter_multipliers[5 * measure_index]
+        return meter_multiplier

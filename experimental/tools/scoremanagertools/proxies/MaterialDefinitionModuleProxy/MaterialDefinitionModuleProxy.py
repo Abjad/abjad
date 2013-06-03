@@ -42,10 +42,6 @@ class MaterialDefinitionModuleProxy(MaterialModuleProxy):
 
     ### PUBLIC METHODS ###
 
-    def edit(self):
-        columns = len(self.material_package_name) + 3
-        os.system("vi + -c'norm {}l' {}".format(columns, self.filesystem_path))
-
     def import_output_material_module_import_statements_and_material_definition(self):
         if os.path.exists(self.filesystem_path):
             file_pointer = open(self.filesystem_path, 'r')
@@ -56,6 +52,10 @@ class MaterialDefinitionModuleProxy(MaterialModuleProxy):
             output_material_module_import_statements = locals().get(
                 'output_material_module_import_statements')
             return output_material_module_import_statements, material_definition
+
+    def interactively_edit(self):
+        columns = len(self.material_package_name) + 3
+        os.system("vi + -c'norm {}l' {}".format(columns, self.filesystem_path))
 
     def parse(self):
         is_parsable = True

@@ -12,7 +12,7 @@ class FileProxy(FilesystemAssetProxy):
 
     ### PUBLIC METHODS ###
 
-    def edit(self):
+    def interactively_edit(self):
         os.system('vi + {}'.format(self.filesystem_path))
 
     def make_empty_asset(self, is_interactive=False):
@@ -38,5 +38,5 @@ class FileProxy(FilesystemAssetProxy):
 
     user_input_to_action = FilesystemAssetProxy.user_input_to_action.copy()
     user_input_to_action.update({
-        'vi': edit,
+        'vi': interactively_edit,
         })
