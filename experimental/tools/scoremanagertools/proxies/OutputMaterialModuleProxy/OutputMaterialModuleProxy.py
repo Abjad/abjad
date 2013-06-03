@@ -1,8 +1,10 @@
 import os
-from experimental.tools.scoremanagertools.proxies.BasicModuleProxy import BasicModuleProxy
+#from experimental.tools.scoremanagertools.proxies.BasicModuleProxy import BasicModuleProxy
+from experimental.tools.scoremanagertools.proxies.MaterialModuleProxy import MaterialModuleProxy
 
 
-class OutputMaterialModuleProxy(BasicModuleProxy):
+#class OutputMaterialModuleProxy(BasicModuleProxy):
+class OutputMaterialModuleProxy(MaterialModuleProxy):
     '''Output material module proxy:
 
     ::
@@ -16,23 +18,6 @@ class OutputMaterialModuleProxy(BasicModuleProxy):
     '''
 
     ### READ-ONLY PUBLIC PROPERTIES ###
-
-    @property
-    def file_sections(self):
-        '''Output material module proxy file sections:
-
-        ::
-
-            >>> for x in proxy.file_sections: x
-            ... 
-            ([], False, 0)
-            ([], False, 1)
-            ([], True, 2)
-            (['red_numbers = [1, 2, 3, 4, 5]'], False, 0)
-    
-        Return tuple.
-        '''
-        return super(OutputMaterialModuleProxy, self).file_sections
 
     @property
     def filesystem_basename(self):

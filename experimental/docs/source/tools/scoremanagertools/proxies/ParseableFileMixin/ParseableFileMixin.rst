@@ -21,6 +21,9 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.ParseableFileMixin.ParseableFileMixin.ParseableFileMixin.clear
    :noindex:
 
+.. automethod:: experimental.tools.scoremanagertools.proxies.ParseableFileMixin.ParseableFileMixin.ParseableFileMixin.parse
+   :noindex:
+
 .. automethod:: experimental.tools.scoremanagertools.proxies.ParseableFileMixin.ParseableFileMixin.ParseableFileMixin.write_to_disk
    :noindex:
 
