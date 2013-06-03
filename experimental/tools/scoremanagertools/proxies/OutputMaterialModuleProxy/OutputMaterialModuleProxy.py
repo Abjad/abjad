@@ -1,9 +1,9 @@
 import os
-from experimental.tools.scoremanagertools.proxies.MaterialModuleProxy import MaterialModuleProxy
+from experimental.tools.scoremanagertools.proxies.ModuleProxy import ModuleProxy
 from experimental.tools.scoremanagertools.proxies.ParseableFileMixin import ParseableFileMixin
 
 
-class OutputMaterialModuleProxy(MaterialModuleProxy, ParseableFileMixin):
+class OutputMaterialModuleProxy(ModuleProxy, ParseableFileMixin):
     '''Output material module proxy:
 
     ::
@@ -19,7 +19,7 @@ class OutputMaterialModuleProxy(MaterialModuleProxy, ParseableFileMixin):
     ### INITIALIZER ###
 
     def __init__(self, packagesystem_path=None, session=None):
-        MaterialModuleProxy.__init__(self, packagesystem_path=packagesystem_path, session=session)
+        ModuleProxy.__init__(self, packagesystem_path=packagesystem_path, session=session)
         ParseableFileMixin.__init__(self)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
