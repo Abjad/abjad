@@ -383,6 +383,7 @@ class MaterialPackageWrangler(PackageWrangler):
         pair = (material_package_maker_class_name, material_package_path)
         material_package_proxy = self._get_appropriate_material_package_proxy(*pair)
         material_package_proxy.initializer_file_proxy.write_stub_to_disk()
+        material_package_proxy.tags_file_proxy.write_stub_to_disk()
         material_package_proxy.tags_file_proxy.write_tags_to_disk(tags)
         material_package_proxy.conditionally_write_stub_material_definition_module_to_disk()
         material_package_proxy.conditionally_write_stub_user_input_module_to_disk()

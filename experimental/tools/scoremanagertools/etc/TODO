@@ -85,8 +85,3 @@
     Those classes should create material packages in the user asset library material packages directory.
     Or in user score packages. But no material packages should ever be created in the built-in
     asset library material packages directory.
-
-33. InitializerFileProxy is being used as a tags file proxy.
-    This package experimental.tools.scoremanagertools.scorepackages.red_example_score.tags
-    is used to initialize the class, for example.
-    Stop this behavior. Or change InitializerFileProxy to TagsFileProxy.

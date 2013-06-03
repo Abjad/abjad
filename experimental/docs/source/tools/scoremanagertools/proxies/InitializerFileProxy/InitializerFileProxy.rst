@@ -18,7 +18,16 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.filesystem_path
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.packagesystem_basename
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.packagesystem_path
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.parent_directory_filesystem_path
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.parent_directory_packagesystem_path
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.storage_format
@@ -31,6 +40,9 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.copy
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.execute_file_lines
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.exists
@@ -69,12 +81,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.make_empty_asset
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.make_tag_lines
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.parse
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.read_file
    :noindex:
 
@@ -84,7 +90,16 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.remove
    :noindex:
 
+.. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.remove_package_path_from_sys_modules
+   :noindex:
+
 .. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.rename
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.run_abjad
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.run_python
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.svn_add
@@ -99,13 +114,13 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.svn_up
    :noindex:
 
+.. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.unimport
+   :noindex:
+
 .. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.write_boilerplate
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.write_stub_to_disk
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.write_tags_to_disk
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.proxies.InitializerFileProxy.InitializerFileProxy.InitializerFileProxy.write_to_disk
