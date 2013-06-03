@@ -108,10 +108,7 @@ class StylesheetFileWrangler(FileWrangler):
 
     ### PUBLIC METHODS ###
 
-    def edit_asset(self, asset_basename):
-        # TODO: this will break with user assets; built-in directory path should not be hardcoded here
-        filesystem_path = os.path.join(
-            self.configuration.built_in_stylesheets_directory_path, asset_basename)
+    def edit_asset(self, filesystem_path):
         proxy = self.asset_proxy_class(filesystem_path=filesystem_path, session=self._session)
         proxy.edit()
 

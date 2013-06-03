@@ -328,10 +328,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                 break
         self._session.pop_breadcrumb()
         self._session.restore_breadcrumbs(cache=cache)
-        if result is not None:
-            # TODO: this is a hack and will break on user assets
-            result = os.path.join(self.asset_storehouse_filesystem_path_in_built_in_asset_library[0], result)
-            return result
+        return result
 
     ### UI MANIFEST ###
 
