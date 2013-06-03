@@ -2,7 +2,7 @@ import os
 from experimental import *
 
 
-def test_FileProxy_copy_interactively_01():
+def test_FileProxy_interactively_copy_01():
 
     score_manager_configuration = scoremanagertools.core.ScoreManagerConfiguration()
     filesystem_path = os.path.join(

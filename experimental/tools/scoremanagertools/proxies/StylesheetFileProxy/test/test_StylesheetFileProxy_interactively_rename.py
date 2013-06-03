@@ -2,7 +2,7 @@ import os
 from experimental import *
 
 
-def test_StylesheetFileProxy_rename_interactively_01():
+def test_StylesheetFileProxy_interactively_rename_01():
     '''Nonversioned file.
     '''
 
@@ -30,7 +30,7 @@ def test_StylesheetFileProxy_rename_interactively_01():
         assert not os.path.exists(new_filesystem_path)
 
 
-def test_StylesheetFileProxy_rename_interactively_02():
+def test_StylesheetFileProxy_interactively_rename_02():
     '''Versioned file.
     '''
 

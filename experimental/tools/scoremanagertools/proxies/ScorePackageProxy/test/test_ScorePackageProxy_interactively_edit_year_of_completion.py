@@ -2,7 +2,7 @@
 from experimental import *
 
 
-def test_ScorePackageProxy_edit_year_of_completion_interactively_01():
+def test_ScorePackageProxy_interactively_edit_year_of_completion_01():
 
     try:
         score_manager = scoremanagertools.scoremanager.ScoreManager()

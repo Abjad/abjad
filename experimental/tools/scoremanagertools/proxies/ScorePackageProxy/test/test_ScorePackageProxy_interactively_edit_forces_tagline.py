@@ -2,7 +2,7 @@
 from experimental import *
 
 
-def test_ScorePackageProxy_edit_forces_tagline_interactively_01():
+def test_ScorePackageProxy_interactively_edit_forces_tagline_01():
     '''Quit, back, score & home all work.
     '''
 
@@ -20,7 +20,7 @@ def test_ScorePackageProxy_edit_forces_tagline_interactively_01():
     assert score_manager._session.transcript.signature == (9, (0, 7))
 
 
-def test_ScorePackageProxy_edit_forces_tagline_interactively_02():
+def test_ScorePackageProxy_interactively_edit_forces_tagline_02():
 
     try:
         score_manager = scoremanagertools.scoremanager.ScoreManager()

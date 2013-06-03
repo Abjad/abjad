@@ -2,7 +2,7 @@ import os
 from experimental import *
 
 
-def test_FileProxy_remove_interactively_01():
+def test_FileProxy_interactively_remove_01():
     '''Nonversioned file.
     '''
 
@@ -23,7 +23,7 @@ def test_FileProxy_remove_interactively_01():
         assert not os.path.exists(filesystem_path)
 
 
-def test_FileProxy_remove_interactively_02():
+def test_FileProxy_interactively_remove_02():
     '''Versioned file.
     '''
 

@@ -1,7 +1,7 @@
 from experimental import *
 
 
-def test_PerformerEditor_set_initial_configuration_interactively_01():
+def test_PerformerEditor_interactively_set_initial_configuration_01():
     '''Quit, back, home, score & junk all work.
     '''
 

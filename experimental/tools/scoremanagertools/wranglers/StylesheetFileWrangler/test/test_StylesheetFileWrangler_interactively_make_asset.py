@@ -2,7 +2,7 @@ import os
 from experimental import *
 
 
-def test_StylesheetFileWrangler_make_asset_interactively_01():
+def test_StylesheetFileWrangler_interactively_make_asset_01():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     filesystem_path = os.path.join(
