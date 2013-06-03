@@ -45,15 +45,6 @@ class ModuleProxy(ParsableFileProxy):
             return self.configuration.packagesystem_path_to_filesystem_path(
                 self.parent_package_path)
 
-    # TODO: make into method
-    @property
-    def is_exceptionless(self):
-        try:
-            self.execute_file_lines()
-            return True
-        except:
-            return False
-
     @property
     def module_name(self):
         if self.module_path:
@@ -89,8 +80,11 @@ class ModuleProxy(ParsableFileProxy):
 
     def read_file(self):
         if self.parse():
-            if self.is_exceptionless:
+            try:
+                self.execute_file_lines()
                 return True
+            except:
+                pass
         return False
 
     # TODO: remove entirely
