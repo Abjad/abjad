@@ -101,7 +101,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         bodies = self.list_asset_names(head=head, include_extension=include_extension)
         return zip(keys, bodies)
 
-    def _make_user_storehouse_menu_tokens(self):
+    def _make_menu_tokens_for_asset_storehouses_in_user_asset_library(self):
         from experimental.tools import scoremanagertools
         keys, bodies = [], [] 
         keys.append(self.asset_storehouse_filesystem_path_in_user_asset_library)
@@ -295,14 +295,15 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             result = os.path.join(self.asset_storehouse_filesystem_path_in_built_in_asset_library[0], result)
             return result
 
-    def select_user_storehouse_filesystem_path_interactively(self, clear=True, cache=False):
+    def select_asset_storehouse_filesystem_path_in_user_asset_library_interactively(self, 
+        clear=True, cache=False):
         self._session.cache_breadcrumbs(cache=cache)
         menu, section = self._io.make_menu(
             where=self._where,
             is_parenthetically_numbered=True, 
             is_keyed=False,
             )
-        section.tokens = self._make_user_storehouse_menu_tokens()
+        section.tokens = self._make_menu_tokens_for_asset_storehouses_in_user_asset_library()
         while True:
             breadcrumb = 'select {} storehouse'.format(self.asset_proxy_class._generic_class_name)
             self._session.push_breadcrumb(breadcrumb)

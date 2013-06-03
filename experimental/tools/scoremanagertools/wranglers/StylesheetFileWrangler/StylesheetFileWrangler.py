@@ -221,7 +221,7 @@ class StylesheetFileWrangler(FileWrangler):
         from experimental.tools import scoremanagertools
 
         with self.backtracking:
-            storehouse_path = self.select_user_storehouse_filesystem_path_interactively()
+            storehouse_path = self.select_asset_storehouse_filesystem_path_in_user_asset_library_interactively()
         if self._session.backtrack():
             return
 
