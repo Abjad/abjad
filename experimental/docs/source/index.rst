@@ -581,7 +581,7 @@ Unstable packages (load manually)
       tools/scoremanagertools/proxies/MusicSpecifierModuleProxy/MusicSpecifierModuleProxy
       tools/scoremanagertools/proxies/OutputMaterialModuleProxy/OutputMaterialModuleProxy
       tools/scoremanagertools/proxies/PackageProxy/PackageProxy
-      tools/scoremanagertools/proxies/ParsableFileProxy/ParsableFileProxy
+      tools/scoremanagertools/proxies/ParseableFileMixin/ParseableFileMixin
       tools/scoremanagertools/proxies/ScorePackageProxy/ScorePackageProxy
       tools/scoremanagertools/proxies/SegmentPackageProxy/SegmentPackageProxy
       tools/scoremanagertools/proxies/StylesheetFileProxy/StylesheetFileProxy
@@ -777,7 +777,7 @@ Unstable packages (load manually)
       tools/scoremanagertools/proxies/MusicSpecifierModuleProxy/MusicSpecifierModuleProxy
       tools/scoremanagertools/proxies/OutputMaterialModuleProxy/OutputMaterialModuleProxy
       tools/scoremanagertools/proxies/PackageProxy/PackageProxy
-      tools/scoremanagertools/proxies/ParsableFileProxy/ParsableFileProxy
+      tools/scoremanagertools/proxies/ParseableFileMixin/ParseableFileMixin
       tools/scoremanagertools/proxies/ScorePackageProxy/ScorePackageProxy
       tools/scoremanagertools/proxies/SegmentPackageProxy/SegmentPackageProxy
       tools/scoremanagertools/proxies/StylesheetFileProxy/StylesheetFileProxy

@@ -1,7 +1,7 @@
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class ParsableFileProxy(AbjadObject):
+class ParseableFileMixin(AbjadObject):
 
     ### INITIALIZER ###
 
