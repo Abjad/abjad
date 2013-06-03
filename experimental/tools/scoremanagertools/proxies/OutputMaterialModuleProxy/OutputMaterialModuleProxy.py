@@ -1,8 +1,9 @@
 import os
 from experimental.tools.scoremanagertools.proxies.MaterialModuleProxy import MaterialModuleProxy
+from experimental.tools.scoremanagertools.proxies.ParseableFileMixin import ParseableFileMixin
 
 
-class OutputMaterialModuleProxy(MaterialModuleProxy):
+class OutputMaterialModuleProxy(MaterialModuleProxy, ParseableFileMixin):
     '''Output material module proxy:
 
     ::
@@ -14,6 +15,12 @@ class OutputMaterialModuleProxy(MaterialModuleProxy):
 
     Return output material module proxy.
     '''
+
+    ### INITIALIZER ###
+
+    def __init__(self, packagesystem_path=None, session=None):
+        MaterialModuleProxy.__init__(self, packagesystem_path=packagesystem_path, session=session)
+        ParseableFileMixin.__init__(self)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -29,6 +36,10 @@ class OutputMaterialModuleProxy(MaterialModuleProxy):
         Return string.
         '''
         return super(OutputMaterialModuleProxy, self).filesystem_basename
+
+    @property
+    def material_package_name(self):
+        return self.packagesystem_path.split('.')[-2]
 
     @property
     def parent_directory_filesystem_path(self):

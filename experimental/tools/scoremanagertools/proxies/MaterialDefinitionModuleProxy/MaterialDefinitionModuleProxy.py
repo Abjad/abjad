@@ -1,13 +1,15 @@
 import os
 from experimental.tools.scoremanagertools.proxies.MaterialModuleProxy import MaterialModuleProxy
+from experimental.tools.scoremanagertools.proxies.ParseableFileMixin import ParseableFileMixin
 
 
-class MaterialDefinitionModuleProxy(MaterialModuleProxy):
+class MaterialDefinitionModuleProxy(MaterialModuleProxy, ParseableFileMixin):
 
     ### INITIALIZER ###
 
     def __init__(self, module_path, session=None):
         MaterialModuleProxy.__init__(self, module_path, session=session)
+        ParseableFileMixin.__init__(self)
         self.output_material_module_import_lines = []
         self.body_lines = []
         self.parse()
@@ -28,6 +30,10 @@ class MaterialDefinitionModuleProxy(MaterialModuleProxy):
     def is_user_finalized(self):
         # TODO: maybe replace with bool(self.material_definition)
         return bool(self.import_output_material_module_import_statements_and_material_definition()[1])
+
+    @property
+    def material_package_name(self):
+        return self.packagesystem_path.split('.')[-2]
 
     @property
     def output_material_module_import_statements(self):
