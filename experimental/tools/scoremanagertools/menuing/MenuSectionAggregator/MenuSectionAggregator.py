@@ -62,7 +62,7 @@ class MenuSectionAggregator(MenuObject):
         for section in self.sections:
             if section.is_hidden:
                 for token in section.tokens:
-                    number, key, body, return_value = section.unpack_token(token)
+                    number, key, body, return_value = token.unpack(section.return_value_attribute)
                     menu_line = self.make_tab(1) + ' '
                     menu_line += '{} ({})'.format(body, key)
                     menu_lines.append(menu_line)

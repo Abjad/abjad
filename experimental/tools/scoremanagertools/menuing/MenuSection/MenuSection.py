@@ -94,7 +94,7 @@ class MenuSection(MenuObject):
     def unpacked_menu_entries(self):
         result = []
         for token in self.tokens:
-            result.append(self.unpack_token(token) + (self,))
+            result.append(token.unpack(self.return_value_attribute) + (self,))
         return result
 
     # TODO: rename these two properties to something more sensible when testing resumes
@@ -174,7 +174,7 @@ class MenuSection(MenuObject):
                 self._tokens = []
             elif isinstance(tokens, list):
                 new_tokens = []
-                for token in tokens:
+                for i, token in enumerate(tokens):
                     if isinstance(token, tuple):
                         new_token = MenuToken(*token)
                     elif isinstance(token, str):
@@ -183,6 +183,8 @@ class MenuSection(MenuObject):
                         new_token = token
                     else:
                         raise TypeError(token)
+                    if self.is_numbered or self.is_parenthetically_numbered:
+                        new_token._number = i + 1
                     new_tokens.append(new_token)
                 self._tokens = new_tokens
             else:
@@ -332,18 +334,3 @@ class MenuSection(MenuObject):
         if self.tokens:
             menu_lines.append('')
         return menu_lines
-
-    def token_to_menu_entry_number(self, token):
-        if self.is_numbered or self.is_parenthetically_numbered:
-            for i, x in enumerate(self.tokens):
-                if x == token:
-                    return i + 1
-
-    # TODO: replace token.key_and_body and also
-    #       replace token.get_menu_entry_return_value().
-    # TODO: unpack all menu tokens only once at runtime.
-    def unpack_token(self, token):
-        number = self.token_to_menu_entry_number(token)
-        key, body = token.key_and_body
-        return_value = token.get_menu_entry_return_value(self.return_value_attribute)
-        return number, key, body, return_value

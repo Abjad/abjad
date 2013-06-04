@@ -18,6 +18,7 @@ class MenuToken(list, AbjadObject):
         assert 1 <= len(args) <= 4, repr(args)
         for arg in args:
             self.append(arg)
+        self._number = None
 
     ### SPECIAL METHODS ###
 
@@ -72,6 +73,10 @@ class MenuToken(list, AbjadObject):
             raise ValueError(self)
         return key, body, existing_value, prepopulated_return_value
 
+    @property
+    def number(self):
+        return self._number
+
     ### PUBLIC METHODS ###
 
     def get_menu_entry_return_value(self, return_value_attribute):
@@ -88,3 +93,13 @@ class MenuToken(list, AbjadObject):
                 return self[3]
             else:
                 raise ValueError(return_value_attribute)
+
+    # TODO: replace token.key_and_body and also
+    #       replace token.get_menu_entry_return_value().
+    # TODO: unpack all menu tokens only once at runtime.
+    def unpack(self, return_value_attribute):
+        number = self.number
+        key, body = self.key_and_body
+        return_value = self.get_menu_entry_return_value(return_value_attribute)
+        return number, key, body, return_value
+
