@@ -31,7 +31,7 @@ class MenuSectionAggregator(MenuObject):
         elif key == 'here':
             self.interactively_edit_client_source_file()
         elif key == 'hidden':
-            self.show_hidden_menu_entries()
+            self.show_hidden_menu_tokens()
         elif key == 'next':
             self._session.is_navigating_to_next_score = True
             self._session.is_backtracking_to_score_manager = True
@@ -57,7 +57,7 @@ class MenuSectionAggregator(MenuObject):
         else:
             return directive
 
-    def show_hidden_menu_entries(self):
+    def show_hidden_menu_tokens(self):
         menu_lines = []
         for section in self.sections:
             if section.is_hidden:

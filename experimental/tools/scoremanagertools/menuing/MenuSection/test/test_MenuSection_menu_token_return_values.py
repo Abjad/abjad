@@ -1,7 +1,7 @@
 from experimental import *
 
 
-def test_MenuSection_menu_entry_return_values_01():
+def test_MenuSection_menu_token_return_values_01():
     '''Menu entry return values equal menu entry tokens when menu entry tokens are strings.
     Always true, including for all four combinations of the two settings tested here.
     '''
@@ -12,8 +12,8 @@ def test_MenuSection_menu_entry_return_values_01():
     section = menu.make_section(is_numbered=True, tokens=tokens)
     section.title = 'section'
     assert section.is_numbered
-    assert section.menu_entry_return_values == ['apple', 'banana', 'cherry']
-    assert section.menu_entry_return_values == section.menu_entry_bodies
+    assert section.menu_token_return_values == ['apple', 'banana', 'cherry']
+    assert section.menu_token_return_values == section.menu_token_bodies
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
@@ -21,8 +21,8 @@ def test_MenuSection_menu_entry_return_values_01():
     section = menu.make_section(tokens=tokens)
     section.title = 'section'
     assert not section.is_numbered
-    assert section.menu_entry_return_values == ['apple', 'banana', 'cherry']
-    assert section.menu_entry_return_values == section.menu_entry_bodies
+    assert section.menu_token_return_values == ['apple', 'banana', 'cherry']
+    assert section.menu_token_return_values == section.menu_token_bodies
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
@@ -31,8 +31,8 @@ def test_MenuSection_menu_entry_return_values_01():
     section.title = 'section'
     section.return_value_attribute = 'body'
     assert section.is_numbered
-    assert section.menu_entry_return_values == ['apple', 'banana', 'cherry']
-    assert section.menu_entry_return_values == section.menu_entry_bodies
+    assert section.menu_token_return_values == ['apple', 'banana', 'cherry']
+    assert section.menu_token_return_values == section.menu_token_bodies
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
@@ -41,11 +41,11 @@ def test_MenuSection_menu_entry_return_values_01():
     section.title = 'section'
     section.return_value_attribute = 'body'
     assert not section.is_numbered
-    assert section.menu_entry_return_values == ['apple', 'banana', 'cherry']
-    assert section.menu_entry_return_values == section.menu_entry_bodies
+    assert section.menu_token_return_values == ['apple', 'banana', 'cherry']
+    assert section.menu_token_return_values == section.menu_token_bodies
 
 
-def test_MenuSection_menu_entry_return_values_02():
+def test_MenuSection_menu_token_return_values_02():
     '''Menu entry return values vary when menu entry tokens are tuples.
     You can explicitly demand a return value equal either to the menu entry key or body.
     Note that section numbering plays no role in this.
@@ -61,8 +61,8 @@ def test_MenuSection_menu_entry_return_values_02():
     section = menu.make_section(is_numbered=True, tokens=tokens)
     section.title = 'section'
     assert section.is_numbered
-    assert section.menu_entry_return_values == ['add', 'rm', 'mod']
-    assert section.menu_entry_return_values == section.menu_entry_keys
+    assert section.menu_token_return_values == ['add', 'rm', 'mod']
+    assert section.menu_token_return_values == section.menu_token_keys
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
@@ -74,8 +74,8 @@ def test_MenuSection_menu_entry_return_values_02():
     section = menu.make_section(tokens=tokens)
     section.title = 'section'
     assert not section.is_numbered
-    assert section.menu_entry_return_values == ['add', 'rm', 'mod']
-    assert section.menu_entry_return_values == section.menu_entry_keys
+    assert section.menu_token_return_values == ['add', 'rm', 'mod']
+    assert section.menu_token_return_values == section.menu_token_keys
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
@@ -88,8 +88,8 @@ def test_MenuSection_menu_entry_return_values_02():
     section.title = 'section'
     section.return_value_attribute = 'body'
     assert section.is_numbered
-    assert section.menu_entry_return_values == ['add something', 'delete something', 'modify something']
-    assert section.menu_entry_return_values == section.menu_entry_bodies
+    assert section.menu_token_return_values == ['add something', 'delete something', 'modify something']
+    assert section.menu_token_return_values == section.menu_token_bodies
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
@@ -102,11 +102,11 @@ def test_MenuSection_menu_entry_return_values_02():
     section.title = 'section'
     section.return_value_attribute = 'body'
     assert not section.is_numbered
-    assert section.menu_entry_return_values == ['add something', 'delete something', 'modify something']
-    assert section.menu_entry_return_values == section.menu_entry_bodies
+    assert section.menu_token_return_values == ['add something', 'delete something', 'modify something']
+    assert section.menu_token_return_values == section.menu_token_bodies
 
 
-def test_MenuSection_menu_entry_return_values_03():
+def test_MenuSection_menu_token_return_values_03():
     '''Length-4 tuples include prepopulated return values.
     You must still set return_value_attribute to 'prepopulated'.
     '''
@@ -122,4 +122,4 @@ def test_MenuSection_menu_entry_return_values_03():
     section.title = 'section'
     section.return_value_attribute = 'prepopulated'
     assert not section.is_numbered
-    assert section.menu_entry_return_values == ['return value A', 'return value B', 'return value C']
+    assert section.menu_token_return_values == ['return value A', 'return value B', 'return value C']

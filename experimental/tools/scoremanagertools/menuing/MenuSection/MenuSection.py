@@ -35,7 +35,7 @@ class MenuSection(MenuObject):
     @property
     def default_value(self):
         assert self.has_default_value
-        return self.menu_entry_return_values[self.default_index]
+        return self.menu_token_return_values[self.default_index]
 
     @property
     def has_default_value(self):
@@ -78,20 +78,20 @@ class MenuSection(MenuObject):
         return self._is_read_only
 
     @property
-    def menu_entry_bodies(self):
+    def menu_token_bodies(self):
         return [token.key_and_body[1] for token in self.tokens]
 
     @property
-    def menu_entry_keys(self):
+    def menu_token_keys(self):
         return [token.key_and_body[0] for token in self.tokens]
 
     @property
-    def menu_entry_return_values(self):
-        return [token.get_menu_entry_return_value(self.return_value_attribute) for token in self.tokens]
+    def menu_token_return_values(self):
+        return [token.get_menu_token_return_value(self.return_value_attribute) for token in self.tokens]
 
     # TODO: rename these two properties to something more sensible when testing resumes
     @property
-    def unpacked_menu_entries(self):
+    def unpacked_menu_tokens(self):
         result = []
         for token in self.tokens:
             result.append(token.unpack(self.return_value_attribute) + (self,))
@@ -99,7 +99,7 @@ class MenuSection(MenuObject):
 
     # TODO: rename these two properties to something more sensible when testing resumes
     @property
-    def unpacked_menu_entries_optimized(self):
+    def unpacked_menu_tokens_optimized(self):
         result = []
         total_empty_tokens = 0
         for i, token in enumerate(self.tokens):
@@ -256,17 +256,17 @@ class MenuSection(MenuObject):
             menu_number = int(argument_string)
             if menu_number <= len(self.tokens):
                 return menu_number
-        for menu_index, menu_return_value in enumerate(self.menu_entry_return_values):
+        for menu_index, menu_return_value in enumerate(self.menu_token_return_values):
             if argument_string == menu_return_value:
                 return menu_index + 1
             elif 3 <= len(argument_string) and menu_return_value.startswith(argument_string):
                 return menu_index + 1
-        for menu_index, menu_key in enumerate(self.menu_entry_keys):
+        for menu_index, menu_key in enumerate(self.menu_token_keys):
             if argument_string == menu_key:
                 return menu_index + 1
 
     def argument_string_to_number_optimized(self, argument_string):
-        for entry_index, unpacked_entry in enumerate(self.unpacked_menu_entries):
+        for entry_index, unpacked_entry in enumerate(self.unpacked_menu_tokens):
             number, key, body, return_value, section = unpacked_entry
             body = stringtools.strip_diacritics_from_binary_string(body).lower()
             if  (mathtools.is_integer_equivalent_expr(argument_string) and \

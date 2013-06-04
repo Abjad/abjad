@@ -42,7 +42,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuToken.MenuToken.MenuToken.extend
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuToken.MenuToken.MenuToken.get_menu_entry_return_value
+.. automethod:: experimental.tools.scoremanagertools.menuing.MenuToken.MenuToken.MenuToken.get_menu_token_return_value
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuToken.MenuToken.MenuToken.index

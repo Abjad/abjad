@@ -48,8 +48,8 @@ class Menu(MenuSectionAggregator):
     def first_nonhidden_return_value_in_menu(self):
         for section in self.sections:
             if not section.is_hidden:
-                if section.menu_entry_return_values:
-                    return section.menu_entry_return_values[0]
+                if section.menu_token_return_values:
+                    return section.menu_token_return_values[0]
 
     @property
     def has_default_valued_section(self):
@@ -78,24 +78,24 @@ class Menu(MenuSectionAggregator):
                 return section
 
     @property
-    def menu_entry_bodies(self):
+    def menu_token_bodies(self):
         result = []
         for section in self.sections:
-            result.extend(section.menu_entry_bodies)
+            result.extend(section.menu_token_bodies)
         return result
 
     @property
-    def menu_entry_keys(self):
+    def menu_token_keys(self):
         result = []
         for section in self.sections:
-            result.extend(section.menu_entry_keys)
+            result.extend(section.menu_token_keys)
         return result
 
     @property
-    def menu_entry_return_values(self):
+    def menu_token_return_values(self):
         result = []
         for section in self.sections:
-            result.extend(section.menu_entry_return_values)
+            result.extend(section.menu_token_return_values)
         return result
 
     @property
@@ -150,10 +150,10 @@ class Menu(MenuSectionAggregator):
         return result
 
     @property
-    def unpacked_menu_entries(self):
+    def unpacked_menu_tokens(self):
         result = []
         for section in self.sections:
-            result.extend(section.unpacked_menu_entries_optimized)
+            result.extend(section.unpacked_menu_tokens_optimized)
         return result
 
     ### READ / WRITE PUBLIC PROPERTIES ###
@@ -180,7 +180,7 @@ class Menu(MenuSectionAggregator):
             return 'r'
         else:
             matches = []
-            for number, key, body, return_value, section in self.unpacked_menu_entries:
+            for number, key, body, return_value, section in self.unpacked_menu_tokens:
                 if body == 'redraw':
                     continue
                 body = stringtools.strip_diacritics_from_binary_string(body).lower()
@@ -217,7 +217,7 @@ class Menu(MenuSectionAggregator):
         entry_indices = [entry_number - 1 for entry_number in entry_numbers]
         result = []
         for i in entry_indices:
-            entry = self.ranged_section.menu_entry_return_values[i]
+            entry = self.ranged_section.menu_token_return_values[i]
             result.append(entry)
         return result
 
@@ -236,14 +236,14 @@ class Menu(MenuSectionAggregator):
 
     def return_value_to_location_pair(self, return_value):
         for i, section in enumerate(self.sections):
-            if return_value in section.menu_entry_return_values:
-                return (i, section.menu_entry_return_values.index(return_value))
+            if return_value in section.menu_token_return_values:
+                return (i, section.menu_token_return_values.index(return_value))
 
     def return_value_to_next_return_value_in_section(self, return_value):
         section_index, entry_index = self.return_value_to_location_pair(return_value)
         section = self.sections[section_index]
         entry_index = (entry_index + 1) % len(section)
-        return section.menu_entry_return_values[entry_index]
+        return section.menu_token_return_values[entry_index]
 
     # TODO: apply default indicators at display time so this can be completely removed
     def strip_default_indicators_from_strings(self, expr):

@@ -79,7 +79,7 @@ class MenuToken(list, AbjadObject):
 
     ### PUBLIC METHODS ###
 
-    def get_menu_entry_return_value(self, return_value_attribute):
+    def get_menu_token_return_value(self, return_value_attribute):
         if self.is_string_token:
             return self[0]
         else:
@@ -95,11 +95,11 @@ class MenuToken(list, AbjadObject):
                 raise ValueError(return_value_attribute)
 
     # TODO: replace token.key_and_body and also
-    #       replace token.get_menu_entry_return_value().
+    #       replace token.get_menu_token_return_value().
     # TODO: unpack all menu tokens only once at runtime.
     def unpack(self, return_value_attribute):
         number = self.number
         key, body = self.key_and_body
-        return_value = self.get_menu_entry_return_value(return_value_attribute)
+        return_value = self.get_menu_token_return_value(return_value_attribute)
         return number, key, body, return_value
 
