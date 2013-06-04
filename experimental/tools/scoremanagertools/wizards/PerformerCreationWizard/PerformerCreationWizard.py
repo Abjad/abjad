@@ -114,7 +114,8 @@ class PerformerCreationWizard(Wizard):
         self._session.restore_breadcrumbs(cache=cache)
 
     def make_performer_configuration_menu(self, performer):
-        menu, section = self._io.make_menu(where=self._where, is_parenthetically_numbered=True, is_ranged=True)
+        menu, section = self._io.make_menu(
+            where=self._where, is_parenthetically_numbered=True, is_ranged=True)
         section.title = 'select instruments'
         likely_instruments = performer.likely_instruments_based_on_performer_name
         likely_instrument_names = [x().instrument_name for x in likely_instruments]
@@ -130,11 +131,14 @@ class PerformerCreationWizard(Wizard):
         if likely_instruments:
             section.tokens = likely_instrument_names
             section.default_index = default_index
+            tokens = [
+                ('more', 'more instruments'),
+                ]
             section = menu.make_section(is_keyed=False)
-            section.append(('more', 'more instruments'))
         else:
-            section.tokens = instrumenttools.list_instrument_names()
+            tokens = instrumenttools.list_instrument_names()
             section.default_index = default_index
             section = menu.make_section(is_keyed=False)
-        section.append(('skip', 'skip instruments'))
+        tokens.append(('skip', 'skip instruments'))
+        section.tokens = tokens
         return menu

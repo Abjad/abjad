@@ -110,10 +110,12 @@ class MaterialPackageProxy(PackageProxy):
         if not self.has_initializer:
             section = main_menu.make_section()
             section.title = '(Note: package has no initializer.)'
-        hidden_section.append(('inr', 'initializer - restore'))
-        hidden_section.append(('inv', 'view package initializer'))
-        hidden_section.append(('incanned', 'copy canned package initializer'))
-        hidden_section.append(('instub', 'write stub package initializer'))
+        tokens = hidden_section.tokens[:]
+        tokens.append(('inr', 'initializer - restore'))
+        tokens.append(('inv', 'view package initializer'))
+        tokens.append(('incanned', 'copy canned package initializer'))
+        tokens.append(('instub', 'write stub package initializer'))
+        hidden_section.tokens = tokens
 
     def _make_main_menu_section_for_material_definition(self, main_menu, hidden_section):
         if not self.has_initializer:

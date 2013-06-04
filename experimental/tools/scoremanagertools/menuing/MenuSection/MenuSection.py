@@ -179,6 +179,8 @@ class MenuSection(MenuObject):
                         new_token = MenuToken(*token)
                     elif isinstance(token, str):
                         new_token = MenuToken(token)
+                    elif isinstance(token, MenuToken):
+                        new_token = token
                     else:
                         raise TypeError(token)
                     new_tokens.append(new_token)

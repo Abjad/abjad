@@ -54,8 +54,11 @@ class InteractiveEditor(ScoreManagerObject):
             is_keyed=self.target_manifest.is_keyed, is_parenthetically_numbered=True)
         section.tokens = self.target_attribute_tokens
         section.show_existing_values = True
-        hidden_section = menu.hidden_section
-        hidden_section.append(('done', 'done'))
+        tokens = menu.hidden_section.tokens[:]
+        tokens.extend([
+            ('done', 'done'),
+            ])
+        menu.hidden_section.tokens = tokens
         return menu
 
     def _run(self, breadcrumb=None, cache=False, clear=True, is_autoadding=False,

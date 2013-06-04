@@ -88,14 +88,18 @@ class MaterialPackageWrangler(PackageWrangler):
     def _make_main_menu(self, head=None):
         menu, section = self._io.make_menu(where=self._where, is_numbered=True, is_keyed=False)
         section.tokens = self._make_menu_tokens(head=head)
-        section = menu.make_section()
-        section.append(('d', 'data-only'))
-        section.append(('h', 'handmade'))
-        section.append(('m', 'maker-made'))
-        hidden_section = menu.make_section(is_hidden=True)
-        hidden_section.append(('s', 'create numeric sequence'))
-        hidden_section.append(('missing', 'create missing packages'))
-        hidden_section.append(('profile', 'profile packages'))
+        tokens = [
+            ('d', 'data-only'),
+            ('h', 'handmade'),
+            ('m', 'maker-made'),
+            ]
+        section = menu.make_section(tokens=tokens)
+        tokens = [
+            ('s', 'create numeric sequence'),
+            ('missing', 'create missing packages'),
+            ('profile', 'profile packages'),
+            ]
+        hidden_section = menu.make_section(is_hidden=True, tokens=tokens)
         return menu
 
     ### READ-ONLY PUBLIC PROPERTIES ###
