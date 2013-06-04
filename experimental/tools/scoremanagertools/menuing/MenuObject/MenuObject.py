@@ -1,7 +1,8 @@
 import os
 import subprocess
 from abjad.tools import stringtools
-from experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject import ScoreManagerObject
+from experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject import \
+    ScoreManagerObject
 from experimental.tools.scoremanagertools import predicates
 
 

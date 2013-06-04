@@ -1,6 +1,7 @@
 from abjad.tools import stringtools
 from abjad.tools import mathtools
 from experimental.tools.scoremanagertools.menuing.MenuObject import MenuObject
+from experimental.tools.scoremanagertools.menuing.MenuToken import MenuToken
 
 
 class MenuSection(MenuObject):
@@ -23,9 +24,11 @@ class MenuSection(MenuObject):
 
     ### SPECIAL METHODS ###
 
-    # TODO: write test
     def __len__(self):
         return len(self.tokens)
+
+    def __repr__(self):
+        return '{}({!r})'.format(self._class_name, self.tokens)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -38,21 +41,23 @@ class MenuSection(MenuObject):
     def has_default_value(self):
         return self.default_index is not None
 
-    @property
-    def has_existing_value_tuple_tokens(self):
-        return any([isinstance(x, tuple) and len(x) == 3 for x in self.tokens])
-
-    @property
-    def has_prepopulated_return_value_tuple_tokens(self):
-        return any([isinstance(x, tuple) and len(x) == 4 for x in self.tokens])
+#    @property
+#    def has_existing_value_tuple_tokens(self):
+#        return any([isinstance(x, (list, tuple)) and len(x) == 3 for x in self.tokens])
+#
+#    @property
+#    def has_prepopulated_return_value_tuple_tokens(self):
+#        return any([isinstance(x, (list, tuple)) and len(x) == 4 for x in self.tokens])
 
     @property
     def has_string_tokens(self):
-        return any([isinstance(x, str) for x in self.tokens])
+        #return any([isinstance(x, str) for x in self.tokens])
+        return any([token.is_string_token for token in self.tokens])
 
     @property
     def has_tuple_tokens(self):
-        return any([isinstance(x, tuple) for x in self.tokens])
+        #return any([isinstance(x, (list, tuple)) for x in self.tokens])
+        return any(token.is_tuple_token for token in self.tokens)
 
     @property
     def is_hidden(self):
@@ -114,16 +119,18 @@ class MenuSection(MenuObject):
             number = key = body = None
             if self.is_numbered or self.is_parenthetically_numbered:
                 number = i + 1 - total_empty_tokens
-            if isinstance(token, str):
-                body = token
-            elif isinstance(token, tuple) and len(token) == 2:
+            #if isinstance(token, str):
+            #    body = token
+            if token.is_string_token:
+                body = token[0]
+            elif isinstance(token, (list, tuple)) and len(token) == 2:
                 key, body = token
-            elif isinstance(token, tuple) and len(token) == 3:
+            elif isinstance(token, (list, tuple)) and len(token) == 3:
                 key, body, existing_value = token
-            elif isinstance(token, tuple) and len(token) == 4:
+            elif isinstance(token, (list, tuple)) and len(token) == 4:
                 key, body, existing_value, prepopulated_return_value = token
             else:
-                raise ValueError
+                raise ValueError(token)
             assert body
             if self.is_keyed and key is None:
                 key = body
@@ -185,15 +192,33 @@ class MenuSection(MenuObject):
         def fset(self, tokens):
             if tokens is None:
                 self._tokens = []
+            elif isinstance(tokens, list):
+                new_tokens = []
+                for token in tokens:
+                    if isinstance(token, tuple):
+                        new_token = MenuToken(*token)
+                    elif isinstance(token, str):
+                        new_token = MenuToken(token)
+                    else:
+                        raise TypeError(token)
+                    new_tokens.append(new_token)
+                self._tokens = new_tokens
             else:
-                self._tokens = tokens[:]
+                raise TypeError(tokens)
         return property(**locals())
 
     ### PUBLIC METHODS ###
 
     def append(self, token):
+        from experimental.tools import scoremanagertools
         assert not (isinstance(token, str) and self.has_tuple_tokens)
-        assert not (isinstance(token, tuple) and self.has_string_tokens)
+        assert not (isinstance(token, (list, tuple)) and self.has_string_tokens)
+        if isinstance(token, tuple):
+            token = MenuToken(*token)
+        elif isinstance(token, str):
+            token = MenuToken(token)
+        else:
+            raise TypeError(token)
         self.tokens.append(token)
 
     def argument_range_string_to_numbers(self, argument_range_string):
@@ -272,7 +297,8 @@ class MenuSection(MenuObject):
         for entry_index, unpacked_entry in enumerate(self.unpacked_menu_entries):
             number, key, body, return_value, section = unpacked_entry
             body = stringtools.strip_diacritics_from_binary_string(body).lower()
-            if  (mathtools.is_integer_equivalent_expr(argument_string) and int(argument_string) == number) or \
+            if  (mathtools.is_integer_equivalent_expr(argument_string) and \
+                int(argument_string) == number) or \
                 (argument_string == key) or \
                 (3 <= len(argument_string) and body.startswith(argument_string)):
                 entry_number = entry_index + 1
@@ -281,15 +307,24 @@ class MenuSection(MenuObject):
     def extend(self, tokens):
         assert isinstance(tokens, (tuple, list))
         assert not (any([isinstance(x, str) for x in tokens]) and self.has_tuple_tokens)
-        assert not (any([isinstance(x, tuple) for x in tokens]) and self.has_string_tokens)
-        self.tokens.extend(tokens)
+        assert not (any([isinstance(x, (list, tuple)) for x in tokens]) and self.has_string_tokens)
+        new_tokens = []
+        for token in tokens:
+            if isinstance(token, tuple):
+                new_token = MenuToken(*token)
+            elif isinstance(token, str):
+                new_token = MenuToken(token)
+            else:
+                raise TypeError(token)
+            new_tokens.append(new_token)
+        self.tokens.extend(new_tokens)
 
-    def is_token(self, expr):
-        if isinstance(expr, str):
-            return True
-        elif isinstance(expr, tuple) and len(expr) in (0, 2, 3, 4):
-            return True
-        return False
+#    def is_token(self, expr):
+#        if isinstance(expr, str):
+#            return True
+#        elif isinstance(expr, (list, tuple)) and len(expr) in (0, 2, 3, 4):
+#            return True
+#        return False
 
     def make_menu_lines(self):
         '''KEYS. Keys are optionally shown in parentheses in each entry;
@@ -314,7 +349,7 @@ class MenuSection(MenuObject):
         '''
         menu_lines = []
         menu_lines.extend(self.make_title_lines())
-        assert all([self.is_token(x) for x in self.tokens])
+        assert all(isinstance(token, MenuToken) for token in self.tokens), repr(self.tokens)
         total_empty_tokens = 0
         for entry_index, token in enumerate(self.tokens):
             menu_line = self.make_tab(self.indent_level) + ' '
@@ -352,25 +387,29 @@ class MenuSection(MenuObject):
 
     # TODO: this can probably deprecate in favor of self.token_to_key_body_and_existing_value
     def token_to_key_and_body(self, token):
-        if isinstance(token, str):
-            key, body = None, token
-        elif isinstance(token, tuple):
+        #if isinstance(token, str):
+        #    key, body = None, token
+        if token.is_string_token:
+            key, body = None, token[0]
+        elif isinstance(token, (list, tuple)):
             key, body = token[:2]
         else:
             raise ValueError
         return key, body
 
     def token_to_key_body_and_existing_value(self, token):
-        if isinstance(token, str):
-            key, body, existing_value = None, token, None
-        elif isinstance(token, tuple) and len(token) == 2:
+        #if isinstance(token, str):
+        if token.is_string_token:
+            #key, body, existing_value = None, token, None
+            key, body, existing_value = None, token[0], None
+        elif isinstance(token, (list, tuple)) and len(token) == 2:
             key, body, existing_value = token[0], token[1], None
-        elif isinstance(token, tuple) and len(token) == 3:
+        elif isinstance(token, (list, tuple)) and len(token) == 3:
             key, body, existing_value = token
-        elif isinstance(token, tuple) and len(token) == 4:
+        elif isinstance(token, (list, tuple)) and len(token) == 4:
             key, body, existing_value = token[:3]
         else:
-            raise ValueError
+            raise ValueError(token)
         return key, body, existing_value
 
     def token_to_menu_entry_number(self, token):
@@ -380,9 +419,11 @@ class MenuSection(MenuObject):
                     return i + 1
 
     def token_to_menu_entry_return_value(self, token):
-        if isinstance(token, str):
-            return token
-        elif isinstance(token, tuple):
+        #if isinstance(token, str):
+        #    return token
+        if token.is_string_token:
+            return token[0]
+        elif isinstance(token, (list, tuple)):
             if self.return_value_attribute == 'key':
                 return token[0]
             elif self.return_value_attribute == 'body':
@@ -392,9 +433,9 @@ class MenuSection(MenuObject):
             elif self.return_value_attribute == 'prepopulated':
                 return token[3]
             else:
-                raise ValueError
+                raise ValueError(token)
         else:
-            raise ValueError
+            raise ValueError(token)
 
     # TODO: replace self.token_to_key_and_body() and also
     #       replace self.token_to_menu_entry_return_value().

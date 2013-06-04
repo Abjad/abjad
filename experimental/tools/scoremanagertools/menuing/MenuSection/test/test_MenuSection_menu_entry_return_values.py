@@ -14,7 +14,6 @@ def test_MenuSection_menu_entry_return_values_01():
     assert section.is_numbered
     assert section.menu_entry_return_values == ['apple', 'banana', 'cherry']
     assert section.menu_entry_return_values == section.menu_entry_bodies
-    assert section.menu_entry_return_values == section.tokens
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
@@ -24,7 +23,6 @@ def test_MenuSection_menu_entry_return_values_01():
     assert not section.is_numbered
     assert section.menu_entry_return_values == ['apple', 'banana', 'cherry']
     assert section.menu_entry_return_values == section.menu_entry_bodies
-    assert section.menu_entry_return_values == section.tokens
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
@@ -35,7 +33,6 @@ def test_MenuSection_menu_entry_return_values_01():
     assert section.is_numbered
     assert section.menu_entry_return_values == ['apple', 'banana', 'cherry']
     assert section.menu_entry_return_values == section.menu_entry_bodies
-    assert section.menu_entry_return_values == section.tokens
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
@@ -46,7 +43,6 @@ def test_MenuSection_menu_entry_return_values_01():
     assert not section.is_numbered
     assert section.menu_entry_return_values == ['apple', 'banana', 'cherry']
     assert section.menu_entry_return_values == section.menu_entry_bodies
-    assert section.menu_entry_return_values == section.tokens
 
 
 def test_MenuSection_menu_entry_return_values_02():

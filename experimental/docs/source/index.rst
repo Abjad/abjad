@@ -471,7 +471,6 @@ Unstable packages (load manually)
       :maxdepth: 1
 
       tools/scoremanagertools/core/ScoreManagerObject/ScoreManagerObject
-      tools/scoremanagertools/menuing/MenuToken/MenuToken
       tools/scoremanagertools/proxies/FilesystemAssetProxy/FilesystemAssetProxy
       tools/scoremanagertools/specifiers/DynamicSpecifier/DynamicSpecifier
       tools/scoremanagertools/specifiers/ParameterSpecifier/ParameterSpecifier
@@ -564,6 +563,7 @@ Unstable packages (load manually)
       tools/scoremanagertools/menuing/MenuObject/MenuObject
       tools/scoremanagertools/menuing/MenuSection/MenuSection
       tools/scoremanagertools/menuing/MenuSectionAggregator/MenuSectionAggregator
+      tools/scoremanagertools/menuing/MenuToken/MenuToken
       tools/scoremanagertools/menuing/UserInputGetter/UserInputGetter
       tools/scoremanagertools/proxies/DirectoryProxy/DirectoryProxy
       tools/scoremanagertools/proxies/DistributionDirectoryProxy/DistributionDirectoryProxy
@@ -666,7 +666,6 @@ Unstable packages (load manually)
    .. toctree::
 
       tools/scoremanagertools/core/ScoreManagerObject/ScoreManagerObject
-      tools/scoremanagertools/menuing/MenuToken/MenuToken
       tools/scoremanagertools/proxies/FilesystemAssetProxy/FilesystemAssetProxy
       tools/scoremanagertools/specifiers/DynamicSpecifier/DynamicSpecifier
       tools/scoremanagertools/specifiers/ParameterSpecifier/ParameterSpecifier
@@ -759,6 +758,7 @@ Unstable packages (load manually)
       tools/scoremanagertools/menuing/MenuObject/MenuObject
       tools/scoremanagertools/menuing/MenuSection/MenuSection
       tools/scoremanagertools/menuing/MenuSectionAggregator/MenuSectionAggregator
+      tools/scoremanagertools/menuing/MenuToken/MenuToken
       tools/scoremanagertools/menuing/UserInputGetter/UserInputGetter
       tools/scoremanagertools/proxies/DirectoryProxy/DirectoryProxy
       tools/scoremanagertools/proxies/DistributionDirectoryProxy/DistributionDirectoryProxy

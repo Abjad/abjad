@@ -82,7 +82,8 @@ class UserInputGetter(MenuSectionAggregator):
         message = 'value for {!r} must be argument range.'
         self.append_something(spaced_attribute_name, message, default=default)
         self.argument_lists[-1] = argument_list
-        test = lambda expr: predicates.is_readable_argument_range_string_for_argument_list(expr, argument_list)
+        test = lambda expr: predicates.is_readable_argument_range_string_for_argument_list(
+            expr, argument_list)
         self.tests.append(test)
 
     def append_articulation(self, spaced_attribute_name, default=None):
@@ -462,7 +463,7 @@ class UserInputGetter(MenuSectionAggregator):
     def store_value_from_argument_list(self, user_response, argument_list):
         from experimental.tools.scoremanagertools.menuing.MenuSection import MenuSection
         dummy_section = MenuSection()
-        dummy_section.tokens = argument_list[:]
+        dummy_section.extend(argument_list[:])
         value = dummy_section.argument_range_string_to_numbers(user_response)
         self.values.append(value)
         self.prompt_index = self.prompt_index + 1
