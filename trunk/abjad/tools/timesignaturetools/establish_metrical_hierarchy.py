@@ -16,10 +16,9 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
 
     ::
 
-        >>> parseable = "abj: | 2/4 c'2 ~ || 4/4 c'32 d'2.. ~ d'16 e'32 ~ || 2/4 e'2 |"
-
-    ::
-
+        >>> parseable = "abj: | 2/4 c'2 ~ |"
+        >>> parseable += "| 4/4 c'32 d'2.. ~ d'16 e'32 ~ |"
+        >>> parseable += "| 2/4 e'2 |"
         >>> staff = Staff(parseable)
         >>> f(staff)
         \new Staff {
@@ -56,7 +55,10 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
 
     ::
 
-        >>> timesignaturetools.establish_metrical_hierarchy(staff[1][:], hierarchy)
+        >>> timesignaturetools.establish_metrical_hierarchy(
+        ...     staff[1][:],
+        ...     hierarchy,
+        ...     )
         >>> f(staff)
         \new Staff {
             {
@@ -125,7 +127,10 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
 
     ::
 
-        >>> timesignaturetools.establish_metrical_hierarchy(staff[1][:], hierarchy)
+        >>> timesignaturetools.establish_metrical_hierarchy(
+        ...     staff[1][:], 
+        ...     hierarchy,
+        ...     )
         >>> f(staff)
         \new Staff {
             {
@@ -173,7 +178,10 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
 
     ::
 
-        >>> timesignaturetools.establish_metrical_hierarchy(measure[:], measure)
+        >>> timesignaturetools.establish_metrical_hierarchy(
+        ...     measure[:], 
+        ...     measure,
+        ...     )
         >>> f(measure)
         {
             \time 3/4
@@ -194,8 +202,11 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
     ::
 
         >>> measure = p(parseable)
-        >>> timesignaturetools.establish_metrical_hierarchy(measure[:], measure,
-        ...     maximum_dot_count=2)
+        >>> timesignaturetools.establish_metrical_hierarchy(
+        ...     measure[:],
+        ...     measure,
+        ...     maximum_dot_count=2,
+        ...     )
         >>> f(measure)
         {
             \time 3/4
@@ -217,8 +228,11 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
     ::
 
         >>> measure = p(parseable)
-        >>> timesignaturetools.establish_metrical_hierarchy(measure[:], measure,
-        ...     maximum_dot_count=1)
+        >>> timesignaturetools.establish_metrical_hierarchy(
+        ...     measure[:], 
+        ...     measure,
+        ...     maximum_dot_count=1,
+        ...     )
         >>> f(measure)
         {
             \time 3/4
@@ -241,8 +255,11 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
     ::
 
         >>> measure = p(parseable)
-        >>> timesignaturetools.establish_metrical_hierarchy(measure[:], measure,
-        ...     maximum_dot_count=0)
+        >>> timesignaturetools.establish_metrical_hierarchy(
+        ...     measure[:], 
+        ...     measure,
+        ...     maximum_dot_count=0,
+        ...     )
         >>> f(measure)
         {
             \time 3/4
@@ -305,7 +322,10 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
 
     ::
 
-        >>> timesignaturetools.establish_metrical_hierarchy(measure[:], measure)
+        >>> timesignaturetools.establish_metrical_hierarchy(
+        ...     measure[:], 
+        ...     measure,
+        ...     )
         >>> f(measure)
         {
             \time 9/8
@@ -327,8 +347,11 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
     ::
 
         >>> measure = p(parseable)
-        >>> timesignaturetools.establish_metrical_hierarchy(measure[:], measure,
-        ...     boundary_depth=1)
+        >>> timesignaturetools.establish_metrical_hierarchy(
+        ...     measure[:], 
+        ...     measure,
+        ...     boundary_depth=1,
+        ...     )
         >>> f(measure)
         {
             \time 9/8
@@ -349,8 +372,11 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
     ::
 
         >>> measure = p(parseable)
-        >>> timesignaturetools.establish_metrical_hierarchy(measure[:], measure,
-        ...     boundary_depth=2)
+        >>> timesignaturetools.establish_metrical_hierarchy(
+        ...     measure[:], 
+        ...     measure,
+        ...     boundary_depth=2,
+        ...     )
         >>> f(measure)
         {
             \time 9/8
@@ -459,7 +485,10 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
     ::
 
         >>> for measure in iterationtools.iterate_measures_in_expr(score):
-        ...     timesignaturetools.establish_metrical_hierarchy(measure[:], measure)
+        ...     timesignaturetools.establish_metrical_hierarchy(
+        ...         measure[:],
+        ...         measure,
+        ...         )
         >>> f(score)
         \new Score \with {
             \remove Timing_translator
@@ -536,7 +565,10 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
 
         >>> for measure in iterationtools.iterate_measures_in_expr(score):
         ...     timesignaturetools.establish_metrical_hierarchy(
-        ...         measure[:], measure, boundary_depth=1)
+        ...         measure[:],
+        ...         measure,
+        ...         boundary_depth=1,
+        ...         )
         ...
         >>> f(score)
         \new Score \with {
@@ -619,8 +651,10 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
 
     ::
 
-        >>> measure = p("abj: | 4/4 c'16 ~ c'4 d'8. ~ " \
-        ...     "2/3 { d'8. ~ 3/5 { d'16 e'8. f'16 ~ } } f'4 |")
+        >>> parseable = "abj: | 4/4 c'16 ~ c'4 d'8. ~ "
+        >>> parseable += "2/3 { d'8. ~ 3/5 { d'16 e'8. f'16 ~ } } "
+        >>> parseable += "f'4 |"
+        >>> measure = p(parseable)
         >>> f(measure)
         {
             \time 4/4
@@ -650,8 +684,11 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
 
     ::
 
-        >>> timesignaturetools.establish_metrical_hierarchy(measure[:], measure,
-        ...     boundary_depth=1)
+        >>> timesignaturetools.establish_metrical_hierarchy(
+        ...     measure[:],
+        ...     measure,
+        ...     boundary_depth=1,
+        ...     )
         >>> f(measure)
         {
             \time 4/4
@@ -737,7 +774,7 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
             split_offset = None
             offsets = get_offsets_at_depth(depth)
 
-            # if the tie chain's start aligns, take the latest possible offset
+            # If the tie chain's start aligns, take the latest possible offset.
             if tie_chain_starts_in_offsets:
                 offsets = reversed(offsets)
 
@@ -788,17 +825,18 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
             #print ''
             leaftools.fuse_leaves(tie_chain[:])
 
-    # check arguments
+    # Validate arguments.
     assert componenttools.all_are_thread_contiguous_components(components)
     metrical_hierarchy = timesignaturetools.MetricalHierarchy(metrical_hierarchy)
-    assert sum([x.preprolated_duration for x in components]) == metrical_hierarchy.preprolated_duration
+    assert sum([x.preprolated_duration for x in components]) == \
+        metrical_hierarchy.preprolated_duration
     if boundary_depth is not None:
         boundary_depth = int(boundary_depth)
     if maximum_dot_count is not None:
         maximum_dot_count = int(maximum_dot_count)
         assert 0 <= maximum_dot_count
 
-    # build offset inventory, adjusted for initial offset and prolation
+    # Build offset inventory, adjusted for initial offset and prolation.
     first_offset = components[0].timespan.start_offset
     prolation = components[0].prolation
     offset_inventory= []
@@ -806,12 +844,12 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
         offsets = [(x * prolation) + first_offset for x in offsets]
         offset_inventory.append(tuple(offsets))
 
-    # build boundary offset inventory, if applicable
+    # Build boundary offset inventory, if applicable.
     if boundary_depth is not None:
         boundary_offsets = offset_inventory[boundary_depth]
 
-    # cache results of iterator, as we'll be mutating the underlying collection
-    items = tuple(tietools.iterate_topmost_masked_tie_chains_and_containers_in_expr(components))
+    # Cache results of iterator, as we'll be mutating the underlying collection.
+    items = tuple(tietools.iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr(components))
     for item in items:
         if isinstance(item, tietools.TieChain):
             #print 'RECURSING:', item
@@ -823,5 +861,10 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
             sub_boundary_depth = 1
             if boundary_depth is None:
                 sub_boundary_depth = None
-            establish_metrical_hierarchy(item[:], sub_metrical_hierarchy,
-                boundary_depth=sub_boundary_depth, maximum_dot_count=maximum_dot_count)
+            establish_metrical_hierarchy(
+                item[:],
+                sub_metrical_hierarchy,
+                boundary_depth=sub_boundary_depth,
+                maximum_dot_count=maximum_dot_count,
+                )
+
