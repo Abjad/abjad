@@ -87,14 +87,14 @@ class MenuSection(MenuObject):
 
     @property
     def menu_token_return_values(self):
-        return [token.get_menu_token_return_value(self.return_value_attribute) for token in self.tokens]
+        return [token.return_value for token in self.tokens]
 
     # TODO: rename these two properties to something more sensible when testing resumes
     @property
     def unpacked_menu_tokens(self):
         result = []
         for token in self.tokens:
-            result.append(token.unpack(self.return_value_attribute) + (self,))
+            result.append(token.unpack() + (self,))
         return result
 
     # TODO: rename these two properties to something more sensible when testing resumes
@@ -180,6 +180,7 @@ class MenuSection(MenuObject):
                         raise TypeError(token)
                     if self.is_numbered or self.is_parenthetically_numbered:
                         new_token._number = i + 1
+                    new_token._return_value_attribute = self.return_value_attribute
                     new_tokens.append(new_token)
                 self._tokens = new_tokens
             else:

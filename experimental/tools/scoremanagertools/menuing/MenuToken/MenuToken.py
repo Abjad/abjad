@@ -4,11 +4,6 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 class MenuToken(list, AbjadObject):
     '''Menu token.
 
-    The tuple-only code indicates the following:
-
-        * a value-tuple token has length 3
-        * a prepopulated return value tuple token has length 4
-
     Return menu token.
     '''
 
@@ -35,10 +30,6 @@ class MenuToken(list, AbjadObject):
     def is_string_token(self):
         return len(self) == 1 and isinstance(self[0], str)
 
-    @property
-    def is_tuple_token(self):
-        return not self.is_string_token
-    
     @property
     def key(self):
         return self.key_body_and_existing_value[0]
@@ -76,28 +67,27 @@ class MenuToken(list, AbjadObject):
     def number(self):
         return self._number
 
-    ### PUBLIC METHODS ###
-
-    def get_menu_token_return_value(self, return_value_attribute):
+    @property
+    def return_value(self):
         if self.is_string_token:
             return self[0]
         else:
-            if return_value_attribute == 'key':
+            if self.return_value_attribute == 'key':
                 return self[0]
-            elif return_value_attribute == 'body':
+            elif self.return_value_attribute == 'body':
                 return self[1]
-            elif return_value_attribute == 'number':
+            elif self.return_value_attribute == 'number':
                 return
-            elif return_value_attribute == 'prepopulated':
+            elif self.return_value_attribute == 'prepopulated':
                 return self[3]
             else:
                 raise ValueError(return_value_attribute)
 
-    # TODO: replace token.key_and_body and also
-    #       replace token.get_menu_token_return_value().
-    # TODO: unpack all menu tokens only once at runtime.
-    def unpack(self, return_value_attribute):
-        number = self.number
-        key, body, existing_value = self.key_body_and_existing_value
-        return_value = self.get_menu_token_return_value(return_value_attribute)
-        return number, key, body, return_value
+    @property
+    def return_value_attribute(self):
+        return self._return_value_attribute
+
+    ### PUBLIC METHODS ###
+
+    def unpack(self):
+        return self.number, self.key, self.body, self.return_value
