@@ -35,9 +35,9 @@ class ListEditor(InteractiveEditor):
             is_keyed=getattr(self.target_manifest, 'is_keyed', False))
         attribute_management_section.tokens = self.target_attribute_tokens
         attribute_management_section.show_existing_values = True
-        item_management_section = menu.make_section(is_parenthetically_numbered=True)
+        item_management_section = menu.make_section(is_parenthetically_numbered=True,
+            return_value_attribute='number')
         item_management_section.tokens = self.target_summary_lines
-        item_management_section.return_value_attribute = 'number'
         tokens = [('add', 'add elements')]
         if 0 < len(self.items):
             tokens.append(('rm', 'remove elements'))

@@ -114,14 +114,14 @@ class IO(AbjadObject):
 
     def make_menu(self, is_hidden=False, is_internally_keyed=False, is_keyed=True,
         is_numbered=False, is_parenthetically_numbered=False, is_ranged=False, where=None,
-        tokens=None):
+        tokens=None, return_value_attribute='key'):
         from experimental.tools import scoremanagertools
         menu = scoremanagertools.menuing.Menu(where=where, session=self._session)
         section = menu.make_section(
             is_hidden=is_hidden, is_internally_keyed=is_internally_keyed, is_keyed=is_keyed,
             is_numbered=is_numbered, is_parenthetically_numbered=is_parenthetically_numbered,
             is_ranged=is_ranged,
-            tokens=tokens)
+            tokens=tokens, return_value_attribute=return_value_attribute)
         return menu, section
 
     def pop_next_user_response_from_user_input(self):

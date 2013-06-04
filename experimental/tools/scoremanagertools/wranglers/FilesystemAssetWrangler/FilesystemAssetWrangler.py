@@ -88,10 +88,14 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             return 'select {}:'.format(self.asset_proxy_class._generic_class_name)
 
     def _make_asset_selection_menu(self, head=None):
+        tokens = self._make_menu_tokens(head=head)
         menu, section = self._io.make_menu(
-            where=self._where, is_keyed=False, is_parenthetically_numbered=True)
-        section.tokens = self._make_menu_tokens(head=head)
-        section.return_value_attribute = 'key'
+            where=self._where, 
+            is_keyed=False, 
+            is_parenthetically_numbered=True,
+            tokens=tokens,
+            return_value_attribute='key',
+            )
         return menu
 
     def _make_asset_storehouse_menu_tokens(self,

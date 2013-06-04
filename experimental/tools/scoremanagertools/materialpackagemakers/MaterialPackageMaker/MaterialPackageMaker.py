@@ -41,9 +41,12 @@ class MaterialPackageMaker(MaterialPackageProxy):
         return user_input_wrapper
 
     def _make_main_menu_section_for_user_input_module(self, main_menu, hidden_section):
-        section = main_menu.make_section(is_parenthetically_numbered=True)
-        section.tokens = self.user_input_wrapper_in_memory.editable_lines
-        section.return_value_attribute = 'number'
+        tokens = self.user_input_wrapper_in_memory.editable_lines
+        section = main_menu.make_section(
+            is_parenthetically_numbered=True,
+            tokens=tokens,
+            return_value_attribute='number',
+            )
         tokens = [
                 ('uic', 'user input - clear'),
                 ('uil', 'user input - load demo values'),

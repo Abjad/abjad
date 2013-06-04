@@ -6,9 +6,16 @@ from experimental.tools.scoremanagertools.menuing.MenuToken import MenuToken
 
 class MenuSection(MenuObject):
 
+    ### CLASS VARIABLES ###
+
+    return_value_attributes = ('body', 'key', 'number', 'prepopulated')
+
+    ### INITIALIZER ###
+
     def __init__(self, is_hidden=False, is_internally_keyed=False, is_keyed=True,
         is_numbered=False, is_parenthetically_numbered=False, is_ranged=False,
-        is_read_only=False, session=None, where=None, title=None, tokens=None):
+        is_read_only=False, session=None, where=None, title=None, tokens=None,
+        return_value_attribute='key'):
         MenuObject.__init__(self, session=session, where=where, title=title)
         self._is_hidden = is_hidden
         self._is_internally_keyed = is_internally_keyed
@@ -16,7 +23,8 @@ class MenuSection(MenuObject):
         self._is_numbered = is_numbered
         self._is_parenthetically_numbered = is_parenthetically_numbered
         self._is_ranged = is_ranged
-        self._return_value_attribute = 'key'
+        assert return_value_attribute in self.return_value_attributes, repr(return_value_attribute)
+        self._return_value_attribute = return_value_attribute
         self.default_index = None
         self.indent_level = 1
         self.show_existing_values = False
@@ -148,14 +156,9 @@ class MenuSection(MenuObject):
             self._default_index = default_index
         return property(**locals())
 
-    @apply
-    def return_value_attribute():
-        def fget(self):
-            return self._return_value_attribute
-        def fset(self, return_value_attribute):
-            assert return_value_attribute in ('body', 'key', 'number', 'prepopulated')
-            self._return_value_attribute = return_value_attribute
-        return property(**locals())
+    @property
+    def return_value_attribute(self):
+        return self._return_value_attribute
 
     @apply
     def tokens():

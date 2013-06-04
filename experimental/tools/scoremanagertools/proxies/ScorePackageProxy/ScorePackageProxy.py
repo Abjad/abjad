@@ -392,14 +392,14 @@ class ScorePackageProxy(PackageProxy):
 
     def make_setup_menu(self):
         setup_menu, section = self._io.make_menu(where=self._where,
-            is_parenthetically_numbered=True, is_keyed=False)
+            is_parenthetically_numbered=True, is_keyed=False,
+            return_value_attribute='key')
         section.tokens = self.setup_value_menu_tokens
-        section.return_value_attribute = 'key'
         return setup_menu
 
     def make_svn_menu(self):
-        menu, section = self._io.make_menu(where=self._where, is_keyed=False)
-        section.return_value_attribute = 'key'
+        menu, section = self._io.make_menu(where=self._where, is_keyed=False,
+            return_value_attribute='key')
         tokens = [
             ('st', 'st'),
             ('add', 'add'),

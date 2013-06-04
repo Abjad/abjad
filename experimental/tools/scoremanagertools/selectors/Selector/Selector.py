@@ -18,14 +18,15 @@ class Selector(ScoreManagerObject):
     ### PRIVATE PROPERTIES ###
 
     def _make_main_menu(self, head=None):
+        tokens = self.make_menu_tokens(head=head)
         menu, section = self._io.make_menu(where=self._where,
             is_keyed=self.is_keyed,
             is_numbered=self.is_numbered,
             is_parenthetically_numbered=self.is_parenthetically_numbered,
             is_ranged=self.is_ranged,
+            tokens=tokens,
+            return_value_attribute='prepopulated',
             )
-        section.tokens = self.make_menu_tokens(head=head)
-        section.return_value_attribute = 'prepopulated'
         return menu
 
     ### PRIVATE METHODS ###

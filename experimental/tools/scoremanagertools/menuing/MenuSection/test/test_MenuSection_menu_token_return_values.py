@@ -27,9 +27,8 @@ def test_MenuSection_menu_token_return_values_01():
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
     tokens = ['apple', 'banana', 'cherry']
-    section = menu.make_section(is_numbered=True, tokens=tokens)
+    section = menu.make_section(is_numbered=True, tokens=tokens, return_value_attribute='body')
     section.title = 'section'
-    section.return_value_attribute = 'body'
     assert section.is_numbered
     assert section.menu_token_return_values == ['apple', 'banana', 'cherry']
     assert section.menu_token_return_values == section.menu_token_bodies
@@ -37,9 +36,8 @@ def test_MenuSection_menu_token_return_values_01():
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
     tokens = ['apple', 'banana', 'cherry']
-    section = menu.make_section(tokens=tokens)
+    section = menu.make_section(tokens=tokens, return_value_attribute='body')
     section.title = 'section'
-    section.return_value_attribute = 'body'
     assert not section.is_numbered
     assert section.menu_token_return_values == ['apple', 'banana', 'cherry']
     assert section.menu_token_return_values == section.menu_token_bodies
@@ -84,9 +82,8 @@ def test_MenuSection_menu_token_return_values_02():
         ('rm', 'delete something'),
         ('mod', 'modify something'),
         ]
-    section = menu.make_section(is_numbered=True, tokens=tokens)
+    section = menu.make_section(is_numbered=True, tokens=tokens, return_value_attribute='body')
     section.title = 'section'
-    section.return_value_attribute = 'body'
     assert section.is_numbered
     assert section.menu_token_return_values == ['add something', 'delete something', 'modify something']
     assert section.menu_token_return_values == section.menu_token_bodies
@@ -98,9 +95,8 @@ def test_MenuSection_menu_token_return_values_02():
         ('rm', 'delete something'),
         ('mod', 'modify something'),
         ]
-    section = menu.make_section(tokens=tokens)
+    section = menu.make_section(tokens=tokens, return_value_attribute='body')
     section.title = 'section'
-    section.return_value_attribute = 'body'
     assert not section.is_numbered
     assert section.menu_token_return_values == ['add something', 'delete something', 'modify something']
     assert section.menu_token_return_values == section.menu_token_bodies
@@ -118,8 +114,7 @@ def test_MenuSection_menu_token_return_values_03():
         ('rm', 'delete something', None, 'return value B'),
         ('mod', 'modify something', None, 'return value C'),
         ]
-    section = menu.make_section(tokens=tokens)
+    section = menu.make_section(tokens=tokens, return_value_attribute='prepopulated')
     section.title = 'section'
-    section.return_value_attribute = 'prepopulated'
     assert not section.is_numbered
     assert section.menu_token_return_values == ['return value A', 'return value B', 'return value C']

@@ -43,9 +43,20 @@ def test_Menu_run_01():
     result = menu._run(user_input='app, che-ban')
     assert result is None
 
-    '''Bodies give same result as keys.'''
 
-    section_1.return_value_attribute = 'body'
+def test_Menu_run_02():
+    '''String token defaults.
+
+    Bodies give same result as keys.
+    '''
+
+    menu = scoremanagertools.menuing.Menu()
+    menu._session.push_breadcrumb('location')
+    tokens = ['apple', 'banana', 'cherry']
+    section_1 = menu.make_section(
+        is_keyed=True, is_hidden=False, is_numbered=False, is_ranged=False, tokens=tokens,
+        return_value_attribute='body')
+    section_1.title = 'section'
 
     menu._session.reinitialize()
     result = menu._run(user_input='foo')
@@ -71,7 +82,7 @@ def test_Menu_run_01():
     assert result is None
 
 
-def test_Menu_run_02():
+def test_Menu_run_03():
     '''Turning off keys does nothing to string tokens.
     '''
 
@@ -114,7 +125,7 @@ def test_Menu_run_02():
     assert result is None
 
 
-def test_Menu_run_03():
+def test_Menu_run_04():
     '''Hidding suppresses output.
     '''
 
@@ -150,7 +161,7 @@ def test_Menu_run_03():
     assert result is None
 
 
-def test_Menu_run_04():
+def test_Menu_run_05():
     '''Numbered string tokens.
     '''
 
@@ -193,7 +204,7 @@ def test_Menu_run_04():
     assert result is None
 
 
-def test_Menu_run_05():
+def test_Menu_run_06():
     '''Ranged string tokens.
     '''
 
@@ -237,7 +248,7 @@ def test_Menu_run_05():
     assert result == ['apple', 'cherry', 'banana']
 
 
-def test_Menu_run_06():
+def test_Menu_run_07():
     '''Default tuple tokens.
     '''
 
@@ -295,9 +306,22 @@ def test_Menu_run_06():
     result = menu._run(user_input='fir, mod-sec')
     assert result is None
 
-    '''Bodies returned instead of keys.'''
 
-    section_1.return_value_attribute = 'body'
+def test_Menu_run_08():
+    '''Default tuple tokens.
+
+    Bodies returned instead of keys.
+    '''
+
+    menu = scoremanagertools.menuing.Menu()
+    menu._session.push_breadcrumb('location')
+    tokens = [
+        ('add', 'first command'),
+        ('rm', 'second command'),
+        ('mod', 'third command'),
+        ]
+    section_1 = menu.make_section(tokens=tokens, return_value_attribute='body')
+    result = menu._run(user_input='foo')
 
     menu._session.reinitialize()
     result = menu._run(user_input='foo')
@@ -335,7 +359,7 @@ def test_Menu_run_06():
     assert result is None
 
 
-def test_Menu_run_07():
+def test_Menu_run_09():
     '''Tuple tokens with keys hidden from user.
     NB: User can not match on keys but key returned from menu to calling code.
     '''
@@ -396,9 +420,23 @@ def test_Menu_run_07():
     result = menu._run(user_input='fir, mod-sec')
     assert result is None
 
-    '''Bodies returned instead of keys.'''
 
-    section_1.return_value_attribute = 'body'
+def test_Menu_run_10():
+    '''Tuple tokens with keys hidden from user.
+    NB: User can not match on keys but key returned from menu to calling code.
+    '''
+
+    menu = scoremanagertools.menuing.Menu()
+    menu._session.push_breadcrumb('location')
+    tokens = [
+        ('add', 'first command'),
+        ('rm', 'second command'),
+        ('mod', 'third command'),
+        ]
+    section_1 = menu.make_section(
+        is_keyed=False, is_hidden=False, is_numbered=False, is_ranged=False,
+        tokens=tokens, return_value_attribute='body')
+    section_1.title = 'section'
 
     menu._session.reinitialize()
     result = menu._run(user_input='foo')
@@ -436,7 +474,7 @@ def test_Menu_run_07():
     assert result is None
 
 
-def test_Menu_run_08():
+def test_Menu_run_11():
     '''Hidding suppresses output.
     '''
 
@@ -489,9 +527,22 @@ def test_Menu_run_08():
     result = menu._run(user_input='fir, mod-sec')
     assert result is None
 
-    '''Bodies returned instead of keys.'''
 
-    section_1.return_value_attribute = 'body'
+def test_Menu_run_12():
+    '''Hidding suppresses output.
+    '''
+
+    menu = scoremanagertools.menuing.Menu()
+    menu._session.push_breadcrumb('location')
+    tokens = [
+        ('add', 'first command'),
+        ('rm', 'second command'),
+        ('mod', 'third command'),
+        ]
+    section_1 = menu.make_section(
+        is_keyed=True, is_hidden=True, is_numbered=False, is_ranged=False,
+        tokens=tokens, return_value_attribute='body')
+    section_1.title = 'section'
 
     menu._session.reinitialize()
     result = menu._run(user_input='foo')
@@ -529,7 +580,7 @@ def test_Menu_run_08():
     assert result is None
 
 
-def test_Menu_run_09():
+def test_Menu_run_13():
     '''Tuple tokens with numbering turned on.
     '''
 
@@ -588,9 +639,23 @@ def test_Menu_run_09():
     result = menu._run(user_input='fir, mod-sec')
     assert result is None
 
-    '''Bodies returned instead of keys.'''
 
-    section_1.return_value_attribute = 'body'
+
+def test_Menu_run_14():
+    '''Tuple tokens with numbering turned on.
+    '''
+
+    menu = scoremanagertools.menuing.Menu()
+    menu._session.push_breadcrumb('location')
+    tokens = [
+        ('add', 'first command'),
+        ('rm', 'second command'),
+        ('mod', 'third command'),
+        ]
+    section_1 = menu.make_section(
+        is_keyed=True, is_hidden=False, is_numbered=True, is_ranged=False,
+        tokens=tokens, return_value_attribute='body')
+    section_1.title = 'section'
 
     menu._session.reinitialize()
     result = menu._run(user_input='foo')
@@ -628,7 +693,7 @@ def test_Menu_run_09():
     assert result is None
 
 
-def test_Menu_run_10():
+def test_Menu_run_15():
     '''Ranged tuple tokens.
     '''
 
@@ -687,9 +752,22 @@ def test_Menu_run_10():
     result = menu._run(user_input='fir, mod-sec')
     assert result == ['add', 'mod', 'rm']
 
-    '''Bodies returned instead of keys.'''
 
-    section_1.return_value_attribute = 'body'
+def test_Menu_run_16():
+    '''Ranged tuple tokens.
+    '''
+
+    menu = scoremanagertools.menuing.Menu()
+    menu._session.push_breadcrumb('location')
+    tokens = [
+        ('add', 'first command'),
+        ('rm', 'second command'),
+        ('mod', 'third command'),
+        ]
+    section_1 = menu.make_section(
+        is_keyed=True, is_hidden=False, is_numbered=False, is_ranged=True,
+        tokens=tokens, return_value_attribute='body')
+    section_1.title = 'section'
 
     menu._session.reinitialize()
     result = menu._run(user_input='foo')
