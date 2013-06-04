@@ -120,17 +120,17 @@ class MenuSection(MenuObject):
             elif isinstance(tokens, list):
                 new_tokens = []
                 for i, token in enumerate(tokens):
-                    if isinstance(token, tuple):
-                        new_token = MenuToken(*token)
-                    elif isinstance(token, str):
-                        new_token = MenuToken(token)
-                    elif isinstance(token, MenuToken):
-                        new_token = token
+                    if isinstance(token, (str, tuple, MenuToken)):
+                        if self.is_numbered or self.is_parenthetically_numbered:
+                            number = i + 1
+                        else:
+                            number = None
+                        new_token = MenuToken(
+                            token, 
+                            number=number,
+                            return_value_attribute=self.return_value_attribute)
                     else:
                         raise TypeError(token)
-                    if self.is_numbered or self.is_parenthetically_numbered:
-                        new_token._number = i + 1
-                    new_token._return_value_attribute = self.return_value_attribute
                     new_tokens.append(new_token)
                 self._tokens = new_tokens
             else:
@@ -253,7 +253,7 @@ class MenuSection(MenuObject):
                 menu_lines.append(menu_line)
                 total_empty_tokens += 1
                 continue
-            key, body, existing_value = token.key_body_and_existing_value
+            key, body, existing_value = token.key, token.body, token.existing_value
             if self.is_parenthetically_numbered:
                 entry_number = entry_index + 1 - total_empty_tokens
                 menu_line += '({}) '.format(str(entry_number))

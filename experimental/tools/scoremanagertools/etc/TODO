@@ -60,19 +60,11 @@
 25. Author StylesheetFileWrangler.interactively_remove_assets() test.
     Will involve making user_input='... rm ...' work with named arguments instead of just numeric arguments.
 
-26. Make a menuing.Token class.
-    This will name all token attributes.
-    This will also make all attribute extraction methods explicit.
-    This will also eliminate all numeric tuple field references.
-
-27. Make MaterialPackageMaker classes stop creating materials in tools.scoremanagertools.materialpackages.
+26. Make MaterialPackageMaker classes stop creating materials in tools.scoremanagertools.materialpackages.
     Those classes should create material packages in the user asset library material packages directory.
     Or in user score packages. But no material packages should ever be created in the built-in
     asset library material packages directory.
 
-28. Implement material methods to move material packages from one location to another.
+27. Implement material methods to move material packages from one location to another.
 
-29. Find a way to include tags management in hidden menu of every package proxy.
-
-30. Remove MenuSection.append() and MenuSection.extend().
-    Use only menu.section.tokens = tokens to assign menu tokens.
+28. Find a way to include tags management in hidden menu of every package proxy.
