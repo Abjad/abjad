@@ -150,7 +150,7 @@ class Menu(MenuSectionAggregator):
         return result
 
     @property
-    def unpacked_menu_tokens(self):
+    def unpacked_menu_tokens_optimized(self):
         result = []
         for section in self.sections:
             result.extend(section.unpacked_menu_tokens_optimized)
@@ -180,7 +180,7 @@ class Menu(MenuSectionAggregator):
             return 'r'
         else:
             matches = []
-            for number, key, body, return_value, section in self.unpacked_menu_tokens:
+            for number, key, body, return_value, section in self.unpacked_menu_tokens_optimized:
                 if body == 'redraw':
                     continue
                 body = stringtools.strip_diacritics_from_binary_string(body).lower()

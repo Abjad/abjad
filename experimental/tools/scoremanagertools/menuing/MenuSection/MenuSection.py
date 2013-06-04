@@ -91,14 +91,6 @@ class MenuSection(MenuObject):
 
     # TODO: rename these two properties to something more sensible when testing resumes
     @property
-    def unpacked_menu_tokens(self):
-        result = []
-        for token in self.tokens:
-            result.append(token.unpack() + (self,))
-        return result
-
-    # TODO: rename these two properties to something more sensible when testing resumes
-    @property
     def unpacked_menu_tokens_optimized(self):
         result = []
         total_empty_tokens = 0
@@ -262,7 +254,7 @@ class MenuSection(MenuObject):
                 return menu_index + 1
 
     def argument_string_to_number_optimized(self, argument_string):
-        for entry_index, unpacked_entry in enumerate(self.unpacked_menu_tokens):
+        for entry_index, unpacked_entry in enumerate(self.unpacked_menu_tokens_optimized):
             number, key, body, return_value, section = unpacked_entry
             body = stringtools.strip_diacritics_from_binary_string(body).lower()
             if  (mathtools.is_integer_equivalent_expr(argument_string) and \
