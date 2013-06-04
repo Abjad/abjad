@@ -70,6 +70,9 @@
     Or in user score packages. But no material packages should ever be created in the built-in
     asset library material packages directory.
 
-28.  Implement material methods to move material packages from one location to another.
+28. Implement material methods to move material packages from one location to another.
 
-29.  Find a way to include tags management in hidden menu of every package proxy.
+29. Find a way to include tags management in hidden menu of every package proxy.
+
+30. Remove MenuSection.append() and MenuSection.extend().
+    Use only menu.section.tokens = tokens to assign menu tokens.

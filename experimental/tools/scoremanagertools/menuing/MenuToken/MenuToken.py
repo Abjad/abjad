@@ -33,3 +33,58 @@ class MenuToken(list, AbjadObject):
     @property
     def is_tuple_token(self):
         return not self.is_string_token
+
+    # TODO: this can probably deprecate in favor of self.token_to_key_body_and_existing_value
+    @property
+    def key_and_body(self):
+        if self.is_string_token:
+            key, body = None, self[0]
+        else:
+            key, body = self[:2]
+        return key, body
+
+    @property 
+    def key_body_and_existing_value(self):
+        if self.is_string_token:
+            key, body, existing_value = None, self[0], None
+        elif len(self) == 2:
+            key, body, existing_value = self[0], self[1], None
+        elif len(self) == 3:
+            key, body, existing_value = self
+        elif len(self) == 4:
+            key, body, existing_value = self[:3]
+        else:
+            raise ValueError(self)
+        return key, body, existing_value
+
+    @property
+    def key_body_existing_value_and_prepopulated_return_value(self):
+        key = body = existing_value = prepopulated_return_value = None
+        if self.is_string_token:
+            body = self[0]
+        elif len(self) == 2:
+            key, body = self
+        elif len(self) == 3:
+            key, body, existing_value = self
+        elif len(self) == 4:
+            key, body, existing_value, prepopulated_return_value = self
+        else:
+            raise ValueError(self)
+        return key, body, existing_value, prepopulated_return_value
+
+    ### PUBLIC METHODS ###
+
+    def get_menu_entry_return_value(self, return_value_attribute):
+        if self.is_string_token:
+            return self[0]
+        else:
+            if return_value_attribute == 'key':
+                return self[0]
+            elif return_value_attribute == 'body':
+                return self[1]
+            elif return_value_attribute == 'number':
+                return
+            elif return_value_attribute == 'prepopulated':
+                return self[3]
+            else:
+                raise ValueError(return_value_attribute)

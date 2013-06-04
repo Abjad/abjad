@@ -41,22 +41,12 @@ class MenuSection(MenuObject):
     def has_default_value(self):
         return self.default_index is not None
 
-#    @property
-#    def has_existing_value_tuple_tokens(self):
-#        return any([isinstance(x, (list, tuple)) and len(x) == 3 for x in self.tokens])
-#
-#    @property
-#    def has_prepopulated_return_value_tuple_tokens(self):
-#        return any([isinstance(x, (list, tuple)) and len(x) == 4 for x in self.tokens])
-
     @property
     def has_string_tokens(self):
-        #return any([isinstance(x, str) for x in self.tokens])
-        return any([token.is_string_token for token in self.tokens])
+        return any(token.is_string_token for token in self.tokens)
 
     @property
     def has_tuple_tokens(self):
-        #return any([isinstance(x, (list, tuple)) for x in self.tokens])
         return any(token.is_tuple_token for token in self.tokens)
 
     @property
@@ -89,15 +79,15 @@ class MenuSection(MenuObject):
 
     @property
     def menu_entry_bodies(self):
-        return [self.token_to_key_and_body(x)[1] for x in self.tokens]
+        return [token.key_and_body[1] for token in self.tokens]
 
     @property
     def menu_entry_keys(self):
-        return [self.token_to_key_and_body(x)[0] for x in self.tokens]
+        return [token.key_and_body[0] for token in self.tokens]
 
     @property
     def menu_entry_return_values(self):
-        return [self.token_to_menu_entry_return_value(x) for x in self.tokens]
+        return [token.get_menu_entry_return_value(self.return_value_attribute) for token in self.tokens]
 
     # TODO: rename these two properties to something more sensible when testing resumes
     @property
@@ -119,18 +109,8 @@ class MenuSection(MenuObject):
             number = key = body = None
             if self.is_numbered or self.is_parenthetically_numbered:
                 number = i + 1 - total_empty_tokens
-            #if isinstance(token, str):
-            #    body = token
-            if token.is_string_token:
-                body = token[0]
-            elif isinstance(token, (list, tuple)) and len(token) == 2:
-                key, body = token
-            elif isinstance(token, (list, tuple)) and len(token) == 3:
-                key, body, existing_value = token
-            elif isinstance(token, (list, tuple)) and len(token) == 4:
-                key, body, existing_value, prepopulated_return_value = token
-            else:
-                raise ValueError(token)
+            key, body, existing_value, prepopulated_return_value = \
+                token.key_body_existing_value_and_prepopulated_return_value
             assert body
             if self.is_keyed and key is None:
                 key = body
@@ -319,13 +299,6 @@ class MenuSection(MenuObject):
             new_tokens.append(new_token)
         self.tokens.extend(new_tokens)
 
-#    def is_token(self, expr):
-#        if isinstance(expr, str):
-#            return True
-#        elif isinstance(expr, (list, tuple)) and len(expr) in (0, 2, 3, 4):
-#            return True
-#        return False
-
     def make_menu_lines(self):
         '''KEYS. Keys are optionally shown in parentheses in each entry;
         keys are designed to be textual instead of numeric;
@@ -357,7 +330,7 @@ class MenuSection(MenuObject):
                 menu_lines.append(menu_line)
                 total_empty_tokens += 1
                 continue
-            key, body, existing_value = self.token_to_key_body_and_existing_value(token)
+            key, body, existing_value = token.key_body_and_existing_value
             if self.is_parenthetically_numbered:
                 entry_number = entry_index + 1 - total_empty_tokens
                 menu_line += '({}) '.format(str(entry_number))
@@ -385,63 +358,17 @@ class MenuSection(MenuObject):
             menu_lines.append('')
         return menu_lines
 
-    # TODO: this can probably deprecate in favor of self.token_to_key_body_and_existing_value
-    def token_to_key_and_body(self, token):
-        #if isinstance(token, str):
-        #    key, body = None, token
-        if token.is_string_token:
-            key, body = None, token[0]
-        elif isinstance(token, (list, tuple)):
-            key, body = token[:2]
-        else:
-            raise ValueError
-        return key, body
-
-    def token_to_key_body_and_existing_value(self, token):
-        #if isinstance(token, str):
-        if token.is_string_token:
-            #key, body, existing_value = None, token, None
-            key, body, existing_value = None, token[0], None
-        elif isinstance(token, (list, tuple)) and len(token) == 2:
-            key, body, existing_value = token[0], token[1], None
-        elif isinstance(token, (list, tuple)) and len(token) == 3:
-            key, body, existing_value = token
-        elif isinstance(token, (list, tuple)) and len(token) == 4:
-            key, body, existing_value = token[:3]
-        else:
-            raise ValueError(token)
-        return key, body, existing_value
-
     def token_to_menu_entry_number(self, token):
         if self.is_numbered or self.is_parenthetically_numbered:
             for i, x in enumerate(self.tokens):
                 if x == token:
                     return i + 1
 
-    def token_to_menu_entry_return_value(self, token):
-        #if isinstance(token, str):
-        #    return token
-        if token.is_string_token:
-            return token[0]
-        elif isinstance(token, (list, tuple)):
-            if self.return_value_attribute == 'key':
-                return token[0]
-            elif self.return_value_attribute == 'body':
-                return token[1]
-            elif self.return_value_attribute == 'number':
-                pass
-            elif self.return_value_attribute == 'prepopulated':
-                return token[3]
-            else:
-                raise ValueError(token)
-        else:
-            raise ValueError(token)
-
-    # TODO: replace self.token_to_key_and_body() and also
-    #       replace self.token_to_menu_entry_return_value().
-    # TODO: unpack all menu entry tokens only once at runtime.
+    # TODO: replace token.key_and_body and also
+    #       replace token.get_menu_entry_return_value().
+    # TODO: unpack all menu tokens only once at runtime.
     def unpack_token(self, token):
         number = self.token_to_menu_entry_number(token)
-        key, body = self.token_to_key_and_body(token)
-        return_value = self.token_to_menu_entry_return_value(token)
+        key, body = token.key_and_body
+        return_value = token.get_menu_entry_return_value(self.return_value_attribute)
         return number, key, body, return_value

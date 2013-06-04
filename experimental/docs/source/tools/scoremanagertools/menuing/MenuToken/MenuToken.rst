@@ -15,6 +15,15 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuToken.MenuToken.MenuToken.is_tuple_token
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuToken.MenuToken.MenuToken.key_and_body
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuToken.MenuToken.MenuToken.key_body_and_existing_value
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuToken.MenuToken.MenuToken.key_body_existing_value_and_prepopulated_return_value
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuToken.MenuToken.MenuToken.storage_format
    :noindex:
 
@@ -28,6 +37,9 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuToken.MenuToken.MenuToken.extend
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.menuing.MenuToken.MenuToken.MenuToken.get_menu_entry_return_value
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuToken.MenuToken.MenuToken.index
