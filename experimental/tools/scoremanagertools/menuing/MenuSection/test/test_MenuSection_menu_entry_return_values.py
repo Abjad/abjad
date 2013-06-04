@@ -8,27 +8,27 @@ def test_MenuSection_menu_entry_return_values_01():
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    section = menu.make_section(is_numbered=True)
+    tokens = ['apple', 'banana', 'cherry']
+    section = menu.make_section(is_numbered=True, tokens=tokens)
     section.title = 'section'
-    section.extend(['apple', 'banana', 'cherry'])
     assert section.is_numbered
     assert section.menu_entry_return_values == ['apple', 'banana', 'cherry']
     assert section.menu_entry_return_values == section.menu_entry_bodies
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    section = menu.make_section()
+    tokens = ['apple', 'banana', 'cherry']
+    section = menu.make_section(tokens=tokens)
     section.title = 'section'
-    section.extend(['apple', 'banana', 'cherry'])
     assert not section.is_numbered
     assert section.menu_entry_return_values == ['apple', 'banana', 'cherry']
     assert section.menu_entry_return_values == section.menu_entry_bodies
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    section = menu.make_section(is_numbered=True)
+    tokens = ['apple', 'banana', 'cherry']
+    section = menu.make_section(is_numbered=True, tokens=tokens)
     section.title = 'section'
-    section.extend(['apple', 'banana', 'cherry'])
     section.return_value_attribute = 'body'
     assert section.is_numbered
     assert section.menu_entry_return_values == ['apple', 'banana', 'cherry']
@@ -36,9 +36,9 @@ def test_MenuSection_menu_entry_return_values_01():
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    section = menu.make_section()
+    tokens = ['apple', 'banana', 'cherry']
+    section = menu.make_section(tokens=tokens)
     section.title = 'section'
-    section.extend(['apple', 'banana', 'cherry'])
     section.return_value_attribute = 'body'
     assert not section.is_numbered
     assert section.menu_entry_return_values == ['apple', 'banana', 'cherry']

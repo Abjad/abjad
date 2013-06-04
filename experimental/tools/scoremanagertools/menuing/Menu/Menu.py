@@ -222,13 +222,14 @@ class Menu(MenuSectionAggregator):
         return result
 
     def make_section(self, is_hidden=False, is_internally_keyed=False, is_keyed=True,
-        is_numbered=False, is_parenthetically_numbered=False, is_ranged=False):
+        is_numbered=False, is_parenthetically_numbered=False, is_ranged=False, tokens=None):
         assert not (is_numbered and self.has_numbered_section)
         assert not (is_parenthetically_numbered and self.has_numbered_section)
         assert not (is_ranged and self.has_ranged_section)
         section = MenuSection(is_hidden=is_hidden, is_internally_keyed=is_internally_keyed,
             is_keyed=is_keyed, is_numbered=is_numbered,
             is_parenthetically_numbered=is_parenthetically_numbered, is_ranged=is_ranged,
+            tokens=tokens,
             session=self._session, where=self.where)
         self.sections.append(section)
         return section

@@ -8,7 +8,7 @@ class MenuSection(MenuObject):
 
     def __init__(self, is_hidden=False, is_internally_keyed=False, is_keyed=True,
         is_numbered=False, is_parenthetically_numbered=False, is_ranged=False,
-        is_read_only=False, session=None, where=None, title=None):
+        is_read_only=False, session=None, where=None, title=None, tokens=None):
         MenuObject.__init__(self, session=session, where=where, title=title)
         self._is_hidden = is_hidden
         self._is_internally_keyed = is_internally_keyed
@@ -20,7 +20,7 @@ class MenuSection(MenuObject):
         self.default_index = None
         self.indent_level = 1
         self.show_existing_values = False
-        self.tokens = None
+        self.tokens = tokens
 
     ### SPECIAL METHODS ###
 
@@ -283,21 +283,6 @@ class MenuSection(MenuObject):
                 (3 <= len(argument_string) and body.startswith(argument_string)):
                 entry_number = entry_index + 1
                 return entry_number
-
-    def extend(self, tokens):
-        assert isinstance(tokens, (tuple, list))
-        assert not (any([isinstance(x, str) for x in tokens]) and self.has_tuple_tokens)
-        assert not (any([isinstance(x, (list, tuple)) for x in tokens]) and self.has_string_tokens)
-        new_tokens = []
-        for token in tokens:
-            if isinstance(token, tuple):
-                new_token = MenuToken(*token)
-            elif isinstance(token, str):
-                new_token = MenuToken(token)
-            else:
-                raise TypeError(token)
-            new_tokens.append(new_token)
-        self.tokens.extend(new_tokens)
 
     def make_menu_lines(self):
         '''KEYS. Keys are optionally shown in parentheses in each entry;

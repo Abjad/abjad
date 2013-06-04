@@ -5,11 +5,13 @@ def test_Menu_menu_entry_bodies_01():
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    section_1 = menu.make_section()
+    tokens = ['apple', 'banana', 'cherry']
+    section_1 = menu.make_section(tokens=tokens)
     section_1.title = 'section'
-    section_1.extend(['apple', 'banana', 'cherry'])
-    section_2 = menu.make_section()
-    section_2.append(('add', 'add something'))
-    section_2.append(('rm', 'delete something'))
-    section_2.append(('mod', 'modify something'))
+    tokens = [
+        ('add', 'add something'),
+        ('rm', 'delete something'),
+        ('mod', 'modify something'),
+        ]
+    section_2 = menu.make_section(tokens=tokens)
     assert menu.menu_entry_bodies[-6:] == section_1.menu_entry_bodies + section_2.menu_entry_bodies

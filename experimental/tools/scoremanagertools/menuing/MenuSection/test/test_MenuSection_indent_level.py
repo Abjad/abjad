@@ -5,8 +5,8 @@ def test_MenuSection_indent_level_01():
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    section = menu.make_section()
+    tokens = ['apple', 'banana', 'cherry']
+    section = menu.make_section(tokens=tokens)
     section.title = 'section'
-    section.extend(['apple', 'banana', 'cherry'])
 
     assert section.indent_level == 1

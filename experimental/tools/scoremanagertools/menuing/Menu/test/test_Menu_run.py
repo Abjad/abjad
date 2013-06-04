@@ -7,9 +7,10 @@ def test_Menu_run_01():
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    section_1 = menu.make_section(is_keyed=True, is_hidden=False, is_numbered=False, is_ranged=False)
+    tokens = ['apple', 'banana', 'cherry']
+    section_1 = menu.make_section(
+        is_keyed=True, is_hidden=False, is_numbered=False, is_ranged=False, tokens=tokens)
     section_1.title = 'section'
-    result = section_1.extend(['apple', 'banana', 'cherry'])
 
     result = menu._run(user_input='foo')
     assert menu._session.transcript[-2][1] == \
@@ -76,9 +77,10 @@ def test_Menu_run_02():
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    section_1 = menu.make_section(is_keyed=False, is_hidden=False, is_numbered=False, is_ranged=False)
+    tokens = ['apple', 'banana', 'cherry']
+    section_1 = menu.make_section(
+        is_keyed=False, is_hidden=False, is_numbered=False, is_ranged=False, tokens=tokens)
     section_1.title = 'section'
-    section_1.extend(['apple', 'banana', 'cherry'])
     result = menu._run(user_input='foo')
 
     assert menu._session.transcript[-2][1] == \
@@ -118,9 +120,10 @@ def test_Menu_run_03():
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    section_1 = menu.make_section(is_keyed=True, is_hidden=True, is_numbered=False, is_ranged=False)
+    tokens = ['apple', 'banana', 'cherry']
+    section_1 = menu.make_section(
+        is_keyed=True, is_hidden=True, is_numbered=False, is_ranged=False, tokens=tokens)
     section_1.title = 'section'
-    section_1.extend(['apple', 'banana', 'cherry'])
     result = menu._run(user_input='foo')
 
     assert menu._session.transcript[-2][1] == \
@@ -153,9 +156,10 @@ def test_Menu_run_04():
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    section_1 = menu.make_section(is_keyed=True, is_hidden=False, is_numbered=True, is_ranged=False)
+    tokens = ['apple', 'banana', 'cherry']
+    section_1 = menu.make_section(
+        is_keyed=True, is_hidden=False, is_numbered=True, is_ranged=False, tokens=tokens)
     section_1.title = 'section'
-    section_1.extend(['apple', 'banana', 'cherry'])
     result = menu._run(user_input='foo')
 
     assert menu._session.transcript[-2][1] == \
@@ -195,9 +199,10 @@ def test_Menu_run_05():
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    section_1 = menu.make_section(is_keyed=True, is_hidden=False, is_numbered=False, is_ranged=True)
+    tokens = ['apple', 'banana', 'cherry']
+    section_1 = menu.make_section(
+        is_keyed=True, is_hidden=False, is_numbered=False, is_ranged=True, tokens=tokens)
     section_1.title = 'section'
-    section_1.extend(['apple', 'banana', 'cherry'])
     result = menu._run(user_input='foo')
 
     assert menu._session.transcript[-2][1] == \
