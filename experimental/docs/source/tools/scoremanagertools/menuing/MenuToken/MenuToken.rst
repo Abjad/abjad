@@ -66,9 +66,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuToken.MenuToken.MenuToken.sort
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuToken.MenuToken.MenuToken.unpack
-   :noindex:
-
 Special methods
 ---------------
 

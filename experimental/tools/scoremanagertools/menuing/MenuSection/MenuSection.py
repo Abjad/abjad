@@ -283,14 +283,10 @@ class MenuSection(MenuObject):
 
     def unpack_menu_tokens(self):
         result = []
-        total_empty_tokens = 0
         for i, token in enumerate(self.tokens):
-            if token == ():
-                total_empty_tokens += 1
-                continue
             number = key = body = None
             if self.is_numbered or self.is_parenthetically_numbered:
-                number = i + 1 - total_empty_tokens
+                number = i + 1
             key, body, existing_value, prepopulated_return_value = \
                 token.key_body_existing_value_and_prepopulated_return_value
             assert body

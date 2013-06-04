@@ -86,8 +86,3 @@ class MenuToken(list, AbjadObject):
     @property
     def return_value_attribute(self):
         return self._return_value_attribute
-
-    ### PUBLIC METHODS ###
-
-    def unpack(self):
-        return self.number, self.key, self.body, self.return_value
