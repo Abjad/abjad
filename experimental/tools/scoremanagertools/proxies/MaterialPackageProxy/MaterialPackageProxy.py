@@ -57,12 +57,14 @@ class MaterialPackageProxy(PackageProxy):
         return menu
 
     def _make_main_menu_section_for_hidden_entries(self, main_menu):
-        hidden_section = main_menu.make_section(is_hidden=True)
-        hidden_section.append(('rm', 'delete package'))
-        hidden_section.append(('ls', 'list package'))
-        hidden_section.append(('ren', 'rename package'))
-        hidden_section.append(('stl', 'manage stylesheets'))
-        hidden_section.append(('tags', 'manage tags'))
+        tokens = [
+            ('rm', 'delete package'),
+            ('ls', 'list package'),
+            ('ren', 'rename package'),
+            ('stl', 'manage stylesheets'),
+            ('tags', 'manage tags'),
+            ]
+        hidden_section = main_menu.make_section(is_hidden=True, tokens=tokens)
 
     def _make_main_menu_section_for_illustration_builder(self, main_menu, hidden_section):
         section = main_menu.make_section()
@@ -85,26 +87,40 @@ class MaterialPackageProxy(PackageProxy):
                 hidden_section.append(('ssm', 'source stylesheet - edit'))
 
     def _make_main_menu_section_for_illustration_ly(self, hidden_section):
+        hidden_section_tokens = hidden_section.tokens[:]
         if self.has_output_material:
             if self.has_illustration_builder_module or self.has_material_package_maker:
-                hidden_section.append(('lym', 'output ly - make'))
+                hidden_section_tokens.append(('lym', 'output ly - make'))
         if self.has_illustration_ly:
-            hidden_section.append(('lyd', 'output ly - delete'))
-            hidden_section.append(('lyv', 'output ly - view'))
+            hidden_section_tokens.append(('lyd', 'output ly - delete'))
+            hidden_section_tokens.append(('lyv', 'output ly - view'))
+        hidden_section.tokens = hidden_section_tokens
 
     def _make_main_menu_section_for_illustration_pdf(self, main_menu, hidden_section):
         has_illustration_pdf_section = False
         if self.has_output_material:
             if self.has_illustration_builder_module or \
                 (self.has_material_package_maker and getattr(self, 'illustration_maker', None)):
-                section = main_menu.make_section()
+                tokens = [
+                    ('pdfm', 'output pdf - make'),
+                    ]
+                section = main_menu.make_section(tokens=tokens)
                 has_illustration_pdf_section = True
-                section.append(('pdfm', 'output pdf - make'))
         if self.has_illustration_pdf:
             if not has_illustration_pdf_section:
                 section = main_menu.make_section()
-            hidden_section.append(('pdfd', 'output pdf - delete'))
-            section.append(('pdfv', 'output pdf - view'))
+            #hidden_section.append(('pdfd', 'output pdf - delete'))
+            #section.append(('pdfv', 'output pdf - view'))
+            hidden_section_tokens = hidden_section.tokens[:]
+            hidden_section_tokens.extend([
+                ('pdfd', 'output pdf - delete'),
+                ])
+            hidden_section.tokens = hidden_section_tokens
+            section_tokens = section.tokens[:]
+            section_tokens.extend([
+                ('pdfv', 'output pdf - view'),
+                ])
+            section.tokens = section_tokens
 
     def _make_main_menu_section_for_initializer(self, main_menu, hidden_section):
         if not self.has_initializer:
@@ -135,31 +151,45 @@ class MaterialPackageProxy(PackageProxy):
         if not self.has_initializer:
             return
         has_output_material_section = False
+        hidden_tokens = hidden_section.tokens[:]
         if self.has_material_definition_module or \
             self.has_complete_user_input_wrapper_in_memory or \
             self.has_output_material_editor:
+            tokens = []
             if self.has_material_definition or \
                 self.has_complete_user_input_wrapper_in_memory:
-                section = main_menu.make_section()
-                section.append(('omm', 'output material - make'))
+                tokens = [
+                    ('omm', 'output material = make'),
+                    ]
+                section = main_menu.make_section(tokens=tokens)
+                #section.append(('omm', 'output material - make'))
                 has_output_material_section = True
             if self.has_output_material_editor:
-                section = main_menu.make_section()
+                tokens = [
+                    ('omi', 'output material - interact'),
+                    ]
+                section = main_menu.make_section(tokens=tokens)
                 if self.has_output_material:
                     output_material_editor = self.output_material_editor(
                         target=self.output_material, session=self._session)
                     target_summary_lines = output_material_editor.target_summary_lines
                     if target_summary_lines:
                         section.title = target_summary_lines
-                section.append(('omi', 'output material - interact'))
+                #section.append(('omi', 'output material - interact'))
                 has_output_material_section = True
             if self.has_output_material_module:
                 if not has_output_material_section:
                     section = main_menu.make_section()
-                section.append(('omv', 'output material - view'))
-                hidden_section.append(('omdelete', 'output material - delete'))
-                hidden_section.append(('omfetch', 'output material - fetch'))
-        hidden_section.append(('omcanned', 'output material - copy canned module'))
+                #section.append(('omv', 'output material - view'))
+                tokens = section.tokens[:]
+                tokens.extend([
+                    ('omv', 'output material - view'),
+                    ])
+                section.tokens = tokens
+                hidden_tokens.append(('omdelete', 'output material - delete'))
+                hidden_tokens.append(('omfetch', 'output material - fetch'))
+        hidden_tokens.append(('omcanned', 'output material - copy canned module'))
+        hidden_section.tokens = hidden_tokens
 
     def _make_main_menu_sections(self, menu, hidden_section):
         self._make_main_menu_section_for_material_definition(menu, hidden_section)
