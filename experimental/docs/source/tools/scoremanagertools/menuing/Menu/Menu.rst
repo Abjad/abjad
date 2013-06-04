@@ -66,9 +66,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.tokens
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.unpacked_menu_tokens_optimized
-   :noindex:
-
 Read/write properties
 ---------------------
 
@@ -145,6 +142,9 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.toggle_menu
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.unpack_menu_tokens
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.user_enters_argument_range

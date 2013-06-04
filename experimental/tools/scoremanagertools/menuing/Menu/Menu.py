@@ -1,4 +1,3 @@
-from abjad.tools import iotools
 from abjad.tools import mathtools
 from abjad.tools import stringtools
 from experimental.tools.scoremanagertools.menuing.MenuSection import MenuSection
@@ -27,7 +26,8 @@ class Menu(MenuSectionAggregator):
         while True:
             self.should_clear_terminal, self.hide_current_run = clear, hide_current_run
             clear, hide_current_run = False, True
-            result = self.conditionally_display_menu(automatically_determined_user_input=automatically_determined_user_input)
+            result = self.conditionally_display_menu(
+                automatically_determined_user_input=automatically_determined_user_input)
             if self._session.is_complete:
                 break
             elif result == 'r':
@@ -149,13 +149,6 @@ class Menu(MenuSectionAggregator):
             result.extend(section.tokens)
         return result
 
-    @property
-    def unpacked_menu_tokens_optimized(self):
-        result = []
-        for section in self.sections:
-            result.extend(section.unpacked_menu_tokens_optimized)
-        return result
-
     ### READ / WRITE PUBLIC PROPERTIES ###
 
     @apply
@@ -180,7 +173,7 @@ class Menu(MenuSectionAggregator):
             return 'r'
         else:
             matches = []
-            for number, key, body, return_value, section in self.unpacked_menu_tokens_optimized:
+            for number, key, body, return_value, section in self.unpack_menu_tokens():
                 if body == 'redraw':
                     continue
                 body = stringtools.strip_diacritics_from_binary_string(body).lower()
@@ -255,13 +248,18 @@ class Menu(MenuSectionAggregator):
                     element = element.replace(' (default)', '')
                 cleaned_list.append(element)
             return cleaned_list
-        #elif expr is not None:
         elif isinstance(expr, str):
             if expr.endswith(' (default)'):
                 expr = expr.replace(' (default)', '')
             return expr
         else:
             return expr
+
+    def unpack_menu_tokens(self):
+        result = []
+        for section in self.sections:
+            result.extend(section.unpack_menu_tokens())
+        return result
 
     def user_enters_argument_range(self, user_input):
         if ',' in user_input:

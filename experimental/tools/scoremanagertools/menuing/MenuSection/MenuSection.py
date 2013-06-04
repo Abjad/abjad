@@ -89,48 +89,6 @@ class MenuSection(MenuObject):
     def menu_token_return_values(self):
         return [token.return_value for token in self.tokens]
 
-    # TODO: rename these two properties to something more sensible when testing resumes
-    @property
-    def unpacked_menu_tokens_optimized(self):
-        result = []
-        total_empty_tokens = 0
-        for i, token in enumerate(self.tokens):
-            if token == ():
-                total_empty_tokens += 1
-                continue
-            number = key = body = None
-            if self.is_numbered or self.is_parenthetically_numbered:
-                number = i + 1 - total_empty_tokens
-            key, body, existing_value, prepopulated_return_value = \
-                token.key_body_existing_value_and_prepopulated_return_value
-            assert body
-            if self.is_keyed and key is None:
-                key = body
-            if self.return_value_attribute == 'number':
-                if number is not None:
-                    return_value = str(number)
-                elif key is not None:
-                    return_value = key
-                else:
-                    return_value = body
-            elif self.return_value_attribute == 'key':
-                if key is not None:
-                    return_value = key
-                else:
-                    return_value = body
-            elif self.return_value_attribute == 'body':
-                return_value = body
-            elif self.return_value_attribute == 'prepopulated':
-                return_value = prepopulated_return_value
-            else:
-                raise ValueError
-            assert return_value is not None
-            if not self.is_keyed and key:
-                key = None
-            unpacked_entry = (number, key, body, return_value, self)
-            result.append(unpacked_entry)
-        return result
-
     ### READ / WRITE PUBLIC PROPERTIES ###
 
     @apply
@@ -254,7 +212,7 @@ class MenuSection(MenuObject):
                 return menu_index + 1
 
     def argument_string_to_number_optimized(self, argument_string):
-        for entry_index, unpacked_entry in enumerate(self.unpacked_menu_tokens_optimized):
+        for entry_index, unpacked_entry in enumerate(self.unpack_menu_tokens()):
             number, key, body, return_value, section = unpacked_entry
             body = stringtools.strip_diacritics_from_binary_string(body).lower()
             if  (mathtools.is_integer_equivalent_expr(argument_string) and \
@@ -322,3 +280,43 @@ class MenuSection(MenuObject):
         if self.tokens:
             menu_lines.append('')
         return menu_lines
+
+    def unpack_menu_tokens(self):
+        result = []
+        total_empty_tokens = 0
+        for i, token in enumerate(self.tokens):
+            if token == ():
+                total_empty_tokens += 1
+                continue
+            number = key = body = None
+            if self.is_numbered or self.is_parenthetically_numbered:
+                number = i + 1 - total_empty_tokens
+            key, body, existing_value, prepopulated_return_value = \
+                token.key_body_existing_value_and_prepopulated_return_value
+            assert body
+            if self.is_keyed and key is None:
+                key = body
+            if self.return_value_attribute == 'number':
+                if number is not None:
+                    return_value = str(number)
+                elif key is not None:
+                    return_value = key
+                else:
+                    return_value = body
+            elif self.return_value_attribute == 'key':
+                if key is not None:
+                    return_value = key
+                else:
+                    return_value = body
+            elif self.return_value_attribute == 'body':
+                return_value = body
+            elif self.return_value_attribute == 'prepopulated':
+                return_value = prepopulated_return_value
+            else:
+                raise ValueError
+            assert return_value is not None
+            if not self.is_keyed and key:
+                key = None
+            unpacked_entry = (number, key, body, return_value, self)
+            result.append(unpacked_entry)
+        return result
