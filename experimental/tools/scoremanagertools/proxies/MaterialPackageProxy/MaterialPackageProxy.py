@@ -67,7 +67,7 @@ class MaterialPackageProxy(PackageProxy):
         hidden_section = main_menu.make_section(is_hidden=True, tokens=tokens)
 
     def _make_main_menu_section_for_illustration_builder(self, main_menu, hidden_section):
-        section = main_menu.make_section()
+        #section = main_menu.make_section()
         if self.has_output_material:
             if self.should_have_illustration:
                 if not self.has_illustration_builder_module:
@@ -77,14 +77,18 @@ class MaterialPackageProxy(PackageProxy):
                         material_package_path,
                         material_package_name,
                         prompt=False)
-                section.append(('ibe', 'illustration builder - edit'))
+                tokens = [('ibe', 'illustration builder - edit')]
                 if self.has_output_material:
-                    section.append(('ibx', 'illustration builder - execute'))
-                hidden_section.append(('ibd', 'illustration builder - delete'))
-                hidden_section.append(('ibt', 'illustration builder - stub'))
-                hidden_section.append(('ibex', 'illustration builder - edit & execute'))
-                section.append(('sss', 'score stylesheet - select'))
-                hidden_section.append(('ssm', 'source stylesheet - edit'))
+                    tokens.append(('ibx', 'illustration builder - execute'))
+                hidden_section_tokens = [
+                    ('ibd', 'illustration builder - delete'),
+                    ('ibt', 'illustration builder - stub'),
+                    ('ibex', 'illustration builder - edit & execute'),
+                    ]
+                tokens.append(('sss', 'score stylesheet - select'))
+                hidden_section_tokens.append(('ssm', 'source stylesheet - edit'))
+                main_menu.make_section(tokens=tokens)
+                hidden_section.tokens = hidden_section.tokens[:] + hidden_section_tokens
 
     def _make_main_menu_section_for_illustration_ly(self, hidden_section):
         hidden_section_tokens = hidden_section.tokens[:]
@@ -134,16 +138,20 @@ class MaterialPackageProxy(PackageProxy):
     def _make_main_menu_section_for_material_definition(self, main_menu, hidden_section):
         if not self.has_initializer:
             return
-        section = main_menu.make_section()
+        tokens, hidden_section_tokens = [], []
         if self.has_material_definition_module:
-            section.append(('mde', 'material definition - edit'))
-            section.append(('mdx', 'material definition - execute'))
-            hidden_section.append(('mdcanned', 'material definition - copy canned module'))
-            hidden_section.append(('mddelete', 'material definition - delete'))
-            hidden_section.append(('mdstub', 'material definition - stub'))
-            hidden_section.append(('mdxe', 'material definition - execute & edit'))
+            tokens.append(('mde', 'material definition - edit'))
+            tokens.append(('mdx', 'material definition - execute'))
+            hidden_section_tokens.append(('mdcanned', 'material definition - copy canned module'))
+            hidden_section_tokens.append(('mddelete', 'material definition - delete'))
+            hidden_section_tokens.append(('mdstub', 'material definition - stub'))
+            hidden_section_tokens.append(('mdxe', 'material definition - execute & edit'))
         elif self.material_package_maker_class_name is None:
-            section.append(('mdstub', 'material definition - stub'))
+            tokens.append(('mdstub', 'material definition - stub'))
+        if tokens:
+            main_menu.make_section(tokens=tokens)
+        if hidden_section_tokens:
+            hidden_section.tokens = hidden_section.tokens[:] + hidden_section_tokens
 
     def _make_main_menu_section_for_output_material(self, main_menu, hidden_section):
         if not self.has_initializer:

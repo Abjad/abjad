@@ -191,18 +191,6 @@ class MenuSection(MenuObject):
 
     ### PUBLIC METHODS ###
 
-    def append(self, token):
-        from experimental.tools import scoremanagertools
-        assert not (isinstance(token, str) and self.has_tuple_tokens)
-        assert not (isinstance(token, (list, tuple)) and self.has_string_tokens)
-        if isinstance(token, tuple):
-            token = MenuToken(*token)
-        elif isinstance(token, str):
-            token = MenuToken(token)
-        else:
-            raise TypeError(token)
-        self.tokens.append(token)
-
     def argument_range_string_to_numbers(self, argument_range_string):
         '''Return list of positive integers on success. Otherwise none.
         '''
