@@ -13,7 +13,7 @@ class MenuToken(list, AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, expr, number=None, return_value_attribute=None):
+    def __init__(self, expr, number=None, is_keyed=True, return_value_attribute=None):
         if isinstance(expr, str):
             self.append(expr)
         elif isinstance(expr, (tuple, type(self))):
@@ -23,6 +23,7 @@ class MenuToken(list, AbjadObject):
         else:
             raise TypeError(expr)
         self._number = number
+        self._is_keyed = is_keyed
         assert return_value_attribute in self.return_value_attributes, repr(return_value_attribute)
         self._return_value_attribute = return_value_attribute
         prepopulated_return_value = None
@@ -35,21 +36,24 @@ class MenuToken(list, AbjadObject):
             key, body, existing_value = self
         elif len(self) == 4:
             key, body, existing_value, prepopulated_return_value = self
+        if self.is_keyed and key is None:
+            key = body
         self._key = key
         self._body = body
         self._existing_value = existing_value
         self._prepopulated_return_value = prepopulated_return_value
         if len(self) == 1:
             return_value = self[0]
-        elif self.return_value_attribute == 'key':
-            return_value = self[0]
-        elif self.return_value_attribute == 'body':
-            return_value = self[1]
         elif self.return_value_attribute == 'number':
             return_value = None
+        elif self.return_value_attribute == 'body':
+            return_value = self[1]
+        elif self.return_value_attribute == 'key':
+            return_value = self[0]
         elif self.return_value_attribute == 'prepopulated':
             return_value = self[3]
         self._return_value = return_value
+        assert self.body
 
     ### SPECIAL METHODS ###
 
@@ -65,6 +69,10 @@ class MenuToken(list, AbjadObject):
     @property
     def existing_value(self):
         return self._existing_value
+
+    @property
+    def is_keyed(self):
+        return self._is_keyed
 
     @property
     def key(self):

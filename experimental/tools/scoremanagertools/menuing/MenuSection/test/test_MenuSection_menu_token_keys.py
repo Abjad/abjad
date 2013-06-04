@@ -9,7 +9,7 @@ def test_MenuSection_menu_token_keys_01():
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
     tokens = ['apple', 'banana', 'cherry']
-    section = menu.make_section(tokens=tokens)
+    section = menu.make_section(tokens=tokens, is_keyed=False)
     section.title = 'section'
     assert not section.is_numbered
     assert section.menu_token_keys == [None, None, None]
@@ -17,7 +17,7 @@ def test_MenuSection_menu_token_keys_01():
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
     tokens = ['apple', 'banana', 'cherry']
-    section = menu.make_section(is_numbered=True, tokens=tokens)
+    section = menu.make_section(is_numbered=True, tokens=tokens, is_keyed=False)
     section.title = 'section'
     assert section.is_numbered
     assert section.menu_token_keys == [None, None, None]

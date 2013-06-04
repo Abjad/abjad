@@ -9,7 +9,7 @@ def test_Menu_run_01():
     menu._session.push_breadcrumb('location')
     tokens = ['apple', 'banana', 'cherry']
     section_1 = menu.make_section(
-        is_keyed=True, is_hidden=False, is_numbered=False, is_ranged=False, tokens=tokens)
+        is_keyed=False, is_hidden=False, is_numbered=False, is_ranged=False, tokens=tokens)
     section_1.title = 'section'
 
     result = menu._run(user_input='foo')
@@ -169,7 +169,7 @@ def test_Menu_run_05():
     menu._session.push_breadcrumb('location')
     tokens = ['apple', 'banana', 'cherry']
     section_1 = menu.make_section(
-        is_keyed=True, is_hidden=False, is_numbered=True, is_ranged=False, tokens=tokens)
+        is_keyed=False, is_hidden=False, is_numbered=True, is_ranged=False, tokens=tokens)
     section_1.title = 'section'
     result = menu._run(user_input='foo')
 
@@ -212,7 +212,7 @@ def test_Menu_run_06():
     menu._session.push_breadcrumb('location')
     tokens = ['apple', 'banana', 'cherry']
     section_1 = menu.make_section(
-        is_keyed=True, is_hidden=False, is_numbered=False, is_ranged=True, tokens=tokens)
+        is_keyed=False, is_hidden=False, is_numbered=False, is_ranged=True, tokens=tokens)
     section_1.title = 'section'
     result = menu._run(user_input='foo')
 
