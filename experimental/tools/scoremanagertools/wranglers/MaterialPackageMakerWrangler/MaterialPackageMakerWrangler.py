@@ -72,10 +72,12 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         return material_package_proxy
 
     def _make_main_menu(self, head=None):
-        menu, section = self._io.make_menu(where=self._where, is_numbered=True)
-        section.tokens = self.list_asset_names(head=head)
-        section = menu.make_section()
-        section.append(('new', 'new material package maker'))
+        tokens = self.list_asset_names(head=head)
+        menu, section = self._io.make_menu(where=self._where, is_numbered=True, tokens=tokens)
+        tokens = [
+            ('new', 'new material package maker'),
+            ]
+        section = menu.make_section(tokens=tokens)
         return menu
 
     def _make_menu_tokens(self, head=None):

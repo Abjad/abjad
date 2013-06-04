@@ -103,24 +103,28 @@ class ScoreManager(ScoreManagerObject):
         return menu
 
     def _make_score_selection_menu(self):
-        menu, section = self._io.make_menu(where=self._where, is_numbered=True, is_keyed=False)
         if self._session.is_first_run:
             if hasattr(self, 'start_menu_tokens'):
-                section.tokens = self.start_menu_tokens
+                tokens = self.start_menu_tokens
             else:
                 self.write_cache()
-                section.tokens = self.score_package_wrangler._make_menu_tokens()
+                tokens = self.score_package_wrangler._make_menu_tokens()
             self._session.is_first_run = False
         else:
-            section.tokens = self.score_package_wrangler._make_menu_tokens()
+            tokens = self.score_package_wrangler._make_menu_tokens()
+        menu, section = self._io.make_menu(
+            where=self._where, is_numbered=True, is_keyed=False, tokens=tokens)
         return menu
 
     def _make_svn_menu(self):
         menu, section = self._io.make_menu(where=self._where)
-        section.append(('add', 'svn add scores'))
-        section.append(('ci', 'svn commit scores'))
-        section.append(('st', 'svn status scores'))
-        section.append(('up', 'svn update scores'))
+        tokens = [
+            ('add', 'svn add scores'),
+            ('ci', 'svn commit scores'),
+            ('st', 'svn status scores'),
+            ('up', 'svn update scores'),
+            ]
+        section.tokens = tokens
         return menu
 
     def _run(self, user_input=None, clear=True, cache=False, is_test=False, dump_transcript=False):

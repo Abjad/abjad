@@ -215,12 +215,14 @@ class PackageProxy(DirectoryProxy):
         self.initializer_file_proxy.interactively_write_boilerplate()
 
     def make_tags_menu(self):
-        menu, section = self._io.make_menu(where=self._where, is_keyed=False)
-        section.tokens = self.formatted_tags
-        section = menu.make_section()
-        section.append(('add', 'add tag'))
-        section.append(('rm', 'delete tag'))
-        section.append(('get', 'get tag'))
+        tokens = self.formatted_tags
+        menu, section = self._io.make_menu(where=self._where, is_keyed=False, tokens=tokens)
+        tokens = [
+            ('add', 'add tag'),
+            ('rm', 'delete tag'),
+            ('get', 'get tag'),
+            ]
+        section = menu.make_section(tokens=tokens)
         return menu
 
     def manage_tags(self, clear=True, cache=False):

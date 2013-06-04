@@ -17,10 +17,14 @@ class SegmentPackageProxy(PackageProxy):
             self.user_input_to_action[result](self)
 
     def _make_main_menu(self):
-        menu, section = self._io.make_menu(where=self._where)
-        section.append(('n', 'initializer'))
-        section = menu.make_section()
-        section.append(('d', 'delete'))
+        tokens = [
+            ('n', 'initializer'),
+            ]
+        menu, section = self._io.make_menu(where=self._where, tokens=tokens)
+        tokens = [
+            ('rm', 'remove'),
+            ]
+        section = menu.make_section(tokens=tokens)
         return menu
 
     ### READ-ONLY PUBLIC PROPERTIES ###

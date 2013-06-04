@@ -60,11 +60,13 @@ class StylesheetFileWrangler(FileWrangler):
         menu, section = self._io.make_menu(
             where=self._where, is_parenthetically_numbered=True, is_keyed=False)
         section.tokens = self._make_menu_tokens(include_extension=True)
-        section = menu.make_section()
-        section.append(('new', 'new'))
-        section.append(('cp', 'copy'))
-        section.append(('ren', 'rename'))
-        section.append(('rm', 'remove'))
+        tokens = [
+            ('new', 'new'),
+            ('cp', 'copy'),
+            ('ren', 'rename'),
+            ('rm', 'remove'),
+            ]
+        section = menu.make_section(tokens=tokens)
         return menu
 
     def _make_menu_tokens(self, head=None, include_extension=False):

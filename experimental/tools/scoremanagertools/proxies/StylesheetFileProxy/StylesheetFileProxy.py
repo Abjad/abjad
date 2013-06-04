@@ -44,11 +44,13 @@ class StylesheetFileProxy(FileProxy):
         return getter
 
     def _make_main_menu(self):
-        menu, section = self._io.make_menu(where=self.where)
-        section.append(('cp', 'copy stylesheet'))
-        section.append(('rm', 'delete stylesheet'))
-        section.append(('ren', 'rename stylesheet'))
-        section.append(('vi', 'vi stylesheet'))
+        tokens = [
+            ('cp', 'copy stylesheet'),
+            ('rm', 'delete stylesheet'),
+            ('ren', 'rename stylesheet'),
+            ('vi', 'vi stylesheet'),
+            ]
+        menu, section = self._io.make_menu(where=self.where, tokens=tokens)
         return menu
 
     def _space_delimited_lowercase_name_to_asset_name(self, space_delimited_lowercase_name):

@@ -32,14 +32,13 @@ class ScorePackageProxy(PackageProxy):
             raise ValueError
 
     def _make_main_menu(self):
-        menu, section = self._io.make_menu(where=self._where, is_numbered=True)
         tokens = [
             ('h', 'segments'),
             ('m', 'materials'),
             ('f', 'specifiers'),
             ('s', 'setup'),
             ]
-        section = menu.make_section(tokens=tokens)
+        menu, section = self._io.make_menu(where=self._where, is_numbered=False, tokens=tokens)
         tokens = [
             ('fix', 'fix package structure'),
             ('ls', 'list directory contents'),
@@ -401,9 +400,12 @@ class ScorePackageProxy(PackageProxy):
     def make_svn_menu(self):
         menu, section = self._io.make_menu(where=self._where, is_keyed=False)
         section.return_value_attribute = 'key'
-        section.append(('st', 'st'))
-        section.append(('add', 'add'))
-        section.append(('ci', 'ci'))
+        tokens = [
+            ('st', 'st'),
+            ('add', 'add'),
+            ('ci', 'ci'),
+            ]
+        section.tokens = tokens
         return menu
 
     def manage_materials(self):

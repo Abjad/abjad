@@ -109,8 +109,6 @@ class MaterialPackageProxy(PackageProxy):
         if self.has_illustration_pdf:
             if not has_illustration_pdf_section:
                 section = main_menu.make_section()
-            #hidden_section.append(('pdfd', 'output pdf - delete'))
-            #section.append(('pdfv', 'output pdf - view'))
             hidden_section_tokens = hidden_section.tokens[:]
             hidden_section_tokens.extend([
                 ('pdfd', 'output pdf - delete'),
@@ -162,7 +160,6 @@ class MaterialPackageProxy(PackageProxy):
                     ('omm', 'output material = make'),
                     ]
                 section = main_menu.make_section(tokens=tokens)
-                #section.append(('omm', 'output material - make'))
                 has_output_material_section = True
             if self.has_output_material_editor:
                 tokens = [
@@ -175,12 +172,10 @@ class MaterialPackageProxy(PackageProxy):
                     target_summary_lines = output_material_editor.target_summary_lines
                     if target_summary_lines:
                         section.title = target_summary_lines
-                #section.append(('omi', 'output material - interact'))
                 has_output_material_section = True
             if self.has_output_material_module:
                 if not has_output_material_section:
                     section = main_menu.make_section()
-                #section.append(('omv', 'output material - view'))
                 tokens = section.tokens[:]
                 tokens.extend([
                     ('omv', 'output material - view'),
