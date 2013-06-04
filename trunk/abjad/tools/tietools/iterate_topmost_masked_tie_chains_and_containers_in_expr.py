@@ -8,8 +8,8 @@ def iterate_topmost_masked_tie_chains_and_containers_in_expr(expr):
     ::
 
         >>> input = "abj: | 2/4 c'4 d'4 ~ |"
-        >>> input += "| 4/4 d'4 ~ 2/3 { d'4 d'4 d'4 } d'4 ~ |"
-        >>> input += "| 2/4 d'4 e'4 |"
+        >>> input += "| 4/4 d'4 ~ 2/3 { d'4 e'4 ~ e'4 ~ } e'4 ~ |"
+        >>> input += "| 2/4 e'4 f'4 |"
         >>> staff = Staff(input)
         >>> f(staff)
         \new Staff {
@@ -23,15 +23,15 @@ def iterate_topmost_masked_tie_chains_and_containers_in_expr(expr):
                 d'4 ~
                 \times 2/3 {
                     d'4
-                    d'4
-                    d'4
+                    e'4 ~
+                    e'4 ~
                 }
-                d'4 ~
+                e'4 ~
             }
             {
                 \time 2/4
-                d'4
                 e'4
+                f'4
             }
         }
 
@@ -49,16 +49,16 @@ def iterate_topmost_masked_tie_chains_and_containers_in_expr(expr):
         ...     staff[1]): x
         ...
         TieChain(Note("d'4"),)
-        Tuplet(2/3, [d'4, d'4, d'4])
-        TieChain(Note("d'4"),)
+        Tuplet(2/3, [d'4, e'4, e'4])
+        TieChain(Note("e'4"),)
 
     ::
 
         >>> for x in tietools.iterate_topmost_masked_tie_chains_and_containers_in_expr(
         ...     staff[2]): x
         ...
-        TieChain(Note("d'4"),)
         TieChain(Note("e'4"),)
+        TieChain(Note("f'4"),)
 
     Return generator.
     '''
