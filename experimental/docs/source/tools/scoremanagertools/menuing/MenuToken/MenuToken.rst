@@ -9,13 +9,16 @@ scoremanagertools.menuing.MenuToken
 Read-only properties
 --------------------
 
+.. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuToken.MenuToken.MenuToken.body
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuToken.MenuToken.MenuToken.is_string_token
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuToken.MenuToken.MenuToken.is_tuple_token
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuToken.MenuToken.MenuToken.key_and_body
+.. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuToken.MenuToken.MenuToken.key
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuToken.MenuToken.MenuToken.key_body_and_existing_value

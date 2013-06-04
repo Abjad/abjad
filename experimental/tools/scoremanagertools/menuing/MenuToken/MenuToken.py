@@ -28,21 +28,20 @@ class MenuToken(list, AbjadObject):
     ### PUBLIC READ-ONLY PROPERTIES ###
 
     @property
+    def body(self):
+        return self.key_body_and_existing_value[1]
+
+    @property
     def is_string_token(self):
         return len(self) == 1 and isinstance(self[0], str)
 
     @property
     def is_tuple_token(self):
         return not self.is_string_token
-
-    # TODO: this can probably deprecate in favor of self.token_to_key_body_and_existing_value
+    
     @property
-    def key_and_body(self):
-        if self.is_string_token:
-            key, body = None, self[0]
-        else:
-            key, body = self[:2]
-        return key, body
+    def key(self):
+        return self.key_body_and_existing_value[0]
 
     @property 
     def key_body_and_existing_value(self):
@@ -99,7 +98,6 @@ class MenuToken(list, AbjadObject):
     # TODO: unpack all menu tokens only once at runtime.
     def unpack(self, return_value_attribute):
         number = self.number
-        key, body = self.key_and_body
+        key, body, existing_value = self.key_body_and_existing_value
         return_value = self.get_menu_token_return_value(return_value_attribute)
         return number, key, body, return_value
-

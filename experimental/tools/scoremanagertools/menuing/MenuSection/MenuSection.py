@@ -42,14 +42,6 @@ class MenuSection(MenuObject):
         return self.default_index is not None
 
     @property
-    def has_string_tokens(self):
-        return any(token.is_string_token for token in self.tokens)
-
-    @property
-    def has_tuple_tokens(self):
-        return any(token.is_tuple_token for token in self.tokens)
-
-    @property
     def is_hidden(self):
         return self._is_hidden
 
@@ -79,11 +71,11 @@ class MenuSection(MenuObject):
 
     @property
     def menu_token_bodies(self):
-        return [token.key_and_body[1] for token in self.tokens]
+        return [token.body for token in self.tokens]
 
     @property
     def menu_token_keys(self):
-        return [token.key_and_body[0] for token in self.tokens]
+        return [token.key for token in self.tokens]
 
     @property
     def menu_token_return_values(self):
