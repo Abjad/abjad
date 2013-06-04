@@ -45,13 +45,19 @@ class MenuToken(list, AbjadObject):
         if len(self) == 1:
             return_value = self[0]
         elif self.return_value_attribute == 'number':
+#            if number is not None:
+#                return_value = str(number)
+#            elif key is not None:
+#                return_value = key
+#            else:
+#                return_value = body
             return_value = None
         elif self.return_value_attribute == 'body':
-            return_value = self[1]
+            return_value = self.body
         elif self.return_value_attribute == 'key':
-            return_value = self[0]
+            return_value = self.key
         elif self.return_value_attribute == 'prepopulated':
-            return_value = self[3]
+            return_value = self.prepopulated_return_value
         self._return_value = return_value
         assert self.body
 

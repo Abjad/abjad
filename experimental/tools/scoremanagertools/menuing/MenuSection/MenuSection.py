@@ -286,7 +286,6 @@ class MenuSection(MenuObject):
         result = []
         for token in self.tokens:
             number, body, key = token.number, token.body, token.key
-            prepopulated_return_value = token.prepopulated_return_value
 
             # TODO: harmonize this implementation with that in MenuToken.return_value
             if self.return_value_attribute == 'number':
@@ -296,15 +295,8 @@ class MenuSection(MenuObject):
                     return_value = key
                 else:
                     return_value = body
-            elif self.return_value_attribute == 'body':
-                return_value = body
-            elif self.return_value_attribute == 'key':
-                if key is not None:
-                    return_value = key
-                else:
-                    return_value = body
-            elif self.return_value_attribute == 'prepopulated':
-                return_value = prepopulated_return_value
+            elif self.return_value_attribute in ('body', 'key', 'prepopulated'):
+                return_value = token.return_value
             assert return_value is not None
 
             if not self.is_keyed and key:
