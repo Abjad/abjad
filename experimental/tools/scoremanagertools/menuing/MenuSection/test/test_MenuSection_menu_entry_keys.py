@@ -30,22 +30,26 @@ def test_MenuSection_menu_entry_keys_02():
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    section = menu.make_section()
+    tokens = [
+        ('add', 'add something'),
+        ('rm', 'delete something'),
+        ('mod', 'modify something'),
+        ]
+    section = menu.make_section(tokens=tokens)
     section.title = 'section title'
-    section.append(('add', 'add something'))
-    section.append(('rm', 'delete something'))
-    section.append(('mod', 'modify something'))
     assert not section.is_numbered
     assert section.menu_entry_keys == ['add', 'rm', 'mod']
     assert section.menu_entry_keys == [x[0] for x in section.tokens]
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    section = menu.make_section(is_numbered=True)
+    tokens = [
+        ('add', 'add something'),
+        ('rm', 'delete something'),
+        ('mod', 'modify something'),
+        ]
+    section = menu.make_section(is_numbered=True, tokens=tokens)
     section.title = 'section title'
-    section.append(('add', 'add something'))
-    section.append(('rm', 'delete something'))
-    section.append(('mod', 'modify something'))
     assert section.is_numbered
     assert section.menu_entry_keys == ['add', 'rm', 'mod']
     assert section.menu_entry_keys == [x[0] for x in section.tokens]

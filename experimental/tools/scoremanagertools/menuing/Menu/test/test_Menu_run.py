@@ -245,10 +245,12 @@ def test_Menu_run_06():
     menu._session.push_breadcrumb('location')
     section_1 = menu.make_section(is_keyed=True, is_hidden=False, is_numbered=False, is_ranged=False)
     section_1.title = 'section'
-    section_1 = menu.make_section()
-    section_1.append(('add', 'first command'))
-    section_1.append(('rm', 'second command'))
-    section_1.append(('mod', 'third command'))
+    tokens = [
+        ('add', 'first command'),
+        ('rm', 'second command'),
+        ('mod', 'third command'),
+        ]
+    section_1 = menu.make_section(tokens=tokens)
     result = menu._run(user_input='foo')
 
     assert menu._session.transcript[-2][1] == \
@@ -340,11 +342,15 @@ def test_Menu_run_07():
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    section_1 = menu.make_section(is_keyed=False, is_hidden=False, is_numbered=False, is_ranged=False)
+    tokens = [
+        ('add', 'first command'),
+        ('rm', 'second command'),
+        ('mod', 'third command'),
+        ]
+    section_1 = menu.make_section(
+        is_keyed=False, is_hidden=False, is_numbered=False, is_ranged=False,
+        tokens=tokens)
     section_1.title = 'section'
-    section_1.append(('add', 'first command'))
-    section_1.append(('rm', 'second command'))
-    section_1.append(('mod', 'third command'))
     result = menu._run(user_input='foo')
 
     assert menu._session.transcript[-2][1] == \
@@ -436,11 +442,15 @@ def test_Menu_run_08():
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    section_1 = menu.make_section(is_keyed=True, is_hidden=True, is_numbered=False, is_ranged=False)
+    tokens = [
+        ('add', 'first command'),
+        ('rm', 'second command'),
+        ('mod', 'third command'),
+        ]
+    section_1 = menu.make_section(
+        is_keyed=True, is_hidden=True, is_numbered=False, is_ranged=False,
+        tokens=tokens)
     section_1.title = 'section'
-    section_1.append(('add', 'first command'))
-    section_1.append(('rm', 'second command'))
-    section_1.append(('mod', 'third command'))
     result = menu._run(user_input='foo')
 
     assert menu._session.transcript[-2][1] == \
@@ -525,11 +535,15 @@ def test_Menu_run_09():
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    section_1 = menu.make_section(is_keyed=True, is_hidden=False, is_numbered=True, is_ranged=False)
+    tokens = [
+        ('add', 'first command'),
+        ('rm', 'second command'),
+        ('mod', 'third command'),
+        ]
+    section_1 = menu.make_section(
+        is_keyed=True, is_hidden=False, is_numbered=True, is_ranged=False,
+        tokens=tokens)
     section_1.title = 'section'
-    section_1.append(('add', 'first command'))
-    section_1.append(('rm', 'second command'))
-    section_1.append(('mod', 'third command'))
     result = menu._run(user_input='foo')
 
     assert menu._session.transcript[-2][1] == \
@@ -620,11 +634,15 @@ def test_Menu_run_10():
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    section_1 = menu.make_section(is_keyed=True, is_hidden=False, is_numbered=False, is_ranged=True)
+    tokens = [
+        ('add', 'first command'),
+        ('rm', 'second command'),
+        ('mod', 'third command'),
+        ]
+    section_1 = menu.make_section(
+        is_keyed=True, is_hidden=False, is_numbered=False, is_ranged=True,
+        tokens=tokens)
     section_1.title = 'section'
-    section_1.append(('add', 'first command'))
-    section_1.append(('rm', 'second command'))
-    section_1.append(('mod', 'third command'))
     result = menu._run(user_input='foo')
 
     assert menu._session.transcript[-2][1] == \

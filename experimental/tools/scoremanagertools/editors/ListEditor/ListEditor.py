@@ -38,14 +38,16 @@ class ListEditor(InteractiveEditor):
         item_management_section = menu.make_section(is_parenthetically_numbered=True)
         item_management_section.tokens = self.target_summary_lines
         item_management_section.return_value_attribute = 'number'
-        command_section = menu.make_section()
-        command_section.append(('add', 'add elements'))
+        tokens = [('add', 'add elements')]
         if 0 < len(self.items):
-            command_section.append(('rm', 'remove elements'))
+            tokens.append(('rm', 'remove elements'))
         if 1 < len(self.items):
-            command_section.append(('mv', 'move elements'))
-        hidden_section = menu.make_section(is_hidden=True)
-        hidden_section.append(('done', 'done'))
+            tokens.append(('mv', 'move elements'))
+        command_section = menu.make_section(tokens=tokens)
+        tokens = [
+            ('done', 'done'),
+            ]
+        hidden_section = menu.make_section(is_hidden=True, tokens=tokens)
         return menu
 
     ### READ-ONLY PUBLIC PROPERTIES ###

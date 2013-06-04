@@ -33,19 +33,23 @@ class ScorePackageProxy(PackageProxy):
 
     def _make_main_menu(self):
         menu, section = self._io.make_menu(where=self._where, is_numbered=True)
-        section = menu.make_section()
-        section.append(('h', 'segments'))
-        section.append(('m', 'materials'))
-        section.append(('f', 'specifiers'))
-        section.append(('s', 'setup'))
-        hidden_section = menu.make_section(is_hidden=True)
-        hidden_section.append(('fix', 'fix package structure'))
-        hidden_section.append(('ls', 'list directory contents'))
-        hidden_section.append(('profile', 'profile package structure'))
-        hidden_section.append(('py.test', 'run py.test'))
-        hidden_section.append(('removescore', 'remove score package'))
-        hidden_section.append(('svn', 'manage repository'))
-        hidden_section.append(('tags', 'manage tags'))
+        tokens = [
+            ('h', 'segments'),
+            ('m', 'materials'),
+            ('f', 'specifiers'),
+            ('s', 'setup'),
+            ]
+        section = menu.make_section(tokens=tokens)
+        tokens = [
+            ('fix', 'fix package structure'),
+            ('ls', 'list directory contents'),
+            ('profile', 'profile package structure'),
+            ('py.test', 'run py.test'),
+            ('removescore', 'remove score package'),
+            ('svn', 'manage repository'),
+            ('tags', 'manage tags'),
+            ]
+        hidden_section = menu.make_section(is_hidden=True, tokens=tokens)
         return menu
 
     ### READ-ONLY PRIVATE PROPERTIES ###

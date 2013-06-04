@@ -83,19 +83,23 @@ class ScoreManager(ScoreManagerObject):
 
     def _make_main_menu(self):
         menu = self._make_score_selection_menu()
-        section = menu.make_section()
-        section.append(('m', 'materials'))
-        section.append(('y', 'stylesheets'))
-        section.append(('new', 'new score'))
-        hidden_section = menu.make_section(is_hidden=True)
-        hidden_section.append(('active', 'show active scores only'))
-        hidden_section.append(('all', 'show all scores'))
-        hidden_section.append(('fix', 'fix all score package structures'))
-        hidden_section.append(('mb', 'show mothballed scores only'))
-        hidden_section.append(('profile', 'profile packages'))
-        hidden_section.append(('py.test', 'run py.test on all scores'))
-        hidden_section.append(('svn', 'work with repository'))
-        hidden_section.append(('wc', 'write cache'))
+        tokens = [
+            ('m', 'materials'),
+            ('y', 'stylesheets'),
+            ('new', 'new score'),
+            ]
+        section = menu.make_section(tokens=tokens)
+        tokens = [
+            ('active', 'show active scores only'),
+            ('all', 'show all scores'),
+            ('fix', 'fix all score package structures'),
+            ('mb', 'show mothballed scores only'),
+            ('profile', 'profile packages'),
+            ('py.test', 'run py.test on all scores'),
+            ('svn', 'work with repository'),
+            ('wc', 'write cache'),
+            ]
+        hidden_section = menu.make_section(is_hidden=True, tokens=tokens)
         return menu
 
     def _make_score_selection_menu(self):

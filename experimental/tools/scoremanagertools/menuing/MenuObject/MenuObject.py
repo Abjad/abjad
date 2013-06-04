@@ -93,21 +93,23 @@ class MenuObject(ScoreManagerObject):
 
     def make_default_hidden_section(self, session=None, where=None):
         from experimental.tools.scoremanagertools.menuing.MenuSection import MenuSection
-        section = MenuSection(is_hidden=True, session=session, where=where)
-        section.append(('b', 'back'))
-        section.append(('exec', 'exec statement'))
-        section.append(('grep', 'grep directories'))
-        section.append(('here', 'edit client source'))
-        section.append(('hidden', 'show hidden items'))
-        section.append(('home', 'home'))
-        section.append(('next', 'next score'))
-        section.append(('prev', 'prev score'))
-        section.append(('q', 'quit'))
-        section.append(('r', 'redraw'))
-        section.append(('score', 'score'))
-        section.append(('tm', 'toggle menu'))
-        section.append(('tw', 'toggle where'))
-        section.append(('where', 'show menu client'))
+        tokens = [
+            ('b', 'back'),
+            ('exec', 'exec statement'),
+            ('grep', 'grep directories'),
+            ('here', 'edit client source'),
+            ('hidden', 'show hidden items'),
+            ('home', 'home'),
+            ('next', 'next score'),
+            ('prev', 'prev score'),
+            ('q', 'quit'),
+            ('r', 'redraw'),
+            ('score', 'score'),
+            ('tm', 'toggle menu'),
+            ('tw', 'toggle where'),
+            ('where', 'show menu client'),
+            ]
+        section = MenuSection(is_hidden=True, session=session, where=where, tokens=tokens)
         return section
 
     def make_is_integer_in_range(self, start=None, stop=None, allow_none=False):
