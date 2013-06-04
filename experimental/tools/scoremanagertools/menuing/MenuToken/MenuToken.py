@@ -68,6 +68,11 @@ class MenuToken(list, AbjadObject):
         return self._number
 
     @property
+    def prepopulated_return_value(self):
+        return self.key_body_existing_value_and_prepopulated_return_value[3]
+
+    # TODO: harmonize this implementation with that in MenuSection.unpack_menu_tokens()
+    @property
     def return_value(self):
         if self.is_string_token:
             return self[0]
