@@ -589,6 +589,10 @@ class LilyPondParser(abctools.Parser):
                 raise Exception('Multiple span events lists attached to %s' % leaf)
         return []
 
+    def _pop_variable_scope(self):
+        if self._scope_stack:
+            self._scope_stack.pop()
+
     def _process_post_events(self, leaf, post_events):
         for post_event in post_events:
             if hasattr(post_event, '__call__'):
@@ -602,15 +606,11 @@ class LilyPondParser(abctools.Parser):
                     annotation = annotation[0]
                 annotation.value.append(post_event)
 
-    def _push_variable_scope(self):
-        self._scope_stack.append({})
-
-    def _pop_variable_scope(self):
-        if self._scope_stack:
-            self._scope_stack.pop()
-
     def _push_extra_token(self, token):
         self._parser.lookaheadstack.append(token)
+
+    def _push_variable_scope(self):
+        self._scope_stack.append({})
 
     def _relex_lookahead(self):
         if not str(self._parser.lookahead) == '$end':
@@ -653,12 +653,6 @@ class LilyPondParser(abctools.Parser):
         self._pitch_names = self._language_pitch_names[self.default_language]
         self._repeated_chords = {}
 
-    def _resolve_identifier(self, identifier):
-        for scope in reversed(self._scope_stack):
-            if identifier in scope:
-                return scope[identifier]
-        return None
-
     def _resolve_event_identifier(self, identifier):
         from abjad.tools import lilypondparsertools
         lookup = self._current_module[identifier] # without any leading slash
@@ -676,6 +670,12 @@ class LilyPondParser(abctools.Parser):
             else:
                 event.span_direction = 'stop'
         return event
+
+    def _resolve_identifier(self, identifier):
+        for scope in reversed(self._scope_stack):
+            if identifier in scope:
+                return scope[identifier]
+        return None
 
     def _span_event_name_to_spanner_class(self, name):
         spanners = {

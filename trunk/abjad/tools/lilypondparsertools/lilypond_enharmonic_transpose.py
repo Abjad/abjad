@@ -21,12 +21,6 @@ def lilypond_enharmonic_transpose(pitch_a, pitch_b, pitch_c):
 
     scale = [0., 2., 4., 5., 7., 9., 11.]
 
-    def step_size(step):
-        normalized_step = step % len(scale)
-        if normalized_step == 6:
-            return 1. # b to c
-        return scale[normalized_step + 1] - scale[normalized_step]
-
     def normalize_alteration(step, alteration):
         while 2. < alteration:
             alteration -= step_size(step)
@@ -40,6 +34,12 @@ def lilypond_enharmonic_transpose(pitch_a, pitch_b, pitch_c):
         normalized_step = step % len(scale)
         octave += (step - normalized_step) / len(scale)
         return octave, normalized_step
+
+    def step_size(step):
+        normalized_step = step % len(scale)
+        if normalized_step == 6:
+            return 1. # b to c
+        return scale[normalized_step + 1] - scale[normalized_step]
 
     a_oct, a_step, a_alt = pitch_a.octave_number, pitch_a.diatonic_pitch_class_number, pitch_a._accidental.semitones
     b_oct, b_step, b_alt = pitch_b.octave_number, pitch_b.diatonic_pitch_class_number, pitch_b._accidental.semitones

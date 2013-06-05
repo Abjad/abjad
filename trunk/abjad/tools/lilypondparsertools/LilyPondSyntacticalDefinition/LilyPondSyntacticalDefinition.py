@@ -23,15 +23,9 @@ class LilyPondSyntacticalDefinition(AbjadObject):
     Used internally by ``LilyPondParser``.
     '''
 
-    ### INITIALIZER ###
-
-    def __init__(self, client):
-        self.client = client
-        self.tokens = self.client._lexdef.tokens
-
+    ### CLASS VARIABLES ###
 
     start = 'start_symbol'
-
 
     precedence = (
 #        ('nonassoc', 'REPEAT'),
@@ -47,9 +41,13 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 #        ('left', 'UNARY_MINUS')
     )
 
+    ### INITIALIZER ###
+
+    def __init__(self, client):
+        self.client = client
+        self.tokens = self.client._lexdef.tokens
 
     ### SYNTACTICAL RULES (ALPHABETICAL) ###
-
 
 #    def p_start_symbol__EMBEDDED_LILY__embedded_lilypond(self, p):
 #        'start_symbol : EMBEDDED_LILY embedded_lilypond'
@@ -677,14 +675,14 @@ class LilyPondSyntacticalDefinition(AbjadObject):
     ### context_def_spec_body ###
 
 
-    def p_context_def_spec_body__Empty(self, p):
-        'context_def_spec_body : '
+    def p_context_def_spec_body__CONTEXT_DEF_IDENTIFIER(self, p):
+        'context_def_spec_body : CONTEXT_DEF_IDENTIFIER'
         from abjad.tools import lilypondparsertools
         p[0] = lilypondparsertools.SyntaxNode('context_def_spec_body', p[1:])
 
 
-    def p_context_def_spec_body__CONTEXT_DEF_IDENTIFIER(self, p):
-        'context_def_spec_body : CONTEXT_DEF_IDENTIFIER'
+    def p_context_def_spec_body__Empty(self, p):
+        'context_def_spec_body : '
         from abjad.tools import lilypondparsertools
         p[0] = lilypondparsertools.SyntaxNode('context_def_spec_body', p[1:])
 
@@ -2501,12 +2499,6 @@ class LilyPondSyntacticalDefinition(AbjadObject):
     ### octave_check ###
 
 
-    def p_octave_check__Empty(self, p):
-        'octave_check : '
-        from abjad.tools import lilypondparsertools
-        p[0] = lilypondparsertools.SyntaxNode('octave_check', p[1:])
-
-
     def p_octave_check__Chr61(self, p):
         "octave_check : '='"
         from abjad.tools import lilypondparsertools
@@ -2521,6 +2513,12 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
     def p_octave_check__Chr61__sup_quotes(self, p):
         "octave_check : '=' sup_quotes"
+        from abjad.tools import lilypondparsertools
+        p[0] = lilypondparsertools.SyntaxNode('octave_check', p[1:])
+
+
+    def p_octave_check__Empty(self, p):
+        'octave_check : '
         from abjad.tools import lilypondparsertools
         p[0] = lilypondparsertools.SyntaxNode('octave_check', p[1:])
 
@@ -2541,14 +2539,14 @@ class LilyPondSyntacticalDefinition(AbjadObject):
     ### optional_id ###
 
 
-    def p_optional_id__Empty(self, p):
-        'optional_id : '
-        p[0] = None
-
-
     def p_optional_id__Chr61__simple_string(self, p):
         "optional_id : '=' simple_string"
         p[0] = p[2]
+
+
+    def p_optional_id__Empty(self, p):
+        'optional_id : '
+        p[0] = None
 
 
     ### optional_notemode_duration ###

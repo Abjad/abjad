@@ -18,9 +18,13 @@ class RedirectedStreams(ContextManager):
     Return context manager.
     '''
 
+    ### INITIALIZER ###
+
     def __init__(self, stdout=None, stderr=None):
         self._stdout = stdout or sys.stdout
         self._stderr = stderr or sys.stderr
+
+    ### SPECIAL METHODS ###
 
     def __enter__(self):
         self.old_stdout, self.old_stderr = sys.stdout, sys.stderr

@@ -200,12 +200,12 @@ class GuileProxy(AbjadObject):
     # tweak
 
 
-    def voiceOne(self):
-        return marktools.LilyPondCommandMark('voiceOne')
-
-
     def voiceFour(self):
         return marktools.LilyPondCommandMark('voiceTwo')
+
+
+    def voiceOne(self):
+        return marktools.LilyPondCommandMark('voiceOne')
 
 
     def voiceThree(self):
