@@ -796,6 +796,13 @@ Core composition packages
    .. toctree::
       :maxdepth: 1
 
+      tools/iotools/RedirectedStreams/RedirectedStreams
+
+   --------
+
+   .. toctree::
+      :maxdepth: 1
+
       tools/iotools/clear_terminal
       tools/iotools/count_function_calls
       tools/iotools/f
@@ -820,6 +827,13 @@ Core composition packages
       tools/iotools/z
 
 .. only:: latex
+
+   Concrete Classes
+   ----------------
+
+   .. toctree::
+
+      tools/iotools/RedirectedStreams/RedirectedStreams
 
    Functions
    ---------
@@ -4234,6 +4248,7 @@ Abjad internal packages
 
       tools/abctools/AbjadObject/AbjadObject
       tools/abctools/AttributeEqualityAbjadObject/AttributeEqualityAbjadObject
+      tools/abctools/ContextManager/ContextManager
       tools/abctools/ImmutableAbjadObject/ImmutableAbjadObject
       tools/abctools/Parser/Parser
       tools/abctools/SortableAttributeEqualityAbjadObject/SortableAttributeEqualityAbjadObject
@@ -4247,6 +4262,7 @@ Abjad internal packages
 
       tools/abctools/AbjadObject/AbjadObject
       tools/abctools/AttributeEqualityAbjadObject/AttributeEqualityAbjadObject
+      tools/abctools/ContextManager/ContextManager
       tools/abctools/ImmutableAbjadObject/ImmutableAbjadObject
       tools/abctools/Parser/Parser
       tools/abctools/SortableAttributeEqualityAbjadObject/SortableAttributeEqualityAbjadObject
