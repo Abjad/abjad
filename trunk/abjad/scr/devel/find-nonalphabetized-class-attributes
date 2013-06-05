@@ -3,55 +3,74 @@
 from abjad.tools import iotools
 import os
 
+directory_name_blacklist = (
+    'docs',
+    )
+
+file_name_blacklist = (
+    'SortedCollection.py',
+    'LilyPondLexicalDefinition.py',
+    'ReducedLyParser.py',
+    'SchemeParser.py',
+    )
 
 def _main():
-   total_modules_examined = 0
-   nonalphabetized_module_names = []
-   for path, subdirectories, file_names in os.walk('.'):
-      for file_name in file_names:
-         if file_name.endswith('.py'):
-            total_modules_examined += 1
-            full_file_name = os.path.join(path, file_name)
-            file_pointer = file(full_file_name, 'r')
-            found_class_keyword, found_def_keyword = False, False
-            attribute_definition_lines = []
-            for line in file_pointer.readlines():
-                if line.startswith('class '):
-                    found_class_keyword = True
-                if line.startswith('    def '):
-                    found_def_keyword = True
-                    attribute_definition_lines.append(line)
-                if line.startswith('    ### '):
-                    sorted_attribute_definition_lines = list(sorted(attribute_definition_lines))
-                    if not attribute_definition_lines == sorted_attribute_definition_lines:
-                        nonalphabetized_module_names.append(full_file_name)
-                        for a, b in zip(attribute_definition_lines, sorted_attribute_definition_lines):
-                            if a != b:
-                                print full_file_name
-                                print a, b
+    total_modules_examined = 0
+    nonalphabetized_module_names = []
+
+    for parent_directory_path, subdirectory_names, file_names in os.walk('.'):
+
+        subdirectory_names_to_remove = []
+        for subdirectory_name in subdirectory_names:
+            if subdirectory_name in directory_name_blacklist:
+                subdirectory_names_to_remove.append(subdirectory_name)
+        for subdirectory_name in subdirectory_names_to_remove:
+            subdirectory_names.remove(subdirectory_name)
+
+        for file_name in file_names:
+            if file_name.endswith('.py'):
+                total_modules_examined += 1
+                full_file_name = os.path.join(parent_directory_path, file_name)
+                file_pointer = file(full_file_name, 'r')
+                found_class_keyword, found_def_keyword = False, False
+                attribute_definition_lines = []
+                for line in file_pointer.readlines():
+                     if line.startswith('class '):
+                          found_class_keyword = True
+                     if line.startswith('     def '):
+                          found_def_keyword = True
+                          attribute_definition_lines.append(line)
+                     if line.startswith('     ### '):
+                          sorted_attribute_definition_lines = list(sorted(attribute_definition_lines))
+                          if not attribute_definition_lines == sorted_attribute_definition_lines:
+                                nonalphabetized_module_names.append(full_file_name)
+                                for a, b in zip(attribute_definition_lines, sorted_attribute_definition_lines):
+                                     if a != b:
+                                          print full_file_name
+                                          print a, b
+                                          break
+                                attribute_definition_lines = []
                                 break
-                        attribute_definition_lines = []
-                        break
-                    attribute_definition_lines = []
-                if found_def_keyword and not found_class_keyword:
-                    continue
-            else:
-                sorted_attribute_definition_lines = list(sorted(attribute_definition_lines))
-                if not attribute_definition_lines == list(sorted(attribute_definition_lines)):
-                    nonalphabetized_module_names.append(full_file_name)
-                    for a, b in zip(attribute_definition_lines, sorted_attribute_definition_lines):
-                        if a != b:
-                            print full_file_name
-                            print a, b
-                            break
-            file_pointer.close()
-   print 'Total modules with nonalphabetized attributes: {}'.format(len(nonalphabetized_module_names))
-   print 'Total modules examined: {}'.format(total_modules_examined)
-   print ''
+                          attribute_definition_lines = []
+                     if found_def_keyword and not found_class_keyword:
+                          continue
+                else:
+                     sorted_attribute_definition_lines = list(sorted(attribute_definition_lines))
+                     if not attribute_definition_lines == list(sorted(attribute_definition_lines)):
+                          nonalphabetized_module_names.append(full_file_name)
+                          for a, b in zip(attribute_definition_lines, sorted_attribute_definition_lines):
+                                if a != b:
+                                     print full_file_name
+                                     print a, b
+                                     break
+                file_pointer.close()
+    print 'Total modules with nonalphabetized attributes: {}'.format(len(nonalphabetized_module_names))
+    print 'Total modules examined: {}'.format(total_modules_examined)
+    print ''
 
 
 if __name__ == '__main__':
-   iotools.clear_terminal()
-   print 'Finding classes with nonalphabetized attributes ...'
-   print ''
-   _main()
+    iotools.clear_terminal()
+    print 'Finding classes with nonalphabetized attributes ...'
+    print ''
+    _main()
