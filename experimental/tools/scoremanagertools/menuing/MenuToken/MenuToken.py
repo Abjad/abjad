@@ -2,7 +2,7 @@ from abjad.tools import stringtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class MenuToken(list, AbjadObject):
+class MenuToken(AbjadObject):
     '''Menu menu_token.
 
     Return menu menu_token.
@@ -16,34 +16,31 @@ class MenuToken(list, AbjadObject):
 
     def __init__(self, expr, number=None, is_keyed=False, return_value_attribute=None):
         if isinstance(expr, str):
-            self.append(expr)
-        elif isinstance(expr, (tuple, type(self))):
-            assert 1 <= len(expr) <= 4, repr(expr)
-            for x in expr:
-                self.append(x)
-        else:
-            raise TypeError(expr)
+            expr = (expr, )
+        assert isinstance(expr, tuple), repr(expr)
+        assert 1 <= len(expr) <= 4, repr(expr)
         self._number = number
         self._is_keyed = is_keyed
         assert return_value_attribute in self.return_value_attributes, repr(return_value_attribute)
         self._return_value_attribute = return_value_attribute
         if self.return_value_attribute == 'key':
-            assert self.is_keyed or 1 < len(self)
+            assert self.is_keyed or 1 < len(expr)
         body, key, existing_value, prepopulated_return_value = None, None, None, None
-        if len(self) == 1:
-            body = self[0]
+        if len(expr) == 1:
+            body = expr[0]
             if self.is_keyed:
                 key = body
-        elif len(self) == 2:
-            key, body = self
-        elif len(self) == 3:
-            key, body, existing_value = self
-        elif len(self) == 4:
-            key, body, existing_value, prepopulated_return_value = self
+        elif len(expr) == 2:
+            key, body = expr
+        elif len(expr) == 3:
+            key, body, existing_value = expr
+        elif len(expr) == 4:
+            key, body, existing_value, prepopulated_return_value = expr
         self._key = key
         assert body
         self._body = body
         self._existing_value = existing_value
+        self._prepopulated_return_value = prepopulated_return_value
         if self.return_value_attribute == 'number':
             return_value = str(self.number)
         elif self.return_value_attribute == 'body':
@@ -72,7 +69,12 @@ class MenuToken(list, AbjadObject):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        return '{}({})'.format(self._class_name, ', '.join([repr(x) for x in self]))
+        return '{}()'.format(self._class_name)
+
+    ### PRIVATE METHODS ###
+
+    def _to_tuple(self):
+        return self.key, self.body, self.existing_value, self.prepopulated_return_value
 
     ### PUBLIC READ-ONLY PROPERTIES ###
 
@@ -95,6 +97,10 @@ class MenuToken(list, AbjadObject):
     @property
     def number(self):
         return self._number
+
+    @property
+    def prepopulated_return_value(self):
+        return self._prepopulated_return_value
 
     @property
     def return_value(self):

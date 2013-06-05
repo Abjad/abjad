@@ -39,7 +39,7 @@ def test_MenuSection_menu_token_keys_02():
     menu_section.title = 'menu_section title'
     assert not menu_section.is_numbered
     assert menu_section.menu_token_keys == ['add', 'rm', 'mod']
-    assert menu_section.menu_token_keys == [x[0] for x in menu_section.menu_tokens]
+    assert menu_section.menu_token_keys == [x.key for x in menu_section.menu_tokens]
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
@@ -52,4 +52,4 @@ def test_MenuSection_menu_token_keys_02():
     menu_section.title = 'menu_section title'
     assert menu_section.is_numbered
     assert menu_section.menu_token_keys == ['add', 'rm', 'mod']
-    assert menu_section.menu_token_keys == [x[0] for x in menu_section.menu_tokens]
+    assert menu_section.menu_token_keys == [x.key for x in menu_section.menu_tokens]
