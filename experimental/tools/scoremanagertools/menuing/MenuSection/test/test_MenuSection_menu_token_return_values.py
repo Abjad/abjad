@@ -56,7 +56,8 @@ def test_MenuSection_menu_token_return_values_02():
         ('rm', 'delete something'),
         ('mod', 'modify something'),
         ]
-    section = menu.make_section(is_numbered=True, tokens=tokens)
+    section = menu.make_section(is_numbered=True, tokens=tokens,
+        return_value_attribute='key')
     section.title = 'section'
     assert section.is_numbered
     assert section.menu_token_return_values == ['add', 'rm', 'mod']
@@ -69,7 +70,7 @@ def test_MenuSection_menu_token_return_values_02():
         ('rm', 'delete something'),
         ('mod', 'modify something'),
         ]
-    section = menu.make_section(tokens=tokens)
+    section = menu.make_section(tokens=tokens, return_value_attribute='key')
     section.title = 'section'
     assert not section.is_numbered
     assert section.menu_token_return_values == ['add', 'rm', 'mod']

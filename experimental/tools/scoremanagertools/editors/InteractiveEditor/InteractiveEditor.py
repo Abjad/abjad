@@ -50,9 +50,15 @@ class InteractiveEditor(ScoreManagerObject):
             self.conditionally_set_target_attribute(attribute_name, attribute_value)
 
     def _make_main_menu(self):
-        menu, section = self._io.make_menu(where=self._where,
-            is_keyed=self.target_manifest.is_keyed, is_numbered=True)
-        section.tokens = self.target_attribute_tokens
+        tokens = self.target_attribute_tokens
+        is_keyed = self.target_manifest.is_keyed
+        menu, section = self._io.make_menu(
+            where=self._where,
+            tokens=tokens,
+            is_keyed=is_keyed,
+            return_value_attribute='key',
+            is_numbered=True,
+            )
         section.show_existing_values = True
         tokens = menu.hidden_section.tokens[:]
         tokens.extend([

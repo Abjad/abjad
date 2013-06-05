@@ -40,11 +40,19 @@ class SegmentPackageWrangler(PackageWrangler):
 
     def _make_main_menu(self, head=None):
         tokens = self.list_asset_names(head=head)
-        menu, section = self._io.make_menu(where=self._where, is_numbered=True, tokens=tokens)
+        menu, section = self._io.make_menu(
+            where=self._where, 
+            tokens=tokens,
+            is_numbered=True, 
+            )
         tokens = [
             ('new', 'new segment'),
             ]
-        section = menu.make_section(tokens=tokens)
+        section = menu.make_section(
+            tokens=tokens,
+            return_value_attribute='key',
+            is_keyed=True,
+            )
         return menu
 
     ### READ-ONLY PUBLIC PROPERTIES ###

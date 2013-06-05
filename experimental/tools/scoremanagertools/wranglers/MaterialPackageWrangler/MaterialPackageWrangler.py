@@ -86,20 +86,33 @@ class MaterialPackageWrangler(PackageWrangler):
         return self._material_package_maker_wrangler._initialize_asset_proxy(package_path)
 
     def _make_main_menu(self, head=None):
-        menu, section = self._io.make_menu(where=self._where, is_numbered=True, is_keyed=False)
+        menu, section = self._io.make_menu(
+            where=self._where, 
+            return_value_attribute='key',
+            is_numbered=True, 
+            is_keyed=False,
+            )
         section.tokens = self._make_menu_tokens(head=head)
         tokens = [
             ('d', 'data-only'),
             ('h', 'handmade'),
             ('m', 'maker-made'),
             ]
-        section = menu.make_section(tokens=tokens)
+        section = menu.make_section(
+            tokens=tokens,
+            is_keyed=True,
+            return_value_attribute='key',
+            )
         tokens = [
             ('s', 'create numeric sequence'),
             ('missing', 'create missing packages'),
             ('profile', 'profile packages'),
             ]
-        hidden_section = menu.make_section(is_hidden=True, tokens=tokens)
+        hidden_section = menu.make_section(
+            tokens=tokens,
+            return_value_attribute='key',
+            is_hidden=True, 
+            )
         return menu
 
     ### READ-ONLY PUBLIC PROPERTIES ###

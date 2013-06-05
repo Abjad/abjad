@@ -44,6 +44,7 @@ class MaterialPackageMaker(MaterialPackageProxy):
         tokens = self.user_input_wrapper_in_memory.editable_lines
         section = main_menu.make_section(
             is_numbered=True,
+            is_keyed=True,
             tokens=tokens,
             return_value_attribute='number',
             )
@@ -54,7 +55,11 @@ class MaterialPackageMaker(MaterialPackageProxy):
                 ('uis', 'user input - show demo values'),
                 ('uimv', 'user input module - view'),
             ]
-        section = main_menu.make_section(tokens=tokens)
+        section = main_menu.make_section(
+            tokens=tokens,
+            is_keyed=True,
+            return_value_attribute='key',
+            )
         hidden_section_tokens = hidden_section.tokens[:]
         hidden_section_tokens.extend([
             ('uit','user input - toggle default mode'),

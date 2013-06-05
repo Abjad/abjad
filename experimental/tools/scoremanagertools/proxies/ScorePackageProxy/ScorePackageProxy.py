@@ -38,7 +38,12 @@ class ScorePackageProxy(PackageProxy):
             ('f', 'specifiers'),
             ('s', 'setup'),
             ]
-        menu, section = self._io.make_menu(where=self._where, is_numbered=False, tokens=tokens)
+        menu, section = self._io.make_menu(
+            where=self._where, 
+            tokens=tokens,
+            is_numbered=False, 
+            return_value_attribute='key',
+            )
         tokens = [
             ('fix', 'fix package structure'),
             ('ls', 'list directory contents'),
@@ -48,7 +53,12 @@ class ScorePackageProxy(PackageProxy):
             ('svn', 'manage repository'),
             ('tags', 'manage tags'),
             ]
-        hidden_section = menu.make_section(is_hidden=True, tokens=tokens)
+        hidden_section = menu.make_section(
+            tokens=tokens,
+            return_value_attribute='key',
+            is_keyed=True,
+            is_hidden=True,
+            )
         return menu
 
     ### READ-ONLY PRIVATE PROPERTIES ###
@@ -401,8 +411,11 @@ class ScorePackageProxy(PackageProxy):
         return setup_menu
 
     def make_svn_menu(self):
-        menu, section = self._io.make_menu(where=self._where, is_keyed=False,
-            return_value_attribute='key')
+        menu, section = self._io.make_menu(
+            where=self._where, 
+            is_keyed=False,
+            return_value_attribute='key',
+            )
         tokens = [
             ('st', 'st'),
             ('add', 'add'),

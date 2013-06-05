@@ -48,7 +48,12 @@ class MaterialPackageProxy(PackageProxy):
             raise ValueError
 
     def _make_main_menu(self):
-        menu, hidden_section = self._io.make_menu(where=self._where, is_hidden=True)
+        menu, hidden_section = self._io.make_menu(
+            where=self._where, 
+            return_value_attribute='key',
+            is_keyed=True,
+            is_hidden=True,
+            )
         self._make_main_menu_section_for_initializer(menu, hidden_section)
         self._make_main_menu_sections(menu, hidden_section)
         self._make_main_menu_section_for_illustration_ly(hidden_section)
@@ -64,10 +69,14 @@ class MaterialPackageProxy(PackageProxy):
             ('stl', 'manage stylesheets'),
             ('tags', 'manage tags'),
             ]
-        hidden_section = main_menu.make_section(is_hidden=True, tokens=tokens)
+        hidden_section = main_menu.make_section(
+            tokens=tokens,
+            return_value_attribute='key',
+            is_keyed=True,
+            is_hidden=True,
+            )
 
     def _make_main_menu_section_for_illustration_builder(self, main_menu, hidden_section):
-        #section = main_menu.make_section()
         if self.has_output_material:
             if self.should_have_illustration:
                 if not self.has_illustration_builder_module:
@@ -87,7 +96,11 @@ class MaterialPackageProxy(PackageProxy):
                     ]
                 tokens.append(('sss', 'score stylesheet - select'))
                 hidden_section_tokens.append(('ssm', 'source stylesheet - edit'))
-                main_menu.make_section(tokens=tokens)
+                main_menu.make_section(
+                    tokens=tokens,
+                    return_value_attribute='key',
+                    is_keyed=True,
+                    )
                 hidden_section.tokens = hidden_section.tokens[:] + hidden_section_tokens
 
     def _make_main_menu_section_for_illustration_ly(self, hidden_section):
@@ -108,11 +121,18 @@ class MaterialPackageProxy(PackageProxy):
                 tokens = [
                     ('pdfm', 'output pdf - make'),
                     ]
-                section = main_menu.make_section(tokens=tokens)
+                section = main_menu.make_section(
+                    tokens=tokens,
+                    return_value_attribute='key',
+                    is_keyed=True,
+                    )
                 has_illustration_pdf_section = True
         if self.has_illustration_pdf:
             if not has_illustration_pdf_section:
-                section = main_menu.make_section()
+                section = main_menu.make_section(
+                    return_value_attribute='key',
+                    is_keyed=True,
+                    )
             hidden_section_tokens = hidden_section.tokens[:]
             hidden_section_tokens.extend([
                 ('pdfd', 'output pdf - delete'),
@@ -149,7 +169,11 @@ class MaterialPackageProxy(PackageProxy):
         elif self.material_package_maker_class_name is None:
             tokens.append(('mdstub', 'material definition - stub'))
         if tokens:
-            main_menu.make_section(tokens=tokens)
+            main_menu.make_section(
+                tokens=tokens,
+                return_value_attribute='key',
+                is_keyed=True,
+                )
         if hidden_section_tokens:
             hidden_section.tokens = hidden_section.tokens[:] + hidden_section_tokens
 
@@ -167,13 +191,21 @@ class MaterialPackageProxy(PackageProxy):
                 tokens = [
                     ('omm', 'output material = make'),
                     ]
-                section = main_menu.make_section(tokens=tokens)
+                section = main_menu.make_section(
+                    tokens=tokens,
+                    return_value_attribute='key',
+                    is_keyed=True,
+                    )
                 has_output_material_section = True
             if self.has_output_material_editor:
                 tokens = [
                     ('omi', 'output material - interact'),
                     ]
-                section = main_menu.make_section(tokens=tokens)
+                section = main_menu.make_section(
+                    tokens=tokens,
+                    return_value_attribute='key',
+                    is_keyed=True,
+                    )
                 if self.has_output_material:
                     output_material_editor = self.output_material_editor(
                         target=self.output_material, session=self._session)
@@ -183,7 +215,10 @@ class MaterialPackageProxy(PackageProxy):
                 has_output_material_section = True
             if self.has_output_material_module:
                 if not has_output_material_section:
-                    section = main_menu.make_section()
+                    section = main_menu.make_section(
+                        return_value_attribute='key',
+                        is_keyed=True,
+                        )
                 tokens = section.tokens[:]
                 tokens.extend([
                     ('omv', 'output material - view'),

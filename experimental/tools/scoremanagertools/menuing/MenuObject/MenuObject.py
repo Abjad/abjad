@@ -109,7 +109,14 @@ class MenuObject(ScoreManagerObject):
             ('tw', 'toggle where'),
             ('where', 'show menu client'),
             ]
-        section = MenuSection(is_hidden=True, session=session, where=where, tokens=tokens)
+        section = MenuSection(
+            session=session, 
+            where=where, 
+            is_keyed=True,
+            tokens=tokens,
+            return_value_attribute='key',
+            is_hidden=True, 
+            )
         return section
 
     def make_is_integer_in_range(self, start=None, stop=None, allow_none=False):

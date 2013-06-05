@@ -58,7 +58,10 @@ class StylesheetFileWrangler(FileWrangler):
 
     def _make_main_menu(self, head=None):
         menu, section = self._io.make_menu(
-            where=self._where, is_numbered=True, is_keyed=False)
+            where=self._where, 
+            return_value_attribute='key',
+            is_numbered=True, 
+            )
         section.tokens = self._make_menu_tokens(include_extension=True)
         tokens = [
             ('new', 'new'),
@@ -66,7 +69,11 @@ class StylesheetFileWrangler(FileWrangler):
             ('ren', 'rename'),
             ('rm', 'remove'),
             ]
-        section = menu.make_section(tokens=tokens)
+        section = menu.make_section(
+            tokens=tokens,
+            return_value_attribute='key',
+            is_keyed=True,
+            )
         return menu
 
     def _make_menu_tokens(self, head=None, include_extension=False):
@@ -113,7 +120,7 @@ class StylesheetFileWrangler(FileWrangler):
 
     def interactively_edit_asset(self, filesystem_path):
         proxy = self.asset_proxy_class(filesystem_path=filesystem_path, session=self._session)
-        proxy.edit()
+        proxy.interactively_edit()
 
     def interactively_make_asset(self):
         from experimental.tools import scoremanagertools
@@ -148,7 +155,7 @@ class StylesheetFileWrangler(FileWrangler):
         if self._session.is_test:
             proxy.make_empty_asset()
         else:
-            proxy.edit()
+            proxy.interactively_edit()
 
     def list_asset_filesystem_paths(self,
         in_built_in_asset_library=True, in_user_asset_library=True,

@@ -12,10 +12,19 @@ class MenuSection(MenuObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, is_hidden=False, is_internally_keyed=False, is_keyed=True,
-        is_numbered=False, is_ranged=False,
-        is_read_only=False, session=None, where=None, title=None, tokens=None,
-        return_value_attribute='key'):
+    def __init__(self, 
+        is_hidden=False, 
+        is_internally_keyed=False, 
+        is_keyed=False,
+        is_numbered=False, 
+        is_ranged=False,
+        is_read_only=False, 
+        session=None, 
+        where=None, 
+        title=None, 
+        tokens=None,
+        return_value_attribute='body',
+        ):
         MenuObject.__init__(self, session=session, where=where, title=title)
         self._is_hidden = is_hidden
         self._is_internally_keyed = is_internally_keyed
@@ -282,5 +291,6 @@ class MenuSection(MenuObject):
             else:
                 key = token.key
             unpacked_entry = (token.number, key, token.body, token.return_value, self)
+            #unpacked_entry = (token.number, token.key, token.body, token.return_value, self)
             result.append(unpacked_entry)
         return result

@@ -222,7 +222,11 @@ class PackageProxy(DirectoryProxy):
             ('rm', 'delete tag'),
             ('get', 'get tag'),
             ]
-        section = menu.make_section(tokens=tokens)
+        section = menu.make_section(
+            tokens=tokens,
+            return_value_attribute='key',
+            is_keyed=True,
+            )
         return menu
 
     def manage_tags(self, clear=True, cache=False):

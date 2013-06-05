@@ -115,7 +115,12 @@ class PerformerCreationWizard(Wizard):
 
     def make_performer_configuration_menu(self, performer):
         menu, section = self._io.make_menu(
-            where=self._where, is_numbered=True, is_ranged=True)
+            where=self._where, 
+            return_value_attribute='key',
+            is_keyed=True,
+            is_numbered=True, 
+            is_ranged=True,
+            )
         section.title = 'select instruments'
         likely_instruments = performer.likely_instruments_based_on_performer_name
         likely_instrument_names = [x().instrument_name for x in likely_instruments]
@@ -134,11 +139,17 @@ class PerformerCreationWizard(Wizard):
             tokens = [
                 ('more', 'more instruments'),
                 ]
-            section = menu.make_section(is_keyed=False)
+            section = menu.make_section(
+                return_value_attribute='key',
+                is_keyed=False,
+                )
         else:
             tokens = instrumenttools.list_instrument_names()
             section.default_index = default_index
-            section = menu.make_section(is_keyed=False)
+            section = menu.make_section(
+                return_value_attribute='key',
+                is_keyed=False,
+                )
         tokens.append(('skip', 'skip instruments'))
         section.tokens = tokens
         return menu

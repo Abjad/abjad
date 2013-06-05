@@ -254,14 +254,15 @@ def test_Menu_run_07():
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    section_1 = menu.make_section(is_keyed=True, is_hidden=False, is_numbered=False, is_ranged=False)
-    section_1.title = 'section'
     tokens = [
         ('add', 'first command'),
         ('rm', 'second command'),
         ('mod', 'third command'),
         ]
-    section_1 = menu.make_section(tokens=tokens)
+    section_1 = menu.make_section(tokens=tokens, 
+        is_keyed=True, return_value_attribute='key')
+    section_1.title = 'section'
+    
     result = menu._run(user_input='foo')
 
     assert menu._session.transcript[-2][1] == \
@@ -320,7 +321,7 @@ def test_Menu_run_08():
         ('rm', 'second command'),
         ('mod', 'third command'),
         ]
-    section_1 = menu.make_section(tokens=tokens, return_value_attribute='body')
+    section = menu.make_section(tokens=tokens, is_keyed=True, return_value_attribute='body')
     result = menu._run(user_input='foo')
 
     menu._session.reinitialize()
@@ -373,7 +374,7 @@ def test_Menu_run_09():
         ]
     section_1 = menu.make_section(
         is_keyed=False, is_hidden=False, is_numbered=False, is_ranged=False,
-        tokens=tokens)
+        tokens=tokens, return_value_attribute='key')
     section_1.title = 'section'
     result = menu._run(user_input='foo')
 
@@ -487,7 +488,7 @@ def test_Menu_run_11():
         ]
     section_1 = menu.make_section(
         is_keyed=True, is_hidden=True, is_numbered=False, is_ranged=False,
-        tokens=tokens)
+        tokens=tokens, return_value_attribute='key')
     section_1.title = 'section'
     result = menu._run(user_input='foo')
 
@@ -593,7 +594,7 @@ def test_Menu_run_13():
         ]
     section_1 = menu.make_section(
         is_keyed=True, is_hidden=False, is_numbered=True, is_ranged=False,
-        tokens=tokens)
+        tokens=tokens, return_value_attribute='key')
     section_1.title = 'section'
     result = menu._run(user_input='foo')
 
@@ -706,7 +707,7 @@ def test_Menu_run_15():
         ]
     section_1 = menu.make_section(
         is_keyed=True, is_hidden=False, is_numbered=False, is_ranged=True,
-        tokens=tokens)
+        tokens=tokens, return_value_attribute='key')
     section_1.title = 'section'
     result = menu._run(user_input='foo')
 

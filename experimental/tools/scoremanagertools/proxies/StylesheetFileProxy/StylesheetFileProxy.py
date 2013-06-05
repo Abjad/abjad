@@ -50,7 +50,12 @@ class StylesheetFileProxy(FileProxy):
             ('ren', 'rename stylesheet'),
             ('vi', 'vi stylesheet'),
             ]
-        menu, section = self._io.make_menu(where=self.where, tokens=tokens)
+        menu, section = self._io.make_menu(
+            where=self.where, 
+            tokens=tokens,
+            return_value_attribute='key',
+            is_keyed=True,
+            )
         return menu
 
     def _space_delimited_lowercase_name_to_asset_name(self, space_delimited_lowercase_name):

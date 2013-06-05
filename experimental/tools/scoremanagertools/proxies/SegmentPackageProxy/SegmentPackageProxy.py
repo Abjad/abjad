@@ -20,11 +20,19 @@ class SegmentPackageProxy(PackageProxy):
         tokens = [
             ('n', 'initializer'),
             ]
-        menu, section = self._io.make_menu(where=self._where, tokens=tokens)
+        menu, section = self._io.make_menu(
+            where=self._where, 
+            return_value_attribute='key',
+            is_keyed=True,
+            tokens=tokens)
         tokens = [
             ('rm', 'remove'),
             ]
-        section = menu.make_section(tokens=tokens)
+        section = menu.make_section(
+            tokens=tokens,
+            return_value_attribute='key',
+            is_keyed=True,
+            )
         return menu
 
     ### READ-ONLY PUBLIC PROPERTIES ###

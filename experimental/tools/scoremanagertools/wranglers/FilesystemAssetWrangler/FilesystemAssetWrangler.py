@@ -199,6 +199,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             where=self._where, 
             is_numbered=True, 
             is_keyed=False,
+            return_value_attribute='key',
             )
         section.tokens = self._make_menu_tokens()
         while True:
@@ -227,6 +228,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             where=self._where,
             is_numbered=True, 
             is_keyed=False,
+            return_value_attribute='key',
             )
         section.tokens = self._make_asset_storehouse_menu_tokens(
             in_built_in_asset_library=False,
