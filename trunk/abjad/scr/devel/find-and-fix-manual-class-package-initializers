@@ -16,15 +16,19 @@ def _find_initializers():
     public_class_package_count = len(public_class_package_initializers)
     print 'Total initializers:         {}'.format(public_class_package_count)
     manual_initializer_count = 0
-    for x in public_class_package_initializers:
-        first_line = file(x, 'r').readlines()[0]
+    for initializer_file_path in public_class_package_initializers:
+        first_line = file(initializer_file_path, 'r').readlines()[0]
         if 'importtools' not in first_line:
-            output = file(x, 'w')
+            output = file(initializer_file_path, 'w')
             output.write('from abjad.tools import importtools\n')
             output.write('\n')
             # TODO: make package_root_name detect correct argument automatically
+            package_root_path = 'abjad'
+            if 'experimental' in initializer_file_path:
+                package_root_path = 'experimental'
             output.write(
-                "importtools.import_structured_package(__path__[0], globals(), package_root_name='abjad')\n")
+                "importtools.import_structured_package(__path__[0], globals(), package_root_name='{}')\n".format(package_root_path)
+                )
             output.close()
             manual_initializer_count += 1
     autoloading_initializer_count = public_class_package_count - manual_initializer_count
