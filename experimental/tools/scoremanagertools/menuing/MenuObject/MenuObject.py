@@ -109,7 +109,7 @@ class MenuObject(ScoreManagerObject):
             ('tw', 'toggle where'),
             ('where', 'show menu client'),
             ]
-        section = MenuSection(
+        menu_section = MenuSection(
             session=session, 
             where=where, 
             is_keyed=True,
@@ -117,7 +117,7 @@ class MenuObject(ScoreManagerObject):
             return_value_attribute='key',
             is_hidden=True, 
             )
-        return section
+        return menu_section
 
     def make_is_integer_in_range(self, start=None, stop=None, allow_none=False):
         return lambda expr: (expr is None and allow_none) or \

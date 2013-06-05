@@ -18,7 +18,7 @@ class Selector(ScoreManagerObject):
 
     def _make_main_menu(self, head=None):
         menu_tokens = self.make_menu_tokens(head=head)
-        menu, section = self._io.make_menu(where=self._where,
+        menu, menu_section = self._io.make_menu(where=self._where,
             is_keyed=self.is_keyed,
             is_numbered=self.is_numbered,
             is_ranged=self.is_ranged,

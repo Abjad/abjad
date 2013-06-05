@@ -38,7 +38,7 @@ class ScorePackageProxy(PackageProxy):
             ('f', 'specifiers'),
             ('s', 'setup'),
             ]
-        menu, section = self._io.make_menu(
+        menu, menu_section = self._io.make_menu(
             where=self._where, 
             menu_tokens=menu_tokens,
             is_numbered=False, 
@@ -401,17 +401,17 @@ class ScorePackageProxy(PackageProxy):
         self.fix_score_package_directory_structure(is_interactive=False)
 
     def make_setup_menu(self):
-        setup_menu, section = self._io.make_menu(
+        setup_menu, menu_section = self._io.make_menu(
             where=self._where,
             is_numbered=True, 
             is_keyed=False,
             return_value_attribute='key',
             )
-        section.menu_tokens = self.setup_value_menu_tokens
+        menu_section.menu_tokens = self.setup_value_menu_tokens
         return setup_menu
 
     def make_svn_menu(self):
-        menu, section = self._io.make_menu(
+        menu, menu_section = self._io.make_menu(
             where=self._where, 
             is_keyed=False,
             return_value_attribute='key',
@@ -421,7 +421,7 @@ class ScorePackageProxy(PackageProxy):
             ('add', 'add'),
             ('ci', 'ci'),
             ]
-        section.menu_tokens = menu_tokens
+        menu_section.menu_tokens = menu_tokens
         return menu
 
     def manage_materials(self):

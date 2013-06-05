@@ -88,7 +88,7 @@ class ScoreManager(ScoreManagerObject):
             ('y', 'stylesheets'),
             ('new', 'new score'),
             ]
-        section = menu.make_section(
+        menu_section = menu.make_section(
             menu_tokens=menu_tokens,
             return_value_attribute='key',
             is_keyed=True,
@@ -121,7 +121,7 @@ class ScoreManager(ScoreManagerObject):
             self._session.is_first_run = False
         else:
             menu_tokens = self.score_package_wrangler._make_menu_tokens()
-        menu, section = self._io.make_menu(
+        menu, menu_section = self._io.make_menu(
             menu_tokens=menu_tokens,
             is_numbered=True, 
             is_keyed=False, 
@@ -137,7 +137,7 @@ class ScoreManager(ScoreManagerObject):
             ('st', 'svn status scores'),
             ('up', 'svn update scores'),
             ]
-        menu, section = self._io.make_menu(
+        menu, menu_section = self._io.make_menu(
             menu_tokens=menu_tokens,
             where=self._where,
             return_value_attribute='key',

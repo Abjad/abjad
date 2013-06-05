@@ -57,19 +57,19 @@ class StylesheetFileWrangler(FileWrangler):
             self.interactively_edit_asset(result)
 
     def _make_main_menu(self, head=None):
-        menu, section = self._io.make_menu(
+        menu, menu_section = self._io.make_menu(
             where=self._where, 
             return_value_attribute='key',
             is_numbered=True, 
             )
-        section.menu_tokens = self._make_menu_tokens(include_extension=True)
+        menu_section.menu_tokens = self._make_menu_tokens(include_extension=True)
         menu_tokens = [
             ('new', 'new'),
             ('cp', 'copy'),
             ('ren', 'rename'),
             ('rm', 'remove'),
             ]
-        section = menu.make_section(
+        menu_section = menu.make_section(
             menu_tokens=menu_tokens,
             return_value_attribute='key',
             is_keyed=True,

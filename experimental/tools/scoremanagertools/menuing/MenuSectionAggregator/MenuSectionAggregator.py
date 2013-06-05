@@ -7,13 +7,13 @@ class MenuSectionAggregator(MenuObject):
 
     def __init__(self, session=None, where=None):
         MenuObject.__init__(self, session=session, where=where)
-        self._sections = []
+        self._menu_sections = []
 
     ### READ-ONLY PROPERTIES ###
 
     @property
-    def sections(self):
-        return self._sections
+    def menu_sections(self):
+        return self._menu_sections
 
     ### PUBLIC METHODS ###
 
@@ -59,9 +59,9 @@ class MenuSectionAggregator(MenuObject):
 
     def show_hidden_menu_tokens(self):
         menu_lines = []
-        for section in self.sections:
-            if section.is_hidden:
-                for menu_token in section.menu_tokens:
+        for menu_section in self.menu_sections:
+            if menu_section.is_hidden:
+                for menu_token in menu_section.menu_tokens:
                     key, body = menu_token.key, menu_token.body
                     menu_line = self.make_tab(1) + ' '
                     menu_line += '{} ({})'.format(body, key)

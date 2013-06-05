@@ -106,7 +106,7 @@ class MenuSection(MenuObject):
                 if default_index < 0:
                     raise ValueError('default index must be positive integer.')
                 if count <= default_index:
-                    raise ValueError('only {} menu entry menu_tokens in section.'.format(count))
+                    raise ValueError('only {} menu entry menu_tokens in menu_section.'.format(count))
             self._default_index = default_index
         return property(**locals())
 

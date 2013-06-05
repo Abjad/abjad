@@ -121,7 +121,7 @@ class MaterialPackageProxy(PackageProxy):
                 menu_tokens = [
                     ('pdfm', 'output pdf - make'),
                     ]
-                section = main_menu.make_section(
+                menu_section = main_menu.make_section(
                     menu_tokens=menu_tokens,
                     return_value_attribute='key',
                     is_keyed=True,
@@ -129,7 +129,7 @@ class MaterialPackageProxy(PackageProxy):
                 has_illustration_pdf_section = True
         if self.has_illustration_pdf:
             if not has_illustration_pdf_section:
-                section = main_menu.make_section(
+                menu_section = main_menu.make_section(
                     return_value_attribute='key',
                     is_keyed=True,
                     )
@@ -138,16 +138,16 @@ class MaterialPackageProxy(PackageProxy):
                 ('pdfd', 'output pdf - delete'),
                 ])
             hidden_section.menu_tokens = hidden_section_tokens
-            section_tokens = section.menu_tokens[:]
+            section_tokens = menu_section.menu_tokens[:]
             section_tokens.extend([
                 ('pdfv', 'output pdf - view'),
                 ])
-            section.menu_tokens = section_tokens
+            menu_section.menu_tokens = section_tokens
 
     def _make_main_menu_section_for_initializer(self, main_menu, hidden_section):
         if not self.has_initializer:
-            section = main_menu.make_section()
-            section.title = '(Note: package has no initializer.)'
+            menu_section = main_menu.make_section()
+            menu_section.title = '(Note: package has no initializer.)'
         menu_tokens = hidden_section.menu_tokens[:]
         menu_tokens.append(('inr', 'initializer - restore'))
         menu_tokens.append(('inv', 'view package initializer'))
@@ -191,7 +191,7 @@ class MaterialPackageProxy(PackageProxy):
                 menu_tokens = [
                     ('omm', 'output material = make'),
                     ]
-                section = main_menu.make_section(
+                menu_section = main_menu.make_section(
                     menu_tokens=menu_tokens,
                     return_value_attribute='key',
                     is_keyed=True,
@@ -201,7 +201,7 @@ class MaterialPackageProxy(PackageProxy):
                 menu_tokens = [
                     ('omi', 'output material - interact'),
                     ]
-                section = main_menu.make_section(
+                menu_section = main_menu.make_section(
                     menu_tokens=menu_tokens,
                     return_value_attribute='key',
                     is_keyed=True,
@@ -211,19 +211,19 @@ class MaterialPackageProxy(PackageProxy):
                         target=self.output_material, session=self._session)
                     target_summary_lines = output_material_editor.target_summary_lines
                     if target_summary_lines:
-                        section.title = target_summary_lines
+                        menu_section.title = target_summary_lines
                 has_output_material_section = True
             if self.has_output_material_module:
                 if not has_output_material_section:
-                    section = main_menu.make_section(
+                    menu_section = main_menu.make_section(
                         return_value_attribute='key',
                         is_keyed=True,
                         )
-                menu_tokens = section.menu_tokens[:]
+                menu_tokens = menu_section.menu_tokens[:]
                 menu_tokens.extend([
                     ('omv', 'output material - view'),
                     ])
-                section.menu_tokens = menu_tokens
+                menu_section.menu_tokens = menu_tokens
                 hidden_tokens.append(('omdelete', 'output material - delete'))
                 hidden_tokens.append(('omfetch', 'output material - fetch'))
         hidden_tokens.append(('omcanned', 'output material - copy canned module'))

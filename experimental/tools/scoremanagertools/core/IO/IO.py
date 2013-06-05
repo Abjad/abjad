@@ -117,7 +117,7 @@ class IO(AbjadObject):
         menu_tokens=None, return_value_attribute='body'):
         from experimental.tools import scoremanagertools
         menu = scoremanagertools.menuing.Menu(where=where, session=self._session)
-        section = menu.make_section(
+        menu_section = menu.make_section(
             is_hidden=is_hidden, 
             is_internally_keyed=is_internally_keyed, 
             is_keyed=is_keyed,
@@ -126,7 +126,7 @@ class IO(AbjadObject):
             menu_tokens=menu_tokens, 
             return_value_attribute=return_value_attribute,
             )
-        return menu, section
+        return menu, menu_section
 
     def pop_next_user_response_from_user_input(self):
         self._session.last_command_was_composite = False

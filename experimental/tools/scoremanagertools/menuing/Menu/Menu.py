@@ -10,13 +10,13 @@ class Menu(MenuSectionAggregator):
 
     def __init__(self, session=None, where=None):
         MenuSectionAggregator.__init__(self, session=session, where=where)
-        self.sections.append(self.make_default_hidden_section(session=session, where=where))
+        self.menu_sections.append(self.make_default_hidden_section(session=session, where=where))
         self.explicit_title = None
 
     ### SPECIAL METHODS ###
 
     def __len__(self):
-        return len(self.sections)
+        return len(self.menu_sections)
 
     ### PRIVATE METHODS ###
 
@@ -40,72 +40,72 @@ class Menu(MenuSectionAggregator):
 
     @property
     def default_value(self):
-        for section in self.sections:
-            if section.has_default_value:
-                return section.default_value
+        for menu_section in self.menu_sections:
+            if menu_section.has_default_value:
+                return menu_section.default_value
 
     @property
     def first_nonhidden_return_value_in_menu(self):
-        for section in self.sections:
-            if not section.is_hidden:
-                if section.menu_token_return_values:
-                    return section.menu_token_return_values[0]
+        for menu_section in self.menu_sections:
+            if not menu_section.is_hidden:
+                if menu_section.menu_token_return_values:
+                    return menu_section.menu_token_return_values[0]
 
     @property
     def has_default_valued_section(self):
-        return any([section.has_default_value for section in self.sections])
+        return any([menu_section.has_default_value for menu_section in self.menu_sections])
 
     @property
     def has_hidden_section(self):
-        return any([section.is_hidden for section in self.sections])
+        return any([menu_section.is_hidden for menu_section in self.menu_sections])
 
     @property
     def has_keyed_section(self):
-        return any([section.is_keyed for section in self.sections])
+        return any([menu_section.is_keyed for menu_section in self.menu_sections])
 
     @property
     def has_numbered_section(self):
-        return any([section.is_numbered for section in self.sections])
+        return any([menu_section.is_numbered for menu_section in self.menu_sections])
 
     @property
     def has_ranged_section(self):
-        return any([section.is_ranged for section in self.sections])
+        return any([menu_section.is_ranged for menu_section in self.menu_sections])
 
     @property
     def hidden_section(self):
-        for section in self.sections:
-            if section.is_hidden:
-                return section
+        for menu_section in self.menu_sections:
+            if menu_section.is_hidden:
+                return menu_section
 
     # TODO: remove?
     @property
     def menu_token_bodies(self):
         result = []
-        for section in self.sections:
-            result.extend(section.menu_token_bodies)
+        for menu_section in self.menu_sections:
+            result.extend(menu_section.menu_token_bodies)
         return result
 
     # TODO: remove?
     @property
     def menu_token_keys(self):
         result = []
-        for section in self.sections:
-            result.extend(section.menu_token_keys)
+        for menu_section in self.menu_sections:
+            result.extend(menu_section.menu_token_keys)
         return result
 
     # TODO: remove?
     @property
     def menu_token_return_values(self):
         result = []
-        for section in self.sections:
-            result.extend(section.menu_token_return_values)
+        for menu_section in self.menu_sections:
+            result.extend(menu_section.menu_token_return_values)
         return result
 
     @property
     def menu_tokens(self):
         result = []
-        for section in self.sections:
-            result.extend(section.menu_tokens)
+        for menu_section in self.menu_sections:
+            result.extend(menu_section.menu_tokens)
         return result
 
     @property
@@ -129,24 +129,24 @@ class Menu(MenuSectionAggregator):
 
     @property
     def numbered_section(self):
-        for section in self.sections:
-            if section.is_numbered:
-                return section
+        for menu_section in self.menu_sections:
+            if menu_section.is_numbered:
+                return menu_section
 
     @property
     def ranged_section(self):
-        for section in self.sections:
-            if section.is_ranged:
-                return section
+        for menu_section in self.menu_sections:
+            if menu_section.is_ranged:
+                return menu_section
 
     @property
     def section_lines(self):
         menu_lines = []
-        for section in self.sections:
-            section_menu_lines = section.make_menu_lines()
-            if not section.is_hidden:
+        for menu_section in self.menu_sections:
+            section_menu_lines = menu_section.make_menu_lines()
+            if not menu_section.is_hidden:
                 if not self._session.nonnumbered_menu_sections_are_hidden or \
-                    section.is_numbered:
+                    menu_section.is_numbered:
                     menu_lines.extend(section_menu_lines)
         if self.hide_current_run:
             menu_lines = []
@@ -155,8 +155,8 @@ class Menu(MenuSectionAggregator):
     @property
     def menu_tokens(self):
         result = []
-        for section in self.sections:
-            result.extend(section.menu_tokens)
+        for menu_section in self.menu_sections:
+            result.extend(menu_section.menu_tokens)
         return result
 
     ### READ / WRITE PUBLIC PROPERTIES ###
@@ -224,7 +224,7 @@ class Menu(MenuSectionAggregator):
         return_value_attribute='body'):
         assert not (is_numbered and self.has_numbered_section)
         assert not (is_ranged and self.has_ranged_section)
-        section = MenuSection(
+        menu_section = MenuSection(
             is_hidden=is_hidden, 
             is_internally_keyed=is_internally_keyed,
             is_keyed=is_keyed, 
@@ -235,19 +235,19 @@ class Menu(MenuSectionAggregator):
             session=self._session, 
             where=self.where,
             )
-        self.sections.append(section)
-        return section
+        self.menu_sections.append(menu_section)
+        return menu_section
 
     def return_value_to_location_pair(self, return_value):
-        for i, section in enumerate(self.sections):
-            if return_value in section.menu_token_return_values:
-                return (i, section.menu_token_return_values.index(return_value))
+        for i, menu_section in enumerate(self.menu_sections):
+            if return_value in menu_section.menu_token_return_values:
+                return (i, menu_section.menu_token_return_values.index(return_value))
 
     def return_value_to_next_return_value_in_section(self, return_value):
         section_index, entry_index = self.return_value_to_location_pair(return_value)
-        section = self.sections[section_index]
-        entry_index = (entry_index + 1) % len(section)
-        return section.menu_token_return_values[entry_index]
+        menu_section = self.menu_sections[section_index]
+        entry_index = (entry_index + 1) % len(menu_section)
+        return menu_section.menu_token_return_values[entry_index]
 
     # TODO: apply default indicators at display time so this can be completely removed
     def strip_default_indicators_from_strings(self, expr):

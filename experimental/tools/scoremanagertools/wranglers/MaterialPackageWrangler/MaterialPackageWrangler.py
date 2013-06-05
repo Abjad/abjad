@@ -86,19 +86,19 @@ class MaterialPackageWrangler(PackageWrangler):
         return self._material_package_maker_wrangler._initialize_asset_proxy(package_path)
 
     def _make_main_menu(self, head=None):
-        menu, section = self._io.make_menu(
+        menu, menu_section = self._io.make_menu(
             where=self._where, 
             return_value_attribute='key',
             is_numbered=True, 
             is_keyed=False,
             )
-        section.menu_tokens = self._make_menu_tokens(head=head)
+        menu_section.menu_tokens = self._make_menu_tokens(head=head)
         menu_tokens = [
             ('d', 'data-only'),
             ('h', 'handmade'),
             ('m', 'maker-made'),
             ]
-        section = menu.make_section(
+        menu_section = menu.make_section(
             menu_tokens=menu_tokens,
             is_keyed=True,
             return_value_attribute='key',

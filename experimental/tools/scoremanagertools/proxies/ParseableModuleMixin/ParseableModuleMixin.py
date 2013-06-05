@@ -18,12 +18,12 @@ class ParseableModuleMixin(AbjadObject):
 
     def _format_lines(self):
         lines = []
-        for section, is_sorted, blank_line_count in self.file_sections:
-            if section:
-                section = section[:]
+        for menu_section, is_sorted, blank_line_count in self.file_sections:
+            if menu_section:
+                menu_section = menu_section[:]
                 if is_sorted:
-                    section.sort()
-                lines.extend(section)
+                    menu_section.sort()
+                lines.extend(menu_section)
                 for x in range(blank_line_count):
                     lines.append('\n')
         if lines:
@@ -45,8 +45,8 @@ class ParseableModuleMixin(AbjadObject):
     ### PUBLIC METHODS ###
 
     def clear(self):
-        for section, is_sorted, blank_line_count  in self.file_sections:
-            section[:] = []
+        for menu_section, is_sorted, blank_line_count  in self.file_sections:
+            menu_section[:] = []
 
     def parse(self):
         is_parsable = True

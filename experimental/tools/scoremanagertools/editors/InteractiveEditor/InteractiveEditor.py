@@ -52,14 +52,14 @@ class InteractiveEditor(ScoreManagerObject):
     def _make_main_menu(self):
         menu_tokens = self.target_attribute_tokens
         is_keyed = self.target_manifest.is_keyed
-        menu, section = self._io.make_menu(
+        menu, menu_section = self._io.make_menu(
             where=self._where,
             menu_tokens=menu_tokens,
             is_keyed=is_keyed,
             return_value_attribute='key',
             is_numbered=True,
             )
-        section.show_existing_values = True
+        menu_section.show_existing_values = True
         menu_tokens = menu.hidden_section.menu_tokens[:]
         menu_tokens.extend([
             ('done', 'done'),

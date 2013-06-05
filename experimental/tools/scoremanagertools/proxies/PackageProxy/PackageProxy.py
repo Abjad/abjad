@@ -216,13 +216,13 @@ class PackageProxy(DirectoryProxy):
 
     def make_tags_menu(self):
         menu_tokens = self.formatted_tags
-        menu, section = self._io.make_menu(where=self._where, is_keyed=False, menu_tokens=menu_tokens)
+        menu, menu_section = self._io.make_menu(where=self._where, is_keyed=False, menu_tokens=menu_tokens)
         menu_tokens = [
             ('add', 'add tag'),
             ('rm', 'delete tag'),
             ('get', 'get tag'),
             ]
-        section = menu.make_section(
+        menu_section = menu.make_section(
             menu_tokens=menu_tokens,
             return_value_attribute='key',
             is_keyed=True,

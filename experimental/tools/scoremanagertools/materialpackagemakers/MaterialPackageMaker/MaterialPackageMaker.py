@@ -42,7 +42,7 @@ class MaterialPackageMaker(MaterialPackageProxy):
 
     def _make_main_menu_section_for_user_input_module(self, main_menu, hidden_section):
         menu_tokens = self.user_input_wrapper_in_memory.editable_lines
-        section = main_menu.make_section(
+        menu_section = main_menu.make_section(
             is_numbered=True,
             is_keyed=True,
             menu_tokens=menu_tokens,
@@ -55,7 +55,7 @@ class MaterialPackageMaker(MaterialPackageProxy):
                 ('uis', 'user input - show demo values'),
                 ('uimv', 'user input module - view'),
             ]
-        section = main_menu.make_section(
+        menu_section = main_menu.make_section(
             menu_tokens=menu_tokens,
             is_keyed=True,
             return_value_attribute='key',

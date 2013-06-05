@@ -321,7 +321,7 @@ def test_Menu_run_08():
         ('rm', 'second command'),
         ('mod', 'third command'),
         ]
-    section = menu.make_section(menu_tokens=menu_tokens, is_keyed=True, return_value_attribute='body')
+    menu_section = menu.make_section(menu_tokens=menu_tokens, is_keyed=True, return_value_attribute='body')
     result = menu._run(user_input='foo')
 
     menu._session.reinitialize()

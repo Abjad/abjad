@@ -73,7 +73,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
 
     def _make_main_menu(self, head=None):
         menu_tokens = self.list_asset_names(head=head)
-        menu, section = self._io.make_menu(
+        menu, menu_section = self._io.make_menu(
             where=self._where, 
             is_numbered=True, 
             is_keyed=True,
@@ -83,7 +83,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         menu_tokens = [
             ('new', 'new material package maker'),
             ]
-        section = menu.make_section(
+        menu_section = menu.make_section(
             menu_tokens=menu_tokens,
             return_value_attribute='key',
             )

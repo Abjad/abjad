@@ -114,14 +114,14 @@ class PerformerCreationWizard(Wizard):
         self._session.restore_breadcrumbs(cache=cache)
 
     def make_performer_configuration_menu(self, performer):
-        menu, section = self._io.make_menu(
+        menu, menu_section = self._io.make_menu(
             where=self._where, 
             return_value_attribute='key',
             is_keyed=True,
             is_numbered=True, 
             is_ranged=True,
             )
-        section.title = 'select instruments'
+        menu_section.title = 'select instruments'
         likely_instruments = performer.likely_instruments_based_on_performer_name
         likely_instrument_names = [x().instrument_name for x in likely_instruments]
         most_likely_instrument = performer.most_likely_instrument_based_on_performer_name
@@ -134,22 +134,22 @@ class PerformerCreationWizard(Wizard):
             most_likely_number = most_likely_index + 1
             default_index = most_likely_index
         if likely_instruments:
-            section.menu_tokens = likely_instrument_names
-            section.default_index = default_index
+            menu_section.menu_tokens = likely_instrument_names
+            menu_section.default_index = default_index
             menu_tokens = [
                 ('more', 'more instruments'),
                 ]
-            section = menu.make_section(
+            menu_section = menu.make_section(
                 return_value_attribute='key',
                 is_keyed=False,
                 )
         else:
             menu_tokens = instrumenttools.list_instrument_names()
-            section.default_index = default_index
-            section = menu.make_section(
+            menu_section.default_index = default_index
+            menu_section = menu.make_section(
                 return_value_attribute='key',
                 is_keyed=False,
                 )
         menu_tokens.append(('skip', 'skip instruments'))
-        section.menu_tokens = menu_tokens
+        menu_section.menu_tokens = menu_tokens
         return menu

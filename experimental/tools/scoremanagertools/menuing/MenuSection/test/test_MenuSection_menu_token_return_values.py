@@ -9,44 +9,44 @@ def test_MenuSection_menu_token_return_values_01():
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
     menu_tokens = ['apple', 'banana', 'cherry']
-    section = menu.make_section(is_numbered=True, menu_tokens=menu_tokens)
-    section.title = 'section'
-    assert section.is_numbered
-    assert section.menu_token_return_values == ['apple', 'banana', 'cherry']
-    assert section.menu_token_return_values == section.menu_token_bodies
+    menu_section = menu.make_section(is_numbered=True, menu_tokens=menu_tokens)
+    menu_section.title = 'section'
+    assert menu_section.is_numbered
+    assert menu_section.menu_token_return_values == ['apple', 'banana', 'cherry']
+    assert menu_section.menu_token_return_values == menu_section.menu_token_bodies
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
     menu_tokens = ['apple', 'banana', 'cherry']
-    section = menu.make_section(menu_tokens=menu_tokens)
-    section.title = 'section'
-    assert not section.is_numbered
-    assert section.menu_token_return_values == ['apple', 'banana', 'cherry']
-    assert section.menu_token_return_values == section.menu_token_bodies
+    menu_section = menu.make_section(menu_tokens=menu_tokens)
+    menu_section.title = 'section'
+    assert not menu_section.is_numbered
+    assert menu_section.menu_token_return_values == ['apple', 'banana', 'cherry']
+    assert menu_section.menu_token_return_values == menu_section.menu_token_bodies
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
     menu_tokens = ['apple', 'banana', 'cherry']
-    section = menu.make_section(is_numbered=True, menu_tokens=menu_tokens, return_value_attribute='body')
-    section.title = 'section'
-    assert section.is_numbered
-    assert section.menu_token_return_values == ['apple', 'banana', 'cherry']
-    assert section.menu_token_return_values == section.menu_token_bodies
+    menu_section = menu.make_section(is_numbered=True, menu_tokens=menu_tokens, return_value_attribute='body')
+    menu_section.title = 'section'
+    assert menu_section.is_numbered
+    assert menu_section.menu_token_return_values == ['apple', 'banana', 'cherry']
+    assert menu_section.menu_token_return_values == menu_section.menu_token_bodies
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
     menu_tokens = ['apple', 'banana', 'cherry']
-    section = menu.make_section(menu_tokens=menu_tokens, return_value_attribute='body')
-    section.title = 'section'
-    assert not section.is_numbered
-    assert section.menu_token_return_values == ['apple', 'banana', 'cherry']
-    assert section.menu_token_return_values == section.menu_token_bodies
+    menu_section = menu.make_section(menu_tokens=menu_tokens, return_value_attribute='body')
+    menu_section.title = 'section'
+    assert not menu_section.is_numbered
+    assert menu_section.menu_token_return_values == ['apple', 'banana', 'cherry']
+    assert menu_section.menu_token_return_values == menu_section.menu_token_bodies
 
 
 def test_MenuSection_menu_token_return_values_02():
     '''Menu entry return values vary when menu entry menu_tokens are tuples.
     You can explicitly demand a return value equal either to the menu entry key or body.
-    Note that section numbering plays no role in this.
+    Note that menu_section numbering plays no role in this.
     '''
 
     menu = scoremanagertools.menuing.Menu()
@@ -56,12 +56,12 @@ def test_MenuSection_menu_token_return_values_02():
         ('rm', 'delete something'),
         ('mod', 'modify something'),
         ]
-    section = menu.make_section(is_numbered=True, menu_tokens=menu_tokens,
+    menu_section = menu.make_section(is_numbered=True, menu_tokens=menu_tokens,
         return_value_attribute='key')
-    section.title = 'section'
-    assert section.is_numbered
-    assert section.menu_token_return_values == ['add', 'rm', 'mod']
-    assert section.menu_token_return_values == section.menu_token_keys
+    menu_section.title = 'section'
+    assert menu_section.is_numbered
+    assert menu_section.menu_token_return_values == ['add', 'rm', 'mod']
+    assert menu_section.menu_token_return_values == menu_section.menu_token_keys
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
@@ -70,11 +70,11 @@ def test_MenuSection_menu_token_return_values_02():
         ('rm', 'delete something'),
         ('mod', 'modify something'),
         ]
-    section = menu.make_section(menu_tokens=menu_tokens, return_value_attribute='key')
-    section.title = 'section'
-    assert not section.is_numbered
-    assert section.menu_token_return_values == ['add', 'rm', 'mod']
-    assert section.menu_token_return_values == section.menu_token_keys
+    menu_section = menu.make_section(menu_tokens=menu_tokens, return_value_attribute='key')
+    menu_section.title = 'section'
+    assert not menu_section.is_numbered
+    assert menu_section.menu_token_return_values == ['add', 'rm', 'mod']
+    assert menu_section.menu_token_return_values == menu_section.menu_token_keys
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
@@ -83,11 +83,11 @@ def test_MenuSection_menu_token_return_values_02():
         ('rm', 'delete something'),
         ('mod', 'modify something'),
         ]
-    section = menu.make_section(is_numbered=True, menu_tokens=menu_tokens, return_value_attribute='body')
-    section.title = 'section'
-    assert section.is_numbered
-    assert section.menu_token_return_values == ['add something', 'delete something', 'modify something']
-    assert section.menu_token_return_values == section.menu_token_bodies
+    menu_section = menu.make_section(is_numbered=True, menu_tokens=menu_tokens, return_value_attribute='body')
+    menu_section.title = 'section'
+    assert menu_section.is_numbered
+    assert menu_section.menu_token_return_values == ['add something', 'delete something', 'modify something']
+    assert menu_section.menu_token_return_values == menu_section.menu_token_bodies
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
@@ -96,11 +96,11 @@ def test_MenuSection_menu_token_return_values_02():
         ('rm', 'delete something'),
         ('mod', 'modify something'),
         ]
-    section = menu.make_section(menu_tokens=menu_tokens, return_value_attribute='body')
-    section.title = 'section'
-    assert not section.is_numbered
-    assert section.menu_token_return_values == ['add something', 'delete something', 'modify something']
-    assert section.menu_token_return_values == section.menu_token_bodies
+    menu_section = menu.make_section(menu_tokens=menu_tokens, return_value_attribute='body')
+    menu_section.title = 'section'
+    assert not menu_section.is_numbered
+    assert menu_section.menu_token_return_values == ['add something', 'delete something', 'modify something']
+    assert menu_section.menu_token_return_values == menu_section.menu_token_bodies
 
 
 def test_MenuSection_menu_token_return_values_03():
@@ -115,7 +115,7 @@ def test_MenuSection_menu_token_return_values_03():
         ('rm', 'delete something', None, 'return value B'),
         ('mod', 'modify something', None, 'return value C'),
         ]
-    section = menu.make_section(menu_tokens=menu_tokens, return_value_attribute='prepopulated')
-    section.title = 'section'
-    assert not section.is_numbered
-    assert section.menu_token_return_values == ['return value A', 'return value B', 'return value C']
+    menu_section = menu.make_section(menu_tokens=menu_tokens, return_value_attribute='prepopulated')
+    menu_section.title = 'section'
+    assert not menu_section.is_numbered
+    assert menu_section.menu_token_return_values == ['return value A', 'return value B', 'return value C']

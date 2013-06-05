@@ -50,7 +50,7 @@ class StylesheetFileProxy(FileProxy):
             ('ren', 'rename stylesheet'),
             ('vi', 'vi stylesheet'),
             ]
-        menu, section = self._io.make_menu(
+        menu, menu_section = self._io.make_menu(
             where=self.where, 
             menu_tokens=menu_tokens,
             return_value_attribute='key',
