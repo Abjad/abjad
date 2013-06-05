@@ -77,6 +77,25 @@ class Menu(MenuSectionAggregator):
             if menu_section.is_hidden:
                 return menu_section
 
+    @property
+    def menu_lines(self):
+        result = []
+        result.extend(self.menu_title_lines)
+        result.extend(self.section_lines)
+        return result
+
+    @property
+    def menu_title_lines(self):
+        menu_lines = []
+        if not self.hide_current_run:
+            if self.explicit_title is not None:
+                title = self.explicit_title
+            else:
+                title = self._session.menu_header
+            menu_lines.append(stringtools.capitalize_string_start(title))
+            menu_lines.append('')
+        return menu_lines
+
     # TODO: remove?
     @property
     def menu_token_bodies(self):
@@ -109,25 +128,6 @@ class Menu(MenuSectionAggregator):
         return result
 
     @property
-    def menu_lines(self):
-        result = []
-        result.extend(self.menu_title_lines)
-        result.extend(self.section_lines)
-        return result
-
-    @property
-    def menu_title_lines(self):
-        menu_lines = []
-        if not self.hide_current_run:
-            if self.explicit_title is not None:
-                title = self.explicit_title
-            else:
-                title = self._session.menu_header
-            menu_lines.append(stringtools.capitalize_string_start(title))
-            menu_lines.append('')
-        return menu_lines
-
-    @property
     def numbered_section(self):
         for menu_section in self.menu_sections:
             if menu_section.is_numbered:
@@ -151,13 +151,6 @@ class Menu(MenuSectionAggregator):
         if self.hide_current_run:
             menu_lines = []
         return menu_lines
-
-    @property
-    def menu_tokens(self):
-        result = []
-        for menu_section in self.menu_sections:
-            result.extend(menu_section.menu_tokens)
-        return result
 
     ### READ / WRITE PUBLIC PROPERTIES ###
 

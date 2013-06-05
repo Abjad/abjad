@@ -144,6 +144,9 @@ class MaterialPackageMaker(MaterialPackageProxy):
         self.user_input_wrapper_in_memory[key] = new_value
         self.user_input_module_proxy.write_user_input_wrapper_to_disk(self.user_input_wrapper_in_memory)
 
+    def interactively_view_user_input_module(self):
+        self.user_input_module_proxy.view()
+
     def load_user_input_wrapper_demo_values(self, prompt=False):
         user_input_demo_values = copy.deepcopy(type(self).user_input_demo_values)
         for key, value in user_input_demo_values:
@@ -197,18 +200,15 @@ class MaterialPackageMaker(MaterialPackageProxy):
         self._io.display(lines)
         self._io.proceed(is_interactive=prompt)
 
+    def swap_user_input_values_default_status(self):
+        self._session.swap_user_input_values_default_status()
+
     def write_stub_user_input_module_to_disk(self, is_interactive=False):
         empty_user_input_wrapper = self.initialize_empty_user_input_wrapper()
         self.user_input_module_proxy.write_user_input_wrapper_to_disk(empty_user_input_wrapper)
         self._io.proceed('stub user input module written to disk.', is_interactive=is_interactive)
 
     ### UI MANIFEST ###
-
-    def swap_user_input_values_default_status(self):
-        self._session.swap_user_input_values_default_status()
-
-    def interactively_view_user_input_module(self):
-        self.user_input_module_proxy.view()
 
     user_input_to_action = MaterialPackageProxy.user_input_to_action.copy()
     user_input_to_action.update({

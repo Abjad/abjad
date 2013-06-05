@@ -40,12 +40,6 @@ class ModuleProxy(FileProxy):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def parent_directory_filesystem_path(self):
-        if self.packagesystem_path:
-            return self.configuration.packagesystem_path_to_filesystem_path(
-                self.parent_directory_packagesystem_path)
-
-    @property
     def packagesystem_basename(self):
         if self.packagesystem_path:
             return self.packagesystem_path.split('.')[-1]
@@ -53,6 +47,12 @@ class ModuleProxy(FileProxy):
     @property
     def packagesystem_path(self):
         return self._packagesystem_path
+
+    @property
+    def parent_directory_filesystem_path(self):
+        if self.packagesystem_path:
+            return self.configuration.packagesystem_path_to_filesystem_path(
+                self.parent_directory_packagesystem_path)
 
     @property
     def parent_directory_packagesystem_path(self):

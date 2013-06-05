@@ -92,6 +92,13 @@ class PackageProxy(DirectoryProxy):
         return self.package_path.split('.')[0]
 
     @property
+    def parent_directory_packagesystem_path(self):
+        if self.package_path is not None:
+            result = '.'.join(self.package_path.split('.')[:-1])
+            if result:
+                return result
+
+    @property
     def parent_initializer_file_name(self):
         if self.parent_directory_packagesystem_path:
             return os.path.join(self.parent_directory_filesystem_path, '__init__.py')
@@ -103,13 +110,6 @@ class PackageProxy(DirectoryProxy):
         if self.has_parent_initializer:
             return scoremanagertools.proxies.InitializerModuleProxy(
                 self.parent_initializer_file_name, session=self._session)
-
-    @property
-    def parent_directory_packagesystem_path(self):
-        if self.package_path is not None:
-            result = '.'.join(self.package_path.split('.')[:-1])
-            if result:
-                return result
 
     @property
     def public_names(self):
@@ -211,6 +211,9 @@ class PackageProxy(DirectoryProxy):
             return
         self.package_path = result
 
+    def interactively_view_initializer(self):
+        self.initializer_file_proxy.view()
+
     def interactively_write_initializer_boilerplate(self):
         self.initializer_file_proxy.interactively_write_boilerplate()
 
@@ -257,9 +260,6 @@ class PackageProxy(DirectoryProxy):
 
     def run_first_time(self, **kwargs):
         self._run(**kwargs)
-
-    def interactively_view_initializer(self):
-        self.initializer_file_proxy.view()
 
     def write_initializer_stub_file_to_disk(self):
         self.initializer_file_proxy.write_stub_file_to_disk(prompt=True)

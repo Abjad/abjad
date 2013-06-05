@@ -110,10 +110,6 @@ class MenuSection(MenuObject):
             self._default_index = default_index
         return property(**locals())
 
-    @property
-    def return_value_attribute(self):
-        return self._return_value_attribute
-
     @apply
     def menu_tokens():
         def fget(self):
@@ -141,6 +137,10 @@ class MenuSection(MenuObject):
             else:
                 raise TypeError(menu_tokens)
         return property(**locals())
+
+    @property
+    def return_value_attribute(self):
+        return self._return_value_attribute
 
     ### PUBLIC METHODS ###
 

@@ -351,11 +351,6 @@ class MaterialPackageProxy(PackageProxy):
             return os.path.join(self.filesystem_path, 'illustration_builder.py')
 
     @property
-    def illustration_builder_packagesystem_path(self):
-        if self.should_have_illustration_builder_module:
-            return '.'.join([self.package_path, 'illustration_builder'])
-
-    @property
     def illustration_builder_module_proxy(self):
         from experimental.tools import scoremanagertools
         if self.should_have_illustration_builder_module:
@@ -363,6 +358,11 @@ class MaterialPackageProxy(PackageProxy):
                 file(self.illustration_builder_module_file_name, 'w').write('')
             return scoremanagertools.proxies.IllustrationBuilderModuleProxy(
                 self.illustration_builder_packagesystem_path, session=self._session)
+
+    @property
+    def illustration_builder_packagesystem_path(self):
+        if self.should_have_illustration_builder_module:
+            return '.'.join([self.package_path, 'illustration_builder'])
 
     @property
     def illustration_ly_file_name(self):
@@ -435,16 +435,16 @@ class MaterialPackageProxy(PackageProxy):
             return os.path.join(self.filesystem_path, 'material_definition.py')
 
     @property
-    def material_definition_packagesystem_path(self):
-        if self.should_have_material_definition_module:
-            return '.'.join([self.package_path, 'material_definition'])
-
-    @property
     def material_definition_module_proxy(self):
         from experimental.tools import scoremanagertools
         if self.should_have_material_definition_module:
             return scoremanagertools.proxies.MaterialDefinitionModuleProxy(
                 self.material_definition_packagesystem_path, session=self._session)
+
+    @property
+    def material_definition_packagesystem_path(self):
+        if self.should_have_material_definition_module:
+            return '.'.join([self.package_path, 'material_definition'])
 
     @property
     def material_package_directory(self):
@@ -719,6 +719,15 @@ class MaterialPackageProxy(PackageProxy):
         self.stylesheet_file_name_in_memory = stylesheet_file_name
         self._io.proceed('stylesheet selected.', is_interactive=prompt)
 
+    def interactively_view_illustration_ly(self):
+        self.illustration_ly_file_proxy.view()
+
+    def interactively_view_illustration_pdf(self):
+        self.illustration_pdf_file_proxy.view()
+
+    def interactively_view_output_material_module(self):
+        self.output_material_module_proxy.view()
+    
     def interactively_write_material_definition_module_boilerplate(self):
         self.material_definition_module_proxy.interactively_write_boilerplate()
 
@@ -798,15 +807,6 @@ class MaterialPackageProxy(PackageProxy):
     def run_python_on_material_definition_module(self):
         self.material_definition_module_proxy.run_python()
 
-    def interactively_view_illustration_ly(self):
-        self.illustration_ly_file_proxy.view()
-
-    def interactively_view_illustration_pdf(self):
-        self.illustration_pdf_file_proxy.view()
-
-    def interactively_view_output_material_module(self):
-        self.output_material_module_proxy.view()
-    
     def write_illustration_ly_and_pdf_to_disk(self, prompt=True):
         illustration = self.illustration_with_stylesheet
         iotools.write_expr_to_pdf(illustration, self.illustration_pdf_file_name, print_status=False)

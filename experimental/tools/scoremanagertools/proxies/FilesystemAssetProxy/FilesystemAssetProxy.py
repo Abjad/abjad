@@ -121,13 +121,13 @@ class FilesystemAssetProxy(ScoreManagerObject):
             return os.path.basename(self.filesystem_path)
 
     @property
+    def filesystem_path(self):
+        return self._filesystem_path
+
+    @property
     def parent_directory_filesystem_path(self):
         if self.filesystem_path:
             return os.path.dirname(self.filesystem_path)
-
-    @property
-    def filesystem_path(self):
-        return self._filesystem_path
 
     ### PUBLIC METHODS ###
 

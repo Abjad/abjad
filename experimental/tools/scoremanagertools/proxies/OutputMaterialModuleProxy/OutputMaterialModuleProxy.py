@@ -38,23 +38,6 @@ class OutputMaterialModuleProxy(ModuleProxy, ParseableModuleMixin):
         return super(OutputMaterialModuleProxy, self).filesystem_basename
 
     @property
-    def material_package_name(self):
-        return self.packagesystem_path.split('.')[-2]
-
-    @property
-    def parent_directory_filesystem_path(self):
-        '''Output material module proxy filesystem directory_name:
-
-        ::
-
-            >>> proxy.parent_directory_filesystem_path
-            '.../materialpackages/red_numbers'
-
-        Return string.
-        '''
-        return super(OutputMaterialModuleProxy, self).parent_directory_filesystem_path
-
-    @property
     def filesystem_path(self):
         '''Output material module proxy filesystem path:
 
@@ -66,6 +49,10 @@ class OutputMaterialModuleProxy(ModuleProxy, ParseableModuleMixin):
         Return string.
         '''
         return super(OutputMaterialModuleProxy, self).filesystem_path
+
+    @property
+    def material_package_name(self):
+        return self.packagesystem_path.split('.')[-2]
 
     @property
     def packagesystem_basename(self):
@@ -92,6 +79,19 @@ class OutputMaterialModuleProxy(ModuleProxy, ParseableModuleMixin):
         Return string.
         '''
         return super(OutputMaterialModuleProxy, self).packagesystem_path
+
+    @property
+    def parent_directory_filesystem_path(self):
+        '''Output material module proxy filesystem directory_name:
+
+        ::
+
+            >>> proxy.parent_directory_filesystem_path
+            '.../materialpackages/red_numbers'
+
+        Return string.
+        '''
+        return super(OutputMaterialModuleProxy, self).parent_directory_filesystem_path
 
     ### PUBLIC METHODS ###
 
