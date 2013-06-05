@@ -31,3 +31,4 @@ class RedirectedStreams(ContextManager):
         self._stdout.flush(); self._stderr.flush()
         sys.stdout = self.old_stdout
         sys.stderr = self.old_stderr
+

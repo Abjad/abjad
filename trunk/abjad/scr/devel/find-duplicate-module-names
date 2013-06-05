@@ -9,9 +9,12 @@ def _find_all_duplicate_module_names():
     unique_file_names, duplicate_file_names = [], []
     expected_duplicate_file_names = (
         'conf.py',
+        'illustration_builder.py',
         'make_illustration_from_output_material.py', 
         'material_definition.py',
         'output_material.py',
+        'segment_01.py',
+        'segment_02.py',
         'tags.py', 
         'Voice.py',
         )

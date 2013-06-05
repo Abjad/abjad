@@ -1,6 +1,6 @@
 from abjad.tools import durationtools
 from abjad.tools import pitchtools
-from experimental import handlertools
+from experimental.tools import handlertools
 
 
 red_marcati = handlertools.ReiteratedArticulationHandler(
