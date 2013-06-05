@@ -5,6 +5,8 @@ from abjad import abjad_configuration
 from abjad.tools import iotools
 
 
+# TODO: Needs to be rewritten entirely to inspect docstrings on live code objects.
+
 def _find_public_helpers_without_docstrings():
     total_undocumented_helpers = 0
     total_without_close_quote = 0
@@ -62,4 +64,5 @@ def _find_undocumented_helpers_in_file(path, f):
 
 if __name__ == '__main__':
     iotools.clear_terminal()
-    _find_public_helpers_without_docstrings()
+    print "Needs to be rewritten entirely to inspect docstrings on live code objects."
+    #_find_public_helpers_without_docstrings()
