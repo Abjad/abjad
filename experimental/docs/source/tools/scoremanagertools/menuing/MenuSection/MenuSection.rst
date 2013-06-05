@@ -54,6 +54,9 @@ Read/write properties
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.default_index
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.menu_tokens
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.prompt_default
    :noindex:
 
@@ -61,9 +64,6 @@ Read/write properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.title
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.tokens
    :noindex:
 
 Methods

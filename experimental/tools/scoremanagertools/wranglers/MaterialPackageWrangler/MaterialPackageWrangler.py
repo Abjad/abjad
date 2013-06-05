@@ -92,24 +92,24 @@ class MaterialPackageWrangler(PackageWrangler):
             is_numbered=True, 
             is_keyed=False,
             )
-        section.tokens = self._make_menu_tokens(head=head)
-        tokens = [
+        section.menu_tokens = self._make_menu_tokens(head=head)
+        menu_tokens = [
             ('d', 'data-only'),
             ('h', 'handmade'),
             ('m', 'maker-made'),
             ]
         section = menu.make_section(
-            tokens=tokens,
+            menu_tokens=menu_tokens,
             is_keyed=True,
             return_value_attribute='key',
             )
-        tokens = [
+        menu_tokens = [
             ('s', 'create numeric sequence'),
             ('missing', 'create missing packages'),
             ('profile', 'profile packages'),
             ]
         hidden_section = menu.make_section(
-            tokens=tokens,
+            menu_tokens=menu_tokens,
             return_value_attribute='key',
             is_hidden=True, 
             )

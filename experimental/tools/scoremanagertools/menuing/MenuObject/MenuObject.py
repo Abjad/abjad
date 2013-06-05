@@ -93,7 +93,7 @@ class MenuObject(ScoreManagerObject):
 
     def make_default_hidden_section(self, session=None, where=None):
         from experimental.tools.scoremanagertools.menuing.MenuSection import MenuSection
-        tokens = [
+        menu_tokens = [
             ('b', 'back'),
             ('exec', 'exec statement'),
             ('grep', 'grep directories'),
@@ -113,7 +113,7 @@ class MenuObject(ScoreManagerObject):
             session=session, 
             where=where, 
             is_keyed=True,
-            tokens=tokens,
+            menu_tokens=menu_tokens,
             return_value_attribute='key',
             is_hidden=True, 
             )

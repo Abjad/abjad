@@ -44,7 +44,7 @@ class StylesheetFileProxy(FileProxy):
         return getter
 
     def _make_main_menu(self):
-        tokens = [
+        menu_tokens = [
             ('cp', 'copy stylesheet'),
             ('rm', 'delete stylesheet'),
             ('ren', 'rename stylesheet'),
@@ -52,7 +52,7 @@ class StylesheetFileProxy(FileProxy):
             ]
         menu, section = self._io.make_menu(
             where=self.where, 
-            tokens=tokens,
+            menu_tokens=menu_tokens,
             return_value_attribute='key',
             is_keyed=True,
             )

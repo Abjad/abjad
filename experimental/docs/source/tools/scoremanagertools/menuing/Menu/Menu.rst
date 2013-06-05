@@ -66,9 +66,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.storage_format
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.tokens
-   :noindex:
-
 Read/write properties
 ---------------------
 

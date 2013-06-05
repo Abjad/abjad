@@ -152,12 +152,12 @@ class UserInputGetter(MenuSectionAggregator):
         self.tests.append(lambda expr: True)
 
     def append_hairpin_token(self, spaced_attribute_name, default=None):
-        message = 'value for {!r} must be hairpin token.'
+        message = 'value for {!r} must be hairpin menu_token.'
         self.append_something(spaced_attribute_name, message, default=default)
         self.tests.append(predicates.is_hairpin_token)
 
     def append_hairpin_tokens(self, spaced_attribute_name, default=None):
-        message = 'value for {!r} must be hairpin tokens.'
+        message = 'value for {!r} must be hairpin menu_tokens.'
         self.append_something(spaced_attribute_name, message, default=default)
         self.tests.append(predicates.are_hairpin_tokens)
 
@@ -463,7 +463,7 @@ class UserInputGetter(MenuSectionAggregator):
     def store_value_from_argument_list(self, user_response, argument_list):
         from experimental.tools.scoremanagertools.menuing.MenuSection import MenuSection
         dummy_section = MenuSection()
-        dummy_section.tokens = argument_list
+        dummy_section.menu_tokens = argument_list
         value = dummy_section.argument_range_string_to_numbers(user_response)
         self.values.append(value)
         self.prompt_index = self.prompt_index + 1

@@ -17,19 +17,19 @@ class SegmentPackageProxy(PackageProxy):
             self.user_input_to_action[result](self)
 
     def _make_main_menu(self):
-        tokens = [
+        menu_tokens = [
             ('n', 'initializer'),
             ]
         menu, section = self._io.make_menu(
             where=self._where, 
             return_value_attribute='key',
             is_keyed=True,
-            tokens=tokens)
-        tokens = [
+            menu_tokens=menu_tokens)
+        menu_tokens = [
             ('rm', 'remove'),
             ]
         section = menu.make_section(
-            tokens=tokens,
+            menu_tokens=menu_tokens,
             return_value_attribute='key',
             is_keyed=True,
             )

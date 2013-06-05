@@ -2,14 +2,14 @@ from experimental import *
 
 
 def test_Menu_run_01():
-    '''String token defaults.
+    '''String menu_token defaults.
     '''
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    tokens = ['apple', 'banana', 'cherry']
+    menu_tokens = ['apple', 'banana', 'cherry']
     section_1 = menu.make_section(
-        is_keyed=False, is_hidden=False, is_numbered=False, is_ranged=False, tokens=tokens)
+        is_keyed=False, is_hidden=False, is_numbered=False, is_ranged=False, menu_tokens=menu_tokens)
     section_1.title = 'section'
 
     result = menu._run(user_input='foo')
@@ -45,16 +45,16 @@ def test_Menu_run_01():
 
 
 def test_Menu_run_02():
-    '''String token defaults.
+    '''String menu_token defaults.
 
     Bodies give same result as keys.
     '''
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    tokens = ['apple', 'banana', 'cherry']
+    menu_tokens = ['apple', 'banana', 'cherry']
     section_1 = menu.make_section(
-        is_keyed=True, is_hidden=False, is_numbered=False, is_ranged=False, tokens=tokens,
+        is_keyed=True, is_hidden=False, is_numbered=False, is_ranged=False, menu_tokens=menu_tokens,
         return_value_attribute='body')
     section_1.title = 'section'
 
@@ -83,14 +83,14 @@ def test_Menu_run_02():
 
 
 def test_Menu_run_03():
-    '''Turning off keys does nothing to string tokens.
+    '''Turning off keys does nothing to string menu_tokens.
     '''
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    tokens = ['apple', 'banana', 'cherry']
+    menu_tokens = ['apple', 'banana', 'cherry']
     section_1 = menu.make_section(
-        is_keyed=False, is_hidden=False, is_numbered=False, is_ranged=False, tokens=tokens)
+        is_keyed=False, is_hidden=False, is_numbered=False, is_ranged=False, menu_tokens=menu_tokens)
     section_1.title = 'section'
     result = menu._run(user_input='foo')
 
@@ -131,9 +131,9 @@ def test_Menu_run_04():
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    tokens = ['apple', 'banana', 'cherry']
+    menu_tokens = ['apple', 'banana', 'cherry']
     section_1 = menu.make_section(
-        is_keyed=True, is_hidden=True, is_numbered=False, is_ranged=False, tokens=tokens)
+        is_keyed=True, is_hidden=True, is_numbered=False, is_ranged=False, menu_tokens=menu_tokens)
     section_1.title = 'section'
     result = menu._run(user_input='foo')
 
@@ -162,14 +162,14 @@ def test_Menu_run_04():
 
 
 def test_Menu_run_05():
-    '''Numbered string tokens.
+    '''Numbered string menu_tokens.
     '''
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    tokens = ['apple', 'banana', 'cherry']
+    menu_tokens = ['apple', 'banana', 'cherry']
     section_1 = menu.make_section(
-        is_keyed=False, is_hidden=False, is_numbered=True, is_ranged=False, tokens=tokens)
+        is_keyed=False, is_hidden=False, is_numbered=True, is_ranged=False, menu_tokens=menu_tokens)
     section_1.title = 'section'
     result = menu._run(user_input='foo')
 
@@ -205,14 +205,14 @@ def test_Menu_run_05():
 
 
 def test_Menu_run_06():
-    '''Ranged string tokens.
+    '''Ranged string menu_tokens.
     '''
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    tokens = ['apple', 'banana', 'cherry']
+    menu_tokens = ['apple', 'banana', 'cherry']
     section_1 = menu.make_section(
-        is_keyed=False, is_hidden=False, is_numbered=False, is_ranged=True, tokens=tokens)
+        is_keyed=False, is_hidden=False, is_numbered=False, is_ranged=True, menu_tokens=menu_tokens)
     section_1.title = 'section'
     result = menu._run(user_input='foo')
 
@@ -249,17 +249,17 @@ def test_Menu_run_06():
 
 
 def test_Menu_run_07():
-    '''Default tuple tokens.
+    '''Default tuple menu_tokens.
     '''
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    tokens = [
+    menu_tokens = [
         ('add', 'first command'),
         ('rm', 'second command'),
         ('mod', 'third command'),
         ]
-    section_1 = menu.make_section(tokens=tokens, 
+    section_1 = menu.make_section(menu_tokens=menu_tokens, 
         is_keyed=True, return_value_attribute='key')
     section_1.title = 'section'
     
@@ -309,19 +309,19 @@ def test_Menu_run_07():
 
 
 def test_Menu_run_08():
-    '''Default tuple tokens.
+    '''Default tuple menu_tokens.
 
     Bodies returned instead of keys.
     '''
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    tokens = [
+    menu_tokens = [
         ('add', 'first command'),
         ('rm', 'second command'),
         ('mod', 'third command'),
         ]
-    section = menu.make_section(tokens=tokens, is_keyed=True, return_value_attribute='body')
+    section = menu.make_section(menu_tokens=menu_tokens, is_keyed=True, return_value_attribute='body')
     result = menu._run(user_input='foo')
 
     menu._session.reinitialize()
@@ -361,20 +361,20 @@ def test_Menu_run_08():
 
 
 def test_Menu_run_09():
-    '''Tuple tokens with keys hidden from user.
+    '''Tuple menu_tokens with keys hidden from user.
     NB: User can not match on keys but key returned from menu to calling code.
     '''
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    tokens = [
+    menu_tokens = [
         ('add', 'first command'),
         ('rm', 'second command'),
         ('mod', 'third command'),
         ]
     section_1 = menu.make_section(
         is_keyed=False, is_hidden=False, is_numbered=False, is_ranged=False,
-        tokens=tokens, return_value_attribute='key')
+        menu_tokens=menu_tokens, return_value_attribute='key')
     section_1.title = 'section'
     result = menu._run(user_input='foo')
 
@@ -423,20 +423,20 @@ def test_Menu_run_09():
 
 
 def test_Menu_run_10():
-    '''Tuple tokens with keys hidden from user.
+    '''Tuple menu_tokens with keys hidden from user.
     NB: User can not match on keys but key returned from menu to calling code.
     '''
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    tokens = [
+    menu_tokens = [
         ('add', 'first command'),
         ('rm', 'second command'),
         ('mod', 'third command'),
         ]
     section_1 = menu.make_section(
         is_keyed=False, is_hidden=False, is_numbered=False, is_ranged=False,
-        tokens=tokens, return_value_attribute='body')
+        menu_tokens=menu_tokens, return_value_attribute='body')
     section_1.title = 'section'
 
     menu._session.reinitialize()
@@ -481,14 +481,14 @@ def test_Menu_run_11():
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    tokens = [
+    menu_tokens = [
         ('add', 'first command'),
         ('rm', 'second command'),
         ('mod', 'third command'),
         ]
     section_1 = menu.make_section(
         is_keyed=True, is_hidden=True, is_numbered=False, is_ranged=False,
-        tokens=tokens, return_value_attribute='key')
+        menu_tokens=menu_tokens, return_value_attribute='key')
     section_1.title = 'section'
     result = menu._run(user_input='foo')
 
@@ -535,14 +535,14 @@ def test_Menu_run_12():
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    tokens = [
+    menu_tokens = [
         ('add', 'first command'),
         ('rm', 'second command'),
         ('mod', 'third command'),
         ]
     section_1 = menu.make_section(
         is_keyed=True, is_hidden=True, is_numbered=False, is_ranged=False,
-        tokens=tokens, return_value_attribute='body')
+        menu_tokens=menu_tokens, return_value_attribute='body')
     section_1.title = 'section'
 
     menu._session.reinitialize()
@@ -582,19 +582,19 @@ def test_Menu_run_12():
 
 
 def test_Menu_run_13():
-    '''Tuple tokens with numbering turned on.
+    '''Tuple menu_tokens with numbering turned on.
     '''
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    tokens = [
+    menu_tokens = [
         ('add', 'first command'),
         ('rm', 'second command'),
         ('mod', 'third command'),
         ]
     section_1 = menu.make_section(
         is_keyed=True, is_hidden=False, is_numbered=True, is_ranged=False,
-        tokens=tokens, return_value_attribute='key')
+        menu_tokens=menu_tokens, return_value_attribute='key')
     section_1.title = 'section'
     result = menu._run(user_input='foo')
 
@@ -643,19 +643,19 @@ def test_Menu_run_13():
 
 
 def test_Menu_run_14():
-    '''Tuple tokens with numbering turned on.
+    '''Tuple menu_tokens with numbering turned on.
     '''
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    tokens = [
+    menu_tokens = [
         ('add', 'first command'),
         ('rm', 'second command'),
         ('mod', 'third command'),
         ]
     section_1 = menu.make_section(
         is_keyed=True, is_hidden=False, is_numbered=True, is_ranged=False,
-        tokens=tokens, return_value_attribute='body')
+        menu_tokens=menu_tokens, return_value_attribute='body')
     section_1.title = 'section'
 
     menu._session.reinitialize()
@@ -695,19 +695,19 @@ def test_Menu_run_14():
 
 
 def test_Menu_run_15():
-    '''Ranged tuple tokens.
+    '''Ranged tuple menu_tokens.
     '''
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    tokens = [
+    menu_tokens = [
         ('add', 'first command'),
         ('rm', 'second command'),
         ('mod', 'third command'),
         ]
     section_1 = menu.make_section(
         is_keyed=True, is_hidden=False, is_numbered=False, is_ranged=True,
-        tokens=tokens, return_value_attribute='key')
+        menu_tokens=menu_tokens, return_value_attribute='key')
     section_1.title = 'section'
     result = menu._run(user_input='foo')
 
@@ -755,19 +755,19 @@ def test_Menu_run_15():
 
 
 def test_Menu_run_16():
-    '''Ranged tuple tokens.
+    '''Ranged tuple menu_tokens.
     '''
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    tokens = [
+    menu_tokens = [
         ('add', 'first command'),
         ('rm', 'second command'),
         ('mod', 'third command'),
         ]
     section_1 = menu.make_section(
         is_keyed=True, is_hidden=False, is_numbered=False, is_ranged=True,
-        tokens=tokens, return_value_attribute='body')
+        menu_tokens=menu_tokens, return_value_attribute='body')
     section_1.title = 'section'
 
     menu._session.reinitialize()

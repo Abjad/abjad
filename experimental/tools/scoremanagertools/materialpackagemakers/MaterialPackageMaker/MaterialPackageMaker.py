@@ -41,14 +41,14 @@ class MaterialPackageMaker(MaterialPackageProxy):
         return user_input_wrapper
 
     def _make_main_menu_section_for_user_input_module(self, main_menu, hidden_section):
-        tokens = self.user_input_wrapper_in_memory.editable_lines
+        menu_tokens = self.user_input_wrapper_in_memory.editable_lines
         section = main_menu.make_section(
             is_numbered=True,
             is_keyed=True,
-            tokens=tokens,
+            menu_tokens=menu_tokens,
             return_value_attribute='number',
             )
-        tokens = [
+        menu_tokens = [
                 ('uic', 'user input - clear'),
                 ('uil', 'user input - load demo values'),
                 ('uip', 'user input - populate'),
@@ -56,16 +56,16 @@ class MaterialPackageMaker(MaterialPackageProxy):
                 ('uimv', 'user input module - view'),
             ]
         section = main_menu.make_section(
-            tokens=tokens,
+            menu_tokens=menu_tokens,
             is_keyed=True,
             return_value_attribute='key',
             )
-        hidden_section_tokens = hidden_section.tokens[:]
+        hidden_section_tokens = hidden_section.menu_tokens[:]
         hidden_section_tokens.extend([
             ('uit','user input - toggle default mode'),
             ('uimdelete', 'user input module - delete'),
             ])
-        hidden_section.tokens = hidden_section_tokens
+        hidden_section.menu_tokens = hidden_section_tokens
 
     def _make_main_menu_sections(self, menu, hidden_section):
         if not self.has_output_material_editor:

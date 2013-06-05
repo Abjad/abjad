@@ -114,7 +114,7 @@ class IO(AbjadObject):
 
     def make_menu(self, is_hidden=False, is_internally_keyed=False, is_keyed=True,
         is_numbered=False, is_ranged=False, where=None,
-        tokens=None, return_value_attribute='body'):
+        menu_tokens=None, return_value_attribute='body'):
         from experimental.tools import scoremanagertools
         menu = scoremanagertools.menuing.Menu(where=where, session=self._session)
         section = menu.make_section(
@@ -123,7 +123,7 @@ class IO(AbjadObject):
             is_keyed=is_keyed,
             is_numbered=is_numbered, 
             is_ranged=is_ranged,
-            tokens=tokens, 
+            menu_tokens=menu_tokens, 
             return_value_attribute=return_value_attribute,
             )
         return menu, section

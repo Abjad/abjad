@@ -39,17 +39,17 @@ class SegmentPackageWrangler(PackageWrangler):
             segment_package_proxy._run()
 
     def _make_main_menu(self, head=None):
-        tokens = self.list_asset_names(head=head)
+        menu_tokens = self.list_asset_names(head=head)
         menu, section = self._io.make_menu(
             where=self._where, 
-            tokens=tokens,
+            menu_tokens=menu_tokens,
             is_numbered=True, 
             )
-        tokens = [
+        menu_tokens = [
             ('new', 'new segment'),
             ]
         section = menu.make_section(
-            tokens=tokens,
+            menu_tokens=menu_tokens,
             return_value_attribute='key',
             is_keyed=True,
             )

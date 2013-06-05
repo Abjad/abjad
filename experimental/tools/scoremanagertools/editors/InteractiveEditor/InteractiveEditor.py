@@ -50,21 +50,21 @@ class InteractiveEditor(ScoreManagerObject):
             self.conditionally_set_target_attribute(attribute_name, attribute_value)
 
     def _make_main_menu(self):
-        tokens = self.target_attribute_tokens
+        menu_tokens = self.target_attribute_tokens
         is_keyed = self.target_manifest.is_keyed
         menu, section = self._io.make_menu(
             where=self._where,
-            tokens=tokens,
+            menu_tokens=menu_tokens,
             is_keyed=is_keyed,
             return_value_attribute='key',
             is_numbered=True,
             )
         section.show_existing_values = True
-        tokens = menu.hidden_section.tokens[:]
-        tokens.extend([
+        menu_tokens = menu.hidden_section.menu_tokens[:]
+        menu_tokens.extend([
             ('done', 'done'),
             ])
-        menu.hidden_section.tokens = tokens
+        menu.hidden_section.menu_tokens = menu_tokens
         return menu
 
     def _run(self, breadcrumb=None, cache=False, clear=True, is_autoadding=False,
@@ -281,8 +281,8 @@ class InteractiveEditor(ScoreManagerObject):
             if hasattr(attribute_value, '__len__') and not len(attribute_value):
                 attribute_value = None
             existing_value = self._io.get_one_line_menuing_summary(attribute_value)
-            token = (menu_key, menu_body, existing_value)
-            result.append(token)
+            menu_token = (menu_key, menu_body, existing_value)
+            result.append(menu_token)
         return result
 
     def menu_key_to_delegated_editor_kwargs(self, menu_key):

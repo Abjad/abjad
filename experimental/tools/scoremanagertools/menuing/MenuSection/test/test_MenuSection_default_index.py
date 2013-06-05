@@ -6,8 +6,8 @@ def test_MenuSection_default_index_01():
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    tokens = ['apple', 'banana', 'cherry']
-    section = menu.make_section(tokens=tokens)
+    menu_tokens = ['apple', 'banana', 'cherry']
+    section = menu.make_section(menu_tokens=menu_tokens)
     section.title = 'section'
 
     assert section.default_index is None

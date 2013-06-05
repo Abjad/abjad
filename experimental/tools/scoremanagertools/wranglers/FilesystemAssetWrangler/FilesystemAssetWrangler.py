@@ -88,12 +88,12 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             return 'select {}:'.format(self.asset_proxy_class._generic_class_name)
 
     def _make_asset_selection_menu(self, head=None):
-        tokens = self._make_menu_tokens(head=head)
+        menu_tokens = self._make_menu_tokens(head=head)
         menu, section = self._io.make_menu(
             where=self._where, 
             is_keyed=False, 
             is_numbered=True,
-            tokens=tokens,
+            menu_tokens=menu_tokens,
             return_value_attribute='key',
             )
         return menu
@@ -201,7 +201,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             is_keyed=False,
             return_value_attribute='key',
             )
-        section.tokens = self._make_menu_tokens()
+        section.menu_tokens = self._make_menu_tokens()
         while True:
             breadcrumb = self._make_asset_selection_breadcrumb()
             self._session.push_breadcrumb(breadcrumb)
@@ -230,7 +230,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             is_keyed=False,
             return_value_attribute='key',
             )
-        section.tokens = self._make_asset_storehouse_menu_tokens(
+        section.menu_tokens = self._make_asset_storehouse_menu_tokens(
             in_built_in_asset_library=False,
             in_user_asset_library=True,
             in_built_in_score_packages=False,

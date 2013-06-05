@@ -83,17 +83,17 @@ class ScoreManager(ScoreManagerObject):
 
     def _make_main_menu(self):
         menu = self._make_score_selection_menu()
-        tokens = [
+        menu_tokens = [
             ('m', 'materials'),
             ('y', 'stylesheets'),
             ('new', 'new score'),
             ]
         section = menu.make_section(
-            tokens=tokens,
+            menu_tokens=menu_tokens,
             return_value_attribute='key',
             is_keyed=True,
             )
-        tokens = [
+        menu_tokens = [
             ('active', 'show active scores only'),
             ('all', 'show all scores'),
             ('fix', 'fix all score package structures'),
@@ -104,7 +104,7 @@ class ScoreManager(ScoreManagerObject):
             ('wc', 'write cache'),
             ]
         hidden_section = menu.make_section(
-            tokens=tokens,
+            menu_tokens=menu_tokens,
             return_value_attribute='key', 
             is_keyed=True,
             is_hidden=True,
@@ -114,15 +114,15 @@ class ScoreManager(ScoreManagerObject):
     def _make_score_selection_menu(self):
         if self._session.is_first_run:
             if hasattr(self, 'start_menu_tokens'):
-                tokens = self.start_menu_tokens
+                menu_tokens = self.start_menu_tokens
             else:
                 self.write_cache()
-                tokens = self.score_package_wrangler._make_menu_tokens()
+                menu_tokens = self.score_package_wrangler._make_menu_tokens()
             self._session.is_first_run = False
         else:
-            tokens = self.score_package_wrangler._make_menu_tokens()
+            menu_tokens = self.score_package_wrangler._make_menu_tokens()
         menu, section = self._io.make_menu(
-            tokens=tokens,
+            menu_tokens=menu_tokens,
             is_numbered=True, 
             is_keyed=False, 
             return_value_attribute='key',
@@ -131,14 +131,14 @@ class ScoreManager(ScoreManagerObject):
         return menu
 
     def _make_svn_menu(self):
-        tokens = [
+        menu_tokens = [
             ('add', 'svn add scores'),
             ('ci', 'svn commit scores'),
             ('st', 'svn status scores'),
             ('up', 'svn update scores'),
             ]
         menu, section = self._io.make_menu(
-            tokens=tokens,
+            menu_tokens=menu_tokens,
             where=self._where,
             return_value_attribute='key',
             )
@@ -330,9 +330,9 @@ class ScoreManager(ScoreManagerObject):
         cache_file_path = os.path.join(self.configuration.configuration_directory_path, 'cache.py')
         cache_file_pointer = file(cache_file_path, 'w')
         cache_file_pointer.write('start_menu_tokens = [\n')
-        tokens = self.score_package_wrangler._make_menu_tokens()
-        for token in tokens:
-            cache_file_pointer.write('{},\n'.format(token))
+        menu_tokens = self.score_package_wrangler._make_menu_tokens()
+        for menu_token in menu_tokens:
+            cache_file_pointer.write('{},\n'.format(menu_token))
         cache_file_pointer.write(']\n')
         cache_file_pointer.close()
 

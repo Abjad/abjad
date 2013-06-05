@@ -17,12 +17,12 @@ class ScoreToolsPerformerNameSelector(Selector):
     ### PUBLIC METHODS ###
 
     def _make_main_menu(self, head=None):
-        tokens = self.make_menu_tokens(head=head)
+        menu_tokens = self.make_menu_tokens(head=head)
         menu, section = self._io.make_menu(where=self._where,
             is_keyed=self.is_keyed,
             is_numbered=self.is_numbered,
             is_ranged=self.is_ranged,
-            tokens=tokens,
+            menu_tokens=menu_tokens,
             return_value_attribute='body',
             )
         return menu

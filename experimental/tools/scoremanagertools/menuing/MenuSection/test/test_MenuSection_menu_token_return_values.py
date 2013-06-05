@@ -2,14 +2,14 @@ from experimental import *
 
 
 def test_MenuSection_menu_token_return_values_01():
-    '''Menu entry return values equal menu entry tokens when menu entry tokens are strings.
+    '''Menu entry return values equal menu entry menu_tokens when menu entry menu_tokens are strings.
     Always true, including for all four combinations of the two settings tested here.
     '''
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    tokens = ['apple', 'banana', 'cherry']
-    section = menu.make_section(is_numbered=True, tokens=tokens)
+    menu_tokens = ['apple', 'banana', 'cherry']
+    section = menu.make_section(is_numbered=True, menu_tokens=menu_tokens)
     section.title = 'section'
     assert section.is_numbered
     assert section.menu_token_return_values == ['apple', 'banana', 'cherry']
@@ -17,8 +17,8 @@ def test_MenuSection_menu_token_return_values_01():
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    tokens = ['apple', 'banana', 'cherry']
-    section = menu.make_section(tokens=tokens)
+    menu_tokens = ['apple', 'banana', 'cherry']
+    section = menu.make_section(menu_tokens=menu_tokens)
     section.title = 'section'
     assert not section.is_numbered
     assert section.menu_token_return_values == ['apple', 'banana', 'cherry']
@@ -26,8 +26,8 @@ def test_MenuSection_menu_token_return_values_01():
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    tokens = ['apple', 'banana', 'cherry']
-    section = menu.make_section(is_numbered=True, tokens=tokens, return_value_attribute='body')
+    menu_tokens = ['apple', 'banana', 'cherry']
+    section = menu.make_section(is_numbered=True, menu_tokens=menu_tokens, return_value_attribute='body')
     section.title = 'section'
     assert section.is_numbered
     assert section.menu_token_return_values == ['apple', 'banana', 'cherry']
@@ -35,8 +35,8 @@ def test_MenuSection_menu_token_return_values_01():
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    tokens = ['apple', 'banana', 'cherry']
-    section = menu.make_section(tokens=tokens, return_value_attribute='body')
+    menu_tokens = ['apple', 'banana', 'cherry']
+    section = menu.make_section(menu_tokens=menu_tokens, return_value_attribute='body')
     section.title = 'section'
     assert not section.is_numbered
     assert section.menu_token_return_values == ['apple', 'banana', 'cherry']
@@ -44,19 +44,19 @@ def test_MenuSection_menu_token_return_values_01():
 
 
 def test_MenuSection_menu_token_return_values_02():
-    '''Menu entry return values vary when menu entry tokens are tuples.
+    '''Menu entry return values vary when menu entry menu_tokens are tuples.
     You can explicitly demand a return value equal either to the menu entry key or body.
     Note that section numbering plays no role in this.
     '''
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    tokens = [
+    menu_tokens = [
         ('add', 'add something'),
         ('rm', 'delete something'),
         ('mod', 'modify something'),
         ]
-    section = menu.make_section(is_numbered=True, tokens=tokens,
+    section = menu.make_section(is_numbered=True, menu_tokens=menu_tokens,
         return_value_attribute='key')
     section.title = 'section'
     assert section.is_numbered
@@ -65,12 +65,12 @@ def test_MenuSection_menu_token_return_values_02():
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    tokens = [
+    menu_tokens = [
         ('add', 'add something'),
         ('rm', 'delete something'),
         ('mod', 'modify something'),
         ]
-    section = menu.make_section(tokens=tokens, return_value_attribute='key')
+    section = menu.make_section(menu_tokens=menu_tokens, return_value_attribute='key')
     section.title = 'section'
     assert not section.is_numbered
     assert section.menu_token_return_values == ['add', 'rm', 'mod']
@@ -78,12 +78,12 @@ def test_MenuSection_menu_token_return_values_02():
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    tokens = [
+    menu_tokens = [
         ('add', 'add something'),
         ('rm', 'delete something'),
         ('mod', 'modify something'),
         ]
-    section = menu.make_section(is_numbered=True, tokens=tokens, return_value_attribute='body')
+    section = menu.make_section(is_numbered=True, menu_tokens=menu_tokens, return_value_attribute='body')
     section.title = 'section'
     assert section.is_numbered
     assert section.menu_token_return_values == ['add something', 'delete something', 'modify something']
@@ -91,12 +91,12 @@ def test_MenuSection_menu_token_return_values_02():
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    tokens = [
+    menu_tokens = [
         ('add', 'add something'),
         ('rm', 'delete something'),
         ('mod', 'modify something'),
         ]
-    section = menu.make_section(tokens=tokens, return_value_attribute='body')
+    section = menu.make_section(menu_tokens=menu_tokens, return_value_attribute='body')
     section.title = 'section'
     assert not section.is_numbered
     assert section.menu_token_return_values == ['add something', 'delete something', 'modify something']
@@ -110,12 +110,12 @@ def test_MenuSection_menu_token_return_values_03():
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    tokens = [
+    menu_tokens = [
         ('add', 'add something', None, 'return value A'),
         ('rm', 'delete something', None, 'return value B'),
         ('mod', 'modify something', None, 'return value C'),
         ]
-    section = menu.make_section(tokens=tokens, return_value_attribute='prepopulated')
+    section = menu.make_section(menu_tokens=menu_tokens, return_value_attribute='prepopulated')
     section.title = 'section'
     assert not section.is_numbered
     assert section.menu_token_return_values == ['return value A', 'return value B', 'return value C']

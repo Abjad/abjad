@@ -5,5 +5,5 @@ class RhythmMakerPackageSelector(MaterialPackageSelector):
 
     ### CLASS VARIABLES ###
 
-    generic_output_name = 'time-token maker'
-    space_delimited_lowercase_target_name = 'time-token maker'
+    generic_output_name = 'time-menu_token maker'
+    space_delimited_lowercase_target_name = 'time-menu_token maker'

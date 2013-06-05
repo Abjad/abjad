@@ -22,7 +22,7 @@ class MenuSection(MenuObject):
         session=None, 
         where=None, 
         title=None, 
-        tokens=None,
+        menu_tokens=None,
         return_value_attribute='body',
         ):
         MenuObject.__init__(self, session=session, where=where, title=title)
@@ -36,15 +36,15 @@ class MenuSection(MenuObject):
         self.default_index = None
         self.indent_level = 1
         self.show_existing_values = False
-        self.tokens = tokens
+        self.menu_tokens = menu_tokens
 
     ### SPECIAL METHODS ###
 
     def __len__(self):
-        return len(self.tokens)
+        return len(self.menu_tokens)
 
     def __repr__(self):
-        return '{}({!r})'.format(self._class_name, self.tokens)
+        return '{}({!r})'.format(self._class_name, self.menu_tokens)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -83,15 +83,15 @@ class MenuSection(MenuObject):
 
     @property
     def menu_token_bodies(self):
-        return [token.body for token in self.tokens]
+        return [menu_token.body for menu_token in self.menu_tokens]
 
     @property
     def menu_token_keys(self):
-        return [token.key for token in self.tokens]
+        return [menu_token.key for menu_token in self.menu_tokens]
 
     @property
     def menu_token_return_values(self):
-        return [token.return_value for token in self.tokens]
+        return [menu_token.return_value for menu_token in self.menu_tokens]
 
     ### READ / WRITE PUBLIC PROPERTIES ###
 
@@ -102,11 +102,11 @@ class MenuSection(MenuObject):
         def fset(self, default_index):
             assert isinstance(default_index, (int, type(None)))
             if isinstance(default_index, int):
-                count = len(self.tokens)
+                count = len(self.menu_tokens)
                 if default_index < 0:
                     raise ValueError('default index must be positive integer.')
                 if count <= default_index:
-                    raise ValueError('only {} menu entry tokens in section.'.format(count))
+                    raise ValueError('only {} menu entry menu_tokens in section.'.format(count))
             self._default_index = default_index
         return property(**locals())
 
@@ -115,31 +115,31 @@ class MenuSection(MenuObject):
         return self._return_value_attribute
 
     @apply
-    def tokens():
+    def menu_tokens():
         def fget(self):
             return self._tokens
-        def fset(self, tokens):
-            if tokens is None:
+        def fset(self, menu_tokens):
+            if menu_tokens is None:
                 self._tokens = []
-            elif isinstance(tokens, list):
+            elif isinstance(menu_tokens, list):
                 new_tokens = []
-                for i, token in enumerate(tokens):
-                    if isinstance(token, (str, tuple, MenuToken)):
+                for i, menu_token in enumerate(menu_tokens):
+                    if isinstance(menu_token, (str, tuple, MenuToken)):
                         if self.is_numbered:
                             number = i + 1
                         else:
                             number = None
                         new_token = MenuToken(
-                            token, 
+                            menu_token, 
                             number=number,
                             is_keyed=self.is_keyed,
                             return_value_attribute=self.return_value_attribute)
                     else:
-                        raise TypeError(token)
+                        raise TypeError(menu_token)
                     new_tokens.append(new_token)
                 self._tokens = new_tokens
             else:
-                raise TypeError(tokens)
+                raise TypeError(menu_tokens)
         return property(**locals())
 
     ### PUBLIC METHODS ###
@@ -147,13 +147,13 @@ class MenuSection(MenuObject):
     def argument_range_string_to_numbers(self, argument_range_string):
         '''Return list of positive integers on success. Otherwise none.
         '''
-        assert self.tokens
+        assert self.menu_tokens
         numbers = []
         argument_range_string = argument_range_string.replace(' ', '')
         range_parts = argument_range_string.split(',')
         for range_part in range_parts:
             if range_part == 'all':
-                numbers.extend(range(1, len(self.tokens) + 1))
+                numbers.extend(range(1, len(self.menu_tokens) + 1))
             elif '-' in range_part:
                 start, stop = range_part.split('-')
                 start = self.argument_string_to_number(start)
@@ -174,13 +174,13 @@ class MenuSection(MenuObject):
         return numbers
 
     def argument_range_string_to_numbers_optimized(self, argument_range_string):
-        assert self.tokens
+        assert self.menu_tokens
         numbers = []
         argument_range_string = argument_range_string.replace(' ', '')
         range_parts = argument_range_string.split(',')
         for range_part in range_parts:
             if range_part == 'all':
-                numbers.extend(range(1, len(self.tokens) + 1))
+                numbers.extend(range(1, len(self.menu_tokens) + 1))
             elif '-' in range_part:
                 start, stop = range_part.split('-')
                 start = self.argument_string_to_number_optimized(start)
@@ -205,7 +205,7 @@ class MenuSection(MenuObject):
         '''
         if mathtools.is_integer_equivalent_expr(argument_string):
             menu_number = int(argument_string)
-            if menu_number <= len(self.tokens):
+            if menu_number <= len(self.menu_tokens):
                 return menu_number
         for menu_index, menu_return_value in enumerate(self.menu_token_return_values):
             if argument_string == menu_return_value:
@@ -217,7 +217,7 @@ class MenuSection(MenuObject):
                 return menu_index + 1
 
     def argument_string_to_number_optimized(self, argument_string):
-        for menu_entry_index, menu_token in enumerate(self.tokens):
+        for menu_entry_index, menu_token in enumerate(self.menu_tokens):
             if menu_token.matches(argument_string):
                 menu_entry_number = menu_entry_index + 1
                 return menu_entry_number
@@ -245,15 +245,15 @@ class MenuSection(MenuObject):
         '''
         menu_lines = []
         menu_lines.extend(self.make_title_lines())
-        assert all(isinstance(token, MenuToken) for token in self.tokens), repr(self.tokens)
+        assert all(isinstance(menu_token, MenuToken) for menu_token in self.menu_tokens), repr(self.menu_tokens)
         total_empty_tokens = 0
-        for entry_index, token in enumerate(self.tokens):
+        for entry_index, menu_token in enumerate(self.menu_tokens):
             menu_line = self.make_tab(self.indent_level) + ' '
-            if token == ():
+            if menu_token == ():
                 menu_lines.append(menu_line)
                 total_empty_tokens += 1
                 continue
-            key, body, existing_value = token.key, token.body, token.existing_value
+            key, body, existing_value = menu_token.key, menu_token.body, menu_token.existing_value
             if self.is_numbered:
                 entry_number = entry_index + 1 - total_empty_tokens
                 menu_line += '{}: '.format(str(entry_number))
@@ -274,6 +274,6 @@ class MenuSection(MenuObject):
                 else:
                     menu_line += '{}'.format(body)
             menu_lines.append(menu_line)
-        if self.tokens:
+        if self.menu_tokens:
             menu_lines.append('')
         return menu_lines

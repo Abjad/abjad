@@ -36,29 +36,29 @@ class ListEditor(InteractiveEditor):
             is_keyed=getattr(self.target_manifest, 'is_keyed', False),
             return_value_attribute='key',
             )
-        attribute_management_section.tokens = self.target_attribute_tokens
+        attribute_management_section.menu_tokens = self.target_attribute_tokens
         attribute_management_section.show_existing_values = True
         item_management_section = menu.make_section(
             is_numbered=True,
             is_keyed=True,
             return_value_attribute='number',
             )
-        item_management_section.tokens = self.target_summary_lines
-        tokens = [('add', 'add elements')]
+        item_management_section.menu_tokens = self.target_summary_lines
+        menu_tokens = [('add', 'add elements')]
         if 0 < len(self.items):
-            tokens.append(('rm', 'remove elements'))
+            menu_tokens.append(('rm', 'remove elements'))
         if 1 < len(self.items):
-            tokens.append(('mv', 'move elements'))
+            menu_tokens.append(('mv', 'move elements'))
         command_section = menu.make_section(
-            tokens=tokens,
+            menu_tokens=menu_tokens,
             is_keyed=True,
             return_value_attribute='key',
             )
-        tokens = [
+        menu_tokens = [
             ('done', 'done'),
             ]
         hidden_section = menu.make_section(
-            tokens=tokens,
+            menu_tokens=menu_tokens,
             is_keyed=True,
             return_value_attribute='key',
             is_hidden=True, 

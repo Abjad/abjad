@@ -105,7 +105,7 @@ class Menu(MenuSectionAggregator):
     def menu_tokens(self):
         result = []
         for section in self.sections:
-            result.extend(section.tokens)
+            result.extend(section.menu_tokens)
         return result
 
     @property
@@ -153,10 +153,10 @@ class Menu(MenuSectionAggregator):
         return menu_lines
 
     @property
-    def tokens(self):
+    def menu_tokens(self):
         result = []
         for section in self.sections:
-            result.extend(section.tokens)
+            result.extend(section.menu_tokens)
         return result
 
     ### READ / WRITE PUBLIC PROPERTIES ###
@@ -220,7 +220,7 @@ class Menu(MenuSectionAggregator):
         return result
 
     def make_section(self, is_hidden=False, is_internally_keyed=False, is_keyed=False,
-        is_numbered=False, is_ranged=False, tokens=None,
+        is_numbered=False, is_ranged=False, menu_tokens=None,
         return_value_attribute='body'):
         assert not (is_numbered and self.has_numbered_section)
         assert not (is_ranged and self.has_ranged_section)
@@ -230,7 +230,7 @@ class Menu(MenuSectionAggregator):
             is_keyed=is_keyed, 
             is_numbered=is_numbered,
             is_ranged=is_ranged,
-            tokens=tokens, 
+            menu_tokens=menu_tokens, 
             return_value_attribute=return_value_attribute,
             session=self._session, 
             where=self.where,

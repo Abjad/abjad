@@ -62,15 +62,15 @@ class StylesheetFileWrangler(FileWrangler):
             return_value_attribute='key',
             is_numbered=True, 
             )
-        section.tokens = self._make_menu_tokens(include_extension=True)
-        tokens = [
+        section.menu_tokens = self._make_menu_tokens(include_extension=True)
+        menu_tokens = [
             ('new', 'new'),
             ('cp', 'copy'),
             ('ren', 'rename'),
             ('rm', 'remove'),
             ]
         section = menu.make_section(
-            tokens=tokens,
+            menu_tokens=menu_tokens,
             return_value_attribute='key',
             is_keyed=True,
             )

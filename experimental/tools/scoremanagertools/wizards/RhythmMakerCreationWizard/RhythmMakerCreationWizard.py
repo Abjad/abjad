@@ -13,4 +13,4 @@ class RhythmMakerCreationWizard(HandlerCreationWizard):
 
     @property
     def _breadcrumb(self):
-        return 'time-token maker creation wizard'
+        return 'time-menu_token maker creation wizard'

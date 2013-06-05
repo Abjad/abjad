@@ -3,9 +3,9 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class MenuToken(list, AbjadObject):
-    '''Menu token.
+    '''Menu menu_token.
 
-    Return menu token.
+    Return menu menu_token.
     '''
 
     ### CLASS VARIABLES ###

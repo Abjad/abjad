@@ -32,7 +32,7 @@ class ScorePackageProxy(PackageProxy):
             raise ValueError
 
     def _make_main_menu(self):
-        tokens = [
+        menu_tokens = [
             ('h', 'segments'),
             ('m', 'materials'),
             ('f', 'specifiers'),
@@ -40,11 +40,11 @@ class ScorePackageProxy(PackageProxy):
             ]
         menu, section = self._io.make_menu(
             where=self._where, 
-            tokens=tokens,
+            menu_tokens=menu_tokens,
             is_numbered=False, 
             return_value_attribute='key',
             )
-        tokens = [
+        menu_tokens = [
             ('fix', 'fix package structure'),
             ('ls', 'list directory contents'),
             ('profile', 'profile package structure'),
@@ -54,7 +54,7 @@ class ScorePackageProxy(PackageProxy):
             ('tags', 'manage tags'),
             ]
         hidden_section = menu.make_section(
-            tokens=tokens,
+            menu_tokens=menu_tokens,
             return_value_attribute='key',
             is_keyed=True,
             is_hidden=True,
@@ -407,7 +407,7 @@ class ScorePackageProxy(PackageProxy):
             is_keyed=False,
             return_value_attribute='key',
             )
-        section.tokens = self.setup_value_menu_tokens
+        section.menu_tokens = self.setup_value_menu_tokens
         return setup_menu
 
     def make_svn_menu(self):
@@ -416,12 +416,12 @@ class ScorePackageProxy(PackageProxy):
             is_keyed=False,
             return_value_attribute='key',
             )
-        tokens = [
+        menu_tokens = [
             ('st', 'st'),
             ('add', 'add'),
             ('ci', 'ci'),
             ]
-        section.tokens = tokens
+        section.menu_tokens = menu_tokens
         return menu
 
     def manage_materials(self):
