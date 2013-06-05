@@ -26,12 +26,12 @@ class MenuToken(list, AbjadObject):
         self._is_keyed = is_keyed
         assert return_value_attribute in self.return_value_attributes, repr(return_value_attribute)
         self._return_value_attribute = return_value_attribute
-        prepopulated_return_value = None
+        body, key, existing_value, prepopulated_return_value = None, None, None, None
         if len(self) == 1:
-            key, body, existing_value = None, self[0], None
+            body = self[0]
             return_value = self[0]
         elif len(self) == 2:
-            key, body, existing_value = self[0], self[1], None
+            key, body = self
         elif len(self) == 3:
             key, body, existing_value = self
         elif len(self) == 4:
