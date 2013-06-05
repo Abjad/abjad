@@ -30,9 +30,9 @@ class SvnMessageScript(DeveloperScript):
 
     @property
     def commit_message_path(self):
-        from abjad import ABJCFG
+        from abjad import abjad_configuration
         commit_file = 'abjad_commit.txt'
-        commit_path = os.path.join(ABJCFG.abjad_configuration_directory_path, commit_file)
+        commit_path = os.path.join(abjad_configuration.abjad_configuration_directory_path, commit_file)
         return commit_path
 
     @property

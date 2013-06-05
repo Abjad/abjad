@@ -53,9 +53,9 @@ class SvnCommitScript(DirectoryScript):
     ### PUBLIC METHODS ###
 
     def process_args(self, args):
-        from abjad import ABJCFG
+        from abjad import abjad_configuration
         commit_file = 'abjad_commit.txt'
-        commit_path = os.path.join(ABJCFG.abjad_configuration_directory_path, commit_file)
+        commit_path = os.path.join(abjad_configuration.abjad_configuration_directory_path, commit_file)
 
         while not os.path.exists(commit_path):
             SvnMessageScript()()

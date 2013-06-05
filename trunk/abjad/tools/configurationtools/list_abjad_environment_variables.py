@@ -12,10 +12,10 @@ def list_abjad_environment_variables():
     ``abjad/tools/configurationtools/AbjadConfiguration/AbjadConfiguration.py``.
     '''
 
-    from abjad import ABJCFG
+    from abjad import abjad_configuration
 
     result = []
-    for key in dir(ABJCFG):
+    for key in dir(abjad_configuration):
         if key.isupper() and not key.startswith('_'):
-            result.append((key, getattr(ABJCFG, key)))
+            result.append((key, getattr(abjad_configuration, key)))
     return tuple(result)

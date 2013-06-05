@@ -8,7 +8,7 @@ def plot(expr, image_format='png', width=640, height=320):
     Return None.
     '''
 
-    from abjad import ABJCFG
+    from abjad import abjad_configuration
     from abjad.tools import iotools
     from abjad.tools.iotools._open_file import _open_file
     from abjad.tools.iotools._verify_output_directory import _verify_output_directory
@@ -21,7 +21,7 @@ def plot(expr, image_format='png', width=640, height=320):
     gnuplot_format = expr.gnuplot_format
 
     current_directory = os.path.abspath('.')
-    ABJADOUTPUT = ABJCFG['abjad_output']
+    ABJADOUTPUT = abjad_configuration['abjad_output']
     _verify_output_directory(ABJADOUTPUT)
     txt_path = os.path.join(ABJADOUTPUT, iotools.get_next_output_file_name(file_extension='txt'))
     img_path = os.path.join(ABJADOUTPUT, txt_path.replace('txt', image_format))
@@ -42,6 +42,6 @@ def plot(expr, image_format='png', width=640, height=320):
     command = 'gnuplot {}'.format(txt_path)
     subprocess.call(command, shell=True)
 
-    pdf_viewer = ABJCFG['pdf_viewer']
-    ABJADOUTPUT = ABJCFG['abjad_output']
+    pdf_viewer = abjad_configuration['pdf_viewer']
+    ABJADOUTPUT = abjad_configuration['abjad_output']
     _open_file(img_path, pdf_viewer)

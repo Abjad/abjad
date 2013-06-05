@@ -11,10 +11,10 @@ def save_last_pdf_as(file_name):
 
     Return none.
     '''
-    from abjad import ABJCFG
+    from abjad import abjad_configuration
     from abjad.tools import iotools
 
-    ABJADOUTPUT = ABJCFG['abjad_output']
+    ABJADOUTPUT = abjad_configuration['abjad_output']
     last_ly = iotools.get_last_output_file_name()
     last_pdf = last_ly[:-3] + '.pdf'
     last_pdf_full_name = os.path.join(ABJADOUTPUT, last_pdf)

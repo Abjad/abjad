@@ -10,10 +10,10 @@ def get_last_output_file_name(path=None):
 
     Return string.
     '''
-    from abjad import ABJCFG
+    from abjad import abjad_configuration
 
     pattern = re.compile('\d{4,4}.[a-z]{2,3}')
-    path = path or ABJCFG['abjad_output']
+    path = path or abjad_configuration['abjad_output']
     all_file_names = os.listdir(path)
     all_output = [fn for fn in all_file_names if pattern.match(fn)]
     if all_output == []:

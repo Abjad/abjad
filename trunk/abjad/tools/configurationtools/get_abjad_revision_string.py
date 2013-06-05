@@ -12,8 +12,8 @@ def get_abjad_revision_string():
     Return string.
     '''
 
-    from abjad import ABJCFG
+    from abjad import abjad_configuration
 
-    command = 'svnversion {}'.format(ABJCFG.abjad_directory_path)
+    command = 'svnversion {}'.format(abjad_configuration.abjad_directory_path)
     proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     return proc.stdout.readlines()[0].strip().strip('M')

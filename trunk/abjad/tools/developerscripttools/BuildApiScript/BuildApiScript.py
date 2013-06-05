@@ -51,7 +51,7 @@ class BuildApiScript(DeveloperScript):
 
     def _build_experimental_api(self, format='html', clean=False):
 
-        from abjad import ABJCFG
+        from abjad import abjad_configuration
 
         class ExperimentalAPIGenerator(AbjadAPIGenerator):
 
@@ -59,20 +59,20 @@ class BuildApiScript(DeveloperScript):
 
             @property
             def docs_api_index_path(self):
-                return os.path.join(ABJCFG.abjad_experimental_directory_path, 'docs', 'source', 'index.rst')
+                return os.path.join(abjad_configuration.abjad_experimental_directory_path, 'docs', 'source', 'index.rst')
 
             @property
             def path_definitions(self):
-                from abjad import ABJCFG
+                from abjad import abjad_configuration
                 return (
                     (
-                        os.path.join(ABJCFG.abjad_experimental_directory_path, 'tools'),
-                        os.path.join(ABJCFG.abjad_experimental_directory_path, 'docs', 'source', 'tools'),
+                        os.path.join(abjad_configuration.abjad_experimental_directory_path, 'tools'),
+                        os.path.join(abjad_configuration.abjad_experimental_directory_path, 'docs', 'source', 'tools'),
                         'experimental.tools.',
                     ),
                     (
-                        os.path.join(ABJCFG.abjad_experimental_directory_path, 'demos'),
-                        os.path.join(ABJCFG.abjad_experimental_directory_path, 'docs', 'source', 'demos'),
+                        os.path.join(abjad_configuration.abjad_experimental_directory_path, 'demos'),
+                        os.path.join(abjad_configuration.abjad_experimental_directory_path, 'docs', 'source', 'demos'),
                         'experimental.demos.',
                     ),
                 )
@@ -92,7 +92,7 @@ class BuildApiScript(DeveloperScript):
         print ''
 
         # change to docs directory because makefile lives there
-        docs_directory = os.path.join(ABJCFG.abjad_experimental_directory_path, 'docs')
+        docs_directory = os.path.join(abjad_configuration.abjad_experimental_directory_path, 'docs')
         os.chdir(docs_directory)
 
         # optionally, make clean before building
@@ -105,7 +105,7 @@ class BuildApiScript(DeveloperScript):
 
     def _build_mainline_api(self, format='html', clean=False):
 
-        from abjad import ABJCFG
+        from abjad import abjad_configuration
 
         AbjadAPIGenerator()(verbose=True)
 
@@ -114,7 +114,7 @@ class BuildApiScript(DeveloperScript):
         print ''
 
         # change to docs directory because makefile lives there
-        docs_directory = os.path.relpath(os.path.join(ABJCFG.abjad_directory_path, 'docs'))
+        docs_directory = os.path.relpath(os.path.join(abjad_configuration.abjad_directory_path, 'docs'))
         os.chdir(docs_directory)
 
         # optionally, make clean before building

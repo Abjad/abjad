@@ -68,7 +68,7 @@ class LilyPondFile(list):
     '''
 
     def __init__(self):
-        from abjad import ABJCFG
+        from abjad import abjad_configuration
         list.__init__(self)
         self._file_initial_system_comments = []
         self._file_initial_system_comments.append(AbjadRevisionToken())
@@ -77,7 +77,7 @@ class LilyPondFile(list):
         self._file_initial_system_includes = []
         self._file_initial_system_includes.append(LilyPondVersionToken())
         self._file_initial_system_includes.append(LilyPondLanguageToken())
-        self._file_initial_system_includes.append(os.path.join(ABJCFG.abjad_directory_path, 'cfg', 'abjad.scm'))
+        self._file_initial_system_includes.append(os.path.join(abjad_configuration.abjad_directory_path, 'cfg', 'abjad.scm'))
         self._file_initial_user_includes = []
         self.default_paper_size = None
         self.global_staff_size = None

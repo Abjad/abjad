@@ -2,7 +2,7 @@
 
 import os
 import re
-from abjad import ABJCFG
+from abjad import abjad_configuration
 from abjad.tools import iotools
 
 

@@ -1,12 +1,12 @@
 #! /usr/bin/env python
 
 import os
-from abjad import ABJCFG
+from abjad import abjad_configuration
 from abjad.tools import iotools
 
 
 def _find_missing_test_modules():
-    tools_path = os.path.join(ABJCFG.abjad_directory_path, 'tools')
+    tools_path = os.path.join(abjad_configuration.abjad_directory_path, 'tools')
     public_tools_modules = set([])
     test_modules = set([ ])
     #for path, subdirectories, files in os.walk(tools_path):

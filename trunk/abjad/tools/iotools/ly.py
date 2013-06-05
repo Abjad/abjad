@@ -28,10 +28,10 @@ def ly(target=-1):
 
     Return none.
     '''
-    from abjad import ABJCFG
+    from abjad import abjad_configuration
     from abjad.tools import iotools
 
-    ABJADOUTPUT = ABJCFG['abjad_output']
+    ABJADOUTPUT = abjad_configuration['abjad_output']
     text_editor = configurationtools.get_text_editor()
     if isinstance(target, int) and target < 0:
         last_lilypond = iotools.get_last_output_file_name()

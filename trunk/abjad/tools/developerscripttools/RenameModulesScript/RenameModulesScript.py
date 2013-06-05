@@ -53,19 +53,19 @@ class RenameModulesScript(DeveloperScript):
     ### PRIVATE METHODS ###
 
     def _codebase_name_to_codebase_docs_path(self, codebase):
-        from abjad import ABJCFG
+        from abjad import abjad_configuration
         if codebase == 'mainline':
-            return os.path.join(ABJCFG.abjad_directory_path, 'docs', 'source', 'api', 'tools')
+            return os.path.join(abjad_configuration.abjad_directory_path, 'docs', 'source', 'api', 'tools')
         elif codebase == 'experimental':
-            return os.path.join(ABJCFG.abjad_experimental_directory_path, 'docs', 'source', 'tools')
+            return os.path.join(abjad_configuration.abjad_experimental_directory_path, 'docs', 'source', 'tools')
         raise Exception('Bad codebase name {!r}.'.format(codebase))
 
     def _codebase_name_to_codebase_tools_path(self, codebase):
-        from abjad import ABJCFG
+        from abjad import abjad_configuration
         if codebase == 'mainline':
-            return os.path.join(ABJCFG.abjad_directory_path, 'tools')
+            return os.path.join(abjad_configuration.abjad_directory_path, 'tools')
         elif codebase == 'experimental':
-            return os.path.join(ABJCFG.abjad_experimental_directory_path, 'tools')
+            return os.path.join(abjad_configuration.abjad_experimental_directory_path, 'tools')
         raise Exception('Bad codebase name {!r}.'.format(codebase))
 
     def _confirm_name_changes(self, kind, old_codebase, old_package_name, old_object_name,
@@ -293,10 +293,10 @@ class RenameModulesScript(DeveloperScript):
     def _update_codebase(self, kind, old_codebase, old_package_name, old_object_name,
         new_codebase, new_package_name, new_object_name):
 
-        from abjad import ABJCFG
+        from abjad import abjad_configuration
         without_dirs = ['--without-dirs', 'build', '--without-dirs', '_build']
 
-        directory = ABJCFG.abjad_root_directory_path
+        directory = abjad_configuration.abjad_root_directory_path
 
         print 'Updating codebase ...'
         print ''

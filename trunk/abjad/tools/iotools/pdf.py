@@ -13,11 +13,11 @@ def pdf(target=-1):
 
     You may change this by setting the ``abjad_output`` variable in the ``config.py`` file.
     '''
-    from abjad import ABJCFG
+    from abjad import abjad_configuration
     from abjad.tools import iotools
     from abjad.tools.iotools._open_file import _open_file
 
-    ABJADOUTPUT = ABJCFG['abjad_output']
+    ABJADOUTPUT = abjad_configuration['abjad_output']
     if isinstance(target, int) and target < 0:
         last_lilypond = iotools.get_last_output_file_name()
         if last_lilypond:
@@ -40,7 +40,7 @@ def pdf(target=-1):
         raise ValueError('can not get target pdf name from %s.' % target)
 
     if os.stat(target_pdf):
-        pdf_viewer = ABJCFG['pdf_viewer']
+        pdf_viewer = abjad_configuration['pdf_viewer']
         _open_file(target_pdf, pdf_viewer)
     else:
         print 'Target PDF %s does not exist.' % target_pdf

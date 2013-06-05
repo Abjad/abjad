@@ -12,14 +12,14 @@ from abjad.tools.iotools.get_next_output_file_name import get_next_output_file_n
 def _log_render_lilypond_input(expr, tagline=False, docs=False):
     '''Write both .ly and .pdf files to the ``abjad_output`` directory.
     '''
-    from abjad import ABJCFG
+    from abjad import abjad_configuration
 
     lily_time = 2
     format_time = 2
 
     # log score
     current_directory = os.path.abspath('.')
-    ABJADOUTPUT = ABJCFG['abjad_output']
+    ABJADOUTPUT = abjad_configuration['abjad_output']
     _verify_output_directory(ABJADOUTPUT)
     os.chdir(ABJADOUTPUT)
     name = get_next_output_file_name()
@@ -49,7 +49,7 @@ def _log_render_lilypond_input(expr, tagline=False, docs=False):
 
     # render
     start_time = time.time()
-    _run_lilypond(name, ABJCFG['lilypond_path'])
+    _run_lilypond(name, abjad_configuration['lilypond_path'])
     stop_time = time.time()
     actual_lily_time = int(stop_time - start_time)
 

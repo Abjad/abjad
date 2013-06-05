@@ -21,9 +21,9 @@ class LilyPondLanguageToken(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        from abjad import ABJCFG
+        from abjad import abjad_configuration
         return '{}({!r})'.format(
-            self._class_name, ABJCFG['lilypond_language'])
+            self._class_name, abjad_configuration['lilypond_language'])
 
     ### PUBLIC PROPERTIES ###
 
@@ -36,6 +36,6 @@ class LilyPondLanguageToken(AbjadObject):
 
         Return string.
         '''
-        from abjad import ABJCFG
-        lilypond_language = ABJCFG['lilypond_language']
+        from abjad import abjad_configuration
+        lilypond_language = abjad_configuration['lilypond_language']
         return r'\language "%s"' % lilypond_language.lower()

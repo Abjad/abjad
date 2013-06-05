@@ -73,7 +73,7 @@ If no PATH flag is specified, the current directory will be searched.
 
     def setup_argument_parser(self, parser):
 
-        from abjad import ABJCFG
+        from abjad import abjad_configuration
 
         parser.add_argument('pattern',
             help='pattern to search for'
@@ -94,28 +94,28 @@ If no PATH flag is specified, the current directory will be searched.
 
         group.add_argument('-X', '--experimental',
             action='store_const',
-            const=ABJCFG.abjad_experimental_directory_path,
+            const=abjad_configuration.abjad_experimental_directory_path,
             dest='path',
             help='grep Abjad abjad.tools directory',
             )
 
         group.add_argument('-M', '--mainline',
             action='store_const',
-            const=ABJCFG.abjad_directory_path,
+            const=abjad_configuration.abjad_directory_path,
             dest='path',
             help='grep Abjad mainline directory',
             )
 
         group.add_argument('-T', '--tools',
             action='store_const',
-            const=os.path.join(ABJCFG.abjad_directory_path, 'tools'),
+            const=os.path.join(abjad_configuration.abjad_directory_path, 'tools'),
             dest='path',
             help='grep Abjad mainline tools directory',
             )
 
         group.add_argument('-R', '--root',
             action='store_const',
-            const=ABJCFG.abjad_root_directory_path,
+            const=abjad_configuration.abjad_root_directory_path,
             dest='path',
             help='grep Abjad root directory',
             )

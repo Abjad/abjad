@@ -23,7 +23,7 @@ def graph(expr, image_format='pdf', layout='dot'):
     Return None.
     '''
 
-    from abjad import ABJCFG
+    from abjad import abjad_configuration
     from abjad.tools import iotools
     from abjad.tools.iotools._open_file import _open_file
     from abjad.tools.iotools._verify_output_directory import _verify_output_directory
@@ -38,7 +38,7 @@ def graph(expr, image_format='pdf', layout='dot'):
         graphviz_format = expr.graphviz_format
 
     current_directory = os.path.abspath('.')
-    ABJADOUTPUT = ABJCFG['abjad_output']
+    ABJADOUTPUT = abjad_configuration['abjad_output']
     _verify_output_directory(ABJADOUTPUT)
     dot_path = os.path.join(ABJADOUTPUT, iotools.get_next_output_file_name(file_extension='dot'))
     img_path = os.path.join(ABJADOUTPUT, dot_path.replace('dot', 'pdf'))
@@ -49,6 +49,6 @@ def graph(expr, image_format='pdf', layout='dot'):
     command = '{} -v -T{} {} -o {}'.format(layout, image_format, dot_path, img_path)
     subprocess.call(command, shell=True)
 
-    pdf_viewer = ABJCFG['pdf_viewer']
-    ABJADOUTPUT = ABJCFG['abjad_output']
+    pdf_viewer = abjad_configuration['pdf_viewer']
+    ABJADOUTPUT = abjad_configuration['abjad_output']
     _open_file(img_path, pdf_viewer)

@@ -3,11 +3,11 @@
 import inspect
 import os
 from abjad.tools import *
-from abjad import ABJCFG
+from abjad import abjad_configuration
 
 
 total = 0
-root = os.path.join(ABJCFG.abjad_directory_path, 'tools')
+root = os.path.join(abjad_configuration.abjad_directory_path, 'tools')
 crawler = documentationtools.ClassCrawler(root)
 for klass in crawler():
     if not inspect.isabstract(klass):

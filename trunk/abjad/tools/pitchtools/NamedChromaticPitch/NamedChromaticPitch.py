@@ -296,8 +296,8 @@ class NamedChromaticPitch(Pitch):
 
         Return string.
         '''
-        from abjad import ABJCFG
-        return ABJCFG['accidental_spelling']
+        from abjad import abjad_configuration
+        return abjad_configuration['accidental_spelling']
 
     @property
     def chromatic_pitch_class_name(self):

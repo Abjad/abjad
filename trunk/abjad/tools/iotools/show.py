@@ -23,7 +23,7 @@ def show(expr, return_timing=False, suppress_pdf=False, docs=False):
 
     You may change this by setting the ``abjad_output`` variable in the ``config.py`` file.
     '''
-    from abjad import ABJCFG
+    from abjad import abjad_configuration
     from abjad.tools.iotools._log_render_lilypond_input import _log_render_lilypond_input
     from abjad.tools.iotools._open_file import _open_file
 
@@ -31,8 +31,8 @@ def show(expr, return_timing=False, suppress_pdf=False, docs=False):
 
     # do not open PDF if we're running py.test regression battery
     if not suppress_pdf:
-        pdf_viewer = ABJCFG['pdf_viewer']
-        ABJADOUTPUT = ABJCFG['abjad_output']
+        pdf_viewer = abjad_configuration['pdf_viewer']
+        ABJADOUTPUT = abjad_configuration['abjad_output']
         name = os.path.join(ABJADOUTPUT, name)
         _open_file('%s.pdf' % name[:-3], pdf_viewer)
 

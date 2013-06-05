@@ -79,7 +79,7 @@ class PyTestScript(DirectoryScript):
 
     def setup_argument_parser(self, parser):
 
-        from abjad import ABJCFG
+        from abjad import abjad_configuration
 
         parser.add_argument('-p', '--parallel',
             action='store_true',
@@ -105,33 +105,33 @@ class PyTestScript(DirectoryScript):
 
         group.add_argument('-A', '--all',
             action='store_const',
-            const=[ABJCFG.abjad_root_directory_path],
+            const=[abjad_configuration.abjad_root_directory_path],
             dest='path',
             help='test all directories, including demos',
             )
 
         group.add_argument('-D', '--demos',
             action='store_const',
-            const=[os.path.join(ABJCFG.abjad_directory_path, 'demos')],
+            const=[os.path.join(abjad_configuration.abjad_directory_path, 'demos')],
             dest='path',
             help='test demos directory',
             )
 
         group.add_argument('-M', '--mainline',
             action='store_const',
-            const=[os.path.join(ABJCFG.abjad_directory_path, 'tools')],
+            const=[os.path.join(abjad_configuration.abjad_directory_path, 'tools')],
             dest='path',
             help='test mainline tools directory',
             )
 
         group.add_argument('-X', '--experimental',
             action='store_const',
-            const=[ABJCFG.abjad_experimental_directory_path],
+            const=[abjad_configuration.abjad_experimental_directory_path],
             dest='path',
             help='test experimental directory',
             )
 
         parser.set_defaults(path=[
-            os.path.join(ABJCFG.abjad_directory_path, 'tools'),
-            ABJCFG.abjad_experimental_directory_path
+            os.path.join(abjad_configuration.abjad_directory_path, 'tools'),
+            abjad_configuration.abjad_experimental_directory_path
             ])

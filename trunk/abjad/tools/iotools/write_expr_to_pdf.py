@@ -11,7 +11,7 @@ def write_expr_to_pdf(expr, file_name, print_status=False, tagline=False):
 
     Return none.
     '''
-    from abjad import ABJCFG
+    from abjad import abjad_configuration
     from abjad.tools.iotools._log_render_lilypond_input import _log_render_lilypond_input
 
     # massage file_name
@@ -23,7 +23,7 @@ def write_expr_to_pdf(expr, file_name, print_status=False, tagline=False):
 
     # copy PDF file to file_name
     pdf_name = name[:-3] + '.pdf'
-    ABJADOUTPUT = ABJCFG['abjad_output']
+    ABJADOUTPUT = abjad_configuration['abjad_output']
     full_path_pdf_name = os.path.join(ABJADOUTPUT, pdf_name)
     shutil.move(full_path_pdf_name, file_name)
 

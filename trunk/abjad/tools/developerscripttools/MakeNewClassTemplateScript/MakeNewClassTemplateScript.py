@@ -83,7 +83,7 @@ class MakeNewClassTemplateScript(DeveloperScript):
 
     def process_args(self, args):
 
-        from abjad import ABJCFG
+        from abjad import abjad_configuration
 
         if args.name.count('.') != 1:
             print 'Error: {!r} not in tools_package.class_name format.'.format(args.name)
@@ -105,9 +105,9 @@ class MakeNewClassTemplateScript(DeveloperScript):
         os.mkdir(package_path)
         os.mkdir(os.path.join(package_path, 'test'))
 
-        if args.path == os.path.join(ABJCFG.abjad_experimental_directory_path, 'tools'):
+        if args.path == os.path.join(abjad_configuration.abjad_experimental_directory_path, 'tools'):
             package_root_name = 'experimental'
-        elif args.path == os.path.join(ABJCFG.abjad_directory_path, 'tools'):
+        elif args.path == os.path.join(abjad_configuration.abjad_directory_path, 'tools'):
             package_root_name = 'abjad'
         else:
             raise Exception
@@ -126,7 +126,7 @@ class MakeNewClassTemplateScript(DeveloperScript):
 
     def setup_argument_parser(self, parser):
 
-        from abjad import ABJCFG
+        from abjad import abjad_configuration
 
         parser.add_argument('name',
             help='tools package qualified class name'
@@ -136,14 +136,14 @@ class MakeNewClassTemplateScript(DeveloperScript):
 
         path_group.add_argument('-X', '--experimental',
             action='store_const',
-            const=os.path.join(ABJCFG.abjad_experimental_directory_path, 'tools'),
+            const=os.path.join(abjad_configuration.abjad_experimental_directory_path, 'tools'),
             dest='path',
             help='use the Abjad experimental tools path',
             )
 
         path_group.add_argument('-M', '--mainline',
             action='store_const',
-            const=os.path.join(ABJCFG.abjad_directory_path, 'tools'),
+            const=os.path.join(abjad_configuration.abjad_directory_path, 'tools'),
             dest='path',
             help='use the Abjad mainline tools path',
             )

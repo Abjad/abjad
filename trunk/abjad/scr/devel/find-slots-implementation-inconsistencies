@@ -2,7 +2,7 @@
 
 import inspect
 import os
-from abjad import ABJCFG
+from abjad import abjad_configuration
 from abjad.tools import iotools
 from abjad.tools.abctools import AbjadObject
 from abjad.tools.documentationtools import ClassCrawler

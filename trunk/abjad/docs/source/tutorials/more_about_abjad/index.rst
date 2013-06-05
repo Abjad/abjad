@@ -11,7 +11,7 @@ And how to make musical score?
 Use Python's ``dir()`` built-in to get a sense of the answer::
 
     >>> dir()
-    ['ABJCFG', 'Chord', 'Container', 'Duration', 'Fraction', 'Measure', 'Note', 'Rest', 'Score', 'Staff',
+    ['abjad_configuration', 'Chord', 'Container', 'Duration', 'Fraction', 'Measure', 'Note', 'Rest', 'Score', 'Staff',
     'Tuplet', 'Voice', '__builtins__', '__doc__', '__name__', '__package__', '__warningregistry__', 'abctools',
     'abjadbooktools', 'beamtools', 'chordtools', 'componenttools', 'configurationtools', 'containertools',
     'contexttools', 'datastructuretools', 'decoratortools', 'developerscripttools', 'documentationtools',

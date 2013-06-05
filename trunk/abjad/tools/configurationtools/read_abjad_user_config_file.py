@@ -3,6 +3,6 @@ def read_abjad_user_config_file(attribute_name):
 
     Returns a dictionary of var : value entries.
     '''
-    from abjad import ABJCFG
+    from abjad import abjad_configuration
 
-    return ABJCFG[attribute_name]
+    return abjad_configuration[attribute_name]

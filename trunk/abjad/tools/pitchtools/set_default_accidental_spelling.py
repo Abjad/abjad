@@ -34,9 +34,9 @@ def set_default_accidental_spelling(spelling='mixed'):
 
     Return none.
     '''
-    from abjad import ABJCFG
+    from abjad import abjad_configuration
 
     if spelling not in ('mixed', 'sharps', 'flats'):
         raise ValueError
 
-    ABJCFG['accidental_spelling'] = spelling
+    abjad_configuration['accidental_spelling'] = spelling

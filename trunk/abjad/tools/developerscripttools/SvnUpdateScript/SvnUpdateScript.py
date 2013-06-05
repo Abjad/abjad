@@ -74,7 +74,7 @@ class SvnUpdateScript(DirectoryScript):
 
     def setup_argument_parser(self, parser):
 
-        from abjad import ABJCFG
+        from abjad import abjad_configuration
 
         parser.add_argument('-C', '--clean',
             action='store_true',
@@ -92,21 +92,21 @@ class SvnUpdateScript(DirectoryScript):
 
         group.add_argument('-E', '--experimental',
             action='store_const',
-            const=ABJCFG.abjad_experimental_directory_path,
+            const=abjad_configuration.abjad_experimental_directory_path,
             dest='path',
             help='update Abjad abjad.tools directory',
             )
 
         group.add_argument('-M', '--mainline',
             action='store_const',
-            const=ABJCFG.abjad_directory_path,
+            const=abjad_configuration.abjad_directory_path,
             dest='path',
             help='update Abjad mainline directory',
             )
 
         group.add_argument('-R', '--root',
             action='store_const',
-            const=ABJCFG.abjad_root_directory_path,
+            const=abjad_configuration.abjad_root_directory_path,
             dest='path',
             help='update Abjad root directory',
             )
