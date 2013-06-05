@@ -443,6 +443,31 @@ Unstable packages (load manually)
       tools/musicexpressiontools/VoiceDictionary/VoiceDictionary
       tools/musicexpressiontools/VoiceProxy/VoiceProxy
 
+:py:mod:`newabjadbooktools <experimental.tools.newabjadbooktools>`
+==================================================================
+
+.. only:: html
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/newabjadbooktools/CodeBlock/CodeBlock
+      tools/newabjadbooktools/Document/Document
+      tools/newabjadbooktools/DocumentProcessor/DocumentProcessor
+      tools/newabjadbooktools/NoncodeBlock/NoncodeBlock
+
+.. only:: latex
+
+   Abstract Classes
+   ----------------
+
+   .. toctree::
+
+      tools/newabjadbooktools/CodeBlock/CodeBlock
+      tools/newabjadbooktools/Document/Document
+      tools/newabjadbooktools/DocumentProcessor/DocumentProcessor
+      tools/newabjadbooktools/NoncodeBlock/NoncodeBlock
+
 :py:mod:`parsertools <experimental.tools.parsertools>`
 ======================================================
 
