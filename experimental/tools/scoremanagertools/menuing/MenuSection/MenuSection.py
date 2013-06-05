@@ -285,9 +285,10 @@ class MenuSection(MenuObject):
     def unpack_menu_tokens(self):
         result = []
         for token in self.tokens:
-            key = token.key
-            if not self.is_keyed and key:
+            if not self.is_keyed:
                 key = None
+            else:
+                key = token.key
             unpacked_entry = (token.number, key, token.body, token.return_value, self)
             result.append(unpacked_entry)
         return result
