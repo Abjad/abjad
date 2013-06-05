@@ -3,10 +3,11 @@
 import inspect
 import os
 from abjad.tools import *
+from abjad import ABJCFG
 
 
 total = 0
-root = os.path.join(os.environ.get('ABJAD'), 'tools')
+root = os.path.join(ABJCFG.abjad_directory_path, 'tools')
 crawler = documentationtools.ClassCrawler(root)
 for klass in crawler():
     if not inspect.isabstract(klass):
@@ -27,5 +28,6 @@ for klass in crawler():
             total += 1
             print qualified_class_name
             print command
+            print
 
 print '{} noninstantiable classes.'.format(total)
