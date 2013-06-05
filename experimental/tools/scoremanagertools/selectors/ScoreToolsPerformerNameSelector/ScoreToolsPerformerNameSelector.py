@@ -21,7 +21,6 @@ class ScoreToolsPerformerNameSelector(Selector):
         menu, section = self._io.make_menu(where=self._where,
             is_keyed=self.is_keyed,
             is_numbered=self.is_numbered,
-            is_parenthetically_numbered=self.is_parenthetically_numbered,
             is_ranged=self.is_ranged,
             tokens=tokens,
             return_value_attribute='body',

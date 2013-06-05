@@ -65,7 +65,7 @@ class Menu(MenuSectionAggregator):
 
     @property
     def has_numbered_section(self):
-        return any([section.is_numbered or section.is_parenthetically_numbered for section in self.sections])
+        return any([section.is_numbered for section in self.sections])
 
     @property
     def has_ranged_section(self):
@@ -120,7 +120,7 @@ class Menu(MenuSectionAggregator):
     @property
     def numbered_section(self):
         for section in self.sections:
-            if section.is_numbered or section.is_parenthetically_numbered:
+            if section.is_numbered:
                 return section
 
     @property
@@ -136,7 +136,7 @@ class Menu(MenuSectionAggregator):
             section_menu_lines = section.make_menu_lines()
             if not section.is_hidden:
                 if not self._session.nonnumbered_menu_sections_are_hidden or \
-                    section.is_numbered or section.is_parenthetically_numbered:
+                    section.is_numbered:
                     menu_lines.extend(section_menu_lines)
         if self.hide_current_run:
             menu_lines = []
@@ -215,16 +215,21 @@ class Menu(MenuSectionAggregator):
         return result
 
     def make_section(self, is_hidden=False, is_internally_keyed=False, is_keyed=True,
-        is_numbered=False, is_parenthetically_numbered=False, is_ranged=False, tokens=None,
+        is_numbered=False, is_ranged=False, tokens=None,
         return_value_attribute='key'):
         assert not (is_numbered and self.has_numbered_section)
-        assert not (is_parenthetically_numbered and self.has_numbered_section)
         assert not (is_ranged and self.has_ranged_section)
-        section = MenuSection(is_hidden=is_hidden, is_internally_keyed=is_internally_keyed,
-            is_keyed=is_keyed, is_numbered=is_numbered,
-            is_parenthetically_numbered=is_parenthetically_numbered, is_ranged=is_ranged,
-            tokens=tokens, return_value_attribute=return_value_attribute,
-            session=self._session, where=self.where)
+        section = MenuSection(
+            is_hidden=is_hidden, 
+            is_internally_keyed=is_internally_keyed,
+            is_keyed=is_keyed, 
+            is_numbered=is_numbered,
+            is_ranged=is_ranged,
+            tokens=tokens, 
+            return_value_attribute=return_value_attribute,
+            session=self._session, 
+            where=self.where,
+            )
         self.sections.append(section)
         return section
 

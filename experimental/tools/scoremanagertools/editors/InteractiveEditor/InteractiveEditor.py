@@ -51,7 +51,7 @@ class InteractiveEditor(ScoreManagerObject):
 
     def _make_main_menu(self):
         menu, section = self._io.make_menu(where=self._where,
-            is_keyed=self.target_manifest.is_keyed, is_parenthetically_numbered=True)
+            is_keyed=self.target_manifest.is_keyed, is_numbered=True)
         section.tokens = self.target_attribute_tokens
         section.show_existing_values = True
         tokens = menu.hidden_section.tokens[:]

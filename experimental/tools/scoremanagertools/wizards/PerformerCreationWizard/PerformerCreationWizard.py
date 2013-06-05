@@ -115,7 +115,7 @@ class PerformerCreationWizard(Wizard):
 
     def make_performer_configuration_menu(self, performer):
         menu, section = self._io.make_menu(
-            where=self._where, is_parenthetically_numbered=True, is_ranged=True)
+            where=self._where, is_numbered=True, is_ranged=True)
         section.title = 'select instruments'
         likely_instruments = performer.likely_instruments_based_on_performer_name
         likely_instrument_names = [x().instrument_name for x in likely_instruments]

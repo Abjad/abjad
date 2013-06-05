@@ -58,7 +58,7 @@ class StylesheetFileWrangler(FileWrangler):
 
     def _make_main_menu(self, head=None):
         menu, section = self._io.make_menu(
-            where=self._where, is_parenthetically_numbered=True, is_keyed=False)
+            where=self._where, is_numbered=True, is_keyed=False)
         section.tokens = self._make_menu_tokens(include_extension=True)
         tokens = [
             ('new', 'new'),

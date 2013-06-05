@@ -391,9 +391,12 @@ class ScorePackageProxy(PackageProxy):
         self.fix_score_package_directory_structure(is_interactive=False)
 
     def make_setup_menu(self):
-        setup_menu, section = self._io.make_menu(where=self._where,
-            is_parenthetically_numbered=True, is_keyed=False,
-            return_value_attribute='key')
+        setup_menu, section = self._io.make_menu(
+            where=self._where,
+            is_numbered=True, 
+            is_keyed=False,
+            return_value_attribute='key',
+            )
         section.tokens = self.setup_value_menu_tokens
         return setup_menu
 

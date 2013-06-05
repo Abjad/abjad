@@ -13,7 +13,7 @@ class MenuSection(MenuObject):
     ### INITIALIZER ###
 
     def __init__(self, is_hidden=False, is_internally_keyed=False, is_keyed=True,
-        is_numbered=False, is_parenthetically_numbered=False, is_ranged=False,
+        is_numbered=False, is_ranged=False,
         is_read_only=False, session=None, where=None, title=None, tokens=None,
         return_value_attribute='key'):
         MenuObject.__init__(self, session=session, where=where, title=title)
@@ -21,7 +21,6 @@ class MenuSection(MenuObject):
         self._is_internally_keyed = is_internally_keyed
         self._is_keyed = is_keyed
         self._is_numbered = is_numbered
-        self._is_parenthetically_numbered = is_parenthetically_numbered
         self._is_ranged = is_ranged
         assert return_value_attribute in self.return_value_attributes, repr(return_value_attribute)
         self._return_value_attribute = return_value_attribute
@@ -64,10 +63,6 @@ class MenuSection(MenuObject):
     @property
     def is_numbered(self):
         return self._is_numbered
-
-    @property
-    def is_parenthetically_numbered(self):
-        return self._is_parenthetically_numbered
 
     @property
     def is_ranged(self):
@@ -121,7 +116,7 @@ class MenuSection(MenuObject):
                 new_tokens = []
                 for i, token in enumerate(tokens):
                     if isinstance(token, (str, tuple, MenuToken)):
-                        if self.is_numbered or self.is_parenthetically_numbered:
+                        if self.is_numbered:
                             number = i + 1
                         else:
                             number = None
@@ -255,10 +250,7 @@ class MenuSection(MenuObject):
                 total_empty_tokens += 1
                 continue
             key, body, existing_value = token.key, token.body, token.existing_value
-            if self.is_parenthetically_numbered:
-                entry_number = entry_index + 1 - total_empty_tokens
-                menu_line += '({}) '.format(str(entry_number))
-            elif self.is_numbered:
+            if self.is_numbered:
                 entry_number = entry_index + 1 - total_empty_tokens
                 menu_line += '{}: '.format(str(entry_number))
             if key and self.is_keyed:

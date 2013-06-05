@@ -43,7 +43,7 @@ class MaterialPackageMaker(MaterialPackageProxy):
     def _make_main_menu_section_for_user_input_module(self, main_menu, hidden_section):
         tokens = self.user_input_wrapper_in_memory.editable_lines
         section = main_menu.make_section(
-            is_parenthetically_numbered=True,
+            is_numbered=True,
             tokens=tokens,
             return_value_attribute='number',
             )

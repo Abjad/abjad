@@ -92,7 +92,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         menu, section = self._io.make_menu(
             where=self._where, 
             is_keyed=False, 
-            is_parenthetically_numbered=True,
+            is_numbered=True,
             tokens=tokens,
             return_value_attribute='key',
             )
@@ -197,7 +197,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         self._session.cache_breadcrumbs(cache=cache)
         menu, section = self._io.make_menu(
             where=self._where, 
-            is_parenthetically_numbered=True, 
+            is_numbered=True, 
             is_keyed=False,
             )
         section.tokens = self._make_menu_tokens()
@@ -225,7 +225,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         self._session.cache_breadcrumbs(cache=cache)
         menu, section = self._io.make_menu(
             where=self._where,
-            is_parenthetically_numbered=True, 
+            is_numbered=True, 
             is_keyed=False,
             )
         section.tokens = self._make_asset_storehouse_menu_tokens(
