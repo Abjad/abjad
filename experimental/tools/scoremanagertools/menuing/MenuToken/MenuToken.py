@@ -1,3 +1,4 @@
+from abjad.tools import stringtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
@@ -58,7 +59,17 @@ class MenuToken(list, AbjadObject):
             return_value = self.prepopulated_return_value
         self._return_value = return_value
         assert self.return_value
-
+        if self.is_keyed:
+            assert self.key
+        matches = []
+        if self.number:
+            matches.append(str(self.number))
+        if self.is_keyed:
+            matches.append(self.key)
+        self._matches = tuple(matches)
+        normalized_body = stringtools.strip_diacritics_from_binary_string(self.body).lower()
+        self._normalized_body = normalized_body
+        
     ### SPECIAL METHODS ###
 
     def __repr__(self):
@@ -83,6 +94,14 @@ class MenuToken(list, AbjadObject):
         return self._key
 
     @property
+    def matches(self):
+        return self._matches
+
+    @property
+    def normalized_body(self):
+        return self._normalized_body
+
+    @property
     def number(self):
         return self._number
 
@@ -90,7 +109,6 @@ class MenuToken(list, AbjadObject):
     def prepopulated_return_value(self):
         return self._prepopulated_return_value
 
-    # TODO: harmonize this implementation with that in MenuSection.unpack_menu_tokens()
     @property
     def return_value(self):
         return self._return_value
@@ -98,3 +116,11 @@ class MenuToken(list, AbjadObject):
     @property
     def return_value_attribute(self):
         return self._return_value_attribute
+
+    ### PUBLIC METHODS ###
+
+    def user_input_to_return_value(self, user_input):
+        if user_input in self.matches:
+            return self.return_value
+        elif 3 <= len(user_input) and self.normalized_body.startswith(user_input):
+            return self.return_value

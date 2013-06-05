@@ -77,6 +77,7 @@ class Menu(MenuSectionAggregator):
             if section.is_hidden:
                 return section
 
+    # TODO: remove?
     @property
     def menu_token_bodies(self):
         result = []
@@ -84,6 +85,7 @@ class Menu(MenuSectionAggregator):
             result.extend(section.menu_token_bodies)
         return result
 
+    # TODO: remove?
     @property
     def menu_token_keys(self):
         result = []
@@ -91,11 +93,19 @@ class Menu(MenuSectionAggregator):
             result.extend(section.menu_token_keys)
         return result
 
+    # TODO: remove?
     @property
     def menu_token_return_values(self):
         result = []
         for section in self.sections:
             result.extend(section.menu_token_return_values)
+        return result
+
+    @property
+    def menu_tokens(self):
+        result = []
+        for section in self.sections:
+            result.extend(section.tokens)
         return result
 
     @property
@@ -172,15 +182,11 @@ class Menu(MenuSectionAggregator):
         elif user_input == 'r':
             return 'r'
         else:
-            matches = []
-            for number, key, body, return_value, section in self.unpack_menu_tokens():
-                if body == 'redraw':
+            for menu_token in self.menu_tokens:
+                if menu_token.body == 'redraw':
                     continue
-                body = stringtools.strip_diacritics_from_binary_string(body).lower()
-                if  (mathtools.is_integer_equivalent_expr(user_input) and int(user_input) == number) or \
-                    (user_input == key) or \
-                    (user_input == body) or \
-                    (3 <= len(user_input) and body.startswith(user_input)):
+                return_value = menu_token.user_input_to_return_value(user_input)
+                if return_value is not None:
                     return self.conditionally_enclose_in_list(return_value)
 
     def conditionally_display_menu(self, automatically_determined_user_input=None):
@@ -259,12 +265,6 @@ class Menu(MenuSectionAggregator):
             return expr
         else:
             return expr
-
-    def unpack_menu_tokens(self):
-        result = []
-        for section in self.sections:
-            result.extend(section.unpack_menu_tokens())
-        return result
 
     def user_enters_argument_range(self, user_input):
         if ',' in user_input:

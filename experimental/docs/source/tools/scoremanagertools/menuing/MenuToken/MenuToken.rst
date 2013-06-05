@@ -21,6 +21,12 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuToken.MenuToken.MenuToken.key
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuToken.MenuToken.MenuToken.matches
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuToken.MenuToken.MenuToken.normalized_body
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuToken.MenuToken.MenuToken.number
    :noindex:
 
@@ -64,6 +70,9 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuToken.MenuToken.MenuToken.sort
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.menuing.MenuToken.MenuToken.MenuToken.user_input_to_return_value
    :noindex:
 
 Special methods
