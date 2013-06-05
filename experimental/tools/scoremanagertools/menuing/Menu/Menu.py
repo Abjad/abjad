@@ -218,14 +218,14 @@ class Menu(MenuSectionAggregator):
         assert not (is_numbered and self.has_numbered_section)
         assert not (is_ranged and self.has_ranged_section)
         menu_section = MenuSection(
-            is_hidden=is_hidden, 
+            is_hidden=is_hidden,
             is_internally_keyed=is_internally_keyed,
-            is_keyed=is_keyed, 
+            is_keyed=is_keyed,
             is_numbered=is_numbered,
             is_ranged=is_ranged,
-            menu_tokens=menu_tokens, 
+            menu_tokens=menu_tokens,
             return_value_attribute=return_value_attribute,
-            session=self._session, 
+            session=self._session,
             where=self.where,
             )
         self.menu_sections.append(menu_section)

@@ -139,7 +139,7 @@ class Session(abctools.AbjadObject):
 
             >>> session.command_history
             []
-        
+
         Return list.
         '''
         return self._command_history
@@ -400,7 +400,7 @@ class Session(abctools.AbjadObject):
         Otherwise false:
 
         ::
-            
+
             >>> session.is_navigating_to_sibling_score
             False
 

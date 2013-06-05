@@ -14,10 +14,10 @@ def test_ScorePackageProxy_read_only_attributes_01():
     assert isinstance(score_proxy.distribution_proxy, scoremanagertools.proxies.DirectoryProxy)
     assert isinstance(score_proxy.exergue_directory_proxy, scoremanagertools.proxies.DirectoryProxy)
     assert isinstance(
-        score_proxy.material_package_maker_wrangler, 
+        score_proxy.material_package_maker_wrangler,
         scoremanagertools.wranglers.MaterialPackageMakerWrangler)
     assert isinstance(
-        score_proxy.material_package_wrangler, 
+        score_proxy.material_package_wrangler,
         scoremanagertools.wranglers.MaterialPackageWrangler)
     assert isinstance(score_proxy.music_proxy, scoremanagertools.proxies.MusicPackageProxy)
 

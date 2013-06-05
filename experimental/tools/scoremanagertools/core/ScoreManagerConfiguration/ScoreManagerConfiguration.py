@@ -38,23 +38,23 @@ class ScoreManagerConfiguration(Configuration):
         # built-in asset library directory paths
 
         self.built_in_editors_directory_path = os.path.join(
-            self.score_manager_tools_directory_path, 
+            self.score_manager_tools_directory_path,
             'editors',
             )
         self.built_in_material_package_makers_directory_path = os.path.join(
-            self.score_manager_tools_directory_path, 
+            self.score_manager_tools_directory_path,
             'materialpackagemakers',
             )
         self.built_in_material_packages_directory_path = os.path.join(
-            self.score_manager_tools_directory_path, 
+            self.score_manager_tools_directory_path,
             'materialpackages',
             )
         self.built_in_specifiers_directory_path = os.path.join(
-            self.score_manager_tools_directory_path, 
+            self.score_manager_tools_directory_path,
             'specifiers',
             )
         self.built_in_stylesheets_directory_path = os.path.join(
-            self.score_manager_tools_directory_path, 
+            self.score_manager_tools_directory_path,
             'stylesheets',
             )
 
@@ -65,11 +65,11 @@ class ScoreManagerConfiguration(Configuration):
             'editors',
             ])
         self.built_in_material_package_makers_package_path = '.'.join([
-            self.score_manager_tools_package_path, 
+            self.score_manager_tools_package_path,
             'materialpackagemakers',
             ])
         self.built_in_material_packages_package_path = '.'.join([
-            self.score_manager_tools_package_path, 
+            self.score_manager_tools_package_path,
             'materialpackages',
             ])
         self.built_in_specifiers_package_path = '.'.join([
@@ -84,7 +84,7 @@ class ScoreManagerConfiguration(Configuration):
             self._settings['user_asset_library_directory_path']
             ))
         self.user_asset_library_editors_directory_path = os.path.join(
-            self.user_asset_library_directory_path, 
+            self.user_asset_library_directory_path,
             'editors',
             )
         self.user_asset_library_material_package_makers_directory_path = os.path.join(
@@ -92,11 +92,11 @@ class ScoreManagerConfiguration(Configuration):
             'material_package_makers',
             )
         self.user_asset_library_material_packages_directory_path = os.path.join(
-            self.user_asset_library_directory_path, 
+            self.user_asset_library_directory_path,
             'material_packages',
             )
         self.user_asset_library_specifiers_directory_path = os.path.join(
-            self.user_asset_library_directory_path, 
+            self.user_asset_library_directory_path,
             'specifiers',
             )
         self.user_asset_library_stylesheets_directory_path = os.path.join(
@@ -108,7 +108,7 @@ class ScoreManagerConfiguration(Configuration):
 
         self.user_asset_library_package_path = 'score_manager_asset_library'
         self.user_asset_library_editors_package_path = '.'.join([
-            self.user_asset_library_package_path, 
+            self.user_asset_library_package_path,
             'editors',
             ])
         self.user_asset_library_material_package_makers_package_path = '.'.join([
@@ -116,18 +116,18 @@ class ScoreManagerConfiguration(Configuration):
             'material_package_makers',
             ])
         self.user_asset_library_material_packages_package_path = '.'.join([
-            self.user_asset_library_package_path, 
+            self.user_asset_library_package_path,
             'material_packages',
             ])
         self.user_asset_library_specifiers_package_path = '.'.join([
-            self.user_asset_library_package_path, 
+            self.user_asset_library_package_path,
             'specifiers',
             ])
 
         # built-in score packages
 
         self.built_in_score_packages_directory_path = os.path.join(
-            self.score_manager_tools_directory_path, 
+            self.score_manager_tools_directory_path,
             'scorepackages',
             )
         self.built_in_score_packages_package_path = '.'.join([
@@ -163,7 +163,7 @@ class ScoreManagerConfiguration(Configuration):
                 file_path = os.path.join(directory_path, '__init__.py')
                 file(file_path, 'w').write('')
 
-        # make missing directories 
+        # make missing directories
 
         if not os.path.exists(self.user_score_packages_directory_path):
             os.makedirs(self.user_score_packages_directory_path)
@@ -266,7 +266,7 @@ class ScoreManagerConfiguration(Configuration):
 
     def list_score_directory_paths(self, built_in=False, user=False, head=None):
         '''List score directory paths.
-    
+
         Example. List built-in score directory paths:
 
         ::
@@ -311,7 +311,7 @@ class ScoreManagerConfiguration(Configuration):
 
     def packagesystem_path_to_filesystem_path(self, package_path, is_module=False):
         '''Change `package_path` to directory path.
-        
+
         Return string.
         '''
         if package_path is None:
@@ -331,7 +331,7 @@ class ScoreManagerConfiguration(Configuration):
                 package_path_parts[1:]
         elif package_path.startswith(self.user_asset_library_package_path):
             prefix_length = len(self.user_asset_library_package_path)
-            trimmed_package_path = package_path[prefix_length:]     
+            trimmed_package_path = package_path[prefix_length:]
             directory_parts = []
             directory_parts.append(self.user_asset_library_directory_path)
             directory_parts.extend(trimmed_package_path.split('.'))

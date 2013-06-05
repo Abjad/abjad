@@ -61,7 +61,7 @@ class ListEditor(InteractiveEditor):
             menu_tokens=menu_tokens,
             is_keyed=True,
             return_value_attribute='key',
-            is_hidden=True, 
+            is_hidden=True,
             )
         return menu
 

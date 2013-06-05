@@ -12,16 +12,16 @@ class MenuSection(MenuObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, 
-        is_hidden=False, 
-        is_internally_keyed=False, 
+    def __init__(self,
+        is_hidden=False,
+        is_internally_keyed=False,
         is_keyed=False,
-        is_numbered=False, 
+        is_numbered=False,
         is_ranged=False,
-        is_read_only=False, 
-        session=None, 
-        where=None, 
-        title=None, 
+        is_read_only=False,
+        session=None,
+        where=None,
+        title=None,
         menu_tokens=None,
         return_value_attribute='body',
         ):
@@ -128,7 +128,7 @@ class MenuSection(MenuObject):
                     else:
                         number = None
                     new_token = MenuToken(
-                        menu_token, 
+                        menu_token,
                         number=number,
                         is_keyed=self.is_keyed,
                         return_value_attribute=self.return_value_attribute)

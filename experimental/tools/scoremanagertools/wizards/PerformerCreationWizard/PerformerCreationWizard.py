@@ -115,10 +115,10 @@ class PerformerCreationWizard(Wizard):
 
     def make_performer_configuration_menu(self, performer):
         menu, menu_section = self._io.make_menu(
-            where=self._where, 
+            where=self._where,
             return_value_attribute='key',
             is_keyed=True,
-            is_numbered=True, 
+            is_numbered=True,
             is_ranged=True,
             )
         menu_section.title = 'select instruments'

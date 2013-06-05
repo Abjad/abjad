@@ -259,10 +259,10 @@ def test_Menu_run_07():
         ('rm', 'second command'),
         ('mod', 'third command'),
         ]
-    section_1 = menu.make_section(menu_tokens=menu_tokens, 
+    section_1 = menu.make_section(menu_tokens=menu_tokens,
         is_keyed=True, return_value_attribute='key')
     section_1.title = 'section'
-    
+
     result = menu._run(user_input='foo')
 
     assert menu._session.transcript[-2][1] == \

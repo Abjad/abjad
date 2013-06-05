@@ -105,7 +105,7 @@ class ScoreManager(ScoreManagerObject):
             ]
         hidden_section = menu.make_section(
             menu_tokens=menu_tokens,
-            return_value_attribute='key', 
+            return_value_attribute='key',
             is_keyed=True,
             is_hidden=True,
             )
@@ -123,10 +123,10 @@ class ScoreManager(ScoreManagerObject):
             menu_tokens = self.score_package_wrangler._make_menu_tokens()
         menu, menu_section = self._io.make_menu(
             menu_tokens=menu_tokens,
-            is_numbered=True, 
-            is_keyed=False, 
+            is_numbered=True,
+            is_keyed=False,
             return_value_attribute='key',
-            where=self._where, 
+            where=self._where,
             )
         return menu
 
@@ -282,12 +282,12 @@ class ScoreManager(ScoreManagerObject):
 
     def manage_materials(self):
         self.material_package_wrangler._run(
-            rollback=True, head=self.configuration.built_in_material_packages_package_path) 
+            rollback=True, head=self.configuration.built_in_material_packages_package_path)
 
     def manage_stylesheets(self):
         self.stylesheet_file_wrangler._run(
             rollback=True, head=self.configuration.built_in_stylesheets_directory_path)
-        
+
     def manage_svn(self, clear=True):
         while True:
             self._session.push_breadcrumb('repository commands')

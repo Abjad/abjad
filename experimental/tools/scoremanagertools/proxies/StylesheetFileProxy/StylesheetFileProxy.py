@@ -51,7 +51,7 @@ class StylesheetFileProxy(FileProxy):
             ('vi', 'vi stylesheet'),
             ]
         menu, menu_section = self._io.make_menu(
-            where=self.where, 
+            where=self.where,
             menu_tokens=menu_tokens,
             return_value_attribute='key',
             is_keyed=True,

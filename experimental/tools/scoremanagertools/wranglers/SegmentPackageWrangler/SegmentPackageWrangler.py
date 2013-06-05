@@ -16,7 +16,7 @@ class SegmentPackageWrangler(PackageWrangler):
     '''
 
     ### CLASS VARIABLES ###
-    
+
     asset_storehouse_packagesystem_path_in_built_in_asset_library = None
 
     score_package_asset_storehouse_path_infix_parts = ('music', 'segments')
@@ -41,9 +41,9 @@ class SegmentPackageWrangler(PackageWrangler):
     def _make_main_menu(self, head=None):
         menu_tokens = self.list_asset_names(head=head)
         menu, menu_section = self._io.make_menu(
-            where=self._where, 
+            where=self._where,
             menu_tokens=menu_tokens,
-            is_numbered=True, 
+            is_numbered=True,
             )
         menu_tokens = [
             ('new', 'new segment'),

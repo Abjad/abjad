@@ -43,7 +43,7 @@ class StylesheetFileWrangler(FileWrangler):
             score_filesystem_path = filesystem_path.rpartition(tmp)[0]
             packagesystem_path = self.configuration.filesystem_path_to_packagesystem_path(
                 score_filesystem_path)
-            score_package_proxy = scoremanagertools.proxies.ScorePackageProxy( 
+            score_package_proxy = scoremanagertools.proxies.ScorePackageProxy(
                 packagesystem_path=packagesystem_path)
             annotation = score_package_proxy.title
         elif filesystem_path.startswith(self.configuration.built_in_stylesheets_directory_path):
@@ -58,9 +58,9 @@ class StylesheetFileWrangler(FileWrangler):
 
     def _make_main_menu(self, head=None):
         menu, menu_section = self._io.make_menu(
-            where=self._where, 
+            where=self._where,
             return_value_attribute='key',
-            is_numbered=True, 
+            is_numbered=True,
             )
         menu_section.menu_tokens = self._make_menu_tokens(include_extension=True)
         menu_tokens = [
@@ -111,7 +111,7 @@ class StylesheetFileWrangler(FileWrangler):
 
             >>> wrangler.storage_format
             'wranglers.StylesheetFileWrangler()'
-    
+
         Return string.
         '''
         return super(StylesheetFileWrangler, self).storage_format
@@ -161,7 +161,7 @@ class StylesheetFileWrangler(FileWrangler):
         in_built_in_asset_library=True, in_user_asset_library=True,
         in_built_in_score_packages=True, in_user_score_packages=True, head=None):
         '''Stylesheet file wrangler list asset filesystem paths.
-    
+
         Example. List built-in stylesheet filesystem paths:
 
         ::
@@ -186,7 +186,7 @@ class StylesheetFileWrangler(FileWrangler):
     def list_asset_names(self, in_built_in_asset_library=True, in_user_asset_library=True,
         in_built_in_score_packages=True, in_user_score_packages=True, head=None, include_extension=False):
         '''Stylesheet file wrangler list asset names.
-    
+
         Example. List built-in stylesheet names:
 
         ::
@@ -202,9 +202,9 @@ class StylesheetFileWrangler(FileWrangler):
         Return list.
         '''
         return super(StylesheetFileWrangler, self).list_asset_names(
-            in_built_in_asset_library=in_built_in_asset_library, 
+            in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
-            in_built_in_score_packages=in_built_in_score_packages, 
+            in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
             head=head,
             include_extension=include_extension)
@@ -234,7 +234,7 @@ class StylesheetFileWrangler(FileWrangler):
             in_user_score_packages=in_user_score_packages,
             head=head)
 
-    def list_asset_storehouse_filesystem_paths(self, 
+    def list_asset_storehouse_filesystem_paths(self,
         in_built_in_asset_library=True, in_user_asset_library=True,
         in_built_in_score_packages=True, in_user_score_packages=True):
         '''Stylesheet file wrangler list storehouse filesystem paths.

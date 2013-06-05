@@ -39,7 +39,7 @@ class FilesystemAssetProxy(ScoreManagerObject):
 
     def __repr__(self):
         '''Filesystem asset proxy repr.
-    
+
         Return string.
         '''
         return '{}({!r})'.format(self._class_name, self.filesystem_path)

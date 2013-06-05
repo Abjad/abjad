@@ -128,7 +128,7 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
     ::
 
         >>> timesignaturetools.establish_metrical_hierarchy(
-        ...     staff[1][:], 
+        ...     staff[1][:],
         ...     hierarchy,
         ...     )
         >>> f(staff)
@@ -179,7 +179,7 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
     ::
 
         >>> timesignaturetools.establish_metrical_hierarchy(
-        ...     measure[:], 
+        ...     measure[:],
         ...     measure,
         ...     )
         >>> f(measure)
@@ -229,7 +229,7 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
 
         >>> measure = p(parseable)
         >>> timesignaturetools.establish_metrical_hierarchy(
-        ...     measure[:], 
+        ...     measure[:],
         ...     measure,
         ...     maximum_dot_count=1,
         ...     )
@@ -256,7 +256,7 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
 
         >>> measure = p(parseable)
         >>> timesignaturetools.establish_metrical_hierarchy(
-        ...     measure[:], 
+        ...     measure[:],
         ...     measure,
         ...     maximum_dot_count=0,
         ...     )
@@ -323,7 +323,7 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
     ::
 
         >>> timesignaturetools.establish_metrical_hierarchy(
-        ...     measure[:], 
+        ...     measure[:],
         ...     measure,
         ...     )
         >>> f(measure)
@@ -348,7 +348,7 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
 
         >>> measure = p(parseable)
         >>> timesignaturetools.establish_metrical_hierarchy(
-        ...     measure[:], 
+        ...     measure[:],
         ...     measure,
         ...     boundary_depth=1,
         ...     )
@@ -373,7 +373,7 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
 
         >>> measure = p(parseable)
         >>> timesignaturetools.establish_metrical_hierarchy(
-        ...     measure[:], 
+        ...     measure[:],
         ...     measure,
         ...     boundary_depth=2,
         ...     )

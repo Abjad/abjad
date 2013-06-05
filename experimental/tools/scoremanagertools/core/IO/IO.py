@@ -118,12 +118,12 @@ class IO(AbjadObject):
         from experimental.tools import scoremanagertools
         menu = scoremanagertools.menuing.Menu(where=where, session=self._session)
         menu_section = menu.make_section(
-            is_hidden=is_hidden, 
-            is_internally_keyed=is_internally_keyed, 
+            is_hidden=is_hidden,
+            is_internally_keyed=is_internally_keyed,
             is_keyed=is_keyed,
-            is_numbered=is_numbered, 
+            is_numbered=is_numbered,
             is_ranged=is_ranged,
-            menu_tokens=menu_tokens, 
+            menu_tokens=menu_tokens,
             return_value_attribute=return_value_attribute,
             )
         return menu, menu_section

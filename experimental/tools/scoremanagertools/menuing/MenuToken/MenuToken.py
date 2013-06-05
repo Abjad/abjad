@@ -65,7 +65,7 @@ class MenuToken(AbjadObject):
         self._matches = tuple(matches)
         normalized_body = stringtools.strip_diacritics_from_binary_string(self.body).lower()
         self._normalized_body = normalized_body
-        
+
     ### SPECIAL METHODS ###
 
     def __repr__(self):

@@ -49,7 +49,7 @@ class MaterialPackageProxy(PackageProxy):
 
     def _make_main_menu(self):
         menu, hidden_section = self._io.make_menu(
-            where=self._where, 
+            where=self._where,
             return_value_attribute='key',
             is_keyed=True,
             is_hidden=True,
@@ -614,7 +614,7 @@ class MaterialPackageProxy(PackageProxy):
         return getattr(expr, '_tools_package_qualified_repr', repr(expr))
 
     def interactively_edit_illustration_builder_module(self):
-        self.illustration_builder_module_proxy.edit() 
+        self.illustration_builder_module_proxy.edit()
 
     def interactively_edit_material_definition_module(self):
         self.material_definition_module_proxy.edit()
@@ -649,7 +649,7 @@ class MaterialPackageProxy(PackageProxy):
 
     def interactively_edit_stylesheet_file(self):
         self.stylesheet_file_proxy.edit()
-   
+
     def interactively_remove(self):
         #self.remove_material_from_materials_initializer()
         PackageProxy.interactively_remove(self)
@@ -727,7 +727,7 @@ class MaterialPackageProxy(PackageProxy):
 
     def interactively_view_output_material_module(self):
         self.output_material_module_proxy.view()
-    
+
     def interactively_write_material_definition_module_boilerplate(self):
         self.material_definition_module_proxy.interactively_write_boilerplate()
 

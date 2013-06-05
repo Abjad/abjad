@@ -9,7 +9,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
     '''Material package maker wrangler.
 
     ::
-    
+
         >>> score_manager = scoremanagertools.scoremanager.ScoreManager()
         >>> wrangler = score_manager.material_package_maker_wrangler
         >>> wrangler
@@ -33,7 +33,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
 
     asset_storehouse_packagesystem_path_in_user_asset_library = \
         PackageWrangler.configuration.user_asset_library_material_package_makers_package_path
-    
+
     ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
@@ -64,7 +64,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             except ImportError:
                 command = 'from {} import {} as material_package_maker_class'
                 command = command.format(
-                    self.configuration.user_asset_library_material_package_makers_package_path, 
+                    self.configuration.user_asset_library_material_package_makers_package_path,
                     material_package_maker_class_name)
                 exec(command)
             material_package_proxy = material_package_maker_class(
@@ -74,8 +74,8 @@ class MaterialPackageMakerWrangler(PackageWrangler):
     def _make_main_menu(self, head=None):
         menu_tokens = self.list_asset_names(head=head)
         menu, menu_section = self._io.make_menu(
-            where=self._where, 
-            is_numbered=True, 
+            where=self._where,
+            is_numbered=True,
             is_keyed=True,
             return_value_attribute='key',
             menu_tokens=menu_tokens,
@@ -173,7 +173,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             in_user_score_packages=in_user_score_packages,
             head=head)
 
-    def list_asset_names(self, 
+    def list_asset_names(self,
         in_built_in_asset_library=True, in_user_asset_library=True,
         in_built_in_score_packages=True, in_user_score_packages=True, head=None):
         '''List asset names.
@@ -204,7 +204,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             in_user_score_packages=in_user_score_packages,
             head=head)
 
-    def list_asset_packagesystem_paths(self, 
+    def list_asset_packagesystem_paths(self,
         in_built_in_asset_library=True, in_user_asset_library=True,
         in_built_in_score_packages=True, in_user_score_packages=True, head=None):
         '''List asset packagesystem_paths.
@@ -235,13 +235,13 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             in_user_score_packages=in_user_score_packages,
             head=head)
 
-    def list_asset_proxies(self, 
+    def list_asset_proxies(self,
         in_built_in_asset_library=True, in_user_asset_library=True,
         in_built_in_score_packages=True, in_user_score_packages=True, head=None):
         '''List asset proxies.
 
         Example. List built-in material package maker proxies:
-            
+
         ::
 
             >>> for x in wrangler.list_asset_proxies(

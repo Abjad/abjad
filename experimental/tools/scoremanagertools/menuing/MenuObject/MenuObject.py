@@ -110,12 +110,12 @@ class MenuObject(ScoreManagerObject):
             ('where', 'show menu client'),
             ]
         menu_section = MenuSection(
-            session=session, 
-            where=where, 
+            session=session,
+            where=where,
             is_keyed=True,
             menu_tokens=menu_tokens,
             return_value_attribute='key',
-            is_hidden=True, 
+            is_hidden=True,
             )
         return menu_section
 

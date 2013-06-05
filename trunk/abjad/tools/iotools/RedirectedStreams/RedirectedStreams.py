@@ -9,7 +9,7 @@ class RedirectedStreams(ContextManager):
     >>> string_io = StringIO.StringIO()
     >>> with iotools.RedirectedStreams(stdout=string_io):
     ...     print "hello, world!"
-    ... 
+    ...
     >>> result = string_io.getvalue()
     >>> string_io.close()
     >>> print result

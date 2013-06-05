@@ -22,7 +22,7 @@ def iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr(expr):
                 \time 2/4
                 c'4
                 d'4 ~
-            } 
+            }
             {
                 \time 4/4
                 d'8.
@@ -92,7 +92,7 @@ def iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr(expr):
     '''
     from abjad.tools import tietools
 
-    last_tie_chain = None 
+    last_tie_chain = None
     current_leaf_group = None
     current_leaf_group_is_silent = False
 
@@ -127,7 +127,7 @@ def iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr(expr):
             yield x
 
         else:
-            raise Exception('Unhandled component found {!r}', x) 
+            raise Exception('Unhandled component found {!r}', x)
 
     if current_leaf_group is not None:
         yield tietools.TieChain(current_leaf_group)

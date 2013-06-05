@@ -22,12 +22,12 @@ class MaterialPackageWrangler(PackageWrangler):
         >>> wrangler_in_built_in_score._session.underscore_delimited_current_score_name = 'red_example_score'
         >>> wrangler_in_built_in_score
         MaterialPackageWrangler()
-    
+
     Return material package wrangler.
     '''
 
     ### CLASS VARIABLES ###
-    
+
     score_package_asset_storehouse_path_infix_parts = ('music', 'materials')
 
     asset_storehouse_packagesystem_path_in_built_in_asset_library = \
@@ -68,7 +68,7 @@ class MaterialPackageWrangler(PackageWrangler):
             except AttributeError:
                 command = 'import {}.{} as material_package_maker_class'
                 command = command.format(
-                    self.configuration.user_asset_library_material_package_makers_package_path, 
+                    self.configuration.user_asset_library_material_package_makers_package_path,
                     material_package_maker_class_name)
                 exec(command)
                 material_package_proxy = material_package_maker_class(
@@ -87,9 +87,9 @@ class MaterialPackageWrangler(PackageWrangler):
 
     def _make_main_menu(self, head=None):
         menu, menu_section = self._io.make_menu(
-            where=self._where, 
+            where=self._where,
             return_value_attribute='key',
-            is_numbered=True, 
+            is_numbered=True,
             is_keyed=False,
             )
         menu_section.menu_tokens = self._make_menu_tokens(head=head)
@@ -111,7 +111,7 @@ class MaterialPackageWrangler(PackageWrangler):
         hidden_section = menu.make_section(
             menu_tokens=menu_tokens,
             return_value_attribute='key',
-            is_hidden=True, 
+            is_hidden=True,
             )
         return menu
 
@@ -303,7 +303,7 @@ class MaterialPackageWrangler(PackageWrangler):
         '''List asset proxies.
 
         Example. List built-in material package proxies:
-            
+
         ::
 
             >>> for x in wrangler.list_asset_proxies(
@@ -378,7 +378,7 @@ class MaterialPackageWrangler(PackageWrangler):
             exec(command)
         except ImportError:
             command = 'from {} import {} as material_package_maker_class'.format(
-                self.configuration.user_asset_library_material_package_makers_package_path, 
+                self.configuration.user_asset_library_material_package_makers_package_path,
                 material_package_maker_class_name)
             exec(command)
         should_have_user_input_module = getattr(
