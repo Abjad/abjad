@@ -51,6 +51,9 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuToken.MenuToken.MenuToken.insert
    :noindex:
 
+.. automethod:: experimental.tools.scoremanagertools.menuing.MenuToken.MenuToken.MenuToken.matches
+   :noindex:
+
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuToken.MenuToken.MenuToken.pop
    :noindex:
 
@@ -61,9 +64,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuToken.MenuToken.MenuToken.sort
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuToken.MenuToken.MenuToken.user_input_to_return_value
    :noindex:
 
 Special methods

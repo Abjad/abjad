@@ -106,7 +106,8 @@ class MenuToken(list, AbjadObject):
 
     ### PUBLIC METHODS ###
 
-    def user_input_to_return_value(self, user_input):
-        if user_input in self._matches or \
-            (3 <= len(user_input) and self._normalized_body.startswith(user_input)):
-            return self.return_value
+    def matches(self, user_input):
+        if user_input in self._matches:
+            return True
+        if 3 <= len(user_input) and self._normalized_body.startswith(user_input):
+            return True

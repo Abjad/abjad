@@ -185,9 +185,8 @@ class Menu(MenuSectionAggregator):
             for menu_token in self.menu_tokens:
                 if menu_token.body == 'redraw':
                     continue
-                return_value = menu_token.user_input_to_return_value(user_input)
-                if return_value is not None:
-                    return self.conditionally_enclose_in_list(return_value)
+                if menu_token.matches(user_input):
+                    return self.conditionally_enclose_in_list(menu_token.return_value)
 
     def conditionally_display_menu(self, automatically_determined_user_input=None):
         self.conditionally_clear_terminal()

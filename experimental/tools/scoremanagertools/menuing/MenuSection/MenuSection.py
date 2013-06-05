@@ -217,15 +217,10 @@ class MenuSection(MenuObject):
                 return menu_index + 1
 
     def argument_string_to_number_optimized(self, argument_string):
-        for entry_index, unpacked_entry in enumerate(self.unpack_menu_tokens()):
-            number, key, body, return_value, section = unpacked_entry
-            body = stringtools.strip_diacritics_from_binary_string(body).lower()
-            if  (mathtools.is_integer_equivalent_expr(argument_string) and \
-                int(argument_string) == number) or \
-                (argument_string == key) or \
-                (3 <= len(argument_string) and body.startswith(argument_string)):
-                entry_number = entry_index + 1
-                return entry_number
+        for menu_entry_index, menu_token in enumerate(self.tokens):
+            if menu_token.matches(argument_string):
+                menu_entry_number = menu_entry_index + 1
+                return menu_entry_number
 
     def make_menu_lines(self):
         '''KEYS. Keys are optionally shown in parentheses in each entry;
@@ -282,10 +277,3 @@ class MenuSection(MenuObject):
         if self.tokens:
             menu_lines.append('')
         return menu_lines
-
-    def unpack_menu_tokens(self):
-        result = []
-        for token in self.tokens:
-            unpacked_entry = (token.number, token.key, token.body, token.return_value, self)
-            result.append(unpacked_entry)
-        return result
