@@ -3,6 +3,7 @@ import inspect
 import os
 from abjad.tools import stringtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.abctools.ContextManager import ContextManager
 from experimental.tools.scoremanagertools.core.ScoreManagerConfiguration import \
     ScoreManagerConfiguration
 
@@ -23,7 +24,7 @@ class ScoreManagerObject(AbjadObject):
 
     ### CONTEXT MANAGER ###
 
-    class backtracking(object):
+    class backtracking(ContextManager):
         def __init__(self, client):
             self.client = client
         def __enter__(self):
