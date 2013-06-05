@@ -71,7 +71,7 @@ Abjad packaging checklist:
         find-nonalphabetized-class-attributes
         find-nonalphabetized-module-headers (NEEDS TO BE PORTED FORWARD)
         find-noninstantiable-concrete-classes (NEEDS TO BE FINISHED)
-        find-private-modules (WE'RE NOT COMMITTED TO THE OUTPUT)
+        find-private-modules (WE'RE NOT YET BOUND BY THE OUTPUT)
         find-public-helpers-without-docstrings (NEEDS TO BE FIXED)
         find-slots-implementation-inconsistencies (CAN'T BE RUN ON EXPERIMENTAL YET)
         find-undocumented-tools
