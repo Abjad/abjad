@@ -58,7 +58,6 @@ Abjad packaging checklist:
 
  4. Run the following codebase maintenance scripts on the root Abjad directory:
         find-and-fix-manual-class-package-initializers
-            (change packge_root_name='experimental' manually before running against experimental)
         find-duplicate-modules-names
         find-import-as-statements
         find-import-from-stdlib-statements
