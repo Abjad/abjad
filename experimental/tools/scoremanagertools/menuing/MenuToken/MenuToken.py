@@ -44,7 +44,6 @@ class MenuToken(list, AbjadObject):
         assert body
         self._body = body
         self._existing_value = existing_value
-        self._prepopulated_return_value = prepopulated_return_value
         if self.return_value_attribute == 'number':
             return_value = str(self.number)
         elif self.return_value_attribute == 'body':
@@ -55,8 +54,8 @@ class MenuToken(list, AbjadObject):
             else:
                 return_value = self.body
         elif self.return_value_attribute == 'prepopulated':
-            assert self.prepopulated_return_value
-            return_value = self.prepopulated_return_value
+            assert prepopulated_return_value
+            return_value = prepopulated_return_value
         self._return_value = return_value
         assert self.return_value
         if self.is_keyed:
@@ -94,20 +93,8 @@ class MenuToken(list, AbjadObject):
         return self._key
 
     @property
-    def matches(self):
-        return self._matches
-
-    @property
-    def normalized_body(self):
-        return self._normalized_body
-
-    @property
     def number(self):
         return self._number
-
-    @property
-    def prepopulated_return_value(self):
-        return self._prepopulated_return_value
 
     @property
     def return_value(self):
@@ -120,7 +107,6 @@ class MenuToken(list, AbjadObject):
     ### PUBLIC METHODS ###
 
     def user_input_to_return_value(self, user_input):
-        if user_input in self.matches:
-            return self.return_value
-        elif 3 <= len(user_input) and self.normalized_body.startswith(user_input):
+        if user_input in self._matches or \
+            (3 <= len(user_input) and self._normalized_body.startswith(user_input)):
             return self.return_value
