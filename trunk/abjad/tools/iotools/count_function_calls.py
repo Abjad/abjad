@@ -21,6 +21,9 @@ def count_function_calls(expr, global_context=None, local_context=None, fixed_po
     '''
     from abjad.tools import iotools
 
+    def extract_count(profile_output):
+        return int(profile_output.splitlines()[2].split()[0])
+
     if fixed_point:
         # profile at least twice to ensure consist results from profiler;
         # not sure why but profiler eventually levels off to consistent output
@@ -30,11 +33,11 @@ def count_function_calls(expr, global_context=None, local_context=None, fixed_po
             current_result = iotools.profile_expr(expr, print_to_terminal=False,
                 global_context=global_context,
                 local_context=local_context)
-            current_result = int(current_result.split()[6])
+            current_result = extract_count(current_result)
         return current_result
 
     result = iotools.profile_expr(expr, print_to_terminal=False,
         global_context=global_context,
         local_context=local_context)
-    result = int(result.split()[6])
+    result = extract_count(result)
     return result

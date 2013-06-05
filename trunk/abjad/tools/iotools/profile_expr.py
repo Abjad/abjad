@@ -1,6 +1,6 @@
-import os
+import datetime
+import StringIO
 import sys
-import tempfile
 
 
 def profile_expr(expr, sort_by='cum', line_count=12, strip_dirs=True,
@@ -42,56 +42,45 @@ def profile_expr(expr, sort_by='cum', line_count=12, strip_dirs=True,
 
     Set `strip_dirs` to true to strip directory names from output lines.
 
-    Function creates the file ``_tmp_abj_profile`` in the directory from which it is run.
-
     See the `Python docs <http://docs.python.org/library/profile.html>`_
     for more information on the Python profilers.
     '''
 
+    import cProfile
+    import pstats
     from abjad.tools import iotools
 
-    # NOTE: this try block was added because, for some strange reason,
-    # Python 2.5.x doesn't come with 'pstats' installed in some Linux distros!
-    try:
-        import cProfile
-        import pstats
+    now_string = datetime.datetime.today().strftime('%a %b %d %H:%M:%S %Y')
 
-        if global_context is None:
-            cProfile.run(expr, '_tmp_abj_profile')
-        else:
-            cProfile.runctx(expr, global_context, local_context, '_tmp_abj_profile')
+    profile = cProfile.Profile()
+    if global_context is None:
+        profile = profile.run(
+            expr,
+            )
+    else:
+        profile = profile.runctx(
+            expr,
+            global_context,
+            local_context,
+            )
 
-        with open('_tmp_abj_profile_print', 'w') as f:
-            with iotools.RedirectedStreams(stdout=f):
-                p = pstats.Stats('_tmp_abj_profile')
-                if strip_dirs:
-                    p.strip_dirs().sort_stats(sort_by).print_stats(line_count)
-                    if print_callers:
-                        p.strip_dirs().sort_stats(sort_by).print_callers(line_count)
-                    if print_callees:
-                        p.strip_dirs().sort_stats(sort_by).print_callees(line_count)
-                else:
-                    p.sort_stats(sort_by).print_stats(line_count)
-                    if print_callers:
-                        p.sort_stats(sort_by).print_callers(line_count)
-                    if print_callees:
-                        p.sort_stats(sort_by).print_callees(line_count)
+    stats_stream = StringIO.StringIO()
+    stats = pstats.Stats(profile, stream=stats_stream)
 
-        with open('_tmp_abj_profile_print', 'r') as f:
-            result = f.read()
+    if strip_dirs:
+        stats.strip_dirs().sort_stats(sort_by).print_stats(line_count)
+    else:
+        stats.sort_stats(sort_by).print_stats(line_count)
+    if print_callers:
+        stats.sort_stats(sort_by).print_callers(line_count)
+    if print_callees:
+        stats.sort_stats(sort_by).print_callees(line_count)
 
-    except ImportError:
-        print "Python 'pstats' package not installed in your system.\n" + \
-            "Please install before running the profiler."
-
-    finally:
-        os.remove('_tmp_abj_profile')
-        try:
-            os.remove('_tmp_abj_profile_print')
-        except OSError:
-            pass
+    result = now_string + '\n\n' + stats_stream.getvalue()
+    stats_stream.close()
 
     if print_to_terminal:
         print result
     else:
         return result
+
