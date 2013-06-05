@@ -42,24 +42,20 @@ class MenuToken(list, AbjadObject):
         self._body = body
         self._existing_value = existing_value
         self._prepopulated_return_value = prepopulated_return_value
-        if len(self) == 1:
-            return_value = self[0]
-        elif self.return_value_attribute == 'number':
-#            if number is not None:
-#                return_value = str(number)
-#            elif key is not None:
-#                return_value = key
-#            else:
-#                return_value = body
-            return_value = None
+        if self.return_value_attribute == 'number':
+            return_value = str(self.number)
         elif self.return_value_attribute == 'body':
             return_value = self.body
         elif self.return_value_attribute == 'key':
-            return_value = self.key
+            if self.key:
+                return_value = self.key
+            else:
+                return_value = self.body
         elif self.return_value_attribute == 'prepopulated':
             return_value = self.prepopulated_return_value
         self._return_value = return_value
         assert self.body
+        assert self.return_value
 
     ### SPECIAL METHODS ###
 

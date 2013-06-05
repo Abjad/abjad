@@ -285,22 +285,9 @@ class MenuSection(MenuObject):
     def unpack_menu_tokens(self):
         result = []
         for token in self.tokens:
-            number, body, key = token.number, token.body, token.key
-
-            # TODO: harmonize this implementation with that in MenuToken.return_value
-            if self.return_value_attribute == 'number':
-                if number is not None:
-                    return_value = str(number)
-                elif key is not None:
-                    return_value = key
-                else:
-                    return_value = body
-            elif self.return_value_attribute in ('body', 'key', 'prepopulated'):
-                return_value = token.return_value
-            assert return_value is not None
-
+            key = token.key
             if not self.is_keyed and key:
                 key = None
-            unpacked_entry = (number, key, body, return_value, self)
+            unpacked_entry = (token.number, key, token.body, token.return_value, self)
             result.append(unpacked_entry)
         return result
