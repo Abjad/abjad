@@ -131,4 +131,3 @@ def iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr(expr):
 
     if current_leaf_group is not None:
         yield tietools.TieChain(current_leaf_group)
-

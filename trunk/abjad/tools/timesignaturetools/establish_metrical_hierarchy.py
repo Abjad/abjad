@@ -867,4 +867,3 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
                 boundary_depth=sub_boundary_depth,
                 maximum_dot_count=maximum_dot_count,
                 )
-

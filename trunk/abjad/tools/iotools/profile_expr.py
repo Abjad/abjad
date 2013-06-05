@@ -83,4 +83,3 @@ def profile_expr(expr, sort_by='cum', line_count=12, strip_dirs=True,
         print result
     else:
         return result
-
