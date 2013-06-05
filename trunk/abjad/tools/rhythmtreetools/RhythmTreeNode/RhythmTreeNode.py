@@ -65,6 +65,34 @@ class RhythmTreeNode(TreeNode):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
+    def duration(self):
+        '''The prolated preprolated_duration of the node:
+
+        ::
+
+            >>> rtm = '(1 ((1 (1 1)) (1 (1 1))))'
+            >>> tree = rhythmtreetools.RhythmTreeParser()(rtm)[0]
+
+        ::
+
+            >>> tree.duration
+            Duration(1, 1)
+
+        ::
+
+            >>> tree[1].duration
+            Duration(1, 2)
+
+        ::
+
+            >>> tree[1][1].duration
+            Duration(1, 4)
+
+        Return `Duration` instance.
+        '''
+        return self.prolation * self.preprolated_duration
+
+    @property
     def graphviz_format(self):
         return self.graphviz_graph.graphviz_format
 
@@ -150,34 +178,6 @@ class RhythmTreeNode(TreeNode):
         Return string.
         '''
         return '\n'.join(self._pretty_rtm_format_pieces)
-
-    @property
-    def duration(self):
-        '''The prolated preprolated_duration of the node:
-
-        ::
-
-            >>> rtm = '(1 ((1 (1 1)) (1 (1 1))))'
-            >>> tree = rhythmtreetools.RhythmTreeParser()(rtm)[0]
-
-        ::
-
-            >>> tree.duration
-            Duration(1, 1)
-
-        ::
-
-            >>> tree[1].duration
-            Duration(1, 2)
-
-        ::
-
-            >>> tree[1][1].duration
-            Duration(1, 4)
-
-        Return `Duration` instance.
-        '''
-        return self.prolation * self.preprolated_duration
 
     @property
     def prolation(self):

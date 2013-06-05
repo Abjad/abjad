@@ -38,6 +38,15 @@ class OctaveTranspositionMapping(ObjectInventory):
         transposed_pitches = [self._transpose_pitch(x) for x in pitches]
         return transposed_pitches
 
+    def __repr__(self):
+        if self.name:
+            return '{}([{}], name={!r})'.format(
+                self._class_name, self._repr_contents_string, self.name)
+        else:
+            return '{}([{}])'.format(self._class_name, self._repr_contents_string)
+
+    ### PRIVATE METHODS ###
+
     def _transpose_pitch(self, pitch):
         from abjad.tools import pitchtools
         pitch = pitchtools.NamedChromaticPitch(pitch)
@@ -50,13 +59,6 @@ class OctaveTranspositionMapping(ObjectInventory):
                 for candidate_pitch in target_octave:
                     if candidate_pitch % 12 == pitch.chromatic_pitch_class_number:
                         return candidate_pitch
-
-    def __repr__(self):
-        if self.name:
-            return '{}([{}], name={!r})'.format(
-                self._class_name, self._repr_contents_string, self.name)
-        else:
-            return '{}([{}])'.format(self._class_name, self._repr_contents_string)
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 

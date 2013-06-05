@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
-import collections
 from abjad import *
+import collections
 
 
 tags = collections.OrderedDict([

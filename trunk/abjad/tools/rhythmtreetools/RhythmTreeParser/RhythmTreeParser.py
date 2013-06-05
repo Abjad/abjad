@@ -138,17 +138,17 @@ class RhythmTreeParser(Parser):
         '''node : leaf'''
         p[0] = p[1]
 
-    def p_node_list_closed__LPAREN__node_list__RPAREN(self, p):
-        '''node_list_closed : LPAREN node_list RPAREN'''
-        p[0] = p[2]
+    def p_node_list__node_list__node_list_item(self, p):
+        '''node_list : node_list node_list_item'''
+        p[0] = p[1] + [p[2]]
 
     def p_node_list__node_list_item(self, p):
         '''node_list : node_list_item'''
         p[0] = [p[1]]
 
-    def p_node_list__node_list__node_list_item(self, p):
-        '''node_list : node_list node_list_item'''
-        p[0] = p[1] + [p[2]]
+    def p_node_list_closed__LPAREN__node_list__RPAREN(self, p):
+        '''node_list_closed : LPAREN node_list RPAREN'''
+        p[0] = p[2]
 
     def p_node_list_item__node(self, p):
         '''node_list_item : node'''

@@ -27,6 +27,7 @@ def _main():
                         nonalphabetized_module_names.append(full_file_name)
                         for a, b in zip(attribute_definition_lines, sorted_attribute_definition_lines):
                             if a != b:
+                                print full_file_name
                                 print a, b
                                 break
                         attribute_definition_lines = []
@@ -40,12 +41,10 @@ def _main():
                     nonalphabetized_module_names.append(full_file_name)
                     for a, b in zip(attribute_definition_lines, sorted_attribute_definition_lines):
                         if a != b:
+                            print full_file_name
                             print a, b
                             break
             file_pointer.close()
-   if nonalphabetized_module_names:
-      print nonalphabetized_module_names
-      print ''
    print 'Total modules with nonalphabetized attributes: {}'.format(len(nonalphabetized_module_names))
    print 'Total modules examined: {}'.format(total_modules_examined)
    print ''

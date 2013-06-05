@@ -2,7 +2,7 @@ S'3.2'
 p1
 .S'LALR'
 p1
-.S'\xb7\x9a\x02\xda2N=\xe0\x0bKt5\xa8x\xd4\xac'
+.S'\xc6i\xbe\x86\xa4i\xdbh\x98G\xad\xc9m\xe3\xc7H'
 p1
 .(dp1
 I0
@@ -122,15 +122,15 @@ I4
 ssI14
 (dp24
 g3
-I-7
+I-5
 sg10
-I-7
+I-5
 sg4
-I-7
+I-5
 ssI15
 (dp25
 g18
-I-5
+I-7
 ss.(dp1
 I0
 (dp2
@@ -190,17 +190,16 @@ sI13
 (dp23
 g17
 I11
-sS'node_list_item'
-p24
+sg18
 I14
 sg6
 I6
 sg7
 I3
 ssI14
-(dp25
+(dp24
 sI15
-(dp26
+(dp25
 s.(lp1
 (S"S' -> toplevel"
 p2
@@ -215,7 +214,7 @@ p6
 I4
 S'p_container__LPAREN__DURATION__node_list_closed__RPAREN'
 p7
-S'/media/Work/dev/scores/abjad/trunk/abjad/tools/rhythmtreetools/RhythmTreeParser/RhythmTreeParser.py'
+S'/Users/josiah/Documents/Development/abjad/trunk/abjad/tools/rhythmtreetools/RhythmTreeParser/RhythmTreeParser.py'
 p8
 I112
 tp9
@@ -226,9 +225,9 @@ p11
 I1
 S'p_leaf__INTEGER'
 p12
-S'/media/Work/dev/scores/abjad/trunk/abjad/tools/rhythmtreetools/RhythmTreeParser/RhythmTreeParser.py'
+S'/Users/josiah/Documents/Development/abjad/trunk/abjad/tools/rhythmtreetools/RhythmTreeParser/RhythmTreeParser.py'
 p13
-I117
+I126
 tp14
 a(S'node -> container'
 p15
@@ -237,9 +236,9 @@ p16
 I1
 S'p_node__container'
 p17
-S'/media/Work/dev/scores/abjad/trunk/abjad/tools/rhythmtreetools/RhythmTreeParser/RhythmTreeParser.py'
+S'/Users/josiah/Documents/Development/abjad/trunk/abjad/tools/rhythmtreetools/RhythmTreeParser/RhythmTreeParser.py'
 p18
-I122
+I134
 tp19
 a(S'node -> leaf'
 p20
@@ -248,20 +247,20 @@ p21
 I1
 S'p_node__leaf'
 p22
-S'/media/Work/dev/scores/abjad/trunk/abjad/tools/rhythmtreetools/RhythmTreeParser/RhythmTreeParser.py'
+S'/Users/josiah/Documents/Development/abjad/trunk/abjad/tools/rhythmtreetools/RhythmTreeParser/RhythmTreeParser.py'
 p23
-I126
+I138
 tp24
-a(S'node_list_closed -> LPAREN node_list RPAREN'
+a(S'node_list -> node_list node_list_item'
 p25
-S'node_list_closed'
+S'node_list'
 p26
-I3
-S'p_node_list_closed__LPAREN__node_list__RPAREN'
+I2
+S'p_node_list__node_list__node_list_item'
 p27
-S'/media/Work/dev/scores/abjad/trunk/abjad/tools/rhythmtreetools/RhythmTreeParser/RhythmTreeParser.py'
+S'/Users/josiah/Documents/Development/abjad/trunk/abjad/tools/rhythmtreetools/RhythmTreeParser/RhythmTreeParser.py'
 p28
-I130
+I142
 tp29
 a(S'node_list -> node_list_item'
 p30
@@ -270,20 +269,20 @@ p31
 I1
 S'p_node_list__node_list_item'
 p32
-S'/media/Work/dev/scores/abjad/trunk/abjad/tools/rhythmtreetools/RhythmTreeParser/RhythmTreeParser.py'
+S'/Users/josiah/Documents/Development/abjad/trunk/abjad/tools/rhythmtreetools/RhythmTreeParser/RhythmTreeParser.py'
 p33
-I134
+I146
 tp34
-a(S'node_list -> node_list node_list_item'
+a(S'node_list_closed -> LPAREN node_list RPAREN'
 p35
-S'node_list'
+S'node_list_closed'
 p36
-I2
-S'p_node_list__node_list__node_list_item'
+I3
+S'p_node_list_closed__LPAREN__node_list__RPAREN'
 p37
-S'/media/Work/dev/scores/abjad/trunk/abjad/tools/rhythmtreetools/RhythmTreeParser/RhythmTreeParser.py'
+S'/Users/josiah/Documents/Development/abjad/trunk/abjad/tools/rhythmtreetools/RhythmTreeParser/RhythmTreeParser.py'
 p38
-I138
+I150
 tp39
 a(S'node_list_item -> node'
 p40
@@ -292,9 +291,9 @@ p41
 I1
 S'p_node_list_item__node'
 p42
-S'/media/Work/dev/scores/abjad/trunk/abjad/tools/rhythmtreetools/RhythmTreeParser/RhythmTreeParser.py'
+S'/Users/josiah/Documents/Development/abjad/trunk/abjad/tools/rhythmtreetools/RhythmTreeParser/RhythmTreeParser.py'
 p43
-I142
+I154
 tp44
 a(S'toplevel -> <empty>'
 p45
@@ -303,9 +302,9 @@ p46
 I0
 S'p_toplevel__EMPTY'
 p47
-S'/media/Work/dev/scores/abjad/trunk/abjad/tools/rhythmtreetools/RhythmTreeParser/RhythmTreeParser.py'
+S'/Users/josiah/Documents/Development/abjad/trunk/abjad/tools/rhythmtreetools/RhythmTreeParser/RhythmTreeParser.py'
 p48
-I146
+I158
 tp49
 a(S'toplevel -> toplevel node'
 p50
@@ -314,8 +313,8 @@ p51
 I2
 S'p_toplevel__toplevel__node'
 p52
-S'/media/Work/dev/scores/abjad/trunk/abjad/tools/rhythmtreetools/RhythmTreeParser/RhythmTreeParser.py'
+S'/Users/josiah/Documents/Development/abjad/trunk/abjad/tools/rhythmtreetools/RhythmTreeParser/RhythmTreeParser.py'
 p53
-I150
+I162
 tp54
 a.

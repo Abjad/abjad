@@ -344,17 +344,6 @@ class MetricalHierarchy(AbjadObject):
         return tuple(inventory)
 
     @property
-    def preprolated_duration(self):
-        '''Beat hierarchy preprolated_duration::
-
-            >>> metrical_hierarchy.preprolated_duration
-            Duration(5, 4)
-
-        Return preprolated_duration.
-        '''
-        return durationtools.Duration(self.numerator, self.denominator)
-
-    @property
     def graphviz_format(self):
         '''Graphviz format of hierarchy's root node:
 
@@ -418,6 +407,17 @@ class MetricalHierarchy(AbjadObject):
         Return positive integer.
         '''
         return self._numerator
+
+    @property
+    def preprolated_duration(self):
+        '''Beat hierarchy preprolated_duration::
+
+            >>> metrical_hierarchy.preprolated_duration
+            Duration(5, 4)
+
+        Return preprolated_duration.
+        '''
+        return durationtools.Duration(self.numerator, self.denominator)
 
     @property
     def pretty_rtm_format(self):

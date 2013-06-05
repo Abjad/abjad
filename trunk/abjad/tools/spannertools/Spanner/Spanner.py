@@ -205,6 +205,18 @@ class Spanner(AbjadObject):
         spanner._block_all_components()
         return [(self, spanner, result)]
 
+    def _get_my_first_leaf(self):
+        from abjad.tools import leaftools
+        from abjad.tools import spannertools
+        for leaf in spannertools.iterate_components_in_spanner(self, klass=leaftools.Leaf):
+            return leaf
+
+    def _get_my_last_leaf(self):
+        from abjad.tools import leaftools
+        from abjad.tools import spannertools
+        for leaf in spannertools.iterate_components_in_spanner(self, klass=leaftools.Leaf, reverse=True):
+            return leaf
+
     def _initialize_components(self, components):
         from abjad.tools import iterationtools
         if isinstance(components, componenttools.Component):
@@ -247,18 +259,6 @@ class Spanner(AbjadObject):
                 return True
             else:
                 return False
-
-    def _get_my_first_leaf(self):
-        from abjad.tools import leaftools
-        from abjad.tools import spannertools
-        for leaf in spannertools.iterate_components_in_spanner(self, klass=leaftools.Leaf):
-            return leaf
-
-    def _get_my_last_leaf(self):
-        from abjad.tools import leaftools
-        from abjad.tools import spannertools
-        for leaf in spannertools.iterate_components_in_spanner(self, klass=leaftools.Leaf, reverse=True):
-            return leaf
 
     def _is_my_first_leaf(self, leaf):
         from abjad.tools import spannertools
@@ -369,6 +369,12 @@ class Spanner(AbjadObject):
         return tuple(self._components[:])
 
     @property
+    def duration(self):
+        '''Sum of prolated duration of all components in spanner.
+        '''
+        return sum([component.duration for component in self])
+
+    @property
     def duration_in_seconds(self):
         '''Sum of duration of all leaves in spanner, in seconds.'''
         duration = durationtools.Duration(0)
@@ -412,12 +418,6 @@ class Spanner(AbjadObject):
         '''Sum of preprolated duration of all components in spanner.
         '''
         return sum([component.preprolated_duration for component in self])
-
-    @property
-    def duration(self):
-        '''Sum of prolated duration of all components in spanner.
-        '''
-        return sum([component.duration for component in self])
 
     @property
     def set(self):

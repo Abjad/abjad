@@ -941,7 +941,7 @@ p6
 I1
 S'p_program__forms'
 p7
-S'/media/Work/dev/scores/abjad/trunk/abjad/tools/lilypondparsertools/SchemeParser/SchemeParser.py'
+S'/Users/josiah/Documents/Development/abjad/trunk/abjad/tools/lilypondparsertools/SchemeParser/SchemeParser.py'
 p8
 I251
 tp9
@@ -952,7 +952,7 @@ p11
 I0
 S'p_forms__EMPTY'
 p12
-S'/media/Work/dev/scores/abjad/trunk/abjad/tools/lilypondparsertools/SchemeParser/SchemeParser.py'
+S'/Users/josiah/Documents/Development/abjad/trunk/abjad/tools/lilypondparsertools/SchemeParser/SchemeParser.py'
 p13
 I256
 tp14
@@ -963,7 +963,7 @@ p16
 I2
 S'p_forms__forms__form'
 p17
-S'/media/Work/dev/scores/abjad/trunk/abjad/tools/lilypondparsertools/SchemeParser/SchemeParser.py'
+S'/Users/josiah/Documents/Development/abjad/trunk/abjad/tools/lilypondparsertools/SchemeParser/SchemeParser.py'
 p18
 I260
 tp19
@@ -974,7 +974,7 @@ p21
 I1
 S'p_form__expression'
 p22
-S'/media/Work/dev/scores/abjad/trunk/abjad/tools/lilypondparsertools/SchemeParser/SchemeParser.py'
+S'/Users/josiah/Documents/Development/abjad/trunk/abjad/tools/lilypondparsertools/SchemeParser/SchemeParser.py'
 p23
 I269
 tp24
@@ -985,7 +985,7 @@ p26
 I1
 S'p_variable__IDENTIFIER'
 p27
-S'/media/Work/dev/scores/abjad/trunk/abjad/tools/lilypondparsertools/SchemeParser/SchemeParser.py'
+S'/Users/josiah/Documents/Development/abjad/trunk/abjad/tools/lilypondparsertools/SchemeParser/SchemeParser.py'
 p28
 I302
 tp29
@@ -996,7 +996,7 @@ p31
 I1
 S'p_expression__variable'
 p32
-S'/media/Work/dev/scores/abjad/trunk/abjad/tools/lilypondparsertools/SchemeParser/SchemeParser.py'
+S'/Users/josiah/Documents/Development/abjad/trunk/abjad/tools/lilypondparsertools/SchemeParser/SchemeParser.py'
 p33
 I339
 tp34
@@ -1007,7 +1007,7 @@ p36
 I2
 S'p_expression__QUOTE__datum'
 p37
-S'/media/Work/dev/scores/abjad/trunk/abjad/tools/lilypondparsertools/SchemeParser/SchemeParser.py'
+S'/Users/josiah/Documents/Development/abjad/trunk/abjad/tools/lilypondparsertools/SchemeParser/SchemeParser.py'
 p38
 I346
 tp39
@@ -1018,7 +1018,7 @@ p41
 I1
 S'p_expression__constant'
 p42
-S'/media/Work/dev/scores/abjad/trunk/abjad/tools/lilypondparsertools/SchemeParser/SchemeParser.py'
+S'/Users/josiah/Documents/Development/abjad/trunk/abjad/tools/lilypondparsertools/SchemeParser/SchemeParser.py'
 p43
 I361
 tp44
@@ -1029,7 +1029,7 @@ p46
 I1
 S'p_constant__boolean'
 p47
-S'/media/Work/dev/scores/abjad/trunk/abjad/tools/lilypondparsertools/SchemeParser/SchemeParser.py'
+S'/Users/josiah/Documents/Development/abjad/trunk/abjad/tools/lilypondparsertools/SchemeParser/SchemeParser.py'
 p48
 I370
 tp49
@@ -1040,7 +1040,7 @@ p51
 I1
 S'p_constant__number'
 p52
-S'/media/Work/dev/scores/abjad/trunk/abjad/tools/lilypondparsertools/SchemeParser/SchemeParser.py'
+S'/Users/josiah/Documents/Development/abjad/trunk/abjad/tools/lilypondparsertools/SchemeParser/SchemeParser.py'
 p53
 I381
 tp54
@@ -1051,7 +1051,7 @@ p56
 I1
 S'p_constant__string'
 p57
-S'/media/Work/dev/scores/abjad/trunk/abjad/tools/lilypondparsertools/SchemeParser/SchemeParser.py'
+S'/Users/josiah/Documents/Development/abjad/trunk/abjad/tools/lilypondparsertools/SchemeParser/SchemeParser.py'
 p58
 I392
 tp59
@@ -1062,7 +1062,7 @@ p61
 I1
 S'p_datum__constant'
 p62
-S'/media/Work/dev/scores/abjad/trunk/abjad/tools/lilypondparsertools/SchemeParser/SchemeParser.py'
+S'/Users/josiah/Documents/Development/abjad/trunk/abjad/tools/lilypondparsertools/SchemeParser/SchemeParser.py'
 p63
 I435
 tp64
@@ -1073,7 +1073,7 @@ p66
 I1
 S'p_datum__symbol'
 p67
-S'/media/Work/dev/scores/abjad/trunk/abjad/tools/lilypondparsertools/SchemeParser/SchemeParser.py'
+S'/Users/josiah/Documents/Development/abjad/trunk/abjad/tools/lilypondparsertools/SchemeParser/SchemeParser.py'
 p68
 I440
 tp69
@@ -1084,7 +1084,7 @@ p71
 I1
 S'p_datum__list'
 p72
-S'/media/Work/dev/scores/abjad/trunk/abjad/tools/lilypondparsertools/SchemeParser/SchemeParser.py'
+S'/Users/josiah/Documents/Development/abjad/trunk/abjad/tools/lilypondparsertools/SchemeParser/SchemeParser.py'
 p73
 I457
 tp74
@@ -1095,7 +1095,7 @@ p76
 I1
 S'p_datum__vector'
 p77
-S'/media/Work/dev/scores/abjad/trunk/abjad/tools/lilypondparsertools/SchemeParser/SchemeParser.py'
+S'/Users/josiah/Documents/Development/abjad/trunk/abjad/tools/lilypondparsertools/SchemeParser/SchemeParser.py'
 p78
 I462
 tp79
@@ -1106,7 +1106,7 @@ p81
 I0
 S'p_data__EMPTY'
 p82
-S'/media/Work/dev/scores/abjad/trunk/abjad/tools/lilypondparsertools/SchemeParser/SchemeParser.py'
+S'/Users/josiah/Documents/Development/abjad/trunk/abjad/tools/lilypondparsertools/SchemeParser/SchemeParser.py'
 p83
 I467
 tp84
@@ -1117,7 +1117,7 @@ p86
 I2
 S'p_data__data__datum'
 p87
-S'/media/Work/dev/scores/abjad/trunk/abjad/tools/lilypondparsertools/SchemeParser/SchemeParser.py'
+S'/Users/josiah/Documents/Development/abjad/trunk/abjad/tools/lilypondparsertools/SchemeParser/SchemeParser.py'
 p88
 I471
 tp89
@@ -1128,7 +1128,7 @@ p91
 I1
 S'p_boolean__BOOLEAN'
 p92
-S'/media/Work/dev/scores/abjad/trunk/abjad/tools/lilypondparsertools/SchemeParser/SchemeParser.py'
+S'/Users/josiah/Documents/Development/abjad/trunk/abjad/tools/lilypondparsertools/SchemeParser/SchemeParser.py'
 p93
 I480
 tp94
@@ -1139,7 +1139,7 @@ p96
 I1
 S'p_number__DECIMAL'
 p97
-S'/media/Work/dev/scores/abjad/trunk/abjad/tools/lilypondparsertools/SchemeParser/SchemeParser.py'
+S'/Users/josiah/Documents/Development/abjad/trunk/abjad/tools/lilypondparsertools/SchemeParser/SchemeParser.py'
 p98
 I489
 tp99
@@ -1150,7 +1150,7 @@ p101
 I1
 S'p_number__HEXADECIMAL'
 p102
-S'/media/Work/dev/scores/abjad/trunk/abjad/tools/lilypondparsertools/SchemeParser/SchemeParser.py'
+S'/Users/josiah/Documents/Development/abjad/trunk/abjad/tools/lilypondparsertools/SchemeParser/SchemeParser.py'
 p103
 I494
 tp104
@@ -1161,7 +1161,7 @@ p106
 I1
 S'p_number__INTEGER'
 p107
-S'/media/Work/dev/scores/abjad/trunk/abjad/tools/lilypondparsertools/SchemeParser/SchemeParser.py'
+S'/Users/josiah/Documents/Development/abjad/trunk/abjad/tools/lilypondparsertools/SchemeParser/SchemeParser.py'
 p108
 I499
 tp109
@@ -1172,7 +1172,7 @@ p111
 I1
 S'p_string__STRING'
 p112
-S'/media/Work/dev/scores/abjad/trunk/abjad/tools/lilypondparsertools/SchemeParser/SchemeParser.py'
+S'/Users/josiah/Documents/Development/abjad/trunk/abjad/tools/lilypondparsertools/SchemeParser/SchemeParser.py'
 p113
 I512
 tp114
@@ -1183,7 +1183,7 @@ p116
 I1
 S'p_symbol__IDENTIFIER'
 p117
-S'/media/Work/dev/scores/abjad/trunk/abjad/tools/lilypondparsertools/SchemeParser/SchemeParser.py'
+S'/Users/josiah/Documents/Development/abjad/trunk/abjad/tools/lilypondparsertools/SchemeParser/SchemeParser.py'
 p118
 I525
 tp119
@@ -1194,7 +1194,7 @@ p121
 I4
 S'p_vector__HASH__L_PAREN__data__R_PAREN'
 p122
-S'/media/Work/dev/scores/abjad/trunk/abjad/tools/lilypondparsertools/SchemeParser/SchemeParser.py'
+S'/Users/josiah/Documents/Development/abjad/trunk/abjad/tools/lilypondparsertools/SchemeParser/SchemeParser.py'
 p123
 I536
 tp124
@@ -1205,7 +1205,7 @@ p126
 I3
 S'p_list__L_PAREN__data__R_PAREN'
 p127
-S'/media/Work/dev/scores/abjad/trunk/abjad/tools/lilypondparsertools/SchemeParser/SchemeParser.py'
+S'/Users/josiah/Documents/Development/abjad/trunk/abjad/tools/lilypondparsertools/SchemeParser/SchemeParser.py'
 p128
 I546
 tp129
@@ -1216,7 +1216,7 @@ p131
 I6
 S'p_list__L_PAREN__data__datum__PERIOD__datum__R_PAREN'
 p132
-S'/media/Work/dev/scores/abjad/trunk/abjad/tools/lilypondparsertools/SchemeParser/SchemeParser.py'
+S'/Users/josiah/Documents/Development/abjad/trunk/abjad/tools/lilypondparsertools/SchemeParser/SchemeParser.py'
 p133
 I552
 tp134

@@ -70,20 +70,12 @@ class SimpleInequality(AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    def _find_index_lt(self, a, x):
-        '''Find index of rightmost value less than x.
+    def _find_index_ge(self, a, x):
+        '''Find index of leftmost item greater than or equal to x.
         '''
         i = bisect.bisect_left(a, x)
-        if i:
-            return i - 1
-        raise ValueError
-
-    def _find_index_le(self, a, x):
-        '''Find index of rightmost value less than or equal to x.
-        '''
-        i = bisect.bisect_right(a, x)
-        if i:
-            return i - 1
+        if i != len(a):
+            return i
         raise ValueError
 
     def _find_index_gt(self, a, x):
@@ -94,12 +86,20 @@ class SimpleInequality(AbjadObject):
             return i
         raise ValueError
 
-    def _find_index_ge(self, a, x):
-        '''Find index of leftmost item greater than or equal to x.
+    def _find_index_le(self, a, x):
+        '''Find index of rightmost value less than or equal to x.
+        '''
+        i = bisect.bisect_right(a, x)
+        if i:
+            return i - 1
+        raise ValueError
+
+    def _find_index_lt(self, a, x):
+        '''Find index of rightmost value less than x.
         '''
         i = bisect.bisect_left(a, x)
-        if i != len(a):
-            return i
+        if i:
+            return i - 1
         raise ValueError
 
     # do not indent storage format
