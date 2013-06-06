@@ -1,5 +1,5 @@
 from abjad.tools.abctools import AbjadObject
 
 
-class DocumentProcessor(AbjadObject):
+class DocumentHandler(AbjadObject):
     pass
