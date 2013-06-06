@@ -31,7 +31,7 @@ class MenuSection(MenuObject):
         self._is_keyed = is_keyed
         self._is_numbered = is_numbered
         self._is_ranged = is_ranged
-        assert return_value_attribute in self.return_value_attributes, repr(return_value_attribute)
+        assert return_value_attribute in self.return_value_attributes
         self._return_value_attribute = return_value_attribute
         self.default_index = None
         self.indent_level = 1

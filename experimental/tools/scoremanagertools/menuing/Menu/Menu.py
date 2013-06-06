@@ -1,7 +1,9 @@
 from abjad.tools import mathtools
 from abjad.tools import stringtools
-from experimental.tools.scoremanagertools.menuing.MenuSection import MenuSection
-from experimental.tools.scoremanagertools.menuing.MenuSectionAggregator import MenuSectionAggregator
+from experimental.tools.scoremanagertools.menuing.MenuSection \
+    import MenuSection
+from experimental.tools.scoremanagertools.menuing.MenuSectionAggregator \
+    import MenuSectionAggregator
 
 
 class Menu(MenuSectionAggregator):
@@ -10,7 +12,9 @@ class Menu(MenuSectionAggregator):
 
     def __init__(self, session=None, where=None):
         MenuSectionAggregator.__init__(self, session=session, where=where)
-        self.menu_sections.append(self.make_default_hidden_section(session=session, where=where))
+        hidden_section = self.make_default_hidden_section(
+            session=session, where=where)
+        self.menu_sections.append(hidden_section)
         self.explicit_title = None
 
     ### SPECIAL METHODS ###
@@ -20,14 +24,19 @@ class Menu(MenuSectionAggregator):
 
     ### PRIVATE METHODS ###
 
-    def _run(self, clear=True, automatically_determined_user_input=None, user_input=None):
+    def _run(self, 
+            clear=True, 
+            automatically_determined_user_input=None, 
+            user_input=None):
         self._io.assign_user_input(user_input=user_input)
         clear, hide_current_run = clear, False
         while True:
-            self.should_clear_terminal, self.hide_current_run = clear, hide_current_run
+            self.should_clear_terminal = clear
+            self.hide_current_run = hide_current_run
             clear, hide_current_run = False, True
             result = self.conditionally_display_menu(
-                automatically_determined_user_input=automatically_determined_user_input)
+                automatically_determined_user_input=\
+                automatically_determined_user_input)
             if self._session.is_complete:
                 break
             elif result == 'r':
@@ -53,23 +62,23 @@ class Menu(MenuSectionAggregator):
 
     @property
     def has_default_valued_section(self):
-        return any([menu_section.has_default_value for menu_section in self.menu_sections])
+        return any(x.has_default_value for x in self.menu_sections)
 
     @property
     def has_hidden_section(self):
-        return any([menu_section.is_hidden for menu_section in self.menu_sections])
+        return any(x.is_hidden for x in self.menu_sections)
 
     @property
     def has_keyed_section(self):
-        return any([menu_section.is_keyed for menu_section in self.menu_sections])
+        return any(x.is_keyed for x in self.menu_sections)
 
     @property
     def has_numbered_section(self):
-        return any([menu_section.is_numbered for menu_section in self.menu_sections])
+        return any(x.is_numbered for x in self.menu_sections)
 
     @property
     def has_ranged_section(self):
-        return any([menu_section.is_ranged for menu_section in self.menu_sections])
+        return any(x.is_ranged for x in self.menu_sections)
 
     @property
     def hidden_section(self):
@@ -166,7 +175,8 @@ class Menu(MenuSectionAggregator):
     ### PUBLIC METHODS ###
 
     def change_user_input_to_directive(self, user_input):
-        user_input = stringtools.strip_diacritics_from_binary_string(user_input)
+        user_input = stringtools.strip_diacritics_from_binary_string(
+            user_input)
         user_input = user_input.lower()
         if self.user_enters_nothing(user_input) and self.default_value:
             return self.conditionally_enclose_in_list(self.default_value)
@@ -179,14 +189,17 @@ class Menu(MenuSectionAggregator):
                 if menu_token.body == 'redraw':
                     continue
                 if menu_token.matches(user_input):
-                    return self.conditionally_enclose_in_list(menu_token.return_value)
+                    return self.conditionally_enclose_in_list(
+                        menu_token.return_value)
 
-    def conditionally_display_menu(self, automatically_determined_user_input=None):
+    def conditionally_display_menu(self, 
+        automatically_determined_user_input=None):
         self.conditionally_clear_terminal()
         self._io.display(self.menu_lines, capitalize_first_character=False)
         if automatically_determined_user_input is not None:
             return automatically_determined_user_input
-        user_response = self._io.handle_raw_input_with_default('', default=self.prompt_default)
+        user_response = self._io.handle_raw_input_with_default(
+            '', default=self.prompt_default)
         directive = self.change_user_input_to_directive(user_response)
         directive = self.strip_default_indicators_from_strings(directive)
         self._session.hide_next_redraw = False
@@ -212,12 +225,18 @@ class Menu(MenuSectionAggregator):
             result.append(entry)
         return result
 
-    def make_section(self, is_hidden=False, is_internally_keyed=False, is_keyed=False,
-        is_numbered=False, is_ranged=False, menu_tokens=None,
+    def make_section(self, 
+        is_hidden=False, 
+        is_internally_keyed=False, 
+        is_keyed=False,
+        is_numbered=False, 
+        is_ranged=False, 
+        menu_tokens=None,
         return_value_attribute='body'):
+        from experimental import scoremanagertools
         assert not (is_numbered and self.has_numbered_section)
         assert not (is_ranged and self.has_ranged_section)
-        menu_section = MenuSection(
+        menu_section = scoremanagertools.menuing.MenuSection(
             is_hidden=is_hidden,
             is_internally_keyed=is_internally_keyed,
             is_keyed=is_keyed,
@@ -234,10 +253,12 @@ class Menu(MenuSectionAggregator):
     def return_value_to_location_pair(self, return_value):
         for i, menu_section in enumerate(self.menu_sections):
             if return_value in menu_section.menu_token_return_values:
-                return (i, menu_section.menu_token_return_values.index(return_value))
+                j = menu_section.menu_token_return_values.index(return_value)
+                return i, j
 
     def return_value_to_next_return_value_in_section(self, return_value):
-        section_index, entry_index = self.return_value_to_location_pair(return_value)
+        section_index, entry_index = self.return_value_to_location_pair(
+            return_value)
         menu_section = self.menu_sections[section_index]
         entry_index = (entry_index + 1) % len(menu_section)
         return menu_section.menu_token_return_values[entry_index]
@@ -266,4 +287,5 @@ class Menu(MenuSectionAggregator):
         return False
 
     def user_enters_nothing(self, user_input):
-        return not user_input or (3 <= len(user_input) and 'default'.startswith(user_input))
+        return not user_input or (3 <= len(user_input) and \
+            'default'.startswith(user_input))

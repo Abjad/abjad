@@ -452,9 +452,14 @@ Unstable packages (load manually)
       :maxdepth: 1
 
       tools/newabjadbooktools/CodeBlock/CodeBlock
-      tools/newabjadbooktools/Document/Document
-      tools/newabjadbooktools/DocumentProcessor/DocumentProcessor
+      tools/newabjadbooktools/DoctreeDocumentHandler/DoctreeDocumentHandler
+      tools/newabjadbooktools/DocumentHandler/DocumentHandler
+      tools/newabjadbooktools/HTMLDocumentHandler/HTMLDocumentHandler
+      tools/newabjadbooktools/LaTeXDocumentHandler/LaTeXDocumentHandler
       tools/newabjadbooktools/NoncodeBlock/NoncodeBlock
+      tools/newabjadbooktools/OutputProxy/OutputProxy
+      tools/newabjadbooktools/ReSTDocumentHandler/ReSTDocumentHandler
+      tools/newabjadbooktools/TextualDocumentHandler/TextualDocumentHandler
 
 .. only:: latex
 
@@ -464,9 +469,14 @@ Unstable packages (load manually)
    .. toctree::
 
       tools/newabjadbooktools/CodeBlock/CodeBlock
-      tools/newabjadbooktools/Document/Document
-      tools/newabjadbooktools/DocumentProcessor/DocumentProcessor
+      tools/newabjadbooktools/DoctreeDocumentHandler/DoctreeDocumentHandler
+      tools/newabjadbooktools/DocumentHandler/DocumentHandler
+      tools/newabjadbooktools/HTMLDocumentHandler/HTMLDocumentHandler
+      tools/newabjadbooktools/LaTeXDocumentHandler/LaTeXDocumentHandler
       tools/newabjadbooktools/NoncodeBlock/NoncodeBlock
+      tools/newabjadbooktools/OutputProxy/OutputProxy
+      tools/newabjadbooktools/ReSTDocumentHandler/ReSTDocumentHandler
+      tools/newabjadbooktools/TextualDocumentHandler/TextualDocumentHandler
 
 :py:mod:`parsertools <experimental.tools.parsertools>`
 ======================================================
