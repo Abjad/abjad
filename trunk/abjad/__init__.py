@@ -7,7 +7,7 @@ if not _python_version in (('2.7.3', '2.7.4', '2.7.5')):
 
 import readline
 import rlcompleter
-if 'libedit' in readline.__doc__:
+if readline.__doc__ is not None and 'libedit' in readline.__doc__:
     readline.parse_and_bind("bind ^I rl_complete")
 else:
     readline.parse_and_bind("tab: complete")
@@ -51,4 +51,6 @@ del readline
 del rlcompleter
 del tools
 
-__version__ = '2.13'
+__version_info__ = (2, 13)
+__version__ = '.'.join(str(x) for x in __version_info__)
+
