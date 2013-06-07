@@ -12,7 +12,6 @@ class CodeBlock(AbjadObject):
 
     ::
 
-        >>> from experimental.tools import newabjadbooktools
         >>> lines = ['message = "hello, world!"', 'print message']
         >>> code_block = newabjadbooktools.CodeBlock(lines)
         >>> results = code_block.execute()

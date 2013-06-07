@@ -6,4 +6,5 @@ from tools import handlertools
 from tools import lyrictools
 from tools import metricmodulationtools
 from tools import musicexpressiontools
+from tools import newabjadbooktools
 from tools import scoremanagertools
