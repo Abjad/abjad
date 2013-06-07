@@ -63,7 +63,7 @@ class CodeBlock(AbjadObject):
         ...     x
         ...
         '>>> staff = Staff(r"\\clef bass c4 d4 e4 f4")\n>>> show(staff)\n'
-        LilypondOutputProxy(Staff{4})
+        LilyPondOutputProxyTemp(Staff{4})
         '>>> print len(staff)\n4'
 
     Code blocks also supported a number of optional keyword arguments that
@@ -219,9 +219,9 @@ class CodeBlock(AbjadObject):
             'iotools.graph': newabjadbooktools.GraphvizOutputProxy,
             'iotools.play':  newabjadbooktools.MIDIOutputProxy,
             'iotools.plot': newabjadbooktools.GnuplotOutputProxy,
-            'iotools.show': newabjadbooktools.LilypondOutputProxy,
+            'iotools.show': newabjadbooktools.LilyPondOutputProxyTemp,
             'play': newabjadbooktools.MIDIOutputProxy,
-            'show': newabjadbooktools.LilypondOutputProxy,
+            'show': newabjadbooktools.LilyPondOutputProxyTemp,
         }
 
     @property
