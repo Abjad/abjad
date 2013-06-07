@@ -15,6 +15,24 @@ Read-only properties
 .. autoattribute:: experimental.tools.newabjadbooktools.OutputProxy.OutputProxy.OutputProxy.storage_format
    :noindex:
 
+Methods
+-------
+
+.. automethod:: experimental.tools.newabjadbooktools.OutputProxy.OutputProxy.OutputProxy.handle_doctree_document_environment
+   :noindex:
+
+.. automethod:: experimental.tools.newabjadbooktools.OutputProxy.OutputProxy.OutputProxy.handle_html_document_environment
+   :noindex:
+
+.. automethod:: experimental.tools.newabjadbooktools.OutputProxy.OutputProxy.OutputProxy.handle_latex_document_environment
+   :noindex:
+
+.. automethod:: experimental.tools.newabjadbooktools.OutputProxy.OutputProxy.OutputProxy.handle_rest_document_environment
+   :noindex:
+
+.. automethod:: experimental.tools.newabjadbooktools.OutputProxy.OutputProxy.OutputProxy.handle_text_document_environment
+   :noindex:
+
 Special methods
 ---------------
 

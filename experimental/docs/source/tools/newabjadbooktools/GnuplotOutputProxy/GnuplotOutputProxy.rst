@@ -15,6 +15,24 @@ Read-only properties
 .. autoattribute:: experimental.tools.newabjadbooktools.GnuplotOutputProxy.GnuplotOutputProxy.GnuplotOutputProxy.storage_format
    :noindex:
 
+Methods
+-------
+
+.. automethod:: experimental.tools.newabjadbooktools.GnuplotOutputProxy.GnuplotOutputProxy.GnuplotOutputProxy.handle_doctree_document_environment
+   :noindex:
+
+.. automethod:: experimental.tools.newabjadbooktools.GnuplotOutputProxy.GnuplotOutputProxy.GnuplotOutputProxy.handle_html_document_environment
+   :noindex:
+
+.. automethod:: experimental.tools.newabjadbooktools.GnuplotOutputProxy.GnuplotOutputProxy.GnuplotOutputProxy.handle_latex_document_environment
+   :noindex:
+
+.. automethod:: experimental.tools.newabjadbooktools.GnuplotOutputProxy.GnuplotOutputProxy.GnuplotOutputProxy.handle_rest_document_environment
+   :noindex:
+
+.. automethod:: experimental.tools.newabjadbooktools.GnuplotOutputProxy.GnuplotOutputProxy.GnuplotOutputProxy.handle_text_document_environment
+   :noindex:
+
 Special methods
 ---------------
 

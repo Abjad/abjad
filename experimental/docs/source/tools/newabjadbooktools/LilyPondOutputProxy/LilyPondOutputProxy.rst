@@ -15,6 +15,24 @@ Read-only properties
 .. autoattribute:: experimental.tools.newabjadbooktools.LilyPondOutputProxy.LilyPondOutputProxy.LilyPondOutputProxy.storage_format
    :noindex:
 
+Methods
+-------
+
+.. automethod:: experimental.tools.newabjadbooktools.LilyPondOutputProxy.LilyPondOutputProxy.LilyPondOutputProxy.handle_doctree_document_environment
+   :noindex:
+
+.. automethod:: experimental.tools.newabjadbooktools.LilyPondOutputProxy.LilyPondOutputProxy.LilyPondOutputProxy.handle_html_document_environment
+   :noindex:
+
+.. automethod:: experimental.tools.newabjadbooktools.LilyPondOutputProxy.LilyPondOutputProxy.LilyPondOutputProxy.handle_latex_document_environment
+   :noindex:
+
+.. automethod:: experimental.tools.newabjadbooktools.LilyPondOutputProxy.LilyPondOutputProxy.LilyPondOutputProxy.handle_rest_document_environment
+   :noindex:
+
+.. automethod:: experimental.tools.newabjadbooktools.LilyPondOutputProxy.LilyPondOutputProxy.LilyPondOutputProxy.handle_text_document_environment
+   :noindex:
+
 Special methods
 ---------------
 
