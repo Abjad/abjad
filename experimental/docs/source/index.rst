@@ -465,7 +465,7 @@ Unstable packages (load manually)
       tools/newabjadbooktools/GraphvizOutputProxy/GraphvizOutputProxy
       tools/newabjadbooktools/HTMLDocumentHandler/HTMLDocumentHandler
       tools/newabjadbooktools/LaTeXDocumentHandler/LaTeXDocumentHandler
-      tools/newabjadbooktools/LilypondOutputProxy/LilypondOutputProxy
+      tools/newabjadbooktools/LilyPondOutputProxy/LilyPondOutputProxy
       tools/newabjadbooktools/MIDIOutputProxy/MIDIOutputProxy
       tools/newabjadbooktools/OutputProxy/OutputProxy
       tools/newabjadbooktools/ReSTDocumentHandler/ReSTDocumentHandler
@@ -492,7 +492,7 @@ Unstable packages (load manually)
       tools/newabjadbooktools/GraphvizOutputProxy/GraphvizOutputProxy
       tools/newabjadbooktools/HTMLDocumentHandler/HTMLDocumentHandler
       tools/newabjadbooktools/LaTeXDocumentHandler/LaTeXDocumentHandler
-      tools/newabjadbooktools/LilypondOutputProxy/LilypondOutputProxy
+      tools/newabjadbooktools/LilyPondOutputProxy/LilyPondOutputProxy
       tools/newabjadbooktools/MIDIOutputProxy/MIDIOutputProxy
       tools/newabjadbooktools/OutputProxy/OutputProxy
       tools/newabjadbooktools/ReSTDocumentHandler/ReSTDocumentHandler
