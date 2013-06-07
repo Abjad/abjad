@@ -461,8 +461,12 @@ Unstable packages (load manually)
       :maxdepth: 1
 
       tools/newabjadbooktools/CodeBlock/CodeBlock
+      tools/newabjadbooktools/GnuplotOutputProxy/GnuplotOutputProxy
+      tools/newabjadbooktools/GraphvizOutputProxy/GraphvizOutputProxy
       tools/newabjadbooktools/HTMLDocumentHandler/HTMLDocumentHandler
       tools/newabjadbooktools/LaTeXDocumentHandler/LaTeXDocumentHandler
+      tools/newabjadbooktools/LilypondOutputProxy/LilypondOutputProxy
+      tools/newabjadbooktools/MIDIOutputProxy/MIDIOutputProxy
       tools/newabjadbooktools/OutputProxy/OutputProxy
       tools/newabjadbooktools/ReSTDocumentHandler/ReSTDocumentHandler
       tools/newabjadbooktools/TextualDocumentHandler/TextualDocumentHandler
@@ -484,8 +488,12 @@ Unstable packages (load manually)
    .. toctree::
 
       tools/newabjadbooktools/CodeBlock/CodeBlock
+      tools/newabjadbooktools/GnuplotOutputProxy/GnuplotOutputProxy
+      tools/newabjadbooktools/GraphvizOutputProxy/GraphvizOutputProxy
       tools/newabjadbooktools/HTMLDocumentHandler/HTMLDocumentHandler
       tools/newabjadbooktools/LaTeXDocumentHandler/LaTeXDocumentHandler
+      tools/newabjadbooktools/LilypondOutputProxy/LilypondOutputProxy
+      tools/newabjadbooktools/MIDIOutputProxy/MIDIOutputProxy
       tools/newabjadbooktools/OutputProxy/OutputProxy
       tools/newabjadbooktools/ReSTDocumentHandler/ReSTDocumentHandler
       tools/newabjadbooktools/TextualDocumentHandler/TextualDocumentHandler
