@@ -12,7 +12,7 @@ Read-only properties
 .. autoattribute:: experimental.tools.newabjadbooktools.CodeBlock.CodeBlock.CodeBlock.allow_exceptions
    :noindex:
 
-.. autoattribute:: experimental.tools.newabjadbooktools.CodeBlock.CodeBlock.CodeBlock.displayed_oines
+.. autoattribute:: experimental.tools.newabjadbooktools.CodeBlock.CodeBlock.CodeBlock.displayed_lines
    :noindex:
 
 .. autoattribute:: experimental.tools.newabjadbooktools.CodeBlock.CodeBlock.CodeBlock.executed_lines

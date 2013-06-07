@@ -454,7 +454,6 @@ Unstable packages (load manually)
       tools/newabjadbooktools/DoctreeDocumentHandler/DoctreeDocumentHandler
       tools/newabjadbooktools/DocumentHandler/DocumentHandler
       tools/newabjadbooktools/NoncodeBlock/NoncodeBlock
-      tools/newabjadbooktools/OutputProxy/OutputProxy
 
    --------
 
@@ -464,6 +463,7 @@ Unstable packages (load manually)
       tools/newabjadbooktools/CodeBlock/CodeBlock
       tools/newabjadbooktools/HTMLDocumentHandler/HTMLDocumentHandler
       tools/newabjadbooktools/LaTeXDocumentHandler/LaTeXDocumentHandler
+      tools/newabjadbooktools/OutputProxy/OutputProxy
       tools/newabjadbooktools/ReSTDocumentHandler/ReSTDocumentHandler
       tools/newabjadbooktools/TextualDocumentHandler/TextualDocumentHandler
 
@@ -477,7 +477,6 @@ Unstable packages (load manually)
       tools/newabjadbooktools/DoctreeDocumentHandler/DoctreeDocumentHandler
       tools/newabjadbooktools/DocumentHandler/DocumentHandler
       tools/newabjadbooktools/NoncodeBlock/NoncodeBlock
-      tools/newabjadbooktools/OutputProxy/OutputProxy
 
    Concrete Classes
    ----------------
@@ -487,6 +486,7 @@ Unstable packages (load manually)
       tools/newabjadbooktools/CodeBlock/CodeBlock
       tools/newabjadbooktools/HTMLDocumentHandler/HTMLDocumentHandler
       tools/newabjadbooktools/LaTeXDocumentHandler/LaTeXDocumentHandler
+      tools/newabjadbooktools/OutputProxy/OutputProxy
       tools/newabjadbooktools/ReSTDocumentHandler/ReSTDocumentHandler
       tools/newabjadbooktools/TextualDocumentHandler/TextualDocumentHandler
 

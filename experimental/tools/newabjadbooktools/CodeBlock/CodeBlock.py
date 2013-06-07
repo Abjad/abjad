@@ -1,7 +1,79 @@
+import code
+import copy
+import contextlib
+import StringIO
+from abjad.tools import iotools
 from abjad.tools.abctools import AbjadObject
 
 
 class CodeBlock(AbjadObject):
+    r'''Abjad model of a block of code to be interpreted in an abjad-book
+    workflow:
+
+    ::
+
+        >>> from experimental.tools import newabjadbooktools
+        >>> lines = ['message = "hello, world!"', 'print message']
+        >>> code_block = newabjadbooktools.CodeBlock(lines)
+        >>> results = code_block.execute()
+        >>> print results
+        ['>>> message = "hello, world!"\n>>> print message\nhello, world!']
+
+    Multiple code block interpretations can be chained together by using a
+    common InteractiveConsole instance:
+
+    ::
+
+        >>> lines_one = ['message = "hello, "']
+        >>> lines_two = ['message += "world!"']
+        >>> lines_three = ['print message']
+        >>> code_block_one = newabjadbooktools.CodeBlock(lines_one)
+        >>> code_block_two = newabjadbooktools.CodeBlock(lines_two)
+        >>> code_block_three = newabjadbooktools.CodeBlock(lines_three)
+
+    ::
+
+        >>> import code
+        >>> console = code.InteractiveConsole()
+
+    ::
+
+        >>> code_block_one.execute(console)
+        ['>>> message = "hello, "']
+        >>> code_block_two.execute(console)
+        ['>>> message += "world!"']
+        >>> code_block_three.execute(console)
+        ['>>> print message\nhello, world!']
+
+    Code blocks intercept certain Abjad function calls and pull the results
+    out as output proxies, to be dealt with by other processes:
+
+    ::
+
+        >>> console = code.InteractiveConsole()
+        >>> status = console.push('from abjad import *')
+        >>> lines = [
+        ...     'staff = Staff(r"\clef bass c4 d4 e4 f4")',
+        ...     'show(staff)',
+        ...     'print len(staff)'
+        ...     ]
+        >>> code_block = newabjadbooktools.CodeBlock(lines)
+        >>> results = code_block.execute(console)
+        >>> for x in results:
+        ...     x
+        ...
+        '>>> staff = Staff(r"\\clef bass c4 d4 e4 f4")\n>>> show(staff)\n'
+        OutputProxy(Staff{4})
+        '>>> print len(staff)\n4'
+
+    Code blocks also supported a number of optional keyword arguments that
+    affect what commands are executed in the code block's console, and what
+    commands are returned as the published result.
+
+    If ``hide`` is true, 
+
+    Return code block instance.
+    '''
 
     ### CLASS VARIABLES ###
 
@@ -23,7 +95,7 @@ class CodeBlock(AbjadObject):
         hide=False,
         strip_prompt=False,
         ):
-        self._allow_exception = bool(allow_exceptions)
+        self._allow_exceptions = bool(allow_exceptions)
         self._displayed_lines = tuple(displayed_lines)
         self._executed_lines = None
         if executed_lines is not None:
@@ -39,8 +111,11 @@ class CodeBlock(AbjadObject):
 
     ### PUBLIC METHODS ###
 
-    def execute(self, console):
+    def execute(self, console=None):
         from experimental.tools import newabjadbooktools
+
+        if console is None:
+            console = code.InteractiveConsole()
 
         results = []
         is_incomplete_statement = False
@@ -68,17 +143,18 @@ class CodeBlock(AbjadObject):
                             # Otherwise, it's OK: just grab out of locals 
                             output_proxy = newabjadbooktools.OutputProxy(
                                 copy.deepcopy(console.locals[object_reference]),
-                                self.output_triggers[output_method],
+                                #self.output_triggers[output_method],
                                 )
                             results.append(result)
                             results.append(output_proxy)
+                            result = ''
                         is_incomplete_statement = False
                     else:
                         is_incomplete_statement = console.push(line)
                     output = stream.getvalue()
                     if output:
                         result += output
-                if not is_complete_statement:
+                if not is_incomplete_statement:
                     result += '>>> '
                 else:
                     result += '... '
@@ -121,7 +197,7 @@ class CodeBlock(AbjadObject):
         return self._allow_exceptions
 
     @property
-    def displayed_oines(self):
+    def displayed_lines(self):
         return self._displayed_lines
 
     @property

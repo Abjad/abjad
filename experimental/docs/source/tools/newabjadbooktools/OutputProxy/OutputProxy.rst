@@ -9,6 +9,9 @@ newabjadbooktools.OutputProxy
 Read-only properties
 --------------------
 
+.. autoattribute:: experimental.tools.newabjadbooktools.OutputProxy.OutputProxy.OutputProxy.payload
+   :noindex:
+
 .. autoattribute:: experimental.tools.newabjadbooktools.OutputProxy.OutputProxy.OutputProxy.storage_format
    :noindex:
 
