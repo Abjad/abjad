@@ -76,14 +76,14 @@ class CodeBlock(AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_allow_exceptions',
-        '_displayed_lines',
-        '_executed_lines',
-        '_hide',
-        '_processed_results',
-        '_strip_prompt',
-        )
+    #__slots__ = (
+    #    '_allow_exceptions',
+    #    '_displayed_lines',
+    #    '_executed_lines',
+    #    '_hide',
+    #    '_processed_results',
+    #    '_strip_prompt',
+    #    )
 
     ### INITIALIZER ###
 
