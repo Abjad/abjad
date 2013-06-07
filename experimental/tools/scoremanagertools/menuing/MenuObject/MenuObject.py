@@ -82,17 +82,18 @@ class MenuObject(ScoreManagerObject):
         if self.where is not None:
             file_name = self.where[1]
             line_number = self.where[2]
-            command = 'vi +{} {}'.format(line_number, file_name)
+            command = 'vim +{} {}'.format(line_number, file_name)
             os.system(command)
         else:
             lines = []
-            lines.append("where-tracking not enabled. Use 'tw' to toggle where-tracking.")
+            lines.append("where-tracking not enabled. " +
+                "Use 'tw' to toggle where-tracking.")
             lines.append('')
             self._io.display(lines)
             self._session.hide_next_redraw = True
 
     def make_default_hidden_section(self, session=None, where=None):
-        from experimental.tools.scoremanagertools.menuing.MenuSection import MenuSection
+        from experimental.tools import scoremanagertools
         menu_tokens = [
             ('b', 'back'),
             ('exec', 'exec statement'),
@@ -109,7 +110,7 @@ class MenuObject(ScoreManagerObject):
             ('tw', 'toggle where'),
             ('where', 'show menu client'),
             ]
-        menu_section = MenuSection(
+        menu_section = scoremanagertools.menuing.MenuSection(
             session=session,
             where=where,
             is_keyed=True,
@@ -138,7 +139,9 @@ class MenuObject(ScoreManagerObject):
             title_lines = []
         for title_line in title_lines:
             if self.indent_level:
-                menu_lines.append('{} {}'.format(self.make_tab(self.indent_level), title_line))
+                line = '{} {}'.format(
+                    self.make_tab(self.indent_level), title_line)
+                menu_lines.append(line)
             else:
                 menu_lines.append(title_line)
         if menu_lines:
@@ -154,7 +157,8 @@ class MenuObject(ScoreManagerObject):
             lines.append('')
             self._io.display(lines, capitalize_first_character=False)
         else:
-            lines.append("where-tracking not enabled. Use 'tw' to toggle where-tracking.")
+            lines.append("where-tracking not enabled. " + 
+                "Use 'tw' to toggle where-tracking.")
             lines.append('')
             self._io.display(lines)
         self._session.hide_next_redraw = True
