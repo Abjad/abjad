@@ -63,7 +63,7 @@ class CodeBlock(AbjadObject):
         ...     x
         ...
         '>>> staff = Staff(r"\\clef bass c4 d4 e4 f4")\n>>> show(staff)\n'
-        OutputProxy(Staff{4})
+        LilypondOutputProxy(Staff{4})
         '>>> print len(staff)\n4'
 
     Code blocks also supported a number of optional keyword arguments that
@@ -140,13 +140,17 @@ class CodeBlock(AbjadObject):
                             # and cause a captured Exception.
                             console.push(line)
                         else:
-                            # Otherwise, it's OK: just grab out of locals 
-                            output_proxy = newabjadbooktools.OutputProxy(
+                            # Otherwise, it's OK: just grab it out of the
+                            # console's locals. 
+                            proxy_class = self.output_triggers[output_method]
+                            output_proxy = proxy_class(
                                 copy.deepcopy(console.locals[object_reference]),
-                                #self.output_triggers[output_method],
                                 )
                             results.append(result)
                             results.append(output_proxy)
+                            # Then empty the current result buffer:
+                            # the output proxy represents a break in the 
+                            # printed code blocks.
                             result = ''
                         is_incomplete_statement = False
                     else:
@@ -210,13 +214,14 @@ class CodeBlock(AbjadObject):
 
     @property
     def output_triggers(self):
+        from experimental.tools import newabjadbooktools
         return {
-            'iotools.graph': 'graphviz',
-            'iotools.play': 'midi',
-            'iotools.plot': 'gnuplot',
-            'iotools.show': 'lilypond',
-            'play': 'midi',
-            'show': 'lilypond',
+            'iotools.graph': newabjadbooktools.GraphvizOutputProxy,
+            'iotools.play':  newabjadbooktools.MIDIOutputProxy,
+            'iotools.plot': newabjadbooktools.GnuplotOutputProxy,
+            'iotools.show': newabjadbooktools.LilypondOutputProxy,
+            'play': newabjadbooktools.MIDIOutputProxy,
+            'show': newabjadbooktools.LilypondOutputProxy,
         }
 
     @property
