@@ -1,5 +1,5 @@
-from abjad.tools.abctools import AbjadObject
+from experimental.tools.newabjadbooktools.TextualDocumentHandler import TextualDocumentHandler
 
 
-class HTMLDocumentHandler(AbjadObject):
+class HTMLDocumentHandler(TextualDocumentHandler):
     pass

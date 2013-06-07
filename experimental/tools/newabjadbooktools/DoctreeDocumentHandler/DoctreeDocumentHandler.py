@@ -1,5 +1,5 @@
-from abjad.tools.abctools import AbjadObject
+from experimental.tools.newabjadbooktools.DocumentHandler import DocumentHandler
 
 
-class DoctreeDocumentHandler(AbjadObject):
+class DoctreeDocumentHandler(DocumentHandler):
     pass
