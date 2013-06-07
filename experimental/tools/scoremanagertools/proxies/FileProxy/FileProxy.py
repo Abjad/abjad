@@ -15,10 +15,10 @@ class FileProxy(FilesystemAssetProxy):
     ### PUBLIC METHODS ###
 
     def interactively_edit(self):
-        os.system('vi + {}'.format(self.filesystem_path))
+        os.system('vim + {}'.format(self.filesystem_path))
 
     def interactively_view(self):
-        os.system('vi -R {}'.format(self.filesystem_path))
+        os.system('vim -R {}'.format(self.filesystem_path))
 
     def make_empty_asset(self, is_interactive=False):
         if not self.exists():
@@ -40,5 +40,5 @@ class FileProxy(FilesystemAssetProxy):
 
     user_input_to_action = FilesystemAssetProxy.user_input_to_action.copy()
     user_input_to_action.update({
-        'vi': interactively_edit,
+        'vim': interactively_edit,
         })

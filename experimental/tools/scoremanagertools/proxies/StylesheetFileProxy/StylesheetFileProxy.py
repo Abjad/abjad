@@ -48,7 +48,7 @@ class StylesheetFileProxy(FileProxy):
             ('cp', 'copy stylesheet'),
             ('rm', 'delete stylesheet'),
             ('ren', 'rename stylesheet'),
-            ('vi', 'vi stylesheet'),
+            ('vim', 'vim stylesheet'),
             ]
         menu, menu_section = self._io.make_menu(
             where=self.where,

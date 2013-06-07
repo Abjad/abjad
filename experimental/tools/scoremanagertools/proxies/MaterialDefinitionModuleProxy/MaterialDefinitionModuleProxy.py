@@ -61,7 +61,7 @@ class MaterialDefinitionModuleProxy(ModuleProxy, ParseableModuleMixin):
 
     def interactively_edit(self):
         columns = len(self.material_package_name) + 3
-        os.system("vi + -c'norm {}l' {}".format(columns, self.filesystem_path))
+        os.system("vim + -c'norm {}l' {}".format(columns, self.filesystem_path))
 
     def parse(self):
         is_parsable = True
