@@ -45,12 +45,17 @@ class CodeBlock(AbjadObject):
         ['>>> print message\nhello, world!']
 
     Code blocks intercept certain Abjad function calls and pull the results
-    out as output proxies, to be dealt with by other processes:
+    out as output proxies, to be dealt with by other processes.
+
+    .. note:: We can push commands to the console directly, like the following
+    import, in order to pull references into the console's local namespace.
 
     ::
 
-        >>> console = code.InteractiveConsole()
         >>> status = console.push('from abjad import *')
+
+    ::
+
         >>> lines = [
         ...     'staff = Staff(r"\clef bass c4 d4 e4 f4")',
         ...     'show(staff)',
@@ -65,11 +70,32 @@ class CodeBlock(AbjadObject):
         LilyPondOutputProxy(Staff{4})
         '>>> print len(staff)\n4'
 
-    Code blocks also supported a number of optional keyword arguments that
+    Code blocks also support a number of optional keyword arguments that
     affect what commands are executed in the code block's console, and what
     commands are returned as the published result.
 
-    If ``hide`` is true, 
+    If ``hide`` is true, only any output proxies generated during
+    interpretation will be returned:
+
+    .. note:: Here we will reuse the previously defined console, which already
+    has Abjad's default imports in its local namespace.
+
+    ::
+
+        >>> lines = [
+        ...     'note = Note("dqf16..")',
+        ...     'play(note)',
+        ...     'print len(staff)'
+        ...     ]
+        >>> code_block = newabjadbooktools.CodeBlock(
+        ...     lines,
+        ...     hide=True,
+        ...     )
+        >>> results = code_block.execute(console)
+        >>> for x in results:
+        ...     x
+        ...
+        MIDIOutputProxy(Note('dqf16..'))
 
     Return code block instance.
     '''
