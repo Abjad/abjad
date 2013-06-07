@@ -12,8 +12,23 @@ Read-only properties
 .. autoattribute:: experimental.tools.newabjadbooktools.HTMLDocumentHandler.HTMLDocumentHandler.HTMLDocumentHandler.storage_format
    :noindex:
 
+Methods
+-------
+
+.. automethod:: experimental.tools.newabjadbooktools.HTMLDocumentHandler.HTMLDocumentHandler.HTMLDocumentHandler.create_code_block
+   :noindex:
+
+.. automethod:: experimental.tools.newabjadbooktools.HTMLDocumentHandler.HTMLDocumentHandler.HTMLDocumentHandler.extract_code_block_options
+   :noindex:
+
+.. automethod:: experimental.tools.newabjadbooktools.HTMLDocumentHandler.HTMLDocumentHandler.HTMLDocumentHandler.extract_code_blocks
+   :noindex:
+
 Special methods
 ---------------
+
+.. automethod:: experimental.tools.newabjadbooktools.HTMLDocumentHandler.HTMLDocumentHandler.HTMLDocumentHandler.__call__
+   :noindex:
 
 .. automethod:: experimental.tools.newabjadbooktools.HTMLDocumentHandler.HTMLDocumentHandler.HTMLDocumentHandler.__eq__
    :noindex:
