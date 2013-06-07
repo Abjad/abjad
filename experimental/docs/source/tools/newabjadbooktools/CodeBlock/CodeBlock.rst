@@ -9,7 +9,25 @@ newabjadbooktools.CodeBlock
 Read-only properties
 --------------------
 
+.. autoattribute:: experimental.tools.newabjadbooktools.CodeBlock.CodeBlock.CodeBlock.allow_exceptions
+   :noindex:
+
+.. autoattribute:: experimental.tools.newabjadbooktools.CodeBlock.CodeBlock.CodeBlock.displayed_lines
+   :noindex:
+
+.. autoattribute:: experimental.tools.newabjadbooktools.CodeBlock.CodeBlock.CodeBlock.executed_lines
+   :noindex:
+
+.. autoattribute:: experimental.tools.newabjadbooktools.CodeBlock.CodeBlock.CodeBlock.hide
+   :noindex:
+
+.. autoattribute:: experimental.tools.newabjadbooktools.CodeBlock.CodeBlock.CodeBlock.processed_results
+   :noindex:
+
 .. autoattribute:: experimental.tools.newabjadbooktools.CodeBlock.CodeBlock.CodeBlock.storage_format
+   :noindex:
+
+.. autoattribute:: experimental.tools.newabjadbooktools.CodeBlock.CodeBlock.CodeBlock.strip_prompt
    :noindex:
 
 Special methods

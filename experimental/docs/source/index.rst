@@ -451,7 +451,6 @@ Unstable packages (load manually)
    .. toctree::
       :maxdepth: 1
 
-      tools/newabjadbooktools/CodeBlock/CodeBlock
       tools/newabjadbooktools/DoctreeDocumentHandler/DoctreeDocumentHandler
       tools/newabjadbooktools/DocumentHandler/DocumentHandler
       tools/newabjadbooktools/NoncodeBlock/NoncodeBlock
@@ -462,6 +461,7 @@ Unstable packages (load manually)
    .. toctree::
       :maxdepth: 1
 
+      tools/newabjadbooktools/CodeBlock/CodeBlock
       tools/newabjadbooktools/HTMLDocumentHandler/HTMLDocumentHandler
       tools/newabjadbooktools/LaTeXDocumentHandler/LaTeXDocumentHandler
       tools/newabjadbooktools/ReSTDocumentHandler/ReSTDocumentHandler
@@ -474,7 +474,6 @@ Unstable packages (load manually)
 
    .. toctree::
 
-      tools/newabjadbooktools/CodeBlock/CodeBlock
       tools/newabjadbooktools/DoctreeDocumentHandler/DoctreeDocumentHandler
       tools/newabjadbooktools/DocumentHandler/DocumentHandler
       tools/newabjadbooktools/NoncodeBlock/NoncodeBlock
@@ -485,6 +484,7 @@ Unstable packages (load manually)
 
    .. toctree::
 
+      tools/newabjadbooktools/CodeBlock/CodeBlock
       tools/newabjadbooktools/HTMLDocumentHandler/HTMLDocumentHandler
       tools/newabjadbooktools/LaTeXDocumentHandler/LaTeXDocumentHandler
       tools/newabjadbooktools/ReSTDocumentHandler/ReSTDocumentHandler
