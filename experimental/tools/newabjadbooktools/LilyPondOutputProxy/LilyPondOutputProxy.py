@@ -1,5 +1,5 @@
 from experimental.tools.newabjadbooktools.OutputProxy import OutputProxy
 
 
-class LilyPondOutputProxyTemp(OutputProxy):
+class LilyPondOutputProxy(OutputProxy):
     pass
