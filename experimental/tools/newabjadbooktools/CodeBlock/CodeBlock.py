@@ -48,7 +48,8 @@ class CodeBlock(AbjadObject):
     out as output proxies, to be dealt with by other processes.
 
     .. note:: We can push commands to the console directly, like the following
-    import, in order to pull references into the console's local namespace.
+              import, in order to pull references into the console's local
+              namespace.
 
     ::
 
@@ -78,7 +79,7 @@ class CodeBlock(AbjadObject):
     interpretation will be returned:
 
     .. note:: Here we will reuse the previously defined console, which already
-    has Abjad's default imports in its local namespace.
+              has Abjad's default imports in its local namespace.
 
     ::
 
