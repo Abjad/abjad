@@ -127,7 +127,6 @@ class ScoreManager(ScoreManagerObject):
         menu, menu_section = self._io.make_menu(
             menu_tokens=menu_tokens,
             is_numbered=True,
-            is_keyed=False,
             return_value_attribute='key',
             where=self._where,
             )

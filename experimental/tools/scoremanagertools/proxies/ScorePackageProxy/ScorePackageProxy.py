@@ -1,5 +1,6 @@
 import os
-from experimental.tools.scoremanagertools.proxies.PackageProxy import PackageProxy
+from experimental.tools.scoremanagertools.proxies.PackageProxy \
+    import PackageProxy
 
 
 class ScorePackageProxy(PackageProxy):
@@ -404,7 +405,6 @@ class ScorePackageProxy(PackageProxy):
         setup_menu, menu_section = self._io.make_menu(
             where=self._where,
             is_numbered=True,
-            is_keyed=False,
             return_value_attribute='key',
             )
         menu_section.menu_tokens = self.setup_value_menu_tokens
@@ -413,7 +413,6 @@ class ScorePackageProxy(PackageProxy):
     def make_svn_menu(self):
         menu, menu_section = self._io.make_menu(
             where=self._where,
-            is_keyed=False,
             return_value_attribute='key',
             )
         menu_tokens = [

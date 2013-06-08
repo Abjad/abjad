@@ -1,7 +1,8 @@
 import abc
 import os
 from abjad.tools import stringtools
-from experimental.tools.scoremanagertools.core.ScoreManagerObject import ScoreManagerObject
+from experimental.tools.scoremanagertools.core.ScoreManagerObject \
+    import ScoreManagerObject
 
 
 class FilesystemAssetWrangler(ScoreManagerObject):
@@ -91,7 +92,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         menu_tokens = self._make_menu_tokens(head=head)
         menu, menu_section = self._io.make_menu(
             where=self._where,
-            is_keyed=False,
             is_numbered=True,
             menu_tokens=menu_tokens,
             return_value_attribute='key',
@@ -198,7 +198,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         menu, menu_section = self._io.make_menu(
             where=self._where,
             is_numbered=True,
-            is_keyed=False,
             return_value_attribute='key',
             )
         menu_section.menu_tokens = self._make_menu_tokens()
@@ -227,7 +226,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         menu, menu_section = self._io.make_menu(
             where=self._where,
             is_numbered=True,
-            is_keyed=False,
             return_value_attribute='key',
             )
         menu_section.menu_tokens = self._make_asset_storehouse_menu_tokens(

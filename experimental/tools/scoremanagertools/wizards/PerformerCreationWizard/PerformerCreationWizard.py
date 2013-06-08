@@ -1,7 +1,8 @@
 from abjad.tools import instrumenttools
 from abjad.tools import scoretools
 from experimental.tools.scoremanagertools import selectors
-from experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard import InstrumentCreationWizard
+from experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard \
+    import InstrumentCreationWizard
 from experimental.tools.scoremanagertools.wizards.Wizard import Wizard
 
 
@@ -117,7 +118,6 @@ class PerformerCreationWizard(Wizard):
         menu, menu_section = self._io.make_menu(
             where=self._where,
             return_value_attribute='key',
-            is_keyed=True,
             is_numbered=True,
             is_ranged=True,
             )
@@ -141,14 +141,12 @@ class PerformerCreationWizard(Wizard):
                 ]
             menu_section = menu.make_section(
                 return_value_attribute='key',
-                is_keyed=False,
                 )
         else:
             menu_tokens = instrumenttools.list_instrument_names()
             menu_section.default_index = default_index
             menu_section = menu.make_section(
                 return_value_attribute='key',
-                is_keyed=False,
                 )
         menu_tokens.append(('skip', 'skip instruments'))
         menu_section.menu_tokens = menu_tokens

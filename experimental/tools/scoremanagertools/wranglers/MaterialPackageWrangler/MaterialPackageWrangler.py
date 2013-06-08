@@ -2,7 +2,8 @@ import collections
 import os
 from abjad.tools import stringtools
 from experimental.tools.scoremanagertools import predicates
-from experimental.tools.scoremanagertools.wranglers.PackageWrangler import PackageWrangler
+from experimental.tools.scoremanagertools.wranglers.PackageWrangler \
+    import PackageWrangler
 
 
 class MaterialPackageWrangler(PackageWrangler):
@@ -18,8 +19,11 @@ class MaterialPackageWrangler(PackageWrangler):
 
     ::
 
-        >>> wrangler_in_built_in_score = scoremanagertools.wranglers.MaterialPackageWrangler()
-        >>> wrangler_in_built_in_score._session.underscore_delimited_current_score_name = 'red_example_score'
+        >>> wrangler_in_built_in_score = \
+        ...     scoremanagertools.wranglers.MaterialPackageWrangler()
+        >>> session = wrangler_in_built_in_score._session
+        >>> session.underscore_delimited_current_score_name = \
+        ...     'red_example_score'
         >>> wrangler_in_built_in_score
         MaterialPackageWrangler()
 
@@ -83,14 +87,14 @@ class MaterialPackageWrangler(PackageWrangler):
             material_package_proxy._run()
 
     def _initialize_asset_proxy(self, package_path):
-        return self._material_package_maker_wrangler._initialize_asset_proxy(package_path)
+        return self._material_package_maker_wrangler._initialize_asset_proxy(
+            package_path)
 
     def _make_main_menu(self, head=None):
         menu, menu_section = self._io.make_menu(
             where=self._where,
             return_value_attribute='key',
             is_numbered=True,
-            is_keyed=False,
             )
         menu_section.menu_tokens = self._make_menu_tokens(head=head)
         menu_tokens = [
@@ -146,7 +150,8 @@ class MaterialPackageWrangler(PackageWrangler):
 
     ### PUBLIC METHODS ###
 
-    def interactively_get_available_material_packagesystem_path(self, user_input=None):
+    def interactively_get_available_material_packagesystem_path(
+        self, user_input=None):
         self._io.assign_user_input(user_input=user_input)
         while True:
             getter = self._io.make_getter(where=self._where)
@@ -155,12 +160,16 @@ class MaterialPackageWrangler(PackageWrangler):
                 package_name = getter._run()
             if self._session.backtrack():
                 return
-            material_package_name = stringtools.string_to_accent_free_underscored_delimited_lowercase(
+            material_package_name = \
+                stringtools.string_to_accent_free_underscored_delimited_lowercase(
                 package_name)
             material_package_path = '.'.join([
-                self._current_storehouse_packagesystem_path, material_package_name])
-            if self.configuration.packagesystem_path_exists(material_package_path):
-                line = 'Material package {!r} already exists.'.format(material_package_path)
+                self._current_storehouse_packagesystem_path, 
+                material_package_name])
+            if self.configuration.packagesystem_path_exists(
+                material_package_path):
+                line = 'Material package {!r} already exists.'.format(
+                    material_package_path)
                 self._io.display([line, ''])
             else:
                 return material_package_path
@@ -168,7 +177,8 @@ class MaterialPackageWrangler(PackageWrangler):
     def interactively_make_data_package(self, tags=None, user_input=None):
         self._io.assign_user_input(user_input=user_input)
         with self.backtracking:
-            material_package_path = self.interactively_get_available_material_packagesystem_path()
+            material_package_path = \
+                self.interactively_get_available_material_packagesystem_path()
         if self._session.backtrack():
             return
         self.make_data_package(material_package_path, tags=tags)
@@ -176,7 +186,8 @@ class MaterialPackageWrangler(PackageWrangler):
     def interactively_make_handmade_material_package(self, user_input=None):
         self._io.assign_user_input(user_input=user_input)
         with self.backtracking:
-            material_package_path = self.interactively_get_available_material_packagesystem_path()
+            material_package_path = \
+                self.interactively_get_available_material_packagesystem_path()
         if self._session.backtrack():
             return
         self.make_handmade_material_package(material_package_path)
@@ -189,9 +200,11 @@ class MaterialPackageWrangler(PackageWrangler):
         if self._session.backtrack():
             return
         material_package_maker_package_path = result
-        material_package_maker_class_name = material_package_maker_package_path.split('.')[-1]
+        material_package_maker_class_name = \
+            material_package_maker_package_path.split('.')[-1]
         with self.backtracking:
-            material_package_path = self.interactively_get_available_material_packagesystem_path()
+            material_package_path = \
+                self.interactively_get_available_material_packagesystem_path()
         if self._session.backtrack():
             return
         self.make_makermade_material_package(
@@ -205,8 +218,11 @@ class MaterialPackageWrangler(PackageWrangler):
         self.interactively_make_data_package(tags=tags, user_input=user_input)
 
     def list_asset_filesystem_paths(self,
-        in_built_in_asset_library=True, in_user_asset_library=True,
-        in_built_in_score_packages=True, in_user_score_packages=True, head=None):
+        in_built_in_asset_library=True, 
+        in_user_asset_library=True,
+        in_built_in_score_packages=True, 
+        in_user_score_packages=True, 
+        head=None):
         '''List asset filesystem paths.
 
         Example. List built-in material package filesystem paths:
@@ -214,16 +230,17 @@ class MaterialPackageWrangler(PackageWrangler):
         ::
 
             >>> for x in wrangler.list_asset_filesystem_paths(
-            ...     in_user_asset_library=False, in_user_score_packages=False):
+            ...     in_user_asset_library=False, 
+            ...     in_user_score_packages=False):
             ...     x
-            '.../abjad/experimental/tools/scoremanagertools/materialpackages/red_directives'
-            '.../abjad/experimental/tools/scoremanagertools/materialpackages/red_forte'
-            '.../abjad/experimental/tools/scoremanagertools/materialpackages/red_marcati'
-            '.../abjad/experimental/tools/scoremanagertools/materialpackages/red_notes'
-            '.../abjad/experimental/tools/scoremanagertools/materialpackages/red_numbers'
-            '.../abjad/experimental/tools/scoremanagertools/materialpackages/red_sargasso_measures'
-            '.../abjad/experimental/tools/scoremanagertools/materialpackages/sargasso_multipliers'
-            '.../tools/scoremanagertools/scorepackages/red_example_score/music/materials/tempo_inventory'
+            '.../scoremanagertools/materialpackages/red_directives'
+            '.../scoremanagertools/materialpackages/red_forte'
+            '.../scoremanagertools/materialpackages/red_marcati'
+            '.../scoremanagertools/materialpackages/red_notes'
+            '.../scoremanagertools/materialpackages/red_numbers'
+            '.../scoremanagertools/materialpackages/red_sargasso_measures'
+            '.../scoremanagertools/materialpackages/sargasso_multipliers'
+            '.../scorepackages/red_example_score/music/materials/tempo_inventory'
 
         Return list.
         '''
@@ -235,8 +252,11 @@ class MaterialPackageWrangler(PackageWrangler):
             head=head)
 
     def list_asset_names(self,
-        in_built_in_asset_library=True, in_user_asset_library=True,
-        in_built_in_score_packages=True, in_user_score_packages=True, head=None):
+        in_built_in_asset_library=True, 
+        in_user_asset_library=True,
+        in_built_in_score_packages=True, 
+        in_user_score_packages=True, 
+        head=None):
         '''List asset names.
 
         Example. List built-in material package names:
