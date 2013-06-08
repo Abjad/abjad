@@ -40,7 +40,7 @@ class ListEditor(InteractiveEditor):
         attribute_management_section.show_existing_values = True
         item_management_section = menu.make_section(
             is_numbered=True,
-            is_keyed=True,
+            is_keyed=False,
             return_value_attribute='number',
             )
         item_management_section.menu_tokens = self.target_summary_lines

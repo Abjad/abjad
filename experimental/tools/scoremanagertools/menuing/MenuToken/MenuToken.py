@@ -14,18 +14,24 @@ class MenuToken(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, expr, number=None, is_keyed=False, return_value_attribute=None):
+    def __init__(self, expr, 
+        number=None, 
+        is_keyed=False, 
+        return_value_attribute=None):
         if isinstance(expr, str):
             expr = (expr, )
         assert isinstance(expr, tuple), repr(expr)
         assert 1 <= len(expr) <= 4, repr(expr)
         self._number = number
         self._is_keyed = is_keyed
-        assert return_value_attribute in self.return_value_attributes, repr(return_value_attribute)
+        assert return_value_attribute in self.return_value_attributes
         self._return_value_attribute = return_value_attribute
         if self.return_value_attribute == 'key':
             assert self.is_keyed or 1 < len(expr)
-        body, key, existing_value, prepopulated_return_value = None, None, None, None
+        body = None
+        key = None
+        existing_value = None
+        prepopulated_return_value = None
         if len(expr) == 1:
             body = expr[0]
             if self.is_keyed:
@@ -36,6 +42,9 @@ class MenuToken(AbjadObject):
             key, body, existing_value = expr
         elif len(expr) == 4:
             key, body, existing_value, prepopulated_return_value = expr
+        if key is not None:
+            assert isinstance(key, str)
+        #    assert ' ' not in key
         self._key = key
         assert body
         self._body = body
@@ -63,7 +72,9 @@ class MenuToken(AbjadObject):
         if self.is_keyed:
             matches.append(self.key)
         self._matches = tuple(matches)
-        normalized_body = stringtools.strip_diacritics_from_binary_string(self.body).lower()
+        normalized_body = \
+            stringtools.strip_diacritics_from_binary_string(self.body)
+        normalized_body = normalized_body.lower()
         self._normalized_body = normalized_body
 
     ### SPECIAL METHODS ###
@@ -74,7 +85,12 @@ class MenuToken(AbjadObject):
     ### PRIVATE METHODS ###
 
     def _to_tuple(self):
-        return self.key, self.body, self.existing_value, self.prepopulated_return_value
+        return (
+            self.key, 
+            self.body, 
+            self.existing_value, 
+            self.prepopulated_return_value,
+            )
 
     ### PUBLIC READ-ONLY PROPERTIES ###
 
@@ -115,5 +131,7 @@ class MenuToken(AbjadObject):
     def matches(self, user_input):
         if user_input in self._matches:
             return True
-        if 3 <= len(user_input) and self._normalized_body.startswith(user_input):
-            return True
+        if 3 <= len(user_input):
+            if self._normalized_body.startswith(user_input):
+                return True
+        return False 
