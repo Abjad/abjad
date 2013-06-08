@@ -9,6 +9,15 @@ newabjadbooktools.ReSTDocumentHandler
 Read-only properties
 --------------------
 
+.. autoattribute:: experimental.tools.newabjadbooktools.ReSTDocumentHandler.ReSTDocumentHandler.ReSTDocumentHandler.code_blocks
+   :noindex:
+
+.. autoattribute:: experimental.tools.newabjadbooktools.ReSTDocumentHandler.ReSTDocumentHandler.ReSTDocumentHandler.console
+   :noindex:
+
+.. autoattribute:: experimental.tools.newabjadbooktools.ReSTDocumentHandler.ReSTDocumentHandler.ReSTDocumentHandler.document
+   :noindex:
+
 .. autoattribute:: experimental.tools.newabjadbooktools.ReSTDocumentHandler.ReSTDocumentHandler.ReSTDocumentHandler.storage_format
    :noindex:
 

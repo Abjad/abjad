@@ -1,8 +1,41 @@
+import collections
 from experimental.tools.newabjadbooktools.DocumentHandler import DocumentHandler
 
 
 class TextualDocumentHandler(DocumentHandler):
-    '''Handles text-based documents containing <abjad></abjad> tags.'''
+    """Handles text-based documents containing <abjad></abjad> tags:
+    
+    ::
+
+        >>> document = '''\
+        ... Let's print something:
+        ...
+        ... <abjad>
+        ... print "hello, world!"
+        ... </abjad>
+        ...
+        ... And let's show some music too:
+        ...
+        ... <abjad>
+        ... note = Note("c'4"))
+        ... show(Note("c'4"))
+        ... </abjad>
+        ...
+        ... That's it!
+        ... '''
+
+    ::
+
+        >>> handler = newabjadbooktools.TextualDocumentHandler(document)
+        >>> code_blocks = handler.extract_code_blocks() 
+        >>> for location, code_block in code_blocks.items():
+        ...     print location, code_block.displayed_lines
+        ...
+        (2, 4) ('print "hello, world!"',)
+        (8, 11) ('note = Note("c\'4"))', 'show(Note("c\'4"))')
+
+    Return textual document handler.
+    """
 
     ### PUBLIC METHODS ###
 
@@ -24,7 +57,12 @@ class TextualDocumentHandler(DocumentHandler):
                     options[key] = False
         return options
 
-    def extract_code_blocks(self, document, ordered_dict):
+    def extract_code_blocks(self, document=None, ordered_dict=None):
+        if document is None:
+            document = self.document
+        if ordered_dict is None:
+            ordered_dict = collections.OrderedDict()
+
         in_block = None
         starting_line_number = None
         current_block_lines = None
@@ -83,7 +121,7 @@ class TextualDocumentHandler(DocumentHandler):
                     )
 
             elif in_block:
-                block.append(line)
+                current_block_lines.append(line)
 
         if in_block:
             raise Exception('Unterminated tag at EOF.')

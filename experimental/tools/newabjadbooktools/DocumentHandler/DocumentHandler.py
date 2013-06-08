@@ -1,5 +1,6 @@
 import abc
 import code
+import collections
 from abjad.tools.abctools import AbjadObject
 
 
@@ -28,6 +29,7 @@ class DocumentHandler(AbjadObject):
         options,
         source_location,
         ):
+        from experimental.tools import newabjadbooktools
         code_block = newabjadbooktools.CodeBlock(
             displayed_lines,
             **options
@@ -41,3 +43,17 @@ class DocumentHandler(AbjadObject):
     @abc.abstractmethod
     def extract_code_blocks(self, document, ordered_dict):
         raise NotImplemented
+
+    ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def code_blocks(self):
+        return self._code_blocks
+
+    @property
+    def console(self):
+        return self._console
+
+    @property
+    def document(self):
+        return self._document

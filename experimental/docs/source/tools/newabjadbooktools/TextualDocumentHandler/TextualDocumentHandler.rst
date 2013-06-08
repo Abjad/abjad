@@ -9,6 +9,15 @@ newabjadbooktools.TextualDocumentHandler
 Read-only properties
 --------------------
 
+.. autoattribute:: experimental.tools.newabjadbooktools.TextualDocumentHandler.TextualDocumentHandler.TextualDocumentHandler.code_blocks
+   :noindex:
+
+.. autoattribute:: experimental.tools.newabjadbooktools.TextualDocumentHandler.TextualDocumentHandler.TextualDocumentHandler.console
+   :noindex:
+
+.. autoattribute:: experimental.tools.newabjadbooktools.TextualDocumentHandler.TextualDocumentHandler.TextualDocumentHandler.document
+   :noindex:
+
 .. autoattribute:: experimental.tools.newabjadbooktools.TextualDocumentHandler.TextualDocumentHandler.TextualDocumentHandler.storage_format
    :noindex:
 

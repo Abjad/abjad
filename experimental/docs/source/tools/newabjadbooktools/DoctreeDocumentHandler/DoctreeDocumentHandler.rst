@@ -9,6 +9,15 @@ newabjadbooktools.DoctreeDocumentHandler
 Read-only properties
 --------------------
 
+.. autoattribute:: experimental.tools.newabjadbooktools.DoctreeDocumentHandler.DoctreeDocumentHandler.DoctreeDocumentHandler.code_blocks
+   :noindex:
+
+.. autoattribute:: experimental.tools.newabjadbooktools.DoctreeDocumentHandler.DoctreeDocumentHandler.DoctreeDocumentHandler.console
+   :noindex:
+
+.. autoattribute:: experimental.tools.newabjadbooktools.DoctreeDocumentHandler.DoctreeDocumentHandler.DoctreeDocumentHandler.document
+   :noindex:
+
 .. autoattribute:: experimental.tools.newabjadbooktools.DoctreeDocumentHandler.DoctreeDocumentHandler.DoctreeDocumentHandler.storage_format
    :noindex:
 
