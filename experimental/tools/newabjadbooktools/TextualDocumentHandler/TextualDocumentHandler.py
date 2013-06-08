@@ -34,6 +34,35 @@ class TextualDocumentHandler(DocumentHandler):
         (2, 4) ('print "hello, world!"',)
         (8, 11) ('note = Note("c\'4"))', 'show(Note("c\'4"))')
 
+    The textual document handler also determines what options, if any, were
+    chosen for a given code block:
+
+    ::
+
+        >>> document = '''\
+        ... This code block is hidden:
+        ... 
+        ... <abjad>[hide=True]
+        ... You can't see me!
+        ... </abjad>
+        ...
+        ... ... and this code block isn't:
+        ... 
+        ... <abjad>[hide=False]
+        ... Here I am!
+        ... </abjad>
+        ... '''
+
+    ::
+
+        >>> handler = newabjadbooktools.TextualDocumentHandler(document)
+        >>> code_blocks = handler.extract_code_blocks()
+        >>> for code_block in code_blocks.values():
+        ...     print code_block.hide
+        ...
+        True
+        False
+
     Return textual document handler.
     """
 

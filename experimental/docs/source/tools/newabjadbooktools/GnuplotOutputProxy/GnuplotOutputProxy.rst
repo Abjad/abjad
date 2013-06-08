@@ -9,6 +9,12 @@ newabjadbooktools.GnuplotOutputProxy
 Read-only properties
 --------------------
 
+.. autoattribute:: experimental.tools.newabjadbooktools.GnuplotOutputProxy.GnuplotOutputProxy.GnuplotOutputProxy.file_name_prefix
+   :noindex:
+
+.. autoattribute:: experimental.tools.newabjadbooktools.GnuplotOutputProxy.GnuplotOutputProxy.GnuplotOutputProxy.file_name_without_extension
+   :noindex:
+
 .. autoattribute:: experimental.tools.newabjadbooktools.GnuplotOutputProxy.GnuplotOutputProxy.GnuplotOutputProxy.payload
    :noindex:
 

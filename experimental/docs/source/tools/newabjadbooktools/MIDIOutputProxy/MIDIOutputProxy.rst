@@ -9,6 +9,12 @@ newabjadbooktools.MIDIOutputProxy
 Read-only properties
 --------------------
 
+.. autoattribute:: experimental.tools.newabjadbooktools.MIDIOutputProxy.MIDIOutputProxy.MIDIOutputProxy.file_name_prefix
+   :noindex:
+
+.. autoattribute:: experimental.tools.newabjadbooktools.MIDIOutputProxy.MIDIOutputProxy.MIDIOutputProxy.file_name_without_extension
+   :noindex:
+
 .. autoattribute:: experimental.tools.newabjadbooktools.MIDIOutputProxy.MIDIOutputProxy.MIDIOutputProxy.payload
    :noindex:
 

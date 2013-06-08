@@ -9,6 +9,12 @@ newabjadbooktools.LilyPondOutputProxy
 Read-only properties
 --------------------
 
+.. autoattribute:: experimental.tools.newabjadbooktools.LilyPondOutputProxy.LilyPondOutputProxy.LilyPondOutputProxy.file_name_prefix
+   :noindex:
+
+.. autoattribute:: experimental.tools.newabjadbooktools.LilyPondOutputProxy.LilyPondOutputProxy.LilyPondOutputProxy.file_name_without_extension
+   :noindex:
+
 .. autoattribute:: experimental.tools.newabjadbooktools.LilyPondOutputProxy.LilyPondOutputProxy.LilyPondOutputProxy.payload
    :noindex:
 

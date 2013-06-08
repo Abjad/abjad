@@ -453,7 +453,13 @@ Unstable packages (load manually)
 
       tools/newabjadbooktools/DoctreeDocumentHandler/DoctreeDocumentHandler
       tools/newabjadbooktools/DocumentHandler/DocumentHandler
+      tools/newabjadbooktools/ImageFormat/ImageFormat
+      tools/newabjadbooktools/ImageOutputProxy/ImageOutputProxy
       tools/newabjadbooktools/NoncodeBlock/NoncodeBlock
+      tools/newabjadbooktools/OutputProxy/OutputProxy
+      tools/newabjadbooktools/PDFImageFormat/PDFImageFormat
+      tools/newabjadbooktools/PNGImageFormat/PNGImageFormat
+      tools/newabjadbooktools/SVGImageFormat/SVGImageFormat
 
    --------
 
@@ -467,7 +473,6 @@ Unstable packages (load manually)
       tools/newabjadbooktools/LaTeXDocumentHandler/LaTeXDocumentHandler
       tools/newabjadbooktools/LilyPondOutputProxy/LilyPondOutputProxy
       tools/newabjadbooktools/MIDIOutputProxy/MIDIOutputProxy
-      tools/newabjadbooktools/OutputProxy/OutputProxy
       tools/newabjadbooktools/ReSTDocumentHandler/ReSTDocumentHandler
       tools/newabjadbooktools/TextualDocumentHandler/TextualDocumentHandler
 
@@ -480,7 +485,13 @@ Unstable packages (load manually)
 
       tools/newabjadbooktools/DoctreeDocumentHandler/DoctreeDocumentHandler
       tools/newabjadbooktools/DocumentHandler/DocumentHandler
+      tools/newabjadbooktools/ImageFormat/ImageFormat
+      tools/newabjadbooktools/ImageOutputProxy/ImageOutputProxy
       tools/newabjadbooktools/NoncodeBlock/NoncodeBlock
+      tools/newabjadbooktools/OutputProxy/OutputProxy
+      tools/newabjadbooktools/PDFImageFormat/PDFImageFormat
+      tools/newabjadbooktools/PNGImageFormat/PNGImageFormat
+      tools/newabjadbooktools/SVGImageFormat/SVGImageFormat
 
    Concrete Classes
    ----------------
@@ -494,7 +505,6 @@ Unstable packages (load manually)
       tools/newabjadbooktools/LaTeXDocumentHandler/LaTeXDocumentHandler
       tools/newabjadbooktools/LilyPondOutputProxy/LilyPondOutputProxy
       tools/newabjadbooktools/MIDIOutputProxy/MIDIOutputProxy
-      tools/newabjadbooktools/OutputProxy/OutputProxy
       tools/newabjadbooktools/ReSTDocumentHandler/ReSTDocumentHandler
       tools/newabjadbooktools/TextualDocumentHandler/TextualDocumentHandler
 

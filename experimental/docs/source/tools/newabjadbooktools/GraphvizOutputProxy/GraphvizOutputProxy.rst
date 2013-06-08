@@ -9,6 +9,12 @@ newabjadbooktools.GraphvizOutputProxy
 Read-only properties
 --------------------
 
+.. autoattribute:: experimental.tools.newabjadbooktools.GraphvizOutputProxy.GraphvizOutputProxy.GraphvizOutputProxy.file_name_prefix
+   :noindex:
+
+.. autoattribute:: experimental.tools.newabjadbooktools.GraphvizOutputProxy.GraphvizOutputProxy.GraphvizOutputProxy.file_name_without_extension
+   :noindex:
+
 .. autoattribute:: experimental.tools.newabjadbooktools.GraphvizOutputProxy.GraphvizOutputProxy.GraphvizOutputProxy.payload
    :noindex:
 

@@ -68,7 +68,7 @@ class CodeBlock(AbjadObject):
         ...     x
         ...
         '>>> staff = Staff(r"\\clef bass c4 d4 e4 f4")\n>>> show(staff)\n'
-        LilyPondOutputProxy(Staff{4})
+        LilyPondOutputProxy()
         '>>> print len(staff)\n4'
 
     Code blocks also support a number of optional keyword arguments that
@@ -96,7 +96,7 @@ class CodeBlock(AbjadObject):
         >>> for x in results:
         ...     x
         ...
-        MIDIOutputProxy(Note('dqf16..'))
+        MIDIOutputProxy()
 
     Return code block instance.
     '''
