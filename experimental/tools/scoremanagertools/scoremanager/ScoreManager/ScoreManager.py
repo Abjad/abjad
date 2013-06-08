@@ -1,7 +1,8 @@
 # -*- encoding: utf-8 -*-
 import os
 import subprocess
-from experimental.tools.scoremanagertools.core.ScoreManagerObject import ScoreManagerObject
+from experimental.tools.scoremanagertools.core.ScoreManagerObject import \
+    ScoreManagerObject
 
 
 class ScoreManager(ScoreManagerObject):
@@ -21,15 +22,20 @@ class ScoreManager(ScoreManagerObject):
     def __init__(self, session=None):
         from experimental.tools import scoremanagertools
         ScoreManagerObject.__init__(self, session=session)
-        self._segment_package_wrangler = scoremanagertools.wranglers.SegmentPackageWrangler(
+        self._segment_package_wrangler = \
+            scoremanagertools.wranglers.SegmentPackageWrangler(
             session=self._session)
-        self._material_package_maker_wrangler = scoremanagertools.wranglers.MaterialPackageMakerWrangler(
+        self._material_package_maker_wrangler = \
+            scoremanagertools.wranglers.MaterialPackageMakerWrangler(
             session=self._session)
-        self._material_package_wrangler = scoremanagertools.wranglers.MaterialPackageWrangler(
+        self._material_package_wrangler = \
+            scoremanagertools.wranglers.MaterialPackageWrangler(
             session=self._session)
-        self._score_package_wrangler = scoremanagertools.wranglers.ScorePackageWrangler(
+        self._score_package_wrangler = \
+            scoremanagertools.wranglers.ScorePackageWrangler(
             session=self._session)
-        self._stylesheet_file_wrangler = scoremanagertools.wranglers.StylesheetFileWrangler(
+        self._stylesheet_file_wrangler = \
+            scoremanagertools.wranglers.StylesheetFileWrangler(
             session=self._session)
 
     ### READ-ONLY PRIVATE PROPERTIES ###
@@ -48,7 +54,8 @@ class ScoreManager(ScoreManagerObject):
         score_package_names = self.score_package_wrangler.list_asset_names()
         if self._session.underscore_delimited_current_score_name is None:
             return score_package_names[0]
-        index = score_package_names.index(self._session.underscore_delimited_current_score_name)
+        index = score_package_names.index(
+            self._session.underscore_delimited_current_score_name)
         next_index = (index + 1) % len(score_package_names)
         return score_package_names[next_index]
 
@@ -56,13 +63,15 @@ class ScoreManager(ScoreManagerObject):
         score_package_names = self.score_package_wrangler.list_asset_names()
         if self._session.underscore_delimited_current_score_name is None:
             return score_package_names[-1]
-        index = score_package_names.index(self._session.underscore_delimited_current_score_name)
+        index = score_package_names.index(
+            self._session.underscore_delimited_current_score_name)
         prev_index = (index - 1) % len(score_package_names)
         return score_package_names[prev_index]
 
     def _handle_main_menu_result(self, result):
         if result in self.user_input_to_action:
             self.user_input_to_action[result](self)
+        # TODO: alias to self.list_visible_score_package_packagesystem_paths()
         elif result in self.score_package_wrangler.list_visible_asset_packagesystem_paths():
             self.interactively_edit_score(result)
 
@@ -83,32 +92,26 @@ class ScoreManager(ScoreManagerObject):
 
     def _make_main_menu(self):
         menu = self._make_score_selection_menu()
-        menu_tokens = [
-            ('m', 'materials'),
-            ('y', 'stylesheets'),
-            ('new', 'new score'),
-            ]
         menu_section = menu.make_section(
-            menu_tokens=menu_tokens,
             return_value_attribute='key',
             is_keyed=True,
             )
-        menu_tokens = [
-            ('active', 'show active scores only'),
-            ('all', 'show all scores'),
-            ('fix', 'fix all score package structures'),
-            ('mb', 'show mothballed scores only'),
-            ('profile', 'profile packages'),
-            ('py.test', 'run py.test on all scores'),
-            ('svn', 'work with repository'),
-            ('wc', 'write cache'),
-            ]
+        menu_section.append(('m', 'materials'))
+        menu_section.append(('y', 'stylesheets'))
+        menu_section.append(('new', 'new score'))
         hidden_section = menu.make_section(
-            menu_tokens=menu_tokens,
             return_value_attribute='key',
             is_keyed=True,
             is_hidden=True,
             )
+        hidden_section.append(('active', 'show active scores only'))
+        hidden_section.append(('all', 'show all scores'))
+        hidden_section.append(('fix', 'fix all score package structures'))
+        hidden_section.append(('mb', 'show mothballed scores only'))
+        hidden_section.append(('profile', 'profile packages'))
+        hidden_section.append(('py.test', 'run py.test on all scores'))
+        hidden_section.append(('svn', 'work with repository'))
+        hidden_section.append(('wc', 'write cache'))
         return menu
 
     def _make_score_selection_menu(self):
@@ -144,7 +147,12 @@ class ScoreManager(ScoreManagerObject):
             )
         return menu
 
-    def _run(self, user_input=None, clear=True, cache=False, is_test=False, dump_transcript=False):
+    def _run(self, 
+        user_input=None, 
+        clear=True, 
+        cache=False, 
+        is_test=False, 
+        dump_transcript=False):
         type(self).__init__(self)
         self._io.assign_user_input(user_input=user_input)
         self._session.cache_breadcrumbs(cache=cache)
@@ -272,21 +280,26 @@ class ScoreManager(ScoreManagerObject):
         self.score_package_wrangler.fix_visible_assets()
 
     def interactively_edit_score(self, score_package_path):
-        score_package_proxy = self.score_package_wrangler._initialize_asset_proxy(score_package_path)
-        score_package_proxy._session.underscore_delimited_current_score_name = score_package_path
-        score_package_proxy._run(cache=True)
+        proxy = self.score_package_wrangler._initialize_asset_proxy(
+            score_package_path)
+        proxy._session.underscore_delimited_current_score_name = \
+            score_package_path
+        proxy._run(cache=True)
         self._session.underscore_delimited_current_score_name = None
 
     def interactively_make_new_score(self):
-        self.score_package_wrangler.interactively_make_asset(rollback=True)
+        self.score_package_wrangler.interactively_make_asset(
+            rollback=True)
 
     def manage_materials(self):
         self.material_package_wrangler._run(
-            rollback=True, head=self.configuration.built_in_material_packages_package_path)
+            rollback=True, 
+            head=self.configuration.built_in_material_packages_package_path)
 
     def manage_stylesheets(self):
         self.stylesheet_file_wrangler._run(
-            rollback=True, head=self.configuration.built_in_stylesheets_directory_path)
+            rollback=True, 
+            head=self.configuration.built_in_stylesheets_directory_path)
 
     def manage_svn(self, clear=True):
         while True:
@@ -309,7 +322,8 @@ class ScoreManager(ScoreManagerObject):
         self.score_package_wrangler.profile_visible_assets()
 
     def run_py_test_on_all_user_scores(self, prompt=True):
-        command = 'py.test {}'.format(self.configuration.user_score_packages_directory_path)
+        command = 'py.test {}'.format(
+            self.configuration.user_score_packages_directory_path)
         proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
         lines = [line.strip() for line in proc.stdout.readlines()]
         if lines:
@@ -327,7 +341,8 @@ class ScoreManager(ScoreManagerObject):
         self._session.show_mothballed_scores()
 
     def write_cache(self):
-        cache_file_path = os.path.join(self.configuration.configuration_directory_path, 'cache.py')
+        cache_file_path = os.path.join(
+                self.configuration.configuration_directory_path, 'cache.py')
         cache_file_pointer = file(cache_file_path, 'w')
         cache_file_pointer.write('start_menu_tokens = [\n')
         menu_tokens = self.score_package_wrangler._make_menu_tokens()

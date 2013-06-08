@@ -144,6 +144,21 @@ class MenuSection(MenuObject):
 
     ### PUBLIC METHODS ###
 
+    def append(self, expr):
+        if isinstance(expr, MenuToken):
+            expr = expr._to_tuple()
+        assert isinstance(expr, (str, tuple))
+        if self.is_numbered:
+            number = len(self.menu_tokens) + 1
+        else:
+            number = None
+        menu_token = MenuToken(
+            expr,
+            number=number,
+            is_keyed=self.is_keyed,
+            return_value_attribute=self.return_value_attribute)
+        self.menu_tokens.append(menu_token)
+        
     def argument_range_string_to_numbers(self, argument_range_string):
         '''Return list of positive integers on success. Otherwise none.
         '''
