@@ -15,7 +15,7 @@ class BreakPointFunction(AbjadObject):
         ...     0.:   0.,
         ...     0.75: (-1, 1.),
         ...     1.:   0.25,
-        ... })
+        ...     })
 
     Allows interpolated lookup, and supports discontiguities on the y-axis:
 
