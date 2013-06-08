@@ -44,6 +44,9 @@ def make_basic_lilypond_file(music=None):
     '''
     from abjad.tools import lilypondfiletools
 
+    if isinstance(music, lilypondfiletools.LilyPondFile):
+        return music
+
     lilypond_file = lilypondfiletools.LilyPondFile()
 
     header_block = lilypondfiletools.HeaderBlock()
