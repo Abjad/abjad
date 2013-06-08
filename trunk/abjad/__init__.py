@@ -51,6 +51,4 @@ del readline
 del rlcompleter
 del tools
 
-__version_info__ = (2, 13)
-__version__ = '.'.join(str(x) for x in __version_info__)
-
+from _version import __version_info__, __version__
