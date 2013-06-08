@@ -102,6 +102,8 @@ noremap <Leader>wq :wq<CR>
 
 " ctrlp (https://github.com/kien/ctrlp.vim)
 let g:ctrlp_max_height = 30
+map <Leader>sm :CtrlP $ABJADEXPERIMENTAL/tools/scoremanagertools<CR>            
+map <Leader>jt :CtrlP $ABJADTRUNK/abjad/tools<CR>                               
 
 " jedi-vim (https://github.com/davidhalter/jedi-vim)
 let g:jedi#related_names_command = "<leader>z"
