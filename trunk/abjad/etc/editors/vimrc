@@ -58,8 +58,8 @@ set wildmode=list:longest
 " ==========================
 
 " comments
-:map <F5> <Esc>:'a,'bs/^/#/<CR>
 :map <F4> <Esc>:'a,'bs/#//<CR>
+:map <F6> <Esc>:'a,'bs/^/#/<CR>
 
 " copy & paste
 vmap <C-y> y:call system("xclip -i -selection clipboard", getreg("\""))<CR>:call system("xclip -i", getreg("\""))<CR>
@@ -78,8 +78,9 @@ map <Leader>a ggVG
 vnoremap <Leader>s :sort<CR>
 noremap <Leader>ab :'a,'bsort<CR>
 
-" settings reload
+" settings reload & view
 map <Leader>v :source ~/.vimrc<CR>
+map <Leader>vv :edit ~/.vimrc<CR>
 
 " tab navigation 
 map <Leader>n <esc>:tabprevious<CR>
@@ -101,9 +102,17 @@ noremap <Leader>wq :wq<CR>
 " =========================
 
 " ctrlp (https://github.com/kien/ctrlp.vim)
+let g:ctrlp_by_filename = 1
+let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_custom_ignore = '__init__.py'
+let g:ctrlp_lazy_update = 1
+let g:ctrlp_match_window_bottom = 0
+let g:ctrlp_match_window_reversed = 0
 let g:ctrlp_max_height = 30
-map <Leader>sm :CtrlP $ABJADEXPERIMENTAL/tools/scoremanagertools
-map <Leader>jt :CtrlP $ABJADTRUNK/abjad/tools
+map <Leader>jj :CtrlP $ABJADTRUNK/abjad<CR>
+map <Leader>jx :CtrlP $ABJADEXPERIMENTAL<CR>
+map <Leader>jt :CtrlP $ABJADTRUNK<CR>
+map <Leader>sm :CtrlP $ABJADEXPERIMENTAL/tools/scoremanagertools<CR>
 
 " jedi-vim (https://github.com/davidhalter/jedi-vim)
 let g:jedi#related_names_command = "<leader>z"
