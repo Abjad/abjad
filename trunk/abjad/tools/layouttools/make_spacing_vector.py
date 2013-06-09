@@ -23,7 +23,6 @@ def make_spacing_vector(basic_distance, minimum_distance, padding, stretchabilit
 
         \version "2.13.44"
         \include "english.ly"
-        \include "/abjad/trunk/abjad/cfg/abjad.scm"
 
         \paper {
             system-system-spacing = #'(

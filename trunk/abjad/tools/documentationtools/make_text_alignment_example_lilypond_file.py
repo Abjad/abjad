@@ -14,7 +14,6 @@ def make_text_alignment_example_lilypond_file(music=None):
 
         \version "2.15.37"
         \language "english"
-        \include "/Users/trevorbaca/Documents/abjad/trunk/abjad/cfg/abjad.scm"
 
         #(set-global-staff-size 18)
 

@@ -36,7 +36,6 @@ class LilyPondFile(list):
 
         \version "2.13.32"
         \include "english.ly"
-        \include "/Users/trevorbaca/Documents/abjad/trunk/abjad/cfg/abjad.scm"
 
         \include "external-settings-file-1.ly"
         \include "external-settings-file-2.ly"
@@ -77,7 +76,12 @@ class LilyPondFile(list):
         self._file_initial_system_includes = []
         self._file_initial_system_includes.append(LilyPondVersionToken())
         self._file_initial_system_includes.append(LilyPondLanguageToken())
-        self._file_initial_system_includes.append(os.path.join(abjad_configuration.abjad_directory_path, 'cfg', 'abjad.scm'))
+        #self._file_initial_system_includes.append(
+        #    os.path.join(
+        #        abjad_configuration.abjad_directory_path,
+        #        'cfg',
+        #        'abjad.scm',
+        #        ))
         self._file_initial_user_includes = []
         self.default_paper_size = None
         self.global_staff_size = None
