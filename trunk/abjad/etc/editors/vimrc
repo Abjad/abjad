@@ -126,7 +126,12 @@ let g:pydiction_menu_height = 20
 
 " vim-powerline (https://github.com/Lokaltog/vim-powerline)
 set laststatus=2
-let g:Powerline_symbols = 'fancy'
+let g:Powerline_symbols = 'compatible'
+let g:Powerline_stl_path_style = 'filename'
+call Pl#Theme#RemoveSegment('scrollpercent')
+call Pl#Theme#RemoveSegment('fileformat')
+call Pl#Theme#RemoveSegment('fileencoding')
+call Pl#Theme#RemoveSegment('filetype')
 
 
 " 4. other
