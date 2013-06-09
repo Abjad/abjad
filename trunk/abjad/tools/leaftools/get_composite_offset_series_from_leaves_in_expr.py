@@ -10,21 +10,22 @@ def get_composite_offset_series_from_leaves_in_expr(expr):
     ::
 
         >>> f(score)
-            \new Score <<
-                \new Staff {
-                    \fraction \times 4/3 {
-                        c'8
-                        d'8
-                        e'8
-                    }
+        \new Score <<
+            \new Staff {
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 4/3 {
+                    c'8
+                    d'8
+                    e'8
                 }
-                \new Staff {
-                    f'8
-                    g'8
-                    a'8
-                    b'8
-                }
-            >>
+            }
+            \new Staff {
+                f'8
+                g'8
+                a'8
+                b'8
+            }
+        >>
 
     ::
 

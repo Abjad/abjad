@@ -18,7 +18,8 @@ def parse_rtm_syntax(rtm):
         >>> rhythmtreetools.parse_rtm_syntax(rtm)
         FixedDurationTuplet(3/16, [c'8, c'16, {@ 15:8 c'8, r16, c'8 @}])
         >>> f(_)
-        \fraction \times 9/17 {
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 9/17 {
             c'8
             c'16
             \times 8/15 {

@@ -87,7 +87,8 @@ def test_measuretools_move_measure_prolation_to_full_measure_tuplet_02():
     r'''
     {
         \time 5/8
-        \fraction \times 5/6 {
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 5/6 {
             c'8
             d'8
             e'8
@@ -99,4 +100,4 @@ def test_measuretools_move_measure_prolation_to_full_measure_tuplet_02():
     '''
 
     assert wellformednesstools.is_well_formed_component(t)
-    assert t.lilypond_format == "{\n\t\\time 5/8\n\t\\fraction \\times 5/6 {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t\tg'8\n\t\ta'8\n\t}\n}"
+    assert t.lilypond_format == "{\n\t\\time 5/8\n\t\\tweak #'text #tuplet-number::calc-fraction-text\n\t\\times 5/6 {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t\tg'8\n\t\ta'8\n\t}\n}"

@@ -117,7 +117,8 @@ def test_containertools_scale_contents_of_container_05():
     r'''
     \new Voice {
         c'8.
-        \fraction \times 3/4 {
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 3/4 {
             d'8
             e'8
             f'8

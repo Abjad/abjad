@@ -15,7 +15,8 @@ def get_composite_offset_difference_series_from_leaves_in_expr(expr):
         >>> f(score)
             \new Score <<
                 \new Staff {
-                    \fraction \times 4/3 {
+                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \times 4/3 {
                         c'8
                         d'8
                         e'8

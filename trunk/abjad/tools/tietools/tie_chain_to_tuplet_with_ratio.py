@@ -34,7 +34,8 @@ def tie_chain_to_tuplet_with_ratio(tie_chain, proportions, is_diminution=True, d
 
         >>> f(staff)
         \new Staff {
-            \fraction \times 3/2 {
+            \tweak #'text #tuplet-number::calc-fraction-text
+            \times 3/2 {
                 c'8 [
             }
             c'16 ]
@@ -97,7 +98,8 @@ def tie_chain_to_tuplet_with_ratio(tie_chain, proportions, is_diminution=True, d
 
         >>> f(staff)
         \new Staff {
-            \fraction \times 6/5 {
+            \tweak #'text #tuplet-number::calc-fraction-text
+            \times 6/5 {
                 c'32 [
                 c'16
                 c'16

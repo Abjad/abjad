@@ -110,7 +110,8 @@ def test_DivisionBurnishedTaleaRhythmMaker___call___03():
     \new Staff {
         {
             \time 5/16
-            \fraction \times 10/13 {
+            \tweak #'text #tuplet-number::calc-fraction-text
+            \times 10/13 {
                 c'32
                 c'32
                 r16
@@ -137,7 +138,7 @@ def test_DivisionBurnishedTaleaRhythmMaker___call___03():
     }
     '''
 
-    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 5/16\n\t\t\\fraction \\times 10/13 {\n\t\t\tc'32\n\t\t\tc'32\n\t\t\tr16\n\t\t\tr8\n\t\t\tr32\n\t\t\tr32\n\t\t\tr16\n\t\t\tc'32\n\t\t}\n\t}\n\t{\n\t\t\\time 6/16\n\t\t\\times 4/5 {\n\t\t\tc'16.\n\t\t\tc'32\n\t\t\tr32\n\t\t\tr16\n\t\t\tr8\n\t\t\tr32\n\t\t\tr32\n\t\t\tc'16\n\t\t}\n\t}\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 5/16\n\t\t\\tweak #'text #tuplet-number::calc-fraction-text\n\t\t\\times 10/13 {\n\t\t\tc'32\n\t\t\tc'32\n\t\t\tr16\n\t\t\tr8\n\t\t\tr32\n\t\t\tr32\n\t\t\tr16\n\t\t\tc'32\n\t\t}\n\t}\n\t{\n\t\t\\time 6/16\n\t\t\\times 4/5 {\n\t\t\tc'16.\n\t\t\tc'32\n\t\t\tr32\n\t\t\tr16\n\t\t\tr8\n\t\t\tr32\n\t\t\tr32\n\t\t\tc'16\n\t\t}\n\t}\n}"
 
 
 def test_DivisionBurnishedTaleaRhythmMaker___call___04():

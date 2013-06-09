@@ -8,7 +8,8 @@ def test_FixedDurationTuplet_fraction_01():
     t = tuplettools.FixedDurationTuplet(Duration(3, 8), "c'8 d'8 e'8 f'8")
 
     r'''
-    \fraction \times 3/4 {
+    \tweak #'text #tuplet-number::calc-fraction-text
+    \times 3/4 {
         c'8
         d'8
         e'8
@@ -17,7 +18,7 @@ def test_FixedDurationTuplet_fraction_01():
     '''
 
     assert wellformednesstools.is_well_formed_component(t)
-    assert t.lilypond_format == "\\fraction \\times 3/4 {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+    assert t.lilypond_format == "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 3/4 {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
 def test_FixedDurationTuplet_fraction_02():
@@ -28,7 +29,8 @@ def test_FixedDurationTuplet_fraction_02():
 
 
     r'''
-    \fraction \times 4/3 {
+    \tweak #'text #tuplet-number::calc-fraction-text
+    \times 4/3 {
         c'8
         d'8
         e'8
@@ -36,7 +38,7 @@ def test_FixedDurationTuplet_fraction_02():
     '''
 
     assert wellformednesstools.is_well_formed_component(t)
-    assert t.lilypond_format == "\\fraction \\times 4/3 {\n\tc'8\n\td'8\n\te'8\n}"
+    assert t.lilypond_format == "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 4/3 {\n\tc'8\n\td'8\n\te'8\n}"
 
 
 def test_FixedDurationTuplet_fraction_03():

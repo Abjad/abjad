@@ -191,7 +191,8 @@ class Tuplet(Container):
     def _format_lilypond_fraction_command_string(self):
         if self._is_visible:
             if self.is_augmentation or self.has_non_power_of_two_denominator or self.force_fraction:
-                return r'\fraction '
+                #return r''
+                return r"\tweak #'text #tuplet-number::calc-fraction-text"
         return ''
 
     def _format_open_brackets_slot(self, format_contributions):
@@ -206,11 +207,13 @@ class Tuplet(Container):
             else:
                 contributor = ('self_brackets', 'open')
                 if self.multiplier != 1:
-                    contributions = [r'%s\times %s %s' % (
-                        self._format_lilypond_fraction_command_string(),
-                        self._multiplier_fraction_string,
-                        '{'
-                        )]
+                    contributions = []
+                    fraction_command_string = self._format_lilypond_fraction_command_string()
+                    if fraction_command_string:
+                        contributions.append(fraction_command_string)
+                    contributions.append(r'\times {} {{'.format(
+                        self._multiplier_fraction_string
+                        ))
                 else:
                     contributions = ['{']
                 result.append([contributor, contributions])
@@ -385,7 +388,8 @@ class Tuplet(Container):
             ::
 
                 >>> f(tuplet)
-                \fraction \times 2/3 {
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 2/3 {
                     c'8
                     d'8
                     e'8

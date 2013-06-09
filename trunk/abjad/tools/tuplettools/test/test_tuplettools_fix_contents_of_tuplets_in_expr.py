@@ -47,7 +47,8 @@ def test_tuplettools_fix_contents_of_tuplets_in_expr_02():
     tuplettools.fix_contents_of_tuplets_in_expr(t)
 
     r'''
-    \fraction \times 4/3 {
+    \tweak #'text #tuplet-number::calc-fraction-text
+    \times 4/3 {
         c'16
         d'16
         e'16
@@ -56,7 +57,7 @@ def test_tuplettools_fix_contents_of_tuplets_in_expr_02():
 
     assert wellformednesstools.is_well_formed_component(t)
     assert t.multiplier.is_proper_tuplet_multiplier
-    assert t.lilypond_format == "\\fraction \\times 4/3 {\n\tc'16\n\td'16\n\te'16\n}"
+    assert t.lilypond_format == "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 4/3 {\n\tc'16\n\td'16\n\te'16\n}"
 
 
 def test_tuplettools_fix_contents_of_tuplets_in_expr_03():
@@ -66,7 +67,8 @@ def test_tuplettools_fix_contents_of_tuplets_in_expr_03():
     assert not t.multiplier.is_proper_tuplet_multiplier
 
     r'''
-    \fraction \times 5/12 {
+    \tweak #'text #tuplet-number::calc-fraction-text
+    \times 5/12 {
         c'4
         d'4
         e'4
@@ -76,7 +78,8 @@ def test_tuplettools_fix_contents_of_tuplets_in_expr_03():
     tuplettools.fix_contents_of_tuplets_in_expr(t)
 
     r'''
-    \fraction \times 5/6 {
+    \tweak #'text #tuplet-number::calc-fraction-text
+    \times 5/6 {
         c'8
         d'8
         e'8
@@ -85,4 +88,4 @@ def test_tuplettools_fix_contents_of_tuplets_in_expr_03():
 
     assert wellformednesstools.is_well_formed_component(t)
     assert t.multiplier.is_proper_tuplet_multiplier
-    assert t.lilypond_format == "\\fraction \\times 5/6 {\n\tc'8\n\td'8\n\te'8\n}"
+    assert t.lilypond_format == "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 5/6 {\n\tc'8\n\td'8\n\te'8\n}"

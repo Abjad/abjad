@@ -11,11 +11,13 @@ def move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_tuplet(tuplet):
 
         >>> f(t)
         \new Staff {
-            \fraction \times 3/2 {
+            \tweak #'text #tuplet-number::calc-fraction-text
+            \times 3/2 {
                 c'8 [
                 d'8
             }
-            \fraction \times 3/2 {
+            \tweak #'text #tuplet-number::calc-fraction-text
+            \times 3/2 {
                 c'8
                 d'8 ]
             }
@@ -32,7 +34,8 @@ def move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_tuplet(tuplet):
         \new Staff {
             c'8. [
             d'8.
-            \fraction \times 3/2 {
+            \tweak #'text #tuplet-number::calc-fraction-text
+            \times 3/2 {
                 c'8
                 d'8 ]
             }

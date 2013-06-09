@@ -10,11 +10,13 @@ def test_tuplettools_move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_t
 
     r'''
     \new Staff {
-        \fraction \times 3/2 {
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 3/2 {
             c'8 [
             d'8
         }
-        \fraction \times 3/2 {
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 3/2 {
             c'8
             d'8 ]
         }
@@ -27,7 +29,8 @@ def test_tuplettools_move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_t
     \new Staff {
         c'8. [
         d'8.
-        \fraction \times 3/2 {
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 3/2 {
             c'8
             d'8 ]
         }
@@ -35,7 +38,7 @@ def test_tuplettools_move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_t
     '''
 
     assert wellformednesstools.is_well_formed_component(t)
-    assert t.lilypond_format == "\\new Staff {\n\tc'8. [\n\td'8.\n\t\\fraction \\times 3/2 {\n\t\tc'8\n\t\td'8 ]\n\t}\n}"
+    assert t.lilypond_format == "\\new Staff {\n\tc'8. [\n\td'8.\n\t\\tweak #'text #tuplet-number::calc-fraction-text\n\t\\times 3/2 {\n\t\tc'8\n\t\td'8 ]\n\t}\n}"
 
 
 def test_tuplettools_move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_tuplet_02():

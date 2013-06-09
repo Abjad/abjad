@@ -12,7 +12,8 @@ def set_denominator_of_tuplets_in_expr_to_at_least(expr, n):
     ::
 
         >>> f(tuplet)
-        \fraction \times 3/5 {
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 3/5 {
             c'4
             d'8
             e'8
@@ -27,7 +28,8 @@ def set_denominator_of_tuplets_in_expr_to_at_least(expr, n):
     ::
 
         >>> f(tuplet)
-        \fraction \times 6/10 {
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 6/10 {
             c'4
             d'8
             e'8

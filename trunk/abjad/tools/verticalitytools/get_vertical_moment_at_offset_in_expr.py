@@ -24,7 +24,8 @@ def get_vertical_moment_at_offset_in_expr(expr, offset):
         >>> f(score)
         \new Score <<
             \new Staff {
-                \fraction \times 4/3 {
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 4/3 {
                     d''8
                     c''8
                     b'8

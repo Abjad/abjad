@@ -43,7 +43,8 @@ def extend_measures_in_expr_and_apply_full_measure_tuplets(expr, supplement):
             }
             {
                 \time 3/8
-                \fraction \times 6/7 {
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 6/7 {
                     e'8
                     f'8
                     g'8

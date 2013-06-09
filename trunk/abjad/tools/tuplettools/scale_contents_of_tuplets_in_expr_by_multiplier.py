@@ -10,7 +10,8 @@ def scale_contents_of_tuplets_in_expr_by_multiplier(tuplet, multiplier):
     ::
 
         >>> f(tuplet)
-        \fraction \times 3/5 {
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 3/5 {
             c'8
             d'8
             e'8
@@ -26,7 +27,8 @@ def scale_contents_of_tuplets_in_expr_by_multiplier(tuplet, multiplier):
     ::
 
         >>> f(tuplet)
-        \fraction \times 3/5 {
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 3/5 {
             c'4
             d'4
             e'4

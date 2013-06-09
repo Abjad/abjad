@@ -7,11 +7,12 @@ def test_FixedDurationTuplet_force_fraction_01():
     t.force_fraction = True
 
     r'''
-    \fraction \times 2/3 {
+    \tweak #'text #tuplet-number::calc-fraction-text
+    \times 2/3 {
         c'8
         d'8
         e'8
     }
     '''
 
-    assert t.lilypond_format == "\\fraction \\times 2/3 {\n\tc'8\n\td'8\n\te'8\n}"
+    assert t.lilypond_format == "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 2/3 {\n\tc'8\n\td'8\n\te'8\n}"

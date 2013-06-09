@@ -663,7 +663,8 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
             d'8. ~
             \times 2/3 {
                 d'8. ~
-                \fraction \times 3/5 {
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 3/5 {
                     d'16
                     e'8.
                     f'16 ~
@@ -698,7 +699,8 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
             \times 2/3 {
                 d'8 ~
                 d'16 ~
-                \fraction \times 3/5 {
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 3/5 {
                     d'16
                     e'8 ~
                     e'16

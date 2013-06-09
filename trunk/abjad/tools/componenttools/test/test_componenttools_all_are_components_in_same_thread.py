@@ -1017,13 +1017,16 @@ def test_componenttools_all_are_components_in_same_thread_36():
     pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
 
     r'''
-    \fraction \times 9/10 {
+    \tweak #'text #tuplet-number::calc-fraction-text
+    \times 9/10 {
         c'8
         cs'8
-        \fraction \times 6/7 {
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 6/7 {
             d'8
             ef'8
-            \fraction \times 3/4 {
+            \tweak #'text #tuplet-number::calc-fraction-text
+            \times 3/4 {
                 e'8
                 f'8
                 fs'8

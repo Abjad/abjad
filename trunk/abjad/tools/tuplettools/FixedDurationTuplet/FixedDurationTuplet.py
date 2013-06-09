@@ -132,7 +132,8 @@ class FixedDurationTuplet(Tuplet):
 
                 >>> tuplet.target_duration = Duration(5, 8)
                 >>> f(tuplet)
-                \fraction \times 5/3 {
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 5/3 {
                     c'8
                     d'8
                     e'8

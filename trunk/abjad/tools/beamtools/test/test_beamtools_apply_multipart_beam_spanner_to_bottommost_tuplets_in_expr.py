@@ -38,7 +38,8 @@ def test_beamtools_apply_multipart_beam_spanner_to_bottommost_tuplets_in_expr_02
 
     r'''
     \new Voice {
-        \fraction \times 3/4 {
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 3/4 {
             \times 2/3 {
                 c'16
                 d'16
@@ -50,7 +51,8 @@ def test_beamtools_apply_multipart_beam_spanner_to_bottommost_tuplets_in_expr_02
                 a'16
             }
         }
-        \fraction \times 3/4 {
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 3/4 {
             \times 2/3 {
                 b'16
                 c''16
@@ -69,7 +71,8 @@ def test_beamtools_apply_multipart_beam_spanner_to_bottommost_tuplets_in_expr_02
 
     r'''
     \new Voice {
-        \fraction \times 3/4 {
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 3/4 {
             \times 2/3 {
                 c'16 [
                 d'16
@@ -81,7 +84,8 @@ def test_beamtools_apply_multipart_beam_spanner_to_bottommost_tuplets_in_expr_02
                 a'16 ]
             }
         }
-        \fraction \times 3/4 {
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 3/4 {
             \times 2/3 {
                 b'16 [
                 c''16
@@ -97,4 +101,4 @@ def test_beamtools_apply_multipart_beam_spanner_to_bottommost_tuplets_in_expr_02
     '''
 
     assert wellformednesstools.is_well_formed_component(t)
-    assert t.lilypond_format == "\\new Voice {\n\t\\fraction \\times 3/4 {\n\t\t\\times 2/3 {\n\t\t\tc'16 [\n\t\t\td'16\n\t\t\te'16 ]\n\t\t}\n\t\t\\times 2/3 {\n\t\t\tf'16 [\n\t\t\tg'16\n\t\t\ta'16 ]\n\t\t}\n\t}\n\t\\fraction \\times 3/4 {\n\t\t\\times 2/3 {\n\t\t\tb'16 [\n\t\t\tc''16\n\t\t\td''16 ]\n\t\t}\n\t\t\\times 2/3 {\n\t\t\te''16 [\n\t\t\tf''16\n\t\t\tg''16 ]\n\t\t}\n\t}\n}"
+    assert t.lilypond_format == "\\new Voice {\n\t\\tweak #'text #tuplet-number::calc-fraction-text\n\t\\times 3/4 {\n\t\t\\times 2/3 {\n\t\t\tc'16 [\n\t\t\td'16\n\t\t\te'16 ]\n\t\t}\n\t\t\\times 2/3 {\n\t\t\tf'16 [\n\t\t\tg'16\n\t\t\ta'16 ]\n\t\t}\n\t}\n\t\\tweak #'text #tuplet-number::calc-fraction-text\n\t\\times 3/4 {\n\t\t\\times 2/3 {\n\t\t\tb'16 [\n\t\t\tc''16\n\t\t\td''16 ]\n\t\t}\n\t\t\\times 2/3 {\n\t\t\te''16 [\n\t\t\tf''16\n\t\t\tg''16 ]\n\t\t}\n\t}\n}"

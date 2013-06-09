@@ -195,7 +195,8 @@ def test_OutputIncisedRestRhythmMaker_05():
     \new Staff {
         {
             \time 4/8
-            \fraction \times 3/4 {
+            \tweak #'text #tuplet-number::calc-fraction-text
+            \times 3/4 {
                 c'8
                 r4.
             }
@@ -214,7 +215,8 @@ def test_OutputIncisedRestRhythmMaker_05():
             {
                 r8
             }
-            \fraction \times 3/5 {
+            \tweak #'text #tuplet-number::calc-fraction-text
+            \times 3/5 {
                 r2
                 c'8
             }
@@ -222,4 +224,4 @@ def test_OutputIncisedRestRhythmMaker_05():
     }
     '''
 
-    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 4/8\n\t\t\\fraction \\times 3/4 {\n\t\t\tc'8\n\t\t\tr4.\n\t\t}\n\t\t{\n\t\t\tr8\n\t\t}\n\t}\n\t{\n\t\t\\time 4/8\n\t\t{\n\t\t\tr2\n\t\t}\n\t}\n\t{\n\t\t\\time 4/8\n\t\t{\n\t\t\tr8\n\t\t}\n\t\t\\fraction \\times 3/5 {\n\t\t\tr2\n\t\t\tc'8\n\t\t}\n\t}\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 4/8\n\t\t\\tweak #'text #tuplet-number::calc-fraction-text\n\t\t\\times 3/4 {\n\t\t\tc'8\n\t\t\tr4.\n\t\t}\n\t\t{\n\t\t\tr8\n\t\t}\n\t}\n\t{\n\t\t\\time 4/8\n\t\t{\n\t\t\tr2\n\t\t}\n\t}\n\t{\n\t\t\\time 4/8\n\t\t{\n\t\t\tr8\n\t\t}\n\t\t\\tweak #'text #tuplet-number::calc-fraction-text\n\t\t\\times 3/5 {\n\t\t\tr2\n\t\t\tc'8\n\t\t}\n\t}\n}"

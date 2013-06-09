@@ -35,7 +35,8 @@ def move_parentage_children_and_spanners_from_components_to_empty_container(comp
 
         >>> f(voice)
         \new Voice {
-            \fraction \times 3/4 {
+            \tweak #'text #tuplet-number::calc-fraction-text
+            \times 3/4 {
                 c'8 [
                 d'8
                 e'8

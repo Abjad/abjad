@@ -164,7 +164,8 @@ def test_measuretools_move_full_measure_tuplet_prolation_to_measure_time_signatu
     r'''
     {
         \time 5/16
-        \fraction \times 5/6 {
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 5/6 {
             c'8
             d'8
             e'8

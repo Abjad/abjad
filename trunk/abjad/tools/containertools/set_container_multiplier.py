@@ -23,7 +23,8 @@ def set_container_multiplier(container, multiplier):
     ::
 
         >>> f(tuplet)
-        \fraction \times 3/4 {
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 3/4 {
             c'8
             d'8
             e'8

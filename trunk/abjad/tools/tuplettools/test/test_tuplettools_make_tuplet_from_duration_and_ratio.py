@@ -7,11 +7,11 @@ def test_tuplettools_make_tuplet_from_duration_and_ratio_01():
 
     t = tuplettools.make_tuplet_from_duration_and_ratio(
         duration, [1], avoid_dots=True, is_diminution=False)
-    assert t.lilypond_format == "\\fraction \\times 3/2 {\n\tc'8\n}"
+    assert t.lilypond_format == "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 3/2 {\n\tc'8\n}"
 
     t = tuplettools.make_tuplet_from_duration_and_ratio(
         duration, [1, 1], avoid_dots=True, is_diminution=False)
-    assert t.lilypond_format == "\\fraction \\times 3/2 {\n\tc'16\n\tc'16\n}"
+    assert t.lilypond_format == "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 3/2 {\n\tc'16\n\tc'16\n}"
 
     t = tuplettools.make_tuplet_from_duration_and_ratio(
         duration, [1, 1, 1], avoid_dots=True, is_diminution=False)
@@ -19,11 +19,11 @@ def test_tuplettools_make_tuplet_from_duration_and_ratio_01():
 
     t = tuplettools.make_tuplet_from_duration_and_ratio(
         duration, [1, 1, 1, 1], avoid_dots=True, is_diminution=False)
-    assert t.lilypond_format == "\\fraction \\times 3/2 {\n\tc'32\n\tc'32\n\tc'32\n\tc'32\n}"
+    assert t.lilypond_format == "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 3/2 {\n\tc'32\n\tc'32\n\tc'32\n\tc'32\n}"
 
     t = tuplettools.make_tuplet_from_duration_and_ratio(
         duration, [1, 1, 1, 1, 1], avoid_dots=True, is_diminution=False)
-    assert t.lilypond_format == "\\fraction \\times 6/5 {\n\tc'32\n\tc'32\n\tc'32\n\tc'32\n\tc'32\n}"
+    assert t.lilypond_format == "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 6/5 {\n\tc'32\n\tc'32\n\tc'32\n\tc'32\n\tc'32\n}"
 
 
 def test_tuplettools_make_tuplet_from_duration_and_ratio_02():
@@ -32,7 +32,7 @@ def test_tuplettools_make_tuplet_from_duration_and_ratio_02():
 
     t = tuplettools.make_tuplet_from_duration_and_ratio(
         duration, [1], avoid_dots=True, is_diminution=False)
-    assert t.lilypond_format == "\\fraction \\times 3/2 {\n\tc'8\n}"
+    assert t.lilypond_format == "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 3/2 {\n\tc'8\n}"
 
     t = tuplettools.make_tuplet_from_duration_and_ratio(
         duration, [1, 2], avoid_dots=True, is_diminution=False)
@@ -40,15 +40,15 @@ def test_tuplettools_make_tuplet_from_duration_and_ratio_02():
 
     t = tuplettools.make_tuplet_from_duration_and_ratio(
         duration, [1, 2, 2], avoid_dots=True, is_diminution=False)
-    assert t.lilypond_format == "\\fraction \\times 6/5 {\n\tc'32\n\tc'16\n\tc'16\n}"
+    assert t.lilypond_format == "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 6/5 {\n\tc'32\n\tc'16\n\tc'16\n}"
 
     t = tuplettools.make_tuplet_from_duration_and_ratio(
         duration, [1, 2, 2, 3], avoid_dots=True, is_diminution=False)
-    assert t.lilypond_format == "\\fraction \\times 3/2 {\n\tc'64\n\tc'32\n\tc'32\n\tc'32.\n}"
+    assert t.lilypond_format == "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 3/2 {\n\tc'64\n\tc'32\n\tc'32\n\tc'32.\n}"
 
     t = tuplettools.make_tuplet_from_duration_and_ratio(
         duration, [1, 2, 2, 3, 3], avoid_dots=True, is_diminution=False)
-    assert t.lilypond_format == "\\fraction \\times 12/11 {\n\tc'64\n\tc'32\n\tc'32\n\tc'32.\n\tc'32.\n}"
+    assert t.lilypond_format == "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 12/11 {\n\tc'64\n\tc'32\n\tc'32\n\tc'32.\n\tc'32.\n}"
 
 
 def test_tuplettools_make_tuplet_from_duration_and_ratio_03():
@@ -59,7 +59,7 @@ def test_tuplettools_make_tuplet_from_duration_and_ratio_03():
 
     t = tuplettools.make_tuplet_from_duration_and_ratio(
         duration, [1, -2, -2, 3, 3], avoid_dots=True, is_diminution=False)
-    assert t.lilypond_format == "\\fraction \\times 12/11 {\n\tc'64\n\tr32\n\tr32\n\tc'32.\n\tc'32.\n}"
+    assert t.lilypond_format == "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 12/11 {\n\tc'64\n\tr32\n\tr32\n\tc'32.\n\tc'32.\n}"
 
 
 def test_tuplettools_make_tuplet_from_duration_and_ratio_04():
@@ -101,7 +101,7 @@ def test_tuplettools_make_tuplet_from_duration_and_ratio_05():
 
     t = tuplettools.make_tuplet_from_duration_and_ratio(
         duration, [1, 1, 1, 1, 1], avoid_dots=False, is_diminution=False)
-    assert t.lilypond_format == "\\fraction \\times 8/5 {\n\tc'64.\n\tc'64.\n\tc'64.\n\tc'64.\n\tc'64.\n}"
+    assert t.lilypond_format == "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 8/5 {\n\tc'64.\n\tc'64.\n\tc'64.\n\tc'64.\n\tc'64.\n}"
 
 
 def test_tuplettools_make_tuplet_from_duration_and_ratio_06():
@@ -118,15 +118,15 @@ def test_tuplettools_make_tuplet_from_duration_and_ratio_06():
 
     t = tuplettools.make_tuplet_from_duration_and_ratio(
         duration, [1, 2, 2], avoid_dots=False, is_diminution=False)
-    assert t.lilypond_format == "\\fraction \\times 8/5 {\n\tc'64.\n\tc'32.\n\tc'32.\n}"
+    assert t.lilypond_format == "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 8/5 {\n\tc'64.\n\tc'32.\n\tc'32.\n}"
 
     t = tuplettools.make_tuplet_from_duration_and_ratio(
         duration, [1, 2, 2, 3], avoid_dots=False, is_diminution=False)
-    assert t.lilypond_format == "\\fraction \\times 3/2 {\n\tc'64\n\tc'32\n\tc'32\n\tc'32.\n}"
+    assert t.lilypond_format == "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 3/2 {\n\tc'64\n\tc'32\n\tc'32\n\tc'32.\n}"
 
     t = tuplettools.make_tuplet_from_duration_and_ratio(
         duration, [1, 2, 2, 3, 3], avoid_dots=False, is_diminution=False)
-    assert t.lilypond_format == "\\fraction \\times 12/11 {\n\tc'64\n\tc'32\n\tc'32\n\tc'32.\n\tc'32.\n}"
+    assert t.lilypond_format == "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 12/11 {\n\tc'64\n\tc'32\n\tc'32\n\tc'32.\n\tc'32.\n}"
 
 
 def test_tuplettools_make_tuplet_from_duration_and_ratio_07():
@@ -152,11 +152,11 @@ def test_tuplettools_make_tuplet_from_duration_and_ratio_08():
 
     t = tuplettools.make_tuplet_from_duration_and_ratio(
         duration, [1], avoid_dots=True, is_diminution=True)
-    assert t.lilypond_format == "\\fraction \\times 3/4 {\n\tc'4\n}"
+    assert t.lilypond_format == "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 3/4 {\n\tc'4\n}"
 
     t = tuplettools.make_tuplet_from_duration_and_ratio(
         duration, [1, 1], avoid_dots=True, is_diminution=True)
-    assert t.lilypond_format == "\\fraction \\times 3/4 {\n\tc'8\n\tc'8\n}"
+    assert t.lilypond_format == "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 3/4 {\n\tc'8\n\tc'8\n}"
 
     t = tuplettools.make_tuplet_from_duration_and_ratio(
         duration, [1, 1, 1], avoid_dots=True, is_diminution=True)
@@ -164,11 +164,11 @@ def test_tuplettools_make_tuplet_from_duration_and_ratio_08():
 
     t = tuplettools.make_tuplet_from_duration_and_ratio(
         duration, [1, 1, 1, 1], avoid_dots=True, is_diminution=True)
-    assert t.lilypond_format == "\\fraction \\times 3/4 {\n\tc'16\n\tc'16\n\tc'16\n\tc'16\n}"
+    assert t.lilypond_format == "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 3/4 {\n\tc'16\n\tc'16\n\tc'16\n\tc'16\n}"
 
     t = tuplettools.make_tuplet_from_duration_and_ratio(
         duration, [1, 1, 1, 1, 1], avoid_dots=True, is_diminution=True)
-    assert t.lilypond_format == "\\fraction \\times 3/5 {\n\tc'16\n\tc'16\n\tc'16\n\tc'16\n\tc'16\n}"
+    assert t.lilypond_format == "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 3/5 {\n\tc'16\n\tc'16\n\tc'16\n\tc'16\n\tc'16\n}"
 
 
 def test_tuplettools_make_tuplet_from_duration_and_ratio_09():
@@ -177,7 +177,7 @@ def test_tuplettools_make_tuplet_from_duration_and_ratio_09():
 
     t = tuplettools.make_tuplet_from_duration_and_ratio(
         duration, [1], avoid_dots=True, is_diminution=True)
-    assert t.lilypond_format == "\\fraction \\times 3/4 {\n\tc'4\n}"
+    assert t.lilypond_format == "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 3/4 {\n\tc'4\n}"
 
     t = tuplettools.make_tuplet_from_duration_and_ratio(
         duration, [1, 2], avoid_dots=True, is_diminution=True)
@@ -185,15 +185,15 @@ def test_tuplettools_make_tuplet_from_duration_and_ratio_09():
 
     t = tuplettools.make_tuplet_from_duration_and_ratio(
         duration, [1, 2, 2], avoid_dots=True, is_diminution=True)
-    assert t.lilypond_format == "\\fraction \\times 3/5 {\n\tc'16\n\tc'8\n\tc'8\n}"
+    assert t.lilypond_format == "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 3/5 {\n\tc'16\n\tc'8\n\tc'8\n}"
 
     t = tuplettools.make_tuplet_from_duration_and_ratio(
         duration, [1, 2, 2, 3], avoid_dots=True, is_diminution=True)
-    assert t.lilypond_format == "\\fraction \\times 3/4 {\n\tc'32\n\tc'16\n\tc'16\n\tc'16.\n}"
+    assert t.lilypond_format == "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 3/4 {\n\tc'32\n\tc'16\n\tc'16\n\tc'16.\n}"
 
     t = tuplettools.make_tuplet_from_duration_and_ratio(
         duration, [1, 2, 2, 3, 3], avoid_dots=True, is_diminution=True)
-    assert t.lilypond_format == "\\fraction \\times 6/11 {\n\tc'32\n\tc'16\n\tc'16\n\tc'16.\n\tc'16.\n}"
+    assert t.lilypond_format == "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 6/11 {\n\tc'32\n\tc'16\n\tc'16\n\tc'16.\n\tc'16.\n}"
 
 
 def test_tuplettools_make_tuplet_from_duration_and_ratio_10():
@@ -204,7 +204,7 @@ def test_tuplettools_make_tuplet_from_duration_and_ratio_10():
 
     t = tuplettools.make_tuplet_from_duration_and_ratio(
         duration, [1, -2, -2, 3, 3], avoid_dots=True, is_diminution=True)
-    assert t.lilypond_format == "\\fraction \\times 6/11 {\n\tc'32\n\tr16\n\tr16\n\tc'16.\n\tc'16.\n}"
+    assert t.lilypond_format == "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 6/11 {\n\tc'32\n\tr16\n\tr16\n\tc'16.\n\tc'16.\n}"
 
 
 def test_tuplettools_make_tuplet_from_duration_and_ratio_11():
@@ -267,11 +267,11 @@ def test_tuplettools_make_tuplet_from_duration_and_ratio_13():
 
     t = tuplettools.make_tuplet_from_duration_and_ratio(
         duration, [1, 2, 2, 3], avoid_dots=False, is_diminution=True)
-    assert t.lilypond_format == "\\fraction \\times 3/4 {\n\tc'32\n\tc'16\n\tc'16\n\tc'16.\n}"
+    assert t.lilypond_format == "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 3/4 {\n\tc'32\n\tc'16\n\tc'16\n\tc'16.\n}"
 
     t = tuplettools.make_tuplet_from_duration_and_ratio(
         duration, [1, 2, 2, 3, 3], avoid_dots=False, is_diminution=True)
-    assert t.lilypond_format == "\\fraction \\times 6/11 {\n\tc'32\n\tc'16\n\tc'16\n\tc'16.\n\tc'16.\n}"
+    assert t.lilypond_format == "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 6/11 {\n\tc'32\n\tc'16\n\tc'16\n\tc'16.\n\tc'16.\n}"
 
 
 def test_tuplettools_make_tuplet_from_duration_and_ratio_14():

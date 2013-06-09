@@ -116,7 +116,8 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_03():
     {
         \time 5/6
         \scaleDurations #'(2 . 3) {
-            \fraction \times 3/5 {
+            \tweak #'text #tuplet-number::calc-fraction-text
+            \times 3/5 {
                 c'4
                 d'4
                 e'4
@@ -142,13 +143,15 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_03():
     {
         \time 11/15
         \scaleDurations #'(8 . 15) {
-            \fraction \times 3/4 {
+            \tweak #'text #tuplet-number::calc-fraction-text
+            \times 3/4 {
                 d'4
                 e'4
                 f'4
                 g'4
             }
-            \fraction \times 5/7 {
+            \tweak #'text #tuplet-number::calc-fraction-text
+            \times 5/7 {
                 a'8
                 b'8
                 c''8
@@ -162,7 +165,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_03():
     '''
 
     assert wellformednesstools.is_well_formed_component(t)
-    assert t.lilypond_format == "{\n\t\\time 11/15\n\t\\scaleDurations #'(8 . 15) {\n\t\t\\fraction \\times 3/4 {\n\t\t\td'4\n\t\t\te'4\n\t\t\tf'4\n\t\t\tg'4\n\t\t}\n\t\t\\fraction \\times 5/7 {\n\t\t\ta'8\n\t\t\tb'8\n\t\t\tc''8\n\t\t\td''8\n\t\t\te''8\n\t\t\tf''8\n\t\t\tg''8\n\t\t}\n\t}\n}"
+    assert t.lilypond_format == "{\n\t\\time 11/15\n\t\\scaleDurations #'(8 . 15) {\n\t\t\\tweak #'text #tuplet-number::calc-fraction-text\n\t\t\\times 3/4 {\n\t\t\td'4\n\t\t\te'4\n\t\t\tf'4\n\t\t\tg'4\n\t\t}\n\t\t\\tweak #'text #tuplet-number::calc-fraction-text\n\t\t\\times 5/7 {\n\t\t\ta'8\n\t\t\tb'8\n\t\t\tc''8\n\t\t\td''8\n\t\t\te''8\n\t\t\tf''8\n\t\t\tg''8\n\t\t}\n\t}\n}"
 
 
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_04():
@@ -180,7 +183,8 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_04():
     r'''
     \time 5/6
         \compressMusic #'(2 . 3) {
-            \fraction \times 3/5 {
+            \tweak #'text #tuplet-number::calc-fraction-text
+            \times 3/5 {
                 c'4
                 cs'4
                 d'4
@@ -204,7 +208,8 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_04():
     r'''
     \time 11/14
         \compressMusic #'(4 . 7) {
-            \fraction \times 7/10 {
+            \tweak #'text #tuplet-number::calc-fraction-text
+            \times 7/10 {
                 c'4
                 cs'4
                 d'4
@@ -285,13 +290,16 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_05():
                 f'8
                 fs'8
             }
-            \fraction \times 7/6 {
+            \tweak #'text #tuplet-number::calc-fraction-text
+            \times 7/6 {
                 g'4
             }
-            \fraction \times 7/6 {
+            \tweak #'text #tuplet-number::calc-fraction-text
+            \times 7/6 {
                 af'4
             }
-            \fraction \times 7/6 {
+            \tweak #'text #tuplet-number::calc-fraction-text
+            \times 7/6 {
                 a'4
             }
         }
@@ -433,7 +441,8 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_07():
     r'''
     \time 8/9
         \compressMusic #'(8 . 9) {
-            \fraction \times 3/4 {
+            \tweak #'text #tuplet-number::calc-fraction-text
+            \times 3/4 {
                 c'2
                 cs'2
                 \times 2/3 {

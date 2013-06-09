@@ -20,7 +20,8 @@ def iterate_vertical_moments_in_expr(expr, reverse=False):
         >>> f(score)
         \new Score <<
             \new Staff {
-                \fraction \times 4/3 {
+                \tweak #'text #tuplet-number::calc-fraction-text
+                \times 4/3 {
                     d''8
                     c''8
                     b'8

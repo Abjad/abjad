@@ -27,7 +27,8 @@ def test_TaleaRhythmMaker___call___01():
         }
         {
             \time 5/8
-            \fraction \times 5/7 {
+            \tweak #'text #tuplet-number::calc-fraction-text
+            \times 5/7 {
                 c'8.
                 r16
                 c'4
@@ -39,7 +40,7 @@ def test_TaleaRhythmMaker___call___01():
     }
     '''
 
-    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\t\\times 4/7 {\n\t\t\tr16\n\t\t\tc'4\n\t\t\tr8\n\t\t}\n\t}\n\t{\n\t\t\\time 5/8\n\t\t\\fraction \\times 5/7 {\n\t\t\tc'8.\n\t\t\tr16\n\t\t\tc'4\n\t\t\tr8\n\t\t\tc'8.\n\t\t\tr16\n\t\t}\n\t}\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\t\\times 4/7 {\n\t\t\tr16\n\t\t\tc'4\n\t\t\tr8\n\t\t}\n\t}\n\t{\n\t\t\\time 5/8\n\t\t\\tweak #'text #tuplet-number::calc-fraction-text\n\t\t\\times 5/7 {\n\t\t\tc'8.\n\t\t\tr16\n\t\t\tc'4\n\t\t\tr8\n\t\t\tc'8.\n\t\t\tr16\n\t\t}\n\t}\n}"
 
 
 def test_TaleaRhythmMaker___call___02():

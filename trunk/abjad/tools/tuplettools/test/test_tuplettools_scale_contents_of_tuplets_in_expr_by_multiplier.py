@@ -160,7 +160,8 @@ def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_09():
     t = tuplettools.FixedDurationTuplet(Duration(3, 8), [Note(0, (2, 8)), Note(0, (3, 8))])
 
     r'''
-    \fraction \times 3/5 {
+    \tweak #'text #tuplet-number::calc-fraction-text
+    \times 3/5 {
         c'4
         c'4.
     }

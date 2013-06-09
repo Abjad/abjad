@@ -7,7 +7,8 @@ def test_tuplettools_set_denominator_of_tuplets_in_expr_to_at_least_01():
     tuplettools.set_denominator_of_tuplets_in_expr_to_at_least(tuplet, 8)
 
     r'''
-    \fraction \times 6/10 {
+    \tweak #'text #tuplet-number::calc-fraction-text
+    \times 6/10 {
         c'4
         d'8
         e'8
@@ -16,7 +17,7 @@ def test_tuplettools_set_denominator_of_tuplets_in_expr_to_at_least_01():
     }
     '''
 
-    assert tuplet.lilypond_format == "\\fraction \\times 6/10 {\n\tc'4\n\td'8\n\te'8\n\tf'4\n\tg'2\n}"
+    assert tuplet.lilypond_format == "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 6/10 {\n\tc'4\n\td'8\n\te'8\n\tf'4\n\tg'2\n}"
 
 
 def test_tuplettools_set_denominator_of_tuplets_in_expr_to_at_least_02():
@@ -25,7 +26,8 @@ def test_tuplettools_set_denominator_of_tuplets_in_expr_to_at_least_02():
     tuplettools.set_denominator_of_tuplets_in_expr_to_at_least(tuplet, 16)
 
     r'''
-    \fraction \times 12/20 {
+    \tweak #'text #tuplet-number::calc-fraction-text
+    \times 12/20 {
         c'4
         d'8
         e'8
@@ -34,7 +36,7 @@ def test_tuplettools_set_denominator_of_tuplets_in_expr_to_at_least_02():
     }
     '''
 
-    assert tuplet.lilypond_format == "\\fraction \\times 12/20 {\n\tc'4\n\td'8\n\te'8\n\tf'4\n\tg'2\n}"
+    assert tuplet.lilypond_format == "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 12/20 {\n\tc'4\n\td'8\n\te'8\n\tf'4\n\tg'2\n}"
 
 
 def test_tuplettools_set_denominator_of_tuplets_in_expr_to_at_least_03():
@@ -43,7 +45,8 @@ def test_tuplettools_set_denominator_of_tuplets_in_expr_to_at_least_03():
     tuplettools.set_denominator_of_tuplets_in_expr_to_at_least(tuplet, 2)
 
     r'''
-    \fraction \times 3/5 {
+    \tweak #'text #tuplet-number::calc-fraction-text
+    \times 3/5 {
         c'4
         d'8
         e'8
@@ -52,4 +55,4 @@ def test_tuplettools_set_denominator_of_tuplets_in_expr_to_at_least_03():
     }
     '''
 
-    assert tuplet.lilypond_format == "\\fraction \\times 3/5 {\n\tc'4\n\td'8\n\te'8\n\tf'4\n\tg'2\n}"
+    assert tuplet.lilypond_format == "\\tweak #'text #tuplet-number::calc-fraction-text\n\\times 3/5 {\n\tc'4\n\td'8\n\te'8\n\tf'4\n\tg'2\n}"

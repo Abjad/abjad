@@ -277,7 +277,8 @@ def test_DivisionIncisedNoteRhythmMaker___call___06():
                 r32
                 c'16.
             }
-            \fraction \times 6/7 {
+            \tweak #'text #tuplet-number::calc-fraction-text
+            \times 6/7 {
                 r32
                 c'4. ~
                 c'32
@@ -298,4 +299,4 @@ def test_DivisionIncisedNoteRhythmMaker___call___06():
     }
     '''
 
-    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 4/8\n\t\t\\times 8/9 {\n\t\t\tr32\n\t\t\tc'2 ~\n\t\t\tc'32\n\t\t}\n\t}\n\t{\n\t\t\\time 4/8\n\t\t{\n\t\t\tr32\n\t\t\tc'16.\n\t\t}\n\t\t\\fraction \\times 6/7 {\n\t\t\tr32\n\t\t\tc'4. ~\n\t\t\tc'32\n\t\t}\n\t}\n\t{\n\t\t\\time 4/8\n\t\t{\n\t\t\tr32\n\t\t\tc'8..\n\t\t}\n\t\t\\times 4/5 {\n\t\t\tr32\n\t\t\tc'4 ~\n\t\t\tc'32\n\t\t}\n\t}\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 4/8\n\t\t\\times 8/9 {\n\t\t\tr32\n\t\t\tc'2 ~\n\t\t\tc'32\n\t\t}\n\t}\n\t{\n\t\t\\time 4/8\n\t\t{\n\t\t\tr32\n\t\t\tc'16.\n\t\t}\n\t\t\\tweak #'text #tuplet-number::calc-fraction-text\n\t\t\\times 6/7 {\n\t\t\tr32\n\t\t\tc'4. ~\n\t\t\tc'32\n\t\t}\n\t}\n\t{\n\t\t\\time 4/8\n\t\t{\n\t\t\tr32\n\t\t\tc'8..\n\t\t}\n\t\t\\times 4/5 {\n\t\t\tr32\n\t\t\tc'4 ~\n\t\t\tc'32\n\t\t}\n\t}\n}"

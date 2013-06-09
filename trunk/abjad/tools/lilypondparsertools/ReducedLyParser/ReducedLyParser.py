@@ -90,7 +90,8 @@ class ReducedLyParser(abctools.Parser):
         \times 2/3 {
             c'4
             c'4
-            \fraction \times 3/5 {
+            \tweak #'text #tuplet-number::calc-fraction-text
+            \times 3/5 {
                 c'8
                 c'8
                 c'8
