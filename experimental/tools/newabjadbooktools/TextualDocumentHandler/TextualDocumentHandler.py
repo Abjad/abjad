@@ -86,18 +86,15 @@ class TextualDocumentHandler(DocumentHandler):
                     options[key] = False
         return options
 
-    def extract_code_blocks(self, document=None, ordered_dict=None):
-        if document is None:
-            document = self.document
-        if ordered_dict is None:
-            ordered_dict = collections.OrderedDict()
+    def extract_code_blocks(self):
+        document = self.document
 
         in_block = None
         starting_line_number = None
         current_block_lines = None
         current_block_options = None
 
-        for i, line in enumerate(document.splitlines()): 
+        for i, line in enumerate(self.document.splitlines()): 
             if line.startswith('<abjad'):
                 if in_block:
                     raise Exception('Extra opening tag at line {}.'.format(i))
@@ -126,7 +123,6 @@ class TextualDocumentHandler(DocumentHandler):
                         stopping_line_number,
                         )
                     self.create_code_block(
-                        ordered_dict,
                         displayed_lines,
                         current_block_options,
                         source_line_range,
@@ -143,7 +139,6 @@ class TextualDocumentHandler(DocumentHandler):
                     stopping_line_number,
                     )
                 self.create_code_block(
-                    ordered_dict,
                     current_block_lines,
                     current_block_options,
                     source_line_range,
@@ -155,13 +150,26 @@ class TextualDocumentHandler(DocumentHandler):
         if in_block:
             raise Exception('Unterminated tag at EOF.')
 
-        return ordered_dict
+        return self.code_blocks
 
-    def process_output_proxies(self, ordered_dict, output_directory_path):
+    def process_output_proxies(self):
         pass
 
-    def rebuild_document(self, document, ordered_dict, output_directory_path):
-        lines = document.splitlines()
+    def rebuild_document(self):
+        lines = self.document.splitlines()
+        for line_range, code_block in sorted(
+            self.code_blocks.items(),
+            reverse=True,
+            ):
+            first_line = line_range[0]
+            last_line = line_range[1] + 1
+            lines_to_splice = []
+            for output_proxy in code_block.output_proxies:
+                lines_to_splice.extend(
+                    output_proxy.generate_document_representation(self)
+                    )
+            lines[first_line:last_line] = lines_to_splice
+        return lines
     
     ### READ-ONLY PUBLIC PROPERTIES ###
 

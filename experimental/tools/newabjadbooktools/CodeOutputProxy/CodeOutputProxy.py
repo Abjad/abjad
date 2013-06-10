@@ -20,5 +20,15 @@ class CodeOutputProxy(OutputProxy):
             result += '\t)'
         return result
 
+    ### PUBLIC METHODS ###
 
+    def handle_rest_document_environment(self, document_handler):
+        result = [
+            '::',
+            '',
+            ]
+        for line in self.payload:
+            result.append('\t{}'.format(line))
+        result.append('')
+        return result
 

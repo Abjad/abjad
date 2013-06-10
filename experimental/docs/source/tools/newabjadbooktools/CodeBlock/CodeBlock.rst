@@ -21,10 +21,10 @@ Read-only properties
 .. autoattribute:: experimental.tools.newabjadbooktools.CodeBlock.CodeBlock.CodeBlock.hide
    :noindex:
 
-.. autoattribute:: experimental.tools.newabjadbooktools.CodeBlock.CodeBlock.CodeBlock.output_triggers
+.. autoattribute:: experimental.tools.newabjadbooktools.CodeBlock.CodeBlock.CodeBlock.output_proxies
    :noindex:
 
-.. autoattribute:: experimental.tools.newabjadbooktools.CodeBlock.CodeBlock.CodeBlock.processed_results
+.. autoattribute:: experimental.tools.newabjadbooktools.CodeBlock.CodeBlock.CodeBlock.output_triggers
    :noindex:
 
 .. autoattribute:: experimental.tools.newabjadbooktools.CodeBlock.CodeBlock.CodeBlock.storage_format

@@ -28,7 +28,6 @@ class DocumentHandler(AbjadObject):
     ### PUBLIC METHODS ###
 
     def create_code_block(self,
-        ordered_dict,
         displayed_lines,
         options,
         source_location,
@@ -38,22 +37,22 @@ class DocumentHandler(AbjadObject):
             displayed_lines,
             **options
             )
-        ordered_dict[source_location] = code_block
+        self.code_blocks[source_location] = code_block
 
     @abc.abstractmethod
     def extract_code_block_options(self, source):
         raise NotImplemented
     
     @abc.abstractmethod
-    def extract_code_blocks(self, document, ordered_dict):
+    def extract_code_blocks(self):
         raise NotImplemented
 
     @abc.abstractmethod
-    def process_output_proxies(self, ordered_dict, output_directory_path):
+    def process_output_proxies(self):
         raise NotImplemented
 
     @abc.abstractmethod
-    def rebuild_document(self, document, ordered_dict):
+    def rebuild_document(self):
         raise NotImplemented
 
     ### READ-ONLY PUBLIC PROPERTIES ###
@@ -73,3 +72,4 @@ class DocumentHandler(AbjadObject):
     @property
     def output_directory_path(self):
         return self._output_directory_path
+

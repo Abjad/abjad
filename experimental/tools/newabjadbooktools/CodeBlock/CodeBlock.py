@@ -14,8 +14,8 @@ class CodeBlock(AbjadObject):
 
         >>> lines = ['message = "hello, world!"', 'print message']
         >>> code_block = newabjadbooktools.CodeBlock(lines)
-        >>> results = code_block.execute()
-        >>> print results
+        >>> output_proxies = code_block.execute()
+        >>> print output_proxies
         [CodeOutputProxy((
             '>>> message = "hello, world!"',
             '>>> print message',
@@ -55,7 +55,7 @@ class CodeBlock(AbjadObject):
             'hello, world!',
             ))]
 
-    Code blocks intercept certain Abjad function calls and pull the results
+    Code blocks intercept certain Abjad function calls and pull the output_proxies
     out as output proxies, to be dealt with by other processes.
 
     .. note:: We can push commands to the console directly, like the following
@@ -74,8 +74,8 @@ class CodeBlock(AbjadObject):
         ...     'print len(staff)'
         ...     ]
         >>> code_block = newabjadbooktools.CodeBlock(lines)
-        >>> results = code_block.execute(console)
-        >>> for x in results:
+        >>> output_proxies = code_block.execute(console)
+        >>> for x in output_proxies:
         ...     x
         ...
         CodeOutputProxy((
@@ -109,8 +109,8 @@ class CodeBlock(AbjadObject):
         ...     lines,
         ...     hide=True,
         ...     )
-        >>> results = code_block.execute(console)
-        >>> for x in results:
+        >>> output_proxies = code_block.execute(console)
+        >>> for x in output_proxies:
         ...     x
         ...
         MIDIOutputProxy()
@@ -125,7 +125,7 @@ class CodeBlock(AbjadObject):
     #    '_displayed_lines',
     #    '_executed_lines',
     #    '_hide',
-    #    '_processed_results',
+    #    '_output_proxies',
     #    '_strip_prompt',
     #    )
 
@@ -144,13 +144,13 @@ class CodeBlock(AbjadObject):
         if executed_lines is not None:
             self._executed_lines = tuple(executed_lines)
         self._hide = bool(hide)
-        self._processed_results = []
+        self._output_proxies = []
         self._strip_prompt = bool(strip_prompt)
 
     ### SPECIAL METHODS ###
 
     def __call__(self, console):
-        self.processed_results.extend(self.execute(console))
+        self.output_proxies.extend(self.execute(console))
 
     ### PUBLIC METHODS ###
 
@@ -160,7 +160,7 @@ class CodeBlock(AbjadObject):
         if console is None:
             console = code.InteractiveConsole()
 
-        results = []
+        output_proxies = []
         is_incomplete_statement = False
         result = '>>> '
         lines = self.executed_lines or self.displayed_lines
@@ -189,8 +189,8 @@ class CodeBlock(AbjadObject):
                             asset_output_proxy = asset_proxy_class(
                                 copy.deepcopy(console.locals[object_reference]),
                                 )
-                            results.append(result)
-                            results.append(asset_output_proxy)
+                            output_proxies.append(result)
+                            output_proxies.append(asset_output_proxy)
                             # Then empty the current result buffer:
                             # the output proxy represents a break in the 
                             # printed code blocks.
@@ -216,32 +216,32 @@ class CodeBlock(AbjadObject):
         while result.endswith('\n>>> '):
             result = result[:-5]
          
-        results.append(result)
+        output_proxies.append(result)
 
         if self.executed_lines:
-            results = ['\n'.join(self.displayed_results)]
+            output_proxies = ['\n'.join(self.displayed_output_proxies)]
 
         if self.hide:
-            for x in reversed(results):
+            for x in reversed(output_proxies):
                 if isinstance(x, str):
-                    results.remove(x)
+                    output_proxies.remove(x)
 
         if self.strip_prompt:
-            for i, x in enumerate(results):
+            for i, x in enumerate(output_proxies):
                 if instance(x, str):
                     lines = x.splitlines()
                     for j, line in enumerate(lines):
                         if line.startswith(('>>> ', '... ')):
                             lines[j] = line[4:]
-                    results[i] = '\n'.join(lines) 
+                    output_proxies[i] = '\n'.join(lines) 
 
         # Replace strings with CodeOutputProxy instances.
-        for i, result in enumerate(results):
+        for i, result in enumerate(output_proxies):
             if isinstance(result, str):
-                results[i] = newabjadbooktools.CodeOutputProxy(
+                output_proxies[i] = newabjadbooktools.CodeOutputProxy(
                     result.splitlines())
 
-        return results
+        return output_proxies
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -274,8 +274,8 @@ class CodeBlock(AbjadObject):
         }
 
     @property
-    def processed_results(self):
-        return self._processed_results
+    def output_proxies(self):
+        return self._output_proxies
 
     @property
     def strip_prompt(self):
