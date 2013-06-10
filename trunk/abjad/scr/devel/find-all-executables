@@ -1,0 +1,16 @@
+#! /usr/bin/env python                                                          
+                                                                                
+import os                                                                       
+                                                                                
+def find_all_executables():                                                     
+   for dirpath, dirnames, filenames in os.walk('.'):                            
+      for filename in filenames:                                                
+         full_filename = os.path.join(dirpath, filename)                        
+         if os.access(full_filename, os.X_OK):                                  
+            print full_filename                                                 
+                                                                                
+                                                                                
+if __name__ == '__main__':                                                      
+   os.system('clear')                                                           
+   find_all_executables()                                                       
+   print ''                                                                     
