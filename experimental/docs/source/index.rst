@@ -455,7 +455,6 @@ Unstable packages (load manually)
       tools/newabjadbooktools/DocumentHandler/DocumentHandler
       tools/newabjadbooktools/ImageFormat/ImageFormat
       tools/newabjadbooktools/ImageOutputProxy/ImageOutputProxy
-      tools/newabjadbooktools/NoncodeBlock/NoncodeBlock
       tools/newabjadbooktools/OutputProxy/OutputProxy
       tools/newabjadbooktools/PDFImageFormat/PDFImageFormat
       tools/newabjadbooktools/PNGImageFormat/PNGImageFormat
@@ -487,7 +486,6 @@ Unstable packages (load manually)
       tools/newabjadbooktools/DocumentHandler/DocumentHandler
       tools/newabjadbooktools/ImageFormat/ImageFormat
       tools/newabjadbooktools/ImageOutputProxy/ImageOutputProxy
-      tools/newabjadbooktools/NoncodeBlock/NoncodeBlock
       tools/newabjadbooktools/OutputProxy/OutputProxy
       tools/newabjadbooktools/PDFImageFormat/PDFImageFormat
       tools/newabjadbooktools/PNGImageFormat/PNGImageFormat
