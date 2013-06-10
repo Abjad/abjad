@@ -20,19 +20,28 @@ class OutputProxy(AbjadObject):
     ### READ-ONLY PUBLIC ATTRIBUTES ###
 
     @property
-    def file_name_prefix(self):
-        return self.__class__.__name__.strip('OutputProxy').lower()
-
-    @property
-    def file_name_without_extension(self):
-        md5 = hashlib.md5(self.payload).hexdigest()
-        return '-'.join((self._file_name_prefix, md5))
-
-    @property
     def payload(self):
         return self._payload
 
     ### PUBLIC METHODS ###
+
+    def generate_document_representation(self, document_handler):
+        from experimental.tools import newabjadbooktools
+        document_handler_mapping = {
+            newabjadbooktools.DoctreeDocumentHandler:
+                self.handle_doctree_document_environment,
+            newabjadbooktools.HTMLDocumentHandler:
+                self.handle_html_document_environment,
+            newabjadbooktools.LaTeXDocumentHandler:
+                self.handle_latex_document_environment,
+            newabjadbooktools.ReSTDocumentHandler:
+                self.handle_rest_document_environment,
+            newabjadbooktools.TextualDocumentHandler:
+                self.handle_text_document_environment,
+            }
+        assert type(document_handler) in document_handler_mapping
+        procedure = document_handler_mapping[type(document_handler)]
+        procedure(self, document_handler)
 
     def handle_doctree_document_environment(self, document_handler):
         raise NotImplemented

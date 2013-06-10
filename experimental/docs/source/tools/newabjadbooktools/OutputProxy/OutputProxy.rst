@@ -9,12 +9,6 @@ newabjadbooktools.OutputProxy
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.newabjadbooktools.OutputProxy.OutputProxy.OutputProxy.file_name_prefix
-   :noindex:
-
-.. autoattribute:: experimental.tools.newabjadbooktools.OutputProxy.OutputProxy.OutputProxy.file_name_without_extension
-   :noindex:
-
 .. autoattribute:: experimental.tools.newabjadbooktools.OutputProxy.OutputProxy.OutputProxy.payload
    :noindex:
 
@@ -23,6 +17,9 @@ Read-only properties
 
 Methods
 -------
+
+.. automethod:: experimental.tools.newabjadbooktools.OutputProxy.OutputProxy.OutputProxy.generate_document_representation
+   :noindex:
 
 .. automethod:: experimental.tools.newabjadbooktools.OutputProxy.OutputProxy.OutputProxy.handle_doctree_document_environment
    :noindex:

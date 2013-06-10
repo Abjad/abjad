@@ -24,6 +24,9 @@ Read-only properties
 Methods
 -------
 
+.. automethod:: experimental.tools.newabjadbooktools.GraphvizOutputProxy.GraphvizOutputProxy.GraphvizOutputProxy.generate_document_representation
+   :noindex:
+
 .. automethod:: experimental.tools.newabjadbooktools.GraphvizOutputProxy.GraphvizOutputProxy.GraphvizOutputProxy.handle_doctree_document_environment
    :noindex:
 

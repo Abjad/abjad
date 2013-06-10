@@ -24,6 +24,9 @@ Read-only properties
 Methods
 -------
 
+.. automethod:: experimental.tools.newabjadbooktools.AssetOutputProxy.AssetOutputProxy.AssetOutputProxy.generate_document_representation
+   :noindex:
+
 .. automethod:: experimental.tools.newabjadbooktools.AssetOutputProxy.AssetOutputProxy.AssetOutputProxy.handle_doctree_document_environment
    :noindex:
 

@@ -24,6 +24,9 @@ Read-only properties
 Methods
 -------
 
+.. automethod:: experimental.tools.newabjadbooktools.LilyPondOutputProxy.LilyPondOutputProxy.LilyPondOutputProxy.generate_document_representation
+   :noindex:
+
 .. automethod:: experimental.tools.newabjadbooktools.LilyPondOutputProxy.LilyPondOutputProxy.LilyPondOutputProxy.handle_doctree_document_environment
    :noindex:
 
