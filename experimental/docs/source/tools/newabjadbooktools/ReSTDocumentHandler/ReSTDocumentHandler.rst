@@ -18,6 +18,12 @@ Read-only properties
 .. autoattribute:: experimental.tools.newabjadbooktools.ReSTDocumentHandler.ReSTDocumentHandler.ReSTDocumentHandler.document
    :noindex:
 
+.. autoattribute:: experimental.tools.newabjadbooktools.ReSTDocumentHandler.ReSTDocumentHandler.ReSTDocumentHandler.document_type
+   :noindex:
+
+.. autoattribute:: experimental.tools.newabjadbooktools.ReSTDocumentHandler.ReSTDocumentHandler.ReSTDocumentHandler.output_directory_path
+   :noindex:
+
 .. autoattribute:: experimental.tools.newabjadbooktools.ReSTDocumentHandler.ReSTDocumentHandler.ReSTDocumentHandler.storage_format
    :noindex:
 
@@ -31,6 +37,12 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.newabjadbooktools.ReSTDocumentHandler.ReSTDocumentHandler.ReSTDocumentHandler.extract_code_blocks
+   :noindex:
+
+.. automethod:: experimental.tools.newabjadbooktools.ReSTDocumentHandler.ReSTDocumentHandler.ReSTDocumentHandler.process_output_proxies
+   :noindex:
+
+.. automethod:: experimental.tools.newabjadbooktools.ReSTDocumentHandler.ReSTDocumentHandler.ReSTDocumentHandler.rebuild_document
    :noindex:
 
 Special methods

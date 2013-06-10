@@ -18,6 +18,12 @@ Read-only properties
 .. autoattribute:: experimental.tools.newabjadbooktools.TextualDocumentHandler.TextualDocumentHandler.TextualDocumentHandler.document
    :noindex:
 
+.. autoattribute:: experimental.tools.newabjadbooktools.TextualDocumentHandler.TextualDocumentHandler.TextualDocumentHandler.document_type
+   :noindex:
+
+.. autoattribute:: experimental.tools.newabjadbooktools.TextualDocumentHandler.TextualDocumentHandler.TextualDocumentHandler.output_directory_path
+   :noindex:
+
 .. autoattribute:: experimental.tools.newabjadbooktools.TextualDocumentHandler.TextualDocumentHandler.TextualDocumentHandler.storage_format
    :noindex:
 
@@ -31,6 +37,12 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.newabjadbooktools.TextualDocumentHandler.TextualDocumentHandler.TextualDocumentHandler.extract_code_blocks
+   :noindex:
+
+.. automethod:: experimental.tools.newabjadbooktools.TextualDocumentHandler.TextualDocumentHandler.TextualDocumentHandler.process_output_proxies
+   :noindex:
+
+.. automethod:: experimental.tools.newabjadbooktools.TextualDocumentHandler.TextualDocumentHandler.TextualDocumentHandler.rebuild_document
    :noindex:
 
 Special methods

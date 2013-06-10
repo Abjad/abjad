@@ -18,6 +18,12 @@ Read-only properties
 .. autoattribute:: experimental.tools.newabjadbooktools.LaTeXDocumentHandler.LaTeXDocumentHandler.LaTeXDocumentHandler.document
    :noindex:
 
+.. autoattribute:: experimental.tools.newabjadbooktools.LaTeXDocumentHandler.LaTeXDocumentHandler.LaTeXDocumentHandler.document_type
+   :noindex:
+
+.. autoattribute:: experimental.tools.newabjadbooktools.LaTeXDocumentHandler.LaTeXDocumentHandler.LaTeXDocumentHandler.output_directory_path
+   :noindex:
+
 .. autoattribute:: experimental.tools.newabjadbooktools.LaTeXDocumentHandler.LaTeXDocumentHandler.LaTeXDocumentHandler.storage_format
    :noindex:
 
@@ -31,6 +37,12 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.newabjadbooktools.LaTeXDocumentHandler.LaTeXDocumentHandler.LaTeXDocumentHandler.extract_code_blocks
+   :noindex:
+
+.. automethod:: experimental.tools.newabjadbooktools.LaTeXDocumentHandler.LaTeXDocumentHandler.LaTeXDocumentHandler.process_output_proxies
+   :noindex:
+
+.. automethod:: experimental.tools.newabjadbooktools.LaTeXDocumentHandler.LaTeXDocumentHandler.LaTeXDocumentHandler.rebuild_document
    :noindex:
 
 Special methods

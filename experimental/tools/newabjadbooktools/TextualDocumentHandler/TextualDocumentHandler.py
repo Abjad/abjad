@@ -156,3 +156,15 @@ class TextualDocumentHandler(DocumentHandler):
             raise Exception('Unterminated tag at EOF.')
 
         return ordered_dict
+
+    def process_output_proxies(self, ordered_dict, output_directory_path):
+        pass
+
+    def rebuild_document(self, document, ordered_dict, output_directory_path):
+        lines = document.splitlines()
+    
+    ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def document_type(self):
+        return 'text'
