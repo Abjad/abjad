@@ -1,0 +1,35 @@
+#! /usr/bin/env python
+
+import os
+
+def fix_filenames_with_forbidden_characters():
+   forbidden_characters = (' ', )
+   for dirpath, dirnames, filenames in os.walk('.'):
+      for filename in filenames:
+         if 'svn' not in dirpath and 'svn' not in filename and \
+            not filename.startswith('.'):
+            for forbidden_character in forbidden_characters:
+               if forbidden_character in filename:
+                  full_filename = os.path.join(dirpath, filename)
+                  fix_filename(full_filename)
+
+
+def fix_filename(old_full_filename):
+   escaped_old_full_filename = old_full_filename.replace(' ', '\\ ') 
+   escaped_old_full_filename = escaped_old_full_filename.replace("'", "\\'")
+   escaped_old_full_filename = escaped_old_full_filename.replace('(', '\\(')
+   escaped_old_full_filename = escaped_old_full_filename.replace(')', '\\)')
+   escaped_old_full_filename = escaped_old_full_filename.replace('&', '\\&')
+   new_full_filename = old_full_filename.replace(' ', '-')
+   new_full_filename = new_full_filename.replace("'", '')
+   new_full_filename = new_full_filename.replace('(', '')
+   new_full_filename = new_full_filename.replace(')', '')
+   new_full_filename = new_full_filename.replace('&', 'and')
+   command = 'svn mv %s %s' % (escaped_old_full_filename, new_full_filename)
+   os.system(command)
+
+
+if __name__ == '__main__':
+   os.system('clear')
+   fix_filenames_with_forbidden_characters()
+   print ''
