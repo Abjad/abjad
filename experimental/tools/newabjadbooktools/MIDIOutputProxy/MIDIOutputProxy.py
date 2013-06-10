@@ -1,9 +1,9 @@
 import copy
 from abjad.tools import lilypondfiletools
-from experimental.tools.newabjadbooktools.OutputProxy import OutputProxy
+from experimental.tools.newabjadbooktools.AssetOutputProxy import AssetOutputProxy
 
 
-class MIDIOutputProxy(OutputProxy):
+class MIDIOutputProxy(AssetOutputProxy):
 
     ### CLASS VARIABLES ###
 

@@ -451,6 +451,8 @@ Unstable packages (load manually)
    .. toctree::
       :maxdepth: 1
 
+      tools/newabjadbooktools/AssetOutputProxy/AssetOutputProxy
+      tools/newabjadbooktools/CodeOutputProxy/CodeOutputProxy
       tools/newabjadbooktools/DoctreeDocumentHandler/DoctreeDocumentHandler
       tools/newabjadbooktools/DocumentHandler/DocumentHandler
       tools/newabjadbooktools/ImageFormat/ImageFormat
@@ -482,6 +484,8 @@ Unstable packages (load manually)
 
    .. toctree::
 
+      tools/newabjadbooktools/AssetOutputProxy/AssetOutputProxy
+      tools/newabjadbooktools/CodeOutputProxy/CodeOutputProxy
       tools/newabjadbooktools/DoctreeDocumentHandler/DoctreeDocumentHandler
       tools/newabjadbooktools/DocumentHandler/DocumentHandler
       tools/newabjadbooktools/ImageFormat/ImageFormat

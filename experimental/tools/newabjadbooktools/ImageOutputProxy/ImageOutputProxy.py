@@ -1,5 +1,5 @@
-from experimental.tools.newabjadbooktools.OutputProxy import OutputProxy
+from experimental.tools.newabjadbooktools.AssetOutputProxy import AssetOutputProxy
 
 
-class ImageOutputProxy(OutputProxy):
+class ImageOutputProxy(AssetOutputProxy):
     pass
