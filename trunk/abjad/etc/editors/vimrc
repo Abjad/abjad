@@ -18,7 +18,7 @@ set backspace=2
 set background=light
 set clipboard=unnamed
 set colorcolumn=80
-set completeopt=longest,menuone
+set completeopt=menuone,preview
 set encoding=utf-8
 set expandtab
 set fileencodings=utf-8,latin1
