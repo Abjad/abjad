@@ -452,7 +452,6 @@ Unstable packages (load manually)
       :maxdepth: 1
 
       tools/newabjadbooktools/AssetOutputProxy/AssetOutputProxy
-      tools/newabjadbooktools/CodeOutputProxy/CodeOutputProxy
       tools/newabjadbooktools/DoctreeDocumentHandler/DoctreeDocumentHandler
       tools/newabjadbooktools/DocumentHandler/DocumentHandler
       tools/newabjadbooktools/ImageFormat/ImageFormat
@@ -468,6 +467,7 @@ Unstable packages (load manually)
       :maxdepth: 1
 
       tools/newabjadbooktools/CodeBlock/CodeBlock
+      tools/newabjadbooktools/CodeOutputProxy/CodeOutputProxy
       tools/newabjadbooktools/GnuplotOutputProxy/GnuplotOutputProxy
       tools/newabjadbooktools/GraphvizOutputProxy/GraphvizOutputProxy
       tools/newabjadbooktools/HTMLDocumentHandler/HTMLDocumentHandler
@@ -485,7 +485,6 @@ Unstable packages (load manually)
    .. toctree::
 
       tools/newabjadbooktools/AssetOutputProxy/AssetOutputProxy
-      tools/newabjadbooktools/CodeOutputProxy/CodeOutputProxy
       tools/newabjadbooktools/DoctreeDocumentHandler/DoctreeDocumentHandler
       tools/newabjadbooktools/DocumentHandler/DocumentHandler
       tools/newabjadbooktools/ImageFormat/ImageFormat
@@ -501,6 +500,7 @@ Unstable packages (load manually)
    .. toctree::
 
       tools/newabjadbooktools/CodeBlock/CodeBlock
+      tools/newabjadbooktools/CodeOutputProxy/CodeOutputProxy
       tools/newabjadbooktools/GnuplotOutputProxy/GnuplotOutputProxy
       tools/newabjadbooktools/GraphvizOutputProxy/GraphvizOutputProxy
       tools/newabjadbooktools/HTMLDocumentHandler/HTMLDocumentHandler

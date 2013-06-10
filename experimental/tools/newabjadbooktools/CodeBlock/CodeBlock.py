@@ -16,7 +16,11 @@ class CodeBlock(AbjadObject):
         >>> code_block = newabjadbooktools.CodeBlock(lines)
         >>> results = code_block.execute()
         >>> print results
-        ['>>> message = "hello, world!"\n>>> print message\nhello, world!']
+        [CodeOutputProxy((
+            '>>> message = "hello, world!"',
+            '>>> print message',
+            'hello, world!',
+            ))]
 
     Multiple code block interpretations can be chained together by using a
     common InteractiveConsole instance:
@@ -38,11 +42,18 @@ class CodeBlock(AbjadObject):
     ::
 
         >>> code_block_one.execute(console)
-        ['>>> message = "hello, "']
+        [CodeOutputProxy((
+            '>>> message = "hello, "',
+            ))]
         >>> code_block_two.execute(console)
-        ['>>> message += "world!"']
+        [CodeOutputProxy((
+            '>>> message += "world!"',
+            ))]
         >>> code_block_three.execute(console)
-        ['>>> print message\nhello, world!']
+        [CodeOutputProxy((
+            '>>> print message',
+            'hello, world!',
+            ))]
 
     Code blocks intercept certain Abjad function calls and pull the results
     out as output proxies, to be dealt with by other processes.
@@ -67,9 +78,15 @@ class CodeBlock(AbjadObject):
         >>> for x in results:
         ...     x
         ...
-        '>>> staff = Staff(r"\\clef bass c4 d4 e4 f4")\n>>> show(staff)\n'
+        CodeOutputProxy((
+            '>>> staff = Staff(r"\\clef bass c4 d4 e4 f4")',
+            '>>> show(staff)',
+            ))
         LilyPondOutputProxy()
-        '>>> print len(staff)\n4'
+        CodeOutputProxy((
+            '>>> print len(staff)',
+            '4',
+            ))
 
     Code blocks also support a number of optional keyword arguments that
     affect what commands are executed in the code block's console, and what
@@ -168,12 +185,12 @@ class CodeBlock(AbjadObject):
                         else:
                             # Otherwise, it's OK: just grab it out of the
                             # console's locals. 
-                            proxy_class = self.output_triggers[output_method]
-                            output_proxy = proxy_class(
+                            asset_proxy_class = self.output_triggers[output_method]
+                            asset_output_proxy = asset_proxy_class(
                                 copy.deepcopy(console.locals[object_reference]),
                                 )
                             results.append(result)
-                            results.append(output_proxy)
+                            results.append(asset_output_proxy)
                             # Then empty the current result buffer:
                             # the output proxy represents a break in the 
                             # printed code blocks.
@@ -217,6 +234,12 @@ class CodeBlock(AbjadObject):
                         if line.startswith(('>>> ', '... ')):
                             lines[j] = line[4:]
                     results[i] = '\n'.join(lines) 
+
+        # Replace strings with CodeOutputProxy instances.
+        for i, result in enumerate(results):
+            if isinstance(result, str):
+                results[i] = newabjadbooktools.CodeOutputProxy(
+                    result.splitlines())
 
         return results
 
