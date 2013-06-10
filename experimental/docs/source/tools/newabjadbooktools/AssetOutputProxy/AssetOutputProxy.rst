@@ -39,6 +39,9 @@ Methods
 .. automethod:: experimental.tools.newabjadbooktools.AssetOutputProxy.AssetOutputProxy.AssetOutputProxy.handle_text_document_environment
    :noindex:
 
+.. automethod:: experimental.tools.newabjadbooktools.AssetOutputProxy.AssetOutputProxy.AssetOutputProxy.write_asset_to_disk
+   :noindex:
+
 Special methods
 ---------------
 

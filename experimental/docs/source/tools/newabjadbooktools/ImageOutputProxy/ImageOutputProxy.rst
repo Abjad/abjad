@@ -39,6 +39,9 @@ Methods
 .. automethod:: experimental.tools.newabjadbooktools.ImageOutputProxy.ImageOutputProxy.ImageOutputProxy.handle_text_document_environment
    :noindex:
 
+.. automethod:: experimental.tools.newabjadbooktools.ImageOutputProxy.ImageOutputProxy.ImageOutputProxy.write_asset_to_disk
+   :noindex:
+
 Special methods
 ---------------
 

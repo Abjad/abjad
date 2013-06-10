@@ -39,6 +39,9 @@ Methods
 .. automethod:: experimental.tools.newabjadbooktools.GraphvizOutputProxy.GraphvizOutputProxy.GraphvizOutputProxy.handle_text_document_environment
    :noindex:
 
+.. automethod:: experimental.tools.newabjadbooktools.GraphvizOutputProxy.GraphvizOutputProxy.GraphvizOutputProxy.write_asset_to_disk
+   :noindex:
+
 Special methods
 ---------------
 
