@@ -65,7 +65,10 @@ class SvnCommitScript(DirectoryScript):
         while True:
             print '\nSTORED COMMIT MESSAGE:\n'
             with open(commit_path, 'r') as f:
-                print f.read()
+                lines = f.read().splitlines()
+                for line in lines:
+                    print '~ {}'.format(line)
+            print
             result = raw_input('Accept [Y], Reject [n], Abort [a]: ').strip().lower()
             if result in ('', 'y', 'yes'):
                 iotools.spawn_subprocess(commit_command)
