@@ -79,7 +79,7 @@ class MaterialDefinitionModuleProxy(ModuleProxy, ParseableModuleMixin):
                 if current_section == 'docstring':
                     current_section = 'setup'
                 else:
-                    current_section = 'body'
+                    current_section = 'display_string'
                 continue
             elif line.startswith('# -*-'):
                 current_section = 'encoding'
@@ -97,7 +97,7 @@ class MaterialDefinitionModuleProxy(ModuleProxy, ParseableModuleMixin):
                 setup_statements.append(line)
             elif current_section == 'output material module imports':
                 output_material_module_import_lines.append(line)
-            elif current_section == 'body':
+            elif current_section == 'display_string':
                 body_lines.append(line)
             else:
                 is_parsable = False

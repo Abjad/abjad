@@ -62,9 +62,9 @@ class MenuSectionAggregator(MenuObject):
         for menu_section in self.menu_sections:
             if menu_section.is_hidden:
                 for menu_token in menu_section.menu_tokens:
-                    key, body = menu_token.key, menu_token.body
+                    key, display_string = menu_token.key, menu_token.display_string
                     menu_line = self.make_tab(1) + ' '
-                    menu_line += '{} ({})'.format(body, key)
+                    menu_line += '{} ({})'.format(display_string, key)
                     menu_lines.append(menu_line)
                 menu_lines.append('')
         self._io.display(menu_lines, capitalize_first_character=False)

@@ -123,7 +123,7 @@ class PerformerCreationWizard(Wizard):
     def make_performer_configuration_menu(self, performer):
         menu, menu_section = self._io.make_menu(
             where=self._where,
-            return_value_attribute='body',
+            return_value_attribute='display_string',
             is_numbered=True,
             is_ranged=True,
             )

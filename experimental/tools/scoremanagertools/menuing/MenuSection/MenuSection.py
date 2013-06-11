@@ -8,7 +8,7 @@ class MenuSection(MenuObject):
 
     ### CLASS VARIABLES ###
 
-    return_value_attributes = ('body', 'key', 'number', 'prepopulated')
+    return_value_attributes = ('display_string', 'key', 'number', 'prepopulated')
 
     ### INITIALIZER ###
 
@@ -23,7 +23,7 @@ class MenuSection(MenuObject):
         where=None,
         title=None,
         menu_tokens=None,
-        return_value_attribute='body',
+        return_value_attribute='display_string',
         ):
         MenuObject.__init__(self, session=session, where=where, title=title)
         self._is_hidden = is_hidden
@@ -84,7 +84,7 @@ class MenuSection(MenuObject):
 
     @property
     def menu_token_bodies(self):
-        return [menu_token.body for menu_token in self.menu_tokens]
+        return [menu_token.display_string for menu_token in self.menu_tokens]
 
     @property
     def menu_token_keys(self):
@@ -251,19 +251,19 @@ class MenuSection(MenuObject):
         note that entries may be both numbered and keyed.
 
         BODIES. Bodies are those things shown in each entry;
-        bodies are positional and every entry must be supplied with a body.
+        bodies are positional and every entry must be supplied with a display_string.
 
         RESULT. Result is the thing ultimately returned by Menu._run().
 
         Match determination:
         1. Numeric user input checked against numbered entries.
         2. If key exists, textual user input checked for exact match against key.
-        3. Textual user input checked for 3-char match against body.
+        3. Textual user input checked for 3-char match against display_string.
         4. Otherwise, no match found.
 
         Return value resolution:
         Keyed entries (numbered or not) supply key as return value.
-        Nonkeyed entries (always numbered) supply body as return value.
+        Nonkeyed entries (always numbered) supply display_string as return value.
         '''
         menu_lines = []
         menu_lines.extend(self.make_title_lines())
@@ -275,26 +275,26 @@ class MenuSection(MenuObject):
                 menu_lines.append(menu_line)
                 total_empty_tokens += 1
                 continue
-            key, body, existing_value = menu_token.key, menu_token.body, menu_token.existing_value
+            key, display_string, existing_value = menu_token.key, menu_token.display_string, menu_token.existing_value
             if self.is_numbered:
                 entry_number = entry_index + 1 - total_empty_tokens
                 menu_line += '{}: '.format(str(entry_number))
             if key and self.is_keyed:
                 if self.show_existing_values and existing_value:
                     if existing_value in (None, 'None'):
-                        menu_line += '{} ({}):'.format(body, key)
+                        menu_line += '{} ({}):'.format(display_string, key)
                     else:
-                        menu_line += '{} ({}): {}'.format(body, key, existing_value)
+                        menu_line += '{} ({}): {}'.format(display_string, key, existing_value)
                 else:
-                    menu_line += '{} ({})'.format(body, key)
+                    menu_line += '{} ({})'.format(display_string, key)
             else:
                 if self.show_existing_values and existing_value:
                     if existing_value in (None, 'None'):
-                        menu_line += '{}:'.format(body)
+                        menu_line += '{}:'.format(display_string)
                     else:
-                        menu_line += '{}: {}'.format(body, existing_value)
+                        menu_line += '{}: {}'.format(display_string, existing_value)
                 else:
-                    menu_line += '{}'.format(body)
+                    menu_line += '{}'.format(display_string)
             menu_lines.append(menu_line)
         if self.menu_tokens:
             menu_lines.append('')

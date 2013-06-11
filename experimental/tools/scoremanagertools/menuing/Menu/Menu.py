@@ -186,7 +186,7 @@ class Menu(MenuSectionAggregator):
             return 'r'
         else:
             for menu_token in self.menu_tokens:
-                if menu_token.body == 'redraw':
+                if menu_token.display_string == 'redraw':
                     continue
                 if menu_token.matches(user_input):
                     return self.conditionally_enclose_in_list(
@@ -233,7 +233,7 @@ class Menu(MenuSectionAggregator):
         is_ranged=False, 
         is_modern=False,
         menu_tokens=None,
-        return_value_attribute='body',
+        return_value_attribute='display_string',
         ):
         from experimental import scoremanagertools
         assert not (is_numbered and self.has_numbered_section)

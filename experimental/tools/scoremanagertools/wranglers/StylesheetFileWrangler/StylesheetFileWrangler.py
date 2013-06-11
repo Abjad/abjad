@@ -80,11 +80,11 @@ class StylesheetFileWrangler(FileWrangler):
         keys = self.list_asset_filesystem_paths(head=head)
         bodies = []
         for filesystem_path in keys:
-            body = os.path.basename(filesystem_path)
+            display_string = os.path.basename(filesystem_path)
             annotation = self._filesystem_path_to_annotation(filesystem_path)
             if annotation:
-                body = '{} ({})'.format(body, annotation)
-            bodies.append(body)
+                display_string = '{} ({})'.format(display_string, annotation)
+            bodies.append(display_string)
         return zip(keys, bodies)
 
     ### READ-ONLY PUBLIC PROPERTIES ###

@@ -61,7 +61,7 @@ class ParseableModuleMixin(AbjadObject):
                 if current_section == 'docstring':
                     current_section = 'setup'
                 else:
-                    current_section = 'body'
+                    current_section = 'display_string'
                 continue
             elif line.startswith('# -*-'):
                 current_section = 'encoding'
@@ -70,14 +70,14 @@ class ParseableModuleMixin(AbjadObject):
             elif line.startswith(('from', 'import')):
                 current_section = 'setup'
             else:
-                current_section = 'body'
+                current_section = 'display_string'
             if current_section == 'encoding':
                 encoding_directives.append(line)
             elif current_section == 'docstring':
                 docstring_lines.append(line)
             elif current_section == 'setup':
                 setup_statements.append(line)
-            elif current_section == 'body':
+            elif current_section == 'display_string':
                 body_lines.append(line)
             else:
                 is_parsable = False

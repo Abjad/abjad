@@ -27,7 +27,7 @@ def test_MenuSection_menu_token_return_values_01():
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
     menu_tokens = ['apple', 'banana', 'cherry']
-    menu_section = menu.make_section(is_numbered=True, menu_tokens=menu_tokens, return_value_attribute='body')
+    menu_section = menu.make_section(is_numbered=True, menu_tokens=menu_tokens, return_value_attribute='display_string')
     menu_section.title = 'section'
     assert menu_section.is_numbered
     assert menu_section.menu_token_return_values == ['apple', 'banana', 'cherry']
@@ -36,7 +36,7 @@ def test_MenuSection_menu_token_return_values_01():
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
     menu_tokens = ['apple', 'banana', 'cherry']
-    menu_section = menu.make_section(menu_tokens=menu_tokens, return_value_attribute='body')
+    menu_section = menu.make_section(menu_tokens=menu_tokens, return_value_attribute='display_string')
     menu_section.title = 'section'
     assert not menu_section.is_numbered
     assert menu_section.menu_token_return_values == ['apple', 'banana', 'cherry']
@@ -45,7 +45,7 @@ def test_MenuSection_menu_token_return_values_01():
 
 def test_MenuSection_menu_token_return_values_02():
     '''Menu entry return values vary when menu entry menu_tokens are tuples.
-    You can explicitly demand a return value equal either to the menu entry key or body.
+    You can explicitly demand a return value equal either to the menu entry key or display_string.
     Note that menu_section numbering plays no role in this.
     '''
 
@@ -83,7 +83,7 @@ def test_MenuSection_menu_token_return_values_02():
         ('rm', 'delete something'),
         ('mod', 'modify something'),
         ]
-    menu_section = menu.make_section(is_numbered=True, menu_tokens=menu_tokens, return_value_attribute='body')
+    menu_section = menu.make_section(is_numbered=True, menu_tokens=menu_tokens, return_value_attribute='display_string')
     menu_section.title = 'section'
     assert menu_section.is_numbered
     assert menu_section.menu_token_return_values == ['add something', 'delete something', 'modify something']
@@ -96,7 +96,7 @@ def test_MenuSection_menu_token_return_values_02():
         ('rm', 'delete something'),
         ('mod', 'modify something'),
         ]
-    menu_section = menu.make_section(menu_tokens=menu_tokens, return_value_attribute='body')
+    menu_section = menu.make_section(menu_tokens=menu_tokens, return_value_attribute='display_string')
     menu_section.title = 'section'
     assert not menu_section.is_numbered
     assert menu_section.menu_token_return_values == ['add something', 'delete something', 'modify something']

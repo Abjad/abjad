@@ -139,7 +139,7 @@ class IO(AbjadObject):
         is_modern=False,
         where=None,
         menu_tokens=None, 
-        return_value_attribute='body',
+        return_value_attribute='display_string',
         ):
         from experimental.tools import scoremanagertools
         menu = scoremanagertools.menuing.Menu(

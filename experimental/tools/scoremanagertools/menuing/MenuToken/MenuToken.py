@@ -10,7 +10,7 @@ class MenuToken(AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    return_value_attributes = ('body', 'key', 'number', 'prepopulated')
+    return_value_attributes = ('display_string', 'key', 'number', 'prepopulated')
 
     ### INITIALIZER ###
 
@@ -29,12 +29,12 @@ class MenuToken(AbjadObject):
         self._return_value_attribute = return_value_attribute
         if is_modern:
             if len(expr) == 1:
-                body = expr[0]
+                display_string = expr[0]
                 key = None
                 existing_value = None
                 prepopulated_return_value = None
             elif len(expr) == 2:
-                body, key = expr
+                display_string, key = expr
                 existing_value = None
                 prepopulated_return_value = None
             else:
@@ -43,46 +43,46 @@ class MenuToken(AbjadObject):
             assert 1 <= len(expr) <= 4
             if self.return_value_attribute == 'key':
                assert not len(expr) == 1, repr(expr)
-            body = None
+            display_string = None
             key = None
             existing_value = None
             prepopulated_return_value = None
     #        if is_keyed:
     #            assert len(expr) == 2, repr(expr)
             if len(expr) == 1:
-                body = expr[0]
+                display_string = expr[0]
                 if self.is_keyed:
-                    key = body
+                    key = display_string
             elif len(expr) == 2:
-                key, body = expr
+                key, display_string = expr
             elif len(expr) == 3:
-                key, body, existing_value = expr
+                key, display_string, existing_value = expr
             elif len(expr) == 4:
-                key, body, existing_value, prepopulated_return_value = expr
+                key, display_string, existing_value, prepopulated_return_value = expr
             if key is not None:
                 assert isinstance(key, str)
             #    assert ' ' not in key
         elif isinstance(expr, type(self)):
-            body = expr.body
+            display_string = expr.display_string
             key = expr.key
             existing_value = expr.existing_value
             prepopulated_return_value = expr.prepopulated_return_value
         else:
             raise TypeError(expr)
-        assert body
+        assert display_string
         self._key = key
-        self._body = body
+        self._body = display_string
         self._existing_value = existing_value
         self._prepopulated_return_value = prepopulated_return_value
         if self.return_value_attribute == 'number':
             return_value = str(self.number)
-        elif self.return_value_attribute == 'body':
-            return_value = self.body
+        elif self.return_value_attribute == 'display_string':
+            return_value = self.display_string
         elif self.return_value_attribute == 'key':
             if self.key:
                 return_value = self.key
             else:
-                return_value = self.body
+                return_value = self.display_string
         elif self.return_value_attribute == 'prepopulated':
             assert prepopulated_return_value
             return_value = prepopulated_return_value
@@ -97,7 +97,7 @@ class MenuToken(AbjadObject):
             matches.append(self.key)
         self._matches = tuple(matches)
         normalized_body = \
-            stringtools.strip_diacritics_from_binary_string(self.body)
+            stringtools.strip_diacritics_from_binary_string(self.display_string)
         normalized_body = normalized_body.lower()
         self._normalized_body = normalized_body
 
@@ -112,7 +112,7 @@ class MenuToken(AbjadObject):
 #        result = []
 #        return (
 #            self.key, 
-#            self.body, 
+#            self.display_string, 
 #            self.existing_value, 
 #            self.prepopulated_return_value,
 #            )
@@ -120,7 +120,7 @@ class MenuToken(AbjadObject):
     def _to_tuple(self):
         return (
             self.key, 
-            self.body, 
+            self.display_string, 
             self.existing_value, 
             self.prepopulated_return_value,
             )
@@ -128,7 +128,7 @@ class MenuToken(AbjadObject):
     ### PUBLIC READ-ONLY PROPERTIES ###
 
     @property
-    def body(self):
+    def display_string(self):
         return self._body
 
     @property

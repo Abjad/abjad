@@ -55,7 +55,7 @@ def test_Menu_run_02():
     menu_tokens = ['apple', 'banana', 'cherry']
     section_1 = menu.make_section(
         is_keyed=True, is_hidden=False, is_numbered=False, is_ranged=False, menu_tokens=menu_tokens,
-        return_value_attribute='body')
+        return_value_attribute='display_string')
     section_1.title = 'section'
 
     menu._session.reinitialize()
@@ -321,7 +321,7 @@ def test_Menu_run_08():
         ('rm', 'second command'),
         ('mod', 'third command'),
         ]
-    menu_section = menu.make_section(menu_tokens=menu_tokens, is_keyed=True, return_value_attribute='body')
+    menu_section = menu.make_section(menu_tokens=menu_tokens, is_keyed=True, return_value_attribute='display_string')
     result = menu._run(user_input='foo')
 
     menu._session.reinitialize()
@@ -436,7 +436,7 @@ def test_Menu_run_10():
         ]
     section_1 = menu.make_section(
         is_keyed=False, is_hidden=False, is_numbered=False, is_ranged=False,
-        menu_tokens=menu_tokens, return_value_attribute='body')
+        menu_tokens=menu_tokens, return_value_attribute='display_string')
     section_1.title = 'section'
 
     menu._session.reinitialize()
@@ -542,7 +542,7 @@ def test_Menu_run_12():
         ]
     section_1 = menu.make_section(
         is_keyed=True, is_hidden=True, is_numbered=False, is_ranged=False,
-        menu_tokens=menu_tokens, return_value_attribute='body')
+        menu_tokens=menu_tokens, return_value_attribute='display_string')
     section_1.title = 'section'
 
     menu._session.reinitialize()
@@ -655,7 +655,7 @@ def test_Menu_run_14():
         ]
     section_1 = menu.make_section(
         is_keyed=True, is_hidden=False, is_numbered=True, is_ranged=False,
-        menu_tokens=menu_tokens, return_value_attribute='body')
+        menu_tokens=menu_tokens, return_value_attribute='display_string')
     section_1.title = 'section'
 
     menu._session.reinitialize()
@@ -767,7 +767,7 @@ def test_Menu_run_16():
         ]
     section_1 = menu.make_section(
         is_keyed=True, is_hidden=False, is_numbered=False, is_ranged=True,
-        menu_tokens=menu_tokens, return_value_attribute='body')
+        menu_tokens=menu_tokens, return_value_attribute='display_string')
     section_1.title = 'section'
 
     menu._session.reinitialize()
