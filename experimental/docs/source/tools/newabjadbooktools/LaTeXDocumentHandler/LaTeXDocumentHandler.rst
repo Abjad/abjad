@@ -33,6 +33,9 @@ Methods
 .. automethod:: experimental.tools.newabjadbooktools.LaTeXDocumentHandler.LaTeXDocumentHandler.LaTeXDocumentHandler.create_code_block
    :noindex:
 
+.. automethod:: experimental.tools.newabjadbooktools.LaTeXDocumentHandler.LaTeXDocumentHandler.LaTeXDocumentHandler.execute_code_blocks
+   :noindex:
+
 .. automethod:: experimental.tools.newabjadbooktools.LaTeXDocumentHandler.LaTeXDocumentHandler.LaTeXDocumentHandler.extract_code_block_options
    :noindex:
 

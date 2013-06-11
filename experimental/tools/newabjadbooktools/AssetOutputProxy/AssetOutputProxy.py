@@ -1,3 +1,4 @@
+import hashlib
 from experimental.tools.newabjadbooktools.OutputProxy import OutputProxy
 
 
@@ -12,7 +13,7 @@ class AssetOutputProxy(OutputProxy):
     @property
     def file_name_without_extension(self):
         md5 = hashlib.md5(self.payload).hexdigest()
-        return '-'.join((self._file_name_prefix, md5))
+        return '-'.join((self.file_name_prefix, md5))
 
     ### PUBLIC METHODS ###
 

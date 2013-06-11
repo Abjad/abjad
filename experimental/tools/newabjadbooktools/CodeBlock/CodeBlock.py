@@ -1,4 +1,3 @@
-import code
 import copy
 import contextlib
 import StringIO
@@ -14,7 +13,15 @@ class CodeBlock(AbjadObject):
 
         >>> lines = ['message = "hello, world!"', 'print message']
         >>> code_block = newabjadbooktools.CodeBlock(lines)
-        >>> output_proxies = code_block.execute()
+
+    ::
+
+        >>> import code
+        >>> console = code.InteractiveConsole()
+
+    ::
+
+        >>> output_proxies = code_block.execute(console)
         >>> print output_proxies
         [CodeOutputProxy((
             '>>> message = "hello, world!"',
@@ -33,11 +40,6 @@ class CodeBlock(AbjadObject):
         >>> code_block_one = newabjadbooktools.CodeBlock(lines_one)
         >>> code_block_two = newabjadbooktools.CodeBlock(lines_two)
         >>> code_block_three = newabjadbooktools.CodeBlock(lines_three)
-
-    ::
-
-        >>> import code
-        >>> console = code.InteractiveConsole()
 
     ::
 
@@ -147,25 +149,17 @@ class CodeBlock(AbjadObject):
         self._output_proxies = []
         self._strip_prompt = bool(strip_prompt)
 
-    ### SPECIAL METHODS ###
-
-    def __call__(self, console):
-        self.output_proxies.extend(self.execute(console))
-
     ### PUBLIC METHODS ###
 
-    def execute(self, console=None):
+    def execute(self, console):
         from experimental.tools import newabjadbooktools
 
-        if console is None:
-            console = code.InteractiveConsole()
-
-        output_proxies = []
+        self.output_proxies[:] = []
         is_incomplete_statement = False
         result = '>>> '
         lines = self.executed_lines or self.displayed_lines
 
-        for line in lines:
+        for i, line in enumerate(lines):
 
             result += line + '\n'
             first, sep, rest = line.partition('(')
@@ -174,28 +168,28 @@ class CodeBlock(AbjadObject):
                     output_method = first.strip()
                     if output_method in self.output_triggers:
 
+                        # TODO: Handle complex, nested input
                         if ',' in rest:
                             object_reference = rest.rpartition(',')[0].strip()
                         else:
                             object_reference = rest.rpartition(')')[0].strip()
-                        if object_reference not in console.locals:
-                            # Simulate a bad reference, 
-                            # and cause a captured Exception.
-                            console.push(line)
+
+                        # Is it a name, or something complex?
+                        if object_reference in console.locals:
+                            referent = console.locals[object_reference]
                         else:
-                            # Otherwise, it's OK: just grab it out of the
-                            # console's locals. 
-                            asset_proxy_class = self.output_triggers[output_method]
-                            asset_output_proxy = asset_proxy_class(
-                                copy.deepcopy(console.locals[object_reference]),
-                                )
-                            output_proxies.append(result)
-                            output_proxies.append(asset_output_proxy)
-                            # Then empty the current result buffer:
-                            # the output proxy represents a break in the 
-                            # printed code blocks.
-                            result = ''
+                            command = '__abjad_book__ = {}'.format(object_reference)
+                            console.push(command)
+                            referent = console.locals['__abjad_book__']
+                            console.push('del __abjad_book__')
+                                
+                        asset_proxy_class = self.output_triggers[output_method]
+                        asset_output_proxy = asset_proxy_class(referent)
+                        self.output_proxies.append(result)
+                        self.output_proxies.append(asset_output_proxy)
+                        result = ''
                         is_incomplete_statement = False
+
                     else:
                         is_incomplete_statement = console.push(line)
                     output = stream.getvalue()
@@ -215,33 +209,36 @@ class CodeBlock(AbjadObject):
                     result += output
         while result.endswith('\n>>> '):
             result = result[:-5]
-         
-        output_proxies.append(result)
+        if result == '>>> ':
+            result = ''
+        if result: 
+            self.output_proxies.append(result)
 
         if self.executed_lines:
-            output_proxies = ['\n'.join(self.displayed_output_proxies)]
+            self.output_proxies[:] = ['\n'.join(self.displayed_output_proxies)]
 
         if self.hide:
-            for x in reversed(output_proxies):
+            for x in reversed(self.output_proxies):
                 if isinstance(x, str):
-                    output_proxies.remove(x)
+                    self.output_proxies.remove(x)
 
         if self.strip_prompt:
-            for i, x in enumerate(output_proxies):
+            for i, x in enumerate(self.output_proxies):
                 if instance(x, str):
                     lines = x.splitlines()
                     for j, line in enumerate(lines):
                         if line.startswith(('>>> ', '... ')):
                             lines[j] = line[4:]
-                    output_proxies[i] = '\n'.join(lines) 
+                    self.output_proxies[i] = '\n'.join(lines) 
 
         # Replace strings with CodeOutputProxy instances.
-        for i, result in enumerate(output_proxies):
+        for i, result in enumerate(self.output_proxies):
             if isinstance(result, str):
-                output_proxies[i] = newabjadbooktools.CodeOutputProxy(
+                self.output_proxies[i] = newabjadbooktools.CodeOutputProxy(
                     result.splitlines())
 
-        return output_proxies
+        
+        return self.output_proxies
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

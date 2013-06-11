@@ -42,9 +42,6 @@ Methods
 Special methods
 ---------------
 
-.. automethod:: experimental.tools.newabjadbooktools.CodeBlock.CodeBlock.CodeBlock.__call__
-   :noindex:
-
 .. automethod:: experimental.tools.newabjadbooktools.CodeBlock.CodeBlock.CodeBlock.__eq__
    :noindex:
 

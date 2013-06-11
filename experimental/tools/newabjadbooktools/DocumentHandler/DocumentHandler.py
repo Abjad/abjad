@@ -39,6 +39,17 @@ class DocumentHandler(AbjadObject):
             )
         self.code_blocks[source_location] = code_block
 
+    def execute_code_blocks(self):
+        console = code.InteractiveConsole()
+        console.push('from abjad import *')
+        try:
+            import experimental
+            console.push('from experimental import *')
+        except ImportError:
+            pass
+        for source_location, code_block in self.code_blocks.iteritems():
+            output_proxies = code_block.execute(console)
+
     @abc.abstractmethod
     def extract_code_block_options(self, source):
         raise NotImplemented

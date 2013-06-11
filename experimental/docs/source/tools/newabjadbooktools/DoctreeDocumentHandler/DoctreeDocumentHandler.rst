@@ -30,6 +30,9 @@ Methods
 .. automethod:: experimental.tools.newabjadbooktools.DoctreeDocumentHandler.DoctreeDocumentHandler.DoctreeDocumentHandler.create_code_block
    :noindex:
 
+.. automethod:: experimental.tools.newabjadbooktools.DoctreeDocumentHandler.DoctreeDocumentHandler.DoctreeDocumentHandler.execute_code_blocks
+   :noindex:
+
 .. automethod:: experimental.tools.newabjadbooktools.DoctreeDocumentHandler.DoctreeDocumentHandler.DoctreeDocumentHandler.extract_code_block_options
    :noindex:
 

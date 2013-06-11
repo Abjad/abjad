@@ -41,7 +41,7 @@ class OutputProxy(AbjadObject):
             }
         assert type(document_handler) in document_handler_mapping
         procedure = document_handler_mapping[type(document_handler)]
-        procedure(self, document_handler)
+        return procedure(document_handler)
 
     def handle_doctree_document_environment(self, document_handler):
         raise NotImplemented

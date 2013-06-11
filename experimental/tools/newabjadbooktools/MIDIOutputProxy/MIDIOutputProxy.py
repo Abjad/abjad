@@ -1,6 +1,7 @@
 import copy
 from abjad.tools import lilypondfiletools
 from experimental.tools.newabjadbooktools.AssetOutputProxy import AssetOutputProxy
+from abjad.tools.iotools._insert_expr_into_lilypond_file import _insert_expr_into_lilypond_file
 
 
 class MIDIOutputProxy(AssetOutputProxy):
@@ -11,8 +12,9 @@ class MIDIOutputProxy(AssetOutputProxy):
         if isinstance(payload, str):
             self._payload = payload
         else:
-            from abjad.tools.iotools._insert_expr_into_lilypond_file import _insert_expr_into_lilypond_file
+            payload = copy.deepcopy(payload)
             lilypond_file = _insert_expr_into_lilypond_file(payload)
+            lilypond_file.file_initial_system_comments[:] = []
             lilypond_file.score_block.append(lilypondfiletools.MIDIBlock())
             lilypond_format = lilypond_file.lilypond_format
             self._payload = lilypond_format

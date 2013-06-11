@@ -33,6 +33,9 @@ Methods
 .. automethod:: experimental.tools.newabjadbooktools.HTMLDocumentHandler.HTMLDocumentHandler.HTMLDocumentHandler.create_code_block
    :noindex:
 
+.. automethod:: experimental.tools.newabjadbooktools.HTMLDocumentHandler.HTMLDocumentHandler.HTMLDocumentHandler.execute_code_blocks
+   :noindex:
+
 .. automethod:: experimental.tools.newabjadbooktools.HTMLDocumentHandler.HTMLDocumentHandler.HTMLDocumentHandler.extract_code_block_options
    :noindex:
 
