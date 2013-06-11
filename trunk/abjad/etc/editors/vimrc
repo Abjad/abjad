@@ -123,13 +123,13 @@ let g:jedi#popup_select_first = 0
 map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 
 " vim-powerline (https://github.com/Lokaltog/vim-powerline)
-set laststatus=2
-let g:Powerline_symbols = 'compatible'
-let g:Powerline_stl_path_style = 'filename'
-call Pl#Theme#RemoveSegment('scrollpercent')
-call Pl#Theme#RemoveSegment('fileformat')
-call Pl#Theme#RemoveSegment('fileencoding')
-call Pl#Theme#RemoveSegment('filetype')
+"set laststatus=2
+"let g:Powerline_symbols = 'compatible'
+"let g:Powerline_stl_path_style = 'filename'
+"call Pl#Theme#RemoveSegment('scrollpercent')
+"call Pl#Theme#RemoveSegment('fileformat')
+"call Pl#Theme#RemoveSegment('fileencoding')
+"call Pl#Theme#RemoveSegment('filetype')
 
 
 " 4. other

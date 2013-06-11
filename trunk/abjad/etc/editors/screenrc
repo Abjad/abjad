@@ -21,7 +21,7 @@ hardstatus string "%{rk}%H %{gk}%c %{yk}%M%d %{wk}%?%-Lw%?%{bw}%n*%f%t%?(%u)%?%{
 # sourcefiles
 # (width = max - 80; height = max)
 chdir $ABJADEXPERIMENTAL
-screen -U -t 'source'
+screen -U -t ''
 
 # experimental
 # (width = 80; height = max / 3)
@@ -29,21 +29,21 @@ chdir $ABJADEXPERIMENTAL
 split -v
 focus
 resize 80
-screen -U -t 'experimental'
+screen -U -t ''
 
 # mainline 
 # (width = 80; height = max / 3)
 chdir $ABJAD
 split
 focus
-screen -U -t 'mainline'
+screen -U -t ''
 
 # trunk
 # (width = 80; height = max / 3)
 chdir $ABJADTRUNK
 split
 focus
-screen -U -t 'trunk'
+screen -U -t ''
 
 # return to sourcefiles & start vim
 focus
