@@ -5,6 +5,9 @@
 # turn off copyright message
 startup_message off
 
+# set scrollback
+defscrollback 5000
+
 # set status
 hardstatus on
 hardstatus alwayslastline

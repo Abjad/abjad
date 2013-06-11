@@ -25,10 +25,12 @@ class MenuToken(AbjadObject):
         self._is_keyed = is_keyed
         assert return_value_attribute in self.return_value_attributes
         self._return_value_attribute = return_value_attribute
-#        if self.return_value_attribute == 'key':
-#            assert self.is_keyed or 1 < len(expr)
         if isinstance(expr, tuple):
-            assert 1 <= len(expr) <= 4, repr(expr)
+            assert 1 <= len(expr) <= 4
+            if self.return_value_attribute == 'key':
+                #assert self.is_keyed or 1 < len(expr)
+                #assert len(expr) != 4, repr(expr)
+               assert not len(expr) == 1, repr(expr)
             body = None
             key = None
             existing_value = None

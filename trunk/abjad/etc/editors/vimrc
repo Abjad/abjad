@@ -22,6 +22,7 @@ set completeopt=menuone,preview
 set encoding=utf-8
 set expandtab
 set fileencodings=utf-8,latin1
+set guitablabel=\[%N\]\ %t\ %M
 set helpheight=80
 set history=700
 set incsearch
@@ -41,6 +42,7 @@ set showmode
 set smartcase
 set softtabstop=4
 set scrolloff=7
+set showtabline=2
 set tabstop=4
 set tags=./tags
 set textwidth=79
@@ -56,8 +58,10 @@ set wildmode=list:longest
 " ==========================
 
 " comments
-:map <F4> <Esc>:'a,'bs/#//<CR>
-:map <F6> <Esc>:'a,'bs/^/#/<CR>
+noremap <F4> <Esc>:'a,'bs/#//<CR>
+noremap <F6> <Esc>:'a,'bs/^/#/<CR>
+vnoremap <F4> :s/#//<CR>
+vnoremap <F6> :s/^/#/<CR>
 
 " copy & paste
 vmap <C-y> y:call system("xclip -i -selection clipboard", getreg("\""))<CR>:call system("xclip -i", getreg("\""))<CR>
@@ -144,3 +148,57 @@ function! OmniPopup(action)
 endfunction
 inoremap <silent><C-j> <C-R>=OmniPopup('j')<CR>
 inoremap <silent><C-k> <C-R>=OmniPopup('k')<CR>
+
+" rename tabs to show tab# and # of viewports
+" (http://stackoverflow.com/q/5927952)
+if exists("+showtabline")
+    function! MyTabLine()
+        let s = ''
+        let wn = ''
+        let t = tabpagenr()
+        let i = 1
+        while i <= tabpagenr('$')
+            let buflist = tabpagebuflist(i)
+            let winnr = tabpagewinnr(i)
+            let s .= '%' . i . 'T'
+            let s .= (i == t ? '%1*' : '%2*')
+            let s .= ' '
+            let wn = tabpagewinnr(i,'$')
+            let s .= (i== t ? '%#TabNumSel#' : '%#TabNum#')
+            let s .= i
+            if tabpagewinnr(i,'$') > 1
+                let s .= '.'
+                let s .= (i== t ? '%#TabWinNumSel#' : '%#TabWinNum#')
+                let s .= (tabpagewinnr(i,'$') > 1 ? wn : '')
+            end
+            let s .= ' %*'
+            let s .= (i == t ? '%#TabLineSel#' : '%#TabLine#')
+            let bufnr = buflist[winnr - 1]
+            let file = bufname(bufnr)
+            let buftype = getbufvar(bufnr, 'buftype')
+            if buftype == 'nofile'
+                if file =~ '\/.'
+                    let file = substitute(file, '.*\/\ze.', '', '')
+                endif
+            else
+                let file = fnamemodify(file, ':p:t')
+            endif
+            if file == ''
+                let file = '[No Name]'
+            endif
+            let s .= file
+            let s .= (i == t ? '%m' : '')
+            let i = i + 1
+        endwhile
+        let s .= '%T%#TabLineFill#%='
+        return s
+    endfunction
+    set stal=2
+    set tabline=%!MyTabLine()
+endif
+hi TabLineSel term=bold cterm=bold ctermfg=16 ctermbg=229
+hi TabWinNumSel term=bold cterm=bold ctermfg=90 ctermbg=229
+hi TabNumSel term=bold cterm=bold ctermfg=16 ctermbg=229
+hi TabLine term=underline ctermfg=16 ctermbg=145
+hi TabWinNum term=bold cterm=bold ctermfg=90 ctermbg=145
+hi TabNum term=bold cterm=bold ctermfg=16 ctermbg=145
