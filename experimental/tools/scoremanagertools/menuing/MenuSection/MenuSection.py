@@ -18,7 +18,6 @@ class MenuSection(MenuObject):
         is_keyed=False,
         is_numbered=False,
         is_ranged=False,
-        is_read_only=False,
         is_modern=False,
         session=None,
         where=None,
@@ -84,10 +83,6 @@ class MenuSection(MenuObject):
         return self._is_ranged
 
     @property
-    def is_read_only(self):
-        return self._is_read_only
-
-    @property
     def menu_token_bodies(self):
         return [menu_token.body for menu_token in self.menu_tokens]
 
@@ -110,9 +105,13 @@ class MenuSection(MenuObject):
             if isinstance(default_index, int):
                 count = len(self.menu_tokens)
                 if default_index < 0:
-                    raise ValueError('default index must be positive integer.')
+                    message = 'default index must be positive integer.'
+                    raise ValueError(message)
                 if count <= default_index:
-                    raise ValueError('only {} menu entry menu_tokens in menu_section.'.format(count))
+                    message = 'only {} menu entry menu_tokens ' + \
+                        'in menu_section.'
+                    message = message.format(count)
+                    raise ValueError(message)
             self._default_index = default_index
         return property(**locals())
 

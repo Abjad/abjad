@@ -33,9 +33,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.is_ranged
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.is_read_only
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.menu_token_bodies
    :noindex:
 

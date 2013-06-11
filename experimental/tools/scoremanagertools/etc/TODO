@@ -81,6 +81,4 @@
 28. Find a way to include tags management in hidden menu 
     of every package proxy.
 
-29. Maybe remove MenuSection.__init__() is_read_only keyword entirely?
-
-30. Change 'body' globally to 'display_string'.
+29. Change 'body' globally to 'display_string'.
