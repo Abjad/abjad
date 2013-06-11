@@ -1,0 +1,67 @@
+###################
+### 0. preamble ###
+###################
+
+# turn off copyright message
+startup_message off
+
+# set status
+hardstatus on
+hardstatus alwayslastline
+hardstatus string "%{rk}%H %{gk}%c %{yk}%M%d %{wk}%?%-Lw%?%{bw}%n*%f%t%?(%u)%?%{wk}%?%+Lw%?"
+
+
+#########################
+### 1. window regions ###
+#########################
+
+# sourcefiles (width = max - 80; height = max)
+chdir $ABJADEXPERIMENTAL
+screen -U -t 'sourcefiles' 0
+
+# project root (width = 80; height = max / 3)
+chdir $ABJADTRUNK
+split -v
+focus
+resize 80
+screen -U -t 'project root' 1
+
+# experimental (width = 80; height = max / 3)
+chdir $ABJADEXPERIMENTAL
+split
+focus
+screen -U -t 'experimental branch' 1
+
+# mainline (width = 80; height = max / 3)
+chdir $ABJAD
+split
+focus
+screen -U -t 'mainline' 1
+
+# start vim split vertically
+focus
+exec vim -O2
+
+
+#######################
+### 2. key bindings ###
+#######################
+
+# rebind kill
+bind k
+bind ^k
+bind 'K' kill
+
+# rebind login on
+bind .
+bind 'I' login on
+
+# rebind login off
+bind ^\
+bind \\
+bind 'O' login off
+
+# redind history
+bind ^h
+bind h
+bind '}' history
