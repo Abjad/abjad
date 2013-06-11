@@ -18,30 +18,34 @@ hardstatus string "%{rk}%H %{gk}%c %{yk}%M%d %{wk}%?%-Lw%?%{bw}%n*%f%t%?(%u)%?%{
 ### 1. window regions ###
 #########################
 
-# sourcefiles (width = max - 80; height = max)
+# sourcefiles
+# (width = max - 80; height = max)
 chdir $ABJADEXPERIMENTAL
-screen -U -t 'sourcefiles' 0
+screen -U -t 'source'
 
-# project root (width = 80; height = max / 3)
-chdir $ABJADTRUNK
+# experimental
+# (width = 80; height = max / 3)
+chdir $ABJADEXPERIMENTAL
 split -v
 focus
 resize 80
-screen -U -t 'project root' 1
+screen -U -t 'experimental'
 
-# experimental (width = 80; height = max / 3)
-chdir $ABJADEXPERIMENTAL
-split
-focus
-screen -U -t 'experimental branch' 1
-
-# mainline (width = 80; height = max / 3)
+# mainline 
+# (width = 80; height = max / 3)
 chdir $ABJAD
 split
 focus
-screen -U -t 'mainline' 1
+screen -U -t 'mainline'
 
-# start vim split vertically
+# trunk
+# (width = 80; height = max / 3)
+chdir $ABJADTRUNK
+split
+focus
+screen -U -t 'trunk'
+
+# return to sourcefiles & start vim
 focus
 exec vim -O2
 
