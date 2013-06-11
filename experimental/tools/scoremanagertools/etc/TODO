@@ -4,7 +4,8 @@
 
 3.  Remove extra appearance of B-flat clarinet from clarinetist config menu.
 
-4.  Change Instrument._default_performer_names to house (full, abbreviation) pairs.
+4.  Change Instrument._default_performer_names 
+    to house (full, abbreviation) pairs.
 
 5.  Use performer abbreviations to populate performer selection menu.
 
@@ -17,11 +18,13 @@
 
 9.  Make user input handler creation work.
 
-10. Find a way dynamcially to present default indicator with default menu entries.
+10. Find a way dynamcially to present default indicator 
+    with default menu entries.
 
 11. Distinguish positional editor parameters from keyword editor parameters.
 
-12.  Implement something to tour all materials everywhere and examine in sequence.
+12. Implement something to tour all materials everywhere 
+    and examine in sequence.
 
 13. Currently MaterialPackageMaker inherits from MaterialPackageProxy.
     Maybe MaterialPackageMaker should *have* a MaterialPackageProxy instead.
@@ -31,8 +34,10 @@
 
 15. Add a scores/test directory and check it into the scores repository.
     Then add a scores/test/test_scores_import_scores.py file.
-    The file will test 'import red_example_score', 'import green_example_score', and so on.
-    This will be a very high-level test to make sure that entire score packages remain importable.
+    The file will test 'import red_example_score', 
+    'import green_example_score', and so on.
+    This will be a very high-level test to make sure 
+    that entire score packages remain importable.
 
 16. Consolidate scores to single repository.
 
@@ -45,7 +50,8 @@
 
 18. Remove ModuleProxy.unimport() entirely.
 
-19. Replace all _read_only_attributes.py and _public_attributes.py test files with doctests.
+19. Replace all _read_only_attributes.py and _public_attributes.py 
+    test files with doctests.
 
 20. Sweep inline scoremanagertools TODO items.
 
@@ -55,16 +61,26 @@
 
 23. Create a PackagesystemAssetProxy to parallel PacakagesystemAssetWrangler.
 
-24. Harmonize user input strings with method names in MaterialPackageProxy.user_input_to_action dictionary.
+24. Harmonize user input strings with method names in 
+    MaterialPackageProxy.user_input_to_action dictionary.
 
 25. Author StylesheetFileWrangler.interactively_remove_assets() test.
-    Will involve making user_input='... rm ...' work with named arguments instead of just numeric arguments.
+    Will involve making user_input='... rm ...' work with named arguments 
+    instead of just numeric arguments.
 
-26. Make MaterialPackageMaker classes stop creating materials in tools.scoremanagertools.materialpackages.
-    Those classes should create material packages in the user asset library material packages directory.
-    Or in user score packages. But no material packages should ever be created in the built-in
-    asset library material packages directory.
+26. Make MaterialPackageMaker classes stop creating materials in 
+    tools.scoremanagertools.materialpackages.
+    Those classes should create material packages in the user asset 
+    library material packages directory.
+    Or in user score packages. But no material packages should ever 
+    be created in the built-in asset library material packages directory.
 
-27. Implement material methods to move material packages from one location to another.
+27. Implement material methods to move material packages 
+    from one location to another.
 
-28. Find a way to include tags management in hidden menu of every package proxy.
+28. Find a way to include tags management in hidden menu 
+    of every package proxy.
+
+29. Maybe remove MenuSection.__init__() is_read_only keyword entirely?
+
+30. Change 'body' globally to 'display_string'.

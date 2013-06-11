@@ -133,17 +133,15 @@ class ScoreManager(ScoreManagerObject):
         return menu
 
     def _make_svn_menu(self):
-        menu_tokens = [
-            ('add', 'svn add scores'),
-            ('ci', 'svn commit scores'),
-            ('st', 'svn status scores'),
-            ('up', 'svn update scores'),
-            ]
         menu, menu_section = self._io.make_menu(
-            menu_tokens=menu_tokens,
             where=self._where,
             return_value_attribute='key',
+            is_modern=True,
             )
+        menu_section.append(('svn add scores', 'add'))
+        menu_section.append(('svn commit scores', 'ci'))
+        menu_section.append(('svn status scores', 'st'))
+        menu_section.append(('svn update scores', 'up'))
         return menu
 
     def _run(self, 

@@ -19,6 +19,7 @@ class MenuSection(MenuObject):
         is_numbered=False,
         is_ranged=False,
         is_read_only=False,
+        is_modern=False,
         session=None,
         where=None,
         title=None,
@@ -31,6 +32,7 @@ class MenuSection(MenuObject):
         self._is_keyed = is_keyed
         self._is_numbered = is_numbered
         self._is_ranged = is_ranged
+        self._is_modern = is_modern
         assert return_value_attribute in self.return_value_attributes
         self._return_value_attribute = return_value_attribute
         self.default_index = None
@@ -68,6 +70,10 @@ class MenuSection(MenuObject):
     @property
     def is_keyed(self):
         return self._is_keyed
+
+    @property
+    def is_modern(self):
+        return self._is_modern
 
     @property
     def is_numbered(self):
@@ -129,7 +135,9 @@ class MenuSection(MenuObject):
                         menu_token,
                         number=number,
                         is_keyed=self.is_keyed,
-                        return_value_attribute=self.return_value_attribute)
+                        is_modern=self.is_modern,
+                        return_value_attribute=self.return_value_attribute,
+                        )
                     new_tokens.append(new_token)
                 self._tokens = new_tokens
             else:
@@ -154,7 +162,9 @@ class MenuSection(MenuObject):
             expr,
             number=number,
             is_keyed=self.is_keyed,
-            return_value_attribute=self.return_value_attribute)
+            is_modern=self.is_modern,
+            return_value_attribute=self.return_value_attribute,
+            )
         self.menu_tokens.append(menu_token)
         
     def argument_range_string_to_numbers(self, argument_range_string):

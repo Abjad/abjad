@@ -70,7 +70,8 @@ class ScorePackageWrangler(PackageWrangler):
         self._io.print_not_yet_implemented()
 
     def _make_menu_tokens(self, head=None):
-        menuing_pairs = self.list_visible_asset_package_path_and_score_title_pairs()
+        menuing_pairs = \
+            self.list_visible_asset_package_path_and_score_title_pairs()
         tmp = stringtools.strip_diacritics_from_binary_string
         menuing_pairs.sort(lambda x, y: cmp(tmp(x[1]), tmp(y[1])))
         return menuing_pairs

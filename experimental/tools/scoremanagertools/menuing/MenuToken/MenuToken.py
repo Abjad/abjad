@@ -17,7 +17,9 @@ class MenuToken(AbjadObject):
     def __init__(self, expr, 
         number=None, 
         is_keyed=False, 
-        return_value_attribute=None):
+        is_modern=False,
+        return_value_attribute=None,
+        ):
         if isinstance(expr, str):
             expr = (expr, )
         assert isinstance(expr, (tuple, type(self))), repr(expr)
@@ -25,7 +27,19 @@ class MenuToken(AbjadObject):
         self._is_keyed = is_keyed
         assert return_value_attribute in self.return_value_attributes
         self._return_value_attribute = return_value_attribute
-        if isinstance(expr, tuple):
+        if is_modern:
+            if len(expr) == 1:
+                body = expr[0]
+                key = None
+                existing_value = None
+                prepopulated_return_value = None
+            elif len(expr) == 2:
+                body, key = expr
+                existing_value = None
+                prepopulated_return_value = None
+            else:
+                raise NotImplementedError
+        elif isinstance(expr, tuple):
             assert 1 <= len(expr) <= 4
             if self.return_value_attribute == 'key':
                assert not len(expr) == 1, repr(expr)

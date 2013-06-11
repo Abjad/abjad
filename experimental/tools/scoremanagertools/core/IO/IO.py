@@ -25,7 +25,8 @@ class IO(AbjadObject):
     def assign_user_input(self, user_input=None):
         if user_input is not None:
             if self._session.user_input:
-                self._session.user_input = user_input + ' ' + self._session.user_input
+                self._session.user_input = user_input + ' ' + \
+                    self._session.user_input
             else:
                 self._session.user_input = user_input
 
@@ -48,7 +49,8 @@ class IO(AbjadObject):
             lines = [lines]
         if not self._session.hide_next_redraw:
             if capitalize_first_character:
-                lines = [stringtools.capitalize_string_start(line) for line in lines]
+                lines = [stringtools.capitalize_string_start(line) 
+                    for line in lines]
             if lines:
                 if self._session.transcribe_next_command:
                     self._session.transcript.append_lines(lines)
@@ -67,8 +69,13 @@ class IO(AbjadObject):
         else:
             return repr(expr)
 
-    def handle_raw_input(self, prompt, include_chevron=True, include_newline=True, prompt_character='>',
-        capitalize_prompt=True):
+    def handle_raw_input(self, 
+        prompt, 
+        include_chevron=True, 
+        include_newline=True, 
+        prompt_character='>',
+        capitalize_prompt=True,
+        ):
         if capitalize_prompt:
             prompt = stringtools.capitalize_string_start(prompt)
         if include_chevron:
@@ -96,33 +103,54 @@ class IO(AbjadObject):
             self._session.transcript.append_lines(menu_chunk)
         return user_response
 
-    def handle_raw_input_with_default(self, prompt, default=None, include_chevron=True, include_newline=True,
-        prompt_character='>', capitalize_prompt=True):
+    def handle_raw_input_with_default(self, 
+        prompt, 
+        default=None, 
+        include_chevron=True, 
+        include_newline=True,
+        prompt_character='>', 
+        capitalize_prompt=True,
+        ):
         if default in (None, 'None'):
             default = ''
         readline.set_startup_hook(lambda: readline.insert_text(default))
         try:
-            return self.handle_raw_input(prompt, include_chevron=include_chevron,
-                include_newline=include_newline, prompt_character=prompt_character,
-                capitalize_prompt=capitalize_prompt)
+            return self.handle_raw_input(
+                prompt, 
+                include_chevron=include_chevron,
+                include_newline=include_newline, 
+                prompt_character=prompt_character,
+                capitalize_prompt=capitalize_prompt,
+                )
         finally:
             readline.set_startup_hook()
 
     def make_getter(self, where=None):
         from experimental.tools import scoremanagertools
-        return scoremanagertools.menuing.UserInputGetter(where=where, session=self._session)
+        return scoremanagertools.menuing.UserInputGetter(
+            where=where, session=self._session)
 
-    def make_menu(self, is_hidden=False, is_internally_keyed=False, is_keyed=True,
-        is_numbered=False, is_ranged=False, where=None,
-        menu_tokens=None, return_value_attribute='body'):
+    def make_menu(self, 
+        is_hidden=False, 
+        is_internally_keyed=False, 
+        is_keyed=True,
+        is_numbered=False, 
+        is_ranged=False, 
+        is_modern=False,
+        where=None,
+        menu_tokens=None, 
+        return_value_attribute='body',
+        ):
         from experimental.tools import scoremanagertools
-        menu = scoremanagertools.menuing.Menu(where=where, session=self._session)
+        menu = scoremanagertools.menuing.Menu(
+            where=where, session=self._session)
         menu_section = menu.make_section(
             is_hidden=is_hidden,
             is_internally_keyed=is_internally_keyed,
             is_keyed=is_keyed,
             is_numbered=is_numbered,
             is_ranged=is_ranged,
+            is_modern=is_modern,
             menu_tokens=menu_tokens,
             return_value_attribute=return_value_attribute,
             )
@@ -171,5 +199,6 @@ class IO(AbjadObject):
         if lines:
             lines.append('')
             self.display(lines)
-        self.handle_raw_input('press return to continue.', include_chevron=False)
+        self.handle_raw_input(
+            'press return to continue.', include_chevron=False)
         self.conditionally_clear_terminal()

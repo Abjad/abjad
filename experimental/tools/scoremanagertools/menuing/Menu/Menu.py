@@ -231,8 +231,10 @@ class Menu(MenuSectionAggregator):
         is_keyed=False,
         is_numbered=False, 
         is_ranged=False, 
+        is_modern=False,
         menu_tokens=None,
-        return_value_attribute='body'):
+        return_value_attribute='body',
+        ):
         from experimental import scoremanagertools
         assert not (is_numbered and self.has_numbered_section)
         assert not (is_ranged and self.has_ranged_section)
@@ -242,6 +244,7 @@ class Menu(MenuSectionAggregator):
             is_keyed=is_keyed,
             is_numbered=is_numbered,
             is_ranged=is_ranged,
+            is_modern=is_modern,
             menu_tokens=menu_tokens,
             return_value_attribute=return_value_attribute,
             session=self._session,

@@ -24,6 +24,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.is_keyed
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.is_modern
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.is_numbered
    :noindex:
 
