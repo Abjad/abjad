@@ -28,8 +28,6 @@ class MenuToken(AbjadObject):
         if isinstance(expr, tuple):
             assert 1 <= len(expr) <= 4
             if self.return_value_attribute == 'key':
-                #assert self.is_keyed or 1 < len(expr)
-                #assert len(expr) != 4, repr(expr)
                assert not len(expr) == 1, repr(expr)
             body = None
             key = None

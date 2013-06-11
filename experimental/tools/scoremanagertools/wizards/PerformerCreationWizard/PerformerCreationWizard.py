@@ -14,6 +14,12 @@ class PerformerCreationWizard(Wizard):
         Wizard.__init__(self, session=session, target=target)
         self.is_ranged = is_ranged
 
+    ### PRIVATE READ-ONLY PROPERTIES ###
+
+    @property
+    def _breadcrumb(self):
+        return 'performer creation wizard'
+
     ### PRIVATE METHODS ###
 
     def _run(self, cache=False, clear=True, head=None, user_input=None):
@@ -40,7 +46,8 @@ class PerformerCreationWizard(Wizard):
                     performer = scoretools.Performer(performer_name)
                     self.interactively_initialize_performer(performer)
                 self._session.pop_breadcrumb()
-                was_backtracking_locally = self._session.is_backtracking_locally
+                was_backtracking_locally = \
+                    self._session.is_backtracking_locally
                 if self._session.backtrack():
                     if was_backtracking_locally:
                         try_again = True
@@ -69,15 +76,12 @@ class PerformerCreationWizard(Wizard):
         self.target = final_result
         return self.target
 
-    ### READ-ONLY PROPERTIES ###
-
-    @property
-    def _breadcrumb(self):
-        return 'instrument creation wizard'
-
     ### PUBLIC METHODS ###
 
-    def interactively_initialize_performer(self, performer, cache=False, clear=True):
+    def interactively_initialize_performer(self, 
+        performer, 
+        cache=False, 
+        clear=True):
         menu = self.make_performer_configuration_menu(performer)
         while True:
             self._session.push_breadcrumb(performer.name)
@@ -93,7 +97,8 @@ class PerformerCreationWizard(Wizard):
                 break
             elif result in ('more', ['more']):
                 with self.backtracking:
-                    wizard = InstrumentCreationWizard(session=self._session, is_ranged=True)
+                    wizard = InstrumentCreationWizard(
+                        session=self._session, is_ranged=True)
                     instruments = wizard._run()
                 if self._session.backtrack():
                     break
@@ -103,7 +108,8 @@ class PerformerCreationWizard(Wizard):
                 break
             elif isinstance(result, list):
                 for instrument_name in result:
-                    instrument_class = instrumenttools.default_instrument_name_to_instrument_class(
+                    instrument_class = \
+                        instrumenttools.default_instrument_name_to_instrument_class(
                         instrument_name)
                     instrument = instrument_class()
                     performer.instruments.append(instrument)
@@ -117,20 +123,26 @@ class PerformerCreationWizard(Wizard):
     def make_performer_configuration_menu(self, performer):
         menu, menu_section = self._io.make_menu(
             where=self._where,
-            return_value_attribute='key',
+            return_value_attribute='body',
             is_numbered=True,
             is_ranged=True,
             )
         menu_section.title = 'select instruments'
-        likely_instruments = performer.likely_instruments_based_on_performer_name
-        likely_instrument_names = [x().instrument_name for x in likely_instruments]
-        most_likely_instrument = performer.most_likely_instrument_based_on_performer_name
+        likely_instruments = \
+            performer.likely_instruments_based_on_performer_name
+        likely_instrument_names = [
+            x().instrument_name for x in likely_instruments]
+        most_likely_instrument = \
+            performer.most_likely_instrument_based_on_performer_name
         default_index = None
         if most_likely_instrument is not None:
-            most_likely_instrument_name = most_likely_instrument().instrument_name
+            most_likely_instrument_name = \
+                most_likely_instrument().instrument_name
             assert most_likely_instrument_name in likely_instrument_names
-            most_likely_index = likely_instrument_names.index(most_likely_instrument_name)
-            likely_instrument_names[most_likely_index] = '{} (default)'.format(most_likely_instrument_name)
+            most_likely_index = likely_instrument_names.index(
+                most_likely_instrument_name)
+            string = '{} (default)'.format(most_likely_instrument_name)
+            likely_instrument_names[most_likely_index] = string
             most_likely_number = most_likely_index + 1
             default_index = most_likely_index
         if likely_instruments:
