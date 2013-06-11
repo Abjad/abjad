@@ -20,33 +20,43 @@ class MenuToken(AbjadObject):
         return_value_attribute=None):
         if isinstance(expr, str):
             expr = (expr, )
-        assert isinstance(expr, tuple), repr(expr)
-        assert 1 <= len(expr) <= 4, repr(expr)
+        assert isinstance(expr, (tuple, type(self))), repr(expr)
         self._number = number
         self._is_keyed = is_keyed
         assert return_value_attribute in self.return_value_attributes
         self._return_value_attribute = return_value_attribute
-        if self.return_value_attribute == 'key':
-            assert self.is_keyed or 1 < len(expr)
-        body = None
-        key = None
-        existing_value = None
-        prepopulated_return_value = None
-        if len(expr) == 1:
-            body = expr[0]
-            if self.is_keyed:
-                key = body
-        elif len(expr) == 2:
-            key, body = expr
-        elif len(expr) == 3:
-            key, body, existing_value = expr
-        elif len(expr) == 4:
-            key, body, existing_value, prepopulated_return_value = expr
-        if key is not None:
-            assert isinstance(key, str)
-        #    assert ' ' not in key
-        self._key = key
+#        if self.return_value_attribute == 'key':
+#            assert self.is_keyed or 1 < len(expr)
+        if isinstance(expr, tuple):
+            assert 1 <= len(expr) <= 4, repr(expr)
+            body = None
+            key = None
+            existing_value = None
+            prepopulated_return_value = None
+    #        if is_keyed:
+    #            assert len(expr) == 2, repr(expr)
+            if len(expr) == 1:
+                body = expr[0]
+                if self.is_keyed:
+                    key = body
+            elif len(expr) == 2:
+                key, body = expr
+            elif len(expr) == 3:
+                key, body, existing_value = expr
+            elif len(expr) == 4:
+                key, body, existing_value, prepopulated_return_value = expr
+            if key is not None:
+                assert isinstance(key, str)
+            #    assert ' ' not in key
+        elif isinstance(expr, type(self)):
+            body = expr.body
+            key = expr.key
+            existing_value = expr.existing_value
+            prepopulated_return_value = expr.prepopulated_return_value
+        else:
+            raise TypeError(expr)
         assert body
+        self._key = key
         self._body = body
         self._existing_value = existing_value
         self._prepopulated_return_value = prepopulated_return_value
@@ -83,6 +93,15 @@ class MenuToken(AbjadObject):
         return '{}()'.format(self._class_name)
 
     ### PRIVATE METHODS ###
+
+#    def _to_input_tuple(self):
+#        result = []
+#        return (
+#            self.key, 
+#            self.body, 
+#            self.existing_value, 
+#            self.prepopulated_return_value,
+#            )
 
     def _to_tuple(self):
         return (

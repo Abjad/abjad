@@ -120,9 +120,9 @@ class MenuSection(MenuObject):
             elif isinstance(menu_tokens, list):
                 new_tokens = []
                 for i, menu_token in enumerate(menu_tokens):
-                    if isinstance(menu_token, MenuToken):
-                        menu_token = menu_token._to_tuple()
-                    assert isinstance(menu_token, (str, tuple))
+#                    if isinstance(menu_token, MenuToken):
+#                        menu_token = menu_token._to_tuple()
+                    assert isinstance(menu_token, (str, tuple, MenuToken))
                     if self.is_numbered:
                         number = i + 1
                     else:
