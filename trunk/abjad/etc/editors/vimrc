@@ -22,7 +22,6 @@ set completeopt=menuone,preview
 set encoding=utf-8
 set expandtab
 set fileencodings=utf-8,latin1
-set foldcolumn=4
 set helpheight=80
 set history=700
 set incsearch
@@ -31,7 +30,6 @@ set nobackup
 set noswapfile
 set nowrap
 set nowritebackup
-set number
 set paste
 set pastetoggle=<F2>
 set ruler
