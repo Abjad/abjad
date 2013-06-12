@@ -15,9 +15,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuToken.MenuToken.MenuToken.existing_value
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuToken.MenuToken.MenuToken.is_keyed
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuToken.MenuToken.MenuToken.key
    :noindex:
 
