@@ -498,7 +498,7 @@ class UserInputGetter(MenuSectionAggregator):
 
     def store_value_from_argument_list(self, user_response, argument_list):
         from experimental.tools import scoremanagertools
-        dummy_section = scoremanagertools.menuing.MenuSection()
+        dummy_section = scoremanagertools.menuing.MenuSection(is_modern=True)
         dummy_section.menu_tokens = argument_list
         value = dummy_section.argument_range_string_to_numbers(user_response)
         self.values.append(value)
