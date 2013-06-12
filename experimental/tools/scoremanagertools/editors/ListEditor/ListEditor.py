@@ -36,7 +36,6 @@ class ListEditor(InteractiveEditor):
         menu, attribute_management_section = self._io.make_menu(
             where=self._where,
             return_value_attribute='key',
-            is_keyed=getattr(self.target_manifest, 'is_keyed', False),
             is_modern=True,
             )
         attribute_management_section.menu_tokens = self.target_attribute_tokens
@@ -49,7 +48,6 @@ class ListEditor(InteractiveEditor):
         item_management_section.menu_tokens = self.target_summary_lines
         command_section = menu.make_section(
             return_value_attribute='key',
-            is_keyed=True,
             is_modern=True,
             )
         command_section.append(('add elements', 'add'))
@@ -59,7 +57,6 @@ class ListEditor(InteractiveEditor):
             command_section.append(('move elements', 'mv'))
         hidden_section = menu.make_section(
             return_value_attribute='key',
-            is_keyed=True,
             is_hidden=True,
             is_modern=True,
             )

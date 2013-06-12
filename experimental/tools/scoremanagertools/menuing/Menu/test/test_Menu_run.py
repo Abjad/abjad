@@ -188,7 +188,6 @@ def test_Menu_run_05():
     menu._session.push_breadcrumb('location')
     menu_section = menu.make_section(
         return_value_attribute='key',
-        is_keyed=True, 
         is_modern=True,
         )
     menu_section.append(('first command', 'add'))
@@ -249,7 +248,6 @@ def test_Menu_run_06():
     menu._session.push_breadcrumb('location')
     menu_section = menu.make_section(
         return_value_attribute='display_string',
-        is_keyed=True, 
         is_modern=True,
         )
     menu_section.append(('first command', 'add'))
@@ -301,7 +299,6 @@ def test_Menu_run_07():
     menu._session.push_breadcrumb('location')
     menu_section = menu.make_section(
         return_value_attribute='key',
-        is_keyed=True, 
         is_hidden=True, 
         is_modern=True,
         )
@@ -355,7 +352,6 @@ def test_Menu_run_08():
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
     menu_section = menu.make_section(
-        is_keyed=True, 
         is_hidden=True, 
         is_modern=True,
         )
@@ -409,7 +405,6 @@ def test_Menu_run_09():
     menu_section = menu.make_section(
         return_value_attribute='key',
         is_numbered=True, 
-        is_keyed=True, 
         is_modern=True,
         )
     menu_section.append(('first command', 'add'))
@@ -469,7 +464,6 @@ def test_Menu_run_10():
     menu._session.push_breadcrumb('location')
     menu_section = menu.make_section(
         return_value_attribute='key',
-        is_keyed=True, 
         is_ranged=True,
         is_modern=True,
         )
@@ -529,7 +523,6 @@ def test_Menu_run_11():
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
     menu_section = menu.make_section(
-        is_keyed=True, 
         is_ranged=True,
         is_modern=True,
         )

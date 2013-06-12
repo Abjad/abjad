@@ -100,7 +100,6 @@ class MenuObject(ScoreManagerObject):
             session=session,
             where=where,
             return_value_attribute='key',
-            is_keyed=True,
             is_hidden=True,
             is_modern=True,
             )

@@ -61,7 +61,6 @@ class MaterialPackageMaker(MaterialPackageProxy):
             )
         menu_section = main_menu.make_section(
             return_value_attribute='key',
-            is_keyed=True,
             is_modern=True,
             )
         menu_section.append(('user input - clear', 'uic'))
