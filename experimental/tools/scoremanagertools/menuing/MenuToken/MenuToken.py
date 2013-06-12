@@ -25,7 +25,6 @@ class MenuToken(AbjadObject):
         return_value_attribute=None,
         ):
         assert return_value_attribute in self.return_value_attributes
-        assert is_modern
         if isinstance(expr, str):
             expr = (expr, )
         assert isinstance(expr, (tuple, type(self))), repr(expr)

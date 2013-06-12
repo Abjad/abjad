@@ -45,12 +45,8 @@ class SegmentPackageWrangler(PackageWrangler):
             where=self._where,
             menu_tokens=menu_tokens,
             is_numbered=True,
-            is_modern=True,
             )
-        menu_section = menu.make_section(
-            return_value_attribute='key',
-            is_modern=True,
-            )
+        menu_section = menu.make_section(return_value_attribute='key')
         menu_section.append(('new segment', 'new'))
         return menu
 

@@ -68,14 +68,10 @@ class StylesheetFileWrangler(FileWrangler):
             where=self._where,
             return_value_attribute='key',
             is_numbered=True,
-            is_modern=True,
             )
         menu_section.menu_tokens = self._make_menu_tokens(
             include_extension=True)
-        menu_section = menu.make_section(
-            return_value_attribute='key',
-            is_modern=True,
-            )
+        menu_section = menu.make_section(return_value_attribute='key')
         menu_section.append(('new', 'new'))
         menu_section.append(('copy', 'cp'))
         menu_section.append(('rename', 'ren'))
