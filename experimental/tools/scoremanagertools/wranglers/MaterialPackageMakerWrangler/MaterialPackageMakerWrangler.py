@@ -2,7 +2,8 @@ import os
 from abjad.tools import stringtools
 from abjad.tools import layouttools
 from abjad.tools import lilypondfiletools
-from experimental.tools.scoremanagertools.wranglers.PackageWrangler import PackageWrangler
+from experimental.tools.scoremanagertools.wranglers.PackageWrangler \
+    import PackageWrangler
 
 
 class MaterialPackageMakerWrangler(PackageWrangler):
@@ -49,11 +50,14 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             raise ValueError
 
     def _initialize_asset_proxy(self, package_path):
-        from experimental.tools.scoremanagertools.proxies.MaterialPackageProxy import MaterialPackageProxy
+        from experimental.tools import scoremanagertools
         if os.path.sep in package_path:
             package_path = self.configuration.filesystem_path_to_packagesystem_path(package_path)
-        material_package_proxy = MaterialPackageProxy(package_path, session=self._session)
-        material_package_maker_class_name = material_package_proxy.material_package_maker_class_name
+        material_package_proxy = \
+            scoremanagertools.proxies.MaterialPackageProxy(
+            package_path, session=self._session)
+        material_package_maker_class_name = \
+            material_package_proxy.material_package_maker_class_name
         if material_package_maker_class_name is not None:
             material_package_maker_class = None
             command = 'from experimental.tools.scoremanagertools.materialpackagemakers '
@@ -75,18 +79,15 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         menu_tokens = self.list_asset_names(head=head)
         menu, menu_section = self._io.make_menu(
             where=self._where,
+            menu_tokens=menu_tokens,
             is_numbered=True,
-            is_keyed=True,
-            return_value_attribute='key',
-            menu_tokens=menu_tokens,
+            is_modern=True,
             )
-        menu_tokens = [
-            ('new', 'new material package maker'),
-            ]
         menu_section = menu.make_section(
-            menu_tokens=menu_tokens,
             return_value_attribute='key',
+            is_modern=True,
             )
+        menu_section.append(('new material package maker', 'new'))
         return menu
 
     def _make_menu_tokens(self, head=None):
@@ -127,8 +128,10 @@ class MaterialPackageMakerWrangler(PackageWrangler):
 
     def interactively_make_asset(self):
         getter = self._io.make_getter(where=self._where)
-        getter.append_material_package_maker_class_name('material proxy name')
-        getter.append_space_delimited_lowercase_string('generic output product')
+        getter.append_material_package_maker_class_name(
+            'material proxy name')
+        getter.append_space_delimited_lowercase_string(
+            'generic output product')
         result = getter._run()
         if self._session.backtrack():
             return
@@ -143,8 +146,11 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         self.make_asset_stylesheet(material_package_maker_class_name)
 
     def list_asset_filesystem_paths(self,
-        in_built_in_asset_library=True, in_user_asset_library=True,
-        in_built_in_score_packages=True, in_user_score_packages=True, head=None):
+        in_built_in_asset_library=True, 
+        in_user_asset_library=True,
+        in_built_in_score_packages=True, 
+        in_user_score_packages=True, 
+        head=None):
         '''List asset filesystem paths.
 
         Example. List built-in material package maker filesystem paths:
@@ -152,7 +158,8 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         ::
 
             >>> for x in wrangler.list_asset_filesystem_paths(
-            ...     in_user_asset_library=False, in_user_score_packages=False):
+            ...     in_user_asset_library=False, 
+            ...     in_user_score_packages=False):
             ...     x
             '.../tools/scoremanagertools/materialpackagemakers/ArticulationHandlerMaterialPackageMaker'
             '.../tools/scoremanagertools/materialpackagemakers/DynamicHandlerMaterialPackageMaker'
@@ -174,8 +181,11 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             head=head)
 
     def list_asset_names(self,
-        in_built_in_asset_library=True, in_user_asset_library=True,
-        in_built_in_score_packages=True, in_user_score_packages=True, head=None):
+        in_built_in_asset_library=True, 
+        in_user_asset_library=True,
+        in_built_in_score_packages=True, 
+        in_user_score_packages=True, 
+        head=None):
         '''List asset names.
 
         Example. List built-in material package maker names:
@@ -183,7 +193,8 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         ::
 
             >>> for x in wrangler.list_asset_names(
-            ...     in_user_asset_library=False, in_user_score_packages=False):
+            ...     in_user_asset_library=False, 
+            ...     in_user_score_packages=False):
             ...     x
             'articulation handler material package maker'
             'dynamic handler material package maker'
@@ -205,8 +216,11 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             head=head)
 
     def list_asset_packagesystem_paths(self,
-        in_built_in_asset_library=True, in_user_asset_library=True,
-        in_built_in_score_packages=True, in_user_score_packages=True, head=None):
+        in_built_in_asset_library=True, 
+        in_user_asset_library=True,
+        in_built_in_score_packages=True, 
+        in_user_score_packages=True, 
+        head=None):
         '''List asset packagesystem_paths.
 
         Example. List built-in material package maker package paths:
@@ -214,7 +228,8 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         ::
 
             >>> for x in wrangler.list_asset_packagesystem_paths(
-            ...     in_user_asset_library=False, in_user_score_packages=False):
+            ...     in_user_asset_library=False, 
+            ...     in_user_score_packages=False):
             ...     x
             'experimental.tools.scoremanagertools.materialpackagemakers.ArticulationHandlerMaterialPackageMaker'
             'experimental.tools.scoremanagertools.materialpackagemakers.DynamicHandlerMaterialPackageMaker'
@@ -236,8 +251,11 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             head=head)
 
     def list_asset_proxies(self,
-        in_built_in_asset_library=True, in_user_asset_library=True,
-        in_built_in_score_packages=True, in_user_score_packages=True, head=None):
+        in_built_in_asset_library=True, 
+        in_user_asset_library=True,
+        in_built_in_score_packages=True, 
+        in_user_score_packages=True, 
+        head=None):
         '''List asset proxies.
 
         Example. List built-in material package maker proxies:
@@ -245,7 +263,8 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         ::
 
             >>> for x in wrangler.list_asset_proxies(
-            ...     in_user_asset_library=False, in_user_score_packages=False):
+            ...     in_user_asset_library=False, 
+            ...     in_user_score_packages=False):
             ...     x
             MaterialPackageProxy('.../tools/scoremanagertools/materialpackagemakers/ArticulationHandlerMaterialPackageMaker')
             MaterialPackageProxy('.../tools/scoremanagertools/materialpackagemakers/DynamicHandlerMaterialPackageMaker')
@@ -267,8 +286,10 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             head=head)
 
     def list_asset_storehouse_filesystem_paths(self,
-        in_built_in_asset_library=True, in_user_asset_library=True,
-        in_built_in_score_packages=True, in_user_score_packages=True):
+        in_built_in_asset_library=True, 
+        in_user_asset_library=True,
+        in_built_in_score_packages=True, 
+        in_user_score_packages=True):
         '''List asset storehouse filesystem paths.
 
         Example. List built-in material package maker storehouses:
@@ -276,7 +297,8 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         ::
 
             >>> for x in wrangler.list_asset_storehouse_filesystem_paths(
-            ...     in_user_asset_library=False, in_user_score_packages=False):
+            ...     in_user_asset_library=False, 
+            ...     in_user_score_packages=False):
             ...     x
             '.../tools/scoremanagertools/materialpackagemakers'
 
@@ -344,12 +366,14 @@ class MaterialPackageMakerWrangler(PackageWrangler):
     def make_asset_initializer(self, package_name):
         initializer_file_name = os.path.join(
             self.asset_storehouse_packagesystem_path_in_built_in_asset_library,
-            package_name, '__init__.py')
+            package_name, 
+            '__init__.py')
         initializer = file(initializer_file_name, 'w')
         line = 'from abjad.tools import importtools\n'
         initializer.write(line)
         initializer.write('\n')
-        initializer.write("importtools.import_structured_package(__path__[0], globals())\n")
+        initializer.write(
+            "importtools.import_structured_package(__path__[0], globals())\n")
         initializer.close()
 
     # TODO: change to boilerplate
@@ -361,11 +385,14 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         stylesheet.global_staff_size = 14
         stylesheet.layout_block.indent = 0
         stylesheet.layout_block.ragged_right = True
-        stylesheet.paper_block.markup_system_spacing = layouttools.make_spacing_vector(0, 0, 12, 0)
-        stylesheet.paper_block.system_system_spacing = layouttools.make_spacing_vector(0, 0, 10, 0)
+        stylesheet.paper_block.markup_system_spacing = \
+            layouttools.make_spacing_vector(0, 0, 12, 0)
+        stylesheet.paper_block.system_system_spacing = \
+            layouttools.make_spacing_vector(0, 0, 10, 0)
         stylesheet_file_name = os.path.join(
             self.asset_storehouse_packagesystem_path_in_built_in_asset_library,
-            package_name, 'stylesheet.ly')
+            package_name, 
+            'stylesheet.ly')
         stylesheet_file_pointer = file(stylesheet_file_name, 'w')
         stylesheet_file_pointer.write(stylesheet.format)
         stylesheet_file_pointer.close()
