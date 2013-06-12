@@ -1,4 +1,5 @@
-from experimental.tools.newabjadbooktools.TextualDocumentHandler import TextualDocumentHandler
+from experimental.tools.newabjadbooktools.TextualDocumentHandler import \
+    TextualDocumentHandler
 
 
 class ReSTDocumentHandler(TextualDocumentHandler):
@@ -28,7 +29,7 @@ class ReSTDocumentHandler(TextualDocumentHandler):
         >>> code_blocks = handler.extract_code_blocks()
         >>> handler.execute_code_blocks()
         >>> rebuilt_document = handler.rebuild_document()
-        >>> for line in rebuilt_document:
+        >>> for line in rebuilt_document: # doctest: +SKIP
         ...     print repr(line)
         ...
         "Let's print something:"
