@@ -42,6 +42,7 @@ def test_MenuSection_menu_token_return_values_01():
     menu_section = menu.make_section(
         return_value_attribute='display_string',
         is_numbered=True,
+        is_modern=True,
         )
     menu_section.append('apple')
     menu_section.append('banana')

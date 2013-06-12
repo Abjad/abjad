@@ -118,7 +118,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             path_parts = (proxy.filesystem_path,) + self.score_package_asset_storehouse_path_infix_parts
             key = os.path.join(*path_parts)
             keys.append(key)
-        return zip(keys, bodies)
+        return zip(bodies, keys)
 
     @abc.abstractmethod
     def _make_main_menu(self, head=None):
@@ -229,6 +229,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             where=self._where,
             is_numbered=True,
             return_value_attribute='key',
+            is_modern=True,
             )
         menu_section.menu_tokens = self._make_asset_storehouse_menu_tokens(
             in_built_in_asset_library=False,
