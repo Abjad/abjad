@@ -54,9 +54,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.clean_up_attributes_in_memory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.conditionally_set_target_attribute
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.copy_target_attributes_to_memory
    :noindex:
 
@@ -76,6 +73,9 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.menu_key_to_existing_value
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.set_target_attribute
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor.target_args_to_target_summary_lines

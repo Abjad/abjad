@@ -54,9 +54,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.clean_up_attributes_in_memory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.conditionally_set_target_attribute
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.copy_target_attributes_to_memory
    :noindex:
 
@@ -76,6 +73,9 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.menu_key_to_existing_value
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.set_target_attribute
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.InstrumentSpecifierEditor.InstrumentSpecifierEditor.InstrumentSpecifierEditor.target_args_to_target_summary_lines

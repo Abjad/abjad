@@ -1,5 +1,6 @@
 from abjad.tools import stringtools
-from experimental.tools.scoremanagertools.core.ScoreManagerObject import ScoreManagerObject
+from experimental.tools.scoremanagertools.core.ScoreManagerObject \
+    import ScoreManagerObject
 
 
 class InteractiveEditor(ScoreManagerObject):
@@ -28,16 +29,21 @@ class InteractiveEditor(ScoreManagerObject):
 
     @property
     def _breadcrumb(self):
-        return self.target_name or self.space_delimited_lowercase_target_class_name
+        return self.target_name or \
+            self.space_delimited_lowercase_target_class_name
 
     ### PRIVATE METHODS ###
 
     def _handle_main_menu_result(self, result):
-        attribute_name = self.target_manifest.menu_key_to_attribute_name(result)
+        attribute_name = self.target_manifest.menu_key_to_attribute_name(
+            result)
         existing_value = self.menu_key_to_existing_value(result)
         kwargs = self.menu_key_to_delegated_editor_kwargs(result)
         editor = self.target_manifest.menu_key_to_editor(
-            result, session=self._session, existing_value=existing_value, **kwargs)
+            result, 
+            session=self._session, 
+            existing_value=existing_value, 
+            **kwargs)
         if editor is not None:
             result = editor._run()
             if self._session.backtrack():
@@ -47,7 +53,7 @@ class InteractiveEditor(ScoreManagerObject):
                 attribute_value = editor.target
             else:
                 attribute_value = result
-            self.conditionally_set_target_attribute(attribute_name, attribute_value)
+            self.set_target_attribute(attribute_name, attribute_value)
 
     def _make_main_menu(self):
         menu_tokens = self.target_attribute_tokens
@@ -67,8 +73,14 @@ class InteractiveEditor(ScoreManagerObject):
         menu.hidden_section.menu_tokens = menu_tokens
         return menu
 
-    def _run(self, breadcrumb=None, cache=False, clear=True, is_autoadding=False,
-        is_autoadvancing=False, is_autostarting=False, user_input=None):
+    def _run(self, 
+        breadcrumb=None, 
+        cache=False, 
+        clear=True, 
+        is_autoadding=False,
+        is_autoadvancing=False, 
+        is_autostarting=False, 
+        user_input=None):
         self._io.assign_user_input(user_input=user_input)
         self._session.cache_breadcrumbs(cache=cache)
         self._session.push_breadcrumb(self._breadcrumb)
@@ -78,7 +90,10 @@ class InteractiveEditor(ScoreManagerObject):
         if self._session.backtrack():
             self._session.restore_breadcrumbs(cache=cache)
             return
-        result, entry_point, self.is_autoadvancing, is_first_pass = None, None, is_autoadvancing, True
+        result = None
+        entry_point = None
+        self.is_autoadvancing = is_autoadvancing
+        is_first_pass = True
         if is_autoadding:
             self._session.is_autoadding = True
         while True:
@@ -87,16 +102,21 @@ class InteractiveEditor(ScoreManagerObject):
             if self._session.is_autoadding:
                 menu = self._make_main_menu()
                 result = 'add'
-                menu._run(clear=clear, automatically_determined_user_input=result)
+                menu._run(
+                    clear=clear, 
+                    automatically_determined_user_input=result)
                 is_first_pass = False
             elif is_first_pass and is_autostarting:
                 menu = self._make_main_menu()
                 result = menu.first_nonhidden_return_value_in_menu
-                menu._run(clear=clear, automatically_determined_user_input=result)
+                menu._run(
+                    clear=clear, 
+                    automatically_determined_user_input=result)
                 is_first_pass = False
             elif result and self.is_autoadvancing:
                 entry_point = entry_point or result
-                result = menu.return_value_to_next_return_value_in_section(result)
+                result = menu.return_value_to_next_return_value_in_section(
+                    result)
                 if result == entry_point:
                     self.is_autoadvancing = False
                     self._session.pop_breadcrumb()
@@ -132,7 +152,8 @@ class InteractiveEditor(ScoreManagerObject):
 
     @property
     def space_delimited_lowercase_target_class_name(self):
-        return stringtools.string_to_space_delimited_lowercase(self.target_class.__name__)
+        return stringtools.string_to_space_delimited_lowercase(
+            self.target_class.__name__)
 
     @property
     def target_attribute_names(self):
@@ -163,20 +184,25 @@ class InteractiveEditor(ScoreManagerObject):
     def target_name(self):
         target_name_attribute = self.target_manifest.target_name_attribute
         if target_name_attribute:
-            return getattr(self.target, self.target_manifest.target_name_attribute, None)
+            return getattr(
+                self.target, 
+                self.target_manifest.target_name_attribute, 
+                None)
 
     @property
     def target_positional_initializer_argument_names(self):
         result = []
         if hasattr(self, 'target_manifest'):
-            result.extend(self.target_manifest.positional_initializer_argument_names)
+            result.extend(
+                self.target_manifest.positional_initializer_argument_names)
         return result
 
     @property
     def target_positional_initializer_retrievable_attribute_names(self):
         result = []
         if hasattr(self, 'target_manifest'):
-            result.extend(self.target_manifest.positional_initializer_retrievable_attribute_names)
+            result.extend(
+                self.target_manifest.positional_initializer_retrievable_attribute_names)
         return result
 
     @property
@@ -184,8 +210,10 @@ class InteractiveEditor(ScoreManagerObject):
         result = []
         if self.target is not None:
             for target_attribute_name in self.target_attribute_names:
-                name = stringtools.string_to_space_delimited_lowercase(target_attribute_name)
-                value = self._io.get_one_line_menuing_summary(getattr(self.target, target_attribute_name))
+                name = stringtools.string_to_space_delimited_lowercase(
+                    target_attribute_name)
+                value = self._io.get_one_line_menuing_summary(
+                    getattr(self.target, target_attribute_name))
                 result.append('{}: {}'.format(name, value))
         return result
 
@@ -218,22 +246,10 @@ class InteractiveEditor(ScoreManagerObject):
         except:
             pass
 
-    def conditionally_set_target_attribute(self, attribute_name, attribute_value):
-        if self.target is not None:
-            if not self._session.is_complete:
-                # if the attribute is read / write
-                try:
-                    setattr(self.target, attribute_name, attribute_value)
-                # elif the attribute is read-only
-                except AttributeError:
-                    self.copy_target_attributes_to_memory()
-                    self.attributes_in_memory[attribute_name] = attribute_value
-        else:
-            self.attributes_in_memory[attribute_name] = attribute_value
-
     def copy_target_attributes_to_memory(self):
         self.initialize_attributes_in_memory()
-        for attribute_name in self.target_positional_initializer_retrievable_attribute_names:
+        for attribute_name in \
+            self.target_positional_initializer_retrievable_attribute_names:
             attribute_value = getattr(self.target, attribute_name, None)
             if attribute_value is not None:
                 attribute_name = \
@@ -251,12 +267,14 @@ class InteractiveEditor(ScoreManagerObject):
 
     def initialize_target_from_attributes_in_memory(self):
         args, kwargs = [], {}
-        for attribute_name in self.target_positional_initializer_argument_names:
+        for attribute_name in \
+            self.target_positional_initializer_argument_names:
             if attribute_name in self.attributes_in_memory:
                 args.append(self.attributes_in_memory.get(attribute_name))
         for attribute_name in self.target_keyword_attribute_names:
             if attribute_name in self.attributes_in_memory:
-                kwargs[attribute_name] = self.attributes_in_memory.get(attribute_name)
+                kwargs[attribute_name] = \
+                    self.attributes_in_memory.get(attribute_name)
         try:
             self.target = self.target_class(*args, **kwargs)
         except:
@@ -271,16 +289,22 @@ class InteractiveEditor(ScoreManagerObject):
             menu_key = attribute_detail.menu_key
             menu_body = attribute_detail._space_delimited_lowercase_name
             if self.target is not None:
-                attribute_value = getattr(self.target, attribute_detail.retrievable_name, None)
+                attribute_value = getattr(
+                    self.target, attribute_detail.retrievable_name, None)
                 if attribute_value is None:
-                    attribute_value = getattr(self.target, attribute_detail.name, None)
+                    attribute_value = getattr(
+                        self.target, attribute_detail.name, None)
             else:
-                attribute_value = self.attributes_in_memory.get(attribute_detail.retrievable_name)
+                attribute_value = self.attributes_in_memory.get(
+                    attribute_detail.retrievable_name)
                 if attribute_value is None:
-                    attribute_value = self.attributes_in_memory.get(attribute_detail.name)
-            if hasattr(attribute_value, '__len__') and not len(attribute_value):
+                    attribute_value = self.attributes_in_memory.get(
+                        attribute_detail.name)
+            if hasattr(attribute_value, '__len__') and \
+                not len(attribute_value):
                 attribute_value = None
-            existing_value = self._io.get_one_line_menuing_summary(attribute_value)
+            existing_value = self._io.get_one_line_menuing_summary(
+                attribute_value)
             menu_token = (menu_key, menu_body, existing_value)
             result.append(menu_token)
         return result
@@ -289,8 +313,23 @@ class InteractiveEditor(ScoreManagerObject):
         return {}
 
     def menu_key_to_existing_value(self, menu_key):
-        attribute_name = self.target_manifest.menu_key_to_attribute_name(menu_key)
+        attribute_name = \
+            self.target_manifest.menu_key_to_attribute_name(menu_key)
         return getattr(self.target, attribute_name, None)
+
+    def set_target_attribute(self, 
+        attribute_name, attribute_value):
+        if self.target is not None:
+            if not self._session.is_complete:
+                # if the attribute is read / write
+                try:
+                    setattr(self.target, attribute_name, attribute_value)
+                # elif the attribute is read-only
+                except AttributeError:
+                    self.copy_target_attributes_to_memory()
+                    self.attributes_in_memory[attribute_name] = attribute_value
+        else:
+            self.attributes_in_memory[attribute_name] = attribute_value
 
     def target_args_to_target_summary_lines(self, target):
         result = []
@@ -304,6 +343,7 @@ class InteractiveEditor(ScoreManagerObject):
         result = []
         for kwarg in getattr(target, 'kwargs', []):
             name = stringtools.string_to_space_delimited_lowercase(kwarg)
-            value = self._io.get_one_line_menuing_summary(getattr(target, kwarg))
+            value = self._io.get_one_line_menuing_summary(
+                getattr(target, kwarg))
             result.append('{}: {}'.format(name, value))
         return result

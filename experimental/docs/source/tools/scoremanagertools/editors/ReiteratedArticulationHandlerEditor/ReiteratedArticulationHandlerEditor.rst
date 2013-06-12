@@ -54,9 +54,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.ReiteratedArticulationHandlerEditor.ReiteratedArticulationHandlerEditor.ReiteratedArticulationHandlerEditor.clean_up_attributes_in_memory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ReiteratedArticulationHandlerEditor.ReiteratedArticulationHandlerEditor.ReiteratedArticulationHandlerEditor.conditionally_set_target_attribute
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.ReiteratedArticulationHandlerEditor.ReiteratedArticulationHandlerEditor.ReiteratedArticulationHandlerEditor.copy_target_attributes_to_memory
    :noindex:
 
@@ -76,6 +73,9 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ReiteratedArticulationHandlerEditor.ReiteratedArticulationHandlerEditor.ReiteratedArticulationHandlerEditor.menu_key_to_existing_value
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.editors.ReiteratedArticulationHandlerEditor.ReiteratedArticulationHandlerEditor.ReiteratedArticulationHandlerEditor.set_target_attribute
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ReiteratedArticulationHandlerEditor.ReiteratedArticulationHandlerEditor.ReiteratedArticulationHandlerEditor.target_args_to_target_summary_lines

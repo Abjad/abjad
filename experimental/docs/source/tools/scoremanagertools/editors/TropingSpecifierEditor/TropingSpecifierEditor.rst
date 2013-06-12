@@ -54,9 +54,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.clean_up_attributes_in_memory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.conditionally_set_target_attribute
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.copy_target_attributes_to_memory
    :noindex:
 
@@ -76,6 +73,9 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.menu_key_to_existing_value
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.set_target_attribute
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor.target_args_to_target_summary_lines

@@ -54,9 +54,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.clean_up_attributes_in_memory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.conditionally_set_target_attribute
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.copy_target_attributes_to_memory
    :noindex:
 
@@ -76,6 +73,9 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.menu_key_to_existing_value
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.editors.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.set_target_attribute
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.NoteHeadSpecifierEditor.target_args_to_target_summary_lines

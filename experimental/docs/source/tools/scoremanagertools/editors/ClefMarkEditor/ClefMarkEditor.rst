@@ -54,9 +54,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkEditor.ClefMarkEditor.ClefMarkEditor.clean_up_attributes_in_memory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkEditor.ClefMarkEditor.ClefMarkEditor.conditionally_set_target_attribute
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkEditor.ClefMarkEditor.ClefMarkEditor.copy_target_attributes_to_memory
    :noindex:
 
@@ -76,6 +73,9 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkEditor.ClefMarkEditor.ClefMarkEditor.menu_key_to_existing_value
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkEditor.ClefMarkEditor.ClefMarkEditor.set_target_attribute
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ClefMarkEditor.ClefMarkEditor.ClefMarkEditor.target_args_to_target_summary_lines

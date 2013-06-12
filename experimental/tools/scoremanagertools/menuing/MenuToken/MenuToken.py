@@ -68,7 +68,10 @@ class MenuToken(AbjadObject):
             elif len(expr) == 3:
                 key, display_string, existing_value = expr
             elif len(expr) == 4:
-                key, display_string, existing_value, prepopulated_return_value = expr
+                key = expr[0]
+                display_string = expr[1]
+                existing_value = expr[2]
+                prepopulated_return_value = expr[3]
             if key is not None:
                 assert isinstance(key, str)
             #    assert ' ' not in key
@@ -107,7 +110,8 @@ class MenuToken(AbjadObject):
             matches.append(self.key)
         self._matches = tuple(matches)
         normalized_body = \
-            stringtools.strip_diacritics_from_binary_string(self.display_string)
+            stringtools.strip_diacritics_from_binary_string(
+            self.display_string)
         normalized_body = normalized_body.lower()
         self._normalized_body = normalized_body
 
@@ -118,15 +122,6 @@ class MenuToken(AbjadObject):
 
     ### PRIVATE METHODS ###
 
-#    def _to_input_tuple(self):
-#        result = []
-#        return (
-#            self.key, 
-#            self.display_string, 
-#            self.existing_value, 
-#            self.prepopulated_return_value,
-#            )
-
     def _to_tuple(self):
         return (
             self.key, 
@@ -135,7 +130,7 @@ class MenuToken(AbjadObject):
             self.prepopulated_return_value,
             )
 
-    ### PUBLIC READ-ONLY PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def display_string(self):

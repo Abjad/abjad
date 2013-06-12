@@ -54,9 +54,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.clean_up_attributes_in_memory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.conditionally_set_target_attribute
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.copy_target_attributes_to_memory
    :noindex:
 
@@ -76,6 +73,9 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.menu_key_to_existing_value
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.set_target_attribute
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.target_args_to_target_summary_lines

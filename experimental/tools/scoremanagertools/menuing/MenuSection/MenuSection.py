@@ -53,7 +53,26 @@ class MenuSection(MenuObject):
     def __repr__(self):
         return '{}({!r})'.format(self._class_name, self.menu_tokens)
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
+
+    @apply
+    def default_index():
+        def fget(self):
+            return self._default_index
+        def fset(self, default_index):
+            assert isinstance(default_index, (int, type(None)))
+            if isinstance(default_index, int):
+                count = len(self.menu_tokens)
+                if default_index < 0:
+                    message = 'default index must be positive integer.'
+                    raise ValueError(message)
+                if count <= default_index:
+                    message = 'only {} menu entry menu_tokens ' + \
+                        'in menu_section.'
+                    message = message.format(count)
+                    raise ValueError(message)
+            self._default_index = default_index
+        return property(**locals())
 
     @property
     def default_value(self):
@@ -99,27 +118,6 @@ class MenuSection(MenuObject):
     @property
     def menu_token_return_values(self):
         return [menu_token.return_value for menu_token in self.menu_tokens]
-
-    ### READ / WRITE PUBLIC PROPERTIES ###
-
-    @apply
-    def default_index():
-        def fget(self):
-            return self._default_index
-        def fset(self, default_index):
-            assert isinstance(default_index, (int, type(None)))
-            if isinstance(default_index, int):
-                count = len(self.menu_tokens)
-                if default_index < 0:
-                    message = 'default index must be positive integer.'
-                    raise ValueError(message)
-                if count <= default_index:
-                    message = 'only {} menu entry menu_tokens ' + \
-                        'in menu_section.'
-                    message = message.format(count)
-                    raise ValueError(message)
-            self._default_index = default_index
-        return property(**locals())
 
     @apply
     def menu_tokens():
@@ -201,7 +199,8 @@ class MenuSection(MenuObject):
                 numbers.append(number)
         return numbers
 
-    def argument_range_string_to_numbers_optimized(self, argument_range_string):
+    def argument_range_string_to_numbers_optimized(self, 
+        argument_range_string):
         assert self.menu_tokens
         numbers = []
         argument_range_string = argument_range_string.replace(' ', '')
@@ -235,10 +234,12 @@ class MenuSection(MenuObject):
             menu_number = int(argument_string)
             if menu_number <= len(self.menu_tokens):
                 return menu_number
-        for menu_index, menu_return_value in enumerate(self.menu_token_return_values):
+        for menu_index, menu_return_value in enumerate(
+            self.menu_token_return_values):
             if argument_string == menu_return_value:
                 return menu_index + 1
-            elif 3 <= len(argument_string) and menu_return_value.startswith(argument_string):
+            elif 3 <= len(argument_string) and \
+                menu_return_value.startswith(argument_string):
                 return menu_index + 1
         for menu_index, menu_key in enumerate(self.menu_token_keys):
             if argument_string == menu_key:
@@ -253,27 +254,31 @@ class MenuSection(MenuObject):
     def make_menu_lines(self):
         '''KEYS. Keys are optionally shown in parentheses in each entry;
         keys are designed to be textual instead of numeric;
-        not every entry need have a key because entries may be numbered instead of keyed;
+        not every entry need have a key because entries may be 
+        numbered instead of keyed;
         note that entries may be both numbered and keyed.
 
         BODIES. Bodies are those things shown in each entry;
-        bodies are positional and every entry must be supplied with a display_string.
+        bodies are positional and every entry must be supplied 
+        with a display_string.
 
         RESULT. Result is the thing ultimately returned by Menu._run().
 
         Match determination:
         1. Numeric user input checked against numbered entries.
-        2. If key exists, textual user input checked for exact match against key.
+        2. If key exists, textual user input checked for exact match.
         3. Textual user input checked for 3-char match against display_string.
         4. Otherwise, no match found.
 
         Return value resolution:
         Keyed entries (numbered or not) supply key as return value.
-        Nonkeyed entries (always numbered) supply display_string as return value.
+        Nonkeyed entries (always numbered) supply display_string 
+        as return value.
         '''
         menu_lines = []
         menu_lines.extend(self.make_title_lines())
-        assert all(isinstance(menu_token, MenuToken) for menu_token in self.menu_tokens), repr(self.menu_tokens)
+        assert all(isinstance(menu_token, MenuToken) 
+            for menu_token in self.menu_tokens), repr(self.menu_tokens)
         total_empty_tokens = 0
         for entry_index, menu_token in enumerate(self.menu_tokens):
             menu_line = self.make_tab(self.indent_level) + ' '
@@ -281,7 +286,9 @@ class MenuSection(MenuObject):
                 menu_lines.append(menu_line)
                 total_empty_tokens += 1
                 continue
-            key, display_string, existing_value = menu_token.key, menu_token.display_string, menu_token.existing_value
+            key = menu_token.key
+            display_string = menu_token.display_string
+            existing_value = menu_token.existing_value
             if self.is_numbered:
                 entry_number = entry_index + 1 - total_empty_tokens
                 menu_line += '{}: '.format(str(entry_number))
@@ -290,7 +297,8 @@ class MenuSection(MenuObject):
                     if existing_value in (None, 'None'):
                         menu_line += '{} ({}):'.format(display_string, key)
                     else:
-                        menu_line += '{} ({}): {}'.format(display_string, key, existing_value)
+                        menu_line += '{} ({}): {}'.format(
+                            display_string, key, existing_value)
                 else:
                     menu_line += '{} ({})'.format(display_string, key)
             else:
@@ -298,7 +306,8 @@ class MenuSection(MenuObject):
                     if existing_value in (None, 'None'):
                         menu_line += '{}:'.format(display_string)
                     else:
-                        menu_line += '{}: {}'.format(display_string, existing_value)
+                        menu_line += '{}: {}'.format(
+                            display_string, existing_value)
                 else:
                     menu_line += '{}'.format(display_string)
             menu_lines.append(menu_line)

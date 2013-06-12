@@ -54,9 +54,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.clean_up_attributes_in_memory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.conditionally_set_target_attribute
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.copy_target_attributes_to_memory
    :noindex:
 
@@ -76,6 +73,9 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.menu_key_to_existing_value
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.set_target_attribute
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.target_args_to_target_summary_lines

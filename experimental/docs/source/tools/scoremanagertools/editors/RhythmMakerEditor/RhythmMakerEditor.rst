@@ -54,9 +54,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.clean_up_attributes_in_memory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.conditionally_set_target_attribute
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.copy_target_attributes_to_memory
    :noindex:
 
@@ -76,6 +73,9 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.menu_key_to_existing_value
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.set_target_attribute
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor.target_args_to_target_summary_lines

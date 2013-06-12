@@ -60,9 +60,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.clean_up_attributes_in_memory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.conditionally_set_target_attribute
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.copy_target_attributes_to_memory
    :noindex:
 
@@ -100,6 +97,9 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.menu_key_to_existing_value
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.set_target_attribute
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor.target_args_to_target_summary_lines

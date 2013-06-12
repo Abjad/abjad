@@ -45,13 +45,22 @@ class Menu(MenuSectionAggregator):
                 break
         return result
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def default_value(self):
         for menu_section in self.menu_sections:
             if menu_section.has_default_value:
                 return menu_section.default_value
+
+    @apply
+    def explicit_title():
+        def fget(self):
+            return self._explicit_title
+        def fset(self, explicit_title):
+            assert isinstance(explicit_title, (str, type(None)))
+            self._explicit_title = explicit_title
+        return property(**locals())
 
     @property
     def first_nonhidden_return_value_in_menu(self):
@@ -161,17 +170,6 @@ class Menu(MenuSectionAggregator):
             menu_lines = []
         return menu_lines
 
-    ### READ / WRITE PUBLIC PROPERTIES ###
-
-    @apply
-    def explicit_title():
-        def fget(self):
-            return self._explicit_title
-        def fset(self, explicit_title):
-            assert isinstance(explicit_title, (str, type(None)))
-            self._explicit_title = explicit_title
-        return property(**locals())
-
     ### PUBLIC METHODS ###
 
     def change_user_input_to_directive(self, user_input):
@@ -215,7 +213,9 @@ class Menu(MenuSectionAggregator):
     def handle_argument_range_user_input(self, user_input):
         if not self.has_ranged_section:
             return
-        entry_numbers = self.ranged_section.argument_range_string_to_numbers_optimized(user_input)
+        entry_numbers = \
+            self.ranged_section.argument_range_string_to_numbers_optimized(
+            user_input)
         if entry_numbers is None:
             return None
         entry_indices = [entry_number - 1 for entry_number in entry_numbers]

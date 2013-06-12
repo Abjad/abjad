@@ -60,9 +60,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.ObjectInventoryEditor.ObjectInventoryEditor.ObjectInventoryEditor.clean_up_attributes_in_memory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.ObjectInventoryEditor.ObjectInventoryEditor.ObjectInventoryEditor.conditionally_set_target_attribute
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.ObjectInventoryEditor.ObjectInventoryEditor.ObjectInventoryEditor.copy_target_attributes_to_memory
    :noindex:
 
@@ -100,6 +97,9 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ObjectInventoryEditor.ObjectInventoryEditor.ObjectInventoryEditor.menu_key_to_existing_value
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.editors.ObjectInventoryEditor.ObjectInventoryEditor.ObjectInventoryEditor.set_target_attribute
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.ObjectInventoryEditor.ObjectInventoryEditor.ObjectInventoryEditor.target_args_to_target_summary_lines

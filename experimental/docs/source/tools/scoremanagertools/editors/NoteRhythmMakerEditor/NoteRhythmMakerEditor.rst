@@ -54,9 +54,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.NoteRhythmMakerEditor.NoteRhythmMakerEditor.NoteRhythmMakerEditor.clean_up_attributes_in_memory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.NoteRhythmMakerEditor.NoteRhythmMakerEditor.NoteRhythmMakerEditor.conditionally_set_target_attribute
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.NoteRhythmMakerEditor.NoteRhythmMakerEditor.NoteRhythmMakerEditor.copy_target_attributes_to_memory
    :noindex:
 
@@ -76,6 +73,9 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.NoteRhythmMakerEditor.NoteRhythmMakerEditor.NoteRhythmMakerEditor.menu_key_to_existing_value
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.editors.NoteRhythmMakerEditor.NoteRhythmMakerEditor.NoteRhythmMakerEditor.set_target_attribute
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.NoteRhythmMakerEditor.NoteRhythmMakerEditor.NoteRhythmMakerEditor.target_args_to_target_summary_lines

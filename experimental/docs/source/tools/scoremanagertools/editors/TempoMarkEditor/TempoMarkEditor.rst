@@ -54,9 +54,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.clean_up_attributes_in_memory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.conditionally_set_target_attribute
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.copy_target_attributes_to_memory
    :noindex:
 
@@ -76,6 +73,9 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.menu_key_to_existing_value
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.set_target_attribute
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor.target_args_to_target_summary_lines

@@ -60,9 +60,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.clean_up_attributes_in_memory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.conditionally_set_target_attribute
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.copy_target_attributes_to_memory
    :noindex:
 
@@ -100,6 +97,9 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.menu_key_to_existing_value
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.set_target_attribute
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.target_args_to_target_summary_lines

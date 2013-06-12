@@ -54,9 +54,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.clean_up_attributes_in_memory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.conditionally_set_target_attribute
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.copy_target_attributes_to_memory
    :noindex:
 
@@ -76,6 +73,9 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.menu_key_to_existing_value
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.set_target_attribute
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.target_args_to_target_summary_lines

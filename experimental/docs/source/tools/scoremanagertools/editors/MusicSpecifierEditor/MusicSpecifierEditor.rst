@@ -60,9 +60,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.clean_up_attributes_in_memory
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.conditionally_set_target_attribute
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.copy_target_attributes_to_memory
    :noindex:
 
@@ -100,6 +97,9 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.menu_key_to_existing_value
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.set_target_attribute
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor.target_args_to_target_summary_lines
