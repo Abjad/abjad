@@ -47,8 +47,18 @@ class MenuToken(AbjadObject):
                 display_string, key = expr
                 existing_value = None
                 prepopulated_return_value = None
+            elif len(expr) == 3:
+                display_string = expr[0]
+                key = expr[1]
+                existing_value = expr[2]
+                prepopulated_return_value = None
+            elif len(expr) == 4:
+                display_string = expr[0]
+                key = expr[1]
+                existing_value = expr[2]
+                prepopulated_return_value = expr[3]
             else:
-                raise NotImplementedError
+                raise ValueError(expr)
         elif isinstance(expr, tuple):
             assert 1 <= len(expr) <= 4
             if self.return_value_attribute == 'key':
