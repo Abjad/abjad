@@ -105,20 +105,20 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         in_built_in_score_packages=True,
         in_user_score_packages=True):
         from experimental.tools import scoremanagertools
-        keys, bodies = [], []
+        keys, display_strings = [], []
         keys.append(self.asset_storehouse_filesystem_path_in_user_asset_library)
-        bodies.append('My {}'.format(self._breadcrumb))
+        display_strings.append('My {}'.format(self._breadcrumb))
         wrangler = scoremanagertools.wranglers.ScorePackageWrangler(session=self._session)
         for proxy in wrangler.list_asset_proxies(
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages):
-            bodies.append(proxy.title)
+            display_strings.append(proxy.title)
             path_parts = (proxy.filesystem_path,) + self.score_package_asset_storehouse_path_infix_parts
             key = os.path.join(*path_parts)
             keys.append(key)
-        return zip(bodies, keys)
+        return zip(display_strings, keys)
 
     @abc.abstractmethod
     def _make_main_menu(self, head=None):
@@ -127,8 +127,8 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def _make_menu_tokens(self, head=None, include_extension=False):
         raise Exception('FOO')
         keys = self.list_asset_filesystem_paths(head=head)
-        bodies = self.list_asset_names(head=head, include_extension=include_extension)
-        return zip(bodies, keys)
+        display_strings = self.list_asset_names(head=head, include_extension=include_extension)
+        return zip(display_strings, keys)
 
     def _run(self, cache=False, clear=True, head=None, rollback=None, user_input=None):
         self._io.assign_user_input(user_input=user_input)

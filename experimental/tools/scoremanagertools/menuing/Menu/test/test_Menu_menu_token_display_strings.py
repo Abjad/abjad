@@ -1,7 +1,7 @@
 from experimental import *
 
 
-def test_Menu_menu_token_bodies_01():
+def test_Menu_menu_token_display_strings_01():
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
@@ -15,5 +15,5 @@ def test_Menu_menu_token_bodies_01():
     section_2.append(('add something', 'add'))
     section_2.append(('delete something', 'rm'))
     section_2.append(('modify something', 'mod'))
-    assert menu.menu_token_bodies[-6:] == \
-        section_1.menu_token_bodies + section_2.menu_token_bodies
+    assert menu.menu_token_display_strings[-6:] == \
+        section_1.menu_token_display_strings + section_2.menu_token_display_strings

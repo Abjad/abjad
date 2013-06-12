@@ -116,10 +116,10 @@ class Menu(MenuSectionAggregator):
 
     # TODO: remove?
     @property
-    def menu_token_bodies(self):
+    def menu_token_display_strings(self):
         result = []
         for menu_section in self.menu_sections:
-            result.extend(menu_section.menu_token_bodies)
+            result.extend(menu_section.menu_token_display_strings)
         return result
 
     # TODO: remove?

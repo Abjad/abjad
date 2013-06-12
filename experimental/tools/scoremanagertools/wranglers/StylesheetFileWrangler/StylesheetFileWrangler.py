@@ -85,14 +85,14 @@ class StylesheetFileWrangler(FileWrangler):
 
     def _make_menu_tokens(self, head=None, include_extension=False):
         keys = self.list_asset_filesystem_paths(head=head)
-        bodies = []
+        display_strings = []
         for filesystem_path in keys:
             display_string = os.path.basename(filesystem_path)
             annotation = self._filesystem_path_to_annotation(filesystem_path)
             if annotation:
                 display_string = '{} ({})'.format(display_string, annotation)
-            bodies.append(display_string)
-        return zip(bodies, keys)
+            display_strings.append(display_string)
+        return zip(display_strings, keys)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

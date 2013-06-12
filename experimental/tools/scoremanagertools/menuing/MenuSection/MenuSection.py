@@ -102,7 +102,7 @@ class MenuSection(MenuObject):
         return self._is_ranged
 
     @property
-    def menu_token_bodies(self):
+    def menu_token_display_strings(self):
         return [menu_token.display_string for menu_token in self.menu_tokens]
 
     @property
@@ -253,7 +253,7 @@ class MenuSection(MenuObject):
         note that entries may be both numbered and keyed.
 
         BODIES. Bodies are those things shown in each entry;
-        bodies are positional and every entry must be supplied 
+        display_strings are positional and every entry must be supplied 
         with a display_string.
 
         RESULT. Result is the thing ultimately returned by Menu._run().

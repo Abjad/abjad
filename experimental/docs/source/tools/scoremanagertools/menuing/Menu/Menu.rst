@@ -42,7 +42,7 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.menu_title_lines
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.menu_token_bodies
+.. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.menu_token_display_strings
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.menu_token_keys

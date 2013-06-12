@@ -22,7 +22,7 @@ def test_MenuSection_menu_token_return_values_01():
     assert menu_section.menu_token_return_values == \
         ['apple', 'banana', 'cherry']
     assert menu_section.menu_token_return_values == \
-        menu_section.menu_token_bodies
+        menu_section.menu_token_display_strings
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
@@ -35,7 +35,7 @@ def test_MenuSection_menu_token_return_values_01():
     assert menu_section.menu_token_return_values == \
         ['apple', 'banana', 'cherry']
     assert menu_section.menu_token_return_values == \
-        menu_section.menu_token_bodies
+        menu_section.menu_token_display_strings
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
@@ -52,7 +52,7 @@ def test_MenuSection_menu_token_return_values_01():
     assert menu_section.menu_token_return_values == \
         ['apple', 'banana', 'cherry']
     assert menu_section.menu_token_return_values == \
-        menu_section.menu_token_bodies
+        menu_section.menu_token_display_strings
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
@@ -65,7 +65,7 @@ def test_MenuSection_menu_token_return_values_01():
     assert menu_section.menu_token_return_values == \
         ['apple', 'banana', 'cherry']
     assert menu_section.menu_token_return_values == \
-        menu_section.menu_token_bodies
+        menu_section.menu_token_display_strings
 
 
 def test_MenuSection_menu_token_return_values_02():
@@ -122,7 +122,7 @@ def test_MenuSection_menu_token_return_values_02():
     assert menu_section.menu_token_return_values == \
         ['add something', 'delete something', 'modify something']
     assert menu_section.menu_token_return_values == \
-        menu_section.menu_token_bodies
+        menu_section.menu_token_display_strings
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
@@ -135,7 +135,7 @@ def test_MenuSection_menu_token_return_values_02():
     assert menu_section.menu_token_return_values == \
         ['add something', 'delete something', 'modify something']
     assert menu_section.menu_token_return_values == \
-        menu_section.menu_token_bodies
+        menu_section.menu_token_display_strings
 
 
 def test_MenuSection_menu_token_return_values_03():
