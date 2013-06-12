@@ -24,11 +24,12 @@ class Selector(ScoreManagerObject):
     def _make_main_menu(self, head=None):
         menu_tokens = self.make_menu_tokens(head=head)
         menu, menu_section = self._io.make_menu(where=self._where,
+            return_value_attribute='prepopulated',
             is_keyed=self.is_keyed,
             is_numbered=self.is_numbered,
             is_ranged=self.is_ranged,
+            is_modern=True,
             menu_tokens=menu_tokens,
-            return_value_attribute='prepopulated',
             )
         return menu
 
@@ -79,7 +80,7 @@ class Selector(ScoreManagerObject):
     ### PUBLIC METHODS ###
 
     def change_expr_to_menu_token(self, expr):
-        return (None, self._io.get_one_line_menuing_summary(expr), None, expr)
+        return (self._io.get_one_line_menuing_summary(expr), None, None, expr)
 
     def get_tag_from_directory_path(self, directory_path, tag_name):
         tags_file_name = os.path.join(directory_path, 'tags.py')

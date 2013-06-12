@@ -92,7 +92,7 @@ class MenuToken(AbjadObject):
             prepopulated_return_value = expr.prepopulated_return_value
         else:
             raise TypeError(expr)
-        assert display_string
+        assert display_string, repr(expr)
         self._key = key
         self._body = display_string
         self._existing_value = existing_value
