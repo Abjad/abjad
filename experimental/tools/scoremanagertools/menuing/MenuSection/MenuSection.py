@@ -286,7 +286,7 @@ class MenuSection(MenuObject):
             if self.is_numbered:
                 entry_number = entry_index + 1 - total_empty_tokens
                 menu_line += '{}: '.format(str(entry_number))
-            if key and self.is_keyed:
+            if key:
                 if self.show_existing_values and existing_value:
                     if existing_value in (None, 'None'):
                         menu_line += '{} ({}):'.format(display_string, key)

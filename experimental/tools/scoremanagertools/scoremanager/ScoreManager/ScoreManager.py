@@ -95,7 +95,6 @@ class ScoreManager(ScoreManagerObject):
         menu = self._make_score_selection_menu()
         menu_section = menu.make_section(
             return_value_attribute='key',
-            is_keyed=True,
             is_modern=True,
             )
         menu_section.append(('materials', 'm'))
@@ -103,7 +102,6 @@ class ScoreManager(ScoreManagerObject):
         menu_section.append(('new score', 'new'))
         hidden_section = menu.make_section(
             return_value_attribute='key',
-            is_keyed=True,
             is_hidden=True,
             is_modern=True,
             )

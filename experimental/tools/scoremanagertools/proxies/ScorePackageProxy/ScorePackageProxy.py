@@ -41,8 +41,6 @@ class ScorePackageProxy(PackageProxy):
         menu, menu_section = self._io.make_menu(
             where=self._where,
             return_value_attribute='key',
-            is_numbered=False,
-            is_keyed=True,
             is_modern=True,
             )
         menu_section.append(('segments', 'h'))
@@ -51,7 +49,6 @@ class ScorePackageProxy(PackageProxy):
         menu_section.append(('setup', 's'))
         hidden_section = menu.make_section(
             return_value_attribute='key',
-            is_keyed=True,
             is_hidden=True,
             is_modern=True,
             )

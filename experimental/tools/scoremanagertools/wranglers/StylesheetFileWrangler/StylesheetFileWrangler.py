@@ -74,7 +74,6 @@ class StylesheetFileWrangler(FileWrangler):
             include_extension=True)
         menu_section = menu.make_section(
             return_value_attribute='key',
-            is_keyed=True,
             is_modern=True,
             )
         menu_section.append(('new', 'new'))

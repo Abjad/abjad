@@ -8,18 +8,11 @@ class ScoreToolsPerformerNameSelector(Selector):
 
     space_delimited_lowercase_target_name = 'performer'
 
-    ### INITIALIZER ###
-
-    def __init__(self, is_keyed=True, **kwargs):
-        Selector.__init__(self, **kwargs)
-        self.is_keyed = is_keyed
-
     ### PUBLIC METHODS ###
 
     def _make_main_menu(self, head=None):
         menu_tokens = self.make_menu_tokens(head=head)
         menu, menu_section = self._io.make_menu(where=self._where,
-            is_keyed=self.is_keyed,
             is_numbered=self.is_numbered,
             is_ranged=self.is_ranged,
             menu_tokens=menu_tokens,

@@ -49,7 +49,6 @@ class StylesheetFileProxy(FileProxy):
         menu, menu_section = self._io.make_menu(
             where=self.where,
             return_value_attribute='key',
-            is_keyed=True,
             is_modern=True,
             )
         menu_section.append(('copy stylesheet', 'cp'))
