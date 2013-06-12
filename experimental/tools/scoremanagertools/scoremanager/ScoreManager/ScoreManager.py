@@ -128,10 +128,11 @@ class ScoreManager(ScoreManagerObject):
         else:
             menu_tokens = self.score_package_wrangler._make_menu_tokens()
         menu, menu_section = self._io.make_menu(
-            menu_tokens=menu_tokens,
-            is_numbered=True,
-            return_value_attribute='key',
             where=self._where,
+            menu_tokens=menu_tokens,
+            return_value_attribute='key',
+            is_numbered=True,
+            is_modern=True,
             )
         return menu
 
