@@ -1,5 +1,6 @@
 import os
 import subprocess
+from abjad.tools import iotools
 from abjad.tools import stringtools
 from experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject import \
     ScoreManagerObject
@@ -52,7 +53,8 @@ class MenuObject(ScoreManagerObject):
     def conditionally_clear_terminal(self):
         if not self._session.hide_next_redraw:
             if self.should_clear_terminal:
-                self._io.conditionally_clear_terminal()
+                if self._session.is_displayable:
+                    iotools.clear_terminal()
 
     def exec_statement(self):
         lines = []

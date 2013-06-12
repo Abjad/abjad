@@ -30,10 +30,6 @@ class IO(AbjadObject):
             else:
                 self._session.user_input = user_input
 
-    def conditionally_clear_terminal(self):
-        if self._session.is_displayable:
-            iotools.clear_terminal()
-
     def confirm(self, prompt_string='ok?', include_chevron=False):
         getter = self.make_getter(where=None)
         getter.append_yes_no_string(prompt_string)
@@ -201,4 +197,5 @@ class IO(AbjadObject):
             self.display(lines)
         self.handle_raw_input(
             'press return to continue.', include_chevron=False)
-        self.conditionally_clear_terminal()
+        if self._session.is_displayable:
+            iotools.clear_terminal()

@@ -5,7 +5,8 @@ from abjad.tools import mathtools
 from abjad.tools import pitchtools
 from abjad.tools import sequencetools
 from abjad.tools import stringtools
-from experimental.tools.scoremanagertools.menuing.MenuSectionAggregator import MenuSectionAggregator
+from experimental.tools.scoremanagertools.menuing.MenuSectionAggregator \
+    import MenuSectionAggregator
 from experimental.tools.scoremanagertools import predicates
 
 
@@ -40,7 +41,8 @@ class UserInputGetter(MenuSectionAggregator):
     def _run(self, user_input=None, include_chevron=True):
         self._io.assign_user_input(user_input=user_input)
         with self.backtracking:
-            self.present_prompts_and_store_values(include_chevron=include_chevron)
+            self.present_prompts_and_store_values(
+                include_chevron=include_chevron)
         if len(self.values) == 1:
             return self.values[0]
         else:
@@ -78,7 +80,10 @@ class UserInputGetter(MenuSectionAggregator):
 
     ### PUBLIC METHODS ###
 
-    def append_argument_range(self, spaced_attribute_name, argument_list, default=None):
+    def append_argument_range(self, 
+        spaced_attribute_name, 
+        argument_list, 
+        default=None):
         message = 'value for {!r} must be argument range.'
         self.append_something(spaced_attribute_name, message, default=default)
         self.argument_lists[-1] = argument_list
@@ -96,7 +101,8 @@ class UserInputGetter(MenuSectionAggregator):
         self.append_something(spaced_attribute_name, message, default=default)
         self.tests.append(predicates.are_articulation_tokens)
 
-    def append_available_underscore_delimited_lowercase_package_name(self, spaced_attribute_name, default=None):
+    def append_available_underscore_delimited_lowercase_package_name(self, 
+        spaced_attribute_name, default=None):
         message = \
             'value for {!r} must be available underscore-delimited lowercase package name of length at least 3.'
         self.append_something(spaced_attribute_name, message, default=default)
@@ -112,7 +118,8 @@ class UserInputGetter(MenuSectionAggregator):
         self.append_something(spaced_attribute_name, message, default=default)
         self.tests.append(predicates.is_clef_token)
 
-    def append_constellation_circuit_id_pair(self, spaced_attribute_name, default=None):
+    def append_constellation_circuit_id_pair(self, 
+        spaced_attribute_name, default=None):
         message = 'value for {!r} must be valid constellation circuit id pair.'
         self.append_something(spaced_attribute_name, message, default=default)
         self.tests.append(lambda x: True)
@@ -141,7 +148,8 @@ class UserInputGetter(MenuSectionAggregator):
         self.append_something(spaced_attribute_name, message, default=default)
         self.tests.append(predicates.are_dynamic_tokens)
 
-    def append_existing_package_name(self, spaced_attribute_name, default=None):
+    def append_existing_package_name(self, 
+        spaced_attribute_name, default=None):
         message = 'value for {!r} must be existing package name.'
         self.append_something(spaced_attribute_name, message, default=default)
         self.tests.append(predicates.is_existing_package_name)
@@ -161,7 +169,8 @@ class UserInputGetter(MenuSectionAggregator):
         self.append_something(spaced_attribute_name, message, default=default)
         self.tests.append(predicates.are_hairpin_tokens)
 
-    def append_hyphen_delimited_lowercase_file_name(self, spaced_attribute_name, default=None):
+    def append_hyphen_delimited_lowercase_file_name(self, 
+        spaced_attribute_name, default=None):
         message = 'value for {!r} must be hyphen-delimited lowercase file name.'
         self.append_something(spaced_attribute_name, message, default=default)
         self.tests.append(stringtools.is_hyphen_delimited_lowercase_file_name)
@@ -174,8 +183,10 @@ class UserInputGetter(MenuSectionAggregator):
     def append_integer_in_range(self, spaced_attribute_name,
         start=None, stop=None, allow_none=False, default=None):
         message = 'value for {!r} must be integer between {} and {}, inclusive.'
-        self.append_something(spaced_attribute_name, message, (start, stop), default=default)
-        self.tests.append(self.make_is_integer_in_range(start, stop, allow_none=allow_none))
+        self.append_something(
+            spaced_attribute_name, message, (start, stop), default=default)
+        self.tests.append(
+            self.make_is_integer_in_range(start, stop, allow_none=allow_none))
 
     def append_integers(self, spaced_attribute_name, default=None):
         message = 'value for {!r} must be integers.'
@@ -201,12 +212,16 @@ class UserInputGetter(MenuSectionAggregator):
         self.execs[-1] = execs
         self.tests.append(predicates.is_markup)
 
-    def append_material_package_maker_class_name(self, spaced_attribute_name, default=None):
+    def append_material_package_maker_class_name(self, 
+        spaced_attribute_name, default=None):
         message = 'value for {!r} must be uppercamelcase string ending in -Maker.'
         self.append_something(spaced_attribute_name, message, default=default)
-        self.tests.append(lambda x: stringtools.is_uppercamelcase_string(x) and x.endswith('Maker'))
+        self.tests.append(
+            lambda x: stringtools.is_uppercamelcase_string(x) 
+            and x.endswith('Maker'))
 
-    def append_named_chromatic_pitch(self, spaced_attribute_name, default=None):
+    def append_named_chromatic_pitch(self, 
+        spaced_attribute_name, default=None):
         message = 'value for {!r} must be named chromatic pitch.'
         self.append_something(spaced_attribute_name, message, default=default)
         execs = []
@@ -218,12 +233,14 @@ class UserInputGetter(MenuSectionAggregator):
     def append_nonnegative_integers(self, spaced_attribute_name, default=None):
         message = 'value for {!r} must be nonnegative integers.'
         self.append_something(spaced_attribute_name, message, default=default)
-        self.tests.append(lambda x: all([isinstance(y, int) and 0 <= y for y in x]))
+        self.tests.append(
+            lambda x: all([isinstance(y, int) and 0 <= y for y in x]))
 
     def append_nonzero_integers(self, spaced_attribute_name, default=None):
         message = 'value for {!r} must be nonzero integers.'
         self.append_something(spaced_attribute_name, message, default=default)
-        self.tests.append(lambda x: all([isinstance(y, int) and not y == 0 for y in x]))
+        self.tests.append(
+            lambda x: all([isinstance(y, int) and not y == 0 for y in x]))
 
     def append_pitch_range(self, spaced_attribute_name, default=None):
         message = 'value for {!r} must be pitch range.'
@@ -234,7 +251,8 @@ class UserInputGetter(MenuSectionAggregator):
         self.execs[-1] = execs
         self.tests.append(predicates.is_pitch_range_or_none)
 
-    def append_positive_integer_power_of_two(self, spaced_attribute_name, default=None):
+    def append_positive_integer_power_of_two(self, 
+        spaced_attribute_name, default=None):
         message = 'value for {!r} must be positive integer power of two.'
         self.append_something(spaced_attribute_name, message, default=default)
         self.tests.append(mathtools.is_positive_integer_power_of_two)
@@ -242,7 +260,8 @@ class UserInputGetter(MenuSectionAggregator):
     def append_positive_integers(self, spaced_attribute_name, default=None):
         message = 'value for {!r} must be positive integers.'
         self.append_something(spaced_attribute_name, message, default=default)
-        self.tests.append(lambda expr: all([mathtools.is_positive_integer(x) for x in expr]))
+        self.tests.append(
+            lambda expr: all([mathtools.is_positive_integer(x) for x in expr]))
 
     def append_something(self, spaced_attribute_name, message,
         additional_message_arguments=None, default=None, include_chevron=True):
@@ -252,11 +271,13 @@ class UserInputGetter(MenuSectionAggregator):
         self.execs.append([])
         if additional_message_arguments is None:
             additional_message_arguments = []
-        self.helps.append(message.format(spaced_attribute_name, *additional_message_arguments))
+        self.helps.append(message.format(
+            spaced_attribute_name, *additional_message_arguments))
         self.defaults.append(default)
         self.chevrons.append(include_chevron)
 
-    def append_space_delimited_lowercase_string(self, spaced_attribute_name, default=None):
+    def append_space_delimited_lowercase_string(self, 
+        spaced_attribute_name, default=None):
         message = 'value for {!r} must be space-delimited lowercase string.'
         self.append_something(spaced_attribute_name, message, default=default)
         self.tests.append(stringtools.is_space_delimited_lowercase_string)
@@ -276,7 +297,8 @@ class UserInputGetter(MenuSectionAggregator):
         self.append_something(spaced_attribute_name, message, default=default)
         self.tests.append(predicates.are_strings)
 
-    def append_symbolic_pitch_range_string(self, spaced_attribute_name, default=None):
+    def append_symbolic_pitch_range_string(self, 
+        spaced_attribute_name, default=None):
         message = 'value for {!r} must be symbolic pitch range string. Ex: [A0, C8].'
         self.append_something(spaced_attribute_name, message, default=default)
         self.tests.append(pitchtools.is_symbolic_pitch_range_string)
@@ -287,29 +309,38 @@ class UserInputGetter(MenuSectionAggregator):
         self.append_something(spaced_attribute_name, message, default=default)
         self.tests.append(predicates.is_tempo_token)
 
-    def append_underscore_delimited_lowercase_file_name(self, spaced_attribute_name, default=None):
+    def append_underscore_delimited_lowercase_file_name(self, 
+        spaced_attribute_name, default=None):
         message = 'value for {!r} must be underscore-delimited lowercase file name.'
         self.append_something(spaced_attribute_name, message, default=default)
-        self.tests.append(stringtools.is_underscore_delimited_lowercase_file_name)
+        self.tests.append(
+            stringtools.is_underscore_delimited_lowercase_file_name)
 
-    def append_underscore_delimited_lowercase_file_name_with_extension(self, spaced_attribute_name, default=None):
+    def append_underscore_delimited_lowercase_file_name_with_extension(self, 
+        spaced_attribute_name, default=None):
         message = 'value for {!r} must be underscore-delimited lowercase file name with extension.'
         self.append_something(spaced_attribute_name, message, default=default)
-        self.tests.append(stringtools.is_underscore_delimited_lowercase_file_name_with_extension)
+        self.tests.append(
+            stringtools.is_underscore_delimited_lowercase_file_name_with_extension)
 
-    def append_underscore_delimited_lowercase_package_name(self, spaced_attribute_name, default=None):
+    def append_underscore_delimited_lowercase_package_name(self, 
+        spaced_attribute_name, default=None):
         message = 'value for {!r} must be underscore-delimited lowercase package name of length at least 3.'
         self.append_something(spaced_attribute_name, message, default=default)
         self.tests.append(predicates.is_underscore_delimited_lowercase_package_name)
 
-    def append_underscore_delimited_lowercase_string(self, spaced_attribute_name, default=None):
+    def append_underscore_delimited_lowercase_string(self, 
+        spaced_attribute_name, default=None):
         message = 'value for {!r} must be underscore-delimited lowercase string.'
         self.append_something(spaced_attribute_name, message, default=default)
         self.tests.append(stringtools.is_underscore_delimited_lowercase_string)
 
-    def append_yes_no_string(self, spaced_attribute_name, default=None, include_chevron=False):
+    def append_yes_no_string(self, 
+        spaced_attribute_name, default=None, include_chevron=False):
         message = "value for '{}' must be 'y' or 'n'."
-        self.append_something(spaced_attribute_name, message, default=default, include_chevron=include_chevron)
+        self.append_something(
+            spaced_attribute_name, message, 
+            default=default, include_chevron=include_chevron)
         self.tests.append(predicates.is_yes_no_string)
 
     def apply_tests_to_value(self, value):
@@ -331,7 +362,7 @@ class UserInputGetter(MenuSectionAggregator):
             value = self.get_value_from_direct_evaluation(user_response)
         return value
 
-    def conditionally_display_help(self):
+    def display_help(self):
         if self.prompt_index < len(self.helps):
             lines = []
             lines.append(self.helps[self.prompt_index])
@@ -367,7 +398,7 @@ class UserInputGetter(MenuSectionAggregator):
                     command = exec_string.format(repr(user_response))
                     exec(command)
                 except:
-                    self.conditionally_display_help()
+                    self.display_help()
                     return '!!!'
         return value
 
@@ -401,9 +432,13 @@ class UserInputGetter(MenuSectionAggregator):
             default = str(self.defaults[self.prompt_index])
             include_chevron = self.chevrons[self.prompt_index]
             prompt = self.indent_and_number_prompt(prompt)
-            user_response = self._io.handle_raw_input_with_default(prompt, default=default,
-                include_chevron=include_chevron, include_newline=self.include_newlines,
-                prompt_character=self.prompt_character, capitalize_prompt=self.capitalize_prompts)
+            user_response = self._io.handle_raw_input_with_default(
+                prompt, 
+                default=default,
+                include_chevron=include_chevron, 
+                include_newline=self.include_newlines,
+                prompt_character=self.prompt_character, 
+                capitalize_prompt=self.capitalize_prompts)
             if user_response is None:
                 self.prompt_index = self.prompt_index + 1
                 break
@@ -431,7 +466,8 @@ class UserInputGetter(MenuSectionAggregator):
         self.menu_lines, self.values, self.prompt_index = [], [], 0
         self.display_title()
         while self.prompt_index < len(self.prompts):
-            if not self.present_prompt_and_store_value(include_chevron=include_chevron):
+            if not self.present_prompt_and_store_value(
+                include_chevron=include_chevron):
                 break
 
     def show_help(self):
@@ -454,15 +490,15 @@ class UserInputGetter(MenuSectionAggregator):
             if value == '!!!':
                 return False
             if not self.apply_tests_to_value(value):
-                self.conditionally_display_help()
+                self.display_help()
                 return False
         self.values.append(value)
         self.prompt_index = self.prompt_index + 1
         return True
 
     def store_value_from_argument_list(self, user_response, argument_list):
-        from experimental.tools.scoremanagertools.menuing.MenuSection import MenuSection
-        dummy_section = MenuSection()
+        from experimental.tools import scoremanagertools
+        dummy_section = scoremanagertools.menuing.MenuSection()
         dummy_section.menu_tokens = argument_list
         value = dummy_section.argument_range_string_to_numbers(user_response)
         self.values.append(value)

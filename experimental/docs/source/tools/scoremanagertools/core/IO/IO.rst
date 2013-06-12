@@ -21,9 +21,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.core.IO.IO.IO.assign_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.core.IO.IO.IO.conditionally_clear_terminal
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.core.IO.IO.IO.confirm
    :noindex:
 

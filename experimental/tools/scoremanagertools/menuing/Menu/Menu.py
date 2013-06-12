@@ -34,7 +34,7 @@ class Menu(MenuSectionAggregator):
             self.should_clear_terminal = clear
             self.hide_current_run = hide_current_run
             clear, hide_current_run = False, True
-            result = self.conditionally_display_menu(
+            result = self.display_menu(
                 automatically_determined_user_input=\
                 automatically_determined_user_input)
             if self._session.is_complete:
@@ -179,7 +179,7 @@ class Menu(MenuSectionAggregator):
             user_input)
         user_input = user_input.lower()
         if self.user_enters_nothing(user_input) and self.default_value:
-            return self.conditionally_enclose_in_list(self.default_value)
+            return self.enclose_in_list(self.default_value)
         elif self.user_enters_argument_range(user_input):
             return self.handle_argument_range_user_input(user_input)
         elif user_input == 'r':
@@ -189,10 +189,10 @@ class Menu(MenuSectionAggregator):
                 if menu_token.display_string == 'redraw':
                     continue
                 if menu_token.matches(user_input):
-                    return self.conditionally_enclose_in_list(
+                    return self.enclose_in_list(
                         menu_token.return_value)
 
-    def conditionally_display_menu(self, 
+    def display_menu(self, 
         automatically_determined_user_input=None):
         self.conditionally_clear_terminal()
         self._io.display(self.menu_lines, capitalize_first_character=False)
@@ -206,7 +206,7 @@ class Menu(MenuSectionAggregator):
         directive = self.handle_hidden_key(directive)
         return directive
 
-    def conditionally_enclose_in_list(self, expr):
+    def enclose_in_list(self, expr):
         if self.has_ranged_section:
             return [expr]
         else:

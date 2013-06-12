@@ -90,10 +90,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.conditionally_clear_terminal
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.conditionally_display_menu
+.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.display_menu
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.conditionally_enclose_in_list
+.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.enclose_in_list
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.exec_statement
