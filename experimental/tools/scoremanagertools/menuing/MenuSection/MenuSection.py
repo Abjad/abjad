@@ -26,6 +26,7 @@ class MenuSection(MenuObject):
         return_value_attribute='display_string',
         ):
         MenuObject.__init__(self, session=session, where=where, title=title)
+        #assert is_modern
         self._is_hidden = is_hidden
         self._is_internally_keyed = is_internally_keyed
         self._is_keyed = is_keyed

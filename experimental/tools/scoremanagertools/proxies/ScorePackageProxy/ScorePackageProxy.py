@@ -10,17 +10,22 @@ class ScorePackageProxy(PackageProxy):
     def __init__(self, packagesystem_path=None, session=None):
         from experimental.tools import scoremanagertools
         PackageProxy.__init__(self, packagesystem_path, session=session)
-        self._distribution_proxy = scoremanagertools.proxies.DistributionDirectoryProxy(
+        self._distribution_proxy = \
+            scoremanagertools.proxies.DistributionDirectoryProxy(
             score_package_path=packagesystem_path, session=self._session)
-        self._exergue_directory_proxy = scoremanagertools.proxies.ExergueDirectoryProxy(
+        self._exergue_directory_proxy = \
+            scoremanagertools.proxies.ExergueDirectoryProxy(
             score_package_path=packagesystem_path, session=self._session)
         self._music_proxy = scoremanagertools.proxies.MusicPackageProxy(
             score_package_path=packagesystem_path, session=self._session)
-        self._segment_wrangler = scoremanagertools.wranglers.SegmentPackageWrangler(
+        self._segment_wrangler = \
+            scoremanagertools.wranglers.SegmentPackageWrangler(
             session=self._session)
-        self._material_package_wrangler = scoremanagertools.wranglers.MaterialPackageWrangler(
+        self._material_package_wrangler = \
+            scoremanagertools.wranglers.MaterialPackageWrangler(
             session=self._session)
-        self._material_package_maker_wrangler = scoremanagertools.wranglers.MaterialPackageMakerWrangler(
+        self._material_package_maker_wrangler = \
+            scoremanagertools.wranglers.MaterialPackageMakerWrangler(
             session=self._session)
 
     ### PRIVATE METHODS ###
@@ -33,33 +38,29 @@ class ScorePackageProxy(PackageProxy):
             raise ValueError
 
     def _make_main_menu(self):
-        menu_tokens = [
-            ('h', 'segments'),
-            ('m', 'materials'),
-            ('f', 'specifiers'),
-            ('s', 'setup'),
-            ]
         menu, menu_section = self._io.make_menu(
             where=self._where,
-            menu_tokens=menu_tokens,
-            is_numbered=False,
             return_value_attribute='key',
+            is_numbered=False,
+            is_modern=True,
             )
-        menu_tokens = [
-            ('fix', 'fix package structure'),
-            ('ls', 'list directory contents'),
-            ('profile', 'profile package structure'),
-            ('py.test', 'run py.test'),
-            ('removescore', 'remove score package'),
-            ('svn', 'manage repository'),
-            ('tags', 'manage tags'),
-            ]
+        menu_section.append(('segments', 'h'))
+        menu_section.append(('materials', 'm'))
+        menu_section.append(('specifiers', 'f'))
+        menu_section.append(('setup', 's'))
         hidden_section = menu.make_section(
-            menu_tokens=menu_tokens,
             return_value_attribute='key',
             is_keyed=True,
             is_hidden=True,
+            is_modern=True,
             )
+        hidden_section.append(('fix package structure', 'fix'))
+        hidden_section.append(('list directory contents', 'ls'))
+        hidden_section.append(('profile package structure', 'profile'))
+        hidden_section.append(('run py.test', 'py.test'))
+        hidden_section.append(('remove score package', 'removescore'))
+        hidden_section.append(('manage repository', 'svn'))
+        hidden_section.append(('manage tags', 'tags'))
         return menu
 
     ### READ-ONLY PRIVATE PROPERTIES ###
@@ -99,15 +100,20 @@ class ScorePackageProxy(PackageProxy):
 
     @property
     def has_correct_directory_structure(self):
-        return all([os.path.exists(name) for name in self.top_level_directory_paths])
+        return all([os.path.exists(name) 
+            for name in self.top_level_directory_paths])
 
     @property
     def has_correct_initializers(self):
-        return all([os.path.exists(initializer) for initializer in self.score_initializer_file_names])
+        return all([os.path.exists(initializer) 
+            for initializer in self.score_initializer_file_names])
 
     @property
     def has_correct_package_structure(self):
-        return self.has_correct_directory_structure and self.has_correct_initializers
+        if self.has_correct_directory_structure:
+            if self.has_correct_initializers:
+                return True
+        return False
 
     @property
     def instrumentation(self):
@@ -177,11 +183,11 @@ class ScorePackageProxy(PackageProxy):
 
     @property
     def tempo_inventory(self):
-        for material_package_proxy in self.material_package_wrangler.list_asset_proxies(
+        for proxy in self.material_package_wrangler.list_asset_proxies(
             head=self.package_path):
-            if material_package_proxy.get_tag('material_package_maker_class_name') == \
+            if proxy.get_tag('material_package_maker_class_name') == \
                 'TempoMarkInventoryMaterialPackageMaker':
-                return material_package_proxy.output_material
+                return proxy.output_material
 
     @property
     def title(self):
@@ -196,7 +202,8 @@ class ScorePackageProxy(PackageProxy):
 
     @property
     def top_level_directory_paths(self):
-        return tuple([x.filesystem_path for x in self.top_level_directory_proxies])
+        return tuple([x.filesystem_path 
+            for x in self.top_level_directory_proxies])
 
     @property
     def top_level_directory_proxies(self):
@@ -228,7 +235,8 @@ class ScorePackageProxy(PackageProxy):
         else:
             result.append(('title', 'title:'))
         if self.year_of_completion:
-            result.append(('year', 'year: {!r}'.format(self.year_of_completion)))
+            result.append(('year', 'year: {!r}'.format(
+                self.year_of_completion)))
         else:
             result.append(('year', 'year:'))
         if self.get_tag('instrumentation'):
@@ -237,7 +245,8 @@ class ScorePackageProxy(PackageProxy):
         else:
             result.append(('performers', 'performers:'))
         if self.forces_tagline:
-            result.append(('tagline', 'tagline: {!r}'.format(self.forces_tagline)))
+            result.append(('tagline', 'tagline: {!r}'.format(
+                self.forces_tagline)))
         else:
             result.append(('tagline', 'tagline:'))
         return result
@@ -269,7 +278,8 @@ class ScorePackageProxy(PackageProxy):
                 initializer.close()
         if not os.path.exists(self.music_proxy.initializer_file_name):
             result = False
-            prompt = 'create {}? '.format(self.music_proxy.initializer_file_name)
+            prompt = 'create {}? '.format(
+                self.music_proxy.initializer_file_name)
             if not is_interactive or self._io.confirm(prompt):
                 initializer = file(self.music_proxy.initializer_file_name, 'w')
                 initializer.write('')
@@ -321,7 +331,8 @@ class ScorePackageProxy(PackageProxy):
             prompt = 'create {}'.format(self.stylesheets_directory_path)
             if not is_interactive or self._io.confirm(prompt):
                 os.mkdir(self.stylesheets_directory_path)
-        self._io.proceed('packaged structure fixed.', is_interactive=is_interactive)
+        self._io.proceed('packaged structure fixed.', 
+            is_interactive=is_interactive)
         return result
 
     def handle_setup_menu_result(self, result):
@@ -359,7 +370,8 @@ class ScorePackageProxy(PackageProxy):
     def interactively_edit_instrumentation_specifier(self):
         from experimental.tools import scoremanagertools
         target = self.get_tag('instrumentation')
-        editor = scoremanagertools.editors.InstrumentationEditor(session=self._session, target=target)
+        editor = scoremanagertools.editors.InstrumentationEditor(
+            session=self._session, target=target)
         editor._run() # maybe check for backtracking after this?
         self.add_tag('instrumentation', editor.target)
 
@@ -373,7 +385,8 @@ class ScorePackageProxy(PackageProxy):
 
     def interactively_edit_year_of_completion(self):
         getter = self._io.make_getter(where=self._where)
-        getter.append_integer_in_range('year of completion', start=1, allow_none=True)
+        getter.append_integer_in_range('year of completion', 
+            start=1, allow_none=True)
         result = getter._run()
         if self._session.backtrack():
             return
@@ -383,7 +396,8 @@ class ScorePackageProxy(PackageProxy):
         self._io.print_not_yet_implemented()
 
     def interactively_remove(self):
-        line = 'WARNING! Score package {!r} will be completely removed.'.format(self.package_path)
+        line = 'WARNING! Score package {!r} will be completely removed.'
+        line = line.format(self.package_path)
         self._io.display([line, ''])
         getter = self._io.make_getter(where=self._where)
         getter.append_string("type 'clobberscore' to proceed")
@@ -432,7 +446,8 @@ class ScorePackageProxy(PackageProxy):
     def manage_setup(self, clear=True, cache=True):
         self._session.cache_breadcrumbs(cache=cache)
         while True:
-            self._session.push_breadcrumb('{} - setup'.format(self.annotated_title))
+            breadcrumb = '{} - setup'.format(self.annotated_title)
+            self._session.push_breadcrumb(breadcrumb)
             setup_menu = self.make_setup_menu()
             result = setup_menu._run(clear=clear)
             if self._session.backtrack():
@@ -470,18 +485,25 @@ class ScorePackageProxy(PackageProxy):
 
     def profile(self, prompt=True):
         if not os.path.exists(self.filesystem_path):
-            raise OSError('directory {!r} does not exist.'.format(self.filesystem_path))
+            message = 'directory {!r} does not exist.'
+            message = message.format(self.filesystem_path)
+            raise OSError(message)
         lines = []
         for subdirectory_path in self.top_level_directory_paths:
-            lines.append('{} {}'.format(subdirectory_path.ljust(80), os.path.exists(subdirectory_path)))
+            lines.append('{} {}'.format(
+                subdirectory_path.ljust(80), 
+                os.path.exists(subdirectory_path)))
         for initializer in self.score_initializer_file_names:
-            lines.append('{} {}'.format(initializer.ljust(80), os.path.exists(initializer)))
+            lines.append('{} {}'.format(
+                initializer.ljust(80), 
+                os.path.exists(initializer)))
         lines.append('')
         self._io.display(lines)
         self._io.proceed(is_interactive=prompt)
 
     def summarize_materials(self):
-        materials = self.material_package_wrangler.space_delimited_lowercase_names
+        wrangler = self.material_package_wrangler
+        materials = wrangler.space_delimited_lowercase_names
         lines = []
         if not materials:
             lines.append('{}Materials (none yet)'.format(self.make_tab(1)))
@@ -490,7 +512,10 @@ class ScorePackageProxy(PackageProxy):
         if materials:
             lines.append('')
         for i, material in enumerate(materials):
-            lines.append('{}({}) {}'.format(self.make_tab(1), i + 1, material))
+            lines.append('{}({}) {}'.format(
+                self.make_tab(1), 
+                i + 1, 
+                material))
         self._io.display(lines)
 
     def summarize_segments(self):

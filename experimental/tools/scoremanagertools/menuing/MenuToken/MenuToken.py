@@ -28,7 +28,12 @@ class MenuToken(AbjadObject):
         assert return_value_attribute in self.return_value_attributes
         self._return_value_attribute = return_value_attribute
         if is_modern:
-            if len(expr) == 1:
+            if isinstance(expr, type(self)):
+                display_string = expr.display_string
+                key = expr.key
+                existing_value = expr.existing_value
+                prepopulated_return_value = expr.prepopulated_return_value
+            elif len(expr) == 1:
                 display_string = expr[0]
                 key = None
                 existing_value = None

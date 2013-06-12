@@ -110,15 +110,30 @@ class MenuObject(ScoreManagerObject):
             ('tw', 'toggle where'),
             ('where', 'show menu client'),
             ]
-        menu_section = scoremanagertools.menuing.MenuSection(
+        hidden_section = scoremanagertools.menuing.MenuSection(
             session=session,
             where=where,
-            is_keyed=True,
-            menu_tokens=menu_tokens,
             return_value_attribute='key',
+            menu_tokens=menu_tokens,
+            is_keyed=True,
             is_hidden=True,
+            #is_modern=True,
             )
-        return menu_section
+#        hidden_section.append(('back', 'b'))
+#        hidden_section.append(('exec statement', 'exec'))
+#        hidden_section.append(('grep directories', 'grep'))
+#        hidden_section.append(('edit client source', 'here'))
+#        hidden_section.append(('show hidden items', 'hidden'))
+#        hidden_section.append(('home', 'home'))
+#        hidden_section.append(('next score', 'next'))
+#        hidden_section.append(('prev score', 'prev'))
+#        hidden_section.append(('quit', 'q'))
+#        hidden_section.append(('redraw', 'r'))
+#        hidden_section.append(('score', 'score'))
+#        hidden_section.append(('toggle menu', 'tm'))
+#        hidden_section.append(('toggle where', 'tw'))
+#        hidden_section.append(('show menu client', 'where'))
+        return hidden_section
 
     def make_is_integer_in_range(self, start=None, stop=None, allow_none=False):
         return lambda expr: (expr is None and allow_none) or \

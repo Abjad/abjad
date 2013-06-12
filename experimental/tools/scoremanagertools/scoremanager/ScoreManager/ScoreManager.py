@@ -71,9 +71,10 @@ class ScoreManager(ScoreManagerObject):
     def _handle_main_menu_result(self, result):
         if result in self.user_input_to_action:
             self.user_input_to_action[result](self)
-        # TODO: alias to self.list_visible_score_package_packagesystem_paths()
-        elif result in self.score_package_wrangler.list_visible_asset_packagesystem_paths():
-            self.interactively_edit_score(result)
+        else:
+            wrangler = self.score_package_wrangler
+            if result in wrangler.list_visible_asset_packagesystem_paths():
+                self.interactively_edit_score(result)
 
     def _handle_svn_menu_result(self, result):
         '''Return true to exit the svn menu.
@@ -95,23 +96,25 @@ class ScoreManager(ScoreManagerObject):
         menu_section = menu.make_section(
             return_value_attribute='key',
             is_keyed=True,
+            is_modern=True,
             )
-        menu_section.append(('m', 'materials'))
-        menu_section.append(('y', 'stylesheets'))
-        menu_section.append(('new', 'new score'))
+        menu_section.append(('materials', 'm'))
+        menu_section.append(('stylesheets', 'y'))
+        menu_section.append(('new score', 'new'))
         hidden_section = menu.make_section(
             return_value_attribute='key',
             is_keyed=True,
             is_hidden=True,
+            is_modern=True,
             )
-        hidden_section.append(('active', 'show active scores only'))
-        hidden_section.append(('all', 'show all scores'))
-        hidden_section.append(('fix', 'fix all score package structures'))
-        hidden_section.append(('mb', 'show mothballed scores only'))
-        hidden_section.append(('profile', 'profile packages'))
-        hidden_section.append(('py.test', 'run py.test on all scores'))
-        hidden_section.append(('svn', 'work with repository'))
-        hidden_section.append(('wc', 'write cache'))
+        hidden_section.append(('show active scores only', 'active'))
+        hidden_section.append(('show all scores', 'all'))
+        hidden_section.append(('fix all score package structures', 'fix'))
+        hidden_section.append(('show mothballed scores only', 'mb'))
+        hidden_section.append(('profile packages', 'profile'))
+        hidden_section.append(('run py.test on all scores', 'py.test'))
+        hidden_section.append(('work with repository', 'svn'))
+        hidden_section.append(('write cache', 'wc'))
         return menu
 
     def _make_score_selection_menu(self):
