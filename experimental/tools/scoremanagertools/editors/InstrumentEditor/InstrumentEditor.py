@@ -3,9 +3,12 @@ from experimental.tools.scoremanagertools import selectors
 from experimental.tools.scoremanagertools import wizards
 from abjad.tools.instrumenttools.Instrument import Instrument
 from abjad.tools import instrumenttools
-from experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor import ClefMarkInventoryEditor
-from experimental.tools.scoremanagertools.editors.InteractiveEditor import InteractiveEditor
-from experimental.tools.scoremanagertools.editors.TargetManifest import TargetManifest
+from experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor \
+    import ClefMarkInventoryEditor
+from experimental.tools.scoremanagertools.editors.InteractiveEditor \
+    import InteractiveEditor
+from experimental.tools.scoremanagertools.editors.TargetManifest \
+    import TargetManifest
 
 
 class InstrumentEditor(InteractiveEditor):
@@ -48,10 +51,12 @@ class InstrumentEditor(InteractiveEditor):
 
     ### PUBLIC METHODS ###
 
-    def conditionally_initialize_target(self):
+    def initialize_target(self):
         if self.target is None:
             with self.backtracking:
-                wizard = wizards.InstrumentCreationWizard(is_ranged=True, session=self._session)
+                wizard = wizards.InstrumentCreationWizard(
+                    is_ranged=True, 
+                    session=self._session)
                 instruments = wizard._run()
             if self._session.backtrack():
                 return

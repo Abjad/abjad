@@ -73,7 +73,7 @@ class InteractiveEditor(ScoreManagerObject):
         self._session.cache_breadcrumbs(cache=cache)
         self._session.push_breadcrumb(self._breadcrumb)
         with self.backtracking:
-            self.conditionally_initialize_target()
+            self.initialize_target()
         self._session.pop_breadcrumb()
         if self._session.backtrack():
             self._session.restore_breadcrumbs(cache=cache)
@@ -210,7 +210,7 @@ class InteractiveEditor(ScoreManagerObject):
                 pass
         self.initialize_attributes_in_memory()
 
-    def conditionally_initialize_target(self):
+    def initialize_target(self):
         if self.target is not None:
             return
         try:

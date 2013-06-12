@@ -92,7 +92,7 @@ class ListEditor(InteractiveEditor):
 
     ### PUBLIC METHODS ###
 
-    def conditionally_initialize_target(self):
+    def initialize_target(self):
         if self.target is not None:
             return
         else:
