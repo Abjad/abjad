@@ -78,8 +78,24 @@ class MIDIOutputProxy(AssetOutputProxy):
             ]
         return result
 
+    def handle_latex_document_environment(self, document_handler):
+        '''Handle a LaTeX document environment:
+
+        ::
+
+            >>> document_handler = newabjadbooktools.LaTeXDocumentHandler([])
+            >>> result = output_proxy.handle_latex_document_environment(
+            ...     document_handler)
+            >>> print result
+            []
+
+        Return list.
+        '''
+        result = []
+        return result
+
     def handle_rest_document_environment(self, document_handler):
-        '''Handle an ReST document_environment:
+        '''Handle an ReST document environment:
 
         ::
 

@@ -21,9 +21,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.newabjadbooktools.HTMLDocumentHandler.HTMLDocumentHandler.HTMLDocumentHandler.document
    :noindex:
 
-.. autoattribute:: experimental.tools.newabjadbooktools.HTMLDocumentHandler.HTMLDocumentHandler.HTMLDocumentHandler.document_type
-   :noindex:
-
 .. autoattribute:: experimental.tools.newabjadbooktools.HTMLDocumentHandler.HTMLDocumentHandler.HTMLDocumentHandler.image_format
    :noindex:
 

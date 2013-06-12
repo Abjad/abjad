@@ -33,9 +33,6 @@ Methods
 .. automethod:: experimental.tools.newabjadbooktools.OutputProxy.OutputProxy.OutputProxy.handle_rest_document_environment
    :noindex:
 
-.. automethod:: experimental.tools.newabjadbooktools.OutputProxy.OutputProxy.OutputProxy.handle_text_document_environment
-   :noindex:
-
 Special methods
 ---------------
 

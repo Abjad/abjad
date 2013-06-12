@@ -48,9 +48,6 @@ Methods
 .. automethod:: experimental.tools.newabjadbooktools.LilyPondOutputProxy.LilyPondOutputProxy.LilyPondOutputProxy.handle_rest_document_environment
    :noindex:
 
-.. automethod:: experimental.tools.newabjadbooktools.LilyPondOutputProxy.LilyPondOutputProxy.LilyPondOutputProxy.handle_text_document_environment
-   :noindex:
-
 .. automethod:: experimental.tools.newabjadbooktools.LilyPondOutputProxy.LilyPondOutputProxy.LilyPondOutputProxy.write_asset_to_disk
    :noindex:
 

@@ -457,6 +457,7 @@ Unstable packages (load manually)
       tools/newabjadbooktools/ImageFormat/ImageFormat
       tools/newabjadbooktools/ImageOutputProxy/ImageOutputProxy
       tools/newabjadbooktools/OutputProxy/OutputProxy
+      tools/newabjadbooktools/TextualDocumentHandler/TextualDocumentHandler
 
    --------
 
@@ -475,7 +476,6 @@ Unstable packages (load manually)
       tools/newabjadbooktools/PNGImageFormat/PNGImageFormat
       tools/newabjadbooktools/ReSTDocumentHandler/ReSTDocumentHandler
       tools/newabjadbooktools/SVGImageFormat/SVGImageFormat
-      tools/newabjadbooktools/TextualDocumentHandler/TextualDocumentHandler
 
 .. only:: latex
 
@@ -490,6 +490,7 @@ Unstable packages (load manually)
       tools/newabjadbooktools/ImageFormat/ImageFormat
       tools/newabjadbooktools/ImageOutputProxy/ImageOutputProxy
       tools/newabjadbooktools/OutputProxy/OutputProxy
+      tools/newabjadbooktools/TextualDocumentHandler/TextualDocumentHandler
 
    Concrete Classes
    ----------------
@@ -508,7 +509,6 @@ Unstable packages (load manually)
       tools/newabjadbooktools/PNGImageFormat/PNGImageFormat
       tools/newabjadbooktools/ReSTDocumentHandler/ReSTDocumentHandler
       tools/newabjadbooktools/SVGImageFormat/SVGImageFormat
-      tools/newabjadbooktools/TextualDocumentHandler/TextualDocumentHandler
 
 :py:mod:`parsertools <experimental.tools.parsertools>`
 ======================================================

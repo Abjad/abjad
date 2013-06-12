@@ -45,9 +45,6 @@ Methods
 .. automethod:: experimental.tools.newabjadbooktools.MIDIOutputProxy.MIDIOutputProxy.MIDIOutputProxy.handle_rest_document_environment
    :noindex:
 
-.. automethod:: experimental.tools.newabjadbooktools.MIDIOutputProxy.MIDIOutputProxy.MIDIOutputProxy.handle_text_document_environment
-   :noindex:
-
 .. automethod:: experimental.tools.newabjadbooktools.MIDIOutputProxy.MIDIOutputProxy.MIDIOutputProxy.write_asset_to_disk
    :noindex:
 

@@ -21,9 +21,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.newabjadbooktools.TextualDocumentHandler.TextualDocumentHandler.TextualDocumentHandler.document
    :noindex:
 
-.. autoattribute:: experimental.tools.newabjadbooktools.TextualDocumentHandler.TextualDocumentHandler.TextualDocumentHandler.document_type
-   :noindex:
-
 .. autoattribute:: experimental.tools.newabjadbooktools.TextualDocumentHandler.TextualDocumentHandler.TextualDocumentHandler.image_format
    :noindex:
 

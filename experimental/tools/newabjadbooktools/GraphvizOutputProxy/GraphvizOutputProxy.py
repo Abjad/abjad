@@ -2,8 +2,41 @@ from experimental.tools.newabjadbooktools.ImageOutputProxy import ImageOutputPro
 
 
 class GraphvizOutputProxy(ImageOutputProxy):
+    '''Output proxy for Graphviz images of Abjad datastructures:
 
-    ### CLASS VARIABLES ###
+    ::
+
+        >>> metrical_hierarchy = timesignaturetools.MetricalHierarchy((4, 4))
+        >>> print metrical_hierarchy.graphviz_format
+        digraph G {
+            node_0 [label="4/4",
+                shape=triangle];
+            node_1 [label="1/4",
+                shape=box];
+            node_2 [label="1/4",
+                shape=box];
+            node_3 [label="1/4",
+                shape=box];
+            node_4 [label="1/4",
+                shape=box];
+            node_0 -> node_1;
+            node_0 -> node_2;
+            node_0 -> node_3;
+            node_0 -> node_4;
+        }
+
+    ::
+
+        >>> iotools.graph(metrical_hierarchy) # doctest: +SKIP
+
+    ::
+
+        >>> output_proxy = newabjadbooktools.GraphvizOutputProxy(metrical_hierarchy)
+
+    Return output proxy.
+    '''
+
+    ### INITIALIZER ###
 
     def __init__(self, payload):
         if isinstance(payload, str):
@@ -12,3 +45,65 @@ class GraphvizOutputProxy(ImageOutputProxy):
             graphviz_format = payload.graphviz_format
             self._payload = graphviz_format
              
+    ### PUBLIC METHODS ###
+
+    def handle_html_document_environment(self, document_handler):
+        '''Handle an HTML document environment:
+
+        ::
+
+            >>> document_handler = newabjadbooktools.HTMLDocumentHandler([])
+            >>> result = output_proxy.handle_html_document_environment(
+            ...     document_handler)
+            >>> for x in result:
+            ...     x
+            '<img alt="" src="assets/graphviz-e35e25d3a5dcb97ec2d6c43352727dbf.png"/>'
+            ''
+
+        Return list.
+        '''
+        return ImageOutputProxy.handle_html_document_environment(
+            self,
+            document_handler,
+            )
+
+    def handle_latex_document_environment(self, document_handler):
+        '''Handle a LaTeX document environment:
+
+        ::
+
+            >>> document_handler = newabjadbooktools.LaTeXDocumentHandler([])
+            >>> result = output_proxy.handle_latex_document_environment(
+            ...     document_handler)
+            >>> for x in result:
+            ...     x
+            '\\includegraphics{assets/graphviz-e35e25d3a5dcb97ec2d6c43352727dbf.pdf}'
+            ''
+
+        Return list.
+        '''
+        return ImageOutputProxy.handle_latex_document_environment(
+            self,
+            document_handler,
+            )
+
+    def handle_rest_document_environment(self, document_handler):
+        '''Handle an ReST document environment:
+
+        ::
+
+            >>> document_handler = newabjadbooktools.ReSTDocumentHandler([])
+            >>> result = output_proxy.handle_rest_document_environment(
+            ...     document_handler)
+            >>> for x in result:
+            ...     x
+            '.. image:: assets/graphviz-e35e25d3a5dcb97ec2d6c43352727dbf.png'
+            ''
+
+        Return list.
+        '''
+        return ImageOutputProxy.handle_rest_document_environment(
+            self,
+            document_handler,
+            )
+

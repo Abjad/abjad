@@ -3,7 +3,8 @@ from experimental.tools.newabjadbooktools.DocumentHandler import DocumentHandler
 
 
 class TextualDocumentHandler(DocumentHandler):
-    """Handles text-based documents containing <abjad></abjad> tags:
+    """Abstract base class for handlers of text-based documents containing
+    <abjad></abjad> tags:
     
     ::
 
@@ -26,7 +27,7 @@ class TextualDocumentHandler(DocumentHandler):
 
     ::
 
-        >>> handler = newabjadbooktools.TextualDocumentHandler(document)
+        >>> handler = newabjadbooktools.ReSTDocumentHandler(document)
         >>> code_blocks = handler.extract_code_blocks() 
         >>> for location, code_block in code_blocks.items():
         ...     print location, code_block.displayed_lines
@@ -55,7 +56,7 @@ class TextualDocumentHandler(DocumentHandler):
 
     ::
 
-        >>> handler = newabjadbooktools.TextualDocumentHandler(document)
+        >>> handler = newabjadbooktools.ReSTDocumentHandler(document)
         >>> code_blocks = handler.extract_code_blocks()
         >>> for code_block in code_blocks.values():
         ...     print code_block.hide
@@ -87,9 +88,7 @@ class TextualDocumentHandler(DocumentHandler):
         return options
 
     def extract_code_blocks(self):
-        document = self.document
-
-        in_block = None
+        in_block = False
         starting_line_number = None
         current_block_lines = None
         current_block_options = None
@@ -177,11 +176,3 @@ class TextualDocumentHandler(DocumentHandler):
     def asset_output_directory_name(self):
         return 'assets'
 
-    @property
-    def document_type(self):
-        return 'text'
-
-    @property
-    def image_format(self):
-        from experimental.tools import newabjadbooktools
-        return newabjadbooktools.PNGImageFormat()

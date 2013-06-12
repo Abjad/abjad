@@ -36,8 +36,6 @@ class OutputProxy(AbjadObject):
                 self.handle_latex_document_environment,
             newabjadbooktools.ReSTDocumentHandler:
                 self.handle_rest_document_environment,
-            newabjadbooktools.TextualDocumentHandler:
-                self.handle_text_document_environment,
             }
         assert type(document_handler) in document_handler_mapping
         procedure = document_handler_mapping[type(document_handler)]
@@ -46,15 +44,16 @@ class OutputProxy(AbjadObject):
     def handle_doctree_document_environment(self, document_handler):
         raise NotImplemented
 
+    @abc.abstractmethod
     def handle_html_document_environment(self, document_handler):
         raise NotImplemented
 
+    @abc.abstractmethod
     def handle_latex_document_environment(self, document_handler):
         raise NotImplemented
 
+    @abc.abstractmethod
     def handle_rest_document_environment(self, document_handler):
         raise NotImplemented
 
-    def handle_text_document_environment(self, document_handler):
-        raise NotImplemented
 

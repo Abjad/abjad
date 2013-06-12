@@ -63,6 +63,44 @@ class CodeOutputProxy(OutputProxy):
         result.append('</pre>')
         return result
 
+    def handle_latex_document_environment(self, document_handler):
+        '''Handle a LaTeX document environment:
+
+        ::
+        
+            >>> document_handler = newabjadbooktools.LaTeXDocumentHandler([])
+            >>> result = output_proxy.handle_latex_document_environment(
+            ...     document_handler)
+            >>> for x in result:
+            ...     x
+            '\\begin{lstlisting}['
+            '\tbasicstyle=\\footnotesize\\ttfamily,'
+            '\tbreaklines=true,'
+            '\ttabsize=4,'
+            '\tshowtabs=false'
+            '\tshowspaces=false'
+            '\t]'
+            '>>> print "hello, world!"'
+            'hello, world!'
+            '\\end{lstlisting}'
+            ''
+
+        Return list.
+        '''
+        result = []
+        result.append('\\begin{lstlisting}[')
+        result.append('\tbasicstyle=\\footnotesize\\ttfamily,')
+        result.append('\tbreaklines=true,')
+        result.append('\ttabsize=4,')
+        result.append('\tshowtabs=false',)
+        result.append('\tshowspaces=false')
+        result.append('\t]')
+        for line in self.payload:
+            result.append(line)
+        result.append('\\end{lstlisting}')
+        result.append('')
+        return result
+
     def handle_rest_document_environment(self, document_handler):
         '''Handle an ReST document environment:
 

@@ -54,4 +54,9 @@ class ReSTDocumentHandler(TextualDocumentHandler):
     Return document handler.
     """
 
-    pass
+    ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def image_format(self):
+        from experimental.tools import newabjadbooktools
+        return newabjadbooktools.PNGImageFormat()

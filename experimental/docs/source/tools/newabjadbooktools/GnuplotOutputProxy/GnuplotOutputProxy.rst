@@ -48,9 +48,6 @@ Methods
 .. automethod:: experimental.tools.newabjadbooktools.GnuplotOutputProxy.GnuplotOutputProxy.GnuplotOutputProxy.handle_rest_document_environment
    :noindex:
 
-.. automethod:: experimental.tools.newabjadbooktools.GnuplotOutputProxy.GnuplotOutputProxy.GnuplotOutputProxy.handle_text_document_environment
-   :noindex:
-
 .. automethod:: experimental.tools.newabjadbooktools.GnuplotOutputProxy.GnuplotOutputProxy.GnuplotOutputProxy.write_asset_to_disk
    :noindex:
 

@@ -52,12 +52,30 @@ class LilyPondOutputProxy(ImageOutputProxy):
 
         Return list.
         '''
-        result = []
-        directive = '<img alt="" src="{}"/>'.format(
-            self.get_relative_asset_output_path(document_handler))
-        result.append(directive)
-        result.append('')
-        return result
+        return ImageOutputProxy.handle_html_document_environment(
+            self,
+            document_handler,
+            )
+
+    def handle_latex_document_environment(self, document_handler):
+        '''Handle a LaTeX document environment:
+
+        ::
+
+            >>> document_handler = newabjadbooktools.LaTeXDocumentHandler([])
+            >>> result = output_proxy.handle_latex_document_environment(
+            ...     document_handler)
+            >>> for x in result:
+            ...     x
+            '\\includegraphics{assets/lilypond-b2476962e00078743b1ed8c6d7bce3b9.pdf}'
+            ''
+
+        Return list.
+        '''
+        return ImageOutputProxy.handle_latex_document_environment(
+            self,
+            document_handler,
+            )
 
     def handle_rest_document_environment(self, document_handler):
         '''Handle an ReST document environment:
@@ -74,9 +92,7 @@ class LilyPondOutputProxy(ImageOutputProxy):
 
         Return list.
         '''
-        result = []
-        directive = '.. image:: {}'.format(
-            self.get_relative_asset_output_path(document_handler))
-        result.append(directive)
-        result.append('')
-        return result
+        return ImageOutputProxy.handle_rest_document_environment(
+            self,
+            document_handler,
+            )

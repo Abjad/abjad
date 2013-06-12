@@ -21,9 +21,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.newabjadbooktools.LaTeXDocumentHandler.LaTeXDocumentHandler.LaTeXDocumentHandler.document
    :noindex:
 
-.. autoattribute:: experimental.tools.newabjadbooktools.LaTeXDocumentHandler.LaTeXDocumentHandler.LaTeXDocumentHandler.document_type
-   :noindex:
-
 .. autoattribute:: experimental.tools.newabjadbooktools.LaTeXDocumentHandler.LaTeXDocumentHandler.LaTeXDocumentHandler.image_format
    :noindex:
 
