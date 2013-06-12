@@ -10,7 +10,12 @@ class MenuToken(AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    return_value_attributes = ('display_string', 'key', 'number', 'prepopulated')
+    return_value_attributes = (
+        'display_string', 
+        'key', 
+        'number', 
+        'prepopulated',
+        )
 
     ### INITIALIZER ###
 

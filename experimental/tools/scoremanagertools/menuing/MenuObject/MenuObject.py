@@ -94,31 +94,28 @@ class MenuObject(ScoreManagerObject):
 
     def make_default_hidden_section(self, session=None, where=None):
         from experimental.tools import scoremanagertools
-        menu_tokens = [
-            ('b', 'back'),
-            ('exec', 'exec statement'),
-            ('grep', 'grep directories'),
-            ('here', 'edit client source'),
-            ('hidden', 'show hidden items'),
-            ('home', 'home'),
-            ('next', 'next score'),
-            ('prev', 'prev score'),
-            ('q', 'quit'),
-            ('r', 'redraw'),
-            ('score', 'score'),
-            ('tm', 'toggle menu'),
-            ('tw', 'toggle where'),
-            ('where', 'show menu client'),
-            ]
         hidden_section = scoremanagertools.menuing.MenuSection(
             session=session,
             where=where,
             return_value_attribute='key',
-            menu_tokens=menu_tokens,
             is_keyed=True,
             is_hidden=True,
             #is_modern=True,
             )
+        hidden_section.append(('b', 'back'))
+        hidden_section.append(('exec', 'exec statement'))
+        hidden_section.append(('grep', 'grep directories'))
+        hidden_section.append(('here', 'edit client source'))
+        hidden_section.append(('hidden', 'show hidden items'))
+        hidden_section.append(('home', 'home'))
+        hidden_section.append(('next', 'next score'))
+        hidden_section.append(('prev', 'prev score'))
+        hidden_section.append(('q', 'quit'))
+        hidden_section.append(('r', 'redraw'))
+        hidden_section.append(('score', 'score'))
+        hidden_section.append(('tm', 'toggle menu'))
+        hidden_section.append(('tw', 'toggle where'))
+        hidden_section.append(('where', 'show menu client'))
 #        hidden_section.append(('back', 'b'))
 #        hidden_section.append(('exec statement', 'exec'))
 #        hidden_section.append(('grep directories', 'grep'))

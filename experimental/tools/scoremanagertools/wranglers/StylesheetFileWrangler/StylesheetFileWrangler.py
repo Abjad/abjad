@@ -1,6 +1,7 @@
 import os
 from abjad.tools import stringtools
-from experimental.tools.scoremanagertools.wranglers.FileWrangler import FileWrangler
+from experimental.tools.scoremanagertools.wranglers.FileWrangler import \
+    FileWrangler
 
 
 class StylesheetFileWrangler(FileWrangler):
@@ -16,11 +17,13 @@ class StylesheetFileWrangler(FileWrangler):
     ### CLASS VARIABLES ###
 
     asset_storehouse_filesystem_path_in_built_in_asset_library = os.path.join(
-        FileWrangler.configuration.score_manager_tools_directory_path, 'stylesheets')
+        FileWrangler.configuration.score_manager_tools_directory_path, 
+        'stylesheets')
 
     score_package_asset_storehouse_path_infix_parts = ('music', 'stylesheets')
 
-    asset_storehouse_filesystem_path_in_user_asset_library = FileWrangler.configuration.user_asset_library_stylesheets_directory_path
+    asset_storehouse_filesystem_path_in_user_asset_library = \
+        FileWrangler.configuration.user_asset_library_stylesheets_directory_path
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 
@@ -37,16 +40,20 @@ class StylesheetFileWrangler(FileWrangler):
     def _filesystem_path_to_annotation(self, filesystem_path):
         from experimental.tools import scoremanagertools
         annotation = None
-        if filesystem_path.startswith(self.configuration.built_in_score_packages_directory_path) or \
-            filesystem_path.startswith(self.configuration.user_score_packages_directory_path):
+        if filesystem_path.startswith(
+            self.configuration.built_in_score_packages_directory_path) or \
+            filesystem_path.startswith(
+            self.configuration.user_score_packages_directory_path):
             tmp = os.path.join('music', 'stylesheets')
             score_filesystem_path = filesystem_path.rpartition(tmp)[0]
-            packagesystem_path = self.configuration.filesystem_path_to_packagesystem_path(
+            packagesystem_path = \
+                self.configuration.filesystem_path_to_packagesystem_path(
                 score_filesystem_path)
             score_package_proxy = scoremanagertools.proxies.ScorePackageProxy(
                 packagesystem_path=packagesystem_path)
             annotation = score_package_proxy.title
-        elif filesystem_path.startswith(self.configuration.built_in_stylesheets_directory_path):
+        elif filesystem_path.startswith(
+            self.configuration.built_in_stylesheets_directory_path):
             annotation = 'built-in'
         return annotation
 
@@ -62,18 +69,17 @@ class StylesheetFileWrangler(FileWrangler):
             return_value_attribute='key',
             is_numbered=True,
             )
-        menu_section.menu_tokens = self._make_menu_tokens(include_extension=True)
-        menu_tokens = [
-            ('new', 'new'),
-            ('cp', 'copy'),
-            ('ren', 'rename'),
-            ('rm', 'remove'),
-            ]
+        menu_section.menu_tokens = self._make_menu_tokens(
+            include_extension=True)
         menu_section = menu.make_section(
-            menu_tokens=menu_tokens,
             return_value_attribute='key',
             is_keyed=True,
+            is_modern=True,
             )
+        menu_section.append(('new', 'new'))
+        menu_section.append(('copy', 'cp'))
+        menu_section.append(('rename', 'ren'))
+        menu_section.append(('remove', 'rm'))
         return menu
 
     def _make_menu_tokens(self, head=None, include_extension=False):
@@ -119,13 +125,15 @@ class StylesheetFileWrangler(FileWrangler):
     ### PUBLIC METHODS ###
 
     def interactively_edit_asset(self, filesystem_path):
-        proxy = self.asset_proxy_class(filesystem_path=filesystem_path, session=self._session)
+        proxy = self.asset_proxy_class(
+            filesystem_path=filesystem_path, session=self._session)
         proxy.interactively_edit()
 
     def interactively_make_asset(self):
         from experimental.tools import scoremanagertools
         with self.backtracking:
-            storehouse_path = self.interactively_select_asset_storehouse_filesystem_path(
+            storehouse_path = \
+                self.interactively_select_asset_storehouse_filesystem_path(
                 in_built_in_asset_library=False,
                 in_user_asset_library=True,
                 in_built_in_score_packages=False,
@@ -138,7 +146,8 @@ class StylesheetFileWrangler(FileWrangler):
         if self._session.backtrack():
             return
 
-        stylesheet_file_name = stringtools.string_to_accent_free_underscored_delimited_lowercase(
+        stylesheet_file_name = \
+            stringtools.string_to_accent_free_underscored_delimited_lowercase(
             stylesheet_file_name)
 
         if not stylesheet_file_name.endswith('.ly'):
@@ -158,8 +167,11 @@ class StylesheetFileWrangler(FileWrangler):
             proxy.interactively_edit()
 
     def list_asset_filesystem_paths(self,
-        in_built_in_asset_library=True, in_user_asset_library=True,
-        in_built_in_score_packages=True, in_user_score_packages=True, head=None):
+        in_built_in_asset_library=True, 
+        in_user_asset_library=True,
+        in_built_in_score_packages=True, 
+        in_user_score_packages=True, 
+        head=None):
         '''Stylesheet file wrangler list asset filesystem paths.
 
         Example. List built-in stylesheet filesystem paths:
@@ -183,8 +195,13 @@ class StylesheetFileWrangler(FileWrangler):
             in_user_score_packages=in_user_score_packages,
             head=head)
 
-    def list_asset_names(self, in_built_in_asset_library=True, in_user_asset_library=True,
-        in_built_in_score_packages=True, in_user_score_packages=True, head=None, include_extension=False):
+    def list_asset_names(self, 
+        in_built_in_asset_library=True, 
+        in_user_asset_library=True,
+        in_built_in_score_packages=True, 
+        in_user_score_packages=True, 
+        head=None, 
+        include_extension=False):
         '''Stylesheet file wrangler list asset names.
 
         Example. List built-in stylesheet names:
@@ -192,7 +209,9 @@ class StylesheetFileWrangler(FileWrangler):
         ::
 
             >>> for x in wrangler.list_asset_names(
-            ...     in_user_asset_library=False, in_user_score_packages=False, include_extension=True):
+            ...     in_user_asset_library=False, 
+            ...     in_user_score_packages=False, 
+            ...     include_extension=True):
             ...     x
             'clean-letter-14.ly'
             'clean-letter-16.ly'
@@ -209,8 +228,12 @@ class StylesheetFileWrangler(FileWrangler):
             head=head,
             include_extension=include_extension)
 
-    def list_asset_proxies(self, in_built_in_asset_library=True, in_user_asset_library=True,
-        in_built_in_score_packages=True, in_user_score_packages=True, head=None):
+    def list_asset_proxies(self, 
+        in_built_in_asset_library=True, 
+        in_user_asset_library=True,
+        in_built_in_score_packages=True, 
+        in_user_score_packages=True, 
+        head=None):
         '''Stylesheet file wrangler list asset proxies.
 
         Example. List built-in stylesheet proxies:
@@ -218,7 +241,8 @@ class StylesheetFileWrangler(FileWrangler):
         ::
 
             >>> for x in wrangler.list_asset_proxies(
-            ...     in_user_asset_library=False, in_user_score_packages=False):
+            ...     in_user_asset_library=False, 
+            ...    in_user_score_packages=False):
             ...     x
             StylesheetFileProxy('.../tools/scoremanagertools/stylesheets/clean-letter-14.ly')
             StylesheetFileProxy('.../tools/scoremanagertools/stylesheets/clean-letter-16.ly')
@@ -235,8 +259,10 @@ class StylesheetFileWrangler(FileWrangler):
             head=head)
 
     def list_asset_storehouse_filesystem_paths(self,
-        in_built_in_asset_library=True, in_user_asset_library=True,
-        in_built_in_score_packages=True, in_user_score_packages=True):
+        in_built_in_asset_library=True, 
+        in_user_asset_library=True,
+        in_built_in_score_packages=True, 
+        in_user_score_packages=True):
         '''Stylesheet file wrangler list storehouse filesystem paths.
 
         Example. List built-in storehouse filesystem paths:
@@ -244,7 +270,8 @@ class StylesheetFileWrangler(FileWrangler):
         ::
 
             >>> for x in wrangler.list_asset_storehouse_filesystem_paths(
-            ...     in_user_asset_library=False, in_user_score_packages=False):
+            ...     in_user_asset_library=False, 
+            ...     in_user_score_packages=False):
             ...     x
             '.../tools/scoremanagertools/stylesheets'
             '.../tools/scoremanagertools/scorepackages/blue_example_score/music/stylesheets'

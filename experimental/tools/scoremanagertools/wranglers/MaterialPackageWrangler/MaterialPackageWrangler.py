@@ -46,7 +46,8 @@ class MaterialPackageWrangler(PackageWrangler):
         from experimental.tools import scoremanagertools
         PackageWrangler.__init__(self, session=session)
         self._material_package_maker_wrangler = \
-            scoremanagertools.wranglers.MaterialPackageMakerWrangler(session=self._session)
+            scoremanagertools.wranglers.MaterialPackageMakerWrangler(
+                session=self._session)
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 
@@ -60,7 +61,8 @@ class MaterialPackageWrangler(PackageWrangler):
         material_package_maker_class_name, material_package_path):
         from experimental.tools import scoremanagertools
         if material_package_maker_class_name is None:
-            material_package_proxy = scoremanagertools.proxies.MaterialPackageProxy(
+            material_package_proxy = \
+                scoremanagertools.proxies.MaterialPackageProxy(
                 material_package_path, session=self._session)
         else:
             command = 'material_package_proxy = '
@@ -97,26 +99,22 @@ class MaterialPackageWrangler(PackageWrangler):
             is_numbered=True,
             )
         menu_section.menu_tokens = self._make_menu_tokens(head=head)
-        menu_tokens = [
-            ('d', 'data-only'),
-            ('h', 'handmade'),
-            ('m', 'maker-made'),
-            ]
         menu_section = menu.make_section(
-            menu_tokens=menu_tokens,
-            is_keyed=True,
             return_value_attribute='key',
+            is_keyed=True,
+            is_modern=True,
             )
-        menu_tokens = [
-            ('s', 'create numeric sequence'),
-            ('missing', 'create missing packages'),
-            ('profile', 'profile packages'),
-            ]
+        menu_section.append(('data-only', 'd'))
+        menu_section.append(('handmade', 'h'))
+        menu_section.append(('maker-made', 'm'))
         hidden_section = menu.make_section(
-            menu_tokens=menu_tokens,
             return_value_attribute='key',
             is_hidden=True,
+            is_modern=True,
             )
+        hidden_section.append(('create numeric sequence', 's'))
+        hidden_section.append(('create missing packages', 'missing'))
+        hidden_section.append(('profile packages', 'profile'))
         return menu
 
     ### READ-ONLY PUBLIC PROPERTIES ###
@@ -195,7 +193,8 @@ class MaterialPackageWrangler(PackageWrangler):
     def interactively_make_makermade_material_package(self, user_input=None):
         self._io.assign_user_input(user_input=user_input)
         with self.backtracking:
-            result = self._material_package_maker_wrangler.interactively_select_asset_packagesystem_path(
+            wrangler = self._material_package_maker_wrangler
+            result = wrangler.interactively_select_asset_packagesystem_path(
                 cache=True, clear=False)
         if self._session.backtrack():
             return
@@ -287,8 +286,11 @@ class MaterialPackageWrangler(PackageWrangler):
             head=head)
 
     def list_asset_packagesystem_paths(self,
-        in_built_in_asset_library=True, in_user_asset_library=True,
-        in_built_in_score_packages=True, in_user_score_packages=True, head=None):
+        in_built_in_asset_library=True, 
+        in_user_asset_library=True,
+        in_built_in_score_packages=True, 
+        in_user_score_packages=True, 
+        head=None):
         '''List asset packagesystem paths.
 
         Example. List built-in material package paths:
@@ -296,7 +298,8 @@ class MaterialPackageWrangler(PackageWrangler):
         ::
 
             >>> for x in wrangler.list_asset_packagesystem_paths(
-            ...     in_user_asset_library=False, in_user_score_packages=False):
+            ...     in_user_asset_library=False, 
+            ...     in_user_score_packages=False):
             ...     x
             'experimental.tools.scoremanagertools.materialpackages.black_music_specifier'
             'experimental.tools.scoremanagertools.materialpackages.green_music_specifier'
@@ -318,8 +321,12 @@ class MaterialPackageWrangler(PackageWrangler):
             in_user_score_packages=in_user_score_packages,
             head=head)
 
-    def list_asset_proxies(self, in_built_in_asset_library=True, in_user_asset_library=True,
-        in_built_in_score_packages=True, in_user_score_packages=True, head=None):
+    def list_asset_proxies(self, 
+        in_built_in_asset_library=True, 
+        in_user_asset_library=True,
+        in_built_in_score_packages=True, 
+        in_user_score_packages=True, 
+        head=None):
         '''List asset proxies.
 
         Example. List built-in material package proxies:
@@ -327,7 +334,8 @@ class MaterialPackageWrangler(PackageWrangler):
         ::
 
             >>> for x in wrangler.list_asset_proxies(
-            ...     in_user_asset_library=False, in_user_score_packages=False):
+            ...     in_user_asset_library=False, 
+            ...     in_user_score_packages=False):
             ...     x
             MaterialPackageProxy('.../tools/scoremanagertools/materialpackages/black_music_specifier')
             MaterialPackageProxy('.../tools/scoremanagertools/materialpackages/green_music_specifier')
@@ -350,8 +358,10 @@ class MaterialPackageWrangler(PackageWrangler):
             head=head)
 
     def list_asset_storehouse_filesystem_paths(self,
-        in_built_in_asset_library=True, in_user_asset_library=True,
-        in_built_in_score_packages=True, in_user_score_packages=True):
+        in_built_in_asset_library=True, 
+        in_user_asset_library=True,
+        in_built_in_score_packages=True, 
+        in_user_score_packages=True):
         '''List asset storehouse filesystem paths.
 
         Example. List built-in material package storehouse filesystem paths:
@@ -359,7 +369,8 @@ class MaterialPackageWrangler(PackageWrangler):
         ::
 
             >>> for x in wrangler.list_asset_storehouse_filesystem_paths(
-            ...     in_user_asset_library=False, in_user_score_packages=False):
+            ...     in_user_asset_library=False, 
+            ...     in_user_score_packages=False):
             ...     x
             '.../tools/scoremanagertools/materialpackages'
             '.../tools/scoremanagertools/scorepackages/blue_example_score/music/materials'
@@ -403,22 +414,27 @@ class MaterialPackageWrangler(PackageWrangler):
             exec(command)
         should_have_user_input_module = getattr(
             material_package_maker_class, 'should_have_user_input_module', True)
-        should_have_illustration = hasattr(material_package_maker_class, 'illustration_maker')
+        should_have_illustration = hasattr(
+            material_package_maker_class, 'illustration_maker')
         tags['material_package_maker_class_name'] = material_package_maker_class_name
         tags['should_have_illustration'] = should_have_illustration
         tags['should_have_user_input_module'] = should_have_user_input_module
         self.make_material_package(material_package_path, tags=tags)
 
-    def make_material_package(self, material_package_path, is_interactive=False, tags=None):
+    def make_material_package(self, material_package_path, 
+        is_interactive=False, tags=None):
         tags = collections.OrderedDict(tags or {})
         tags['is_material_package'] = True
-        directory_path = self.configuration.packagesystem_path_to_filesystem_path(
+        directory_path = \
+            self.configuration.packagesystem_path_to_filesystem_path(
             material_package_path)
         assert not os.path.exists(directory_path)
         os.mkdir(directory_path)
-        material_package_maker_class_name = tags.get('material_package_maker_class_name')
+        material_package_maker_class_name = tags.get(
+            'material_package_maker_class_name')
         pair = (material_package_maker_class_name, material_package_path)
-        material_package_proxy = self._get_appropriate_material_package_proxy(*pair)
+        material_package_proxy = self._get_appropriate_material_package_proxy(
+            *pair)
         material_package_proxy.initializer_file_proxy.write_stub_to_disk()
         material_package_proxy.tags_file_proxy.write_stub_to_disk()
         material_package_proxy.tags_file_proxy.write_tags_to_disk(tags)

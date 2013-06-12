@@ -1,5 +1,6 @@
 import os
-from experimental.tools.scoremanagertools.wranglers.PackageWrangler import PackageWrangler
+from experimental.tools.scoremanagertools.wranglers.PackageWrangler import \
+    PackageWrangler
 
 
 class SegmentPackageWrangler(PackageWrangler):
@@ -45,14 +46,12 @@ class SegmentPackageWrangler(PackageWrangler):
             menu_tokens=menu_tokens,
             is_numbered=True,
             )
-        menu_tokens = [
-            ('new', 'new segment'),
-            ]
         menu_section = menu.make_section(
-            menu_tokens=menu_tokens,
             return_value_attribute='key',
             is_keyed=True,
+            is_modern=True,
             )
+        menu_section.append(('new segment', 'new'))
         return menu
 
     ### READ-ONLY PUBLIC PROPERTIES ###
@@ -91,8 +90,11 @@ class SegmentPackageWrangler(PackageWrangler):
         segment_package_proxy.interactively_make_asset()
 
     def list_asset_filesystem_paths(self,
-        in_built_in_asset_library=True, in_user_asset_library=True,
-        in_built_in_score_packages=True, in_user_score_packages=True, head=None):
+        in_built_in_asset_library=True, 
+        in_user_asset_library=True,
+        in_built_in_score_packages=True, 
+        in_user_score_packages=True, 
+        head=None):
         '''List asset filesystem paths.
 
         Example. List built-in segment package filesystem paths:
@@ -100,7 +102,8 @@ class SegmentPackageWrangler(PackageWrangler):
         ::
 
             >>> for x in wrangler.list_asset_filesystem_paths(
-            ...     in_user_asset_library=False, in_user_score_packages=False):
+            ...     in_user_asset_library=False, 
+            ...     in_user_score_packages=False):
             ...     x
             '.../tools/scoremanagertools/scorepackages/blue_example_score/music/segments/segment_01.py'
             '.../tools/scoremanagertools/scorepackages/blue_example_score/music/segments/segment_02.py'
@@ -118,8 +121,11 @@ class SegmentPackageWrangler(PackageWrangler):
             head=head)
 
     def list_asset_names(self,
-        in_built_in_asset_library=True, in_user_asset_library=True,
-        in_built_in_score_packages=True, in_user_score_packages=True, head=None):
+        in_built_in_asset_library=True, 
+        in_user_asset_library=True,
+        in_built_in_score_packages=True, 
+        in_user_score_packages=True, 
+        head=None):
         '''List asset names.
 
         Example. List built-in segment package names:
@@ -127,7 +133,8 @@ class SegmentPackageWrangler(PackageWrangler):
         ::
 
             >>> for x in wrangler.list_asset_names(
-            ...     in_user_asset_library=False, in_user_score_packages=False):
+            ...     in_user_asset_library=False, 
+            ...     in_user_score_packages=False):
             ...     x
             'segment 01'
             'segment 02'
@@ -154,8 +161,11 @@ class SegmentPackageWrangler(PackageWrangler):
             head=head)
 
     def list_asset_packagesystem_paths(self,
-        in_built_in_asset_library=True, in_user_asset_library=True,
-        in_built_in_score_packages=True, in_user_score_packages=True, head=None):
+        in_built_in_asset_library=True, 
+        in_user_asset_library=True,
+        in_built_in_score_packages=True, 
+        in_user_score_packages=True, 
+        head=None):
         '''List asset packagesystem paths.
 
         Example. List built-in segment package paths:
@@ -163,7 +173,8 @@ class SegmentPackageWrangler(PackageWrangler):
         ::
 
             >>> for x in wrangler.list_asset_packagesystem_paths(
-            ...     in_user_asset_library=False, in_user_score_packages=False):
+            ...     in_user_asset_library=False, 
+            ...     in_user_score_packages=False):
             ...     x
             'experimental.tools.scoremanagertools.scorepackages.blue_example_score.music.segments.segment_01'
             'experimental.tools.scoremanagertools.scorepackages.blue_example_score.music.segments.segment_02'
@@ -181,8 +192,11 @@ class SegmentPackageWrangler(PackageWrangler):
             head=head)
 
     def list_asset_proxies(self,
-        in_built_in_asset_library=True, in_user_asset_library=True,
-        in_built_in_score_packages=True, in_user_score_packages=True, head=None):
+        in_built_in_asset_library=True, 
+        in_user_asset_library=True,
+        in_built_in_score_packages=True, 
+        in_user_score_packages=True, 
+        head=None):
         '''List asset proxies.
 
         Example. List built-in segment package proxies:
@@ -190,7 +204,8 @@ class SegmentPackageWrangler(PackageWrangler):
         ::
 
             >>> for x in wrangler.list_asset_proxies(
-            ...     in_user_asset_library=False, in_user_score_packages=False):
+            ...     in_user_asset_library=False, 
+            ...     in_user_score_packages=False):
             ...     x
             SegmentPackageProxy('.../tools/scoremanagertools/scorepackages/blue_example_score/music/segments/segment_01')
             SegmentPackageProxy('.../tools/scoremanagertools/scorepackages/blue_example_score/music/segments/segment_02')
@@ -217,8 +232,10 @@ class SegmentPackageWrangler(PackageWrangler):
             head=head)
 
     def list_asset_storehouse_filesystem_paths(self,
-        in_built_in_asset_library=True, in_user_asset_library=True,
-        in_built_in_score_packages=True, in_user_score_packages=True):
+        in_built_in_asset_library=True, 
+        in_user_asset_library=True,
+        in_built_in_score_packages=True, 
+        in_user_score_packages=True):
         '''List asset storehouse filesystem paths.
 
         Example. List built-in segment package storehouse filesystem paths:
@@ -226,7 +243,8 @@ class SegmentPackageWrangler(PackageWrangler):
         ::
 
             >>> for x in wrangler.list_asset_storehouse_filesystem_paths(
-            ...     in_user_asset_library=False, in_user_score_packages=False):
+            ...     in_user_asset_library=False, 
+            ...     in_user_score_packages=False):
             ...     x
             '.../tools/scoremanagertools/scorepackages/blue_example_score/music/segments'
             '.../tools/scoremanagertools/scorepackages/green_example_score/music/segments'
