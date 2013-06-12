@@ -228,6 +228,7 @@ class ScorePackageProxy(PackageProxy):
             return self.add_tag('forces_tagline', forces_tagline)
         return property(**locals())
 
+    # TODO: reverse the order of body string and key throughout method
     @property
     def setup_value_menu_tokens(self):
         result = []
@@ -250,6 +251,7 @@ class ScorePackageProxy(PackageProxy):
                 self.forces_tagline)))
         else:
             result.append(('tagline', 'tagline:'))
+        result = [(x[1], x[0]) for x in result]
         return result
 
     @apply
@@ -419,8 +421,9 @@ class ScorePackageProxy(PackageProxy):
     def make_setup_menu(self):
         setup_menu, menu_section = self._io.make_menu(
             where=self._where,
-            is_numbered=True,
             return_value_attribute='key',
+            is_numbered=True,
+            is_modern=True,
             )
         menu_section.menu_tokens = self.setup_value_menu_tokens
         return setup_menu
