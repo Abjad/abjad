@@ -129,8 +129,7 @@ class IO(AbjadObject):
     def make_menu(self, 
         is_hidden=False, 
         is_internally_keyed=False, 
-        # TODO: should default to false
-        is_keyed=True,
+        is_keyed=False,
         is_numbered=False, 
         is_ranged=False, 
         is_modern=False,

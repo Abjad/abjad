@@ -42,6 +42,7 @@ class ScorePackageProxy(PackageProxy):
             where=self._where,
             return_value_attribute='key',
             is_numbered=False,
+            is_keyed=True,
             is_modern=True,
             )
         menu_section.append(('segments', 'h'))

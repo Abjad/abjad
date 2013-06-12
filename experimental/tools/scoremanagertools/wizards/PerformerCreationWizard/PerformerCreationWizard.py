@@ -125,7 +125,7 @@ class PerformerCreationWizard(Wizard):
             where=self._where,
             is_numbered=True,
             is_ranged=True,
-            #is_modern=True,
+            is_modern=True,
             )
         menu_section.title = 'select instruments'
         likely_instruments = \
