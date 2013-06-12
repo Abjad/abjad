@@ -4335,6 +4335,7 @@ Abjad internal packages
       tools/configurationtools/get_abjad_revision_string
       tools/configurationtools/get_abjad_startup_string
       tools/configurationtools/get_abjad_version_string
+      tools/configurationtools/get_lilypond_minimum_version_string
       tools/configurationtools/get_lilypond_version_string
       tools/configurationtools/get_python_version_string
       tools/configurationtools/get_tab_width
@@ -4367,6 +4368,7 @@ Abjad internal packages
       tools/configurationtools/get_abjad_revision_string
       tools/configurationtools/get_abjad_startup_string
       tools/configurationtools/get_abjad_version_string
+      tools/configurationtools/get_lilypond_minimum_version_string
       tools/configurationtools/get_lilypond_version_string
       tools/configurationtools/get_python_version_string
       tools/configurationtools/get_tab_width

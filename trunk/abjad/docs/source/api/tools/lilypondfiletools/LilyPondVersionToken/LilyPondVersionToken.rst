@@ -15,6 +15,9 @@ Read-only properties
 .. autoattribute:: abjad.tools.lilypondfiletools.LilyPondVersionToken.LilyPondVersionToken.LilyPondVersionToken.storage_format
    :noindex:
 
+.. autoattribute:: abjad.tools.lilypondfiletools.LilyPondVersionToken.LilyPondVersionToken.LilyPondVersionToken.version
+   :noindex:
+
 Special methods
 ---------------
 
