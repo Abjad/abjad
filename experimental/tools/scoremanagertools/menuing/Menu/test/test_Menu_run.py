@@ -45,15 +45,19 @@ def test_Menu_run_01():
     assert result is None
 
 
-def test_Menu_run_04():
-    '''Hidding suppresses output.
+def test_Menu_run_02():
+    '''Hidden menu section.
     '''
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    menu_tokens = ['apple', 'banana', 'cherry']
     menu_section = menu.make_section(
-        is_hidden=True, menu_tokens=menu_tokens)
+        is_hidden=True, 
+        is_modern=True,
+        )
+    menu_section.append('apple')
+    menu_section.append('banana')
+    menu_section.append('cherry')
     menu_section.title = 'section'
     result = menu._run(user_input='foo')
 
@@ -81,15 +85,19 @@ def test_Menu_run_04():
     assert result is None
 
 
-def test_Menu_run_05():
-    '''Numbered menu tokens.
+def test_Menu_run_03():
+    '''Numbered menu section.
     '''
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    menu_tokens = ['apple', 'banana', 'cherry']
     menu_section = menu.make_section(
-        is_numbered=True, menu_tokens=menu_tokens)
+        is_numbered=True,
+        is_modern=True,
+        )
+    menu_section.append('apple')
+    menu_section.append('banana')
+    menu_section.append('cherry')
     menu_section.title = 'section'
     result = menu._run(user_input='foo')
 
@@ -124,15 +132,19 @@ def test_Menu_run_05():
     assert result is None
 
 
-def test_Menu_run_06():
-    '''Ranged menu tokens.
+def test_Menu_run_04():
+    '''Menu section with range selection turned on.
     '''
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    menu_tokens = ['apple', 'banana', 'cherry']
     menu_section = menu.make_section(
-        is_ranged=True, menu_tokens=menu_tokens)
+        is_ranged=True, 
+        is_modern=True,
+        )
+    menu_section.append('apple')
+    menu_section.append('banana')
+    menu_section.append('cherry')
     menu_section.title = 'section'
     result = menu._run(user_input='foo')
 
@@ -168,22 +180,20 @@ def test_Menu_run_06():
     assert result == ['apple', 'cherry', 'banana']
 
 
-def test_Menu_run_07():
-    '''Keyed menu tokens with keys returned.
+def test_Menu_run_05():
+    '''Keyed menu section with key returned.
     '''
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    menu_tokens = [
-        ('add', 'first command'),
-        ('rm', 'second command'),
-        ('mod', 'third command'),
-        ]
     menu_section = menu.make_section(
-        menu_tokens=menu_tokens,
-        is_keyed=True, 
         return_value_attribute='key',
+        is_keyed=True, 
+        is_modern=True,
         )
+    menu_section.append(('first command', 'add'))
+    menu_section.append(('second command', 'rm'))
+    menu_section.append(('third command', 'mod'))
     menu_section.title = 'section'
 
     result = menu._run(user_input='foo')
@@ -231,22 +241,20 @@ def test_Menu_run_07():
     assert result is None
 
 
-def test_Menu_run_08():
-    '''Keyed menu tokens with display strings returned.
+def test_Menu_run_06():
+    '''Keyed menu section with display string returned.
     '''
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    menu_tokens = [
-        ('add', 'first command'),
-        ('rm', 'second command'),
-        ('mod', 'third command'),
-        ]
     menu_section = menu.make_section(
-        menu_tokens=menu_tokens, 
-        is_keyed=True, 
         return_value_attribute='display_string',
+        is_keyed=True, 
+        is_modern=True,
         )
+    menu_section.append(('first command', 'add'))
+    menu_section.append(('second command', 'rm'))
+    menu_section.append(('third command', 'mod'))
     result = menu._run(user_input='foo')
 
     menu._session.reinitialize()
@@ -285,23 +293,21 @@ def test_Menu_run_08():
     assert result is None
 
 
-def test_Menu_run_11():
-    '''Hiding suppresses output.
+def test_Menu_run_07():
+    '''Hidden keyed menu section with key returned.
     '''
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    menu_tokens = [
-        ('add', 'first command'),
-        ('rm', 'second command'),
-        ('mod', 'third command'),
-        ]
     menu_section = menu.make_section(
+        return_value_attribute='key',
         is_keyed=True, 
         is_hidden=True, 
-        menu_tokens=menu_tokens, 
-        return_value_attribute='key',
+        is_modern=True,
         )
+    menu_section.append(('first command', 'add'))
+    menu_section.append(('second command', 'rm'))
+    menu_section.append(('third command', 'mod'))
     menu_section.title = 'section'
     result = menu._run(user_input='foo')
 
@@ -342,23 +348,20 @@ def test_Menu_run_11():
     assert result is None
 
 
-def test_Menu_run_12():
-    '''Hiding suppresses output.
+def test_Menu_run_08():
+    '''Hidden keyed menu section with display string returned.
     '''
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    menu_tokens = [
-        ('add', 'first command'),
-        ('rm', 'second command'),
-        ('mod', 'third command'),
-        ]
     menu_section = menu.make_section(
         is_keyed=True, 
         is_hidden=True, 
-        menu_tokens=menu_tokens, 
-        return_value_attribute='display_string',
+        is_modern=True,
         )
+    menu_section.append(('first command', 'add'))
+    menu_section.append(('second command', 'rm'))
+    menu_section.append(('third command', 'mod'))
     menu_section.title = 'section'
 
     menu._session.reinitialize()
@@ -397,23 +400,21 @@ def test_Menu_run_12():
     assert result is None
 
 
-def test_Menu_run_13():
-    '''Keyed menu tokens with numbering turned on.
+def test_Menu_run_09():
+    '''Numbered keyed menu section with key returned.
     '''
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    menu_tokens = [
-        ('add', 'first command'),
-        ('rm', 'second command'),
-        ('mod', 'third command'),
-        ]
     menu_section = menu.make_section(
         return_value_attribute='key',
-        menu_tokens=menu_tokens, 
-        is_keyed=True, 
         is_numbered=True, 
+        is_keyed=True, 
+        is_modern=True,
         )
+    menu_section.append(('first command', 'add'))
+    menu_section.append(('second command', 'rm'))
+    menu_section.append(('third command', 'mod'))
     menu_section.title = 'section'
     result = menu._run(user_input='foo')
 
@@ -460,80 +461,21 @@ def test_Menu_run_13():
     assert result is None
 
 
-
-def test_Menu_run_14():
-    '''Keyed menu tokens with numbering turned on.
-
-    Display strings returned.
+def test_Menu_run_10():
+    '''Ranged keyed menu section with with key returned.
     '''
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    menu_tokens = [
-        ('add', 'first command'),
-        ('rm', 'second command'),
-        ('mod', 'third command'),
-        ]
     menu_section = menu.make_section(
-        is_keyed=True, 
-        is_numbered=True,
-        menu_tokens=menu_tokens, 
-        )
-    menu_section.title = 'section'
-
-    menu._session.reinitialize()
-    result = menu._run(user_input='foo')
-    assert result is None
-
-    menu._session.reinitialize()
-    result = menu._run(user_input='q')
-    assert result is None
-
-    menu._session.reinitialize()
-    result = menu._run(user_input='1')
-    assert result == 'first command'
-
-    menu._session.reinitialize()
-    result = menu._run(user_input='add')
-    assert result == 'first command'
-
-    menu._session.reinitialize()
-    result = menu._run(user_input='fir')
-    assert result == 'first command'
-
-    result = menu._run(user_input='1, 3-2')
-    assert result is None
-
-    menu._session.reinitialize()
-    result = menu._run(user_input='add, mod-rm')
-    assert result is None
-
-    menu._session.reinitialize()
-    result = menu._run(user_input='fir, thi-sec')
-    assert result is None
-
-    menu._session.reinitialize()
-    result = menu._run(user_input='fir, mod-sec')
-    assert result is None
-
-
-def test_Menu_run_15():
-    '''Keyed menu tokens with range selection turned on.
-    '''
-
-    menu = scoremanagertools.menuing.Menu()
-    menu._session.push_breadcrumb('location')
-    menu_tokens = [
-        ('add', 'first command'),
-        ('rm', 'second command'),
-        ('mod', 'third command'),
-        ]
-    menu_section = menu.make_section(
+        return_value_attribute='key',
         is_keyed=True, 
         is_ranged=True,
-        menu_tokens=menu_tokens, 
-        return_value_attribute='key',
+        is_modern=True,
         )
+    menu_section.append(('first command', 'add'))
+    menu_section.append(('second command', 'rm'))
+    menu_section.append(('third command', 'mod'))
     menu_section.title = 'section'
     result = menu._run(user_input='foo')
 
@@ -580,24 +522,20 @@ def test_Menu_run_15():
     assert result == ['add', 'mod', 'rm']
 
 
-def test_Menu_run_16():
-    '''Keyed menu tokens with range selection turned on.
-
-    Display strings returned.
+def test_Menu_run_11():
+    '''RK menu section with display string returned.
     '''
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    menu_tokens = [
-        ('add', 'first command'),
-        ('rm', 'second command'),
-        ('mod', 'third command'),
-        ]
     menu_section = menu.make_section(
         is_keyed=True, 
         is_ranged=True,
-        menu_tokens=menu_tokens, 
+        is_modern=True,
         )
+    menu_section.append(('first command', 'add'))
+    menu_section.append(('second command', 'rm'))
+    menu_section.append(('third command', 'mod'))
     menu_section.title = 'section'
 
     menu._session.reinitialize()

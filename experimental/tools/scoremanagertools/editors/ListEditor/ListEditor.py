@@ -45,32 +45,31 @@ class ListEditor(InteractiveEditor):
             return_value_attribute='number',
             )
         item_management_section.menu_tokens = self.target_summary_lines
-        menu_tokens = [('add', 'add elements')]
-        if 0 < len(self.items):
-            menu_tokens.append(('rm', 'remove elements'))
-        if 1 < len(self.items):
-            menu_tokens.append(('mv', 'move elements'))
         command_section = menu.make_section(
-            menu_tokens=menu_tokens,
-            is_keyed=True,
             return_value_attribute='key',
+            is_keyed=True,
+            is_modern=True,
             )
-        menu_tokens = [
-            ('done', 'done'),
-            ]
+        command_section.append(('add elements', 'add'))
+        if 0 < len(self.items):
+            command_section.append(('remove elements', 'rm'))
+        if 1 < len(self.items):
+            command_section.append(('move elements', 'mv'))
         hidden_section = menu.make_section(
-            menu_tokens=menu_tokens,
-            is_keyed=True,
             return_value_attribute='key',
+            is_keyed=True,
             is_hidden=True,
+            is_modern=True,
             )
+        hidden_section.append(('done', 'done'))
         return menu
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def _breadcrumb(self):
-        return self.target_name or self.space_delimited_lowercase_target_class_name
+        return self.target_name or \
+            self.space_delimited_lowercase_target_class_name
 
     @property
     def items(self):
@@ -143,7 +142,8 @@ class ListEditor(InteractiveEditor):
     def interactively_edit_item(self, item_number):
         item = self.get_item_from_item_number(item_number)
         if item is not None:
-            item_editor = self.item_editor_class(session=self._session, target=item)
+            item_editor = self.item_editor_class(
+                session=self._session, target=item)
             item_editor._run()
             item_index = int(item_number) - 1
             self.items[item_index] = item_editor.target
@@ -163,14 +163,16 @@ class ListEditor(InteractiveEditor):
 
     def interactively_remove_items(self):
         getter = self._io.make_getter(where=self._where)
-        getter.append_argument_range(self.items_identifier, self.target_summary_lines)
+        getter.append_argument_range(
+            self.items_identifier, self.target_summary_lines)
         argument_range = getter._run()
         if self._session.backtrack():
             return
         indices = [argument_number - 1 for argument_number in argument_range]
         indices = list(reversed(sorted(set(indices))))
         items = self.items[:]
-        items = sequencetools.remove_sequence_elements_at_indices(items, indices)
+        items = sequencetools.remove_sequence_elements_at_indices(
+            items, indices)
         self.items[:] = items
 
     ### UI MANIFEST ###
