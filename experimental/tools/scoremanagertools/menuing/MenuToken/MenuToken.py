@@ -21,7 +21,6 @@ class MenuToken(AbjadObject):
 
     def __init__(self, expr, 
         number=None, 
-        is_keyed='foo', 
         is_modern=False,
         return_value_attribute=None,
         ):

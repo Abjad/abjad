@@ -8,13 +8,11 @@ class Selector(ScoreManagerObject):
     ### INITIALIZER ###
 
     def __init__(self, 
-        is_keyed=False, 
         is_numbered=True,
         is_ranged=False, 
         items=None, 
         session=None):
         ScoreManagerObject.__init__(self, session=session)
-        self.is_keyed = is_keyed
         self.is_numbered = is_numbered
         self.is_ranged = is_ranged
         self.items = items or []
@@ -25,7 +23,6 @@ class Selector(ScoreManagerObject):
         menu_tokens = self.make_menu_tokens(head=head)
         menu, menu_section = self._io.make_menu(where=self._where,
             return_value_attribute='prepopulated',
-            is_keyed=self.is_keyed,
             is_numbered=self.is_numbered,
             is_ranged=self.is_ranged,
             is_modern=True,

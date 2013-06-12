@@ -128,7 +128,6 @@ class IO(AbjadObject):
 
     def make_menu(self, 
         is_hidden=False, 
-        is_keyed=False,
         is_numbered=False, 
         is_ranged=False, 
         is_modern=False,
@@ -143,7 +142,6 @@ class IO(AbjadObject):
             )
         menu_section = menu.make_section(
             is_hidden=is_hidden,
-            is_keyed=is_keyed,
             is_numbered=is_numbered,
             is_ranged=is_ranged,
             is_modern=is_modern,

@@ -19,7 +19,6 @@ class MenuSection(MenuObject):
 
     def __init__(self,
         is_hidden=False,
-        is_keyed=False,
         is_numbered=False,
         is_ranged=False,
         is_modern=False,
@@ -32,7 +31,6 @@ class MenuSection(MenuObject):
         MenuObject.__init__(self, session=session, where=where, title=title)
         assert is_modern
         self._is_hidden = is_hidden
-        self._is_keyed = is_keyed
         self._is_numbered = is_numbered
         self._is_ranged = is_ranged
         self._is_modern = is_modern
@@ -86,10 +84,6 @@ class MenuSection(MenuObject):
         return self._is_hidden
 
     @property
-    def is_keyed(self):
-        return self._is_keyed
-
-    @property
     def is_modern(self):
         return self._is_modern
 
@@ -131,7 +125,6 @@ class MenuSection(MenuObject):
                     new_token = MenuToken(
                         menu_token,
                         number=number,
-                        is_keyed=self.is_keyed,
                         is_modern=self.is_modern,
                         return_value_attribute=self.return_value_attribute,
                         )
@@ -158,7 +151,6 @@ class MenuSection(MenuObject):
         menu_token = MenuToken(
             expr,
             number=number,
-            is_keyed=self.is_keyed,
             is_modern=self.is_modern,
             return_value_attribute=self.return_value_attribute,
             )

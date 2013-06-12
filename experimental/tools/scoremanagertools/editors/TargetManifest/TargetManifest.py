@@ -1,5 +1,6 @@
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from experimental.tools.scoremanagertools.editors.AttributeDetail import AttributeDetail
+from experimental.tools.scoremanagertools.editors.AttributeDetail \
+    import AttributeDetail
 
 
 class TargetManifest(AbjadObject):
@@ -11,7 +12,6 @@ class TargetManifest(AbjadObject):
         self._attribute_details = []
         for attribute_detail in attribute_details:
             self.attribute_details.append(AttributeDetail(*attribute_detail))
-        self.is_keyed = kwargs.get('is_keyed', False)
         self.target_name_attribute = kwargs.get('target_name_attribute')
 
     ### SPECIAL METHODS ###

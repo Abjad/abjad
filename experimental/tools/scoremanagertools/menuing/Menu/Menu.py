@@ -78,10 +78,6 @@ class Menu(MenuSectionAggregator):
         return any(x.is_hidden for x in self.menu_sections)
 
     @property
-    def has_keyed_section(self):
-        return any(x.is_keyed for x in self.menu_sections)
-
-    @property
     def has_numbered_section(self):
         return any(x.is_numbered for x in self.menu_sections)
 
@@ -227,7 +223,6 @@ class Menu(MenuSectionAggregator):
 
     def make_section(self, 
         is_hidden=False, 
-        is_keyed=False,
         is_numbered=False, 
         is_ranged=False, 
         is_modern=False,
@@ -239,7 +234,6 @@ class Menu(MenuSectionAggregator):
         assert not (is_ranged and self.has_ranged_section)
         menu_section = scoremanagertools.menuing.MenuSection(
             is_hidden=is_hidden,
-            is_keyed=is_keyed,
             is_numbered=is_numbered,
             is_ranged=is_ranged,
             is_modern=is_modern,
