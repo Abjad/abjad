@@ -29,7 +29,7 @@ class ReSTDocumentHandler(TextualDocumentHandler):
         >>> code_blocks = handler.extract_code_blocks()
         >>> handler.execute_code_blocks()
         >>> rebuilt_document = handler.rebuild_document()
-        >>> for line in rebuilt_document: # doctest: +SKIP
+        >>> for line in rebuilt_document:
         ...     print repr(line)
         ...
         "Let's print something:"
@@ -46,7 +46,7 @@ class ReSTDocumentHandler(TextualDocumentHandler):
         ''
         '\t>>> show(Note("c\'4"))'
         ''
-        '.. image:: lilypond-1dcefacf1c54cc60cef54588aab4b7fd.png'
+        '.. image:: lilypond-dbceae26d3d5a6f87ebaa36541fc88b7.png'
         ''
         ''
         "That's it!"
