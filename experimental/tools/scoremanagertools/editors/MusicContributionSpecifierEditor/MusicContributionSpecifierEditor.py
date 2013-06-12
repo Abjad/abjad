@@ -1,9 +1,12 @@
 from experimental.tools.scoremanagertools import getters
 from experimental.tools.scoremanagertools import specifiers
 from experimental.tools.scoremanagertools import wizards
-from experimental.tools.scoremanagertools.editors.ObjectInventoryEditor import ObjectInventoryEditor
-from experimental.tools.scoremanagertools.editors.TargetManifest import TargetManifest
-from experimental.tools.scoremanagertools.editors.get_parameter_specifier_editor import get_parameter_specifier_editor
+from experimental.tools.scoremanagertools.editors.ObjectInventoryEditor \
+    import ObjectInventoryEditor
+from experimental.tools.scoremanagertools.editors.TargetManifest \
+    import TargetManifest
+from experimental.tools.scoremanagertools.editors.get_parameter_specifier_editor \
+    import get_parameter_specifier_editor
 
 
 class MusicContributionSpecifierEditor(ObjectInventoryEditor):

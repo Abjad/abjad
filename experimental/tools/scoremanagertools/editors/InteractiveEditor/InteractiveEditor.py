@@ -61,9 +61,10 @@ class InteractiveEditor(ScoreManagerObject):
         menu, menu_section = self._io.make_menu(
             where=self._where,
             menu_tokens=menu_tokens,
-            is_keyed=is_keyed,
             return_value_attribute='key',
+            is_keyed=is_keyed,
             is_numbered=True,
+            is_modern=True,
             )
         menu_section.show_existing_values = True
         menu_tokens = menu.hidden_section.menu_tokens[:]
@@ -286,8 +287,8 @@ class InteractiveEditor(ScoreManagerObject):
             if attribute_detail.is_null:
                 result.append(())
                 continue
-            menu_key = attribute_detail.menu_key
-            menu_body = attribute_detail._space_delimited_lowercase_name
+            key = attribute_detail.menu_key
+            display_string = attribute_detail._space_delimited_lowercase_name
             if self.target is not None:
                 attribute_value = getattr(
                     self.target, attribute_detail.retrievable_name, None)
@@ -305,7 +306,8 @@ class InteractiveEditor(ScoreManagerObject):
                 attribute_value = None
             existing_value = self._io.get_one_line_menuing_summary(
                 attribute_value)
-            menu_token = (menu_key, menu_body, existing_value)
+            #menu_token = (key, display_string, existing_value)
+            menu_token = (display_string, key, existing_value)
             result.append(menu_token)
         return result
 

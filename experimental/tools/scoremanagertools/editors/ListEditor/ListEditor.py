@@ -35,8 +35,9 @@ class ListEditor(InteractiveEditor):
     def _make_main_menu(self):
         menu, attribute_management_section = self._io.make_menu(
             where=self._where,
-            is_keyed=getattr(self.target_manifest, 'is_keyed', False),
             return_value_attribute='key',
+            is_keyed=getattr(self.target_manifest, 'is_keyed', False),
+            is_modern=True,
             )
         attribute_management_section.menu_tokens = self.target_attribute_tokens
         attribute_management_section.show_existing_values = True
