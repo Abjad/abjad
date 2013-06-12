@@ -139,7 +139,9 @@ class IO(AbjadObject):
         ):
         from experimental.tools import scoremanagertools
         menu = scoremanagertools.menuing.Menu(
-            where=where, session=self._session)
+            where=where, 
+            session=self._session,
+            )
         menu_section = menu.make_section(
             is_hidden=is_hidden,
             is_internally_keyed=is_internally_keyed,

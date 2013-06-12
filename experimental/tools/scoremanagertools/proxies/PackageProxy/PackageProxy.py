@@ -1,5 +1,6 @@
 import os
-from experimental.tools.scoremanagertools.proxies.DirectoryProxy import DirectoryProxy
+from experimental.tools.scoremanagertools.proxies.DirectoryProxy \
+    import DirectoryProxy
 
 
 class PackageProxy(DirectoryProxy):
@@ -7,11 +8,15 @@ class PackageProxy(DirectoryProxy):
     ### INITIALIZER ###
 
     def __init__(self, packagesystem_path=None, session=None):
-        assert packagesystem_path is None or os.path.sep not in packagesystem_path, repr(packagesystem_path)
-        filesystem_path = self.configuration.packagesystem_path_to_filesystem_path(
+        assert packagesystem_path is None or \
+            os.path.sep not in packagesystem_path, repr(packagesystem_path)
+        filesystem_path = \
+            self.configuration.packagesystem_path_to_filesystem_path(
             packagesystem_path)
-        DirectoryProxy.__init__(self, filesystem_path=filesystem_path, session=session)
-        packagesystem_path = self.configuration.filesystem_path_to_packagesystem_path(
+        DirectoryProxy.__init__(self, 
+            filesystem_path=filesystem_path, session=session)
+        packagesystem_path = \
+            self.configuration.filesystem_path_to_packagesystem_path(
             filesystem_path)
         self._package_path = packagesystem_path
 
@@ -101,7 +106,8 @@ class PackageProxy(DirectoryProxy):
     @property
     def parent_initializer_file_name(self):
         if self.parent_directory_packagesystem_path:
-            return os.path.join(self.parent_directory_filesystem_path, '__init__.py')
+            return os.path.join(
+                self.parent_directory_filesystem_path, '__init__.py')
 
     # TODO: write test
     @property
@@ -205,7 +211,8 @@ class PackageProxy(DirectoryProxy):
 
     def interactively_set_package_path(self):
         getter = self._io.make_getter(where=self._where)
-        getter.append_underscore_delimited_lowercase_package_name('package name')
+        getter.append_underscore_delimited_lowercase_package_name(
+            'package name')
         result = getter._run()
         if self._session.backtrack():
             return
@@ -221,19 +228,18 @@ class PackageProxy(DirectoryProxy):
         menu_tokens = self.formatted_tags
         menu, menu_section = self._io.make_menu(
             where=self._where, 
+            menu_tokens=menu_tokens,
             is_keyed=False, 
-            menu_tokens=menu_tokens,
+            is_modern=True,
             )
-        menu_tokens = [
-            ('add', 'add tag'),
-            ('rm', 'delete tag'),
-            ('get', 'get tag'),
-            ]
         menu_section = menu.make_section(
-            menu_tokens=menu_tokens,
             return_value_attribute='key',
             is_keyed=True,
+            is_modern=True,
             )
+        menu_section.append(('add tag', 'add'))
+        menu_section.append(('delete tag', 'rm'))
+        menu_section.append(('get tag', 'get'))
         return menu
 
     def manage_tags(self, clear=True, cache=False):

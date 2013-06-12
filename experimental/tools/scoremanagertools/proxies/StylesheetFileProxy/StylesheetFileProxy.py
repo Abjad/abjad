@@ -19,7 +19,7 @@ class StylesheetFileProxy(FileProxy):
     ::
 
         >>> proxy
-        StylesheetFileProxy('.../tools/scoremanagertools/stylesheets/clean-letter-14.ly')
+        StylesheetFileProxy('.../scoremanagertools/stylesheets/clean-letter-14.ly')
 
     Return stylesheet proxy.
     '''
@@ -27,7 +27,9 @@ class StylesheetFileProxy(FileProxy):
     ### CLASS VARIABLES ###
 
     _generic_class_name = 'stylesheet'
+
     _temporary_asset_name = 'temporary_stylesheet.ly'
+
     extension = '.ly'
 
     ### PRIVATE METHODS ###
@@ -44,21 +46,20 @@ class StylesheetFileProxy(FileProxy):
         return getter
 
     def _make_main_menu(self):
-        menu_tokens = [
-            ('cp', 'copy stylesheet'),
-            ('rm', 'delete stylesheet'),
-            ('ren', 'rename stylesheet'),
-            ('vim', 'vim stylesheet'),
-            ]
         menu, menu_section = self._io.make_menu(
             where=self.where,
-            menu_tokens=menu_tokens,
             return_value_attribute='key',
             is_keyed=True,
+            is_modern=True,
             )
+        menu_section.append(('copy stylesheet', 'cp'))
+        menu_section.append(('delete stylesheet', 'rm'))
+        menu_section.append(('rename stylesheet', 'ren'))
+        menu_section.append(('vim stylesheet', 'vim'))
         return menu
 
-    def _space_delimited_lowercase_name_to_asset_name(self, space_delimited_lowercase_name):
+    def _space_delimited_lowercase_name_to_asset_name(self, 
+        space_delimited_lowercase_name):
         asset_name = FileProxy._space_delimited_lowercase_name_to_asset_name(
             self, space_delimited_lowercase_name)
         if not asset_name.endswith(self.extension):

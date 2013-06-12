@@ -429,13 +429,11 @@ class ScorePackageProxy(PackageProxy):
         menu, menu_section = self._io.make_menu(
             where=self._where,
             return_value_attribute='key',
+            is_modern=True,
             )
-        menu_tokens = [
-            ('st', 'st'),
-            ('add', 'add'),
-            ('ci', 'ci'),
-            ]
-        menu_section.menu_tokens = menu_tokens
+        menu_section.append(('st', 'st'))
+        menu_section.append(('add', 'add'))
+        menu_section.append(('ci', 'ci'))
         return menu
 
     def manage_materials(self):

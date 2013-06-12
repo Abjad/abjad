@@ -80,3 +80,5 @@
 
 28. Find a way to include tags management in hidden menu 
     of every package proxy.
+
+29. Possibly remove is_internally_keyed keyword altogether?

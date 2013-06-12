@@ -1,13 +1,17 @@
 from abjad.tools import iotools
-from experimental.tools.scoremanagertools.proxies.PackageProxy import PackageProxy
+from experimental.tools.scoremanagertools.proxies.PackageProxy \
+    import PackageProxy
 
 
 class SegmentPackageProxy(PackageProxy):
 
     ### INITIALIZER ###
 
-    def __init__(self, packagesystem_path=None, score_template=None, session=None):
-        PackageProxy.__init__(self, packagesystem_path=packagesystem_path, session=session)
+    def __init__(self, 
+        packagesystem_path=None, score_template=None, session=None):
+        PackageProxy.__init__(self, 
+            packagesystem_path=packagesystem_path, 
+            session=session)
         self.score_template = score_template
 
     ### PRIVATE METHODS ###
@@ -17,22 +21,21 @@ class SegmentPackageProxy(PackageProxy):
             self.user_input_to_action[result](self)
 
     def _make_main_menu(self):
-        menu_tokens = [
-            ('n', 'initializer'),
-            ]
         menu, menu_section = self._io.make_menu(
             where=self._where,
             return_value_attribute='key',
+            menu_tokens=menu_tokens,
             is_keyed=True,
-            menu_tokens=menu_tokens)
-        menu_tokens = [
-            ('rm', 'remove'),
-            ]
+            is_modern=True,
+            )
+        menu_section.append(('initializer', 'n'))
         menu_section = menu.make_section(
             menu_tokens=menu_tokens,
             return_value_attribute='key',
             is_keyed=True,
+            is_modern=True,
             )
+        menu_section.append(('remove', 'rm'))
         return menu
 
     ### READ-ONLY PUBLIC PROPERTIES ###
