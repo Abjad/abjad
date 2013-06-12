@@ -102,7 +102,7 @@ class MenuToken(AbjadObject):
         self._return_value = return_value
         assert self.return_value
         if self.is_keyed:
-            assert self.key
+            assert self.key, repr(self.display_string)
         matches = []
         if self.number:
             matches.append(str(self.number))

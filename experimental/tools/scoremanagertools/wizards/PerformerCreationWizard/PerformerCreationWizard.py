@@ -123,9 +123,9 @@ class PerformerCreationWizard(Wizard):
     def make_performer_configuration_menu(self, performer):
         menu, menu_section = self._io.make_menu(
             where=self._where,
-            return_value_attribute='display_string',
             is_numbered=True,
             is_ranged=True,
+            #is_modern=True,
             )
         menu_section.title = 'select instruments'
         likely_instruments = \
@@ -148,18 +148,17 @@ class PerformerCreationWizard(Wizard):
         if likely_instruments:
             menu_section.menu_tokens = likely_instrument_names
             menu_section.default_index = default_index
-            menu_tokens = [
-                ('more', 'more instruments'),
-                ]
             menu_section = menu.make_section(
                 return_value_attribute='key',
+                is_modern=True,
                 )
+            menu_section.append(('more instruments', 'more'))
         else:
             menu_tokens = instrumenttools.list_instrument_names()
             menu_section.default_index = default_index
             menu_section = menu.make_section(
                 return_value_attribute='key',
+                is_modern=True,
                 )
-        menu_tokens.append(('skip', 'skip instruments'))
-        menu_section.menu_tokens = menu_tokens
+        menu_section.append(('skip instruments', 'skip'))
         return menu
