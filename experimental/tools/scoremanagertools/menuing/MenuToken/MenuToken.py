@@ -60,7 +60,7 @@ class MenuToken(AbjadObject):
             raise ValueError(expr)
         assert display_string
         self._key = key
-        self._body = display_string
+        self._display_string = display_string
         self._existing_value = existing_value
         self._prepopulated_return_value = prepopulated_return_value
         if self.return_value_attribute == 'number':
@@ -68,26 +68,22 @@ class MenuToken(AbjadObject):
         elif self.return_value_attribute == 'display_string':
             return_value = self.display_string
         elif self.return_value_attribute == 'key':
-            if self.key:
-                return_value = self.key
-            else:
-                return_value = self.display_string
+            return_value = self.key
         elif self.return_value_attribute == 'prepopulated':
-            assert prepopulated_return_value
-            return_value = prepopulated_return_value
+            return_value = self.prepopulated_return_value
+        assert return_value
         self._return_value = return_value
-        assert self.return_value
         matches = []
         if self.number:
             matches.append(str(self.number))
         if self.key is not None:
             matches.append(self.key)
         self._matches = tuple(matches)
-        normalized_body = \
+        normalized_display_string = \
             stringtools.strip_diacritics_from_binary_string(
             self.display_string)
-        normalized_body = normalized_body.lower()
-        self._normalized_body = normalized_body
+        normalized_display_string = normalized_display_string.lower()
+        self._normalized_display_string = normalized_display_string
 
     ### SPECIAL METHODS ###
 
@@ -108,7 +104,7 @@ class MenuToken(AbjadObject):
 
     @property
     def display_string(self):
-        return self._body
+        return self._display_string
 
     @property
     def existing_value(self):
@@ -140,6 +136,6 @@ class MenuToken(AbjadObject):
         if user_input in self._matches:
             return True
         if 3 <= len(user_input):
-            if self._normalized_body.startswith(user_input):
+            if self._normalized_display_string.startswith(user_input):
                 return True
         return False 
