@@ -68,6 +68,7 @@ class StylesheetFileWrangler(FileWrangler):
             where=self._where,
             return_value_attribute='key',
             is_numbered=True,
+            is_modern=True,
             )
         menu_section.menu_tokens = self._make_menu_tokens(
             include_extension=True)
@@ -91,7 +92,7 @@ class StylesheetFileWrangler(FileWrangler):
             if annotation:
                 display_string = '{} ({})'.format(display_string, annotation)
             bodies.append(display_string)
-        return zip(keys, bodies)
+        return zip(bodies, keys)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

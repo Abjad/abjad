@@ -93,7 +93,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
     def _make_menu_tokens(self, head=None):
         keys = self.list_asset_packagesystem_paths(head=head)
         bodies = self.list_asset_names(head=head)
-        return zip(keys, bodies)
+        return zip(bodies, keys)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

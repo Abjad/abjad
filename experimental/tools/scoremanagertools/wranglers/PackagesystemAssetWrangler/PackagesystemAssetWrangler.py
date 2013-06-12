@@ -55,7 +55,7 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
         keys = self.list_visible_asset_packagesystem_paths(head=head)
         bodies = self.list_asset_names(head=head)
         assert len(keys) == len(bodies), repr((keys, bodies))
-        return zip(keys, bodies)
+        return zip(bodies, keys)
 
     ### PUBLIC METHODS ###
 

@@ -92,9 +92,10 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         menu_tokens = self._make_menu_tokens(head=head)
         menu, menu_section = self._io.make_menu(
             where=self._where,
-            is_numbered=True,
-            menu_tokens=menu_tokens,
             return_value_attribute='key',
+            menu_tokens=menu_tokens,
+            is_numbered=True,
+            is_modern=True,
             )
         return menu
 
@@ -127,7 +128,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         raise Exception('FOO')
         keys = self.list_asset_filesystem_paths(head=head)
         bodies = self.list_asset_names(head=head, include_extension=include_extension)
-        return zip(keys, bodies)
+        return zip(bodies, keys)
 
     def _run(self, cache=False, clear=True, head=None, rollback=None, user_input=None):
         self._io.assign_user_input(user_input=user_input)
@@ -197,8 +198,9 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         self._session.cache_breadcrumbs(cache=cache)
         menu, menu_section = self._io.make_menu(
             where=self._where,
-            is_numbered=True,
             return_value_attribute='key',
+            is_numbered=True,
+            is_modern=True,
             )
         menu_section.menu_tokens = self._make_menu_tokens()
         while True:
