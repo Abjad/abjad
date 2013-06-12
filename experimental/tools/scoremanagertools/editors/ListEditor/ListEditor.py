@@ -44,6 +44,7 @@ class ListEditor(InteractiveEditor):
         item_management_section = menu.make_section(
             is_numbered=True,
             return_value_attribute='number',
+            is_modern=True,
             )
         item_management_section.menu_tokens = self.target_summary_lines
         command_section = menu.make_section(
