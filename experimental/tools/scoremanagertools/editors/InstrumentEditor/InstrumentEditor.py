@@ -35,11 +35,8 @@ class InstrumentEditor(InteractiveEditor):
 
     def _make_main_menu(self):
         menu = super(InstrumentEditor, self)._make_main_menu()
-        menu_tokens = menu.hidden_section.menu_tokens[:]
-        menu_tokens.extend([
-            ('tprd', 'toggle pitch range display'),
-            ])
-        menu.hidden_section.menu_tokens = menu_tokens
+        menu.hidden_section.append(
+            ('toggle pitch range display', 'tprd'))
         return menu
 
     ### READ-ONLY PUBLIC PROPERTIES ###
