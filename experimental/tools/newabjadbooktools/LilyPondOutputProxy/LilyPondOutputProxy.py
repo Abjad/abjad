@@ -7,6 +7,17 @@ from experimental.tools.newabjadbooktools.ImageOutputProxy import ImageOutputPro
 
 
 class LilyPondOutputProxy(ImageOutputProxy):
+    '''Output proxy for LilyPond notation:
+
+    ::
+
+        >>> payload = Staff("c'4 d'4 e'4 f'4")
+        >>> output_proxy = newabjadbooktools.LilyPondOutputProxy(payload)
+        >>> print output_proxy
+        LilyPondOutputProxy()
+
+    Return output proxy.
+    '''
 
     ### INITIALIZER ###
 
@@ -27,18 +38,45 @@ class LilyPondOutputProxy(ImageOutputProxy):
     ### PUBLIC METHODS ###
 
     def handle_html_document_environment(self, document_handler):
+        '''Handle an HTML document environment:
+
+        ::
+
+            >>> document_handler = newabjadbooktools.HTMLDocumentHandler([])
+            >>> result = output_proxy.handle_html_document_environment(
+            ...     document_handler)
+            >>> for x in result:
+            ...     x
+            '<img alt="" src="assets/lilypond-b2476962e00078743b1ed8c6d7bce3b9.png"/>'
+            ''
+
+        Return list.
+        '''
         result = []
-        result.append('<img alt="" src="{}"/>')
+        directive = '<img alt="" src="{}"/>'.format(
+            self.get_relative_asset_output_path(document_handler))
+        result.append(directive)
+        result.append('')
         return result
 
     def handle_rest_document_environment(self, document_handler):
+        '''Handle an ReST document environment:
+
+        ::
+
+            >>> document_handler = newabjadbooktools.ReSTDocumentHandler([])
+            >>> result = output_proxy.handle_rest_document_environment(
+            ...     document_handler)
+            >>> for x in result:
+            ...     x
+            '.. image:: assets/lilypond-b2476962e00078743b1ed8c6d7bce3b9.png'
+            ''
+
+        Return list.
+        '''
         result = []
         directive = '.. image:: {}'.format(
-            os.path.join(
-                document_handler.asset_output_directory_name,
-                self.get_image_file_name(document_handler),
-                )
-            )
+            self.get_relative_asset_output_path(document_handler))
         result.append(directive)
         result.append('')
         return result

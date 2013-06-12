@@ -39,8 +39,32 @@ class CodeOutputProxy(OutputProxy):
 
     ### PUBLIC METHODS ###
 
+    def handle_html_document_environment(self, document_handler):
+        '''Handle an HTML document environment:
+
+        ::
+
+            >>> document_handler = newabjadbooktools.HTMLDocumentHandler([])
+            >>> result = output_proxy.handle_html_document_environment(
+            ...     document_handler)
+            >>> for x in result:
+            ...     x
+            '<pre class="abjad">'
+            '>>> print "hello, world!"'
+            'hello, world!'
+            '</pre>'
+
+        Return list.
+        '''
+        result = []
+        result.append('<pre class="abjad">')
+        for line in self.payload:
+            result.append(line)
+        result.append('</pre>')
+        return result
+
     def handle_rest_document_environment(self, document_handler):
-        '''ReST output:
+        '''Handle an ReST document environment:
 
         ::
 
@@ -57,7 +81,6 @@ class CodeOutputProxy(OutputProxy):
 
         Return list.
         '''
-
         result = [
             '::',
             '',
