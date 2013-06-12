@@ -457,9 +457,6 @@ Unstable packages (load manually)
       tools/newabjadbooktools/ImageFormat/ImageFormat
       tools/newabjadbooktools/ImageOutputProxy/ImageOutputProxy
       tools/newabjadbooktools/OutputProxy/OutputProxy
-      tools/newabjadbooktools/PDFImageFormat/PDFImageFormat
-      tools/newabjadbooktools/PNGImageFormat/PNGImageFormat
-      tools/newabjadbooktools/SVGImageFormat/SVGImageFormat
 
    --------
 
@@ -474,7 +471,10 @@ Unstable packages (load manually)
       tools/newabjadbooktools/LaTeXDocumentHandler/LaTeXDocumentHandler
       tools/newabjadbooktools/LilyPondOutputProxy/LilyPondOutputProxy
       tools/newabjadbooktools/MIDIOutputProxy/MIDIOutputProxy
+      tools/newabjadbooktools/PDFImageFormat/PDFImageFormat
+      tools/newabjadbooktools/PNGImageFormat/PNGImageFormat
       tools/newabjadbooktools/ReSTDocumentHandler/ReSTDocumentHandler
+      tools/newabjadbooktools/SVGImageFormat/SVGImageFormat
       tools/newabjadbooktools/TextualDocumentHandler/TextualDocumentHandler
 
 .. only:: latex
@@ -490,9 +490,6 @@ Unstable packages (load manually)
       tools/newabjadbooktools/ImageFormat/ImageFormat
       tools/newabjadbooktools/ImageOutputProxy/ImageOutputProxy
       tools/newabjadbooktools/OutputProxy/OutputProxy
-      tools/newabjadbooktools/PDFImageFormat/PDFImageFormat
-      tools/newabjadbooktools/PNGImageFormat/PNGImageFormat
-      tools/newabjadbooktools/SVGImageFormat/SVGImageFormat
 
    Concrete Classes
    ----------------
@@ -507,7 +504,10 @@ Unstable packages (load manually)
       tools/newabjadbooktools/LaTeXDocumentHandler/LaTeXDocumentHandler
       tools/newabjadbooktools/LilyPondOutputProxy/LilyPondOutputProxy
       tools/newabjadbooktools/MIDIOutputProxy/MIDIOutputProxy
+      tools/newabjadbooktools/PDFImageFormat/PDFImageFormat
+      tools/newabjadbooktools/PNGImageFormat/PNGImageFormat
       tools/newabjadbooktools/ReSTDocumentHandler/ReSTDocumentHandler
+      tools/newabjadbooktools/SVGImageFormat/SVGImageFormat
       tools/newabjadbooktools/TextualDocumentHandler/TextualDocumentHandler
 
 :py:mod:`parsertools <experimental.tools.parsertools>`

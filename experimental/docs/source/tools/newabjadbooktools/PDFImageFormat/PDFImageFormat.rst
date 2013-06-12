@@ -9,14 +9,14 @@ newabjadbooktools.PDFImageFormat
 Read-only properties
 --------------------
 
+.. autoattribute:: experimental.tools.newabjadbooktools.PDFImageFormat.PDFImageFormat.PDFImageFormat.file_extension
+   :noindex:
+
 .. autoattribute:: experimental.tools.newabjadbooktools.PDFImageFormat.PDFImageFormat.PDFImageFormat.storage_format
    :noindex:
 
 Special methods
 ---------------
-
-.. automethod:: experimental.tools.newabjadbooktools.PDFImageFormat.PDFImageFormat.PDFImageFormat.__call__
-   :noindex:
 
 .. automethod:: experimental.tools.newabjadbooktools.PDFImageFormat.PDFImageFormat.PDFImageFormat.__eq__
    :noindex:

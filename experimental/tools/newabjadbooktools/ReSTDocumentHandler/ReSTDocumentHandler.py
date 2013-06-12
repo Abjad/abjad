@@ -46,7 +46,7 @@ class ReSTDocumentHandler(TextualDocumentHandler):
         ''
         '\t>>> show(Note("c\'4"))'
         ''
-        '.. image:: lilypond-dbceae26d3d5a6f87ebaa36541fc88b7.png'
+        '.. image:: assets/lilypond-dbceae26d3d5a6f87ebaa36541fc88b7.png'
         ''
         ''
         "That's it!"

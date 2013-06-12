@@ -9,14 +9,14 @@ newabjadbooktools.SVGImageFormat
 Read-only properties
 --------------------
 
+.. autoattribute:: experimental.tools.newabjadbooktools.SVGImageFormat.SVGImageFormat.SVGImageFormat.file_extension
+   :noindex:
+
 .. autoattribute:: experimental.tools.newabjadbooktools.SVGImageFormat.SVGImageFormat.SVGImageFormat.storage_format
    :noindex:
 
 Special methods
 ---------------
-
-.. automethod:: experimental.tools.newabjadbooktools.SVGImageFormat.SVGImageFormat.SVGImageFormat.__call__
-   :noindex:
 
 .. automethod:: experimental.tools.newabjadbooktools.SVGImageFormat.SVGImageFormat.SVGImageFormat.__eq__
    :noindex:

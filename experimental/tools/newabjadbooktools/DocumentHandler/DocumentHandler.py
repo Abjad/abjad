@@ -68,6 +68,10 @@ class DocumentHandler(AbjadObject):
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
+    @abc.abstractproperty
+    def asset_output_directory_name(self):
+        raise NotImplemented
+
     @property
     def code_blocks(self):
         return self._code_blocks
@@ -79,6 +83,10 @@ class DocumentHandler(AbjadObject):
     @property
     def document(self):
         return self._document
+
+    @abc.abstractproperty
+    def image_format(self):
+        raise NotImplemented
 
     @property
     def output_directory_path(self):

@@ -1,3 +1,4 @@
+import abc
 import hashlib
 from experimental.tools.newabjadbooktools.OutputProxy import OutputProxy
 
@@ -16,6 +17,14 @@ class AssetOutputProxy(OutputProxy):
         return '-'.join((self.file_name_prefix, md5))
 
     ### PUBLIC METHODS ###
+
+    @abc.abstractmethod
+    def get_absolute_asset_output_path(self, document_handler):
+        raise NotImplemented
+
+    @abc.abstractmethod
+    def get_relative_asset_output_path(self, document_handler):
+        raise NotImplemented
 
     def write_asset_to_disk(self, document_handler):
         pass

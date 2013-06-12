@@ -2,4 +2,7 @@ from experimental.tools.newabjadbooktools.ImageFormat import ImageFormat
 
 
 class PDFImageFormat(ImageFormat):
-    pass
+
+    @property
+    def file_extension(self):
+        return 'pdf'

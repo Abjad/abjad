@@ -9,6 +9,9 @@ newabjadbooktools.DoctreeDocumentHandler
 Read-only properties
 --------------------
 
+.. autoattribute:: experimental.tools.newabjadbooktools.DoctreeDocumentHandler.DoctreeDocumentHandler.DoctreeDocumentHandler.asset_output_directory_name
+   :noindex:
+
 .. autoattribute:: experimental.tools.newabjadbooktools.DoctreeDocumentHandler.DoctreeDocumentHandler.DoctreeDocumentHandler.code_blocks
    :noindex:
 
@@ -16,6 +19,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.newabjadbooktools.DoctreeDocumentHandler.DoctreeDocumentHandler.DoctreeDocumentHandler.document
+   :noindex:
+
+.. autoattribute:: experimental.tools.newabjadbooktools.DoctreeDocumentHandler.DoctreeDocumentHandler.DoctreeDocumentHandler.image_format
    :noindex:
 
 .. autoattribute:: experimental.tools.newabjadbooktools.DoctreeDocumentHandler.DoctreeDocumentHandler.DoctreeDocumentHandler.output_directory_path

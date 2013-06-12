@@ -7,9 +7,13 @@ class ImageFormat(AbjadObject):
     image into its associated filetype.
     '''
 
-    ### SPECIAL METHODS ###
+    ### INITIALIZER ###
 
-    @abc.abstractmethod
-    def __call__(self, source_file_path, destination_file_path):
+    def __init__(self):
+        pass
+
+    ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @abc.abstractproperty
+    def file_extension(self):
         raise NotImplemented
-

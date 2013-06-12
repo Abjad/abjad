@@ -174,5 +174,14 @@ class TextualDocumentHandler(DocumentHandler):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
+    def asset_output_directory_name(self):
+        return 'assets'
+
+    @property
     def document_type(self):
         return 'text'
+
+    @property
+    def image_format(self):
+        from experimental.tools import newabjadbooktools
+        return newabjadbooktools.PNGImageFormat()

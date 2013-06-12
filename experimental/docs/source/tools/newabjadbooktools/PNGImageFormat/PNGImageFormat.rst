@@ -9,14 +9,14 @@ newabjadbooktools.PNGImageFormat
 Read-only properties
 --------------------
 
+.. autoattribute:: experimental.tools.newabjadbooktools.PNGImageFormat.PNGImageFormat.PNGImageFormat.file_extension
+   :noindex:
+
 .. autoattribute:: experimental.tools.newabjadbooktools.PNGImageFormat.PNGImageFormat.PNGImageFormat.storage_format
    :noindex:
 
 Special methods
 ---------------
-
-.. automethod:: experimental.tools.newabjadbooktools.PNGImageFormat.PNGImageFormat.PNGImageFormat.__call__
-   :noindex:
 
 .. automethod:: experimental.tools.newabjadbooktools.PNGImageFormat.PNGImageFormat.PNGImageFormat.__eq__
    :noindex:

@@ -27,6 +27,15 @@ Methods
 .. automethod:: experimental.tools.newabjadbooktools.LilyPondOutputProxy.LilyPondOutputProxy.LilyPondOutputProxy.generate_document_representation
    :noindex:
 
+.. automethod:: experimental.tools.newabjadbooktools.LilyPondOutputProxy.LilyPondOutputProxy.LilyPondOutputProxy.get_absolute_asset_output_path
+   :noindex:
+
+.. automethod:: experimental.tools.newabjadbooktools.LilyPondOutputProxy.LilyPondOutputProxy.LilyPondOutputProxy.get_image_file_name
+   :noindex:
+
+.. automethod:: experimental.tools.newabjadbooktools.LilyPondOutputProxy.LilyPondOutputProxy.LilyPondOutputProxy.get_relative_asset_output_path
+   :noindex:
+
 .. automethod:: experimental.tools.newabjadbooktools.LilyPondOutputProxy.LilyPondOutputProxy.LilyPondOutputProxy.handle_doctree_document_environment
    :noindex:
 

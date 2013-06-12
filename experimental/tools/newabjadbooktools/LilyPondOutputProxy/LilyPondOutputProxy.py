@@ -1,4 +1,5 @@
 import copy
+import os
 from abjad.tools import configurationtools
 from abjad.tools import lilypondfiletools
 from abjad.tools.iotools._insert_expr_into_lilypond_file import _insert_expr_into_lilypond_file
@@ -7,7 +8,7 @@ from experimental.tools.newabjadbooktools.ImageOutputProxy import ImageOutputPro
 
 class LilyPondOutputProxy(ImageOutputProxy):
 
-    ### CLASS VARIABLES ###
+    ### INITIALIZER ###
 
     def __init__(self, payload):
         if isinstance(payload, str):
@@ -25,10 +26,19 @@ class LilyPondOutputProxy(ImageOutputProxy):
              
     ### PUBLIC METHODS ###
 
+    def handle_html_document_environment(self, document_handler):
+        result = []
+        result.append('<img alt="" src="{}"/>')
+        return result
+
     def handle_rest_document_environment(self, document_handler):
         result = []
-        result.append('.. image:: {}.png'.format(
-            self.file_name_without_extension,
-            ))
+        directive = '.. image:: {}'.format(
+            os.path.join(
+                document_handler.asset_output_directory_name,
+                self.get_image_file_name(document_handler),
+                )
+            )
+        result.append(directive)
         result.append('')
         return result

@@ -27,6 +27,15 @@ Methods
 .. automethod:: experimental.tools.newabjadbooktools.ImageOutputProxy.ImageOutputProxy.ImageOutputProxy.generate_document_representation
    :noindex:
 
+.. automethod:: experimental.tools.newabjadbooktools.ImageOutputProxy.ImageOutputProxy.ImageOutputProxy.get_absolute_asset_output_path
+   :noindex:
+
+.. automethod:: experimental.tools.newabjadbooktools.ImageOutputProxy.ImageOutputProxy.ImageOutputProxy.get_image_file_name
+   :noindex:
+
+.. automethod:: experimental.tools.newabjadbooktools.ImageOutputProxy.ImageOutputProxy.ImageOutputProxy.get_relative_asset_output_path
+   :noindex:
+
 .. automethod:: experimental.tools.newabjadbooktools.ImageOutputProxy.ImageOutputProxy.ImageOutputProxy.handle_doctree_document_environment
    :noindex:
 

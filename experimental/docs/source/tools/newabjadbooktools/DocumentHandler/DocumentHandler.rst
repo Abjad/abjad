@@ -9,6 +9,9 @@ newabjadbooktools.DocumentHandler
 Read-only properties
 --------------------
 
+.. autoattribute:: experimental.tools.newabjadbooktools.DocumentHandler.DocumentHandler.DocumentHandler.asset_output_directory_name
+   :noindex:
+
 .. autoattribute:: experimental.tools.newabjadbooktools.DocumentHandler.DocumentHandler.DocumentHandler.code_blocks
    :noindex:
 
@@ -16,6 +19,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.newabjadbooktools.DocumentHandler.DocumentHandler.DocumentHandler.document
+   :noindex:
+
+.. autoattribute:: experimental.tools.newabjadbooktools.DocumentHandler.DocumentHandler.DocumentHandler.image_format
    :noindex:
 
 .. autoattribute:: experimental.tools.newabjadbooktools.DocumentHandler.DocumentHandler.DocumentHandler.output_directory_path
