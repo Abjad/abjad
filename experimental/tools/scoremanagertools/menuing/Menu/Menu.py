@@ -227,7 +227,6 @@ class Menu(MenuSectionAggregator):
 
     def make_section(self, 
         is_hidden=False, 
-        is_internally_keyed=False, 
         is_keyed=False,
         is_numbered=False, 
         is_ranged=False, 
@@ -240,7 +239,6 @@ class Menu(MenuSectionAggregator):
         assert not (is_ranged and self.has_ranged_section)
         menu_section = scoremanagertools.menuing.MenuSection(
             is_hidden=is_hidden,
-            is_internally_keyed=is_internally_keyed,
             is_keyed=is_keyed,
             is_numbered=is_numbered,
             is_ranged=is_ranged,
