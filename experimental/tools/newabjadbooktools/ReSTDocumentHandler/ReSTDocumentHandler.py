@@ -7,8 +7,7 @@ class ReSTDocumentHandler(TextualDocumentHandler):
 
     ::
 
-        >>> document = '''\
-        ... Let's print something:
+        >>> document = '''Let's print something:
         ...
         ... <abjad>
         ... print "hello, world!"

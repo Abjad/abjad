@@ -2,12 +2,11 @@ from experimental.tools.newabjadbooktools.TextualDocumentHandler import TextualD
 
 
 class HTMLDocumentHandler(TextualDocumentHandler):
-    """A document handler for HTML documents:
+    r"""A document handler for HTML documents:
 
     ::
 
-        >>> document = '''\
-        ... <html>
+        >>> document = '''<html>
         ... <head>
         ... </head>
         ... <body>
