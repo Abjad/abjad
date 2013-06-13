@@ -39,44 +39,52 @@
     This will be a very high-level test to make sure 
     that entire score packages remain importable.
 
-16. Consolidate scores to single repository.
-
-17. Implement example_score_i.music.materials.divisions to import 
+16. Implement example_score_i.music.materials.divisions to import 
     example_score_i.music.materials.time_signatures.
     This will implement an intrapackage material import.
     Implement example_score_ii.music.materials.divisions to 
     import example_score_i.music.materials.time_signatures.
     This will implement an interpackage material import.
 
-18. Remove ModuleProxy.unimport() entirely.
+17. Remove ModuleProxy.unimport() entirely.
 
-19. Replace all _read_only_attributes.py and _public_attributes.py 
+18. Replace all _read_only_attributes.py and _public_attributes.py 
     test files with doctests.
 
-20. Sweep inline scoremanagertools TODO items.
+19. Sweep inline scoremanagertools TODO items.
 
-21. Author ScorePackageProxy docstrings.
+20. Author ScorePackageProxy docstrings.
 
-22. Add PackageystemAssetProxy to superclass ModuleProxy and PackageProxy.
+21. Add PackageystemAssetProxy to superclass ModuleProxy and PackageProxy.
 
-23. Create a PackagesystemAssetProxy to parallel PacakagesystemAssetWrangler.
+22. Create a PackagesystemAssetProxy to parallel PacakagesystemAssetWrangler.
 
-24. Harmonize user input strings with method names in 
+23. Harmonize user input strings with method names in 
     MaterialPackageProxy.user_input_to_action dictionary.
 
-25. Author StylesheetFileWrangler.interactively_remove_assets() test.
+24. Author StylesheetFileWrangler.interactively_remove_assets() test.
     Will involve making user_input='... rm ...' work with named arguments 
     instead of just numeric arguments.
 
-26. Make MaterialPackageMaker classes stop creating materials in 
+25. Make MaterialPackageMaker classes stop creating materials in 
     tools.scoremanagertools.materialpackages.
     Those classes should create material packages in the user asset 
     library material packages directory.
     Or in user score packages. But no material packages should ever 
     be created in the built-in asset library material packages directory.
 
-27. Implement material methods to move material packages 
+26. Implement material methods to move material packages 
     from one location to another.
 
-28. Find a way to include tags management in hidden menu 
+27. Find a way to include tags management in hidden menu 
     of every package proxy.
+
+28. Rename all tags.py files to __tags__.py instead.
+
+29. Flatten all score_package/music directories.
+    So instead of score_package/music/material_packages,
+    score_package/music/segments, score_package/music/specifiers,
+    score_package/music/stylesheets, etc. we'll have
+    score_package/material_packages, score_package/segments,
+    score_package/specifiers, score_package/stylesheets, etc.
+    instead.
