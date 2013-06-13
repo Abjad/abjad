@@ -1,6 +1,7 @@
+import StringIO
 import copy
 import contextlib
-import StringIO
+import random
 from abjad.tools import iotools
 from abjad.tools.abctools import AbjadObject
 
@@ -165,9 +166,13 @@ class CodeBlock(AbjadObject):
             first, sep, rest = line.partition('(')
             with contextlib.closing(StringIO.StringIO()) as stream:
                 with iotools.RedirectedStreams(stream, stream):
-                    output_method = first.strip()
-                    if output_method in self.output_triggers:
 
+                    output_method = first.strip()
+                    # We treat the line as a normal line
+                    # if we previously set ``is_incomplete_statement``
+                    # to False - this indicates we're inside a quote.
+                    if output_method in self.output_triggers and \
+                        not is_incomplete_statement:
                         # TODO: Handle complex, nested input
                         if ',' in rest:
                             object_reference = rest.rpartition(',')[0].strip()
@@ -178,10 +183,18 @@ class CodeBlock(AbjadObject):
                         if object_reference in console.locals:
                             referent = console.locals[object_reference]
                         else:
-                            command = '__abjad_book__ = {}'.format(object_reference)
+                            # Prevent collisions, just in case abjad-book
+                            # is being run inside abjad-book, is being
+                            # run inside abjad-book, is being run inside...
+                            identifier = '__abjad_book_{:08}__'.format(
+                                random.randint(0, 99999999))
+                            command = '{} = {}'.format(
+                                identifier,
+                                object_reference,
+                                )
                             console.push(command)
-                            referent = console.locals['__abjad_book__']
-                            console.push('del __abjad_book__')
+                            referent = console.locals[identifier]
+                            del(console.locals[identifier])
                                 
                         asset_proxy_class = self.output_triggers[output_method]
                         asset_output_proxy = asset_proxy_class(referent)
@@ -192,6 +205,7 @@ class CodeBlock(AbjadObject):
 
                     else:
                         is_incomplete_statement = console.push(line)
+
                     output = stream.getvalue()
                     if output:
                         result += output

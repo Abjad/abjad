@@ -17,6 +17,14 @@ class HTMLDocumentHandler(TextualDocumentHandler):
         ... print "hello, world!"
         ... </abjad>
         ...
+        ... This is just a simple Python string:
+        ...
+        ... <abjad>
+        ... just_a_string = \'\'\'
+        ... show(Nothing!)
+        ... \'\'\'
+        ... </abjad>
+        ...
         ... And let's show some music too:
         ...
         ... <abjad>
@@ -48,6 +56,14 @@ class HTMLDocumentHandler(TextualDocumentHandler):
         'hello, world!'
         '</pre>'
         ''
+        'This is just a simple Python string:'
+        ''
+        '<pre class="abjad">'
+        ">>> just_a_string = '''"
+        '... show(Nothing!)'
+        "... '''"
+        '</pre>'
+        '' 
         "And let's show some music too:"
         ''
         '<pre class="abjad">'

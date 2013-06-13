@@ -77,7 +77,7 @@ class CodeOutputProxy(OutputProxy):
             '\tbasicstyle=\\footnotesize\\ttfamily,'
             '\tbreaklines=true,'
             '\ttabsize=4,'
-            '\tshowtabs=false'
+            '\tshowtabs=false,'
             '\tshowspaces=false'
             '\t]'
             '>>> print "hello, world!"'
@@ -92,7 +92,7 @@ class CodeOutputProxy(OutputProxy):
         result.append('\tbasicstyle=\\footnotesize\\ttfamily,')
         result.append('\tbreaklines=true,')
         result.append('\ttabsize=4,')
-        result.append('\tshowtabs=false',)
+        result.append('\tshowtabs=false,')
         result.append('\tshowspaces=false')
         result.append('\t]')
         for line in self.payload:

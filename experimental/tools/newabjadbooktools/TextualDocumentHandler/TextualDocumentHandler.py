@@ -8,8 +8,7 @@ class TextualDocumentHandler(DocumentHandler):
     
     ::
 
-        >>> document = '''\
-        ... Let's print something:
+        >>> document = '''Let's print something:
         ...
         ... <abjad>
         ... print "hello, world!"
@@ -40,8 +39,7 @@ class TextualDocumentHandler(DocumentHandler):
 
     ::
 
-        >>> document = '''\
-        ... This code block is hidden:
+        >>> document = '''This code block is hidden:
         ... 
         ... <abjad>[hide=True]
         ... You can't see me!
