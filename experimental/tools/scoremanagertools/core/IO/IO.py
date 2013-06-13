@@ -130,7 +130,6 @@ class IO(AbjadObject):
         is_hidden=False, 
         is_numbered=False, 
         is_ranged=False, 
-        is_modern=False,
         where=None,
         menu_tokens=None, 
         return_value_attribute='display_string',
@@ -144,7 +143,6 @@ class IO(AbjadObject):
             is_hidden=is_hidden,
             is_numbered=is_numbered,
             is_ranged=is_ranged,
-            is_modern=is_modern,
             menu_tokens=menu_tokens,
             return_value_attribute=return_value_attribute,
             )

@@ -87,7 +87,8 @@ class UserInputGetter(MenuSectionAggregator):
         message = 'value for {!r} must be argument range.'
         self.append_something(spaced_attribute_name, message, default=default)
         self.argument_lists[-1] = argument_list
-        test = lambda expr: predicates.is_readable_argument_range_string_for_argument_list(
+        test = lambda expr: \
+            predicates.is_readable_argument_range_string_for_argument_list(
             expr, argument_list)
         self.tests.append(test)
 
@@ -103,10 +104,12 @@ class UserInputGetter(MenuSectionAggregator):
 
     def append_available_underscore_delimited_lowercase_package_name(self, 
         spaced_attribute_name, default=None):
-        message = \
-            'value for {!r} must be available underscore-delimited lowercase package name of length at least 3.'
+        message = 'value for {!r} must be available '
+        message += 'underscore-delimited lowercase package name '
+        message += 'of length at least 3.'
         self.append_something(spaced_attribute_name, message, default=default)
-        self.tests.append(predicates.is_available_underscore_delimited_lowercase_package_name)
+        self.tests.append(
+            predicates.is_available_underscore_delimited_lowercase_package_name)
 
     def append_boolean(self, spaced_attribute_name, default=None):
         message = 'value for {!r} must be boolean.'
@@ -171,7 +174,8 @@ class UserInputGetter(MenuSectionAggregator):
 
     def append_hyphen_delimited_lowercase_file_name(self, 
         spaced_attribute_name, default=None):
-        message = 'value for {!r} must be hyphen-delimited lowercase file name.'
+        message = 'value for {!r} must be '
+        message += 'hyphen-delimited lowercase file name.'
         self.append_something(spaced_attribute_name, message, default=default)
         self.tests.append(stringtools.is_hyphen_delimited_lowercase_file_name)
 
@@ -182,7 +186,8 @@ class UserInputGetter(MenuSectionAggregator):
 
     def append_integer_in_range(self, spaced_attribute_name,
         start=None, stop=None, allow_none=False, default=None):
-        message = 'value for {!r} must be integer between {} and {}, inclusive.'
+        message = 'value for {!r} must be '
+        message += 'integer between {} and {}, inclusive.'
         self.append_something(
             spaced_attribute_name, message, (start, stop), default=default)
         self.tests.append(
@@ -214,7 +219,8 @@ class UserInputGetter(MenuSectionAggregator):
 
     def append_material_package_maker_class_name(self, 
         spaced_attribute_name, default=None):
-        message = 'value for {!r} must be uppercamelcase string ending in -Maker.'
+        message = 'value for {!r} must be '
+        message += 'uppercamelcase string ending in -Maker.'
         self.append_something(spaced_attribute_name, message, default=default)
         self.tests.append(
             lambda x: stringtools.is_uppercamelcase_string(x) 
@@ -299,7 +305,8 @@ class UserInputGetter(MenuSectionAggregator):
 
     def append_symbolic_pitch_range_string(self, 
         spaced_attribute_name, default=None):
-        message = 'value for {!r} must be symbolic pitch range string. Ex: [A0, C8].'
+        message = 'value for {!r} must be '
+        message += 'symbolic pitch range string. Ex: [A0, C8].'
         self.append_something(spaced_attribute_name, message, default=default)
         self.tests.append(pitchtools.is_symbolic_pitch_range_string)
 
@@ -311,27 +318,33 @@ class UserInputGetter(MenuSectionAggregator):
 
     def append_underscore_delimited_lowercase_file_name(self, 
         spaced_attribute_name, default=None):
-        message = 'value for {!r} must be underscore-delimited lowercase file name.'
+        message = 'value for {!r} must be '
+        message += 'underscore-delimited lowercase file name.'
         self.append_something(spaced_attribute_name, message, default=default)
         self.tests.append(
             stringtools.is_underscore_delimited_lowercase_file_name)
 
     def append_underscore_delimited_lowercase_file_name_with_extension(self, 
         spaced_attribute_name, default=None):
-        message = 'value for {!r} must be underscore-delimited lowercase file name with extension.'
+        message = 'value for {!r} must be '
+        message += 'underscore-delimited lowercase file name with extension.'
         self.append_something(spaced_attribute_name, message, default=default)
         self.tests.append(
             stringtools.is_underscore_delimited_lowercase_file_name_with_extension)
 
     def append_underscore_delimited_lowercase_package_name(self, 
         spaced_attribute_name, default=None):
-        message = 'value for {!r} must be underscore-delimited lowercase package name of length at least 3.'
+        message = 'value for {!r} must be '
+        message += 'underscore-delimited lowercase package name '
+        message += 'of length at least 3.'
         self.append_something(spaced_attribute_name, message, default=default)
-        self.tests.append(predicates.is_underscore_delimited_lowercase_package_name)
+        self.tests.append(
+            predicates.is_underscore_delimited_lowercase_package_name)
 
     def append_underscore_delimited_lowercase_string(self, 
         spaced_attribute_name, default=None):
-        message = 'value for {!r} must be underscore-delimited lowercase string.'
+        message = 'value for {!r} must be '
+        message += 'underscore-delimited lowercase string.'
         self.append_something(spaced_attribute_name, message, default=default)
         self.tests.append(stringtools.is_underscore_delimited_lowercase_string)
 
@@ -498,7 +511,7 @@ class UserInputGetter(MenuSectionAggregator):
 
     def store_value_from_argument_list(self, user_response, argument_list):
         from experimental.tools import scoremanagertools
-        dummy_section = scoremanagertools.menuing.MenuSection(is_modern=True)
+        dummy_section = scoremanagertools.menuing.MenuSection()
         dummy_section.menu_tokens = argument_list
         value = dummy_section.argument_range_string_to_numbers(user_response)
         self.values.append(value)

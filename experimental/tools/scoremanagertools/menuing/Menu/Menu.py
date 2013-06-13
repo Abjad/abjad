@@ -225,7 +225,6 @@ class Menu(MenuSectionAggregator):
         is_hidden=False, 
         is_numbered=False, 
         is_ranged=False, 
-        is_modern=False,
         menu_tokens=None,
         return_value_attribute='display_string',
         ):
@@ -236,7 +235,6 @@ class Menu(MenuSectionAggregator):
             is_hidden=is_hidden,
             is_numbered=is_numbered,
             is_ranged=is_ranged,
-            is_modern=is_modern,
             menu_tokens=menu_tokens,
             return_value_attribute=return_value_attribute,
             session=self._session,
@@ -258,7 +256,8 @@ class Menu(MenuSectionAggregator):
         entry_index = (entry_index + 1) % len(menu_section)
         return menu_section.menu_token_return_values[entry_index]
 
-    # TODO: apply default indicators at display time so this can be completely removed
+    # TODO: apply default indicators at display time 
+    #       so this can be completely removed
     def strip_default_indicators_from_strings(self, expr):
         if isinstance(expr, list):
             cleaned_list = []

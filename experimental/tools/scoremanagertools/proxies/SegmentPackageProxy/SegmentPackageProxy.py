@@ -25,13 +25,11 @@ class SegmentPackageProxy(PackageProxy):
             where=self._where,
             return_value_attribute='key',
             menu_tokens=menu_tokens,
-            is_modern=True,
             )
         menu_section.append(('initializer', 'n'))
         menu_section = menu.make_section(
             menu_tokens=menu_tokens,
             return_value_attribute='key',
-            is_modern=True,
             )
         menu_section.append(('remove', 'rm'))
         return menu

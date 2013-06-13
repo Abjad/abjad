@@ -10,10 +10,7 @@ def test_MenuSection_menu_token_return_values_01():
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    menu_section = menu.make_section(
-        is_numbered=True,
-        is_modern=True,
-        )
+    menu_section = menu.make_section(is_numbered=True)
     menu_section.append('apple')
     menu_section.append('banana')
     menu_section.append('cherry')
@@ -26,7 +23,7 @@ def test_MenuSection_menu_token_return_values_01():
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    menu_section = menu.make_section(is_modern=True)
+    menu_section = menu.make_section()
     menu_section.append('apple')
     menu_section.append('banana')
     menu_section.append('cherry')
@@ -39,11 +36,9 @@ def test_MenuSection_menu_token_return_values_01():
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    menu_section = menu.make_section(
-        return_value_attribute='display_string',
-        is_numbered=True,
-        is_modern=True,
-        )
+    menu_section = menu.make_section()
+    menu_section.return_value_attribute = 'display_string'
+    menu_section.is_numbered = True
     menu_section.append('apple')
     menu_section.append('banana')
     menu_section.append('cherry')
@@ -56,7 +51,7 @@ def test_MenuSection_menu_token_return_values_01():
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    menu_section = menu.make_section(is_modern=True)
+    menu_section = menu.make_section()
     menu_section.append('apple')
     menu_section.append('banana')
     menu_section.append('cherry')
@@ -78,11 +73,9 @@ def test_MenuSection_menu_token_return_values_02():
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    menu_section = menu.make_section(
-        return_value_attribute='key',
-        is_numbered=True, 
-        is_modern=True,
-        )
+    menu_section = menu.make_section()
+    menu_section.return_value_attribute = 'key'
+    menu_section.is_numbered = True
     menu_section.append(('add something', 'add'))
     menu_section.append(('delete something', 'rm'))
     menu_section.append(('modify something', 'mod'))
@@ -94,10 +87,8 @@ def test_MenuSection_menu_token_return_values_02():
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    menu_section = menu.make_section(
-        return_value_attribute='key',
-        is_modern=True,
-        )
+    menu_section = menu.make_section()
+    menu_section.return_value_attribute = 'key'
     menu_section.append(('add something', 'add'))
     menu_section.append(('delete something', 'rm'))
     menu_section.append(('modify something', 'mod'))
@@ -110,10 +101,7 @@ def test_MenuSection_menu_token_return_values_02():
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    menu_section = menu.make_section(
-        is_numbered=True, 
-        is_modern=True,
-        )
+    menu_section = menu.make_section(is_numbered=True)
     menu_section.append(('add something', 'add'))
     menu_section.append(('delete something', 'rm'))
     menu_section.append(('modify something', 'mod'))
@@ -126,7 +114,7 @@ def test_MenuSection_menu_token_return_values_02():
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    menu_section = menu.make_section(is_modern=True)
+    menu_section = menu.make_section()
     menu_section.append(('add something', 'add'))
     menu_section.append(('delete something', 'rm'))
     menu_section.append(('modify something', 'mod'))
@@ -145,10 +133,8 @@ def test_MenuSection_menu_token_return_values_03():
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    menu_section = menu.make_section(
-        return_value_attribute='prepopulated',
-        is_modern=True,
-        )
+    menu_section = menu.make_section()
+    menu_section.return_value_attribute = 'prepopulated'
     menu_section.append(('add something', 'add', None, 'return value A'))
     menu_section.append(('delete something', 'rm', None, 'return value B'))
     menu_section.append(('modify something', 'mod', None, 'return value C'))

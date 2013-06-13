@@ -35,31 +35,24 @@ class ListEditor(InteractiveEditor):
     def _make_main_menu(self):
         menu, attribute_management_section = self._io.make_menu(
             where=self._where,
-            return_value_attribute='key',
-            is_modern=True,
             )
+        attribute_management_section.return_value_attribute = 'key'
         attribute_management_section.menu_tokens = self.target_attribute_tokens
         attribute_management_section.show_existing_values = True
-        item_management_section = menu.make_section(
-            is_numbered=True,
-            return_value_attribute='number',
-            is_modern=True,
-            )
+        item_management_section = menu.make_section()
+        item_management_section.return_value_attribute = 'number'
+        item_management_section.is_numbered = True
         item_management_section.menu_tokens = self.target_summary_lines
-        command_section = menu.make_section(
-            return_value_attribute='key',
-            is_modern=True,
-            )
+        command_section = menu.make_section()
+        command_section.return_value_attribute = 'key'
         command_section.append(('add elements', 'add'))
         if 0 < len(self.items):
             command_section.append(('remove elements', 'rm'))
         if 1 < len(self.items):
             command_section.append(('move elements', 'mv'))
-        hidden_section = menu.make_section(
-            return_value_attribute='key',
-            is_hidden=True,
-            is_modern=True,
-            )
+        hidden_section = menu.make_section()
+        hidden_section.return_value_attribute = 'key'
+        hidden_section.is_hidden = True
         hidden_section.append(('done', 'done'))
         return menu
 

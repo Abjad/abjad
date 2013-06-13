@@ -125,7 +125,6 @@ class PerformerCreationWizard(Wizard):
             where=self._where,
             is_numbered=True,
             is_ranged=True,
-            is_modern=True,
             )
         menu_section.title = 'select instruments'
         likely_instruments = \
@@ -150,7 +149,6 @@ class PerformerCreationWizard(Wizard):
             menu_section.default_index = default_index
             menu_section = menu.make_section(
                 return_value_attribute='key',
-                is_modern=True,
                 )
             menu_section.append(('more instruments', 'more'))
         else:
@@ -158,7 +156,6 @@ class PerformerCreationWizard(Wizard):
             menu_section.default_index = default_index
             menu_section = menu.make_section(
                 return_value_attribute='key',
-                is_modern=True,
                 )
         menu_section.append(('skip instruments', 'skip'))
         return menu

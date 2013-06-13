@@ -93,17 +93,13 @@ class ScoreManager(ScoreManagerObject):
 
     def _make_main_menu(self):
         menu = self._make_score_selection_menu()
-        menu_section = menu.make_section(
-            return_value_attribute='key',
-            is_modern=True,
-            )
+        menu_section = menu.make_section(return_value_attribute='key')
         menu_section.append(('materials', 'm'))
         menu_section.append(('stylesheets', 'y'))
         menu_section.append(('new score', 'new'))
         hidden_section = menu.make_section(
             return_value_attribute='key',
             is_hidden=True,
-            is_modern=True,
             )
         hidden_section.append(('show active scores only', 'active'))
         hidden_section.append(('show all scores', 'all'))
@@ -130,7 +126,6 @@ class ScoreManager(ScoreManagerObject):
             menu_tokens=menu_tokens,
             return_value_attribute='key',
             is_numbered=True,
-            is_modern=True,
             )
         return menu
 
@@ -138,7 +133,6 @@ class ScoreManager(ScoreManagerObject):
         menu, menu_section = self._io.make_menu(
             where=self._where,
             return_value_attribute='key',
-            is_modern=True,
             )
         menu_section.append(('svn add scores', 'add'))
         menu_section.append(('svn commit scores', 'ci'))

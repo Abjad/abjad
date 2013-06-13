@@ -2,13 +2,14 @@ from experimental import *
 
 
 def test_MenuSection_menu_token_display_strings_01():
-    '''Menu entry display_strings equal menu entry menu_tokens when menu entry menu_tokens are strings.
+    '''Menu entry display_strings equal menu entry menu_tokens 
+    when menu entry menu_tokens are strings.
     True whether menu_section is numbered or not.
     '''
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    menu_section = menu.make_section(is_modern=True)
+    menu_section = menu.make_section()
     menu_section.append('apple')
     menu_section.append('banana')
     menu_section.append('cherry')
@@ -19,10 +20,7 @@ def test_MenuSection_menu_token_display_strings_01():
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    menu_section = menu.make_section(
-        is_numbered=True, 
-        is_modern=True,
-        )
+    menu_section = menu.make_section(is_numbered=True)
     menu_section.append('apple')
     menu_section.append('banana')
     menu_section.append('cherry')
@@ -40,7 +38,7 @@ def test_MenuSection_menu_token_display_strings_02():
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    menu_section = menu.make_section(is_modern=True)
+    menu_section = menu.make_section()
     menu_section.append(('add something', 'add'))
     menu_section.append(('delete something', 'rm'))
     menu_section.append(('modify something', 'mod'))
@@ -53,10 +51,7 @@ def test_MenuSection_menu_token_display_strings_02():
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
-    menu_section = menu.make_section(
-        is_numbered=True, 
-        is_modern=True,
-        )
+    menu_section = menu.make_section(is_numbered=True)
     menu_section.append(('add something', 'add'))
     menu_section.append(('delete something', 'rm'))
     menu_section.append(('modify something', 'mod'))

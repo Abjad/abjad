@@ -41,7 +41,6 @@ class ScorePackageProxy(PackageProxy):
         menu, menu_section = self._io.make_menu(
             where=self._where,
             return_value_attribute='key',
-            is_modern=True,
             )
         menu_section.append(('segments', 'h'))
         menu_section.append(('materials', 'm'))
@@ -50,7 +49,6 @@ class ScorePackageProxy(PackageProxy):
         hidden_section = menu.make_section(
             return_value_attribute='key',
             is_hidden=True,
-            is_modern=True,
             )
         hidden_section.append(('fix package structure', 'fix'))
         hidden_section.append(('list directory contents', 'ls'))
@@ -420,7 +418,6 @@ class ScorePackageProxy(PackageProxy):
             where=self._where,
             return_value_attribute='key',
             is_numbered=True,
-            is_modern=True,
             )
         menu_section.menu_tokens = self.setup_value_menu_tokens
         return setup_menu
@@ -429,7 +426,6 @@ class ScorePackageProxy(PackageProxy):
         menu, menu_section = self._io.make_menu(
             where=self._where,
             return_value_attribute='key',
-            is_modern=True,
             )
         menu_section.append(('st', 'st'))
         menu_section.append(('add', 'add'))

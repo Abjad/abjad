@@ -99,10 +99,9 @@ class MenuObject(ScoreManagerObject):
         hidden_section = scoremanagertools.menuing.MenuSection(
             session=session,
             where=where,
-            return_value_attribute='key',
-            is_hidden=True,
-            is_modern=True,
             )
+        hidden_section.return_value_attribute = 'key'
+        hidden_section.is_hidden = True
         hidden_section.append(('back', 'b'))
         hidden_section.append(('exec statement', 'exec'))
         hidden_section.append(('grep directories', 'grep'))

@@ -57,12 +57,8 @@ class MaterialPackageMaker(MaterialPackageProxy):
             return_value_attribute='number',
             is_numbered=True,
             menu_tokens=menu_tokens,
-            is_modern=True,
             )
-        menu_section = main_menu.make_section(
-            return_value_attribute='key',
-            is_modern=True,
-            )
+        menu_section = main_menu.make_section(return_value_attribute='key')
         menu_section.append(('user input - clear', 'uic'))
         menu_section.append(('user input - load demo values', 'uil'))
         menu_section.append(('user input - populate', 'uip'))

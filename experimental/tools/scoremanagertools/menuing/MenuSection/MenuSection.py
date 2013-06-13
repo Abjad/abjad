@@ -21,7 +21,6 @@ class MenuSection(MenuObject):
         is_hidden=False,
         is_numbered=False,
         is_ranged=False,
-        is_modern=False,
         session=None,
         where=None,
         title=None,
@@ -32,7 +31,6 @@ class MenuSection(MenuObject):
         self._is_hidden = is_hidden
         self._is_numbered = is_numbered
         self._is_ranged = is_ranged
-        self._is_modern = is_modern
         assert return_value_attribute in self.return_value_attributes
         self._return_value_attribute = return_value_attribute
         self.default_index = None
@@ -78,21 +76,32 @@ class MenuSection(MenuObject):
     def has_default_value(self):
         return self.default_index is not None
 
-    @property
-    def is_hidden(self):
-        return self._is_hidden
+    @apply
+    def is_hidden():
+        def fget(self):
+            return self._is_hidden
+        def fset(self, expr):
+            if not self.menu_tokens:
+                self._is_hidden = expr
+        return property(**locals())
 
-    @property
-    def is_modern(self):
-        return self._is_modern
+    @apply
+    def is_numbered():
+        def fget(self):
+            return self._is_numbered
+        def fset(self, expr):
+            if not self.menu_tokens:
+                self._is_numbered = expr
+        return property(**locals())
 
-    @property
-    def is_numbered(self):
-        return self._is_numbered
-
-    @property
-    def is_ranged(self):
-        return self._is_ranged
+    @apply
+    def is_ranged():
+        def fget(self):
+            return self._is_ranged
+        def fset(self, expr):
+            if not self.menu_tokens:
+                self._is_ranged = expr
+        return property(**locals())
 
     @property
     def menu_token_display_strings(self):
@@ -124,7 +133,6 @@ class MenuSection(MenuObject):
                     new_token = MenuToken(
                         menu_token,
                         number=number,
-                        is_modern=self.is_modern,
                         return_value_attribute=self.return_value_attribute,
                         )
                     new_tokens.append(new_token)
@@ -133,9 +141,15 @@ class MenuSection(MenuObject):
                 raise TypeError(menu_tokens)
         return property(**locals())
 
-    @property
-    def return_value_attribute(self):
-        return self._return_value_attribute
+    @apply
+    def return_value_attribute():
+        def fget(self):
+            return self._return_value_attribute
+        def fset(self, expr):
+            if not self.menu_tokens:
+                self._return_value_attribute = expr
+        return property(**locals())
+    
 
     ### PUBLIC METHODS ###
 
@@ -150,7 +164,6 @@ class MenuSection(MenuObject):
         menu_token = MenuToken(
             expr,
             number=number,
-            is_modern=self.is_modern,
             return_value_attribute=self.return_value_attribute,
             )
         self.menu_tokens.append(menu_token)

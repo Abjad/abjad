@@ -25,7 +25,6 @@ class Selector(ScoreManagerObject):
             return_value_attribute='prepopulated',
             is_numbered=self.is_numbered,
             is_ranged=self.is_ranged,
-            is_modern=True,
             menu_tokens=menu_tokens,
             )
         return menu
@@ -57,7 +56,8 @@ class Selector(ScoreManagerObject):
         if getattr(self, 'explicit_breadcrumb', None):
             return self.explicit_breadcrumb
         elif hasattr(self, 'space_delimited_lowercase_target_name'):
-            return 'select {}:'.format(self.space_delimited_lowercase_target_name)
+            return 'select {}:'.format(
+                self.space_delimited_lowercase_target_name)
         else:
             return 'select:'
 

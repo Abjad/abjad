@@ -52,12 +52,9 @@ class MaterialPackageProxy(PackageProxy):
             raise ValueError
 
     def _make_main_menu(self):
-        menu, hidden_section = self._io.make_menu(
-            where=self._where,
-            return_value_attribute='key',
-            is_hidden=True,
-            is_modern=True,
-            )
+        menu, hidden_section = self._io.make_menu(where=self._where)
+        hidden_section.return_value_attribute = 'key'
+        hidden_section.is_hidden = True
         self._make_main_menu_section_for_initializer(menu, hidden_section)
         self._make_main_menu_sections(menu, hidden_section)
         self._make_main_menu_section_for_illustration_ly(hidden_section)
@@ -66,11 +63,9 @@ class MaterialPackageProxy(PackageProxy):
         return menu
 
     def _make_main_menu_section_for_hidden_entries(self, main_menu):
-        hidden_section = main_menu.make_section(
-            return_value_attribute='key',
-            is_hidden=True,
-            is_modern=True,
-            )
+        hidden_section = main_menu.make_section()
+        hidden_section.return_value_attribute='key'
+        hidden_section.is_hidden = True
         hidden_section.append(('delete package', 'rm'))
         hidden_section.append(('list package', 'ls'))
         hidden_section.append(('rename package', 'ren'))
@@ -89,11 +84,10 @@ class MaterialPackageProxy(PackageProxy):
                         material_package_path,
                         material_package_name,
                         prompt=False)
-                menu_section = main_menu.make_section(
-                    return_value_attribute='key',
-                    is_modern=True,
-                    )
-                menu_section.append(('illustration builder - edit', 'ibe'))
+                menu_section = main_menu.make_section()
+                menu_section.return_value_attribute = 'key'
+                menu_section.append(
+                    ('illustration builder - edit', 'ibe'))
                 if self.has_output_material:
                     menu_section.append(
                         ('illustration builder - execute', 'ibx'))
@@ -103,8 +97,10 @@ class MaterialPackageProxy(PackageProxy):
                     ('illustration builder - stub', 'ibt'))
                 hidden_section.append(
                     ('illustration builder - edit & execute', 'ibex'))
-                menu_section.append(('score stylesheet - select', 'sss'))
-                hidden_section.append(('source stylesheet - edit', 'ssm'))
+                menu_section.append(
+                    ('score stylesheet - select', 'sss'))
+                hidden_section.append(
+                    ('source stylesheet - edit', 'ssm'))
 
     def _make_main_menu_section_for_illustration_ly(self, hidden_section):
         if self.has_output_material:
@@ -122,18 +118,14 @@ class MaterialPackageProxy(PackageProxy):
             if self.has_illustration_builder_module or \
                 (self.has_material_package_maker and 
                 getattr(self, 'illustration_maker', None)):
-                menu_section = main_menu.make_section(
-                    return_value_attribute='key',
-                    is_modern=True,
-                    )
+                menu_section = main_menu.make_section()
+                menu_section.return_value_attribute = 'key'
                 menu_section.append(('output pdf - make', 'pdf'))
                 has_illustration_pdf_section = True
         if self.has_illustration_pdf:
             if not has_illustration_pdf_section:
-                menu_section = main_menu.make_section(
-                    return_value_attribute='key',
-                    is_modern=True,
-                    )
+                menu_section = main_menu.make_section()
+                menu_section.return_value_attribute = 'key'
             hidden_section.append(('output pdf - delete', 'pdfd'))
             menu_section.append(('output pdf - view', 'pdfv'))
 
@@ -152,10 +144,8 @@ class MaterialPackageProxy(PackageProxy):
         if not self.has_initializer:
             return
         if self.has_material_definition_module:
-            menu_section = main_menu.make_section(
-                return_value_attribute='key',
-                is_modern=True,
-                )
+            menu_section = main_menu.make_section()
+            menu_section.return_value_attribute = 'key'
             menu_section.append(
                 ('material definition - edit', 'mde'))
             menu_section.append(
@@ -169,11 +159,10 @@ class MaterialPackageProxy(PackageProxy):
             hidden_section.append(
                 ('material definition - execute & edit', 'mdxe'))
         elif self.material_package_maker_class_name is None:
-            menu_section = main_menu.make_section(
-                return_value_attribute='key',
-                is_modern=True,
-                )
-            menu_section.append(('material definition - stub', 'mdstub'))
+            menu_section = main_menu.make_section()
+            menu_section.return_value_attribute = 'key'
+            menu_section.append(
+                ('material definition - stub', 'mdstub'))
 
     def _make_main_menu_section_for_output_material(self, 
         main_menu, hidden_section):
@@ -185,21 +174,18 @@ class MaterialPackageProxy(PackageProxy):
             self.has_output_material_editor:
             if self.has_material_definition or \
                 self.has_complete_user_input_wrapper_in_memory:
-                menu_section = main_menu.make_section(
-                    return_value_attribute='key',
-                    is_modern=True,
-                    )
+                menu_section = main_menu.make_section()
+                menu_section.return_value_attribute = 'key'
                 menu_section.append(('output material = make', 'omm'))
                 has_output_material_section = True
             if self.has_output_material_editor:
-                menu_section = main_menu.make_section(
-                    return_value_attribute='key',
-                    is_modern=True,
-                    )
+                menu_section = main_menu.make_section()
+                menu_section.return_value_attribute = 'key'
                 menu_section.append(('output material - interact', 'omi'))
                 if self.has_output_material:
                     output_material_editor = self.output_material_editor(
-                        target=self.output_material, session=self._session)
+                        target=self.output_material, 
+                        session=self._session)
                     target_summary_lines = \
                         output_material_editor.target_summary_lines
                     if target_summary_lines:
@@ -207,10 +193,8 @@ class MaterialPackageProxy(PackageProxy):
                 has_output_material_section = True
             if self.has_output_material_module:
                 if not has_output_material_section:
-                    menu_section = main_menu.make_section(
-                        return_value_attribute='key',
-                        is_modern=True,
-                        )
+                    menu_section = main_menu.make_section()
+                    menu_section.return_value_attribute = 'key'
                 menu_section.append(
                     ('output material - view', 'omv'))
                 hidden_section.append(
