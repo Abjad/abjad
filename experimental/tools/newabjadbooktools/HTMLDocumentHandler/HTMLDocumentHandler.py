@@ -68,8 +68,8 @@ class HTMLDocumentHandler(TextualDocumentHandler):
         '<pre class="abjad">'
         '>>> show(Note("c\'4"))'
         '</pre>'
-        '<img alt="" src="assets/lilypond-dbceae26d3d5a6f87ebaa36541fc88b7.png"/>'
         ''
+        '<img alt="" src="assets/lilypond-dbceae26d3d5a6f87ebaa36541fc88b7.png"/>'
         ''
         "That's it!"
         '</body>'

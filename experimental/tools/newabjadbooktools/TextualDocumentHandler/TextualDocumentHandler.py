@@ -153,20 +153,34 @@ class TextualDocumentHandler(DocumentHandler):
         pass
 
     def rebuild_document(self):
-        lines = self.document.splitlines()
-        for line_range, code_block in sorted(
-            self.code_blocks.items(),
-            reverse=True,
-            ):
-            first_line = line_range[0]
-            last_line = line_range[1] + 1
-            lines_to_splice = []
-            for output_proxy in code_block.output_proxies:
-                lines_to_splice.extend(
-                    output_proxy.generate_document_representation(self)
-                    )
-            lines[first_line:last_line] = lines_to_splice
-        return lines
+        old_lines = self.document.splitlines()
+        new_lines = []
+
+        def format_output_proxies(output_proxies):
+            result = []
+            for i, output_proxy in enumerate(output_proxies):
+                result.extend(output_proxy.generate_document_representation(self))
+                if i < (len(output_proxies) - 1):
+                    result.append('')
+            return result
+
+        previous_last_line_number = 0
+        for line_range, code_block in sorted(self.code_blocks.items()):
+
+            first_line_number = line_range[0]
+            last_line_number = line_range[1] + 1
+            new_lines.extend(old_lines[previous_last_line_number:first_line_number])
+            previous_last_line_number = last_line_number
+            new_lines.extend(format_output_proxies(code_block.output_proxies))
+            if last_line_number < len(old_lines):
+                if old_lines[last_line_number] and \
+                    not old_lines[last_line_number][0].isspace():
+                    new_lines.append('')
+
+        if previous_last_line_number < len(old_lines):
+            new_lines.extend(old_lines[previous_last_line_number:len(old_lines)])
+
+        return new_lines
     
     ### READ-ONLY PUBLIC PROPERTIES ###
 

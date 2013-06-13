@@ -36,12 +36,8 @@ class GnuplotOutputProxy(ImageOutputProxy):
         ::
 
             >>> document_handler = newabjadbooktools.HTMLDocumentHandler([])
-            >>> result = output_proxy.handle_html_document_environment(
-            ...     document_handler)
-            >>> for x in result:
-            ...     x
-            '<img alt="" src="assets/gnuplot-14219af1a9b714fc222091106ca83f50.png"/>'
-            ''
+            >>> output_proxy.handle_html_document_environment(document_handler)
+            ['<img alt="" src="assets/gnuplot-14219af1a9b714fc222091106ca83f50.png"/>']
 
         Return list.
         '''
@@ -56,12 +52,8 @@ class GnuplotOutputProxy(ImageOutputProxy):
         ::
 
             >>> document_handler = newabjadbooktools.LaTeXDocumentHandler([])
-            >>> result = output_proxy.handle_latex_document_environment(
-            ...     document_handler)
-            >>> for x in result:
-            ...     x
-            '\\includegraphics{assets/gnuplot-14219af1a9b714fc222091106ca83f50.pdf}'
-            ''
+            >>> output_proxy.handle_latex_document_environment(document_handler)
+            ['\\includegraphics{assets/gnuplot-14219af1a9b714fc222091106ca83f50.pdf}']
 
         Return list.
         '''
@@ -76,12 +68,8 @@ class GnuplotOutputProxy(ImageOutputProxy):
         ::
 
             >>> document_handler = newabjadbooktools.ReSTDocumentHandler([])
-            >>> result = output_proxy.handle_rest_document_environment(
-            ...     document_handler)
-            >>> for x in result:
-            ...     x
-            '.. image:: assets/gnuplot-14219af1a9b714fc222091106ca83f50.png'
-            ''
+            >>> output_proxy.handle_rest_document_environment(document_handler)
+            ['.. image:: assets/gnuplot-14219af1a9b714fc222091106ca83f50.png']
 
         Return list.
         '''

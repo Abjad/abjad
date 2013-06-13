@@ -83,7 +83,6 @@ class CodeOutputProxy(OutputProxy):
             '>>> print "hello, world!"'
             'hello, world!'
             '\\end{lstlisting}'
-            ''
 
         Return list.
         '''
@@ -98,7 +97,6 @@ class CodeOutputProxy(OutputProxy):
         for line in self.payload:
             result.append(line)
         result.append('\\end{lstlisting}')
-        result.append('')
         return result
 
     def handle_rest_document_environment(self, document_handler):
@@ -115,7 +113,6 @@ class CodeOutputProxy(OutputProxy):
             ''
             '\t>>> print "hello, world!"'
             '\thello, world!'
-            ''
 
         Return list.
         '''
@@ -125,6 +122,5 @@ class CodeOutputProxy(OutputProxy):
             ]
         for line in self.payload:
             result.append('\t{}'.format(line))
-        result.append('')
         return result
 

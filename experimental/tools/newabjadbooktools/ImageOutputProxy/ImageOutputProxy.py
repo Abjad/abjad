@@ -4,6 +4,8 @@ from experimental.tools.newabjadbooktools.AssetOutputProxy import AssetOutputPro
 
 
 class ImageOutputProxy(AssetOutputProxy):
+    '''Abstract base class of output proxies which represent images.
+    '''
 
     ### PUBLIC METHODS ###
 
@@ -31,7 +33,6 @@ class ImageOutputProxy(AssetOutputProxy):
         directive = '<img alt="" src="{}"/>'.format(
             self.get_relative_asset_output_path(document_handler))
         result.append(directive)
-        result.append('')
         return result
 
     @abc.abstractmethod
@@ -40,7 +41,6 @@ class ImageOutputProxy(AssetOutputProxy):
         directive = '\\includegraphics{{{}}}'.format(
             self.get_relative_asset_output_path(document_handler))
         result.append(directive)
-        result.append('')
         return result
 
     @abc.abstractmethod
@@ -49,6 +49,5 @@ class ImageOutputProxy(AssetOutputProxy):
         directive = '.. image:: {}'.format(
             self.get_relative_asset_output_path(document_handler))
         result.append(directive)
-        result.append('')
         return result
 

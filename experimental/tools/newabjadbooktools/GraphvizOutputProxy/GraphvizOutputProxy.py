@@ -50,12 +50,8 @@ class GraphvizOutputProxy(ImageOutputProxy):
         ::
 
             >>> document_handler = newabjadbooktools.HTMLDocumentHandler([])
-            >>> result = output_proxy.handle_html_document_environment(
-            ...     document_handler)
-            >>> for x in result:
-            ...     x
-            '<img alt="" src="assets/graphviz-e35e25d3a5dcb97ec2d6c43352727dbf.png"/>'
-            ''
+            >>> output_proxy.handle_html_document_environment(document_handler)
+            ['<img alt="" src="assets/graphviz-e35e25d3a5dcb97ec2d6c43352727dbf.png"/>']
 
         Return list.
         '''
@@ -70,12 +66,8 @@ class GraphvizOutputProxy(ImageOutputProxy):
         ::
 
             >>> document_handler = newabjadbooktools.LaTeXDocumentHandler([])
-            >>> result = output_proxy.handle_latex_document_environment(
-            ...     document_handler)
-            >>> for x in result:
-            ...     x
-            '\\includegraphics{assets/graphviz-e35e25d3a5dcb97ec2d6c43352727dbf.pdf}'
-            ''
+            >>> output_proxy.handle_latex_document_environment(document_handler)
+            ['\\includegraphics{assets/graphviz-e35e25d3a5dcb97ec2d6c43352727dbf.pdf}']
 
         Return list.
         '''
@@ -90,12 +82,8 @@ class GraphvizOutputProxy(ImageOutputProxy):
         ::
 
             >>> document_handler = newabjadbooktools.ReSTDocumentHandler([])
-            >>> result = output_proxy.handle_rest_document_environment(
-            ...     document_handler)
-            >>> for x in result:
-            ...     x
-            '.. image:: assets/graphviz-e35e25d3a5dcb97ec2d6c43352727dbf.png'
-            ''
+            >>> output_proxy.handle_rest_document_environment(document_handler)
+            ['.. image:: assets/graphviz-e35e25d3a5dcb97ec2d6c43352727dbf.png']
 
         Return list.
         '''
