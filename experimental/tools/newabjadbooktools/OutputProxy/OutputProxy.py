@@ -4,10 +4,43 @@ from abjad.tools.abctools import AbjadObject
 
 
 class OutputProxy(AbjadObject):
-    '''Abstact base class for all abjad-book output proxies.
+    r'''Abstact base class for all abjad-book output proxies.
 
     An output proxy handles generating a document representation for a given
-    structure in different documentation environments.
+    structure in different documentation environments:
+
+    ::
+
+        >>> staff = Staff("c'4-> \f d'4 ( e'4 f'4 )")
+        >>> output_proxy = newabjadbooktools.LilyPondOutputProxy(staff)
+        >>> print output_proxy
+        LilyPondOutputProxy()
+
+    ::
+
+        >>> html_handler = newabjadbooktools.HTMLDocumentHandler([])
+        >>> result = output_proxy.generate_document_representation(html_handler)
+        >>> print '\n'.join(result)
+        <img alt="" src="assets/lilypond-ec7dff190fe7b4e72b53063e3914670c.png"/>
+        <BLANKLINE>
+
+    ::
+
+        >>> latex_handler = newabjadbooktools.LaTeXDocumentHandler([])
+        >>> result = output_proxy.generate_document_representation(latex_handler)
+        >>> print '\n'.join(result)
+        \includegraphics{assets/lilypond-ec7dff190fe7b4e72b53063e3914670c.pdf}
+        <BLANKLINE>
+
+    ::
+
+        >>> rest_handler = newabjadbooktools.ReSTDocumentHandler([])
+        >>> result = output_proxy.generate_document_representation(rest_handler)
+        >>> print '\n'.join(result)
+        .. image:: assets/lilypond-ec7dff190fe7b4e72b53063e3914670c.png
+        <BLANKLINE>
+
+    Return output proxy.
     '''
 
     ### INITIALIZER ###
@@ -26,9 +59,7 @@ class OutputProxy(AbjadObject):
 
     @property
     def payload(self):
-        '''The document-environment-agnostic textual payload of an output proxy.
-
-        Return string.
+        '''The document-environment-agnostic payload of an output proxy.
         '''
         return self._payload
 
