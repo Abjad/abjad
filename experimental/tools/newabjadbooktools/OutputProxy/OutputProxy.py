@@ -4,6 +4,11 @@ from abjad.tools.abctools import AbjadObject
 
 
 class OutputProxy(AbjadObject):
+    '''Abstact base class for all abjad-book output proxies.
+
+    An output proxy handles generating a document representation for a given
+    structure in different documentation environments.
+    '''
 
     ### INITIALIZER ###
 
@@ -21,6 +26,10 @@ class OutputProxy(AbjadObject):
 
     @property
     def payload(self):
+        '''The document-environment-agnostic textual payload of an output proxy.
+
+        Return string.
+        '''
         return self._payload
 
     ### PUBLIC METHODS ###

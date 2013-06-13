@@ -24,9 +24,6 @@ class GraphvizOutputProxy(ImageOutputProxy):
             node_0 -> node_3;
             node_0 -> node_4;
         }
-
-    ::
-
         >>> iotools.graph(metrical_hierarchy) # doctest: +SKIP
 
     ::

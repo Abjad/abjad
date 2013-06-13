@@ -4,15 +4,36 @@ from experimental.tools.newabjadbooktools.OutputProxy import OutputProxy
 
 
 class AssetOutputProxy(OutputProxy):
+    '''Abstract base class for all abjad-book asset output proxies.
+
+    An asset output proxy is an output proxy with both a textual representation
+    in a document, and a filesystem representation on disk.
+
+    Examples include notation, charts and graphs.
+    '''
 
     ### READ-ONLY PUBLIC ATTRIBUTES ###
 
     @property
     def file_name_prefix(self):
+        '''Prefix for files generated from an output proxy.
+
+        Based on the name of the output proxy's class.
+
+        Return string.
+        '''
         return self.__class__.__name__.partition('OutputProxy')[0].lower()
 
     @property
     def file_name_without_extension(self):
+        '''File name without extension for files generated from an output
+        proxy.
+
+        Based on the class of the output proxy and a hash of the textual
+        contents of the proxy's payload.
+
+        Return string.
+        '''
         md5 = hashlib.md5(self.payload).hexdigest()
         return '-'.join((self.file_name_prefix, md5))
 
