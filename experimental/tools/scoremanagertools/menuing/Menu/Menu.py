@@ -207,7 +207,7 @@ class Menu(MenuSectionAggregator):
         directive = self.change_user_input_to_directive(user_response)
         directive = self.strip_default_indicators_from_strings(directive)
         self._session.hide_next_redraw = False
-        directive = self.handle_hidden_key(directive)
+        directive = self.handle_hidden_menu_token_return_value(directive)
         return directive
 
     def enclose_in_list(self, expr):

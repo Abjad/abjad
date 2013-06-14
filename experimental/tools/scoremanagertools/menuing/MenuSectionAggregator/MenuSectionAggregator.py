@@ -17,6 +17,35 @@ class MenuSectionAggregator(MenuObject):
 
     ### PUBLIC METHODS ###
 
+    def display_calling_code_line_number(self):
+        lines = []
+        if self.where is not None:
+            lines.append('{} file: {}'.format(self._make_tab(1), self.where[1]))
+            lines.append('{} line: {}'.format(self._make_tab(1), self.where[2]))
+            lines.append('{} meth: {}'.format(self._make_tab(1), self.where[3]))
+            lines.append('')
+            self._io.display(lines, capitalize_first_character=False)
+        else:
+            lines.append("where-tracking not enabled. " + 
+                "Use 'tw' to toggle where-tracking.")
+            lines.append('')
+            self._io.display(lines)
+        self._session.hide_next_redraw = True
+
+    def display_hidden_menu_section(self):
+        menu_lines = []
+        for menu_section in self.menu_sections:
+            if menu_section.is_hidden:
+                for menu_token in menu_section.menu_tokens:
+                    key = menu_token.key
+                    display_string = menu_token.display_string
+                    menu_line = self._make_tab(1) + ' '
+                    menu_line += '{} ({})'.format(display_string, key)
+                    menu_lines.append(menu_line)
+                menu_lines.append('')
+        self._io.display(menu_lines, capitalize_first_character=False)
+        self._session.hide_next_redraw = True
+
     def exec_statement(self):
         lines = []
         statement = self._io.handle_raw_input('XCF', include_newline=False)
@@ -41,7 +70,7 @@ class MenuSectionAggregator(MenuObject):
         lines.append('')
         self._io.display(lines, capitalize_first_character=False)
 
-    def handle_hidden_key(self, directive):
+    def handle_hidden_menu_token_return_value(self, directive):
         if isinstance(directive, list) and len(directive) == 1:
             key = directive[0]
         else:
@@ -53,9 +82,9 @@ class MenuSectionAggregator(MenuObject):
         elif key == 'grep':
             self.grep_directories()
         elif key == 'here':
-            self.interactively_edit_client_source_file()
+            self.interactively_edit_calling_code()
         elif key == 'hidden':
-            self.show_hidden_menu_tokens()
+            self.display_hidden_menu_section()
         elif key == 'next':
             self._session.is_navigating_to_next_score = True
             self._session.is_backtracking_to_score_manager = True
@@ -67,21 +96,23 @@ class MenuSectionAggregator(MenuObject):
 #        # TODO: make this redraw!
 #        elif key == 'r':
 #            pass
-        elif isinstance(key, str) and 3 <= len(key) and 'score'.startswith(key):
+        elif isinstance(key, str) and \
+            3 <= len(key) and 'score'.startswith(key):
             if self._session.is_in_score:
                 self._session.is_backtracking_to_score = True
-        elif isinstance(key, str) and 3 <= len(key) and 'home'.startswith(key):
+        elif isinstance(key, str) and \
+            3 <= len(key) and 'home'.startswith(key):
             self._session.is_backtracking_to_score_manager = True
         elif key == 'tm':
             self.toggle_menu()
         elif key == 'tw':
             self._session.enable_where = not self._session.enable_where
         elif key == 'where':
-            self.show_menu_client()
+            self.display_calling_code_line_number()
         else:
             return directive
 
-    def interactively_edit_client_source_file(self):
+    def interactively_edit_calling_code(self):
         if self.where is not None:
             file_name = self.where[1]
             line_number = self.where[2]
@@ -94,34 +125,6 @@ class MenuSectionAggregator(MenuObject):
             lines.append('')
             self._io.display(lines)
             self._session.hide_next_redraw = True
-
-    def show_hidden_menu_tokens(self):
-        menu_lines = []
-        for menu_section in self.menu_sections:
-            if menu_section.is_hidden:
-                for menu_token in menu_section.menu_tokens:
-                    key, display_string = menu_token.key, menu_token.display_string
-                    menu_line = self.make_tab(1) + ' '
-                    menu_line += '{} ({})'.format(display_string, key)
-                    menu_lines.append(menu_line)
-                menu_lines.append('')
-        self._io.display(menu_lines, capitalize_first_character=False)
-        self._session.hide_next_redraw = True
-
-    def show_menu_client(self):
-        lines = []
-        if self.where is not None:
-            lines.append('{} file: {}'.format(self.make_tab(1), self.where[1]))
-            lines.append('{} line: {}'.format(self.make_tab(1), self.where[2]))
-            lines.append('{} meth: {}'.format(self.make_tab(1), self.where[3]))
-            lines.append('')
-            self._io.display(lines, capitalize_first_character=False)
-        else:
-            lines.append("where-tracking not enabled. " + 
-                "Use 'tw' to toggle where-tracking.")
-            lines.append('')
-            self._io.display(lines)
-        self._session.hide_next_redraw = True
 
     def toggle_menu(self):
         if self._session.nonnumbered_menu_sections_are_hidden:

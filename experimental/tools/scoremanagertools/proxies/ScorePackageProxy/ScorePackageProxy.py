@@ -501,14 +501,14 @@ class ScorePackageProxy(PackageProxy):
         materials = wrangler.space_delimited_lowercase_names
         lines = []
         if not materials:
-            lines.append('{}Materials (none yet)'.format(self.make_tab(1)))
+            lines.append('{}Materials (none yet)'.format(self._make_tab(1)))
         else:
-            lines.append('{}Materials'.format(self.make_tab(1)))
+            lines.append('{}Materials'.format(self._make_tab(1)))
         if materials:
             lines.append('')
         for i, material in enumerate(materials):
             lines.append('{}({}) {}'.format(
-                self.make_tab(1), 
+                self._make_tab(1), 
                 i + 1, 
                 material))
         self._io.display(lines)
@@ -517,11 +517,11 @@ class ScorePackageProxy(PackageProxy):
         segments = self.segment_wrangler.list_asset_names()
         lines = []
         if not segments:
-            lines.append('{}Segments (none yet)'.format(self.make_tab(1)))
+            lines.append('{}Segments (none yet)'.format(self._make_tab(1)))
         else:
-            lines.append('{}Segments'.format(self.make_tab(1)))
+            lines.append('{}Segments'.format(self._make_tab(1)))
         for segment in segments:
-            lines.append('{}{}'.format(self.make_tab(2), segment))
+            lines.append('{}{}'.format(self._make_tab(2), segment))
         lines.append('')
         self._io.display(lines)
 

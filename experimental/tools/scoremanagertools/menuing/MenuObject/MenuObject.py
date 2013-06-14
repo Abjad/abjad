@@ -18,6 +18,11 @@ class MenuObject(ScoreManagerObject):
         self.title = title
         self.where = where
 
+    ### PRIVATE METHODS ###
+
+    def _make_tab(self, n):
+        return 4 * n * ' '
+
     ### PUBLIC PROPERTIES ###
 
     @apply
@@ -46,9 +51,6 @@ class MenuObject(ScoreManagerObject):
                 if self._session.is_displayable:
                     iotools.clear_terminal()
 
-    def make_tab(self, n):
-        return 4 * n * ' '
-
     def make_title_lines(self):
         menu_lines = []
         if isinstance(self.title, str):
@@ -60,7 +62,7 @@ class MenuObject(ScoreManagerObject):
         for title_line in title_lines:
             if self.indent_level:
                 line = '{} {}'.format(
-                    self.make_tab(self.indent_level), title_line)
+                    self._make_tab(self.indent_level), title_line)
                 menu_lines.append(line)
             else:
                 menu_lines.append(title_line)

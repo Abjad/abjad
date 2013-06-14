@@ -87,6 +87,12 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.conditionally_clear_terminal
    :noindex:
 
+.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.display_calling_code_line_number
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.display_hidden_menu_section
+   :noindex:
+
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.display_menu
    :noindex:
 
@@ -102,19 +108,16 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.handle_argument_range_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.handle_hidden_key
+.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.handle_hidden_menu_token_return_value
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.interactively_edit_client_source_file
+.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.interactively_edit_calling_code
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.make_default_hidden_section
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.make_section
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.make_tab
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.make_title_lines
@@ -124,12 +127,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.return_value_to_next_return_value_in_section
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.show_hidden_menu_tokens
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.show_menu_client
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.strip_default_indicators_from_strings

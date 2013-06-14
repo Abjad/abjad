@@ -239,7 +239,7 @@ class MenuSection(MenuObject):
         menu_lines = []
         menu_lines.extend(self.make_title_lines())
         for menu_token in self.menu_tokens:
-            menu_line = self.make_tab(self.indent_level) + ' '
+            menu_line = self._make_tab(self.indent_level) + ' '
             display_string = menu_token.display_string
             key = menu_token.key
             existing_value = menu_token.existing_value
