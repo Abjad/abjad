@@ -18,12 +18,12 @@ class MenuSection(MenuObject):
     ### INITIALIZER ###
 
     def __init__(self,
-        is_hidden=False,
-        is_numbered=False,
-        is_ranged=False,
         session=None,
         where=None,
         title=None,
+        is_numbered=False,
+        is_ranged=False,
+        is_hidden=False,
         menu_tokens=None,
         return_value_attribute='display_string',
         ):
@@ -60,8 +60,8 @@ class MenuSection(MenuObject):
                     message = 'default index must be positive integer.'
                     raise ValueError(message)
                 if count <= default_index:
-                    message = 'only {} menu entry menu_tokens ' + \
-                        'in menu_section.'
+                    message = 'only {} menu entry menu_tokens '
+                    message += 'in menu_section.'
                     message = message.format(count)
                     raise ValueError(message)
             self._default_index = default_index
@@ -123,20 +123,9 @@ class MenuSection(MenuObject):
             if menu_tokens is None:
                 self._tokens = []
             elif isinstance(menu_tokens, list):
-                new_tokens = []
-                for i, menu_token in enumerate(menu_tokens):
-                    assert isinstance(menu_token, (str, tuple, MenuToken))
-                    if self.is_numbered:
-                        number = i + 1
-                    else:
-                        number = None
-                    new_token = MenuToken(
-                        menu_token,
-                        number=number,
-                        return_value_attribute=self.return_value_attribute,
-                        )
-                    new_tokens.append(new_token)
-                self._tokens = new_tokens
+                self._tokens = []
+                for menu_token in menu_tokens:
+                    self.append(menu_token)
             else:
                 raise TypeError(menu_tokens)
         return property(**locals())
@@ -154,13 +143,10 @@ class MenuSection(MenuObject):
     ### PUBLIC METHODS ###
 
     def append(self, expr):
-        if isinstance(expr, MenuToken):
-            expr = expr._to_tuple()
         assert isinstance(expr, (str, tuple))
+        number = None
         if self.is_numbered:
             number = len(self.menu_tokens) + 1
-        else:
-            number = None
         menu_token = MenuToken(
             expr,
             number=number,
@@ -250,14 +236,6 @@ class MenuSection(MenuObject):
                 return menu_entry_number
 
     def make_menu_lines(self):
-        '''DISPLAY STRINGS are those things shown in each entry.
-        Every entry must be supplied with a display string.
-
-        KEYS are optionally shown in parentheses in each entry.
-        Keys are designed to be textual instead of numeric.
-
-        RETURN VALUE is the thing ultimately returned when the menu runs.
-        '''
         menu_lines = []
         menu_lines.extend(self.make_title_lines())
         for menu_token in self.menu_tokens:

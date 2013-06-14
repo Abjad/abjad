@@ -88,16 +88,6 @@ class MenuToken(AbjadObject):
     def __repr__(self):
         return '{}({!r})'.format(self._class_name, self.display_string)
 
-    ### PRIVATE METHODS ###
-
-    def _to_tuple(self):
-        return (
-            self.key, 
-            self.display_string, 
-            self.existing_value, 
-            self.prepopulated_return_value,
-            )
-
     ### PUBLIC PROPERTIES ###
 
     @property
