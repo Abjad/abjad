@@ -16,6 +16,7 @@ class Menu(MenuSectionAggregator):
             session=session, where=where)
         self.menu_sections.append(hidden_section)
         self.explicit_title = None
+        self.prompt_default = None
 
     ### SPECIAL METHODS ###
 
@@ -147,6 +148,15 @@ class Menu(MenuSectionAggregator):
             if menu_section.is_numbered:
                 return menu_section
 
+    @apply
+    def prompt_default():
+        def fget(self):
+            return self._prompt_default
+        def fset(self, prompt_default):
+            assert isinstance(prompt_default, (str, type(None)))
+            self._prompt_default = prompt_default
+        return property(**locals())
+
     @property
     def ranged_section(self):
         for menu_section in self.menu_sections:
@@ -220,6 +230,30 @@ class Menu(MenuSectionAggregator):
             entry = self.ranged_section.menu_token_return_values[i]
             result.append(entry)
         return result
+
+    def make_default_hidden_section(self, session=None, where=None):
+        from experimental.tools import scoremanagertools
+        hidden_section = scoremanagertools.menuing.MenuSection(
+            session=session,
+            where=where,
+            )
+        hidden_section.return_value_attribute = 'key'
+        hidden_section.is_hidden = True
+        hidden_section.append(('back', 'b'))
+        hidden_section.append(('exec statement', 'exec'))
+        hidden_section.append(('grep directories', 'grep'))
+        hidden_section.append(('edit client source', 'here'))
+        hidden_section.append(('show hidden items', 'hidden'))
+        hidden_section.append(('home', 'home'))
+        hidden_section.append(('next score', 'next'))
+        hidden_section.append(('prev score', 'prev'))
+        hidden_section.append(('quit', 'q'))
+        hidden_section.append(('redraw', 'r'))
+        hidden_section.append(('score', 'score'))
+        hidden_section.append(('toggle menu', 'tm'))
+        hidden_section.append(('toggle where', 'tw'))
+        hidden_section.append(('show menu client', 'where'))
+        return hidden_section
 
     def make_section(self, 
         is_hidden=False, 

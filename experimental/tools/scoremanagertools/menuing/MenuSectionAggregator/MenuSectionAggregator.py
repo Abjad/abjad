@@ -9,13 +9,37 @@ class MenuSectionAggregator(MenuObject):
         MenuObject.__init__(self, session=session, where=where)
         self._menu_sections = []
 
-    ### READ-ONLY PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def menu_sections(self):
         return self._menu_sections
 
     ### PUBLIC METHODS ###
+
+    def exec_statement(self):
+        lines = []
+        statement = self._io.handle_raw_input('XCF', include_newline=False)
+        command = 'from abjad import *'
+        exec(command)
+        try:
+            result = None
+            command = 'result = {}'.format(statement)
+            exec(command)
+            lines.append('{!r}'.format(result))
+        except:
+            lines.append('expression not executable.')
+        lines.append('')
+        self._io.display(lines)
+        self._session.hide_next_redraw = True
+
+    def grep_directories(self):
+        regex = self._io.handle_raw_input('regex')
+        command = 'grep -Irn "{}" * | grep -v svn'.format(regex)
+        proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
+        lines = [line.strip() for line in proc.stdout.readlines()]
+        lines.append('')
+        self._io.display(lines, capitalize_first_character=False)
 
     def handle_hidden_key(self, directive):
         if isinstance(directive, list) and len(directive) == 1:
@@ -57,6 +81,20 @@ class MenuSectionAggregator(MenuObject):
         else:
             return directive
 
+    def interactively_edit_client_source_file(self):
+        if self.where is not None:
+            file_name = self.where[1]
+            line_number = self.where[2]
+            command = 'vim +{} {}'.format(line_number, file_name)
+            os.system(command)
+        else:
+            lines = []
+            lines.append("where-tracking not enabled. " +
+                "Use 'tw' to toggle where-tracking.")
+            lines.append('')
+            self._io.display(lines)
+            self._session.hide_next_redraw = True
+
     def show_hidden_menu_tokens(self):
         menu_lines = []
         for menu_section in self.menu_sections:
@@ -69,3 +107,24 @@ class MenuSectionAggregator(MenuObject):
                 menu_lines.append('')
         self._io.display(menu_lines, capitalize_first_character=False)
         self._session.hide_next_redraw = True
+
+    def show_menu_client(self):
+        lines = []
+        if self.where is not None:
+            lines.append('{} file: {}'.format(self.make_tab(1), self.where[1]))
+            lines.append('{} line: {}'.format(self.make_tab(1), self.where[2]))
+            lines.append('{} meth: {}'.format(self.make_tab(1), self.where[3]))
+            lines.append('')
+            self._io.display(lines, capitalize_first_character=False)
+        else:
+            lines.append("where-tracking not enabled. " + 
+                "Use 'tw' to toggle where-tracking.")
+            lines.append('')
+            self._io.display(lines)
+        self._session.hide_next_redraw = True
+
+    def toggle_menu(self):
+        if self._session.nonnumbered_menu_sections_are_hidden:
+            self._session.nonnumbered_menu_sections_are_hidden = False
+        else:
+            self._session.nonnumbered_menu_sections_are_hidden = True

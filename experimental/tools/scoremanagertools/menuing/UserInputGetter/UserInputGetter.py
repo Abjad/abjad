@@ -5,9 +5,9 @@ from abjad.tools import mathtools
 from abjad.tools import pitchtools
 from abjad.tools import sequencetools
 from abjad.tools import stringtools
+from experimental.tools.scoremanagertools import predicates
 from experimental.tools.scoremanagertools.menuing.MenuSectionAggregator \
     import MenuSectionAggregator
-from experimental.tools.scoremanagertools import predicates
 
 
 class UserInputGetter(MenuSectionAggregator):
@@ -48,7 +48,7 @@ class UserInputGetter(MenuSectionAggregator):
         else:
             return self.values
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def argument_lists(self):
@@ -430,6 +430,13 @@ class UserInputGetter(MenuSectionAggregator):
         if self.capitalize_prompts:
             prompt = stringtools.capitalize_string_start(prompt)
         self.menu_lines.append(prompt)
+
+    def make_is_integer_in_range(self, 
+        start=None, stop=None, allow_none=False):
+        return lambda expr: (expr is None and allow_none) or \
+            (predicates.is_integer(expr) and
+            (start is None or start <= expr) and
+            (stop is None or expr <= stop))
 
     def move_to_prev_prompt(self):
         self.values.pop()
