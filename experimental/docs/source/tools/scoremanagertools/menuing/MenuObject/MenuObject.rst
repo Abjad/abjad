@@ -15,17 +15,11 @@ Read-only properties
 Read/write properties
 ---------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuObject.MenuObject.MenuObject.should_clear_terminal
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuObject.MenuObject.MenuObject.title
    :noindex:
 
 Methods
 -------
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuObject.MenuObject.MenuObject.conditionally_clear_terminal
-   :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuObject.MenuObject.MenuObject.make_title_lines
    :noindex:

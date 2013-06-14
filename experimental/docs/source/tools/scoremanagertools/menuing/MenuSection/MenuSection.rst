@@ -48,9 +48,6 @@ Read/write properties
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.return_value_attribute
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.should_clear_terminal
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.title
    :noindex:
 
@@ -64,9 +61,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.argument_string_to_number
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.conditionally_clear_terminal
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.make_menu_lines

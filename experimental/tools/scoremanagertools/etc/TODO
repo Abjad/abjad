@@ -88,3 +88,13 @@
     score_package/material_packages, score_package/segments,
     score_package/specifiers, score_package/stylesheets, etc.
     instead.
+
+30. Get rid of MenuSectionAggregator.
+    This requires rethinking the relationship between menu object classes.
+    This mostly requires rethinking the status of UserInputGetter.
+    Is UserInputGetter in fact a type of menu?
+    Then UserInputGetter can inherit from Menu.
+    (And MenuSectionAggregator can be merged into Menu.)
+    This probably makes sense.
+    Menus comprise menu sections. And so do user input getters.
+    So probably UserInputGetter is just a type of menu.

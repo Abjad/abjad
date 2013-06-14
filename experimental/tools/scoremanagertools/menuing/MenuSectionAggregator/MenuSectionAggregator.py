@@ -1,3 +1,4 @@
+from abjad.tools import iotools
 from experimental.tools.scoremanagertools.menuing.MenuObject import MenuObject
 
 
@@ -8,6 +9,7 @@ class MenuSectionAggregator(MenuObject):
     def __init__(self, session=None, where=None):
         MenuObject.__init__(self, session=session, where=where)
         self._menu_sections = []
+        self.should_clear_terminal = False
 
     ### PUBLIC PROPERTIES ###
 
@@ -15,7 +17,22 @@ class MenuSectionAggregator(MenuObject):
     def menu_sections(self):
         return self._menu_sections
 
+    @apply
+    def should_clear_terminal():
+        def fget(self):
+            return self._should_clear_terminal
+        def fset(self, should_clear_terminal):
+            assert isinstance(should_clear_terminal, bool)
+            self._should_clear_terminal = should_clear_terminal
+        return property(**locals())
+
     ### PUBLIC METHODS ###
+
+    def conditionally_clear_terminal(self):
+        if not self._session.hide_next_redraw:
+            if self.should_clear_terminal:
+                if self._session.is_displayable:
+                    iotools.clear_terminal()
 
     def display_calling_code_line_number(self):
         lines = []
