@@ -22,6 +22,7 @@ set completeopt=menuone,preview
 set encoding=utf-8
 set expandtab
 set fileencodings=utf-8,latin1
+set foldmethod=indent
 set helpheight=80
 set history=700
 set incsearch
@@ -56,6 +57,9 @@ set wildmode=list:longest
 " 2. mappings (alphabetical)
 " ==========================
 
+" debugging
+map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+
 " comments
 noremap <F4> <Esc>:'a,'bs/#//<CR>
 noremap <F6> <Esc>:'a,'bs/^/#/<CR>
@@ -69,6 +73,9 @@ imap <C-v> <Esc><C-v>a
 
 " cursor vertical center
 :nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR>
+
+" folding
+noremap <Leader>zm zMzr
 
 " indentation 
 vnoremap < <gv
@@ -116,10 +123,9 @@ map <Leader>jt :CtrlP $ABJADTRUNK<CR>
 map <Leader>sm :CtrlP $ABJADEXPERIMENTAL/tools/scoremanagertools<CR>
 
 " jedi-vim (https://github.com/davidhalter/jedi-vim)
-let g:jedi#related_names_command = "<leader>z"
 let g:jedi#popup_on_dot = 0
 let g:jedi#popup_select_first = 0
-map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+let g:jedi#related_names_command = "<leader>z"
 
 " vim-powerline (https://github.com/Lokaltog/vim-powerline)
 set laststatus=2
