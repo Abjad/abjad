@@ -73,7 +73,7 @@ class MenuSectionAggregator(MenuObject):
         lines.append('')
         self._io.display(lines, capitalize_first_character=False)
 
-    def handle_hidden_menu_token_return_value(self, directive):
+    def handle_hidden_menu_section_return_value(self, directive):
         if isinstance(directive, list) and len(directive) == 1:
             key = directive[0]
         else:

@@ -108,7 +108,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.handle_argument_range_user_input
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.handle_hidden_menu_token_return_value
+.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.handle_hidden_menu_section_return_value
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.interactively_edit_calling_code
