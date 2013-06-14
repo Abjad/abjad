@@ -106,8 +106,12 @@ def is_readable_argument_range_string_for_argument_list(
     from experimental.tools import scoremanagertools
     if isinstance(argument_range_string, str):
         dummy_section = scoremanagertools.menuing.MenuSection()
+        dummy_section.is_numbered = True
+        dummy_section._is_dummy = True
         dummy_section.menu_tokens = argument_list[:]
-        if dummy_section.argument_range_string_to_numbers(
+#        if dummy_section.argument_range_string_to_numbers(
+#            argument_range_string) is not None:
+        if dummy_section.argument_range_string_to_numbers_optimized(
             argument_range_string) is not None:
             return True
     return False

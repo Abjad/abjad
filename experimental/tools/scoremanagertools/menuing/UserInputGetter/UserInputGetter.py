@@ -462,7 +462,9 @@ class UserInputGetter(MenuSectionAggregator):
             if user_response is None:
                 self.prompt_index = self.prompt_index + 1
                 break
-            user_response = self.handle_hidden_menu_token_return_value(user_response)
+            print 'user response: {}'.format(user_response)
+            user_response = self.handle_hidden_menu_token_return_value(
+                user_response)
             if self._session.backtrack():
                 return False
             elif user_response is None:
@@ -501,6 +503,7 @@ class UserInputGetter(MenuSectionAggregator):
 
     def store_value(self, user_response):
         assert isinstance(user_response, str)
+        print 'user response in here is {}'.format(user_response)
         if self.allow_none and user_response in ('', 'None'):
             value = None
         else:
@@ -519,8 +522,15 @@ class UserInputGetter(MenuSectionAggregator):
     def store_value_from_argument_list(self, user_response, argument_list):
         from experimental.tools import scoremanagertools
         dummy_section = scoremanagertools.menuing.MenuSection()
+        dummy_section.is_numbered = True
+        dummy_section._is_dummy = True
         dummy_section.menu_tokens = argument_list
-        value = dummy_section.argument_range_string_to_numbers(user_response)
+        #print 'argument list is', argument_list
+        #value = dummy_section.argument_range_string_to_numbers(user_response)
+        #print 'value here is ', value
+        value = dummy_section.argument_range_string_to_numbers_optimized(
+            user_response)
+        #print 'and value here is ', value
         self.values.append(value)
         self.prompt_index = self.prompt_index + 1
 

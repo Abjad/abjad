@@ -20,9 +20,12 @@ class MenuSectionAggregator(MenuObject):
     def display_calling_code_line_number(self):
         lines = []
         if self.where is not None:
-            lines.append('{} file: {}'.format(self._make_tab(1), self.where[1]))
-            lines.append('{} line: {}'.format(self._make_tab(1), self.where[2]))
-            lines.append('{} meth: {}'.format(self._make_tab(1), self.where[3]))
+            line = '{} file: {}'.format(self._make_tab(1), self.where[1])
+            lines.append(line)
+            line = '{} line: {}'.format(self._make_tab(1), self.where[2])
+            lines.append(line)
+            line = '{} meth: {}'.format(self._make_tab(1), self.where[3])
+            lines.append(line)
             lines.append('')
             self._io.display(lines, capitalize_first_character=False)
         else:
