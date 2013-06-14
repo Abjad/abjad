@@ -24,6 +24,7 @@ set expandtab
 set fileencodings=utf-8,latin1
 set foldlevel=1
 set foldmethod=indent
+set foldminlines=0
 set foldnestmax=2
 set helpheight=80
 set history=700
