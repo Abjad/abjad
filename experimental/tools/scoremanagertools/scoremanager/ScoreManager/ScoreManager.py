@@ -121,6 +121,11 @@ class ScoreManager(ScoreManagerObject):
             self._session.is_first_run = False
         else:
             menu_tokens = self.score_package_wrangler._make_menu_tokens()
+        #raise Exception(menu_tokens)
+#        menu, menu_section = self._io.make_menu(where=self._where)
+#        #menu_section.return_value_attribute = 'prepopulated'
+#        menu_section.return_value_attribute = 'key'
+#        menu_section.is_numbered = True
         menu, menu_section = self._io.make_menu(
             where=self._where,
             menu_tokens=menu_tokens,

@@ -86,7 +86,7 @@ class MenuToken(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        return '{}()'.format(self._class_name)
+        return '{}({!r})'.format(self._class_name, self.display_string)
 
     ### PRIVATE METHODS ###
 

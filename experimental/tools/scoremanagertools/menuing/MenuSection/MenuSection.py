@@ -250,46 +250,23 @@ class MenuSection(MenuObject):
                 return menu_entry_number
 
     def make_menu_lines(self):
-        '''KEYS. Keys are optionally shown in parentheses in each entry;
-        keys are designed to be textual instead of numeric;
-        not every entry need have a key because entries may be 
-        numbered instead of keyed;
-        note that entries may be both numbered and keyed.
+        '''DISPLAY STRINGS are those things shown in each entry.
+        Every entry must be supplied with a display string.
 
-        BODIES. Bodies are those things shown in each entry;
-        display_strings are positional and every entry must be supplied 
-        with a display_string.
+        KEYS are optionally shown in parentheses in each entry.
+        Keys are designed to be textual instead of numeric.
 
-        RESULT. Result is the thing ultimately returned by Menu._run().
-
-        Match determination:
-        1. Numeric user input checked against numbered entries.
-        2. If key exists, textual user input checked for exact match.
-        3. Textual user input checked for 3-char match against display_string.
-        4. Otherwise, no match found.
-
-        Return value resolution:
-        Keyed entries (numbered or not) supply key as return value.
-        Nonkeyed entries (always numbered) supply display_string 
-        as return value.
+        RETURN VALUE is the thing ultimately returned when the menu runs.
         '''
         menu_lines = []
         menu_lines.extend(self.make_title_lines())
-        assert all(isinstance(menu_token, MenuToken) 
-            for menu_token in self.menu_tokens), repr(self.menu_tokens)
-        total_empty_tokens = 0
-        for entry_index, menu_token in enumerate(self.menu_tokens):
+        for menu_token in self.menu_tokens:
             menu_line = self.make_tab(self.indent_level) + ' '
-            if menu_token == ():
-                menu_lines.append(menu_line)
-                total_empty_tokens += 1
-                continue
-            key = menu_token.key
             display_string = menu_token.display_string
+            key = menu_token.key
             existing_value = menu_token.existing_value
             if self.is_numbered:
-                entry_number = entry_index + 1 - total_empty_tokens
-                menu_line += '{}: '.format(str(entry_number))
+                menu_line += '{}: '.format(menu_token.number)
             if key:
                 if self.show_existing_values and existing_value:
                     if existing_value in (None, 'None'):

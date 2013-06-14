@@ -79,6 +79,7 @@ class ScorePackageWrangler(PackageWrangler):
             self.list_visible_asset_package_path_and_score_title_pairs()
         tmp = stringtools.strip_diacritics_from_binary_string
         menuing_pairs.sort(lambda x, y: cmp(tmp(x[1]), tmp(y[1])))
+        #menuing_pairs = [(x[1], None, None, x[0]) for x in menuing_pairs]
         menuing_pairs = [(x[1], x[0]) for x in menuing_pairs]
         return menuing_pairs
 
