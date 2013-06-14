@@ -60,10 +60,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.append
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.argument_range_string_to_numbers_optimized
+.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.argument_range_string_to_numbers
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.argument_string_to_number_optimized
+.. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.argument_string_to_number
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.conditionally_clear_terminal

@@ -154,8 +154,7 @@ class MenuSection(MenuObject):
             )
         self.menu_tokens.append(menu_token)
         
-    def argument_range_string_to_numbers_optimized(self, 
-        argument_range_string):
+    def argument_range_string_to_numbers(self, argument_range_string):
         assert self.menu_tokens
         numbers = []
         argument_range_string = argument_range_string.replace(' ', '')
@@ -165,8 +164,8 @@ class MenuSection(MenuObject):
                 numbers.extend(range(1, len(self.menu_tokens) + 1))
             elif '-' in range_part:
                 start, stop = range_part.split('-')
-                start = self.argument_string_to_number_optimized(start)
-                stop = self.argument_string_to_number_optimized(stop)
+                start = self.argument_string_to_number(start)
+                stop = self.argument_string_to_number(stop)
                 if start is None or stop is None:
                     return
                 if start <= stop:
@@ -176,13 +175,13 @@ class MenuSection(MenuObject):
                     new_numbers = range(start, stop - 1, -1)
                     numbers.extend(new_numbers)
             else:
-                number = self.argument_string_to_number_optimized(range_part)
+                number = self.argument_string_to_number(range_part)
                 if number is None:
                     return
                 numbers.append(number)
         return numbers
 
-    def argument_string_to_number_optimized(self, argument_string):
+    def argument_string_to_number(self, argument_string):
         for menu_entry_index, menu_token in enumerate(self.menu_tokens):
             if menu_token.matches(argument_string):
                 menu_entry_number = menu_entry_index + 1

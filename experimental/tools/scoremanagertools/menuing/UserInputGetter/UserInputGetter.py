@@ -523,7 +523,7 @@ class UserInputGetter(MenuSectionAggregator):
         dummy_section.is_numbered = True
         dummy_section._is_dummy = True
         dummy_section.menu_tokens = argument_list
-        value = dummy_section.argument_range_string_to_numbers_optimized(
+        value = dummy_section.argument_range_string_to_numbers(
             user_response)
         self.values.append(value)
         self.prompt_index = self.prompt_index + 1
