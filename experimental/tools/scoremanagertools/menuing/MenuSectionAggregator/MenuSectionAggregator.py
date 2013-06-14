@@ -1,15 +1,22 @@
 from abjad.tools import iotools
-from experimental.tools.scoremanagertools.menuing.MenuObject import MenuObject
+from experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject import \
+    ScoreManagerObject
 
 
-class MenuSectionAggregator(MenuObject):
+class MenuSectionAggregator(ScoreManagerObject):
 
     ### INITIALIZER ###
 
     def __init__(self, session=None, where=None):
-        MenuObject.__init__(self, session=session, where=where)
+        ScoreManagerObject.__init__(self, session=session)
         self._menu_sections = []
         self.should_clear_terminal = False
+        self.where = where
+
+    ### PRIVATE METHODS ###
+
+    def _make_tab(self, n):
+        return 4 * n * ' '
 
     ### PUBLIC PROPERTIES ###
 

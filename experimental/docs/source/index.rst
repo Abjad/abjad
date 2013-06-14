@@ -627,7 +627,6 @@ Unstable packages (load manually)
       tools/scoremanagertools/materialpackagemakers/SargassoMeasureMaterialPackageMaker/SargassoMeasureMaterialPackageMaker
       tools/scoremanagertools/materialpackagemakers/TempoMarkInventoryMaterialPackageMaker/TempoMarkInventoryMaterialPackageMaker
       tools/scoremanagertools/menuing/Menu/Menu
-      tools/scoremanagertools/menuing/MenuObject/MenuObject
       tools/scoremanagertools/menuing/MenuSection/MenuSection
       tools/scoremanagertools/menuing/MenuSectionAggregator/MenuSectionAggregator
       tools/scoremanagertools/menuing/MenuToken/MenuToken
@@ -822,7 +821,6 @@ Unstable packages (load manually)
       tools/scoremanagertools/materialpackagemakers/SargassoMeasureMaterialPackageMaker/SargassoMeasureMaterialPackageMaker
       tools/scoremanagertools/materialpackagemakers/TempoMarkInventoryMaterialPackageMaker/TempoMarkInventoryMaterialPackageMaker
       tools/scoremanagertools/menuing/Menu/Menu
-      tools/scoremanagertools/menuing/MenuObject/MenuObject
       tools/scoremanagertools/menuing/MenuSection/MenuSection
       tools/scoremanagertools/menuing/MenuSectionAggregator/MenuSectionAggregator
       tools/scoremanagertools/menuing/MenuToken/MenuToken

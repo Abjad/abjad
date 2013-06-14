@@ -75,9 +75,6 @@ Read/write properties
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.should_clear_terminal
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.title
-   :noindex:
-
 Methods
 -------
 
@@ -118,9 +115,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.make_section
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.make_title_lines
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.return_value_to_location_pair
