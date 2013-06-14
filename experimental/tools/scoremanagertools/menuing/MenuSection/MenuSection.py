@@ -1,10 +1,10 @@
 from abjad.tools import stringtools
 from abjad.tools import mathtools
-from experimental.tools.scoremanagertools.menuing.MenuObject import MenuObject
-from experimental.tools.scoremanagertools.menuing.MenuToken import MenuToken
+from experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject import \
+    ScoreManagerObject
 
 
-class MenuSection(MenuObject):
+class MenuSection(ScoreManagerObject):
 
     ### CLASS VARIABLES ###
 
@@ -27,7 +27,7 @@ class MenuSection(MenuObject):
         menu_tokens=None,
         return_value_attribute='display_string',
         ):
-        MenuObject.__init__(self, session=session, where=where, title=title)
+        ScoreManagerObject.__init__(self, session=session)
         self._is_hidden = is_hidden
         self._is_numbered = is_numbered
         self._is_ranged = is_ranged
@@ -37,6 +37,8 @@ class MenuSection(MenuObject):
         self.indent_level = 1
         self.show_existing_values = False
         self.menu_tokens = menu_tokens
+        self.title = title
+        self.where = where
 
     ### SPECIAL METHODS ###
 
@@ -45,6 +47,11 @@ class MenuSection(MenuObject):
 
     def __repr__(self):
         return '{}({!r})'.format(self._class_name, self.menu_tokens)
+
+    ### PRIVATE METHODS ###
+
+    def _make_tab(self, n):
+        return 4 * n * ' '
 
     ### PUBLIC PROPERTIES ###
 
@@ -139,15 +146,24 @@ class MenuSection(MenuObject):
                 self._return_value_attribute = expr
         return property(**locals())
     
+    @apply
+    def title():
+        def fget(self):
+            return self._title
+        def fset(self, title):
+            assert isinstance(title, (str, list, type(None)))
+            self._title = title
+        return property(**locals())
 
     ### PUBLIC METHODS ###
 
     def append(self, expr):
+        from experimental.tools import scoremanagertools
         assert isinstance(expr, (str, tuple))
         number = None
         if self.is_numbered:
             number = len(self.menu_tokens) + 1
-        menu_token = MenuToken(
+        menu_token = scoremanagertools.menuing.MenuToken(
             expr,
             number=number,
             return_value_attribute=self.return_value_attribute,
@@ -217,5 +233,24 @@ class MenuSection(MenuObject):
                     menu_line += '{}'.format(display_string)
             menu_lines.append(menu_line)
         if self.menu_tokens:
+            menu_lines.append('')
+        return menu_lines
+
+    def make_title_lines(self):
+        menu_lines = []
+        if isinstance(self.title, str):
+            title_lines = [stringtools.capitalize_string_start(self.title)]
+        elif isinstance(self.title, list):
+            title_lines = self.title
+        else:
+            title_lines = []
+        for title_line in title_lines:
+            if self.indent_level:
+                line = '{} {}'.format(
+                    self._make_tab(self.indent_level), title_line)
+                menu_lines.append(line)
+            else:
+                menu_lines.append(title_line)
+        if menu_lines:
             menu_lines.append('')
         return menu_lines

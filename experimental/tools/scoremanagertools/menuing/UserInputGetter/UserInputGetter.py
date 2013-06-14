@@ -29,7 +29,6 @@ class UserInputGetter(MenuSectionAggregator):
         self.indent_level = 0
         self.number_prompts = False
         self.prompt_character = '>'
-        self.title = None
 
     ### SPECIAL METHODS ###
 
@@ -382,12 +381,6 @@ class UserInputGetter(MenuSectionAggregator):
             lines.append('')
             self._io.display(lines)
 
-    def display_title(self):
-        title_lines = self.make_title_lines()
-        if title_lines:
-            self._io.display(title_lines)
-        pass
-
     def evaluate_test(self, test, argument):
         if isinstance(test, types.TypeType):
             return isinstance(argument, test)
@@ -485,7 +478,6 @@ class UserInputGetter(MenuSectionAggregator):
     def present_prompts_and_store_values(self, include_chevron=True):
         self.conditionally_clear_terminal()
         self.menu_lines, self.values, self.prompt_index = [], [], 0
-        self.display_title()
         while self.prompt_index < len(self.prompts):
             if not self.present_prompt_and_store_value(
                 include_chevron=include_chevron):
