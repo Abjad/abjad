@@ -22,7 +22,6 @@ set completeopt=menuone,preview
 set encoding=utf-8
 set expandtab
 set fileencodings=utf-8,latin1
-set guitablabel=\[%N\]\ %t\ %M
 set helpheight=80
 set history=700
 set incsearch
