@@ -22,6 +22,7 @@ set completeopt=menuone,preview
 set encoding=utf-8
 set expandtab
 set fileencodings=utf-8,latin1
+set foldlevel=1
 set foldmethod=indent
 set foldnestmax=2
 set helpheight=80
