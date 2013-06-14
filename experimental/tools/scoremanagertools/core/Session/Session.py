@@ -73,7 +73,7 @@ class Session(abctools.AbjadObject):
         self.use_current_user_input_values_as_default = False
         self.user_input = user_input
         self.user_specified_quit = False
-        self.show_active_scores()
+        self.display_active_scores()
 
     ### SPECIAL METHODS ###
 
@@ -699,13 +699,13 @@ class Session(abctools.AbjadObject):
         if cache:
             self._breadcrumb_stack[:] = self._breadcrumb_cache_stack.pop()
 
-    def show_active_scores(self):
+    def display_active_scores(self):
         self._scores_to_show = 'active'
 
-    def show_all_scores(self):
+    def display_all_scores(self):
         self._scores_to_show = 'all'
 
-    def show_mothballed_scores(self):
+    def display_mothballed_scores(self):
         self._scores_to_show = 'mothballed'
 
     def swap_user_input_values_default_status(self):

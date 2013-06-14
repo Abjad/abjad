@@ -322,14 +322,14 @@ class ScoreManager(ScoreManagerObject):
         line = 'tests complete.'
         self._io.proceed(line, is_interactive=prompt)
 
-    def show_active_scores(self):
-        self._session.show_active_scores()
+    def display_active_scores(self):
+        self._session.display_active_scores()
 
-    def show_all_scores(self):
-        self._session.show_all_scores()
+    def display_all_scores(self):
+        self._session.display_all_scores()
 
-    def show_mothballed_scores(self):
-        self._session.show_mothballed_scores()
+    def display_mothballed_scores(self):
+        self._session.display_mothballed_scores()
 
     def write_cache(self):
         cache_file_path = os.path.join(
@@ -345,11 +345,11 @@ class ScoreManager(ScoreManagerObject):
     ### UI MANIFEST ###
 
     user_input_to_action = {
-        'active':   show_active_scores,
-        'all':      show_all_scores,
+        'active':   display_active_scores,
+        'all':      display_all_scores,
         'fix':      fix_visible_scores,
         'm':        manage_materials,
-        'mb':       show_mothballed_scores,
+        'mb':       display_mothballed_scores,
         'new':      interactively_make_new_score,
         'profile':  profile_visible_scores,
         'py.test':  run_py_test_on_all_user_scores,

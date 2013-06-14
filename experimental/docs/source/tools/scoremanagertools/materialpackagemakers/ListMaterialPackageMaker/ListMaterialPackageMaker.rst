@@ -270,6 +270,9 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.display_output_material
    :noindex:
 
+.. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.display_user_input_demo_values
+   :noindex:
+
 .. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.exists
    :noindex:
 
@@ -457,9 +460,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.run_python_on_material_definition_module
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.show_user_input_demo_values
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.svn_add

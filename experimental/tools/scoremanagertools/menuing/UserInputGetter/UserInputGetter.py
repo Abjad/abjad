@@ -468,7 +468,7 @@ class UserInputGetter(MenuSectionAggregator):
             elif user_response is None:
                 continue
             elif user_response == 'help':
-                self.show_help()
+                self.display_help()
             elif user_response == 'prev':
                 self.move_to_prev_prompt()
                 break
@@ -490,7 +490,7 @@ class UserInputGetter(MenuSectionAggregator):
                 include_chevron=include_chevron):
                 break
 
-    def show_help(self):
+    def display_help(self):
         lines = []
         if self.prompt_index < len(self.helps):
             lines.append(self.helps[self.prompt_index])

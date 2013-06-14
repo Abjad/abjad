@@ -135,6 +135,15 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.clean_up
    :noindex:
 
+.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.display_active_scores
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.display_all_scores
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.display_mothballed_scores
+   :noindex:
+
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.format_breadcrumb_stack
    :noindex:
 
@@ -154,15 +163,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.restore_breadcrumbs
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.show_active_scores
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.show_all_scores
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.show_mothballed_scores
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.core.Session.Session.Session.swap_user_input_values_default_status

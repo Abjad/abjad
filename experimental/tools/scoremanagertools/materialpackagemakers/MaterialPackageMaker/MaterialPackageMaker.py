@@ -211,7 +211,7 @@ class MaterialPackageMaker(MaterialPackageProxy):
             if current_element_number == start_element_number:
                 break
 
-    def show_user_input_demo_values(self, prompt=True):
+    def display_user_input_demo_values(self, prompt=True):
         lines = []
         for i, (key, value) in enumerate(self.user_input_demo_values):
             line = '    {}: {!r}'.format(key.replace('_', ' '), value)
@@ -238,7 +238,7 @@ class MaterialPackageMaker(MaterialPackageProxy):
         'uic': clear_user_input_wrapper,
         'uil': load_user_input_wrapper_demo_values,
         'uip': populate_user_input_wrapper,
-        'uis': show_user_input_demo_values,
+        'uis': display_user_input_demo_values,
         'uit': swap_user_input_values_default_status,
         'uimv': interactively_view_user_input_module,
         })
