@@ -3,9 +3,25 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class MenuEntry(AbjadObject):
-    '''Menu menu_entry.
+    '''Menu entry.
 
-    Return menu menu_entry.
+        >>> score_manager = scoremanagertools.scoremanager.ScoreManager()
+        >>> menu = score_manager._make_svn_menu()
+        >>> menu
+        <Menu (2)>
+
+        >>> menu_section = menu.menu_sections[1]
+        >>> menu_section
+        <MenuSection (4)>
+
+        >>> for menu_entry in menu_section.menu_entries:
+        ...     menu_entry
+        <MenuEntry: 'svn add scores'>
+        <MenuEntry: 'svn commit scores'>
+        <MenuEntry: 'svn status scores'>
+        <MenuEntry: 'svn update scores'>
+
+    Return menu entry.
     '''
 
     ### CLASS VARIABLES ###
@@ -86,7 +102,7 @@ class MenuEntry(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        return '{}({!r})'.format(self._class_name, self.display_string)
+        return '<{}: {!r}>'.format(self._class_name, self.display_string)
 
     ### PUBLIC PROPERTIES ###
 

@@ -46,7 +46,7 @@ class MenuSection(ScoreManagerObject):
         return len(self.menu_entries)
 
     def __repr__(self):
-        return '{}({!r})'.format(self._class_name, self.menu_entries)
+        return '<{} ({})>'.format(self._class_name, len(self))
 
     ### PRIVATE METHODS ###
 

@@ -4,17 +4,13 @@ from experimental.tools.scoremanagertools.core.ScoreManagerObject \
     import ScoreManagerObject
 from experimental.tools.scoremanagertools.menuing.MenuSection \
     import MenuSection
-#from experimental.tools.scoremanagertools.menuing.MenuSectionAggregator \
-#    import MenuSectionAggregator
 
 
-#class Menu(MenuSectionAggregator):
 class Menu(ScoreManagerObject):
 
     ### INITIALIZER ###
 
     def __init__(self, session=None, where=None):
-        #MenuSectionAggregator.__init__(self, session=session, where=where)
         ScoreManagerObject.__init__(self, session=session)
         self._menu_sections = []
         hidden_section = self.make_default_hidden_section(
@@ -30,10 +26,13 @@ class Menu(ScoreManagerObject):
     def __len__(self):
         return len(self.menu_sections)
 
-    def _make_tab(self, n):
-        return 4 * n * ' '
+    def __repr__(self):
+        return '<{} ({})>'.format(self._class_name, len(self))
 
     ### PRIVATE METHODS ###
+
+    def _make_tab(self, n):
+        return 4 * n * ' '
 
     def _run(self, 
             clear=True, 

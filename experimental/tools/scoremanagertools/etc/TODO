@@ -89,9 +89,6 @@
     score_package/specifiers, score_package/stylesheets, etc.
     instead.
 
-30. Encapsulate the several dozen UserInputGetterMenu.append_*() methods
-    in a separate mix-in class.
-
 31. Install supertab.
 
 32. Cache tags.
