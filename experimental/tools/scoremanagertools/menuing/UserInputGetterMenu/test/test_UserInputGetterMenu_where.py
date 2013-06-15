@@ -1,7 +1,7 @@
 from experimental import *
 
 
-def test_UserInputGetter_where_01():
+def test_UserInputGetterMenu_where_01():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     score_manager._run(user_input='red~example~score setup performers move where q')

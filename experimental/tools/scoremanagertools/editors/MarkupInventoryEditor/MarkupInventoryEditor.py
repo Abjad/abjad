@@ -4,7 +4,7 @@ from experimental.tools.scoremanagertools import getters
 from experimental.tools.scoremanagertools.editors.ObjectInventoryEditor import ObjectInventoryEditor
 from experimental.tools.scoremanagertools.editors.TargetManifest import TargetManifest
 from experimental.tools.scoremanagertools.editors.MarkupEditor import MarkupEditor
-from experimental.tools.scoremanagertools.menuing.UserInputGetter import UserInputGetter
+from experimental.tools.scoremanagertools.menuing.UserInputGetterMenu import UserInputGetterMenu
 
 
 class MarkupInventoryEditor(ObjectInventoryEditor):

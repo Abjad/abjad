@@ -9,7 +9,7 @@ from experimental.tools.scoremanagertools import predicates
 from experimental.tools.scoremanagertools.menuing.Menu import Menu
 
 
-class UserInputGetter(Menu):
+class UserInputGetterMenu(Menu):
 
     ### INITIALIZER ###
 

@@ -16,7 +16,7 @@ class ListEditor(InteractiveEditor):
     item_creator_class = None
     item_creator_class_kwargs = {}
     item_editor_class = None
-    item_getter_configuration_method = menuing.UserInputGetter.append_expr
+    item_getter_configuration_method = menuing.UserInputGetterMenu.append_expr
     item_identifier = 'element'
     target_manifest = TargetManifest(list,)
 

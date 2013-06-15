@@ -3,14 +3,14 @@ from experimental.tools.scoremanagertools.editors.InteractiveEditor import Inter
 from experimental.tools.scoremanagertools.editors.ObjectInventoryEditor import ObjectInventoryEditor
 from experimental.tools.scoremanagertools.editors.PitchRangeEditor import PitchRangeEditor
 from experimental.tools.scoremanagertools.editors.TargetManifest import TargetManifest
-from experimental.tools.scoremanagertools.menuing.UserInputGetter import UserInputGetter
+from experimental.tools.scoremanagertools.menuing.UserInputGetterMenu import UserInputGetterMenu
 
 
 class PitchRangeInventoryEditor(ObjectInventoryEditor):
 
     ### CLASS VARIABLES ###
 
-    item_getter_configuration_method = UserInputGetter.append_symbolic_pitch_range_string
+    item_getter_configuration_method = UserInputGetterMenu.append_symbolic_pitch_range_string
     item_class = pitchtools.PitchRange
     item_editor_class = PitchRangeEditor
     item_identifier = 'pitch range'

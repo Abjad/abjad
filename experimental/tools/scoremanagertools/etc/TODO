@@ -89,7 +89,7 @@
     score_package/specifiers, score_package/stylesheets, etc.
     instead.
 
-30. Encapsulate the several dozen UserInputGetter.append_*() methods
+30. Encapsulate the several dozen UserInputGetterMenu.append_*() methods
     in a separate mix-in class.
 
 31. Install supertab.
@@ -97,3 +97,8 @@
 32. Cache tags.
 
 33. Change fold line indicator to shown line count only.
+
+34. Merge read-only and read / write properties private properties
+    into a single ### PRIVATE PROPERTIES ### category.
+    Merge read-only and read / write public properties
+    into a single ### PUBLIC PROPERTIES ### category.
