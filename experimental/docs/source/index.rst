@@ -627,8 +627,8 @@ Unstable packages (load manually)
       tools/scoremanagertools/materialpackagemakers/SargassoMeasureMaterialPackageMaker/SargassoMeasureMaterialPackageMaker
       tools/scoremanagertools/materialpackagemakers/TempoMarkInventoryMaterialPackageMaker/TempoMarkInventoryMaterialPackageMaker
       tools/scoremanagertools/menuing/Menu/Menu
+      tools/scoremanagertools/menuing/MenuEntry/MenuEntry
       tools/scoremanagertools/menuing/MenuSection/MenuSection
-      tools/scoremanagertools/menuing/MenuToken/MenuToken
       tools/scoremanagertools/menuing/UserInputGetter/UserInputGetter
       tools/scoremanagertools/proxies/DirectoryProxy/DirectoryProxy
       tools/scoremanagertools/proxies/DistributionDirectoryProxy/DistributionDirectoryProxy
@@ -820,8 +820,8 @@ Unstable packages (load manually)
       tools/scoremanagertools/materialpackagemakers/SargassoMeasureMaterialPackageMaker/SargassoMeasureMaterialPackageMaker
       tools/scoremanagertools/materialpackagemakers/TempoMarkInventoryMaterialPackageMaker/TempoMarkInventoryMaterialPackageMaker
       tools/scoremanagertools/menuing/Menu/Menu
+      tools/scoremanagertools/menuing/MenuEntry/MenuEntry
       tools/scoremanagertools/menuing/MenuSection/MenuSection
-      tools/scoremanagertools/menuing/MenuToken/MenuToken
       tools/scoremanagertools/menuing/UserInputGetter/UserInputGetter
       tools/scoremanagertools/proxies/DirectoryProxy/DirectoryProxy
       tools/scoremanagertools/proxies/DistributionDirectoryProxy/DistributionDirectoryProxy

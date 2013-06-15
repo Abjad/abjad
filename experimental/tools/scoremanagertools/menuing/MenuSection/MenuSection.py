@@ -163,7 +163,7 @@ class MenuSection(ScoreManagerObject):
         number = None
         if self.is_numbered:
             number = len(self.menu_tokens) + 1
-        menu_token = scoremanagertools.menuing.MenuToken(
+        menu_token = scoremanagertools.menuing.MenuEntry(
             expr,
             number=number,
             return_value_attribute=self.return_value_attribute,

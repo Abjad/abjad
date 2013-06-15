@@ -2,7 +2,7 @@ from abjad.tools import stringtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class MenuToken(AbjadObject):
+class MenuEntry(AbjadObject):
     '''Menu menu_token.
 
     Return menu menu_token.
