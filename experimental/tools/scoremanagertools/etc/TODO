@@ -103,3 +103,7 @@
     in a separate mix-in class.
 
 32. Change MenuToken to MenuEntry.
+
+33. Install supertab.
+
+34. Cache tags.
