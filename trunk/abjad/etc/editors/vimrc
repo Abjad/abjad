@@ -60,42 +60,45 @@ set wildmode=list:longest
 " 2. mappings (alphabetical)
 " ==========================
 
+" alternate file
+map <leader>e :edit#<cr>
+
 " debugging
-map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+map <leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 
 " comments
-noremap <F4> <Esc>:'a,'bs/#//<CR>
-noremap <F6> <Esc>:'a,'bs/^/#/<CR>
-vnoremap <F4> :s/#//<CR>
-vnoremap <F6> :s/^/#/<CR>
+noremap <F4> <Esc>:'a,'bs/#//<cr>
+noremap <F6> <Esc>:'a,'bs/^/#/<cr>
+vnoremap <F4> :s/#//<cr>
+vnoremap <F6> :s/^/#/<cr>
 
 " copy & paste
-vmap <C-y> y:call system("xclip -i -selection clipboard", getreg("\""))<CR>:call system("xclip -i", getreg("\""))<CR>
-nmap <C-v> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>p
+vmap <C-y> y:call system("xclip -i -selection clipboard", getreg("\""))<cr>:call system("xclip -i", getreg("\""))<cr>
+nmap <C-v> :call setreg("\"",system("xclip -o -selection clipboard"))<cr>p
 imap <C-v> <Esc><C-v>a
 
 " cursor vertical center
-:nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR>
+:nnoremap <leader>zz :let &scrolloff=999-&scrolloff<cr>
 
 " folding
-noremap <Leader>zm zMzr
+noremap <leader>zm zMzr
 
 " indentation 
 vnoremap < <gv
 vnoremap > >gv
-map <Leader>a ggVG
+map <leader>a ggVG
 
 " linesort 
-vnoremap <Leader>s :sort<CR>
-noremap <Leader>ab :'a,'bsort<CR>
+vnoremap <leader>s :sort<cr>
+noremap <leader>ab :'a,'bsort<cr>
 
 " settings reload & view
-map <Leader>v :source ~/.vimrc<CR>
-map <Leader>vv :edit ~/.vimrc<CR>
+map <leader>v :source ~/.vimrc<cr>
+map <leader>vv :edit ~/.vimrc<cr>
 
 " tab navigation 
-map <Leader>n <esc>:tabprevious<CR>
-map <Leader>m <esc>:tabnext<CR>
+map <leader>n <esc>:tabprevious<cr>
+map <leader>m <esc>:tabnext<cr>
 
 " window navigation 
 map <c-j> <c-w>j
@@ -104,9 +107,9 @@ map <c-l> <c-w>l
 map <c-h> <c-w>h
 
 " write & quit
-noremap <Leader>w :write<CR>
-noremap <Leader>q :quit<CR>
-noremap <Leader>wq :wq<CR>
+noremap <leader>w :write<cr>
+noremap <leader>q :quit<cr>
+noremap <leader>wq :wq<cr>
 
 
 " 3. plugins (alphabetical)
@@ -120,10 +123,10 @@ let g:ctrlp_lazy_update = 1
 let g:ctrlp_match_window_bottom = 0
 let g:ctrlp_match_window_reversed = 0
 let g:ctrlp_max_height = 30
-map <Leader>jj :CtrlP $ABJADTRUNK/abjad<CR>
-map <Leader>jx :CtrlP $ABJADEXPERIMENTAL<CR>
-map <Leader>jt :CtrlP $ABJADTRUNK<CR>
-map <Leader>sm :CtrlP $ABJADEXPERIMENTAL/tools/scoremanagertools<CR>
+map <leader>jj :CtrlP $ABJADTRUNK/abjad<cr>
+map <leader>jx :CtrlP $ABJADEXPERIMENTAL<cr>
+map <leader>jt :CtrlP $ABJADTRUNK<cr>
+map <leader>sm :CtrlP $ABJADEXPERIMENTAL/tools/scoremanagertools<cr>
 
 " jedi-vim (https://github.com/davidhalter/jedi-vim)
 let g:jedi#popup_on_dot = 0
@@ -154,8 +157,8 @@ function! OmniPopup(action)
     endif
     return a:action
 endfunction
-inoremap <silent><C-j> <C-R>=OmniPopup('j')<CR>
-inoremap <silent><C-k> <C-R>=OmniPopup('k')<CR>
+inoremap <silent><C-j> <C-R>=OmniPopup('j')<cr>
+inoremap <silent><C-k> <C-R>=OmniPopup('k')<cr>
 
 " rename tabs to show tab# and # of viewports
 " (http://stackoverflow.com/q/5927952)
