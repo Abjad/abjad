@@ -90,7 +90,7 @@
     instead.
 
 30. Get rid of MenuSectionAggregator.
-    This requires rethinking the relationship between menu object classes.
+    This requires rethinking the relationship between menuing classes.
     This mostly requires rethinking the status of UserInputGetter.
     Is UserInputGetter in fact a type of menu?
     Then UserInputGetter can inherit from Menu.
@@ -98,3 +98,8 @@
     This probably makes sense.
     Menus comprise menu sections. And so do user input getters.
     So probably UserInputGetter is just a type of menu.
+
+31. Encapsulate the several dozen UserInputGetter.append_*() methods
+    in a separate mix-in class.
+
+32. Change MenuToken to MenuEntry.

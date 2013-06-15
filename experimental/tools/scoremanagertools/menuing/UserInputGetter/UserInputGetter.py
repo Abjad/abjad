@@ -6,16 +6,15 @@ from abjad.tools import pitchtools
 from abjad.tools import sequencetools
 from abjad.tools import stringtools
 from experimental.tools.scoremanagertools import predicates
-from experimental.tools.scoremanagertools.menuing.MenuSectionAggregator \
-    import MenuSectionAggregator
+from experimental.tools.scoremanagertools.menuing.Menu import Menu
 
 
-class UserInputGetter(MenuSectionAggregator):
+class UserInputGetter(Menu):
 
     ### INITIALIZER ###
 
     def __init__(self, session=None, where=None):
-        MenuSectionAggregator.__init__(self, session=session, where=where)
+        Menu.__init__(self, session=session, where=where)
         self._argument_lists = []
         self._chevrons = []
         self._defaults = []
@@ -422,7 +421,7 @@ class UserInputGetter(MenuSectionAggregator):
         prompt = self.prompts[self.prompt_index]
         if self.capitalize_prompts:
             prompt = stringtools.capitalize_string_start(prompt)
-        self.menu_lines.append(prompt)
+        self._menu_lines.append(prompt)
 
     def make_is_integer_in_range(self, 
         start=None, stop=None, allow_none=False):
@@ -441,7 +440,7 @@ class UserInputGetter(MenuSectionAggregator):
         '''
         self.load_prompt()
         while True:
-            prompt = self.menu_lines[-1]
+            prompt = self._menu_lines[-1]
             default = str(self.defaults[self.prompt_index])
             include_chevron = self.chevrons[self.prompt_index]
             prompt = self.indent_and_number_prompt(prompt)
@@ -477,7 +476,7 @@ class UserInputGetter(MenuSectionAggregator):
 
     def present_prompts_and_store_values(self, include_chevron=True):
         self.conditionally_clear_terminal()
-        self.menu_lines, self.values, self.prompt_index = [], [], 0
+        self._menu_lines, self.values, self.prompt_index = [], [], 0
         while self.prompt_index < len(self.prompts):
             if not self.present_prompt_and_store_value(
                 include_chevron=include_chevron):
