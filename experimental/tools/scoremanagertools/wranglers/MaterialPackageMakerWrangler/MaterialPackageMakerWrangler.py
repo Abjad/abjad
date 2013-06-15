@@ -76,17 +76,17 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         return material_package_proxy
 
     def _make_main_menu(self, head=None):
-        menu_tokens = self.list_asset_names(head=head)
+        menu_entries = self.list_asset_names(head=head)
         menu, menu_section = self._io.make_menu(
             where=self._where,
-            menu_tokens=menu_tokens,
+            menu_entries=menu_entries,
             is_numbered=True,
             )
         menu_section = menu.make_section(return_value_attribute='key')
         menu_section.append(('new material package maker', 'new'))
         return menu
 
-    def _make_menu_tokens(self, head=None):
+    def _make_menu_entries(self, head=None):
         keys = self.list_asset_packagesystem_paths(head=head)
         display_strings = self.list_asset_names(head=head)
         return zip(display_strings, keys)

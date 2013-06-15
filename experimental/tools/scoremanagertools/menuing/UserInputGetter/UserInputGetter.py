@@ -161,12 +161,12 @@ class UserInputGetter(Menu):
         self.tests.append(lambda expr: True)
 
     def append_hairpin_token(self, spaced_attribute_name, default=None):
-        message = 'value for {!r} must be hairpin menu_token.'
+        message = 'value for {!r} must be hairpin menu_entry.'
         self.append_something(spaced_attribute_name, message, default=default)
         self.tests.append(predicates.is_hairpin_token)
 
     def append_hairpin_tokens(self, spaced_attribute_name, default=None):
-        message = 'value for {!r} must be hairpin menu_tokens.'
+        message = 'value for {!r} must be hairpin menu_entries.'
         self.append_something(spaced_attribute_name, message, default=default)
         self.tests.append(predicates.are_hairpin_tokens)
 
@@ -513,7 +513,7 @@ class UserInputGetter(Menu):
         dummy_section = scoremanagertools.menuing.MenuSection()
         dummy_section.is_numbered = True
         dummy_section._is_dummy = True
-        dummy_section.menu_tokens = argument_list
+        dummy_section.menu_entries = argument_list
         value = dummy_section.argument_range_string_to_numbers(
             user_response)
         self.values.append(value)

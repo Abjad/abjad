@@ -30,6 +30,18 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.hidden_section
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.menu_entries
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.menu_entry_display_strings
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.menu_entry_keys
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.menu_entry_return_values
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.menu_lines
    :noindex:
 
@@ -37,18 +49,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.menu_title_lines
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.menu_token_display_strings
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.menu_token_keys
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.menu_token_return_values
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.menu_tokens
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.numbered_section

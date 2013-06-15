@@ -40,10 +40,10 @@ class SegmentPackageWrangler(PackageWrangler):
             segment_package_proxy._run()
 
     def _make_main_menu(self, head=None):
-        menu_tokens = self.list_asset_names(head=head)
+        menu_entries = self.list_asset_names(head=head)
         menu, menu_section = self._io.make_menu(
             where=self._where,
-            menu_tokens=menu_tokens,
+            menu_entries=menu_entries,
             is_numbered=True,
             )
         menu_section = menu.make_section(return_value_attribute='key')

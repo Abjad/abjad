@@ -74,7 +74,7 @@ class ScorePackageWrangler(PackageWrangler):
     def _make_main_menu(self):
         self._io.print_not_yet_implemented()
 
-    def _make_menu_tokens(self, head=None):
+    def _make_menu_entries(self, head=None):
         menuing_pairs = \
             self.list_visible_asset_package_path_and_score_title_pairs()
         tmp = stringtools.strip_diacritics_from_binary_string

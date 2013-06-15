@@ -45,6 +45,18 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.hidden_section
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.menu_entries
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.menu_entry_display_strings
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.menu_entry_keys
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.menu_entry_return_values
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.menu_lines
    :noindex:
 
@@ -52,18 +64,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.menu_title_lines
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.menu_token_display_strings
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.menu_token_keys
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.menu_token_return_values
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.menu_tokens
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter.numbered_section

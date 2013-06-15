@@ -77,8 +77,8 @@ class Menu(ScoreManagerObject):
     def first_nonhidden_return_value_in_menu(self):
         for menu_section in self.menu_sections:
             if not menu_section.is_hidden:
-                if menu_section.menu_token_return_values:
-                    return menu_section.menu_token_return_values[0]
+                if menu_section.menu_entry_return_values:
+                    return menu_section.menu_entry_return_values[0]
 
     @property
     def has_default_valued_section(self):
@@ -127,33 +127,33 @@ class Menu(ScoreManagerObject):
 
     # TODO: remove?
     @property
-    def menu_token_display_strings(self):
+    def menu_entry_display_strings(self):
         result = []
         for menu_section in self.menu_sections:
-            result.extend(menu_section.menu_token_display_strings)
+            result.extend(menu_section.menu_entry_display_strings)
         return result
 
     # TODO: remove?
     @property
-    def menu_token_keys(self):
+    def menu_entry_keys(self):
         result = []
         for menu_section in self.menu_sections:
-            result.extend(menu_section.menu_token_keys)
+            result.extend(menu_section.menu_entry_keys)
         return result
 
     # TODO: remove?
     @property
-    def menu_token_return_values(self):
+    def menu_entry_return_values(self):
         result = []
         for menu_section in self.menu_sections:
-            result.extend(menu_section.menu_token_return_values)
+            result.extend(menu_section.menu_entry_return_values)
         return result
 
     @property
-    def menu_tokens(self):
+    def menu_entries(self):
         result = []
         for menu_section in self.menu_sections:
-            result.extend(menu_section.menu_tokens)
+            result.extend(menu_section.menu_entries)
         return result
 
     @property
@@ -212,12 +212,12 @@ class Menu(ScoreManagerObject):
         elif user_input == 'r':
             return 'r'
         else:
-            for menu_token in self.menu_tokens:
-                if menu_token.display_string == 'redraw':
+            for menu_entry in self.menu_entries:
+                if menu_entry.display_string == 'redraw':
                     continue
-                if menu_token.matches(user_input):
+                if menu_entry.matches(user_input):
                     return self.enclose_in_list(
-                        menu_token.return_value)
+                        menu_entry.return_value)
 
     def conditionally_clear_terminal(self):
         if not self._session.hide_next_redraw:
@@ -247,9 +247,9 @@ class Menu(ScoreManagerObject):
         menu_lines = []
         for menu_section in self.menu_sections:
             if menu_section.is_hidden:
-                for menu_token in menu_section.menu_tokens:
-                    key = menu_token.key
-                    display_string = menu_token.display_string
+                for menu_entry in menu_section.menu_entries:
+                    key = menu_entry.key
+                    display_string = menu_entry.display_string
                     menu_line = self._make_tab(1) + ' '
                     menu_line += '{} ({})'.format(display_string, key)
                     menu_lines.append(menu_line)
@@ -312,7 +312,7 @@ class Menu(ScoreManagerObject):
         entry_indices = [entry_number - 1 for entry_number in entry_numbers]
         result = []
         for i in entry_indices:
-            entry = self.ranged_section.menu_token_return_values[i]
+            entry = self.ranged_section.menu_entry_return_values[i]
             result.append(entry)
         return result
 
@@ -400,7 +400,7 @@ class Menu(ScoreManagerObject):
         is_hidden=False, 
         is_numbered=False, 
         is_ranged=False, 
-        menu_tokens=None,
+        menu_entries=None,
         return_value_attribute='display_string',
         ):
         from experimental import scoremanagertools
@@ -410,7 +410,7 @@ class Menu(ScoreManagerObject):
             is_hidden=is_hidden,
             is_numbered=is_numbered,
             is_ranged=is_ranged,
-            menu_tokens=menu_tokens,
+            menu_entries=menu_entries,
             return_value_attribute=return_value_attribute,
             session=self._session,
             where=self.where,
@@ -420,8 +420,8 @@ class Menu(ScoreManagerObject):
 
     def return_value_to_location_pair(self, return_value):
         for i, menu_section in enumerate(self.menu_sections):
-            if return_value in menu_section.menu_token_return_values:
-                j = menu_section.menu_token_return_values.index(return_value)
+            if return_value in menu_section.menu_entry_return_values:
+                j = menu_section.menu_entry_return_values.index(return_value)
                 return i, j
 
     def return_value_to_next_return_value_in_section(self, return_value):
@@ -429,7 +429,7 @@ class Menu(ScoreManagerObject):
             return_value)
         menu_section = self.menu_sections[section_index]
         entry_index = (entry_index + 1) % len(menu_section)
-        return menu_section.menu_token_return_values[entry_index]
+        return menu_section.menu_entry_return_values[entry_index]
 
     # TODO: apply default indicators at display time 
     #       so this can be completely removed

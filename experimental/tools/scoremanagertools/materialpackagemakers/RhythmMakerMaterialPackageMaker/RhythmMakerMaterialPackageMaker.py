@@ -10,7 +10,7 @@ class RhythmMakerMaterialPackageMaker(MaterialPackageMaker):
 
     ### CLASS VARIABLES ###
 
-    generic_output_name = 'time-menu_token maker'
+    generic_output_name = 'time-menu_entry maker'
     output_material_checker = staticmethod(lambda x: isinstance(x, RhythmMaker))
     output_material_editor = staticmethod(get_rhythm_maker_editor)
     output_material_maker = RhythmMakerCreationWizard

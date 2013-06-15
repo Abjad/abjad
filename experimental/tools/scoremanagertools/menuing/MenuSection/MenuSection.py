@@ -24,7 +24,7 @@ class MenuSection(ScoreManagerObject):
         is_numbered=False,
         is_ranged=False,
         is_hidden=False,
-        menu_tokens=None,
+        menu_entries=None,
         return_value_attribute='display_string',
         ):
         ScoreManagerObject.__init__(self, session=session)
@@ -36,17 +36,17 @@ class MenuSection(ScoreManagerObject):
         self.default_index = None
         self.indent_level = 1
         self.show_existing_values = False
-        self.menu_tokens = menu_tokens
+        self.menu_entries = menu_entries
         self.title = title
         self.where = where
 
     ### SPECIAL METHODS ###
 
     def __len__(self):
-        return len(self.menu_tokens)
+        return len(self.menu_entries)
 
     def __repr__(self):
-        return '{}({!r})'.format(self._class_name, self.menu_tokens)
+        return '{}({!r})'.format(self._class_name, self.menu_entries)
 
     ### PRIVATE METHODS ###
 
@@ -62,12 +62,12 @@ class MenuSection(ScoreManagerObject):
         def fset(self, default_index):
             assert isinstance(default_index, (int, type(None)))
             if isinstance(default_index, int):
-                count = len(self.menu_tokens)
+                count = len(self.menu_entries)
                 if default_index < 0:
                     message = 'default index must be positive integer.'
                     raise ValueError(message)
                 if count <= default_index:
-                    message = 'only {} menu entry menu_tokens '
+                    message = 'only {} menu entry menu_entries '
                     message += 'in menu_section.'
                     message = message.format(count)
                     raise ValueError(message)
@@ -77,7 +77,7 @@ class MenuSection(ScoreManagerObject):
     @property
     def default_value(self):
         assert self.has_default_value
-        return self.menu_token_return_values[self.default_index]
+        return self.menu_entry_return_values[self.default_index]
 
     @property
     def has_default_value(self):
@@ -88,7 +88,7 @@ class MenuSection(ScoreManagerObject):
         def fget(self):
             return self._is_hidden
         def fset(self, expr):
-            if not self.menu_tokens:
+            if not self.menu_entries:
                 self._is_hidden = expr
         return property(**locals())
 
@@ -97,7 +97,7 @@ class MenuSection(ScoreManagerObject):
         def fget(self):
             return self._is_numbered
         def fset(self, expr):
-            if not self.menu_tokens:
+            if not self.menu_entries:
                 self._is_numbered = expr
         return property(**locals())
 
@@ -106,35 +106,35 @@ class MenuSection(ScoreManagerObject):
         def fget(self):
             return self._is_ranged
         def fset(self, expr):
-            if not self.menu_tokens:
+            if not self.menu_entries:
                 self._is_ranged = expr
         return property(**locals())
 
     @property
-    def menu_token_display_strings(self):
-        return [menu_token.display_string for menu_token in self.menu_tokens]
+    def menu_entry_display_strings(self):
+        return [menu_entry.display_string for menu_entry in self.menu_entries]
 
     @property
-    def menu_token_keys(self):
-        return [menu_token.key for menu_token in self.menu_tokens]
+    def menu_entry_keys(self):
+        return [menu_entry.key for menu_entry in self.menu_entries]
 
     @property
-    def menu_token_return_values(self):
-        return [menu_token.return_value for menu_token in self.menu_tokens]
+    def menu_entry_return_values(self):
+        return [menu_entry.return_value for menu_entry in self.menu_entries]
 
     @apply
-    def menu_tokens():
+    def menu_entries():
         def fget(self):
             return self._tokens
-        def fset(self, menu_tokens):
-            if menu_tokens is None:
+        def fset(self, menu_entries):
+            if menu_entries is None:
                 self._tokens = []
-            elif isinstance(menu_tokens, list):
+            elif isinstance(menu_entries, list):
                 self._tokens = []
-                for menu_token in menu_tokens:
-                    self.append(menu_token)
+                for menu_entry in menu_entries:
+                    self.append(menu_entry)
             else:
-                raise TypeError(menu_tokens)
+                raise TypeError(menu_entries)
         return property(**locals())
 
     @apply
@@ -142,7 +142,7 @@ class MenuSection(ScoreManagerObject):
         def fget(self):
             return self._return_value_attribute
         def fset(self, expr):
-            if not self.menu_tokens:
+            if not self.menu_entries:
                 self._return_value_attribute = expr
         return property(**locals())
     
@@ -162,22 +162,22 @@ class MenuSection(ScoreManagerObject):
         assert isinstance(expr, (str, tuple))
         number = None
         if self.is_numbered:
-            number = len(self.menu_tokens) + 1
-        menu_token = scoremanagertools.menuing.MenuEntry(
+            number = len(self.menu_entries) + 1
+        menu_entry = scoremanagertools.menuing.MenuEntry(
             expr,
             number=number,
             return_value_attribute=self.return_value_attribute,
             )
-        self.menu_tokens.append(menu_token)
+        self.menu_entries.append(menu_entry)
         
     def argument_range_string_to_numbers(self, argument_range_string):
-        assert self.menu_tokens
+        assert self.menu_entries
         numbers = []
         argument_range_string = argument_range_string.replace(' ', '')
         range_parts = argument_range_string.split(',')
         for range_part in range_parts:
             if range_part == 'all':
-                numbers.extend(range(1, len(self.menu_tokens) + 1))
+                numbers.extend(range(1, len(self.menu_entries) + 1))
             elif '-' in range_part:
                 start, stop = range_part.split('-')
                 start = self.argument_string_to_number(start)
@@ -198,21 +198,21 @@ class MenuSection(ScoreManagerObject):
         return numbers
 
     def argument_string_to_number(self, argument_string):
-        for menu_entry_index, menu_token in enumerate(self.menu_tokens):
-            if menu_token.matches(argument_string):
+        for menu_entry_index, menu_entry in enumerate(self.menu_entries):
+            if menu_entry.matches(argument_string):
                 menu_entry_number = menu_entry_index + 1
                 return menu_entry_number
 
     def make_menu_lines(self):
         menu_lines = []
         menu_lines.extend(self.make_title_lines())
-        for menu_token in self.menu_tokens:
+        for menu_entry in self.menu_entries:
             menu_line = self._make_tab(self.indent_level) + ' '
-            display_string = menu_token.display_string
-            key = menu_token.key
-            existing_value = menu_token.existing_value
+            display_string = menu_entry.display_string
+            key = menu_entry.key
+            existing_value = menu_entry.existing_value
             if self.is_numbered:
-                menu_line += '{}: '.format(menu_token.number)
+                menu_line += '{}: '.format(menu_entry.number)
             if key:
                 if self.show_existing_values and existing_value:
                     if existing_value in (None, 'None'):
@@ -232,7 +232,7 @@ class MenuSection(ScoreManagerObject):
                 else:
                     menu_line += '{}'.format(display_string)
             menu_lines.append(menu_line)
-        if self.menu_tokens:
+        if self.menu_entries:
             menu_lines.append('')
         return menu_lines
 

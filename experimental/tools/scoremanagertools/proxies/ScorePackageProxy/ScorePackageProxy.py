@@ -225,7 +225,7 @@ class ScorePackageProxy(PackageProxy):
 
     # TODO: reverse the order of body string and key throughout method
     @property
-    def setup_value_menu_tokens(self):
+    def setup_value_menu_entries(self):
         result = []
         if self.title:
             result.append(('title', 'title: {!r}'.format(self.title)))
@@ -419,7 +419,7 @@ class ScorePackageProxy(PackageProxy):
             return_value_attribute='key',
             is_numbered=True,
             )
-        menu_section.menu_tokens = self.setup_value_menu_tokens
+        menu_section.menu_entries = self.setup_value_menu_entries
         return setup_menu
 
     def make_svn_menu(self):

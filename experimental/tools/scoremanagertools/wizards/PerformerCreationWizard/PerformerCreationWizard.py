@@ -145,14 +145,14 @@ class PerformerCreationWizard(Wizard):
             most_likely_number = most_likely_index + 1
             default_index = most_likely_index
         if likely_instruments:
-            menu_section.menu_tokens = likely_instrument_names
+            menu_section.menu_entries = likely_instrument_names
             menu_section.default_index = default_index
             menu_section = menu.make_section(
                 return_value_attribute='key',
                 )
             menu_section.append(('more instruments', 'more'))
         else:
-            menu_tokens = instrumenttools.list_instrument_names()
+            menu_entries = instrumenttools.list_instrument_names()
             menu_section.default_index = default_index
             menu_section = menu.make_section(
                 return_value_attribute='key',

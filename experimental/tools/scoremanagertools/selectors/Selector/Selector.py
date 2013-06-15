@@ -20,12 +20,12 @@ class Selector(ScoreManagerObject):
     ### PRIVATE PROPERTIES ###
 
     def _make_main_menu(self, head=None):
-        menu_tokens = self.make_menu_tokens(head=head)
+        menu_entries = self.make_menu_entries(head=head)
         menu, menu_section = self._io.make_menu(where=self._where,
             return_value_attribute='prepopulated',
             is_numbered=self.is_numbered,
             is_ranged=self.is_ranged,
-            menu_tokens=menu_tokens,
+            menu_entries=menu_entries,
             )
         return menu
 
@@ -76,7 +76,7 @@ class Selector(ScoreManagerObject):
 
     ### PUBLIC METHODS ###
 
-    def change_expr_to_menu_token(self, expr):
+    def change_expr_to_menu_entry(self, expr):
         return (self._io.get_one_line_menuing_summary(expr), None, None, expr)
 
     def get_tag_from_directory_path(self, directory_path, tag_name):
@@ -93,5 +93,5 @@ class Selector(ScoreManagerObject):
         result = []
         return result
 
-    def make_menu_tokens(self, head=None):
-        return [self.change_expr_to_menu_token(item) for item in self.items]
+    def make_menu_entries(self, head=None):
+        return [self.change_expr_to_menu_entry(item) for item in self.items]

@@ -51,7 +51,7 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
             pacakgesystem_path = self.configuration.filesystem_path_to_packagesystem_path(packagesystem_path)
         return self.asset_proxy_class(packagesystem_path=packagesystem_path, session=self._session)
 
-    def _make_menu_tokens(self, head=None):
+    def _make_menu_entries(self, head=None):
         keys = self.list_visible_asset_packagesystem_paths(head=head)
         display_strings = self.list_asset_names(head=head)
         assert len(keys) == len(display_strings), repr((keys, display_strings))

@@ -98,7 +98,7 @@ class MaterialPackageWrangler(PackageWrangler):
             return_value_attribute='key',
             is_numbered=True,
             )
-        menu_section.menu_tokens = self._make_menu_tokens(head=head)
+        menu_section.menu_entries = self._make_menu_entries(head=head)
         menu_section = menu.make_section(return_value_attribute='key')
         menu_section.append(('data-only', 'd'))
         menu_section.append(('handmade', 'h'))

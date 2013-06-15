@@ -131,7 +131,7 @@ class IO(AbjadObject):
         is_numbered=False, 
         is_ranged=False, 
         where=None,
-        menu_tokens=None, 
+        menu_entries=None, 
         return_value_attribute='display_string',
         ):
         from experimental.tools import scoremanagertools
@@ -143,7 +143,7 @@ class IO(AbjadObject):
             is_hidden=is_hidden,
             is_numbered=is_numbered,
             is_ranged=is_ranged,
-            menu_tokens=menu_tokens,
+            menu_entries=menu_entries,
             return_value_attribute=return_value_attribute,
             )
         return menu, menu_section

@@ -52,11 +52,11 @@ class MaterialPackageMaker(MaterialPackageProxy):
 
     def _make_main_menu_section_for_user_input_module(self, 
         main_menu, hidden_section):
-        menu_tokens = self.user_input_wrapper_in_memory.editable_lines
+        menu_entries = self.user_input_wrapper_in_memory.editable_lines
         menu_section = main_menu.make_section(
             return_value_attribute='number',
             is_numbered=True,
-            menu_tokens=menu_tokens,
+            menu_entries=menu_entries,
             )
         menu_section = main_menu.make_section(return_value_attribute='key')
         menu_section.append(('user input - clear', 'uic'))

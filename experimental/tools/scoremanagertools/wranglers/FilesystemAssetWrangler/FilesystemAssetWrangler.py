@@ -89,16 +89,16 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             return 'select {}:'.format(self.asset_proxy_class._generic_class_name)
 
     def _make_asset_selection_menu(self, head=None):
-        menu_tokens = self._make_menu_tokens(head=head)
+        menu_entries = self._make_menu_entries(head=head)
         menu, menu_section = self._io.make_menu(
             where=self._where,
             return_value_attribute='key',
-            menu_tokens=menu_tokens,
+            menu_entries=menu_entries,
             is_numbered=True,
             )
         return menu
 
-    def _make_asset_storehouse_menu_tokens(self,
+    def _make_asset_storehouse_menu_entries(self,
         in_built_in_asset_library=True,
         in_user_asset_library=True,
         in_built_in_score_packages=True,
@@ -123,7 +123,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def _make_main_menu(self, head=None):
         pass
 
-    def _make_menu_tokens(self, head=None, include_extension=False):
+    def _make_menu_entries(self, head=None, include_extension=False):
         raise Exception('FOO')
         keys = self.list_asset_filesystem_paths(head=head)
         display_strings = self.list_asset_names(head=head, include_extension=include_extension)
@@ -200,7 +200,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             return_value_attribute='key',
             is_numbered=True,
             )
-        menu_section.menu_tokens = self._make_menu_tokens()
+        menu_section.menu_entries = self._make_menu_entries()
         while True:
             breadcrumb = self._make_asset_selection_breadcrumb()
             self._session.push_breadcrumb(breadcrumb)
@@ -228,7 +228,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             is_numbered=True,
             return_value_attribute='key',
             )
-        menu_section.menu_tokens = self._make_asset_storehouse_menu_tokens(
+        menu_section.menu_entries = self._make_asset_storehouse_menu_entries(
             in_built_in_asset_library=False,
             in_user_asset_library=True,
             in_built_in_score_packages=False,

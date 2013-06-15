@@ -2,7 +2,7 @@ from experimental import *
 
 
 def test_Menu_run_01():
-    '''String menu_token defaults.
+    '''String menu_entry defaults.
     '''
 
     menu = scoremanagertools.menuing.Menu()

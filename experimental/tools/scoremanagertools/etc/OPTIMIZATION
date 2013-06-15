@@ -28,7 +28,7 @@ OBSERVATION: Note that the following ...
     def make_score_selection_menu(self):
         #menu, menu_section = self._io.make_menu(where=self._where, is_numbered=True)
         menu, menu_section = self._io.make_menu(where='foo', is_numbered=True)
-        menu_section.menu_tokens = self.score_package_wrangler._make_menu_tokens()
+        menu_section.menu_entries = self.score_package_wrangler._make_menu_entries()
         return menu
 
 ... reduces score manager start-up from 820,000 function calls to 153,000 function calls.
@@ -106,7 +106,7 @@ Turning on the quick-and-dirty caching code included in r10,250 gives the follow
 CONCLUSION: the quick-and-dirty caching code turned on in r10,250 effectively eliminates
 *all* the effort associated with starting the score manager. This shows that the
 effort involved in starting the score manager comes exclusively from the call ...
-    menu_section.menu_tokens = self.score_package_wrangler._make_menu_tokens()
+    menu_section.menu_entries = self.score_package_wrangler._make_menu_entries()
 ... found in the score manager. The py.test battery runs in 160 seconds on the 
 iMac with caching turned off; the py.test battery runs in 94 seconds on the iMac
 with caching turned on.
@@ -114,13 +114,13 @@ with caching turned on.
 PROSPECTUS: Should caching become a permament part of the system? There are risks 
 associated with caching; these all come from the work necessary to keep the cache
 up to date. Perhaps more to the point is the fact that every rebuild of the main menu ...
-    menu_section.menu_tokens = self.score_package_wrangler._make_menu_tokens()
+    menu_section.menu_entries = self.score_package_wrangler._make_menu_entries()
 ... now costs ~320,000 fuction calls (~0.4 seconds). So whether caching is left
 permanently turned on or not, it is clear that ...
-    menu_section.menu_tokens = self.score_package_wrangler._make_menu_tokens()
+    menu_section.menu_entries = self.score_package_wrangler._make_menu_entries()
 ... must be optimized regardless.
 Probably what should happen is that ...
-    menu_section.menu_tokens = self.score_package_wrangler._make_menu_tokens()
+    menu_section.menu_entries = self.score_package_wrangler._make_menu_entries()
 ... should be optimized and caching should be left permanently turned on. Why?
 Because leaving caching turned on gives almost a 80% speed *when running the test battery*.
 That reason alone is probably enough to leave caching turned on.

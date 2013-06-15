@@ -69,7 +69,7 @@ class StylesheetFileWrangler(FileWrangler):
             return_value_attribute='key',
             is_numbered=True,
             )
-        menu_section.menu_tokens = self._make_menu_tokens(
+        menu_section.menu_entries = self._make_menu_entries(
             include_extension=True)
         menu_section = menu.make_section(return_value_attribute='key')
         menu_section.append(('new', 'new'))
@@ -78,7 +78,7 @@ class StylesheetFileWrangler(FileWrangler):
         menu_section.append(('remove', 'rm'))
         return menu
 
-    def _make_menu_tokens(self, head=None, include_extension=False):
+    def _make_menu_entries(self, head=None, include_extension=False):
         keys = self.list_asset_filesystem_paths(head=head)
         display_strings = []
         for filesystem_path in keys:

@@ -11,16 +11,16 @@ class ScoreToolsPerformerNameSelector(Selector):
     ### PUBLIC METHODS ###
 
     def _make_main_menu(self, head=None):
-        menu_tokens = self.make_menu_tokens(head=head)
+        menu_entries = self.make_menu_entries(head=head)
         menu, menu_section = self._io.make_menu(
             where=self._where,
             is_numbered=self.is_numbered,
             is_ranged=self.is_ranged,
-            menu_tokens=menu_tokens,
+            menu_entries=menu_entries,
             )
         return menu
 
-    def make_menu_tokens(self, head=None):
+    def make_menu_entries(self, head=None):
         performer_names, performer_abbreviations = [], []
         performer_pairs = scoretools.list_primary_performer_names()
         performer_pairs = [(x[1].split()[-1].strip('.'), x[0]) 
