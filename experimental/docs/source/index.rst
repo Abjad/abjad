@@ -628,7 +628,6 @@ Unstable packages (load manually)
       tools/scoremanagertools/materialpackagemakers/TempoMarkInventoryMaterialPackageMaker/TempoMarkInventoryMaterialPackageMaker
       tools/scoremanagertools/menuing/Menu/Menu
       tools/scoremanagertools/menuing/MenuSection/MenuSection
-      tools/scoremanagertools/menuing/MenuSectionAggregator/MenuSectionAggregator
       tools/scoremanagertools/menuing/MenuToken/MenuToken
       tools/scoremanagertools/menuing/UserInputGetter/UserInputGetter
       tools/scoremanagertools/proxies/DirectoryProxy/DirectoryProxy
@@ -822,7 +821,6 @@ Unstable packages (load manually)
       tools/scoremanagertools/materialpackagemakers/TempoMarkInventoryMaterialPackageMaker/TempoMarkInventoryMaterialPackageMaker
       tools/scoremanagertools/menuing/Menu/Menu
       tools/scoremanagertools/menuing/MenuSection/MenuSection
-      tools/scoremanagertools/menuing/MenuSectionAggregator/MenuSectionAggregator
       tools/scoremanagertools/menuing/MenuToken/MenuToken
       tools/scoremanagertools/menuing/UserInputGetter/UserInputGetter
       tools/scoremanagertools/proxies/DirectoryProxy/DirectoryProxy
