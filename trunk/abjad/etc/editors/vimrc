@@ -9,7 +9,14 @@ syntax on
 let mapleader = ","
 
 
-" 1. settings (alphabetical)
+" 1. autocommands
+"================
+
+"au BufWinLeave *.py mkview
+au BufWinEnter *.py silent loadview
+
+
+" 2. settings (alphabetical)
 " ==========================
 
 set autoindent
@@ -57,7 +64,7 @@ set wildignore+=*_build/*
 set wildmode=list:longest
 
 
-" 2. mappings (alphabetical)
+" 3. mappings (alphabetical)
 " ==========================
 
 " alternate file
@@ -112,7 +119,7 @@ noremap <leader>q :quit<cr>
 noremap <leader>wq :wq<cr>
 
 
-" 3. plugins (alphabetical)
+" 4. plugins (alphabetical)
 " =========================
 
 " ctrlp (https://github.com/kien/ctrlp.vim)
@@ -143,7 +150,7 @@ call Pl#Theme#RemoveSegment('fileencoding')
 call Pl#Theme#RemoveSegment('filetype')
 
 
-" 4. other
+" 5. other
 " ========
 
 " omnipopup (http://stackoverflow.com/a/2170800/70778)
