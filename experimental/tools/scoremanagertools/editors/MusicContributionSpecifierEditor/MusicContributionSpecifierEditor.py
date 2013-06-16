@@ -23,7 +23,7 @@ class MusicContributionSpecifierEditor(ObjectInventoryEditor):
         target_attribute_name='name',
         )
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _breadcrumb(self):

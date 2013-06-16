@@ -1,11 +1,12 @@
 import os
 import subprocess
-from experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy import FilesystemAssetProxy
+from experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy \
+    import FilesystemAssetProxy
 
 
 class DirectoryProxy(FilesystemAssetProxy):
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _svn_add_command(self):

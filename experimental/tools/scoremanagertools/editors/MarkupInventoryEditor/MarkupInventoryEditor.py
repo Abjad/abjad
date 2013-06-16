@@ -1,10 +1,14 @@
 from abjad.tools import contexttools
 from abjad.tools import markuptools
 from experimental.tools.scoremanagertools import getters
-from experimental.tools.scoremanagertools.editors.ObjectInventoryEditor import ObjectInventoryEditor
-from experimental.tools.scoremanagertools.editors.TargetManifest import TargetManifest
-from experimental.tools.scoremanagertools.editors.MarkupEditor import MarkupEditor
-from experimental.tools.scoremanagertools.menuing.UserInputGetterMenu import UserInputGetterMenu
+from experimental.tools.scoremanagertools.editors.ObjectInventoryEditor \
+    import ObjectInventoryEditor
+from experimental.tools.scoremanagertools.editors.TargetManifest \
+    import TargetManifest
+from experimental.tools.scoremanagertools.editors.MarkupEditor \
+    import MarkupEditor
+from experimental.tools.scoremanagertools.menuing.UserInputGetterMenu \
+    import UserInputGetterMenu
 
 
 class MarkupInventoryEditor(ObjectInventoryEditor):
@@ -20,7 +24,7 @@ class MarkupInventoryEditor(ObjectInventoryEditor):
         target_name_attribute='inventory name',
         )
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     # TODO: abstract up to ObjectInventoryEditor?
     @property

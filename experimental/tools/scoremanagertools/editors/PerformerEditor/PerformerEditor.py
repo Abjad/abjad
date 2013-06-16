@@ -3,9 +3,12 @@ from abjad.tools import scoretools
 from abjad.tools.instrumenttools.Instrument import Instrument
 from experimental.tools.scoremanagertools import getters
 from experimental.tools.scoremanagertools import wizards
-from experimental.tools.scoremanagertools.editors.ListEditor import ListEditor
-from experimental.tools.scoremanagertools.editors.InstrumentEditor import InstrumentEditor
-from experimental.tools.scoremanagertools.editors.TargetManifest import TargetManifest
+from experimental.tools.scoremanagertools.editors.ListEditor \
+    import ListEditor
+from experimental.tools.scoremanagertools.editors.InstrumentEditor \
+    import InstrumentEditor
+from experimental.tools.scoremanagertools.editors.TargetManifest \
+    import TargetManifest
 
 
 class PerformerEditor(ListEditor):
@@ -22,7 +25,7 @@ class PerformerEditor(ListEditor):
         target_attribute_name='name',
         )
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def items(self):

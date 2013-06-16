@@ -73,7 +73,7 @@ class MaterialPackageMaker(MaterialPackageProxy):
                 menu, hidden_section)
         self._make_main_menu_section_for_output_material(menu, hidden_section)
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def illustration(self):

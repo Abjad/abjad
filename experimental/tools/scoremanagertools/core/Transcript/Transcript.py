@@ -23,7 +23,7 @@ class Transcript(AbjadObject):
     def __getitem__(self, expr):
         return self.entries.__getitem__(expr)
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def current_time(self):

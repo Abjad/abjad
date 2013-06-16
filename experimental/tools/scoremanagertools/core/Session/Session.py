@@ -90,7 +90,7 @@ class Session(abctools.AbjadObject):
         summary = ', '.join(summary)
         return '{}({})'.format(type(self).__name__, summary)
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def backtracking_stack(self):
@@ -336,6 +336,15 @@ class Session(abctools.AbjadObject):
                 scoremanagertools.wranglers.SegmentPackageWrangler.score_package_asset_storehouse_path_infix_parts)
             return '.'.join(parts)
 
+    @apply
+    def dump_transcript():
+        def fget(self):
+            return self._dump_transcript
+        def fset(self, dump_transcript):
+            assert isinstance(dump_transcript, bool)
+            self._dump_transcript = dump_transcript
+        return property(**locals())
+
     @property
     def explicit_command_history(self):
         '''Session explicit command history:
@@ -354,6 +363,51 @@ class Session(abctools.AbjadObject):
             else:
                 result.append(command)
         return result
+
+    @apply
+    def hide_next_redraw():
+        def fget(self):
+            return self._hide_next_redraw
+        def fset(self, hide_next_redraw):
+            assert isinstance(hide_next_redraw, bool)
+            self._hide_next_redraw = hide_next_redraw
+        return property(**locals())
+
+    @apply
+    def is_autoadding():
+        def fget(self):
+            return self._is_autoadding
+        def fset(self, is_autoadding):
+            assert isinstance(is_autoadding, bool)
+            self._is_autoadding = is_autoadding
+        return property(**locals())
+
+    @apply
+    def is_backtracking_locally():
+        def fget(self):
+            return self._is_backtracking_locally
+        def fset(self, is_backtracking_locally):
+            assert isinstance(is_backtracking_locally, bool)
+            self._is_backtracking_locally = is_backtracking_locally
+        return property(**locals())
+
+    @apply
+    def is_backtracking_to_score():
+        def fget(self):
+            return self._is_backtracking_to_score
+        def fset(self, is_backtracking_to_score):
+            assert isinstance(is_backtracking_to_score, bool)
+            self._is_backtracking_to_score = is_backtracking_to_score
+        return property(**locals())
+
+    @apply
+    def is_backtracking_to_score_manager():
+        def fget(self):
+            return self._is_backtracking_to_score_manager
+        def fset(self, is_backtracking_to_score_manager):
+            assert isinstance(is_backtracking_to_score_manager, bool)
+            self._is_backtracking_to_score_manager = is_backtracking_to_score_manager
+        return property(**locals())
 
     @property
     def is_complete(self):
@@ -440,6 +494,15 @@ class Session(abctools.AbjadObject):
         '''
         return '\n'.join(self.format_breadcrumb_stack())
 
+    @apply
+    def nonnumbered_menu_sections_are_hidden():
+        def fget(self):
+            return self._nonnumbered_menu_sections_are_hidden
+        def fset(self, nonnumbered_menu_sections_are_hidden):
+            assert isinstance(nonnumbered_menu_sections_are_hidden, bool)
+            self._nonnumbered_menu_sections_are_hidden = nonnumbered_menu_sections_are_hidden
+        return property(**locals())
+
     @property
     def scores_to_show(self):
         '''Session scores to show:
@@ -484,6 +547,15 @@ class Session(abctools.AbjadObject):
             result.append(part)
         return ' '.join(result)
 
+    @apply
+    def transcribe_next_command():
+        def fget(self):
+            return self._transcribe_next_command
+        def fset(self, transcribe_next_command):
+            assert isinstance(transcribe_next_command, bool)
+            self._transcribe_next_command = transcribe_next_command
+        return property(**locals())
+
     @property
     def transcript(self):
         '''Session transcript:
@@ -496,97 +568,6 @@ class Session(abctools.AbjadObject):
         Return transcript.
         '''
         return self._transcript
-
-    @property
-    def user_input_is_consumed(self):
-        '''True when session user input is consumed.
-        Otherwise false:
-
-        ::
-
-            >>> session.user_input_is_consumed
-            False
-
-        Return boolean.
-        '''
-        if self._session_once_had_user_input:
-            if self.user_input is None:
-                return True
-        return False
-
-    ### READ / WRITE PUBLIC PROPERTIES ###
-
-    @apply
-    def dump_transcript():
-        def fget(self):
-            return self._dump_transcript
-        def fset(self, dump_transcript):
-            assert isinstance(dump_transcript, bool)
-            self._dump_transcript = dump_transcript
-        return property(**locals())
-
-    @apply
-    def hide_next_redraw():
-        def fget(self):
-            return self._hide_next_redraw
-        def fset(self, hide_next_redraw):
-            assert isinstance(hide_next_redraw, bool)
-            self._hide_next_redraw = hide_next_redraw
-        return property(**locals())
-
-    @apply
-    def is_autoadding():
-        def fget(self):
-            return self._is_autoadding
-        def fset(self, is_autoadding):
-            assert isinstance(is_autoadding, bool)
-            self._is_autoadding = is_autoadding
-        return property(**locals())
-
-    @apply
-    def is_backtracking_locally():
-        def fget(self):
-            return self._is_backtracking_locally
-        def fset(self, is_backtracking_locally):
-            assert isinstance(is_backtracking_locally, bool)
-            self._is_backtracking_locally = is_backtracking_locally
-        return property(**locals())
-
-    @apply
-    def is_backtracking_to_score():
-        def fget(self):
-            return self._is_backtracking_to_score
-        def fset(self, is_backtracking_to_score):
-            assert isinstance(is_backtracking_to_score, bool)
-            self._is_backtracking_to_score = is_backtracking_to_score
-        return property(**locals())
-
-    @apply
-    def is_backtracking_to_score_manager():
-        def fget(self):
-            return self._is_backtracking_to_score_manager
-        def fset(self, is_backtracking_to_score_manager):
-            assert isinstance(is_backtracking_to_score_manager, bool)
-            self._is_backtracking_to_score_manager = is_backtracking_to_score_manager
-        return property(**locals())
-
-    @apply
-    def nonnumbered_menu_sections_are_hidden():
-        def fget(self):
-            return self._nonnumbered_menu_sections_are_hidden
-        def fset(self, nonnumbered_menu_sections_are_hidden):
-            assert isinstance(nonnumbered_menu_sections_are_hidden, bool)
-            self._nonnumbered_menu_sections_are_hidden = nonnumbered_menu_sections_are_hidden
-        return property(**locals())
-
-    @apply
-    def transcribe_next_command():
-        def fget(self):
-            return self._transcribe_next_command
-        def fset(self, transcribe_next_command):
-            assert isinstance(transcribe_next_command, bool)
-            self._transcribe_next_command = transcribe_next_command
-        return property(**locals())
 
     @apply
     def underscore_delimited_current_score_name():
@@ -616,6 +597,23 @@ class Session(abctools.AbjadObject):
             if isinstance(user_input, str):
                 self._session_once_had_user_input = True
         return property(**locals())
+
+    @property
+    def user_input_is_consumed(self):
+        '''True when session user input is consumed.
+        Otherwise false:
+
+        ::
+
+            >>> session.user_input_is_consumed
+            False
+
+        Return boolean.
+        '''
+        if self._session_once_had_user_input:
+            if self.user_input is None:
+                return True
+        return False
 
     @apply
     def user_specified_quit():

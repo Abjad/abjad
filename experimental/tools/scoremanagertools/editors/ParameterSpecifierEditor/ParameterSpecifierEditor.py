@@ -1,9 +1,10 @@
-from experimental.tools.scoremanagertools.editors.InteractiveEditor import InteractiveEditor
+from experimental.tools.scoremanagertools.editors.InteractiveEditor \
+    import InteractiveEditor
 
 
 class ParameterSpecifierEditor(InteractiveEditor):
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def target_name(self):

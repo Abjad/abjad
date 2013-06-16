@@ -38,7 +38,7 @@ class InstrumentEditor(InteractiveEditor):
             ('toggle pitch range display', 'tprd'))
         return menu
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def target_name(self):

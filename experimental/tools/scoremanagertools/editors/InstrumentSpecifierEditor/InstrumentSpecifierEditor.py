@@ -1,8 +1,10 @@
 from experimental.tools.scoremanagertools import getters
 from experimental.tools.scoremanagertools import specifiers
 from experimental.tools.scoremanagertools import wizards
-from experimental.tools.scoremanagertools.editors.ParameterSpecifierEditor import ParameterSpecifierEditor
-from experimental.tools.scoremanagertools.editors.TargetManifest import TargetManifest
+from experimental.tools.scoremanagertools.editors.ParameterSpecifierEditor \
+    import ParameterSpecifierEditor
+from experimental.tools.scoremanagertools.editors.TargetManifest \
+    import TargetManifest
 
 
 class InstrumentSpecifierEditor(ParameterSpecifierEditor):
@@ -20,7 +22,7 @@ class InstrumentSpecifierEditor(ParameterSpecifierEditor):
         target_attribute_name='name',
         )
 
-    ### READ-ONLY PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def target_name(self):

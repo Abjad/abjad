@@ -50,7 +50,7 @@ class ScoreManagerObject(AbjadObject):
         '''
         return '{}()'.format(self._class_name)
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _backtracking_source(self):

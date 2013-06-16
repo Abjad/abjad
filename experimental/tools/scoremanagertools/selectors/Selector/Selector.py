@@ -19,6 +19,18 @@ class Selector(ScoreManagerObject):
 
     ### PRIVATE PROPERTIES ###
 
+    @property
+    def _breadcrumb(self):
+        if getattr(self, 'explicit_breadcrumb', None):
+            return self.explicit_breadcrumb
+        elif hasattr(self, 'space_delimited_lowercase_target_name'):
+            return 'select {}:'.format(
+                self.space_delimited_lowercase_target_name)
+        else:
+            return 'select:'
+
+    ### PRIVATE METHODS ###
+
     def _make_main_menu(self, head=None):
         menu_entries = self.make_menu_entries(head=head)
         menu, menu_section = self._io.make_menu(where=self._where,
@@ -28,8 +40,6 @@ class Selector(ScoreManagerObject):
             menu_entries=menu_entries,
             )
         return menu
-
-    ### PRIVATE METHODS ###
 
     def _run(self, cache=False, clear=True, head=None, user_input=None):
         self._io.assign_user_input(user_input=user_input)
@@ -49,19 +59,7 @@ class Selector(ScoreManagerObject):
         self._session.restore_breadcrumbs(cache=cache)
         return result
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
-
-    @property
-    def _breadcrumb(self):
-        if getattr(self, 'explicit_breadcrumb', None):
-            return self.explicit_breadcrumb
-        elif hasattr(self, 'space_delimited_lowercase_target_name'):
-            return 'select {}:'.format(
-                self.space_delimited_lowercase_target_name)
-        else:
-            return 'select:'
-
-    ### READ / WRITE PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @apply
     def items():

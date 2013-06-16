@@ -1,6 +1,9 @@
-from experimental.tools.scoremanagertools.editors.ParameterSpecifierEditor import ParameterSpecifierEditor
-from experimental.tools.scoremanagertools.editors.TargetManifest import TargetManifest
-from experimental.tools.scoremanagertools.specifiers.PerformerSpecifier import PerformerSpecifier
+from experimental.tools.scoremanagertools.editors.ParameterSpecifierEditor \
+    import ParameterSpecifierEditor
+from experimental.tools.scoremanagertools.editors.TargetManifest \
+    import TargetManifest
+from experimental.tools.scoremanagertools.specifiers.PerformerSpecifier \
+    import PerformerSpecifier
 from experimental.tools.scoremanagertools import selectors
 
 
@@ -12,7 +15,7 @@ class PerformerSpecifierEditor(ParameterSpecifierEditor):
         ('performer', 'pf', selectors.PerformerSelector),
         )
 
-    ### READ-ONLY PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def target_name(self):

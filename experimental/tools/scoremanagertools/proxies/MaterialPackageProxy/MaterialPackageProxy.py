@@ -32,7 +32,7 @@ class MaterialPackageProxy(PackageProxy):
         self._generic_output_name = None
         self.stylesheet_file_name_in_memory = None
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _breadcrumb(self):
@@ -212,7 +212,7 @@ class MaterialPackageProxy(PackageProxy):
         self._make_main_menu_section_for_illustration_builder(
             menu, hidden_section)
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def has_complete_user_input_wrapper_in_memory(self):

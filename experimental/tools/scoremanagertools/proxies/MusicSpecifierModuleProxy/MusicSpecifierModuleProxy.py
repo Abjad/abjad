@@ -1,8 +1,11 @@
 import os
 from abjad.tools import stringtools
-from experimental.tools.scoremanagertools.editors.MusicSpecifierEditor import MusicSpecifierEditor
-from experimental.tools.scoremanagertools.proxies.ModuleProxy import ModuleProxy
-from experimental.tools.scoremanagertools.specifiers.MusicSpecifier import MusicSpecifier
+from experimental.tools.scoremanagertools.editors.MusicSpecifierEditor \
+    import MusicSpecifierEditor
+from experimental.tools.scoremanagertools.proxies.ModuleProxy \
+    import ModuleProxy
+from experimental.tools.scoremanagertools.specifiers.MusicSpecifier \
+    import MusicSpecifier
 
 
 class MusicSpecifierModuleProxy(ModuleProxy):
@@ -22,7 +25,7 @@ class MusicSpecifierModuleProxy(ModuleProxy):
     target_class = MusicSpecifier
     target_name_in_storage_module = 'music_specifier'
 
-    ### READ-ONLY PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def editor(self):

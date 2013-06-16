@@ -172,7 +172,7 @@ class ScoreManagerConfiguration(Configuration):
         if not os.path.exists(self.transcripts_directory_path):
             os.makedirs(self.transcripts_directory_path)
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _initial_comment(self):
@@ -208,7 +208,7 @@ class ScoreManagerConfiguration(Configuration):
         }
         return options
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def configuration_directory_path(self):

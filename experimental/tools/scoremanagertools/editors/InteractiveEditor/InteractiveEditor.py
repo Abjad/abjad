@@ -25,7 +25,7 @@ class InteractiveEditor(ScoreManagerObject):
             summary = 'target={!r}'.format(self.target)
         return '{}({})'.format(self._class_name, summary)
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _breadcrumb(self):
@@ -132,7 +132,7 @@ class InteractiveEditor(ScoreManagerObject):
         self._session.restore_breadcrumbs(cache=cache)
         self.clean_up_attributes_in_memory()
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def attributes_in_memory(self):

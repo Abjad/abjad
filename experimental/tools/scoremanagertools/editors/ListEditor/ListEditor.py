@@ -20,6 +20,13 @@ class ListEditor(InteractiveEditor):
     item_identifier = 'element'
     target_manifest = TargetManifest(list,)
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _breadcrumb(self):
+        return self.target_name or \
+            self.space_delimited_lowercase_target_class_name
+
     ### PRIVATE METHODS ###
 
     def _handle_main_menu_result(self, result):
@@ -56,12 +63,7 @@ class ListEditor(InteractiveEditor):
         hidden_section.append(('done', 'done'))
         return menu
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
-
-    @property
-    def _breadcrumb(self):
-        return self.target_name or \
-            self.space_delimited_lowercase_target_class_name
+    ### PUBLIC PROPERTIES ###
 
     @property
     def items(self):

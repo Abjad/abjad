@@ -20,7 +20,7 @@ class TargetManifest(AbjadObject):
         parts = ', '.join([str(x) for x in self.attribute_details])
         return '{}({}, {})'.format(type(self).__name__, self.target_class.__name__, parts)
 
-    ### READ-ONLY PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def attribute_details(self):

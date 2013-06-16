@@ -1,6 +1,8 @@
 import os
-from experimental.tools.scoremanagertools.proxies.ModuleProxy import ModuleProxy
-from experimental.tools.scoremanagertools.proxies.ParseableModuleMixin import ParseableModuleMixin
+from experimental.tools.scoremanagertools.proxies.ModuleProxy \
+    import ModuleProxy
+from experimental.tools.scoremanagertools.proxies.ParseableModuleMixin \
+    import ParseableModuleMixin
 
 
 class MaterialDefinitionModuleProxy(ModuleProxy, ParseableModuleMixin):
@@ -14,7 +16,7 @@ class MaterialDefinitionModuleProxy(ModuleProxy, ParseableModuleMixin):
         self.body_lines = []
         self.parse()
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def file_sections(self):

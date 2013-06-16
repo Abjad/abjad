@@ -14,7 +14,7 @@ class IO(AbjadObject):
     def __init__(self, session=None):
         self._session = session
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def session(self):

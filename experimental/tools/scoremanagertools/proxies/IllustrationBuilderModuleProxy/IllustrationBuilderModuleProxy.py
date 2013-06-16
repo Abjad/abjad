@@ -1,10 +1,11 @@
 from abjad.tools import markuptools
-from experimental.tools.scoremanagertools.proxies.ModuleProxy import ModuleProxy
+from experimental.tools.scoremanagertools.proxies.ModuleProxy \
+    import ModuleProxy
 
 
 class IllustrationBuilderModuleProxy(ModuleProxy):
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def illustration_ly_file_name(self):

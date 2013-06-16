@@ -1,9 +1,10 @@
-from experimental.tools.scoremanagertools.editors.InteractiveEditor import InteractiveEditor
+from experimental.tools.scoremanagertools.editors.InteractiveEditor \
+    import InteractiveEditor
 
 
 class RhythmMakerEditor(InteractiveEditor):
 
-    ### READ-ONLY PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def target_summary_lines(self):

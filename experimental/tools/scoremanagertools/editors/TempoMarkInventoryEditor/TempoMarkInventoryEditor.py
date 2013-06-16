@@ -1,9 +1,13 @@
 from abjad.tools import contexttools
 from experimental.tools.scoremanagertools import getters
-from experimental.tools.scoremanagertools.editors.ObjectInventoryEditor import ObjectInventoryEditor
-from experimental.tools.scoremanagertools.editors.TargetManifest import TargetManifest
-from experimental.tools.scoremanagertools.editors.TempoMarkEditor import TempoMarkEditor
-from experimental.tools.scoremanagertools.menuing.UserInputGetterMenu import UserInputGetterMenu
+from experimental.tools.scoremanagertools.editors.ObjectInventoryEditor \
+    import ObjectInventoryEditor
+from experimental.tools.scoremanagertools.editors.TargetManifest \
+    import TargetManifest
+from experimental.tools.scoremanagertools.editors.TempoMarkEditor \
+    import TempoMarkEditor
+from experimental.tools.scoremanagertools.menuing.UserInputGetterMenu \
+    import UserInputGetterMenu
 
 
 class TempoMarkInventoryEditor(ObjectInventoryEditor):
@@ -19,7 +23,7 @@ class TempoMarkInventoryEditor(ObjectInventoryEditor):
         target_name_attribute='inventory name',
         )
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     # TODO: abstract up to ObjectInventoryEditor?
     @property

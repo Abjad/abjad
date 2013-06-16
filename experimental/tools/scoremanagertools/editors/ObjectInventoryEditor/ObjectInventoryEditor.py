@@ -3,7 +3,7 @@ from experimental.tools.scoremanagertools.editors.ListEditor import ListEditor
 
 class ObjectInventoryEditor(ListEditor):
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def target_name(self):

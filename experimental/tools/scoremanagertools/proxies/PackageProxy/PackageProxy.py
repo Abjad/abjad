@@ -20,7 +20,7 @@ class PackageProxy(DirectoryProxy):
             filesystem_path)
         self._package_path = packagesystem_path
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _space_delimited_lowercase_name(self):
@@ -47,7 +47,7 @@ class PackageProxy(DirectoryProxy):
         self._session.pop_breadcrumb()
         self._session.restore_breadcrumbs(cache=cache)
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def formatted_tags(self):

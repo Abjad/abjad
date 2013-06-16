@@ -21,7 +21,7 @@ class ModuleProxy(FileProxy):
     _generic_class_name = 'module'
     _temporary_asset_name = 'temporary_module.py'
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _space_delimited_lowercase_name(self):
@@ -37,7 +37,7 @@ class ModuleProxy(FileProxy):
         asset_name += '.py'
         return asset_name
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def packagesystem_basename(self):

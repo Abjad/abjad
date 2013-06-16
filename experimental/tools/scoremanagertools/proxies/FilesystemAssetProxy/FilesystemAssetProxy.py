@@ -3,7 +3,8 @@ import os
 import shutil
 import subprocess
 from abjad.tools import stringtools
-from experimental.tools.scoremanagertools.core.ScoreManagerObject import ScoreManagerObject
+from experimental.tools.scoremanagertools.core.ScoreManagerObject \
+    import ScoreManagerObject
 
 
 class FilesystemAssetProxy(ScoreManagerObject):
@@ -44,7 +45,7 @@ class FilesystemAssetProxy(ScoreManagerObject):
         '''
         return '{}({!r})'.format(self._class_name, self.filesystem_path)
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _breadcrumb(self):
@@ -113,7 +114,7 @@ class FilesystemAssetProxy(ScoreManagerObject):
         asset_name = space_delimited_lowercase_name.replace(' ', '_')
         return asset_name
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def filesystem_basename(self):

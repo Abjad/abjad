@@ -1,9 +1,12 @@
 from experimental.tools.scoremanagertools import getters
 from experimental.tools.scoremanagertools import selectors
 from experimental.tools.scoremanagertools import wizards
-from experimental.tools.scoremanagertools.editors.ParameterSpecifierEditor import ParameterSpecifierEditor
-from experimental.tools.scoremanagertools.editors.TargetManifest import TargetManifest
-from experimental.tools.scoremanagertools.specifiers.PitchClassSpecifier import PitchClassSpecifier
+from experimental.tools.scoremanagertools.editors.ParameterSpecifierEditor \
+    import ParameterSpecifierEditor
+from experimental.tools.scoremanagertools.editors.TargetManifest \
+    import TargetManifest
+from experimental.tools.scoremanagertools.specifiers.PitchClassSpecifier \
+    import PitchClassSpecifier
 
 
 class PitchClassSpecifierEditor(ParameterSpecifierEditor):
@@ -19,7 +22,7 @@ class PitchClassSpecifierEditor(ParameterSpecifierEditor):
         ('reservoir_start_helper', 'hp', wizards.ReservoirStartHelperCreationWizard),
         )
 
-    ### READ-ONLY PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def target_name(self):

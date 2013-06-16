@@ -1,9 +1,12 @@
 from abjad.tools import scoretools
 from experimental.tools.scoremanagertools import getters
 from experimental.tools.scoremanagertools import wizards
-from experimental.tools.scoremanagertools.editors.ListEditor import ListEditor
-from experimental.tools.scoremanagertools.editors.PerformerEditor import PerformerEditor
-from experimental.tools.scoremanagertools.editors.TargetManifest import TargetManifest
+from experimental.tools.scoremanagertools.editors.ListEditor \
+    import ListEditor
+from experimental.tools.scoremanagertools.editors.PerformerEditor \
+    import PerformerEditor
+from experimental.tools.scoremanagertools.editors.TargetManifest \
+    import TargetManifest
 
 
 class InstrumentationEditor(ListEditor):
@@ -18,11 +21,13 @@ class InstrumentationEditor(ListEditor):
     target_manifest = TargetManifest(scoretools.InstrumentationSpecifier,
         )
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _breadcrumb(self):
         return self.target_name or 'performers'
+
+    ### PUBLIC PROPERTIES ###
 
     @property
     def items(self):
