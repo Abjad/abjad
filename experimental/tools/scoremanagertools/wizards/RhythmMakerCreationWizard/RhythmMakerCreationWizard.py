@@ -9,7 +9,7 @@ class RhythmMakerCreationWizard(HandlerCreationWizard):
     handler_class_name_selector = selectors.RhythmMakerClassNameSelector
     handler_editor_class_name_suffix = 'Editor'
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def _breadcrumb(self):

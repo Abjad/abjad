@@ -13,7 +13,7 @@ class ModuleWrangler(PackagesystemAssetWrangler):
                 return True
         return False
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def asset_proxy_class(self):

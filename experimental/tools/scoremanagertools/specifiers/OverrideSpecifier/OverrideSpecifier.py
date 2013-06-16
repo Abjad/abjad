@@ -1,4 +1,5 @@
-from experimental.tools.scoremanagertools.specifiers.ParameterSpecifier import ParameterSpecifier
+from experimental.tools.scoremanagertools.specifiers.ParameterSpecifier \
+    import ParameterSpecifier
 
 
 class OverrideSpecifier(ParameterSpecifier):
@@ -9,7 +10,7 @@ class OverrideSpecifier(ParameterSpecifier):
         ParameterSpecifier.__init__(self, description=description, name=name, source=source)
         self.override_handler_name = override_handler_name
 
-    ### READ-ONLY PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _one_line_menuing_summary(self):

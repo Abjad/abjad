@@ -14,6 +14,12 @@ class SegmentPackageProxy(PackageProxy):
             session=session)
         self.score_template = score_template
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _breadcrumb(self):
+        return self._space_delimited_lowercase_name
+
     ### PRIVATE METHODS ###
 
     def _handle_main_menu_result(self, result):
@@ -34,13 +40,7 @@ class SegmentPackageProxy(PackageProxy):
         menu_section.append(('remove', 'rm'))
         return menu
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
-
-    @property
-    def _breadcrumb(self):
-        return self._space_delimited_lowercase_name
-
-    ### READ / WRITE PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @apply
     def score_template():

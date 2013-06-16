@@ -49,7 +49,7 @@ class MaterialPackageWrangler(PackageWrangler):
             scoremanagertools.wranglers.MaterialPackageMakerWrangler(
                 session=self._session)
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _breadcrumb(self):
@@ -112,7 +112,7 @@ class MaterialPackageWrangler(PackageWrangler):
         hidden_section.append(('profile packages', 'profile'))
         return menu
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def asset_proxy_class(self):

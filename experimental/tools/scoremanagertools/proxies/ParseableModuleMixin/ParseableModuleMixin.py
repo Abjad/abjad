@@ -30,7 +30,7 @@ class ParseableModuleMixin(AbjadObject):
             lines[-1] = lines[-1].strip('\n')
         return lines
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def file_sections(self):

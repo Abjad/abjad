@@ -59,7 +59,7 @@ class ScorePackageProxy(PackageProxy):
         hidden_section.append(('manage tags', 'tags'))
         return menu
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _backtracking_source(self):
@@ -69,7 +69,7 @@ class ScorePackageProxy(PackageProxy):
     def _breadcrumb(self):
         return self.annotated_title
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def annotated_title(self):
@@ -93,6 +93,14 @@ class ScorePackageProxy(PackageProxy):
     @property
     def exergue_directory_proxy(self):
         return self._exergue_directory_proxy
+
+    @apply
+    def forces_tagline():
+        def fget(self):
+            return self.get_tag('forces_tagline')
+        def fset(self, forces_tagline):
+            return self.add_tag('forces_tagline', forces_tagline)
+        return property(**locals())
 
     @property
     def has_correct_directory_structure(self):
@@ -173,6 +181,31 @@ class ScorePackageProxy(PackageProxy):
     def segments_package_path(self):
         return '.'.join([self.package_path, 'music', 'segments'])
 
+    # TODO: reverse the order of body string and key throughout method
+    @property
+    def setup_value_menu_entries(self):
+        result = []
+        if self.title:
+            result.append(('title', 'title: {!r}'.format(self.title)))
+        else:
+            result.append(('title', 'title:'))
+        if self.year_of_completion:
+            result.append(('year', 'year: {!r}'.format(
+                self.year_of_completion)))
+        else:
+            result.append(('year', 'year:'))
+        if self.get_tag('instrumentation'):
+            result.append(('performers', 'performers: {}'.format(
+                self.get_tag('instrumentation').performer_name_string)))
+        else:
+            result.append(('performers', 'performers:'))
+        if self.forces_tagline:
+            result.append(('tagline', 'tagline: {!r}'.format(
+                self.forces_tagline)))
+        else:
+            result.append(('tagline', 'tagline:'))
+        result = [(x[1], x[0]) for x in result]
+        return result
     @property
     def stylesheets_directory_path(self):
         return os.path.join(self.filesystem_path, 'music', 'stylesheets')
@@ -212,42 +245,6 @@ class ScorePackageProxy(PackageProxy):
     @property
     def untitled_indicator(self):
         return '(untitled score)'
-
-    ### READ / WRITE PUBLIC PROPERTIES ###
-
-    @apply
-    def forces_tagline():
-        def fget(self):
-            return self.get_tag('forces_tagline')
-        def fset(self, forces_tagline):
-            return self.add_tag('forces_tagline', forces_tagline)
-        return property(**locals())
-
-    # TODO: reverse the order of body string and key throughout method
-    @property
-    def setup_value_menu_entries(self):
-        result = []
-        if self.title:
-            result.append(('title', 'title: {!r}'.format(self.title)))
-        else:
-            result.append(('title', 'title:'))
-        if self.year_of_completion:
-            result.append(('year', 'year: {!r}'.format(
-                self.year_of_completion)))
-        else:
-            result.append(('year', 'year:'))
-        if self.get_tag('instrumentation'):
-            result.append(('performers', 'performers: {}'.format(
-                self.get_tag('instrumentation').performer_name_string)))
-        else:
-            result.append(('performers', 'performers:'))
-        if self.forces_tagline:
-            result.append(('tagline', 'tagline: {!r}'.format(
-                self.forces_tagline)))
-        else:
-            result.append(('tagline', 'tagline:'))
-        result = [(x[1], x[0]) for x in result]
-        return result
 
     @apply
     def year_of_completion():

@@ -1,4 +1,5 @@
-from experimental.tools.scoremanagertools.specifiers.ParameterSpecifier import ParameterSpecifier
+from experimental.tools.scoremanagertools.specifiers.ParameterSpecifier \
+    import ParameterSpecifier
 
 
 class PitchClassSpecifier(ParameterSpecifier):
@@ -18,7 +19,7 @@ class PitchClassSpecifier(ParameterSpecifier):
         self.pitch_class_reservoir_helper = pitch_class_reservoir_helper
         self.pitch_class_transform = pitch_class_transform
 
-    ### READ-ONLY PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _one_line_menuing_summary(self):

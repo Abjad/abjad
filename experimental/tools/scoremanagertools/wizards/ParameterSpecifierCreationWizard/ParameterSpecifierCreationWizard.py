@@ -4,6 +4,12 @@ from experimental.tools.scoremanagertools.wizards.Wizard import Wizard
 
 class ParameterSpecifierCreationWizard(Wizard):
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _breadcrumb(self):
+        return 'parameter specifier creation wizard'
+
     ### PRIVATE METHODS ###
 
     def _run(self, cache=False, clear=True, head=None, user_input=None):
@@ -28,12 +34,6 @@ class ParameterSpecifierCreationWizard(Wizard):
         self._session.restore_breadcrumbs(cache=cache)
         self.target = target_editor.target
         return self.target
-
-    ### READ-ONLY PUBLIC PROPERTIES ###
-
-    @property
-    def _breadcrumb(self):
-        return 'parameter specifier creation wizard'
 
     ### PUBLIC METHODS ###
 

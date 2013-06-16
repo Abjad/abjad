@@ -11,6 +11,12 @@ class InstrumentCreationWizard(Wizard):
         Wizard.__init__(self, session=session, target=target)
         self.is_ranged = is_ranged
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _breadcrumb(self):
+        return 'instrument creation wiard'
+
     ### PRIVATE METHODS ###
 
     def _run(self, cache=False, clear=True, head=None, user_input=None):
@@ -42,12 +48,6 @@ class InstrumentCreationWizard(Wizard):
         self._session.restore_breadcrumbs(cache=cache)
         self.target = result
         return self.target
-
-    ### READ-ONLY PUBLIC PROPERTIES ###
-
-    @property
-    def _breadcrumb(self):
-        return 'instrument creation wiard'
 
     ### PUBLIC METHODS ###
 

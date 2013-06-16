@@ -1,9 +1,10 @@
-from experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler import FilesystemAssetWrangler
+from experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler \
+    import FilesystemAssetWrangler
 
 
 class FileWrangler(FilesystemAssetWrangler):
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def asset_proxy_class(self):

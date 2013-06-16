@@ -1,4 +1,5 @@
-from experimental.tools.scoremanagertools.specifiers.ParameterSpecifier import ParameterSpecifier
+from experimental.tools.scoremanagertools.specifiers.ParameterSpecifier \
+    import ParameterSpecifier
 
 
 class PerformerSpecifier(ParameterSpecifier):
@@ -7,7 +8,7 @@ class PerformerSpecifier(ParameterSpecifier):
         ParameterSpecifier.__init__(self, description=description, name=name, source=source)
         self.performer = performer
 
-    ### READ-ONLY PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _one_line_menuing_summary(self):

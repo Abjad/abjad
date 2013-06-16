@@ -1,19 +1,20 @@
 from abjad.tools import instrumenttools
 from abjad.tools.instrumenttools.Instrument import Instrument
 from experimental.tools.scoremanagertools import selectors
-from experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard import InstrumentCreationWizard
+from experimental.tools.scoremanagertools.wizards.InstrumentCreationWizard \
+    import InstrumentCreationWizard
 from experimental.tools.scoremanagertools.wizards.Wizard import Wizard
 
 
 class InstrumentSelectionWizard(Wizard):
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _breadcrumb(self):
         return 'instrument selection wizard'
 
-    ### PUBLIC METHODS ###
+    ### PRIVATE METHODS ###
 
     def _run(self, cache=False, clear=True, head=None, user_input=None):
         self._io.assign_user_input(user_input=user_input)

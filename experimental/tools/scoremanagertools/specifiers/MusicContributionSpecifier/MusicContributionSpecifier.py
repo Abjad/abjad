@@ -1,6 +1,7 @@
 from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
 from experimental.tools.scoremanagertools.specifiers.Specifier import Specifier
-from experimental.tools.scoremanagertools.specifiers.ArticulationSpecifier import ArticulationSpecifier
+from experimental.tools.scoremanagertools.specifiers.ArticulationSpecifier \
+    import ArticulationSpecifier
 
 
 class MusicContributionSpecifier(Specifier, ObjectInventory):
@@ -10,13 +11,13 @@ class MusicContributionSpecifier(Specifier, ObjectInventory):
         Specifier.__init__(self, description=description, name=name, source=source)
         self._articulations = ArticulationSpecifier
 
-    ### PIVATE READ-ONLY PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _one_line_menuing_summary(self):
         return self.name or 'unknown contribution'
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def articulations(self):

@@ -38,7 +38,7 @@ class ScoreManager(ScoreManagerObject):
             scoremanagertools.wranglers.StylesheetFileWrangler(
             session=self._session)
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _breadcrumb(self):
@@ -185,7 +185,7 @@ class ScoreManager(ScoreManagerObject):
         self._session.pop_breadcrumb()
         self._session.restore_breadcrumbs(cache=cache)
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def material_package_maker_wrangler(self):

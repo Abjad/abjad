@@ -35,7 +35,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
     asset_storehouse_packagesystem_path_in_user_asset_library = \
         PackageWrangler.configuration.user_asset_library_material_package_makers_package_path
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _breadcrumb(self):
@@ -91,7 +91,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         display_strings = self.list_asset_names(head=head)
         return zip(display_strings, keys)
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def asset_proxy_class(self):
@@ -326,7 +326,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         lines.append('        MaterialPackageMaker.__init__(')
         lines.append('            self, package_path=package_path, session=seession')
         lines.append('')
-        lines.append('    ### READ-ONLY PUBLIC PROPERTIES ###')
+        lines.append('    ### PUBLIC PROPERTIES ###')
         lines.append('')
         lines.append('    generic_output_name = {!r}'.format(generic_output_name))
         lines.append('')

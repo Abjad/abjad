@@ -1,4 +1,5 @@
-from experimental.tools.scoremanagertools.specifiers.ParameterSpecifier import ParameterSpecifier
+from experimental.tools.scoremanagertools.specifiers.ParameterSpecifier \
+    import ParameterSpecifier
 
 
 class RhythmSpecifier(ParameterSpecifier):
@@ -9,7 +10,7 @@ class RhythmSpecifier(ParameterSpecifier):
         ParameterSpecifier.__init__(self, description=description, name=name, source=source)
         self.rhythm_maker_package_path = rhythm_maker_package_path
 
-    ### READ-ONLY PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _one_line_menuing_summary(self):

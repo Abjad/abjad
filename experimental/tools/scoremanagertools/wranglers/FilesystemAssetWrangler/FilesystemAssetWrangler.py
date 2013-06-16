@@ -33,7 +33,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         '''
         return type(self) is type(expr)
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _current_storehouse_filesystem_path(self):
@@ -150,7 +150,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         self._session.push_breadcrumb(breadcrumb=breadcrumb, rollback=rollback)
         self._session.restore_breadcrumbs(cache=cache)
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @abc.abstractproperty
     def asset_proxy_class(self):

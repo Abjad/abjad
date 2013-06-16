@@ -4,6 +4,12 @@ from experimental.tools.scoremanagertools import selectors
 
 class PitchClassTransformCreationWizard(Wizard):
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _breadcrumb(self):
+        return 'pitch class transform creation wizard'
+
     ### PRIVATE METHODS ###
 
     def _run(self, cache=False, clear=True, head=None, user_input=None):
@@ -34,11 +40,6 @@ class PitchClassTransformCreationWizard(Wizard):
         self._session.restore_breadcrumbs(cache=cache)
         self.target = function_application_pairs
         return self.target
-    ### READ-ONLY PROPERTIES ###
-
-    @property
-    def _breadcrumb(self):
-        return 'pitch class transform creation wizard'
 
     ### PUBLIC METHODS ###
 

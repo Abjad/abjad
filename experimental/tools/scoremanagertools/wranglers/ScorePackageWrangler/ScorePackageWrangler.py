@@ -40,7 +40,7 @@ class ScorePackageWrangler(PackageWrangler):
     asset_storehouse_packagesystem_path_in_user_asset_library = \
         PackageWrangler.configuration.user_score_packages_package_path
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _breadcrumb(self):
@@ -82,7 +82,7 @@ class ScorePackageWrangler(PackageWrangler):
         menuing_entries = [(x[1], None, None, x[0]) for x in menuing_pairs]
         return menuing_entries
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def asset_proxy_class(self):

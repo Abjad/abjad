@@ -4,6 +4,12 @@ from experimental.tools.scoremanagertools import selectors
 
 class ReservoirStartHelperCreationWizard(Wizard):
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _breadcrumb(self):
+        return 'reservoir start helpers creation wizard'
+
     ### PRIVATE METHODS ###
 
     def _run(self, cache=False, clear=True, head=None, user_input=None):
@@ -32,12 +38,6 @@ class ReservoirStartHelperCreationWizard(Wizard):
         self._session.restore_breadcrumbs(cache=cache)
         self.target = function_application_pairs
         return self.target
-
-    ### READ-ONLY PROPERTIES ###
-
-    @property
-    def _breadcrumb(self):
-        return 'reservoir start helpers creation wizard'
 
     ### PUBLIC METHODS ###
 

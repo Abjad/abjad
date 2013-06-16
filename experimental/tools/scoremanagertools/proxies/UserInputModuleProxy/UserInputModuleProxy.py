@@ -1,7 +1,9 @@
 import os
 from abjad.tools import stringtools
-from experimental.tools.scoremanagertools.proxies.ModuleProxy import ModuleProxy
-from experimental.tools.scoremanagertools.proxies.ParseableModuleMixin import ParseableModuleMixin
+from experimental.tools.scoremanagertools.proxies.ModuleProxy \
+    import ModuleProxy
+from experimental.tools.scoremanagertools.proxies.ParseableModuleMixin \
+    import ParseableModuleMixin
 
 
 class UserInputModuleProxy(ModuleProxy, ParseableModuleMixin):
@@ -14,7 +16,7 @@ class UserInputModuleProxy(ModuleProxy, ParseableModuleMixin):
         self.user_input_wrapper_lines = []
         self.parse()
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def file_sections(self):

@@ -24,7 +24,7 @@ class SegmentPackageWrangler(PackageWrangler):
 
     asset_storehouse_packagesystem_path_in_user_asset_library = None
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _breadcrumb(self):
@@ -50,7 +50,7 @@ class SegmentPackageWrangler(PackageWrangler):
         menu_section.append(('new segment', 'new'))
         return menu
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def asset_proxy_class(self):

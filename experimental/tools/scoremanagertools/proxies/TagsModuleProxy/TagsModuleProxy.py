@@ -1,7 +1,9 @@
 import collections
 import os
-from experimental.tools.scoremanagertools.proxies.ModuleProxy import ModuleProxy
-from experimental.tools.scoremanagertools.proxies.ParseableModuleMixin import ParseableModuleMixin
+from experimental.tools.scoremanagertools.proxies.ModuleProxy \
+    import ModuleProxy
+from experimental.tools.scoremanagertools.proxies.ParseableModuleMixin \
+    import ParseableModuleMixin
 
 
 class TagsModuleProxy(ModuleProxy, ParseableModuleMixin):
@@ -21,7 +23,7 @@ class TagsModuleProxy(ModuleProxy, ParseableModuleMixin):
 
     extension = '.py'
 
-    ### READ-ONLY PUBLIC PROPERTIES ##
+    ### PUBLIC PROPERTIES ##
 
     @property
     def file_sections(self):

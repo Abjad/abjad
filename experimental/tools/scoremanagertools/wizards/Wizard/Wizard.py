@@ -1,5 +1,6 @@
 import abc
-from experimental.tools.scoremanagertools.core.ScoreManagerObject import ScoreManagerObject
+from experimental.tools.scoremanagertools.core.ScoreManagerObject import \
+    ScoreManagerObject
 
 
 # TODO: extend repr to show target, if any
@@ -16,13 +17,13 @@ class Wizard(ScoreManagerObject):
         ScoreManagerObject.__init__(self, session=session)
         self.target = target
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @abc.abstractproperty
     def _breadcrumb(self):
         pass
 
-    ### PUBLIC METHODS ###
+    ### PRIVATE METHODS ###
 
     @abc.abstractmethod
     def _run(self, cache=False, clear=True, head=None, user_input=None):

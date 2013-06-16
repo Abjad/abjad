@@ -11,7 +11,7 @@ class PackageWrangler(PackagesystemAssetWrangler):
 
     __meta__ = abc.ABCMeta
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _temporary_asset_name(self):
@@ -25,7 +25,7 @@ class PackageWrangler(PackagesystemAssetWrangler):
     def _make_main_menu(self, head=None):
         self._io.print_not_yet_implemented()
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @abc.abstractproperty
     def asset_proxy_class(self):

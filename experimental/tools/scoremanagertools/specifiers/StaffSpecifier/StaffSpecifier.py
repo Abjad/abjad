@@ -1,4 +1,5 @@
-from experimental.tools.scoremanagertools.specifiers.ParameterSpecifier import ParameterSpecifier
+from experimental.tools.scoremanagertools.specifiers.ParameterSpecifier \
+    import ParameterSpecifier
 
 
 class StaffSpecifier(ParameterSpecifier):
@@ -9,7 +10,7 @@ class StaffSpecifier(ParameterSpecifier):
         ParameterSpecifier.__init__(self, description=description, name=name, source=source)
         self.staff_handler_name = staff_handler_name
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _one_line_menuing_summary(self):

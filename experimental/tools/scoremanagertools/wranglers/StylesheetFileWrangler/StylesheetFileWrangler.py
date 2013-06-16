@@ -25,7 +25,7 @@ class StylesheetFileWrangler(FileWrangler):
     asset_storehouse_filesystem_path_in_user_asset_library = \
         FileWrangler.configuration.user_asset_library_stylesheets_directory_path
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _breadcrumb(self):
@@ -89,7 +89,7 @@ class StylesheetFileWrangler(FileWrangler):
             display_strings.append(display_string)
         return zip(display_strings, keys)
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def asset_proxy_class(self):

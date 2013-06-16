@@ -22,7 +22,7 @@ class MusicSpecifier(Specifier, ObjectInventory):
         ObjectInventory.__init__(self, contributions)
         Specifier.__init__(self, description=description, name=name, source=source)
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _item_class(self):
@@ -37,7 +37,7 @@ class MusicSpecifier(Specifier, ObjectInventory):
             'name',
             ]))
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def _one_line_menuing_summary(self):

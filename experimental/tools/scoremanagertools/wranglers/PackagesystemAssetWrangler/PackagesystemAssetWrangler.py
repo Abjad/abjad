@@ -19,7 +19,7 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
             asset_storehouse_filesystem_path_in_user_asset_library
         FilesystemAssetWrangler.__init__(self, session=session)
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _current_storehouse_packagesystem_path(self):

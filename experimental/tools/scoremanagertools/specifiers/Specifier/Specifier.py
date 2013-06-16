@@ -27,7 +27,7 @@ class Specifier(AbjadObject):
                     return True
         return False
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @abc.abstractproperty
     def _one_line_menuing_summary(self):
