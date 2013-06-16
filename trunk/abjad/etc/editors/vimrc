@@ -12,7 +12,6 @@ let mapleader = ","
 " 1. autocommands
 "================
 
-"au BufWinLeave *.py mkview
 au BufWinEnter *.py silent loadview
 
 
@@ -220,3 +219,15 @@ hi TabNumSel term=bold cterm=bold ctermfg=16 ctermbg=229
 hi TabLine term=underline ctermfg=16 ctermbg=145
 hi TabWinNum term=bold cterm=bold ctermfg=90 ctermbg=145
 hi TabNum term=bold cterm=bold ctermfg=16 ctermbg=145
+
+
+function! MinimalFoldText()
+    let foldlinecount = 1 + v:foldend - v:foldstart
+    if foldlinecount == 1   
+        let foldlinecountstring = " " . foldlinecount . " line folded "
+    else
+        let foldlinecountstring = " " . foldlinecount . " lines folded "
+    endif
+    return "+" . v:folddashes . foldlinecountstring
+endfunction
+set foldtext=MinimalFoldText()

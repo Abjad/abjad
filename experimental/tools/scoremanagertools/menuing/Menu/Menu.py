@@ -7,6 +7,10 @@ from experimental.tools.scoremanagertools.menuing.MenuSection \
 
 
 class Menu(ScoreManagerObject):
+    '''Menu.
+
+    Return menu.
+    '''
 
     ### INITIALIZER ###
 

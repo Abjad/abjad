@@ -5,6 +5,10 @@ from experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerOb
 
 
 class MenuSection(ScoreManagerObject):
+    '''Menu section.
+
+    Return menu section.
+    '''
 
     ### CLASS VARIABLES ###
 

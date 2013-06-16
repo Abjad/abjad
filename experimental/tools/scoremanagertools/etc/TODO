@@ -93,9 +93,7 @@
 
 32. Cache tags.
 
-33. Change fold line indicator to shown line count only.
-
-34. Merge read-only and read / write properties private properties
+33. Merge read-only and read / write properties private properties
     into a single ### PRIVATE PROPERTIES ### category.
     Merge read-only and read / write public properties
     into a single ### PUBLIC PROPERTIES ### category.
