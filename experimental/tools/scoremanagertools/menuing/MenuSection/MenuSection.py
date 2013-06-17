@@ -102,6 +102,39 @@ class MenuSection(ScoreManagerObject):
 
     ### PRIVATE METHODS ###
 
+    def _argument_range_string_to_numbers(self, argument_range_string):
+        assert self.menu_entries
+        numbers = []
+        argument_range_string = argument_range_string.replace(' ', '')
+        range_parts = argument_range_string.split(',')
+        for range_part in range_parts:
+            if range_part == 'all':
+                numbers.extend(range(1, len(self.menu_entries) + 1))
+            elif '-' in range_part:
+                start, stop = range_part.split('-')
+                start = self._argument_string_to_number(start)
+                stop = self._argument_string_to_number(stop)
+                if start is None or stop is None:
+                    return
+                if start <= stop:
+                    new_numbers = range(start, stop + 1)
+                    numbers.extend(new_numbers)
+                else:
+                    new_numbers = range(start, stop - 1, -1)
+                    numbers.extend(new_numbers)
+            else:
+                number = self._argument_string_to_number(range_part)
+                if number is None:
+                    return
+                numbers.append(number)
+        return numbers
+
+    def _argument_string_to_number(self, argument_string):
+        for menu_entry_index, menu_entry in enumerate(self.menu_entries):
+            if menu_entry.matches(argument_string):
+                menu_entry_number = menu_entry_index + 1
+                return menu_entry_number
+
     def _make_menu_lines(self):
         menu_lines = []
         menu_lines.extend(self._make_title_lines())
@@ -336,6 +369,24 @@ class MenuSection(ScoreManagerObject):
     ### PUBLIC METHODS ###
 
     def append(self, expr):
+        '''Append `expr` to menu section:
+
+        ::
+
+            >>> menu_section.append(('svn mkdir', 'mkdir'))
+
+        ::
+
+            >>> for menu_entry in menu_section.menu_entries:
+            ...     menu_entry
+            <MenuEntry: 'svn add scores'>
+            <MenuEntry: 'svn commit scores'>
+            <MenuEntry: 'svn status scores'>
+            <MenuEntry: 'svn update scores'>
+            <MenuEntry: 'svn mkdir'>
+
+        Return none.
+        '''
         from experimental.tools import scoremanagertools
         assert isinstance(expr, (str, tuple))
         number = None
@@ -347,36 +398,3 @@ class MenuSection(ScoreManagerObject):
             return_value_attribute=self.return_value_attribute,
             )
         self.menu_entries.append(menu_entry)
-        
-    def argument_range_string_to_numbers(self, argument_range_string):
-        assert self.menu_entries
-        numbers = []
-        argument_range_string = argument_range_string.replace(' ', '')
-        range_parts = argument_range_string.split(',')
-        for range_part in range_parts:
-            if range_part == 'all':
-                numbers.extend(range(1, len(self.menu_entries) + 1))
-            elif '-' in range_part:
-                start, stop = range_part.split('-')
-                start = self.argument_string_to_number(start)
-                stop = self.argument_string_to_number(stop)
-                if start is None or stop is None:
-                    return
-                if start <= stop:
-                    new_numbers = range(start, stop + 1)
-                    numbers.extend(new_numbers)
-                else:
-                    new_numbers = range(start, stop - 1, -1)
-                    numbers.extend(new_numbers)
-            else:
-                number = self.argument_string_to_number(range_part)
-                if number is None:
-                    return
-                numbers.append(number)
-        return numbers
-
-    def argument_string_to_number(self, argument_string):
-        for menu_entry_index, menu_entry in enumerate(self.menu_entries):
-            if menu_entry.matches(argument_string):
-                menu_entry_number = menu_entry_index + 1
-                return menu_entry_number

@@ -309,7 +309,7 @@ class Menu(ScoreManagerObject):
         if not self.has_ranged_section:
             return
         entry_numbers = \
-            self.ranged_section.argument_range_string_to_numbers(
+            self.ranged_section._argument_range_string_to_numbers(
             user_input)
         if entry_numbers is None:
             return None
