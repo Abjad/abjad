@@ -15,6 +15,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuEntry.MenuEntry.MenuEntry.existing_value
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuEntry.MenuEntry.MenuEntry.expr
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuEntry.MenuEntry.MenuEntry.key
    :noindex:
 

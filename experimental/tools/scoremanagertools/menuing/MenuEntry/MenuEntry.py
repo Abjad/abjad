@@ -21,6 +21,10 @@ class MenuEntry(AbjadObject):
         <MenuEntry: 'svn status scores'>
         <MenuEntry: 'svn update scores'>
 
+        >>> menu_entry = menu_section.menu_entries[-1]
+        >>> menu_entry
+        <MenuEntry: 'svn update scores'>
+
     Return menu entry.
     '''
 
@@ -98,45 +102,170 @@ class MenuEntry(AbjadObject):
             self.display_string)
         normalized_display_string = normalized_display_string.lower()
         self._normalized_display_string = normalized_display_string
+        self._expr = expr
 
     ### SPECIAL METHODS ###
 
     def __repr__(self):
+        '''Menu entry interpreter representation.
+
+        Return string.
+        '''
         return '<{}: {!r}>'.format(self._class_name, self.display_string)
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def display_string(self):
+        '''Menu entry display string:
+
+        ::
+
+            >>> menu_entry.display_string
+            'svn update scores'
+
+        Return string.
+        '''
         return self._display_string
 
     @property
     def existing_value(self):
+        '''Menu entry existing value:
+
+        ::
+
+            >>> menu_entry.existing_value is None
+            True
+
+        Return arbitrary value or none.
+        '''
         return self._existing_value
 
     @property
+    def expr(self):
+        '''Menu entry expr:
+
+        ::
+
+            >>> menu_entry.expr
+            ('svn update scores', 'up')
+
+        Return tuple.
+        '''
+        return self._expr
+
+    @property
     def key(self):
+        '''Menu entry key:
+
+        ::
+
+            >>> menu_entry.key
+            'up'
+
+        Return string without spaces or none.
+        '''
         return self._key
 
     @property
     def number(self):
+        '''Menu entry number:
+
+        ::
+
+            >>> menu_entry.number is None
+            True
+    
+        Return nonnegative integer or none.
+        '''
         return self._number
 
     @property
     def prepopulated_return_value(self):
+        '''Menu entry prepopulated return value:
+
+        ::
+
+            >>> menu_entry.prepopulated_return_value is None
+            True
+
+        Return arbitrary value or none.
+        '''
         return self._prepopulated_return_value
 
     @property
     def return_value(self):
+        '''Menu entry return value:
+
+        ::
+
+            >>> menu_entry.return_value
+            'up'
+
+        Return arbitrary value.
+        '''
         return self._return_value
 
     @property
     def return_value_attribute(self):
+        '''Menu entry return value attribute:
+
+        ::
+
+            >>> menu_entry.return_value_attribute
+            'key'
+
+        Acceptable values are
+
+        ::
+
+            'display_string'
+            'key' 
+            'number' 
+            'prepopulated'
+
+        Return string.
+        '''
         return self._return_value_attribute
+
+    @property
+    def storage_format(self):
+        '''Menu entry storage format:
+
+            >>> z(menu_entry)
+            menuing.MenuEntry(
+                ('svn update scores', 'up'),
+                return_value_attribute='key'
+                )
+
+        Return string.
+        '''
+        return super(MenuEntry, self).storage_format
 
     ### PUBLIC METHODS ###
 
     def matches(self, user_input):
+        '''True when menu entry matches `user_input` string:
+
+        ::
+
+            >>> menu_entry.matches('svn update scores')
+            True
+
+        ::
+
+            >>> menu_entry.matches('up')
+            True
+
+        Otherwise false:
+
+        ::
+
+            >>> menu_entry.matches('foo')
+            False
+
+        Return boolean.
+        '''
         if user_input in self._matches:
             return True
         if 3 <= len(user_input):
