@@ -4,7 +4,7 @@
 autocmd! bufwritepost .vimrc source %
 call pathogen#infect()
 filetype off
-filetype plugin indent on
+filetype plugin on
 syntax on
 let mapleader = ","
 
@@ -12,7 +12,7 @@ let mapleader = ","
 " 1. autocommands
 "================
 
-au BufWinEnter *.py silent loadview
+"au BufWinEnter *.py silent loadview
 au BufWinEnter *.py silent set foldenable
 au BufWinEnter *.py silent set foldlevel=1
 au BufWinEnter *.py silent set foldmethod=indent
