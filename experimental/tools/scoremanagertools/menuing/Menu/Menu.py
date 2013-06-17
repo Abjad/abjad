@@ -65,8 +65,8 @@ class Menu(ScoreManagerObject):
     @property
     def default_value(self):
         for menu_section in self.menu_sections:
-            if menu_section.has_default_value:
-                return menu_section.default_value
+            if menu_section._has_default_value:
+                return menu_section._default_value
 
     @apply
     def explicit_title():
@@ -86,7 +86,7 @@ class Menu(ScoreManagerObject):
 
     @property
     def has_default_valued_section(self):
-        return any(x.has_default_value for x in self.menu_sections)
+        return any(x._has_default_value for x in self.menu_sections)
 
     @property
     def has_hidden_section(self):

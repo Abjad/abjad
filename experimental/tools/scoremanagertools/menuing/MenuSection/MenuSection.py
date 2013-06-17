@@ -1,5 +1,5 @@
-from abjad.tools import stringtools
 from abjad.tools import mathtools
+from abjad.tools import stringtools
 from experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject import \
     ScoreManagerObject
 
@@ -63,12 +63,30 @@ class MenuSection(ScoreManagerObject):
     ### SPECIAL METHODS ###
 
     def __len__(self):
+        '''Number of menu entries in menu section:
+
+        Return nonnegative integer.
+        '''
         return len(self.menu_entries)
 
     def __repr__(self):
+        '''Menu section interpreter representation.
+
+        Return string.
+        '''
         return '<{} ({})>'.format(self._class_name, len(self))
 
     ### PRIVATE PROPERTIES ###
+
+
+    @property
+    def _default_value(self):
+        default_menu_entry = self.menu_entries[self.default_index]
+        return default_menu_entry.return_value
+
+    @property
+    def _has_default_value(self):
+        return self.default_index is not None
 
     @property
     def _menu_entry_display_strings(self):
@@ -107,15 +125,6 @@ class MenuSection(ScoreManagerObject):
                     raise ValueError(message)
             self._default_index = default_index
         return property(**locals())
-
-    @property
-    def default_value(self):
-        default_menu_entry = self.menu_entries[self.default_index]
-        return default_menu_entry.return_value
-
-    @property
-    def has_default_value(self):
-        return self.default_index is not None
 
     @apply
     def is_hidden():
