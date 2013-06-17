@@ -1,4 +1,4 @@
-from abjad.tools.stringtools.is_hyphen_delimited_lowercase_string import hyphen_delimited_lowercase_regex_body
+from abjad.tools.stringtools.is_dash_case_string import hyphen_delimited_lowercase_regex_body
 import re
 
 
@@ -10,17 +10,17 @@ hyphen_delimited_lowercase_file_name_regex_body = """
 hyphen_delimited_lowercase_file_name_regex = re.compile('^%s$' %
     hyphen_delimited_lowercase_file_name_regex_body, re.VERBOSE)
 
-def is_hyphen_delimited_lowercase_file_name(expr):
+def is_dash_case_file_name(expr):
     r'''.. versionadded:: 2.13
 
     True when `expr` is a string and is hyphen-delimited lowercase file name with extension::
 
-        >>> stringtools.is_hyphen_delimited_lowercase_file_name('foo-bar')
+        >>> stringtools.is_dash_case_file_name('foo-bar')
         True
 
     False otherwise::
 
-        >>> stringtools.is_hyphen_delimited_lowercase_file_name('foo.bar.blah')
+        >>> stringtools.is_dash_case_file_name('foo.bar.blah')
         False
 
     Return boolean.

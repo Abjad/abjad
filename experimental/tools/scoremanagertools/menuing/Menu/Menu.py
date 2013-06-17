@@ -1,3 +1,4 @@
+from abjad.tools import iotools
 from abjad.tools import mathtools
 from abjad.tools import stringtools
 from experimental.tools.scoremanagertools.core.ScoreManagerObject \

@@ -17,7 +17,7 @@ def is_articulation_token(expr):
         return False
 
 def is_available_underscore_delimited_lowercase_package_name(expr):
-    if stringtools.is_underscore_delimited_lowercase_package_name(expr):
+    if stringtools.is_snake_case_package_name(expr):
         if 3 <= len(expr):
             return not configuration.packagesystem_path_exists(expr)
     return False
@@ -26,7 +26,7 @@ def is_boolean(expr):
     return isinstance(expr, bool)
 
 def is_class_name_or_none(expr):
-    return expr is None or stringtools.is_uppercamelcase_string(expr)
+    return expr is None or stringtools.is_upper_camel_case_string(expr)
 
 def is_clef_token(expr):
     try:
@@ -123,8 +123,8 @@ def is_tempo_token(expr):
     except:
         return False
 
-def is_underscore_delimited_lowercase_package_name(expr):
-    return stringtools.is_underscore_delimited_lowercase_package_name(
+def is_snake_case_package_name(expr):
+    return stringtools.is_snake_case_package_name(
         expr) and 3 <= len(expr)
 
 def is_yes_no_string(expr):

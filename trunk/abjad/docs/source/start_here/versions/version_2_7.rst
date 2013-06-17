@@ -160,9 +160,9 @@ Implements 221 public classes and 1029 functions totalling 168,000 lines of code
     >>> all_are_pairs_of_types([('a', 1.4), ('b', 2.3), ('c', 1.5)], str, float)
     True
 
-- Added ``stringtools.is_underscore_delimited_lowercase_file_name_with_extension()`` string predicate::
+- Added ``stringtools.is_snake_case_file_name_with_extension()`` string predicate::
 
-    >>> stringtools.is_underscore_delimited_lowercase_file_name_with_extension('foo_bar.blah')
+    >>> stringtools.is_snake_case_file_name_with_extension('foo_bar.blah')
     True
 
 - Added ``iotools.is_underscore_delimited_file_name()`` string predicate.
@@ -173,10 +173,10 @@ Implements 221 public classes and 1029 functions totalling 168,000 lines of code
 
   ::
 
-    >>> stringtools.is_underscore_delimited_lowercase_file_name('foo_bar.py')
+    >>> stringtools.is_snake_case_file_name('foo_bar.py')
     True
 
-    >>> stringtools.is_underscore_delimited_lowercase_file_name('foo_bar')
+    >>> stringtools.is_snake_case_file_name('foo_bar')
     True
 
 
@@ -226,11 +226,11 @@ Implements 221 public classes and 1029 functions totalling 168,000 lines of code
   Functions changed:
 
   * ``stringtools.is_space_delimited_lowercase_string``
-  * ``stringtools.is_underscore_delimited_lowercase_file_name``
-  * ``stringtools.is_lowercamelcase_string``
-  * ``stringtools.is_uppercamelcase_string``
-  * ``stringtools.is_underscore_delimited_lowercase_string``
-  * ``stringtools.is_underscore_delimited_lowercase_file_name_with_extension``
+  * ``stringtools.is_snake_case_file_name``
+  * ``stringtools.is_lower_camel_case_string``
+  * ``stringtools.is_upper_camel_case_string``
+  * ``stringtools.is_snake_case_string``
+  * ``stringtools.is_snake_case_file_name_with_extension``
 
 - Extended ``lilypondfiletools.NonattributedBlock`` with ``is_formatted_when_empty`` read-write property.
   ``lilypondfiletools.ScoreBlock`` no longer formats when empty, by default.

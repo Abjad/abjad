@@ -329,7 +329,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         return result
 
     def make_asset(self, asset_name):
-        assert stringtools.is_underscore_delimited_lowercase_string(asset_name)
+        assert stringtools.is_snake_case_string(asset_name)
         asset_filesystem_path = os.path.join(self._current_storehouse_filesystem_path, asset_name)
         asset_proxy = self._initialize_asset_proxy(asset_filesystem_path)
         asset_proxy.write_stub_to_disk()

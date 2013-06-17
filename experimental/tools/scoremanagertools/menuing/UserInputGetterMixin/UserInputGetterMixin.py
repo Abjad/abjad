@@ -107,7 +107,7 @@ class UserInputGetterMixin(AbjadObject):
         message = 'value for {!r} must be '
         message += 'hyphen-delimited lowercase file name.'
         self.append_something(spaced_attribute_name, message, default=default)
-        self.tests.append(stringtools.is_hyphen_delimited_lowercase_file_name)
+        self.tests.append(stringtools.is_dash_case_file_name)
 
     def append_integer(self, spaced_attribute_name, default=None):
         message = 'value for {!r} must be integer.'
@@ -153,7 +153,7 @@ class UserInputGetterMixin(AbjadObject):
         message += 'uppercamelcase string ending in -Maker.'
         self.append_something(spaced_attribute_name, message, default=default)
         self.tests.append(
-            lambda x: stringtools.is_uppercamelcase_string(x) 
+            lambda x: stringtools.is_upper_camel_case_string(x) 
             and x.endswith('Maker'))
 
     def append_named_chromatic_pitch(self, 
@@ -252,7 +252,7 @@ class UserInputGetterMixin(AbjadObject):
         message += 'underscore-delimited lowercase file name.'
         self.append_something(spaced_attribute_name, message, default=default)
         self.tests.append(
-            stringtools.is_underscore_delimited_lowercase_file_name)
+            stringtools.is_snake_case_file_name)
 
     def append_underscore_delimited_lowercase_file_name_with_extension(self, 
         spaced_attribute_name, default=None):
@@ -260,7 +260,7 @@ class UserInputGetterMixin(AbjadObject):
         message += 'underscore-delimited lowercase file name with extension.'
         self.append_something(spaced_attribute_name, message, default=default)
         self.tests.append(
-            stringtools.is_underscore_delimited_lowercase_file_name_with_extension)
+            stringtools.is_snake_case_file_name_with_extension)
 
     def append_underscore_delimited_lowercase_package_name(self, 
         spaced_attribute_name, default=None):
@@ -269,14 +269,14 @@ class UserInputGetterMixin(AbjadObject):
         message += 'of length at least 3.'
         self.append_something(spaced_attribute_name, message, default=default)
         self.tests.append(
-            predicates.is_underscore_delimited_lowercase_package_name)
+            predicates.is_snake_case_package_name)
 
     def append_underscore_delimited_lowercase_string(self, 
         spaced_attribute_name, default=None):
         message = 'value for {!r} must be '
         message += 'underscore-delimited lowercase string.'
         self.append_something(spaced_attribute_name, message, default=default)
-        self.tests.append(stringtools.is_underscore_delimited_lowercase_string)
+        self.tests.append(stringtools.is_snake_case_string)
 
     def append_yes_no_string(self, 
         spaced_attribute_name, default=None, include_chevron=False):

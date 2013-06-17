@@ -3287,15 +3287,15 @@ Core composition packages
       tools/stringtools/capitalize_string_start
       tools/stringtools/format_input_lines_as_doc_string
       tools/stringtools/format_input_lines_as_regression_test
-      tools/stringtools/is_hyphen_delimited_lowercase_file_name
-      tools/stringtools/is_hyphen_delimited_lowercase_string
-      tools/stringtools/is_lowercamelcase_string
+      tools/stringtools/is_dash_case_file_name
+      tools/stringtools/is_dash_case_string
+      tools/stringtools/is_lower_camel_case_string
+      tools/stringtools/is_snake_case_file_name
+      tools/stringtools/is_snake_case_file_name_with_extension
+      tools/stringtools/is_snake_case_package_name
+      tools/stringtools/is_snake_case_string
       tools/stringtools/is_space_delimited_lowercase_string
-      tools/stringtools/is_underscore_delimited_lowercase_file_name
-      tools/stringtools/is_underscore_delimited_lowercase_file_name_with_extension
-      tools/stringtools/is_underscore_delimited_lowercase_package_name
-      tools/stringtools/is_underscore_delimited_lowercase_string
-      tools/stringtools/is_uppercamelcase_string
+      tools/stringtools/is_upper_camel_case_string
       tools/stringtools/pluralize_string
       tools/stringtools/space_delimited_lowercase_to_uppercamelcase
       tools/stringtools/string_to_accent_free_underscored_delimited_lowercase
@@ -3322,15 +3322,15 @@ Core composition packages
       tools/stringtools/capitalize_string_start
       tools/stringtools/format_input_lines_as_doc_string
       tools/stringtools/format_input_lines_as_regression_test
-      tools/stringtools/is_hyphen_delimited_lowercase_file_name
-      tools/stringtools/is_hyphen_delimited_lowercase_string
-      tools/stringtools/is_lowercamelcase_string
+      tools/stringtools/is_dash_case_file_name
+      tools/stringtools/is_dash_case_string
+      tools/stringtools/is_lower_camel_case_string
+      tools/stringtools/is_snake_case_file_name
+      tools/stringtools/is_snake_case_file_name_with_extension
+      tools/stringtools/is_snake_case_package_name
+      tools/stringtools/is_snake_case_string
       tools/stringtools/is_space_delimited_lowercase_string
-      tools/stringtools/is_underscore_delimited_lowercase_file_name
-      tools/stringtools/is_underscore_delimited_lowercase_file_name_with_extension
-      tools/stringtools/is_underscore_delimited_lowercase_package_name
-      tools/stringtools/is_underscore_delimited_lowercase_string
-      tools/stringtools/is_uppercamelcase_string
+      tools/stringtools/is_upper_camel_case_string
       tools/stringtools/pluralize_string
       tools/stringtools/space_delimited_lowercase_to_uppercamelcase
       tools/stringtools/string_to_accent_free_underscored_delimited_lowercase

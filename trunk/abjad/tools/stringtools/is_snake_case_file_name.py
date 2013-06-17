@@ -1,4 +1,4 @@
-from abjad.tools.stringtools.is_underscore_delimited_lowercase_string import underscore_delimited_lowercase_regex_body
+from abjad.tools.stringtools.is_snake_case_string import underscore_delimited_lowercase_regex_body
 import re
 
 
@@ -10,17 +10,17 @@ underscore_delimited_lowercase_file_name_regex_body = """
 underscore_delimited_lowercase_file_name_regex = re.compile('^%s$' %
     underscore_delimited_lowercase_file_name_regex_body, re.VERBOSE)
 
-def is_underscore_delimited_lowercase_file_name(expr):
+def is_snake_case_file_name(expr):
     r'''.. versionadded:: 2.7
 
     True when `expr` is a string and is underscore-delimited lowercase file name with extension::
 
-        >>> stringtools.is_underscore_delimited_lowercase_file_name('foo_bar')
+        >>> stringtools.is_snake_case_file_name('foo_bar')
         True
 
     False otherwise::
 
-        >>> stringtools.is_underscore_delimited_lowercase_file_name('foo.bar.blah')
+        >>> stringtools.is_snake_case_file_name('foo.bar.blah')
         False
 
     Return boolean.

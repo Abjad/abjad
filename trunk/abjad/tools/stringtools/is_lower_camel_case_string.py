@@ -3,17 +3,17 @@ import re
 
 lowercamelcase_regex = re.compile('^([a-z,0-9]+([A-Z,0-9]+[a-z,0-9]*)*)?$')
 
-def is_lowercamelcase_string(expr):
+def is_lower_camel_case_string(expr):
     r'''.. versionadded:: 2.5
 
     True when `expr` is a string and is lowercamelcase::
 
-        >>> stringtools.is_lowercamelcase_string('fooBar')
+        >>> stringtools.is_lower_camel_case_string('fooBar')
         True
 
     False otherwise::
 
-        >>> stringtools.is_lowercamelcase_string('FooBar')
+        >>> stringtools.is_lower_camel_case_string('FooBar')
         False
 
     Return boolean.
