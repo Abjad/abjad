@@ -19,7 +19,7 @@ class LilyPondContextSettingComponentPlugIn(LilyPondComponentPlugIn):
             except KeyError:
                 raise AttributeError('"%s" object has no attribute: "%s".' % (
                     self.__class__.__name__, name))
-        elif stringtools.underscore_delimited_lowercase_to_uppercamelcase(name) in ly.contexts:
+        elif stringtools.snake_case_to_upper_camel_case(name) in ly.contexts:
             try:
                 return vars(self)['_' + name]
             except KeyError:

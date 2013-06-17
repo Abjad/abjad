@@ -143,7 +143,7 @@ class StylesheetFileWrangler(FileWrangler):
             return
 
         stylesheet_file_name = \
-            stringtools.string_to_accent_free_underscored_delimited_lowercase(
+            stringtools.string_to_accent_free_snake_case(
             stylesheet_file_name)
 
         if not stylesheet_file_name.endswith('.ly'):

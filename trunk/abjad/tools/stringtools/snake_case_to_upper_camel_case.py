@@ -1,10 +1,10 @@
-def underscore_delimited_lowercase_to_uppercamelcase(string):
+def snake_case_to_upper_camel_case(string):
     '''.. versionadded:: 2.0
 
     Change underscore-delimited lowercase `string` to uppercamelcase::
 
         >>> string = 'bass_figure_alignment_positioning'
-        >>> stringtools.underscore_delimited_lowercase_to_uppercamelcase(string)
+        >>> stringtools.snake_case_to_upper_camel_case(string)
         'BassFigureAlignmentPositioning'
 
     Return string.

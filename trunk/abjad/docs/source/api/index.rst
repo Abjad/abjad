@@ -3297,14 +3297,14 @@ Core composition packages
       tools/stringtools/is_space_delimited_lowercase_string
       tools/stringtools/is_upper_camel_case_string
       tools/stringtools/pluralize_string
-      tools/stringtools/space_delimited_lowercase_to_uppercamelcase
-      tools/stringtools/string_to_accent_free_underscored_delimited_lowercase
+      tools/stringtools/snake_case_to_lower_camel_case
+      tools/stringtools/snake_case_to_upper_camel_case
+      tools/stringtools/space_delimited_lowercase_to_upper_camel_case
+      tools/stringtools/string_to_accent_free_snake_case
       tools/stringtools/string_to_space_delimited_lowercase
       tools/stringtools/strip_diacritics_from_binary_string
-      tools/stringtools/underscore_delimited_lowercase_to_lowercamelcase
-      tools/stringtools/underscore_delimited_lowercase_to_uppercamelcase
-      tools/stringtools/uppercamelcase_to_space_delimited_lowercase
-      tools/stringtools/uppercamelcase_to_underscore_delimited_lowercase
+      tools/stringtools/upper_camel_case_to_snake_case
+      tools/stringtools/upper_camel_case_to_space_delimited_lowercase
 
 .. only:: latex
 
@@ -3332,14 +3332,14 @@ Core composition packages
       tools/stringtools/is_space_delimited_lowercase_string
       tools/stringtools/is_upper_camel_case_string
       tools/stringtools/pluralize_string
-      tools/stringtools/space_delimited_lowercase_to_uppercamelcase
-      tools/stringtools/string_to_accent_free_underscored_delimited_lowercase
+      tools/stringtools/snake_case_to_lower_camel_case
+      tools/stringtools/snake_case_to_upper_camel_case
+      tools/stringtools/space_delimited_lowercase_to_upper_camel_case
+      tools/stringtools/string_to_accent_free_snake_case
       tools/stringtools/string_to_space_delimited_lowercase
       tools/stringtools/strip_diacritics_from_binary_string
-      tools/stringtools/underscore_delimited_lowercase_to_lowercamelcase
-      tools/stringtools/underscore_delimited_lowercase_to_uppercamelcase
-      tools/stringtools/uppercamelcase_to_space_delimited_lowercase
-      tools/stringtools/uppercamelcase_to_underscore_delimited_lowercase
+      tools/stringtools/upper_camel_case_to_snake_case
+      tools/stringtools/upper_camel_case_to_space_delimited_lowercase
 
 :py:mod:`tempotools <abjad.tools.tempotools>`
 =============================================

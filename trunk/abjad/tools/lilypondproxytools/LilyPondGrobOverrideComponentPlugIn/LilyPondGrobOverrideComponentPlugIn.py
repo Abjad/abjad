@@ -21,7 +21,7 @@ class LilyPondGrobOverrideComponentPlugIn(LilyPondComponentPlugIn):
                 raise AttributeError('"%s" object has no attribute: "%s".' % (
                     self.__class__.__name__, name))
         else:
-            camel_name = stringtools.underscore_delimited_lowercase_to_uppercamelcase(name)
+            camel_name = stringtools.snake_case_to_upper_camel_case(name)
             if camel_name in ly.contexts:
                 try:
                     return vars(self)['_' + name]

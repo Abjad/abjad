@@ -154,7 +154,7 @@ class MaterialPackageWrangler(PackageWrangler):
             if self._session.backtrack():
                 return
             material_package_name = \
-                stringtools.string_to_accent_free_underscored_delimited_lowercase(
+                stringtools.string_to_accent_free_snake_case(
                 package_name)
             material_package_path = '.'.join([
                 self._current_storehouse_packagesystem_path, 

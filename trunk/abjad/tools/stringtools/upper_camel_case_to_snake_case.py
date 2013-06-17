@@ -1,4 +1,4 @@
-def uppercamelcase_to_underscore_delimited_lowercase(string):
+def upper_camel_case_to_snake_case(string):
     r'''.. versionadded:: 2.6
 
     Change uppercamelcase `string` to underscore-delimited lowercase::
@@ -7,7 +7,7 @@ def uppercamelcase_to_underscore_delimited_lowercase(string):
 
     ::
 
-        >>> stringtools.uppercamelcase_to_underscore_delimited_lowercase(string)
+        >>> stringtools.upper_camel_case_to_snake_case(string)
         'key_signature_mark'
 
     Return string.

@@ -15,7 +15,7 @@ class LilyPondGrobProxyContextWrapper(object):
         try:
             return vars(self)[name]
         except KeyError:
-            if stringtools.underscore_delimited_lowercase_to_uppercamelcase(name) in ly.grob_interfaces:
+            if stringtools.snake_case_to_upper_camel_case(name) in ly.grob_interfaces:
                 vars(self)[name] = LilyPondGrobProxy()
                 return vars(self)[name]
             else:

@@ -36,6 +36,6 @@ def string_to_space_delimited_lowercase(string):
     if not string:
         return string
     elif string[0].isupper():
-        return stringtools.uppercamelcase_to_space_delimited_lowercase(string)
+        return stringtools.upper_camel_case_to_space_delimited_lowercase(string)
     else:
         return string.replace('_', ' ')

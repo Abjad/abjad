@@ -153,4 +153,4 @@ class LilyPondCommandMark(Mark):
         if command.startswith('#'):
             return command
         else:
-            return '\\' + stringtools.underscore_delimited_lowercase_to_lowercamelcase(command)
+            return '\\' + stringtools.snake_case_to_lower_camel_case(command)

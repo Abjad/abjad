@@ -171,9 +171,9 @@ Implements 197 public classes and 941 public functions totalling 153,000 lines o
     pitchtools.is_smbolic_accidental_string()
     pitchtools.is_pitch_class_octave_number_string()
 
-* Added ``stringtools.string_to_accent_free_underscored_delimited_lowercase()``::
+* Added ``stringtools.string_to_accent_free_snake_case()``::
 
-    >>> stringtools.string_to_accent_free_underscored_delimited_lowercase('Déja vu')
+    >>> stringtools.string_to_accent_free_snake_case('Déja vu')
     'deja_vu'
 
 * Added ``stringtools.strip_diacritics_from_binary_string()``::
@@ -190,9 +190,9 @@ Implements 197 public classes and 941 public functions totalling 153,000 lines o
     iotools.is_underscore_delimited_lowercamelcase_string()
     stringtools.is_lower_camel_case_string()
     stringtools.is_upper_camel_case_string()
-    stringtools.space_delimited_lowercase_to_uppercamelcase()
-    stringtools.uppercamelcase_to_space_delimited_lowercase()
-    stringtools.uppercamelcase_to_underscore_delimited_lowercase()
+    stringtools.space_delimited_lowercase_to_upper_camel_case()
+    stringtools.upper_camel_case_to_space_delimited_lowercase()
+    stringtools.upper_camel_case_to_snake_case()
 
 * Added new functions to ``mathtools``::
 

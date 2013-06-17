@@ -392,13 +392,13 @@ Added a new ``stringtools`` package.
     stringtools.is_snake_case_package_name()
     stringtools.is_snake_case_string()
     stringtools.is_upper_camel_case_string()
-    stringtools.space_delimited_lowercase_to_uppercamelcase()
-    stringtools.string_to_accent_free_underscored_delimited_lowercase()
+    stringtools.space_delimited_lowercase_to_upper_camel_case()
+    stringtools.string_to_accent_free_snake_case()
     stringtools.strip_diacritics_from_binary_string()
-    stringtools.underscore_delimited_lowercase_to_lowercamelcase()
-    stringtools.underscore_delimited_lowercase_to_uppercamelcase()
-    stringtools.uppercamelcase_to_space_delimited_lowercase()
-    stringtools.uppercamelcase_to_underscore_delimited_lowercase()
+    stringtools.snake_case_to_lower_camel_case()
+    stringtools.snake_case_to_upper_camel_case()
+    stringtools.upper_camel_case_to_space_delimited_lowercase()
+    stringtools.upper_camel_case_to_snake_case()
 
   The package also contains these new functions::
 

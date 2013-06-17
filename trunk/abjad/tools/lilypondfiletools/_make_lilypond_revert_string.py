@@ -11,10 +11,10 @@ def _make_lilypond_revert_string(grob_name, grob_attribute, context_name=None):
     from _format_lilypond_value import _format_lilypond_value
 
     # parse input strings
-    grob_name = stringtools.underscore_delimited_lowercase_to_uppercamelcase(grob_name)
+    grob_name = stringtools.snake_case_to_upper_camel_case(grob_name)
     grob_attribute = _format_lilypond_attribute(grob_attribute)
     if context_name is not None:
-        context_prefix = stringtools.underscore_delimited_lowercase_to_uppercamelcase(context_name)
+        context_prefix = stringtools.snake_case_to_upper_camel_case(context_name)
         context_prefix += '.'
     else:
         context_prefix = ''

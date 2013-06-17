@@ -141,5 +141,5 @@ class LilyPondComment(Mark):
         Return string.
         '''
         from abjad.tools import stringtools
-        command = stringtools.underscore_delimited_lowercase_to_lowercamelcase(self.contents_string)
+        command = stringtools.snake_case_to_lower_camel_case(self.contents_string)
         return r'%% %s' % command
