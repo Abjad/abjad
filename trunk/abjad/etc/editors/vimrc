@@ -78,11 +78,6 @@ noremap <F6> <Esc>:'a,'bs/^/#/<cr>
 vnoremap <F4> :s/#//<cr>
 vnoremap <F6> :s/^/#/<cr>
 
-" copy & paste
-vmap <C-y> y:call system("xclip -i -selection clipboard", getreg("\""))<cr>:call system("xclip -i", getreg("\""))<cr>
-nmap <C-v> :call setreg("\"",system("xclip -o -selection clipboard"))<cr>p
-imap <C-v> <Esc><C-v>a
-
 " cursor vertical center
 :nnoremap <leader>zz :let &scrolloff=999-&scrolloff<cr>
 
