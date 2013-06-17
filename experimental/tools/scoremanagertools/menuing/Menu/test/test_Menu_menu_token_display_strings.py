@@ -1,7 +1,7 @@
 from experimental import *
 
 
-def test_Menu_menu_entry_display_strings_01():
+def test_Menu_menu_token_display_strings_01():
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
@@ -16,5 +16,5 @@ def test_Menu_menu_entry_display_strings_01():
     section_2.append(('delete something', 'rm'))
     section_2.append(('modify something', 'mod'))
     assert menu.menu_entry_display_strings[-6:] == \
-        section_1.menu_entry_display_strings + \
-        section_2.menu_entry_display_strings
+        section_1._menu_entry_display_strings + \
+        section_2._menu_entry_display_strings

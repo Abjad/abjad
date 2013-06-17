@@ -81,8 +81,8 @@ class Menu(ScoreManagerObject):
     def first_nonhidden_return_value_in_menu(self):
         for menu_section in self.menu_sections:
             if not menu_section.is_hidden:
-                if menu_section.menu_entry_return_values:
-                    return menu_section.menu_entry_return_values[0]
+                if menu_section._menu_entry_return_values:
+                    return menu_section._menu_entry_return_values[0]
 
     @property
     def has_default_valued_section(self):
@@ -129,28 +129,28 @@ class Menu(ScoreManagerObject):
             menu_lines.append('')
         return menu_lines
 
-    # TODO: remove?
+    # TODO: probably remove
     @property
     def menu_entry_display_strings(self):
         result = []
         for menu_section in self.menu_sections:
-            result.extend(menu_section.menu_entry_display_strings)
+            result.extend(menu_section._menu_entry_display_strings)
         return result
 
-    # TODO: remove?
+    # TODO: probably remove
     @property
     def menu_entry_keys(self):
         result = []
         for menu_section in self.menu_sections:
-            result.extend(menu_section.menu_entry_keys)
+            result.extend(menu_section._menu_entry_keys)
         return result
 
-    # TODO: remove?
+    # TODO: make private
     @property
     def menu_entry_return_values(self):
         result = []
         for menu_section in self.menu_sections:
-            result.extend(menu_section.menu_entry_return_values)
+            result.extend(menu_section._menu_entry_return_values)
         return result
 
     @property
@@ -316,7 +316,7 @@ class Menu(ScoreManagerObject):
         entry_indices = [entry_number - 1 for entry_number in entry_numbers]
         result = []
         for i in entry_indices:
-            entry = self.ranged_section.menu_entry_return_values[i]
+            entry = self.ranged_section._menu_entry_return_values[i]
             result.append(entry)
         return result
 
@@ -424,8 +424,8 @@ class Menu(ScoreManagerObject):
 
     def return_value_to_location_pair(self, return_value):
         for i, menu_section in enumerate(self.menu_sections):
-            if return_value in menu_section.menu_entry_return_values:
-                j = menu_section.menu_entry_return_values.index(return_value)
+            if return_value in menu_section._menu_entry_return_values:
+                j = menu_section._menu_entry_return_values.index(return_value)
                 return i, j
 
     def return_value_to_next_return_value_in_section(self, return_value):
@@ -433,7 +433,7 @@ class Menu(ScoreManagerObject):
             return_value)
         menu_section = self.menu_sections[section_index]
         entry_index = (entry_index + 1) % len(menu_section)
-        return menu_section.menu_entry_return_values[entry_index]
+        return menu_section._menu_entry_return_values[entry_index]
 
     # TODO: apply default indicators at display time 
     #       so this can be completely removed

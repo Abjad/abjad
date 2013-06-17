@@ -1,7 +1,7 @@
 from experimental import *
 
 
-def test_MenuSection_menu_entry_keys_01():
+def test_MenuSection__menu_entry_keys_01():
     '''Menu entry keys equal none when menu entry menu_entries are strings.
     True whether menu_section is numbered or not.
     '''
@@ -14,7 +14,7 @@ def test_MenuSection_menu_entry_keys_01():
     menu_section.append('cherry')
     menu_section.title = 'section'
     assert not menu_section.is_numbered
-    assert menu_section.menu_entry_keys == [None, None, None]
+    assert menu_section._menu_entry_keys == [None, None, None]
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
@@ -24,10 +24,10 @@ def test_MenuSection_menu_entry_keys_01():
     menu_section.append('cherry')
     menu_section.title = 'section'
     assert menu_section.is_numbered
-    assert menu_section.menu_entry_keys == [None, None, None]
+    assert menu_section._menu_entry_keys == [None, None, None]
 
 
-def test_MenuSection_menu_entry_keys_02():
+def test_MenuSection__menu_entry_keys_02():
     '''Menu entry keys equal index 0 of menu entry 
     menu_entries when menu entry menu_entries are tuples.
     True whether menu_section is numbered or not.
@@ -41,9 +41,9 @@ def test_MenuSection_menu_entry_keys_02():
     menu_section.append(('modify something', 'mod'))
     menu_section.title = 'menu_section title'
     assert not menu_section.is_numbered
-    assert menu_section.menu_entry_keys == \
+    assert menu_section._menu_entry_keys == \
         ['add', 'rm', 'mod']
-    assert menu_section.menu_entry_keys == \
+    assert menu_section._menu_entry_keys == \
         [x.key for x in menu_section.menu_entries]
 
     menu = scoremanagertools.menuing.Menu()
@@ -54,7 +54,7 @@ def test_MenuSection_menu_entry_keys_02():
     menu_section.append(('modify something', 'mod'))
     menu_section.title = 'menu_section title'
     assert menu_section.is_numbered
-    assert menu_section.menu_entry_keys == \
+    assert menu_section._menu_entry_keys == \
         ['add', 'rm', 'mod']
-    assert menu_section.menu_entry_keys == \
+    assert menu_section._menu_entry_keys == \
         [x.key for x in menu_section.menu_entries]

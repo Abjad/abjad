@@ -7,6 +7,22 @@ from experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerOb
 class MenuSection(ScoreManagerObject):
     '''Menu section.
 
+        >>> score_manager = scoremanagertools.scoremanager.ScoreManager()
+        >>> menu = score_manager._make_svn_menu()
+        >>> menu
+        <Menu (2)>
+
+        >>> menu_section = menu.menu_sections[1]
+        >>> menu_section
+        <MenuSection (4)>
+
+        >>> for menu_entry in menu_section.menu_entries:
+        ...     menu_entry
+        <MenuEntry: 'svn add scores'>
+        <MenuEntry: 'svn commit scores'>
+        <MenuEntry: 'svn status scores'>
+        <MenuEntry: 'svn update scores'>
+
     Return menu section.
     '''
 
@@ -24,12 +40,12 @@ class MenuSection(ScoreManagerObject):
     def __init__(self,
         session=None,
         where=None,
-        title=None,
+        menu_entries=None,
+        return_value_attribute='display_string',
         is_numbered=False,
         is_ranged=False,
         is_hidden=False,
-        menu_entries=None,
-        return_value_attribute='display_string',
+        title=None,
         ):
         ScoreManagerObject.__init__(self, session=session)
         self._is_hidden = is_hidden
@@ -51,6 +67,20 @@ class MenuSection(ScoreManagerObject):
 
     def __repr__(self):
         return '<{} ({})>'.format(self._class_name, len(self))
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _menu_entry_display_strings(self):
+        return [menu_entry.display_string for menu_entry in self.menu_entries]
+
+    @property
+    def _menu_entry_keys(self):
+        return [menu_entry.key for menu_entry in self.menu_entries]
+
+    @property
+    def _menu_entry_return_values(self):
+        return [menu_entry.return_value for menu_entry in self.menu_entries]
 
     ### PRIVATE METHODS ###
 
@@ -80,8 +110,8 @@ class MenuSection(ScoreManagerObject):
 
     @property
     def default_value(self):
-        assert self.has_default_value
-        return self.menu_entry_return_values[self.default_index]
+        default_menu_entry = self.menu_entries[self.default_index]
+        return default_menu_entry.return_value
 
     @property
     def has_default_value(self):
@@ -113,18 +143,6 @@ class MenuSection(ScoreManagerObject):
             if not self.menu_entries:
                 self._is_ranged = expr
         return property(**locals())
-
-    @property
-    def menu_entry_display_strings(self):
-        return [menu_entry.display_string for menu_entry in self.menu_entries]
-
-    @property
-    def menu_entry_keys(self):
-        return [menu_entry.key for menu_entry in self.menu_entries]
-
-    @property
-    def menu_entry_return_values(self):
-        return [menu_entry.return_value for menu_entry in self.menu_entries]
 
     @apply
     def menu_entries():

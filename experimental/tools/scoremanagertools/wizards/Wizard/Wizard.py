@@ -9,6 +9,7 @@ class Wizard(ScoreManagerObject):
     ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
+
     target_editor_class_name_suffix = 'Editor'
 
     ### INITIALIZER ###

@@ -15,15 +15,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.has_default_value
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.menu_entry_display_strings
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.menu_entry_keys
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.menu_entry_return_values
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.storage_format
    :noindex:
 
