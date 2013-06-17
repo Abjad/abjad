@@ -185,7 +185,7 @@ class Menu(ScoreManagerObject):
     def section_lines(self):
         menu_lines = []
         for menu_section in self.menu_sections:
-            section_menu_lines = menu_section.make_menu_lines()
+            section_menu_lines = menu_section._make_menu_lines()
             if not menu_section.is_hidden:
                 if not self._session.nonnumbered_menu_sections_are_hidden or \
                     menu_section.is_numbered:

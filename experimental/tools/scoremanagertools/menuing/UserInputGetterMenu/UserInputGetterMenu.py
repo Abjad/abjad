@@ -135,7 +135,7 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
             total_prompts = len(self.prompts)
             prompt = '({}/{}) {}'.format(prompt_number, total_prompts, prompt)
         if self.indent_level:
-            return '{} {}'.format(self.make_tab(self.indent_level), prompt)
+            return '{} {}'.format(self._make_tab(self.indent_level), prompt)
         else:
             return prompt
 

@@ -102,14 +102,75 @@ class MenuSection(ScoreManagerObject):
 
     ### PRIVATE METHODS ###
 
+    def _make_menu_lines(self):
+        menu_lines = []
+        menu_lines.extend(self._make_title_lines())
+        for menu_entry in self.menu_entries:
+            menu_line = self._make_tab(self.indent_level) + ' '
+            display_string = menu_entry.display_string
+            key = menu_entry.key
+            existing_value = menu_entry.existing_value
+            if self.is_numbered:
+                menu_line += '{}: '.format(menu_entry.number)
+            if key:
+                if self.show_existing_values and existing_value:
+                    if existing_value in (None, 'None'):
+                        menu_line += '{} ({}):'.format(display_string, key)
+                    else:
+                        menu_line += '{} ({}): {}'.format(
+                            display_string, key, existing_value)
+                else:
+                    menu_line += '{} ({})'.format(display_string, key)
+            else:
+                if self.show_existing_values and existing_value:
+                    if existing_value in (None, 'None'):
+                        menu_line += '{}:'.format(display_string)
+                    else:
+                        menu_line += '{}: {}'.format(
+                            display_string, existing_value)
+                else:
+                    menu_line += '{}'.format(display_string)
+            menu_lines.append(menu_line)
+        if self.menu_entries:
+            menu_lines.append('')
+        return menu_lines
+
     def _make_tab(self, n):
         return 4 * n * ' '
+
+    def _make_title_lines(self):
+        menu_lines = []
+        if isinstance(self.title, str):
+            title_lines = [stringtools.capitalize_string_start(self.title)]
+        elif isinstance(self.title, list):
+            title_lines = self.title
+        else:
+            title_lines = []
+        for title_line in title_lines:
+            if self.indent_level:
+                line = '{} {}'.format(
+                    self._make_tab(self.indent_level), title_line)
+                menu_lines.append(line)
+            else:
+                menu_lines.append(title_line)
+        if menu_lines:
+            menu_lines.append('')
+        return menu_lines
 
     ### PUBLIC PROPERTIES ###
 
     @apply
     def default_index():
         def fget(self):
+            '''Menu section default index:
+
+            ::
+
+                >>> menu_section.default_index is None
+                True
+
+            Return nonnegative integer or none.
+            '''
             return self._default_index
         def fset(self, default_index):
             assert isinstance(default_index, (int, type(None)))
@@ -129,6 +190,15 @@ class MenuSection(ScoreManagerObject):
     @apply
     def is_hidden():
         def fget(self):
+            '''True when menu section is hidden. Otherwise false:
+
+            ::
+
+                >>> menu_section.is_hidden
+                False
+
+            Return boolean.
+            '''
             return self._is_hidden
         def fset(self, expr):
             if not self.menu_entries:
@@ -138,6 +208,15 @@ class MenuSection(ScoreManagerObject):
     @apply
     def is_numbered():
         def fget(self):
+            '''True when menu section is numbered. Otherwise false:
+
+            ::
+
+                >>> menu_section.is_numbered
+                False
+
+            Return boolean.
+            '''
             return self._is_numbered
         def fset(self, expr):
             if not self.menu_entries:
@@ -147,6 +226,15 @@ class MenuSection(ScoreManagerObject):
     @apply
     def is_ranged():
         def fget(self):
+            '''True when menu section is ranged. Otherwise false:
+
+            ::
+
+                >>> menu_section.is_ranged
+                False
+
+            Return boolean.
+            '''
             return self._is_ranged
         def fset(self, expr):
             if not self.menu_entries:
@@ -156,6 +244,19 @@ class MenuSection(ScoreManagerObject):
     @apply
     def menu_entries():
         def fget(self):
+            '''Menu section menu entries:
+
+            ::
+
+                >>> for menu_entry in menu_section.menu_entries:
+                ...     menu_entry
+                <MenuEntry: 'svn add scores'>
+                <MenuEntry: 'svn commit scores'>
+                <MenuEntry: 'svn status scores'>
+                <MenuEntry: 'svn update scores'>
+
+            Return list.
+            '''
             return self._tokens
         def fset(self, menu_entries):
             if menu_entries is None:
@@ -171,15 +272,61 @@ class MenuSection(ScoreManagerObject):
     @apply
     def return_value_attribute():
         def fget(self):
+            '''Menu section return value attribute:
+
+            ::
+
+                >>> menu_section.return_value_attribute
+                'key'
+
+            Acceptable values:
+
+            ::
+
+                'display_string' 
+                'key' 
+                'number' 
+                'prepopulated'
+
+            Return string.
+            '''
             return self._return_value_attribute
         def fset(self, expr):
             if not self.menu_entries:
                 self._return_value_attribute = expr
         return property(**locals())
     
+    @property
+    def storage_format(self):
+        '''Menu section storage format:
+
+        ::
+
+            >>> z(menu_section)
+            menuing.MenuSection(
+                menu_entries=[<MenuEntry: 'svn add scores'>, <MenuEntry: 'svn commit scores'>, <MenuEntry: 'svn status scores'>, <MenuEntry: 'svn update scores'>],
+                return_value_attribute='key',
+                is_numbered=False,
+                is_ranged=False,
+                is_hidden=False
+                )
+
+        Return string.
+        '''
+        return super(MenuSection, self).storage_format
+
     @apply
     def title():
         def fget(self):
+            '''Menu section title:
+
+            ::
+
+                >>> menu_section.title is None
+                True
+
+            Return string or none.
+            '''
             return self._title
         def fset(self, title):
             assert isinstance(title, (str, list, type(None)))
@@ -233,55 +380,3 @@ class MenuSection(ScoreManagerObject):
             if menu_entry.matches(argument_string):
                 menu_entry_number = menu_entry_index + 1
                 return menu_entry_number
-
-    def make_menu_lines(self):
-        menu_lines = []
-        menu_lines.extend(self.make_title_lines())
-        for menu_entry in self.menu_entries:
-            menu_line = self._make_tab(self.indent_level) + ' '
-            display_string = menu_entry.display_string
-            key = menu_entry.key
-            existing_value = menu_entry.existing_value
-            if self.is_numbered:
-                menu_line += '{}: '.format(menu_entry.number)
-            if key:
-                if self.show_existing_values and existing_value:
-                    if existing_value in (None, 'None'):
-                        menu_line += '{} ({}):'.format(display_string, key)
-                    else:
-                        menu_line += '{} ({}): {}'.format(
-                            display_string, key, existing_value)
-                else:
-                    menu_line += '{} ({})'.format(display_string, key)
-            else:
-                if self.show_existing_values and existing_value:
-                    if existing_value in (None, 'None'):
-                        menu_line += '{}:'.format(display_string)
-                    else:
-                        menu_line += '{}: {}'.format(
-                            display_string, existing_value)
-                else:
-                    menu_line += '{}'.format(display_string)
-            menu_lines.append(menu_line)
-        if self.menu_entries:
-            menu_lines.append('')
-        return menu_lines
-
-    def make_title_lines(self):
-        menu_lines = []
-        if isinstance(self.title, str):
-            title_lines = [stringtools.capitalize_string_start(self.title)]
-        elif isinstance(self.title, list):
-            title_lines = self.title
-        else:
-            title_lines = []
-        for title_line in title_lines:
-            if self.indent_level:
-                line = '{} {}'.format(
-                    self._make_tab(self.indent_level), title_line)
-                menu_lines.append(line)
-            else:
-                menu_lines.append(title_line)
-        if menu_lines:
-            menu_lines.append('')
-        return menu_lines
