@@ -38,11 +38,10 @@ class MenuEntry(AbjadObject):
         explicit_return_value=None,
         ):
         self._menu_section = menu_section
-        self._key = key
         self._display_string = display_string
+        self._key = key
         self._prepopulated_value = prepopulated_value
         self._explicit_return_value = explicit_return_value
-        self._initialize_matching()
 
     ### SPECIAL METHODS ###
 
@@ -52,19 +51,6 @@ class MenuEntry(AbjadObject):
         Return string.
         '''
         return '<{}: {!r}>'.format(self._class_name, self.display_string)
-
-    ### PRIVATE METHODS ###
- 
-    def _initialize_matching(self):
-        matches = []
-        if self.key is not None:
-            matches.append(self.key)
-        self._matches = tuple(matches)
-        normalized_display_string = \
-            stringtools.strip_diacritics_from_binary_string(
-            self.display_string)
-        normalized_display_string = normalized_display_string.lower()
-        self._normalized_display_string = normalized_display_string
 
     ### PUBLIC PROPERTIES ###
 
@@ -205,12 +191,15 @@ class MenuEntry(AbjadObject):
 
         Return boolean.
         '''
-        if self.menu_section.is_numbered:
-            if user_input == str(self.number):
-                return True
-        if user_input in self._matches:
+        if self.key is not None and user_input == self.key:
+            return True
+        if self.menu_section.is_numbered and user_input == str(self.number):
             return True
         if 3 <= len(user_input):
-            if self._normalized_display_string.startswith(user_input):
+            normalized_display_string = \
+                stringtools.strip_diacritics_from_binary_string(
+                self.display_string)
+            normalized_display_string = normalized_display_string.lower()
+            if normalized_display_string.startswith(user_input):
                 return True
         return False 
