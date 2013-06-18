@@ -46,7 +46,7 @@ class MenuEntry(AbjadObject):
         assert return_value_attribute in self.return_value_attributes
         if isinstance(expr, str):
             expr = (expr, )
-        assert isinstance(expr, (tuple, type(self))), repr(expr)
+        assert isinstance(expr, (tuple)), repr(expr)
         self._number = number
         self._return_value_attribute = return_value_attribute
         if isinstance(expr, type(self)):
@@ -77,6 +77,8 @@ class MenuEntry(AbjadObject):
         else:
             raise ValueError(expr)
         assert display_string
+        if key is not None:
+            assert ' ' not in key
         self._key = key
         self._display_string = display_string
         self._existing_value = existing_value
