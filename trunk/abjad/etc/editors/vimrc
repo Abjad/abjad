@@ -4,7 +4,7 @@
 autocmd! bufwritepost .vimrc source %
 call pathogen#infect()
 filetype off
-filetype plugin indent on
+filetype plugin on
 syntax on
 let mapleader = ","
 
