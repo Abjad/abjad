@@ -25,6 +25,7 @@ autocmd BufWinEnter *.py silent set foldnestmax=2
 set autoindent
 set backspace=2
 set background=light
+set autoread
 set clipboard=unnamed
 set colorcolumn=80
 set completeopt=menuone,preview
@@ -33,15 +34,14 @@ set expandtab
 set fileencodings=utf-8,latin1
 set helpheight=80
 set history=700
+set ignorecase
 set incsearch
-set mouse=a
 set nobackup
 set noswapfile
 set nowrap
 set nowritebackup
 set paste
 set pastetoggle=<F2>
-set ruler
 set shiftround
 set shiftwidth=4
 set showcmd
@@ -53,7 +53,7 @@ set scrolloff=7
 set tabstop=4
 set tags=./tags
 set textwidth=79
-set title
+set notitle
 set undolevels=700
 set wildignore+=*.pyc
 set wildignore+=*/coverage/*
@@ -76,11 +76,6 @@ noremap <F6> <Esc>:'a,'bs/^/#/<cr>
 vnoremap <F4> :s/#//<cr>
 vnoremap <F6> :s/^/#/<cr>
 
-" copy & paste
-vmap <C-y> y:call system("xclip -i -selection clipboard", getreg("\""))<cr>:call system("xclip -i", getreg("\""))<cr>
-nmap <C-v> :call setreg("\"",system("xclip -o -selection clipboard"))<cr>p
-imap <C-v> <Esc><C-v>a
-
 " cursor vertical center
 :nnoremap <leader>zz :let &scrolloff=999-&scrolloff<cr>
 
@@ -100,10 +95,6 @@ noremap <leader>ab :'a,'bsort<cr>
 map <leader>v :source ~/.vimrc<cr>
 map <leader>vv :edit ~/.vimrc<cr>
 
-" tab navigation 
-map <leader>n <esc>:tabprevious<cr>
-map <leader>m <esc>:tabnext<cr>
-
 " window navigation 
 map <c-j> <c-w>j
 map <c-k> <c-w>k
@@ -121,9 +112,9 @@ noremap <leader>wq :wq<cr>
 
 " ctrlp (https://github.com/kien/ctrlp.vim)
 let g:ctrlp_by_filename = 1
-let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_clear_cache_on_exit = 1
 let g:ctrlp_custom_ignore = '__init__.py'
-let g:ctrlp_lazy_update = 1
+let g:ctrlp_lazy_update = 2
 let g:ctrlp_match_window_bottom = 0
 let g:ctrlp_match_window_reversed = 0
 let g:ctrlp_max_height = 30
@@ -131,6 +122,7 @@ map <leader>jj :CtrlP $ABJADTRUNK/abjad<cr>
 map <leader>jx :CtrlP $ABJADEXPERIMENTAL<cr>
 map <leader>jt :CtrlP $ABJADTRUNK<cr>
 map <leader>sm :CtrlP $ABJADEXPERIMENTAL/tools/scoremanagertools<cr>
+map <leader>nj :CtrlP $ABJADEXPERIMENTAL/tools/newabjadbooktools<cr>
 
 " jedi-vim (https://github.com/davidhalter/jedi-vim)
 let g:jedi#popup_on_dot = 0
@@ -150,19 +142,19 @@ call Pl#Theme#RemoveSegment('filetype')
 " 5. other
 " ========
 
-" omnipopup (http://stackoverflow.com/a/2170800/70778)
-function! OmniPopup(action)
-    if pumvisible()
-        if a:action == 'j'
-            return "\<C-N>"
-        elseif a:action == 'k'
-            return "\<C-P>"
-        endif
-    endif
-    return a:action
-endfunction
-inoremap <silent><C-j> <C-R>=OmniPopup('j')<cr>
-inoremap <silent><C-k> <C-R>=OmniPopup('k')<cr>
+"" omnipopup (http://stackoverflow.com/a/2170800/70778)
+"function! OmniPopup(action)
+"    if pumvisible()
+"        if a:action == 'j'
+"            return "\<C-N>"
+"        elseif a:action == 'k'
+"            return "\<C-P>"
+"        endif
+"    endif
+"    return a:action
+"endfunction
+"inoremap <silent><C-j> <C-R>=OmniPopup('j')<cr>
+"inoremap <silent><C-k> <C-R>=OmniPopup('k')<cr>
 
 " show tab number (adapted from http://stackoverflow.com/q/5927952)
 if exists("+showtabline")
@@ -198,7 +190,7 @@ if exists("+showtabline")
     highlight TabLine term=bold cterm=bold ctermfg=16 ctermbg=145
     highlight TabWinNum term=bold cterm=bold ctermfg=90 ctermbg=145
     highlight TabNum term=bold cterm=bold ctermfg=16 ctermbg=145
-    highlight TabLineFill term=bold cterm=bold ctermbg=Grey
+    highlight TabLineFill term=bold cterm=bold ctermbg=Black
 endif
 
 " show number of lines in fold
@@ -212,3 +204,4 @@ function! MinimalFoldText()
     return "+" . v:folddashes . foldlinecountstring
 endfunction
 set foldtext=MinimalFoldText()
+highlight Folded term=standout ctermfg=Grey ctermbg=White guifg=DarkGrey guibg=LightGrey
