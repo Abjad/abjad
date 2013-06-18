@@ -39,60 +39,36 @@ class MenuEntry(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, expr, 
+    def __init__(self, 
+        display_string,
+        key=None,
+        existing_value=None,
+        prepopulated_return_value=None,
         number=None, 
         return_value_attribute=None,
         ):
         assert return_value_attribute in self.return_value_attributes
-        if isinstance(expr, str):
-            expr = (expr, )
-        assert isinstance(expr, (tuple)), repr(expr)
         self._number = number
         self._return_value_attribute = return_value_attribute
-        if isinstance(expr, type(self)):
-            display_string = expr.display_string
-            key = expr.key
-            existing_value = expr.existing_value
-            prepopulated_return_value = expr.prepopulated_return_value
-        elif len(expr) == 1:
-            display_string = expr[0]
-            key = None
-            existing_value = None
-            prepopulated_return_value = None
-        elif len(expr) == 2:
-            display_string = expr[0]
-            key = expr[1]
-            existing_value = None
-            prepopulated_return_value = None
-        elif len(expr) == 3:
-            display_string = expr[0]
-            key = expr[1]
-            existing_value = expr[2]
-            prepopulated_return_value = None
-        elif len(expr) == 4:
-            display_string = expr[0]
-            key = expr[1]
-            existing_value = expr[2]
-            prepopulated_return_value = expr[3]
-        else:
-            raise ValueError(expr)
-        assert display_string
-        if key is not None:
-            assert ' ' not in key
         self._key = key
         self._display_string = display_string
         self._existing_value = existing_value
         self._prepopulated_return_value = prepopulated_return_value
-        if self.return_value_attribute == 'number':
-            return_value = str(self.number)
-        elif self.return_value_attribute == 'display_string':
-            return_value = self.display_string
-        elif self.return_value_attribute == 'key':
-            return_value = self.key
-        elif self.return_value_attribute == 'prepopulated':
-            return_value = self.prepopulated_return_value
-        assert return_value
-        self._return_value = return_value
+        self._initialize_return_value()
+        self._initialize_matching()
+
+    ### SPECIAL METHODS ###
+
+    def __repr__(self):
+        '''Menu entry interpreter representation.
+
+        Return string.
+        '''
+        return '<{}: {!r}>'.format(self._class_name, self.display_string)
+
+    ### PRIVATE METHODS ###
+ 
+    def _initialize_matching(self):
         matches = []
         if self.number:
             matches.append(str(self.number))
@@ -104,16 +80,18 @@ class MenuEntry(AbjadObject):
             self.display_string)
         normalized_display_string = normalized_display_string.lower()
         self._normalized_display_string = normalized_display_string
-        self._expr = expr
 
-    ### SPECIAL METHODS ###
-
-    def __repr__(self):
-        '''Menu entry interpreter representation.
-
-        Return string.
-        '''
-        return '<{}: {!r}>'.format(self._class_name, self.display_string)
+    def _initialize_return_value(self):
+        if self.return_value_attribute == 'number':
+            return_value = str(self.number)
+        elif self.return_value_attribute == 'display_string':
+            return_value = self.display_string
+        elif self.return_value_attribute == 'key':
+            return_value = self.key
+        elif self.return_value_attribute == 'prepopulated':
+            return_value = self.prepopulated_return_value
+        assert return_value
+        self._return_value = return_value
 
     ### PUBLIC PROPERTIES ###
 
@@ -142,19 +120,6 @@ class MenuEntry(AbjadObject):
         Return arbitrary value or none.
         '''
         return self._existing_value
-
-    @property
-    def expr(self):
-        '''Menu entry expr:
-
-        ::
-
-            >>> menu_entry.expr
-            ('svn update scores', 'up')
-
-        Return tuple.
-        '''
-        return self._expr
 
     @property
     def key(self):
@@ -236,7 +201,8 @@ class MenuEntry(AbjadObject):
 
             >>> z(menu_entry)
             menuing.MenuEntry(
-                ('svn update scores', 'up'),
+                'svn update scores',
+                key='up',
                 return_value_attribute='key'
                 )
 
