@@ -28,33 +28,20 @@ class MenuEntry(AbjadObject):
     Return menu entry.
     '''
 
-    ### CLASS VARIABLES ###
-
-    return_value_attributes = (
-        'display_string', 
-        'key', 
-        'number', 
-        'explicit',
-        )
-
     ### INITIALIZER ###
 
     def __init__(self, 
+        menu_section,
         display_string,
         key=None,
         prepopulated_value=None,
         explicit_return_value=None,
-        number=None, 
-        return_value_attribute=None,
         ):
-        assert return_value_attribute in self.return_value_attributes
-        self._number = number
-        self._return_value_attribute = return_value_attribute
+        self._menu_section = menu_section
         self._key = key
         self._display_string = display_string
         self._prepopulated_value = prepopulated_value
         self._explicit_return_value = explicit_return_value
-        self._initialize_return_value()
         self._initialize_matching()
 
     ### SPECIAL METHODS ###
@@ -70,8 +57,6 @@ class MenuEntry(AbjadObject):
  
     def _initialize_matching(self):
         matches = []
-        if self.number:
-            matches.append(str(self.number))
         if self.key is not None:
             matches.append(self.key)
         self._matches = tuple(matches)
@@ -80,18 +65,6 @@ class MenuEntry(AbjadObject):
             self.display_string)
         normalized_display_string = normalized_display_string.lower()
         self._normalized_display_string = normalized_display_string
-
-    def _initialize_return_value(self):
-        if self.return_value_attribute == 'number':
-            return_value = str(self.number)
-        elif self.return_value_attribute == 'display_string':
-            return_value = self.display_string
-        elif self.return_value_attribute == 'key':
-            return_value = self.key
-        elif self.return_value_attribute == 'explicit':
-            return_value = self.explicit_return_value
-        assert return_value
-        self._return_value = return_value
 
     ### PUBLIC PROPERTIES ###
 
@@ -135,6 +108,10 @@ class MenuEntry(AbjadObject):
         return self._key
 
     @property
+    def menu_section(self):
+        return self._menu_section
+
+    @property
     def number(self):
         '''Menu entry number:
 
@@ -145,7 +122,8 @@ class MenuEntry(AbjadObject):
     
         Return nonnegative integer or none.
         '''
-        return self._number
+        if self.menu_section.is_numbered:
+            return self.menu_section.menu_entries.index(self) + 1
 
     @property
     def explicit_return_value(self):
@@ -171,29 +149,16 @@ class MenuEntry(AbjadObject):
 
         Return arbitrary value.
         '''
-        return self._return_value
-
-    @property
-    def return_value_attribute(self):
-        '''Menu entry return value attribute:
-
-        ::
-
-            >>> menu_entry.return_value_attribute
-            'key'
-
-        Acceptable values are
-
-        ::
-
-            'display_string'
-            'key' 
-            'number' 
-            'explicit'
-
-        Return string.
-        '''
-        return self._return_value_attribute
+        if self.menu_section.return_value_attribute == 'number':
+            return_value = str(self.number)
+        elif self.menu_section.return_value_attribute == 'display_string':
+            return_value = self.display_string
+        elif self.menu_section.return_value_attribute == 'key':
+            return_value = self.key
+        elif self.menu_section.return_value_attribute == 'explicit':
+            return_value = self.explicit_return_value
+        assert return_value
+        return return_value
 
     @property
     def storage_format(self):
@@ -201,9 +166,15 @@ class MenuEntry(AbjadObject):
 
             >>> z(menu_entry)
             menuing.MenuEntry(
+                menuing.MenuSection(
+                    menu_entries=[<MenuEntry: 'svn add scores'>, <MenuEntry: 'svn commit scores'>, <MenuEntry: 'svn status scores'>, <MenuEntry: 'svn update scores'>],
+                    return_value_attribute='key',
+                    is_numbered=False,
+                    is_ranged=False,
+                    is_hidden=False
+                    ),
                 'svn update scores',
-                key='up',
-                return_value_attribute='key'
+                key='up'
                 )
 
         Return string.
@@ -234,6 +205,9 @@ class MenuEntry(AbjadObject):
 
         Return boolean.
         '''
+        if self.menu_section.is_numbered:
+            if user_input == str(self.number):
+                return True
         if user_input in self._matches:
             return True
         if 3 <= len(user_input):

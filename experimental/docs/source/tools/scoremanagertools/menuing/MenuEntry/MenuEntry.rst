@@ -18,6 +18,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuEntry.MenuEntry.MenuEntry.key
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuEntry.MenuEntry.MenuEntry.menu_section
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuEntry.MenuEntry.MenuEntry.number
    :noindex:
 
@@ -25,9 +28,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuEntry.MenuEntry.MenuEntry.return_value
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuEntry.MenuEntry.MenuEntry.return_value_attribute
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuEntry.MenuEntry.MenuEntry.storage_format

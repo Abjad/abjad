@@ -377,8 +377,6 @@ class MenuSection(AbjadObject):
         from experimental.tools import scoremanagertools
         assert isinstance(expr, (str, tuple))
         number = None
-        if self.is_numbered:
-            number = len(self.menu_entries) + 1
         if isinstance(expr, str):
             expr = (expr, )
         keys = (
@@ -388,7 +386,6 @@ class MenuSection(AbjadObject):
             'explicit_return_value',
             )
         kwargs = dict(zip(keys, expr))
-        kwargs['number'] = number
-        kwargs['return_value_attribute'] = self.return_value_attribute
+        kwargs['menu_section'] = self
         menu_entry = scoremanagertools.menuing.MenuEntry(**kwargs)
         self.menu_entries.append(menu_entry)
