@@ -37,10 +37,10 @@ def _main():
             for line in file_pointer.readlines():
                 if line.startswith('class '):
                     found_class_keyword = True
-                if line.startswith('     def '):
+                if line.startswith('    def '):
                     found_def_keyword = True
                     attribute_definition_lines.append(line)
-                if line.startswith('     ### '):
+                if line.startswith('    ### '):
                     sorted_attribute_definition_lines = \
                         list(sorted(attribute_definition_lines))
                     if not attribute_definition_lines == \
@@ -50,9 +50,9 @@ def _main():
                             attribute_definition_lines, 
                             sorted_attribute_definition_lines):
                             if a != b:
-                                    print full_file_name
-                                    print a, b
-                                    break
+                                print full_file_name
+                                print a, b
+                                break
                         attribute_definition_lines = []
                         break
                     attribute_definition_lines = []
@@ -72,7 +72,8 @@ def _main():
                             print a, b
                             break
             file_pointer.close()
-    print 'Total modules with nonalphabetized attributes: {}'.format(len(nonalphabetized_module_names))
+    print 'Total modules with nonalphabetized attributes: {}'.format(
+        len(nonalphabetized_module_names))
     print 'Total modules examined: {}'.format(total_modules_examined)
     print ''
 

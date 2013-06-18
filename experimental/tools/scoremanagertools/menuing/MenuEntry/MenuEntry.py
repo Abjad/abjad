@@ -68,17 +68,17 @@ class MenuEntry(AbjadObject):
         return self._display_string
 
     @property
-    def prepopulated_value(self):
-        '''Menu entry existing value:
+    def explicit_return_value(self):
+        '''Menu entry prepopulated return value:
 
         ::
 
-            >>> menu_entry.prepopulated_value is None
+            >>> menu_entry.explicit_return_value is None
             True
 
         Return arbitrary value or none.
         '''
-        return self._prepopulated_value
+        return self._explicit_return_value
 
     @property
     def key(self):
@@ -112,17 +112,17 @@ class MenuEntry(AbjadObject):
             return self.menu_section.menu_entries.index(self) + 1
 
     @property
-    def explicit_return_value(self):
-        '''Menu entry prepopulated return value:
+    def prepopulated_value(self):
+        '''Menu entry existing value:
 
         ::
 
-            >>> menu_entry.explicit_return_value is None
+            >>> menu_entry.prepopulated_value is None
             True
 
         Return arbitrary value or none.
         '''
-        return self._explicit_return_value
+        return self._prepopulated_value
 
     @property
     def return_value(self):

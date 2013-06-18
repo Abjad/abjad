@@ -102,6 +102,15 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
             lines.append('')
             self._io.display(lines)
 
+    def display_help(self):
+        lines = []
+        if self.prompt_index < len(self.helps):
+            lines.append(self.helps[self.prompt_index])
+        else:
+            lines.append('help string not available.')
+        lines.append('')
+        self._io.display(lines)
+
     def evaluate_test(self, test, argument):
         if isinstance(test, types.TypeType):
             return isinstance(argument, test)
@@ -203,15 +212,6 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
             if not self.present_prompt_and_store_value(
                 include_chevron=include_chevron):
                 break
-
-    def display_help(self):
-        lines = []
-        if self.prompt_index < len(self.helps):
-            lines.append(self.helps[self.prompt_index])
-        else:
-            lines.append('help string not available.')
-        lines.append('')
-        self._io.display(lines)
 
     def store_value(self, user_response):
         assert isinstance(user_response, str)

@@ -273,6 +273,10 @@ class CodeBlock(AbjadObject):
         return self._hide
 
     @property
+    def output_proxies(self):
+        return self._output_proxies
+
+    @property
     def output_triggers(self):
         from experimental.tools import newabjadbooktools
         return {
@@ -283,10 +287,6 @@ class CodeBlock(AbjadObject):
             'play': newabjadbooktools.MIDIOutputProxy,
             'show': newabjadbooktools.LilyPondOutputProxy,
         }
-
-    @property
-    def output_proxies(self):
-        return self._output_proxies
 
     @property
     def strip_prompt(self):

@@ -230,14 +230,6 @@ class InteractiveEditor(ScoreManagerObject):
                 pass
         self.initialize_attributes_in_memory()
 
-    def initialize_target(self):
-        if self.target is not None:
-            return
-        try:
-            self.target = self.target_class()
-        except:
-            pass
-
     def copy_target_attributes_to_memory(self):
         self.initialize_attributes_in_memory()
         for attribute_name in \
@@ -256,6 +248,14 @@ class InteractiveEditor(ScoreManagerObject):
 
     def initialize_attributes_in_memory(self):
         self._attributes_in_memory = {}
+
+    def initialize_target(self):
+        if self.target is not None:
+            return
+        try:
+            self.target = self.target_class()
+        except:
+            pass
 
     def initialize_target_from_attributes_in_memory(self):
         args, kwargs = [], {}

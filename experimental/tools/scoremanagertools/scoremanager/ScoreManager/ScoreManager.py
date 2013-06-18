@@ -267,6 +267,15 @@ class ScoreManager(ScoreManagerObject):
 
     ### PUBLIC METHODS ###
 
+    def display_active_scores(self):
+        self._session.display_active_scores()
+
+    def display_all_scores(self):
+        self._session.display_all_scores()
+
+    def display_mothballed_scores(self):
+        self._session.display_mothballed_scores()
+
     def fix_visible_scores(self):
         self.score_package_wrangler.fix_visible_assets()
 
@@ -321,15 +330,6 @@ class ScoreManager(ScoreManagerObject):
             self._io.display(lines, capitalize_first_character=False)
         line = 'tests complete.'
         self._io.proceed(line, is_interactive=prompt)
-
-    def display_active_scores(self):
-        self._session.display_active_scores()
-
-    def display_all_scores(self):
-        self._session.display_all_scores()
-
-    def display_mothballed_scores(self):
-        self._session.display_mothballed_scores()
 
     def write_cache(self):
         cache_file_path = os.path.join(

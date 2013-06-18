@@ -107,27 +107,11 @@ class Menu(ScoreManagerObject):
                 return menu_section
 
     @property
-    def menu_lines(self):
+    def menu_entries(self):
         result = []
-        result.extend(self.menu_title_lines)
-        result.extend(self.section_lines)
+        for menu_section in self.menu_sections:
+            result.extend(menu_section.menu_entries)
         return result
-
-    @property
-    def menu_sections(self):
-        return self._menu_sections
-
-    @property
-    def menu_title_lines(self):
-        menu_lines = []
-        if not self.hide_current_run:
-            if self.explicit_title is not None:
-                title = self.explicit_title
-            else:
-                title = self._session.menu_header
-            menu_lines.append(stringtools.capitalize_string_start(title))
-            menu_lines.append('')
-        return menu_lines
 
     # TODO: probably remove
     @property
@@ -154,11 +138,27 @@ class Menu(ScoreManagerObject):
         return result
 
     @property
-    def menu_entries(self):
+    def menu_lines(self):
         result = []
-        for menu_section in self.menu_sections:
-            result.extend(menu_section.menu_entries)
+        result.extend(self.menu_title_lines)
+        result.extend(self.section_lines)
         return result
+
+    @property
+    def menu_sections(self):
+        return self._menu_sections
+
+    @property
+    def menu_title_lines(self):
+        menu_lines = []
+        if not self.hide_current_run:
+            if self.explicit_title is not None:
+                title = self.explicit_title
+            else:
+                title = self._session.menu_header
+            menu_lines.append(stringtools.capitalize_string_start(title))
+            menu_lines.append('')
+        return menu_lines
 
     @property
     def numbered_section(self):

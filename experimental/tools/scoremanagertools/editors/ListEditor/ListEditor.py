@@ -85,17 +85,17 @@ class ListEditor(InteractiveEditor):
 
     ### PUBLIC METHODS ###
 
-    def initialize_target(self):
-        if self.target is not None:
-            return
-        else:
-            self.target = self.target_class([])
-
     def get_item_from_item_number(self, item_number):
         try:
             return self.items[int(item_number) - 1]
         except:
             pass
+
+    def initialize_target(self):
+        if self.target is not None:
+            return
+        else:
+            self.target = self.target_class([])
 
     def interactively_add_items(self):
         if self.item_creator_class:

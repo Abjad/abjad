@@ -656,6 +656,15 @@ class Session(abctools.AbjadObject):
         if self.dump_transcript:
             self.transcript.write_to_disk()
 
+    def display_active_scores(self):
+        self._scores_to_show = 'active'
+
+    def display_all_scores(self):
+        self._scores_to_show = 'all'
+
+    def display_mothballed_scores(self):
+        self._scores_to_show = 'mothballed'
+
     def format_breadcrumb_stack(self):
         if not self._breadcrumb_stack:
             return ''
@@ -696,15 +705,6 @@ class Session(abctools.AbjadObject):
     def restore_breadcrumbs(self, cache=False):
         if cache:
             self._breadcrumb_stack[:] = self._breadcrumb_cache_stack.pop()
-
-    def display_active_scores(self):
-        self._scores_to_show = 'active'
-
-    def display_all_scores(self):
-        self._scores_to_show = 'all'
-
-    def display_mothballed_scores(self):
-        self._scores_to_show = 'mothballed'
 
     def swap_user_input_values_default_status(self):
         current = self.use_current_user_input_values_as_default

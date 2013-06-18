@@ -109,6 +109,15 @@ class MaterialPackageMaker(MaterialPackageProxy):
                 'user input wrapper cleared and written to disk.', 
                 is_interactive=prompt)
 
+    def display_user_input_demo_values(self, prompt=True):
+        lines = []
+        for i, (key, value) in enumerate(self.user_input_demo_values):
+            line = '    {}: {!r}'.format(key.replace('_', ' '), value)
+            lines.append(line)
+        lines.append('')
+        self._io.display(lines)
+        self._io.proceed(is_interactive=prompt)
+
     def initialize_empty_user_input_wrapper(self):
         from experimental.tools import scoremanagertools
         user_input_wrapper = scoremanagertools.editors.UserInputWrapper()
@@ -210,15 +219,6 @@ class MaterialPackageMaker(MaterialPackageProxy):
             current_element_number = current_element_index + 1
             if current_element_number == start_element_number:
                 break
-
-    def display_user_input_demo_values(self, prompt=True):
-        lines = []
-        for i, (key, value) in enumerate(self.user_input_demo_values):
-            line = '    {}: {!r}'.format(key.replace('_', ' '), value)
-            lines.append(line)
-        lines.append('')
-        self._io.display(lines)
-        self._io.proceed(is_interactive=prompt)
 
     def swap_user_input_values_default_status(self):
         self._session.swap_user_input_values_default_status()
