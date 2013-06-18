@@ -4,20 +4,20 @@
 autocmd! bufwritepost .vimrc source %
 call pathogen#infect()
 filetype off
-filetype plugin on
+filetype plugin indent on
 syntax on
 let mapleader = ","
 
 
 " 1. autocommands
-"================
+" ===============
 
-"au BufWinEnter *.py silent loadview
-au BufWinEnter *.py silent set foldenable
-au BufWinEnter *.py silent set foldlevel=1
-au BufWinEnter *.py silent set foldmethod=indent
-au BufWinEnter *.py silent set foldminlines=0
-au BufWinEnter *.py silent set foldnestmax=2
+autocmd BufWinEnter *.py silent loadview
+autocmd BufWinEnter *.py silent set foldenable
+autocmd BufWinEnter *.py silent set foldlevel=1
+autocmd BufWinEnter *.py silent set foldmethod=indent
+autocmd BufWinEnter *.py silent set foldminlines=0
+autocmd BufWinEnter *.py silent set foldnestmax=2
 
 
 " 2. settings (alphabetical)
@@ -77,6 +77,11 @@ noremap <F4> <Esc>:'a,'bs/#//<cr>
 noremap <F6> <Esc>:'a,'bs/^/#/<cr>
 vnoremap <F4> :s/#//<cr>
 vnoremap <F6> :s/^/#/<cr>
+
+" copy & paste
+vmap <C-y> y:call system("xclip -i -selection clipboard", getreg("\""))<cr>:call system("xclip -i", getreg("\""))<cr>
+nmap <C-v> :call setreg("\"",system("xclip -o -selection clipboard"))<cr>p
+imap <C-v> <Esc><C-v>a
 
 " cursor vertical center
 :nnoremap <leader>zz :let &scrolloff=999-&scrolloff<cr>
