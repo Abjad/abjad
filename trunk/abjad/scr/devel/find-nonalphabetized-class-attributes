@@ -27,43 +27,51 @@ def _main():
         for subdirectory_name in subdirectory_names_to_remove:
             subdirectory_names.remove(subdirectory_name)
 
-        for file_name in file_names:
-            if file_name.endswith('.py'):
-                total_modules_examined += 1
-                full_file_name = os.path.join(parent_directory_path, file_name)
-                file_pointer = file(full_file_name, 'r')
-                found_class_keyword, found_def_keyword = False, False
-                attribute_definition_lines = []
-                for line in file_pointer.readlines():
-                     if line.startswith('class '):
-                          found_class_keyword = True
-                     if line.startswith('     def '):
-                          found_def_keyword = True
-                          attribute_definition_lines.append(line)
-                     if line.startswith('     ### '):
-                          sorted_attribute_definition_lines = list(sorted(attribute_definition_lines))
-                          if not attribute_definition_lines == sorted_attribute_definition_lines:
-                                nonalphabetized_module_names.append(full_file_name)
-                                for a, b in zip(attribute_definition_lines, sorted_attribute_definition_lines):
-                                     if a != b:
-                                          print full_file_name
-                                          print a, b
-                                          break
-                                attribute_definition_lines = []
-                                break
-                          attribute_definition_lines = []
-                     if found_def_keyword and not found_class_keyword:
-                          continue
-                else:
-                     sorted_attribute_definition_lines = list(sorted(attribute_definition_lines))
-                     if not attribute_definition_lines == list(sorted(attribute_definition_lines)):
-                          nonalphabetized_module_names.append(full_file_name)
-                          for a, b in zip(attribute_definition_lines, sorted_attribute_definition_lines):
-                                if a != b:
-                                     print full_file_name
-                                     print a, b
-                                     break
-                file_pointer.close()
+        py_file_names = (x for x in file_names if x.endswith('.py'))
+        for file_name in py_file_names:
+            total_modules_examined += 1
+            full_file_name = os.path.join(parent_directory_path, file_name)
+            file_pointer = file(full_file_name, 'r')
+            found_class_keyword, found_def_keyword = False, False
+            attribute_definition_lines = []
+            for line in file_pointer.readlines():
+                if line.startswith('class '):
+                    found_class_keyword = True
+                if line.startswith('     def '):
+                    found_def_keyword = True
+                    attribute_definition_lines.append(line)
+                if line.startswith('     ### '):
+                    sorted_attribute_definition_lines = \
+                        list(sorted(attribute_definition_lines))
+                    if not attribute_definition_lines == \
+                        sorted_attribute_definition_lines:
+                        nonalphabetized_module_names.append(full_file_name)
+                        for a, b in zip(
+                            attribute_definition_lines, 
+                            sorted_attribute_definition_lines):
+                            if a != b:
+                                    print full_file_name
+                                    print a, b
+                                    break
+                        attribute_definition_lines = []
+                        break
+                    attribute_definition_lines = []
+                if found_def_keyword and not found_class_keyword:
+                    continue
+            else:
+                sorted_attribute_definition_lines = \
+                    list(sorted(attribute_definition_lines))
+                if not attribute_definition_lines == \
+                    list(sorted(attribute_definition_lines)):
+                    nonalphabetized_module_names.append(full_file_name)
+                    for a, b in zip(
+                        attribute_definition_lines, 
+                        sorted_attribute_definition_lines):
+                        if a != b:
+                            print full_file_name
+                            print a, b
+                            break
+            file_pointer.close()
     print 'Total modules with nonalphabetized attributes: {}'.format(len(nonalphabetized_module_names))
     print 'Total modules examined: {}'.format(total_modules_examined)
     print ''
