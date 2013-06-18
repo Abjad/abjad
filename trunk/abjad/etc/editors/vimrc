@@ -23,7 +23,6 @@ autocmd BufWinEnter *.py silent set foldnestmax=2
 " ==========================
 
 set autoindent
-set autoread
 set backspace=2
 set background=light
 set clipboard=unnamed
