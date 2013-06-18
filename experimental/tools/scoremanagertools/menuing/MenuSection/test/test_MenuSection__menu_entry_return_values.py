@@ -123,13 +123,13 @@ def test_MenuSection__menu_entry_return_values_02():
 
 def test_MenuSection__menu_entry_return_values_03():
     '''Length-4 tuples include prepopulated return values.
-    You must still set return_value_attribute to 'prepopulated'.
+    You must still set return_value_attribute to 'explicit'.
     '''
 
     menu = scoremanagertools.menuing.Menu()
     menu._session.push_breadcrumb('location')
     menu_section = menu.make_section()
-    menu_section.return_value_attribute = 'prepopulated'
+    menu_section.return_value_attribute = 'explicit'
     menu_section.append(('add something', 'add', None, 'return value A'))
     menu_section.append(('delete something', 'rm', None, 'return value B'))
     menu_section.append(('modify something', 'mod', None, 'return value C'))

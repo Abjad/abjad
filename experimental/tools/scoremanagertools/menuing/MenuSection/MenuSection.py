@@ -31,7 +31,7 @@ class MenuSection(AbjadObject):
         'display_string', 
         'key', 
         'number', 
-        'prepopulated',
+        'explicit',
         )
 
     ### INITIALIZER ###
@@ -306,7 +306,7 @@ class MenuSection(AbjadObject):
                 'display_string' 
                 'key' 
                 'number' 
-                'prepopulated'
+                'explicit'
 
             Return string.
             '''

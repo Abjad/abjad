@@ -34,7 +34,7 @@ class Selector(ScoreManagerObject):
     def _make_main_menu(self, head=None):
         menu_entries = self.make_menu_entries(head=head)
         menu, menu_section = self._io.make_menu(where=self._where,
-            return_value_attribute='prepopulated',
+            return_value_attribute='explicit',
             is_numbered=self.is_numbered,
             is_ranged=self.is_ranged,
             menu_entries=menu_entries,

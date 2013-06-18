@@ -34,7 +34,7 @@ class MenuEntry(AbjadObject):
         'display_string', 
         'key', 
         'number', 
-        'prepopulated',
+        'explicit',
         )
 
     ### INITIALIZER ###
@@ -88,7 +88,7 @@ class MenuEntry(AbjadObject):
             return_value = self.display_string
         elif self.return_value_attribute == 'key':
             return_value = self.key
-        elif self.return_value_attribute == 'prepopulated':
+        elif self.return_value_attribute == 'explicit':
             return_value = self.explicit_return_value
         assert return_value
         self._return_value = return_value
@@ -189,7 +189,7 @@ class MenuEntry(AbjadObject):
             'display_string'
             'key' 
             'number' 
-            'prepopulated'
+            'explicit'
 
         Return string.
         '''

@@ -297,7 +297,6 @@ class InteractiveEditor(ScoreManagerObject):
                 attribute_value = None
             prepopulated_value = self._io.get_one_line_menuing_summary(
                 attribute_value)
-            #menu_entry = (key, display_string, prepopulated_value)
             menu_entry = (display_string, key, prepopulated_value)
             result.append(menu_entry)
         return result

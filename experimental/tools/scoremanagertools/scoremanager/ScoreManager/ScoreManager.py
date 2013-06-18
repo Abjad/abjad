@@ -122,7 +122,7 @@ class ScoreManager(ScoreManagerObject):
         else:
             menu_entries = self.score_package_wrangler._make_menu_entries()
         menu, menu_section = self._io.make_menu(where=self._where)
-        menu_section.return_value_attribute = 'prepopulated'
+        menu_section.return_value_attribute = 'explicit'
         menu_section.is_numbered = True
         menu_section.menu_entries = menu_entries
         return menu

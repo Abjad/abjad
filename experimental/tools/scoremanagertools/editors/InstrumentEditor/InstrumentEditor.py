@@ -15,7 +15,8 @@ class InstrumentEditor(InteractiveEditor):
 
     ### CLASS VARIABLES ###
 
-    target_manifest = TargetManifest(Instrument,
+    target_manifest = TargetManifest(
+        Instrument,
         ('instrument_name', 'in', getters.get_string),
         ('instrument_name_markup', 'im', getters.get_markup),
         ('short_instrument_name',  'sn', getters.get_string),
