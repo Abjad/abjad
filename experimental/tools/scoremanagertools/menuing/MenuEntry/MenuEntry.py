@@ -42,8 +42,8 @@ class MenuEntry(AbjadObject):
     def __init__(self, 
         display_string,
         key=None,
-        existing_value=None,
-        prepopulated_return_value=None,
+        prepopulated_value=None,
+        explicit_return_value=None,
         number=None, 
         return_value_attribute=None,
         ):
@@ -52,8 +52,8 @@ class MenuEntry(AbjadObject):
         self._return_value_attribute = return_value_attribute
         self._key = key
         self._display_string = display_string
-        self._existing_value = existing_value
-        self._prepopulated_return_value = prepopulated_return_value
+        self._prepopulated_value = prepopulated_value
+        self._explicit_return_value = explicit_return_value
         self._initialize_return_value()
         self._initialize_matching()
 
@@ -89,7 +89,7 @@ class MenuEntry(AbjadObject):
         elif self.return_value_attribute == 'key':
             return_value = self.key
         elif self.return_value_attribute == 'prepopulated':
-            return_value = self.prepopulated_return_value
+            return_value = self.explicit_return_value
         assert return_value
         self._return_value = return_value
 
@@ -109,17 +109,17 @@ class MenuEntry(AbjadObject):
         return self._display_string
 
     @property
-    def existing_value(self):
+    def prepopulated_value(self):
         '''Menu entry existing value:
 
         ::
 
-            >>> menu_entry.existing_value is None
+            >>> menu_entry.prepopulated_value is None
             True
 
         Return arbitrary value or none.
         '''
-        return self._existing_value
+        return self._prepopulated_value
 
     @property
     def key(self):
@@ -148,17 +148,17 @@ class MenuEntry(AbjadObject):
         return self._number
 
     @property
-    def prepopulated_return_value(self):
+    def explicit_return_value(self):
         '''Menu entry prepopulated return value:
 
         ::
 
-            >>> menu_entry.prepopulated_return_value is None
+            >>> menu_entry.explicit_return_value is None
             True
 
         Return arbitrary value or none.
         '''
-        return self._prepopulated_return_value
+        return self._explicit_return_value
 
     @property
     def return_value(self):

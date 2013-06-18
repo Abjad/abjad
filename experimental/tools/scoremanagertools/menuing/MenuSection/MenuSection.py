@@ -53,7 +53,7 @@ class MenuSection(AbjadObject):
         self._return_value_attribute = return_value_attribute
         self.default_index = None
         self.indent_level = 1
-        self.show_existing_values = False
+        self.show_prepopulated_values = False
         self.menu_entries = menu_entries
         self.title = title
         self.where = where
@@ -140,27 +140,16 @@ class MenuSection(AbjadObject):
             menu_line = self._make_tab(self.indent_level) + ' '
             display_string = menu_entry.display_string
             key = menu_entry.key
-            existing_value = menu_entry.existing_value
+            prepopulated_value = menu_entry.prepopulated_value
             if self.is_numbered:
                 menu_line += '{}: '.format(menu_entry.number)
+            menu_line += display_string
             if key:
-                if self.show_existing_values and existing_value:
-                    if existing_value in (None, 'None'):
-                        menu_line += '{} ({}):'.format(display_string, key)
-                    else:
-                        menu_line += '{} ({}): {}'.format(
-                            display_string, key, existing_value)
-                else:
-                    menu_line += '{} ({})'.format(display_string, key)
-            else:
-                if self.show_existing_values and existing_value:
-                    if existing_value in (None, 'None'):
-                        menu_line += '{}:'.format(display_string)
-                    else:
-                        menu_line += '{}: {}'.format(
-                            display_string, existing_value)
-                else:
-                    menu_line += '{}'.format(display_string)
+                menu_line += ' ({})'.format(key)
+            if self.show_prepopulated_values and prepopulated_value:
+                menu_line += ':'
+                if prepopulated_value not in (None, 'None'):
+                    menu_line += ' {}'.format(prepopulated_value)
             menu_lines.append(menu_line)
         if self.menu_entries:
             menu_lines.append('')
@@ -395,8 +384,8 @@ class MenuSection(AbjadObject):
         keys = (
             'display_string',
             'key',
-            'existing_value',
-            'prepopulated_return_value',
+            'prepopulated_value',
+            'explicit_return_value',
             )
         kwargs = dict(zip(keys, expr))
         kwargs['number'] = number

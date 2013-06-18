@@ -45,7 +45,7 @@ class ListEditor(InteractiveEditor):
             )
         attribute_management_section.return_value_attribute = 'key'
         attribute_management_section.menu_entries = self.target_attribute_tokens
-        attribute_management_section.show_existing_values = True
+        attribute_management_section.show_prepopulated_values = True
         item_management_section = menu.make_section()
         item_management_section.return_value_attribute = 'number'
         item_management_section.is_numbered = True

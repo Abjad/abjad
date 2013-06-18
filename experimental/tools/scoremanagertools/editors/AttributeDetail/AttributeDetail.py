@@ -59,26 +59,26 @@ class AttributeDetail(AbjadObject):
 
     def get_editor(self, 
         space_delimited_attribute_name, 
-        existing_value, 
+        prepopulated_value, 
         session=None, 
         **kwargs):
         if isinstance(self.editor_callable, types.FunctionType):
             editor = self.editor_callable(
                 space_delimited_attribute_name,
                 session=session, 
-                existing_value=existing_value, 
+                prepopulated_value=prepopulated_value, 
                 allow_none=self.allow_none, 
                 **kwargs)
         elif issubclass(self.editor_callable, InteractiveEditor):
             editor = self.editor_callable(
                 session=session, 
-                target=existing_value, 
+                target=prepopulated_value, 
                 **kwargs)
         elif issubclass(self.editor_callable, Selector):
             editor = self.editor_callable(session=session, **kwargs)
         elif issubclass(self.editor_callable, Wizard):
             editor = self.editor_callable(
-                session=session, target=existing_value, **kwargs)
+                session=session, target=prepopulated_value, **kwargs)
         else:
             raise ValueError('what is {!r}?'.format(self.editor_callable))
         return editor

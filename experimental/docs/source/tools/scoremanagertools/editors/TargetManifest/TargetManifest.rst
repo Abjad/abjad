@@ -54,7 +54,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.editors.TargetManifest.TargetManifest.TargetManifest.menu_key_to_editor
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.editors.TargetManifest.TargetManifest.TargetManifest.menu_key_to_existing_value
+.. automethod:: experimental.tools.scoremanagertools.editors.TargetManifest.TargetManifest.TargetManifest.menu_key_to_prepopulated_value
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.editors.TargetManifest.TargetManifest.TargetManifest.menu_key_to_space_delimited_lowercase_attribute_name

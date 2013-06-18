@@ -115,7 +115,7 @@ class TargetManifest(AbjadObject):
 
     def menu_key_to_editor(self, 
         menu_key, 
-        existing_value, 
+        prepopulated_value, 
         session=None, 
         **kwargs):
         space_delimited_attribute_name = \
@@ -123,11 +123,11 @@ class TargetManifest(AbjadObject):
         attribute_detail = self.menu_key_to_attribute_detail(menu_key)
         return attribute_detail.get_editor(
             space_delimited_attribute_name, 
-            existing_value, 
+            prepopulated_value, 
             session=session, 
             **kwargs)
 
-    def menu_key_to_existing_value(self, menu_key):
+    def menu_key_to_prepopulated_value(self, menu_key):
         attribute_name = self.menu_key_to_attribute_name(menu_key)
         return getattr(self.target, attribute_name, None)
 

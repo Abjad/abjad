@@ -37,12 +37,12 @@ class InteractiveEditor(ScoreManagerObject):
     def _handle_main_menu_result(self, result):
         attribute_name = self.target_manifest.menu_key_to_attribute_name(
             result)
-        existing_value = self.menu_key_to_existing_value(result)
+        prepopulated_value = self.menu_key_to_prepopulated_value(result)
         kwargs = self.menu_key_to_delegated_editor_kwargs(result)
         editor = self.target_manifest.menu_key_to_editor(
             result, 
             session=self._session, 
-            existing_value=existing_value, 
+            prepopulated_value=prepopulated_value, 
             **kwargs)
         if editor is not None:
             result = editor._run()
@@ -61,7 +61,7 @@ class InteractiveEditor(ScoreManagerObject):
         menu_section.return_value_attribute = 'key'
         menu_section.is_numbered = True
         menu_section.menu_entries = menu_entries
-        menu_section.show_existing_values = True
+        menu_section.show_prepopulated_values = True
         menu.hidden_section.append(('done', 'done'))
         return menu
 
@@ -295,17 +295,17 @@ class InteractiveEditor(ScoreManagerObject):
             if hasattr(attribute_value, '__len__') and \
                 not len(attribute_value):
                 attribute_value = None
-            existing_value = self._io.get_one_line_menuing_summary(
+            prepopulated_value = self._io.get_one_line_menuing_summary(
                 attribute_value)
-            #menu_entry = (key, display_string, existing_value)
-            menu_entry = (display_string, key, existing_value)
+            #menu_entry = (key, display_string, prepopulated_value)
+            menu_entry = (display_string, key, prepopulated_value)
             result.append(menu_entry)
         return result
 
     def menu_key_to_delegated_editor_kwargs(self, menu_key):
         return {}
 
-    def menu_key_to_existing_value(self, menu_key):
+    def menu_key_to_prepopulated_value(self, menu_key):
         attribute_name = \
             self.target_manifest.menu_key_to_attribute_name(menu_key)
         return getattr(self.target, attribute_name, None)
