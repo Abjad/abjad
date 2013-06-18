@@ -379,7 +379,6 @@ class Menu(ScoreManagerObject):
     def make_default_hidden_section(self, session=None, where=None):
         from experimental.tools import scoremanagertools
         hidden_section = scoremanagertools.menuing.MenuSection(
-            session=session,
             where=where,
             )
         hidden_section.return_value_attribute = 'key'
@@ -416,7 +415,6 @@ class Menu(ScoreManagerObject):
             is_ranged=is_ranged,
             menu_entries=menu_entries,
             return_value_attribute=return_value_attribute,
-            session=self._session,
             where=self.where,
             )
         self.menu_sections.append(menu_section)

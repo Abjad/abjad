@@ -1,10 +1,9 @@
 from abjad.tools import mathtools
 from abjad.tools import stringtools
-from experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject import \
-    ScoreManagerObject
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class MenuSection(ScoreManagerObject):
+class MenuSection(AbjadObject):
     '''Menu section.
 
         >>> score_manager = scoremanagertools.scoremanager.ScoreManager()
@@ -38,7 +37,6 @@ class MenuSection(ScoreManagerObject):
     ### INITIALIZER ###
 
     def __init__(self,
-        session=None,
         where=None,
         menu_entries=None,
         return_value_attribute='display_string',
@@ -47,7 +45,7 @@ class MenuSection(ScoreManagerObject):
         is_hidden=False,
         title=None,
         ):
-        ScoreManagerObject.__init__(self, session=session)
+        AbjadObject.__init__(self)
         self._is_hidden = is_hidden
         self._is_numbered = is_numbered
         self._is_ranged = is_ranged
