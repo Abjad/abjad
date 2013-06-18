@@ -12,7 +12,6 @@ let mapleader = ","
 " 1. autocommands
 " ===============
 
-autocmd BufWinEnter *.py silent loadview
 autocmd BufWinEnter *.py silent set foldenable
 autocmd BufWinEnter *.py silent set foldlevel=1
 autocmd BufWinEnter *.py silent set foldmethod=indent
