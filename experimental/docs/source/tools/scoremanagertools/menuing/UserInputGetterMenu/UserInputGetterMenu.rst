@@ -183,9 +183,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.change_user_response_to_value
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.conditionally_clear_terminal
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.display_calling_code_line_number
    :noindex:
 
@@ -198,22 +195,13 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.display_menu
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.enclose_in_list
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.evaluate_test
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.exec_statement
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.get_value_from_direct_evaluation
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.get_value_from_execs
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.grep_directories
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.handle_argument_range_user_input
@@ -228,10 +216,13 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.interactively_edit_calling_code
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.load_prompt
+.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.interactively_exec_statement
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.make_default_hidden_section
+.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.interactively_grep_directories
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.load_prompt
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.make_is_integer_in_range
@@ -249,19 +240,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.present_prompts_and_store_values
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.return_value_to_location_pair
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.return_value_to_next_return_value_in_section
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.store_value
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.store_value_from_argument_list
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.strip_default_indicators_from_strings
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.toggle_menu

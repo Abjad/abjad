@@ -29,7 +29,7 @@ class Menu(ScoreManagerObject):
         title=None,
         ):
         ScoreManagerObject.__init__(self, session=session)
-        hidden_section = self.make_default_hidden_section()
+        hidden_section = self._make_default_hidden_section()
         self._menu_sections = [hidden_section]
         self.should_clear_terminal = should_clear_terminal
         self.title = title
@@ -70,6 +70,39 @@ class Menu(ScoreManagerObject):
 
     ### PRIVATE METHODS ###
 
+    def _clear_terminal(self):
+        if not self._session.hide_next_redraw:
+            if self.should_clear_terminal:
+                if self._session.is_displayable:
+                    iotools.clear_terminal()
+
+    def _enclose_in_list(self, expr):
+        if self._has_ranged_section:
+            return [expr]
+        else:
+            return expr
+
+    def _make_default_hidden_section(self):
+        from experimental.tools import scoremanagertools
+        hidden_section = scoremanagertools.menuing.MenuSection()
+        hidden_section.return_value_attribute = 'key'
+        hidden_section.is_hidden = True
+        hidden_section.append(('back', 'b'))
+        hidden_section.append(('exec statement', 'exec'))
+        hidden_section.append(('grep directories', 'grep'))
+        hidden_section.append(('edit client source', 'here'))
+        hidden_section.append(('show hidden items', 'hidden'))
+        hidden_section.append(('home', 'home'))
+        hidden_section.append(('next score', 'next'))
+        hidden_section.append(('prev score', 'prev'))
+        hidden_section.append(('quit', 'q'))
+        hidden_section.append(('redraw', 'r'))
+        hidden_section.append(('score', 'score'))
+        hidden_section.append(('toggle menu', 'tm'))
+        hidden_section.append(('toggle where', 'tw'))
+        hidden_section.append(('show menu client', 'where'))
+        return hidden_section
+
     def _make_menu_lines(self):
         result = []
         result.extend(self._make_title_lines())
@@ -102,6 +135,19 @@ class Menu(ScoreManagerObject):
             result.append('')
         return result
 
+    def _return_value_to_location_pair(self, return_value):
+        for i, menu_section in enumerate(self.menu_sections):
+            if return_value in menu_section._menu_entry_return_values:
+                j = menu_section._menu_entry_return_values.index(return_value)
+                return i, j
+
+    def _return_value_to_next_return_value_in_section(self, return_value):
+        section_index, entry_index = self._return_value_to_location_pair(
+            return_value)
+        menu_section = self.menu_sections[section_index]
+        entry_index = (entry_index + 1) % len(menu_section)
+        return menu_section._menu_entry_return_values[entry_index]
+
     def _run(self, 
             clear=True, 
             automatically_determined_user_input=None, 
@@ -122,6 +168,23 @@ class Menu(ScoreManagerObject):
             else:
                 break
         return result
+
+    # TODO: apply default indicators at display time 
+    #       so this can be completely removed
+    def _strip_default_indicators_from_strings(self, expr):
+        if isinstance(expr, list):
+            cleaned_list = []
+            for element in expr:
+                if element.endswith(' (default)'):
+                    element = element.replace(' (default)', '')
+                cleaned_list.append(element)
+            return cleaned_list
+        elif isinstance(expr, str):
+            if expr.endswith(' (default)'):
+                expr = expr.replace(' (default)', '')
+            return expr
+        else:
+            return expr
 
     ### PUBLIC PROPERTIES ###
 
@@ -237,7 +300,7 @@ class Menu(ScoreManagerObject):
                 if menu_section._has_default_value:
                     default_value = menu_section._default_value
             if default_value is not None:
-                return self.enclose_in_list(default_value)
+                return self._enclose_in_list(default_value)
         elif self.user_enters_argument_range(user_input):
             return self.handle_argument_range_user_input(user_input)
         elif user_input == 'r':
@@ -248,14 +311,8 @@ class Menu(ScoreManagerObject):
                     if menu_entry.display_string == 'redraw':
                         continue
                     if menu_entry.matches(user_input):
-                        return self.enclose_in_list(
+                        return self._enclose_in_list(
                             menu_entry.return_value)
-
-    def conditionally_clear_terminal(self):
-        if not self._session.hide_next_redraw:
-            if self.should_clear_terminal:
-                if self._session.is_displayable:
-                    iotools.clear_terminal()
 
     def display_calling_code_line_number(self):
         lines = []
@@ -291,47 +348,17 @@ class Menu(ScoreManagerObject):
 
     def display_menu(self, 
         automatically_determined_user_input=None):
-        self.conditionally_clear_terminal()
+        self._clear_terminal()
         self._io.display(self._make_menu_lines(), 
             capitalize_first_character=False)
         if automatically_determined_user_input is not None:
             return automatically_determined_user_input
         user_response = self._io.handle_raw_input_with_default('')
         directive = self.change_user_input_to_directive(user_response)
-        directive = self.strip_default_indicators_from_strings(directive)
+        directive = self._strip_default_indicators_from_strings(directive)
         self._session.hide_next_redraw = False
         directive = self.handle_hidden_menu_section_return_value(directive)
         return directive
-
-    def enclose_in_list(self, expr):
-        if self._has_ranged_section:
-            return [expr]
-        else:
-            return expr
-
-    def exec_statement(self):
-        lines = []
-        statement = self._io.handle_raw_input('XCF', include_newline=False)
-        command = 'from abjad import *'
-        exec(command)
-        try:
-            result = None
-            command = 'result = {}'.format(statement)
-            exec(command)
-            lines.append('{!r}'.format(result))
-        except:
-            lines.append('expression not executable.')
-        lines.append('')
-        self._io.display(lines)
-        self._session.hide_next_redraw = True
-
-    def grep_directories(self):
-        regex = self._io.handle_raw_input('regex')
-        command = 'grep -Irn "{}" * | grep -v svn'.format(regex)
-        proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
-        lines = [line.strip() for line in proc.stdout.readlines()]
-        lines.append('')
-        self._io.display(lines, capitalize_first_character=False)
 
     def handle_argument_range_user_input(self, user_input):
         if not self._has_ranged_section:
@@ -358,9 +385,9 @@ class Menu(ScoreManagerObject):
         if key in ('b', 'back'):
             self._session.is_backtracking_locally = True
         elif key == 'exec':
-            self.exec_statement()
+            self.interactively_exec_statement()
         elif key == 'grep':
-            self.grep_directories()
+            self.interactively_grep_directories()
         elif key == 'here':
             self.interactively_edit_calling_code()
         elif key == 'hidden':
@@ -406,26 +433,29 @@ class Menu(ScoreManagerObject):
             self._io.display(lines)
             self._session.hide_next_redraw = True
 
-    def make_default_hidden_section(self):
-        from experimental.tools import scoremanagertools
-        hidden_section = scoremanagertools.menuing.MenuSection()
-        hidden_section.return_value_attribute = 'key'
-        hidden_section.is_hidden = True
-        hidden_section.append(('back', 'b'))
-        hidden_section.append(('exec statement', 'exec'))
-        hidden_section.append(('grep directories', 'grep'))
-        hidden_section.append(('edit client source', 'here'))
-        hidden_section.append(('show hidden items', 'hidden'))
-        hidden_section.append(('home', 'home'))
-        hidden_section.append(('next score', 'next'))
-        hidden_section.append(('prev score', 'prev'))
-        hidden_section.append(('quit', 'q'))
-        hidden_section.append(('redraw', 'r'))
-        hidden_section.append(('score', 'score'))
-        hidden_section.append(('toggle menu', 'tm'))
-        hidden_section.append(('toggle where', 'tw'))
-        hidden_section.append(('show menu client', 'where'))
-        return hidden_section
+    def interactively_exec_statement(self):
+        lines = []
+        statement = self._io.handle_raw_input('XCF', include_newline=False)
+        command = 'from abjad import *'
+        exec(command)
+        try:
+            result = None
+            command = 'result = {}'.format(statement)
+            exec(command)
+            lines.append('{!r}'.format(result))
+        except:
+            lines.append('expression not executable.')
+        lines.append('')
+        self._io.display(lines)
+        self._session.hide_next_redraw = True
+
+    def interactively_grep_directories(self):
+        regex = self._io.handle_raw_input('regex')
+        command = 'grep -Irn "{}" * | grep -v svn'.format(regex)
+        proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
+        lines = [line.strip() for line in proc.stdout.readlines()]
+        lines.append('')
+        self._io.display(lines, capitalize_first_character=False)
 
     def make_section(self, 
         is_hidden=False, 
@@ -446,36 +476,6 @@ class Menu(ScoreManagerObject):
         menu_section.menu_entries = menu_entries
         self.menu_sections.append(menu_section)
         return menu_section
-
-    def return_value_to_location_pair(self, return_value):
-        for i, menu_section in enumerate(self.menu_sections):
-            if return_value in menu_section._menu_entry_return_values:
-                j = menu_section._menu_entry_return_values.index(return_value)
-                return i, j
-
-    def return_value_to_next_return_value_in_section(self, return_value):
-        section_index, entry_index = self.return_value_to_location_pair(
-            return_value)
-        menu_section = self.menu_sections[section_index]
-        entry_index = (entry_index + 1) % len(menu_section)
-        return menu_section._menu_entry_return_values[entry_index]
-
-    # TODO: apply default indicators at display time 
-    #       so this can be completely removed
-    def strip_default_indicators_from_strings(self, expr):
-        if isinstance(expr, list):
-            cleaned_list = []
-            for element in expr:
-                if element.endswith(' (default)'):
-                    element = element.replace(' (default)', '')
-                cleaned_list.append(element)
-            return cleaned_list
-        elif isinstance(expr, str):
-            if expr.endswith(' (default)'):
-                expr = expr.replace(' (default)', '')
-            return expr
-        else:
-            return expr
 
     def toggle_menu(self):
         if self._session.nonnumbered_menu_sections_are_hidden:

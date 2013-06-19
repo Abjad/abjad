@@ -206,7 +206,7 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
         return True
 
     def present_prompts_and_store_values(self, include_chevron=True):
-        self.conditionally_clear_terminal()
+        self._clear_terminal()
         self._menu_lines, self.values, self.prompt_index = [], [], 0
         while self.prompt_index < len(self.prompts):
             if not self.present_prompt_and_store_value(

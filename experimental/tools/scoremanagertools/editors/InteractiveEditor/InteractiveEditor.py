@@ -107,7 +107,7 @@ class InteractiveEditor(ScoreManagerObject):
                 is_first_pass = False
             elif result and self.is_autoadvancing:
                 entry_point = entry_point or result
-                result = menu.return_value_to_next_return_value_in_section(
+                result = menu._return_value_to_next_return_value_in_section(
                     result)
                 if result == entry_point:
                     self.is_autoadvancing = False
