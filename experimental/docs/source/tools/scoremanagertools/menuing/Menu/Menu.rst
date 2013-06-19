@@ -12,52 +12,16 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.default_value
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.first_nonhidden_return_value_in_menu
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.has_default_valued_section
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.has_hidden_section
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.has_numbered_section
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.has_ranged_section
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.hidden_section
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.menu_entries
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.menu_entry_display_strings
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.menu_entry_keys
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.menu_entry_return_values
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.menu_lines
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.menu_sections
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.menu_title_lines
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.numbered_section
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.ranged_section
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.section_lines
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.storage_format
@@ -66,13 +30,13 @@ Read-only properties
 Read/write properties
 ---------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.explicit_title
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.prompt_default
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.should_clear_terminal
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.title
    :noindex:
 
 Methods

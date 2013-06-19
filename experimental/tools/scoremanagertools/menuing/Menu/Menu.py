@@ -8,7 +8,14 @@ from experimental.tools.scoremanagertools.menuing.MenuSection \
 
 
 class Menu(ScoreManagerObject):
-    '''Menu.
+    '''Menu:
+
+    ::
+
+        >>> score_manager = scoremanagertools.scoremanager.ScoreManager()
+        >>> menu = score_manager._make_svn_menu()
+        >>> menu
+        <Menu (2)>
 
     Return menu.
     '''
@@ -21,7 +28,7 @@ class Menu(ScoreManagerObject):
         hidden_section = self.make_default_hidden_section(
             session=session, where=where)
         self.menu_sections.append(hidden_section)
-        self.explicit_title = None
+        self.title = None
         self.prompt_default = None
         self.should_clear_terminal = False
         self.where = where
@@ -29,15 +36,69 @@ class Menu(ScoreManagerObject):
     ### SPECIAL METHODS ###
 
     def __len__(self):
+        '''Number of menu sections in menu.
+
+        Return nonnegative integer.
+        '''
         return len(self.menu_sections)
 
     def __repr__(self):
+        '''Interpreter representation of menu.
+
+        Return string.
+        '''
         return '<{} ({})>'.format(self._class_name, len(self))
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _first_nonhidden_return_value_in_menu(self):
+        for menu_section in self.menu_sections:
+            if not menu_section.is_hidden:
+                if menu_section._menu_entry_return_values:
+                    return menu_section._menu_entry_return_values[0]
+
+    @property
+    def _has_numbered_section(self):
+        return any(x.is_numbered for x in self.menu_sections)
+
+    @property
+    def _has_ranged_section(self):
+        return any(x.is_ranged for x in self.menu_sections)
 
     ### PRIVATE METHODS ###
 
+    def _make_menu_lines(self):
+        result = []
+        result.extend(self._make_title_lines())
+        result.extend(self._make_section_lines())
+        return result
+
+    def _make_section_lines(self):
+        menu_lines = []
+        for menu_section in self.menu_sections:
+            section_menu_lines = menu_section._make_menu_lines()
+            if not menu_section.is_hidden:
+                if not self._session.nonnumbered_menu_sections_are_hidden or \
+                    menu_section.is_numbered:
+                    menu_lines.extend(section_menu_lines)
+        if self.hide_current_run:
+            menu_lines = []
+        return menu_lines
+
     def _make_tab(self, n):
         return 4 * n * ' '
+
+    def _make_title_lines(self):
+        result = []
+        if not self.hide_current_run:
+            if self.title is not None:
+                title = self.title
+            else:
+                title = self._session.menu_header
+            result.append(stringtools.capitalize_string_start(title))
+            result.append('')
+        return result
 
     def _run(self, 
             clear=True, 
@@ -69,39 +130,53 @@ class Menu(ScoreManagerObject):
                 return menu_section._default_value
 
     @apply
-    def explicit_title():
+    def title():
         def fget(self):
-            return self._explicit_title
-        def fset(self, explicit_title):
-            assert isinstance(explicit_title, (str, type(None)))
-            self._explicit_title = explicit_title
+            '''Menu title:
+
+            ::
+
+                >>> menu.title is None
+                True
+
+            Return string or none.
+            '''
+            return self._title
+        def fset(self, title):
+            assert isinstance(title, (str, type(None)))
+            self._title = title
         return property(**locals())
 
     @property
-    def first_nonhidden_return_value_in_menu(self):
-        for menu_section in self.menu_sections:
-            if not menu_section.is_hidden:
-                if menu_section._menu_entry_return_values:
-                    return menu_section._menu_entry_return_values[0]
-
-    @property
-    def has_default_valued_section(self):
-        return any(x._has_default_value for x in self.menu_sections)
-
-    @property
-    def has_hidden_section(self):
-        return any(x.is_hidden for x in self.menu_sections)
-
-    @property
-    def has_numbered_section(self):
-        return any(x.is_numbered for x in self.menu_sections)
-
-    @property
-    def has_ranged_section(self):
-        return any(x.is_ranged for x in self.menu_sections)
-
-    @property
     def hidden_section(self):
+        '''Menu hidden section:
+
+        ::
+
+                >>> menu.hidden_section
+                <MenuSection (14)>
+
+        ::
+
+                >>> for menu_entry in menu.hidden_section.menu_entries:
+                ...     menu_entry
+                <MenuEntry: 'back'>
+                <MenuEntry: 'exec statement'>
+                <MenuEntry: 'grep directories'>
+                <MenuEntry: 'edit client source'>
+                <MenuEntry: 'show hidden items'>
+                <MenuEntry: 'home'>
+                <MenuEntry: 'next score'>
+                <MenuEntry: 'prev score'>
+                <MenuEntry: 'quit'>
+                <MenuEntry: 'redraw'>
+                <MenuEntry: 'score'>
+                <MenuEntry: 'toggle menu'>
+                <MenuEntry: 'toggle where'>
+                <MenuEntry: 'show menu client'>
+
+        Return menu section or none.
+        '''
         for menu_section in self.menu_sections:
             if menu_section.is_hidden:
                 return menu_section
@@ -113,64 +188,27 @@ class Menu(ScoreManagerObject):
             result.extend(menu_section.menu_entries)
         return result
 
-    # TODO: probably remove
-    @property
-    def menu_entry_display_strings(self):
-        result = []
-        for menu_section in self.menu_sections:
-            result.extend(menu_section._menu_entry_display_strings)
-        return result
-
-    # TODO: probably remove
-    @property
-    def menu_entry_keys(self):
-        result = []
-        for menu_section in self.menu_sections:
-            result.extend(menu_section._menu_entry_keys)
-        return result
-
-    # TODO: make private
-    @property
-    def menu_entry_return_values(self):
-        result = []
-        for menu_section in self.menu_sections:
-            result.extend(menu_section._menu_entry_return_values)
-        return result
-
-    @property
-    def menu_lines(self):
-        result = []
-        result.extend(self.menu_title_lines)
-        result.extend(self.section_lines)
-        return result
-
     @property
     def menu_sections(self):
+        '''Menu sections:
+
+        ::
+
+            >>> for menu_section in menu.menu_sections:
+            ...     menu_section
+            <MenuSection (14)>
+            <MenuSection (4)>
+
+        Return list.
+        '''
         return self._menu_sections
-
-    @property
-    def menu_title_lines(self):
-        menu_lines = []
-        if not self.hide_current_run:
-            if self.explicit_title is not None:
-                title = self.explicit_title
-            else:
-                title = self._session.menu_header
-            menu_lines.append(stringtools.capitalize_string_start(title))
-            menu_lines.append('')
-        return menu_lines
-
-    @property
-    def numbered_section(self):
-        for menu_section in self.menu_sections:
-            if menu_section.is_numbered:
-                return menu_section
 
     @apply
     def prompt_default():
         def fget(self):
             return self._prompt_default
         def fset(self, prompt_default):
+            #assert prompt_default is None, repr((self, prompt_default))
             assert isinstance(prompt_default, (str, type(None)))
             self._prompt_default = prompt_default
         return property(**locals())
@@ -181,27 +219,36 @@ class Menu(ScoreManagerObject):
             if menu_section.is_ranged:
                 return menu_section
 
-    @property
-    def section_lines(self):
-        menu_lines = []
-        for menu_section in self.menu_sections:
-            section_menu_lines = menu_section._make_menu_lines()
-            if not menu_section.is_hidden:
-                if not self._session.nonnumbered_menu_sections_are_hidden or \
-                    menu_section.is_numbered:
-                    menu_lines.extend(section_menu_lines)
-        if self.hide_current_run:
-            menu_lines = []
-        return menu_lines
-
     @apply
     def should_clear_terminal():
         def fget(self):
+            '''True when menu should clear terminal. Otherwise false:
+    
+            ::
+
+                >>> menu.should_clear_terminal
+                False
+
+            Return boolean.
+            '''
             return self._should_clear_terminal
         def fset(self, should_clear_terminal):
             assert isinstance(should_clear_terminal, bool)
             self._should_clear_terminal = should_clear_terminal
         return property(**locals())
+
+    @property
+    def storage_format(self):
+        '''Menu storage format:
+
+        ::
+    
+            >>> z(menu)
+            menuing.Menu()
+
+        Return string.
+        '''
+        return super(Menu, self).storage_format
 
     ### PUBLIC METHODS ###
 
@@ -264,7 +311,8 @@ class Menu(ScoreManagerObject):
     def display_menu(self, 
         automatically_determined_user_input=None):
         self.conditionally_clear_terminal()
-        self._io.display(self.menu_lines, capitalize_first_character=False)
+        self._io.display(self._make_menu_lines(), 
+            capitalize_first_character=False)
         if automatically_determined_user_input is not None:
             return automatically_determined_user_input
         user_response = self._io.handle_raw_input_with_default(
@@ -276,7 +324,7 @@ class Menu(ScoreManagerObject):
         return directive
 
     def enclose_in_list(self, expr):
-        if self.has_ranged_section:
+        if self._has_ranged_section:
             return [expr]
         else:
             return expr
@@ -306,10 +354,14 @@ class Menu(ScoreManagerObject):
         self._io.display(lines, capitalize_first_character=False)
 
     def handle_argument_range_user_input(self, user_input):
-        if not self.has_ranged_section:
+        if not self._has_ranged_section:
             return
-        entry_numbers = \
-            self.ranged_section._argument_range_string_to_numbers(
+#        for menu_section in self.menu_sections:
+#            if menu_section.is_ranged:
+#                ranged_section = menu_section
+#        else:
+#            return
+        entry_numbers = self.ranged_section._argument_range_string_to_numbers(
             user_input)
         if entry_numbers is None:
             return None
@@ -407,8 +459,8 @@ class Menu(ScoreManagerObject):
         return_value_attribute='display_string',
         ):
         from experimental import scoremanagertools
-        assert not (is_numbered and self.has_numbered_section)
-        assert not (is_ranged and self.has_ranged_section)
+        assert not (is_numbered and self._has_numbered_section)
+        assert not (is_ranged and self._has_ranged_section)
         menu_section = scoremanagertools.menuing.MenuSection(
             is_hidden=is_hidden,
             is_numbered=is_numbered,
