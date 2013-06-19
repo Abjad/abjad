@@ -9,19 +9,10 @@ scoremanagertools.menuing.Menu
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.default_value
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.hidden_section
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.menu_entries
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.menu_sections
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.ranged_section
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.storage_format

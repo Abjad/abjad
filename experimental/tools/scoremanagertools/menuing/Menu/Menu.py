@@ -126,12 +126,6 @@ class Menu(ScoreManagerObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def default_value(self):
-        for menu_section in self.menu_sections:
-            if menu_section._has_default_value:
-                return menu_section._default_value
-
-    @property
     def hidden_section(self):
         '''Menu hidden section:
 
@@ -166,13 +160,6 @@ class Menu(ScoreManagerObject):
                 return menu_section
 
     @property
-    def menu_entries(self):
-        result = []
-        for menu_section in self.menu_sections:
-            result.extend(menu_section.menu_entries)
-        return result
-
-    @property
     def menu_sections(self):
         '''Menu sections:
 
@@ -186,12 +173,6 @@ class Menu(ScoreManagerObject):
         Return list.
         '''
         return self._menu_sections
-
-    @property
-    def ranged_section(self):
-        for menu_section in self.menu_sections:
-            if menu_section.is_ranged:
-                return menu_section
 
     @apply
     def should_clear_terminal():
@@ -250,19 +231,25 @@ class Menu(ScoreManagerObject):
         user_input = stringtools.strip_diacritics_from_binary_string(
             user_input)
         user_input = user_input.lower()
-        if self.user_enters_nothing(user_input) and self.default_value:
-            return self.enclose_in_list(self.default_value)
+        if self.user_enters_nothing(user_input):
+            default_value = None
+            for menu_section in self.menu_sections:
+                if menu_section._has_default_value:
+                    default_value = menu_section._default_value
+            if default_value is not None:
+                return self.enclose_in_list(default_value)
         elif self.user_enters_argument_range(user_input):
             return self.handle_argument_range_user_input(user_input)
         elif user_input == 'r':
             return 'r'
         else:
-            for menu_entry in self.menu_entries:
-                if menu_entry.display_string == 'redraw':
-                    continue
-                if menu_entry.matches(user_input):
-                    return self.enclose_in_list(
-                        menu_entry.return_value)
+            for menu_section in self.menu_sections:
+                for menu_entry in menu_section.menu_entries:
+                    if menu_entry.display_string == 'redraw':
+                        continue
+                    if menu_entry.matches(user_input):
+                        return self.enclose_in_list(
+                            menu_entry.return_value)
 
     def conditionally_clear_terminal(self):
         if not self._session.hide_next_redraw:
@@ -349,19 +336,17 @@ class Menu(ScoreManagerObject):
     def handle_argument_range_user_input(self, user_input):
         if not self._has_ranged_section:
             return
-#        for menu_section in self.menu_sections:
-#            if menu_section.is_ranged:
-#                ranged_section = menu_section
-#        else:
-#            return
-        entry_numbers = self.ranged_section._argument_range_string_to_numbers(
+        for menu_section in self.menu_sections:
+            if menu_section.is_ranged:
+                ranged_section = menu_section
+        entry_numbers = ranged_section._argument_range_string_to_numbers(
             user_input)
         if entry_numbers is None:
             return None
         entry_indices = [entry_number - 1 for entry_number in entry_numbers]
         result = []
         for i in entry_indices:
-            entry = self.ranged_section._menu_entry_return_values[i]
+            entry = ranged_section._menu_entry_return_values[i]
             result.append(entry)
         return result
 

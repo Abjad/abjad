@@ -15,9 +15,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.chevrons
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.default_value
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.defaults
    :noindex:
 
@@ -30,16 +27,10 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.hidden_section
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.menu_entries
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.menu_sections
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.prompts
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.ranged_section
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.storage_format
