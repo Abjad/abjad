@@ -1,4 +1,6 @@
 from experimental import *
+import py
+py.test.skip('unskip after where automatically toggles where-tracking.')
 
 
 def test_UserInputGetterMenu_where_01():

@@ -1,3 +1,4 @@
+import os
 from abjad.tools import iotools
 from abjad.tools import mathtools
 from abjad.tools import stringtools
@@ -91,16 +92,16 @@ class Menu(ScoreManagerObject):
         hidden_section.append(('exec statement', 'exec'))
         hidden_section.append(('grep directories', 'grep'))
         hidden_section.append(('edit client source', 'here'))
-        hidden_section.append(('show hidden items', 'hidden'))
+        hidden_section.append(('display hidden menu section', 'hidden'))
         hidden_section.append(('home', 'home'))
         hidden_section.append(('next score', 'next'))
         hidden_section.append(('prev score', 'prev'))
         hidden_section.append(('quit', 'q'))
         hidden_section.append(('redraw', 'r'))
-        hidden_section.append(('score', 'score'))
+        hidden_section.append(('current score', 'score'))
         hidden_section.append(('toggle menu', 'tm'))
         hidden_section.append(('toggle where', 'tw'))
-        hidden_section.append(('show menu client', 'where'))
+        hidden_section.append(('display calling code line number', 'where'))
         return hidden_section
 
     def _make_menu_lines(self):
@@ -205,16 +206,16 @@ class Menu(ScoreManagerObject):
                 <MenuEntry: 'exec statement'>
                 <MenuEntry: 'grep directories'>
                 <MenuEntry: 'edit client source'>
-                <MenuEntry: 'show hidden items'>
+                <MenuEntry: 'display hidden menu section'>
                 <MenuEntry: 'home'>
                 <MenuEntry: 'next score'>
                 <MenuEntry: 'prev score'>
                 <MenuEntry: 'quit'>
                 <MenuEntry: 'redraw'>
-                <MenuEntry: 'score'>
+                <MenuEntry: 'current score'>
                 <MenuEntry: 'toggle menu'>
                 <MenuEntry: 'toggle where'>
-                <MenuEntry: 'show menu client'>
+                <MenuEntry: 'display calling code line number'>
 
         Return menu section or none.
         '''
@@ -317,20 +318,24 @@ class Menu(ScoreManagerObject):
     def display_calling_code_line_number(self):
         lines = []
         if self.where is not None:
-            line = '{} file: {}'.format(self._make_tab(1), self.where[1])
+            file_path = self.where[1]
+            file_name = os.path.basename(file_path)
+            line = '{}   file: {}'.format(self._make_tab(1), file_name)
             lines.append(line)
-            line = '{} line: {}'.format(self._make_tab(1), self.where[2])
+            line = '{} method: {}'.format(self._make_tab(1), self.where[3])
             lines.append(line)
-            line = '{} meth: {}'.format(self._make_tab(1), self.where[3])
+            line = '{}   line: {}'.format(self._make_tab(1), self.where[2])
             lines.append(line)
             lines.append('')
             self._io.display(lines, capitalize_first_character=False)
+            self._session.hide_next_redraw = True
         else:
-            lines.append("where-tracking not enabled. " + 
-                "Use 'tw' to toggle where-tracking.")
-            lines.append('')
-            self._io.display(lines)
-        self._session.hide_next_redraw = True
+            #lines.append("where-tracking not enabled. " + 
+            #    "Use 'tw' to toggle where-tracking.")
+            #lines.append('')
+            #self._io.display(lines)
+            self._session.enable_where = True
+        #self._session.hide_next_redraw = True
 
     def display_hidden_menu_section(self):
         menu_lines = []
@@ -415,7 +420,11 @@ class Menu(ScoreManagerObject):
         elif key == 'tw':
             self._session.enable_where = not self._session.enable_where
         elif key == 'where':
-            self.display_calling_code_line_number()
+            result = self.display_calling_code_line_number()
+#            if result == 'try again':
+#                self._session.enable_where = True
+#                self.display_calling_code_line_number()
+#            self._session.hide_next_redraw = True
         else:
             return directive
 
