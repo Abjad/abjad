@@ -71,17 +71,114 @@ class Menu(ScoreManagerObject):
 
     ### PRIVATE METHODS ###
 
+    def _change_user_input_to_directive(self, user_input):
+        user_input = stringtools.strip_diacritics_from_binary_string(
+            user_input)
+        user_input = user_input.lower()
+        if self._user_enters_nothing(user_input):
+            default_value = None
+            for menu_section in self.menu_sections:
+                if menu_section._has_default_value:
+                    default_value = menu_section._default_value
+            if default_value is not None:
+                return self._enclose_in_list(default_value)
+        elif self._user_enters_argument_range(user_input):
+            return self._handle_argument_range_user_input(user_input)
+        elif user_input == 'r':
+            return 'r'
+        else:
+            for menu_section in self.menu_sections:
+                for menu_entry in menu_section.menu_entries:
+                    if menu_entry.display_string == 'redraw':
+                        continue
+                    if menu_entry.matches(user_input):
+                        return self._enclose_in_list(
+                            menu_entry.return_value)
+
     def _clear_terminal(self):
         if not self._session.hide_next_redraw:
             if self.should_clear_terminal:
                 if self._session.is_displayable:
                     iotools.clear_terminal()
 
+    def _display(self, 
+        automatically_determined_user_input=None):
+        self._clear_terminal()
+        self._io.display(self._make_menu_lines(), 
+            capitalize_first_character=False)
+        if automatically_determined_user_input is not None:
+            return automatically_determined_user_input
+        user_response = self._io.handle_raw_input_with_default('')
+        directive = self._change_user_input_to_directive(user_response)
+        directive = self._strip_default_indicators_from_strings(directive)
+        self._session.hide_next_redraw = False
+        directive = self._handle_hidden_menu_section_return_value(directive)
+        return directive
+
     def _enclose_in_list(self, expr):
         if self._has_ranged_section:
             return [expr]
         else:
             return expr
+
+    def _handle_argument_range_user_input(self, user_input):
+        if not self._has_ranged_section:
+            return
+        for menu_section in self.menu_sections:
+            if menu_section.is_ranged:
+                ranged_section = menu_section
+        entry_numbers = ranged_section._argument_range_string_to_numbers(
+            user_input)
+        if entry_numbers is None:
+            return None
+        entry_indices = [entry_number - 1 for entry_number in entry_numbers]
+        result = []
+        for i in entry_indices:
+            entry = ranged_section._menu_entry_return_values[i]
+            result.append(entry)
+        return result
+
+    def _handle_hidden_menu_section_return_value(self, directive):
+        if isinstance(directive, list) and len(directive) == 1:
+            key = directive[0]
+        else:
+            key = directive
+        if key in ('b', 'back'):
+            self._session.is_backtracking_locally = True
+        elif key == 'cmds':
+            self.toggle_menu_commands()
+        elif key == 'exec':
+            self.interactively_exec_statement()
+        elif key == 'grep':
+            self.interactively_grep_directories()
+        elif key == 'here':
+            self.interactively_edit_calling_code()
+        elif key == 'hidden':
+            self.display_hidden_menu_section()
+        elif key == 'next':
+            self._session.is_navigating_to_next_score = True
+            self._session.is_backtracking_to_score_manager = True
+        elif key == 'prev':
+            self._session.is_navigating_to_prev_score = True
+            self._session.is_backtracking_to_score_manager = True
+        elif key in ('q', 'quit'):
+            self._session.user_specified_quit = True
+#        # TODO: make this redraw!
+#        elif key == 'r':
+#            pass
+        elif isinstance(key, str) and \
+            3 <= len(key) and 'score'.startswith(key):
+            if self._session.is_in_score:
+                self._session.is_backtracking_to_score = True
+        elif isinstance(key, str) and \
+            3 <= len(key) and 'home'.startswith(key):
+            self._session.is_backtracking_to_score_manager = True
+        elif key == 'tw':
+            self._session.enable_where = not self._session.enable_where
+        elif key == 'where':
+            self.display_calling_code_line_number()
+        else:
+            return directive
 
     def _make_default_hidden_section(self):
         from experimental.tools import scoremanagertools
@@ -99,7 +196,7 @@ class Menu(ScoreManagerObject):
         hidden_section.append(('quit', 'q'))
         hidden_section.append(('redraw', 'r'))
         hidden_section.append(('current score', 'score'))
-        hidden_section.append(('toggle menu', 'tm'))
+        hidden_section.append(('show/hide commands', 'cmds'))
         hidden_section.append(('toggle where', 'tw'))
         hidden_section.append(('display calling code line number', 'where'))
         return hidden_section
@@ -159,7 +256,7 @@ class Menu(ScoreManagerObject):
             self.should_clear_terminal = clear
             self.hide_current_run = hide_current_run
             clear, hide_current_run = False, True
-            result = self.display_menu(
+            result = self._display(
                 automatically_determined_user_input=\
                 automatically_determined_user_input)
             if self._session.is_complete:
@@ -224,7 +321,7 @@ class Menu(ScoreManagerObject):
                 <MenuEntry: 'quit'>
                 <MenuEntry: 'redraw'>
                 <MenuEntry: 'current score'>
-                <MenuEntry: 'toggle menu'>
+                <MenuEntry: 'show/hide commands'>
                 <MenuEntry: 'toggle where'>
                 <MenuEntry: 'display calling code line number'>
 
@@ -302,30 +399,6 @@ class Menu(ScoreManagerObject):
 
     ### PUBLIC METHODS ###
 
-    def change_user_input_to_directive(self, user_input):
-        user_input = stringtools.strip_diacritics_from_binary_string(
-            user_input)
-        user_input = user_input.lower()
-        if self._user_enters_nothing(user_input):
-            default_value = None
-            for menu_section in self.menu_sections:
-                if menu_section._has_default_value:
-                    default_value = menu_section._default_value
-            if default_value is not None:
-                return self._enclose_in_list(default_value)
-        elif self._user_enters_argument_range(user_input):
-            return self.handle_argument_range_user_input(user_input)
-        elif user_input == 'r':
-            return 'r'
-        else:
-            for menu_section in self.menu_sections:
-                for menu_entry in menu_section.menu_entries:
-                    if menu_entry.display_string == 'redraw':
-                        continue
-                    if menu_entry.matches(user_input):
-                        return self._enclose_in_list(
-                            menu_entry.return_value)
-
     def display_calling_code_line_number(self):
         lines = []
         if self.where is not None:
@@ -356,79 +429,6 @@ class Menu(ScoreManagerObject):
                 menu_lines.append('')
         self._io.display(menu_lines, capitalize_first_character=False)
         self._session.hide_next_redraw = True
-
-    def display_menu(self, 
-        automatically_determined_user_input=None):
-        self._clear_terminal()
-        self._io.display(self._make_menu_lines(), 
-            capitalize_first_character=False)
-        if automatically_determined_user_input is not None:
-            return automatically_determined_user_input
-        user_response = self._io.handle_raw_input_with_default('')
-        directive = self.change_user_input_to_directive(user_response)
-        directive = self._strip_default_indicators_from_strings(directive)
-        self._session.hide_next_redraw = False
-        directive = self.handle_hidden_menu_section_return_value(directive)
-        return directive
-
-    def handle_argument_range_user_input(self, user_input):
-        if not self._has_ranged_section:
-            return
-        for menu_section in self.menu_sections:
-            if menu_section.is_ranged:
-                ranged_section = menu_section
-        entry_numbers = ranged_section._argument_range_string_to_numbers(
-            user_input)
-        if entry_numbers is None:
-            return None
-        entry_indices = [entry_number - 1 for entry_number in entry_numbers]
-        result = []
-        for i in entry_indices:
-            entry = ranged_section._menu_entry_return_values[i]
-            result.append(entry)
-        return result
-
-    def handle_hidden_menu_section_return_value(self, directive):
-        if isinstance(directive, list) and len(directive) == 1:
-            key = directive[0]
-        else:
-            key = directive
-        if key in ('b', 'back'):
-            self._session.is_backtracking_locally = True
-        elif key == 'exec':
-            self.interactively_exec_statement()
-        elif key == 'grep':
-            self.interactively_grep_directories()
-        elif key == 'here':
-            self.interactively_edit_calling_code()
-        elif key == 'hidden':
-            self.display_hidden_menu_section()
-        elif key == 'next':
-            self._session.is_navigating_to_next_score = True
-            self._session.is_backtracking_to_score_manager = True
-        elif key == 'prev':
-            self._session.is_navigating_to_prev_score = True
-            self._session.is_backtracking_to_score_manager = True
-        elif key in ('q', 'quit'):
-            self._session.user_specified_quit = True
-#        # TODO: make this redraw!
-#        elif key == 'r':
-#            pass
-        elif isinstance(key, str) and \
-            3 <= len(key) and 'score'.startswith(key):
-            if self._session.is_in_score:
-                self._session.is_backtracking_to_score = True
-        elif isinstance(key, str) and \
-            3 <= len(key) and 'home'.startswith(key):
-            self._session.is_backtracking_to_score_manager = True
-        elif key == 'tm':
-            self.toggle_menu()
-        elif key == 'tw':
-            self._session.enable_where = not self._session.enable_where
-        elif key == 'where':
-            self.display_calling_code_line_number()
-        else:
-            return directive
 
     def interactively_edit_calling_code(self):
         if self.where is not None:
@@ -488,7 +488,7 @@ class Menu(ScoreManagerObject):
         self.menu_sections.append(menu_section)
         return menu_section
 
-    def toggle_menu(self):
+    def toggle_menu_commands(self):
         if self._session.nonnumbered_menu_sections_are_hidden:
             self._session.nonnumbered_menu_sections_are_hidden = False
         else:

@@ -185,7 +185,7 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
             if user_response is None:
                 self.prompt_index = self.prompt_index + 1
                 break
-            user_response = self.handle_hidden_menu_section_return_value(
+            user_response = self._handle_hidden_menu_section_return_value(
                 user_response)
             if self._session.backtrack():
                 return False

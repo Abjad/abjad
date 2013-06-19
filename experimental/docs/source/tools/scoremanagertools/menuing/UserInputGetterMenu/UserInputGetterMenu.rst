@@ -177,9 +177,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.apply_tests_to_value
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.change_user_input_to_directive
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.change_user_response_to_value
    :noindex:
 
@@ -192,9 +189,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.display_hidden_menu_section
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.display_menu
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.evaluate_test
    :noindex:
 
@@ -202,12 +196,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.get_value_from_execs
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.handle_argument_range_user_input
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.handle_hidden_menu_section_return_value
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.indent_and_number_prompt
@@ -246,7 +234,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.store_value_from_argument_list
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.toggle_menu
+.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.toggle_menu_commands
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.try_to_store_value_from_argument_list

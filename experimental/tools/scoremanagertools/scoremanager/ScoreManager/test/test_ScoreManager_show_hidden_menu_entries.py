@@ -17,7 +17,7 @@ def test_ScoreManager_show_hidden_menu_entries_01():
          '     quit (q)',
          '     redraw (r)',
          '     current score (score)',
-         '     toggle menu (tm)',
+         '     show/hide commands (cmds)',
          '     toggle where (tw)',
          '     display calling code line number (where)',
          '',
