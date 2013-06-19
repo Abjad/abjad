@@ -30,9 +30,6 @@ Read-only properties
 Read/write properties
 ---------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.prompt_default
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.Menu.Menu.Menu.should_clear_terminal
    :noindex:
 

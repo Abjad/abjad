@@ -29,7 +29,6 @@ class Menu(ScoreManagerObject):
             session=session, where=where)
         self.menu_sections.append(hidden_section)
         self.title = None
-        self.prompt_default = None
         self.should_clear_terminal = False
         self.where = where
 
@@ -203,16 +202,6 @@ class Menu(ScoreManagerObject):
         '''
         return self._menu_sections
 
-    @apply
-    def prompt_default():
-        def fget(self):
-            return self._prompt_default
-        def fset(self, prompt_default):
-            #assert prompt_default is None, repr((self, prompt_default))
-            assert isinstance(prompt_default, (str, type(None)))
-            self._prompt_default = prompt_default
-        return property(**locals())
-
     @property
     def ranged_section(self):
         for menu_section in self.menu_sections:
@@ -315,8 +304,7 @@ class Menu(ScoreManagerObject):
             capitalize_first_character=False)
         if automatically_determined_user_input is not None:
             return automatically_determined_user_input
-        user_response = self._io.handle_raw_input_with_default(
-            '', default=self.prompt_default)
+        user_response = self._io.handle_raw_input_with_default('')
         directive = self.change_user_input_to_directive(user_response)
         directive = self.strip_default_indicators_from_strings(directive)
         self._session.hide_next_redraw = False

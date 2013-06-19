@@ -51,9 +51,6 @@ Read-only properties
 Read/write properties
 ---------------------
 
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.prompt_default
-   :noindex:
-
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.should_clear_terminal
    :noindex:
 
