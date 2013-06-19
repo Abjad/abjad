@@ -37,26 +37,26 @@ class MenuSection(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self,
-        where=None,
-        menu_entries=None,
         return_value_attribute='display_string',
+        default_index=None,
+        indent_level=1,
+        is_hidden=False,
         is_numbered=False,
         is_ranged=False,
-        is_hidden=False,
+        show_prepopulated_values=True,
         title=None,
         ):
         AbjadObject.__init__(self)
-        self._is_hidden = is_hidden
-        self._is_numbered = is_numbered
-        self._is_ranged = is_ranged
+        self.menu_entries = []
         assert return_value_attribute in self.return_value_attributes
-        self._return_value_attribute = return_value_attribute
-        self.default_index = None
-        self.indent_level = 1
-        self.show_prepopulated_values = False
-        self.menu_entries = menu_entries
+        self.return_value_attribute = return_value_attribute
+        self.default_index = default_index
+        self.indent_level = indent_level
+        self.is_hidden = is_hidden
+        self.is_numbered = is_numbered
+        self.is_ranged = is_ranged
+        self.show_prepopulated_values = show_prepopulated_values
         self.title = title
-        self.where = where
 
     ### SPECIAL METHODS ###
 
@@ -208,6 +208,24 @@ class MenuSection(AbjadObject):
         return property(**locals())
 
     @apply
+    def indent_level():
+        def fget(self):
+            '''Menu section indent level:
+
+            ::
+
+                >>> menu_section.indent_level
+                1
+
+            Return nonnegative integer.
+            '''
+            return self._indent_level
+        def fset(self, indent_level):
+            assert isinstance(indent_level, int) and 0 <= indent_level
+            self._indent_level = indent_level
+        return property(**locals())
+
+    @apply
     def is_hidden():
         def fget(self):
             '''True when menu section is hidden. Otherwise false:
@@ -277,12 +295,12 @@ class MenuSection(AbjadObject):
 
             Return list.
             '''
-            return self._tokens
+            return self._menu_entries
         def fset(self, menu_entries):
             if menu_entries is None:
-                self._tokens = []
+                self._menu_entries = []
             elif isinstance(menu_entries, list):
-                self._tokens = []
+                self._menu_entries = []
                 for menu_entry in menu_entries:
                     self.append(menu_entry)
             else:
@@ -316,6 +334,25 @@ class MenuSection(AbjadObject):
                 self._return_value_attribute = expr
         return property(**locals())
     
+    @apply
+    def show_prepopulated_values():
+        def fget(self):
+            '''True when menu section should show prepopulated values.
+            Otherwise false:
+
+            ::
+
+                >>> menu_section.show_prepopulated_values
+                True
+
+            Return boolean.
+            '''
+            return self._show_prepopulated_values
+        def fset(self, show_prepopulated_values):
+            assert isinstance(show_prepopulated_values, bool)
+            self._show_prepopulated_values = show_prepopulated_values
+        return property(**locals())
+
     @property
     def storage_format(self):
         '''Menu section storage format:
@@ -324,11 +361,12 @@ class MenuSection(AbjadObject):
 
             >>> z(menu_section)
             menuing.MenuSection(
-                menu_entries=[<MenuEntry: 'svn add scores'>, <MenuEntry: 'svn commit scores'>, <MenuEntry: 'svn status scores'>, <MenuEntry: 'svn update scores'>],
                 return_value_attribute='key',
+                indent_level=1,
+                is_hidden=False,
                 is_numbered=False,
                 is_ranged=False,
-                is_hidden=False
+                show_prepopulated_values=True
                 )
 
         Return string.

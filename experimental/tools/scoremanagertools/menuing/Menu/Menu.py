@@ -22,14 +22,17 @@ class Menu(ScoreManagerObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, session=None, where=None):
+    def __init__(self, 
+        session=None, 
+        where=None,
+        should_clear_terminal=False,
+        title=None,
+        ):
         ScoreManagerObject.__init__(self, session=session)
-        self._menu_sections = []
-        hidden_section = self.make_default_hidden_section(
-            session=session, where=where)
-        self.menu_sections.append(hidden_section)
-        self.title = None
-        self.should_clear_terminal = False
+        hidden_section = self.make_default_hidden_section()
+        self._menu_sections = [hidden_section]
+        self.should_clear_terminal = should_clear_terminal
+        self.title = title
         self.where = where
 
     ### SPECIAL METHODS ###
@@ -233,7 +236,9 @@ class Menu(ScoreManagerObject):
         ::
     
             >>> z(menu)
-            menuing.Menu()
+            menuing.Menu(
+                should_clear_terminal=False
+                )
 
         Return string.
         '''
@@ -416,11 +421,9 @@ class Menu(ScoreManagerObject):
             self._io.display(lines)
             self._session.hide_next_redraw = True
 
-    def make_default_hidden_section(self, session=None, where=None):
+    def make_default_hidden_section(self):
         from experimental.tools import scoremanagertools
-        hidden_section = scoremanagertools.menuing.MenuSection(
-            where=where,
-            )
+        hidden_section = scoremanagertools.menuing.MenuSection()
         hidden_section.return_value_attribute = 'key'
         hidden_section.is_hidden = True
         hidden_section.append(('back', 'b'))
@@ -453,10 +456,9 @@ class Menu(ScoreManagerObject):
             is_hidden=is_hidden,
             is_numbered=is_numbered,
             is_ranged=is_ranged,
-            menu_entries=menu_entries,
             return_value_attribute=return_value_attribute,
-            where=self.where,
             )
+        menu_section.menu_entries = menu_entries
         self.menu_sections.append(menu_section)
         return menu_section
 

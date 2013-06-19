@@ -153,11 +153,12 @@ class MenuEntry(AbjadObject):
             >>> z(menu_entry)
             menuing.MenuEntry(
                 menuing.MenuSection(
-                    menu_entries=[<MenuEntry: 'svn add scores'>, <MenuEntry: 'svn commit scores'>, <MenuEntry: 'svn status scores'>, <MenuEntry: 'svn update scores'>],
                     return_value_attribute='key',
+                    indent_level=1,
+                    is_hidden=False,
                     is_numbered=False,
                     is_ranged=False,
-                    is_hidden=False
+                    show_prepopulated_values=True
                     ),
                 'svn update scores',
                 key='up'
