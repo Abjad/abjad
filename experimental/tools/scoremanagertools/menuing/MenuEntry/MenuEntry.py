@@ -158,7 +158,7 @@ class MenuEntry(AbjadObject):
                     is_hidden=False,
                     is_numbered=False,
                     is_ranged=False,
-                    show_prepopulated_values=True
+                    display_prepopulated_values=True
                     ),
                 'svn update scores',
                 key='up'

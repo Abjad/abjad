@@ -18,6 +18,9 @@ Read/write properties
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.default_index
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.display_prepopulated_values
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.indent_level
    :noindex:
 
@@ -34,9 +37,6 @@ Read/write properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.return_value_attribute
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.show_prepopulated_values
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.MenuSection.MenuSection.MenuSection.title

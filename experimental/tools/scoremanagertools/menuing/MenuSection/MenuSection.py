@@ -43,7 +43,7 @@ class MenuSection(AbjadObject):
         is_hidden=False,
         is_numbered=False,
         is_ranged=False,
-        show_prepopulated_values=True,
+        display_prepopulated_values=True,
         title=None,
         ):
         AbjadObject.__init__(self)
@@ -55,7 +55,7 @@ class MenuSection(AbjadObject):
         self.is_hidden = is_hidden
         self.is_numbered = is_numbered
         self.is_ranged = is_ranged
-        self.show_prepopulated_values = show_prepopulated_values
+        self.display_prepopulated_values = display_prepopulated_values
         self.title = title
 
     ### SPECIAL METHODS ###
@@ -146,7 +146,7 @@ class MenuSection(AbjadObject):
             menu_line += display_string
             if key:
                 menu_line += ' ({})'.format(key)
-            if self.show_prepopulated_values and prepopulated_value:
+            if self.display_prepopulated_values and prepopulated_value:
                 menu_line += ':'
                 if prepopulated_value not in (None, 'None'):
                     menu_line += ' {}'.format(prepopulated_value)
@@ -205,6 +205,25 @@ class MenuSection(AbjadObject):
                     message = message.format(count)
                     raise ValueError(message)
             self._default_index = default_index
+        return property(**locals())
+
+    @apply
+    def display_prepopulated_values():
+        def fget(self):
+            '''True when menu section should show prepopulated values.
+            Otherwise false:
+
+            ::
+
+                >>> menu_section.display_prepopulated_values
+                True
+
+            Return boolean.
+            '''
+            return self._display_prepopulated_values
+        def fset(self, display_prepopulated_values):
+            assert isinstance(display_prepopulated_values, bool)
+            self._display_prepopulated_values = display_prepopulated_values
         return property(**locals())
 
     @apply
@@ -334,25 +353,6 @@ class MenuSection(AbjadObject):
                 self._return_value_attribute = expr
         return property(**locals())
     
-    @apply
-    def show_prepopulated_values():
-        def fget(self):
-            '''True when menu section should show prepopulated values.
-            Otherwise false:
-
-            ::
-
-                >>> menu_section.show_prepopulated_values
-                True
-
-            Return boolean.
-            '''
-            return self._show_prepopulated_values
-        def fset(self, show_prepopulated_values):
-            assert isinstance(show_prepopulated_values, bool)
-            self._show_prepopulated_values = show_prepopulated_values
-        return property(**locals())
-
     @property
     def storage_format(self):
         '''Menu section storage format:
@@ -366,7 +366,7 @@ class MenuSection(AbjadObject):
                 is_hidden=False,
                 is_numbered=False,
                 is_ranged=False,
-                show_prepopulated_values=True
+                display_prepopulated_values=True
                 )
 
         Return string.

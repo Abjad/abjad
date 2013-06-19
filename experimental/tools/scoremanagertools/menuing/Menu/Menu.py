@@ -131,24 +131,6 @@ class Menu(ScoreManagerObject):
             if menu_section._has_default_value:
                 return menu_section._default_value
 
-    @apply
-    def title():
-        def fget(self):
-            '''Menu title:
-
-            ::
-
-                >>> menu.title is None
-                True
-
-            Return string or none.
-            '''
-            return self._title
-        def fset(self, title):
-            assert isinstance(title, (str, type(None)))
-            self._title = title
-        return property(**locals())
-
     @property
     def hidden_section(self):
         '''Menu hidden section:
@@ -243,6 +225,24 @@ class Menu(ScoreManagerObject):
         Return string.
         '''
         return super(Menu, self).storage_format
+
+    @apply
+    def title():
+        def fget(self):
+            '''Menu title:
+
+            ::
+
+                >>> menu.title is None
+                True
+
+            Return string or none.
+            '''
+            return self._title
+        def fset(self, title):
+            assert isinstance(title, (str, type(None)))
+            self._title = title
+        return property(**locals())
 
     ### PUBLIC METHODS ###
 

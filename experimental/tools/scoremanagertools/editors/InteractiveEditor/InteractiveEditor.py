@@ -61,7 +61,7 @@ class InteractiveEditor(ScoreManagerObject):
         menu_section.return_value_attribute = 'key'
         menu_section.is_numbered = True
         menu_section.menu_entries = menu_entries
-        menu_section.show_prepopulated_values = True
+        menu_section.display_prepopulated_values = True
         menu.hidden_section.append(('done', 'done'))
         return menu
 
