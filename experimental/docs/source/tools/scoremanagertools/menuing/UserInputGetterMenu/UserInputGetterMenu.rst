@@ -252,12 +252,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.try_to_store_value_from_argument_list
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.user_enters_argument_range
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.user_enters_nothing
-   :noindex:
-
 Special methods
 ---------------
 

@@ -187,6 +187,17 @@ class Menu(ScoreManagerObject):
         else:
             return expr
 
+    def _user_enters_nothing(self, user_input):
+        return not user_input or (3 <= len(user_input) and \
+            'default'.startswith(user_input))
+
+    def _user_enters_argument_range(self, user_input):
+        if ',' in user_input:
+            return True
+        if '-' in user_input:
+            return True
+        return False
+
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -295,14 +306,14 @@ class Menu(ScoreManagerObject):
         user_input = stringtools.strip_diacritics_from_binary_string(
             user_input)
         user_input = user_input.lower()
-        if self.user_enters_nothing(user_input):
+        if self._user_enters_nothing(user_input):
             default_value = None
             for menu_section in self.menu_sections:
                 if menu_section._has_default_value:
                     default_value = menu_section._default_value
             if default_value is not None:
                 return self._enclose_in_list(default_value)
-        elif self.user_enters_argument_range(user_input):
+        elif self._user_enters_argument_range(user_input):
             return self.handle_argument_range_user_input(user_input)
         elif user_input == 'r':
             return 'r'
@@ -330,12 +341,7 @@ class Menu(ScoreManagerObject):
             self._io.display(lines, capitalize_first_character=False)
             self._session.hide_next_redraw = True
         else:
-            #lines.append("where-tracking not enabled. " + 
-            #    "Use 'tw' to toggle where-tracking.")
-            #lines.append('')
-            #self._io.display(lines)
             self._session.enable_where = True
-        #self._session.hide_next_redraw = True
 
     def display_hidden_menu_section(self):
         menu_lines = []
@@ -420,11 +426,7 @@ class Menu(ScoreManagerObject):
         elif key == 'tw':
             self._session.enable_where = not self._session.enable_where
         elif key == 'where':
-            result = self.display_calling_code_line_number()
-#            if result == 'try again':
-#                self._session.enable_where = True
-#                self.display_calling_code_line_number()
-#            self._session.hide_next_redraw = True
+            self.display_calling_code_line_number()
         else:
             return directive
 
@@ -491,14 +493,3 @@ class Menu(ScoreManagerObject):
             self._session.nonnumbered_menu_sections_are_hidden = False
         else:
             self._session.nonnumbered_menu_sections_are_hidden = True
-
-    def user_enters_argument_range(self, user_input):
-        if ',' in user_input:
-            return True
-        if '-' in user_input:
-            return True
-        return False
-
-    def user_enters_nothing(self, user_input):
-        return not user_input or (3 <= len(user_input) and \
-            'default'.startswith(user_input))
