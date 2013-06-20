@@ -140,21 +140,21 @@ class MaterialPackageMaker(MaterialPackageProxy):
         test_tuple = type(self).user_input_tests[index]
         test = test_tuple[1]
         if len(test_tuple) == 3:
-            exec_string = test_tuple[2]
+            setup_statement = test_tuple[2]
         else:
-            exec_string = 'value = {}'
+            setup_statement = 'value = {}'
         if self._session.use_current_user_input_values_as_default:
-            default = current_value
+            default_value = current_value
         else:
-            default = None
+            default_value = None
         getter = self._io.make_getter()
         spaced_attribute_name = key.replace('_', ' ')
         message = "value for '{}' must satisfy " + test.__name__ + '().'
         getter.append_something(
-            spaced_attribute_name, message, default=default)
-        getter.tests.append(test)
-        getter.execs[-1].append('from abjad import *')
-        getter.execs[-1].append(exec_string)
+            spaced_attribute_name, message, default_value=default_value)
+        getter.input_validation_tests.append(test)
+        getter.setup_statements[-1].append('from abjad import *')
+        getter.setup_statements[-1].append(setup_statement)
         getter.include_newlines = include_newline
         getter.allow_none = True
         new_value = getter._run()
@@ -201,7 +201,7 @@ class MaterialPackageMaker(MaterialPackageProxy):
         total_elements = len(self.user_input_wrapper_in_memory)
         getter = self._io.make_getter(where=self._where)
         getter.append_integer_in_range(
-            'start at element number', 1, total_elements, default=1)
+            'start at element number', 1, total_elements, default_value=1)
         with self.backtracking:
             start_element_number = getter._run()
         if self._session.backtrack():
