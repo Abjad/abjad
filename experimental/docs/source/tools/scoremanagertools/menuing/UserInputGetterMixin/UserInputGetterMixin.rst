@@ -36,6 +36,9 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMixin.UserInputGetterMixin.UserInputGetterMixin.append_constellation_circuit_id_pair
    :noindex:
 
+.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMixin.UserInputGetterMixin.UserInputGetterMixin.append_dash_case_file_name
+   :noindex:
+
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMixin.UserInputGetterMixin.UserInputGetterMixin.append_direction_string
    :noindex:
 
@@ -58,9 +61,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMixin.UserInputGetterMixin.UserInputGetterMixin.append_hairpin_tokens
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMixin.UserInputGetterMixin.UserInputGetterMixin.append_hyphen_delimited_lowercase_file_name
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMixin.UserInputGetterMixin.UserInputGetterMixin.append_integer

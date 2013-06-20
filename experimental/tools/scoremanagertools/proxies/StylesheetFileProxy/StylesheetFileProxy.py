@@ -42,7 +42,7 @@ class StylesheetFileProxy(FileProxy):
 
     def _initialize_file_name_getter(self):
         getter = self._io.make_getter()
-        getter.append_hyphen_delimited_lowercase_file_name('new name')
+        getter.append_dash_case_file_name('new name')
         return getter
 
     def _make_main_menu(self):
