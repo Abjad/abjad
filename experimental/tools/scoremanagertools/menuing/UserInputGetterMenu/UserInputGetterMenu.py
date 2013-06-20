@@ -23,7 +23,6 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
         self.allow_none = False
         self.capitalize_prompts = True
         self.include_newlines = False
-        self.indent_level = 0
         self.number_prompts = False
         self.prompt_character = '>'
 
@@ -103,10 +102,7 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
             prompt_number = self.prompt_index + 1
             total_prompts = len(self._prompt_strings)
             prompt = '({}/{}) {}'.format(prompt_number, total_prompts, prompt)
-        if self.indent_level:
-            return '{} {}'.format(self._make_tab(self.indent_level), prompt)
-        else:
-            return prompt
+        return prompt
 
     def _load_prompt(self):
         prompt = self._prompt_strings[self.prompt_index]
