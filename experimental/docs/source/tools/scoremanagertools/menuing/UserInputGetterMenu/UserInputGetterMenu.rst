@@ -174,31 +174,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.append_yes_no_string
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.apply_tests_to_value
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.change_user_response_to_value
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.display_calling_code_line_number
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.display_help
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.display_hidden_menu_section
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.evaluate_test
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.get_value_from_direct_evaluation
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.get_value_from_execs
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.indent_and_number_prompt
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.interactively_edit_calling_code
@@ -208,9 +187,6 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.interactively_grep_directories
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.load_prompt
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.make_section
