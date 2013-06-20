@@ -7,6 +7,12 @@ from experimental.tools.scoremanagertools.menuing.UserInputGetterMixin \
 
 
 class UserInputGetterMenu(Menu, UserInputGetterMixin):
+    '''User input getter menu.
+
+    .. note:: add docstring.
+
+    Return user input getter.
+    '''
 
     ### INITIALIZER ###
 
@@ -201,6 +207,7 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
         self.prompt_index = self.prompt_index + 1
 
     def _try_to_store_value_from_argument_list(self, user_response):
+
         argument_list = self._argument_lists[self.prompt_index]
         if argument_list and self._apply__validation_functions_to_value(
             user_response):
@@ -208,3 +215,50 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
             return True
         else:
             return False
+
+    ### PUBLIC PROPERTIES ###
+
+    @apply
+    def allow_none():
+        def fget(self):
+            return self._allow_none
+        def fset(self, expr):
+            assert isinstance(expr, bool)
+            self._allow_none = expr
+        return property(**locals())
+
+    @apply
+    def capitalize_prompts():
+        def fget(self):
+            return self._capitalize_prompts
+        def fset(self, expr):
+            assert isinstance(expr, bool)
+            self._capitalize_prompts = expr
+        return property(**locals())
+
+    @apply
+    def include_newlines():
+        def fget(self):
+            return self._include_newlines
+        def fset(self, expr):
+            assert isinstance(expr, bool)
+            self._include_newlines = expr
+        return property(**locals())
+
+    @apply
+    def number_prompts():
+        def fget(self):
+            return self._number_prompts
+        def fset(self, expr):
+            assert isinstance(expr, bool)
+            self._number_prompts = expr
+        return property(**locals())
+
+    @apply
+    def prompt_character():
+        def fget(self):
+            return self._prompt_character
+        def fset(self, expr):
+            assert isinstance(expr, str)
+            self._prompt_character = expr
+        return property(**locals())
