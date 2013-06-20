@@ -150,9 +150,12 @@ class MaterialPackageMaker(MaterialPackageProxy):
         getter = self._io.make_getter()
         spaced_attribute_name = key.replace('_', ' ')
         message = "value for '{}' must satisfy " + test.__name__ + '().'
-        getter.append_something(
-            spaced_attribute_name, message, default_value=default_value)
-        getter._input_validation_tests.append(test)
+        getter._append_something(
+            spaced_attribute_name, 
+            message, 
+            default_value=default_value,
+            )
+        getter._validation_functions.append(test)
         getter._setup_statements[-1].append('from abjad import *')
         getter._setup_statements[-1].append(setup_statement)
         getter.include_newlines = include_newline

@@ -17,9 +17,9 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
         self._chevron_inclusion_indicators = []
         self._default_values = []
         self._help_strings = []
-        self._input_validation_tests = []
         self._prompt_strings = []
         self._setup_statements = []
+        self._validation_functions = []
         self.allow_none = False
         self.capitalize_prompts = True
         self.include_newlines = False
@@ -34,11 +34,11 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
 
     ### PRIVATE METHODS ###
 
-    def _apply__input_validation_tests_to_value(self, value):
+    def _apply__validation_functions_to_value(self, value):
         if self.allow_none and value is None:
             return True
-        if self.prompt_index < len(self._input_validation_tests):
-            input_test = self._input_validation_tests[self.prompt_index]
+        if self.prompt_index < len(self._validation_functions):
+            input_test = self._validation_functions[self.prompt_index]
             return self._evaluate_test(input_test, value)
         return True
 
@@ -186,7 +186,7 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
             value = self._change_user_response_to_value(user_response)
             if value == '!!!':
                 return False
-            if not self._apply__input_validation_tests_to_value(value):
+            if not self._apply__validation_functions_to_value(value):
                 self._display_help()
                 return False
         self.values.append(value)
@@ -206,7 +206,7 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
 
     def _try_to_store_value_from_argument_list(self, user_response):
         argument_list = self._argument_lists[self.prompt_index]
-        if argument_list and self._apply__input_validation_tests_to_value(
+        if argument_list and self._apply__validation_functions_to_value(
             user_response):
             self._store_value_from_argument_list(user_response, argument_list)
             return True

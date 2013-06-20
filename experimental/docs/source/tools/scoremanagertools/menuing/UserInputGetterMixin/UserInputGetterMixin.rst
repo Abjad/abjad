@@ -102,9 +102,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMixin.UserInputGetterMixin.UserInputGetterMixin.append_positive_integers
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMixin.UserInputGetterMixin.UserInputGetterMixin.append_something
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMixin.UserInputGetterMixin.UserInputGetterMixin.append_space_delimited_lowercase_string
    :noindex:
 
