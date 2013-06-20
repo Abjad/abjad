@@ -17,11 +17,11 @@ def test_ScoreManager_score_navigation_02():
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     score_manager._run(user_input='next q')
     score_manager._session.transcript.signature == (4,)
-    isinstance(score_manager._session.underscore_delimited_current_score_name, str)
+    isinstance(score_manager._session.snake_case_current_score_name, str)
 
     score_manager._run(user_input='prev q')
     score_manager._session.transcript.signature == (4,)
-    isinstance(score_manager._session.underscore_delimited_current_score_name, str)
+    isinstance(score_manager._session.snake_case_current_score_name, str)
 
 
 def test_ScoreManager_score_navigation_03():
@@ -31,7 +31,7 @@ def test_ScoreManager_score_navigation_03():
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     score_manager._run(user_input='next next next q')
     score_manager._session.transcript.signature == (8, (1, 3, 5))
-    isinstance(score_manager._session.underscore_delimited_current_score_name, str)
+    isinstance(score_manager._session.snake_case_current_score_name, str)
 
 
 def test_ScoreManager_score_navigation_04():
@@ -41,4 +41,4 @@ def test_ScoreManager_score_navigation_04():
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     score_manager._run(user_input='prev prev prev q')
     score_manager._session.transcript.signature == (8, (1, 3, 5))
-    isinstance(score_manager._session.underscore_delimited_current_score_name, str)
+    isinstance(score_manager._session.snake_case_current_score_name, str)

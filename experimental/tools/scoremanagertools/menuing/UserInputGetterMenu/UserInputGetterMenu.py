@@ -46,7 +46,7 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
         _setup_statements = self._setup_statements[self.prompt_index]
         assert isinstance(_setup_statements, list)
         if _setup_statements:
-            value = self._get_value_from__setup_statements(
+            value = self._get_value_from_setup_statements(
                 user_response, _setup_statements)
             if value is None and not user_response == 'None':
                 return '!!!'
@@ -83,7 +83,7 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
             value = user_response
         return value
 
-    def _get_value_from__setup_statements(
+    def _get_value_from_setup_statements(
         self, user_response, _setup_statements):
         for setup_statement in _setup_statements:
             try:

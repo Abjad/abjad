@@ -21,7 +21,7 @@ class Session(abctools.AbjadObject):
     ::
 
         >>> session_in_score = scoremanagertools.core.Session()
-        >>> session_in_score.underscore_delimited_current_score_name = 'foo'
+        >>> session_in_score.snake_case_current_score_name = 'foo'
 
     ::
 
@@ -52,7 +52,7 @@ class Session(abctools.AbjadObject):
         self._command_history = []
         self._session_once_had_user_input = False
         self._transcript = scoremanagertools.core.Transcript()
-        self.underscore_delimited_current_score_name = None
+        self.snake_case_current_score_name = None
         self.display_pitch_ranges_with_numbered_pitches = False
         self.dump_transcript = False
         self.enable_where = False
@@ -181,7 +181,7 @@ class Session(abctools.AbjadObject):
         if self.is_in_score:
             parts = []
             parts.append(self.configuration.user_score_packages_directory_path)
-            parts.append(self.underscore_delimited_current_score_name)
+            parts.append(self.snake_case_current_score_name)
             parts.extend(
                 scoremanagertools.wranglers.MaterialPackageWrangler.score_package_asset_storehouse_path_infix_parts)
             return os.path.join(*parts)
@@ -209,7 +209,7 @@ class Session(abctools.AbjadObject):
         from experimental.tools import scoremanagertools
         if self.is_in_score:
             parts = []
-            parts.append(self.underscore_delimited_current_score_name)
+            parts.append(self.snake_case_current_score_name)
             parts.extend(
                 scoremanagertools.wranglers.MaterialPackageWrangler.score_package_asset_storehouse_path_infix_parts)
             return '.'.join(parts)
@@ -224,16 +224,16 @@ class Session(abctools.AbjadObject):
 
         Return string.
         '''
-        if self.underscore_delimited_current_score_name:
-            if self.underscore_delimited_current_score_name in \
+        if self.snake_case_current_score_name:
+            if self.snake_case_current_score_name in \
                 self.cache_of_built_in_score_names:
                 return os.path.join(
                     self.configuration.built_in_score_packages_directory_path,
-                    self.underscore_delimited_current_score_name)
+                    self.snake_case_current_score_name)
             else:
                 return os.path.join(
                     self.configuration.user_score_packages_directory_path,
-                    self.underscore_delimited_current_score_name)
+                    self.snake_case_current_score_name)
 
     @property
     def current_score_package_path(self):
@@ -243,14 +243,14 @@ class Session(abctools.AbjadObject):
 
         Return string.
         '''
-        if self.underscore_delimited_current_score_name:
-            if self.underscore_delimited_current_score_name in \
+        if self.snake_case_current_score_name:
+            if self.snake_case_current_score_name in \
                 self.cache_of_built_in_score_names:
                 return '.'.join([
                     self.configuration.built_in_score_packages_package_path,
-                    self.underscore_delimited_current_score_name])
+                    self.snake_case_current_score_name])
             else:
-                return self.underscore_delimited_current_score_name
+                return self.snake_case_current_score_name
 
     @property
     def current_score_package_proxy(self):
@@ -303,7 +303,7 @@ class Session(abctools.AbjadObject):
         if self.is_in_score:
             parts = []
             parts.append(self.configuration.user_score_packages_directory_path)
-            parts.append(self.underscore_delimited_current_score_name)
+            parts.append(self.snake_case_current_score_name)
             parts.extend(
                 scoremanagertools.wranglers.SegmentPackageWrangler.score_package_asset_storehouse_path_infix_parts)
             return os.path.join(*parts)
@@ -331,7 +331,7 @@ class Session(abctools.AbjadObject):
         from experimental.tools import scoremanagertools
         if self.is_in_score:
             parts = []
-            parts.append(self.underscore_delimited_current_score_name)
+            parts.append(self.snake_case_current_score_name)
             parts.extend(
                 scoremanagertools.wranglers.SegmentPackageWrangler.score_package_asset_storehouse_path_infix_parts)
             return '.'.join(parts)
@@ -446,7 +446,7 @@ class Session(abctools.AbjadObject):
 
         Return boolean.
         '''
-        return self.underscore_delimited_current_score_name is not None
+        return self.snake_case_current_score_name is not None
 
     @property
     def is_navigating_to_sibling_score(self):
@@ -529,6 +529,15 @@ class Session(abctools.AbjadObject):
         '''
         return self._session_once_had_user_input
 
+    @apply
+    def snake_case_current_score_name():
+        def fget(self):
+            return self._snake_case_current_score_name
+        def fset(self, snake_case_current_score_name):
+            assert isinstance(snake_case_current_score_name, (str, type(None)))
+            self._snake_case_current_score_name = snake_case_current_score_name
+        return property(**locals())
+
     @property
     def testable_command_history_string(self):
         '''Session testable command history string:
@@ -568,15 +577,6 @@ class Session(abctools.AbjadObject):
         Return transcript.
         '''
         return self._transcript
-
-    @apply
-    def underscore_delimited_current_score_name():
-        def fget(self):
-            return self._underscore_delimited_current_score_name
-        def fset(self, underscore_delimited_current_score_name):
-            assert isinstance(underscore_delimited_current_score_name, (str, type(None)))
-            self._underscore_delimited_current_score_name = underscore_delimited_current_score_name
-        return property(**locals())
 
     @apply
     def use_current_user_input_values_as_default():

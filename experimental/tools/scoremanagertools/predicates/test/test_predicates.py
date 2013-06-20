@@ -3,13 +3,13 @@ from experimental.tools.scoremanagertools.predicates import predicates
 
 def test_predicates_01():
 
-    assert predicates.is_available_underscore_delimited_lowercase_package_name('asdf')
-    assert predicates.is_available_underscore_delimited_lowercase_package_name('scoremanagertools.asdf')
-    assert predicates.is_available_underscore_delimited_lowercase_package_name(
+    assert predicates.is_available_snake_case_package_name('asdf')
+    assert predicates.is_available_snake_case_package_name('scoremanagertools.asdf')
+    assert predicates.is_available_snake_case_package_name(
         'experimental.tools.scoremanagertools.materialpackages.asdf')
 
-    assert not predicates.is_available_underscore_delimited_lowercase_package_name('scoremanagertools')
-    assert not predicates.is_available_underscore_delimited_lowercase_package_name(
+    assert not predicates.is_available_snake_case_package_name('scoremanagertools')
+    assert not predicates.is_available_snake_case_package_name(
         'experimental.tools.scoremanagertools.materialpackages')
 
 

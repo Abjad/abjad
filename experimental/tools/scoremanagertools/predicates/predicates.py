@@ -16,7 +16,7 @@ def is_articulation_token(expr):
     except:
         return False
 
-def is_available_underscore_delimited_lowercase_package_name(expr):
+def is_available_snake_case_package_name(expr):
     if stringtools.is_snake_case_package_name(expr):
         if 3 <= len(expr):
             return not configuration.packagesystem_path_exists(expr)

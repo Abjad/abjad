@@ -657,7 +657,7 @@ class MaterialPackageProxy(PackageProxy):
         line = 'current material name: {}'.format(self.material_package_name)
         self._io.display(line)
         getter = self._io.make_getter(where=self._where)
-        getter.append_underscore_delimited_lowercase_package_name('new material name')
+        getter.append_snake_case_package_name('new material name')
         new_material_package_name = getter._run()
         if self._session.backtrack():
             return

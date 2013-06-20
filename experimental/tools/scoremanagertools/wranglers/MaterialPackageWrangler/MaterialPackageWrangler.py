@@ -22,7 +22,7 @@ class MaterialPackageWrangler(PackageWrangler):
         >>> wrangler_in_built_in_score = \
         ...     scoremanagertools.wranglers.MaterialPackageWrangler()
         >>> session = wrangler_in_built_in_score._session
-        >>> session.underscore_delimited_current_score_name = \
+        >>> session.snake_case_current_score_name = \
         ...     'red_example_score'
         >>> wrangler_in_built_in_score
         MaterialPackageWrangler()

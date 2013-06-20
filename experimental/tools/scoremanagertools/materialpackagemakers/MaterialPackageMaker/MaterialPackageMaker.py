@@ -150,7 +150,7 @@ class MaterialPackageMaker(MaterialPackageProxy):
         getter = self._io.make_getter()
         spaced_attribute_name = key.replace('_', ' ')
         message = "value for '{}' must satisfy " + test.__name__ + '().'
-        getter._append_something(
+        getter._make_prompt(
             spaced_attribute_name, 
             message, 
             default_value=default_value,

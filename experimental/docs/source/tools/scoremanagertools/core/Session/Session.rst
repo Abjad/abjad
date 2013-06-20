@@ -108,10 +108,10 @@ Read/write properties
 .. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.nonnumbered_menu_sections_are_hidden
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.transcribe_next_command
+.. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.snake_case_current_score_name
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.underscore_delimited_current_score_name
+.. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.transcribe_next_command
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.use_current_user_input_values_as_default

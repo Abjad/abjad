@@ -17,7 +17,7 @@ class ScorePackageWrangler(PackageWrangler):
 
         >>> wrangler_in_built_in_score = \
         ...     scoremanagertools.wranglers.ScorePackageWrangler()
-        >>> wrangler_in_built_in_score._session._underscore_delimited_current_score_name = 'red_example_score'
+        >>> wrangler_in_built_in_score._session._snake_case_current_score_name = 'red_example_score'
         >>> wrangler_in_built_in_score
         ScorePackageWrangler()
 
@@ -49,7 +49,7 @@ class ScorePackageWrangler(PackageWrangler):
     @property
     def _current_storehouse_filesystem_path(self):
         if self._session.is_in_score:
-            if self._session.underscore_delimited_current_score_name in \
+            if self._session.snake_case_current_score_name in \
                     os.listdir(
                 self.configuration.built_in_score_packages_directory_path):
                 return \
@@ -130,7 +130,7 @@ class ScorePackageWrangler(PackageWrangler):
         getter.include_newlines = False
         getter.number_prompts = True
         getter.append_string('score title')
-        getter.append_underscore_delimited_lowercase_package_name(
+        getter.append_snake_case_package_name(
             'package name')
         getter.append_integer_in_range('year', start=1, allow_none=True)
         result = getter._run()

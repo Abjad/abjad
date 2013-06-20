@@ -211,7 +211,7 @@ class PackageProxy(DirectoryProxy):
 
     def interactively_set_package_path(self):
         getter = self._io.make_getter(where=self._where)
-        getter.append_underscore_delimited_lowercase_package_name(
+        getter.append_snake_case_package_name(
             'package name')
         result = getter._run()
         if self._session.backtrack():
