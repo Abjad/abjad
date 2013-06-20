@@ -308,124 +308,197 @@ class UserInputGetterMixin(AbjadObject):
     def append_named_chromatic_pitch(
         self, spaced_attribute_name, default_value=None):
         help_template = 'value for {!r} must be named chromatic pitch.'
-        self._make_prompt(spaced_attribute_name, help_template, default_value=default_value)
         setup_statements = []
         setup_statements.append('from abjad import *')
         setup_statements.append('value = pitchtools.NamedChromaticPitch({})')
-        self._setup_statements[-1] = setup_statements
-        self._validation_functions.append(predicates.is_named_chromatic_pitch)
+        self._make_prompt(
+            spaced_attribute_name, 
+            help_template=help_template, 
+            validation_function=predicates.is_named_chromatic_pitch,
+            setup_statements=setup_statements,
+            default_value=default_value,
+            )
 
     def append_nonnegative_integers(
         self, spaced_attribute_name, default_value=None):
         help_template = 'value for {!r} must be nonnegative integers.'
-        self._make_prompt(spaced_attribute_name, help_template, default_value=default_value)
-        self._validation_functions.append(
-            lambda x: all([isinstance(y, int) and 0 <= y for y in x]))
+        function = lambda x: all(isinstance(y, int) and 0 <= y for y in x)
+        self._make_prompt(
+            spaced_attribute_name, 
+            validation_function=function,
+            help_template=help_template, 
+            default_value=default_value,
+            )
 
     def append_nonzero_integers(
         self, spaced_attribute_name, default_value=None):
         help_template = 'value for {!r} must be nonzero integers.'
-        self._make_prompt(spaced_attribute_name, help_template, default_value=default_value)
-        self._validation_functions.append(
-            lambda x: all([isinstance(y, int) and not y == 0 for y in x]))
+        function = lambda x: all(isinstance(y, int) and not y == 0 for y in x)
+        self._make_prompt(
+            spaced_attribute_name, 
+            validation_function=function,
+            help_template=help_template, 
+            default_value=default_value,
+            )
 
     def append_pitch_range(
         self, spaced_attribute_name, default_value=None):
         help_template = 'value for {!r} must be pitch range.'
-        self._make_prompt(spaced_attribute_name, help_template, default_value=default_value)
         setup_statements = []
         setup_statements.append('from abjad import *')
         setup_statements.append('value = pitchtools.PitchRange({})')
+        self._make_prompt(
+            spaced_attribute_name, 
+            validation_function=predicates.is_pitch_range_or_none,
+            help_template=help_template, 
+            setup_statements=setup_statements,
+            default_value=default_value,
+            )
         self._setup_statements[-1] = setup_statements
-        self._validation_functions.append(predicates.is_pitch_range_or_none)
 
     def append_positive_integer_power_of_two(
         self, spaced_attribute_name, default_value=None):
-        help_template = 'value for {!r} must be positive integer power of two.'
-        self._make_prompt(spaced_attribute_name, help_template, default_value=default_value)
-        self._validation_functions.append(mathtools.is_positive_integer_power_of_two)
+        help_template = 'value for {!r}'
+        help_template += ' must be positive integer power of two.'
+        self._make_prompt(
+            spaced_attribute_name, 
+            validation_function=mathtools.is_positive_integer_power_of_two,
+            help_template=help_template, 
+            default_value=default_value,
+            )
 
     def append_positive_integers(
         self, spaced_attribute_name, default_value=None):
         help_template = 'value for {!r} must be positive integers.'
-        self._make_prompt(spaced_attribute_name, help_template, default_value=default_value)
-        self._validation_functions.append(
-            lambda expr: all([mathtools.is_positive_integer(x) for x in expr]))
+        function = lambda expr: all(
+            mathtools.is_positive_integer(x) for x in expr)
+        self._make_prompt(
+            spaced_attribute_name, 
+            validation_function=function,
+            help_template=help_template, 
+            default_value=default_value,
+            )
 
     def append_snake_case_file_name(
         self, spaced_attribute_name, default_value=None):
         help_template = 'value for {!r} must be '
         help_template += 'underscore-delimited lowercase file name.'
-        self._make_prompt(spaced_attribute_name, help_template, default_value=default_value)
-        self._validation_functions.append(
-            stringtools.is_snake_case_file_name)
+        self._make_prompt(
+            spaced_attribute_name, 
+            validation_function=stringtools.is_snake_case_file_name,
+            help_template=help_template, 
+            default_value=default_value,
+            )
 
     def append_snake_case_file_name_with_extension(
         self, spaced_attribute_name, default_value=None):
         help_template = 'value for {!r} must be '
-        help_template += 'underscore-delimited lowercase file name with extension.'
-        self._make_prompt(spaced_attribute_name, help_template, default_value=default_value)
-        self._validation_functions.append(
-            stringtools.is_snake_case_file_name_with_extension)
+        help_template += 'snake case file name with extension.'
+        self._make_prompt(
+            spaced_attribute_name, 
+            validation_function=\
+                stringtools.is_snake_case_file_name_with_extension,
+            help_template=help_template, 
+            default_value=default_value,
+            )
 
     def append_snake_case_package_name(
         self, spaced_attribute_name, default_value=None):
         help_template = 'value for {!r} must be '
         help_template += 'underscore-delimited lowercase package name '
         help_template += 'of length at least 3.'
-        self._make_prompt(spaced_attribute_name, help_template, default_value=default_value)
-        self._validation_functions.append(
-            predicates.is_snake_case_package_name)
+        self._make_prompt(
+            spaced_attribute_name, 
+            validation_function=predicates.is_snake_case_package_name,
+            help_template=help_template, 
+            default_value=default_value,
+            )
 
     def append_snake_case_string(
         self, spaced_attribute_name, default_value=None):
         help_template = 'value for {!r} must be '
         help_template += 'underscore-delimited lowercase string.'
-        self._make_prompt(spaced_attribute_name, help_template, default_value=default_value)
-        self._validation_functions.append(stringtools.is_snake_case_string)
+        self._make_prompt(
+            spaced_attribute_name, 
+            validation_function=stringtools.is_snake_case_string,
+            help_template=help_template, 
+            default_value=default_value,
+            )
 
     def append_space_delimited_lowercase_string(
         self, spaced_attribute_name, default_value=None):
-        help_template = 'value for {!r} must be space-delimited lowercase string.'
-        self._make_prompt(spaced_attribute_name, help_template, default_value=default_value)
-        self._validation_functions.append(stringtools.is_space_delimited_lowercase_string)
+        help_template = 'value for {!r} '
+        help_template += ' must be space-delimited lowercase string.'
+        self._make_prompt(
+            spaced_attribute_name, 
+            validation_function=stringtools.is_space_delimited_lowercase_string,
+            help_template=help_template, 
+            default_value=default_value,
+            )
 
     def append_string(
         self, spaced_attribute_name, default_value=None):
         help_template = 'value for {!r} must be string.'
-        self._make_prompt(spaced_attribute_name, help_template, default_value=default_value)
-        self._validation_functions.append(predicates.is_string)
+        self._make_prompt(
+            spaced_attribute_name, 
+            validation_function=predicates.is_string,
+            help_template=help_template, 
+            default_value=default_value,
+            )
 
     def append_string_or_none(
         self, spaced_attribute_name, default_value=None):
         help_template = 'value for {!r} must be string or none.'
-        self._make_prompt(spaced_attribute_name, help_template, default_value=default_value)
-        self._validation_functions.append(predicates.is_string_or_none)
+        self._make_prompt(
+            spaced_attribute_name, 
+            validation_function=predicates.is_string_or_none,
+            help_template=help_template, 
+            default_value=default_value,
+            )
 
     def append_strings(
         self, spaced_attribute_name, default_value=None):
         help_template = 'value for {!r} must be strings.'
-        self._make_prompt(spaced_attribute_name, help_template, default_value=default_value)
-        self._validation_functions.append(predicates.are_strings)
+        self._make_prompt(
+            spaced_attribute_name, 
+            validation_function=predicates.are_strings,
+            help_template=help_template, 
+            default_value=default_value,
+            )
 
     def append_symbolic_pitch_range_string(
         self, spaced_attribute_name, default_value=None):
-        help_template = 'value for {!r} must be '
-        help_template += 'symbolic pitch range string. Ex: [A0, C8].'
-        self._make_prompt(spaced_attribute_name, help_template, default_value=default_value)
-        self._validation_functions.append(pitchtools.is_symbolic_pitch_range_string)
+        help_template = 'value for {!r} '
+        help_template += ' must be symbolic pitch range string.'
+        help_template += ' Ex: [A0, C8].'
+        self._make_prompt(
+            spaced_attribute_name, 
+            validation_function=pitchtools.is_symbolic_pitch_range_string,
+            help_template=help_template, 
+            default_value=default_value,
+            )
 
     # TODO: fix bug to make (Duration(1, 4), 72) work
     def append_tempo(
         self, spaced_attribute_name, default_value=None):
         help_template = 'value for {!r} must successfully initialize tempo mark.'
-        self._make_prompt(spaced_attribute_name, help_template, default_value=default_value)
-        self._validation_functions.append(predicates.is_tempo_token)
+        self._make_prompt(
+            spaced_attribute_name, 
+            validation_function=predicates.is_tempo_token,
+            help_template=help_template, 
+            default_value=default_value,
+            )
 
     def append_yes_no_string(
-        self, spaced_attribute_name, default_value=None, include_chevron=False):
+        self, 
+        spaced_attribute_name, 
+        default_value=None, 
+        include_chevron=False):
         help_template = "value for '{}' must be 'y' or 'n'."
         self._make_prompt(
-            spaced_attribute_name, help_template, 
-            default_value=default_value, include_chevron=include_chevron)
-        self._validation_functions.append(predicates.is_yes_no_string)
+            spaced_attribute_name, 
+            validation_function=predicates.is_yes_no_string,
+            help_template=help_template, 
+            default_value=default_value, 
+            include_chevron=include_chevron,
+            )
