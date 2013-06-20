@@ -284,16 +284,16 @@ class Menu(ScoreManagerObject):
         else:
             return expr
 
-    def _user_enters_nothing(self, user_input):
-        return not user_input or (3 <= len(user_input) and \
-            'default'.startswith(user_input))
-
     def _user_enters_argument_range(self, user_input):
         if ',' in user_input:
             return True
         if '-' in user_input:
             return True
         return False
+
+    def _user_enters_nothing(self, user_input):
+        return not user_input or (3 <= len(user_input) and \
+            'default'.startswith(user_input))
 
     ### PUBLIC PROPERTIES ###
 

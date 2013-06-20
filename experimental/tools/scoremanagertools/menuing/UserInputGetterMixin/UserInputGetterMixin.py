@@ -1,3 +1,4 @@
+import functools
 from abjad.tools import mathtools
 from abjad.tools import pitchtools
 from abjad.tools import sequencetools
@@ -7,15 +8,6 @@ from experimental.tools.scoremanagertools import predicates
 
 
 class UserInputGetterMixin(AbjadObject):
-
-    ### PRIVATE METHODS ###
-
-    def _make_is_integer_in_range(self, 
-        start=None, stop=None, allow_none=False):
-        return lambda expr: (expr is None and allow_none) or \
-            (predicates.is_integer(expr) and
-            (start is None or start <= expr) and
-            (stop is None or expr <= stop))
 
     ### PUBLIC METHODS ###
 
@@ -129,8 +121,9 @@ class UserInputGetterMixin(AbjadObject):
         message += 'integer between {} and {}, inclusive.'
         self.append_something(
             spaced_attribute_name, message, (start, stop), default=default)
-        test = self._make_is_integer_in_range(
-            start, stop, allow_none=allow_none)
+        test = functools.partial(
+            predicates.is_integer_in_range, 
+            start=start, stop=stop, allow_none=allow_none)
         self.tests.append(test)
 
     def append_integers(self, spaced_attribute_name, default=None):
