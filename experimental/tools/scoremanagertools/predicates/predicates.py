@@ -61,6 +61,13 @@ def is_hairpin_token(expr):
 def is_integer(expr):
     return isinstance(expr, int)
 
+#def make_is_integer_in_range(self, 
+#    start=None, stop=None, allow_none=False):
+#    return lambda expr: (expr is None and allow_none) or \
+#        (predicates.is_integer(expr) and
+#        (start is None or start <= expr) and
+#        (stop is None or expr <= stop))
+
 def is_integer_or_none(expr):
     return expr is None or is_integer(expr)
 

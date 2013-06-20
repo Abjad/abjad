@@ -37,7 +37,7 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
     def _run(self, user_input=None, include_chevron=True):
         self._io.assign_user_input(user_input=user_input)
         with self.backtracking:
-            self.present_prompts_and_store_values(
+            self._present_prompts_and_store_values(
                 include_chevron=include_chevron)
         if len(self.values) == 1:
             return self.values[0]
@@ -154,18 +154,11 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
             prompt = stringtools.capitalize_string_start(prompt)
         self._menu_lines.append(prompt)
 
-    def make_is_integer_in_range(self, 
-        start=None, stop=None, allow_none=False):
-        return lambda expr: (expr is None and allow_none) or \
-            (predicates.is_integer(expr) and
-            (start is None or start <= expr) and
-            (stop is None or expr <= stop))
-
-    def move_to_prev_prompt(self):
+    def _move_to_prev_prompt(self):
         self.values.pop()
         self.prompt_index = self.prompt_index - 1
 
-    def present_prompt_and_store_value(self, include_chevron=True):
+    def _present_prompt_and_store_value(self, include_chevron=True):
         '''True when user response obtained. Or when user skips prompt.
         False when user quits system or aborts getter.
         '''
@@ -194,31 +187,31 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
             elif user_response == 'help':
                 self.display_help()
             elif user_response == 'prev':
-                self.move_to_prev_prompt()
+                self._move_to_prev_prompt()
                 break
             elif user_response == 'skip':
                 break
             elif isinstance(user_response, str):
-                if self.store_value(user_response):
+                if self._store_value(user_response):
                     break
             else:
                 self._io.print_not_yet_implemented()
         return True
 
-    def present_prompts_and_store_values(self, include_chevron=True):
+    def _present_prompts_and_store_values(self, include_chevron=True):
         self._clear_terminal()
         self._menu_lines, self.values, self.prompt_index = [], [], 0
         while self.prompt_index < len(self.prompts):
-            if not self.present_prompt_and_store_value(
+            if not self._present_prompt_and_store_value(
                 include_chevron=include_chevron):
                 break
 
-    def store_value(self, user_response):
+    def _store_value(self, user_response):
         assert isinstance(user_response, str)
         if self.allow_none and user_response in ('', 'None'):
             value = None
         else:
-            if self.try_to_store_value_from_argument_list(user_response):
+            if self._try_to_store_value_from_argument_list(user_response):
                 return True
             value = self.change_user_response_to_value(user_response)
             if value == '!!!':
@@ -230,7 +223,7 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
         self.prompt_index = self.prompt_index + 1
         return True
 
-    def store_value_from_argument_list(self, user_response, argument_list):
+    def _store_value_from_argument_list(self, user_response, argument_list):
         from experimental.tools import scoremanagertools
         dummy_section = scoremanagertools.menuing.MenuSection()
         dummy_section.is_numbered = True
@@ -241,11 +234,11 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
         self.values.append(value)
         self.prompt_index = self.prompt_index + 1
 
-    def try_to_store_value_from_argument_list(self, user_response):
+    def _try_to_store_value_from_argument_list(self, user_response):
         input_test = self.tests[self.prompt_index]
         argument_list = self.argument_lists[self.prompt_index]
         if argument_list and self.apply_tests_to_value(user_response):
-            self.store_value_from_argument_list(user_response, argument_list)
+            self._store_value_from_argument_list(user_response, argument_list)
             return True
         else:
             return False

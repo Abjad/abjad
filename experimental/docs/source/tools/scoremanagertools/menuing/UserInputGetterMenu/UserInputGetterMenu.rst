@@ -213,31 +213,10 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.load_prompt
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.make_is_integer_in_range
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.make_section
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.move_to_prev_prompt
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.present_prompt_and_store_value
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.present_prompts_and_store_values
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.store_value
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.store_value_from_argument_list
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.toggle_menu_commands
-   :noindex:
-
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.try_to_store_value_from_argument_list
    :noindex:
 
 Special methods
