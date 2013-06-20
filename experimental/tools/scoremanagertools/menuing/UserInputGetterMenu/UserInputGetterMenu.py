@@ -16,10 +16,10 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
         self._argument_lists = []
         self._chevron_inclusion_indicators = []
         self._default_values = []
-        self._setup_statements = []
         self._help_strings = []
-        self._prompt_strings = []
         self._input_validation_tests = []
+        self._prompt_strings = []
+        self._setup_statements = []
         self.allow_none = False
         self.capitalize_prompts = True
         self.include_newlines = False
@@ -30,36 +30,24 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        return '{}({})'.format(type(self).__name__, len(self.prompt_strings))
+        return '{}({})'.format(type(self).__name__, len(self._prompt_strings))
 
     ### PRIVATE METHODS ###
 
-    def _run(self, user_input=None, include_chevron=True):
-        self._io.assign_user_input(user_input=user_input)
-        with self.backtracking:
-            self._present_prompts_and_store_values(
-                include_chevron=include_chevron)
-        if len(self.values) == 1:
-            return self.values[0]
-        else:
-            return self.values
-
-    ### PRIVATE METHODS ###
-
-    def _apply_input_validation_tests_to_value(self, value):
+    def _apply__input_validation_tests_to_value(self, value):
         if self.allow_none and value is None:
             return True
-        if self.prompt_index < len(self.input_validation_tests):
-            input_test = self.input_validation_tests[self.prompt_index]
+        if self.prompt_index < len(self._input_validation_tests):
+            input_test = self._input_validation_tests[self.prompt_index]
             return self._evaluate_test(input_test, value)
         return True
 
     def _change_user_response_to_value(self, user_response):
-        setup_statements = self.setup_statements[self.prompt_index]
-        assert isinstance(setup_statements, list)
-        if setup_statements:
-            value = self._get_value_from_setup_statements(
-                user_response, setup_statements)
+        _setup_statements = self._setup_statements[self.prompt_index]
+        assert isinstance(_setup_statements, list)
+        if _setup_statements:
+            value = self._get_value_from__setup_statements(
+                user_response, _setup_statements)
             if value is None and not user_response == 'None':
                 return '!!!'
         else:
@@ -67,16 +55,16 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
         return value
 
     def _display_help(self):
-        if self.prompt_index < len(self.help_strings):
+        if self.prompt_index < len(self._help_strings):
             lines = []
-            lines.append(self.help_strings[self.prompt_index])
+            lines.append(self._help_strings[self.prompt_index])
             lines.append('')
             self._io.display(lines)
 
     def _display_help(self):
         lines = []
-        if self.prompt_index < len(self.help_strings):
-            lines.append(self.help_strings[self.prompt_index])
+        if self.prompt_index < len(self._help_strings):
+            lines.append(self._help_strings[self.prompt_index])
         else:
             lines.append('help string not available.')
         lines.append('')
@@ -95,9 +83,9 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
             value = user_response
         return value
 
-    def _get_value_from_setup_statements(
-        self, user_response, setup_statements):
-        for setup_statement in setup_statements:
+    def _get_value_from__setup_statements(
+        self, user_response, _setup_statements):
+        for setup_statement in _setup_statements:
             try:
                 command = setup_statement.format(user_response)
                 exec(command)
@@ -113,7 +101,7 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
     def _indent_and_number_prompt(self, prompt):
         if self.number_prompts:
             prompt_number = self.prompt_index + 1
-            total_prompts = len(self.prompt_strings)
+            total_prompts = len(self._prompt_strings)
             prompt = '({}/{}) {}'.format(prompt_number, total_prompts, prompt)
         if self.indent_level:
             return '{} {}'.format(self._make_tab(self.indent_level), prompt)
@@ -121,7 +109,7 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
             return prompt
 
     def _load_prompt(self):
-        prompt = self.prompt_strings[self.prompt_index]
+        prompt = self._prompt_strings[self.prompt_index]
         if self.capitalize_prompts:
             prompt = stringtools.capitalize_string_start(prompt)
         self._menu_lines.append(prompt)
@@ -137,8 +125,8 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
         self._load_prompt()
         while True:
             prompt = self._menu_lines[-1]
-            default = str(self.default_values[self.prompt_index])
-            include_chevron = self.chevron_inclusion_indicators[self.prompt_index]
+            default = str(self._default_values[self.prompt_index])
+            include_chevron = self._chevron_inclusion_indicators[self.prompt_index]
             prompt = self._indent_and_number_prompt(prompt)
             user_response = self._io.handle_raw_input_with_default(
                 prompt, 
@@ -173,10 +161,20 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
     def _present_prompts_and_store_values(self, include_chevron=True):
         self._clear_terminal()
         self._menu_lines, self.values, self.prompt_index = [], [], 0
-        while self.prompt_index < len(self.prompt_strings):
+        while self.prompt_index < len(self._prompt_strings):
             if not self._present_prompt_and_store_value(
                 include_chevron=include_chevron):
                 break
+
+    def _run(self, user_input=None, include_chevron=True):
+        self._io.assign_user_input(user_input=user_input)
+        with self.backtracking:
+            self._present_prompts_and_store_values(
+                include_chevron=include_chevron)
+        if len(self.values) == 1:
+            return self.values[0]
+        else:
+            return self.values
 
     def _store_value(self, user_response):
         assert isinstance(user_response, str)
@@ -188,7 +186,7 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
             value = self._change_user_response_to_value(user_response)
             if value == '!!!':
                 return False
-            if not self._apply_input_validation_tests_to_value(value):
+            if not self._apply__input_validation_tests_to_value(value):
                 self._display_help()
                 return False
         self.values.append(value)
@@ -207,40 +205,10 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
         self.prompt_index = self.prompt_index + 1
 
     def _try_to_store_value_from_argument_list(self, user_response):
-        argument_list = self.argument_lists[self.prompt_index]
-        if argument_list and self._apply_input_validation_tests_to_value(
+        argument_list = self._argument_lists[self.prompt_index]
+        if argument_list and self._apply__input_validation_tests_to_value(
             user_response):
             self._store_value_from_argument_list(user_response, argument_list)
             return True
         else:
             return False
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def argument_lists(self):
-        return self._argument_lists
-
-    @property
-    def chevron_inclusion_indicators(self):
-        return self._chevron_inclusion_indicators
-
-    @property
-    def default_values(self):
-        return self._default_values
-
-    @property
-    def help_strings(self):
-        return self._help_strings
-
-    @property
-    def input_validation_tests(self):
-        return self._input_validation_tests
-
-    @property
-    def prompt_strings(self):
-        return self._prompt_strings
-
-    @property
-    def setup_statements(self):
-        return self._setup_statements
