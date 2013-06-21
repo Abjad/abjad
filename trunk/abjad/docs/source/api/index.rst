@@ -4250,6 +4250,7 @@ Abjad internal packages
       tools/abctools/AttributeEqualityAbjadObject/AttributeEqualityAbjadObject
       tools/abctools/ContextManager/ContextManager
       tools/abctools/ImmutableAbjadObject/ImmutableAbjadObject
+      tools/abctools/Maker/Maker
       tools/abctools/Parser/Parser
       tools/abctools/SortableAttributeEqualityAbjadObject/SortableAttributeEqualityAbjadObject
 
@@ -4264,6 +4265,7 @@ Abjad internal packages
       tools/abctools/AttributeEqualityAbjadObject/AttributeEqualityAbjadObject
       tools/abctools/ContextManager/ContextManager
       tools/abctools/ImmutableAbjadObject/ImmutableAbjadObject
+      tools/abctools/Maker/Maker
       tools/abctools/Parser/Parser
       tools/abctools/SortableAttributeEqualityAbjadObject/SortableAttributeEqualityAbjadObject
 
