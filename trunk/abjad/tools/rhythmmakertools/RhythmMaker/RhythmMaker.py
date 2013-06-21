@@ -4,10 +4,10 @@ from abjad.tools import durationtools
 from abjad.tools import leaftools
 from abjad.tools import sequencetools
 from abjad.tools import tuplettools
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.abctools.Maker import Maker
 
 
-class RhythmMaker(AbjadObject):
+class RhythmMaker(Maker):
     '''.. versionadded:: 2.8
 
     Rhythm maker abstract base class.
@@ -64,7 +64,7 @@ class RhythmMaker(AbjadObject):
         '''
         if getattr(self, 'name', None) is not None:
             return '{}({!r})'.format(self._class_name, self.name)
-        return AbjadObject.__repr__(self)
+        return Maker.__repr__(self)
 
     ### PRIVATE METHODS ###
 
