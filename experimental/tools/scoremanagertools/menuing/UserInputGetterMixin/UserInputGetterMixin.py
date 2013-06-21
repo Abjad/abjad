@@ -21,21 +21,6 @@ class UserInputGetterMixin(AbjadObject):
         include_chevron=True,
         target_menu_section=None,
         ):
-        assert isinstance(spaced_attribute_name, str)
-        assert isinstance(help_template, str)
-#        self._prompt_strings.append(spaced_attribute_name)
-#        self._target_menu_sections.append(target_menu_section)
-#        setup_statements = setup_statements or []
-#        self._setup_statements.append(setup_statements)
-#        if additional_help_template_arguments is None:
-#            additional_help_template_arguments = []
-#        help_string = help_template.format(
-#            spaced_attribute_name, *additional_help_template_arguments)
-#        self._help_strings.append(help_string)
-#        self._default_values.append(default_value)
-#        self._chevron_inclusion_indicators.append(include_chevron)
-#        if validation_function is not None:
-#            self._validation_functions.append(validation_function)
         from experimental.tools import scoremanagertools
         prompt = scoremanagertools.menuing.UserInputGetterPrompt(
             spaced_attribute_name, 
