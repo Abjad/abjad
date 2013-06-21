@@ -62,26 +62,26 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
         lines.append('')
         self._io.display(lines)
 
-    def _evaluate_user_response(self, user_response):
+    def _evaluate_user_input(self, user_input):
         value = None
         for setup_statement in self._current_prompt.setup_statements:
             try:
-                command = setup_statement.format(user_response)
+                command = setup_statement.format(user_input)
                 exec(command)
                 continue
             except (NameError, SyntaxError):
                 pass
             try:
-                command = setup_statement.format(repr(user_response))
+                command = setup_statement.format(repr(user_input))
                 exec(command)
             except ValueError:
                 self._display_help()
                 return '!!!'
         if value is None:
             try:
-                value = eval(user_response)
+                value = eval(user_input)
             except (NameError, SyntaxError):
-                value = user_response
+                value = user_input
         return value
 
     def _indent_and_number_prompt(self, prompt):
@@ -110,31 +110,31 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
             prompt = self._indent_and_number_prompt(prompt)
             default = str(self._current_prompt.default_value)
             include_chevron = self._current_prompt.include_chevron
-            user_response = self._io.handle_raw_input_with_default(
+            user_input = self._io.handle_raw_input_with_default(
                 prompt, 
                 default=default,
                 include_chevron=include_chevron, 
                 include_newline=self.include_newlines,
                 prompt_character=self.prompt_character, 
                 capitalize_prompt=self.capitalize_prompts)
-            if user_response is None:
+            if user_input is None:
                 self.prompt_index = self.prompt_index + 1
                 break
-            user_response = self._handle_hidden_menu_section_return_value(
-                user_response)
+            user_input = self._handle_hidden_menu_section_return_value(
+                user_input)
             if self._session.backtrack():
                 return False
-            elif user_response is None:
+            elif user_input is None:
                 continue
-            elif user_response == 'help':
+            elif user_input == 'help':
                 self._display_help()
-            elif user_response == 'prev':
+            elif user_input == 'prev':
                 self._move_to_prev_prompt()
                 break
-            elif user_response == 'skip':
+            elif user_input == 'skip':
                 break
-            elif isinstance(user_response, str):
-                if self._store_value(user_response):
+            elif isinstance(user_input, str):
+                if self._store_value(user_input):
                     break
             else:
                 self._io.print_not_yet_implemented()
@@ -158,15 +158,15 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
         else:
             return self.values
 
-    def _store_value(self, user_response):
-        assert isinstance(user_response, str)
-        if self.allow_none and user_response in ('', 'None'):
+    def _store_value(self, user_input):
+        assert isinstance(user_input, str)
+        if self.allow_none and user_input in ('', 'None'):
             value = None
         else:
             if self._try_to_store_value_from_target_menu_section(
-                user_response):
+                user_input):
                 return True
-            value = self._evaluate_user_response(user_response)
+            value = self._evaluate_user_input(user_input)
             if value == '!!!':
                 return False
             if not self._apply_validation_function_to_value(value):
@@ -176,20 +176,20 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
         self.prompt_index = self.prompt_index + 1
         return True
 
-    def _store_value_from_target_menu_section(self, user_response):
+    def _store_value_from_target_menu_section(self, user_input):
         target_menu_section = self._current_prompt.target_menu_section
         assert target_menu_section is not None
         assert target_menu_section.is_numbered
         numbers = target_menu_section._argument_range_string_to_numbers(
-            user_response)
+            user_input)
         self.values.append(numbers)
         self.prompt_index = self.prompt_index + 1
 
-    def _try_to_store_value_from_target_menu_section(self, user_response):
+    def _try_to_store_value_from_target_menu_section(self, user_input):
         target_menu_section = self._current_prompt.target_menu_section
         if target_menu_section and self._apply_validation_function_to_value(
-            user_response):
-            self._store_value_from_target_menu_section(user_response)
+            user_input):
+            self._store_value_from_target_menu_section(user_input)
             return True
         else:
             return False

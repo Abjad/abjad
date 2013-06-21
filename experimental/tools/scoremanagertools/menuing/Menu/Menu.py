@@ -108,8 +108,8 @@ class Menu(ScoreManagerObject):
             capitalize_first_character=False)
         if automatically_determined_user_input is not None:
             return automatically_determined_user_input
-        user_response = self._io.handle_raw_input_with_default('')
-        directive = self._change_user_input_to_directive(user_response)
+        user_input = self._io.handle_raw_input_with_default('')
+        directive = self._change_user_input_to_directive(user_input)
         directive = self._strip_default_indicators_from_strings(directive)
         self._session.hide_next_redraw = False
         directive = self._handle_hidden_menu_section_return_value(directive)

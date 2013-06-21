@@ -79,25 +79,25 @@ class IO(AbjadObject):
         else:
             prompt = prompt + ' '
         if self._session.is_displayable:
-            user_response = raw_input(prompt)
+            user_input = raw_input(prompt)
             if include_newline:
-                if not user_response == 'help':
+                if not user_input == 'help':
                     print ''
         else:
-            user_response = self.pop_next_user_response_from_user_input()
+            user_input = self.pop_from_user_input()
         if self._session.transcribe_next_command:
-            self._session.command_history.append(user_response)
-        if user_response == '.':
+            self._session.command_history.append(user_input)
+        if user_input == '.':
             last_semantic_command = self._session.last_semantic_command
-            user_response = last_semantic_command
+            user_input = last_semantic_command
         if self._session.transcribe_next_command:
             menu_chunk = []
-            menu_chunk.append('{}{}'.format(prompt, user_response))
+            menu_chunk.append('{}{}'.format(prompt, user_input))
             if include_newline:
-                if not user_response == 'help':
+                if not user_input == 'help':
                     menu_chunk.append('')
             self._session.transcript.append_lines(menu_chunk)
-        return user_response
+        return user_input
 
     def handle_raw_input_with_default(self, 
         prompt, 
@@ -148,7 +148,7 @@ class IO(AbjadObject):
             )
         return menu, menu_section
 
-    def pop_next_user_response_from_user_input(self):
+    def pop_from_user_input(self):
         self._session.last_command_was_composite = False
         if self._session.user_input is None:
             return None
@@ -159,22 +159,22 @@ class IO(AbjadObject):
             raise ValueError('no longer implemented.')
         elif self._session.user_input.startswith('{{'):
             index = self._session.user_input.find('}}')
-            user_response = self._session.user_input[2:index]
-            user_input = self._session.user_input[index+2:].strip()
+            user_input = self._session.user_input[2:index]
+            user_input_tape = self._session.user_input[index+2:].strip()
             self._session.last_command_was_composite = True
         else:
-            user_input = self._session.user_input.split(' ')
+            user_input_parts = self._session.user_input.split(' ')
             first_parts, rest_parts = [], []
-            for i, part in enumerate(user_input):
+            for i, part in enumerate(user_input_parts):
                 if not part.endswith((',', '-')):
                     break
-            first_parts = user_input[:i+1]
-            rest_parts = user_input[i+1:]
-            user_response = ' '.join(first_parts)
-            user_input = ' '.join(rest_parts)
-        user_response = user_response.replace('~', ' ')
-        self._session.user_input = user_input
-        return user_response
+            first_parts = user_input_parts[:i+1]
+            rest_parts = user_input_parts[i+1:]
+            user_input = ' '.join(first_parts)
+            user_input_tape = ' '.join(rest_parts)
+        user_input = user_input.replace('~', ' ')
+        self._session.user_input = user_input_tape
+        return user_input
 
     def print_not_yet_implemented(self):
         self.display(['not yet implemented', ''])
