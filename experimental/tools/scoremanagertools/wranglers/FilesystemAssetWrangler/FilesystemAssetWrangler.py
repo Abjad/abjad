@@ -47,7 +47,9 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     @property
     def _temporary_asset_filesystem_path(self):
-        return os.path.join(self._current_storehouse_filesystem_path, self._temporary_asset_name)
+        return os.path.join(
+            self._current_storehouse_filesystem_path, 
+            self._temporary_asset_name)
 
     @abc.abstractproperty
     def _temporary_asset_name(self):
@@ -55,11 +57,13 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     @property
     def _temporary_asset_proxy(self):
-        return self._initialize_asset_proxy(self._temporary_asset_filesystem_path)
+        return self._initialize_asset_proxy(
+            self._temporary_asset_filesystem_path)
 
     ### PRIVATE METHODS ###
 
-    def _filesystem_path_to_space_delimited_lowercase_name(self, filesystem_path):
+    def _filesystem_path_to_space_delimited_lowercase_name(
+        self, filesystem_path):
         filesystem_path = os.path.normpath(filesystem_path)
         asset_name = os.path.basename(filesystem_path)
         if '.' in asset_name:
@@ -72,7 +76,8 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     def _initialize_asset_proxy(self, filesystem_path):
         assert os.path.sep in filesystem_path, repr(filesystem_path)
-        return self.asset_proxy_class(filesystem_path=filesystem_path, session=self._session)
+        return self.asset_proxy_class(
+            filesystem_path=filesystem_path, session=self._session)
 
     def _is_valid_directory_entry(self, directory_entry):
         if directory_entry not in self.forbidden_directory_entries:
@@ -80,13 +85,18 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                 return True
         return False
 
-    def _make_asset_selection_breadcrumb(self, infinitival_phrase=None, is_storehouse=False):
+    def _make_asset_selection_breadcrumb(
+        self, infinitival_phrase=None, is_storehouse=False):
         if infinitival_phrase:
-            return 'select {} {}:'.format(self.asset_proxy_class._generic_class_name, infinitival_phrase)
+            return 'select {} {}:'.format(
+                self.asset_proxy_class._generic_class_name, 
+                infinitival_phrase)
         elif is_storehouse:
-            return 'select {} storehouse:'.format(self.asset_proxy_class._generic_class_name)
+            return 'select {} storehouse:'.format(
+                self.asset_proxy_class._generic_class_name)
         else:
-            return 'select {}:'.format(self.asset_proxy_class._generic_class_name)
+            return 'select {}:'.format(
+                self.asset_proxy_class._generic_class_name)
 
     def _make_asset_selection_menu(self, head=None):
         menu_entries = self._make_menu_entries(head=head)
@@ -105,16 +115,19 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         in_user_score_packages=True):
         from experimental.tools import scoremanagertools
         keys, display_strings = [], []
-        keys.append(self.asset_storehouse_filesystem_path_in_user_asset_library)
+        keys.append(
+            self.asset_storehouse_filesystem_path_in_user_asset_library)
         display_strings.append('My {}'.format(self._breadcrumb))
-        wrangler = scoremanagertools.wranglers.ScorePackageWrangler(session=self._session)
+        wrangler = scoremanagertools.wranglers.ScorePackageWrangler(
+            session=self._session)
         for proxy in wrangler.list_asset_proxies(
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages):
             display_strings.append(proxy.title)
-            path_parts = (proxy.filesystem_path,) + self.score_package_asset_storehouse_path_infix_parts
+            path_parts = (proxy.filesystem_path,) + \
+                self.score_package_asset_storehouse_path_infix_parts
             key = os.path.join(*path_parts)
             keys.append(key)
         return zip(display_strings, keys)
@@ -126,10 +139,17 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def _make_menu_entries(self, head=None, include_extension=False):
         raise Exception('FOO')
         keys = self.list_asset_filesystem_paths(head=head)
-        display_strings = self.list_asset_names(head=head, include_extension=include_extension)
+        display_strings = self.list_asset_names(
+            head=head, include_extension=include_extension)
         return zip(display_strings, keys)
 
-    def _run(self, cache=False, clear=True, head=None, rollback=None, user_input=None):
+    def _run(self, 
+        cache=False, 
+        clear=True, 
+        head=None, 
+        rollback=None, 
+        user_input=None,
+        ):
         self._io.assign_user_input(user_input=user_input)
         breadcrumb = self._session.pop_breadcrumb(rollback=rollback)
         self._session.cache_breadcrumbs(cache=cache)
@@ -165,8 +185,9 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     # TODO: write test
     def interactively_remove_assets(self, head=None):
         getter = self._io.make_getter(where=self._where)
-        argument_list = self.list_asset_filesystem_paths(head=head)
-        getter.append_argument_range('number(s) to remove', argument_list)
+        asset_menu_section = self._main_menu._asset_menu_section
+        getter.append_menu_section_range(
+            'number(s) to remove', asset_menu_section)
         result = getter._run()
         if self._session.backtrack():
             return
@@ -174,7 +195,8 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         total_assets_removed = 0
         for asset_number in result:
             asset_index = asset_number - 1
-            asset_filesystem_path = argument_list[asset_index]
+            menu_entry = asset_menu_section.menu_entries[asset_index]
+            asset_filesystem_path = menu_entry.return_value
             asset_proxy = self._initialize_asset_proxy(asset_filesystem_path)
             asset_proxy.remove()
             total_assets_removed += 1
@@ -182,18 +204,21 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             asset_string = 'asset'
         else:
             asset_string = 'assets'
-        self._io.proceed('{} {} removed.'.format(total_assets_removed, asset_string))
+        self._io.proceed('{} {} removed.'.format(
+            total_assets_removed, asset_string))
 
     # TODO: write test
     def interactively_rename_asset(self):
         with self.backtracking:
-            asset_filesystem_path = self.interactively_select_asset_filesystem_path()
+            asset_filesystem_path = \
+                self.interactively_select_asset_filesystem_path()
         if self._session.backtrack():
             return
         asset_proxy = self._initialize_asset_proxy(asset_filesystem_path)
         asset_proxy.interactively_rename()
 
-    def interactively_select_asset_filesystem_path(self, clear=True, cache=False):
+    def interactively_select_asset_filesystem_path(self, 
+        clear=True, cache=False):
         self._session.cache_breadcrumbs(cache=cache)
         menu, menu_section = self._io.make_menu(
             where=self._where,
@@ -234,7 +259,8 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             in_built_in_score_packages=False,
             in_user_score_packages=False)
         while True:
-            breadcrumb = self._make_asset_selection_breadcrumb(is_storehouse=True)
+            breadcrumb = self._make_asset_selection_breadcrumb(
+                is_storehouse=True)
             self._session.push_breadcrumb(breadcrumb)
             result = menu._run(clear=clear)
             if self._session.backtrack():
@@ -249,8 +275,12 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         return result
 
     def list_asset_filesystem_paths(self,
-        in_built_in_asset_library=True, in_user_asset_library=True,
-        in_built_in_score_packages=True, in_user_score_packages=True, head=None):
+        in_built_in_asset_library=True, 
+        in_user_asset_library=True,
+        in_built_in_score_packages=True, 
+        in_user_score_packages=True, 
+        head=None,
+        ):
         result = []
         for directory_path in self.list_asset_storehouse_filesystem_paths(
             in_built_in_asset_library=in_built_in_asset_library,
@@ -258,15 +288,18 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages):
             if directory_path:
-                storehouse_package_path = self.configuration.filesystem_path_to_packagesystem_path(
+                storehouse_package_path = \
+                    self.configuration.filesystem_path_to_packagesystem_path(
                     directory_path)
                 for directory_entry in os.listdir(directory_path):
                     if self._is_valid_directory_entry(directory_entry):
-                        filesystem_path = os.path.join(directory_path, directory_entry)
+                        filesystem_path = os.path.join(
+                            directory_path, directory_entry)
                         if head is None:
                             result.append(filesystem_path)
                         else:
-                            package_path = '.'.join([storehouse_package_path, directory_entry])
+                            package_path = '.'.join([
+                                storehouse_package_path, directory_entry])
                             if package_path.startswith(head):
                                 result.append(filesystem_path)
         return result
@@ -285,12 +318,18 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             if include_extension:
                 result.append(os.path.basename(filesystem_path))
             else:
-                result.append(self._filesystem_path_to_space_delimited_lowercase_name(filesystem_path))
+                result.append(
+                    self._filesystem_path_to_space_delimited_lowercase_name(
+                        filesystem_path))
         return result
 
     def list_asset_proxies(self,
-        in_built_in_asset_library=True, in_user_asset_library=True,
-        in_built_in_score_packages=True, in_user_score_packages=True, head=None):
+        in_built_in_asset_library=True, 
+        in_user_asset_library=True,
+        in_built_in_score_packages=True, 
+        in_user_score_packages=True, 
+        head=None,
+        ):
         if hasattr(self, 'list_visible_asset_proxies'):
             return self.list_visible_asset_proxies(head=head)
         result = []
@@ -305,32 +344,43 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         return result
 
     def list_asset_storehouse_filesystem_paths(self,
-        in_built_in_asset_library=True, in_user_asset_library=True,
-        in_built_in_score_packages=True, in_user_score_packages=True):
+        in_built_in_asset_library=True, 
+        in_user_asset_library=True,
+        in_built_in_score_packages=True, 
+        in_user_score_packages=True,
+        ):
         result = []
-        if in_built_in_asset_library and self.asset_storehouse_filesystem_path_in_built_in_asset_library is not None:
+        if in_built_in_asset_library and \
+            self.asset_storehouse_filesystem_path_in_built_in_asset_library is not None:
             result.append(self.asset_storehouse_filesystem_path_in_built_in_asset_library)
-        if in_user_asset_library and self.asset_storehouse_filesystem_path_in_user_asset_library is not None:
+        if in_user_asset_library and \
+            self.asset_storehouse_filesystem_path_in_user_asset_library is not None:
             result.append(self.asset_storehouse_filesystem_path_in_user_asset_library)
-        if in_built_in_score_packages and self.score_package_asset_storehouse_path_infix_parts is not None:
-            for score_directory_path in self.configuration.list_score_directory_paths(built_in=True):
+        if in_built_in_score_packages and \
+            self.score_package_asset_storehouse_path_infix_parts is not None:
+            for score_directory_path in \
+                self.configuration.list_score_directory_paths(built_in=True):
                 parts = [score_directory_path]
                 if self.score_package_asset_storehouse_path_infix_parts:
-                    parts.extend(self.score_package_asset_storehouse_path_infix_parts)
+                    parts.extend(
+                        self.score_package_asset_storehouse_path_infix_parts)
                 storehouse_filesystem_path = os.path.join(*parts)
                 result.append(storehouse_filesystem_path)
-        if in_user_score_packages and self.score_package_asset_storehouse_path_infix_parts is not None:
+        if in_user_score_packages and \
+            self.score_package_asset_storehouse_path_infix_parts is not None:
             for directory_path in self.configuration.list_score_directory_paths(user=True):
                 parts = [directory_path]
                 if self.score_package_asset_storehouse_path_infix_parts:
-                    parts.extend(self.score_package_asset_storehouse_path_infix_parts)
+                    parts.extend(
+                        self.score_package_asset_storehouse_path_infix_parts)
                 filesystem_path = os.path.join(*parts)
                 result.append(filesystem_path)
         return result
 
     def make_asset(self, asset_name):
         assert stringtools.is_snake_case_string(asset_name)
-        asset_filesystem_path = os.path.join(self._current_storehouse_filesystem_path, asset_name)
+        asset_filesystem_path = os.path.join(
+            self._current_storehouse_filesystem_path, asset_name)
         asset_proxy = self._initialize_asset_proxy(asset_filesystem_path)
         asset_proxy.write_stub_to_disk()
 

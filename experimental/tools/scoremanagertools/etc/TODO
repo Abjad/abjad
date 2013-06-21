@@ -97,3 +97,8 @@
     into a single ### PRIVATE PROPERTIES ### category.
     Merge read-only and read / write public properties
     into a single ### PUBLIC PROPERTIES ### category.
+
+34. Next write test for FilesystemAssetWrangler.interactively_remove_assets().
+
+35. Add self.make_command_menu_section() method.
+    Set return_value_attribute to 'key' automatically.
