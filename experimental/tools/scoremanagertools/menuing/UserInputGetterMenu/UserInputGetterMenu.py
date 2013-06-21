@@ -6,6 +6,10 @@ from experimental.tools.scoremanagertools.menuing.UserInputGetterMixin \
     import UserInputGetterMixin
 
 
+class UserInputEvaluationError(Exception):
+    pass
+
+
 class UserInputGetterMenu(Menu, UserInputGetterMixin):
     '''User input getter menu.
 
@@ -56,6 +60,18 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
         lines.append('')
         self._io.display(lines)
 
+    def _evaluate_and_store_user_input(self, user_input):
+        try:
+            evaluated_user_input = self._evaluate_user_input(user_input)
+        except UserInputEvaluationError:
+            return
+        if not self._validate_evaluated_user_input(evaluated_user_input):
+            self._display_help()
+            return
+        self._evaluated_user_input.append(evaluated_user_input)
+        self._prompt_index += 1
+        self._is_done = True
+
     def _evaluate_user_input(self, user_input):
         evaluated_user_input = None
         target_menu_section = self._current_prompt.target_menu_section
@@ -79,7 +95,7 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
                     exec(command)
                 except ValueError:
                     self._display_help()
-                    return '!!!'
+                    raise UserInputEvaluationError
         else:
             try:
                 evaluated_user_input = eval(user_input)
@@ -110,7 +126,8 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
         False when user quits system or aborts getter.
         '''
         self._load_prompt_string()
-        while True:
+        self._is_done = False
+        while not self._is_done:
             prompt_string = self._prompt_strings[-1]
             prompt_string = self._indent_and_number_prompt_string(
                 prompt_string)
@@ -140,8 +157,7 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
             elif user_input == 'skip':
                 break
             elif isinstance(user_input, str):
-                if self._evaluate_and_store_user_input(user_input):
-                    break
+                self._evaluate_and_store_user_input(user_input)
             else:
                 self._io.print_not_yet_implemented()
         return True
@@ -165,18 +181,6 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
         if len(self._evaluated_user_input) == 1:
             return self._evaluated_user_input[0]
         return self._evaluated_user_input[:]
-
-    def _evaluate_and_store_user_input(self, user_input):
-        evaluated_user_input = self._evaluate_user_input(user_input)
-        if not self._validate_evaluated_user_input(evaluated_user_input):
-            self._display_help()
-            return False
-        if evaluated_user_input == '!!!':
-            raise Exception
-            return False
-        self._evaluated_user_input.append(evaluated_user_input)
-        self._prompt_index += 1
-        return True
 
     def _validate_evaluated_user_input(self, evaluated_user_input):
         if evaluated_user_input is None and self.allow_none:
