@@ -58,20 +58,29 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
 
     def _evaluate_user_input(self, user_input):
         evaluated_user_input = None
-        for setup_statement in self._current_prompt.setup_statements:
-            try:
-                command = setup_statement.format(user_input)
-                exec(command)
-                continue
-            except (NameError, SyntaxError):
-                pass
-            try:
-                command = setup_statement.format(repr(user_input))
-                exec(command)
-            except ValueError:
-                self._display_help()
-                return '!!!'
-        if evaluated_user_input is None:
+        target_menu_section = self._current_prompt.target_menu_section
+        setup_statements = self._current_prompt.setup_statements
+        if self.allow_none and user_input in ('', 'None'):
+            evaluated_user_input = None
+        elif target_menu_section is not None:
+            evaluated_user_input = \
+                target_menu_section._argument_range_string_to_numbers(
+                user_input)
+        elif setup_statements:
+            for setup_statement in self._current_prompt.setup_statements:
+                try:
+                    command = setup_statement.format(user_input)
+                    exec(command)
+                    continue
+                except (NameError, SyntaxError):
+                    pass
+                try:
+                    command = setup_statement.format(repr(user_input))
+                    exec(command)
+                except ValueError:
+                    self._display_help()
+                    return '!!!'
+        else:
             try:
                 evaluated_user_input = eval(user_input)
             except (NameError, SyntaxError):
@@ -158,20 +167,12 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
         return self._evaluated_user_input[:]
 
     def _evaluate_and_store_user_input(self, user_input):
-        if self.allow_none and user_input in ('', 'None'):
-            evaluated_user_input = None
-        elif self._current_prompt.target_menu_section is not None:
-            target_menu_section = self._current_prompt.target_menu_section
-            evaluated_user_input = \
-                target_menu_section._argument_range_string_to_numbers(
-                user_input)
-        else:
-            evaluated_user_input = self._evaluate_user_input(user_input)
-
+        evaluated_user_input = self._evaluate_user_input(user_input)
         if not self._validate_evaluated_user_input(evaluated_user_input):
             self._display_help()
             return False
         if evaluated_user_input == '!!!':
+            raise Exception
             return False
         self._evaluated_user_input.append(evaluated_user_input)
         self._prompt_index += 1
