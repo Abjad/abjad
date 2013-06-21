@@ -9,7 +9,34 @@ scoremanagertools.menuing.UserInputGetterPrompt
 Read-only properties
 --------------------
 
+.. autoattribute:: experimental.tools.scoremanagertools.menuing.UserInputGetterPrompt.UserInputGetterPrompt.UserInputGetterPrompt.additional_help_template_arguments
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagertools.menuing.UserInputGetterPrompt.UserInputGetterPrompt.UserInputGetterPrompt.default_value
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagertools.menuing.UserInputGetterPrompt.UserInputGetterPrompt.UserInputGetterPrompt.help_string
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagertools.menuing.UserInputGetterPrompt.UserInputGetterPrompt.UserInputGetterPrompt.help_template
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagertools.menuing.UserInputGetterPrompt.UserInputGetterPrompt.UserInputGetterPrompt.include_chevron
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagertools.menuing.UserInputGetterPrompt.UserInputGetterPrompt.UserInputGetterPrompt.prompt_string
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagertools.menuing.UserInputGetterPrompt.UserInputGetterPrompt.UserInputGetterPrompt.setup_statements
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.UserInputGetterPrompt.UserInputGetterPrompt.UserInputGetterPrompt.storage_format
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagertools.menuing.UserInputGetterPrompt.UserInputGetterPrompt.UserInputGetterPrompt.target_menu_section
+   :noindex:
+
+.. autoattribute:: experimental.tools.scoremanagertools.menuing.UserInputGetterPrompt.UserInputGetterPrompt.UserInputGetterPrompt.validation_function
    :noindex:
 
 Special methods

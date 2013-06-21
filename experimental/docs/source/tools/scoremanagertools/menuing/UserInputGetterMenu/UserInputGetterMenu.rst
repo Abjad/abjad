@@ -15,6 +15,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.menu_sections
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.prompts
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.menuing.UserInputGetterMenu.UserInputGetterMenu.UserInputGetterMenu.storage_format
    :noindex:
 

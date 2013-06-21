@@ -152,12 +152,14 @@ class MaterialPackageMaker(MaterialPackageProxy):
         message = "value for '{}' must satisfy " + test.__name__ + '().'
         getter._make_prompt(
             spaced_attribute_name, 
-            message, 
+            help_template=message, 
+            validation_function=test,
+            setup_statements=['from abjad import *', setup_statement],
             default_value=default_value,
             )
-        getter._validation_functions.append(test)
-        getter._setup_statements[-1].append('from abjad import *')
-        getter._setup_statements[-1].append(setup_statement)
+        #getter._validation_functions.append(test)
+        #getter._setup_statements[-1].append('from abjad import *')
+        #getter._setup_statements[-1].append(setup_statement)
         getter.include_newlines = include_newline
         getter.allow_none = True
         new_value = getter._run()

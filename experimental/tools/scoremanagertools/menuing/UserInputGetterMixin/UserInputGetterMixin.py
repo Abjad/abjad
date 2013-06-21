@@ -21,21 +21,34 @@ class UserInputGetterMixin(AbjadObject):
         include_chevron=True,
         target_menu_section=None,
         ):
-        assert isinstance(help_template, str)
         assert isinstance(spaced_attribute_name, str)
-        self._prompt_strings.append(spaced_attribute_name)
-        self._target_menu_sections.append(target_menu_section)
-        setup_statements = setup_statements or []
-        self._setup_statements.append(setup_statements)
-        if additional_help_template_arguments is None:
-            additional_help_template_arguments = []
-        help_string = help_template.format(
-            spaced_attribute_name, *additional_help_template_arguments)
-        self._help_strings.append(help_string)
-        self._default_values.append(default_value)
-        self._chevron_inclusion_indicators.append(include_chevron)
-        if validation_function is not None:
-            self._validation_functions.append(validation_function)
+        assert isinstance(help_template, str)
+#        self._prompt_strings.append(spaced_attribute_name)
+#        self._target_menu_sections.append(target_menu_section)
+#        setup_statements = setup_statements or []
+#        self._setup_statements.append(setup_statements)
+#        if additional_help_template_arguments is None:
+#            additional_help_template_arguments = []
+#        help_string = help_template.format(
+#            spaced_attribute_name, *additional_help_template_arguments)
+#        self._help_strings.append(help_string)
+#        self._default_values.append(default_value)
+#        self._chevron_inclusion_indicators.append(include_chevron)
+#        if validation_function is not None:
+#            self._validation_functions.append(validation_function)
+        from experimental.tools import scoremanagertools
+        prompt = scoremanagertools.menuing.UserInputGetterPrompt(
+            spaced_attribute_name, 
+            help_template=help_template,
+            validation_function=validation_function,
+            additional_help_template_arguments=\
+                additional_help_template_arguments, 
+            setup_statements=setup_statements,
+            default_value=default_value, 
+            include_chevron=include_chevron,
+            target_menu_section=target_menu_section,
+            )
+        self._prompts.append(prompt)
 
     ### PUBLIC METHODS ###
 
@@ -269,10 +282,10 @@ class UserInputGetterMixin(AbjadObject):
         help_template = 'value for {!r} must be lists.'
         self._make_prompt(
             spaced_attribute_name, 
+            validation_function=predicates.are_lists,
             help_template=help_template, 
             default_value=default_value,
             )
-        self._validation_functions.append(predicates.are_lists)
 
     def append_markup(
         self, spaced_attribute_name, default_value=None):
@@ -282,11 +295,11 @@ class UserInputGetterMixin(AbjadObject):
         setup_statements.append('value = markuptools.Markup({})')
         self._make_prompt(
             spaced_attribute_name, 
+            validation_function=predicates.is_markup,
             help_template=help_template, 
             setup_statements=setup_statements,
             default_value=default_value,
             )
-        self._validation_functions.append(predicates.is_markup)
 
     def append_material_package_maker_class_name(
         self, spaced_attribute_name, default_value=None):
