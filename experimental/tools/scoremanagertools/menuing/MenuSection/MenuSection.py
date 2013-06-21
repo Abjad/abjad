@@ -113,7 +113,7 @@ class MenuSection(AbjadObject):
                 start = self._argument_string_to_number(start)
                 stop = self._argument_string_to_number(stop)
                 if start is None or stop is None:
-                    return
+                    break
                 if start <= stop:
                     new_numbers = range(start, stop + 1)
                     numbers.extend(new_numbers)
@@ -123,7 +123,7 @@ class MenuSection(AbjadObject):
             else:
                 number = self._argument_string_to_number(range_part)
                 if number is None:
-                    return
+                    break
                 numbers.append(number)
         return numbers
 

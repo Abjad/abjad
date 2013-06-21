@@ -129,8 +129,8 @@ class Menu(ScoreManagerObject):
                 ranged_section = menu_section
         entry_numbers = ranged_section._argument_range_string_to_numbers(
             user_input)
-        if entry_numbers is None:
-            return None
+        if not entry_numbers:
+            return
         entry_indices = [entry_number - 1 for entry_number in entry_numbers]
         result = []
         for i in entry_indices:

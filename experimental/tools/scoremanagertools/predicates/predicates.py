@@ -110,19 +110,6 @@ def is_string(expr):
 def is_string_or_none(expr):
     return isinstance(expr, (str, type(None)))
 
-def is_readable_argument_range_string_for_argument_list(
-    argument_range_string, argument_list):
-    from experimental.tools import scoremanagertools
-    if isinstance(argument_range_string, str):
-        dummy_section = scoremanagertools.menuing.MenuSection()
-        dummy_section.is_numbered = True
-        dummy_section._is_dummy = True
-        dummy_section.menu_entries = argument_list[:]
-        if dummy_section._argument_range_string_to_numbers(
-            argument_range_string) is not None:
-            return True
-    return False
-
 def is_tempo_token(expr):
     try:
         exec('from abjad import *')

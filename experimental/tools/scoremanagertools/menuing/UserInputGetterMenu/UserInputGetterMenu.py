@@ -120,11 +120,11 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
             prompt = '({}/{}) {}'.format(prompt_number, len(self), prompt)
         return prompt
 
-    def _load_prompt(self):
+    def _load_prompt_string(self):
         prompt_string = self._current_prompt.prompt_string
         if self.capitalize_prompts:
             prompt_string = stringtools.capitalize_string_start(prompt_string)
-        self._menu_lines.append(prompt_string)
+        self._prompt_strings.append(prompt_string)
 
     def _move_to_prev_prompt(self):
         self.values.pop()
@@ -134,9 +134,9 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
         '''True when user response obtained. Or when user skips prompt.
         False when user quits system or aborts getter.
         '''
-        self._load_prompt()
+        self._load_prompt_string()
         while True:
-            prompt = self._menu_lines[-1]
+            prompt = self._prompt_strings[-1]
             prompt = self._indent_and_number_prompt(prompt)
             default = str(self._current_prompt.default_value)
             include_chevron = self._current_prompt.include_chevron
@@ -172,7 +172,7 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
 
     def _present_prompts_and_store_values(self, include_chevron=True):
         self._clear_terminal()
-        self._menu_lines, self.values, self.prompt_index = [], [], 0
+        self._prompt_strings, self.values, self.prompt_index = [], [], 0
         while self.prompt_index < len(self):
             if not self._present_prompt_and_store_value(
                 include_chevron=include_chevron):
@@ -210,12 +210,9 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
         target_menu_section = self._current_prompt.target_menu_section
         assert target_menu_section is not None
         assert target_menu_section.is_numbered
-        value = target_menu_section._argument_range_string_to_numbers(
+        numbers = target_menu_section._argument_range_string_to_numbers(
             user_response)
-        # TODO: maybe return list always from _argument_range*?
-        if value is None:
-            value = []
-        self.values.append(value)
+        self.values.append(numbers)
         self.prompt_index = self.prompt_index + 1
 
     def _try_to_store_value_from_target_menu_section(self, user_response):
