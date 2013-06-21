@@ -50,49 +50,30 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
 
     ### PRIVATE METHODS ###
 
-    def _apply_validation_functions_to_value(self, value):
+    def _apply_validation_function_to_value(self, value):
         if self.allow_none and value is None:
             return True
         validation_function = self._current_prompt.validation_function
-        if validation_function is not None:
-            return self._evaluate_test(validation_function, value)
-        return True
+        return validation_function(value)
 
-    def _change_user_response_to_value(self, user_response):
+    def _display_help(self):
+        lines = []
+        lines.append(self._current_prompt.help_string)
+        lines.append('')
+        self._io.display(lines)
+
+    def _evaluate_user_response(self, user_response):
         setup_statements = self._current_prompt.setup_statements
-        assert isinstance(setup_statements, list)
         if setup_statements:
             value = self._get_value_from_setup_statements(
                 user_response, setup_statements)
             if value is None and not user_response == 'None':
                 return '!!!'
         else:
-            value = self._get_value_from_direct_evaluation(user_response)
+            value = self._evaluate_user_response_directly(user_response)
         return value
 
-    def _display_help(self):
-        if True:
-            lines = []
-            lines.append(self._current_prompt.help_string)
-            lines.append('')
-            self._io.display(lines)
-
-    def _display_help(self):
-        lines = []
-        if True:
-            lines.append(self._current_prompt.help_string)
-        else:
-            lines.append('help string not available.')
-        lines.append('')
-        self._io.display(lines)
-
-    def _evaluate_test(self, test, argument):
-        if isinstance(test, types.TypeType):
-            return isinstance(argument, test)
-        else:
-            return test(argument)
-
-    def _get_value_from_direct_evaluation(self, user_response):
+    def _evaluate_user_response_directly(self, user_response):
         try:
             value = eval(user_response)
         except (NameError, SyntaxError):
@@ -105,13 +86,15 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
             try:
                 command = setup_statement.format(user_response)
                 exec(command)
-            except:
-                try:
-                    command = setup_statement.format(repr(user_response))
-                    exec(command)
-                except:
-                    self._display_help()
-                    return '!!!'
+                continue
+            except (NameError, SyntaxError):
+                pass
+            try:
+                command = setup_statement.format(repr(user_response))
+                exec(command)
+            except ValueError:
+                self._display_help()
+                return '!!!'
         return value
 
     def _indent_and_number_prompt(self, prompt):
@@ -196,10 +179,10 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
             if self._try_to_store_value_from_target_menu_section(
                 user_response):
                 return True
-            value = self._change_user_response_to_value(user_response)
+            value = self._evaluate_user_response(user_response)
             if value == '!!!':
                 return False
-            if not self._apply_validation_functions_to_value(value):
+            if not self._apply_validation_function_to_value(value):
                 self._display_help()
                 return False
         self.values.append(value)
@@ -217,7 +200,7 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
 
     def _try_to_store_value_from_target_menu_section(self, user_response):
         target_menu_section = self._current_prompt.target_menu_section
-        if target_menu_section and self._apply_validation_functions_to_value(
+        if target_menu_section and self._apply_validation_function_to_value(
             user_response):
             self._store_value_from_target_menu_section(user_response)
             return True
