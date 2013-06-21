@@ -39,7 +39,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.core.IO.IO.IO.make_menu
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.core.IO.IO.IO.pop_from_user_input
+.. automethod:: experimental.tools.scoremanagertools.core.IO.IO.IO.pop_from_pending_user_input
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.core.IO.IO.IO.print_not_yet_implemented

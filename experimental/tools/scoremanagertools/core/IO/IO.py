@@ -24,11 +24,11 @@ class IO(AbjadObject):
 
     def assign_user_input(self, user_input=None):
         if user_input is not None:
-            if self._session.user_input_tape:
-                self._session.user_input_tape = user_input + ' ' + \
-                    self._session.user_input_tape
+            if self._session.pending_user_input:
+                self._session.pending_user_input = user_input + ' ' + \
+                    self._session.pending_user_input
             else:
-                self._session.user_input_tape = user_input
+                self._session.pending_user_input = user_input
 
     def confirm(self, prompt_string='ok?', include_chevron=False):
         getter = self.make_getter(where=None)
@@ -84,7 +84,7 @@ class IO(AbjadObject):
                 if not user_input == 'help':
                     print ''
         else:
-            user_input = self.pop_from_user_input()
+            user_input = self.pop_from_pending_user_input()
         if self._session.transcribe_next_command:
             self._session.command_history.append(user_input)
         if user_input == '.':
@@ -148,22 +148,21 @@ class IO(AbjadObject):
             )
         return menu, menu_section
 
-    def pop_from_user_input(self):
+    def pop_from_pending_user_input(self):
         self._session.last_command_was_composite = False
-        if self._session.user_input_tape is None:
+        if self._session.pending_user_input is None:
             return None
-        elif self._session.user_input_tape == '':
-            self._session.user_input_tape = None
+        elif self._session.pending_user_input == '':
+            self._session.pending_user_input = None
             return None
-        elif '\n' in self._session.user_input_tape:
-            raise ValueError('no longer implemented.')
-        elif self._session.user_input_tape.startswith('{{'):
-            index = self._session.user_input_tape.find('}}')
-            user_input = self._session.user_input_tape[2:index]
-            user_input_tape = self._session.user_input_tape[index+2:].strip()
+        elif self._session.pending_user_input.startswith('{{'):
+            index = self._session.pending_user_input.find('}}')
+            user_input = self._session.pending_user_input[2:index]
+            pending_user_input = self._session.pending_user_input[index+2:]
+            pending_user_input = pending_user_input.strip()
             self._session.last_command_was_composite = True
         else:
-            user_input_parts = self._session.user_input_tape.split(' ')
+            user_input_parts = self._session.pending_user_input.split(' ')
             first_parts, rest_parts = [], []
             for i, part in enumerate(user_input_parts):
                 if not part.endswith((',', '-')):
@@ -171,9 +170,9 @@ class IO(AbjadObject):
             first_parts = user_input_parts[:i+1]
             rest_parts = user_input_parts[i+1:]
             user_input = ' '.join(first_parts)
-            user_input_tape = ' '.join(rest_parts)
+            pending_user_input = ' '.join(rest_parts)
         user_input = user_input.replace('~', ' ')
-        self._session.user_input_tape = user_input_tape
+        self._session.pending_user_input = pending_user_input
         return user_input
 
     def print_not_yet_implemented(self):

@@ -26,7 +26,7 @@ def test_ScorePackageProxy_02():
 
     red_example_score = scoremanagertools.proxies.ScorePackageProxy(
         'scoremanagertools.scorepackages.red_example_score')
-    red_example_score._session.user_input_tape = 'q'
+    red_example_score._session.pending_user_input = 'q'
     red_example_score.manage_tags()
     assert red_example_score._session.transcript.signature == (2,)
 
@@ -37,13 +37,13 @@ def test_ScorePackageProxy_03():
 
     red_example_score = scoremanagertools.proxies.ScorePackageProxy(
         'scoremanagertools.scorepackages.red_example_score')
-    red_example_score._session.user_input_tape = 'add foo bar q'
+    red_example_score._session.pending_user_input = 'add foo bar q'
     red_example_score.manage_tags()
     assert red_example_score.get_tag('foo') == 'bar'
 
     red_example_score = scoremanagertools.proxies.ScorePackageProxy(
         'scoremanagertools.scorepackages.red_example_score')
-    red_example_score._session.user_input_tape = 'del foo q'
+    red_example_score._session.pending_user_input = 'del foo q'
     red_example_score.manage_tags()
     assert red_example_score.get_tag('foo') is None
 

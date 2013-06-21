@@ -108,6 +108,9 @@ Read/write properties
 .. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.nonnumbered_menu_sections_are_hidden
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.pending_user_input
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.snake_case_current_score_name
    :noindex:
 
@@ -115,9 +118,6 @@ Read/write properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.use_current_user_input_values_as_default
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.user_input_tape
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.user_specified_quit

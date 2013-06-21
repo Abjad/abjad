@@ -71,7 +71,7 @@ class Session(abctools.AbjadObject):
         self.nonnumbered_menu_sections_are_hidden = False
         self.transcribe_next_command = True
         self.use_current_user_input_values_as_default = False
-        self.user_input_tape = user_input
+        self.pending_user_input = user_input
         self.user_specified_quit = False
         self.display_active_scores()
 
@@ -86,9 +86,9 @@ class Session(abctools.AbjadObject):
         if self.initial_user_input is not None:
             summary.append('initial_user_input={!r}'.format(
                 self.initial_user_input))
-        if self.user_input_tape is not None:
+        if self.pending_user_input is not None:
             summary.append('user_input={!r}'.format(
-                self.user_input_tape))
+                self.pending_user_input))
         summary = ', '.join(summary)
         return '{}({})'.format(type(self).__name__, summary)
 
@@ -435,7 +435,7 @@ class Session(abctools.AbjadObject):
 
         Return boolean.
         '''
-        return not self.user_input_tape
+        return not self.pending_user_input
 
     @property
     def is_in_score(self):
@@ -591,13 +591,13 @@ class Session(abctools.AbjadObject):
         return property(**locals())
 
     @apply
-    def user_input_tape():
+    def pending_user_input():
         def fget(self):
-            return self._user_input_tape
-        def fset(self, user_input_tape):
-            assert isinstance(user_input_tape, (str, type(None)))
-            self._user_input_tape = user_input_tape
-            if isinstance(user_input_tape, str):
+            return self._pending_user_input
+        def fset(self, pending_user_input):
+            assert isinstance(pending_user_input, (str, type(None)))
+            self._pending_user_input = pending_user_input
+            if isinstance(pending_user_input, str):
                 self._session_once_had_user_input = True
         return property(**locals())
 
@@ -614,7 +614,7 @@ class Session(abctools.AbjadObject):
         Return boolean.
         '''
         if self._session_once_had_user_input:
-            if self.user_input_tape is None:
+            if self.pending_user_input is None:
                 return True
         return False
 
