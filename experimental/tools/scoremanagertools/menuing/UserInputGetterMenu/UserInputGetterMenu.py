@@ -63,26 +63,8 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
         self._io.display(lines)
 
     def _evaluate_user_response(self, user_response):
-        setup_statements = self._current_prompt.setup_statements
-        if setup_statements:
-            value = self._get_value_from_setup_statements(
-                user_response, setup_statements)
-            if value is None and not user_response == 'None':
-                return '!!!'
-        else:
-            value = self._evaluate_user_response_directly(user_response)
-        return value
-
-    def _evaluate_user_response_directly(self, user_response):
-        try:
-            value = eval(user_response)
-        except (NameError, SyntaxError):
-            value = user_response
-        return value
-
-    def _get_value_from_setup_statements(
-        self, user_response, setup_statements):
-        for setup_statement in setup_statements:
+        value = None
+        for setup_statement in self._current_prompt.setup_statements:
             try:
                 command = setup_statement.format(user_response)
                 exec(command)
@@ -95,6 +77,11 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
             except ValueError:
                 self._display_help()
                 return '!!!'
+        if value is None:
+            try:
+                value = eval(user_response)
+            except (NameError, SyntaxError):
+                value = user_response
         return value
 
     def _indent_and_number_prompt(self, prompt):
