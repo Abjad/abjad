@@ -131,7 +131,7 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
             elif user_input == 'skip':
                 break
             elif isinstance(user_input, str):
-                if self._store_evaluated_user_input(user_input):
+                if self._evaluate_and_store_user_input(user_input):
                     break
             else:
                 self._io.print_not_yet_implemented()
@@ -157,40 +157,25 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
             return self._evaluated_user_input[0]
         return self._evaluated_user_input[:]
 
-    def _store_evaluated_user_input(self, user_input):
-        assert isinstance(user_input, str)
+    def _evaluate_and_store_user_input(self, user_input):
         if self.allow_none and user_input in ('', 'None'):
             evaluated_user_input = None
+        elif self._current_prompt.target_menu_section is not None:
+            target_menu_section = self._current_prompt.target_menu_section
+            evaluated_user_input = \
+                target_menu_section._argument_range_string_to_numbers(
+                user_input)
         else:
-            if self._store_evaluated_user_input_from_target_menu_section(
-                user_input):
-                return True
             evaluated_user_input = self._evaluate_user_input(user_input)
-            if evaluated_user_input == '!!!':
-                return False
-            if not self._validate_evaluated_user_input(evaluated_user_input):
-                self._display_help()
-                return False
+
+        if not self._validate_evaluated_user_input(evaluated_user_input):
+            self._display_help()
+            return False
+        if evaluated_user_input == '!!!':
+            return False
         self._evaluated_user_input.append(evaluated_user_input)
         self._prompt_index += 1
         return True
-
-    def _store_evaluated_user_input_from_target_menu_section(
-        self, user_input):
-        target_menu_section = self._current_prompt.target_menu_section
-        if target_menu_section and \
-            self._validate_evaluated_user_input(user_input):
-            target_menu_section = self._current_prompt.target_menu_section
-            assert target_menu_section is not None
-            assert target_menu_section.is_numbered
-            numbers = \
-                target_menu_section._argument_range_string_to_numbers(
-                user_input)
-            self._evaluated_user_input.append(numbers)
-            self._prompt_index += 1
-            return True
-        else:
-            return False
 
     def _validate_evaluated_user_input(self, evaluated_user_input):
         if evaluated_user_input is None and self.allow_none:

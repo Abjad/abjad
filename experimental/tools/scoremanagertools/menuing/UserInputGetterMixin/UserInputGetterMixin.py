@@ -45,7 +45,7 @@ class UserInputGetterMixin(AbjadObject):
         help_template = 'value for {!r} must be argument range.'
         self._make_prompt(
             spaced_attribute_name, 
-            validation_function=predicates.is_string, 
+            validation_function=predicates.is_list, 
             help_template=help_template,
             target_menu_section=target_menu_section,
             default_value=default_value,
