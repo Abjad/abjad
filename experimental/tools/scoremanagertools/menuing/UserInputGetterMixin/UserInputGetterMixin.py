@@ -19,13 +19,15 @@ class UserInputGetterMixin(AbjadObject):
         setup_statements=None,
         default_value=None, 
         include_chevron=True,
-        argument_list=None,
+        #argument_list=None,
+        target_menu_section=None,
         ):
         assert isinstance(help_template, str)
         assert isinstance(spaced_attribute_name, str)
         self._prompt_strings.append(spaced_attribute_name)
-        argument_list = argument_list or []
-        self._argument_lists.append(argument_list)
+        #argument_list = argument_list or []
+        #self._argument_lists.append(argument_list)
+        self._target_menu_sections.append(target_menu_section)
         setup_statements = setup_statements or []
         self._setup_statements.append(setup_statements)
         if additional_help_template_arguments is None:
@@ -40,19 +42,35 @@ class UserInputGetterMixin(AbjadObject):
 
     ### PUBLIC METHODS ###
 
-    def append_argument_range(self, 
+#    def append_argument_range(
+#        self, 
+#        spaced_attribute_name, 
+#        argument_list, 
+#        default_value=None):
+#        validation_function = lambda expr: \
+#            predicates.is_readable_argument_range_string_for_argument_list(
+#            expr, argument_list)
+#        help_template = 'value for {!r} must be argument range.'
+#        self._make_prompt(
+#            spaced_attribute_name, 
+#            validation_function=validation_function, 
+#            help_template=help_template,
+#            argument_list=argument_list,
+#            default_value=default_value,
+#            )
+
+    def append_menu_section_range(
+        self, 
         spaced_attribute_name, 
-        argument_list, 
+        target_menu_section, 
         default_value=None):
-        validation_function = lambda expr: \
-            predicates.is_readable_argument_range_string_for_argument_list(
-            expr, argument_list)
         help_template = 'value for {!r} must be argument range.'
         self._make_prompt(
             spaced_attribute_name, 
-            validation_function=validation_function, 
+            validation_function=predicates.is_string, 
             help_template=help_template,
-            argument_list=argument_list,
+            #argument_list=argument_list,
+            target_menu_section=target_menu_section,
             default_value=default_value,
             )
 

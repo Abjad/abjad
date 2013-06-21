@@ -19,12 +19,13 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
     def __init__(self, session=None, where=None):
         Menu.__init__(self, session=session, where=where)
         UserInputGetterMixin.__init__(self)
-        self._argument_lists = []
+        #self._argument_lists = []
         self._chevron_inclusion_indicators = []
         self._default_values = []
         self._help_strings = []
         self._prompt_strings = []
         self._setup_statements = []
+        self._target_menu_sections = []
         self._validation_functions = []
         self.allow_none = False
         self.capitalize_prompts = True
@@ -39,7 +40,7 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
 
     ### PRIVATE METHODS ###
 
-    def _apply__validation_functions_to_value(self, value):
+    def _apply_validation_functions_to_value(self, value):
         if self.allow_none and value is None:
             return True
         if self.prompt_index < len(self._validation_functions):
@@ -183,35 +184,55 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
         if self.allow_none and user_response in ('', 'None'):
             value = None
         else:
-            if self._try_to_store_value_from_argument_list(user_response):
+            #if self._try_to_store_value_from_argument_list(user_response):
+            if self._try_to_store_value_from_target_menu_section(user_response):
                 return True
             value = self._change_user_response_to_value(user_response)
             if value == '!!!':
                 return False
-            if not self._apply__validation_functions_to_value(value):
+            if not self._apply_validation_functions_to_value(value):
                 self._display_help()
                 return False
         self.values.append(value)
         self.prompt_index = self.prompt_index + 1
         return True
 
-    def _store_value_from_argument_list(self, user_response, argument_list):
-        from experimental.tools import scoremanagertools
-        dummy_section = scoremanagertools.menuing.MenuSection()
-        dummy_section.is_numbered = True
-        dummy_section._is_dummy = True
-        dummy_section.menu_entries = argument_list
-        value = dummy_section._argument_range_string_to_numbers(
+#    def _store_value_from_argument_list(self, user_response, argument_list):
+#        from experimental.tools import scoremanagertools
+#        dummy_section = scoremanagertools.menuing.MenuSection()
+#        dummy_section.is_numbered = True
+#        dummy_section._is_dummy = True
+#        dummy_section.menu_entries = argument_list
+#        value = dummy_section._argument_range_string_to_numbers(
+#            user_response)
+#        self.values.append(value)
+#        self.prompt_index = self.prompt_index + 1
+
+    def _store_value_from_target_menu_section(self, user_response):
+        target_menu_section = self._target_menu_sections[self.prompt_index]
+        assert target_menu_section is not None
+        assert target_menu_section.is_numbered
+        value = target_menu_section._argument_range_string_to_numbers(
             user_response)
+        if value is None:
+            value = []
         self.values.append(value)
         self.prompt_index = self.prompt_index + 1
 
-    def _try_to_store_value_from_argument_list(self, user_response):
+#    def _try_to_store_value_from_argument_list(self, user_response):
+#        argument_list = self._argument_lists[self.prompt_index]
+#        if argument_list and self._apply_validation_functions_to_value(
+#            user_response):
+#            self._store_value_from_argument_list(user_response, argument_list)
+#            return True
+#        else:
+#            return False
 
-        argument_list = self._argument_lists[self.prompt_index]
-        if argument_list and self._apply__validation_functions_to_value(
+    def _try_to_store_value_from_target_menu_section(self, user_response):
+        target_menu_section = self._target_menu_sections[self.prompt_index]
+        if target_menu_section and self._apply_validation_functions_to_value(
             user_response):
-            self._store_value_from_argument_list(user_response, argument_list)
+            self._store_value_from_target_menu_section(user_response)
             return True
         else:
             return False

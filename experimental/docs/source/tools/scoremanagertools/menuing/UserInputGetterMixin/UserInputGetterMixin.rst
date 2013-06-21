@@ -15,9 +15,6 @@ Read-only properties
 Methods
 -------
 
-.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMixin.UserInputGetterMixin.UserInputGetterMixin.append_argument_range
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMixin.UserInputGetterMixin.UserInputGetterMixin.append_articulation
    :noindex:
 
@@ -82,6 +79,9 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMixin.UserInputGetterMixin.UserInputGetterMixin.append_material_package_maker_class_name
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMixin.UserInputGetterMixin.UserInputGetterMixin.append_menu_section_range
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.menuing.UserInputGetterMixin.UserInputGetterMixin.UserInputGetterMixin.append_named_chromatic_pitch

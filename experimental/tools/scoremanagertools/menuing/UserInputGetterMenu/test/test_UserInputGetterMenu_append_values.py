@@ -13,8 +13,14 @@ def test_UserInputGetterMenu_append_values_01():
     assert getter._run(user_input='foo -99 99 7') == 7
 
     getter = scoremanagertools.menuing.UserInputGetterMenu()
-    argument_list = ['apple', 'banana', 'cherry', 'durian', 'endive', 'fennel']
-    getter.append_argument_range('attribute', argument_list)
+    #argument_list = [
+    #   'apple', 'banana', 'cherry', 'durian', 'endive', 'fennel']
+    #getter.append_argument_range('attribute', argument_list)
+    menu_section = scoremanagertools.menuing.MenuSection()
+    menu_section.is_numbered = True
+    menu_section.menu_entries = [
+        'apple', 'banana', 'cherry', 'durian', 'endive', 'fennel']
+    getter.append_menu_section_range('attribute', menu_section)
     assert getter._run(user_input='fen-dur, app, che') == [6, 5, 4, 1, 3]
 
     getter = scoremanagertools.menuing.UserInputGetterMenu()
