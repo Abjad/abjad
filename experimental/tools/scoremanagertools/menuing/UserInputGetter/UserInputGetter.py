@@ -8,7 +8,7 @@ from experimental.tools.scoremanagertools.menuing.UserInputGetterMixin \
     import UserInputGetterMixin
 
 
-class UserInputGetterMenu(ScoreManagerObject, UserInputGetterMixin):
+class UserInputGetter(ScoreManagerObject, UserInputGetterMixin):
     '''User input getter menu.
 
     .. note:: add docstring.

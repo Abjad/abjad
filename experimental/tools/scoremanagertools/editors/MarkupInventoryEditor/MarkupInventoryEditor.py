@@ -7,8 +7,8 @@ from experimental.tools.scoremanagertools.editors.TargetManifest \
     import TargetManifest
 from experimental.tools.scoremanagertools.editors.MarkupEditor \
     import MarkupEditor
-from experimental.tools.scoremanagertools.menuing.UserInputGetterMenu \
-    import UserInputGetterMenu
+from experimental.tools.scoremanagertools.menuing.UserInputGetter \
+    import UserInputGetter
 
 
 class MarkupInventoryEditor(ObjectInventoryEditor):

@@ -165,7 +165,7 @@ class IO(AbjadObject):
 
     def make_getter(self, where=None):
         from experimental.tools import scoremanagertools
-        return scoremanagertools.menuing.UserInputGetterMenu(
+        return scoremanagertools.menuing.UserInputGetter(
             where=where, session=self._session)
 
     def make_menu(self, 

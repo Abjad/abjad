@@ -6,8 +6,8 @@ from experimental.tools.scoremanagertools.editors.TargetManifest \
     import TargetManifest
 from experimental.tools.scoremanagertools.editors.TempoMarkEditor \
     import TempoMarkEditor
-from experimental.tools.scoremanagertools.menuing.UserInputGetterMenu \
-    import UserInputGetterMenu
+from experimental.tools.scoremanagertools.menuing.UserInputGetter \
+    import UserInputGetter
 
 
 class TempoMarkInventoryEditor(ObjectInventoryEditor):
@@ -16,7 +16,7 @@ class TempoMarkInventoryEditor(ObjectInventoryEditor):
 
     item_class = contexttools.TempoMark
     item_editor_class = TempoMarkEditor
-    item_getter_configuration_method = UserInputGetterMenu.append_tempo
+    item_getter_configuration_method = UserInputGetter.append_tempo
     item_identifier = 'tempo mark'
     target_manifest = TargetManifest(contexttools.TempoMarkInventory,
         ('name', 'name', 'nm', getters.get_string),
