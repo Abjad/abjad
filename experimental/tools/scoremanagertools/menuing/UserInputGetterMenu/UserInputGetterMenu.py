@@ -28,7 +28,6 @@ class UserInputGetterMenu(ScoreManagerObject, UserInputGetterMixin):
         self.include_newlines = False
         self.number_prompts = False
         self.prompt_character = '>'
-        self.should_clear_terminal = False
         self.where=where
 
     ### SPECIAL METHODS ###
@@ -54,12 +53,6 @@ class UserInputGetterMenu(ScoreManagerObject, UserInputGetterMixin):
         return self.prompts[self._prompt_index]
 
     ### PRIVATE METHODS ###
-
-    def _clear_terminal(self):
-        if not self._session.hide_next_redraw:
-            if self.should_clear_terminal:
-                if self._session.is_displayable:
-                    iotools.clear_terminal()
 
     def _display_help(self):
         lines = []
@@ -201,7 +194,7 @@ class UserInputGetterMenu(ScoreManagerObject, UserInputGetterMixin):
                 self._io.print_not_yet_implemented()
 
     def _present_prompts_and_evaluate_user_input(self, include_chevron=True):
-        self._clear_terminal()
+        self._io.clear_terminal()
         self._prompt_index = 0
         self._prompt_strings = []
         self._evaluated_user_input = []

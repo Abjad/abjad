@@ -96,10 +96,8 @@ class Menu(ScoreManagerObject):
                             menu_entry.return_value)
 
     def _clear_terminal(self):
-        if not self._session.hide_next_redraw:
-            if self.should_clear_terminal:
-                if self._session.is_displayable:
-                    iotools.clear_terminal()
+        if self.should_clear_terminal:
+            self._io.clear_terminal()
 
     def _display(self, 
         automatically_determined_user_input=None):

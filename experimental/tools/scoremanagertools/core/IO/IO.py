@@ -30,6 +30,11 @@ class IO(AbjadObject):
             else:
                 self._session.pending_user_input = user_input
 
+    def clear_terminal(self):
+        if not self._session.hide_next_redraw:
+            if self._session.is_displayable:
+                iotools.clear_terminal()
+
     def confirm(self, prompt_string='ok?', include_chevron=False):
         getter = self.make_getter(where=None)
         getter.append_yes_no_string(prompt_string)
