@@ -90,7 +90,7 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
             return
         self._evaluated_user_input.append(evaluated_user_input)
         self._prompt_index += 1
-        self._is_done = True
+        self._current_prompt_is_done = True
 
     def _indent_and_number_prompt_string(self, prompt_string):
         if self.number_prompts:
@@ -110,12 +110,9 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
         self._prompt_index = self._prompt_index - 1
 
     def _present_prompt_and_evaluate_user_input(self, include_chevron=True):
-        '''True when user response obtained. Or when user skips prompt.
-        False when user quits system or aborts getter.
-        '''
         self._load_prompt_string()
-        self._is_done = False
-        while not self._is_done:
+        self._current_prompt_is_done = False
+        while not self._current_prompt_is_done:
             prompt_string = self._prompt_strings[-1]
             prompt_string = self._indent_and_number_prompt_string(
                 prompt_string)
@@ -134,7 +131,8 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
             user_input = self._handle_hidden_menu_section_return_value(
                 user_input)
             if self._session.backtrack():
-                return False
+                self._current_prompt_is_done = True
+                self._all_prompts_are_done = True
             elif user_input is None:
                 continue
             elif user_input == 'help':
@@ -148,17 +146,17 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
                 self._evaluate_user_input(user_input)
             else:
                 self._io.print_not_yet_implemented()
-        return True
 
     def _present_prompts_and_evaluate_user_input(self, include_chevron=True):
         self._clear_terminal()
         self._prompt_index = 0
         self._prompt_strings = []
         self._evaluated_user_input = []
-        while self._prompt_index < len(self):
-            if not self._present_prompt_and_evaluate_user_input(
-                include_chevron=include_chevron):
-                break
+        self._all_prompts_are_done = False
+        while self._prompt_index < len(self) and \
+            not self._all_prompts_are_done:
+            self._present_prompt_and_evaluate_user_input(
+                include_chevron=include_chevron)
 
     def _run(self, user_input=None, include_chevron=True):
         self._io.assign_user_input(user_input=user_input)
