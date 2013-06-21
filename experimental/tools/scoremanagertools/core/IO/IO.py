@@ -121,6 +121,27 @@ class IO(AbjadObject):
         finally:
             readline.set_startup_hook()
 
+    def make_default_hidden_section(self):
+        from experimental.tools import scoremanagertools
+        hidden_section = scoremanagertools.menuing.MenuSection()
+        hidden_section.return_value_attribute = 'key'
+        hidden_section.is_hidden = True
+        hidden_section.append(('back', 'b'))
+        hidden_section.append(('exec statement', 'exec'))
+        hidden_section.append(('grep directories', 'grep'))
+        hidden_section.append(('edit client source', 'here'))
+        hidden_section.append(('display hidden menu section', 'hidden'))
+        hidden_section.append(('home', 'home'))
+        hidden_section.append(('next score', 'next'))
+        hidden_section.append(('prev score', 'prev'))
+        hidden_section.append(('quit', 'q'))
+        hidden_section.append(('redraw', 'r'))
+        hidden_section.append(('current score', 'score'))
+        hidden_section.append(('show/hide commands', 'cmds'))
+        hidden_section.append(('toggle where', 'tw'))
+        hidden_section.append(('display calling code line number', 'where'))
+        return hidden_section
+
     def make_getter(self, where=None):
         from experimental.tools import scoremanagertools
         return scoremanagertools.menuing.UserInputGetterMenu(

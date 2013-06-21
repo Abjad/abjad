@@ -17,14 +17,17 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
     ### INITIALIZER ###
 
     def __init__(self, session=None, where=None):
+        #ScoreManagerObject.__init__(self, session=session)
         Menu.__init__(self, session=session, where=where)
         UserInputGetterMixin.__init__(self)
+        #hidden_section = self._make_default_hidden_section()
         self._prompts = []
         self.allow_none = False
         self.capitalize_prompts = True
         self.include_newlines = False
         self.number_prompts = False
         self.prompt_character = '>'
+        self.where=where
 
     ### SPECIAL METHODS ###
 
