@@ -71,7 +71,7 @@ class Session(abctools.AbjadObject):
         self.nonnumbered_menu_sections_are_hidden = False
         self.transcribe_next_command = True
         self.use_current_user_input_values_as_default = False
-        self.user_input = user_input
+        self.user_input_tape = user_input
         self.user_specified_quit = False
         self.display_active_scores()
 
@@ -84,9 +84,11 @@ class Session(abctools.AbjadObject):
         '''
         summary = []
         if self.initial_user_input is not None:
-            summary.append('initial_user_input={!r}'.format(self.initial_user_input))
-        if self.user_input is not None:
-            summary.append('user_input={!r}'.format(self.user_input))
+            summary.append('initial_user_input={!r}'.format(
+                self.initial_user_input))
+        if self.user_input_tape is not None:
+            summary.append('user_input={!r}'.format(
+                self.user_input_tape))
         summary = ', '.join(summary)
         return '{}({})'.format(type(self).__name__, summary)
 
@@ -433,7 +435,7 @@ class Session(abctools.AbjadObject):
 
         Return boolean.
         '''
-        return not self.user_input
+        return not self.user_input_tape
 
     @property
     def is_in_score(self):
@@ -584,17 +586,18 @@ class Session(abctools.AbjadObject):
             return self._use_current_user_input_values_as_default
         def fset(self, use_current_user_input_values_as_default):
             assert isinstance(use_current_user_input_values_as_default, bool)
-            self._use_current_user_input_values_as_default = use_current_user_input_values_as_default
+            self._use_current_user_input_values_as_default = \
+                use_current_user_input_values_as_default
         return property(**locals())
 
     @apply
-    def user_input():
+    def user_input_tape():
         def fget(self):
-            return self._user_input
-        def fset(self, user_input):
-            assert isinstance(user_input, (str, type(None)))
-            self._user_input = user_input
-            if isinstance(user_input, str):
+            return self._user_input_tape
+        def fset(self, user_input_tape):
+            assert isinstance(user_input_tape, (str, type(None)))
+            self._user_input_tape = user_input_tape
+            if isinstance(user_input_tape, str):
                 self._session_once_had_user_input = True
         return property(**locals())
 
@@ -611,7 +614,7 @@ class Session(abctools.AbjadObject):
         Return boolean.
         '''
         if self._session_once_had_user_input:
-            if self.user_input is None:
+            if self.user_input_tape is None:
                 return True
         return False
 

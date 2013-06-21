@@ -24,11 +24,11 @@ class IO(AbjadObject):
 
     def assign_user_input(self, user_input=None):
         if user_input is not None:
-            if self._session.user_input:
-                self._session.user_input = user_input + ' ' + \
-                    self._session.user_input
+            if self._session.user_input_tape:
+                self._session.user_input_tape = user_input + ' ' + \
+                    self._session.user_input_tape
             else:
-                self._session.user_input = user_input
+                self._session.user_input_tape = user_input
 
     def confirm(self, prompt_string='ok?', include_chevron=False):
         getter = self.make_getter(where=None)
@@ -150,20 +150,20 @@ class IO(AbjadObject):
 
     def pop_from_user_input(self):
         self._session.last_command_was_composite = False
-        if self._session.user_input is None:
+        if self._session.user_input_tape is None:
             return None
-        elif self._session.user_input == '':
-            self._session.user_input = None
+        elif self._session.user_input_tape == '':
+            self._session.user_input_tape = None
             return None
-        elif '\n' in self._session.user_input:
+        elif '\n' in self._session.user_input_tape:
             raise ValueError('no longer implemented.')
-        elif self._session.user_input.startswith('{{'):
-            index = self._session.user_input.find('}}')
-            user_input = self._session.user_input[2:index]
-            user_input_tape = self._session.user_input[index+2:].strip()
+        elif self._session.user_input_tape.startswith('{{'):
+            index = self._session.user_input_tape.find('}}')
+            user_input = self._session.user_input_tape[2:index]
+            user_input_tape = self._session.user_input_tape[index+2:].strip()
             self._session.last_command_was_composite = True
         else:
-            user_input_parts = self._session.user_input.split(' ')
+            user_input_parts = self._session.user_input_tape.split(' ')
             first_parts, rest_parts = [], []
             for i, part in enumerate(user_input_parts):
                 if not part.endswith((',', '-')):
@@ -173,7 +173,7 @@ class IO(AbjadObject):
             user_input = ' '.join(first_parts)
             user_input_tape = ' '.join(rest_parts)
         user_input = user_input.replace('~', ' ')
-        self._session.user_input = user_input_tape
+        self._session.user_input_tape = user_input_tape
         return user_input
 
     def print_not_yet_implemented(self):

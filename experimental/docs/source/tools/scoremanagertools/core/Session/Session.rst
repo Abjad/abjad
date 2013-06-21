@@ -117,7 +117,7 @@ Read/write properties
 .. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.use_current_user_input_values_as_default
    :noindex:
 
-.. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.user_input
+.. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.user_input_tape
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.core.Session.Session.Session.user_specified_quit
