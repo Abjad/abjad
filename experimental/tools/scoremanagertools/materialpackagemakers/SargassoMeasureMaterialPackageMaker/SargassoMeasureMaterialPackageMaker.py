@@ -1,7 +1,8 @@
 import fractions
 from abjad import *
 from experimental.tools.scoremanagertools import predicates
-from experimental.tools.scoremanagertools.editors.UserInputWrapper import UserInputWrapper
+from experimental.tools.scoremanagertools.editors.UserInputWrapper \
+    import UserInputWrapper
 from experimental.tools.scoremanagertools.materialpackagemakers.FunctionInputMaterialPackageMaker import \
     FunctionInputMaterialPackageMaker
 
@@ -12,7 +13,8 @@ class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
 
     generic_output_name = 'sargasso measures'
     output_material_checker = staticmethod(measuretools.all_are_measures)
-    output_material_module_import_statements = ['from abjad.tools import measuretools']
+    output_material_module_import_statements = [
+        'from abjad.tools import measuretools']
 
     user_input_demo_values = [
         ('measure_denominator', 4),
@@ -25,14 +27,20 @@ class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
         ('measures_are_shuffled', True),
         ]
 
-    user_input_module_import_statements = ['from abjad.tools import durationtools']
+    user_input_module_import_statements = [
+        'from abjad.tools import durationtools']
 
     user_input_tests = [
-        ('measure_denominator', mathtools.is_positive_integer_power_of_two),
-        ('measure_numerator_talea', sequencetools.all_are_nonnegative_integers),
-        ('measure_division_denominator', mathtools.is_nonnegative_integer_power_of_two),
-        ('measure_division_talea', sequencetools.all_are_nonnegative_integers),
-        ('total_duration', predicates.is_duration_token, 'value = Duration({})'),
+        ('measure_denominator', 
+            mathtools.is_positive_integer_power_of_two),
+        ('measure_numerator_talea', 
+            sequencetools.all_are_nonnegative_integers),
+        ('measure_division_denominator', 
+            mathtools.is_nonnegative_integer_power_of_two),
+        ('measure_division_talea', 
+            sequencetools.all_are_nonnegative_integers),
+        ('total_duration', predicates.is_duration_token,
+            'evaluated_user_input = Duration({})'),
         ('measures_are_scaled', predicates.is_boolean),
         ('measures_are_split', predicates.is_boolean),
         ('measures_are_shuffled', predicates.is_boolean),
@@ -43,8 +51,11 @@ class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
     @staticmethod
     def get_possible_meter_multipliers(multiplied_measure_numerator):
         possible_meter_multipliers = []
-        for denominator in range(multiplied_measure_numerator, 2 * multiplied_measure_numerator):
-            possible_meter_multiplier = fractions.Fraction(multiplied_measure_numerator, denominator)
+        for denominator in range(
+                multiplied_measure_numerator, 
+                2 * multiplied_measure_numerator):
+            possible_meter_multiplier = \
+                fractions.Fraction(multiplied_measure_numerator, denominator)
             possible_meter_multipliers.append(possible_meter_multiplier)
         return possible_meter_multipliers
 
@@ -66,7 +77,8 @@ class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
             line = measuretools.measure_to_one_line_input_string(measure)
             line = 'measuretools.' + line
             lines.append('\t{},'.format(line))
-        line = measuretools.measure_to_one_line_input_string(output_material[-1])
+        line = measuretools.measure_to_one_line_input_string(
+            output_material[-1])
         lines.append('\tmeasuretools.{}]'.format(line))
         lines = [line + '\n' for line in lines]
         return lines
@@ -85,12 +97,16 @@ class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
         #print measures_are_split
         #print measures_are_shuffled
 
-        assert mathtools.is_nonnegative_integer_power_of_two(measure_denominator)
-        assert mathtools.is_nonnegative_integer_power_of_two(measure_division_denominator)
+        assert mathtools.is_nonnegative_integer_power_of_two(
+            measure_denominator)
+        assert mathtools.is_nonnegative_integer_power_of_two(
+            measure_division_denominator)
         assert measure_denominator <= measure_division_denominator
 
-        assert all([mathtools.is_positive_integer(x) for x in measure_numerator_talea])
-        assert all([mathtools.is_positive_integer(x) for x in measure_division_talea])
+        assert all(mathtools.is_positive_integer(x) 
+            for x in measure_numerator_talea)
+        assert all(mathtools.is_positive_integer(x) 
+            for x in measure_division_talea)
         total_duration = durationtools.Duration(total_duration)
 
         weight = int(measure_denominator * total_duration)
@@ -104,14 +120,20 @@ class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
         #print measure_divisions
 
         multiplier = measure_division_denominator / measure_denominator
-        multiplied_measure_numerators = [multiplier * x for x in measure_numerators]
+        multiplied_measure_numerators = [
+            multiplier * x for x in measure_numerators]
         #print multiplied_measure_numerators
 
         measure_divisions_by_measure = sequencetools.split_sequence_by_weights(
-            measure_divisions, multiplied_measure_numerators, cyclic=True, overhang=True)
+            measure_divisions, 
+            multiplied_measure_numerators, 
+            cyclic=True, 
+            overhang=True,
+            )
         #print measure_divisions_by_measure
 
-        meter_multipliers = [fractions.Fraction(1) for x in measure_divisions_by_measure]
+        meter_multipliers = [fractions.Fraction(1) 
+            for x in measure_divisions_by_measure]
 
         if measures_are_scaled:
 

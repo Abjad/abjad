@@ -142,7 +142,7 @@ class MaterialPackageMaker(MaterialPackageProxy):
         if len(test_tuple) == 3:
             setup_statement = test_tuple[2]
         else:
-            setup_statement = 'value = {}'
+            setup_statement = 'evaluated_user_input = {}'
         if self._session.use_current_user_input_values_as_default:
             default_value = current_value
         else:

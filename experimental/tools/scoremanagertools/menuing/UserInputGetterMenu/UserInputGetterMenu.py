@@ -46,15 +46,9 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
 
     @property
     def _current_prompt(self):
-        return self.prompts[self.prompt_index]
+        return self.prompts[self._prompt_index]
 
     ### PRIVATE METHODS ###
-
-    def _apply_validation_function_to_value(self, value):
-        if self.allow_none and value is None:
-            return True
-        validation_function = self._current_prompt.validation_function
-        return validation_function(value)
 
     def _display_help(self):
         lines = []
@@ -63,7 +57,7 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
         self._io.display(lines)
 
     def _evaluate_user_input(self, user_input):
-        value = None
+        evaluated_user_input = None
         for setup_statement in self._current_prompt.setup_statements:
             try:
                 command = setup_statement.format(user_input)
@@ -77,18 +71,19 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
             except ValueError:
                 self._display_help()
                 return '!!!'
-        if value is None:
+        if evaluated_user_input is None:
             try:
-                value = eval(user_input)
+                evaluated_user_input = eval(user_input)
             except (NameError, SyntaxError):
-                value = user_input
-        return value
+                evaluated_user_input = user_input
+        return evaluated_user_input
 
-    def _indent_and_number_prompt(self, prompt):
+    def _indent_and_number_prompt_string(self, prompt_string):
         if self.number_prompts:
-            prompt_number = self.prompt_index + 1
-            prompt = '({}/{}) {}'.format(prompt_number, len(self), prompt)
-        return prompt
+            prompt_number = self._prompt_index + 1
+            prompt_string = '({}/{}) {}'.format(
+                prompt_number, len(self), prompt_string)
+        return prompt_string
 
     def _load_prompt_string(self):
         prompt_string = self._current_prompt.prompt_string
@@ -97,28 +92,30 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
         self._prompt_strings.append(prompt_string)
 
     def _move_to_prev_prompt(self):
-        self.values.pop()
-        self.prompt_index = self.prompt_index - 1
+        self._evaluated_user_input.pop()
+        self._prompt_index = self._prompt_index - 1
 
-    def _present_prompt_and_store_value(self, include_chevron=True):
+    def _present_prompt_and_store_evaluated_user_input(
+        self, include_chevron=True):
         '''True when user response obtained. Or when user skips prompt.
         False when user quits system or aborts getter.
         '''
         self._load_prompt_string()
         while True:
-            prompt = self._prompt_strings[-1]
-            prompt = self._indent_and_number_prompt(prompt)
-            default = str(self._current_prompt.default_value)
+            prompt_string = self._prompt_strings[-1]
+            prompt_string = self._indent_and_number_prompt_string(
+                prompt_string)
+            default_value = str(self._current_prompt.default_value)
             include_chevron = self._current_prompt.include_chevron
             user_input = self._io.handle_raw_input_with_default(
-                prompt, 
-                default=default,
+                prompt_string, 
+                default_value=default_value,
                 include_chevron=include_chevron, 
                 include_newline=self.include_newlines,
                 prompt_character=self.prompt_character, 
                 capitalize_prompt=self.capitalize_prompts)
             if user_input is None:
-                self.prompt_index = self.prompt_index + 1
+                self._prompt_index += 1
                 break
             user_input = self._handle_hidden_menu_section_return_value(
                 user_input)
@@ -134,65 +131,72 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
             elif user_input == 'skip':
                 break
             elif isinstance(user_input, str):
-                if self._store_value(user_input):
+                if self._store_evaluated_user_input(user_input):
                     break
             else:
                 self._io.print_not_yet_implemented()
         return True
 
-    def _present_prompts_and_store_values(self, include_chevron=True):
+    def _present_prompts_and_store_evaluated_user_inputs(
+        self, include_chevron=True):
         self._clear_terminal()
-        self._prompt_strings, self.values, self.prompt_index = [], [], 0
-        while self.prompt_index < len(self):
-            if not self._present_prompt_and_store_value(
+        self._prompt_index = 0
+        self._prompt_strings = []
+        self._evaluated_user_input = []
+        while self._prompt_index < len(self):
+            if not self._present_prompt_and_store_evaluated_user_input(
                 include_chevron=include_chevron):
                 break
 
     def _run(self, user_input=None, include_chevron=True):
         self._io.assign_user_input(user_input=user_input)
         with self.backtracking:
-            self._present_prompts_and_store_values(
+            self._present_prompts_and_store_evaluated_user_inputs(
                 include_chevron=include_chevron)
-        if len(self.values) == 1:
-            return self.values[0]
-        else:
-            return self.values
+        if len(self._evaluated_user_input) == 1:
+            return self._evaluated_user_input[0]
+        return self._evaluated_user_input[:]
 
-    def _store_value(self, user_input):
+    def _store_evaluated_user_input(self, user_input):
         assert isinstance(user_input, str)
         if self.allow_none and user_input in ('', 'None'):
-            value = None
+            evaluated_user_input = None
         else:
-            if self._try_to_store_value_from_target_menu_section(
+            if self._store_evaluated_user_input_from_target_menu_section(
                 user_input):
                 return True
-            value = self._evaluate_user_input(user_input)
-            if value == '!!!':
+            evaluated_user_input = self._evaluate_user_input(user_input)
+            if evaluated_user_input == '!!!':
                 return False
-            if not self._apply_validation_function_to_value(value):
+            if not self._validate_evaluated_user_input(evaluated_user_input):
                 self._display_help()
                 return False
-        self.values.append(value)
-        self.prompt_index = self.prompt_index + 1
+        self._evaluated_user_input.append(evaluated_user_input)
+        self._prompt_index += 1
         return True
 
-    def _store_value_from_target_menu_section(self, user_input):
+    def _store_evaluated_user_input_from_target_menu_section(
+        self, user_input):
         target_menu_section = self._current_prompt.target_menu_section
-        assert target_menu_section is not None
-        assert target_menu_section.is_numbered
-        numbers = target_menu_section._argument_range_string_to_numbers(
-            user_input)
-        self.values.append(numbers)
-        self.prompt_index = self.prompt_index + 1
-
-    def _try_to_store_value_from_target_menu_section(self, user_input):
-        target_menu_section = self._current_prompt.target_menu_section
-        if target_menu_section and self._apply_validation_function_to_value(
-            user_input):
-            self._store_value_from_target_menu_section(user_input)
+        if target_menu_section and \
+            self._validate_evaluated_user_input(user_input):
+            target_menu_section = self._current_prompt.target_menu_section
+            assert target_menu_section is not None
+            assert target_menu_section.is_numbered
+            numbers = \
+                target_menu_section._argument_range_string_to_numbers(
+                user_input)
+            self._evaluated_user_input.append(numbers)
+            self._prompt_index += 1
             return True
         else:
             return False
+
+    def _validate_evaluated_user_input(self, evaluated_user_input):
+        if evaluated_user_input is None and self.allow_none:
+            return True
+        validation_function = self._current_prompt.validation_function
+        return validation_function(evaluated_user_input)
 
     ### PUBLIC PROPERTIES ###
 

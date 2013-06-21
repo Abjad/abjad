@@ -144,7 +144,7 @@ class UserInputGetterMixin(AbjadObject):
         help_template = 'value for {!r} must be duration.'
         setup_statements = []
         setup_statements.append('from abjad import *')
-        setup_statements.append('value = Duration({})')
+        setup_statements.append('evaluated_user_input = Duration({})')
         self._make_prompt(
             spaced_attribute_name, 
             validation_function=predicates.is_duration_token,
@@ -277,7 +277,7 @@ class UserInputGetterMixin(AbjadObject):
         help_template = 'value for {!r} must be markup.'
         setup_statements = []
         setup_statements.append('from abjad import *')
-        setup_statements.append('value = markuptools.Markup({})')
+        setup_statements.append('evaluated_user_input = markuptools.Markup({})')
         self._make_prompt(
             spaced_attribute_name, 
             validation_function=predicates.is_markup,
@@ -305,7 +305,8 @@ class UserInputGetterMixin(AbjadObject):
         help_template = 'value for {!r} must be named chromatic pitch.'
         setup_statements = []
         setup_statements.append('from abjad import *')
-        setup_statements.append('value = pitchtools.NamedChromaticPitch({})')
+        setup_statements.append(
+            'evaluated_user_input = pitchtools.NamedChromaticPitch({})')
         self._make_prompt(
             spaced_attribute_name, 
             help_template=help_template, 
@@ -341,7 +342,8 @@ class UserInputGetterMixin(AbjadObject):
         help_template = 'value for {!r} must be pitch range.'
         setup_statements = []
         setup_statements.append('from abjad import *')
-        setup_statements.append('value = pitchtools.PitchRange({})')
+        setup_statements.append(
+            'evaluated_user_input = pitchtools.PitchRange({})')
         self._make_prompt(
             spaced_attribute_name, 
             validation_function=predicates.is_pitch_range_or_none,

@@ -66,20 +66,20 @@ class IO(AbjadObject):
             return repr(expr)
 
     def handle_raw_input(self, 
-        prompt, 
+        prompt_string, 
         include_chevron=True, 
         include_newline=True, 
         prompt_character='>',
         capitalize_prompt=True,
         ):
         if capitalize_prompt:
-            prompt = stringtools.capitalize_string_start(prompt)
+            prompt_string = stringtools.capitalize_string_start(prompt_string)
         if include_chevron:
-            prompt = prompt + prompt_character + ' '
+            prompt_string = prompt_string + prompt_character + ' '
         else:
-            prompt = prompt + ' '
+            prompt_string = prompt_string + ' '
         if self._session.is_displayable:
-            user_input = raw_input(prompt)
+            user_input = raw_input(prompt_string)
             if include_newline:
                 if not user_input == 'help':
                     print ''
@@ -92,7 +92,7 @@ class IO(AbjadObject):
             user_input = last_semantic_command
         if self._session.transcribe_next_command:
             menu_chunk = []
-            menu_chunk.append('{}{}'.format(prompt, user_input))
+            menu_chunk.append('{}{}'.format(prompt_string, user_input))
             if include_newline:
                 if not user_input == 'help':
                     menu_chunk.append('')
@@ -100,19 +100,19 @@ class IO(AbjadObject):
         return user_input
 
     def handle_raw_input_with_default(self, 
-        prompt, 
-        default=None, 
+        prompt_string, 
+        default_value=None, 
         include_chevron=True, 
         include_newline=True,
         prompt_character='>', 
         capitalize_prompt=True,
         ):
-        if default in (None, 'None'):
-            default = ''
-        readline.set_startup_hook(lambda: readline.insert_text(default))
+        if default_value in (None, 'None'):
+            default_value = ''
+        readline.set_startup_hook(lambda: readline.insert_text(default_value))
         try:
             return self.handle_raw_input(
-                prompt, 
+                prompt_string, 
                 include_chevron=include_chevron,
                 include_newline=include_newline, 
                 prompt_character=prompt_character,
