@@ -423,21 +423,23 @@ class Menu(ScoreManagerObject):
             self._io.display(lines)
             self._session.hide_next_redraw = True
 
+#    def interactively_exec_statement(self):
+#        lines = []
+#        statement = self._io.handle_raw_input('XCF', include_newline=False)
+#        command = 'from abjad import *'
+#        exec(command)
+#        try:
+#            result = None
+#            command = 'result = {}'.format(statement)
+#            exec(command)
+#            lines.append('{!r}'.format(result))
+#        except:
+#            lines.append('expression not executable.')
+#        lines.append('')
+#        self._io.display(lines)
+#        self._session.hide_next_redraw = True
     def interactively_exec_statement(self):
-        lines = []
-        statement = self._io.handle_raw_input('XCF', include_newline=False)
-        command = 'from abjad import *'
-        exec(command)
-        try:
-            result = None
-            command = 'result = {}'.format(statement)
-            exec(command)
-            lines.append('{!r}'.format(result))
-        except:
-            lines.append('expression not executable.')
-        lines.append('')
-        self._io.display(lines)
-        self._session.hide_next_redraw = True
+        self._io.interactively_exec_statement()
 
     def interactively_grep_directories(self):
         regex = self._io.handle_raw_input('regex')

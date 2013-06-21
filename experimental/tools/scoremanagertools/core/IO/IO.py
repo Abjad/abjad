@@ -121,6 +121,22 @@ class IO(AbjadObject):
         finally:
             readline.set_startup_hook()
 
+    def interactively_exec_statement(self):
+        lines = []
+        statement = self.handle_raw_input('XCF', include_newline=False)
+        command = 'from abjad import *'
+        exec(command)
+        try:
+            result = None
+            command = 'result = {}'.format(statement)
+            exec(command)
+            lines.append('{!r}'.format(result))
+        except:
+            lines.append('expression not executable.')
+        lines.append('')
+        self.display(lines)
+        self._session.hide_next_redraw = True
+
     def make_default_hidden_section(self):
         from experimental.tools import scoremanagertools
         hidden_section = scoremanagertools.menuing.MenuSection()

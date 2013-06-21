@@ -1,12 +1,14 @@
 import types
 from abjad.tools import stringtools
 from experimental.tools.scoremanagertools import predicates
+from experimental.tools.scoremanagertools.core.ScoreManagerObject \
+    import ScoreManagerObject
 from experimental.tools.scoremanagertools.menuing.Menu import Menu
 from experimental.tools.scoremanagertools.menuing.UserInputGetterMixin \
     import UserInputGetterMixin
 
 
-class UserInputGetterMenu(Menu, UserInputGetterMixin):
+class UserInputGetterMenu(ScoreManagerObject, UserInputGetterMixin):
     '''User input getter menu.
 
     .. note:: add docstring.
@@ -17,16 +19,16 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
     ### INITIALIZER ###
 
     def __init__(self, session=None, where=None):
-        #ScoreManagerObject.__init__(self, session=session)
-        Menu.__init__(self, session=session, where=where)
+        ScoreManagerObject.__init__(self, session=session)
         UserInputGetterMixin.__init__(self)
-        #hidden_section = self._make_default_hidden_section()
+        hidden_section = self._io.make_default_hidden_section()
         self._prompts = []
         self.allow_none = False
         self.capitalize_prompts = True
         self.include_newlines = False
         self.number_prompts = False
         self.prompt_character = '>'
+        self.should_clear_terminal = False
         self.where=where
 
     ### SPECIAL METHODS ###
@@ -52,6 +54,12 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
         return self.prompts[self._prompt_index]
 
     ### PRIVATE METHODS ###
+
+    def _clear_terminal(self):
+        if not self._session.hide_next_redraw:
+            if self.should_clear_terminal:
+                if self._session.is_displayable:
+                    iotools.clear_terminal()
 
     def _display_help(self):
         lines = []
@@ -94,6 +102,48 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
         self._evaluated_user_input.append(evaluated_user_input)
         self._prompt_index += 1
         self._current_prompt_is_done = True
+
+    def _handle_hidden_menu_section_return_value(self, directive):
+        if isinstance(directive, list) and len(directive) == 1:
+            key = directive[0]
+        else:
+            key = directive
+        if key in ('b', 'back'):
+            self._session.is_backtracking_locally = True
+        elif key == 'cmds':
+            self.toggle_menu_commands()
+        elif key == 'exec':
+            self.interactively_exec_statement()
+        elif key == 'grep':
+            self.interactively_grep_directories()
+        elif key == 'here':
+            self.interactively_edit_calling_code()
+        elif key == 'hidden':
+            self.display_hidden_menu_section()
+        elif key == 'next':
+            self._session.is_navigating_to_next_score = True
+            self._session.is_backtracking_to_score_manager = True
+        elif key == 'prev':
+            self._session.is_navigating_to_prev_score = True
+            self._session.is_backtracking_to_score_manager = True
+        elif key in ('q', 'quit'):
+            self._session.user_specified_quit = True
+#        # TODO: make this redraw!
+#        elif key == 'r':
+#            pass
+        elif isinstance(key, str) and \
+            3 <= len(key) and 'score'.startswith(key):
+            if self._session.is_in_score:
+                self._session.is_backtracking_to_score = True
+        elif isinstance(key, str) and \
+            3 <= len(key) and 'home'.startswith(key):
+            self._session.is_backtracking_to_score_manager = True
+        elif key == 'tw':
+            self._session.enable_where = not self._session.enable_where
+        elif key == 'where':
+            self.display_calling_code_line_number()
+        else:
+            return directive
 
     def _indent_and_number_prompt_string(self, prompt_string):
         if self.number_prompts:
@@ -226,3 +276,8 @@ class UserInputGetterMenu(Menu, UserInputGetterMixin):
             assert isinstance(expr, str)
             self._prompt_character = expr
         return property(**locals())
+
+    ### PUBLIC METHODS ###
+
+    def interactively_exec_statement(self):
+        self._io.interactively_exec_statement()

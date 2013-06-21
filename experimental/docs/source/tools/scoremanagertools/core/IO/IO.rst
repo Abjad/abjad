@@ -33,6 +33,9 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.core.IO.IO.IO.handle_raw_input_with_default
    :noindex:
 
+.. automethod:: experimental.tools.scoremanagertools.core.IO.IO.IO.interactively_exec_statement
+   :noindex:
+
 .. automethod:: experimental.tools.scoremanagertools.core.IO.IO.IO.make_default_hidden_section
    :noindex:
 
