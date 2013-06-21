@@ -4,11 +4,11 @@ from experimental.tools.scoremanagertools import predicates
 from experimental.tools.scoremanagertools.core.ScoreManagerObject \
     import ScoreManagerObject
 from experimental.tools.scoremanagertools.menuing.Menu import Menu
-from experimental.tools.scoremanagertools.menuing.UserInputGetterMixin \
-    import UserInputGetterMixin
+from experimental.tools.scoremanagertools.menuing.PromptMakerMixin \
+    import PromptMakerMixin
 
 
-class UserInputGetter(ScoreManagerObject, UserInputGetterMixin):
+class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
     '''User input getter menu.
 
     .. note:: add docstring.
@@ -20,7 +20,7 @@ class UserInputGetter(ScoreManagerObject, UserInputGetterMixin):
 
     def __init__(self, session=None, where=None):
         ScoreManagerObject.__init__(self, session=session)
-        UserInputGetterMixin.__init__(self)
+        PromptMakerMixin.__init__(self)
         hidden_section = self._io.make_default_hidden_section()
         self._prompts = []
         self.allow_none = False

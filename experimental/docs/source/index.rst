@@ -538,7 +538,7 @@ Unstable packages (load manually)
       :maxdepth: 1
 
       tools/scoremanagertools/core/ScoreManagerObject/ScoreManagerObject
-      tools/scoremanagertools/menuing/UserInputGetterMixin/UserInputGetterMixin
+      tools/scoremanagertools/menuing/PromptMakerMixin/PromptMakerMixin
       tools/scoremanagertools/proxies/FilesystemAssetProxy/FilesystemAssetProxy
       tools/scoremanagertools/specifiers/DynamicSpecifier/DynamicSpecifier
       tools/scoremanagertools/specifiers/ParameterSpecifier/ParameterSpecifier
@@ -733,7 +733,7 @@ Unstable packages (load manually)
    .. toctree::
 
       tools/scoremanagertools/core/ScoreManagerObject/ScoreManagerObject
-      tools/scoremanagertools/menuing/UserInputGetterMixin/UserInputGetterMixin
+      tools/scoremanagertools/menuing/PromptMakerMixin/PromptMakerMixin
       tools/scoremanagertools/proxies/FilesystemAssetProxy/FilesystemAssetProxy
       tools/scoremanagertools/specifiers/DynamicSpecifier/DynamicSpecifier
       tools/scoremanagertools/specifiers/ParameterSpecifier/ParameterSpecifier

@@ -7,7 +7,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental.tools.scoremanagertools import predicates
 
 
-class UserInputGetterMixin(AbjadObject):
+class PromptMakerMixin(AbjadObject):
 
     ### PRIVATE METHODS ###
 
