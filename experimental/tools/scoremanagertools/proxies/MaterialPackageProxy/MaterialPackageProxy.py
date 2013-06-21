@@ -49,7 +49,7 @@ class MaterialPackageProxy(PackageProxy):
             self.interactively_edit_user_input_wrapper_at_number(
                 result, include_newline=False)
         else:
-            raise ValueError
+            raise ValueError(result)
 
     def _make_main_menu(self):
         menu, hidden_section = self._io.make_menu(where=self._where)
@@ -120,7 +120,7 @@ class MaterialPackageProxy(PackageProxy):
                 getattr(self, 'illustration_maker', None)):
                 menu_section = main_menu.make_section()
                 menu_section.return_value_attribute = 'key'
-                menu_section.append(('output pdf - make', 'pdf'))
+                menu_section.append(('output pdf - make', 'pdfm'))
                 has_illustration_pdf_section = True
         if self.has_illustration_pdf:
             if not has_illustration_pdf_section:
@@ -738,13 +738,13 @@ class MaterialPackageProxy(PackageProxy):
         self._io.proceed('stylesheet selected.', is_interactive=prompt)
 
     def interactively_view_illustration_ly(self):
-        self.illustration_ly_file_proxy.view()
+        self.illustration_ly_file_proxy.interactively_view()
 
     def interactively_view_illustration_pdf(self):
-        self.illustration_pdf_file_proxy.view()
+        self.illustration_pdf_file_proxy.interactively_view()
 
     def interactively_view_output_material_module(self):
-        self.output_material_module_proxy.view()
+        self.output_material_module_proxy.interactively_view()
 
     def interactively_write_material_definition_module_boilerplate(self):
         self.material_definition_module_proxy.interactively_write_boilerplate()
@@ -923,7 +923,7 @@ class MaterialPackageProxy(PackageProxy):
         'omv': interactively_view_output_material_module,
         'pdfm': write_illustration_ly_and_pdf_to_disk,
         'pdfd': remove_illustration_pdf,
-        'pdfv': illustration_pdf_file_proxy,
+        'pdfv': interactively_view_illustration_pdf,
         'ren': interactively_rename_material,
         'rm': remove_material_package,
         'ssm': interactively_edit_stylesheet_file,
