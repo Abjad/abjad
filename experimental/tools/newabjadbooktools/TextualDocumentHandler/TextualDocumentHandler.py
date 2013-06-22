@@ -90,9 +90,9 @@ class TextualDocumentHandler(DocumentHandler):
 
     ### PUBLIC METHODS ###
 
-    def extract_code_block_options(self, source):
+    def extract_code_block_options(self, source_line):
         options = {}
-        line = source.strip()
+        line = source_line.strip()
         if '[' in line and line.endswith(']'):
             option_string = line.partition('[')[2][:-1]
             for part in option_string.split(','):
