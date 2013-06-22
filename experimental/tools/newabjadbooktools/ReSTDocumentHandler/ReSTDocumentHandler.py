@@ -24,10 +24,10 @@ class ReSTDocumentHandler(TextualDocumentHandler):
 
     ::
 
-        >>> handler = newabjadbooktools.ReSTDocumentHandler(document)
-        >>> code_blocks = handler.extract_code_blocks()
-        >>> handler.execute_code_blocks()
-        >>> rebuilt_document = handler.rebuild_document()
+        >>> document_handler = newabjadbooktools.ReSTDocumentHandler(document)
+        >>> source_to_code_block_mapping = document_handler.extract_code_blocks()
+        >>> document_handler.execute_code_blocks()
+        >>> rebuilt_document = document_handler.rebuild_document()
         >>> for line in rebuilt_document:
         ...     print repr(line)
         ...

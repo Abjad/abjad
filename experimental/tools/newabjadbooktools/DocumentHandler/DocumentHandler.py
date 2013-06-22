@@ -24,7 +24,7 @@ class DocumentHandler(AbjadObject):
     def __call__(self):
         self._code_blocks = self.extract_code_blocks(
             self.document,
-            self.code_blocks,
+            self.source_to_code_block_mapping,
             )
  
     ### PUBLIC PROPERTIES ###
@@ -37,7 +37,7 @@ class DocumentHandler(AbjadObject):
     def asset_output_proxies(self):
         '''All asset output proxies.'''
         result = []
-        for code_block in self.code_blocks.iteritems():
+        for code_block in self.source_to_code_block_mapping.iteritems():
             for output_proxy in code_block.output_proxies:
                 if isinstance(output_proxy,
                     newabjadbooktools.AssetOutputProxy):
@@ -45,7 +45,7 @@ class DocumentHandler(AbjadObject):
         return result
 
     @property
-    def code_blocks(self):
+    def source_to_code_block_mapping(self):
         return self._code_blocks
 
     @property
@@ -59,7 +59,7 @@ class DocumentHandler(AbjadObject):
 
     @property
     def has_asset_output_proxies(self):
-        for code_block in self.code_blocks.iteritems():
+        for code_block in self.source_to_code_block_mapping.iteritems():
             for output_proxy in code_block.output_proxies:
                 if isinstance(output_proxy, 
                     newabjadbooktools.AssetOutputProxy):
@@ -86,7 +86,7 @@ class DocumentHandler(AbjadObject):
             displayed_lines,
             **options
             )
-        self.code_blocks[source_location] = code_block
+        self.source_to_code_block_mapping[source_location] = code_block
 
     def execute_code_blocks(self):
         console = code.InteractiveConsole()
@@ -96,7 +96,7 @@ class DocumentHandler(AbjadObject):
             console.push('from experimental import *')
         except ImportError:
             pass
-        for source_location, code_block in self.code_blocks.iteritems():
+        for source_location, code_block in self.source_to_code_block_mapping.iteritems():
             output_proxies = code_block.execute(console)
 
     @abc.abstractmethod
@@ -121,7 +121,7 @@ class DocumentHandler(AbjadObject):
                 )
             if not os.path.exists(asset_output_directory_path):
                 os.mkdir(asset_output_directory_path)
-        for code_block in self.code_blocks.iteritems():
+        for code_block in self.source_to_code_block_mapping.iteritems():
             for output_proxy in code_block.output_proxies:
                 if not isinstance(output_proxy, 
                     newabjadbooktools.AssetOutputProxy):

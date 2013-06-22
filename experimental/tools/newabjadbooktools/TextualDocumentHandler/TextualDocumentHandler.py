@@ -32,8 +32,8 @@ class TextualDocumentHandler(DocumentHandler):
         ...     document_file_name='foo.rst',
         ...     output_directory_path='.',
         ...     )
-        >>> code_blocks = document_handler.extract_code_blocks() 
-        >>> for location, code_block in code_blocks.items():
+        >>> source_to_code_block_mapping = document_handler.extract_code_blocks() 
+        >>> for location, code_block in source_to_code_block_mapping.items():
         ...     print location, code_block.displayed_lines
         ...
         (2, 4) ('print "hello, world!"',)
@@ -64,8 +64,8 @@ class TextualDocumentHandler(DocumentHandler):
         ...     document_file_name='baz.rst',
         ...     output_directory_path='.',
         ...     )
-        >>> code_blocks = document_handler.extract_code_blocks()
-        >>> for code_block in code_blocks.values():
+        >>> source_to_code_block_mapping = document_handler.extract_code_blocks()
+        >>> for code_block in source_to_code_block_mapping.values():
         ...     print code_block.hide
         ...
         True
@@ -192,11 +192,11 @@ class TextualDocumentHandler(DocumentHandler):
             ...     document_file_name='foo.rst',
             ...     output_directory_path='.',
             ...     )
-            >>> code_blocks = document_handler.extract_code_blocks() 
+            >>> source_to_code_block_mapping = document_handler.extract_code_blocks() 
 
         ::
 
-            >>> for location in code_blocks.iterkeys():
+            >>> for location in source_to_code_block_mapping.iterkeys():
             ...     print location
             ...
             (2, 4)
@@ -205,7 +205,7 @@ class TextualDocumentHandler(DocumentHandler):
 
         ::
 
-            >>> for code_block in code_blocks.itervalues():
+            >>> for code_block in source_to_code_block_mapping.itervalues():
             ...     print code_block.storage_format
             ...
             newabjadbooktools.CodeBlock(
@@ -290,7 +290,7 @@ class TextualDocumentHandler(DocumentHandler):
         if in_block:
             raise Exception('Unterminated tag at EOF.')
 
-        return self.code_blocks
+        return self.source_to_code_block_mapping
 
     def rebuild_document(self):
         old_lines = self.document.splitlines()
@@ -305,7 +305,7 @@ class TextualDocumentHandler(DocumentHandler):
             return result
 
         previous_last_line_number = 0
-        for line_range, code_block in sorted(self.code_blocks.items()):
+        for line_range, code_block in sorted(self.source_to_code_block_mapping.items()):
 
             first_line_number = line_range[0]
             last_line_number = line_range[1] + 1
