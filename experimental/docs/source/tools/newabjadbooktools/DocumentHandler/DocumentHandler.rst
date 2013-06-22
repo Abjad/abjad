@@ -12,6 +12,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.newabjadbooktools.DocumentHandler.DocumentHandler.DocumentHandler.asset_output_directory_name
    :noindex:
 
+.. autoattribute:: experimental.tools.newabjadbooktools.DocumentHandler.DocumentHandler.DocumentHandler.asset_output_proxies
+   :noindex:
+
 .. autoattribute:: experimental.tools.newabjadbooktools.DocumentHandler.DocumentHandler.DocumentHandler.code_blocks
    :noindex:
 

@@ -10,7 +10,8 @@ class DocumentHandler(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, document,
+    def __init__(self,
+        document,
         output_directory_path=None,
         ):
         self._code_blocks = collections.OrderedDict()
@@ -31,6 +32,17 @@ class DocumentHandler(AbjadObject):
     @abc.abstractproperty
     def asset_output_directory_name(self):
         raise NotImplemented
+
+    @property
+    def asset_output_proxies(self):
+        '''All asset output proxies.'''
+        result = []
+        for code_block in self.code_blocks.iteritems():
+            for output_proxy in code_block.output_proxies:
+                if isinstance(output_proxy,
+                    newabjadbooktools.AssetOutputProxy):
+                    result.append(output_proxy)
+        return result
 
     @property
     def code_blocks(self):

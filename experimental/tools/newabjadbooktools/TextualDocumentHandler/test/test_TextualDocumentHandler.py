@@ -33,8 +33,6 @@ def test_TextualDocumentHandler_01():
         test_directory_path,
         test_document_file_name,
         )
-    if os.path.exists(test_document_file_path):
-        os.remove(test_document_file_path)
 
     document_handler = newabjadbooktools.ReSTDocumentHandler(
         document,
@@ -44,11 +42,15 @@ def test_TextualDocumentHandler_01():
     document_handler.extract_code_blocks()
     document_handler.execute_code_blocks()
     rebuilt_document = '\n'.join(document_handler.rebuild_document())
-    document_handler.write_rebuilt_document_to_disk()
 
-    assert os.path.exists(test_document_file_path)
-    with open(test_document_file_path, 'r') as f:
-        written_document = f.read()
-
-    os.remove(test_document_file_path)
-    assert rebuilt_document == written_document
+    try:
+        document_handler.write_rebuilt_document_to_disk()
+        assert os.path.exists(test_document_file_path)
+        with open(test_document_file_path, 'r') as f:
+            written_document = f.read()
+        assert rebuilt_document == written_document
+        os.remove(test_document_file_path)
+    finally:
+        if os.path.exists(test_document_file_path):
+            os.remove(test_document_file_path)
+        assert not os.path.exists(test_document_file_path)

@@ -12,6 +12,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.newabjadbooktools.ReSTDocumentHandler.ReSTDocumentHandler.ReSTDocumentHandler.asset_output_directory_name
    :noindex:
 
+.. autoattribute:: experimental.tools.newabjadbooktools.ReSTDocumentHandler.ReSTDocumentHandler.ReSTDocumentHandler.asset_output_proxies
+   :noindex:
+
 .. autoattribute:: experimental.tools.newabjadbooktools.ReSTDocumentHandler.ReSTDocumentHandler.ReSTDocumentHandler.code_blocks
    :noindex:
 
