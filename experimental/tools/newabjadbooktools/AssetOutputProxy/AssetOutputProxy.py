@@ -40,11 +40,11 @@ class AssetOutputProxy(OutputProxy):
     ### PUBLIC METHODS ###
 
     @abc.abstractmethod
-    def get_absolute_asset_output_path(self, document_handler):
+    def get_asset_output_absolute_file_path(self, document_handler):
         raise NotImplemented
 
     @abc.abstractmethod
-    def get_relative_asset_output_path(self, document_handler):
+    def get_asset_output_relative_file_path(self, document_handler):
         raise NotImplemented
 
     def write_asset_to_disk(self, document_handler):

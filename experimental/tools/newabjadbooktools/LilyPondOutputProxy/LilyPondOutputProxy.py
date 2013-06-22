@@ -84,3 +84,4 @@ class LilyPondOutputProxy(ImageOutputProxy):
             self,
             document_handler,
             )
+

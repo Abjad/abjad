@@ -38,13 +38,13 @@ class MIDIOutputProxy(AssetOutputProxy):
              
     ### PUBLIC METHODS ###
 
-    def get_absolute_asset_output_path(self, document_handler):
+    def get_asset_output_absolute_file_path(self, document_handler):
         return os.path.join(
             document_handler.asset_output_directory_name,
             '{}.{}'.format(self.file_name_without_extension, 'mid'),
             )
 
-    def get_relative_asset_output_path(self, document_handler):
+    def get_asset_output_relative_file_path(self, document_handler):
         return os.path.join(
             document_handler.asset_output_directory_name,
             '{}.{}'.format(self.file_name_without_extension, 'mid'),
@@ -68,7 +68,7 @@ class MIDIOutputProxy(AssetOutputProxy):
 
         Return list.
         '''
-        asset_path = self.get_relative_asset_output_path(document_handler)
+        asset_path = self.get_asset_output_relative_file_path(document_handler)
         result = [
             '<audio controls="controls">',
             '\tYour browser does not support the <code>audio</code> element.',
@@ -104,7 +104,7 @@ class MIDIOutputProxy(AssetOutputProxy):
 
         Return list.
         '''
-        asset_path = self.get_relative_asset_output_path(document_handler)
+        asset_path = self.get_asset_output_relative_file_path(document_handler)
         result = [
             ':download:`MIDI <{}>`'.format(asset_path),
             ]
