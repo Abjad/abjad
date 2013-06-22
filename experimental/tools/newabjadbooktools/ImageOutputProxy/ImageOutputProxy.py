@@ -11,8 +11,7 @@ class ImageOutputProxy(AssetOutputProxy):
 
     def get_asset_output_absolute_file_path(self, document_handler):
         return os.path.join(
-            document_handler.output_directory_path,
-            document_handler.asset_output_directory_name,
+            document_handler.asset_output_directory_path,
             self.get_image_file_name(document_handler),
             )
 
@@ -44,6 +43,15 @@ class ImageOutputProxy(AssetOutputProxy):
         result.append(directive)
         return result
 
+    def handle_pdf_image_format(self, document_handler):
+        pass
+
+    def handle_png_image_format(self, document_handler):
+        pass
+
+    def handle_svg_image_format(self, document_handler):
+        pass
+
     @abc.abstractmethod
     def handle_rest_document_environment(self, document_handler):
         result = []
@@ -52,3 +60,15 @@ class ImageOutputProxy(AssetOutputProxy):
         result.append(directive)
         return result
 
+    def write_asset_to_disk(self, document_handler):
+        from experimental.tools import newabjadbooktools
+        image_format = document_handler.image_format
+        image_formats = {
+            newabjadbooktools.PDFImageFormat: self.handle_pdf_image_format,
+            newabjadbooktools.PNGImageFormat: self.handle_png_image_format,
+            newabjadbooktools.SVGImageFormat: self.handle_svg_image_format,
+        }
+        if image_format in image_formats:
+            image_formats[image_format](document_handler)
+        raise Exception('Unsupported image format {!r}'.format(image_format))
+        

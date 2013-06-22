@@ -109,3 +109,6 @@ class MIDIOutputProxy(AssetOutputProxy):
             ':download:`MIDI <{}>`'.format(asset_path),
             ]
         return result
+
+    def write_asset_to_disk(self, document_handler):
+        pass

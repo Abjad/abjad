@@ -34,6 +34,13 @@ class DocumentHandler(AbjadObject):
         raise NotImplemented
 
     @property
+    def asset_output_directory_path(self):
+        return os.path.join(
+            self.output_directory_path,
+            self.asset_output_directory_name,
+            )
+
+    @property
     def asset_output_proxies(self):
         '''All asset output proxies.'''
         result = []
