@@ -26,8 +26,12 @@ class TextualDocumentHandler(DocumentHandler):
 
     ::
 
-        >>> handler = newabjadbooktools.ReSTDocumentHandler(document)
-        >>> code_blocks = handler.extract_code_blocks() 
+        >>> document_handler = newabjadbooktools.ReSTDocumentHandler(
+        ...     document,
+        ...     document_file_name='foo.rst',
+        ...     output_directory_path='.',
+        ...     )
+        >>> code_blocks = document_handler.extract_code_blocks() 
         >>> for location, code_block in code_blocks.items():
         ...     print location, code_block.displayed_lines
         ...
@@ -54,8 +58,12 @@ class TextualDocumentHandler(DocumentHandler):
 
     ::
 
-        >>> handler = newabjadbooktools.ReSTDocumentHandler(document)
-        >>> code_blocks = handler.extract_code_blocks()
+        >>> document_handler = newabjadbooktools.ReSTDocumentHandler(
+        ...     document,
+        ...     document_file_name='baz.rst',
+        ...     output_directory_path='.',
+        ...     )
+        >>> code_blocks = document_handler.extract_code_blocks()
         >>> for code_block in code_blocks.values():
         ...     print code_block.hide
         ...
@@ -82,15 +90,55 @@ class TextualDocumentHandler(DocumentHandler):
 
     @property
     def asset_output_directory_name(self):
+        '''Textual document handler asset output directory name:
+
+        ::
+
+            >>> document_handler.asset_output_directory_name
+            'assets'
+            
+        Return string.
+        '''
         return 'assets'
 
     @property
     def document_file_name(self):
+        '''Textual document handler document file name:
+
+        ::
+
+            >>> document_handler.document_file_name
+            'baz.rst'
+
+        Return string.
+        '''
         return self._document_file_name
 
     ### PUBLIC METHODS ###
 
     def extract_code_block_options(self, source_line):
+        '''Extract code block options:
+
+        ::
+
+            >>> source_line = '<abjad>'
+            >>> document_handler.extract_code_block_options(source_line)
+            {}
+
+        ::
+
+            >>> source_line = '<abjad>[hide=True]'
+            >>> document_handler.extract_code_block_options(source_line)
+            {'hide': True}
+            
+        ::
+
+            >>> source_line = '<abjad>[strip_prompt=true, hide=false]'
+            >>> document_handler.extract_code_block_options(source_line)
+            {'hide': False, 'strip_prompt': True}
+
+        Return dictionary.
+        '''
         options = {}
         line = source_line.strip()
         if '[' in line and line.endswith(']'):
@@ -109,6 +157,77 @@ class TextualDocumentHandler(DocumentHandler):
         return options
 
     def extract_code_blocks(self):
+        r"""Extract code blocks:
+
+        ::
+
+            >>> document = '''Let's print something:
+            ...
+            ... <abjad>
+            ... print "hello, world!"
+            ... </abjad>
+            ...
+            ... This is just a simple Python string:
+            ...
+            ... <abjad>
+            ... just_a_string = \'\'\'
+            ... show(Nothing!)
+            ... \'\'\'
+            ... </abjad>
+            ...
+            ... And let's show some music too:
+            ...
+            ... <abjad>
+            ... show(Note("c'4"))
+            ... </abjad>
+            ...
+            ... That's it!
+            ... '''
+
+        ::
+
+            >>> document_handler = newabjadbooktools.ReSTDocumentHandler(
+            ...     document,
+            ...     document_file_name='foo.rst',
+            ...     output_directory_path='.',
+            ...     )
+            >>> code_blocks = document_handler.extract_code_blocks() 
+
+        ::
+
+            >>> for location in code_blocks.iterkeys():
+            ...     print location
+            ...
+            (2, 4)
+            (8, 12)
+            (16, 18)
+
+        ::
+
+            >>> for code_block in code_blocks.itervalues():
+            ...     print code_block.storage_format
+            ...
+            newabjadbooktools.CodeBlock(
+                ('print "hello, world!"',),
+                allow_exceptions=False,
+                hide=False,
+                strip_prompt=False
+                )
+            newabjadbooktools.CodeBlock(
+                ("just_a_string = '''", 'show(Nothing!)', "'''"),
+                allow_exceptions=False,
+                hide=False,
+                strip_prompt=False
+                )
+            newabjadbooktools.CodeBlock(
+                ('show(Note("c\'4"))',),
+                allow_exceptions=False,
+                hide=False,
+                strip_prompt=False
+                )
+
+        Return mapping.
+        """
         in_block = False
         starting_line_number = None
         current_block_lines = None

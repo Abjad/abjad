@@ -6,6 +6,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class DocumentHandler(AbjadObject):
+    '''Abstract base class of all document handlers.'''
 
     ### INITIALIZER ###
 
@@ -37,6 +38,7 @@ class DocumentHandler(AbjadObject):
 
     @property
     def console(self):
+        '''Interactive console.'''
         return self._console
 
     @property
@@ -60,7 +62,7 @@ class DocumentHandler(AbjadObject):
     def output_directory_path(self):
         return self._output_directory_path
    
-    ### PUBLIC METHODS ###
+    ### PUBLIC METHODS ###
 
     def create_code_block(self,
         displayed_lines,
