@@ -21,6 +21,12 @@ Read-only properties
 .. autoattribute:: experimental.tools.newabjadbooktools.HTMLDocumentHandler.HTMLDocumentHandler.HTMLDocumentHandler.document
    :noindex:
 
+.. autoattribute:: experimental.tools.newabjadbooktools.HTMLDocumentHandler.HTMLDocumentHandler.HTMLDocumentHandler.document_file_name
+   :noindex:
+
+.. autoattribute:: experimental.tools.newabjadbooktools.HTMLDocumentHandler.HTMLDocumentHandler.HTMLDocumentHandler.has_asset_output_proxies
+   :noindex:
+
 .. autoattribute:: experimental.tools.newabjadbooktools.HTMLDocumentHandler.HTMLDocumentHandler.HTMLDocumentHandler.image_format
    :noindex:
 
@@ -45,10 +51,13 @@ Methods
 .. automethod:: experimental.tools.newabjadbooktools.HTMLDocumentHandler.HTMLDocumentHandler.HTMLDocumentHandler.extract_code_blocks
    :noindex:
 
-.. automethod:: experimental.tools.newabjadbooktools.HTMLDocumentHandler.HTMLDocumentHandler.HTMLDocumentHandler.process_output_proxies
+.. automethod:: experimental.tools.newabjadbooktools.HTMLDocumentHandler.HTMLDocumentHandler.HTMLDocumentHandler.rebuild_document
    :noindex:
 
-.. automethod:: experimental.tools.newabjadbooktools.HTMLDocumentHandler.HTMLDocumentHandler.HTMLDocumentHandler.rebuild_document
+.. automethod:: experimental.tools.newabjadbooktools.HTMLDocumentHandler.HTMLDocumentHandler.HTMLDocumentHandler.write_assets_to_disk
+   :noindex:
+
+.. automethod:: experimental.tools.newabjadbooktools.HTMLDocumentHandler.HTMLDocumentHandler.HTMLDocumentHandler.write_rebuilt_document_to_disk
    :noindex:
 
 Special methods

@@ -24,7 +24,42 @@ class DocumentHandler(AbjadObject):
             self.document,
             self.code_blocks,
             )
-    
+ 
+    ### PUBLIC PROPERTIES ###
+
+    @abc.abstractproperty
+    def asset_output_directory_name(self):
+        raise NotImplemented
+
+    @property
+    def code_blocks(self):
+        return self._code_blocks
+
+    @property
+    def console(self):
+        return self._console
+
+    @property
+    def document(self):
+        return self._document
+
+    @property
+    def has_asset_output_proxies(self):
+        for code_block in self.code_blocks.iteritems():
+            for output_proxy in code_block.output_proxies:
+                if isinstance(output_proxy, 
+                    newabjadbooktools.AssetOutputProxy):
+                    return True
+        return False
+
+    @abc.abstractproperty
+    def image_format(self):
+        raise NotImplemented
+
+    @property
+    def output_directory_path(self):
+        return self._output_directory_path
+   
     ### PUBLIC METHODS ###
 
     def create_code_block(self,
@@ -59,36 +94,22 @@ class DocumentHandler(AbjadObject):
         raise NotImplemented
 
     @abc.abstractmethod
-    def process_output_proxies(self):
-        raise NotImplemented
-
-    @abc.abstractmethod
     def rebuild_document(self):
         raise NotImplemented
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
-
-    @abc.abstractproperty
-    def asset_output_directory_name(self):
-        raise NotImplemented
-
-    @property
-    def code_blocks(self):
-        return self._code_blocks
-
-    @property
-    def console(self):
-        return self._console
-
-    @property
-    def document(self):
-        return self._document
-
-    @abc.abstractproperty
-    def image_format(self):
-        raise NotImplemented
-
-    @property
-    def output_directory_path(self):
-        return self._output_directory_path
-
+    def write_assets_to_disk(self):
+        from experimental.tools import newabjadbooktools
+        assert os.path.exists(self.output_directory_path)
+        if self.has_asset_output_proxies:
+            asset_output_directory_path = os.path.join(
+                self.output_directory_path,
+                self.asset_output_directory_name,
+                )
+            if not os.path.exists(asset_output_directory_path):
+                os.mkdir(asset_output_directory_path)
+        for code_block in self.code_blocks.iteritems():
+            for output_proxy in code_block.output_proxies:
+                if not isinstance(output_proxy, 
+                    newabjadbooktools.AssetOutputProxy):
+                    continue
+                output_proxy.write_asset_to_disk(self)

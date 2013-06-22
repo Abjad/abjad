@@ -65,6 +65,29 @@ class TextualDocumentHandler(DocumentHandler):
     Return textual document handler.
     """
 
+    ### INITIALIZER ###
+
+    def __init__(self,
+        document,
+        document_file_name=None,
+        output_directory_path=None,
+        ):
+        DocumentHandler.__init__(self,
+            document,
+            output_directory_path=output_directory_path,
+            ) 
+        self._document_file_name=document_file_name
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def asset_output_directory_name(self):
+        return 'assets'
+
+    @property
+    def document_file_name(self):
+        return self._document_file_name
+
     ### PUBLIC METHODS ###
 
     def extract_code_block_options(self, source):
@@ -149,9 +172,6 @@ class TextualDocumentHandler(DocumentHandler):
 
         return self.code_blocks
 
-    def process_output_proxies(self):
-        pass
-
     def rebuild_document(self):
         old_lines = self.document.splitlines()
         new_lines = []
@@ -182,9 +202,20 @@ class TextualDocumentHandler(DocumentHandler):
 
         return new_lines
     
-    ### READ-ONLY PUBLIC PROPERTIES ###
-
-    @property
-    def asset_output_directory_name(self):
-        return 'assets'
-
+    def write_rebuilt_document_to_disk(self):
+        assert isinstance(self.document_file_name, str) and \
+            self.document_file_name
+        assert os.path.exists(self.output_directory_path)
+        rebuilt_document = '\n'.join(self.rebuild_document())
+        document_file_path = os.path.join(
+            self.output_directory_path,
+            self.document_file_name,
+            )
+        previous_document = None
+        if os.path.exists(document_file_path):
+            with open(document_file_path, 'r') as f:
+                previous_document = f.read()
+        if previous_document != rebuilt_document:
+            with open(document_file_path, 'w') as f:
+                f.write(rebuilt_document)
+         

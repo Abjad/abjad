@@ -21,6 +21,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.newabjadbooktools.DocumentHandler.DocumentHandler.DocumentHandler.document
    :noindex:
 
+.. autoattribute:: experimental.tools.newabjadbooktools.DocumentHandler.DocumentHandler.DocumentHandler.has_asset_output_proxies
+   :noindex:
+
 .. autoattribute:: experimental.tools.newabjadbooktools.DocumentHandler.DocumentHandler.DocumentHandler.image_format
    :noindex:
 
@@ -45,10 +48,10 @@ Methods
 .. automethod:: experimental.tools.newabjadbooktools.DocumentHandler.DocumentHandler.DocumentHandler.extract_code_blocks
    :noindex:
 
-.. automethod:: experimental.tools.newabjadbooktools.DocumentHandler.DocumentHandler.DocumentHandler.process_output_proxies
+.. automethod:: experimental.tools.newabjadbooktools.DocumentHandler.DocumentHandler.DocumentHandler.rebuild_document
    :noindex:
 
-.. automethod:: experimental.tools.newabjadbooktools.DocumentHandler.DocumentHandler.DocumentHandler.rebuild_document
+.. automethod:: experimental.tools.newabjadbooktools.DocumentHandler.DocumentHandler.DocumentHandler.write_assets_to_disk
    :noindex:
 
 Special methods
