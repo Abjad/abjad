@@ -80,8 +80,15 @@ def doctree_read(app, doctree):
                     signode.pop(0)
                     labelnode.append(nodes.literal(
                         '',
-                        'static',
-                        classes=['attribute', 'static'],
+                        'staticmethod',
+                        classes=['attribute', 'staticmethod'],
+                        ))
+                elif hasattr(attr, 'im_self') and attr.im_self is not None:
+                    signode.pop(0)
+                    labelnode.append(nodes.literal(
+                        '',
+                        'classmethod',
+                        classes=['attribute', 'classmethod'],
                         ))
 
                 signode.insert(0, labelnode)

@@ -369,7 +369,11 @@ tt.abstract {
     background-color: #666;
     }
 
-tt.static {
+tt.classmethod {
+    background-color: #c96;
+    }
+
+tt.staticmethod {
     background-color: #69c;
     }
 

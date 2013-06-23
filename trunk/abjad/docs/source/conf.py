@@ -42,10 +42,10 @@ extensions = [
     'abjad.docs.source._ext.abjad_lineage',
     'abjad.docs.source._ext.autodoc',
     'abjad.docs.source._ext.inheritance_diagram',
+    'abjad.docs.source._ext.viewcode',
     'sphinx.ext.coverage',
     'sphinx.ext.intersphinx',
     'sphinx.ext.todo',
-    #'sphinx.ext.viewcode',
 ]
 
 # abjad book settings
