@@ -81,6 +81,9 @@ Special methods
 .. automethod:: abjad.tools.quantizationtools.MeasurewiseQSchemaItem.MeasurewiseQSchemaItem.MeasurewiseQSchemaItem.__ne__
    :noindex:
 
+.. automethod:: abjad.tools.quantizationtools.MeasurewiseQSchemaItem.MeasurewiseQSchemaItem.MeasurewiseQSchemaItem.__new__
+   :noindex:
+
 .. automethod:: abjad.tools.quantizationtools.MeasurewiseQSchemaItem.MeasurewiseQSchemaItem.MeasurewiseQSchemaItem.__repr__
    :noindex:
 

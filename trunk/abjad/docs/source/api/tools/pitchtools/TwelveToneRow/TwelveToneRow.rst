@@ -93,6 +93,9 @@ Special methods
 .. automethod:: abjad.tools.pitchtools.TwelveToneRow.TwelveToneRow.TwelveToneRow.__ne__
    :noindex:
 
+.. automethod:: abjad.tools.pitchtools.TwelveToneRow.TwelveToneRow.TwelveToneRow.__new__
+   :noindex:
+
 .. automethod:: abjad.tools.pitchtools.TwelveToneRow.TwelveToneRow.TwelveToneRow.__repr__
    :noindex:
 

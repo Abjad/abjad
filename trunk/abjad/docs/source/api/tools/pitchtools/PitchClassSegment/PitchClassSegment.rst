@@ -66,6 +66,9 @@ Special methods
 .. automethod:: abjad.tools.pitchtools.PitchClassSegment.PitchClassSegment.PitchClassSegment.__ne__
    :noindex:
 
+.. automethod:: abjad.tools.pitchtools.PitchClassSegment.PitchClassSegment.PitchClassSegment.__new__
+   :noindex:
+
 .. automethod:: abjad.tools.pitchtools.PitchClassSegment.PitchClassSegment.PitchClassSegment.__repr__
    :noindex:
 

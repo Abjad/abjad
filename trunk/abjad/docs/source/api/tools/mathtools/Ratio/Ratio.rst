@@ -66,6 +66,9 @@ Special methods
 .. automethod:: abjad.tools.mathtools.Ratio.Ratio.Ratio.__ne__
    :noindex:
 
+.. automethod:: abjad.tools.mathtools.Ratio.Ratio.Ratio.__new__
+   :noindex:
+
 .. automethod:: abjad.tools.mathtools.Ratio.Ratio.Ratio.__repr__
    :noindex:
 

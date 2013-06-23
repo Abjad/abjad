@@ -78,6 +78,12 @@ Methods
 .. automethod:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.from_float
    :noindex:
 
+.. automethod:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.from_lilypond_duration_string
+   :noindex:
+
+.. automethod:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.is_token
+   :noindex:
+
 .. automethod:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.limit_denominator
    :noindex:
 
@@ -142,6 +148,9 @@ Special methods
    :noindex:
 
 .. automethod:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.__neg__
+   :noindex:
+
+.. automethod:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.__new__
    :noindex:
 
 .. automethod:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.__nonzero__

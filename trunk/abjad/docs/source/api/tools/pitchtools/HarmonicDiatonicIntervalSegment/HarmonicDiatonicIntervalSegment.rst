@@ -87,6 +87,9 @@ Special methods
 .. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSegment.HarmonicDiatonicIntervalSegment.HarmonicDiatonicIntervalSegment.__ne__
    :noindex:
 
+.. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSegment.HarmonicDiatonicIntervalSegment.HarmonicDiatonicIntervalSegment.__new__
+   :noindex:
+
 .. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSegment.HarmonicDiatonicIntervalSegment.HarmonicDiatonicIntervalSegment.__repr__
    :noindex:
 

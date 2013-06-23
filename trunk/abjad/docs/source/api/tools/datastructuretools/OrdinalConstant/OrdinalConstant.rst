@@ -33,5 +33,8 @@ Special methods
 .. automethod:: abjad.tools.datastructuretools.OrdinalConstant.OrdinalConstant.OrdinalConstant.__ne__
    :noindex:
 
+.. automethod:: abjad.tools.datastructuretools.OrdinalConstant.OrdinalConstant.OrdinalConstant.__new__
+   :noindex:
+
 .. automethod:: abjad.tools.datastructuretools.OrdinalConstant.OrdinalConstant.OrdinalConstant.__repr__
    :noindex:

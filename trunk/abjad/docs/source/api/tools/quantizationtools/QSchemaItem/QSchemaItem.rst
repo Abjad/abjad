@@ -66,6 +66,9 @@ Special methods
 .. automethod:: abjad.tools.quantizationtools.QSchemaItem.QSchemaItem.QSchemaItem.__ne__
    :noindex:
 
+.. automethod:: abjad.tools.quantizationtools.QSchemaItem.QSchemaItem.QSchemaItem.__new__
+   :noindex:
+
 .. automethod:: abjad.tools.quantizationtools.QSchemaItem.QSchemaItem.QSchemaItem.__repr__
    :noindex:
 

@@ -84,6 +84,12 @@ Methods
 .. automethod:: abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.index
    :noindex:
 
+.. automethod:: abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.is_hairpin_shape_string
+   :noindex:
+
+.. automethod:: abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.is_hairpin_token
+   :noindex:
+
 .. automethod:: abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.pop
    :noindex:
 

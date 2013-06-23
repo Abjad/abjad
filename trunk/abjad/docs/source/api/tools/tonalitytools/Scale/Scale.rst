@@ -132,6 +132,9 @@ Special methods
 .. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.__ne__
    :noindex:
 
+.. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.__new__
+   :noindex:
+
 .. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.__repr__
    :noindex:
 

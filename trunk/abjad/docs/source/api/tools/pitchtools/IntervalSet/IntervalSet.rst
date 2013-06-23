@@ -78,6 +78,9 @@ Special methods
 .. automethod:: abjad.tools.pitchtools.IntervalSet.IntervalSet.IntervalSet.__ne__
    :noindex:
 
+.. automethod:: abjad.tools.pitchtools.IntervalSet.IntervalSet.IntervalSet.__new__
+   :noindex:
+
 .. automethod:: abjad.tools.pitchtools.IntervalSet.IntervalSet.IntervalSet.__or__
    :noindex:
 

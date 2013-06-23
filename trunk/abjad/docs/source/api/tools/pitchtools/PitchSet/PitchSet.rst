@@ -78,6 +78,9 @@ Special methods
 .. automethod:: abjad.tools.pitchtools.PitchSet.PitchSet.PitchSet.__ne__
    :noindex:
 
+.. automethod:: abjad.tools.pitchtools.PitchSet.PitchSet.PitchSet.__new__
+   :noindex:
+
 .. automethod:: abjad.tools.pitchtools.PitchSet.PitchSet.PitchSet.__or__
    :noindex:
 

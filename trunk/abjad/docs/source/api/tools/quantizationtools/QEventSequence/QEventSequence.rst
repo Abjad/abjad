@@ -84,6 +84,9 @@ Special methods
 .. automethod:: abjad.tools.quantizationtools.QEventSequence.QEventSequence.QEventSequence.__ne__
    :noindex:
 
+.. automethod:: abjad.tools.quantizationtools.QEventSequence.QEventSequence.QEventSequence.__new__
+   :noindex:
+
 .. automethod:: abjad.tools.quantizationtools.QEventSequence.QEventSequence.QEventSequence.__repr__
    :noindex:
 

@@ -75,6 +75,12 @@ Methods
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.from_float
    :noindex:
 
+.. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.from_lilypond_duration_string
+   :noindex:
+
+.. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.is_token
+   :noindex:
+
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.limit_denominator
    :noindex:
 
@@ -139,6 +145,9 @@ Special methods
    :noindex:
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__neg__
+   :noindex:
+
+.. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__new__
    :noindex:
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__nonzero__

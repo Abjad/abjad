@@ -33,5 +33,8 @@ Special methods
 .. automethod:: abjad.tools.abctools.ImmutableAbjadObject.ImmutableAbjadObject.ImmutableAbjadObject.__ne__
    :noindex:
 
+.. automethod:: abjad.tools.abctools.ImmutableAbjadObject.ImmutableAbjadObject.ImmutableAbjadObject.__new__
+   :noindex:
+
 .. automethod:: abjad.tools.abctools.ImmutableAbjadObject.ImmutableAbjadObject.ImmutableAbjadObject.__repr__
    :noindex:

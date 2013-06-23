@@ -120,6 +120,9 @@ Special methods
 .. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.__neg__
    :noindex:
 
+.. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.__new__
+   :noindex:
+
 .. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.__nonzero__
    :noindex:
 

@@ -75,6 +75,9 @@ Special methods
 .. automethod:: abjad.tools.quantizationtools.BeatwiseQSchemaItem.BeatwiseQSchemaItem.BeatwiseQSchemaItem.__ne__
    :noindex:
 
+.. automethod:: abjad.tools.quantizationtools.BeatwiseQSchemaItem.BeatwiseQSchemaItem.BeatwiseQSchemaItem.__new__
+   :noindex:
+
 .. automethod:: abjad.tools.quantizationtools.BeatwiseQSchemaItem.BeatwiseQSchemaItem.BeatwiseQSchemaItem.__repr__
    :noindex:
 

@@ -84,6 +84,9 @@ Special methods
 .. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalClassSet.HarmonicDiatonicIntervalClassSet.HarmonicDiatonicIntervalClassSet.__ne__
    :noindex:
 
+.. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalClassSet.HarmonicDiatonicIntervalClassSet.HarmonicDiatonicIntervalClassSet.__new__
+   :noindex:
+
 .. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalClassSet.HarmonicDiatonicIntervalClassSet.HarmonicDiatonicIntervalClassSet.__or__
    :noindex:
 

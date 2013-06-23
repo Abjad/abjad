@@ -99,6 +99,9 @@ Special methods
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.__ne__
    :noindex:
 
+.. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.__new__
+   :noindex:
+
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.__or__
    :noindex:
 

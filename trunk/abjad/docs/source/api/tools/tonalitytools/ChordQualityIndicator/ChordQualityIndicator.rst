@@ -108,6 +108,9 @@ Special methods
 .. automethod:: abjad.tools.tonalitytools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.__ne__
    :noindex:
 
+.. automethod:: abjad.tools.tonalitytools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.__new__
+   :noindex:
+
 .. automethod:: abjad.tools.tonalitytools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.__repr__
    :noindex:
 

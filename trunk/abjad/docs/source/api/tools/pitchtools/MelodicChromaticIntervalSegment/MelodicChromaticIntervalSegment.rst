@@ -96,6 +96,9 @@ Special methods
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalSegment.MelodicChromaticIntervalSegment.MelodicChromaticIntervalSegment.__ne__
    :noindex:
 
+.. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalSegment.MelodicChromaticIntervalSegment.MelodicChromaticIntervalSegment.__new__
+   :noindex:
+
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalSegment.MelodicChromaticIntervalSegment.MelodicChromaticIntervalSegment.__repr__
    :noindex:
 

@@ -96,6 +96,9 @@ Special methods
 .. automethod:: abjad.tools.pitchtools.MelodicDiatonicIntervalSet.MelodicDiatonicIntervalSet.MelodicDiatonicIntervalSet.__ne__
    :noindex:
 
+.. automethod:: abjad.tools.pitchtools.MelodicDiatonicIntervalSet.MelodicDiatonicIntervalSet.MelodicDiatonicIntervalSet.__new__
+   :noindex:
+
 .. automethod:: abjad.tools.pitchtools.MelodicDiatonicIntervalSet.MelodicDiatonicIntervalSet.MelodicDiatonicIntervalSet.__or__
    :noindex:
 

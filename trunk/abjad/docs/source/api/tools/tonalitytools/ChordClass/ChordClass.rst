@@ -123,6 +123,9 @@ Special methods
 .. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.__ne__
    :noindex:
 
+.. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.__new__
+   :noindex:
+
 .. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.__or__
    :noindex:
 

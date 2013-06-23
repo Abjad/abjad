@@ -36,7 +36,19 @@ Methods
 .. automethod:: abjad.tools.contexttools.DynamicMark.DynamicMark.DynamicMark.attach
    :noindex:
 
+.. automethod:: abjad.tools.contexttools.DynamicMark.DynamicMark.DynamicMark.composite_dynamic_name_to_steady_state_dynamic_name
+   :noindex:
+
 .. automethod:: abjad.tools.contexttools.DynamicMark.DynamicMark.DynamicMark.detach
+   :noindex:
+
+.. automethod:: abjad.tools.contexttools.DynamicMark.DynamicMark.DynamicMark.dynamic_name_to_dynamic_ordinal
+   :noindex:
+
+.. automethod:: abjad.tools.contexttools.DynamicMark.DynamicMark.DynamicMark.dynamic_ordinal_to_dynamic_name
+   :noindex:
+
+.. automethod:: abjad.tools.contexttools.DynamicMark.DynamicMark.DynamicMark.is_dynamic_name
    :noindex:
 
 Special methods

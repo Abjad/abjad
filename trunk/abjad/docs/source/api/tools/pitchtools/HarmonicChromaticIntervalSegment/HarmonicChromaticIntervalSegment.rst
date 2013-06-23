@@ -75,6 +75,9 @@ Special methods
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.__ne__
    :noindex:
 
+.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.__new__
+   :noindex:
+
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.__repr__
    :noindex:
 
