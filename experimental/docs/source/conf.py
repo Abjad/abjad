@@ -40,7 +40,7 @@ extensions = [
     'sphinx.ext.coverage',
     'sphinx.ext.intersphinx',
     'sphinx.ext.todo',
-    'sphinx.ext.viewcode',
+    'abjad.docs.source._ext.viewcode',
     'abjad.docs.source._ext.abjad_book',
     'abjad.docs.source._ext.abjad_lineage',
     'abjad.docs.source._ext.autodoc',

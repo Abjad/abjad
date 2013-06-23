@@ -162,6 +162,9 @@ Special methods
 .. automethod:: experimental.tools.musicexpressiontools.Division.Division.Division.__neg__
    :noindex:
 
+.. automethod:: experimental.tools.musicexpressiontools.Division.Division.Division.__new__
+   :noindex:
+
 .. automethod:: experimental.tools.musicexpressiontools.Division.Division.Division.__nonzero__
    :noindex:
 
