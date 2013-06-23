@@ -47,5 +47,6 @@ class AssetOutputProxy(OutputProxy):
     def get_asset_output_relative_file_path(self, document_handler):
         raise NotImplemented
 
+    @abc.abstractmethod
     def write_asset_to_disk(self, document_handler):
-        pass
+        raise NotImplemented
