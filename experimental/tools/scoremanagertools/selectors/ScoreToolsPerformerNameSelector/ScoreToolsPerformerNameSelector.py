@@ -11,22 +11,23 @@ class ScoreToolsPerformerNameSelector(Selector):
     ### PUBLIC METHODS ###
 
     def _make_main_menu(self, head=None):
-        menu_entries = self.make_menu_entries(head=head)
-        menu, menu_section = self._io.make_menu(
-            where=self._where,
+        main_menu = self._io.make_only_menu(where=self._where)
+        menu_section = main_menu.make_section(
+            return_value_attribute='display_string',
             is_numbered=self.is_numbered,
             is_ranged=self.is_ranged,
-            menu_entries=menu_entries,
             )
-        return menu
+        menu_section.menu_entries = self.make_menu_entries()
+        return main_menu
 
-    def make_menu_entries(self, head=None):
-        performer_names, performer_abbreviations = [], []
+    def make_menu_entries(self):
         performer_pairs = scoretools.list_primary_performer_names()
-        performer_pairs = [(x[1].split()[-1].strip('.'), x[0]) 
-            for x in performer_pairs]
-        performer_pairs.append(('perc', 'percussionist'))
-        performer_pairs.sort(lambda x, y: cmp(x[1], y[1]))
-        # TODO: remove the need for the following one-line hack
-        performer_pairs = [(x[1], x[0]) for x in performer_pairs]
-        return performer_pairs
+        performer_pairs.append(('percussionist', 'perc.'))
+        performer_pairs.sort()
+        menu_entries = []
+        for performer_pair in performer_pairs:
+            performer_name, performer_abbreviation = performer_pair
+            performer_abbreviation = performer_abbreviation.split()[-1]
+            performer_abbreviation = performer_abbreviation.strip('.')
+            menu_entries.append((performer_name, performer_abbreviation)) 
+        return menu_entries

@@ -32,16 +32,19 @@ class Selector(ScoreManagerObject):
     ### PRIVATE METHODS ###
 
     def _make_main_menu(self, head=None):
-        menu_entries = self.make_menu_entries(head=head)
-        menu, menu_section = self._io.make_menu(where=self._where,
+        main_menu = self._io.make_only_menu(where=self._where)
+        # TODO: call main_menu.make_asset_section() instead?
+        menu_section = main_menu.make_section(
             return_value_attribute='explicit',
             is_numbered=self.is_numbered,
             is_ranged=self.is_ranged,
-            menu_entries=menu_entries,
             )
-        return menu
+        menu_entries = self.make_menu_entries(head=head)
+        menu_section.menu_entries = menu_entries
+        return main_menu
 
-    def _run(self, cache=False, clear=True, head=None, pending_user_input=None):
+    def _run(self, 
+        cache=False, clear=True, head=None, pending_user_input=None):
         self._io.assign_user_input(pending_user_input=pending_user_input)
         self._session.cache_breadcrumbs(cache=cache)
         while True:
