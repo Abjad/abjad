@@ -143,7 +143,11 @@ class MenuEntry(AbjadObject):
             return_value = self.key
         elif self.menu_section.return_value_attribute == 'explicit':
             return_value = self.explicit_return_value
-        assert return_value
+        assert return_value, repr((
+            self.menu_section,
+            self.menu_section.return_value_attribute,
+            self,
+            ))
         return return_value
 
     @property

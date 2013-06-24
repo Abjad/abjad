@@ -1,4 +1,5 @@
 import os
+from abjad.tools import sequencetools
 from abjad.tools import stringtools
 from experimental.tools.scoremanagertools.wranglers.FileWrangler import \
     FileWrangler
@@ -66,31 +67,31 @@ class StylesheetFileWrangler(FileWrangler):
     def _make_main_menu(self, head=None):
         main_menu, asset_menu_section = self._io.make_menu(
             where=self._where,
-            return_value_attribute='key',
+            return_value_attribute='explicit',
             is_numbered=True,
             )
         self._main_menu = main_menu
         main_menu._asset_menu_section = asset_menu_section
-        menu_entries = self._make_menu_entries(include_extension=True)
+        menu_entries = self._make_asset_menu_entries(include_extension=True)
         asset_menu_section.menu_entries = menu_entries
-        command_menu_section = main_menu.make_section()
-        command_menu_section.return_value_attribute = 'key'
+        command_menu_section = main_menu.make_command_section()
         command_menu_section.append(('new', 'new'))
         command_menu_section.append(('copy', 'cp'))
         command_menu_section.append(('rename', 'ren'))
         command_menu_section.append(('remove', 'rm'))
         return main_menu
 
-    def _make_menu_entries(self, head=None, include_extension=False):
-        keys = self.list_asset_filesystem_paths(head=head)
+    def _make_asset_menu_entries(self, head=None, include_extension=False):
+        filesystem_paths = self.list_asset_filesystem_paths(head=head)
         display_strings = []
-        for filesystem_path in keys:
+        for filesystem_path in filesystem_paths:
             display_string = os.path.basename(filesystem_path)
             annotation = self._filesystem_path_to_annotation(filesystem_path)
             if annotation:
                 display_string = '{} ({})'.format(display_string, annotation)
             display_strings.append(display_string)
-        return zip(display_strings, keys)
+        return sequencetools.zip_sequences_cyclically(
+            display_strings, [None], [None], filesystem_paths)
 
     ### PUBLIC PROPERTIES ###
 

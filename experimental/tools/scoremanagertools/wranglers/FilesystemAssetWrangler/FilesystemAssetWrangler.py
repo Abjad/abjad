@@ -99,7 +99,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                 self.asset_proxy_class._generic_class_name)
 
     def _make_asset_selection_menu(self, head=None):
-        menu_entries = self._make_menu_entries(head=head)
+        menu_entries = self._make_asset_menu_entries(head=head)
         menu, menu_section = self._io.make_menu(
             where=self._where,
             return_value_attribute='key',
@@ -136,7 +136,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def _make_main_menu(self, head=None):
         pass
 
-    def _make_menu_entries(self, head=None, include_extension=False):
+    def _make_asset_menu_entries(self, head=None, include_extension=False):
         raise Exception('FOO')
         keys = self.list_asset_filesystem_paths(head=head)
         display_strings = self.list_asset_names(
@@ -222,10 +222,10 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         self._session.cache_breadcrumbs(cache=cache)
         menu, menu_section = self._io.make_menu(
             where=self._where,
-            return_value_attribute='key',
+            return_value_attribute='explicit',
             is_numbered=True,
             )
-        menu_section.menu_entries = self._make_menu_entries()
+        menu_section.menu_entries = self._make_asset_menu_entries()
         while True:
             breadcrumb = self._make_asset_selection_breadcrumb()
             self._session.push_breadcrumb(breadcrumb)

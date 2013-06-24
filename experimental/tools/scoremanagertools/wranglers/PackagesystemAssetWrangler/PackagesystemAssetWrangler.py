@@ -1,4 +1,5 @@
 import os
+from abjad.tools import sequencetools
 from experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler import FilesystemAssetWrangler
 
 
@@ -51,11 +52,14 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
             pacakgesystem_path = self.configuration.filesystem_path_to_packagesystem_path(packagesystem_path)
         return self.asset_proxy_class(packagesystem_path=packagesystem_path, session=self._session)
 
-    def _make_menu_entries(self, head=None):
-        keys = self.list_visible_asset_packagesystem_paths(head=head)
-        display_strings = self.list_asset_names(head=head)
-        assert len(keys) == len(display_strings), repr((keys, display_strings))
-        return zip(display_strings, keys)
+    def _make_asset_menu_entries(self, head=None):
+        names = self.list_asset_names(head=head)
+        keys = len(names) * [None]
+        prepopulated_return_values = len(names) * [None]
+        paths = self.list_visible_asset_packagesystem_paths(head=head)
+        assert len(names) == len(keys) == len(paths)
+        return sequencetools.zip_sequences_cyclically(
+            names, [None], [None], paths)
 
     ### PUBLIC METHODS ###
 

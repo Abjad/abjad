@@ -116,10 +116,10 @@ class ScoreManager(ScoreManagerObject):
                 menu_entries = self.start_menu_entries
             else:
                 self.write_cache()
-                menu_entries = self.score_package_wrangler._make_menu_entries()
+                menu_entries = self.score_package_wrangler._make_asset_menu_entries()
             self._session.is_first_run = False
         else:
-            menu_entries = self.score_package_wrangler._make_menu_entries()
+            menu_entries = self.score_package_wrangler._make_asset_menu_entries()
         menu, menu_section = self._io.make_menu(where=self._where)
         menu_section.return_value_attribute = 'explicit'
         menu_section.is_numbered = True
@@ -335,7 +335,7 @@ class ScoreManager(ScoreManagerObject):
                 self.configuration.configuration_directory_path, 'cache.py')
         cache_file_pointer = file(cache_file_path, 'w')
         cache_file_pointer.write('start_menu_entries = [\n')
-        menu_entries = self.score_package_wrangler._make_menu_entries()
+        menu_entries = self.score_package_wrangler._make_asset_menu_entries()
         for menu_entry in menu_entries:
             cache_file_pointer.write('{},\n'.format(menu_entry))
         cache_file_pointer.write(']\n')

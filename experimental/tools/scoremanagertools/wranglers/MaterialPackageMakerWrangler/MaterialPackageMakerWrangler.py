@@ -86,7 +86,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         menu_section.append(('new material package maker', 'new'))
         return menu
 
-    def _make_menu_entries(self, head=None):
+    def _make_asset_menu_entries(self, head=None):
         keys = self.list_asset_packagesystem_paths(head=head)
         display_strings = self.list_asset_names(head=head)
         return zip(display_strings, keys)

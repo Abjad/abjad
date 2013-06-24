@@ -93,20 +93,16 @@ class MaterialPackageWrangler(PackageWrangler):
             package_path)
 
     def _make_main_menu(self, head=None):
-        menu, menu_section = self._io.make_menu(
-            where=self._where,
-            return_value_attribute='key',
-            is_numbered=True,
-            )
-        menu_section.menu_entries = self._make_menu_entries(head=head)
-        menu_section = menu.make_section(return_value_attribute='key')
-        menu_section.append(('data-only', 'd'))
-        menu_section.append(('handmade', 'h'))
-        menu_section.append(('maker-made', 'm'))
-        hidden_section = menu.make_section(
-            return_value_attribute='key',
-            is_hidden=True,
-            )
+        menu, content_section = self._io.make_menu(where=self._where)
+        content_section.return_value_attribute = 'explicit'
+        content_section.is_numbered = True
+        menu_entries = self._make_asset_menu_entries(head=head)
+        content_section.menu_entries = menu_entries
+        command_section_section = menu.make_command_section()
+        command_section_section.append(('data-only', 'd'))
+        command_section_section.append(('handmade', 'h'))
+        command_section_section.append(('maker-made', 'm'))
+        hidden_section = menu.make_command_section(is_hidden=True)
         hidden_section.append(('create numeric sequence', 's'))
         hidden_section.append(('create missing packages', 'missing'))
         hidden_section.append(('profile packages', 'profile'))
