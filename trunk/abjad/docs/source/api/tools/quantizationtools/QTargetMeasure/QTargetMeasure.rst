@@ -4,7 +4,13 @@ quantizationtools.QTargetMeasure
 .. abjad-lineage:: abjad.tools.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure
 
 .. autoclass:: abjad.tools.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

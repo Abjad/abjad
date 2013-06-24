@@ -4,7 +4,13 @@ spannertools.Spanner
 .. abjad-lineage:: abjad.tools.spannertools.Spanner.Spanner.Spanner
 
 .. autoclass:: abjad.tools.spannertools.Spanner.Spanner.Spanner
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

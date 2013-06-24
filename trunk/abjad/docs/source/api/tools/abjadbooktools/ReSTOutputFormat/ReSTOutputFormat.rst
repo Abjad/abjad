@@ -4,7 +4,15 @@ abjadbooktools.ReSTOutputFormat
 .. abjad-lineage:: abjad.tools.abjadbooktools.ReSTOutputFormat.ReSTOutputFormat.ReSTOutputFormat
 
 .. autoclass:: abjad.tools.abjadbooktools.ReSTOutputFormat.ReSTOutputFormat.ReSTOutputFormat
-   :noindex:
+
+Bases
+-----
+
+- :class:`abjadbooktools.OutputFormat <abjad.tools.abjadbooktools.OutputFormat.OutputFormat.OutputFormat>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

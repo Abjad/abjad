@@ -4,7 +4,15 @@ documentationtools.ClassDocumenter
 .. abjad-lineage:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter
 
 .. autoclass:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter
-   :noindex:
+
+Bases
+-----
+
+- :class:`documentationtools.Documenter <abjad.tools.documentationtools.Documenter.Documenter.Documenter>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

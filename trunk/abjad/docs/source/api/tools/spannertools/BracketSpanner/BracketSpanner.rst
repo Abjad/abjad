@@ -4,7 +4,17 @@ spannertools.BracketSpanner
 .. abjad-lineage:: abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner
 
 .. autoclass:: abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner
-   :noindex:
+
+Bases
+-----
+
+- :class:`spannertools.TextSpanner <abjad.tools.spannertools.TextSpanner.TextSpanner.TextSpanner>`
+
+- :class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

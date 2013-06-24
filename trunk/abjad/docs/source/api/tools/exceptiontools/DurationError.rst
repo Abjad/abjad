@@ -4,7 +4,15 @@ exceptiontools.DurationError
 .. abjad-lineage:: abjad.tools.exceptiontools.DurationError.DurationError
 
 .. autoclass:: abjad.tools.exceptiontools.DurationError.DurationError
-   :noindex:
+
+Bases
+-----
+
+- :class:`exceptions.Exception <exceptions.Exception>`
+
+- :class:`exceptions.BaseException <exceptions.BaseException>`
+
+- :class:`__builtin__.object <object>`
 
 Special methods
 ---------------

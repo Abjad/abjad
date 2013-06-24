@@ -4,7 +4,17 @@ containertools.Cluster
 .. abjad-lineage:: abjad.tools.containertools.Cluster.Cluster.Cluster
 
 .. autoclass:: abjad.tools.containertools.Cluster.Cluster.Cluster
-   :noindex:
+
+Bases
+-----
+
+- :class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
+
+- :class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

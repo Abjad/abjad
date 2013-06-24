@@ -4,7 +4,13 @@ timerelationtools.TimeRelation
 .. abjad-lineage:: abjad.tools.timerelationtools.TimeRelation.TimeRelation.TimeRelation
 
 .. autoclass:: abjad.tools.timerelationtools.TimeRelation.TimeRelation.TimeRelation
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

@@ -4,7 +4,19 @@ pitchtools.IntervalClassSet
 .. abjad-lineage:: abjad.tools.pitchtools.IntervalClassSet.IntervalClassSet.IntervalClassSet
 
 .. autoclass:: abjad.tools.pitchtools.IntervalClassSet.IntervalClassSet.IntervalClassSet
-   :noindex:
+
+Bases
+-----
+
+- :class:`pitchtools.Set <abjad.tools.pitchtools.Set.Set.Set>`
+
+- :class:`__builtin__.frozenset <frozenset>`
+
+- :class:`abctools.ImmutableAbjadObject <abjad.tools.abctools.ImmutableAbjadObject.ImmutableAbjadObject.ImmutableAbjadObject>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

@@ -4,7 +4,25 @@ configurationtools.AbjadConfiguration
 .. abjad-lineage:: abjad.tools.configurationtools.AbjadConfiguration.AbjadConfiguration.AbjadConfiguration
 
 .. autoclass:: abjad.tools.configurationtools.AbjadConfiguration.AbjadConfiguration.AbjadConfiguration
-   :noindex:
+
+Bases
+-----
+
+- :class:`configurationtools.Configuration <abjad.tools.configurationtools.Configuration.Configuration.Configuration>`
+
+- :class:`_abcoll.MutableMapping <_abcoll.MutableMapping>`
+
+- :class:`_abcoll.Mapping <_abcoll.Mapping>`
+
+- :class:`_abcoll.Sized <_abcoll.Sized>`
+
+- :class:`_abcoll.Iterable <_abcoll.Iterable>`
+
+- :class:`_abcoll.Container <_abcoll.Container>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

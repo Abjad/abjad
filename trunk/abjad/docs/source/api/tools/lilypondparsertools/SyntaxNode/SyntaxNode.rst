@@ -4,7 +4,13 @@ lilypondparsertools.SyntaxNode
 .. abjad-lineage:: abjad.tools.lilypondparsertools.SyntaxNode.SyntaxNode.SyntaxNode
 
 .. autoclass:: abjad.tools.lilypondparsertools.SyntaxNode.SyntaxNode.SyntaxNode
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

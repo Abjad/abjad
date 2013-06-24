@@ -4,7 +4,15 @@ exceptiontools.ParallelError
 .. abjad-lineage:: abjad.tools.exceptiontools.ParallelError.ParallelError
 
 .. autoclass:: abjad.tools.exceptiontools.ParallelError.ParallelError
-   :noindex:
+
+Bases
+-----
+
+- :class:`exceptions.Exception <exceptions.Exception>`
+
+- :class:`exceptions.BaseException <exceptions.BaseException>`
+
+- :class:`__builtin__.object <object>`
 
 Special methods
 ---------------

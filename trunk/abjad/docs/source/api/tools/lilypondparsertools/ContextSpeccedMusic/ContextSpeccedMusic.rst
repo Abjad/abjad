@@ -4,7 +4,15 @@ lilypondparsertools.ContextSpeccedMusic
 .. abjad-lineage:: abjad.tools.lilypondparsertools.ContextSpeccedMusic.ContextSpeccedMusic.ContextSpeccedMusic
 
 .. autoclass:: abjad.tools.lilypondparsertools.ContextSpeccedMusic.ContextSpeccedMusic.ContextSpeccedMusic
-   :noindex:
+
+Bases
+-----
+
+- :class:`lilypondparsertools.Music <abjad.tools.lilypondparsertools.Music.Music.Music>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

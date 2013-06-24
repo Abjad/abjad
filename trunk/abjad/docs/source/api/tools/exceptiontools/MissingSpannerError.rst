@@ -4,7 +4,15 @@ exceptiontools.MissingSpannerError
 .. abjad-lineage:: abjad.tools.exceptiontools.MissingSpannerError.MissingSpannerError
 
 .. autoclass:: abjad.tools.exceptiontools.MissingSpannerError.MissingSpannerError
-   :noindex:
+
+Bases
+-----
+
+- :class:`exceptions.Exception <exceptions.Exception>`
+
+- :class:`exceptions.BaseException <exceptions.BaseException>`
+
+- :class:`__builtin__.object <object>`
 
 Special methods
 ---------------

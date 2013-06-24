@@ -4,7 +4,25 @@ instrumenttools.Saxophone
 .. abjad-lineage:: abjad.tools.instrumenttools.Saxophone.Saxophone.Saxophone
 
 .. autoclass:: abjad.tools.instrumenttools.Saxophone.Saxophone.Saxophone
-   :noindex:
+
+Bases
+-----
+
+- :class:`instrumenttools.SingleReedInstrument <abjad.tools.instrumenttools.SingleReedInstrument.SingleReedInstrument.SingleReedInstrument>`
+
+- :class:`instrumenttools.ReedInstrument <abjad.tools.instrumenttools.ReedInstrument.ReedInstrument.ReedInstrument>`
+
+- :class:`instrumenttools.Instrument <abjad.tools.instrumenttools.Instrument.Instrument.Instrument>`
+
+- :class:`contexttools.InstrumentMark <abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark>`
+
+- :class:`contexttools.ContextMark <abjad.tools.contexttools.ContextMark.ContextMark.ContextMark>`
+
+- :class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

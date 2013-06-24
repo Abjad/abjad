@@ -4,7 +4,17 @@ markuptools.Markup
 .. abjad-lineage:: abjad.tools.markuptools.Markup.Markup.Markup
 
 .. autoclass:: abjad.tools.markuptools.Markup.Markup.Markup
-   :noindex:
+
+Bases
+-----
+
+- :class:`marktools.DirectedMark <abjad.tools.marktools.DirectedMark.DirectedMark.DirectedMark>`
+
+- :class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

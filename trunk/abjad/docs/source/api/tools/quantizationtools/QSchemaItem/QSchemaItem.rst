@@ -4,7 +4,17 @@ quantizationtools.QSchemaItem
 .. abjad-lineage:: abjad.tools.quantizationtools.QSchemaItem.QSchemaItem.QSchemaItem
 
 .. autoclass:: abjad.tools.quantizationtools.QSchemaItem.QSchemaItem.QSchemaItem
-   :noindex:
+
+Bases
+-----
+
+- :class:`__builtin__.tuple <tuple>`
+
+- :class:`abctools.ImmutableAbjadObject <abjad.tools.abctools.ImmutableAbjadObject.ImmutableAbjadObject.ImmutableAbjadObject>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

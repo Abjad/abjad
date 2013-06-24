@@ -4,7 +4,19 @@ documentationtools.ReSTOnlyDirective
 .. abjad-lineage:: abjad.tools.documentationtools.ReSTOnlyDirective.ReSTOnlyDirective.ReSTOnlyDirective
 
 .. autoclass:: abjad.tools.documentationtools.ReSTOnlyDirective.ReSTOnlyDirective.ReSTOnlyDirective
-   :noindex:
+
+Bases
+-----
+
+- :class:`documentationtools.ReSTDirective <abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective>`
+
+- :class:`datastructuretools.TreeContainer <abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer>`
+
+- :class:`datastructuretools.TreeNode <abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

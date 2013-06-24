@@ -4,7 +4,13 @@ abctools.Maker
 .. abjad-lineage:: abjad.tools.abctools.Maker.Maker.Maker
 
 .. autoclass:: abjad.tools.abctools.Maker.Maker.Maker
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

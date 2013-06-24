@@ -4,7 +4,15 @@ rhythmtreetools.RhythmTreeParser
 .. abjad-lineage:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser
 
 .. autoclass:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

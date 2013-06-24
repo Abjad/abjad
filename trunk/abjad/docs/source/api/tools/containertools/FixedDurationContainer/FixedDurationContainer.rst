@@ -4,7 +4,17 @@ containertools.FixedDurationContainer
 .. abjad-lineage:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer
 
 .. autoclass:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer
-   :noindex:
+
+Bases
+-----
+
+- :class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
+
+- :class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

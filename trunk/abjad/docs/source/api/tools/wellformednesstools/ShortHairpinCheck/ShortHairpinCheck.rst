@@ -4,7 +4,15 @@ wellformednesstools.ShortHairpinCheck
 .. abjad-lineage:: abjad.tools.wellformednesstools.ShortHairpinCheck.ShortHairpinCheck.ShortHairpinCheck
 
 .. autoclass:: abjad.tools.wellformednesstools.ShortHairpinCheck.ShortHairpinCheck.ShortHairpinCheck
-   :noindex:
+
+Bases
+-----
+
+- :class:`wellformednesstools.Check <abjad.tools.wellformednesstools.Check.Check.Check>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

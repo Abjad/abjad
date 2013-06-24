@@ -4,7 +4,13 @@ quantizationtools.QuantizationJob
 .. abjad-lineage:: abjad.tools.quantizationtools.QuantizationJob.QuantizationJob.QuantizationJob
 
 .. autoclass:: abjad.tools.quantizationtools.QuantizationJob.QuantizationJob.QuantizationJob
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

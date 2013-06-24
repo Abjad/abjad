@@ -4,7 +4,15 @@ spannertools.OctavationSpanner
 .. abjad-lineage:: abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner
 
 .. autoclass:: abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner
-   :noindex:
+
+Bases
+-----
+
+- :class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

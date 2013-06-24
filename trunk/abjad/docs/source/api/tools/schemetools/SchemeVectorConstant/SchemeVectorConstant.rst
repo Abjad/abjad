@@ -4,7 +4,15 @@ schemetools.SchemeVectorConstant
 .. abjad-lineage:: abjad.tools.schemetools.SchemeVectorConstant.SchemeVectorConstant.SchemeVectorConstant
 
 .. autoclass:: abjad.tools.schemetools.SchemeVectorConstant.SchemeVectorConstant.SchemeVectorConstant
-   :noindex:
+
+Bases
+-----
+
+- :class:`schemetools.Scheme <abjad.tools.schemetools.Scheme.Scheme.Scheme>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

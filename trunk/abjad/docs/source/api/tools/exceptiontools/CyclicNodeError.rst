@@ -4,7 +4,15 @@ exceptiontools.CyclicNodeError
 .. abjad-lineage:: abjad.tools.exceptiontools.CyclicNodeError.CyclicNodeError
 
 .. autoclass:: abjad.tools.exceptiontools.CyclicNodeError.CyclicNodeError
-   :noindex:
+
+Bases
+-----
+
+- :class:`exceptions.Exception <exceptions.Exception>`
+
+- :class:`exceptions.BaseException <exceptions.BaseException>`
+
+- :class:`__builtin__.object <object>`
 
 Special methods
 ---------------

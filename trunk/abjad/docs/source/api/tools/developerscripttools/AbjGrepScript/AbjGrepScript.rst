@@ -4,7 +4,17 @@ developerscripttools.AbjGrepScript
 .. abjad-lineage:: abjad.tools.developerscripttools.AbjGrepScript.AbjGrepScript.AbjGrepScript
 
 .. autoclass:: abjad.tools.developerscripttools.AbjGrepScript.AbjGrepScript.AbjGrepScript
-   :noindex:
+
+Bases
+-----
+
+- :class:`developerscripttools.DirectoryScript <abjad.tools.developerscripttools.DirectoryScript.DirectoryScript.DirectoryScript>`
+
+- :class:`developerscripttools.DeveloperScript <abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

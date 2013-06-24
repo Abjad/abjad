@@ -4,7 +4,21 @@ beamtools.MeasuredComplexBeamSpanner
 .. abjad-lineage:: abjad.tools.beamtools.MeasuredComplexBeamSpanner.MeasuredComplexBeamSpanner.MeasuredComplexBeamSpanner
 
 .. autoclass:: abjad.tools.beamtools.MeasuredComplexBeamSpanner.MeasuredComplexBeamSpanner.MeasuredComplexBeamSpanner
-   :noindex:
+
+Bases
+-----
+
+- :class:`beamtools.ComplexBeamSpanner <abjad.tools.beamtools.ComplexBeamSpanner.ComplexBeamSpanner.ComplexBeamSpanner>`
+
+- :class:`beamtools.BeamSpanner <abjad.tools.beamtools.BeamSpanner.BeamSpanner.BeamSpanner>`
+
+- :class:`spannertools.DirectedSpanner <abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner>`
+
+- :class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

@@ -4,7 +4,25 @@ mathtools.NonreducedFraction
 .. abjad-lineage:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction
 
 .. autoclass:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.ImmutableAbjadObject <abjad.tools.abctools.ImmutableAbjadObject.ImmutableAbjadObject.ImmutableAbjadObject>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`fractions.Fraction <fractions.Fraction>`
+
+- :class:`numbers.Rational <numbers.Rational>`
+
+- :class:`numbers.Real <numbers.Real>`
+
+- :class:`numbers.Complex <numbers.Complex>`
+
+- :class:`numbers.Number <numbers.Number>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

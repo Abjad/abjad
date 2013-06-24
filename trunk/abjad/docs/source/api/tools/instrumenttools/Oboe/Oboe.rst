@@ -4,7 +4,25 @@ instrumenttools.Oboe
 .. abjad-lineage:: abjad.tools.instrumenttools.Oboe.Oboe.Oboe
 
 .. autoclass:: abjad.tools.instrumenttools.Oboe.Oboe.Oboe
-   :noindex:
+
+Bases
+-----
+
+- :class:`instrumenttools.DoubleReedInstrument <abjad.tools.instrumenttools.DoubleReedInstrument.DoubleReedInstrument.DoubleReedInstrument>`
+
+- :class:`instrumenttools.ReedInstrument <abjad.tools.instrumenttools.ReedInstrument.ReedInstrument.ReedInstrument>`
+
+- :class:`instrumenttools.Instrument <abjad.tools.instrumenttools.Instrument.Instrument.Instrument>`
+
+- :class:`contexttools.InstrumentMark <abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark>`
+
+- :class:`contexttools.ContextMark <abjad.tools.contexttools.ContextMark.ContextMark.ContextMark>`
+
+- :class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

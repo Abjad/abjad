@@ -4,7 +4,19 @@ timeintervaltools.TimeIntervalTree
 .. abjad-lineage:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree
 
 .. autoclass:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree
-   :noindex:
+
+Bases
+-----
+
+- :class:`timeintervaltools._RedBlackTree <abjad.tools.timeintervaltools._RedBlackTree._RedBlackTree._RedBlackTree>`
+
+- :class:`timeintervaltools.TimeIntervalAggregateMixin <abjad.tools.timeintervaltools.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin>`
+
+- :class:`timeintervaltools.TimeIntervalMixin <abjad.tools.timeintervaltools.TimeIntervalMixin.TimeIntervalMixin.TimeIntervalMixin>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

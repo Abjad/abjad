@@ -4,7 +4,27 @@ pitchtools.NumberedChromaticPitch
 .. abjad-lineage:: abjad.tools.pitchtools.NumberedChromaticPitch.NumberedChromaticPitch.NumberedChromaticPitch
 
 .. autoclass:: abjad.tools.pitchtools.NumberedChromaticPitch.NumberedChromaticPitch.NumberedChromaticPitch
-   :noindex:
+
+Bases
+-----
+
+- :class:`pitchtools.ChromaticPitch <abjad.tools.pitchtools.ChromaticPitch.ChromaticPitch.ChromaticPitch>`
+
+- :class:`pitchtools.NumberedPitch <abjad.tools.pitchtools.NumberedPitch.NumberedPitch.NumberedPitch>`
+
+- :class:`pitchtools.Pitch <abjad.tools.pitchtools.Pitch.Pitch.Pitch>`
+
+- :class:`abctools.SortableAttributeEqualityAbjadObject <abjad.tools.abctools.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject>`
+
+- :class:`abctools.AttributeEqualityAbjadObject <abjad.tools.abctools.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject>`
+
+- :class:`pitchtools.ChromaticObject <abjad.tools.pitchtools.ChromaticObject.ChromaticObject.ChromaticObject>`
+
+- :class:`pitchtools.NumberedObject <abjad.tools.pitchtools.NumberedObject.NumberedObject.NumberedObject>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

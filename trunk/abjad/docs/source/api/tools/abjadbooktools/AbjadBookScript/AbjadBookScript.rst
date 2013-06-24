@@ -4,7 +4,15 @@ abjadbooktools.AbjadBookScript
 .. abjad-lineage:: abjad.tools.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript
 
 .. autoclass:: abjad.tools.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript
-   :noindex:
+
+Bases
+-----
+
+- :class:`developerscripttools.DeveloperScript <abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

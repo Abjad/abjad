@@ -4,7 +4,15 @@ exceptiontools.PartitionError
 .. abjad-lineage:: abjad.tools.exceptiontools.PartitionError.PartitionError
 
 .. autoclass:: abjad.tools.exceptiontools.PartitionError.PartitionError
-   :noindex:
+
+Bases
+-----
+
+- :class:`exceptions.Exception <exceptions.Exception>`
+
+- :class:`exceptions.BaseException <exceptions.BaseException>`
+
+- :class:`__builtin__.object <object>`
 
 Special methods
 ---------------

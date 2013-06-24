@@ -4,7 +4,15 @@ quantizationtools.NullAttackPointOptimizer
 .. abjad-lineage:: abjad.tools.quantizationtools.NullAttackPointOptimizer.NullAttackPointOptimizer.NullAttackPointOptimizer
 
 .. autoclass:: abjad.tools.quantizationtools.NullAttackPointOptimizer.NullAttackPointOptimizer.NullAttackPointOptimizer
-   :noindex:
+
+Bases
+-----
+
+- :class:`quantizationtools.AttackPointOptimizer <abjad.tools.quantizationtools.AttackPointOptimizer.AttackPointOptimizer.AttackPointOptimizer>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

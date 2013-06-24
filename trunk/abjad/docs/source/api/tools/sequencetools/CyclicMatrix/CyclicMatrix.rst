@@ -4,7 +4,15 @@ sequencetools.CyclicMatrix
 .. abjad-lineage:: abjad.tools.sequencetools.CyclicMatrix.CyclicMatrix.CyclicMatrix
 
 .. autoclass:: abjad.tools.sequencetools.CyclicMatrix.CyclicMatrix.CyclicMatrix
-   :noindex:
+
+Bases
+-----
+
+- :class:`sequencetools.Matrix <abjad.tools.sequencetools.Matrix.Matrix.Matrix>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

@@ -4,7 +4,13 @@ developerscripttools.DeveloperScript
 .. abjad-lineage:: abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript
 
 .. autoclass:: abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

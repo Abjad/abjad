@@ -4,7 +4,13 @@ tonalitytools.ScaleDegree
 .. abjad-lineage:: abjad.tools.tonalitytools.ScaleDegree.ScaleDegree.ScaleDegree
 
 .. autoclass:: abjad.tools.tonalitytools.ScaleDegree.ScaleDegree.ScaleDegree
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

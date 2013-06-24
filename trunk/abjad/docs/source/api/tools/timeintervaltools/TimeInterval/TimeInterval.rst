@@ -4,7 +4,25 @@ timeintervaltools.TimeInterval
 .. abjad-lineage:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval
 
 .. autoclass:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval
-   :noindex:
+
+Bases
+-----
+
+- :class:`timeintervaltools.TimeIntervalMixin <abjad.tools.timeintervaltools.TimeIntervalMixin.TimeIntervalMixin.TimeIntervalMixin>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`_abcoll.MutableMapping <_abcoll.MutableMapping>`
+
+- :class:`_abcoll.Mapping <_abcoll.Mapping>`
+
+- :class:`_abcoll.Sized <_abcoll.Sized>`
+
+- :class:`_abcoll.Iterable <_abcoll.Iterable>`
+
+- :class:`_abcoll.Container <_abcoll.Container>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

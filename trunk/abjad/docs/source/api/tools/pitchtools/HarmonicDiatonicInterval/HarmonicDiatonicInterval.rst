@@ -4,7 +4,23 @@ pitchtools.HarmonicDiatonicInterval
 .. abjad-lineage:: abjad.tools.pitchtools.HarmonicDiatonicInterval.HarmonicDiatonicInterval.HarmonicDiatonicInterval
 
 .. autoclass:: abjad.tools.pitchtools.HarmonicDiatonicInterval.HarmonicDiatonicInterval.HarmonicDiatonicInterval
-   :noindex:
+
+Bases
+-----
+
+- :class:`pitchtools.DiatonicInterval <abjad.tools.pitchtools.DiatonicInterval.DiatonicInterval.DiatonicInterval>`
+
+- :class:`pitchtools.HarmonicInterval <abjad.tools.pitchtools.HarmonicInterval.HarmonicInterval.HarmonicInterval>`
+
+- :class:`pitchtools.Interval <abjad.tools.pitchtools.Interval.Interval.Interval>`
+
+- :class:`pitchtools.DiatonicObject <abjad.tools.pitchtools.DiatonicObject.DiatonicObject.DiatonicObject>`
+
+- :class:`pitchtools.HarmonicObject <abjad.tools.pitchtools.HarmonicObject.HarmonicObject.HarmonicObject>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

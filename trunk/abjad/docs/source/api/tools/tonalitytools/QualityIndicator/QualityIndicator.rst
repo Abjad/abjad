@@ -4,7 +4,13 @@ tonalitytools.QualityIndicator
 .. abjad-lineage:: abjad.tools.tonalitytools.QualityIndicator.QualityIndicator.QualityIndicator
 
 .. autoclass:: abjad.tools.tonalitytools.QualityIndicator.QualityIndicator.QualityIndicator
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

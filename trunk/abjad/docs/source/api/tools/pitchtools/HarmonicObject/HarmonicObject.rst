@@ -4,7 +4,13 @@ pitchtools.HarmonicObject
 .. abjad-lineage:: abjad.tools.pitchtools.HarmonicObject.HarmonicObject.HarmonicObject
 
 .. autoclass:: abjad.tools.pitchtools.HarmonicObject.HarmonicObject.HarmonicObject
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

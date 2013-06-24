@@ -4,7 +4,13 @@ componenttools.Component
 .. abjad-lineage:: abjad.tools.componenttools.Component.Component.Component
 
 .. autoclass:: abjad.tools.componenttools.Component.Component.Component
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

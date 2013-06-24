@@ -4,7 +4,13 @@ pitchtools.CounterpointObject
 .. abjad-lineage:: abjad.tools.pitchtools.CounterpointObject.CounterpointObject.CounterpointObject
 
 .. autoclass:: abjad.tools.pitchtools.CounterpointObject.CounterpointObject.CounterpointObject
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

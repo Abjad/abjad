@@ -4,7 +4,15 @@ exceptiontools.GraceContainerError
 .. abjad-lineage:: abjad.tools.exceptiontools.GraceContainerError.GraceContainerError
 
 .. autoclass:: abjad.tools.exceptiontools.GraceContainerError.GraceContainerError
-   :noindex:
+
+Bases
+-----
+
+- :class:`exceptions.Exception <exceptions.Exception>`
+
+- :class:`exceptions.BaseException <exceptions.BaseException>`
+
+- :class:`__builtin__.object <object>`
 
 Special methods
 ---------------

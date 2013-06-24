@@ -4,7 +4,17 @@ pitchtools.Set
 .. abjad-lineage:: abjad.tools.pitchtools.Set.Set.Set
 
 .. autoclass:: abjad.tools.pitchtools.Set.Set.Set
-   :noindex:
+
+Bases
+-----
+
+- :class:`__builtin__.frozenset <frozenset>`
+
+- :class:`abctools.ImmutableAbjadObject <abjad.tools.abctools.ImmutableAbjadObject.ImmutableAbjadObject.ImmutableAbjadObject>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

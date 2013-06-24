@@ -4,7 +4,13 @@ datastructuretools.TreeNode
 .. abjad-lineage:: abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode
 
 .. autoclass:: abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

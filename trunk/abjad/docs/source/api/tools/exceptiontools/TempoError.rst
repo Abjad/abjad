@@ -4,7 +4,15 @@ exceptiontools.TempoError
 .. abjad-lineage:: abjad.tools.exceptiontools.TempoError.TempoError
 
 .. autoclass:: abjad.tools.exceptiontools.TempoError.TempoError
-   :noindex:
+
+Bases
+-----
+
+- :class:`exceptions.Exception <exceptions.Exception>`
+
+- :class:`exceptions.BaseException <exceptions.BaseException>`
+
+- :class:`__builtin__.object <object>`
 
 Special methods
 ---------------

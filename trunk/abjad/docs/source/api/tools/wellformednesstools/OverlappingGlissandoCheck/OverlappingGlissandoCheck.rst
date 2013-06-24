@@ -4,7 +4,15 @@ wellformednesstools.OverlappingGlissandoCheck
 .. abjad-lineage:: abjad.tools.wellformednesstools.OverlappingGlissandoCheck.OverlappingGlissandoCheck.OverlappingGlissandoCheck
 
 .. autoclass:: abjad.tools.wellformednesstools.OverlappingGlissandoCheck.OverlappingGlissandoCheck.OverlappingGlissandoCheck
-   :noindex:
+
+Bases
+-----
+
+- :class:`wellformednesstools.Check <abjad.tools.wellformednesstools.Check.Check.Check>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

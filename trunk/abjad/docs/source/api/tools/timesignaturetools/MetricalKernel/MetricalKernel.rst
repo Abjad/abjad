@@ -4,7 +4,13 @@ timesignaturetools.MetricalKernel
 .. abjad-lineage:: abjad.tools.timesignaturetools.MetricalKernel.MetricalKernel.MetricalKernel
 
 .. autoclass:: abjad.tools.timesignaturetools.MetricalKernel.MetricalKernel.MetricalKernel
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

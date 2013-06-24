@@ -4,7 +4,15 @@ lilypondproxytools.LilyPondGrobOverrideComponentPlugIn
 .. abjad-lineage:: abjad.tools.lilypondproxytools.LilyPondGrobOverrideComponentPlugIn.LilyPondGrobOverrideComponentPlugIn.LilyPondGrobOverrideComponentPlugIn
 
 .. autoclass:: abjad.tools.lilypondproxytools.LilyPondGrobOverrideComponentPlugIn.LilyPondGrobOverrideComponentPlugIn.LilyPondGrobOverrideComponentPlugIn
-   :noindex:
+
+Bases
+-----
+
+- :class:`lilypondproxytools.LilyPondComponentPlugIn <abjad.tools.lilypondproxytools.LilyPondComponentPlugIn.LilyPondComponentPlugIn.LilyPondComponentPlugIn>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

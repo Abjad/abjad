@@ -4,7 +4,13 @@ sequencetools.CyclicList
 .. abjad-lineage:: abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList
 
 .. autoclass:: abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList
-   :noindex:
+
+Bases
+-----
+
+- :class:`__builtin__.list <list>`
+
+- :class:`__builtin__.object <object>`
 
 Methods
 -------

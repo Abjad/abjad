@@ -4,7 +4,13 @@ tonalitytools.InversionIndicator
 .. abjad-lineage:: abjad.tools.tonalitytools.InversionIndicator.InversionIndicator.InversionIndicator
 
 .. autoclass:: abjad.tools.tonalitytools.InversionIndicator.InversionIndicator.InversionIndicator
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

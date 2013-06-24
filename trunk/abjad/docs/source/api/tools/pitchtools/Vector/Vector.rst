@@ -4,7 +4,17 @@ pitchtools.Vector
 .. abjad-lineage:: abjad.tools.pitchtools.Vector.Vector.Vector
 
 .. autoclass:: abjad.tools.pitchtools.Vector.Vector.Vector
-   :noindex:
+
+Bases
+-----
+
+- :class:`datastructuretools.ImmutableDictionary <abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary>`
+
+- :class:`__builtin__.dict <dict>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

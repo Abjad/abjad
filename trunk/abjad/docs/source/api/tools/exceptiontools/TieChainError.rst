@@ -4,7 +4,15 @@ exceptiontools.TieChainError
 .. abjad-lineage:: abjad.tools.exceptiontools.TieChainError.TieChainError
 
 .. autoclass:: abjad.tools.exceptiontools.TieChainError.TieChainError
-   :noindex:
+
+Bases
+-----
+
+- :class:`exceptions.Exception <exceptions.Exception>`
+
+- :class:`exceptions.BaseException <exceptions.BaseException>`
+
+- :class:`__builtin__.object <object>`
 
 Special methods
 ---------------

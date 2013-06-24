@@ -4,7 +4,13 @@ documentationtools.ModuleCrawler
 .. abjad-lineage:: abjad.tools.documentationtools.ModuleCrawler.ModuleCrawler.ModuleCrawler
 
 .. autoclass:: abjad.tools.documentationtools.ModuleCrawler.ModuleCrawler.ModuleCrawler
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

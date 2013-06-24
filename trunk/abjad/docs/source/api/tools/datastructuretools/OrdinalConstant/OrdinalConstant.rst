@@ -4,7 +4,15 @@ datastructuretools.OrdinalConstant
 .. abjad-lineage:: abjad.tools.datastructuretools.OrdinalConstant.OrdinalConstant.OrdinalConstant
 
 .. autoclass:: abjad.tools.datastructuretools.OrdinalConstant.OrdinalConstant.OrdinalConstant
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.ImmutableAbjadObject <abjad.tools.abctools.ImmutableAbjadObject.ImmutableAbjadObject.ImmutableAbjadObject>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

@@ -4,7 +4,15 @@ exceptiontools.MeasureError
 .. abjad-lineage:: abjad.tools.exceptiontools.MeasureError.MeasureError
 
 .. autoclass:: abjad.tools.exceptiontools.MeasureError.MeasureError
-   :noindex:
+
+Bases
+-----
+
+- :class:`exceptions.Exception <exceptions.Exception>`
+
+- :class:`exceptions.BaseException <exceptions.BaseException>`
+
+- :class:`__builtin__.object <object>`
 
 Special methods
 ---------------

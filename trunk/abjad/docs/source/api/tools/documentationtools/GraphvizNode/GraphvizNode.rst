@@ -4,7 +4,17 @@ documentationtools.GraphvizNode
 .. abjad-lineage:: abjad.tools.documentationtools.GraphvizNode.GraphvizNode.GraphvizNode
 
 .. autoclass:: abjad.tools.documentationtools.GraphvizNode.GraphvizNode.GraphvizNode
-   :noindex:
+
+Bases
+-----
+
+- :class:`datastructuretools.TreeNode <abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode>`
+
+- :class:`documentationtools.GraphvizObject <abjad.tools.documentationtools.GraphvizObject.GraphvizObject.GraphvizObject>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

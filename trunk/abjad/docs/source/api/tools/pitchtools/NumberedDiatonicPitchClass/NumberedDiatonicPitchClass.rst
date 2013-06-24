@@ -4,7 +4,25 @@ pitchtools.NumberedDiatonicPitchClass
 .. abjad-lineage:: abjad.tools.pitchtools.NumberedDiatonicPitchClass.NumberedDiatonicPitchClass.NumberedDiatonicPitchClass
 
 .. autoclass:: abjad.tools.pitchtools.NumberedDiatonicPitchClass.NumberedDiatonicPitchClass.NumberedDiatonicPitchClass
-   :noindex:
+
+Bases
+-----
+
+- :class:`pitchtools.NumberedPitchClass <abjad.tools.pitchtools.NumberedPitchClass.NumberedPitchClass.NumberedPitchClass>`
+
+- :class:`pitchtools.DiatonicPitchClass <abjad.tools.pitchtools.DiatonicPitchClass.DiatonicPitchClass.DiatonicPitchClass>`
+
+- :class:`pitchtools.PitchClass <abjad.tools.pitchtools.PitchClass.PitchClass.PitchClass>`
+
+- :class:`abctools.AttributeEqualityAbjadObject <abjad.tools.abctools.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject>`
+
+- :class:`pitchtools.NumberedObject <abjad.tools.pitchtools.NumberedObject.NumberedObject.NumberedObject>`
+
+- :class:`pitchtools.DiatonicObject <abjad.tools.pitchtools.DiatonicObject.DiatonicObject.DiatonicObject>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

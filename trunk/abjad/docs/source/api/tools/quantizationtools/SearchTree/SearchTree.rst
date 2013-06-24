@@ -4,7 +4,13 @@ quantizationtools.SearchTree
 .. abjad-lineage:: abjad.tools.quantizationtools.SearchTree.SearchTree.SearchTree
 
 .. autoclass:: abjad.tools.quantizationtools.SearchTree.SearchTree.SearchTree
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

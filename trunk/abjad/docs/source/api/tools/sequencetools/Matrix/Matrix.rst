@@ -4,7 +4,13 @@ sequencetools.Matrix
 .. abjad-lineage:: abjad.tools.sequencetools.Matrix.Matrix.Matrix
 
 .. autoclass:: abjad.tools.sequencetools.Matrix.Matrix.Matrix
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

@@ -4,7 +4,19 @@ spannertools.DecrescendoSpanner
 .. abjad-lineage:: abjad.tools.spannertools.DecrescendoSpanner.DecrescendoSpanner.DecrescendoSpanner
 
 .. autoclass:: abjad.tools.spannertools.DecrescendoSpanner.DecrescendoSpanner.DecrescendoSpanner
-   :noindex:
+
+Bases
+-----
+
+- :class:`spannertools.HairpinSpanner <abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner>`
+
+- :class:`spannertools.DirectedSpanner <abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner>`
+
+- :class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

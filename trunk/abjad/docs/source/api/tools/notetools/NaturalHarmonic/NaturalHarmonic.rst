@@ -4,7 +4,21 @@ notetools.NaturalHarmonic
 .. abjad-lineage:: abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic
 
 .. autoclass:: abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic
-   :noindex:
+
+Bases
+-----
+
+- :class:`notetools.Note <abjad.tools.notetools.Note.Note.Note>`
+
+- :class:`leaftools.Leaf <abjad.tools.leaftools.Leaf.Leaf.Leaf>`
+
+- :class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+
+- :class:`notetools._Flageolet <abjad.tools.notetools._Flageolet._Flageolet._Flageolet>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

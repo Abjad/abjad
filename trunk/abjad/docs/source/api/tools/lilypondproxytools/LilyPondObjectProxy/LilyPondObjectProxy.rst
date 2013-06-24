@@ -4,7 +4,13 @@ lilypondproxytools.LilyPondObjectProxy
 .. abjad-lineage:: abjad.tools.lilypondproxytools.LilyPondObjectProxy.LilyPondObjectProxy.LilyPondObjectProxy
 
 .. autoclass:: abjad.tools.lilypondproxytools.LilyPondObjectProxy.LilyPondObjectProxy.LilyPondObjectProxy
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

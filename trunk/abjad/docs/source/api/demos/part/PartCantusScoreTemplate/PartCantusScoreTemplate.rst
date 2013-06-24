@@ -4,7 +4,15 @@ part.PartCantusScoreTemplate
 .. abjad-lineage:: abjad.demos.part.PartCantusScoreTemplate.PartCantusScoreTemplate.PartCantusScoreTemplate
 
 .. autoclass:: abjad.demos.part.PartCantusScoreTemplate.PartCantusScoreTemplate.PartCantusScoreTemplate
-   :noindex:
+
+Bases
+-----
+
+- :class:`abjad.tools.scoretemplatetools.ScoreTemplate <abjad.tools.scoretemplatetools.ScoreTemplate.ScoreTemplate.ScoreTemplate>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

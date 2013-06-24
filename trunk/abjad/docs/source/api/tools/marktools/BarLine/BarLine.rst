@@ -4,7 +4,17 @@ marktools.BarLine
 .. abjad-lineage:: abjad.tools.marktools.BarLine.BarLine.BarLine
 
 .. autoclass:: abjad.tools.marktools.BarLine.BarLine.BarLine
-   :noindex:
+
+Bases
+-----
+
+- :class:`marktools.LilyPondCommandMark <abjad.tools.marktools.LilyPondCommandMark.LilyPondCommandMark.LilyPondCommandMark>`
+
+- :class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

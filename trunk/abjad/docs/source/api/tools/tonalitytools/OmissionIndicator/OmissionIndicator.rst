@@ -4,7 +4,13 @@ tonalitytools.OmissionIndicator
 .. abjad-lineage:: abjad.tools.tonalitytools.OmissionIndicator.OmissionIndicator.OmissionIndicator
 
 .. autoclass:: abjad.tools.tonalitytools.OmissionIndicator.OmissionIndicator.OmissionIndicator
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

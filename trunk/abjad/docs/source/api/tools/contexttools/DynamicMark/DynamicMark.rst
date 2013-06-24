@@ -4,7 +4,17 @@ contexttools.DynamicMark
 .. abjad-lineage:: abjad.tools.contexttools.DynamicMark.DynamicMark.DynamicMark
 
 .. autoclass:: abjad.tools.contexttools.DynamicMark.DynamicMark.DynamicMark
-   :noindex:
+
+Bases
+-----
+
+- :class:`contexttools.ContextMark <abjad.tools.contexttools.ContextMark.ContextMark.ContextMark>`
+
+- :class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

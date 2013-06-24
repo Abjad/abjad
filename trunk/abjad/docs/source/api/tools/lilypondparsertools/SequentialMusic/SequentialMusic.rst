@@ -4,7 +4,15 @@ lilypondparsertools.SequentialMusic
 .. abjad-lineage:: abjad.tools.lilypondparsertools.SequentialMusic.SequentialMusic.SequentialMusic
 
 .. autoclass:: abjad.tools.lilypondparsertools.SequentialMusic.SequentialMusic.SequentialMusic
-   :noindex:
+
+Bases
+-----
+
+- :class:`lilypondparsertools.Music <abjad.tools.lilypondparsertools.Music.Music.Music>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

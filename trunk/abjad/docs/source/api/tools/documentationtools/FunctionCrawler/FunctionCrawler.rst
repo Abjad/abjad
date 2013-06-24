@@ -4,7 +4,13 @@ documentationtools.FunctionCrawler
 .. abjad-lineage:: abjad.tools.documentationtools.FunctionCrawler.FunctionCrawler.FunctionCrawler
 
 .. autoclass:: abjad.tools.documentationtools.FunctionCrawler.FunctionCrawler.FunctionCrawler
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

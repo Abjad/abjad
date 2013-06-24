@@ -4,7 +4,17 @@ developerscripttools.RunDoctestsScript
 .. abjad-lineage:: abjad.tools.developerscripttools.RunDoctestsScript.RunDoctestsScript.RunDoctestsScript
 
 .. autoclass:: abjad.tools.developerscripttools.RunDoctestsScript.RunDoctestsScript.RunDoctestsScript
-   :noindex:
+
+Bases
+-----
+
+- :class:`developerscripttools.DirectoryScript <abjad.tools.developerscripttools.DirectoryScript.DirectoryScript.DirectoryScript>`
+
+- :class:`developerscripttools.DeveloperScript <abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

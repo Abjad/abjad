@@ -4,7 +4,15 @@ datastructuretools.ObjectInventory
 .. abjad-lineage:: abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory
 
 .. autoclass:: abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory
-   :noindex:
+
+Bases
+-----
+
+- :class:`__builtin__.list <list>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

@@ -4,7 +4,13 @@ pitchtools.PitchRange
 .. abjad-lineage:: abjad.tools.pitchtools.PitchRange.PitchRange.PitchRange
 
 .. autoclass:: abjad.tools.pitchtools.PitchRange.PitchRange.PitchRange
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

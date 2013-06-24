@@ -4,7 +4,15 @@ quantizationtools.DiscardingGraceHandler
 .. abjad-lineage:: abjad.tools.quantizationtools.DiscardingGraceHandler.DiscardingGraceHandler.DiscardingGraceHandler
 
 .. autoclass:: abjad.tools.quantizationtools.DiscardingGraceHandler.DiscardingGraceHandler.DiscardingGraceHandler
-   :noindex:
+
+Bases
+-----
+
+- :class:`quantizationtools.GraceHandler <abjad.tools.quantizationtools.GraceHandler.GraceHandler.GraceHandler>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

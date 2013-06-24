@@ -4,7 +4,15 @@ scoretemplatetools.TwoStaffPianoScoreTemplate
 .. abjad-lineage:: abjad.tools.scoretemplatetools.TwoStaffPianoScoreTemplate.TwoStaffPianoScoreTemplate.TwoStaffPianoScoreTemplate
 
 .. autoclass:: abjad.tools.scoretemplatetools.TwoStaffPianoScoreTemplate.TwoStaffPianoScoreTemplate.TwoStaffPianoScoreTemplate
-   :noindex:
+
+Bases
+-----
+
+- :class:`scoretemplatetools.ScoreTemplate <abjad.tools.scoretemplatetools.ScoreTemplate.ScoreTemplate.ScoreTemplate>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

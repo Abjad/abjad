@@ -4,7 +4,17 @@ developerscripttools.SvnUpdateScript
 .. abjad-lineage:: abjad.tools.developerscripttools.SvnUpdateScript.SvnUpdateScript.SvnUpdateScript
 
 .. autoclass:: abjad.tools.developerscripttools.SvnUpdateScript.SvnUpdateScript.SvnUpdateScript
-   :noindex:
+
+Bases
+-----
+
+- :class:`developerscripttools.DirectoryScript <abjad.tools.developerscripttools.DirectoryScript.DirectoryScript.DirectoryScript>`
+
+- :class:`developerscripttools.DeveloperScript <abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

@@ -4,7 +4,13 @@ markuptools.MarkupCommand
 .. abjad-lineage:: abjad.tools.markuptools.MarkupCommand.MarkupCommand.MarkupCommand
 
 .. autoclass:: abjad.tools.markuptools.MarkupCommand.MarkupCommand.MarkupCommand
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

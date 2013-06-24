@@ -4,7 +4,15 @@ lilypondproxytools.LilyPondTweakReservoir
 .. abjad-lineage:: abjad.tools.lilypondproxytools.LilyPondTweakReservoir.LilyPondTweakReservoir.LilyPondTweakReservoir
 
 .. autoclass:: abjad.tools.lilypondproxytools.LilyPondTweakReservoir.LilyPondTweakReservoir.LilyPondTweakReservoir
-   :noindex:
+
+Bases
+-----
+
+- :class:`lilypondproxytools.LilyPondObjectProxy <abjad.tools.lilypondproxytools.LilyPondObjectProxy.LilyPondObjectProxy.LilyPondObjectProxy>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

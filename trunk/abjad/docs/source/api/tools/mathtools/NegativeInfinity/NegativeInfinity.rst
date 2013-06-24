@@ -4,7 +4,15 @@ mathtools.NegativeInfinity
 .. abjad-lineage:: abjad.tools.mathtools.NegativeInfinity.NegativeInfinity.NegativeInfinity
 
 .. autoclass:: abjad.tools.mathtools.NegativeInfinity.NegativeInfinity.NegativeInfinity
-   :noindex:
+
+Bases
+-----
+
+- :class:`mathtools.Infinity <abjad.tools.mathtools.Infinity.Infinity.Infinity>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

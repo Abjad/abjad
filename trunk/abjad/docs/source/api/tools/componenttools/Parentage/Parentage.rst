@@ -4,7 +4,15 @@ componenttools.Parentage
 .. abjad-lineage:: abjad.tools.componenttools.Parentage.Parentage.Parentage
 
 .. autoclass:: abjad.tools.componenttools.Parentage.Parentage.Parentage
-   :noindex:
+
+Bases
+-----
+
+- :class:`selectiontools.Selection <abjad.tools.selectiontools.Selection.Selection.Selection>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

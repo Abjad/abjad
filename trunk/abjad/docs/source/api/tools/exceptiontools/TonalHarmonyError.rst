@@ -4,7 +4,15 @@ exceptiontools.TonalHarmonyError
 .. abjad-lineage:: abjad.tools.exceptiontools.TonalHarmonyError.TonalHarmonyError
 
 .. autoclass:: abjad.tools.exceptiontools.TonalHarmonyError.TonalHarmonyError
-   :noindex:
+
+Bases
+-----
+
+- :class:`exceptions.Exception <exceptions.Exception>`
+
+- :class:`exceptions.BaseException <exceptions.BaseException>`
+
+- :class:`__builtin__.object <object>`
 
 Special methods
 ---------------

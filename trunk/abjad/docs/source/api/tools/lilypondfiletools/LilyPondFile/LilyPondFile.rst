@@ -4,7 +4,13 @@ lilypondfiletools.LilyPondFile
 .. abjad-lineage:: abjad.tools.lilypondfiletools.LilyPondFile.LilyPondFile.LilyPondFile
 
 .. autoclass:: abjad.tools.lilypondfiletools.LilyPondFile.LilyPondFile.LilyPondFile
-   :noindex:
+
+Bases
+-----
+
+- :class:`__builtin__.list <list>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

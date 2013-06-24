@@ -4,7 +4,25 @@ instrumenttools.BassFlute
 .. abjad-lineage:: abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute
 
 .. autoclass:: abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute
-   :noindex:
+
+Bases
+-----
+
+- :class:`instrumenttools.Flute <abjad.tools.instrumenttools.Flute.Flute.Flute>`
+
+- :class:`instrumenttools.WindInstrument <abjad.tools.instrumenttools.WindInstrument.WindInstrument.WindInstrument>`
+
+- :class:`instrumenttools.Instrument <abjad.tools.instrumenttools.Instrument.Instrument.Instrument>`
+
+- :class:`contexttools.InstrumentMark <abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark>`
+
+- :class:`contexttools.ContextMark <abjad.tools.contexttools.ContextMark.ContextMark.ContextMark>`
+
+- :class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

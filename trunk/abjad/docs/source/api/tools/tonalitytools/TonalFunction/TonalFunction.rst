@@ -4,7 +4,13 @@ tonalitytools.TonalFunction
 .. abjad-lineage:: abjad.tools.tonalitytools.TonalFunction.TonalFunction.TonalFunction
 
 .. autoclass:: abjad.tools.tonalitytools.TonalFunction.TonalFunction.TonalFunction
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

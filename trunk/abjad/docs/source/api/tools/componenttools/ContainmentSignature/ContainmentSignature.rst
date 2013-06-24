@@ -4,7 +4,13 @@ componenttools.ContainmentSignature
 .. abjad-lineage:: abjad.tools.componenttools.ContainmentSignature.ContainmentSignature.ContainmentSignature
 
 .. autoclass:: abjad.tools.componenttools.ContainmentSignature.ContainmentSignature.ContainmentSignature
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

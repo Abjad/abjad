@@ -4,7 +4,21 @@ pitchtools.NamedChromaticPitchSet
 .. abjad-lineage:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet
 
 .. autoclass:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet
-   :noindex:
+
+Bases
+-----
+
+- :class:`pitchtools.PitchSet <abjad.tools.pitchtools.PitchSet.PitchSet.PitchSet>`
+
+- :class:`pitchtools.Set <abjad.tools.pitchtools.Set.Set.Set>`
+
+- :class:`__builtin__.frozenset <frozenset>`
+
+- :class:`abctools.ImmutableAbjadObject <abjad.tools.abctools.ImmutableAbjadObject.ImmutableAbjadObject.ImmutableAbjadObject>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

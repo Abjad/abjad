@@ -4,7 +4,17 @@ chordtools.Chord
 .. abjad-lineage:: abjad.tools.chordtools.Chord.Chord.Chord
 
 .. autoclass:: abjad.tools.chordtools.Chord.Chord.Chord
-   :noindex:
+
+Bases
+-----
+
+- :class:`leaftools.Leaf <abjad.tools.leaftools.Leaf.Leaf.Leaf>`
+
+- :class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

@@ -4,7 +4,17 @@ skiptools.Skip
 .. abjad-lineage:: abjad.tools.skiptools.Skip.Skip.Skip
 
 .. autoclass:: abjad.tools.skiptools.Skip.Skip.Skip
-   :noindex:
+
+Bases
+-----
+
+- :class:`leaftools.Leaf <abjad.tools.leaftools.Leaf.Leaf.Leaf>`
+
+- :class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

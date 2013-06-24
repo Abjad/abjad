@@ -4,7 +4,13 @@ mathtools.BoundedObject
 .. abjad-lineage:: abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject
 
 .. autoclass:: abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

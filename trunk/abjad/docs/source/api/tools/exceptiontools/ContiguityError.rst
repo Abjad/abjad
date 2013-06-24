@@ -4,7 +4,15 @@ exceptiontools.ContiguityError
 .. abjad-lineage:: abjad.tools.exceptiontools.ContiguityError.ContiguityError
 
 .. autoclass:: abjad.tools.exceptiontools.ContiguityError.ContiguityError
-   :noindex:
+
+Bases
+-----
+
+- :class:`exceptions.Exception <exceptions.Exception>`
+
+- :class:`exceptions.BaseException <exceptions.BaseException>`
+
+- :class:`__builtin__.object <object>`
 
 Special methods
 ---------------

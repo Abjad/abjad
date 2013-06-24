@@ -4,7 +4,17 @@ contexttools.Context
 .. abjad-lineage:: abjad.tools.contexttools.Context.Context.Context
 
 .. autoclass:: abjad.tools.contexttools.Context.Context.Context
-   :noindex:
+
+Bases
+-----
+
+- :class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
+
+- :class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

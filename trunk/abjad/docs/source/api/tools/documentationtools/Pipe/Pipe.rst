@@ -4,7 +4,15 @@ documentationtools.Pipe
 .. abjad-lineage:: abjad.tools.documentationtools.Pipe.Pipe.Pipe
 
 .. autoclass:: abjad.tools.documentationtools.Pipe.Pipe.Pipe
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`subprocess.Popen <subprocess.Popen>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

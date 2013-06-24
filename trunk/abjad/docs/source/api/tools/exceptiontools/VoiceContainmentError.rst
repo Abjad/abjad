@@ -4,7 +4,15 @@ exceptiontools.VoiceContainmentError
 .. abjad-lineage:: abjad.tools.exceptiontools.VoiceContainmentError.VoiceContainmentError
 
 .. autoclass:: abjad.tools.exceptiontools.VoiceContainmentError.VoiceContainmentError
-   :noindex:
+
+Bases
+-----
+
+- :class:`exceptions.Exception <exceptions.Exception>`
+
+- :class:`exceptions.BaseException <exceptions.BaseException>`
+
+- :class:`__builtin__.object <object>`
 
 Special methods
 ---------------

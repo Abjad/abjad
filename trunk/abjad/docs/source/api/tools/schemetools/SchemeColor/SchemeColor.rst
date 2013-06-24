@@ -4,7 +4,15 @@ schemetools.SchemeColor
 .. abjad-lineage:: abjad.tools.schemetools.SchemeColor.SchemeColor.SchemeColor
 
 .. autoclass:: abjad.tools.schemetools.SchemeColor.SchemeColor.SchemeColor
-   :noindex:
+
+Bases
+-----
+
+- :class:`schemetools.Scheme <abjad.tools.schemetools.Scheme.Scheme.Scheme>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

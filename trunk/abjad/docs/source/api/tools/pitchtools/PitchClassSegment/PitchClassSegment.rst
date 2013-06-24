@@ -4,7 +4,19 @@ pitchtools.PitchClassSegment
 .. abjad-lineage:: abjad.tools.pitchtools.PitchClassSegment.PitchClassSegment.PitchClassSegment
 
 .. autoclass:: abjad.tools.pitchtools.PitchClassSegment.PitchClassSegment.PitchClassSegment
-   :noindex:
+
+Bases
+-----
+
+- :class:`pitchtools.Segment <abjad.tools.pitchtools.Segment.Segment.Segment>`
+
+- :class:`__builtin__.tuple <tuple>`
+
+- :class:`abctools.ImmutableAbjadObject <abjad.tools.abctools.ImmutableAbjadObject.ImmutableAbjadObject.ImmutableAbjadObject>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

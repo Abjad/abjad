@@ -4,7 +4,15 @@ markuptools.MusicGlyph
 .. abjad-lineage:: abjad.tools.markuptools.MusicGlyph.MusicGlyph.MusicGlyph
 
 .. autoclass:: abjad.tools.markuptools.MusicGlyph.MusicGlyph.MusicGlyph
-   :noindex:
+
+Bases
+-----
+
+- :class:`markuptools.MarkupCommand <abjad.tools.markuptools.MarkupCommand.MarkupCommand.MarkupCommand>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

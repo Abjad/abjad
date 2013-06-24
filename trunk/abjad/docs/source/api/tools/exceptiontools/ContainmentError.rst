@@ -4,7 +4,15 @@ exceptiontools.ContainmentError
 .. abjad-lineage:: abjad.tools.exceptiontools.ContainmentError.ContainmentError
 
 .. autoclass:: abjad.tools.exceptiontools.ContainmentError.ContainmentError
-   :noindex:
+
+Bases
+-----
+
+- :class:`exceptions.Exception <exceptions.Exception>`
+
+- :class:`exceptions.BaseException <exceptions.BaseException>`
+
+- :class:`__builtin__.object <object>`
 
 Special methods
 ---------------

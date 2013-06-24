@@ -4,7 +4,17 @@ instrumenttools.InstrumentInventory
 .. abjad-lineage:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory
 
 .. autoclass:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory
-   :noindex:
+
+Bases
+-----
+
+- :class:`datastructuretools.ObjectInventory <abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory>`
+
+- :class:`__builtin__.list <list>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

@@ -4,7 +4,15 @@ wellformednesstools.MispitchedTieCheck
 .. abjad-lineage:: abjad.tools.wellformednesstools.MispitchedTieCheck.MispitchedTieCheck.MispitchedTieCheck
 
 .. autoclass:: abjad.tools.wellformednesstools.MispitchedTieCheck.MispitchedTieCheck.MispitchedTieCheck
-   :noindex:
+
+Bases
+-----
+
+- :class:`wellformednesstools.Check <abjad.tools.wellformednesstools.Check.Check.Check>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

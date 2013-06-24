@@ -4,7 +4,15 @@ schemetools.SchemeAssociativeList
 .. abjad-lineage:: abjad.tools.schemetools.SchemeAssociativeList.SchemeAssociativeList.SchemeAssociativeList
 
 .. autoclass:: abjad.tools.schemetools.SchemeAssociativeList.SchemeAssociativeList.SchemeAssociativeList
-   :noindex:
+
+Bases
+-----
+
+- :class:`schemetools.Scheme <abjad.tools.schemetools.Scheme.Scheme.Scheme>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

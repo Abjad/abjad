@@ -4,7 +4,15 @@ exceptiontools.ImpreciseTempoError
 .. abjad-lineage:: abjad.tools.exceptiontools.ImpreciseTempoError.ImpreciseTempoError
 
 .. autoclass:: abjad.tools.exceptiontools.ImpreciseTempoError.ImpreciseTempoError
-   :noindex:
+
+Bases
+-----
+
+- :class:`exceptions.Exception <exceptions.Exception>`
+
+- :class:`exceptions.BaseException <exceptions.BaseException>`
+
+- :class:`__builtin__.object <object>`
 
 Special methods
 ---------------

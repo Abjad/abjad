@@ -4,7 +4,13 @@ documentationtools.APICrawler
 .. abjad-lineage:: abjad.tools.documentationtools.APICrawler.APICrawler.APICrawler
 
 .. autoclass:: abjad.tools.documentationtools.APICrawler.APICrawler.APICrawler
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

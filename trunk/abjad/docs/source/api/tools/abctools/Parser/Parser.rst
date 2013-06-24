@@ -4,7 +4,13 @@ abctools.Parser
 .. abjad-lineage:: abjad.tools.abctools.Parser.Parser.Parser
 
 .. autoclass:: abjad.tools.abctools.Parser.Parser.Parser
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

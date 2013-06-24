@@ -4,7 +4,13 @@ quantizationtools.QEventProxy
 .. abjad-lineage:: abjad.tools.quantizationtools.QEventProxy.QEventProxy.QEventProxy
 
 .. autoclass:: abjad.tools.quantizationtools.QEventProxy.QEventProxy.QEventProxy
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

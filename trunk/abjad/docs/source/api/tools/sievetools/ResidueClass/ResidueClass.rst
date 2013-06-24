@@ -4,7 +4,15 @@ sievetools.ResidueClass
 .. abjad-lineage:: abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass
 
 .. autoclass:: abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass
-   :noindex:
+
+Bases
+-----
+
+- :class:`sievetools._BaseResidueClass <abjad.tools.sievetools._BaseResidueClass._BaseResidueClass._BaseResidueClass>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

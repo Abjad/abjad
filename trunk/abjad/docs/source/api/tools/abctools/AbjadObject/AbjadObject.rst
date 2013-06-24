@@ -4,7 +4,11 @@ abctools.AbjadObject
 .. abjad-lineage:: abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject
 
 .. autoclass:: abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject
-   :noindex:
+
+Bases
+-----
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

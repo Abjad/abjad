@@ -4,7 +4,13 @@ quantizationtools.QEvent
 .. abjad-lineage:: abjad.tools.quantizationtools.QEvent.QEvent.QEvent
 
 .. autoclass:: abjad.tools.quantizationtools.QEvent.QEvent.QEvent
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

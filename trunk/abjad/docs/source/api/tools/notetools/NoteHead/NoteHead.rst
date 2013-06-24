@@ -4,7 +4,17 @@ notetools.NoteHead
 .. abjad-lineage:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead
 
 .. autoclass:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.SortableAttributeEqualityAbjadObject <abjad.tools.abctools.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject>`
+
+- :class:`abctools.AttributeEqualityAbjadObject <abjad.tools.abctools.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

@@ -4,7 +4,13 @@ quantizationtools.QTargetBeat
 .. abjad-lineage:: abjad.tools.quantizationtools.QTargetBeat.QTargetBeat.QTargetBeat
 
 .. autoclass:: abjad.tools.quantizationtools.QTargetBeat.QTargetBeat.QTargetBeat
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

@@ -4,7 +4,19 @@ beamtools.MultipartBeamSpanner
 .. abjad-lineage:: abjad.tools.beamtools.MultipartBeamSpanner.MultipartBeamSpanner.MultipartBeamSpanner
 
 .. autoclass:: abjad.tools.beamtools.MultipartBeamSpanner.MultipartBeamSpanner.MultipartBeamSpanner
-   :noindex:
+
+Bases
+-----
+
+- :class:`beamtools.BeamSpanner <abjad.tools.beamtools.BeamSpanner.BeamSpanner.BeamSpanner>`
+
+- :class:`spannertools.DirectedSpanner <abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner>`
+
+- :class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

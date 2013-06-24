@@ -4,7 +4,13 @@ pitchtools.NumberedObject
 .. abjad-lineage:: abjad.tools.pitchtools.NumberedObject.NumberedObject.NumberedObject
 
 .. autoclass:: abjad.tools.pitchtools.NumberedObject.NumberedObject.NumberedObject
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

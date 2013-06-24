@@ -4,7 +4,15 @@ quantizationtools.TerminalQEvent
 .. abjad-lineage:: abjad.tools.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent
 
 .. autoclass:: abjad.tools.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent
-   :noindex:
+
+Bases
+-----
+
+- :class:`quantizationtools.QEvent <abjad.tools.quantizationtools.QEvent.QEvent.QEvent>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

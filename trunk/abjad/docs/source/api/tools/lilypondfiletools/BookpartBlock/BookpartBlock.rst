@@ -4,7 +4,17 @@ lilypondfiletools.BookpartBlock
 .. abjad-lineage:: abjad.tools.lilypondfiletools.BookpartBlock.BookpartBlock.BookpartBlock
 
 .. autoclass:: abjad.tools.lilypondfiletools.BookpartBlock.BookpartBlock.BookpartBlock
-   :noindex:
+
+Bases
+-----
+
+- :class:`lilypondfiletools.NonattributedBlock <abjad.tools.lilypondfiletools.NonattributedBlock.NonattributedBlock.NonattributedBlock>`
+
+- :class:`__builtin__.list <list>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

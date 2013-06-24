@@ -4,7 +4,17 @@ quantizationtools.QGridLeaf
 .. abjad-lineage:: abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf
 
 .. autoclass:: abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf
-   :noindex:
+
+Bases
+-----
+
+- :class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
+
+- :class:`datastructuretools.TreeNode <abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

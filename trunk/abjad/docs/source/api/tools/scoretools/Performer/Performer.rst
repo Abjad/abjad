@@ -4,7 +4,13 @@ scoretools.Performer
 .. abjad-lineage:: abjad.tools.scoretools.Performer.Performer.Performer
 
 .. autoclass:: abjad.tools.scoretools.Performer.Performer.Performer
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

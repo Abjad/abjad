@@ -4,7 +4,15 @@ quantizationtools.WeightedSearchTree
 .. abjad-lineage:: abjad.tools.quantizationtools.WeightedSearchTree.WeightedSearchTree.WeightedSearchTree
 
 .. autoclass:: abjad.tools.quantizationtools.WeightedSearchTree.WeightedSearchTree.WeightedSearchTree
-   :noindex:
+
+Bases
+-----
+
+- :class:`quantizationtools.SearchTree <abjad.tools.quantizationtools.SearchTree.SearchTree.SearchTree>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

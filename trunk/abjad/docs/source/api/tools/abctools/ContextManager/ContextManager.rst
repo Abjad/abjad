@@ -4,7 +4,13 @@ abctools.ContextManager
 .. abjad-lineage:: abjad.tools.abctools.ContextManager.ContextManager.ContextManager
 
 .. autoclass:: abjad.tools.abctools.ContextManager.ContextManager.ContextManager
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

@@ -4,7 +4,23 @@ pitchtools.TwelveToneRow
 .. abjad-lineage:: abjad.tools.pitchtools.TwelveToneRow.TwelveToneRow.TwelveToneRow
 
 .. autoclass:: abjad.tools.pitchtools.TwelveToneRow.TwelveToneRow.TwelveToneRow
-   :noindex:
+
+Bases
+-----
+
+- :class:`pitchtools.NumberedChromaticPitchClassSegment <abjad.tools.pitchtools.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment>`
+
+- :class:`pitchtools.PitchClassSegment <abjad.tools.pitchtools.PitchClassSegment.PitchClassSegment.PitchClassSegment>`
+
+- :class:`pitchtools.Segment <abjad.tools.pitchtools.Segment.Segment.Segment>`
+
+- :class:`__builtin__.tuple <tuple>`
+
+- :class:`abctools.ImmutableAbjadObject <abjad.tools.abctools.ImmutableAbjadObject.ImmutableAbjadObject.ImmutableAbjadObject>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

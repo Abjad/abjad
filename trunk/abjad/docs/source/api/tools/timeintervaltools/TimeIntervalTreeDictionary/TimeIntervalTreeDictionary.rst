@@ -4,7 +4,21 @@ timeintervaltools.TimeIntervalTreeDictionary
 .. abjad-lineage:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary
 
 .. autoclass:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary
-   :noindex:
+
+Bases
+-----
+
+- :class:`timeintervaltools.TimeIntervalAggregateMixin <abjad.tools.timeintervaltools.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin>`
+
+- :class:`timeintervaltools.TimeIntervalMixin <abjad.tools.timeintervaltools.TimeIntervalMixin.TimeIntervalMixin.TimeIntervalMixin>`
+
+- :class:`datastructuretools.ImmutableDictionary <abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary>`
+
+- :class:`__builtin__.dict <dict>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

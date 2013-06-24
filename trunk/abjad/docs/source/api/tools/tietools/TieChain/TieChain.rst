@@ -4,7 +4,15 @@ tietools.TieChain
 .. abjad-lineage:: abjad.tools.tietools.TieChain.TieChain.TieChain
 
 .. autoclass:: abjad.tools.tietools.TieChain.TieChain.TieChain
-   :noindex:
+
+Bases
+-----
+
+- :class:`selectiontools.Selection <abjad.tools.selectiontools.Selection.Selection.Selection>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

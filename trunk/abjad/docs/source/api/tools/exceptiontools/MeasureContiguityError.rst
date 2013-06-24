@@ -4,7 +4,15 @@ exceptiontools.MeasureContiguityError
 .. abjad-lineage:: abjad.tools.exceptiontools.MeasureContiguityError.MeasureContiguityError
 
 .. autoclass:: abjad.tools.exceptiontools.MeasureContiguityError.MeasureContiguityError
-   :noindex:
+
+Bases
+-----
+
+- :class:`exceptions.Exception <exceptions.Exception>`
+
+- :class:`exceptions.BaseException <exceptions.BaseException>`
+
+- :class:`__builtin__.object <object>`
 
 Special methods
 ---------------

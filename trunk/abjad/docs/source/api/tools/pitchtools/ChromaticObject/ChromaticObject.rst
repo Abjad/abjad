@@ -4,7 +4,13 @@ pitchtools.ChromaticObject
 .. abjad-lineage:: abjad.tools.pitchtools.ChromaticObject.ChromaticObject.ChromaticObject
 
 .. autoclass:: abjad.tools.pitchtools.ChromaticObject.ChromaticObject.ChromaticObject
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

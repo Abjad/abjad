@@ -4,7 +4,15 @@ sequencetools.CyclicTree
 .. abjad-lineage:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree
 
 .. autoclass:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree
-   :noindex:
+
+Bases
+-----
+
+- :class:`sequencetools.Tree <abjad.tools.sequencetools.Tree.Tree.Tree>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

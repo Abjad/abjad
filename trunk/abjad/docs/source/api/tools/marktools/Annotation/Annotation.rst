@@ -4,7 +4,15 @@ marktools.Annotation
 .. abjad-lineage:: abjad.tools.marktools.Annotation.Annotation.Annotation
 
 .. autoclass:: abjad.tools.marktools.Annotation.Annotation.Annotation
-   :noindex:
+
+Bases
+-----
+
+- :class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

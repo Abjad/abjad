@@ -4,7 +4,15 @@ pitchtools.MelodicInterval
 .. abjad-lineage:: abjad.tools.pitchtools.MelodicInterval.MelodicInterval.MelodicInterval
 
 .. autoclass:: abjad.tools.pitchtools.MelodicInterval.MelodicInterval.MelodicInterval
-   :noindex:
+
+Bases
+-----
+
+- :class:`pitchtools.Interval <abjad.tools.pitchtools.Interval.Interval.Interval>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

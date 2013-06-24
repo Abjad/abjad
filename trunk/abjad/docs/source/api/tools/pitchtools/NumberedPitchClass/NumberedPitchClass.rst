@@ -4,7 +4,19 @@ pitchtools.NumberedPitchClass
 .. abjad-lineage:: abjad.tools.pitchtools.NumberedPitchClass.NumberedPitchClass.NumberedPitchClass
 
 .. autoclass:: abjad.tools.pitchtools.NumberedPitchClass.NumberedPitchClass.NumberedPitchClass
-   :noindex:
+
+Bases
+-----
+
+- :class:`pitchtools.PitchClass <abjad.tools.pitchtools.PitchClass.PitchClass.PitchClass>`
+
+- :class:`abctools.AttributeEqualityAbjadObject <abjad.tools.abctools.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject>`
+
+- :class:`pitchtools.NumberedObject <abjad.tools.pitchtools.NumberedObject.NumberedObject.NumberedObject>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

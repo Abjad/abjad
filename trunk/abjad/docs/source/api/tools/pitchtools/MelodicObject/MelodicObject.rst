@@ -4,7 +4,13 @@ pitchtools.MelodicObject
 .. abjad-lineage:: abjad.tools.pitchtools.MelodicObject.MelodicObject.MelodicObject
 
 .. autoclass:: abjad.tools.pitchtools.MelodicObject.MelodicObject.MelodicObject
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

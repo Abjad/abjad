@@ -4,7 +4,23 @@ instrumenttools.TenorVoice
 .. abjad-lineage:: abjad.tools.instrumenttools.TenorVoice.TenorVoice.TenorVoice
 
 .. autoclass:: abjad.tools.instrumenttools.TenorVoice.TenorVoice.TenorVoice
-   :noindex:
+
+Bases
+-----
+
+- :class:`instrumenttools.Voice <abjad.tools.instrumenttools.Voice.Voice.Voice>`
+
+- :class:`instrumenttools.Instrument <abjad.tools.instrumenttools.Instrument.Instrument.Instrument>`
+
+- :class:`contexttools.InstrumentMark <abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark>`
+
+- :class:`contexttools.ContextMark <abjad.tools.contexttools.ContextMark.ContextMark.ContextMark>`
+
+- :class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

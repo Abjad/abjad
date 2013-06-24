@@ -4,7 +4,15 @@ scoretemplatetools.GroupedStavesScoreTemplate
 .. abjad-lineage:: abjad.tools.scoretemplatetools.GroupedStavesScoreTemplate.GroupedStavesScoreTemplate.GroupedStavesScoreTemplate
 
 .. autoclass:: abjad.tools.scoretemplatetools.GroupedStavesScoreTemplate.GroupedStavesScoreTemplate.GroupedStavesScoreTemplate
-   :noindex:
+
+Bases
+-----
+
+- :class:`scoretemplatetools.ScoreTemplate <abjad.tools.scoretemplatetools.ScoreTemplate.ScoreTemplate.ScoreTemplate>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

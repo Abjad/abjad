@@ -4,7 +4,13 @@ selectiontools.Selection
 .. abjad-lineage:: abjad.tools.selectiontools.Selection.Selection.Selection
 
 .. autoclass:: abjad.tools.selectiontools.Selection.Selection.Selection
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

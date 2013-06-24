@@ -4,7 +4,23 @@ tonalitytools.ChordClass
 .. abjad-lineage:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass
 
 .. autoclass:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass
-   :noindex:
+
+Bases
+-----
+
+- :class:`pitchtools.NamedChromaticPitchClassSet <abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet>`
+
+- :class:`pitchtools.PitchClassSet <abjad.tools.pitchtools.PitchClassSet.PitchClassSet.PitchClassSet>`
+
+- :class:`pitchtools.Set <abjad.tools.pitchtools.Set.Set.Set>`
+
+- :class:`__builtin__.frozenset <frozenset>`
+
+- :class:`abctools.ImmutableAbjadObject <abjad.tools.abctools.ImmutableAbjadObject.ImmutableAbjadObject.ImmutableAbjadObject>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

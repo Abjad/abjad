@@ -4,7 +4,17 @@ lilypondfiletools.PaperBlock
 .. abjad-lineage:: abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock
 
 .. autoclass:: abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock
-   :noindex:
+
+Bases
+-----
+
+- :class:`lilypondfiletools.AttributedBlock <abjad.tools.lilypondfiletools.AttributedBlock.AttributedBlock.AttributedBlock>`
+
+- :class:`__builtin__.list <list>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

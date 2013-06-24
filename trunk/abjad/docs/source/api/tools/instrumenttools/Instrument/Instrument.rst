@@ -4,7 +4,19 @@ instrumenttools.Instrument
 .. abjad-lineage:: abjad.tools.instrumenttools.Instrument.Instrument.Instrument
 
 .. autoclass:: abjad.tools.instrumenttools.Instrument.Instrument.Instrument
-   :noindex:
+
+Bases
+-----
+
+- :class:`contexttools.InstrumentMark <abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark>`
+
+- :class:`contexttools.ContextMark <abjad.tools.contexttools.ContextMark.ContextMark.ContextMark>`
+
+- :class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

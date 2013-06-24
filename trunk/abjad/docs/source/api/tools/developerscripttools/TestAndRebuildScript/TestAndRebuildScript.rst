@@ -4,7 +4,15 @@ developerscripttools.TestAndRebuildScript
 .. abjad-lineage:: abjad.tools.developerscripttools.TestAndRebuildScript.TestAndRebuildScript.TestAndRebuildScript
 
 .. autoclass:: abjad.tools.developerscripttools.TestAndRebuildScript.TestAndRebuildScript.TestAndRebuildScript
-   :noindex:
+
+Bases
+-----
+
+- :class:`developerscripttools.DeveloperScript <abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

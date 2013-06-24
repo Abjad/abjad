@@ -4,7 +4,17 @@ contexttools.ClefMark
 .. abjad-lineage:: abjad.tools.contexttools.ClefMark.ClefMark.ClefMark
 
 .. autoclass:: abjad.tools.contexttools.ClefMark.ClefMark.ClefMark
-   :noindex:
+
+Bases
+-----
+
+- :class:`contexttools.ContextMark <abjad.tools.contexttools.ContextMark.ContextMark.ContextMark>`
+
+- :class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

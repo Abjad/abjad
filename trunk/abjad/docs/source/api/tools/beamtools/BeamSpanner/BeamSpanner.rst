@@ -4,7 +4,17 @@ beamtools.BeamSpanner
 .. abjad-lineage:: abjad.tools.beamtools.BeamSpanner.BeamSpanner.BeamSpanner
 
 .. autoclass:: abjad.tools.beamtools.BeamSpanner.BeamSpanner.BeamSpanner
-   :noindex:
+
+Bases
+-----
+
+- :class:`spannertools.DirectedSpanner <abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner>`
+
+- :class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

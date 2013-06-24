@@ -4,7 +4,23 @@ pitchtools.MelodicChromaticIntervalClass
 .. abjad-lineage:: abjad.tools.pitchtools.MelodicChromaticIntervalClass.MelodicChromaticIntervalClass.MelodicChromaticIntervalClass
 
 .. autoclass:: abjad.tools.pitchtools.MelodicChromaticIntervalClass.MelodicChromaticIntervalClass.MelodicChromaticIntervalClass
-   :noindex:
+
+Bases
+-----
+
+- :class:`pitchtools.ChromaticIntervalClass <abjad.tools.pitchtools.ChromaticIntervalClass.ChromaticIntervalClass.ChromaticIntervalClass>`
+
+- :class:`pitchtools.MelodicIntervalClass <abjad.tools.pitchtools.MelodicIntervalClass.MelodicIntervalClass.MelodicIntervalClass>`
+
+- :class:`pitchtools.IntervalClass <abjad.tools.pitchtools.IntervalClass.IntervalClass.IntervalClass>`
+
+- :class:`pitchtools.ChromaticObject <abjad.tools.pitchtools.ChromaticObject.ChromaticObject.ChromaticObject>`
+
+- :class:`pitchtools.MelodicObject <abjad.tools.pitchtools.MelodicObject.MelodicObject.MelodicObject>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

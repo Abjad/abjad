@@ -4,7 +4,19 @@ rhythmmakertools.OutputBurnishedTaleaRhythmMaker
 .. abjad-lineage:: abjad.tools.rhythmmakertools.OutputBurnishedTaleaRhythmMaker.OutputBurnishedTaleaRhythmMaker.OutputBurnishedTaleaRhythmMaker
 
 .. autoclass:: abjad.tools.rhythmmakertools.OutputBurnishedTaleaRhythmMaker.OutputBurnishedTaleaRhythmMaker.OutputBurnishedTaleaRhythmMaker
-   :noindex:
+
+Bases
+-----
+
+- :class:`rhythmmakertools.BurnishedRhythmMaker <abjad.tools.rhythmmakertools.BurnishedRhythmMaker.BurnishedRhythmMaker.BurnishedRhythmMaker>`
+
+- :class:`rhythmmakertools.RhythmMaker <abjad.tools.rhythmmakertools.RhythmMaker.RhythmMaker.RhythmMaker>`
+
+- :class:`abctools.Maker <abjad.tools.abctools.Maker.Maker.Maker>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

@@ -4,7 +4,15 @@ quantizationtools.SerialJobHandler
 .. abjad-lineage:: abjad.tools.quantizationtools.SerialJobHandler.SerialJobHandler.SerialJobHandler
 
 .. autoclass:: abjad.tools.quantizationtools.SerialJobHandler.SerialJobHandler.SerialJobHandler
-   :noindex:
+
+Bases
+-----
+
+- :class:`quantizationtools.JobHandler <abjad.tools.quantizationtools.JobHandler.JobHandler.JobHandler>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

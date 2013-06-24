@@ -4,7 +4,19 @@ rhythmtreetools.RhythmTreeContainer
 .. abjad-lineage:: abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer
 
 .. autoclass:: abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer
-   :noindex:
+
+Bases
+-----
+
+- :class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
+
+- :class:`datastructuretools.TreeContainer <abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer>`
+
+- :class:`datastructuretools.TreeNode <abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

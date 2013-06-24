@@ -4,7 +4,15 @@ timespantools.Timespan
 .. abjad-lineage:: abjad.tools.timespantools.Timespan.Timespan.Timespan
 
 .. autoclass:: abjad.tools.timespantools.Timespan.Timespan.Timespan
-   :noindex:
+
+Bases
+-----
+
+- :class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

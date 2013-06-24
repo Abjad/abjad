@@ -4,7 +4,15 @@ documentationtools.ReSTTOCItem
 .. abjad-lineage:: abjad.tools.documentationtools.ReSTTOCItem.ReSTTOCItem.ReSTTOCItem
 
 .. autoclass:: abjad.tools.documentationtools.ReSTTOCItem.ReSTTOCItem.ReSTTOCItem
-   :noindex:
+
+Bases
+-----
+
+- :class:`datastructuretools.TreeNode <abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

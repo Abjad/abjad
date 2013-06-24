@@ -4,7 +4,15 @@ lilypondproxytools.LilyPondContextSettingComponentPlugIn
 .. abjad-lineage:: abjad.tools.lilypondproxytools.LilyPondContextSettingComponentPlugIn.LilyPondContextSettingComponentPlugIn.LilyPondContextSettingComponentPlugIn
 
 .. autoclass:: abjad.tools.lilypondproxytools.LilyPondContextSettingComponentPlugIn.LilyPondContextSettingComponentPlugIn.LilyPondContextSettingComponentPlugIn
-   :noindex:
+
+Bases
+-----
+
+- :class:`lilypondproxytools.LilyPondComponentPlugIn <abjad.tools.lilypondproxytools.LilyPondComponentPlugIn.LilyPondComponentPlugIn.LilyPondComponentPlugIn>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

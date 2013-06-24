@@ -4,7 +4,13 @@ schemetools.Scheme
 .. abjad-lineage:: abjad.tools.schemetools.Scheme.Scheme.Scheme
 
 .. autoclass:: abjad.tools.schemetools.Scheme.Scheme.Scheme
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

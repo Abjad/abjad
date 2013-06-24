@@ -4,7 +4,13 @@ documentationtools.GraphvizObject
 .. abjad-lineage:: abjad.tools.documentationtools.GraphvizObject.GraphvizObject.GraphvizObject
 
 .. autoclass:: abjad.tools.documentationtools.GraphvizObject.GraphvizObject.GraphvizObject
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

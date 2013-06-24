@@ -4,7 +4,15 @@ marktools.LilyPondComment
 .. abjad-lineage:: abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment
 
 .. autoclass:: abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment
-   :noindex:
+
+Bases
+-----
+
+- :class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

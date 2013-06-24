@@ -4,7 +4,17 @@ lilypondfiletools.HeaderBlock
 .. abjad-lineage:: abjad.tools.lilypondfiletools.HeaderBlock.HeaderBlock.HeaderBlock
 
 .. autoclass:: abjad.tools.lilypondfiletools.HeaderBlock.HeaderBlock.HeaderBlock
-   :noindex:
+
+Bases
+-----
+
+- :class:`lilypondfiletools.AttributedBlock <abjad.tools.lilypondfiletools.AttributedBlock.AttributedBlock.AttributedBlock>`
+
+- :class:`__builtin__.list <list>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

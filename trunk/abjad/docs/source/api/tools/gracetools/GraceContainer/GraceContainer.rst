@@ -4,7 +4,17 @@ gracetools.GraceContainer
 .. abjad-lineage:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer
 
 .. autoclass:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer
-   :noindex:
+
+Bases
+-----
+
+- :class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
+
+- :class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

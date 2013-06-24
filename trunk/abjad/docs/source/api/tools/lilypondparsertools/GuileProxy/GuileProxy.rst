@@ -4,7 +4,13 @@ lilypondparsertools.GuileProxy
 .. abjad-lineage:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy
 
 .. autoclass:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

@@ -4,7 +4,17 @@ spannertools.SlurSpanner
 .. abjad-lineage:: abjad.tools.spannertools.SlurSpanner.SlurSpanner.SlurSpanner
 
 .. autoclass:: abjad.tools.spannertools.SlurSpanner.SlurSpanner.SlurSpanner
-   :noindex:
+
+Bases
+-----
+
+- :class:`spannertools.DirectedSpanner <abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner>`
+
+- :class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

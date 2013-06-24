@@ -4,7 +4,15 @@ timerelationtools.TimespanTimespanTimeRelation
 .. abjad-lineage:: abjad.tools.timerelationtools.TimespanTimespanTimeRelation.TimespanTimespanTimeRelation.TimespanTimespanTimeRelation
 
 .. autoclass:: abjad.tools.timerelationtools.TimespanTimespanTimeRelation.TimespanTimespanTimeRelation.TimespanTimespanTimeRelation
-   :noindex:
+
+Bases
+-----
+
+- :class:`timerelationtools.TimeRelation <abjad.tools.timerelationtools.TimeRelation.TimeRelation.TimeRelation>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

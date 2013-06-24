@@ -4,7 +4,13 @@ documentationtools.InheritanceGraph
 .. abjad-lineage:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph
 
 .. autoclass:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

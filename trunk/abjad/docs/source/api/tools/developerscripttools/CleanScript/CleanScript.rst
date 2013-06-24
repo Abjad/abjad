@@ -4,7 +4,17 @@ developerscripttools.CleanScript
 .. abjad-lineage:: abjad.tools.developerscripttools.CleanScript.CleanScript.CleanScript
 
 .. autoclass:: abjad.tools.developerscripttools.CleanScript.CleanScript.CleanScript
-   :noindex:
+
+Bases
+-----
+
+- :class:`developerscripttools.DirectoryScript <abjad.tools.developerscripttools.DirectoryScript.DirectoryScript.DirectoryScript>`
+
+- :class:`developerscripttools.DeveloperScript <abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

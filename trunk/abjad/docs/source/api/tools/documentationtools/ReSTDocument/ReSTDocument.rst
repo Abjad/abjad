@@ -4,7 +4,17 @@ documentationtools.ReSTDocument
 .. abjad-lineage:: abjad.tools.documentationtools.ReSTDocument.ReSTDocument.ReSTDocument
 
 .. autoclass:: abjad.tools.documentationtools.ReSTDocument.ReSTDocument.ReSTDocument
-   :noindex:
+
+Bases
+-----
+
+- :class:`datastructuretools.TreeContainer <abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer>`
+
+- :class:`datastructuretools.TreeNode <abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

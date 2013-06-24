@@ -4,7 +4,15 @@ exceptiontools.InstrumentError
 .. abjad-lineage:: abjad.tools.exceptiontools.InstrumentError.InstrumentError
 
 .. autoclass:: abjad.tools.exceptiontools.InstrumentError.InstrumentError
-   :noindex:
+
+Bases
+-----
+
+- :class:`exceptions.Exception <exceptions.Exception>`
+
+- :class:`exceptions.BaseException <exceptions.BaseException>`
+
+- :class:`__builtin__.object <object>`
 
 Special methods
 ---------------

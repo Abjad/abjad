@@ -4,7 +4,15 @@ iotools.RedirectedStreams
 .. abjad-lineage:: abjad.tools.iotools.RedirectedStreams.RedirectedStreams.RedirectedStreams
 
 .. autoclass:: abjad.tools.iotools.RedirectedStreams.RedirectedStreams.RedirectedStreams
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.ContextManager <abjad.tools.abctools.ContextManager.ContextManager.ContextManager>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

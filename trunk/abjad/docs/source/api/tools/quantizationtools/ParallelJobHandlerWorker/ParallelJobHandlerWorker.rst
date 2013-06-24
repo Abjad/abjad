@@ -4,7 +4,15 @@ quantizationtools.ParallelJobHandlerWorker
 .. abjad-lineage:: abjad.tools.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker
 
 .. autoclass:: abjad.tools.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker
-   :noindex:
+
+Bases
+-----
+
+- :class:`multiprocessing.process.Process <multiprocessing.process.Process>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

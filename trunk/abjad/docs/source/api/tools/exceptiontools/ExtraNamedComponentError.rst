@@ -4,7 +4,15 @@ exceptiontools.ExtraNamedComponentError
 .. abjad-lineage:: abjad.tools.exceptiontools.ExtraNamedComponentError.ExtraNamedComponentError
 
 .. autoclass:: abjad.tools.exceptiontools.ExtraNamedComponentError.ExtraNamedComponentError
-   :noindex:
+
+Bases
+-----
+
+- :class:`exceptions.Exception <exceptions.Exception>`
+
+- :class:`exceptions.BaseException <exceptions.BaseException>`
+
+- :class:`__builtin__.object <object>`
 
 Special methods
 ---------------

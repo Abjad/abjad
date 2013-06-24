@@ -4,7 +4,17 @@ pitchtools.Pitch
 .. abjad-lineage:: abjad.tools.pitchtools.Pitch.Pitch.Pitch
 
 .. autoclass:: abjad.tools.pitchtools.Pitch.Pitch.Pitch
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.SortableAttributeEqualityAbjadObject <abjad.tools.abctools.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject>`
+
+- :class:`abctools.AttributeEqualityAbjadObject <abjad.tools.abctools.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

@@ -4,7 +4,13 @@ abjadbooktools.CodeBlock
 .. abjad-lineage:: abjad.tools.abjadbooktools.CodeBlock.CodeBlock.CodeBlock
 
 .. autoclass:: abjad.tools.abjadbooktools.CodeBlock.CodeBlock.CodeBlock
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

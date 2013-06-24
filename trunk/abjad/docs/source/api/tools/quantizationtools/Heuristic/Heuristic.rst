@@ -4,7 +4,13 @@ quantizationtools.Heuristic
 .. abjad-lineage:: abjad.tools.quantizationtools.Heuristic.Heuristic.Heuristic
 
 .. autoclass:: abjad.tools.quantizationtools.Heuristic.Heuristic.Heuristic
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

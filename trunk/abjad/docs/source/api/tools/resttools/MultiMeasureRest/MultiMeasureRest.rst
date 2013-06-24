@@ -4,7 +4,19 @@ resttools.MultiMeasureRest
 .. abjad-lineage:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest
 
 .. autoclass:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest
-   :noindex:
+
+Bases
+-----
+
+- :class:`resttools.Rest <abjad.tools.resttools.Rest.Rest.Rest>`
+
+- :class:`leaftools.Leaf <abjad.tools.leaftools.Leaf.Leaf.Leaf>`
+
+- :class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

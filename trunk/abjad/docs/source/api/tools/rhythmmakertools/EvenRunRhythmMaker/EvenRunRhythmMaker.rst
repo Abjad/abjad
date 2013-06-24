@@ -4,7 +4,17 @@ rhythmmakertools.EvenRunRhythmMaker
 .. abjad-lineage:: abjad.tools.rhythmmakertools.EvenRunRhythmMaker.EvenRunRhythmMaker.EvenRunRhythmMaker
 
 .. autoclass:: abjad.tools.rhythmmakertools.EvenRunRhythmMaker.EvenRunRhythmMaker.EvenRunRhythmMaker
-   :noindex:
+
+Bases
+-----
+
+- :class:`rhythmmakertools.RhythmMaker <abjad.tools.rhythmmakertools.RhythmMaker.RhythmMaker.RhythmMaker>`
+
+- :class:`abctools.Maker <abjad.tools.abctools.Maker.Maker.Maker>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

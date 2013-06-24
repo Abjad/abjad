@@ -4,7 +4,15 @@ quantizationtools.CollapsingGraceHandler
 .. abjad-lineage:: abjad.tools.quantizationtools.CollapsingGraceHandler.CollapsingGraceHandler.CollapsingGraceHandler
 
 .. autoclass:: abjad.tools.quantizationtools.CollapsingGraceHandler.CollapsingGraceHandler.CollapsingGraceHandler
-   :noindex:
+
+Bases
+-----
+
+- :class:`quantizationtools.GraceHandler <abjad.tools.quantizationtools.GraceHandler.GraceHandler.GraceHandler>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

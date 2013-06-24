@@ -4,7 +4,15 @@ exceptiontools.PitchError
 .. abjad-lineage:: abjad.tools.exceptiontools.PitchError.PitchError
 
 .. autoclass:: abjad.tools.exceptiontools.PitchError.PitchError
-   :noindex:
+
+Bases
+-----
+
+- :class:`exceptions.Exception <exceptions.Exception>`
+
+- :class:`exceptions.BaseException <exceptions.BaseException>`
+
+- :class:`__builtin__.object <object>`
 
 Special methods
 ---------------

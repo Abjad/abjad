@@ -4,7 +4,17 @@ notetools.Note
 .. abjad-lineage:: abjad.tools.notetools.Note.Note.Note
 
 .. autoclass:: abjad.tools.notetools.Note.Note.Note
-   :noindex:
+
+Bases
+-----
+
+- :class:`leaftools.Leaf <abjad.tools.leaftools.Leaf.Leaf.Leaf>`
+
+- :class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

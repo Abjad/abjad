@@ -4,7 +4,17 @@ pitchtools.HarmonicInterval
 .. abjad-lineage:: abjad.tools.pitchtools.HarmonicInterval.HarmonicInterval.HarmonicInterval
 
 .. autoclass:: abjad.tools.pitchtools.HarmonicInterval.HarmonicInterval.HarmonicInterval
-   :noindex:
+
+Bases
+-----
+
+- :class:`pitchtools.Interval <abjad.tools.pitchtools.Interval.Interval.Interval>`
+
+- :class:`pitchtools.HarmonicObject <abjad.tools.pitchtools.HarmonicObject.HarmonicObject.HarmonicObject>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

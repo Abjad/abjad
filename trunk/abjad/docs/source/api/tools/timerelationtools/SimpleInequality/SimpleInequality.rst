@@ -4,7 +4,13 @@ timerelationtools.SimpleInequality
 .. abjad-lineage:: abjad.tools.timerelationtools.SimpleInequality.SimpleInequality.SimpleInequality
 
 .. autoclass:: abjad.tools.timerelationtools.SimpleInequality.SimpleInequality.SimpleInequality
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

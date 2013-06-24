@@ -4,7 +4,21 @@ rhythmmakertools.OutputIncisedRestRhythmMaker
 .. abjad-lineage:: abjad.tools.rhythmmakertools.OutputIncisedRestRhythmMaker.OutputIncisedRestRhythmMaker.OutputIncisedRestRhythmMaker
 
 .. autoclass:: abjad.tools.rhythmmakertools.OutputIncisedRestRhythmMaker.OutputIncisedRestRhythmMaker.OutputIncisedRestRhythmMaker
-   :noindex:
+
+Bases
+-----
+
+- :class:`rhythmmakertools.OutputIncisedRhythmMaker <abjad.tools.rhythmmakertools.OutputIncisedRhythmMaker.OutputIncisedRhythmMaker.OutputIncisedRhythmMaker>`
+
+- :class:`rhythmmakertools.IncisedRhythmMaker <abjad.tools.rhythmmakertools.IncisedRhythmMaker.IncisedRhythmMaker.IncisedRhythmMaker>`
+
+- :class:`rhythmmakertools.RhythmMaker <abjad.tools.rhythmmakertools.RhythmMaker.RhythmMaker.RhythmMaker>`
+
+- :class:`abctools.Maker <abjad.tools.abctools.Maker.Maker.Maker>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

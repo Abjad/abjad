@@ -4,7 +4,15 @@ wellformednesstools.EmptyContainerCheck
 .. abjad-lineage:: abjad.tools.wellformednesstools.EmptyContainerCheck.EmptyContainerCheck.EmptyContainerCheck
 
 .. autoclass:: abjad.tools.wellformednesstools.EmptyContainerCheck.EmptyContainerCheck.EmptyContainerCheck
-   :noindex:
+
+Bases
+-----
+
+- :class:`wellformednesstools.Check <abjad.tools.wellformednesstools.Check.Check.Check>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

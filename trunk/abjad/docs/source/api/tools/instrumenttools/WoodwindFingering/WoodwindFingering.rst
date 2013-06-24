@@ -4,7 +4,13 @@ instrumenttools.WoodwindFingering
 .. abjad-lineage:: abjad.tools.instrumenttools.WoodwindFingering.WoodwindFingering.WoodwindFingering
 
 .. autoclass:: abjad.tools.instrumenttools.WoodwindFingering.WoodwindFingering.WoodwindFingering
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

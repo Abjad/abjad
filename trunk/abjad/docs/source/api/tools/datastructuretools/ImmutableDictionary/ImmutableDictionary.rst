@@ -4,7 +4,15 @@ datastructuretools.ImmutableDictionary
 .. abjad-lineage:: abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary
 
 .. autoclass:: abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary
-   :noindex:
+
+Bases
+-----
+
+- :class:`__builtin__.dict <dict>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

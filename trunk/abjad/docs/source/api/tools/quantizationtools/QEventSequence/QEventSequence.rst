@@ -4,7 +4,17 @@ quantizationtools.QEventSequence
 .. abjad-lineage:: abjad.tools.quantizationtools.QEventSequence.QEventSequence.QEventSequence
 
 .. autoclass:: abjad.tools.quantizationtools.QEventSequence.QEventSequence.QEventSequence
-   :noindex:
+
+Bases
+-----
+
+- :class:`__builtin__.tuple <tuple>`
+
+- :class:`abctools.ImmutableAbjadObject <abjad.tools.abctools.ImmutableAbjadObject.ImmutableAbjadObject.ImmutableAbjadObject>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

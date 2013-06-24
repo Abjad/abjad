@@ -4,7 +4,17 @@ pitchtools.CounterpointIntervalClass
 .. abjad-lineage:: abjad.tools.pitchtools.CounterpointIntervalClass.CounterpointIntervalClass.CounterpointIntervalClass
 
 .. autoclass:: abjad.tools.pitchtools.CounterpointIntervalClass.CounterpointIntervalClass.CounterpointIntervalClass
-   :noindex:
+
+Bases
+-----
+
+- :class:`pitchtools.IntervalClass <abjad.tools.pitchtools.IntervalClass.IntervalClass.IntervalClass>`
+
+- :class:`pitchtools.CounterpointObject <abjad.tools.pitchtools.CounterpointObject.CounterpointObject.CounterpointObject>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

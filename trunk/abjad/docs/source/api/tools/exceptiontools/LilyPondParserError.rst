@@ -4,7 +4,15 @@ exceptiontools.LilyPondParserError
 .. abjad-lineage:: abjad.tools.exceptiontools.LilyPondParserError.LilyPondParserError
 
 .. autoclass:: abjad.tools.exceptiontools.LilyPondParserError.LilyPondParserError
-   :noindex:
+
+Bases
+-----
+
+- :class:`exceptions.Exception <exceptions.Exception>`
+
+- :class:`exceptions.BaseException <exceptions.BaseException>`
+
+- :class:`__builtin__.object <object>`
 
 Special methods
 ---------------

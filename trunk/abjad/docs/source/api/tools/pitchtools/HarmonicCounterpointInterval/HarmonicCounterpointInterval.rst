@@ -4,7 +4,23 @@ pitchtools.HarmonicCounterpointInterval
 .. abjad-lineage:: abjad.tools.pitchtools.HarmonicCounterpointInterval.HarmonicCounterpointInterval.HarmonicCounterpointInterval
 
 .. autoclass:: abjad.tools.pitchtools.HarmonicCounterpointInterval.HarmonicCounterpointInterval.HarmonicCounterpointInterval
-   :noindex:
+
+Bases
+-----
+
+- :class:`pitchtools.CounterpointInterval <abjad.tools.pitchtools.CounterpointInterval.CounterpointInterval.CounterpointInterval>`
+
+- :class:`pitchtools.HarmonicInterval <abjad.tools.pitchtools.HarmonicInterval.HarmonicInterval.HarmonicInterval>`
+
+- :class:`pitchtools.Interval <abjad.tools.pitchtools.Interval.Interval.Interval>`
+
+- :class:`pitchtools.CounterpointObject <abjad.tools.pitchtools.CounterpointObject.CounterpointObject.CounterpointObject>`
+
+- :class:`pitchtools.HarmonicObject <abjad.tools.pitchtools.HarmonicObject.HarmonicObject.HarmonicObject>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

@@ -4,7 +4,19 @@ pitchtools.HarmonicChromaticIntervalClassVector
 .. abjad-lineage:: abjad.tools.pitchtools.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector
 
 .. autoclass:: abjad.tools.pitchtools.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector
-   :noindex:
+
+Bases
+-----
+
+- :class:`pitchtools.Vector <abjad.tools.pitchtools.Vector.Vector.Vector>`
+
+- :class:`datastructuretools.ImmutableDictionary <abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary>`
+
+- :class:`__builtin__.dict <dict>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

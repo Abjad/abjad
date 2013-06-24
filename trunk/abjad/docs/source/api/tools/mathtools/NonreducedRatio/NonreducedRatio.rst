@@ -4,7 +4,17 @@ mathtools.NonreducedRatio
 .. abjad-lineage:: abjad.tools.mathtools.NonreducedRatio.NonreducedRatio.NonreducedRatio
 
 .. autoclass:: abjad.tools.mathtools.NonreducedRatio.NonreducedRatio.NonreducedRatio
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.ImmutableAbjadObject <abjad.tools.abctools.ImmutableAbjadObject.ImmutableAbjadObject.ImmutableAbjadObject>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.tuple <tuple>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

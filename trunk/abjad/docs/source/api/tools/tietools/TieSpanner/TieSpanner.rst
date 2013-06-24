@@ -4,7 +4,17 @@ tietools.TieSpanner
 .. abjad-lineage:: abjad.tools.tietools.TieSpanner.TieSpanner.TieSpanner
 
 .. autoclass:: abjad.tools.tietools.TieSpanner.TieSpanner.TieSpanner
-   :noindex:
+
+Bases
+-----
+
+- :class:`spannertools.DirectedSpanner <abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner>`
+
+- :class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

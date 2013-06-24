@@ -4,7 +4,15 @@ wellformednesstools.OverlappingOctavationCheck
 .. abjad-lineage:: abjad.tools.wellformednesstools.OverlappingOctavationCheck.OverlappingOctavationCheck.OverlappingOctavationCheck
 
 .. autoclass:: abjad.tools.wellformednesstools.OverlappingOctavationCheck.OverlappingOctavationCheck.OverlappingOctavationCheck
-   :noindex:
+
+Bases
+-----
+
+- :class:`wellformednesstools.Check <abjad.tools.wellformednesstools.Check.Check.Check>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

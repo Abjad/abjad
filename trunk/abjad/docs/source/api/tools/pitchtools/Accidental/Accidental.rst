@@ -4,7 +4,13 @@ pitchtools.Accidental
 .. abjad-lineage:: abjad.tools.pitchtools.Accidental.Accidental.Accidental
 
 .. autoclass:: abjad.tools.pitchtools.Accidental.Accidental.Accidental
-   :noindex:
+
+Bases
+-----
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

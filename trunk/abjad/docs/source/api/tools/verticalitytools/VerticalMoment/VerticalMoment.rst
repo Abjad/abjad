@@ -4,7 +4,15 @@ verticalitytools.VerticalMoment
 .. abjad-lineage:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment
 
 .. autoclass:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment
-   :noindex:
+
+Bases
+-----
+
+- :class:`selectiontools.Selection <abjad.tools.selectiontools.Selection.Selection.Selection>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

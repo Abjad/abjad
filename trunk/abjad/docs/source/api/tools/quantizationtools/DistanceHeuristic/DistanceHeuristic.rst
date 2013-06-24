@@ -4,7 +4,15 @@ quantizationtools.DistanceHeuristic
 .. abjad-lineage:: abjad.tools.quantizationtools.DistanceHeuristic.DistanceHeuristic.DistanceHeuristic
 
 .. autoclass:: abjad.tools.quantizationtools.DistanceHeuristic.DistanceHeuristic.DistanceHeuristic
-   :noindex:
+
+Bases
+-----
+
+- :class:`quantizationtools.Heuristic <abjad.tools.quantizationtools.Heuristic.Heuristic.Heuristic>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

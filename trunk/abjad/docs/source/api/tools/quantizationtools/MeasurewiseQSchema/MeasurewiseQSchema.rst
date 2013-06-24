@@ -4,7 +4,15 @@ quantizationtools.MeasurewiseQSchema
 .. abjad-lineage:: abjad.tools.quantizationtools.MeasurewiseQSchema.MeasurewiseQSchema.MeasurewiseQSchema
 
 .. autoclass:: abjad.tools.quantizationtools.MeasurewiseQSchema.MeasurewiseQSchema.MeasurewiseQSchema
-   :noindex:
+
+Bases
+-----
+
+- :class:`quantizationtools.QSchema <abjad.tools.quantizationtools.QSchema.QSchema.QSchema>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

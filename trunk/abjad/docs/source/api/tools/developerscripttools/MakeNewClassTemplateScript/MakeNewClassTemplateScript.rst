@@ -4,7 +4,15 @@ developerscripttools.MakeNewClassTemplateScript
 .. abjad-lineage:: abjad.tools.developerscripttools.MakeNewClassTemplateScript.MakeNewClassTemplateScript.MakeNewClassTemplateScript
 
 .. autoclass:: abjad.tools.developerscripttools.MakeNewClassTemplateScript.MakeNewClassTemplateScript.MakeNewClassTemplateScript
-   :noindex:
+
+Bases
+-----
+
+- :class:`developerscripttools.DeveloperScript <abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

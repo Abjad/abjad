@@ -4,7 +4,17 @@ resttools.Rest
 .. abjad-lineage:: abjad.tools.resttools.Rest.Rest.Rest
 
 .. autoclass:: abjad.tools.resttools.Rest.Rest.Rest
-   :noindex:
+
+Bases
+-----
+
+- :class:`leaftools.Leaf <abjad.tools.leaftools.Leaf.Leaf.Leaf>`
+
+- :class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------
