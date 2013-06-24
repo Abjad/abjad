@@ -82,6 +82,12 @@ vnoremap <F6> :s/^/#/<cr>
 " folding
 noremap <leader>zm zMzr
 
+" hjkl navigation only
+noremap   <Up>     <NOP>
+noremap   <Down>   <NOP>
+noremap   <Left>   <NOP>
+noremap   <Right>  <NOP>
+
 " indentation 
 vnoremap < <gv
 vnoremap > >gv
