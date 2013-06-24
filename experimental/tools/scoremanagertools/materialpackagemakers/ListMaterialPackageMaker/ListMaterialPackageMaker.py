@@ -1,4 +1,4 @@
-from experimental.tools.scoremanagertools import menuing
+from experimental.tools.scoremanagertools import io
 from experimental.tools.scoremanagertools.editors.ListEditor import ListEditor
 from experimental.tools.scoremanagertools.materialpackagemakers.MaterialPackageMaker import MaterialPackageMaker
 

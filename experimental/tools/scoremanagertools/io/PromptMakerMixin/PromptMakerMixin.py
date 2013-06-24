@@ -22,7 +22,7 @@ class PromptMakerMixin(AbjadObject):
         target_menu_section=None,
         ):
         from experimental.tools import scoremanagertools
-        prompt = scoremanagertools.menuing.UserInputGetterPrompt(
+        prompt = scoremanagertools.io.UserInputGetterPrompt(
             spaced_attribute_name, 
             help_template=help_template,
             validation_function=validation_function,

@@ -151,8 +151,8 @@ class MenuEntry(AbjadObject):
         '''Menu entry storage format:
 
             >>> z(menu_entry)
-            menuing.MenuEntry(
-                menuing.MenuSection(
+            io.MenuEntry(
+                io.MenuSection(
                     return_value_attribute='key',
                     indent_level=1,
                     is_hidden=False,

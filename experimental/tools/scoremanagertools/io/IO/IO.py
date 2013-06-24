@@ -144,7 +144,7 @@ class IO(AbjadObject):
 
     def make_default_hidden_section(self):
         from experimental.tools import scoremanagertools
-        hidden_section = scoremanagertools.menuing.MenuSection()
+        hidden_section = scoremanagertools.io.MenuSection()
         hidden_section.return_value_attribute = 'key'
         hidden_section.is_hidden = True
         hidden_section.append(('back', 'b'))
@@ -165,7 +165,7 @@ class IO(AbjadObject):
 
     def make_getter(self, where=None):
         from experimental.tools import scoremanagertools
-        return scoremanagertools.menuing.UserInputGetter(
+        return scoremanagertools.io.UserInputGetter(
             where=where, session=self._session)
 
     def make_menu(self, 
@@ -177,7 +177,7 @@ class IO(AbjadObject):
         return_value_attribute='display_string',
         ):
         from experimental.tools import scoremanagertools
-        menu = scoremanagertools.menuing.Menu(
+        menu = scoremanagertools.io.Menu(
             where=where, 
             session=self._session,
             )

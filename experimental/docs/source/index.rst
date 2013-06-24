@@ -538,7 +538,7 @@ Unstable packages (load manually)
       :maxdepth: 1
 
       tools/scoremanagertools/core/ScoreManagerObject/ScoreManagerObject
-      tools/scoremanagertools/menuing/PromptMakerMixin/PromptMakerMixin
+      tools/scoremanagertools/io/PromptMakerMixin/PromptMakerMixin
       tools/scoremanagertools/proxies/FilesystemAssetProxy/FilesystemAssetProxy
       tools/scoremanagertools/specifiers/DynamicSpecifier/DynamicSpecifier
       tools/scoremanagertools/specifiers/ParameterSpecifier/ParameterSpecifier
@@ -614,6 +614,12 @@ Unstable packages (load manually)
       tools/scoremanagertools/editors/TrillSpecifierEditor/TrillSpecifierEditor
       tools/scoremanagertools/editors/TropingSpecifierEditor/TropingSpecifierEditor
       tools/scoremanagertools/editors/UserInputWrapper/UserInputWrapper
+      tools/scoremanagertools/io/IO/IO
+      tools/scoremanagertools/io/Menu/Menu
+      tools/scoremanagertools/io/MenuEntry/MenuEntry
+      tools/scoremanagertools/io/MenuSection/MenuSection
+      tools/scoremanagertools/io/UserInputGetter/UserInputGetter
+      tools/scoremanagertools/io/UserInputGetterPrompt/UserInputGetterPrompt
       tools/scoremanagertools/materialpackagemakers/ArticulationHandlerMaterialPackageMaker/ArticulationHandlerMaterialPackageMaker
       tools/scoremanagertools/materialpackagemakers/DynamicHandlerMaterialPackageMaker/DynamicHandlerMaterialPackageMaker
       tools/scoremanagertools/materialpackagemakers/FunctionInputMaterialPackageMaker/FunctionInputMaterialPackageMaker
@@ -626,12 +632,6 @@ Unstable packages (load manually)
       tools/scoremanagertools/materialpackagemakers/RhythmMakerMaterialPackageMaker/RhythmMakerMaterialPackageMaker
       tools/scoremanagertools/materialpackagemakers/SargassoMeasureMaterialPackageMaker/SargassoMeasureMaterialPackageMaker
       tools/scoremanagertools/materialpackagemakers/TempoMarkInventoryMaterialPackageMaker/TempoMarkInventoryMaterialPackageMaker
-      tools/scoremanagertools/menuing/IO/IO
-      tools/scoremanagertools/menuing/Menu/Menu
-      tools/scoremanagertools/menuing/MenuEntry/MenuEntry
-      tools/scoremanagertools/menuing/MenuSection/MenuSection
-      tools/scoremanagertools/menuing/UserInputGetter/UserInputGetter
-      tools/scoremanagertools/menuing/UserInputGetterPrompt/UserInputGetterPrompt
       tools/scoremanagertools/proxies/DirectoryProxy/DirectoryProxy
       tools/scoremanagertools/proxies/DistributionDirectoryProxy/DistributionDirectoryProxy
       tools/scoremanagertools/proxies/ExergueDirectoryProxy/ExergueDirectoryProxy
@@ -733,7 +733,7 @@ Unstable packages (load manually)
    .. toctree::
 
       tools/scoremanagertools/core/ScoreManagerObject/ScoreManagerObject
-      tools/scoremanagertools/menuing/PromptMakerMixin/PromptMakerMixin
+      tools/scoremanagertools/io/PromptMakerMixin/PromptMakerMixin
       tools/scoremanagertools/proxies/FilesystemAssetProxy/FilesystemAssetProxy
       tools/scoremanagertools/specifiers/DynamicSpecifier/DynamicSpecifier
       tools/scoremanagertools/specifiers/ParameterSpecifier/ParameterSpecifier
@@ -809,6 +809,12 @@ Unstable packages (load manually)
       tools/scoremanagertools/editors/TrillSpecifierEditor/TrillSpecifierEditor
       tools/scoremanagertools/editors/TropingSpecifierEditor/TropingSpecifierEditor
       tools/scoremanagertools/editors/UserInputWrapper/UserInputWrapper
+      tools/scoremanagertools/io/IO/IO
+      tools/scoremanagertools/io/Menu/Menu
+      tools/scoremanagertools/io/MenuEntry/MenuEntry
+      tools/scoremanagertools/io/MenuSection/MenuSection
+      tools/scoremanagertools/io/UserInputGetter/UserInputGetter
+      tools/scoremanagertools/io/UserInputGetterPrompt/UserInputGetterPrompt
       tools/scoremanagertools/materialpackagemakers/ArticulationHandlerMaterialPackageMaker/ArticulationHandlerMaterialPackageMaker
       tools/scoremanagertools/materialpackagemakers/DynamicHandlerMaterialPackageMaker/DynamicHandlerMaterialPackageMaker
       tools/scoremanagertools/materialpackagemakers/FunctionInputMaterialPackageMaker/FunctionInputMaterialPackageMaker
@@ -821,12 +827,6 @@ Unstable packages (load manually)
       tools/scoremanagertools/materialpackagemakers/RhythmMakerMaterialPackageMaker/RhythmMakerMaterialPackageMaker
       tools/scoremanagertools/materialpackagemakers/SargassoMeasureMaterialPackageMaker/SargassoMeasureMaterialPackageMaker
       tools/scoremanagertools/materialpackagemakers/TempoMarkInventoryMaterialPackageMaker/TempoMarkInventoryMaterialPackageMaker
-      tools/scoremanagertools/menuing/IO/IO
-      tools/scoremanagertools/menuing/Menu/Menu
-      tools/scoremanagertools/menuing/MenuEntry/MenuEntry
-      tools/scoremanagertools/menuing/MenuSection/MenuSection
-      tools/scoremanagertools/menuing/UserInputGetter/UserInputGetter
-      tools/scoremanagertools/menuing/UserInputGetterPrompt/UserInputGetterPrompt
       tools/scoremanagertools/proxies/DirectoryProxy/DirectoryProxy
       tools/scoremanagertools/proxies/DistributionDirectoryProxy/DistributionDirectoryProxy
       tools/scoremanagertools/proxies/ExergueDirectoryProxy/ExergueDirectoryProxy

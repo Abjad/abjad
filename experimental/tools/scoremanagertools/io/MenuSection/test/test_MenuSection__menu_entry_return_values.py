@@ -3,7 +3,7 @@ from experimental import *
 
 def test_MenuSection__menu_entry_return_values_01():
 
-    menu = scoremanagertools.menuing.Menu()
+    menu = scoremanagertools.io.Menu()
     menu._session.push_breadcrumb('location')
     menu_section = menu.make_section(is_numbered=True)
     menu_section.append('apple')
@@ -16,7 +16,7 @@ def test_MenuSection__menu_entry_return_values_01():
     assert menu_section._menu_entry_return_values == \
         menu_section._menu_entry_display_strings
 
-    menu = scoremanagertools.menuing.Menu()
+    menu = scoremanagertools.io.Menu()
     menu._session.push_breadcrumb('location')
     menu_section = menu.make_section()
     menu_section.append('apple')
@@ -29,7 +29,7 @@ def test_MenuSection__menu_entry_return_values_01():
     assert menu_section._menu_entry_return_values == \
         menu_section._menu_entry_display_strings
 
-    menu = scoremanagertools.menuing.Menu()
+    menu = scoremanagertools.io.Menu()
     menu._session.push_breadcrumb('location')
     menu_section = menu.make_section()
     menu_section.return_value_attribute = 'display_string'
@@ -44,7 +44,7 @@ def test_MenuSection__menu_entry_return_values_01():
     assert menu_section._menu_entry_return_values == \
         menu_section._menu_entry_display_strings
 
-    menu = scoremanagertools.menuing.Menu()
+    menu = scoremanagertools.io.Menu()
     menu._session.push_breadcrumb('location')
     menu_section = menu.make_section()
     menu_section.append('apple')
@@ -66,7 +66,7 @@ def test_MenuSection__menu_entry_return_values_02():
     Note that menu_section numbering plays no role in this.
     '''
 
-    menu = scoremanagertools.menuing.Menu()
+    menu = scoremanagertools.io.Menu()
     menu._session.push_breadcrumb('location')
     menu_section = menu.make_section()
     menu_section.return_value_attribute = 'key'
@@ -80,7 +80,7 @@ def test_MenuSection__menu_entry_return_values_02():
     assert menu_section._menu_entry_return_values == \
         menu_section._menu_entry_keys
 
-    menu = scoremanagertools.menuing.Menu()
+    menu = scoremanagertools.io.Menu()
     menu._session.push_breadcrumb('location')
     menu_section = menu.make_section()
     menu_section.return_value_attribute = 'key'
@@ -94,7 +94,7 @@ def test_MenuSection__menu_entry_return_values_02():
     assert menu_section._menu_entry_return_values == \
         menu_section._menu_entry_keys
 
-    menu = scoremanagertools.menuing.Menu()
+    menu = scoremanagertools.io.Menu()
     menu._session.push_breadcrumb('location')
     menu_section = menu.make_section(is_numbered=True)
     menu_section.append(('add something', 'add'))
@@ -107,7 +107,7 @@ def test_MenuSection__menu_entry_return_values_02():
     assert menu_section._menu_entry_return_values == \
         menu_section._menu_entry_display_strings
 
-    menu = scoremanagertools.menuing.Menu()
+    menu = scoremanagertools.io.Menu()
     menu._session.push_breadcrumb('location')
     menu_section = menu.make_section()
     menu_section.append(('add something', 'add'))
@@ -126,7 +126,7 @@ def test_MenuSection__menu_entry_return_values_03():
     You must still set return_value_attribute to 'explicit'.
     '''
 
-    menu = scoremanagertools.menuing.Menu()
+    menu = scoremanagertools.io.Menu()
     menu._session.push_breadcrumb('location')
     menu_section = menu.make_section()
     menu_section.return_value_attribute = 'explicit'

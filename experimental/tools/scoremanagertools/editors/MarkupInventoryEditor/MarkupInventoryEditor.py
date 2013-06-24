@@ -7,7 +7,7 @@ from experimental.tools.scoremanagertools.editors.TargetManifest \
     import TargetManifest
 from experimental.tools.scoremanagertools.editors.MarkupEditor \
     import MarkupEditor
-from experimental.tools.scoremanagertools.menuing.UserInputGetter \
+from experimental.tools.scoremanagertools.io.UserInputGetter \
     import UserInputGetter
 
 

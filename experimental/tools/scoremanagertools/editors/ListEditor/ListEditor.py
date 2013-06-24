@@ -1,7 +1,7 @@
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
 from abjad.tools import stringtools
-from experimental.tools.scoremanagertools import menuing
+from experimental.tools.scoremanagertools import io
 from experimental.tools.scoremanagertools.editors.InteractiveEditor \
     import InteractiveEditor
 from experimental.tools.scoremanagertools.editors.TargetManifest \
@@ -24,7 +24,7 @@ class ListEditor(InteractiveEditor):
     item_creator_class = None
     item_creator_class_kwargs = {}
     item_editor_class = None
-    item_getter_configuration_method = menuing.UserInputGetter.append_expr
+    item_getter_configuration_method = io.UserInputGetter.append_expr
     item_identifier = 'element'
     target_manifest = TargetManifest(list,)
 

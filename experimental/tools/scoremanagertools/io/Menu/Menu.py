@@ -4,7 +4,7 @@ from abjad.tools import mathtools
 from abjad.tools import stringtools
 from experimental.tools.scoremanagertools.core.ScoreManagerObject \
     import ScoreManagerObject
-from experimental.tools.scoremanagertools.menuing.MenuSection \
+from experimental.tools.scoremanagertools.io.MenuSection \
     import MenuSection
 
 
@@ -348,7 +348,7 @@ class Menu(ScoreManagerObject):
         ::
     
             >>> z(menu)
-            menuing.Menu(
+            io.Menu(
                 should_clear_terminal=False
                 )
 
@@ -457,7 +457,7 @@ class Menu(ScoreManagerObject):
         from experimental import scoremanagertools
         assert not (is_numbered and self._has_numbered_section)
         assert not (is_ranged and self._has_ranged_section)
-        menu_section = scoremanagertools.menuing.MenuSection(
+        menu_section = scoremanagertools.io.MenuSection(
             is_hidden=is_hidden,
             is_numbered=is_numbered,
             is_ranged=is_ranged,

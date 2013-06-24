@@ -360,7 +360,7 @@ class MenuSection(AbjadObject):
         ::
 
             >>> z(menu_section)
-            menuing.MenuSection(
+            io.MenuSection(
                 return_value_attribute='key',
                 indent_level=1,
                 is_hidden=False,
@@ -425,5 +425,5 @@ class MenuSection(AbjadObject):
             )
         kwargs = dict(zip(keys, expr))
         kwargs['menu_section'] = self
-        menu_entry = scoremanagertools.menuing.MenuEntry(**kwargs)
+        menu_entry = scoremanagertools.io.MenuEntry(**kwargs)
         self.menu_entries.append(menu_entry)
