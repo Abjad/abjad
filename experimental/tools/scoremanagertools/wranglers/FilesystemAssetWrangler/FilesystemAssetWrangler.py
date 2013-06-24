@@ -100,12 +100,6 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                 self.asset_proxy_class._generic_class_name)
 
     def _make_asset_selection_menu(self, head=None):
-#        menu, menu_section = self._io.make_menu(
-#            where=self._where,
-#            return_value_attribute='key',
-#            menu_entries=menu_entries,
-#            is_numbered=True,
-#            )
         menu = self._io.make_only_menu(where=self._where)
         asset_section = menu.make_asset_section()
         asset_menu_entries = self._make_asset_menu_entries(head=head)
@@ -134,7 +128,9 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                 self.score_package_asset_storehouse_path_infix_parts
             key = os.path.join(*path_parts)
             keys.append(key)
-        return zip(display_strings, keys)
+        #return zip(display_strings, keys)
+        return sequencetools.zip_sequences_cyclically(
+            display_strings, [None], [None], keys)
 
     @abc.abstractmethod
     def _make_main_menu(self, head=None):
@@ -226,12 +222,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def interactively_select_asset_filesystem_path(self, 
         clear=True, cache=False):
         self._session.cache_breadcrumbs(cache=cache)
-        menu, menu_section = self._io.make_menu(
-            where=self._where,
-            return_value_attribute='explicit',
-            is_numbered=True,
-            )
-        menu_section.menu_entries = self._make_asset_menu_entries()
+        menu = self._make_asset_selection_menu()
         while True:
             breadcrumb = self._make_asset_selection_breadcrumb()
             self._session.push_breadcrumb(breadcrumb)
@@ -248,22 +239,22 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         return result
 
     def interactively_select_asset_storehouse_filesystem_path(self,
-        clear=True, cache=False,
+        clear=True, 
+        cache=False,
         in_built_in_asset_library=True,
         in_user_asset_library=True,
         in_built_in_score_packages=True,
-        in_user_score_packages=True):
+        in_user_score_packages=True,
+        ):
         self._session.cache_breadcrumbs(cache=cache)
-        menu, menu_section = self._io.make_menu(
-            where=self._where,
-            is_numbered=True,
-            return_value_attribute='key',
-            )
-        menu_section.menu_entries = self._make_asset_storehouse_menu_entries(
+        menu = self._io.make_only_menu(where=self._where)
+        asset_section = menu.make_asset_section()
+        menu_entries = self._make_asset_storehouse_menu_entries(
             in_built_in_asset_library=False,
             in_user_asset_library=True,
             in_built_in_score_packages=False,
             in_user_score_packages=False)
+        asset_section.menu_entries = menu_entries
         while True:
             breadcrumb = self._make_asset_selection_breadcrumb(
                 is_storehouse=True)
