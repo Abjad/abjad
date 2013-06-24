@@ -407,6 +407,13 @@ class Menu(ScoreManagerObject):
         self.menu_sections.append(menu_section)
         return menu_section
 
+    def make_asset_section(self, menu_entries=None):
+        asset_section = self.make_section(
+            is_numbered=True,
+            return_value_attribute='explicit',
+            )
+        return asset_section
+
     def make_command_section(self,
             is_hidden=False,
             menu_entries=None,

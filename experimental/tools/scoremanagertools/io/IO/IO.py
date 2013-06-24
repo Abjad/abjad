@@ -224,6 +224,16 @@ class IO(AbjadObject):
             )
         return menu, menu_section
 
+    def make_only_menu(self, 
+        where=None,
+        ):
+        from experimental.tools import scoremanagertools
+        menu = scoremanagertools.io.Menu(
+            where=where, 
+            session=self._session,
+            )
+        return menu
+
     def pop_from_pending_user_input(self):
         self._session.last_command_was_composite = False
         if self._session.pending_user_input is None:

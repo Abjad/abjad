@@ -57,6 +57,9 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.io.IO.IO.IO.make_menu
    :noindex:
 
+.. automethod:: experimental.tools.scoremanagertools.io.IO.IO.IO.make_only_menu
+   :noindex:
+
 .. automethod:: experimental.tools.scoremanagertools.io.IO.IO.IO.pop_from_pending_user_input
    :noindex:
 

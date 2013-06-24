@@ -47,6 +47,9 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.io.Menu.Menu.Menu.interactively_edit_calling_code
    :noindex:
 
+.. automethod:: experimental.tools.scoremanagertools.io.Menu.Menu.Menu.make_asset_section
+   :noindex:
+
 .. automethod:: experimental.tools.scoremanagertools.io.Menu.Menu.Menu.make_command_section
    :noindex:
 

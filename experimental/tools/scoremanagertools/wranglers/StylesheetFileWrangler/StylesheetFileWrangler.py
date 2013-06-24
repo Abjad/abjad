@@ -65,20 +65,17 @@ class StylesheetFileWrangler(FileWrangler):
             self.interactively_edit_asset(result)
 
     def _make_main_menu(self, head=None):
-        main_menu, asset_menu_section = self._io.make_menu(
-            where=self._where,
-            return_value_attribute='explicit',
-            is_numbered=True,
-            )
+        main_menu = self._io.make_only_menu(where=self._where)
         self._main_menu = main_menu
-        main_menu._asset_menu_section = asset_menu_section
+        asset_section = main_menu.make_asset_section()
+        main_menu._asset_section = asset_section
         menu_entries = self._make_asset_menu_entries(include_extension=True)
-        asset_menu_section.menu_entries = menu_entries
-        command_menu_section = main_menu.make_command_section()
-        command_menu_section.append(('new', 'new'))
-        command_menu_section.append(('copy', 'cp'))
-        command_menu_section.append(('rename', 'ren'))
-        command_menu_section.append(('remove', 'rm'))
+        asset_section.menu_entries = menu_entries
+        command_section = main_menu.make_command_section()
+        command_section.append(('new', 'new'))
+        command_section.append(('copy', 'cp'))
+        command_section.append(('rename', 'ren'))
+        command_section.append(('remove', 'rm'))
         return main_menu
 
     def _make_asset_menu_entries(self, head=None, include_extension=False):

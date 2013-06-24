@@ -97,17 +97,15 @@ class ScoreManager(ScoreManagerObject):
         command_section.append(('materials', 'm'))
         command_section.append(('stylesheets', 'y'))
         command_section.append(('new score', 'new'))
-        hidden_command_section = menu.make_command_section(is_hidden=True)
-        hidden_command_section.append(('show active scores only', 'active'))
-        hidden_command_section.append(('show all scores', 'all'))
-        hidden_command_section.append(
-            ('fix all score package structures', 'fix'))
-        hidden_command_section.append(('show mothballed scores only', 'mb'))
-        hidden_command_section.append(('profile packages', 'profile'))
-        hidden_command_section.append(
-            ('run py.test on all scores', 'py.test'))
-        hidden_command_section.append(('work with repository', 'svn'))
-        hidden_command_section.append(('write cache', 'wc'))
+        hidden_section = menu.make_command_section(is_hidden=True)
+        hidden_section.append(('show active scores only', 'active'))
+        hidden_section.append(('show all scores', 'all'))
+        hidden_section.append(('fix all score package structures', 'fix'))
+        hidden_section.append(('show mothballed scores only', 'mb'))
+        hidden_section.append(('profile packages', 'profile'))
+        hidden_section.append(('run py.test on all scores', 'py.test'))
+        hidden_section.append(('work with repository', 'svn'))
+        hidden_section.append(('write cache', 'wc'))
         return menu
 
     def _make_score_selection_menu(self):
@@ -116,25 +114,24 @@ class ScoreManager(ScoreManagerObject):
                 menu_entries = self.start_menu_entries
             else:
                 self.write_cache()
-                menu_entries = self.score_package_wrangler._make_asset_menu_entries()
+                menu_entries = \
+                    self.score_package_wrangler._make_asset_menu_entries()
             self._session.is_first_run = False
         else:
-            menu_entries = self.score_package_wrangler._make_asset_menu_entries()
-        menu, menu_section = self._io.make_menu(where=self._where)
-        menu_section.return_value_attribute = 'explicit'
-        menu_section.is_numbered = True
-        menu_section.menu_entries = menu_entries
+            menu_entries = \
+                self.score_package_wrangler._make_asset_menu_entries()
+        menu = self._io.make_only_menu(where=self._where)
+        asset_section = menu.make_asset_section()
+        asset_section.menu_entries = menu_entries
         return menu
 
     def _make_svn_menu(self):
-        menu, menu_section = self._io.make_menu(
-            where=self._where,
-            return_value_attribute='key',
-            )
-        menu_section.append(('svn add scores', 'add'))
-        menu_section.append(('svn commit scores', 'ci'))
-        menu_section.append(('svn status scores', 'st'))
-        menu_section.append(('svn update scores', 'up'))
+        menu = self._io.make_only_menu(where=self._where)
+        command_section = menu.make_command_section()
+        command_section.append(('svn add scores', 'add'))
+        command_section.append(('svn commit scores', 'ci'))
+        command_section.append(('svn status scores', 'st'))
+        command_section.append(('svn update scores', 'up'))
         return menu
 
     def _run(self, 
