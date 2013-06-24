@@ -4,7 +4,6 @@ exceptiontools.MeasureError
 .. abjad-lineage:: abjad.tools.exceptiontools.MeasureError.MeasureError
 
 .. autoclass:: abjad.tools.exceptiontools.MeasureError.MeasureError
-   :noindex:
 
 Bases
 -----

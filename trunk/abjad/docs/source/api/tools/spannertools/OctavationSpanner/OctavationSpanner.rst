@@ -4,7 +4,6 @@ spannertools.OctavationSpanner
 .. abjad-lineage:: abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner
 
 .. autoclass:: abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner
-   :noindex:
 
 Bases
 -----

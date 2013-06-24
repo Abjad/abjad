@@ -4,7 +4,6 @@ exceptiontools.ParallelError
 .. abjad-lineage:: abjad.tools.exceptiontools.ParallelError.ParallelError
 
 .. autoclass:: abjad.tools.exceptiontools.ParallelError.ParallelError
-   :noindex:
 
 Bases
 -----

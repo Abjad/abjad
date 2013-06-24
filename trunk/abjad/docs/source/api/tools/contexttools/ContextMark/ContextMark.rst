@@ -4,7 +4,6 @@ contexttools.ContextMark
 .. abjad-lineage:: abjad.tools.contexttools.ContextMark.ContextMark.ContextMark
 
 .. autoclass:: abjad.tools.contexttools.ContextMark.ContextMark.ContextMark
-   :noindex:
 
 Bases
 -----

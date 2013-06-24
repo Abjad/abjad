@@ -4,7 +4,6 @@ exceptiontools.SpacingError
 .. abjad-lineage:: abjad.tools.exceptiontools.SpacingError.SpacingError
 
 .. autoclass:: abjad.tools.exceptiontools.SpacingError.SpacingError
-   :noindex:
 
 Bases
 -----

@@ -4,7 +4,6 @@ datastructuretools.ObjectInventory
 .. abjad-lineage:: abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory
 
 .. autoclass:: abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory
-   :noindex:
 
 Bases
 -----

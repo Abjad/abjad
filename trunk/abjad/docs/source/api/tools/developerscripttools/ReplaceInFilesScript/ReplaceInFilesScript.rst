@@ -4,7 +4,6 @@ developerscripttools.ReplaceInFilesScript
 .. abjad-lineage:: abjad.tools.developerscripttools.ReplaceInFilesScript.ReplaceInFilesScript.ReplaceInFilesScript
 
 .. autoclass:: abjad.tools.developerscripttools.ReplaceInFilesScript.ReplaceInFilesScript.ReplaceInFilesScript
-   :noindex:
 
 Bases
 -----

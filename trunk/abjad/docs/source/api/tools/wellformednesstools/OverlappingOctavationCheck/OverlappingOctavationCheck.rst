@@ -4,7 +4,6 @@ wellformednesstools.OverlappingOctavationCheck
 .. abjad-lineage:: abjad.tools.wellformednesstools.OverlappingOctavationCheck.OverlappingOctavationCheck.OverlappingOctavationCheck
 
 .. autoclass:: abjad.tools.wellformednesstools.OverlappingOctavationCheck.OverlappingOctavationCheck.OverlappingOctavationCheck
-   :noindex:
 
 Bases
 -----

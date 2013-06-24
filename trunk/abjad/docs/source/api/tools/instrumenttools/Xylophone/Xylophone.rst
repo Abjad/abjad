@@ -4,7 +4,6 @@ instrumenttools.Xylophone
 .. abjad-lineage:: abjad.tools.instrumenttools.Xylophone.Xylophone.Xylophone
 
 .. autoclass:: abjad.tools.instrumenttools.Xylophone.Xylophone.Xylophone
-   :noindex:
 
 Bases
 -----

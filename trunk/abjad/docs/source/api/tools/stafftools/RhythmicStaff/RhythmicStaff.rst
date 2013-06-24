@@ -4,7 +4,6 @@ stafftools.RhythmicStaff
 .. abjad-lineage:: abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff
 
 .. autoclass:: abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff
-   :noindex:
 
 Bases
 -----

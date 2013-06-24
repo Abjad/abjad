@@ -4,7 +4,6 @@ quantizationtools.WeightedSearchTree
 .. abjad-lineage:: abjad.tools.quantizationtools.WeightedSearchTree.WeightedSearchTree.WeightedSearchTree
 
 .. autoclass:: abjad.tools.quantizationtools.WeightedSearchTree.WeightedSearchTree.WeightedSearchTree
-   :noindex:
 
 Bases
 -----

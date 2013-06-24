@@ -4,7 +4,6 @@ exceptiontools.MissingMarkError
 .. abjad-lineage:: abjad.tools.exceptiontools.MissingMarkError.MissingMarkError
 
 .. autoclass:: abjad.tools.exceptiontools.MissingMarkError.MissingMarkError
-   :noindex:
 
 Bases
 -----

@@ -4,7 +4,6 @@ pitchtools.ChromaticPitch
 .. abjad-lineage:: abjad.tools.pitchtools.ChromaticPitch.ChromaticPitch.ChromaticPitch
 
 .. autoclass:: abjad.tools.pitchtools.ChromaticPitch.ChromaticPitch.ChromaticPitch
-   :noindex:
 
 Bases
 -----

@@ -4,7 +4,6 @@ wellformednesstools.OverlappingGlissandoCheck
 .. abjad-lineage:: abjad.tools.wellformednesstools.OverlappingGlissandoCheck.OverlappingGlissandoCheck.OverlappingGlissandoCheck
 
 .. autoclass:: abjad.tools.wellformednesstools.OverlappingGlissandoCheck.OverlappingGlissandoCheck.OverlappingGlissandoCheck
-   :noindex:
 
 Bases
 -----

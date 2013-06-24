@@ -4,7 +4,6 @@ instrumenttools.ContrabassClarinet
 .. abjad-lineage:: abjad.tools.instrumenttools.ContrabassClarinet.ContrabassClarinet.ContrabassClarinet
 
 .. autoclass:: abjad.tools.instrumenttools.ContrabassClarinet.ContrabassClarinet.ContrabassClarinet
-   :noindex:
 
 Bases
 -----

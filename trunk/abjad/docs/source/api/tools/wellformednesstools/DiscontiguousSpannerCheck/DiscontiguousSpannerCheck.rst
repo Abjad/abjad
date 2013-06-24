@@ -4,7 +4,6 @@ wellformednesstools.DiscontiguousSpannerCheck
 .. abjad-lineage:: abjad.tools.wellformednesstools.DiscontiguousSpannerCheck.DiscontiguousSpannerCheck.DiscontiguousSpannerCheck
 
 .. autoclass:: abjad.tools.wellformednesstools.DiscontiguousSpannerCheck.DiscontiguousSpannerCheck.DiscontiguousSpannerCheck
-   :noindex:
 
 Bases
 -----

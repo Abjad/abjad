@@ -4,7 +4,6 @@ rhythmmakertools.RhythmMaker
 .. abjad-lineage:: abjad.tools.rhythmmakertools.RhythmMaker.RhythmMaker.RhythmMaker
 
 .. autoclass:: abjad.tools.rhythmmakertools.RhythmMaker.RhythmMaker.RhythmMaker
-   :noindex:
 
 Bases
 -----

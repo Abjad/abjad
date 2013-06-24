@@ -4,7 +4,6 @@ instrumenttools.KeyboardInstrument
 .. abjad-lineage:: abjad.tools.instrumenttools.KeyboardInstrument.KeyboardInstrument.KeyboardInstrument
 
 .. autoclass:: abjad.tools.instrumenttools.KeyboardInstrument.KeyboardInstrument.KeyboardInstrument
-   :noindex:
 
 Bases
 -----

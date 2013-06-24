@@ -4,7 +4,6 @@ instrumenttools.ReedInstrument
 .. abjad-lineage:: abjad.tools.instrumenttools.ReedInstrument.ReedInstrument.ReedInstrument
 
 .. autoclass:: abjad.tools.instrumenttools.ReedInstrument.ReedInstrument.ReedInstrument
-   :noindex:
 
 Bases
 -----

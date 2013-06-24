@@ -4,7 +4,6 @@ pitchtools.CounterpointObject
 .. abjad-lineage:: abjad.tools.pitchtools.CounterpointObject.CounterpointObject.CounterpointObject
 
 .. autoclass:: abjad.tools.pitchtools.CounterpointObject.CounterpointObject.CounterpointObject
-   :noindex:
 
 Bases
 -----

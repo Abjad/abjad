@@ -4,7 +4,6 @@ markuptools.Markup
 .. abjad-lineage:: abjad.tools.markuptools.Markup.Markup.Markup
 
 .. autoclass:: abjad.tools.markuptools.Markup.Markup.Markup
-   :noindex:
 
 Bases
 -----

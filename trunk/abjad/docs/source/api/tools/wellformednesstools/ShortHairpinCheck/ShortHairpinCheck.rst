@@ -4,7 +4,6 @@ wellformednesstools.ShortHairpinCheck
 .. abjad-lineage:: abjad.tools.wellformednesstools.ShortHairpinCheck.ShortHairpinCheck.ShortHairpinCheck
 
 .. autoclass:: abjad.tools.wellformednesstools.ShortHairpinCheck.ShortHairpinCheck.ShortHairpinCheck
-   :noindex:
 
 Bases
 -----

@@ -4,7 +4,6 @@ pitchtools.PitchRangeInventory
 .. abjad-lineage:: abjad.tools.pitchtools.PitchRangeInventory.PitchRangeInventory.PitchRangeInventory
 
 .. autoclass:: abjad.tools.pitchtools.PitchRangeInventory.PitchRangeInventory.PitchRangeInventory
-   :noindex:
 
 Bases
 -----

@@ -4,7 +4,6 @@ developerscripttools.SvnMessageScript
 .. abjad-lineage:: abjad.tools.developerscripttools.SvnMessageScript.SvnMessageScript.SvnMessageScript
 
 .. autoclass:: abjad.tools.developerscripttools.SvnMessageScript.SvnMessageScript.SvnMessageScript
-   :noindex:
 
 Bases
 -----

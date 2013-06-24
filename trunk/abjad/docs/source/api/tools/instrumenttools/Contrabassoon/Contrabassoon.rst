@@ -4,7 +4,6 @@ instrumenttools.Contrabassoon
 .. abjad-lineage:: abjad.tools.instrumenttools.Contrabassoon.Contrabassoon.Contrabassoon
 
 .. autoclass:: abjad.tools.instrumenttools.Contrabassoon.Contrabassoon.Contrabassoon
-   :noindex:
 
 Bases
 -----

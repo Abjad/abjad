@@ -4,7 +4,6 @@ lilypondfiletools.LilyPondFile
 .. abjad-lineage:: abjad.tools.lilypondfiletools.LilyPondFile.LilyPondFile.LilyPondFile
 
 .. autoclass:: abjad.tools.lilypondfiletools.LilyPondFile.LilyPondFile.LilyPondFile
-   :noindex:
 
 Bases
 -----

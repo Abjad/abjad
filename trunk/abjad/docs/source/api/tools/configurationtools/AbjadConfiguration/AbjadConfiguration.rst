@@ -4,7 +4,6 @@ configurationtools.AbjadConfiguration
 .. abjad-lineage:: abjad.tools.configurationtools.AbjadConfiguration.AbjadConfiguration.AbjadConfiguration
 
 .. autoclass:: abjad.tools.configurationtools.AbjadConfiguration.AbjadConfiguration.AbjadConfiguration
-   :noindex:
 
 Bases
 -----

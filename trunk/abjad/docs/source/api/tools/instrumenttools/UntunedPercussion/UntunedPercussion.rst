@@ -4,7 +4,6 @@ instrumenttools.UntunedPercussion
 .. abjad-lineage:: abjad.tools.instrumenttools.UntunedPercussion.UntunedPercussion.UntunedPercussion
 
 .. autoclass:: abjad.tools.instrumenttools.UntunedPercussion.UntunedPercussion.UntunedPercussion
-   :noindex:
 
 Bases
 -----

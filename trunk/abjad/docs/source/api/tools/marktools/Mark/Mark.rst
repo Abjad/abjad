@@ -4,7 +4,6 @@ marktools.Mark
 .. abjad-lineage:: abjad.tools.marktools.Mark.Mark.Mark
 
 .. autoclass:: abjad.tools.marktools.Mark.Mark.Mark
-   :noindex:
 
 Bases
 -----

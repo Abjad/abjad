@@ -4,7 +4,6 @@ abjadbooktools.AbjadBookScript
 .. abjad-lineage:: abjad.tools.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript
 
 .. autoclass:: abjad.tools.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript
-   :noindex:
 
 Bases
 -----

@@ -4,7 +4,6 @@ spannertools.PianoPedalSpanner
 .. abjad-lineage:: abjad.tools.spannertools.PianoPedalSpanner.PianoPedalSpanner.PianoPedalSpanner
 
 .. autoclass:: abjad.tools.spannertools.PianoPedalSpanner.PianoPedalSpanner.PianoPedalSpanner
-   :noindex:
 
 Bases
 -----

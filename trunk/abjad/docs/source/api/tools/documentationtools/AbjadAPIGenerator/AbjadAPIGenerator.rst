@@ -4,7 +4,6 @@ documentationtools.AbjadAPIGenerator
 .. abjad-lineage:: abjad.tools.documentationtools.AbjadAPIGenerator.AbjadAPIGenerator.AbjadAPIGenerator
 
 .. autoclass:: abjad.tools.documentationtools.AbjadAPIGenerator.AbjadAPIGenerator.AbjadAPIGenerator
-   :noindex:
 
 Bases
 -----

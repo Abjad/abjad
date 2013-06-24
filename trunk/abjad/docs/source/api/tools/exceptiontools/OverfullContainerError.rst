@@ -4,7 +4,6 @@ exceptiontools.OverfullContainerError
 .. abjad-lineage:: abjad.tools.exceptiontools.OverfullContainerError.OverfullContainerError
 
 .. autoclass:: abjad.tools.exceptiontools.OverfullContainerError.OverfullContainerError
-   :noindex:
 
 Bases
 -----

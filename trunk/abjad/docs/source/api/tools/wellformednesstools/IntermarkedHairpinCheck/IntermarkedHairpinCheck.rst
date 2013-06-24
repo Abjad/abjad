@@ -4,7 +4,6 @@ wellformednesstools.IntermarkedHairpinCheck
 .. abjad-lineage:: abjad.tools.wellformednesstools.IntermarkedHairpinCheck.IntermarkedHairpinCheck.IntermarkedHairpinCheck
 
 .. autoclass:: abjad.tools.wellformednesstools.IntermarkedHairpinCheck.IntermarkedHairpinCheck.IntermarkedHairpinCheck
-   :noindex:
 
 Bases
 -----

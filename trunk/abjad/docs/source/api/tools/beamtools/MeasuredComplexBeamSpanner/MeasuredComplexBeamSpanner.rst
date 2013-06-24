@@ -4,7 +4,6 @@ beamtools.MeasuredComplexBeamSpanner
 .. abjad-lineage:: abjad.tools.beamtools.MeasuredComplexBeamSpanner.MeasuredComplexBeamSpanner.MeasuredComplexBeamSpanner
 
 .. autoclass:: abjad.tools.beamtools.MeasuredComplexBeamSpanner.MeasuredComplexBeamSpanner.MeasuredComplexBeamSpanner
-   :noindex:
 
 Bases
 -----

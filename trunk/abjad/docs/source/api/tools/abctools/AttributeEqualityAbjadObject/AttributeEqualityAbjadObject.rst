@@ -4,7 +4,6 @@ abctools.AttributeEqualityAbjadObject
 .. abjad-lineage:: abjad.tools.abctools.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject
 
 .. autoclass:: abjad.tools.abctools.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject
-   :noindex:
 
 Bases
 -----

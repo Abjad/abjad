@@ -4,7 +4,6 @@ spannertools.TextScriptSpanner
 .. abjad-lineage:: abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner
 
 .. autoclass:: abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner
-   :noindex:
 
 Bases
 -----

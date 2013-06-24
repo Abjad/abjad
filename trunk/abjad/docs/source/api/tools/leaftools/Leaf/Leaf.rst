@@ -4,7 +4,6 @@ leaftools.Leaf
 .. abjad-lineage:: abjad.tools.leaftools.Leaf.Leaf.Leaf
 
 .. autoclass:: abjad.tools.leaftools.Leaf.Leaf.Leaf
-   :noindex:
 
 Bases
 -----

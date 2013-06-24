@@ -4,7 +4,6 @@ instrumenttools.Harp
 .. abjad-lineage:: abjad.tools.instrumenttools.Harp.Harp.Harp
 
 .. autoclass:: abjad.tools.instrumenttools.Harp.Harp.Harp
-   :noindex:
 
 Bases
 -----

@@ -4,7 +4,6 @@ quantizationtools.QEventSequence
 .. abjad-lineage:: abjad.tools.quantizationtools.QEventSequence.QEventSequence.QEventSequence
 
 .. autoclass:: abjad.tools.quantizationtools.QEventSequence.QEventSequence.QEventSequence
-   :noindex:
 
 Bases
 -----

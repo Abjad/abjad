@@ -4,7 +4,6 @@ exceptiontools.TempoError
 .. abjad-lineage:: abjad.tools.exceptiontools.TempoError.TempoError
 
 .. autoclass:: abjad.tools.exceptiontools.TempoError.TempoError
-   :noindex:
 
 Bases
 -----

@@ -4,7 +4,6 @@ datastructuretools.Digraph
 .. abjad-lineage:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph
 
 .. autoclass:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph
-   :noindex:
 
 Bases
 -----

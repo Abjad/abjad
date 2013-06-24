@@ -4,7 +4,6 @@ tonalitytools.TonalFunction
 .. abjad-lineage:: abjad.tools.tonalitytools.TonalFunction.TonalFunction.TonalFunction
 
 .. autoclass:: abjad.tools.tonalitytools.TonalFunction.TonalFunction.TonalFunction
-   :noindex:
 
 Bases
 -----

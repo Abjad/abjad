@@ -4,7 +4,6 @@ tonalitytools.QualityIndicator
 .. abjad-lineage:: abjad.tools.tonalitytools.QualityIndicator.QualityIndicator.QualityIndicator
 
 .. autoclass:: abjad.tools.tonalitytools.QualityIndicator.QualityIndicator.QualityIndicator
-   :noindex:
 
 Bases
 -----

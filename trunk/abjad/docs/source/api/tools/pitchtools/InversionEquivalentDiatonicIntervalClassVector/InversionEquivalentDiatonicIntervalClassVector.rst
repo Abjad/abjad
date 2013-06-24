@@ -4,7 +4,6 @@ pitchtools.InversionEquivalentDiatonicIntervalClassVector
 .. abjad-lineage:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassVector.InversionEquivalentDiatonicIntervalClassVector.InversionEquivalentDiatonicIntervalClassVector
 
 .. autoclass:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassVector.InversionEquivalentDiatonicIntervalClassVector.InversionEquivalentDiatonicIntervalClassVector
-   :noindex:
 
 Bases
 -----

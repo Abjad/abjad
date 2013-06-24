@@ -4,7 +4,6 @@ contexttools.TempoMark
 .. abjad-lineage:: abjad.tools.contexttools.TempoMark.TempoMark.TempoMark
 
 .. autoclass:: abjad.tools.contexttools.TempoMark.TempoMark.TempoMark
-   :noindex:
 
 Bases
 -----

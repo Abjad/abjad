@@ -4,7 +4,6 @@ wellformednesstools.MisfilledMeasureCheck
 .. abjad-lineage:: abjad.tools.wellformednesstools.MisfilledMeasureCheck.MisfilledMeasureCheck.MisfilledMeasureCheck
 
 .. autoclass:: abjad.tools.wellformednesstools.MisfilledMeasureCheck.MisfilledMeasureCheck.MisfilledMeasureCheck
-   :noindex:
 
 Bases
 -----

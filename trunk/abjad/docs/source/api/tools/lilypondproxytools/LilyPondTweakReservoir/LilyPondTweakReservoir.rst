@@ -4,7 +4,6 @@ lilypondproxytools.LilyPondTweakReservoir
 .. abjad-lineage:: abjad.tools.lilypondproxytools.LilyPondTweakReservoir.LilyPondTweakReservoir.LilyPondTweakReservoir
 
 .. autoclass:: abjad.tools.lilypondproxytools.LilyPondTweakReservoir.LilyPondTweakReservoir.LilyPondTweakReservoir
-   :noindex:
 
 Bases
 -----

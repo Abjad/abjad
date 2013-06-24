@@ -4,7 +4,6 @@ abctools.ImmutableAbjadObject
 .. abjad-lineage:: abjad.tools.abctools.ImmutableAbjadObject.ImmutableAbjadObject.ImmutableAbjadObject
 
 .. autoclass:: abjad.tools.abctools.ImmutableAbjadObject.ImmutableAbjadObject.ImmutableAbjadObject
-   :noindex:
 
 Bases
 -----

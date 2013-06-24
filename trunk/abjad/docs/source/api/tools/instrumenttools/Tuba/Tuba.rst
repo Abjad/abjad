@@ -4,7 +4,6 @@ instrumenttools.Tuba
 .. abjad-lineage:: abjad.tools.instrumenttools.Tuba.Tuba.Tuba
 
 .. autoclass:: abjad.tools.instrumenttools.Tuba.Tuba.Tuba
-   :noindex:
 
 Bases
 -----

@@ -4,7 +4,6 @@ exceptiontools.PartitionError
 .. abjad-lineage:: abjad.tools.exceptiontools.PartitionError.PartitionError
 
 .. autoclass:: abjad.tools.exceptiontools.PartitionError.PartitionError
-   :noindex:
 
 Bases
 -----

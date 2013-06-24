@@ -4,7 +4,6 @@ marktools.BarLine
 .. abjad-lineage:: abjad.tools.marktools.BarLine.BarLine.BarLine
 
 .. autoclass:: abjad.tools.marktools.BarLine.BarLine.BarLine
-   :noindex:
 
 Bases
 -----

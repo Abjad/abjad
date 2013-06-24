@@ -4,7 +4,6 @@ marktools.Articulation
 .. abjad-lineage:: abjad.tools.marktools.Articulation.Articulation.Articulation
 
 .. autoclass:: abjad.tools.marktools.Articulation.Articulation.Articulation
-   :noindex:
 
 Bases
 -----

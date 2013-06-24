@@ -4,7 +4,6 @@ documentationtools.ReSTDirective
 .. abjad-lineage:: abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective
 
 .. autoclass:: abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective
-   :noindex:
 
 Bases
 -----

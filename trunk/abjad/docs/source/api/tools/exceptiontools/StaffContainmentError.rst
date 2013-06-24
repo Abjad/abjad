@@ -4,7 +4,6 @@ exceptiontools.StaffContainmentError
 .. abjad-lineage:: abjad.tools.exceptiontools.StaffContainmentError.StaffContainmentError
 
 .. autoclass:: abjad.tools.exceptiontools.StaffContainmentError.StaffContainmentError
-   :noindex:
 
 Bases
 -----

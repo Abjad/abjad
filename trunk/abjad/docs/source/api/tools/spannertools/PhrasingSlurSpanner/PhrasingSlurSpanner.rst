@@ -4,7 +4,6 @@ spannertools.PhrasingSlurSpanner
 .. abjad-lineage:: abjad.tools.spannertools.PhrasingSlurSpanner.PhrasingSlurSpanner.PhrasingSlurSpanner
 
 .. autoclass:: abjad.tools.spannertools.PhrasingSlurSpanner.PhrasingSlurSpanner.PhrasingSlurSpanner
-   :noindex:
 
 Bases
 -----

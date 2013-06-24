@@ -4,7 +4,6 @@ sequencetools.CyclicTuple
 .. abjad-lineage:: abjad.tools.sequencetools.CyclicTuple.CyclicTuple.CyclicTuple
 
 .. autoclass:: abjad.tools.sequencetools.CyclicTuple.CyclicTuple.CyclicTuple
-   :noindex:
 
 Bases
 -----

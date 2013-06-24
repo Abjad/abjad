@@ -4,7 +4,6 @@ exceptiontools.ClefError
 .. abjad-lineage:: abjad.tools.exceptiontools.ClefError.ClefError
 
 .. autoclass:: abjad.tools.exceptiontools.ClefError.ClefError
-   :noindex:
 
 Bases
 -----

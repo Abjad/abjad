@@ -4,7 +4,6 @@ developerscripttools.SvnUpdateScript
 .. abjad-lineage:: abjad.tools.developerscripttools.SvnUpdateScript.SvnUpdateScript.SvnUpdateScript
 
 .. autoclass:: abjad.tools.developerscripttools.SvnUpdateScript.SvnUpdateScript.SvnUpdateScript
-   :noindex:
 
 Bases
 -----

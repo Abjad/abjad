@@ -4,7 +4,6 @@ developerscripttools.TestAndRebuildScript
 .. abjad-lineage:: abjad.tools.developerscripttools.TestAndRebuildScript.TestAndRebuildScript.TestAndRebuildScript
 
 .. autoclass:: abjad.tools.developerscripttools.TestAndRebuildScript.TestAndRebuildScript.TestAndRebuildScript
-   :noindex:
 
 Bases
 -----

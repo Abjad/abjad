@@ -4,7 +4,6 @@ schemetools.SchemeColor
 .. abjad-lineage:: abjad.tools.schemetools.SchemeColor.SchemeColor.SchemeColor
 
 .. autoclass:: abjad.tools.schemetools.SchemeColor.SchemeColor.SchemeColor
-   :noindex:
 
 Bases
 -----

@@ -4,7 +4,6 @@ lilypondproxytools.LilyPondContextProxy
 .. abjad-lineage:: abjad.tools.lilypondproxytools.LilyPondContextProxy.LilyPondContextProxy.LilyPondContextProxy
 
 .. autoclass:: abjad.tools.lilypondproxytools.LilyPondContextProxy.LilyPondContextProxy.LilyPondContextProxy
-   :noindex:
 
 Bases
 -----

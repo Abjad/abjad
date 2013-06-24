@@ -4,7 +4,6 @@ quantizationtools.DiscardingGraceHandler
 .. abjad-lineage:: abjad.tools.quantizationtools.DiscardingGraceHandler.DiscardingGraceHandler.DiscardingGraceHandler
 
 .. autoclass:: abjad.tools.quantizationtools.DiscardingGraceHandler.DiscardingGraceHandler.DiscardingGraceHandler
-   :noindex:
 
 Bases
 -----

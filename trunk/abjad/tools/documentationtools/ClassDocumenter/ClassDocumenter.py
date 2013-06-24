@@ -18,7 +18,6 @@ class ClassDocumenter(Documenter):
         .. abjad-lineage:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter
         <BLANKLINE>
         .. autoclass:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter
-        :noindex:
         <BLANKLINE>
         Bases
         -----
@@ -35,43 +34,43 @@ class ClassDocumenter(Documenter):
         --------------------
         <BLANKLINE>
         .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.class_methods
-        :noindex:
+           :noindex:
         <BLANKLINE>
         .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.data
-        :noindex:
+           :noindex:
         <BLANKLINE>
         .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.inherited_attributes
-        :noindex:
+           :noindex:
         <BLANKLINE>
         .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.is_abstract
-        :noindex:
+           :noindex:
         <BLANKLINE>
         .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.methods
-        :noindex:
+           :noindex:
         <BLANKLINE>
         .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.module_name
-        :noindex:
+           :noindex:
         <BLANKLINE>
         .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.object
-        :noindex:
+           :noindex:
         <BLANKLINE>
         .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.prefix
-        :noindex:
+           :noindex:
         <BLANKLINE>
         .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.readonly_properties
-        :noindex:
+           :noindex:
         <BLANKLINE>
         .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.readwrite_properties
-        :noindex:
+           :noindex:
         <BLANKLINE>
         .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.special_methods
-        :noindex:
+           :noindex:
         <BLANKLINE>
         .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.static_methods
-        :noindex:
+           :noindex:
         <BLANKLINE>
         .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.storage_format
-        :noindex:
+           :noindex:
         <BLANKLINE>
         Methods
         -------
@@ -201,7 +200,7 @@ class ClassDocumenter(Documenter):
             argument=self.module_name,
             directive='autoclass',
             options={
-                'noindex': True, 
+                #'noindex': True, 
                 },
             ))
 

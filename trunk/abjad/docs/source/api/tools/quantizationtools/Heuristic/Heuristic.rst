@@ -4,7 +4,6 @@ quantizationtools.Heuristic
 .. abjad-lineage:: abjad.tools.quantizationtools.Heuristic.Heuristic.Heuristic
 
 .. autoclass:: abjad.tools.quantizationtools.Heuristic.Heuristic.Heuristic
-   :noindex:
 
 Bases
 -----

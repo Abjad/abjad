@@ -4,7 +4,6 @@ rhythmmakertools.EqualDivisionRhythmMaker
 .. abjad-lineage:: abjad.tools.rhythmmakertools.EqualDivisionRhythmMaker.EqualDivisionRhythmMaker.EqualDivisionRhythmMaker
 
 .. autoclass:: abjad.tools.rhythmmakertools.EqualDivisionRhythmMaker.EqualDivisionRhythmMaker.EqualDivisionRhythmMaker
-   :noindex:
 
 Bases
 -----

@@ -4,7 +4,6 @@ exceptiontools.ExtraPitchError
 .. abjad-lineage:: abjad.tools.exceptiontools.ExtraPitchError.ExtraPitchError
 
 .. autoclass:: abjad.tools.exceptiontools.ExtraPitchError.ExtraPitchError
-   :noindex:
 
 Bases
 -----

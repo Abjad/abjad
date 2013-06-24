@@ -4,7 +4,6 @@ abjadbooktools.AbjadBookProcessor
 .. abjad-lineage:: abjad.tools.abjadbooktools.AbjadBookProcessor.AbjadBookProcessor.AbjadBookProcessor
 
 .. autoclass:: abjad.tools.abjadbooktools.AbjadBookProcessor.AbjadBookProcessor.AbjadBookProcessor
-   :noindex:
 
 Bases
 -----

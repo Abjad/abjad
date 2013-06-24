@@ -4,7 +4,6 @@ durationtools.Multiplier
 .. abjad-lineage:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier
 
 .. autoclass:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier
-   :noindex:
 
 Bases
 -----

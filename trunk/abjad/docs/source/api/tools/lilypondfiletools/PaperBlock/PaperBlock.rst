@@ -4,7 +4,6 @@ lilypondfiletools.PaperBlock
 .. abjad-lineage:: abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock
 
 .. autoclass:: abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock
-   :noindex:
 
 Bases
 -----

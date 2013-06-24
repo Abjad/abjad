@@ -4,7 +4,6 @@ lilypondfiletools.MIDIBlock
 .. abjad-lineage:: abjad.tools.lilypondfiletools.MIDIBlock.MIDIBlock.MIDIBlock
 
 .. autoclass:: abjad.tools.lilypondfiletools.MIDIBlock.MIDIBlock.MIDIBlock
-   :noindex:
 
 Bases
 -----

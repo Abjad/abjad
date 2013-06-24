@@ -4,7 +4,6 @@ rhythmmakertools.BurnishedRhythmMaker
 .. abjad-lineage:: abjad.tools.rhythmmakertools.BurnishedRhythmMaker.BurnishedRhythmMaker.BurnishedRhythmMaker
 
 .. autoclass:: abjad.tools.rhythmmakertools.BurnishedRhythmMaker.BurnishedRhythmMaker.BurnishedRhythmMaker
-   :noindex:
 
 Bases
 -----

@@ -4,7 +4,6 @@ instrumenttools.BaritoneVoice
 .. abjad-lineage:: abjad.tools.instrumenttools.BaritoneVoice.BaritoneVoice.BaritoneVoice
 
 .. autoclass:: abjad.tools.instrumenttools.BaritoneVoice.BaritoneVoice.BaritoneVoice
-   :noindex:
 
 Bases
 -----

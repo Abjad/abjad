@@ -4,7 +4,6 @@ documentationtools.APICrawler
 .. abjad-lineage:: abjad.tools.documentationtools.APICrawler.APICrawler.APICrawler
 
 .. autoclass:: abjad.tools.documentationtools.APICrawler.APICrawler.APICrawler
-   :noindex:
 
 Bases
 -----

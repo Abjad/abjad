@@ -4,7 +4,6 @@ scoretools.Performer
 .. abjad-lineage:: abjad.tools.scoretools.Performer.Performer.Performer
 
 .. autoclass:: abjad.tools.scoretools.Performer.Performer.Performer
-   :noindex:
 
 Bases
 -----

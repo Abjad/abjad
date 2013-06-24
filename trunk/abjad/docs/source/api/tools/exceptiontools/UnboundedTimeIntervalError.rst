@@ -4,7 +4,6 @@ exceptiontools.UnboundedTimeIntervalError
 .. abjad-lineage:: abjad.tools.exceptiontools.UnboundedTimeIntervalError.UnboundedTimeIntervalError
 
 .. autoclass:: abjad.tools.exceptiontools.UnboundedTimeIntervalError.UnboundedTimeIntervalError
-   :noindex:
 
 Bases
 -----

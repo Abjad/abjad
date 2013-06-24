@@ -4,7 +4,6 @@ pitchtools.PitchClassSegment
 .. abjad-lineage:: abjad.tools.pitchtools.PitchClassSegment.PitchClassSegment.PitchClassSegment
 
 .. autoclass:: abjad.tools.pitchtools.PitchClassSegment.PitchClassSegment.PitchClassSegment
-   :noindex:
 
 Bases
 -----

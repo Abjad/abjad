@@ -4,7 +4,6 @@ spannertools.StaffLinesSpanner
 .. abjad-lineage:: abjad.tools.spannertools.StaffLinesSpanner.StaffLinesSpanner.StaffLinesSpanner
 
 .. autoclass:: abjad.tools.spannertools.StaffLinesSpanner.StaffLinesSpanner.StaffLinesSpanner
-   :noindex:
 
 Bases
 -----

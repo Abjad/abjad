@@ -4,7 +4,6 @@ spannertools.CrescendoSpanner
 .. abjad-lineage:: abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner
 
 .. autoclass:: abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner
-   :noindex:
 
 Bases
 -----

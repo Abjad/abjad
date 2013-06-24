@@ -4,7 +4,6 @@ lilypondfiletools.LilyPondLanguageToken
 .. abjad-lineage:: abjad.tools.lilypondfiletools.LilyPondLanguageToken.LilyPondLanguageToken.LilyPondLanguageToken
 
 .. autoclass:: abjad.tools.lilypondfiletools.LilyPondLanguageToken.LilyPondLanguageToken.LilyPondLanguageToken
-   :noindex:
 
 Bases
 -----

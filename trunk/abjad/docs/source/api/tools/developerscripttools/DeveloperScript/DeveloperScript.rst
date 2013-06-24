@@ -4,7 +4,6 @@ developerscripttools.DeveloperScript
 .. abjad-lineage:: abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript
 
 .. autoclass:: abjad.tools.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript
-   :noindex:
 
 Bases
 -----

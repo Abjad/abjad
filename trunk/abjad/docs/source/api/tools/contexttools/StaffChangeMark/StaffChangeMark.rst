@@ -4,7 +4,6 @@ contexttools.StaffChangeMark
 .. abjad-lineage:: abjad.tools.contexttools.StaffChangeMark.StaffChangeMark.StaffChangeMark
 
 .. autoclass:: abjad.tools.contexttools.StaffChangeMark.StaffChangeMark.StaffChangeMark
-   :noindex:
 
 Bases
 -----

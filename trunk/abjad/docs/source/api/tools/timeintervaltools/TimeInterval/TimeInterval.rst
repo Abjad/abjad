@@ -4,7 +4,6 @@ timeintervaltools.TimeInterval
 .. abjad-lineage:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval
 
 .. autoclass:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval
-   :noindex:
 
 Bases
 -----

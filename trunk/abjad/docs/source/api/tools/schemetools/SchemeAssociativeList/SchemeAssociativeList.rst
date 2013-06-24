@@ -4,7 +4,6 @@ schemetools.SchemeAssociativeList
 .. abjad-lineage:: abjad.tools.schemetools.SchemeAssociativeList.SchemeAssociativeList.SchemeAssociativeList
 
 .. autoclass:: abjad.tools.schemetools.SchemeAssociativeList.SchemeAssociativeList.SchemeAssociativeList
-   :noindex:
 
 Bases
 -----

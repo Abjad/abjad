@@ -4,7 +4,6 @@ schemetools.SchemeVectorConstant
 .. abjad-lineage:: abjad.tools.schemetools.SchemeVectorConstant.SchemeVectorConstant.SchemeVectorConstant
 
 .. autoclass:: abjad.tools.schemetools.SchemeVectorConstant.SchemeVectorConstant.SchemeVectorConstant
-   :noindex:
 
 Bases
 -----

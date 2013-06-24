@@ -4,7 +4,6 @@ instrumenttools.InstrumentInventory
 .. abjad-lineage:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory
 
 .. autoclass:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory
-   :noindex:
 
 Bases
 -----

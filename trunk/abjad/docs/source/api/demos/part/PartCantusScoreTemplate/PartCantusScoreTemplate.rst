@@ -4,7 +4,6 @@ part.PartCantusScoreTemplate
 .. abjad-lineage:: abjad.demos.part.PartCantusScoreTemplate.PartCantusScoreTemplate.PartCantusScoreTemplate
 
 .. autoclass:: abjad.demos.part.PartCantusScoreTemplate.PartCantusScoreTemplate.PartCantusScoreTemplate
-   :noindex:
 
 Bases
 -----

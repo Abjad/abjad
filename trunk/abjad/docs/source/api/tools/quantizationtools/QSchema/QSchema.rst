@@ -4,7 +4,6 @@ quantizationtools.QSchema
 .. abjad-lineage:: abjad.tools.quantizationtools.QSchema.QSchema.QSchema
 
 .. autoclass:: abjad.tools.quantizationtools.QSchema.QSchema.QSchema
-   :noindex:
 
 Bases
 -----

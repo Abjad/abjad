@@ -4,7 +4,6 @@ quantizationtools.PitchedQEvent
 .. abjad-lineage:: abjad.tools.quantizationtools.PitchedQEvent.PitchedQEvent.PitchedQEvent
 
 .. autoclass:: abjad.tools.quantizationtools.PitchedQEvent.PitchedQEvent.PitchedQEvent
-   :noindex:
 
 Bases
 -----

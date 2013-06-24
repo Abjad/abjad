@@ -4,7 +4,6 @@ instrumenttools.Harpsichord
 .. abjad-lineage:: abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord
 
 .. autoclass:: abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord
-   :noindex:
 
 Bases
 -----

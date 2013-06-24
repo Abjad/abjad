@@ -4,7 +4,6 @@ contexttools.InstrumentMark
 .. abjad-lineage:: abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark
 
 .. autoclass:: abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark
-   :noindex:
 
 Bases
 -----

@@ -4,7 +4,6 @@ quantizationtools.NullAttackPointOptimizer
 .. abjad-lineage:: abjad.tools.quantizationtools.NullAttackPointOptimizer.NullAttackPointOptimizer.NullAttackPointOptimizer
 
 .. autoclass:: abjad.tools.quantizationtools.NullAttackPointOptimizer.NullAttackPointOptimizer.NullAttackPointOptimizer
-   :noindex:
 
 Bases
 -----

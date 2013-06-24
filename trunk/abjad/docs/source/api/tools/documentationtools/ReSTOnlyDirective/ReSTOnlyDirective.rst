@@ -4,7 +4,6 @@ documentationtools.ReSTOnlyDirective
 .. abjad-lineage:: abjad.tools.documentationtools.ReSTOnlyDirective.ReSTOnlyDirective.ReSTOnlyDirective
 
 .. autoclass:: abjad.tools.documentationtools.ReSTOnlyDirective.ReSTOnlyDirective.ReSTOnlyDirective
-   :noindex:
 
 Bases
 -----

@@ -4,7 +4,6 @@ developerscripttools.ReplacePromptsScript
 .. abjad-lineage:: abjad.tools.developerscripttools.ReplacePromptsScript.ReplacePromptsScript.ReplacePromptsScript
 
 .. autoclass:: abjad.tools.developerscripttools.ReplacePromptsScript.ReplacePromptsScript.ReplacePromptsScript
-   :noindex:
 
 Bases
 -----

@@ -4,7 +4,6 @@ spannertools.HairpinSpanner
 .. abjad-lineage:: abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner
 
 .. autoclass:: abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner
-   :noindex:
 
 Bases
 -----

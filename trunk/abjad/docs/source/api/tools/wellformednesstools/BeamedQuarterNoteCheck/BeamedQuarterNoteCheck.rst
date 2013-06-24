@@ -4,7 +4,6 @@ wellformednesstools.BeamedQuarterNoteCheck
 .. abjad-lineage:: abjad.tools.wellformednesstools.BeamedQuarterNoteCheck.BeamedQuarterNoteCheck.BeamedQuarterNoteCheck
 
 .. autoclass:: abjad.tools.wellformednesstools.BeamedQuarterNoteCheck.BeamedQuarterNoteCheck.BeamedQuarterNoteCheck
-   :noindex:
 
 Bases
 -----

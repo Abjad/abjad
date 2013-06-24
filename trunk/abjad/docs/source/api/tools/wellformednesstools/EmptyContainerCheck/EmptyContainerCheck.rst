@@ -4,7 +4,6 @@ wellformednesstools.EmptyContainerCheck
 .. abjad-lineage:: abjad.tools.wellformednesstools.EmptyContainerCheck.EmptyContainerCheck.EmptyContainerCheck
 
 .. autoclass:: abjad.tools.wellformednesstools.EmptyContainerCheck.EmptyContainerCheck.EmptyContainerCheck
-   :noindex:
 
 Bases
 -----

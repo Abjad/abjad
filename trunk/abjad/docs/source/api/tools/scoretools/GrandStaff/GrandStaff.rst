@@ -4,7 +4,6 @@ scoretools.GrandStaff
 .. abjad-lineage:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff
 
 .. autoclass:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff
-   :noindex:
 
 Bases
 -----

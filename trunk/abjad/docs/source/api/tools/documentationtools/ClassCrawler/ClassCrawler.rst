@@ -4,7 +4,6 @@ documentationtools.ClassCrawler
 .. abjad-lineage:: abjad.tools.documentationtools.ClassCrawler.ClassCrawler.ClassCrawler
 
 .. autoclass:: abjad.tools.documentationtools.ClassCrawler.ClassCrawler.ClassCrawler
-   :noindex:
 
 Bases
 -----

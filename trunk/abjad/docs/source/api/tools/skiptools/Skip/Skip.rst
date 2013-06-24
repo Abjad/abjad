@@ -4,7 +4,6 @@ skiptools.Skip
 .. abjad-lineage:: abjad.tools.skiptools.Skip.Skip.Skip
 
 .. autoclass:: abjad.tools.skiptools.Skip.Skip.Skip
-   :noindex:
 
 Bases
 -----

@@ -4,7 +4,6 @@ instrumenttools.MezzoSopranoVoice
 .. abjad-lineage:: abjad.tools.instrumenttools.MezzoSopranoVoice.MezzoSopranoVoice.MezzoSopranoVoice
 
 .. autoclass:: abjad.tools.instrumenttools.MezzoSopranoVoice.MezzoSopranoVoice.MezzoSopranoVoice
-   :noindex:
 
 Bases
 -----

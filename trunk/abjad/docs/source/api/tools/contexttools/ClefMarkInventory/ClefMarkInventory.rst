@@ -4,7 +4,6 @@ contexttools.ClefMarkInventory
 .. abjad-lineage:: abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory
 
 .. autoclass:: abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory
-   :noindex:
 
 Bases
 -----

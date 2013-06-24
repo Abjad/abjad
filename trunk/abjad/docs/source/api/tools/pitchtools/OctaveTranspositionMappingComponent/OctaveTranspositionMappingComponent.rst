@@ -4,7 +4,6 @@ pitchtools.OctaveTranspositionMappingComponent
 .. abjad-lineage:: abjad.tools.pitchtools.OctaveTranspositionMappingComponent.OctaveTranspositionMappingComponent.OctaveTranspositionMappingComponent
 
 .. autoclass:: abjad.tools.pitchtools.OctaveTranspositionMappingComponent.OctaveTranspositionMappingComponent.OctaveTranspositionMappingComponent
-   :noindex:
 
 Bases
 -----

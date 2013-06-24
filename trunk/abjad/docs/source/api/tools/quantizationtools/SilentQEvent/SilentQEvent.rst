@@ -4,7 +4,6 @@ quantizationtools.SilentQEvent
 .. abjad-lineage:: abjad.tools.quantizationtools.SilentQEvent.SilentQEvent.SilentQEvent
 
 .. autoclass:: abjad.tools.quantizationtools.SilentQEvent.SilentQEvent.SilentQEvent
-   :noindex:
 
 Bases
 -----

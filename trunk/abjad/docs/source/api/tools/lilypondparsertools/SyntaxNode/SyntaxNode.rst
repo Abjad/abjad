@@ -4,7 +4,6 @@ lilypondparsertools.SyntaxNode
 .. abjad-lineage:: abjad.tools.lilypondparsertools.SyntaxNode.SyntaxNode.SyntaxNode
 
 .. autoclass:: abjad.tools.lilypondparsertools.SyntaxNode.SyntaxNode.SyntaxNode
-   :noindex:
 
 Bases
 -----

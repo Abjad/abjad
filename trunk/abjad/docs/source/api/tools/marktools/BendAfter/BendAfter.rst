@@ -4,7 +4,6 @@ marktools.BendAfter
 .. abjad-lineage:: abjad.tools.marktools.BendAfter.BendAfter.BendAfter
 
 .. autoclass:: abjad.tools.marktools.BendAfter.BendAfter.BendAfter
-   :noindex:
 
 Bases
 -----

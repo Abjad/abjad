@@ -4,7 +4,6 @@ durationtools.Offset
 .. abjad-lineage:: abjad.tools.durationtools.Offset.Offset.Offset
 
 .. autoclass:: abjad.tools.durationtools.Offset.Offset.Offset
-   :noindex:
 
 Bases
 -----

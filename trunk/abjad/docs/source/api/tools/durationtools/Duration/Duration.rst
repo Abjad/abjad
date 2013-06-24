@@ -4,7 +4,6 @@ durationtools.Duration
 .. abjad-lineage:: abjad.tools.durationtools.Duration.Duration.Duration
 
 .. autoclass:: abjad.tools.durationtools.Duration.Duration.Duration
-   :noindex:
 
 Bases
 -----

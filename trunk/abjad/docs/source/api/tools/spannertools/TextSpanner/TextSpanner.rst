@@ -4,7 +4,6 @@ spannertools.TextSpanner
 .. abjad-lineage:: abjad.tools.spannertools.TextSpanner.TextSpanner.TextSpanner
 
 .. autoclass:: abjad.tools.spannertools.TextSpanner.TextSpanner.TextSpanner
-   :noindex:
 
 Bases
 -----

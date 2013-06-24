@@ -4,7 +4,6 @@ datastructuretools.ImmutableDictionary
 .. abjad-lineage:: abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary
 
 .. autoclass:: abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary
-   :noindex:
 
 Bases
 -----

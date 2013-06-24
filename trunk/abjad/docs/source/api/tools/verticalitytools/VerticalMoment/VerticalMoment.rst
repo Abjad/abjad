@@ -4,7 +4,6 @@ verticalitytools.VerticalMoment
 .. abjad-lineage:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment
 
 .. autoclass:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment
-   :noindex:
 
 Bases
 -----

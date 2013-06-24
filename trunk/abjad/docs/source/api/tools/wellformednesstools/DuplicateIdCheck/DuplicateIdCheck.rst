@@ -4,7 +4,6 @@ wellformednesstools.DuplicateIdCheck
 .. abjad-lineage:: abjad.tools.wellformednesstools.DuplicateIdCheck.DuplicateIdCheck.DuplicateIdCheck
 
 .. autoclass:: abjad.tools.wellformednesstools.DuplicateIdCheck.DuplicateIdCheck.DuplicateIdCheck
-   :noindex:
 
 Bases
 -----

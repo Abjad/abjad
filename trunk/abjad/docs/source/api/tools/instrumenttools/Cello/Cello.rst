@@ -4,7 +4,6 @@ instrumenttools.Cello
 .. abjad-lineage:: abjad.tools.instrumenttools.Cello.Cello.Cello
 
 .. autoclass:: abjad.tools.instrumenttools.Cello.Cello.Cello
-   :noindex:
 
 Bases
 -----

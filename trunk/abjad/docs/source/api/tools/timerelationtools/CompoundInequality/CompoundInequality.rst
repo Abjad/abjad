@@ -4,7 +4,6 @@ timerelationtools.CompoundInequality
 .. abjad-lineage:: abjad.tools.timerelationtools.CompoundInequality.CompoundInequality.CompoundInequality
 
 .. autoclass:: abjad.tools.timerelationtools.CompoundInequality.CompoundInequality.CompoundInequality
-   :noindex:
 
 Bases
 -----

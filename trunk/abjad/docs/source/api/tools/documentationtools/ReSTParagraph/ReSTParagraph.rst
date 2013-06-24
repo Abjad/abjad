@@ -4,7 +4,6 @@ documentationtools.ReSTParagraph
 .. abjad-lineage:: abjad.tools.documentationtools.ReSTParagraph.ReSTParagraph.ReSTParagraph
 
 .. autoclass:: abjad.tools.documentationtools.ReSTParagraph.ReSTParagraph.ReSTParagraph
-   :noindex:
 
 Bases
 -----

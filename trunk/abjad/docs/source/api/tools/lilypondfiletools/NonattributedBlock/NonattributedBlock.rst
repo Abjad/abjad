@@ -4,7 +4,6 @@ lilypondfiletools.NonattributedBlock
 .. abjad-lineage:: abjad.tools.lilypondfiletools.NonattributedBlock.NonattributedBlock.NonattributedBlock
 
 .. autoclass:: abjad.tools.lilypondfiletools.NonattributedBlock.NonattributedBlock.NonattributedBlock
-   :noindex:
 
 Bases
 -----

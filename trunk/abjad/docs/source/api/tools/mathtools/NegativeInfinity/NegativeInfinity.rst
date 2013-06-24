@@ -4,7 +4,6 @@ mathtools.NegativeInfinity
 .. abjad-lineage:: abjad.tools.mathtools.NegativeInfinity.NegativeInfinity.NegativeInfinity
 
 .. autoclass:: abjad.tools.mathtools.NegativeInfinity.NegativeInfinity.NegativeInfinity
-   :noindex:
 
 Bases
 -----

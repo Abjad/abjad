@@ -4,7 +4,6 @@ datastructuretools.SortedCollection
 .. abjad-lineage:: abjad.tools.datastructuretools.SortedCollection.SortedCollection.SortedCollection
 
 .. autoclass:: abjad.tools.datastructuretools.SortedCollection.SortedCollection.SortedCollection
-   :noindex:
 
 Bases
 -----

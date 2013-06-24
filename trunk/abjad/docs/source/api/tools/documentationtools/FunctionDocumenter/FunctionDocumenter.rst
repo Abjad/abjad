@@ -4,7 +4,6 @@ documentationtools.FunctionDocumenter
 .. abjad-lineage:: abjad.tools.documentationtools.FunctionDocumenter.FunctionDocumenter.FunctionDocumenter
 
 .. autoclass:: abjad.tools.documentationtools.FunctionDocumenter.FunctionDocumenter.FunctionDocumenter
-   :noindex:
 
 Bases
 -----

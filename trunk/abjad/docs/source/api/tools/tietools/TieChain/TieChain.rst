@@ -4,7 +4,6 @@ tietools.TieChain
 .. abjad-lineage:: abjad.tools.tietools.TieChain.TieChain.TieChain
 
 .. autoclass:: abjad.tools.tietools.TieChain.TieChain.TieChain
-   :noindex:
 
 Bases
 -----

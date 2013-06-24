@@ -4,7 +4,6 @@ marktools.LilyPondComment
 .. abjad-lineage:: abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment
 
 .. autoclass:: abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment
-   :noindex:
 
 Bases
 -----

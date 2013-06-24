@@ -4,7 +4,6 @@ pitchtools.MelodicInterval
 .. abjad-lineage:: abjad.tools.pitchtools.MelodicInterval.MelodicInterval.MelodicInterval
 
 .. autoclass:: abjad.tools.pitchtools.MelodicInterval.MelodicInterval.MelodicInterval
-   :noindex:
 
 Bases
 -----

@@ -4,7 +4,6 @@ instrumenttools.WoodwindFingering
 .. abjad-lineage:: abjad.tools.instrumenttools.WoodwindFingering.WoodwindFingering.WoodwindFingering
 
 .. autoclass:: abjad.tools.instrumenttools.WoodwindFingering.WoodwindFingering.WoodwindFingering
-   :noindex:
 
 Bases
 -----

@@ -4,7 +4,6 @@ timeintervaltools.TimeIntervalMixin
 .. abjad-lineage:: abjad.tools.timeintervaltools.TimeIntervalMixin.TimeIntervalMixin.TimeIntervalMixin
 
 .. autoclass:: abjad.tools.timeintervaltools.TimeIntervalMixin.TimeIntervalMixin.TimeIntervalMixin
-   :noindex:
 
 Bases
 -----

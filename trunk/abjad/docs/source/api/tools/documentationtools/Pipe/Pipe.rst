@@ -4,7 +4,6 @@ documentationtools.Pipe
 .. abjad-lineage:: abjad.tools.documentationtools.Pipe.Pipe.Pipe
 
 .. autoclass:: abjad.tools.documentationtools.Pipe.Pipe.Pipe
-   :noindex:
 
 Bases
 -----

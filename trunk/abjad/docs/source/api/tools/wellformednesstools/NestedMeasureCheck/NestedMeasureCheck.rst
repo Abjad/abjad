@@ -4,7 +4,6 @@ wellformednesstools.NestedMeasureCheck
 .. abjad-lineage:: abjad.tools.wellformednesstools.NestedMeasureCheck.NestedMeasureCheck.NestedMeasureCheck
 
 .. autoclass:: abjad.tools.wellformednesstools.NestedMeasureCheck.NestedMeasureCheck.NestedMeasureCheck
-   :noindex:
 
 Bases
 -----

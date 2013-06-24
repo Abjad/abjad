@@ -4,7 +4,6 @@ quantizationtools.DistanceHeuristic
 .. abjad-lineage:: abjad.tools.quantizationtools.DistanceHeuristic.DistanceHeuristic.DistanceHeuristic
 
 .. autoclass:: abjad.tools.quantizationtools.DistanceHeuristic.DistanceHeuristic.DistanceHeuristic
-   :noindex:
 
 Bases
 -----

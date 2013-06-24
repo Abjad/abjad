@@ -4,7 +4,6 @@ lilypondfiletools.ContextBlock
 .. abjad-lineage:: abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock
 
 .. autoclass:: abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock
-   :noindex:
 
 Bases
 -----

@@ -4,7 +4,6 @@ quantizationtools.QSchemaItem
 .. abjad-lineage:: abjad.tools.quantizationtools.QSchemaItem.QSchemaItem.QSchemaItem
 
 .. autoclass:: abjad.tools.quantizationtools.QSchemaItem.QSchemaItem.QSchemaItem
-   :noindex:
 
 Bases
 -----

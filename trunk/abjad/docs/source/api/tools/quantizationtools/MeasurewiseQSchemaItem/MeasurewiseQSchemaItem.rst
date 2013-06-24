@@ -4,7 +4,6 @@ quantizationtools.MeasurewiseQSchemaItem
 .. abjad-lineage:: abjad.tools.quantizationtools.MeasurewiseQSchemaItem.MeasurewiseQSchemaItem.MeasurewiseQSchemaItem
 
 .. autoclass:: abjad.tools.quantizationtools.MeasurewiseQSchemaItem.MeasurewiseQSchemaItem.MeasurewiseQSchemaItem
-   :noindex:
 
 Bases
 -----

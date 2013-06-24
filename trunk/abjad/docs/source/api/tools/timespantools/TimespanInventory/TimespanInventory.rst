@@ -4,7 +4,6 @@ timespantools.TimespanInventory
 .. abjad-lineage:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory
 
 .. autoclass:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory
-   :noindex:
 
 Bases
 -----

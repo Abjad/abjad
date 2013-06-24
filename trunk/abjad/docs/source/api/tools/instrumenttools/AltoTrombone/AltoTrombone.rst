@@ -4,7 +4,6 @@ instrumenttools.AltoTrombone
 .. abjad-lineage:: abjad.tools.instrumenttools.AltoTrombone.AltoTrombone.AltoTrombone
 
 .. autoclass:: abjad.tools.instrumenttools.AltoTrombone.AltoTrombone.AltoTrombone
-   :noindex:
 
 Bases
 -----

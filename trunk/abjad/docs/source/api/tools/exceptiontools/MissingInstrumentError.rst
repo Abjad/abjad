@@ -4,7 +4,6 @@ exceptiontools.MissingInstrumentError
 .. abjad-lineage:: abjad.tools.exceptiontools.MissingInstrumentError.MissingInstrumentError
 
 .. autoclass:: abjad.tools.exceptiontools.MissingInstrumentError.MissingInstrumentError
-   :noindex:
 
 Bases
 -----

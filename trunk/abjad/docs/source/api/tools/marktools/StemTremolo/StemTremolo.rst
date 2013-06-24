@@ -4,7 +4,6 @@ marktools.StemTremolo
 .. abjad-lineage:: abjad.tools.marktools.StemTremolo.StemTremolo.StemTremolo
 
 .. autoclass:: abjad.tools.marktools.StemTremolo.StemTremolo.StemTremolo
-   :noindex:
 
 Bases
 -----

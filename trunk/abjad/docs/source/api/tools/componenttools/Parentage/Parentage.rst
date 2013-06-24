@@ -4,7 +4,6 @@ componenttools.Parentage
 .. abjad-lineage:: abjad.tools.componenttools.Parentage.Parentage.Parentage
 
 .. autoclass:: abjad.tools.componenttools.Parentage.Parentage.Parentage
-   :noindex:
 
 Bases
 -----

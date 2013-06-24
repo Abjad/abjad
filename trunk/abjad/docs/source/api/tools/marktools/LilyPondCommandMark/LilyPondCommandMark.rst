@@ -4,7 +4,6 @@ marktools.LilyPondCommandMark
 .. abjad-lineage:: abjad.tools.marktools.LilyPondCommandMark.LilyPondCommandMark.LilyPondCommandMark
 
 .. autoclass:: abjad.tools.marktools.LilyPondCommandMark.LilyPondCommandMark.LilyPondCommandMark
-   :noindex:
 
 Bases
 -----

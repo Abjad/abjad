@@ -4,7 +4,6 @@ instrumenttools.AltoFlute
 .. abjad-lineage:: abjad.tools.instrumenttools.AltoFlute.AltoFlute.AltoFlute
 
 .. autoclass:: abjad.tools.instrumenttools.AltoFlute.AltoFlute.AltoFlute
-   :noindex:
 
 Bases
 -----

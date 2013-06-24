@@ -4,7 +4,6 @@ rhythmmakertools.OutputIncisedRestRhythmMaker
 .. abjad-lineage:: abjad.tools.rhythmmakertools.OutputIncisedRestRhythmMaker.OutputIncisedRestRhythmMaker.OutputIncisedRestRhythmMaker
 
 .. autoclass:: abjad.tools.rhythmmakertools.OutputIncisedRestRhythmMaker.OutputIncisedRestRhythmMaker.OutputIncisedRestRhythmMaker
-   :noindex:
 
 Bases
 -----

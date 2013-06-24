@@ -4,7 +4,6 @@ tonalitytools.OmissionIndicator
 .. abjad-lineage:: abjad.tools.tonalitytools.OmissionIndicator.OmissionIndicator.OmissionIndicator
 
 .. autoclass:: abjad.tools.tonalitytools.OmissionIndicator.OmissionIndicator.OmissionIndicator
-   :noindex:
 
 Bases
 -----

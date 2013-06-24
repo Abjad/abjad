@@ -4,7 +4,6 @@ instrumenttools.Guitar
 .. abjad-lineage:: abjad.tools.instrumenttools.Guitar.Guitar.Guitar
 
 .. autoclass:: abjad.tools.instrumenttools.Guitar.Guitar.Guitar
-   :noindex:
 
 Bases
 -----

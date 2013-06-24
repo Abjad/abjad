@@ -4,7 +4,6 @@ pitchtools.Accidental
 .. abjad-lineage:: abjad.tools.pitchtools.Accidental.Accidental.Accidental
 
 .. autoclass:: abjad.tools.pitchtools.Accidental.Accidental.Accidental
-   :noindex:
 
 Bases
 -----

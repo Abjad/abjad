@@ -4,7 +4,6 @@ abctools.Maker
 .. abjad-lineage:: abjad.tools.abctools.Maker.Maker.Maker
 
 .. autoclass:: abjad.tools.abctools.Maker.Maker.Maker
-   :noindex:
 
 Bases
 -----

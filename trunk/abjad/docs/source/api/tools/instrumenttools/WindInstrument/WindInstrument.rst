@@ -4,7 +4,6 @@ instrumenttools.WindInstrument
 .. abjad-lineage:: abjad.tools.instrumenttools.WindInstrument.WindInstrument.WindInstrument
 
 .. autoclass:: abjad.tools.instrumenttools.WindInstrument.WindInstrument.WindInstrument
-   :noindex:
 
 Bases
 -----

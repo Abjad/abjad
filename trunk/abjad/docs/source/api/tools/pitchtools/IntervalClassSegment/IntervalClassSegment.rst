@@ -4,7 +4,6 @@ pitchtools.IntervalClassSegment
 .. abjad-lineage:: abjad.tools.pitchtools.IntervalClassSegment.IntervalClassSegment.IntervalClassSegment
 
 .. autoclass:: abjad.tools.pitchtools.IntervalClassSegment.IntervalClassSegment.IntervalClassSegment
-   :noindex:
 
 Bases
 -----

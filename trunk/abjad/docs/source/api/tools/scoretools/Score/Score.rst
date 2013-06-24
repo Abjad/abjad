@@ -4,7 +4,6 @@ scoretools.Score
 .. abjad-lineage:: abjad.tools.scoretools.Score.Score.Score
 
 .. autoclass:: abjad.tools.scoretools.Score.Score.Score
-   :noindex:
 
 Bases
 -----

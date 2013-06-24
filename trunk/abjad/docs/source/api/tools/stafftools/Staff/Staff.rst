@@ -4,7 +4,6 @@ stafftools.Staff
 .. abjad-lineage:: abjad.tools.stafftools.Staff.Staff.Staff
 
 .. autoclass:: abjad.tools.stafftools.Staff.Staff.Staff
-   :noindex:
 
 Bases
 -----

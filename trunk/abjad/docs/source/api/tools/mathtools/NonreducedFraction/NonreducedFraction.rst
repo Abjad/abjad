@@ -4,7 +4,6 @@ mathtools.NonreducedFraction
 .. abjad-lineage:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction
 
 .. autoclass:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction
-   :noindex:
 
 Bases
 -----

@@ -4,7 +4,6 @@ lilypondparsertools.ContextSpeccedMusic
 .. abjad-lineage:: abjad.tools.lilypondparsertools.ContextSpeccedMusic.ContextSpeccedMusic.ContextSpeccedMusic
 
 .. autoclass:: abjad.tools.lilypondparsertools.ContextSpeccedMusic.ContextSpeccedMusic.ContextSpeccedMusic
-   :noindex:
 
 Bases
 -----

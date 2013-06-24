@@ -4,7 +4,6 @@ measuretools.Measure
 .. abjad-lineage:: abjad.tools.measuretools.Measure.Measure.Measure
 
 .. autoclass:: abjad.tools.measuretools.Measure.Measure.Measure
-   :noindex:
 
 Bases
 -----

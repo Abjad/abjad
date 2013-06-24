@@ -4,7 +4,6 @@ tuplettools.Tuplet
 .. abjad-lineage:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet
 
 .. autoclass:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet
-   :noindex:
 
 Bases
 -----

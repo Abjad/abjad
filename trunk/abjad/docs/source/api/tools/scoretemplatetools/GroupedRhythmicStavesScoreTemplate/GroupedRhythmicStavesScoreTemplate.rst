@@ -4,7 +4,6 @@ scoretemplatetools.GroupedRhythmicStavesScoreTemplate
 .. abjad-lineage:: abjad.tools.scoretemplatetools.GroupedRhythmicStavesScoreTemplate.GroupedRhythmicStavesScoreTemplate.GroupedRhythmicStavesScoreTemplate
 
 .. autoclass:: abjad.tools.scoretemplatetools.GroupedRhythmicStavesScoreTemplate.GroupedRhythmicStavesScoreTemplate.GroupedRhythmicStavesScoreTemplate
-   :noindex:
 
 Bases
 -----

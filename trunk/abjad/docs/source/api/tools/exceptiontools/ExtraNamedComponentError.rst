@@ -4,7 +4,6 @@ exceptiontools.ExtraNamedComponentError
 .. abjad-lineage:: abjad.tools.exceptiontools.ExtraNamedComponentError.ExtraNamedComponentError
 
 .. autoclass:: abjad.tools.exceptiontools.ExtraNamedComponentError.ExtraNamedComponentError
-   :noindex:
 
 Bases
 -----

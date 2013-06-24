@@ -4,7 +4,6 @@ lilypondparsertools.LilyPondFraction
 .. abjad-lineage:: abjad.tools.lilypondparsertools.LilyPondFraction.LilyPondFraction.LilyPondFraction
 
 .. autoclass:: abjad.tools.lilypondparsertools.LilyPondFraction.LilyPondFraction.LilyPondFraction
-   :noindex:
 
 Bases
 -----

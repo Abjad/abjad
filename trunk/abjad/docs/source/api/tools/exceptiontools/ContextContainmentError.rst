@@ -4,7 +4,6 @@ exceptiontools.ContextContainmentError
 .. abjad-lineage:: abjad.tools.exceptiontools.ContextContainmentError.ContextContainmentError
 
 .. autoclass:: abjad.tools.exceptiontools.ContextContainmentError.ContextContainmentError
-   :noindex:
 
 Bases
 -----

@@ -4,7 +4,6 @@ spannertools.HorizontalBracketSpanner
 .. abjad-lineage:: abjad.tools.spannertools.HorizontalBracketSpanner.HorizontalBracketSpanner.HorizontalBracketSpanner
 
 .. autoclass:: abjad.tools.spannertools.HorizontalBracketSpanner.HorizontalBracketSpanner.HorizontalBracketSpanner
-   :noindex:
 
 Bases
 -----

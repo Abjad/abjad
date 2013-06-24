@@ -4,7 +4,6 @@ rhythmmakertools.DivisionBurnishedTaleaRhythmMaker
 .. abjad-lineage:: abjad.tools.rhythmmakertools.DivisionBurnishedTaleaRhythmMaker.DivisionBurnishedTaleaRhythmMaker.DivisionBurnishedTaleaRhythmMaker
 
 .. autoclass:: abjad.tools.rhythmmakertools.DivisionBurnishedTaleaRhythmMaker.DivisionBurnishedTaleaRhythmMaker.DivisionBurnishedTaleaRhythmMaker
-   :noindex:
 
 Bases
 -----

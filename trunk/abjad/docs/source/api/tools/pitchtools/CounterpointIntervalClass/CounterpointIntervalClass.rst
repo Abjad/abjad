@@ -4,7 +4,6 @@ pitchtools.CounterpointIntervalClass
 .. abjad-lineage:: abjad.tools.pitchtools.CounterpointIntervalClass.CounterpointIntervalClass.CounterpointIntervalClass
 
 .. autoclass:: abjad.tools.pitchtools.CounterpointIntervalClass.CounterpointIntervalClass.CounterpointIntervalClass
-   :noindex:
 
 Bases
 -----

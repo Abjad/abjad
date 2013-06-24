@@ -4,7 +4,6 @@ documentationtools.ReSTHeading
 .. abjad-lineage:: abjad.tools.documentationtools.ReSTHeading.ReSTHeading.ReSTHeading
 
 .. autoclass:: abjad.tools.documentationtools.ReSTHeading.ReSTHeading.ReSTHeading
-   :noindex:
 
 Bases
 -----

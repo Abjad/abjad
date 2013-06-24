@@ -4,7 +4,6 @@ datastructuretools.TreeNode
 .. abjad-lineage:: abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode
 
 .. autoclass:: abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode
-   :noindex:
 
 Bases
 -----

@@ -4,7 +4,6 @@ documentationtools.ReSTAutodocDirective
 .. abjad-lineage:: abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective
 
 .. autoclass:: abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective
-   :noindex:
 
 Bases
 -----

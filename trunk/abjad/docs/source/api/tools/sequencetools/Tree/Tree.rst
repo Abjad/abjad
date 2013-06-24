@@ -4,7 +4,6 @@ sequencetools.Tree
 .. abjad-lineage:: abjad.tools.sequencetools.Tree.Tree.Tree
 
 .. autoclass:: abjad.tools.sequencetools.Tree.Tree.Tree
-   :noindex:
 
 Bases
 -----

@@ -4,7 +4,6 @@ documentationtools.ReSTHorizontalRule
 .. abjad-lineage:: abjad.tools.documentationtools.ReSTHorizontalRule.ReSTHorizontalRule.ReSTHorizontalRule
 
 .. autoclass:: abjad.tools.documentationtools.ReSTHorizontalRule.ReSTHorizontalRule.ReSTHorizontalRule
-   :noindex:
 
 Bases
 -----

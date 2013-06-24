@@ -4,7 +4,6 @@ lilypondproxytools.LilyPondGrobProxy
 .. abjad-lineage:: abjad.tools.lilypondproxytools.LilyPondGrobProxy.LilyPondGrobProxy.LilyPondGrobProxy
 
 .. autoclass:: abjad.tools.lilypondproxytools.LilyPondGrobProxy.LilyPondGrobProxy.LilyPondGrobProxy
-   :noindex:
 
 Bases
 -----

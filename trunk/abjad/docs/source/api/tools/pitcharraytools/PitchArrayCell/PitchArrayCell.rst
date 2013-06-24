@@ -4,7 +4,6 @@ pitcharraytools.PitchArrayCell
 .. abjad-lineage:: abjad.tools.pitcharraytools.PitchArrayCell.PitchArrayCell.PitchArrayCell
 
 .. autoclass:: abjad.tools.pitcharraytools.PitchArrayCell.PitchArrayCell.PitchArrayCell
-   :noindex:
 
 Bases
 -----

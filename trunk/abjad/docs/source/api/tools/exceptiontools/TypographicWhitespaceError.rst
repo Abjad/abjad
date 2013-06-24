@@ -4,7 +4,6 @@ exceptiontools.TypographicWhitespaceError
 .. abjad-lineage:: abjad.tools.exceptiontools.TypographicWhitespaceError.TypographicWhitespaceError
 
 .. autoclass:: abjad.tools.exceptiontools.TypographicWhitespaceError.TypographicWhitespaceError
-   :noindex:
 
 Bases
 -----

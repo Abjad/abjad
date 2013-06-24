@@ -4,7 +4,6 @@ lilypondparsertools.SchemeParser
 .. abjad-lineage:: abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser
 
 .. autoclass:: abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser
-   :noindex:
 
 Bases
 -----

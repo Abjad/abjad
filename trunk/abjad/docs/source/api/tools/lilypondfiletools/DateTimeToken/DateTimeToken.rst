@@ -4,7 +4,6 @@ lilypondfiletools.DateTimeToken
 .. abjad-lineage:: abjad.tools.lilypondfiletools.DateTimeToken.DateTimeToken.DateTimeToken
 
 .. autoclass:: abjad.tools.lilypondfiletools.DateTimeToken.DateTimeToken.DateTimeToken
-   :noindex:
 
 Bases
 -----

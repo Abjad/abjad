@@ -4,7 +4,6 @@ beamtools.DuratedComplexBeamSpanner
 .. abjad-lineage:: abjad.tools.beamtools.DuratedComplexBeamSpanner.DuratedComplexBeamSpanner.DuratedComplexBeamSpanner
 
 .. autoclass:: abjad.tools.beamtools.DuratedComplexBeamSpanner.DuratedComplexBeamSpanner.DuratedComplexBeamSpanner
-   :noindex:
 
 Bases
 -----

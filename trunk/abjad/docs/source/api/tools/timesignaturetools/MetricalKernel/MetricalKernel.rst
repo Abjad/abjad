@@ -4,7 +4,6 @@ timesignaturetools.MetricalKernel
 .. abjad-lineage:: abjad.tools.timesignaturetools.MetricalKernel.MetricalKernel.MetricalKernel
 
 .. autoclass:: abjad.tools.timesignaturetools.MetricalKernel.MetricalKernel.MetricalKernel
-   :noindex:
 
 Bases
 -----

@@ -4,7 +4,6 @@ exceptiontools.ExtraNoteHeadError
 .. abjad-lineage:: abjad.tools.exceptiontools.ExtraNoteHeadError.ExtraNoteHeadError
 
 .. autoclass:: abjad.tools.exceptiontools.ExtraNoteHeadError.ExtraNoteHeadError
-   :noindex:
 
 Bases
 -----

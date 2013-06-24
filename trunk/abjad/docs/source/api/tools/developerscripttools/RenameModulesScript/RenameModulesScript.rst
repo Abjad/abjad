@@ -4,7 +4,6 @@ developerscripttools.RenameModulesScript
 .. abjad-lineage:: abjad.tools.developerscripttools.RenameModulesScript.RenameModulesScript.RenameModulesScript
 
 .. autoclass:: abjad.tools.developerscripttools.RenameModulesScript.RenameModulesScript.RenameModulesScript
-   :noindex:
 
 Bases
 -----

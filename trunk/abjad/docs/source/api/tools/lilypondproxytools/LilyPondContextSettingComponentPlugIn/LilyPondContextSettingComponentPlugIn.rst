@@ -4,7 +4,6 @@ lilypondproxytools.LilyPondContextSettingComponentPlugIn
 .. abjad-lineage:: abjad.tools.lilypondproxytools.LilyPondContextSettingComponentPlugIn.LilyPondContextSettingComponentPlugIn.LilyPondContextSettingComponentPlugIn
 
 .. autoclass:: abjad.tools.lilypondproxytools.LilyPondContextSettingComponentPlugIn.LilyPondContextSettingComponentPlugIn.LilyPondContextSettingComponentPlugIn
-   :noindex:
 
 Bases
 -----

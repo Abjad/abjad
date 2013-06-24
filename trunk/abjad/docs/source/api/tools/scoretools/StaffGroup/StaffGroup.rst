@@ -4,7 +4,6 @@ scoretools.StaffGroup
 .. abjad-lineage:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup
 
 .. autoclass:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup
-   :noindex:
 
 Bases
 -----

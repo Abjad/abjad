@@ -4,7 +4,6 @@ selectiontools.Selection
 .. abjad-lineage:: abjad.tools.selectiontools.Selection.Selection.Selection
 
 .. autoclass:: abjad.tools.selectiontools.Selection.Selection.Selection
-   :noindex:
 
 Bases
 -----

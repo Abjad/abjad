@@ -4,7 +4,6 @@ resttools.Rest
 .. abjad-lineage:: abjad.tools.resttools.Rest.Rest.Rest
 
 .. autoclass:: abjad.tools.resttools.Rest.Rest.Rest
-   :noindex:
 
 Bases
 -----

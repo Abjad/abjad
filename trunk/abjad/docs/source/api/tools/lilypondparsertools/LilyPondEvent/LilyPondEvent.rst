@@ -4,7 +4,6 @@ lilypondparsertools.LilyPondEvent
 .. abjad-lineage:: abjad.tools.lilypondparsertools.LilyPondEvent.LilyPondEvent.LilyPondEvent
 
 .. autoclass:: abjad.tools.lilypondparsertools.LilyPondEvent.LilyPondEvent.LilyPondEvent
-   :noindex:
 
 Bases
 -----

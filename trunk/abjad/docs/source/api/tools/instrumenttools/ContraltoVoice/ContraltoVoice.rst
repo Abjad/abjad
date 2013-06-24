@@ -4,7 +4,6 @@ instrumenttools.ContraltoVoice
 .. abjad-lineage:: abjad.tools.instrumenttools.ContraltoVoice.ContraltoVoice.ContraltoVoice
 
 .. autoclass:: abjad.tools.instrumenttools.ContraltoVoice.ContraltoVoice.ContraltoVoice
-   :noindex:
 
 Bases
 -----

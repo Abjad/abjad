@@ -4,7 +4,6 @@ instrumenttools.EnglishHorn
 .. abjad-lineage:: abjad.tools.instrumenttools.EnglishHorn.EnglishHorn.EnglishHorn
 
 .. autoclass:: abjad.tools.instrumenttools.EnglishHorn.EnglishHorn.EnglishHorn
-   :noindex:
 
 Bases
 -----

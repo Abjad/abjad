@@ -4,7 +4,6 @@ pitchtools.Vector
 .. abjad-lineage:: abjad.tools.pitchtools.Vector.Vector.Vector
 
 .. autoclass:: abjad.tools.pitchtools.Vector.Vector.Vector
-   :noindex:
 
 Bases
 -----

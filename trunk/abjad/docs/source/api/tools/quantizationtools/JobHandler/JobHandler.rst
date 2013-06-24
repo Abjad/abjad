@@ -4,7 +4,6 @@ quantizationtools.JobHandler
 .. abjad-lineage:: abjad.tools.quantizationtools.JobHandler.JobHandler.JobHandler
 
 .. autoclass:: abjad.tools.quantizationtools.JobHandler.JobHandler.JobHandler
-   :noindex:
 
 Bases
 -----

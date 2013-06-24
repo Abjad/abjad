@@ -4,7 +4,6 @@ lilypondparsertools.LilyPondLexicalDefinition
 .. abjad-lineage:: abjad.tools.lilypondparsertools.LilyPondLexicalDefinition.LilyPondLexicalDefinition.LilyPondLexicalDefinition
 
 .. autoclass:: abjad.tools.lilypondparsertools.LilyPondLexicalDefinition.LilyPondLexicalDefinition.LilyPondLexicalDefinition
-   :noindex:
 
 Bases
 -----

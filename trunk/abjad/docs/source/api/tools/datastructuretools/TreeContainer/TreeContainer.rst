@@ -4,7 +4,6 @@ datastructuretools.TreeContainer
 .. abjad-lineage:: abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer
 
 .. autoclass:: abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer
-   :noindex:
 
 Bases
 -----

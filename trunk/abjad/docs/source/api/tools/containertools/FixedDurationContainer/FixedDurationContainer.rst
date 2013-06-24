@@ -4,7 +4,6 @@ containertools.FixedDurationContainer
 .. abjad-lineage:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer
 
 .. autoclass:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer
-   :noindex:
 
 Bases
 -----

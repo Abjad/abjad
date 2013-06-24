@@ -4,7 +4,6 @@ lilypondfiletools.HeaderBlock
 .. abjad-lineage:: abjad.tools.lilypondfiletools.HeaderBlock.HeaderBlock.HeaderBlock
 
 .. autoclass:: abjad.tools.lilypondfiletools.HeaderBlock.HeaderBlock.HeaderBlock
-   :noindex:
 
 Bases
 -----

@@ -4,7 +4,6 @@ exceptiontools.MissingNoteHeadError
 .. abjad-lineage:: abjad.tools.exceptiontools.MissingNoteHeadError.MissingNoteHeadError
 
 .. autoclass:: abjad.tools.exceptiontools.MissingNoteHeadError.MissingNoteHeadError
-   :noindex:
 
 Bases
 -----

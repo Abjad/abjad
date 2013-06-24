@@ -4,7 +4,6 @@ resttools.MultiMeasureRest
 .. abjad-lineage:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest
 
 .. autoclass:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest
-   :noindex:
 
 Bases
 -----

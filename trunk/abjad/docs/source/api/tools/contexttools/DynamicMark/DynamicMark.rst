@@ -4,7 +4,6 @@ contexttools.DynamicMark
 .. abjad-lineage:: abjad.tools.contexttools.DynamicMark.DynamicMark.DynamicMark
 
 .. autoclass:: abjad.tools.contexttools.DynamicMark.DynamicMark.DynamicMark
-   :noindex:
 
 Bases
 -----

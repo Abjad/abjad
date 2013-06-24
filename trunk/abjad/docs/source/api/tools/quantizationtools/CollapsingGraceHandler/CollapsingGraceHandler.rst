@@ -4,7 +4,6 @@ quantizationtools.CollapsingGraceHandler
 .. abjad-lineage:: abjad.tools.quantizationtools.CollapsingGraceHandler.CollapsingGraceHandler.CollapsingGraceHandler
 
 .. autoclass:: abjad.tools.quantizationtools.CollapsingGraceHandler.CollapsingGraceHandler.CollapsingGraceHandler
-   :noindex:
 
 Bases
 -----

@@ -4,7 +4,6 @@ quantizationtools.MeasurewiseQTarget
 .. abjad-lineage:: abjad.tools.quantizationtools.MeasurewiseQTarget.MeasurewiseQTarget.MeasurewiseQTarget
 
 .. autoclass:: abjad.tools.quantizationtools.MeasurewiseQTarget.MeasurewiseQTarget.MeasurewiseQTarget
-   :noindex:
 
 Bases
 -----

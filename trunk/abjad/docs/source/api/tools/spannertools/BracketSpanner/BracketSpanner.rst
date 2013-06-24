@@ -4,7 +4,6 @@ spannertools.BracketSpanner
 .. abjad-lineage:: abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner
 
 .. autoclass:: abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner
-   :noindex:
 
 Bases
 -----

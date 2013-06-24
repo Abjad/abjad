@@ -4,7 +4,6 @@ exceptiontools.MissingPitchError
 .. abjad-lineage:: abjad.tools.exceptiontools.MissingPitchError.MissingPitchError
 
 .. autoclass:: abjad.tools.exceptiontools.MissingPitchError.MissingPitchError
-   :noindex:
 
 Bases
 -----

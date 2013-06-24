@@ -4,7 +4,6 @@ iotools.RedirectedStreams
 .. abjad-lineage:: abjad.tools.iotools.RedirectedStreams.RedirectedStreams.RedirectedStreams
 
 .. autoclass:: abjad.tools.iotools.RedirectedStreams.RedirectedStreams.RedirectedStreams
-   :noindex:
 
 Bases
 -----

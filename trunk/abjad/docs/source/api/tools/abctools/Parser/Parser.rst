@@ -4,7 +4,6 @@ abctools.Parser
 .. abjad-lineage:: abjad.tools.abctools.Parser.Parser.Parser
 
 .. autoclass:: abjad.tools.abctools.Parser.Parser.Parser
-   :noindex:
 
 Bases
 -----
