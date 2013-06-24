@@ -76,34 +76,34 @@ class ClassDocumenter(Documenter):
         -------
         <BLANKLINE>
         .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.new
-        :noindex:
+           :noindex:
         <BLANKLINE>
         Special methods
         ---------------
         <BLANKLINE>
         .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.__call__
-        :noindex:
+           :noindex:
         <BLANKLINE>
         .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.__eq__
-        :noindex:
+           :noindex:
         <BLANKLINE>
         .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.__ge__
-        :noindex:
+           :noindex:
         <BLANKLINE>
         .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.__gt__
-        :noindex:
+           :noindex:
         <BLANKLINE>
         .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.__le__
-        :noindex:
+           :noindex:
         <BLANKLINE>
         .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.__lt__
-        :noindex:
+           :noindex:
         <BLANKLINE>
         .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.__ne__
-        :noindex:
+           :noindex:
         <BLANKLINE>
         .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.__repr__
-        :noindex:
+           :noindex:
         <BLANKLINE>
 
     Returns ``ClassDocumenter`` instance.
