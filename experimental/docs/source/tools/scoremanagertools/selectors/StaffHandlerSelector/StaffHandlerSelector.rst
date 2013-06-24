@@ -4,7 +4,6 @@ scoremanagertools.selectors.StaffHandlerSelector
 .. abjad-lineage:: experimental.tools.scoremanagertools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector
 
 .. autoclass:: experimental.tools.scoremanagertools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector
-   :noindex:
 
 Bases
 -----

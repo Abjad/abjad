@@ -4,7 +4,6 @@ scoremanagertools.io.IO
 .. abjad-lineage:: experimental.tools.scoremanagertools.io.IO.IO.IO
 
 .. autoclass:: experimental.tools.scoremanagertools.io.IO.IO.IO
-   :noindex:
 
 Bases
 -----

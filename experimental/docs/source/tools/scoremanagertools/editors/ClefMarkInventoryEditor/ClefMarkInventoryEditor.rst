@@ -4,7 +4,6 @@ scoremanagertools.editors.ClefMarkInventoryEditor
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor
 
 .. autoclass:: experimental.tools.scoremanagertools.editors.ClefMarkInventoryEditor.ClefMarkInventoryEditor.ClefMarkInventoryEditor
-   :noindex:
 
 Bases
 -----

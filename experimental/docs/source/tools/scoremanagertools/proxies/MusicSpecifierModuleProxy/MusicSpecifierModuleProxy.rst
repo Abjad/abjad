@@ -4,7 +4,6 @@ scoremanagertools.proxies.MusicSpecifierModuleProxy
 .. abjad-lineage:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy
 
 .. autoclass:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy
-   :noindex:
 
 Bases
 -----

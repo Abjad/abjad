@@ -4,7 +4,6 @@ scoremanagertools.selectors.ClefNameSelector
 .. abjad-lineage:: experimental.tools.scoremanagertools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector
 
 .. autoclass:: experimental.tools.scoremanagertools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector
-   :noindex:
 
 Bases
 -----

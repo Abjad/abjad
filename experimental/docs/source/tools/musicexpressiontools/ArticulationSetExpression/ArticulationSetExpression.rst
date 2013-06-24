@@ -4,7 +4,6 @@ musicexpressiontools.ArticulationSetExpression
 .. abjad-lineage:: experimental.tools.musicexpressiontools.ArticulationSetExpression.ArticulationSetExpression.ArticulationSetExpression
 
 .. autoclass:: experimental.tools.musicexpressiontools.ArticulationSetExpression.ArticulationSetExpression.ArticulationSetExpression
-   :noindex:
 
 Bases
 -----

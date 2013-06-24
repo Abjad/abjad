@@ -4,7 +4,6 @@ scoremanagertools.wranglers.MaterialPackageMakerWrangler
 .. abjad-lineage:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler
 
 .. autoclass:: experimental.tools.scoremanagertools.wranglers.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler.MaterialPackageMakerWrangler
-   :noindex:
 
 Bases
 -----

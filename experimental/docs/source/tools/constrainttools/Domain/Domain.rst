@@ -4,7 +4,6 @@ constrainttools.Domain
 .. abjad-lineage:: experimental.tools.constrainttools.Domain.Domain.Domain
 
 .. autoclass:: experimental.tools.constrainttools.Domain.Domain.Domain
-   :noindex:
 
 Bases
 -----

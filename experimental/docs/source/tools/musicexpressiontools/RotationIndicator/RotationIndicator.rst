@@ -4,7 +4,6 @@ musicexpressiontools.RotationIndicator
 .. abjad-lineage:: experimental.tools.musicexpressiontools.RotationIndicator.RotationIndicator.RotationIndicator
 
 .. autoclass:: experimental.tools.musicexpressiontools.RotationIndicator.RotationIndicator.RotationIndicator
-   :noindex:
 
 Bases
 -----

@@ -4,7 +4,6 @@ musicexpressiontools.TempoSetExpression
 .. abjad-lineage:: experimental.tools.musicexpressiontools.TempoSetExpression.TempoSetExpression.TempoSetExpression
 
 .. autoclass:: experimental.tools.musicexpressiontools.TempoSetExpression.TempoSetExpression.TempoSetExpression
-   :noindex:
 
 Bases
 -----

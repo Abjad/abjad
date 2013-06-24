@@ -4,7 +4,6 @@ constrainttools.GlobalReferenceConstraint
 .. abjad-lineage:: experimental.tools.constrainttools.GlobalReferenceConstraint.GlobalReferenceConstraint.GlobalReferenceConstraint
 
 .. autoclass:: experimental.tools.constrainttools.GlobalReferenceConstraint.GlobalReferenceConstraint.GlobalReferenceConstraint
-   :noindex:
 
 Bases
 -----

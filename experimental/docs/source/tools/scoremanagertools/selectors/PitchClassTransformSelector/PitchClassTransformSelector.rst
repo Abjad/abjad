@@ -4,7 +4,6 @@ scoremanagertools.selectors.PitchClassTransformSelector
 .. abjad-lineage:: experimental.tools.scoremanagertools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector
 
 .. autoclass:: experimental.tools.scoremanagertools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector
-   :noindex:
 
 Bases
 -----

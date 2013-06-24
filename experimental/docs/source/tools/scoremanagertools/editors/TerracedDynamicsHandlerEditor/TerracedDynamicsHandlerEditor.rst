@@ -4,7 +4,6 @@ scoremanagertools.editors.TerracedDynamicsHandlerEditor
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.TerracedDynamicsHandlerEditor.TerracedDynamicsHandlerEditor.TerracedDynamicsHandlerEditor
 
 .. autoclass:: experimental.tools.scoremanagertools.editors.TerracedDynamicsHandlerEditor.TerracedDynamicsHandlerEditor.TerracedDynamicsHandlerEditor
-   :noindex:
 
 Bases
 -----

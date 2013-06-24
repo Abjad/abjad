@@ -4,7 +4,6 @@ scoremanagertools.io.MenuEntry
 .. abjad-lineage:: experimental.tools.scoremanagertools.io.MenuEntry.MenuEntry.MenuEntry
 
 .. autoclass:: experimental.tools.scoremanagertools.io.MenuEntry.MenuEntry.MenuEntry
-   :noindex:
 
 Bases
 -----

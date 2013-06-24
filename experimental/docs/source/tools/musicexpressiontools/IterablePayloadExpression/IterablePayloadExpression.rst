@@ -4,7 +4,6 @@ musicexpressiontools.IterablePayloadExpression
 .. abjad-lineage:: experimental.tools.musicexpressiontools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression
 
 .. autoclass:: experimental.tools.musicexpressiontools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression
-   :noindex:
 
 Bases
 -----

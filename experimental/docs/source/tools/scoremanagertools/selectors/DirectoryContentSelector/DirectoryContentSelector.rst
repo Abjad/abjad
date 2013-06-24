@@ -4,7 +4,6 @@ scoremanagertools.selectors.DirectoryContentSelector
 .. abjad-lineage:: experimental.tools.scoremanagertools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector
 
 .. autoclass:: experimental.tools.scoremanagertools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector
-   :noindex:
 
 Bases
 -----

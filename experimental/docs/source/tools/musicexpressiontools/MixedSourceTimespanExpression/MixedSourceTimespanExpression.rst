@@ -4,7 +4,6 @@ musicexpressiontools.MixedSourceTimespanExpression
 .. abjad-lineage:: experimental.tools.musicexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression
 
 .. autoclass:: experimental.tools.musicexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression
-   :noindex:
 
 Bases
 -----

@@ -4,7 +4,6 @@ handlertools.TerracedDynamicsHandler
 .. abjad-lineage:: experimental.tools.handlertools.TerracedDynamicsHandler.TerracedDynamicsHandler.TerracedDynamicsHandler
 
 .. autoclass:: experimental.tools.handlertools.TerracedDynamicsHandler.TerracedDynamicsHandler.TerracedDynamicsHandler
-   :noindex:
 
 Bases
 -----

@@ -4,7 +4,6 @@ musicexpressiontools.Specification
 .. abjad-lineage:: experimental.tools.musicexpressiontools.Specification.Specification.Specification
 
 .. autoclass:: experimental.tools.musicexpressiontools.Specification.Specification.Specification
-   :noindex:
 
 Bases
 -----

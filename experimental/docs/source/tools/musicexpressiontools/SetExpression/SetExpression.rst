@@ -4,7 +4,6 @@ musicexpressiontools.SetExpression
 .. abjad-lineage:: experimental.tools.musicexpressiontools.SetExpression.SetExpression.SetExpression
 
 .. autoclass:: experimental.tools.musicexpressiontools.SetExpression.SetExpression.SetExpression
-   :noindex:
 
 Bases
 -----

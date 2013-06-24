@@ -4,7 +4,6 @@ musicexpressiontools.AnchoredExpression
 .. abjad-lineage:: experimental.tools.musicexpressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression
 
 .. autoclass:: experimental.tools.musicexpressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression
-   :noindex:
 
 Bases
 -----

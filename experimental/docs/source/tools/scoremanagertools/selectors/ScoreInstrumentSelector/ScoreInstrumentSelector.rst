@@ -4,7 +4,6 @@ scoremanagertools.selectors.ScoreInstrumentSelector
 .. abjad-lineage:: experimental.tools.scoremanagertools.selectors.ScoreInstrumentSelector.ScoreInstrumentSelector.ScoreInstrumentSelector
 
 .. autoclass:: experimental.tools.scoremanagertools.selectors.ScoreInstrumentSelector.ScoreInstrumentSelector.ScoreInstrumentSelector
-   :noindex:
 
 Bases
 -----

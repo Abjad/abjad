@@ -4,7 +4,6 @@ scoremanagertools.editors.ParameterSpecifierEditor
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.ParameterSpecifierEditor.ParameterSpecifierEditor.ParameterSpecifierEditor
 
 .. autoclass:: experimental.tools.scoremanagertools.editors.ParameterSpecifierEditor.ParameterSpecifierEditor.ParameterSpecifierEditor
-   :noindex:
 
 Bases
 -----

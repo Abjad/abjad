@@ -4,7 +4,6 @@ musicexpressiontools.TimespanScopedSingleContextRhythmSetExpression
 .. abjad-lineage:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextRhythmSetExpression.TimespanScopedSingleContextRhythmSetExpression.TimespanScopedSingleContextRhythmSetExpression
 
 .. autoclass:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextRhythmSetExpression.TimespanScopedSingleContextRhythmSetExpression.TimespanScopedSingleContextRhythmSetExpression
-   :noindex:
 
 Bases
 -----

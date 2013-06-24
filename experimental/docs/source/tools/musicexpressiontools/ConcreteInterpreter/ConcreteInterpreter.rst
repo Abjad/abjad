@@ -4,7 +4,6 @@ musicexpressiontools.ConcreteInterpreter
 .. abjad-lineage:: experimental.tools.musicexpressiontools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter
 
 .. autoclass:: experimental.tools.musicexpressiontools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter
-   :noindex:
 
 Bases
 -----

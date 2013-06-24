@@ -4,7 +4,6 @@ scoremanagertools.editors.NoteAndChordHairpinHandlerEditor
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor
 
 .. autoclass:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor.NoteAndChordHairpinHandlerEditor
-   :noindex:
 
 Bases
 -----

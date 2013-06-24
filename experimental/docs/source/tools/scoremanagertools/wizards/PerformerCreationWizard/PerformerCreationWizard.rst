@@ -4,7 +4,6 @@ scoremanagertools.wizards.PerformerCreationWizard
 .. abjad-lineage:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard
 
 .. autoclass:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard
-   :noindex:
 
 Bases
 -----

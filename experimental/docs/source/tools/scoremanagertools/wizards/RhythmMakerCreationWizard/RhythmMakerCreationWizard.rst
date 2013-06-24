@@ -4,7 +4,6 @@ scoremanagertools.wizards.RhythmMakerCreationWizard
 .. abjad-lineage:: experimental.tools.scoremanagertools.wizards.RhythmMakerCreationWizard.RhythmMakerCreationWizard.RhythmMakerCreationWizard
 
 .. autoclass:: experimental.tools.scoremanagertools.wizards.RhythmMakerCreationWizard.RhythmMakerCreationWizard.RhythmMakerCreationWizard
-   :noindex:
 
 Bases
 -----

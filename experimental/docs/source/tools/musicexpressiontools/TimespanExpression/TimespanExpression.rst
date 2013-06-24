@@ -4,7 +4,6 @@ musicexpressiontools.TimespanExpression
 .. abjad-lineage:: experimental.tools.musicexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression
 
 .. autoclass:: experimental.tools.musicexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression
-   :noindex:
 
 Bases
 -----

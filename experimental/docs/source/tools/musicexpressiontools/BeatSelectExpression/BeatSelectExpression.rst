@@ -4,7 +4,6 @@ musicexpressiontools.BeatSelectExpression
 .. abjad-lineage:: experimental.tools.musicexpressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression
 
 .. autoclass:: experimental.tools.musicexpressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression
-   :noindex:
 
 Bases
 -----

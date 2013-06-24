@@ -4,7 +4,6 @@ musicexpressiontools.SelectExpression
 .. abjad-lineage:: experimental.tools.musicexpressiontools.SelectExpression.SelectExpression.SelectExpression
 
 .. autoclass:: experimental.tools.musicexpressiontools.SelectExpression.SelectExpression.SelectExpression
-   :noindex:
 
 Bases
 -----

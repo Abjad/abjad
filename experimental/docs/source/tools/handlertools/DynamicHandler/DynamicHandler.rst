@@ -4,7 +4,6 @@ handlertools.DynamicHandler
 .. abjad-lineage:: experimental.tools.handlertools.DynamicHandler.DynamicHandler.DynamicHandler
 
 .. autoclass:: experimental.tools.handlertools.DynamicHandler.DynamicHandler.DynamicHandler
-   :noindex:
 
 Bases
 -----

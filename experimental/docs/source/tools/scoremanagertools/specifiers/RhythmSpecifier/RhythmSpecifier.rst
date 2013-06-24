@@ -4,7 +4,6 @@ scoremanagertools.specifiers.RhythmSpecifier
 .. abjad-lineage:: experimental.tools.scoremanagertools.specifiers.RhythmSpecifier.RhythmSpecifier.RhythmSpecifier
 
 .. autoclass:: experimental.tools.scoremanagertools.specifiers.RhythmSpecifier.RhythmSpecifier.RhythmSpecifier
-   :noindex:
 
 Bases
 -----

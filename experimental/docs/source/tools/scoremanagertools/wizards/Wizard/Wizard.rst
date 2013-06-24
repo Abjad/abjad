@@ -4,7 +4,6 @@ scoremanagertools.wizards.Wizard
 .. abjad-lineage:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard
 
 .. autoclass:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard
-   :noindex:
 
 Bases
 -----

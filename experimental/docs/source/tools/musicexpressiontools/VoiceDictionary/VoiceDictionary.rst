@@ -4,7 +4,6 @@ musicexpressiontools.VoiceDictionary
 .. abjad-lineage:: experimental.tools.musicexpressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary
 
 .. autoclass:: experimental.tools.musicexpressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary
-   :noindex:
 
 Bases
 -----

@@ -4,7 +4,6 @@ scoremanagertools.selectors.ReservoirStartHelperSelector
 .. abjad-lineage:: experimental.tools.scoremanagertools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector
 
 .. autoclass:: experimental.tools.scoremanagertools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector
-   :noindex:
 
 Bases
 -----

@@ -4,7 +4,6 @@ scoremanagertools.editors.ReiteratedArticulationHandlerEditor
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.ReiteratedArticulationHandlerEditor.ReiteratedArticulationHandlerEditor.ReiteratedArticulationHandlerEditor
 
 .. autoclass:: experimental.tools.scoremanagertools.editors.ReiteratedArticulationHandlerEditor.ReiteratedArticulationHandlerEditor.ReiteratedArticulationHandlerEditor
-   :noindex:
 
 Bases
 -----

@@ -4,7 +4,6 @@ musicexpressiontools.DivisionList
 .. abjad-lineage:: experimental.tools.musicexpressiontools.DivisionList.DivisionList.DivisionList
 
 .. autoclass:: experimental.tools.musicexpressiontools.DivisionList.DivisionList.DivisionList
-   :noindex:
 
 Bases
 -----

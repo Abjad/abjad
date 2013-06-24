@@ -4,7 +4,6 @@ scoremanagertools.editors.TropingSpecifierEditor
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor
 
 .. autoclass:: experimental.tools.scoremanagertools.editors.TropingSpecifierEditor.TropingSpecifierEditor.TropingSpecifierEditor
-   :noindex:
 
 Bases
 -----

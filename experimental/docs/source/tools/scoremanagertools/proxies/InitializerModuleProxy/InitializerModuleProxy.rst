@@ -4,7 +4,6 @@ scoremanagertools.proxies.InitializerModuleProxy
 .. abjad-lineage:: experimental.tools.scoremanagertools.proxies.InitializerModuleProxy.InitializerModuleProxy.InitializerModuleProxy
 
 .. autoclass:: experimental.tools.scoremanagertools.proxies.InitializerModuleProxy.InitializerModuleProxy.InitializerModuleProxy
-   :noindex:
 
 Bases
 -----

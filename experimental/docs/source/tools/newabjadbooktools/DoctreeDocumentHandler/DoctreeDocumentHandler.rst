@@ -4,7 +4,6 @@ newabjadbooktools.DoctreeDocumentHandler
 .. abjad-lineage:: experimental.tools.newabjadbooktools.DoctreeDocumentHandler.DoctreeDocumentHandler.DoctreeDocumentHandler
 
 .. autoclass:: experimental.tools.newabjadbooktools.DoctreeDocumentHandler.DoctreeDocumentHandler.DoctreeDocumentHandler
-   :noindex:
 
 Bases
 -----

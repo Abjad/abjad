@@ -4,7 +4,6 @@ constrainttools.GlobalCountsConstraint
 .. abjad-lineage:: experimental.tools.constrainttools.GlobalCountsConstraint.GlobalCountsConstraint.GlobalCountsConstraint
 
 .. autoclass:: experimental.tools.constrainttools.GlobalCountsConstraint.GlobalCountsConstraint.GlobalCountsConstraint
-   :noindex:
 
 Bases
 -----

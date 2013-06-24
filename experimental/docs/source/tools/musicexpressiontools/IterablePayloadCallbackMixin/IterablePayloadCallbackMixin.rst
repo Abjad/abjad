@@ -4,7 +4,6 @@ musicexpressiontools.IterablePayloadCallbackMixin
 .. abjad-lineage:: experimental.tools.musicexpressiontools.IterablePayloadCallbackMixin.IterablePayloadCallbackMixin.IterablePayloadCallbackMixin
 
 .. autoclass:: experimental.tools.musicexpressiontools.IterablePayloadCallbackMixin.IterablePayloadCallbackMixin.IterablePayloadCallbackMixin
-   :noindex:
 
 Bases
 -----

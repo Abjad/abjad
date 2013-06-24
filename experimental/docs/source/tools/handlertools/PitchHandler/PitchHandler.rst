@@ -4,7 +4,6 @@ handlertools.PitchHandler
 .. abjad-lineage:: experimental.tools.handlertools.PitchHandler.PitchHandler.PitchHandler
 
 .. autoclass:: experimental.tools.handlertools.PitchHandler.PitchHandler.PitchHandler
-   :noindex:
 
 Bases
 -----

@@ -4,7 +4,6 @@ scoremanagertools.editors.MarkupEditor
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.MarkupEditor.MarkupEditor.MarkupEditor
 
 .. autoclass:: experimental.tools.scoremanagertools.editors.MarkupEditor.MarkupEditor.MarkupEditor
-   :noindex:
 
 Bases
 -----

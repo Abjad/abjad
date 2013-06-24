@@ -4,7 +4,6 @@ scoremanagertools.selectors.TrillHandlerSelector
 .. abjad-lineage:: experimental.tools.scoremanagertools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector
 
 .. autoclass:: experimental.tools.scoremanagertools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector
-   :noindex:
 
 Bases
 -----

@@ -4,7 +4,6 @@ scoremanagertools.specifiers.PerformerSpecifier
 .. abjad-lineage:: experimental.tools.scoremanagertools.specifiers.PerformerSpecifier.PerformerSpecifier.PerformerSpecifier
 
 .. autoclass:: experimental.tools.scoremanagertools.specifiers.PerformerSpecifier.PerformerSpecifier.PerformerSpecifier
-   :noindex:
 
 Bases
 -----

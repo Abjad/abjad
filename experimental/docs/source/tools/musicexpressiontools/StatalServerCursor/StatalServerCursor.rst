@@ -4,7 +4,6 @@ musicexpressiontools.StatalServerCursor
 .. abjad-lineage:: experimental.tools.musicexpressiontools.StatalServerCursor.StatalServerCursor.StatalServerCursor
 
 .. autoclass:: experimental.tools.musicexpressiontools.StatalServerCursor.StatalServerCursor.StatalServerCursor
-   :noindex:
 
 Bases
 -----

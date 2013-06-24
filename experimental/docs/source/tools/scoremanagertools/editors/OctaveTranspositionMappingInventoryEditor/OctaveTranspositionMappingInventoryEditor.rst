@@ -4,7 +4,6 @@ scoremanagertools.editors.OctaveTranspositionMappingInventoryEditor
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor
 
 .. autoclass:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor.OctaveTranspositionMappingInventoryEditor
-   :noindex:
 
 Bases
 -----

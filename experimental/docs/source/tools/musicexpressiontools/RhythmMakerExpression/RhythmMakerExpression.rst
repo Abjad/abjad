@@ -4,7 +4,6 @@ musicexpressiontools.RhythmMakerExpression
 .. abjad-lineage:: experimental.tools.musicexpressiontools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression
 
 .. autoclass:: experimental.tools.musicexpressiontools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression
-   :noindex:
 
 Bases
 -----

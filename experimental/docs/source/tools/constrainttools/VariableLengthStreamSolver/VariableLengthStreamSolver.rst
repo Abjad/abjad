@@ -4,7 +4,6 @@ constrainttools.VariableLengthStreamSolver
 .. abjad-lineage:: experimental.tools.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver
 
 .. autoclass:: experimental.tools.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver
-   :noindex:
 
 Bases
 -----

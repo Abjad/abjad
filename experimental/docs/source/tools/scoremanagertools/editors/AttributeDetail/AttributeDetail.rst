@@ -4,7 +4,6 @@ scoremanagertools.editors.AttributeDetail
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.AttributeDetail.AttributeDetail.AttributeDetail
 
 .. autoclass:: experimental.tools.scoremanagertools.editors.AttributeDetail.AttributeDetail.AttributeDetail
-   :noindex:
 
 Bases
 -----

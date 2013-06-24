@@ -4,7 +4,6 @@ scoremanagertools.editors.ReiteratedDynamicHandlerEditor
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor
 
 .. autoclass:: experimental.tools.scoremanagertools.editors.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor
-   :noindex:
 
 Bases
 -----

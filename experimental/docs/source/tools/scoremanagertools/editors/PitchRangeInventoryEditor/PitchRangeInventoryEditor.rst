@@ -4,7 +4,6 @@ scoremanagertools.editors.PitchRangeInventoryEditor
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor
 
 .. autoclass:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor
-   :noindex:
 
 Bases
 -----

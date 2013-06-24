@@ -4,7 +4,6 @@ scoremanagertools.selectors.NoteHeadHandlerSelector
 .. abjad-lineage:: experimental.tools.scoremanagertools.selectors.NoteHeadHandlerSelector.NoteHeadHandlerSelector.NoteHeadHandlerSelector
 
 .. autoclass:: experimental.tools.scoremanagertools.selectors.NoteHeadHandlerSelector.NoteHeadHandlerSelector.NoteHeadHandlerSelector
-   :noindex:
 
 Bases
 -----

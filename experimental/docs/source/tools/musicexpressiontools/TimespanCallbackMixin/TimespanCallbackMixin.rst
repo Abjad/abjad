@@ -4,7 +4,6 @@ musicexpressiontools.TimespanCallbackMixin
 .. abjad-lineage:: experimental.tools.musicexpressiontools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin
 
 .. autoclass:: experimental.tools.musicexpressiontools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin
-   :noindex:
 
 Bases
 -----

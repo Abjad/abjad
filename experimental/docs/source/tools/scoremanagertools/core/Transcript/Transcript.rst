@@ -4,7 +4,6 @@ scoremanagertools.core.Transcript
 .. abjad-lineage:: experimental.tools.scoremanagertools.core.Transcript.Transcript.Transcript
 
 .. autoclass:: experimental.tools.scoremanagertools.core.Transcript.Transcript.Transcript
-   :noindex:
 
 Bases
 -----

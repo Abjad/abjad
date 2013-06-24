@@ -4,7 +4,6 @@ handlertools.NoteAndChordHairpinHandler
 .. abjad-lineage:: experimental.tools.handlertools.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler
 
 .. autoclass:: experimental.tools.handlertools.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler
-   :noindex:
 
 Bases
 -----

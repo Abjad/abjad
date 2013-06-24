@@ -4,7 +4,6 @@ scoremanagertools.specifiers.TrillSpecifier
 .. abjad-lineage:: experimental.tools.scoremanagertools.specifiers.TrillSpecifier.TrillSpecifier.TrillSpecifier
 
 .. autoclass:: experimental.tools.scoremanagertools.specifiers.TrillSpecifier.TrillSpecifier.TrillSpecifier
-   :noindex:
 
 Bases
 -----

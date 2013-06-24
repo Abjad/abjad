@@ -4,7 +4,6 @@ scoremanagertools.selectors.ArticulationHandlerSelector
 .. abjad-lineage:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector
 
 .. autoclass:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector
-   :noindex:
 
 Bases
 -----

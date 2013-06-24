@@ -4,7 +4,6 @@ parsertools.ENPParser
 .. abjad-lineage:: experimental.tools.parsertools.ENPParser.ENPParser.ENPParser
 
 .. autoclass:: experimental.tools.parsertools.ENPParser.ENPParser.ENPParser
-   :noindex:
 
 Bases
 -----

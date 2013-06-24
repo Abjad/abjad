@@ -4,7 +4,6 @@ musicexpressiontools.VoiceProxy
 .. abjad-lineage:: experimental.tools.musicexpressiontools.VoiceProxy.VoiceProxy.VoiceProxy
 
 .. autoclass:: experimental.tools.musicexpressiontools.VoiceProxy.VoiceProxy.VoiceProxy
-   :noindex:
 
 Bases
 -----

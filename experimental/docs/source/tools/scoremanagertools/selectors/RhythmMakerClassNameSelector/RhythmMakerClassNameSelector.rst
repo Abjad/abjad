@@ -4,7 +4,6 @@ scoremanagertools.selectors.RhythmMakerClassNameSelector
 .. abjad-lineage:: experimental.tools.scoremanagertools.selectors.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector
 
 .. autoclass:: experimental.tools.scoremanagertools.selectors.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector
-   :noindex:
 
 Bases
 -----

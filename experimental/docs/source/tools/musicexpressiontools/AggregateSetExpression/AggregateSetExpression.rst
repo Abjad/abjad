@@ -4,7 +4,6 @@ musicexpressiontools.AggregateSetExpression
 .. abjad-lineage:: experimental.tools.musicexpressiontools.AggregateSetExpression.AggregateSetExpression.AggregateSetExpression
 
 .. autoclass:: experimental.tools.musicexpressiontools.AggregateSetExpression.AggregateSetExpression.AggregateSetExpression
-   :noindex:
 
 Bases
 -----

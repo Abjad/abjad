@@ -4,7 +4,6 @@ scoremanagertools.editors.TaleaRhythmMakerEditor
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor
 
 .. autoclass:: experimental.tools.scoremanagertools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor
-   :noindex:
 
 Bases
 -----

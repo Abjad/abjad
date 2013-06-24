@@ -4,7 +4,6 @@ newabjadbooktools.LilyPondOutputProxy
 .. abjad-lineage:: experimental.tools.newabjadbooktools.LilyPondOutputProxy.LilyPondOutputProxy.LilyPondOutputProxy
 
 .. autoclass:: experimental.tools.newabjadbooktools.LilyPondOutputProxy.LilyPondOutputProxy.LilyPondOutputProxy
-   :noindex:
 
 Bases
 -----

@@ -4,7 +4,6 @@ scoremanagertools.editors.MusicSpecifierEditor
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor
 
 .. autoclass:: experimental.tools.scoremanagertools.editors.MusicSpecifierEditor.MusicSpecifierEditor.MusicSpecifierEditor
-   :noindex:
 
 Bases
 -----

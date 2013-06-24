@@ -4,7 +4,6 @@ scoremanagertools.editors.StaffSpecifierEditor
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.StaffSpecifierEditor.StaffSpecifierEditor.StaffSpecifierEditor
 
 .. autoclass:: experimental.tools.scoremanagertools.editors.StaffSpecifierEditor.StaffSpecifierEditor.StaffSpecifierEditor
-   :noindex:
 
 Bases
 -----

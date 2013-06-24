@@ -4,7 +4,6 @@ scoremanagertools.wranglers.SegmentPackageWrangler
 .. abjad-lineage:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler
 
 .. autoclass:: experimental.tools.scoremanagertools.wranglers.SegmentPackageWrangler.SegmentPackageWrangler.SegmentPackageWrangler
-   :noindex:
 
 Bases
 -----

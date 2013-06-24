@@ -4,7 +4,6 @@ musicexpressiontools.TimeSignatureSelectExpression
 .. abjad-lineage:: experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression
 
 .. autoclass:: experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression
-   :noindex:
 
 Bases
 -----

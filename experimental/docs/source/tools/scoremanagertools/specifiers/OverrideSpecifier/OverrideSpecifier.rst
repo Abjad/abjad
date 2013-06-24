@@ -4,7 +4,6 @@ scoremanagertools.specifiers.OverrideSpecifier
 .. abjad-lineage:: experimental.tools.scoremanagertools.specifiers.OverrideSpecifier.OverrideSpecifier.OverrideSpecifier
 
 .. autoclass:: experimental.tools.scoremanagertools.specifiers.OverrideSpecifier.OverrideSpecifier.OverrideSpecifier
-   :noindex:
 
 Bases
 -----

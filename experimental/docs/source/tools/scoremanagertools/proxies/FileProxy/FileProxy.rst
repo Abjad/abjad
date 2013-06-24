@@ -4,7 +4,6 @@ scoremanagertools.proxies.FileProxy
 .. abjad-lineage:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy
 
 .. autoclass:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy
-   :noindex:
 
 Bases
 -----

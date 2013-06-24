@@ -4,7 +4,6 @@ scoremanagertools.editors.DivisionBurnishedTaleaRhythmMakerEditor
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor
 
 .. autoclass:: experimental.tools.scoremanagertools.editors.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor
-   :noindex:
 
 Bases
 -----

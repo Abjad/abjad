@@ -4,7 +4,6 @@ musicexpressiontools.LeafColorSetExpression
 .. abjad-lineage:: experimental.tools.musicexpressiontools.LeafColorSetExpression.LeafColorSetExpression.LeafColorSetExpression
 
 .. autoclass:: experimental.tools.musicexpressiontools.LeafColorSetExpression.LeafColorSetExpression.LeafColorSetExpression
-   :noindex:
 
 Bases
 -----

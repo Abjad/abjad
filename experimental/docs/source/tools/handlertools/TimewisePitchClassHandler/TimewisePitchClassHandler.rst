@@ -4,7 +4,6 @@ handlertools.TimewisePitchClassHandler
 .. abjad-lineage:: experimental.tools.handlertools.TimewisePitchClassHandler.TimewisePitchClassHandler.TimewisePitchClassHandler
 
 .. autoclass:: experimental.tools.handlertools.TimewisePitchClassHandler.TimewisePitchClassHandler.TimewisePitchClassHandler
-   :noindex:
 
 Bases
 -----

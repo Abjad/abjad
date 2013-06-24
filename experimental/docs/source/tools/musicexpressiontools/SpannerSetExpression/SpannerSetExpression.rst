@@ -4,7 +4,6 @@ musicexpressiontools.SpannerSetExpression
 .. abjad-lineage:: experimental.tools.musicexpressiontools.SpannerSetExpression.SpannerSetExpression.SpannerSetExpression
 
 .. autoclass:: experimental.tools.musicexpressiontools.SpannerSetExpression.SpannerSetExpression.SpannerSetExpression
-   :noindex:
 
 Bases
 -----

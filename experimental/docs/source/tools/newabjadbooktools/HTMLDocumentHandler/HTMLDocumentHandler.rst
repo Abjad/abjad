@@ -4,7 +4,6 @@ newabjadbooktools.HTMLDocumentHandler
 .. abjad-lineage:: experimental.tools.newabjadbooktools.HTMLDocumentHandler.HTMLDocumentHandler.HTMLDocumentHandler
 
 .. autoclass:: experimental.tools.newabjadbooktools.HTMLDocumentHandler.HTMLDocumentHandler.HTMLDocumentHandler
-   :noindex:
 
 Bases
 -----

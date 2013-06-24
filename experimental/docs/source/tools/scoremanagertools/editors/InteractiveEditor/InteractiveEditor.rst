@@ -4,7 +4,6 @@ scoremanagertools.editors.InteractiveEditor
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.InteractiveEditor.InteractiveEditor.InteractiveEditor
 
 .. autoclass:: experimental.tools.scoremanagertools.editors.InteractiveEditor.InteractiveEditor.InteractiveEditor
-   :noindex:
 
 Bases
 -----

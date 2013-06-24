@@ -4,7 +4,6 @@ lyrictools.LyricText
 .. abjad-lineage:: experimental.tools.lyrictools.LyricText.LyricText.LyricText
 
 .. autoclass:: experimental.tools.lyrictools.LyricText.LyricText.LyricText
-   :noindex:
 
 Bases
 -----

@@ -4,7 +4,6 @@ scoremanagertools.proxies.SegmentPackageProxy
 .. abjad-lineage:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy
 
 .. autoclass:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy
-   :noindex:
 
 Bases
 -----

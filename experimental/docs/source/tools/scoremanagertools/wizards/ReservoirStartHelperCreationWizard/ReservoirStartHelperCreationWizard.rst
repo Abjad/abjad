@@ -4,7 +4,6 @@ scoremanagertools.wizards.ReservoirStartHelperCreationWizard
 .. abjad-lineage:: experimental.tools.scoremanagertools.wizards.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard
 
 .. autoclass:: experimental.tools.scoremanagertools.wizards.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard.ReservoirStartHelperCreationWizard
-   :noindex:
 
 Bases
 -----

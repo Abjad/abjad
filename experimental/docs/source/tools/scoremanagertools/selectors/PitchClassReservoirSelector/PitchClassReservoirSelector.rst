@@ -4,7 +4,6 @@ scoremanagertools.selectors.PitchClassReservoirSelector
 .. abjad-lineage:: experimental.tools.scoremanagertools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector
 
 .. autoclass:: experimental.tools.scoremanagertools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector
-   :noindex:
 
 Bases
 -----

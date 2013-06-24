@@ -4,7 +4,6 @@ scoremanagertools.editors.OverrideSpecifierEditor
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor
 
 .. autoclass:: experimental.tools.scoremanagertools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor
-   :noindex:
 
 Bases
 -----

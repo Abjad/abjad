@@ -4,7 +4,6 @@ scoremanagertools.editors.NoteRhythmMakerEditor
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.NoteRhythmMakerEditor.NoteRhythmMakerEditor.NoteRhythmMakerEditor
 
 .. autoclass:: experimental.tools.scoremanagertools.editors.NoteRhythmMakerEditor.NoteRhythmMakerEditor.NoteRhythmMakerEditor
-   :noindex:
 
 Bases
 -----

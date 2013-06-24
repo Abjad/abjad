@@ -4,7 +4,6 @@ constrainttools.AbsoluteIndexConstraint
 .. abjad-lineage:: experimental.tools.constrainttools.AbsoluteIndexConstraint.AbsoluteIndexConstraint.AbsoluteIndexConstraint
 
 .. autoclass:: experimental.tools.constrainttools.AbsoluteIndexConstraint.AbsoluteIndexConstraint.AbsoluteIndexConstraint
-   :noindex:
 
 Bases
 -----

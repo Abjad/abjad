@@ -4,7 +4,6 @@ scoremanagertools.editors.PitchClassSpecifierEditor
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor
 
 .. autoclass:: experimental.tools.scoremanagertools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor
-   :noindex:
 
 Bases
 -----

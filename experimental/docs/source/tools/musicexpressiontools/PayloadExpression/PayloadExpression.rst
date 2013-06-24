@@ -4,7 +4,6 @@ musicexpressiontools.PayloadExpression
 .. abjad-lineage:: experimental.tools.musicexpressiontools.PayloadExpression.PayloadExpression.PayloadExpression
 
 .. autoclass:: experimental.tools.musicexpressiontools.PayloadExpression.PayloadExpression.PayloadExpression
-   :noindex:
 
 Bases
 -----

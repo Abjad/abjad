@@ -4,7 +4,6 @@ musicexpressiontools.LeafSetExpression
 .. abjad-lineage:: experimental.tools.musicexpressiontools.LeafSetExpression.LeafSetExpression.LeafSetExpression
 
 .. autoclass:: experimental.tools.musicexpressiontools.LeafSetExpression.LeafSetExpression.LeafSetExpression
-   :noindex:
 
 Bases
 -----

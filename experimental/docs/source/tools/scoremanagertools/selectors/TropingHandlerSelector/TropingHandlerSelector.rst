@@ -4,7 +4,6 @@ scoremanagertools.selectors.TropingHandlerSelector
 .. abjad-lineage:: experimental.tools.scoremanagertools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector
 
 .. autoclass:: experimental.tools.scoremanagertools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector
-   :noindex:
 
 Bases
 -----

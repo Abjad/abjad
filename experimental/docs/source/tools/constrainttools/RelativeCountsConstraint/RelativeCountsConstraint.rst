@@ -4,7 +4,6 @@ constrainttools.RelativeCountsConstraint
 .. abjad-lineage:: experimental.tools.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint
 
 .. autoclass:: experimental.tools.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint
-   :noindex:
 
 Bases
 -----

@@ -4,7 +4,6 @@ scoremanagertools.selectors.MaterialPackageSelector
 .. abjad-lineage:: experimental.tools.scoremanagertools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector
 
 .. autoclass:: experimental.tools.scoremanagertools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector
-   :noindex:
 
 Bases
 -----

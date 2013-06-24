@@ -4,7 +4,6 @@ scoremanagertools.editors.OutputIncisedRestRhythmMakerEditor
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.OutputIncisedRestRhythmMakerEditor.OutputIncisedRestRhythmMakerEditor.OutputIncisedRestRhythmMakerEditor
 
 .. autoclass:: experimental.tools.scoremanagertools.editors.OutputIncisedRestRhythmMakerEditor.OutputIncisedRestRhythmMakerEditor.OutputIncisedRestRhythmMakerEditor
-   :noindex:
 
 Bases
 -----

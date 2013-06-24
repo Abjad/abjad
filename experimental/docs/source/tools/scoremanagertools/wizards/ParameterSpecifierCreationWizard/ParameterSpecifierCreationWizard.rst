@@ -4,7 +4,6 @@ scoremanagertools.wizards.ParameterSpecifierCreationWizard
 .. abjad-lineage:: experimental.tools.scoremanagertools.wizards.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard
 
 .. autoclass:: experimental.tools.scoremanagertools.wizards.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard
-   :noindex:
 
 Bases
 -----

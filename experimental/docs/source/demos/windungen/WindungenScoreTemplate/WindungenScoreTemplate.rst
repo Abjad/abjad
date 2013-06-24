@@ -4,7 +4,6 @@ windungen.WindungenScoreTemplate
 .. abjad-lineage:: experimental.demos.windungen.WindungenScoreTemplate.WindungenScoreTemplate.WindungenScoreTemplate
 
 .. autoclass:: experimental.demos.windungen.WindungenScoreTemplate.WindungenScoreTemplate.WindungenScoreTemplate
-   :noindex:
 
 Bases
 -----

@@ -4,7 +4,6 @@ handlertools.ReiteratedArticulationHandler
 .. abjad-lineage:: experimental.tools.handlertools.ReiteratedArticulationHandler.ReiteratedArticulationHandler.ReiteratedArticulationHandler
 
 .. autoclass:: experimental.tools.handlertools.ReiteratedArticulationHandler.ReiteratedArticulationHandler.ReiteratedArticulationHandler
-   :noindex:
 
 Bases
 -----

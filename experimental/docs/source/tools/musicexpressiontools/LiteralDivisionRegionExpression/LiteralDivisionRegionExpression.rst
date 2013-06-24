@@ -4,7 +4,6 @@ musicexpressiontools.LiteralDivisionRegionExpression
 .. abjad-lineage:: experimental.tools.musicexpressiontools.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression
 
 .. autoclass:: experimental.tools.musicexpressiontools.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression
-   :noindex:
 
 Bases
 -----

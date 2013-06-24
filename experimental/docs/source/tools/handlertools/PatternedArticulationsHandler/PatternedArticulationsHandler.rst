@@ -4,7 +4,6 @@ handlertools.PatternedArticulationsHandler
 .. abjad-lineage:: experimental.tools.handlertools.PatternedArticulationsHandler.PatternedArticulationsHandler.PatternedArticulationsHandler
 
 .. autoclass:: experimental.tools.handlertools.PatternedArticulationsHandler.PatternedArticulationsHandler.PatternedArticulationsHandler
-   :noindex:
 
 Bases
 -----

@@ -4,7 +4,6 @@ scoremanagertools.wizards.PitchClassTransformCreationWizard
 .. abjad-lineage:: experimental.tools.scoremanagertools.wizards.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard
 
 .. autoclass:: experimental.tools.scoremanagertools.wizards.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard
-   :noindex:
 
 Bases
 -----

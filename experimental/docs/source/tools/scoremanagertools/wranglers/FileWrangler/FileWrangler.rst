@@ -4,7 +4,6 @@ scoremanagertools.wranglers.FileWrangler
 .. abjad-lineage:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler
 
 .. autoclass:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler
-   :noindex:
 
 Bases
 -----

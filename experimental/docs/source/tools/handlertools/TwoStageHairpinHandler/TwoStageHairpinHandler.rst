@@ -4,7 +4,6 @@ handlertools.TwoStageHairpinHandler
 .. abjad-lineage:: experimental.tools.handlertools.TwoStageHairpinHandler.TwoStageHairpinHandler.TwoStageHairpinHandler
 
 .. autoclass:: experimental.tools.handlertools.TwoStageHairpinHandler.TwoStageHairpinHandler.TwoStageHairpinHandler
-   :noindex:
 
 Bases
 -----

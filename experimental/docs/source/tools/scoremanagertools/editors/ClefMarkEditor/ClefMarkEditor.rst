@@ -4,7 +4,6 @@ scoremanagertools.editors.ClefMarkEditor
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.ClefMarkEditor.ClefMarkEditor.ClefMarkEditor
 
 .. autoclass:: experimental.tools.scoremanagertools.editors.ClefMarkEditor.ClefMarkEditor.ClefMarkEditor
-   :noindex:
 
 Bases
 -----
