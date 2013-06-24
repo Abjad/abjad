@@ -50,6 +50,9 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.io.Menu.Menu.Menu.interactively_grep_directories
    :noindex:
 
+.. automethod:: experimental.tools.scoremanagertools.io.Menu.Menu.Menu.make_command_section
+   :noindex:
+
 .. automethod:: experimental.tools.scoremanagertools.io.Menu.Menu.Menu.make_section
    :noindex:
 

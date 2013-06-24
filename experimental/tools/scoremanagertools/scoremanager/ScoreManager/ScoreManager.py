@@ -93,22 +93,21 @@ class ScoreManager(ScoreManagerObject):
 
     def _make_main_menu(self):
         menu = self._make_score_selection_menu()
-        menu_section = menu.make_section(return_value_attribute='key')
-        menu_section.append(('materials', 'm'))
-        menu_section.append(('stylesheets', 'y'))
-        menu_section.append(('new score', 'new'))
-        hidden_section = menu.make_section(
-            return_value_attribute='key',
-            is_hidden=True,
-            )
-        hidden_section.append(('show active scores only', 'active'))
-        hidden_section.append(('show all scores', 'all'))
-        hidden_section.append(('fix all score package structures', 'fix'))
-        hidden_section.append(('show mothballed scores only', 'mb'))
-        hidden_section.append(('profile packages', 'profile'))
-        hidden_section.append(('run py.test on all scores', 'py.test'))
-        hidden_section.append(('work with repository', 'svn'))
-        hidden_section.append(('write cache', 'wc'))
+        command_section = menu.make_command_section()
+        command_section.append(('materials', 'm'))
+        command_section.append(('stylesheets', 'y'))
+        command_section.append(('new score', 'new'))
+        hidden_command_section = menu.make_command_section(is_hidden=True)
+        hidden_command_section.append(('show active scores only', 'active'))
+        hidden_command_section.append(('show all scores', 'all'))
+        hidden_command_section.append(
+            ('fix all score package structures', 'fix'))
+        hidden_command_section.append(('show mothballed scores only', 'mb'))
+        hidden_command_section.append(('profile packages', 'profile'))
+        hidden_command_section.append(
+            ('run py.test on all scores', 'py.test'))
+        hidden_command_section.append(('work with repository', 'svn'))
+        hidden_command_section.append(('write cache', 'wc'))
         return menu
 
     def _make_score_selection_menu(self):

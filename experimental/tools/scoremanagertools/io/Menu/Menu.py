@@ -414,6 +414,15 @@ class Menu(ScoreManagerObject):
         self.menu_sections.append(menu_section)
         return menu_section
 
+    def make_command_section(self,
+            is_hidden=False,
+            menu_entries=None,
+            ):
+        command_section = self.make_section(
+            is_hidden=is_hidden,
+            return_value_attribute='key')
+        return command_section
+
     def toggle_menu_commands(self):
         if self._session.nonnumbered_menu_sections_are_hidden:
             self._session.nonnumbered_menu_sections_are_hidden = False
