@@ -1,5 +1,6 @@
 import abc
 import os
+from abjad.tools import sequencetools
 from abjad.tools import stringtools
 from experimental.tools.scoremanagertools.core.ScoreManagerObject \
     import ScoreManagerObject
@@ -99,13 +100,16 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                 self.asset_proxy_class._generic_class_name)
 
     def _make_asset_selection_menu(self, head=None):
-        menu_entries = self._make_asset_menu_entries(head=head)
-        menu, menu_section = self._io.make_menu(
-            where=self._where,
-            return_value_attribute='key',
-            menu_entries=menu_entries,
-            is_numbered=True,
-            )
+#        menu, menu_section = self._io.make_menu(
+#            where=self._where,
+#            return_value_attribute='key',
+#            menu_entries=menu_entries,
+#            is_numbered=True,
+#            )
+        menu = self._io.make_only_menu(where=self._where)
+        asset_section = menu.make_asset_section()
+        asset_menu_entries = self._make_asset_menu_entries(head=head)
+        asset_section.menu_entries = asset_menu_entries
         return menu
 
     def _make_asset_storehouse_menu_entries(self,
@@ -138,10 +142,12 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     def _make_asset_menu_entries(self, head=None, include_extension=False):
         raise Exception('FOO')
-        keys = self.list_asset_filesystem_paths(head=head)
-        display_strings = self.list_asset_names(
+        names = self.list_asset_names(
             head=head, include_extension=include_extension)
-        return zip(display_strings, keys)
+        paths = self.list_asset_filesystem_paths(head=head)
+        assert len(names) == len(paths)
+        return sequencetools.zip_sequences_cyclically(
+            names, [None], [None], paths)
 
     def _run(self, 
         cache=False, 

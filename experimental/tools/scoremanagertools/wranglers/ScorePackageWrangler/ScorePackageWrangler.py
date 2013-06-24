@@ -1,4 +1,5 @@
 import os
+from abjad.tools import sequencetools
 from abjad.tools import stringtools
 from experimental.tools.scoremanagertools.wranglers.PackageWrangler \
     import PackageWrangler

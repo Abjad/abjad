@@ -1,4 +1,5 @@
 import os
+from abjad.tools import sequencetools
 from abjad.tools import stringtools
 from abjad.tools import layouttools
 from abjad.tools import lilypondfiletools
@@ -87,9 +88,11 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         return menu
 
     def _make_asset_menu_entries(self, head=None):
-        keys = self.list_asset_packagesystem_paths(head=head)
-        display_strings = self.list_asset_names(head=head)
-        return zip(display_strings, keys)
+        names = self.list_asset_names(head=head)
+        paths = self.list_asset_packagesystem_paths(head=head)
+        assert len(names) == len(paths)
+        return sequencetools.zip_sequences_cyclically(
+            names, [None], [None], paths)
 
     ### PUBLIC PROPERTIES ###
 
