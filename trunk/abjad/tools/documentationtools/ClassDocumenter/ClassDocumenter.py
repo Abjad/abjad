@@ -1,6 +1,6 @@
 import abc
-from abjad.tools.documentationtools.Documenter import Documenter
 import inspect
+from abjad.tools.documentationtools.Documenter import Documenter
 
 
 class ClassDocumenter(Documenter):
@@ -76,31 +76,29 @@ class ClassDocumenter(Documenter):
         from abjad.tools import documentationtools
 
         stripped_class_name = self._shrink_module_name(self.object.__module__)
+
         module_name = '{}.{}'.format(self.object.__module__, self.object.__name__)
 
-        #result = []
-        #result.extend(self._format_heading(stripped_class_name, '='))
-        #result.extend(self._format_inheritance_diagram())
-        #result.append('.. autoclass:: %s' % module_name)
-        #result.append('   :noindex:')
-        #result.append('')
-
         document = documentationtools.ReSTDocument()
+
         document.append(documentationtools.ReSTHeading(
             level=2,
             text=stripped_class_name,
             ))
-        #document.append(documentationtools.ReSTInheritanceDiagram(
-        #    argument=module_name,
-        #    ))
+
         document.append(documentationtools.ReSTLineageDirective(
             argument=module_name,
             ))
+
         document.append(documentationtools.ReSTAutodocDirective(
             argument=module_name,
             directive='autoclass',
-            options={'noindex': True},
+            options={
+                #'noindex': True, 
+                },
             ))
+
+        document.extend(self._format_inheritance_note())
 
         if self.readonly_properties:
             document.append(documentationtools.ReSTHeading(
@@ -113,13 +111,9 @@ class ClassDocumenter(Documenter):
                     directive='autoattribute',
                     options={'noindex': True},
                     )
-                #autodoc.extend(self._format_inheritance_note(attr))
                 document.append(autodoc)
 
         if self.readwrite_properties:
-            #result.extend(self._format_heading('Read/write Properties', '-'))
-            #for attr in self.readwrite_properties:
-            #    result.extend(self._format_attribute(attr, 'attribute'))
             document.append(documentationtools.ReSTHeading(
                 level=3,
                 text='Read/write properties',
@@ -130,13 +124,9 @@ class ClassDocumenter(Documenter):
                     directive='autoattribute',
                     options={'noindex': True},
                     )
-                #autodoc.extend(self._format_inheritance_note(attr))
                 document.append(autodoc)
 
         if self.methods:
-            #result.extend(self._format_heading('Methods', '-'))
-            #for attr in self.methods:
-            #    result.extend(self._format_attribute(attr, 'method'))
             document.append(documentationtools.ReSTHeading(
                 level=3,
                 text='Methods',
@@ -147,7 +137,6 @@ class ClassDocumenter(Documenter):
                     directive='automethod',
                     options={'noindex': True},
                     )
-                #autodoc.extend(self._format_inheritance_note(attr))
                 document.append(autodoc)
 
         if self.special_methods:
@@ -161,10 +150,8 @@ class ClassDocumenter(Documenter):
                     directive='automethod',
                     options={'noindex': True},
                     )
-                #autodoc.extend(self._format_inheritance_note(attr))
                 document.append(autodoc)
 
-        #return '\n'.join(result)
         return document.rest_format
 
     ### PRIVATE METHODS ###
@@ -174,18 +161,30 @@ class ClassDocumenter(Documenter):
             return True
         return False
 
-    def _format_inheritance_note(self, attr):
+    def _format_inheritance_note(self):
         from abjad.tools import documentationtools
-        if not self._attribute_is_inherited(attr):
-            return []
-        defining_module = '{}.{}'.format(attr.defining_class.__module__, attr.defining_class.__name__)
-        if defining_module.startswith(('abjad.', 'experimental.')):
-            stripped_class_name = self._shrink_module_name(defining_module)
-            text='Inherited from :py:class:`{} <{}>`'.format(
-                stripped_class_name, defining_module)
-        else:
-            text='Inherited from :py:class:`{}`'.format(defining_module)
-        return [documentationtools.ReSTParagraph(text=text, wrap=False)]
+        pieces = []
+        pieces.append(documentationtools.ReSTHeading(                     
+            level=3,                                                        
+            text='Bases',
+            ))
+        mro = inspect.getmro(self.object)[1:]
+        for cls in mro:
+            packagesystem_path = '.'.join((cls.__module__, cls.__name__))
+            stripped_packagesystem_path = self._shrink_module_name(
+                packagesystem_path)
+            if packagesystem_path.startswith('__builtin__'):
+                packagesystem_path = packagesystem_path.partition('__builtin__.')[-1]
+            text = '- :class:`{} <{}>`'.format(
+                stripped_packagesystem_path,
+                packagesystem_path,
+                )
+            paragraph = documentationtools.ReSTParagraph(                                
+                text=text,
+                wrap=False,                                                         
+                )
+            pieces.append(paragraph) 
+        return pieces
 
     ### PUBLIC PROPERTIES ###
 
