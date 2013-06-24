@@ -17,6 +17,9 @@ Bases
 Read-only properties
 --------------------
 
+.. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.class_methods
+   :noindex:
+
 .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.data
    :noindex:
 
@@ -45,6 +48,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.special_methods
+   :noindex:
+
+.. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.static_methods
    :noindex:
 
 .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.storage_format

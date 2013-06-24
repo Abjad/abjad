@@ -36,9 +36,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.io.IO.IO.IO.display
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.io.IO.IO.IO.get_one_line_menuing_summary
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.io.IO.IO.IO.handle_hidden_menu_section_return_value
    :noindex:
 
@@ -67,6 +64,12 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.io.IO.IO.IO.proceed
+   :noindex:
+
+Static Methods
+--------------
+
+.. automethod:: experimental.tools.scoremanagertools.io.IO.IO.IO.get_one_line_menuing_summary
    :noindex:
 
 Special methods

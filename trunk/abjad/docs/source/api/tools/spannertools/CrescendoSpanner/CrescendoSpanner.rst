@@ -96,16 +96,19 @@ Methods
 .. automethod:: abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.index
    :noindex:
 
-.. automethod:: abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.is_hairpin_shape_string
-   :noindex:
-
-.. automethod:: abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.is_hairpin_token
-   :noindex:
-
 .. automethod:: abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.pop
    :noindex:
 
 .. automethod:: abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.pop_left
+   :noindex:
+
+Static Methods
+--------------
+
+.. automethod:: abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.is_hairpin_shape_string
+   :noindex:
+
+.. automethod:: abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.is_hairpin_token
    :noindex:
 
 Special methods

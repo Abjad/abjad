@@ -92,22 +92,28 @@ Methods
 .. automethod:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.conjugate
    :noindex:
 
+.. automethod:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.limit_denominator
+   :noindex:
+
+.. automethod:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.with_denominator
+   :noindex:
+
+Class Methods
+-------------
+
 .. automethod:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.from_decimal
    :noindex:
 
 .. automethod:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.from_float
    :noindex:
 
+Static Methods
+--------------
+
 .. automethod:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.from_lilypond_duration_string
    :noindex:
 
 .. automethod:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.is_token
-   :noindex:
-
-.. automethod:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.limit_denominator
-   :noindex:
-
-.. automethod:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.with_denominator
    :noindex:
 
 Special methods

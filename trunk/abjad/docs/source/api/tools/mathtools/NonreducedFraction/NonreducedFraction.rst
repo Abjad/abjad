@@ -51,12 +51,6 @@ Methods
 .. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.conjugate
    :noindex:
 
-.. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.from_decimal
-   :noindex:
-
-.. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.from_float
-   :noindex:
-
 .. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.limit_denominator
    :noindex:
 
@@ -76,6 +70,15 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.with_multiple_of_denominator
+   :noindex:
+
+Class Methods
+-------------
+
+.. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.from_decimal
+   :noindex:
+
+.. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.from_float
    :noindex:
 
 Special methods

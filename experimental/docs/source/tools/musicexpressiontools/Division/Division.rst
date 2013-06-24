@@ -94,12 +94,6 @@ Methods
 .. automethod:: experimental.tools.musicexpressiontools.Division.Division.Division.conjugate
    :noindex:
 
-.. automethod:: experimental.tools.musicexpressiontools.Division.Division.Division.from_decimal
-   :noindex:
-
-.. automethod:: experimental.tools.musicexpressiontools.Division.Division.Division.from_float
-   :noindex:
-
 .. automethod:: experimental.tools.musicexpressiontools.Division.Division.Division.limit_denominator
    :noindex:
 
@@ -122,6 +116,15 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.musicexpressiontools.Division.Division.Division.with_multiple_of_denominator
+   :noindex:
+
+Class Methods
+-------------
+
+.. automethod:: experimental.tools.musicexpressiontools.Division.Division.Division.from_decimal
+   :noindex:
+
+.. automethod:: experimental.tools.musicexpressiontools.Division.Division.Division.from_float
    :noindex:
 
 Special methods

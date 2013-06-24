@@ -59,10 +59,13 @@ Read/write properties
 Methods
 -------
 
-.. automethod:: abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.register_markup_function
+.. automethod:: abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.tokenize
    :noindex:
 
-.. automethod:: abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.tokenize
+Class Methods
+-------------
+
+.. automethod:: abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.register_markup_function
    :noindex:
 
 Special methods

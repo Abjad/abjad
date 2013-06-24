@@ -31,6 +31,12 @@ Methods
 .. automethod:: abjad.tools.quantizationtools.QEventSequence.QEventSequence.QEventSequence.count
    :noindex:
 
+.. automethod:: abjad.tools.quantizationtools.QEventSequence.QEventSequence.QEventSequence.index
+   :noindex:
+
+Class Methods
+-------------
+
 .. automethod:: abjad.tools.quantizationtools.QEventSequence.QEventSequence.QEventSequence.from_millisecond_durations
    :noindex:
 
@@ -44,9 +50,6 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.quantizationtools.QEventSequence.QEventSequence.QEventSequence.from_tempo_scaled_leaves
-   :noindex:
-
-.. automethod:: abjad.tools.quantizationtools.QEventSequence.QEventSequence.QEventSequence.index
    :noindex:
 
 Special methods

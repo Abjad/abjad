@@ -89,22 +89,28 @@ Methods
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.conjugate
    :noindex:
 
+.. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.limit_denominator
+   :noindex:
+
+.. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.with_denominator
+   :noindex:
+
+Class Methods
+-------------
+
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.from_decimal
    :noindex:
 
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.from_float
    :noindex:
 
+Static Methods
+--------------
+
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.from_lilypond_duration_string
    :noindex:
 
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.is_token
-   :noindex:
-
-.. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.limit_denominator
-   :noindex:
-
-.. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.with_denominator
    :noindex:
 
 Special methods
