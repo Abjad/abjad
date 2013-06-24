@@ -4,6 +4,7 @@ newabjadbooktools.ImageOutputProxy
 .. abjad-lineage:: experimental.tools.newabjadbooktools.ImageOutputProxy.ImageOutputProxy.ImageOutputProxy
 
 .. autoclass:: experimental.tools.newabjadbooktools.ImageOutputProxy.ImageOutputProxy.ImageOutputProxy
+   :noindex:
 
 Bases
 -----

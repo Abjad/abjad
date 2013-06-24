@@ -4,6 +4,7 @@ handlertools.OctaveTranspositionHandler
 .. abjad-lineage:: experimental.tools.handlertools.OctaveTranspositionHandler.OctaveTranspositionHandler.OctaveTranspositionHandler
 
 .. autoclass:: experimental.tools.handlertools.OctaveTranspositionHandler.OctaveTranspositionHandler.OctaveTranspositionHandler
+   :noindex:
 
 Bases
 -----

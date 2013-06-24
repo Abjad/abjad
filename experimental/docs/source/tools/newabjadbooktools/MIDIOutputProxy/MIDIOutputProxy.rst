@@ -4,6 +4,7 @@ newabjadbooktools.MIDIOutputProxy
 .. abjad-lineage:: experimental.tools.newabjadbooktools.MIDIOutputProxy.MIDIOutputProxy.MIDIOutputProxy
 
 .. autoclass:: experimental.tools.newabjadbooktools.MIDIOutputProxy.MIDIOutputProxy.MIDIOutputProxy
+   :noindex:
 
 Bases
 -----

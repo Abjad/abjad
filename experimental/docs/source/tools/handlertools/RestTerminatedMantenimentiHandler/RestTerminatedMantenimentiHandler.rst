@@ -4,6 +4,7 @@ handlertools.RestTerminatedMantenimentiHandler
 .. abjad-lineage:: experimental.tools.handlertools.RestTerminatedMantenimentiHandler.RestTerminatedMantenimentiHandler.RestTerminatedMantenimentiHandler
 
 .. autoclass:: experimental.tools.handlertools.RestTerminatedMantenimentiHandler.RestTerminatedMantenimentiHandler.RestTerminatedMantenimentiHandler
+   :noindex:
 
 Bases
 -----

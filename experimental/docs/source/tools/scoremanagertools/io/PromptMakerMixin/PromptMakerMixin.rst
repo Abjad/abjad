@@ -4,6 +4,7 @@ scoremanagertools.io.PromptMakerMixin
 .. abjad-lineage:: experimental.tools.scoremanagertools.io.PromptMakerMixin.PromptMakerMixin.PromptMakerMixin
 
 .. autoclass:: experimental.tools.scoremanagertools.io.PromptMakerMixin.PromptMakerMixin.PromptMakerMixin
+   :noindex:
 
 Bases
 -----

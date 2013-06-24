@@ -4,6 +4,7 @@ lyrictools.LyricSpace
 .. abjad-lineage:: experimental.tools.lyrictools.LyricSpace.LyricSpace.LyricSpace
 
 .. autoclass:: experimental.tools.lyrictools.LyricSpace.LyricSpace.LyricSpace
+   :noindex:
 
 Bases
 -----

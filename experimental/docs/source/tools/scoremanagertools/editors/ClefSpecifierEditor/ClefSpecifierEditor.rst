@@ -4,6 +4,7 @@ scoremanagertools.editors.ClefSpecifierEditor
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor
 
 .. autoclass:: experimental.tools.scoremanagertools.editors.ClefSpecifierEditor.ClefSpecifierEditor.ClefSpecifierEditor
+   :noindex:
 
 Bases
 -----

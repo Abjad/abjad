@@ -4,6 +4,7 @@ musicexpressiontools.ContextDictionary
 .. abjad-lineage:: experimental.tools.musicexpressiontools.ContextDictionary.ContextDictionary.ContextDictionary
 
 .. autoclass:: experimental.tools.musicexpressiontools.ContextDictionary.ContextDictionary.ContextDictionary
+   :noindex:
 
 Bases
 -----

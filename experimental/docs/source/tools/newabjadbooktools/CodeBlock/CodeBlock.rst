@@ -4,6 +4,7 @@ newabjadbooktools.CodeBlock
 .. abjad-lineage:: experimental.tools.newabjadbooktools.CodeBlock.CodeBlock.CodeBlock
 
 .. autoclass:: experimental.tools.newabjadbooktools.CodeBlock.CodeBlock.CodeBlock
+   :noindex:
 
 Bases
 -----

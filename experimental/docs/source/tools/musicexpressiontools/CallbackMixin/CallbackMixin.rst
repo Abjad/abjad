@@ -4,6 +4,7 @@ musicexpressiontools.CallbackMixin
 .. abjad-lineage:: experimental.tools.musicexpressiontools.CallbackMixin.CallbackMixin.CallbackMixin
 
 .. autoclass:: experimental.tools.musicexpressiontools.CallbackMixin.CallbackMixin.CallbackMixin
+   :noindex:
 
 Bases
 -----

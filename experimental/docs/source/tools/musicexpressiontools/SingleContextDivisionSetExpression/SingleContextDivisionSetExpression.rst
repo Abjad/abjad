@@ -4,6 +4,7 @@ musicexpressiontools.SingleContextDivisionSetExpression
 .. abjad-lineage:: experimental.tools.musicexpressiontools.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression
 
 .. autoclass:: experimental.tools.musicexpressiontools.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression
+   :noindex:
 
 Bases
 -----

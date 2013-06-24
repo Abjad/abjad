@@ -4,6 +4,7 @@ scoremanagertools.wizards.HandlerCreationWizard
 .. abjad-lineage:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard
 
 .. autoclass:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard
+   :noindex:
 
 Bases
 -----

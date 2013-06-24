@@ -4,6 +4,7 @@ scoremanagertools.proxies.IllustrationBuilderModuleProxy
 .. abjad-lineage:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy
 
 .. autoclass:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy
+   :noindex:
 
 Bases
 -----

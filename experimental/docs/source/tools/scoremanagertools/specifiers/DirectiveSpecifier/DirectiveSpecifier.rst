@@ -4,6 +4,7 @@ scoremanagertools.specifiers.DirectiveSpecifier
 .. abjad-lineage:: experimental.tools.scoremanagertools.specifiers.DirectiveSpecifier.DirectiveSpecifier.DirectiveSpecifier
 
 .. autoclass:: experimental.tools.scoremanagertools.specifiers.DirectiveSpecifier.DirectiveSpecifier.DirectiveSpecifier
+   :noindex:
 
 Bases
 -----

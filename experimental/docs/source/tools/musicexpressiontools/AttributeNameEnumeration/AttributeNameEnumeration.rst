@@ -4,6 +4,7 @@ musicexpressiontools.AttributeNameEnumeration
 .. abjad-lineage:: experimental.tools.musicexpressiontools.AttributeNameEnumeration.AttributeNameEnumeration.AttributeNameEnumeration
 
 .. autoclass:: experimental.tools.musicexpressiontools.AttributeNameEnumeration.AttributeNameEnumeration.AttributeNameEnumeration
+   :noindex:
 
 Bases
 -----

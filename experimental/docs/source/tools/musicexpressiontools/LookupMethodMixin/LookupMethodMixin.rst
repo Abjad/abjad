@@ -4,6 +4,7 @@ musicexpressiontools.LookupMethodMixin
 .. abjad-lineage:: experimental.tools.musicexpressiontools.LookupMethodMixin.LookupMethodMixin.LookupMethodMixin
 
 .. autoclass:: experimental.tools.musicexpressiontools.LookupMethodMixin.LookupMethodMixin.LookupMethodMixin
+   :noindex:
 
 Bases
 -----

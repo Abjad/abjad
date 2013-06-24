@@ -4,6 +4,7 @@ scoremanagertools.selectors.PerformerSelector
 .. abjad-lineage:: experimental.tools.scoremanagertools.selectors.PerformerSelector.PerformerSelector.PerformerSelector
 
 .. autoclass:: experimental.tools.scoremanagertools.selectors.PerformerSelector.PerformerSelector.PerformerSelector
+   :noindex:
 
 Bases
 -----

@@ -4,6 +4,7 @@ scoremanagertools.editors.TempoMarkInventoryEditor
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor
 
 .. autoclass:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor
+   :noindex:
 
 Bases
 -----

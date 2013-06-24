@@ -4,6 +4,7 @@ scoremanagertools.specifiers.MusicContributionSpecifier
 .. abjad-lineage:: experimental.tools.scoremanagertools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier
 
 .. autoclass:: experimental.tools.scoremanagertools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier
+   :noindex:
 
 Bases
 -----

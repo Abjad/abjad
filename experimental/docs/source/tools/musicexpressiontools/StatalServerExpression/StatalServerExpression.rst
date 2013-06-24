@@ -4,6 +4,7 @@ musicexpressiontools.StatalServerExpression
 .. abjad-lineage:: experimental.tools.musicexpressiontools.StatalServerExpression.StatalServerExpression.StatalServerExpression
 
 .. autoclass:: experimental.tools.musicexpressiontools.StatalServerExpression.StatalServerExpression.StatalServerExpression
+   :noindex:
 
 Bases
 -----

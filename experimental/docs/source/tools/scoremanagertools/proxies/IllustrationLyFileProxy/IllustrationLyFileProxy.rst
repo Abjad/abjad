@@ -4,6 +4,7 @@ scoremanagertools.proxies.IllustrationLyFileProxy
 .. abjad-lineage:: experimental.tools.scoremanagertools.proxies.IllustrationLyFileProxy.IllustrationLyFileProxy.IllustrationLyFileProxy
 
 .. autoclass:: experimental.tools.scoremanagertools.proxies.IllustrationLyFileProxy.IllustrationLyFileProxy.IllustrationLyFileProxy
+   :noindex:
 
 Bases
 -----

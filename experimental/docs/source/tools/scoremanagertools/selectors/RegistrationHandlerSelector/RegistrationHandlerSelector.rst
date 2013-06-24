@@ -4,6 +4,7 @@ scoremanagertools.selectors.RegistrationHandlerSelector
 .. abjad-lineage:: experimental.tools.scoremanagertools.selectors.RegistrationHandlerSelector.RegistrationHandlerSelector.RegistrationHandlerSelector
 
 .. autoclass:: experimental.tools.scoremanagertools.selectors.RegistrationHandlerSelector.RegistrationHandlerSelector.RegistrationHandlerSelector
+   :noindex:
 
 Bases
 -----

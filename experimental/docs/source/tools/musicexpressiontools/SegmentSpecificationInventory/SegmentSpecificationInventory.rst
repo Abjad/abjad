@@ -4,6 +4,7 @@ musicexpressiontools.SegmentSpecificationInventory
 .. abjad-lineage:: experimental.tools.musicexpressiontools.SegmentSpecificationInventory.SegmentSpecificationInventory.SegmentSpecificationInventory
 
 .. autoclass:: experimental.tools.musicexpressiontools.SegmentSpecificationInventory.SegmentSpecificationInventory.SegmentSpecificationInventory
+   :noindex:
 
 Bases
 -----

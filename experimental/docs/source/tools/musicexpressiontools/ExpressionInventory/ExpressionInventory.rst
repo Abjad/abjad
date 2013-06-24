@@ -4,6 +4,7 @@ musicexpressiontools.ExpressionInventory
 .. abjad-lineage:: experimental.tools.musicexpressiontools.ExpressionInventory.ExpressionInventory.ExpressionInventory
 
 .. autoclass:: experimental.tools.musicexpressiontools.ExpressionInventory.ExpressionInventory.ExpressionInventory
+   :noindex:
 
 Bases
 -----

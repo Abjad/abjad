@@ -4,6 +4,7 @@ newabjadbooktools.PNGImageFormat
 .. abjad-lineage:: experimental.tools.newabjadbooktools.PNGImageFormat.PNGImageFormat.PNGImageFormat
 
 .. autoclass:: experimental.tools.newabjadbooktools.PNGImageFormat.PNGImageFormat.PNGImageFormat
+   :noindex:
 
 Bases
 -----

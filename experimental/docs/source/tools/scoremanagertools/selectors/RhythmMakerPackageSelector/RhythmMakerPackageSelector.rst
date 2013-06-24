@@ -4,6 +4,7 @@ scoremanagertools.selectors.RhythmMakerPackageSelector
 .. abjad-lineage:: experimental.tools.scoremanagertools.selectors.RhythmMakerPackageSelector.RhythmMakerPackageSelector.RhythmMakerPackageSelector
 
 .. autoclass:: experimental.tools.scoremanagertools.selectors.RhythmMakerPackageSelector.RhythmMakerPackageSelector.RhythmMakerPackageSelector
+   :noindex:
 
 Bases
 -----

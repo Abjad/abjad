@@ -4,6 +4,7 @@ constrainttools.RelativeIndexConstraint
 .. abjad-lineage:: experimental.tools.constrainttools.RelativeIndexConstraint.RelativeIndexConstraint.RelativeIndexConstraint
 
 .. autoclass:: experimental.tools.constrainttools.RelativeIndexConstraint.RelativeIndexConstraint.RelativeIndexConstraint
+   :noindex:
 
 Bases
 -----

@@ -4,6 +4,7 @@ scoremanagertools.specifiers.DynamicSpecifier
 .. abjad-lineage:: experimental.tools.scoremanagertools.specifiers.DynamicSpecifier.DynamicSpecifier.DynamicSpecifier
 
 .. autoclass:: experimental.tools.scoremanagertools.specifiers.DynamicSpecifier.DynamicSpecifier.DynamicSpecifier
+   :noindex:
 
 Bases
 -----

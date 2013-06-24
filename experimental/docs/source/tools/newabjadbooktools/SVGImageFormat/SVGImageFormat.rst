@@ -4,6 +4,7 @@ newabjadbooktools.SVGImageFormat
 .. abjad-lineage:: experimental.tools.newabjadbooktools.SVGImageFormat.SVGImageFormat.SVGImageFormat
 
 .. autoclass:: experimental.tools.newabjadbooktools.SVGImageFormat.SVGImageFormat.SVGImageFormat
+   :noindex:
 
 Bases
 -----

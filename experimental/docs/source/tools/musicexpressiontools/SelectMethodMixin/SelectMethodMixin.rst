@@ -4,6 +4,7 @@ musicexpressiontools.SelectMethodMixin
 .. abjad-lineage:: experimental.tools.musicexpressiontools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin
 
 .. autoclass:: experimental.tools.musicexpressiontools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin
+   :noindex:
 
 Bases
 -----

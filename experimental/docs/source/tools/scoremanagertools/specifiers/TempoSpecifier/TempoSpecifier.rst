@@ -4,6 +4,7 @@ scoremanagertools.specifiers.TempoSpecifier
 .. abjad-lineage:: experimental.tools.scoremanagertools.specifiers.TempoSpecifier.TempoSpecifier.TempoSpecifier
 
 .. autoclass:: experimental.tools.scoremanagertools.specifiers.TempoSpecifier.TempoSpecifier.TempoSpecifier
+   :noindex:
 
 Bases
 -----

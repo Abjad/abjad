@@ -4,6 +4,7 @@ musicexpressiontools.Division
 .. abjad-lineage:: experimental.tools.musicexpressiontools.Division.Division.Division
 
 .. autoclass:: experimental.tools.musicexpressiontools.Division.Division.Division
+   :noindex:
 
 Bases
 -----
@@ -118,7 +119,7 @@ Methods
 .. automethod:: experimental.tools.musicexpressiontools.Division.Division.Division.with_multiple_of_denominator
    :noindex:
 
-Class Methods
+Class methods
 -------------
 
 .. automethod:: experimental.tools.musicexpressiontools.Division.Division.Division.from_decimal

@@ -4,6 +4,7 @@ musicexpressiontools.Interpreter
 .. abjad-lineage:: experimental.tools.musicexpressiontools.Interpreter.Interpreter.Interpreter
 
 .. autoclass:: experimental.tools.musicexpressiontools.Interpreter.Interpreter.Interpreter
+   :noindex:
 
 Bases
 -----

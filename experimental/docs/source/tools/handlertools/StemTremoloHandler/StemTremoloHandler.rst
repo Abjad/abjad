@@ -4,6 +4,7 @@ handlertools.StemTremoloHandler
 .. abjad-lineage:: experimental.tools.handlertools.StemTremoloHandler.StemTremoloHandler.StemTremoloHandler
 
 .. autoclass:: experimental.tools.handlertools.StemTremoloHandler.StemTremoloHandler.StemTremoloHandler
+   :noindex:
 
 Bases
 -----

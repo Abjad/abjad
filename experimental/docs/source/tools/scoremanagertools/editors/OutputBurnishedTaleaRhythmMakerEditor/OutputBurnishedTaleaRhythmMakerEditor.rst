@@ -4,6 +4,7 @@ scoremanagertools.editors.OutputBurnishedTaleaRhythmMakerEditor
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.OutputBurnishedTaleaRhythmMakerEditor.OutputBurnishedTaleaRhythmMakerEditor.OutputBurnishedTaleaRhythmMakerEditor
 
 .. autoclass:: experimental.tools.scoremanagertools.editors.OutputBurnishedTaleaRhythmMakerEditor.OutputBurnishedTaleaRhythmMakerEditor.OutputBurnishedTaleaRhythmMakerEditor
+   :noindex:
 
 Bases
 -----

@@ -4,6 +4,7 @@ scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector
 .. abjad-lineage:: experimental.tools.scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector
 
 .. autoclass:: experimental.tools.scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector
+   :noindex:
 
 Bases
 -----

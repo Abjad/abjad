@@ -4,6 +4,7 @@ scoremanagertools.selectors.DirectiveHandlerSelector
 .. abjad-lineage:: experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector
 
 .. autoclass:: experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector
+   :noindex:
 
 Bases
 -----

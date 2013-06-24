@@ -4,6 +4,7 @@ scoremanagertools.wizards.DynamicHandlerCreationWizard
 .. abjad-lineage:: experimental.tools.scoremanagertools.wizards.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard
 
 .. autoclass:: experimental.tools.scoremanagertools.wizards.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard.DynamicHandlerCreationWizard
+   :noindex:
 
 Bases
 -----

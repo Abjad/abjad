@@ -4,6 +4,7 @@ scoremanagertools.materialpackagemakers.ListMaterialPackageMaker
 .. abjad-lineage:: experimental.tools.scoremanagertools.materialpackagemakers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker
 
 .. autoclass:: experimental.tools.scoremanagertools.materialpackagemakers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker
+   :noindex:
 
 Bases
 -----
@@ -525,7 +526,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.write_tags_to_disk
    :noindex:
 
-Static Methods
+Static methods
 --------------
 
 .. automethod:: experimental.tools.scoremanagertools.materialpackagemakers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker.output_material_checker

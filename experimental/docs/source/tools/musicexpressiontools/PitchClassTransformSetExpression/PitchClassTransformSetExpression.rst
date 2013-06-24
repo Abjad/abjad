@@ -4,6 +4,7 @@ musicexpressiontools.PitchClassTransformSetExpression
 .. abjad-lineage:: experimental.tools.musicexpressiontools.PitchClassTransformSetExpression.PitchClassTransformSetExpression.PitchClassTransformSetExpression
 
 .. autoclass:: experimental.tools.musicexpressiontools.PitchClassTransformSetExpression.PitchClassTransformSetExpression.PitchClassTransformSetExpression
+   :noindex:
 
 Bases
 -----

@@ -4,6 +4,7 @@ musicexpressiontools.MultipleContextSetExpression
 .. abjad-lineage:: experimental.tools.musicexpressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression
 
 .. autoclass:: experimental.tools.musicexpressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression
+   :noindex:
 
 Bases
 -----

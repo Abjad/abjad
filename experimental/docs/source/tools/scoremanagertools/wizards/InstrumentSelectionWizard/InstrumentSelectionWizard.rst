@@ -4,6 +4,7 @@ scoremanagertools.wizards.InstrumentSelectionWizard
 .. abjad-lineage:: experimental.tools.scoremanagertools.wizards.InstrumentSelectionWizard.InstrumentSelectionWizard.InstrumentSelectionWizard
 
 .. autoclass:: experimental.tools.scoremanagertools.wizards.InstrumentSelectionWizard.InstrumentSelectionWizard.InstrumentSelectionWizard
+   :noindex:
 
 Bases
 -----

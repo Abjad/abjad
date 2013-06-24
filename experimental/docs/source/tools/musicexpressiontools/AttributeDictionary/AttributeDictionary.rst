@@ -4,6 +4,7 @@ musicexpressiontools.AttributeDictionary
 .. abjad-lineage:: experimental.tools.musicexpressiontools.AttributeDictionary.AttributeDictionary.AttributeDictionary
 
 .. autoclass:: experimental.tools.musicexpressiontools.AttributeDictionary.AttributeDictionary.AttributeDictionary
+   :noindex:
 
 Bases
 -----

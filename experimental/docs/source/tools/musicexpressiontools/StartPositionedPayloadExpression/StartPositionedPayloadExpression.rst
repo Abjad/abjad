@@ -4,6 +4,7 @@ musicexpressiontools.StartPositionedPayloadExpression
 .. abjad-lineage:: experimental.tools.musicexpressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression
 
 .. autoclass:: experimental.tools.musicexpressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression
+   :noindex:
 
 Bases
 -----

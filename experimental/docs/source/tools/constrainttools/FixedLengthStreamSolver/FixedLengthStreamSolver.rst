@@ -4,6 +4,7 @@ constrainttools.FixedLengthStreamSolver
 .. abjad-lineage:: experimental.tools.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver
 
 .. autoclass:: experimental.tools.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver
+   :noindex:
 
 Bases
 -----

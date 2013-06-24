@@ -4,6 +4,7 @@ scoremanagertools.selectors.OverrideHandlerSelector
 .. abjad-lineage:: experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector
 
 .. autoclass:: experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector
+   :noindex:
 
 Bases
 -----

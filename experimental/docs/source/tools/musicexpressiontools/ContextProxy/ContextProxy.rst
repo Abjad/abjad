@@ -4,6 +4,7 @@ musicexpressiontools.ContextProxy
 .. abjad-lineage:: experimental.tools.musicexpressiontools.ContextProxy.ContextProxy.ContextProxy
 
 .. autoclass:: experimental.tools.musicexpressiontools.ContextProxy.ContextProxy.ContextProxy
+   :noindex:
 
 Bases
 -----

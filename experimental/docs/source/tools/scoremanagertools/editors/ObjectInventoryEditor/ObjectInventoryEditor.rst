@@ -4,6 +4,7 @@ scoremanagertools.editors.ObjectInventoryEditor
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.ObjectInventoryEditor.ObjectInventoryEditor.ObjectInventoryEditor
 
 .. autoclass:: experimental.tools.scoremanagertools.editors.ObjectInventoryEditor.ObjectInventoryEditor.ObjectInventoryEditor
+   :noindex:
 
 Bases
 -----

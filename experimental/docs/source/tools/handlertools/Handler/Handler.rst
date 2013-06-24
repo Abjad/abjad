@@ -4,6 +4,7 @@ handlertools.Handler
 .. abjad-lineage:: experimental.tools.handlertools.Handler.Handler.Handler
 
 .. autoclass:: experimental.tools.handlertools.Handler.Handler.Handler
+   :noindex:
 
 Bases
 -----

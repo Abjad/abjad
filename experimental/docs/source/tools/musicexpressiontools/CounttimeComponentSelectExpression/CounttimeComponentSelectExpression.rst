@@ -4,6 +4,7 @@ musicexpressiontools.CounttimeComponentSelectExpression
 .. abjad-lineage:: experimental.tools.musicexpressiontools.CounttimeComponentSelectExpression.CounttimeComponentSelectExpression.CounttimeComponentSelectExpression
 
 .. autoclass:: experimental.tools.musicexpressiontools.CounttimeComponentSelectExpression.CounttimeComponentSelectExpression.CounttimeComponentSelectExpression
+   :noindex:
 
 Bases
 -----

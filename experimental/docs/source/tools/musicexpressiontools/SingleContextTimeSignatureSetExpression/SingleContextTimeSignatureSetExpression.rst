@@ -4,6 +4,7 @@ musicexpressiontools.SingleContextTimeSignatureSetExpression
 .. abjad-lineage:: experimental.tools.musicexpressiontools.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression
 
 .. autoclass:: experimental.tools.musicexpressiontools.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression
+   :noindex:
 
 Bases
 -----

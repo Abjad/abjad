@@ -4,6 +4,7 @@ scoremanagertools.proxies.TagsModuleProxy
 .. abjad-lineage:: experimental.tools.scoremanagertools.proxies.TagsModuleProxy.TagsModuleProxy.TagsModuleProxy
 
 .. autoclass:: experimental.tools.scoremanagertools.proxies.TagsModuleProxy.TagsModuleProxy.TagsModuleProxy
+   :noindex:
 
 Bases
 -----

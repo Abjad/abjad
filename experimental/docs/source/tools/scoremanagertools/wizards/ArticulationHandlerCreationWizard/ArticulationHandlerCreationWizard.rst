@@ -4,6 +4,7 @@ scoremanagertools.wizards.ArticulationHandlerCreationWizard
 .. abjad-lineage:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard
 
 .. autoclass:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard
+   :noindex:
 
 Bases
 -----

@@ -4,6 +4,7 @@ microlanguage.ToyLanguageParser
 .. abjad-lineage:: experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser
 
 .. autoclass:: experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser
+   :noindex:
 
 Bases
 -----

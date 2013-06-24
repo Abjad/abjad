@@ -4,6 +4,7 @@ scoremanagertools.editors.TrillSpecifierEditor
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor
 
 .. autoclass:: experimental.tools.scoremanagertools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor
+   :noindex:
 
 Bases
 -----

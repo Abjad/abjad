@@ -4,6 +4,7 @@ scoremanagertools.proxies.ParseableModuleMixin
 .. abjad-lineage:: experimental.tools.scoremanagertools.proxies.ParseableModuleMixin.ParseableModuleMixin.ParseableModuleMixin
 
 .. autoclass:: experimental.tools.scoremanagertools.proxies.ParseableModuleMixin.ParseableModuleMixin.ParseableModuleMixin
+   :noindex:
 
 Bases
 -----

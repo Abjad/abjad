@@ -4,6 +4,7 @@ newabjadbooktools.AssetOutputProxy
 .. abjad-lineage:: experimental.tools.newabjadbooktools.AssetOutputProxy.AssetOutputProxy.AssetOutputProxy
 
 .. autoclass:: experimental.tools.newabjadbooktools.AssetOutputProxy.AssetOutputProxy.AssetOutputProxy
+   :noindex:
 
 Bases
 -----

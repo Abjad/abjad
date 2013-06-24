@@ -4,6 +4,7 @@ handlertools.RepeatedMarkupHandler
 .. abjad-lineage:: experimental.tools.handlertools.RepeatedMarkupHandler.RepeatedMarkupHandler.RepeatedMarkupHandler
 
 .. autoclass:: experimental.tools.handlertools.RepeatedMarkupHandler.RepeatedMarkupHandler.RepeatedMarkupHandler
+   :noindex:
 
 Bases
 -----

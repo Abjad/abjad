@@ -4,6 +4,7 @@ newabjadbooktools.ReSTDocumentHandler
 .. abjad-lineage:: experimental.tools.newabjadbooktools.ReSTDocumentHandler.ReSTDocumentHandler.ReSTDocumentHandler
 
 .. autoclass:: experimental.tools.newabjadbooktools.ReSTDocumentHandler.ReSTDocumentHandler.ReSTDocumentHandler
+   :noindex:
 
 Bases
 -----

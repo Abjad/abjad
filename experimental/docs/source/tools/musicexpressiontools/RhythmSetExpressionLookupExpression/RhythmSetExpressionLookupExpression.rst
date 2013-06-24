@@ -4,6 +4,7 @@ musicexpressiontools.RhythmSetExpressionLookupExpression
 .. abjad-lineage:: experimental.tools.musicexpressiontools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression
 
 .. autoclass:: experimental.tools.musicexpressiontools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression
+   :noindex:
 
 Bases
 -----

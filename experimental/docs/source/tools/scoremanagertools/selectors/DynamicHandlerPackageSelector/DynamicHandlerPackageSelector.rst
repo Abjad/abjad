@@ -4,6 +4,7 @@ scoremanagertools.selectors.DynamicHandlerPackageSelector
 .. abjad-lineage:: experimental.tools.scoremanagertools.selectors.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector
 
 .. autoclass:: experimental.tools.scoremanagertools.selectors.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector.DynamicHandlerPackageSelector
+   :noindex:
 
 Bases
 -----

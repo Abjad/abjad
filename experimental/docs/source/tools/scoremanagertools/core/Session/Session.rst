@@ -4,6 +4,7 @@ scoremanagertools.core.Session
 .. abjad-lineage:: experimental.tools.scoremanagertools.core.Session.Session.Session
 
 .. autoclass:: experimental.tools.scoremanagertools.core.Session.Session.Session
+   :noindex:
 
 Bases
 -----

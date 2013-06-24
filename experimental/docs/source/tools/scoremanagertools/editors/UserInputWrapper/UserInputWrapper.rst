@@ -4,6 +4,7 @@ scoremanagertools.editors.UserInputWrapper
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper
 
 .. autoclass:: experimental.tools.scoremanagertools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper
+   :noindex:
 
 Bases
 -----

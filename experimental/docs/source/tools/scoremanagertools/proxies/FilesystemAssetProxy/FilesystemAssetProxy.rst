@@ -4,6 +4,7 @@ scoremanagertools.proxies.FilesystemAssetProxy
 .. abjad-lineage:: experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy.FilesystemAssetProxy.FilesystemAssetProxy
 
 .. autoclass:: experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy.FilesystemAssetProxy.FilesystemAssetProxy
+   :noindex:
 
 Bases
 -----

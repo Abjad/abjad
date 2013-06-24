@@ -4,6 +4,7 @@ musicexpressiontools.TimeSignatureSetExpressionLookupExpression
 .. abjad-lineage:: experimental.tools.musicexpressiontools.TimeSignatureSetExpressionLookupExpression.TimeSignatureSetExpressionLookupExpression.TimeSignatureSetExpressionLookupExpression
 
 .. autoclass:: experimental.tools.musicexpressiontools.TimeSignatureSetExpressionLookupExpression.TimeSignatureSetExpressionLookupExpression.TimeSignatureSetExpressionLookupExpression
+   :noindex:
 
 Bases
 -----

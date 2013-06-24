@@ -4,6 +4,7 @@ musicexpressiontools.MaterialManager
 .. abjad-lineage:: experimental.tools.musicexpressiontools.MaterialManager.MaterialManager.MaterialManager
 
 .. autoclass:: experimental.tools.musicexpressiontools.MaterialManager.MaterialManager.MaterialManager
+   :noindex:
 
 Bases
 -----

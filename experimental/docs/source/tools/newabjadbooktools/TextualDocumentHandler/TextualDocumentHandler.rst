@@ -4,6 +4,7 @@ newabjadbooktools.TextualDocumentHandler
 .. abjad-lineage:: experimental.tools.newabjadbooktools.TextualDocumentHandler.TextualDocumentHandler.TextualDocumentHandler
 
 .. autoclass:: experimental.tools.newabjadbooktools.TextualDocumentHandler.TextualDocumentHandler.TextualDocumentHandler
+   :noindex:
 
 Bases
 -----

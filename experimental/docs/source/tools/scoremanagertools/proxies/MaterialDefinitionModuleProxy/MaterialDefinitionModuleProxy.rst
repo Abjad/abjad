@@ -4,6 +4,7 @@ scoremanagertools.proxies.MaterialDefinitionModuleProxy
 .. abjad-lineage:: experimental.tools.scoremanagertools.proxies.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy
 
 .. autoclass:: experimental.tools.scoremanagertools.proxies.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy
+   :noindex:
 
 Bases
 -----

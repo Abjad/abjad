@@ -4,6 +4,7 @@ musicexpressiontools.OffsetExpression
 .. abjad-lineage:: experimental.tools.musicexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression
 
 .. autoclass:: experimental.tools.musicexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression
+   :noindex:
 
 Bases
 -----

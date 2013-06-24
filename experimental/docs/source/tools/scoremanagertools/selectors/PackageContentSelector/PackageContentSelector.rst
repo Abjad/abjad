@@ -4,6 +4,7 @@ scoremanagertools.selectors.PackageContentSelector
 .. abjad-lineage:: experimental.tools.scoremanagertools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector
 
 .. autoclass:: experimental.tools.scoremanagertools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector
+   :noindex:
 
 Bases
 -----

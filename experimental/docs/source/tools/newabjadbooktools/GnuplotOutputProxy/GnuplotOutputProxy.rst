@@ -4,6 +4,7 @@ newabjadbooktools.GnuplotOutputProxy
 .. abjad-lineage:: experimental.tools.newabjadbooktools.GnuplotOutputProxy.GnuplotOutputProxy.GnuplotOutputProxy
 
 .. autoclass:: experimental.tools.newabjadbooktools.GnuplotOutputProxy.GnuplotOutputProxy.GnuplotOutputProxy
+   :noindex:
 
 Bases
 -----

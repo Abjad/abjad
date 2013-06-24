@@ -4,6 +4,7 @@ scoremanagertools.editors.ArticulationSpecifierEditor
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.ArticulationSpecifierEditor.ArticulationSpecifierEditor.ArticulationSpecifierEditor
 
 .. autoclass:: experimental.tools.scoremanagertools.editors.ArticulationSpecifierEditor.ArticulationSpecifierEditor.ArticulationSpecifierEditor
+   :noindex:
 
 Bases
 -----

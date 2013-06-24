@@ -287,6 +287,7 @@ class StylesheetFileWrangler(FileWrangler):
 
     ### UI MANIFEST ###
 
+    #: Maps user input to method.
     user_input_to_action = FileWrangler.user_input_to_action.copy()
     user_input_to_action.update({
         'new': interactively_make_asset,

@@ -4,6 +4,7 @@ handlertools.DiatonicClusterHandler
 .. abjad-lineage:: experimental.tools.handlertools.DiatonicClusterHandler.DiatonicClusterHandler.DiatonicClusterHandler
 
 .. autoclass:: experimental.tools.handlertools.DiatonicClusterHandler.DiatonicClusterHandler.DiatonicClusterHandler
+   :noindex:
 
 Bases
 -----

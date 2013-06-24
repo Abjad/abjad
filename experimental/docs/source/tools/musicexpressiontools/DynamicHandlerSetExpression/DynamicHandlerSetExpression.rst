@@ -4,6 +4,7 @@ musicexpressiontools.DynamicHandlerSetExpression
 .. abjad-lineage:: experimental.tools.musicexpressiontools.DynamicHandlerSetExpression.DynamicHandlerSetExpression.DynamicHandlerSetExpression
 
 .. autoclass:: experimental.tools.musicexpressiontools.DynamicHandlerSetExpression.DynamicHandlerSetExpression.DynamicHandlerSetExpression
+   :noindex:
 
 Bases
 -----

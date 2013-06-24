@@ -4,6 +4,7 @@ musicexpressiontools.HandlerExpression
 .. abjad-lineage:: experimental.tools.musicexpressiontools.HandlerExpression.HandlerExpression.HandlerExpression
 
 .. autoclass:: experimental.tools.musicexpressiontools.HandlerExpression.HandlerExpression.HandlerExpression
+   :noindex:
 
 Bases
 -----

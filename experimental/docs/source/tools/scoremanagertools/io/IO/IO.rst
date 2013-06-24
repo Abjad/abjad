@@ -4,6 +4,7 @@ scoremanagertools.io.IO
 .. abjad-lineage:: experimental.tools.scoremanagertools.io.IO.IO.IO
 
 .. autoclass:: experimental.tools.scoremanagertools.io.IO.IO.IO
+   :noindex:
 
 Bases
 -----
@@ -66,7 +67,7 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.io.IO.IO.IO.proceed
    :noindex:
 
-Static Methods
+Static methods
 --------------
 
 .. automethod:: experimental.tools.scoremanagertools.io.IO.IO.IO.get_one_line_menuing_summary

@@ -4,6 +4,7 @@ scoremanagertools.proxies.ExergueDirectoryProxy
 .. abjad-lineage:: experimental.tools.scoremanagertools.proxies.ExergueDirectoryProxy.ExergueDirectoryProxy.ExergueDirectoryProxy
 
 .. autoclass:: experimental.tools.scoremanagertools.proxies.ExergueDirectoryProxy.ExergueDirectoryProxy.ExergueDirectoryProxy
+   :noindex:
 
 Bases
 -----

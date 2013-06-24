@@ -4,6 +4,7 @@ scoremanagertools.proxies.UserInputModuleProxy
 .. abjad-lineage:: experimental.tools.scoremanagertools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy
 
 .. autoclass:: experimental.tools.scoremanagertools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy
+   :noindex:
 
 Bases
 -----

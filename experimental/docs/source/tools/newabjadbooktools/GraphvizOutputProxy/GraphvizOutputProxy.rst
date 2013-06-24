@@ -4,6 +4,7 @@ newabjadbooktools.GraphvizOutputProxy
 .. abjad-lineage:: experimental.tools.newabjadbooktools.GraphvizOutputProxy.GraphvizOutputProxy.GraphvizOutputProxy
 
 .. autoclass:: experimental.tools.newabjadbooktools.GraphvizOutputProxy.GraphvizOutputProxy.GraphvizOutputProxy
+   :noindex:
 
 Bases
 -----

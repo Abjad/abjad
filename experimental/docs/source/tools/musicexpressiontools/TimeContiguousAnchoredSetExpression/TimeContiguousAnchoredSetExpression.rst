@@ -4,6 +4,7 @@ musicexpressiontools.TimeContiguousAnchoredSetExpression
 .. abjad-lineage:: experimental.tools.musicexpressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression
 
 .. autoclass:: experimental.tools.musicexpressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression
+   :noindex:
 
 Bases
 -----

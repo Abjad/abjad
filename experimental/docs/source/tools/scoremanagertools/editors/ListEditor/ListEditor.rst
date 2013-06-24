@@ -4,6 +4,7 @@ scoremanagertools.editors.ListEditor
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor
 
 .. autoclass:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor
+   :noindex:
 
 Bases
 -----

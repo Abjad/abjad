@@ -4,6 +4,7 @@ scoremanagertools.specifiers.RegistrationSpecifier
 .. abjad-lineage:: experimental.tools.scoremanagertools.specifiers.RegistrationSpecifier.RegistrationSpecifier.RegistrationSpecifier
 
 .. autoclass:: experimental.tools.scoremanagertools.specifiers.RegistrationSpecifier.RegistrationSpecifier.RegistrationSpecifier
+   :noindex:
 
 Bases
 -----

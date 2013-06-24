@@ -4,6 +4,7 @@ musicexpressiontools.DivisionSetExpressionLookupExpression
 .. abjad-lineage:: experimental.tools.musicexpressiontools.DivisionSetExpressionLookupExpression.DivisionSetExpressionLookupExpression.DivisionSetExpressionLookupExpression
 
 .. autoclass:: experimental.tools.musicexpressiontools.DivisionSetExpressionLookupExpression.DivisionSetExpressionLookupExpression.DivisionSetExpressionLookupExpression
+   :noindex:
 
 Bases
 -----

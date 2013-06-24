@@ -4,6 +4,7 @@ scoremanagertools.io.UserInputGetter
 .. abjad-lineage:: experimental.tools.scoremanagertools.io.UserInputGetter.UserInputGetter.UserInputGetter
 
 .. autoclass:: experimental.tools.scoremanagertools.io.UserInputGetter.UserInputGetter.UserInputGetter
+   :noindex:
 
 Bases
 -----

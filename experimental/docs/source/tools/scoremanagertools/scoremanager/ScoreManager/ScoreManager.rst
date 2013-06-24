@@ -4,6 +4,7 @@ scoremanagertools.scoremanager.ScoreManager
 .. abjad-lineage:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager
 
 .. autoclass:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager
+   :noindex:
 
 Bases
 -----

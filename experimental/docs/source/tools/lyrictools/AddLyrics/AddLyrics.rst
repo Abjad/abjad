@@ -4,6 +4,7 @@ lyrictools.AddLyrics
 .. abjad-lineage:: experimental.tools.lyrictools.AddLyrics.AddLyrics.AddLyrics
 
 .. autoclass:: experimental.tools.lyrictools.AddLyrics.AddLyrics.AddLyrics
+   :noindex:
 
 Bases
 -----

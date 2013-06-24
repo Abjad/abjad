@@ -4,6 +4,7 @@ musicexpressiontools.CallbackInventory
 .. abjad-lineage:: experimental.tools.musicexpressiontools.CallbackInventory.CallbackInventory.CallbackInventory
 
 .. autoclass:: experimental.tools.musicexpressiontools.CallbackInventory.CallbackInventory.CallbackInventory
+   :noindex:
 
 Bases
 -----

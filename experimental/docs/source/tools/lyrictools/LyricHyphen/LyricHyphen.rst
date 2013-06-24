@@ -4,6 +4,7 @@ lyrictools.LyricHyphen
 .. abjad-lineage:: experimental.tools.lyrictools.LyricHyphen.LyricHyphen.LyricHyphen
 
 .. autoclass:: experimental.tools.lyrictools.LyricHyphen.LyricHyphen.LyricHyphen
+   :noindex:
 
 Bases
 -----

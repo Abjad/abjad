@@ -4,6 +4,7 @@ musicexpressiontools.TimeContiguousSetMethodMixin
 .. abjad-lineage:: experimental.tools.musicexpressiontools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin
 
 .. autoclass:: experimental.tools.musicexpressiontools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin
+   :noindex:
 
 Bases
 -----

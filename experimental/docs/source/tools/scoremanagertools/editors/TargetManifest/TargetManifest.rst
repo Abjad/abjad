@@ -4,6 +4,7 @@ scoremanagertools.editors.TargetManifest
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.TargetManifest.TargetManifest.TargetManifest
 
 .. autoclass:: experimental.tools.scoremanagertools.editors.TargetManifest.TargetManifest.TargetManifest
+   :noindex:
 
 Bases
 -----

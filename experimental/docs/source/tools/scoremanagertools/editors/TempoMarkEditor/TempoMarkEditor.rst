@@ -4,6 +4,7 @@ scoremanagertools.editors.TempoMarkEditor
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor
 
 .. autoclass:: experimental.tools.scoremanagertools.editors.TempoMarkEditor.TempoMarkEditor.TempoMarkEditor
+   :noindex:
 
 Bases
 -----

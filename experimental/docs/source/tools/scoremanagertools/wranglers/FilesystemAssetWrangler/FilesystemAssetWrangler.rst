@@ -4,6 +4,7 @@ scoremanagertools.wranglers.FilesystemAssetWrangler
 .. abjad-lineage:: experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler.FilesystemAssetWrangler.FilesystemAssetWrangler
 
 .. autoclass:: experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler.FilesystemAssetWrangler.FilesystemAssetWrangler
+   :noindex:
 
 Bases
 -----

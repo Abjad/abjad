@@ -4,6 +4,7 @@ scoremanagertools.proxies.StylesheetFileProxy
 .. abjad-lineage:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy
 
 .. autoclass:: experimental.tools.scoremanagertools.proxies.StylesheetFileProxy.StylesheetFileProxy.StylesheetFileProxy
+   :noindex:
 
 Bases
 -----

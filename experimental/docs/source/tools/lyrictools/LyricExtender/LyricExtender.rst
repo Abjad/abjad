@@ -4,6 +4,7 @@ lyrictools.LyricExtender
 .. abjad-lineage:: experimental.tools.lyrictools.LyricExtender.LyricExtender.LyricExtender
 
 .. autoclass:: experimental.tools.lyrictools.LyricExtender.LyricExtender.LyricExtender
+   :noindex:
 
 Bases
 -----

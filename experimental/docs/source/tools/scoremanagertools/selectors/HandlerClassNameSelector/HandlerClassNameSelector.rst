@@ -4,6 +4,7 @@ scoremanagertools.selectors.HandlerClassNameSelector
 .. abjad-lineage:: experimental.tools.scoremanagertools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector
 
 .. autoclass:: experimental.tools.scoremanagertools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector
+   :noindex:
 
 Bases
 -----

@@ -4,6 +4,7 @@ scoremanagertools.specifiers.InstrumentSpecifier
 .. abjad-lineage:: experimental.tools.scoremanagertools.specifiers.InstrumentSpecifier.InstrumentSpecifier.InstrumentSpecifier
 
 .. autoclass:: experimental.tools.scoremanagertools.specifiers.InstrumentSpecifier.InstrumentSpecifier.InstrumentSpecifier
+   :noindex:
 
 Bases
 -----

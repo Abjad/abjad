@@ -4,6 +4,7 @@ scoremanagertools.proxies.IllustrationPdfFileProxy
 .. abjad-lineage:: experimental.tools.scoremanagertools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy
 
 .. autoclass:: experimental.tools.scoremanagertools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy
+   :noindex:
 
 Bases
 -----
