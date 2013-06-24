@@ -85,8 +85,6 @@ class IO(AbjadObject):
             self.interactively_grep_directories()
         elif key == 'here':
             self.interactively_edit_calling_code()
-#        elif key == 'hidden':
-#            self.display_hidden_menu_section()
         elif key == 'next':
             self._session.is_navigating_to_next_score = True
             self._session.is_backtracking_to_score_manager = True
