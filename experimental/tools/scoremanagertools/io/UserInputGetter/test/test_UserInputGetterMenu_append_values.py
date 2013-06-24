@@ -1,7 +1,7 @@
 from experimental import *
 
 
-def test_UserInputGetter_append_values_01():
+def test_UserInputGetterMenu_append_values_01():
 
     getter = scoremanagertools.io.UserInputGetter()
     getter.append_integer('attribute')

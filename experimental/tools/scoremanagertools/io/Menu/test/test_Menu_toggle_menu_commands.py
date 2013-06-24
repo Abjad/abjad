@@ -1,7 +1,7 @@
 from experimental import *
 
 
-def test_ScoreManager_toggle_menu_commands_01():
+def test_Menu_toggle_menu_commands_01():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     score_manager._run(user_input='tmc q')
