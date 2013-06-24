@@ -100,12 +100,12 @@ class Menu(ScoreManagerObject):
             self._io.clear_terminal()
 
     def _display(self, 
-        automatically_determined_user_input=None):
+        predetermined_user_input=None):
         self._clear_terminal()
         self._io.display(self._make_menu_lines(), 
             capitalize_first_character=False)
-        if automatically_determined_user_input is not None:
-            return automatically_determined_user_input
+        if predetermined_user_input is not None:
+            return predetermined_user_input
         user_input = self._io.handle_raw_input_with_default('')
         directive = self._change_user_input_to_directive(user_input)
         directive = self._strip_default_indicators_from_strings(directive)
@@ -189,7 +189,7 @@ class Menu(ScoreManagerObject):
 
     def _run(self, 
             clear=True, 
-            automatically_determined_user_input=None, 
+            predetermined_user_input=None, 
             user_input=None):
         self._io.assign_user_input(user_input=user_input)
         clear, hide_current_run = clear, False
@@ -198,8 +198,8 @@ class Menu(ScoreManagerObject):
             self.hide_current_run = hide_current_run
             clear, hide_current_run = False, True
             result = self._display(
-                automatically_determined_user_input=\
-                automatically_determined_user_input)
+                predetermined_user_input=\
+                predetermined_user_input)
             if self._session.is_complete:
                 break
             elif result == 'r':

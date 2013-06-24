@@ -132,8 +132,6 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
             if user_input is None:
                 self._prompt_index += 1
                 break
-#            user_input = self._handle_hidden_menu_section_return_value(
-#                user_input)
             user_input = self._io.handle_hidden_menu_section_return_value(
                 user_input)
             if self._session.backtrack():
