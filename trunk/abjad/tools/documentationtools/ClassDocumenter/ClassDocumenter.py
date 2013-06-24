@@ -22,22 +22,20 @@ class ClassDocumenter(Documenter):
         '__sizeof__', '__subclasshook__', 'fromkeys', 'pipe_cloexec',
     )
 
-    __slots__ = ('_data', '_inherited_attributes',
-        '_methods', '_object', '_prefix', '_readonly_properties',
-        '_readwrite_properties', '_special_methods')
-
     ### INITIALIZER ###
 
     def __init__(self, obj, prefix='abjad.tools.'):
         assert isinstance(obj, type)
         Documenter.__init__(self, obj, prefix)
 
+        class_methods = []
         data = []
         inherited_attributes = []
         methods = []
         readonly_properties = []
         readwrite_properties = []
         special_methods = []
+        static_methods = []
 
         attrs = inspect.classify_class_attrs(self._object)
         for attr in attrs:
@@ -45,12 +43,24 @@ class ClassDocumenter(Documenter):
                 continue
             if self._attribute_is_inherited(attr):
                 inherited_attributes.append(attr)
-            if attr.kind in ('class method', 'method', 'static method'):
+            if attr.kind == 'method':
                 if attr.name not in self._ignored_special_methods:
                     if attr.name.startswith('__'):
                         special_methods.append(attr)
                     elif not attr.name.startswith('_'):
                         methods.append(attr)
+            if attr.kind == 'class method':
+                if attr.name not in self._ignored_special_methods:
+                    if attr.name.startswith('__'):
+                        special_methods.append(attr)
+                    elif not attr.name.startswith('_'):
+                        class_methods.append(attr)
+            if attr.kind == 'static method':
+                if attr.name not in self._ignored_special_methods:
+                    if attr.name.startswith('__'):
+                        special_methods.append(attr)
+                    elif not attr.name.startswith('_'):
+                        static_methods.append(attr)
             elif attr.kind == 'property' and not attr.name.startswith('_'):
                 if attr.object.fset is None:
                     readonly_properties.append(attr)
@@ -59,12 +69,14 @@ class ClassDocumenter(Documenter):
             elif attr.kind == 'data' and not attr.name.startswith('_'):
                 data.append(attr)
 
+        self._class_methods = tuple(sorted(class_methods))
         self._data = tuple(sorted(data))
         self._inherited_attributes = tuple(sorted(inherited_attributes))
         self._methods = tuple(sorted(methods))
         self._readonly_properties = tuple(sorted(readonly_properties))
         self._readwrite_properties = tuple(sorted(readwrite_properties))
         self._special_methods = tuple(sorted(special_methods))
+        self._static_methods = tuple(sorted(static_methods))
 
     ### SPECIAL METHODS ###
 
@@ -139,6 +151,32 @@ class ClassDocumenter(Documenter):
                     )
                 document.append(autodoc)
 
+        if self.class_methods:
+            document.append(documentationtools.ReSTHeading(
+                level=3,
+                text='Class Methods',
+                ))
+            for attr in self.class_methods:
+                autodoc = documentationtools.ReSTAutodocDirective(
+                    argument='{}.{}'.format(module_name, attr.name),
+                    directive='automethod',
+                    options={'noindex': True},
+                    )
+                document.append(autodoc)
+
+        if self.static_methods:
+            document.append(documentationtools.ReSTHeading(
+                level=3,
+                text='Static Methods',
+                ))
+            for attr in self.static_methods:
+                autodoc = documentationtools.ReSTAutodocDirective(
+                    argument='{}.{}'.format(module_name, attr.name),
+                    directive='automethod',
+                    options={'noindex': True},
+                    )
+                document.append(autodoc)
+
         if self.special_methods:
             document.append(documentationtools.ReSTHeading(
                 level=3,
@@ -189,6 +227,10 @@ class ClassDocumenter(Documenter):
     ### PUBLIC PROPERTIES ###
 
     @property
+    def class_methods(self):
+        return self._class_methods
+
+    @property
     def data(self):
         return self._data
 
@@ -215,3 +257,7 @@ class ClassDocumenter(Documenter):
     @property
     def special_methods(self):
         return self._special_methods
+
+    @property
+    def static_methods(self):
+        return self._static_methods
