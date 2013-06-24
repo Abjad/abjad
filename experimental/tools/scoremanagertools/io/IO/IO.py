@@ -22,13 +22,14 @@ class IO(AbjadObject):
 
     ### PUBLIC METHODS ###
 
-    def assign_user_input(self, user_input=None):
-        if user_input is not None:
+    def assign_user_input(self, pending_user_input=None):
+        if pending_user_input is not None:
             if self._session.pending_user_input:
-                self._session.pending_user_input = user_input + ' ' + \
+                self._session.pending_user_input = \
+                    pending_user_input + ' ' + \
                     self._session.pending_user_input
             else:
-                self._session.pending_user_input = user_input
+                self._session.pending_user_input = pending_user_input
 
     def clear_terminal(self):
         if not self._session.hide_next_redraw:

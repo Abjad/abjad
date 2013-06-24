@@ -6,7 +6,7 @@ from experimental import *
 def test_ReiteratedArticulationHandlerEditor_run_01():
 
     editor = scoremanagertools.editors.ReiteratedArticulationHandlerEditor()
-    editor._run(user_input="['.', '^'] (1, 16) (1, 8) cs'' c''' done",
+    editor._run(pending_user_input="['.', '^'] (1, 16) (1, 8) cs'' c''' done",
         is_autoadvancing=True, is_autostarting=True)
 
     handler = handlertools.ReiteratedArticulationHandler(
@@ -23,7 +23,7 @@ def test_ReiteratedArticulationHandlerEditor_run_01():
 def test_ReiteratedArticulationHandlerEditor_run_02():
 
     editor = scoremanagertools.editors.ReiteratedArticulationHandlerEditor()
-    editor._run(user_input="['.', '^'] None None None None done",
+    editor._run(pending_user_input="['.', '^'] None None None None done",
         is_autoadvancing=True, is_autostarting=True)
 
     handler = handlertools.ReiteratedArticulationHandler(

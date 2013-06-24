@@ -6,7 +6,7 @@ def test_ScoreManager_01():
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    score_manager._run(user_input='mb q')
+    score_manager._run(pending_user_input='mb q')
     score_manager._session.transcript.signature == (4,)
 
 
@@ -15,7 +15,7 @@ def test_ScoreManager_02():
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    score_manager._run(user_input='red~example~score tags q')
+    score_manager._run(pending_user_input='red~example~score tags q')
     assert score_manager._session.transcript.signature == (6,)
 
 
@@ -24,7 +24,7 @@ def test_ScoreManager_03():
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    score_manager._run(user_input='svn q')
+    score_manager._run(pending_user_input='svn q')
     assert score_manager._session.transcript.signature == (4,)
 
 
@@ -33,13 +33,13 @@ def test_ScoreManager_04():
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    score_manager._run(user_input='q')
+    score_manager._run(pending_user_input='q')
     assert score_manager._session.transcript[-2][1][0] == 'Score manager - active scores'
 
-    score_manager._run(user_input='svn q')
+    score_manager._run(pending_user_input='svn q')
     assert score_manager._session.transcript[-2][1][0] == 'Score manager - active scores - repository commands'
 
-    score_manager._run(user_input='svn b q')
+    score_manager._run(pending_user_input='svn b q')
     assert score_manager._session.transcript[-2][1][0] == 'Score manager - active scores'
 
 
@@ -48,10 +48,10 @@ def test_ScoreManager_05():
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    score_manager._run(user_input='foo q')
+    score_manager._run(pending_user_input='foo q')
     assert score_manager._session.transcript.signature == (4, (0, 2))
 
-    score_manager._run(user_input='foo bar q')
+    score_manager._run(pending_user_input='foo bar q')
     assert score_manager._session.transcript.signature == (6, (0, 2, 4))
 
 
@@ -60,7 +60,7 @@ def test_ScoreManager_06():
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    score_manager._run(user_input='b q')
+    score_manager._run(pending_user_input='b q')
     assert score_manager._session.transcript.signature == (4, (0, 2))
 
 
@@ -69,7 +69,7 @@ def test_ScoreManager_07():
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    score_manager._run(user_input='exec 2**30 q')
+    score_manager._run(pending_user_input='exec 2**30 q')
 
     assert score_manager._session.transcript[1][1] == ['> exec', '']
     assert score_manager._session.transcript[2][1] == ['XCF> 2**30']
@@ -82,7 +82,7 @@ def test_ScoreManager_08():
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    score_manager._run(user_input='exec foo q')
+    score_manager._run(pending_user_input='exec foo q')
 
     assert score_manager._session.transcript[1][1] == ['> exec', '']
     assert score_manager._session.transcript[2][1] == ['XCF> foo']
@@ -104,11 +104,11 @@ def test_ScoreManager_10():
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    score_manager._run(user_input='Mon perf home q')
+    score_manager._run(pending_user_input='Mon perf home q')
     ts_1 = score_manager._session.transcript.signature
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    score_manager._run(user_input='Mon perf home q')
+    score_manager._run(pending_user_input='Mon perf home q')
     ts_2 = score_manager._session.transcript.signature
 
     assert ts_1 == ts_2
@@ -119,11 +119,11 @@ def test_ScoreManager_11():
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    score_manager._run(user_input='Mon perf score q')
+    score_manager._run(pending_user_input='Mon perf score q')
     ts_1 = score_manager._session.transcript.signature
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    score_manager._run(user_input='Mon perf sco q')
+    score_manager._run(pending_user_input='Mon perf sco q')
     ts_2 = score_manager._session.transcript.signature
 
     assert ts_1 == ts_2

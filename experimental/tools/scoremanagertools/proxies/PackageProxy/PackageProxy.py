@@ -28,8 +28,8 @@ class PackageProxy(DirectoryProxy):
 
     ### PRIVATE METHODS ###
 
-    def _run(self, cache=False, clear=True, user_input=None):
-        self._io.assign_user_input(user_input=user_input)
+    def _run(self, cache=False, clear=True, pending_user_input=None):
+        self._io.assign_user_input(pending_user_input=pending_user_input)
         self._session.cache_breadcrumbs(cache=cache)
         while True:
             self._session.push_breadcrumb(self._breadcrumb)

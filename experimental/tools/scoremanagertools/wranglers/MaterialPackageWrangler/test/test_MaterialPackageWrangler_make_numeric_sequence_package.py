@@ -27,7 +27,7 @@ def test_MaterialPackageWrangler_make_numeric_sequence_package_02():
     assert not wrangler.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testsequence')
 
     try:
-        wrangler.interactively_make_numeric_sequence_package(user_input='testsequence')
+        wrangler.interactively_make_numeric_sequence_package(pending_user_input='testsequence')
         assert wrangler.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testsequence')
         mpp = scoremanagertools.proxies.MaterialPackageProxy('experimental.tools.scoremanagertools.materialpackages.testsequence')
         assert mpp.is_data_only

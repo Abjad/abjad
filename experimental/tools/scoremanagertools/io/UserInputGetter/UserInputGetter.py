@@ -162,8 +162,8 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
             self._present_prompt_and_evaluate_user_input(
                 include_chevron=include_chevron)
 
-    def _run(self, user_input=None, include_chevron=True):
-        self._io.assign_user_input(user_input=user_input)
+    def _run(self, pending_user_input=None, include_chevron=True):
+        self._io.assign_user_input(pending_user_input=pending_user_input)
         with self.backtracking:
             self._present_prompts_and_evaluate_user_input(
                 include_chevron=include_chevron)

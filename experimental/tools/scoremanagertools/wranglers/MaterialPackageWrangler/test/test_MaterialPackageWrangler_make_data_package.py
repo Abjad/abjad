@@ -36,7 +36,7 @@ def test_MaterialPackageWrangler_make_data_package_03():
     assert not wrangler.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testnumbers')
 
     try:
-        wrangler.interactively_make_data_package(user_input='testnumbers q')
+        wrangler.interactively_make_data_package(pending_user_input='testnumbers q')
         assert wrangler.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testnumbers')
         mpp = scoremanagertools.proxies.MaterialPackageProxy('experimental.tools.scoremanagertools.materialpackages.testnumbers')
         assert mpp.is_data_only

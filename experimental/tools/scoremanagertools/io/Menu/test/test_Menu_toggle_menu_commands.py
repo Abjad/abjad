@@ -4,7 +4,7 @@ from experimental import *
 def test_Menu_toggle_menu_commands_01():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    score_manager._run(user_input='tmc q')
+    score_manager._run(pending_user_input='tmc q')
 
     starting_menu_lines = score_manager._session.transcript[0][1]
     modified_menu_lines = score_manager._session.transcript[2][1]

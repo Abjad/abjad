@@ -7,19 +7,19 @@ def test_InstrumentationEditor_add_performers_01():
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    score_manager._run(user_input='red~example~score setup performers add q')
+    score_manager._run(pending_user_input='red~example~score setup performers add q')
     assert score_manager._session.transcript.signature == (10,)
 
-    score_manager._run(user_input='red~example~score setup performers add b q')
+    score_manager._run(pending_user_input='red~example~score setup performers add b q')
     assert score_manager._session.transcript.signature == (12, (6, 10))
 
-    score_manager._run(user_input='red~example~score setup performers add home q')
+    score_manager._run(pending_user_input='red~example~score setup performers add home q')
     assert score_manager._session.transcript.signature == (12, (0, 10))
 
-    score_manager._run(user_input='red~example~score setup performers add score q')
+    score_manager._run(pending_user_input='red~example~score setup performers add score q')
     assert score_manager._session.transcript.signature == (12, (2, 10))
 
-    score_manager._run(user_input='red~example~score setup performers add foo q')
+    score_manager._run(pending_user_input='red~example~score setup performers add foo q')
     assert score_manager._session.transcript.signature == (12, (8, 10))
 
 
@@ -28,7 +28,7 @@ def test_InstrumentationEditor_add_performers_02():
     '''
 
     editor = scoremanagertools.editors.InstrumentationEditor()
-    editor._run(user_input='add accordionist default add bassoonist default add cellist default q')
+    editor._run(pending_user_input='add accordionist default add bassoonist default add cellist default q')
     assert editor.target == scoretools.InstrumentationSpecifier([
         scoretools.Performer(name='accordionist', instruments=[instrumenttools.Accordion()]),
         scoretools.Performer(name='bassoonist', instruments=[instrumenttools.Bassoon()]),
@@ -40,7 +40,7 @@ def test_InstrumentationEditor_add_performers_03():
     '''
 
     editor = scoremanagertools.editors.InstrumentationEditor()
-    editor._run(user_input='add 1-3 default default default q')
+    editor._run(pending_user_input='add 1-3 default default default q')
     assert editor.target == scoretools.InstrumentationSpecifier([
         scoretools.Performer(name='accordionist', instruments=[instrumenttools.Accordion()]),
         scoretools.Performer(name='baritone', instruments=[instrumenttools.BaritoneVoice()]),

@@ -818,7 +818,7 @@ class MaterialPackageProxy(PackageProxy):
         self.material_definition_module_proxy.run_abjad()
 
     def run_first_time(self):
-        self._run(user_input='omi')
+        self._run(pending_user_input='omi')
 
     def run_python_on_illustration_builder_module(self):
         self.illustration_builder_module_proxy.run_python(prompt=True)

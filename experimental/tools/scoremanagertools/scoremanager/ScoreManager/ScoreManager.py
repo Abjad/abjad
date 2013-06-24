@@ -139,13 +139,13 @@ class ScoreManager(ScoreManagerObject):
         return menu
 
     def _run(self, 
-        user_input=None, 
+        pending_user_input=None, 
         clear=True, 
         cache=False, 
         is_test=False, 
         dump_transcript=False):
         type(self).__init__(self)
-        self._io.assign_user_input(user_input=user_input)
+        self._io.assign_user_input(pending_user_input=pending_user_input)
         self._session.cache_breadcrumbs(cache=cache)
         self._session.push_breadcrumb(self._breadcrumb)
         if is_test:

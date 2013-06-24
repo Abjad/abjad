@@ -140,8 +140,8 @@ class FilesystemAssetProxy(ScoreManagerObject):
             return os.path.exists(self.filesystem_path)
         return False
 
-    def interactively_copy(self, user_input=None):
-        self._io.assign_user_input(user_input=user_input)
+    def interactively_copy(self, pending_user_input=None):
+        self._io.assign_user_input(pending_user_input=pending_user_input)
         getter = self._initialize_file_name_getter()
         result = getter._run()
         if self._session.backtrack():
@@ -154,8 +154,8 @@ class FilesystemAssetProxy(ScoreManagerObject):
         self.copy(new_path)
         self._io.proceed('asset copied.')
 
-    def interactively_remove(self, user_input=None):
-        self._io.assign_user_input(user_input=user_input)
+    def interactively_remove(self, pending_user_input=None):
+        self._io.assign_user_input(pending_user_input=pending_user_input)
         self._io.display(['{} will be removed.'.format(self.filesystem_path), ''])
         getter = self._io.make_getter(where=self._where)
         getter.append_string("type 'remove' to proceed")
@@ -171,8 +171,8 @@ class FilesystemAssetProxy(ScoreManagerObject):
         self.interactively_remove()
         self._session.is_backtracking_locally = True
 
-    def interactively_rename(self, user_input=None):
-        self._io.assign_user_input(user_input=user_input)
+    def interactively_rename(self, pending_user_input=None):
+        self._io.assign_user_input(pending_user_input=pending_user_input)
         getter = self._initialize_file_name_getter()
         getter.include_newlines = False
         result = getter._run()
@@ -185,8 +185,8 @@ class FilesystemAssetProxy(ScoreManagerObject):
         if self.rename(new_path):
             self._io.proceed('asset renamed.')
 
-    def interactively_write_boilerplate(self, user_input=None):
-        self._io.assign_user_input(user_input=user_input)
+    def interactively_write_boilerplate(self, pending_user_input=None):
+        self._io.assign_user_input(pending_user_input=pending_user_input)
         getter = self._io.make_getter(where=self._where)
         getter.append_snake_case_file_name('name of boilerplate asset')
         with self.backtracking:

@@ -5,7 +5,7 @@ from experimental import *
 def test_MarkupInventoryEditor_run_01():
 
     editor = scoremanagertools.editors.MarkupInventoryEditor()
-    editor._run(user_input="add arg r'\\italic~{~serenamente~possibile~}' 3 serenamente done done")
+    editor._run(pending_user_input="add arg r'\\italic~{~serenamente~possibile~}' 3 serenamente done done")
 
     inventory = markuptools.MarkupInventory([
         markuptools.Markup('\\italic { serenamente possibile }', markup_name='serenamente')
@@ -17,7 +17,7 @@ def test_MarkupInventoryEditor_run_01():
 def test_MarkupInventoryEditor_run_02():
 
     editor = scoremanagertools.editors.MarkupInventoryEditor()
-    editor._run(user_input="name test~inventory add arg r'\\italic~{~serenamente~possibile~}' direction up name serenamente done add arg r'\\italic~{~presto~}' name presto done done")
+    editor._run(pending_user_input="name test~inventory add arg r'\\italic~{~serenamente~possibile~}' direction up name serenamente done add arg r'\\italic~{~presto~}' name presto done done")
 
     inventory = markuptools.MarkupInventory([
         markuptools.Markup(

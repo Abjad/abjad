@@ -4,4 +4,4 @@ from experimental.tools import scoremanagertools
 
 
 score_manager = scoremanagertools.scoremanager.ScoreManager()
-score_manager._run(user_input=' '.join(sys.argv[1:]), dump_transcript=True)
+score_manager._run(pending_user_input=' '.join(sys.argv[1:]), dump_transcript=True)

@@ -15,7 +15,7 @@ def test_StylesheetFileProxy_interactively_copy_01():
         new_filesystem_path = os.path.join(
             score_manager_configuration.score_manager_tools_directory_path,
             'stylesheets', 'new-clean-letter-14.ly')
-        proxy.interactively_copy(user_input='new-clean-letter-14 y default q')
+        proxy.interactively_copy(pending_user_input='new-clean-letter-14 y default q')
         assert os.path.exists(filesystem_path)
         assert os.path.exists(new_filesystem_path)
         os.remove(new_filesystem_path)

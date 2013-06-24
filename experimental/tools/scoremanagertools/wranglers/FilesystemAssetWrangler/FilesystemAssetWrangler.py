@@ -148,9 +148,9 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         clear=True, 
         head=None, 
         rollback=None, 
-        user_input=None,
+        pending_user_input=None,
         ):
-        self._io.assign_user_input(user_input=user_input)
+        self._io.assign_user_input(pending_user_input=pending_user_input)
         breadcrumb = self._session.pop_breadcrumb(rollback=rollback)
         self._session.cache_breadcrumbs(cache=cache)
         while True:

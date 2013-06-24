@@ -7,19 +7,19 @@ def test_OctaveTranspositionMappingInventoryEditor_run_01():
     '''
 
     editor = scoremanagertools.editors.OctaveTranspositionMappingInventoryEditor()
-    editor._run(user_input='done')
+    editor._run(pending_user_input='done')
     assert editor.target == pitchtools.OctaveTranspositionMappingInventory()
 
     editor = scoremanagertools.editors.OctaveTranspositionMappingInventoryEditor()
-    editor._run(user_input='q')
+    editor._run(pending_user_input='q')
     assert editor.target == pitchtools.OctaveTranspositionMappingInventory()
 
     editor = scoremanagertools.editors.OctaveTranspositionMappingInventoryEditor()
-    editor._run(user_input='b')
+    editor._run(pending_user_input='b')
     assert editor.target == pitchtools.OctaveTranspositionMappingInventory()
 
     editor = scoremanagertools.editors.OctaveTranspositionMappingInventoryEditor()
-    editor._run(user_input='home')
+    editor._run(pending_user_input='home')
     assert editor.target == pitchtools.OctaveTranspositionMappingInventory()
 
 
@@ -28,7 +28,7 @@ def test_OctaveTranspositionMappingInventoryEditor_run_02():
     '''
 
     editor = scoremanagertools.editors.OctaveTranspositionMappingInventoryEditor()
-    editor._run(user_input='name foo done')
+    editor._run(pending_user_input='name foo done')
     assert editor.target == pitchtools.OctaveTranspositionMappingInventory(name='foo')
 
 
@@ -37,7 +37,7 @@ def test_OctaveTranspositionMappingInventoryEditor_run_03():
     '''
 
     editor = scoremanagertools.editors.OctaveTranspositionMappingInventoryEditor()
-    editor._run(user_input=
+    editor._run(pending_user_input=
         'name mapping~inventory '
         'add name piccolo~strict~first~octave '
         'add source [A0, C8] target 14 '

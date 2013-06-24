@@ -5,7 +5,7 @@ from experimental import *
 def test_DivisionBurnishedTaleaRhythmMakerEditor_01():
 
     editor = scoremanagertools.editors.DivisionBurnishedTaleaRhythmMakerEditor()
-    editor._run(user_input='1 [1, 1, 2, 4] 32 [0] [-1] [0] [-1] [2] [1] q', is_autoadvancing=True)
+    editor._run(pending_user_input='1 [1, 1, 2, 4] 32 [0] [-1] [0] [-1] [2] [1] q', is_autoadvancing=True)
 
     maker = rhythmmakertools.DivisionBurnishedTaleaRhythmMaker(
         [1, 1, 2, 4],

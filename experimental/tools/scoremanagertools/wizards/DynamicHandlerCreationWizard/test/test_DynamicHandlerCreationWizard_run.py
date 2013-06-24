@@ -6,7 +6,7 @@ from experimental import *
 def test_DynamicHandlerCreationWizard_run_01():
 
     wizard = scoremanagertools.wizards.DynamicHandlerCreationWizard()
-    wizard._run(user_input='reiterateddynamic f (1, 16) done')
+    wizard._run(pending_user_input='reiterateddynamic f (1, 16) done')
 
     handler = handlertools.ReiteratedDynamicHandler(
         dynamic_name='f',

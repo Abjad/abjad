@@ -15,5 +15,5 @@ class ListMaterialPackageMaker(MaterialPackageMaker):
 
     def run_first_time(self):
         self._session.is_autoadding = True
-        self._run(user_input='omi')
+        self._run(pending_user_input='omi')
         self._session.is_autoadding = False

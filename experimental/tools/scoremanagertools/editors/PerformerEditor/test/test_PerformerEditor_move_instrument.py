@@ -10,19 +10,19 @@ def test_PerformerEditor_move_instrument_01():
     py.test.skip('remove custom score name.')
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    score_manager._run(user_input="l'arch setup performers flutist move q")
+    score_manager._run(pending_user_input="l'arch setup performers flutist move q")
     assert score_manager._session.transcript.signature == (11,)
 
-    score_manager._run(user_input="l'arch setup performers flutist move b q")
+    score_manager._run(pending_user_input="l'arch setup performers flutist move b q")
     assert score_manager._session.transcript.signature == (13, (8, 11))
 
-    score_manager._run(user_input="l'arch setup performers flutist move home q")
+    score_manager._run(pending_user_input="l'arch setup performers flutist move home q")
     assert score_manager._session.transcript.signature == (13, (0, 11))
 
-    score_manager._run(user_input="l'arch setup performers flutist move score q")
+    score_manager._run(pending_user_input="l'arch setup performers flutist move score q")
     assert score_manager._session.transcript.signature == (13, (2, 11))
 
-    score_manager._run(user_input="l'arch setup performers flutist move foo q")
+    score_manager._run(pending_user_input="l'arch setup performers flutist move foo q")
     assert score_manager._session.transcript.signature == (13,)
 
 
@@ -31,5 +31,5 @@ def test_PerformerEditor_move_instrument_02():
     '''
 
     editor = scoremanagertools.editors.PerformerEditor()
-    editor._run(user_input='add 1 add 2 move 1 2 q')
+    editor._run(pending_user_input='add 1 add 2 move 1 2 q')
     assert editor.target == Performer(instruments=[AltoFlute(), Accordion()])

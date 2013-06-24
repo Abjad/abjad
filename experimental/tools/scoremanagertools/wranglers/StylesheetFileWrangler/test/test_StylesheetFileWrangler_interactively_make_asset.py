@@ -10,7 +10,7 @@ def test_StylesheetFileWrangler_interactively_make_asset_01():
     assert not os.path.exists(filesystem_path)
 
     try:
-        score_manager._run(user_input='y new 1 test-stylesheet q', is_test=True)
+        score_manager._run(pending_user_input='y new 1 test-stylesheet q', is_test=True)
         assert os.path.exists(filesystem_path)
     finally:
         os.remove(filesystem_path)

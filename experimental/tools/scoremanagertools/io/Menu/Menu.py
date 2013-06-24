@@ -191,8 +191,8 @@ class Menu(ScoreManagerObject):
     def _run(self, 
             clear=True, 
             predetermined_user_input=None, 
-            user_input=None):
-        self._io.assign_user_input(user_input=user_input)
+            pending_user_input=None):
+        self._io.assign_user_input(pending_user_input=pending_user_input)
         clear, hide_current_run = clear, False
         while True:
             self.should_clear_terminal = clear

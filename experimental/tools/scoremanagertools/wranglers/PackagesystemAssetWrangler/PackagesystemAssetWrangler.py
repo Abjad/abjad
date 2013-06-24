@@ -69,7 +69,7 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
         asset_proxy.interactively_rename()
 
     def interactively_select_asset_packagesystem_path(
-        self, clear=True, cache=False, head=None, infinitival_phrase=None, user_input=None):
+        self, clear=True, cache=False, head=None, infinitival_phrase=None, pending_user_input=None):
         self._session.cache_breadcrumbs(cache=cache)
         while True:
             self._session.push_breadcrumb(self._make_asset_selection_breadcrumb(

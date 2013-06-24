@@ -7,8 +7,8 @@ def test_InstrumentSelectionWizard_run_01():
     wizard = scoremanagertools.wizards.InstrumentSelectionWizard()
     wizard._session.snake_case_current_score_name = 'red_example_score'
 
-    assert wizard._run(user_input='hor') == instrumenttools.FrenchHorn()
-    assert wizard._run(user_input='other xyl') == instrumenttools.Xylophone()
+    assert wizard._run(pending_user_input='hor') == instrumenttools.FrenchHorn()
+    assert wizard._run(pending_user_input='other xyl') == instrumenttools.Xylophone()
 
 
 def test_InstrumentSelectionWizard_run_02():
@@ -19,5 +19,5 @@ def test_InstrumentSelectionWizard_run_02():
         instrument_name='whistle',
         short_instrument_name='whistle',
         )
-    wizard._run(user_input='other untuned whis')
+    wizard._run(pending_user_input='other untuned whis')
     assert wizard.target == whistle

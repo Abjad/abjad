@@ -7,7 +7,7 @@ def test_ArticulationHandlerMaterialPackageMaker_01():
     assert not score_manager.configuration.packagesystem_path_exists(
         'experimental.tools.scoremanagertools.materialpackages.testarticulationhandler')
     try:
-        score_manager._run(user_input=
+        score_manager._run(pending_user_input=
             'materials maker articulation testarticulationhandler default '
             'testarticulationhandler omi reiterated '
             "['^', '.'] (1, 64) (1, 4) c c'''' done default "
@@ -25,6 +25,6 @@ def test_ArticulationHandlerMaterialPackageMaker_01():
             )
         assert mpp.output_material == handler
     finally:
-        score_manager._run(user_input='m testarticulationhandler del remove default q')
+        score_manager._run(pending_user_input='m testarticulationhandler del remove default q')
         assert not score_manager.configuration.packagesystem_path_exists(
             'experimental.tools.scoremanagertools.materialpackages.testarticulationhandler')

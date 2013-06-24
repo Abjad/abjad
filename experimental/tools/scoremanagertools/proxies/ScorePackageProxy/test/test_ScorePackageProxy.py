@@ -8,7 +8,7 @@ def test_ScorePackageProxy_01():
 
     red_example_score = scoremanagertools.proxies.ScorePackageProxy(
         'scoremanagertools.scorepackages.red_example_score')
-    red_example_score._run(user_input='q')
+    red_example_score._run(pending_user_input='q')
 
     assert red_example_score._session.transcript[-2][1] == \
     ['Red Example Score (2013)',
@@ -53,7 +53,7 @@ def test_ScorePackageProxy_04():
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    score_manager._run(user_input="red~example~score home q")
+    score_manager._run(pending_user_input="red~example~score home q")
 
     assert score_manager._session.transcript.signature == (6, (0, 4))
     assert score_manager._session.transcript[0][1][0] == 'Score manager - active scores'
@@ -67,7 +67,7 @@ def test_ScorePackageProxy_05():
 
     red_example_score = scoremanagertools.proxies.ScorePackageProxy(
         'scoremanagertools.scorepackages.red_example_score')
-    red_example_score._run(user_input='home')
+    red_example_score._run(pending_user_input='home')
 
     assert red_example_score._session.transcript.signature == (2,)
     assert red_example_score._session.transcript[0][1][0] == "Red Example Score (2013)"
@@ -79,7 +79,7 @@ def test_ScorePackageProxy_06():
     '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
-    score_manager._run(user_input='red~example~score b q')
+    score_manager._run(pending_user_input='red~example~score b q')
 
     assert score_manager._session.transcript.signature == (6, (0, 4))
     assert score_manager._session.transcript[0][1][0] == 'Score manager - active scores'

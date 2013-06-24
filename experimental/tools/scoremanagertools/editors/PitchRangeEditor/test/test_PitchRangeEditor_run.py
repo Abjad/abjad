@@ -6,11 +6,11 @@ from experimental import *
 def test_PitchRangeEditor_run_01():
 
     editor = scoremanagertools.editors.PitchRangeEditor()
-    editor._run(user_input="1 [F#3, C5) q")
+    editor._run(pending_user_input="1 [F#3, C5) q")
     assert editor.target == pitchtools.PitchRange('[F#3, C5)')
 
     editor = scoremanagertools.editors.PitchRangeEditor()
-    editor._run(user_input='1 (A0, C8] q')
+    editor._run(pending_user_input='1 (A0, C8] q')
     assert editor.target == pitchtools.PitchRange('(A0, C8]')
 
 
@@ -22,17 +22,17 @@ def test_PitchRangeEditor_run_02():
     '''
 
     editor = scoremanagertools.editors.PitchRangeEditor()
-    editor._run(user_input='q')
+    editor._run(pending_user_input='q')
     assert editor._session.transcript.signature == (2,)
 
     editor = scoremanagertools.editors.PitchRangeEditor()
-    editor._run(user_input='sco q')
+    editor._run(pending_user_input='sco q')
     assert editor._session.transcript.signature == (4, (0, 2))
 
     editor = scoremanagertools.editors.PitchRangeEditor()
-    editor._run(user_input='home')
+    editor._run(pending_user_input='home')
     assert editor._session.transcript.signature == (2,)
 
     editor = scoremanagertools.editors.PitchRangeEditor()
-    editor._run(user_input='foo q')
+    editor._run(pending_user_input='foo q')
     assert editor._session.transcript.signature == (4, (0, 2))

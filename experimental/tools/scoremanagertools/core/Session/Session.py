@@ -44,7 +44,7 @@ class Session(abctools.AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, user_input=None):
+    def __init__(self, pending_user_input=None):
         from experimental.tools import scoremanagertools
         self._backtracking_stack = []
         self._breadcrumb_cache_stack = []
@@ -57,7 +57,7 @@ class Session(abctools.AbjadObject):
         self.dump_transcript = False
         self.enable_where = False
         self.hide_next_redraw = False
-        self.initial_user_input = user_input
+        self.initial_user_input = pending_user_input
         self.is_autoadding = False
         self.is_backtracking_locally = False
         self.is_backtracking_to_score = False
@@ -71,7 +71,7 @@ class Session(abctools.AbjadObject):
         self.nonnumbered_menu_sections_are_hidden = False
         self.transcribe_next_command = True
         self.use_current_user_input_values_as_default = False
-        self.pending_user_input = user_input
+        self.pending_user_input = pending_user_input
         self.user_specified_quit = False
         self.display_active_scores()
 
@@ -84,10 +84,10 @@ class Session(abctools.AbjadObject):
         '''
         summary = []
         if self.initial_user_input is not None:
-            summary.append('initial_user_input={!r}'.format(
+            summary.append('initial_pending_user_input={!r}'.format(
                 self.initial_user_input))
         if self.pending_user_input is not None:
-            summary.append('user_input={!r}'.format(
+            summary.append('pending_user_input={!r}'.format(
                 self.pending_user_input))
         summary = ', '.join(summary)
         return '{}({})'.format(type(self).__name__, summary)
