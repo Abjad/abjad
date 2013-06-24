@@ -556,7 +556,6 @@ Unstable packages (load manually)
    .. toctree::
       :maxdepth: 1
 
-      tools/scoremanagertools/core/IO/IO
       tools/scoremanagertools/core/ScoreManagerConfiguration/ScoreManagerConfiguration
       tools/scoremanagertools/core/Session/Session
       tools/scoremanagertools/core/Transcript/Transcript
@@ -627,6 +626,7 @@ Unstable packages (load manually)
       tools/scoremanagertools/materialpackagemakers/RhythmMakerMaterialPackageMaker/RhythmMakerMaterialPackageMaker
       tools/scoremanagertools/materialpackagemakers/SargassoMeasureMaterialPackageMaker/SargassoMeasureMaterialPackageMaker
       tools/scoremanagertools/materialpackagemakers/TempoMarkInventoryMaterialPackageMaker/TempoMarkInventoryMaterialPackageMaker
+      tools/scoremanagertools/menuing/IO/IO
       tools/scoremanagertools/menuing/Menu/Menu
       tools/scoremanagertools/menuing/MenuEntry/MenuEntry
       tools/scoremanagertools/menuing/MenuSection/MenuSection
@@ -751,7 +751,6 @@ Unstable packages (load manually)
 
    .. toctree::
 
-      tools/scoremanagertools/core/IO/IO
       tools/scoremanagertools/core/ScoreManagerConfiguration/ScoreManagerConfiguration
       tools/scoremanagertools/core/Session/Session
       tools/scoremanagertools/core/Transcript/Transcript
@@ -822,6 +821,7 @@ Unstable packages (load manually)
       tools/scoremanagertools/materialpackagemakers/RhythmMakerMaterialPackageMaker/RhythmMakerMaterialPackageMaker
       tools/scoremanagertools/materialpackagemakers/SargassoMeasureMaterialPackageMaker/SargassoMeasureMaterialPackageMaker
       tools/scoremanagertools/materialpackagemakers/TempoMarkInventoryMaterialPackageMaker/TempoMarkInventoryMaterialPackageMaker
+      tools/scoremanagertools/menuing/IO/IO
       tools/scoremanagertools/menuing/Menu/Menu
       tools/scoremanagertools/menuing/MenuEntry/MenuEntry
       tools/scoremanagertools/menuing/MenuSection/MenuSection

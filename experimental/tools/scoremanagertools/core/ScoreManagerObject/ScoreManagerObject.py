@@ -4,8 +4,8 @@ import os
 from abjad.tools import stringtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.abctools.ContextManager import ContextManager
-from experimental.tools.scoremanagertools.core.ScoreManagerConfiguration import \
-    ScoreManagerConfiguration
+from experimental.tools.scoremanagertools.core.ScoreManagerConfiguration \
+    import ScoreManagerConfiguration
 
 
 class ScoreManagerObject(AbjadObject):
@@ -13,9 +13,11 @@ class ScoreManagerObject(AbjadObject):
     ### CLASS VARIABLES ###
 
     __meta__ = abc.ABCMeta
+
     configuration = ScoreManagerConfiguration()
 
-    cache_file_path = os.path.join(configuration.configuration_directory_path, 'cache.py')
+    cache_file_path = os.path.join(
+        configuration.configuration_directory_path, 'cache.py')
     if os.path.exists(cache_file_path):
         cache_file_pointer = file(cache_file_path, 'r')
         cache_lines = cache_file_pointer.read()
@@ -38,7 +40,7 @@ class ScoreManagerObject(AbjadObject):
     def __init__(self, session=None):
         from experimental.tools import scoremanagertools
         self._session = session or scoremanagertools.core.Session()
-        self._io = scoremanagertools.core.IO(session=self._session)
+        self._io = scoremanagertools.menuing.IO(session=self._session)
         self.backtracking = ScoreManagerObject.backtracking(self)
 
     ### SPECIAL METHODS ###
@@ -65,11 +67,13 @@ class ScoreManagerObject(AbjadObject):
 
     @property
     def _space_delimited_lowercase_class_name(self):
-        return stringtools.string_to_space_delimited_lowercase(self._class_name)
+        return stringtools.string_to_space_delimited_lowercase(
+            self._class_name)
 
     @property
     def _spaced_class_name(self):
-        return stringtools.string_to_space_delimited_lowercase(self._class_name)
+        return stringtools.string_to_space_delimited_lowercase(
+            self._class_name)
 
     @property
     def _where(self):
