@@ -4,7 +4,19 @@ scoremanagertools.wizards.RhythmMakerCreationWizard
 .. abjad-lineage:: experimental.tools.scoremanagertools.wizards.RhythmMakerCreationWizard.RhythmMakerCreationWizard.RhythmMakerCreationWizard
 
 .. autoclass:: experimental.tools.scoremanagertools.wizards.RhythmMakerCreationWizard.RhythmMakerCreationWizard.RhythmMakerCreationWizard
-   :noindex:
+
+Bases
+-----
+
+- :class:`scoremanagertools.wizards.HandlerCreationWizard <experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard>`
+
+- :class:`scoremanagertools.wizards.Wizard <experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard>`
+
+- :class:`scoremanagertools.core.ScoreManagerObject <experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

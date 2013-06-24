@@ -4,7 +4,17 @@ musicexpressiontools.RhythmRegionExpression
 .. abjad-lineage:: experimental.tools.musicexpressiontools.RhythmRegionExpression.RhythmRegionExpression.RhythmRegionExpression
 
 .. autoclass:: experimental.tools.musicexpressiontools.RhythmRegionExpression.RhythmRegionExpression.RhythmRegionExpression
-   :noindex:
+
+Bases
+-----
+
+- :class:`musicexpressiontools.RegionExpression <experimental.tools.musicexpressiontools.RegionExpression.RegionExpression.RegionExpression>`
+
+- :class:`musicexpressiontools.Expression <experimental.tools.musicexpressiontools.Expression.Expression.Expression>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

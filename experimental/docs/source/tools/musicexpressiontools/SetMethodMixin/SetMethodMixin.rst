@@ -4,7 +4,13 @@ musicexpressiontools.SetMethodMixin
 .. abjad-lineage:: experimental.tools.musicexpressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin
 
 .. autoclass:: experimental.tools.musicexpressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin
-   :noindex:
+
+Bases
+-----
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

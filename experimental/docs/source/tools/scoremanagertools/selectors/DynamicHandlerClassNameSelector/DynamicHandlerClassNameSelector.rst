@@ -4,7 +4,21 @@ scoremanagertools.selectors.DynamicHandlerClassNameSelector
 .. abjad-lineage:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector
 
 .. autoclass:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector
-   :noindex:
+
+Bases
+-----
+
+- :class:`scoremanagertools.selectors.HandlerClassNameSelector <experimental.tools.scoremanagertools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector>`
+
+- :class:`scoremanagertools.selectors.DirectoryContentSelector <experimental.tools.scoremanagertools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector>`
+
+- :class:`scoremanagertools.selectors.Selector <experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector>`
+
+- :class:`scoremanagertools.core.ScoreManagerObject <experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

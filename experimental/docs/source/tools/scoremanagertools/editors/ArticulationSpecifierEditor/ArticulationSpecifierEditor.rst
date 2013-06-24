@@ -4,7 +4,19 @@ scoremanagertools.editors.ArticulationSpecifierEditor
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.ArticulationSpecifierEditor.ArticulationSpecifierEditor.ArticulationSpecifierEditor
 
 .. autoclass:: experimental.tools.scoremanagertools.editors.ArticulationSpecifierEditor.ArticulationSpecifierEditor.ArticulationSpecifierEditor
-   :noindex:
+
+Bases
+-----
+
+- :class:`scoremanagertools.editors.ParameterSpecifierEditor <experimental.tools.scoremanagertools.editors.ParameterSpecifierEditor.ParameterSpecifierEditor.ParameterSpecifierEditor>`
+
+- :class:`scoremanagertools.editors.InteractiveEditor <experimental.tools.scoremanagertools.editors.InteractiveEditor.InteractiveEditor.InteractiveEditor>`
+
+- :class:`scoremanagertools.core.ScoreManagerObject <experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

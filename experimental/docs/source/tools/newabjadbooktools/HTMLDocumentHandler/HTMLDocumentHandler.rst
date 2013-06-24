@@ -4,7 +4,17 @@ newabjadbooktools.HTMLDocumentHandler
 .. abjad-lineage:: experimental.tools.newabjadbooktools.HTMLDocumentHandler.HTMLDocumentHandler.HTMLDocumentHandler
 
 .. autoclass:: experimental.tools.newabjadbooktools.HTMLDocumentHandler.HTMLDocumentHandler.HTMLDocumentHandler
-   :noindex:
+
+Bases
+-----
+
+- :class:`newabjadbooktools.TextualDocumentHandler <experimental.tools.newabjadbooktools.TextualDocumentHandler.TextualDocumentHandler.TextualDocumentHandler>`
+
+- :class:`newabjadbooktools.DocumentHandler <experimental.tools.newabjadbooktools.DocumentHandler.DocumentHandler.DocumentHandler>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

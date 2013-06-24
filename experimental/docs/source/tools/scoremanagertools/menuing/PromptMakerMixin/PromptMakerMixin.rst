@@ -4,7 +4,13 @@ scoremanagertools.menuing.PromptMakerMixin
 .. abjad-lineage:: experimental.tools.scoremanagertools.menuing.PromptMakerMixin.PromptMakerMixin.PromptMakerMixin
 
 .. autoclass:: experimental.tools.scoremanagertools.menuing.PromptMakerMixin.PromptMakerMixin.PromptMakerMixin
-   :noindex:
+
+Bases
+-----
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

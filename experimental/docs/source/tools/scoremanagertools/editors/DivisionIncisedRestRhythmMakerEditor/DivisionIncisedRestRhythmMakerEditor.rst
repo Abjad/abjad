@@ -4,7 +4,19 @@ scoremanagertools.editors.DivisionIncisedRestRhythmMakerEditor
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.DivisionIncisedRestRhythmMakerEditor.DivisionIncisedRestRhythmMakerEditor.DivisionIncisedRestRhythmMakerEditor
 
 .. autoclass:: experimental.tools.scoremanagertools.editors.DivisionIncisedRestRhythmMakerEditor.DivisionIncisedRestRhythmMakerEditor.DivisionIncisedRestRhythmMakerEditor
-   :noindex:
+
+Bases
+-----
+
+- :class:`scoremanagertools.editors.RhythmMakerEditor <experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor>`
+
+- :class:`scoremanagertools.editors.InteractiveEditor <experimental.tools.scoremanagertools.editors.InteractiveEditor.InteractiveEditor.InteractiveEditor>`
+
+- :class:`scoremanagertools.core.ScoreManagerObject <experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

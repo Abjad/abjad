@@ -4,7 +4,19 @@ musicexpressiontools.TimespanScopedSingleContextRhythmSetExpression
 .. abjad-lineage:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextRhythmSetExpression.TimespanScopedSingleContextRhythmSetExpression.TimespanScopedSingleContextRhythmSetExpression
 
 .. autoclass:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextRhythmSetExpression.TimespanScopedSingleContextRhythmSetExpression.TimespanScopedSingleContextRhythmSetExpression
-   :noindex:
+
+Bases
+-----
+
+- :class:`musicexpressiontools.TimespanScopedSingleContextSetExpression <experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression.TimespanScopedSingleContextSetExpression>`
+
+- :class:`musicexpressiontools.SetExpression <experimental.tools.musicexpressiontools.SetExpression.SetExpression.SetExpression>`
+
+- :class:`musicexpressiontools.Expression <experimental.tools.musicexpressiontools.Expression.Expression.Expression>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

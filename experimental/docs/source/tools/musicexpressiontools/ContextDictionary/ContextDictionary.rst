@@ -4,7 +4,17 @@ musicexpressiontools.ContextDictionary
 .. abjad-lineage:: experimental.tools.musicexpressiontools.ContextDictionary.ContextDictionary.ContextDictionary
 
 .. autoclass:: experimental.tools.musicexpressiontools.ContextDictionary.ContextDictionary.ContextDictionary
-   :noindex:
+
+Bases
+-----
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`collections.OrderedDict <collections.OrderedDict>`
+
+- :class:`__builtin__.dict <dict>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

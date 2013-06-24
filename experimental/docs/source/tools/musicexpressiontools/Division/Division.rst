@@ -4,7 +4,29 @@ musicexpressiontools.Division
 .. abjad-lineage:: experimental.tools.musicexpressiontools.Division.Division.Division
 
 .. autoclass:: experimental.tools.musicexpressiontools.Division.Division.Division
-   :noindex:
+
+Bases
+-----
+
+- :class:`abjad.tools.mathtools.NonreducedFraction <abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction>`
+
+- :class:`abjad.tools.abctools.ImmutableAbjadObject <abjad.tools.abctools.ImmutableAbjadObject.ImmutableAbjadObject.ImmutableAbjadObject>`
+
+- :class:`abjad.tools.mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`fractions.Fraction <fractions.Fraction>`
+
+- :class:`numbers.Rational <numbers.Rational>`
+
+- :class:`numbers.Real <numbers.Real>`
+
+- :class:`numbers.Complex <numbers.Complex>`
+
+- :class:`numbers.Number <numbers.Number>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

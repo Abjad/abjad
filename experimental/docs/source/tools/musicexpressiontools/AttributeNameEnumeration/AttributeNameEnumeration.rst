@@ -4,7 +4,15 @@ musicexpressiontools.AttributeNameEnumeration
 .. abjad-lineage:: experimental.tools.musicexpressiontools.AttributeNameEnumeration.AttributeNameEnumeration.AttributeNameEnumeration
 
 .. autoclass:: experimental.tools.musicexpressiontools.AttributeNameEnumeration.AttributeNameEnumeration.AttributeNameEnumeration
-   :noindex:
+
+Bases
+-----
+
+- :class:`collections.OrderedDict <collections.OrderedDict>`
+
+- :class:`__builtin__.dict <dict>`
+
+- :class:`__builtin__.object <object>`
 
 Methods
 -------

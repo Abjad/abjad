@@ -4,7 +4,13 @@ scoremanagertools.proxies.ParseableModuleMixin
 .. abjad-lineage:: experimental.tools.scoremanagertools.proxies.ParseableModuleMixin.ParseableModuleMixin.ParseableModuleMixin
 
 .. autoclass:: experimental.tools.scoremanagertools.proxies.ParseableModuleMixin.ParseableModuleMixin.ParseableModuleMixin
-   :noindex:
+
+Bases
+-----
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

@@ -4,7 +4,25 @@ scoremanagertools.core.ScoreManagerConfiguration
 .. abjad-lineage:: experimental.tools.scoremanagertools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration
 
 .. autoclass:: experimental.tools.scoremanagertools.core.ScoreManagerConfiguration.ScoreManagerConfiguration.ScoreManagerConfiguration
-   :noindex:
+
+Bases
+-----
+
+- :class:`abjad.tools.configurationtools.Configuration <abjad.tools.configurationtools.Configuration.Configuration.Configuration>`
+
+- :class:`_abcoll.MutableMapping <_abcoll.MutableMapping>`
+
+- :class:`_abcoll.Mapping <_abcoll.Mapping>`
+
+- :class:`_abcoll.Sized <_abcoll.Sized>`
+
+- :class:`_abcoll.Iterable <_abcoll.Iterable>`
+
+- :class:`_abcoll.Container <_abcoll.Container>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

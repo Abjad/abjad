@@ -4,7 +4,21 @@ scoremanagertools.proxies.ScorePackageProxy
 .. abjad-lineage:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy
 
 .. autoclass:: experimental.tools.scoremanagertools.proxies.ScorePackageProxy.ScorePackageProxy.ScorePackageProxy
-   :noindex:
+
+Bases
+-----
+
+- :class:`scoremanagertools.proxies.PackageProxy <experimental.tools.scoremanagertools.proxies.PackageProxy.PackageProxy.PackageProxy>`
+
+- :class:`scoremanagertools.proxies.DirectoryProxy <experimental.tools.scoremanagertools.proxies.DirectoryProxy.DirectoryProxy.DirectoryProxy>`
+
+- :class:`scoremanagertools.proxies.FilesystemAssetProxy <experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy.FilesystemAssetProxy.FilesystemAssetProxy>`
+
+- :class:`scoremanagertools.core.ScoreManagerObject <experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

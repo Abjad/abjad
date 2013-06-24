@@ -4,7 +4,17 @@ musicexpressiontools.AggregateSetExpression
 .. abjad-lineage:: experimental.tools.musicexpressiontools.AggregateSetExpression.AggregateSetExpression.AggregateSetExpression
 
 .. autoclass:: experimental.tools.musicexpressiontools.AggregateSetExpression.AggregateSetExpression.AggregateSetExpression
-   :noindex:
+
+Bases
+-----
+
+- :class:`musicexpressiontools.LeafSetExpression <experimental.tools.musicexpressiontools.LeafSetExpression.LeafSetExpression.LeafSetExpression>`
+
+- :class:`musicexpressiontools.Expression <experimental.tools.musicexpressiontools.Expression.Expression.Expression>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

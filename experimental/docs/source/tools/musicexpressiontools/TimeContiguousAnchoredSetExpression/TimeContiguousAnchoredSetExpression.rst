@@ -4,7 +4,19 @@ musicexpressiontools.TimeContiguousAnchoredSetExpression
 .. abjad-lineage:: experimental.tools.musicexpressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression
 
 .. autoclass:: experimental.tools.musicexpressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression
-   :noindex:
+
+Bases
+-----
+
+- :class:`musicexpressiontools.SetExpression <experimental.tools.musicexpressiontools.SetExpression.SetExpression.SetExpression>`
+
+- :class:`musicexpressiontools.AnchoredExpression <experimental.tools.musicexpressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
+
+- :class:`musicexpressiontools.Expression <experimental.tools.musicexpressiontools.Expression.Expression.Expression>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

@@ -4,7 +4,13 @@ musicexpressiontools.RotationIndicator
 .. abjad-lineage:: experimental.tools.musicexpressiontools.RotationIndicator.RotationIndicator.RotationIndicator
 
 .. autoclass:: experimental.tools.musicexpressiontools.RotationIndicator.RotationIndicator.RotationIndicator
-   :noindex:
+
+Bases
+-----
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

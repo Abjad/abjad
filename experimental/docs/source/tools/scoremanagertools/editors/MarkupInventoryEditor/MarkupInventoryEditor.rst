@@ -4,7 +4,21 @@ scoremanagertools.editors.MarkupInventoryEditor
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor
 
 .. autoclass:: experimental.tools.scoremanagertools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor
-   :noindex:
+
+Bases
+-----
+
+- :class:`scoremanagertools.editors.ObjectInventoryEditor <experimental.tools.scoremanagertools.editors.ObjectInventoryEditor.ObjectInventoryEditor.ObjectInventoryEditor>`
+
+- :class:`scoremanagertools.editors.ListEditor <experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor>`
+
+- :class:`scoremanagertools.editors.InteractiveEditor <experimental.tools.scoremanagertools.editors.InteractiveEditor.InteractiveEditor.InteractiveEditor>`
+
+- :class:`scoremanagertools.core.ScoreManagerObject <experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

@@ -11,11 +11,12 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
-from abjad.tools import configurationtools
-import sys, os
-
+import os
+import sys
 from sphinx.highlighting import PygmentsBridge
 from pygments.formatters.latex import LatexFormatter
+from abjad.tools import configurationtools
+
 
 class CustomLatexFormatter(LatexFormatter):
     def __init__(self, **options):
@@ -37,14 +38,14 @@ PygmentsBridge.latex_formatter = CustomLatexFormatter
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 extensions = [
+    'sphinx.ext.autodoc',
     'sphinx.ext.coverage',
     'sphinx.ext.intersphinx',
     'sphinx.ext.todo',
-    'abjad.docs.source._ext.viewcode',
+    'sphinx.ext.viewcode',
     'abjad.docs.source._ext.abjad_book',
     'abjad.docs.source._ext.abjad_lineage',
-    'abjad.docs.source._ext.autodoc',
-    'abjad.docs.source._ext.inheritance_diagram',
+    'abjad.docs.source._ext.restyle',
 ]
 
 # abjad book settings
@@ -58,7 +59,10 @@ todo_include_todos = True
 autodoc_member_order = 'groupwise'
 
 # For sphinx.ext.intersphinx
-intersphinx_mapping = {'python': ('http://docs.python.org/2.7', None)}
+intersphinx_mapping = {
+    'abjad': ('http://abjad.mbrsi.org', None),
+    'python': ('http://docs.python.org/2', None),
+    }
 
 # inheritance_diagrams
 inheritance_graph_attrs = {

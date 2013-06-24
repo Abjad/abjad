@@ -4,7 +4,13 @@ scoremanagertools.core.Transcript
 .. abjad-lineage:: experimental.tools.scoremanagertools.core.Transcript.Transcript.Transcript
 
 .. autoclass:: experimental.tools.scoremanagertools.core.Transcript.Transcript.Transcript
-   :noindex:
+
+Bases
+-----
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

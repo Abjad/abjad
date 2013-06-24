@@ -4,7 +4,27 @@ musicexpressiontools.SelectExpressionInventory
 .. abjad-lineage:: experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory
 
 .. autoclass:: experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory
-   :noindex:
+
+Bases
+-----
+
+- :class:`musicexpressiontools.ExpressionInventory <experimental.tools.musicexpressiontools.ExpressionInventory.ExpressionInventory.ExpressionInventory>`
+
+- :class:`abjad.tools.datastructuretools.ObjectInventory <abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory>`
+
+- :class:`__builtin__.list <list>`
+
+- :class:`musicexpressiontools.IterablePayloadExpression <experimental.tools.musicexpressiontools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression>`
+
+- :class:`musicexpressiontools.PayloadExpression <experimental.tools.musicexpressiontools.PayloadExpression.PayloadExpression.PayloadExpression>`
+
+- :class:`musicexpressiontools.Expression <experimental.tools.musicexpressiontools.Expression.Expression.Expression>`
+
+- :class:`musicexpressiontools.SetMethodMixin <experimental.tools.musicexpressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

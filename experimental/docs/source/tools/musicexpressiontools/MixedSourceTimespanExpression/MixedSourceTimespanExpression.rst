@@ -4,7 +4,29 @@ musicexpressiontools.MixedSourceTimespanExpression
 .. abjad-lineage:: experimental.tools.musicexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression
 
 .. autoclass:: experimental.tools.musicexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression
-   :noindex:
+
+Bases
+-----
+
+- :class:`musicexpressiontools.TimespanExpression <experimental.tools.musicexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
+
+- :class:`musicexpressiontools.AnchoredExpression <experimental.tools.musicexpressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
+
+- :class:`musicexpressiontools.Expression <experimental.tools.musicexpressiontools.Expression.Expression.Expression>`
+
+- :class:`musicexpressiontools.TimespanCallbackMixin <experimental.tools.musicexpressiontools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin>`
+
+- :class:`musicexpressiontools.CallbackMixin <experimental.tools.musicexpressiontools.CallbackMixin.CallbackMixin.CallbackMixin>`
+
+- :class:`musicexpressiontools.SelectMethodMixin <experimental.tools.musicexpressiontools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin>`
+
+- :class:`musicexpressiontools.TimeContiguousSetMethodMixin <experimental.tools.musicexpressiontools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin>`
+
+- :class:`musicexpressiontools.SetMethodMixin <experimental.tools.musicexpressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

@@ -4,7 +4,23 @@ musicexpressiontools.OffsetExpression
 .. abjad-lineage:: experimental.tools.musicexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression
 
 .. autoclass:: experimental.tools.musicexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression
-   :noindex:
+
+Bases
+-----
+
+- :class:`musicexpressiontools.AnchoredExpression <experimental.tools.musicexpressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
+
+- :class:`musicexpressiontools.Expression <experimental.tools.musicexpressiontools.Expression.Expression.Expression>`
+
+- :class:`musicexpressiontools.OffsetCallbackMixin <experimental.tools.musicexpressiontools.OffsetCallbackMixin.OffsetCallbackMixin.OffsetCallbackMixin>`
+
+- :class:`musicexpressiontools.CallbackMixin <experimental.tools.musicexpressiontools.CallbackMixin.CallbackMixin.CallbackMixin>`
+
+- :class:`musicexpressiontools.LookupMethodMixin <experimental.tools.musicexpressiontools.LookupMethodMixin.LookupMethodMixin.LookupMethodMixin>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

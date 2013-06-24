@@ -4,7 +4,15 @@ musicexpressiontools.TimespanCallbackMixin
 .. abjad-lineage:: experimental.tools.musicexpressiontools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin
 
 .. autoclass:: experimental.tools.musicexpressiontools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin
-   :noindex:
+
+Bases
+-----
+
+- :class:`musicexpressiontools.CallbackMixin <experimental.tools.musicexpressiontools.CallbackMixin.CallbackMixin.CallbackMixin>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

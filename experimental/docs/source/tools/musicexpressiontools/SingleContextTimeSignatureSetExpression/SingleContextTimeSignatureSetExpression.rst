@@ -4,7 +4,23 @@ musicexpressiontools.SingleContextTimeSignatureSetExpression
 .. abjad-lineage:: experimental.tools.musicexpressiontools.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression
 
 .. autoclass:: experimental.tools.musicexpressiontools.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression.SingleContextTimeSignatureSetExpression
-   :noindex:
+
+Bases
+-----
+
+- :class:`musicexpressiontools.SingleContextSetExpression <experimental.tools.musicexpressiontools.SingleContextSetExpression.SingleContextSetExpression.SingleContextSetExpression>`
+
+- :class:`musicexpressiontools.TimeContiguousAnchoredSetExpression <experimental.tools.musicexpressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression>`
+
+- :class:`musicexpressiontools.SetExpression <experimental.tools.musicexpressiontools.SetExpression.SetExpression.SetExpression>`
+
+- :class:`musicexpressiontools.AnchoredExpression <experimental.tools.musicexpressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
+
+- :class:`musicexpressiontools.Expression <experimental.tools.musicexpressiontools.Expression.Expression.Expression>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

@@ -4,7 +4,15 @@ musicexpressiontools.ConcreteInterpreter
 .. abjad-lineage:: experimental.tools.musicexpressiontools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter
 
 .. autoclass:: experimental.tools.musicexpressiontools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter
-   :noindex:
+
+Bases
+-----
+
+- :class:`musicexpressiontools.Interpreter <experimental.tools.musicexpressiontools.Interpreter.Interpreter.Interpreter>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

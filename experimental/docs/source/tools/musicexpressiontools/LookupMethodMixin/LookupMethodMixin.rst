@@ -4,7 +4,13 @@ musicexpressiontools.LookupMethodMixin
 .. abjad-lineage:: experimental.tools.musicexpressiontools.LookupMethodMixin.LookupMethodMixin.LookupMethodMixin
 
 .. autoclass:: experimental.tools.musicexpressiontools.LookupMethodMixin.LookupMethodMixin.LookupMethodMixin
-   :noindex:
+
+Bases
+-----
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

@@ -4,7 +4,17 @@ scoremanagertools.wizards.ParameterSpecifierCreationWizard
 .. abjad-lineage:: experimental.tools.scoremanagertools.wizards.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard
 
 .. autoclass:: experimental.tools.scoremanagertools.wizards.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard
-   :noindex:
+
+Bases
+-----
+
+- :class:`scoremanagertools.wizards.Wizard <experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard>`
+
+- :class:`scoremanagertools.core.ScoreManagerObject <experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

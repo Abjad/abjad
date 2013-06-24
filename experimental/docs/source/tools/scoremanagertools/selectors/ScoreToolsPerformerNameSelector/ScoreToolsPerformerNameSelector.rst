@@ -4,7 +4,17 @@ scoremanagertools.selectors.ScoreToolsPerformerNameSelector
 .. abjad-lineage:: experimental.tools.scoremanagertools.selectors.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector
 
 .. autoclass:: experimental.tools.scoremanagertools.selectors.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector
-   :noindex:
+
+Bases
+-----
+
+- :class:`scoremanagertools.selectors.Selector <experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector>`
+
+- :class:`scoremanagertools.core.ScoreManagerObject <experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

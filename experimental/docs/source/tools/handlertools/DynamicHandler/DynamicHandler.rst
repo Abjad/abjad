@@ -4,7 +4,15 @@ handlertools.DynamicHandler
 .. abjad-lineage:: experimental.tools.handlertools.DynamicHandler.DynamicHandler.DynamicHandler
 
 .. autoclass:: experimental.tools.handlertools.DynamicHandler.DynamicHandler.DynamicHandler
-   :noindex:
+
+Bases
+-----
+
+- :class:`handlertools.Handler <experimental.tools.handlertools.Handler.Handler.Handler>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

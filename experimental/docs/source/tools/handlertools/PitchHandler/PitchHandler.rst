@@ -4,7 +4,15 @@ handlertools.PitchHandler
 .. abjad-lineage:: experimental.tools.handlertools.PitchHandler.PitchHandler.PitchHandler
 
 .. autoclass:: experimental.tools.handlertools.PitchHandler.PitchHandler.PitchHandler
-   :noindex:
+
+Bases
+-----
+
+- :class:`handlertools.Handler <experimental.tools.handlertools.Handler.Handler.Handler>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

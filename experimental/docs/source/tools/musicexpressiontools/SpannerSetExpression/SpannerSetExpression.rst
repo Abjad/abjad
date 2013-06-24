@@ -4,7 +4,17 @@ musicexpressiontools.SpannerSetExpression
 .. abjad-lineage:: experimental.tools.musicexpressiontools.SpannerSetExpression.SpannerSetExpression.SpannerSetExpression
 
 .. autoclass:: experimental.tools.musicexpressiontools.SpannerSetExpression.SpannerSetExpression.SpannerSetExpression
-   :noindex:
+
+Bases
+-----
+
+- :class:`musicexpressiontools.CounttimeComponentSelectExpressionSetExpression <experimental.tools.musicexpressiontools.CounttimeComponentSelectExpressionSetExpression.CounttimeComponentSelectExpressionSetExpression.CounttimeComponentSelectExpressionSetExpression>`
+
+- :class:`musicexpressiontools.Expression <experimental.tools.musicexpressiontools.Expression.Expression.Expression>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

@@ -4,7 +4,17 @@ musicexpressiontools.RhythmMakerExpression
 .. abjad-lineage:: experimental.tools.musicexpressiontools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression
 
 .. autoclass:: experimental.tools.musicexpressiontools.RhythmMakerExpression.RhythmMakerExpression.RhythmMakerExpression
-   :noindex:
+
+Bases
+-----
+
+- :class:`musicexpressiontools.PayloadExpression <experimental.tools.musicexpressiontools.PayloadExpression.PayloadExpression.PayloadExpression>`
+
+- :class:`musicexpressiontools.Expression <experimental.tools.musicexpressiontools.Expression.Expression.Expression>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

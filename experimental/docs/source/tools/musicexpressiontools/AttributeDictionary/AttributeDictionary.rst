@@ -4,7 +4,17 @@ musicexpressiontools.AttributeDictionary
 .. abjad-lineage:: experimental.tools.musicexpressiontools.AttributeDictionary.AttributeDictionary.AttributeDictionary
 
 .. autoclass:: experimental.tools.musicexpressiontools.AttributeDictionary.AttributeDictionary.AttributeDictionary
-   :noindex:
+
+Bases
+-----
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`collections.OrderedDict <collections.OrderedDict>`
+
+- :class:`__builtin__.dict <dict>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

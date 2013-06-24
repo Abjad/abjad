@@ -4,7 +4,29 @@ musicexpressiontools.TimeSignatureSelectExpression
 .. abjad-lineage:: experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression
 
 .. autoclass:: experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression
-   :noindex:
+
+Bases
+-----
+
+- :class:`musicexpressiontools.MeasureSelectExpression <experimental.tools.musicexpressiontools.MeasureSelectExpression.MeasureSelectExpression.MeasureSelectExpression>`
+
+- :class:`musicexpressiontools.SelectExpression <experimental.tools.musicexpressiontools.SelectExpression.SelectExpression.SelectExpression>`
+
+- :class:`musicexpressiontools.AnchoredExpression <experimental.tools.musicexpressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression>`
+
+- :class:`musicexpressiontools.Expression <experimental.tools.musicexpressiontools.Expression.Expression.Expression>`
+
+- :class:`musicexpressiontools.IterablePayloadCallbackMixin <experimental.tools.musicexpressiontools.IterablePayloadCallbackMixin.IterablePayloadCallbackMixin.IterablePayloadCallbackMixin>`
+
+- :class:`musicexpressiontools.CallbackMixin <experimental.tools.musicexpressiontools.CallbackMixin.CallbackMixin.CallbackMixin>`
+
+- :class:`musicexpressiontools.SelectMethodMixin <experimental.tools.musicexpressiontools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin>`
+
+- :class:`musicexpressiontools.SetMethodMixin <experimental.tools.musicexpressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

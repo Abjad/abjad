@@ -4,7 +4,19 @@ scoremanagertools.editors.TaleaRhythmMakerEditor
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor
 
 .. autoclass:: experimental.tools.scoremanagertools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor
-   :noindex:
+
+Bases
+-----
+
+- :class:`scoremanagertools.editors.RhythmMakerEditor <experimental.tools.scoremanagertools.editors.RhythmMakerEditor.RhythmMakerEditor.RhythmMakerEditor>`
+
+- :class:`scoremanagertools.editors.InteractiveEditor <experimental.tools.scoremanagertools.editors.InteractiveEditor.InteractiveEditor.InteractiveEditor>`
+
+- :class:`scoremanagertools.core.ScoreManagerObject <experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

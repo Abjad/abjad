@@ -4,7 +4,15 @@ musicexpressiontools.DivisionList
 .. abjad-lineage:: experimental.tools.musicexpressiontools.DivisionList.DivisionList.DivisionList
 
 .. autoclass:: experimental.tools.musicexpressiontools.DivisionList.DivisionList.DivisionList
-   :noindex:
+
+Bases
+-----
+
+- :class:`abjad.tools.mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

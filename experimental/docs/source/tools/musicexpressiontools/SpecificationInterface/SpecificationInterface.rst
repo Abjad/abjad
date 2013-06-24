@@ -4,7 +4,19 @@ musicexpressiontools.SpecificationInterface
 .. abjad-lineage:: experimental.tools.musicexpressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface
 
 .. autoclass:: experimental.tools.musicexpressiontools.SpecificationInterface.SpecificationInterface.SpecificationInterface
-   :noindex:
+
+Bases
+-----
+
+- :class:`musicexpressiontools.SelectMethodMixin <experimental.tools.musicexpressiontools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin>`
+
+- :class:`musicexpressiontools.TimeContiguousSetMethodMixin <experimental.tools.musicexpressiontools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin>`
+
+- :class:`musicexpressiontools.SetMethodMixin <experimental.tools.musicexpressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

@@ -4,7 +4,17 @@ musicexpressiontools.RegisterSetExpression
 .. abjad-lineage:: experimental.tools.musicexpressiontools.RegisterSetExpression.RegisterSetExpression.RegisterSetExpression
 
 .. autoclass:: experimental.tools.musicexpressiontools.RegisterSetExpression.RegisterSetExpression.RegisterSetExpression
-   :noindex:
+
+Bases
+-----
+
+- :class:`musicexpressiontools.LeafSetExpression <experimental.tools.musicexpressiontools.LeafSetExpression.LeafSetExpression.LeafSetExpression>`
+
+- :class:`musicexpressiontools.Expression <experimental.tools.musicexpressiontools.Expression.Expression.Expression>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

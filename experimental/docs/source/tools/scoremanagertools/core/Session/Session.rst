@@ -4,7 +4,13 @@ scoremanagertools.core.Session
 .. abjad-lineage:: experimental.tools.scoremanagertools.core.Session.Session.Session
 
 .. autoclass:: experimental.tools.scoremanagertools.core.Session.Session.Session
-   :noindex:
+
+Bases
+-----
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

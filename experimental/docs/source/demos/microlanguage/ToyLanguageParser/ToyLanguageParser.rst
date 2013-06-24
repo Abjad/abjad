@@ -4,7 +4,15 @@ microlanguage.ToyLanguageParser
 .. abjad-lineage:: experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser
 
 .. autoclass:: experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser
-   :noindex:
+
+Bases
+-----
+
+- :class:`abjad.tools.abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

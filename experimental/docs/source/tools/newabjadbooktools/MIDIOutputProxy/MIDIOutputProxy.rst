@@ -4,7 +4,17 @@ newabjadbooktools.MIDIOutputProxy
 .. abjad-lineage:: experimental.tools.newabjadbooktools.MIDIOutputProxy.MIDIOutputProxy.MIDIOutputProxy
 
 .. autoclass:: experimental.tools.newabjadbooktools.MIDIOutputProxy.MIDIOutputProxy.MIDIOutputProxy
-   :noindex:
+
+Bases
+-----
+
+- :class:`newabjadbooktools.AssetOutputProxy <experimental.tools.newabjadbooktools.AssetOutputProxy.AssetOutputProxy.AssetOutputProxy>`
+
+- :class:`newabjadbooktools.OutputProxy <experimental.tools.newabjadbooktools.OutputProxy.OutputProxy.OutputProxy>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

@@ -4,7 +4,19 @@ scoremanagertools.wranglers.StylesheetFileWrangler
 .. abjad-lineage:: experimental.tools.scoremanagertools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler
 
 .. autoclass:: experimental.tools.scoremanagertools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler
-   :noindex:
+
+Bases
+-----
+
+- :class:`scoremanagertools.wranglers.FileWrangler <experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler>`
+
+- :class:`scoremanagertools.wranglers.FilesystemAssetWrangler <experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler.FilesystemAssetWrangler.FilesystemAssetWrangler>`
+
+- :class:`scoremanagertools.core.ScoreManagerObject <experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

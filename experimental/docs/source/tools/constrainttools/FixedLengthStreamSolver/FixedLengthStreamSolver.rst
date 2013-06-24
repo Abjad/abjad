@@ -4,7 +4,15 @@ constrainttools.FixedLengthStreamSolver
 .. abjad-lineage:: experimental.tools.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver
 
 .. autoclass:: experimental.tools.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver
-   :noindex:
+
+Bases
+-----
+
+- :class:`constrainttools._Solver <experimental.tools.constrainttools._Solver._Solver._Solver>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

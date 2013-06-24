@@ -4,7 +4,17 @@ handlertools.DiatonicClusterHandler
 .. abjad-lineage:: experimental.tools.handlertools.DiatonicClusterHandler.DiatonicClusterHandler.DiatonicClusterHandler
 
 .. autoclass:: experimental.tools.handlertools.DiatonicClusterHandler.DiatonicClusterHandler.DiatonicClusterHandler
-   :noindex:
+
+Bases
+-----
+
+- :class:`handlertools.PitchHandler <experimental.tools.handlertools.PitchHandler.PitchHandler.PitchHandler>`
+
+- :class:`handlertools.Handler <experimental.tools.handlertools.Handler.Handler.Handler>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

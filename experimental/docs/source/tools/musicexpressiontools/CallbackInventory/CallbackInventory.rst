@@ -4,7 +4,17 @@ musicexpressiontools.CallbackInventory
 .. abjad-lineage:: experimental.tools.musicexpressiontools.CallbackInventory.CallbackInventory.CallbackInventory
 
 .. autoclass:: experimental.tools.musicexpressiontools.CallbackInventory.CallbackInventory.CallbackInventory
-   :noindex:
+
+Bases
+-----
+
+- :class:`abjad.tools.datastructuretools.ObjectInventory <abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory>`
+
+- :class:`__builtin__.list <list>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

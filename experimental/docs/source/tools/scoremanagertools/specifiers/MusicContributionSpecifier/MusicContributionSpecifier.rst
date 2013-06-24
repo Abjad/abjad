@@ -4,7 +4,19 @@ scoremanagertools.specifiers.MusicContributionSpecifier
 .. abjad-lineage:: experimental.tools.scoremanagertools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier
 
 .. autoclass:: experimental.tools.scoremanagertools.specifiers.MusicContributionSpecifier.MusicContributionSpecifier.MusicContributionSpecifier
-   :noindex:
+
+Bases
+-----
+
+- :class:`scoremanagertools.specifiers.Specifier <experimental.tools.scoremanagertools.specifiers.Specifier.Specifier.Specifier>`
+
+- :class:`abjad.tools.datastructuretools.ObjectInventory <abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory>`
+
+- :class:`__builtin__.list <list>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

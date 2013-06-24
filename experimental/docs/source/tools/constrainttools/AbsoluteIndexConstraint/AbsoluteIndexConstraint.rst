@@ -4,7 +4,17 @@ constrainttools.AbsoluteIndexConstraint
 .. abjad-lineage:: experimental.tools.constrainttools.AbsoluteIndexConstraint.AbsoluteIndexConstraint.AbsoluteIndexConstraint
 
 .. autoclass:: experimental.tools.constrainttools.AbsoluteIndexConstraint.AbsoluteIndexConstraint.AbsoluteIndexConstraint
-   :noindex:
+
+Bases
+-----
+
+- :class:`constrainttools._AbsoluteConstraint <experimental.tools.constrainttools._AbsoluteConstraint._AbsoluteConstraint._AbsoluteConstraint>`
+
+- :class:`constrainttools._Constraint <experimental.tools.constrainttools._Constraint._Constraint._Constraint>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

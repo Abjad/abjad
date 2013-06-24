@@ -4,7 +4,19 @@ newabjadbooktools.GnuplotOutputProxy
 .. abjad-lineage:: experimental.tools.newabjadbooktools.GnuplotOutputProxy.GnuplotOutputProxy.GnuplotOutputProxy
 
 .. autoclass:: experimental.tools.newabjadbooktools.GnuplotOutputProxy.GnuplotOutputProxy.GnuplotOutputProxy
-   :noindex:
+
+Bases
+-----
+
+- :class:`newabjadbooktools.ImageOutputProxy <experimental.tools.newabjadbooktools.ImageOutputProxy.ImageOutputProxy.ImageOutputProxy>`
+
+- :class:`newabjadbooktools.AssetOutputProxy <experimental.tools.newabjadbooktools.AssetOutputProxy.AssetOutputProxy.AssetOutputProxy>`
+
+- :class:`newabjadbooktools.OutputProxy <experimental.tools.newabjadbooktools.OutputProxy.OutputProxy.OutputProxy>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

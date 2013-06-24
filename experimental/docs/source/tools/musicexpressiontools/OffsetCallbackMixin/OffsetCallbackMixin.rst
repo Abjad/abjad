@@ -4,7 +4,15 @@ musicexpressiontools.OffsetCallbackMixin
 .. abjad-lineage:: experimental.tools.musicexpressiontools.OffsetCallbackMixin.OffsetCallbackMixin.OffsetCallbackMixin
 
 .. autoclass:: experimental.tools.musicexpressiontools.OffsetCallbackMixin.OffsetCallbackMixin.OffsetCallbackMixin
-   :noindex:
+
+Bases
+-----
+
+- :class:`musicexpressiontools.CallbackMixin <experimental.tools.musicexpressiontools.CallbackMixin.CallbackMixin.CallbackMixin>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

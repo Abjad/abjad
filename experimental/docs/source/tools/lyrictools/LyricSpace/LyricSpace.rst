@@ -4,7 +4,19 @@ lyrictools.LyricSpace
 .. abjad-lineage:: experimental.tools.lyrictools.LyricSpace.LyricSpace.LyricSpace
 
 .. autoclass:: experimental.tools.lyrictools.LyricSpace.LyricSpace.LyricSpace
-   :noindex:
+
+Bases
+-----
+
+- :class:`lyrictools._LyricLeaf <experimental.tools.lyrictools._LyricLeaf._LyricLeaf._LyricLeaf>`
+
+- :class:`abjad.tools.leaftools.Leaf <abjad.tools.leaftools.Leaf.Leaf.Leaf>`
+
+- :class:`abjad.tools.componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

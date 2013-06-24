@@ -4,7 +4,13 @@ constrainttools.Domain
 .. abjad-lineage:: experimental.tools.constrainttools.Domain.Domain.Domain
 
 .. autoclass:: experimental.tools.constrainttools.Domain.Domain.Domain
-   :noindex:
+
+Bases
+-----
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

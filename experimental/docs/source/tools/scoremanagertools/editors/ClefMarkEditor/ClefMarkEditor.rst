@@ -4,7 +4,17 @@ scoremanagertools.editors.ClefMarkEditor
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.ClefMarkEditor.ClefMarkEditor.ClefMarkEditor
 
 .. autoclass:: experimental.tools.scoremanagertools.editors.ClefMarkEditor.ClefMarkEditor.ClefMarkEditor
-   :noindex:
+
+Bases
+-----
+
+- :class:`scoremanagertools.editors.InteractiveEditor <experimental.tools.scoremanagertools.editors.InteractiveEditor.InteractiveEditor.InteractiveEditor>`
+
+- :class:`scoremanagertools.core.ScoreManagerObject <experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

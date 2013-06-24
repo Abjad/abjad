@@ -4,7 +4,19 @@ musicexpressiontools.HandlerExpression
 .. abjad-lineage:: experimental.tools.musicexpressiontools.HandlerExpression.HandlerExpression.HandlerExpression
 
 .. autoclass:: experimental.tools.musicexpressiontools.HandlerExpression.HandlerExpression.HandlerExpression
-   :noindex:
+
+Bases
+-----
+
+- :class:`musicexpressiontools.Expression <experimental.tools.musicexpressiontools.Expression.Expression.Expression>`
+
+- :class:`musicexpressiontools.IterablePayloadCallbackMixin <experimental.tools.musicexpressiontools.IterablePayloadCallbackMixin.IterablePayloadCallbackMixin.IterablePayloadCallbackMixin>`
+
+- :class:`musicexpressiontools.CallbackMixin <experimental.tools.musicexpressiontools.CallbackMixin.CallbackMixin.CallbackMixin>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

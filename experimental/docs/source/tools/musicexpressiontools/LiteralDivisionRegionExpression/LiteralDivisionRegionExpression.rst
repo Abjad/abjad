@@ -4,7 +4,19 @@ musicexpressiontools.LiteralDivisionRegionExpression
 .. abjad-lineage:: experimental.tools.musicexpressiontools.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression
 
 .. autoclass:: experimental.tools.musicexpressiontools.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression.LiteralDivisionRegionExpression
-   :noindex:
+
+Bases
+-----
+
+- :class:`musicexpressiontools.DivisionRegionExpression <experimental.tools.musicexpressiontools.DivisionRegionExpression.DivisionRegionExpression.DivisionRegionExpression>`
+
+- :class:`musicexpressiontools.RegionExpression <experimental.tools.musicexpressiontools.RegionExpression.RegionExpression.RegionExpression>`
+
+- :class:`musicexpressiontools.Expression <experimental.tools.musicexpressiontools.Expression.Expression.Expression>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

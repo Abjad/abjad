@@ -4,7 +4,17 @@ scoremanagertools.wizards.HandlerCreationWizard
 .. abjad-lineage:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard
 
 .. autoclass:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard
-   :noindex:
+
+Bases
+-----
+
+- :class:`scoremanagertools.wizards.Wizard <experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard>`
+
+- :class:`scoremanagertools.core.ScoreManagerObject <experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

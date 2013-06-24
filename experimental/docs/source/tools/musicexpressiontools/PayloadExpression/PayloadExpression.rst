@@ -4,7 +4,15 @@ musicexpressiontools.PayloadExpression
 .. abjad-lineage:: experimental.tools.musicexpressiontools.PayloadExpression.PayloadExpression.PayloadExpression
 
 .. autoclass:: experimental.tools.musicexpressiontools.PayloadExpression.PayloadExpression.PayloadExpression
-   :noindex:
+
+Bases
+-----
+
+- :class:`musicexpressiontools.Expression <experimental.tools.musicexpressiontools.Expression.Expression.Expression>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

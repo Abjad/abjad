@@ -4,7 +4,15 @@ handlertools.ArticulationHandler
 .. abjad-lineage:: experimental.tools.handlertools.ArticulationHandler.ArticulationHandler.ArticulationHandler
 
 .. autoclass:: experimental.tools.handlertools.ArticulationHandler.ArticulationHandler.ArticulationHandler
-   :noindex:
+
+Bases
+-----
+
+- :class:`handlertools.Handler <experimental.tools.handlertools.Handler.Handler.Handler>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

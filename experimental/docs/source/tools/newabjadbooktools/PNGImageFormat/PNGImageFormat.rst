@@ -4,7 +4,15 @@ newabjadbooktools.PNGImageFormat
 .. abjad-lineage:: experimental.tools.newabjadbooktools.PNGImageFormat.PNGImageFormat.PNGImageFormat
 
 .. autoclass:: experimental.tools.newabjadbooktools.PNGImageFormat.PNGImageFormat.PNGImageFormat
-   :noindex:
+
+Bases
+-----
+
+- :class:`newabjadbooktools.ImageFormat <experimental.tools.newabjadbooktools.ImageFormat.ImageFormat.ImageFormat>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

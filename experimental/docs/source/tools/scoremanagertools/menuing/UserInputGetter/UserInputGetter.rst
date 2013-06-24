@@ -4,7 +4,17 @@ scoremanagertools.menuing.UserInputGetter
 .. abjad-lineage:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter
 
 .. autoclass:: experimental.tools.scoremanagertools.menuing.UserInputGetter.UserInputGetter.UserInputGetter
-   :noindex:
+
+Bases
+-----
+
+- :class:`scoremanagertools.core.ScoreManagerObject <experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject>`
+
+- :class:`scoremanagertools.menuing.PromptMakerMixin <experimental.tools.scoremanagertools.menuing.PromptMakerMixin.PromptMakerMixin.PromptMakerMixin>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

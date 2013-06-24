@@ -4,7 +4,17 @@ handlertools.RepeatedMarkupHandler
 .. abjad-lineage:: experimental.tools.handlertools.RepeatedMarkupHandler.RepeatedMarkupHandler.RepeatedMarkupHandler
 
 .. autoclass:: experimental.tools.handlertools.RepeatedMarkupHandler.RepeatedMarkupHandler.RepeatedMarkupHandler
-   :noindex:
+
+Bases
+-----
+
+- :class:`handlertools.ArticulationHandler <experimental.tools.handlertools.ArticulationHandler.ArticulationHandler.ArticulationHandler>`
+
+- :class:`handlertools.Handler <experimental.tools.handlertools.Handler.Handler.Handler>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

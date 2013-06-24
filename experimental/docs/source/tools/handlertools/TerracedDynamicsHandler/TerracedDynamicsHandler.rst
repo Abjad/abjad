@@ -4,7 +4,17 @@ handlertools.TerracedDynamicsHandler
 .. abjad-lineage:: experimental.tools.handlertools.TerracedDynamicsHandler.TerracedDynamicsHandler.TerracedDynamicsHandler
 
 .. autoclass:: experimental.tools.handlertools.TerracedDynamicsHandler.TerracedDynamicsHandler.TerracedDynamicsHandler
-   :noindex:
+
+Bases
+-----
+
+- :class:`handlertools.DynamicHandler <experimental.tools.handlertools.DynamicHandler.DynamicHandler.DynamicHandler>`
+
+- :class:`handlertools.Handler <experimental.tools.handlertools.Handler.Handler.Handler>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

@@ -4,7 +4,17 @@ musicexpressiontools.DynamicSetExpression
 .. abjad-lineage:: experimental.tools.musicexpressiontools.DynamicSetExpression.DynamicSetExpression.DynamicSetExpression
 
 .. autoclass:: experimental.tools.musicexpressiontools.DynamicSetExpression.DynamicSetExpression.DynamicSetExpression
-   :noindex:
+
+Bases
+-----
+
+- :class:`musicexpressiontools.LeafSetExpression <experimental.tools.musicexpressiontools.LeafSetExpression.LeafSetExpression.LeafSetExpression>`
+
+- :class:`musicexpressiontools.Expression <experimental.tools.musicexpressiontools.Expression.Expression.Expression>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

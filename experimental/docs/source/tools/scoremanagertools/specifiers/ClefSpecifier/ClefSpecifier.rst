@@ -4,7 +4,17 @@ scoremanagertools.specifiers.ClefSpecifier
 .. abjad-lineage:: experimental.tools.scoremanagertools.specifiers.ClefSpecifier.ClefSpecifier.ClefSpecifier
 
 .. autoclass:: experimental.tools.scoremanagertools.specifiers.ClefSpecifier.ClefSpecifier.ClefSpecifier
-   :noindex:
+
+Bases
+-----
+
+- :class:`scoremanagertools.specifiers.ParameterSpecifier <experimental.tools.scoremanagertools.specifiers.ParameterSpecifier.ParameterSpecifier.ParameterSpecifier>`
+
+- :class:`scoremanagertools.specifiers.Specifier <experimental.tools.scoremanagertools.specifiers.Specifier.Specifier.Specifier>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

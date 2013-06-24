@@ -4,7 +4,15 @@ newabjadbooktools.DoctreeDocumentHandler
 .. abjad-lineage:: experimental.tools.newabjadbooktools.DoctreeDocumentHandler.DoctreeDocumentHandler.DoctreeDocumentHandler
 
 .. autoclass:: experimental.tools.newabjadbooktools.DoctreeDocumentHandler.DoctreeDocumentHandler.DoctreeDocumentHandler
-   :noindex:
+
+Bases
+-----
+
+- :class:`newabjadbooktools.DocumentHandler <experimental.tools.newabjadbooktools.DocumentHandler.DocumentHandler.DocumentHandler>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

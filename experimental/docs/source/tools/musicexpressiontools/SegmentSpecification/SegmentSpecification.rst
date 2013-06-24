@@ -4,7 +4,15 @@ musicexpressiontools.SegmentSpecification
 .. abjad-lineage:: experimental.tools.musicexpressiontools.SegmentSpecification.SegmentSpecification.SegmentSpecification
 
 .. autoclass:: experimental.tools.musicexpressiontools.SegmentSpecification.SegmentSpecification.SegmentSpecification
-   :noindex:
+
+Bases
+-----
+
+- :class:`musicexpressiontools.Specification <experimental.tools.musicexpressiontools.Specification.Specification.Specification>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

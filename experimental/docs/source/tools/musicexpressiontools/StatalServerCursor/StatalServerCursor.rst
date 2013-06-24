@@ -4,7 +4,13 @@ musicexpressiontools.StatalServerCursor
 .. abjad-lineage:: experimental.tools.musicexpressiontools.StatalServerCursor.StatalServerCursor.StatalServerCursor
 
 .. autoclass:: experimental.tools.musicexpressiontools.StatalServerCursor.StatalServerCursor.StatalServerCursor
-   :noindex:
+
+Bases
+-----
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

@@ -4,7 +4,21 @@ musicexpressiontools.StartPositionedRhythmPayloadExpression
 .. abjad-lineage:: experimental.tools.musicexpressiontools.StartPositionedRhythmPayloadExpression.StartPositionedRhythmPayloadExpression.StartPositionedRhythmPayloadExpression
 
 .. autoclass:: experimental.tools.musicexpressiontools.StartPositionedRhythmPayloadExpression.StartPositionedRhythmPayloadExpression.StartPositionedRhythmPayloadExpression
-   :noindex:
+
+Bases
+-----
+
+- :class:`musicexpressiontools.StartPositionedPayloadExpression <experimental.tools.musicexpressiontools.StartPositionedPayloadExpression.StartPositionedPayloadExpression.StartPositionedPayloadExpression>`
+
+- :class:`musicexpressiontools.IterablePayloadExpression <experimental.tools.musicexpressiontools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression>`
+
+- :class:`musicexpressiontools.PayloadExpression <experimental.tools.musicexpressiontools.PayloadExpression.PayloadExpression.PayloadExpression>`
+
+- :class:`musicexpressiontools.Expression <experimental.tools.musicexpressiontools.Expression.Expression.Expression>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

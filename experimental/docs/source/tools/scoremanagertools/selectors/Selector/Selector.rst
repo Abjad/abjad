@@ -4,7 +4,15 @@ scoremanagertools.selectors.Selector
 .. abjad-lineage:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector
 
 .. autoclass:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector
-   :noindex:
+
+Bases
+-----
+
+- :class:`scoremanagertools.core.ScoreManagerObject <experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

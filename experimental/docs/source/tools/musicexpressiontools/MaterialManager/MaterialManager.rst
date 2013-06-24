@@ -4,7 +4,13 @@ musicexpressiontools.MaterialManager
 .. abjad-lineage:: experimental.tools.musicexpressiontools.MaterialManager.MaterialManager.MaterialManager
 
 .. autoclass:: experimental.tools.musicexpressiontools.MaterialManager.MaterialManager.MaterialManager
-   :noindex:
+
+Bases
+-----
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

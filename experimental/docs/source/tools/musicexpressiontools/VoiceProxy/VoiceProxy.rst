@@ -4,7 +4,13 @@ musicexpressiontools.VoiceProxy
 .. abjad-lineage:: experimental.tools.musicexpressiontools.VoiceProxy.VoiceProxy.VoiceProxy
 
 .. autoclass:: experimental.tools.musicexpressiontools.VoiceProxy.VoiceProxy.VoiceProxy
-   :noindex:
+
+Bases
+-----
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

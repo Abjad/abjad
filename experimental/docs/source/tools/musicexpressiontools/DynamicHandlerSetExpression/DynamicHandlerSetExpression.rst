@@ -4,7 +4,17 @@ musicexpressiontools.DynamicHandlerSetExpression
 .. abjad-lineage:: experimental.tools.musicexpressiontools.DynamicHandlerSetExpression.DynamicHandlerSetExpression.DynamicHandlerSetExpression
 
 .. autoclass:: experimental.tools.musicexpressiontools.DynamicHandlerSetExpression.DynamicHandlerSetExpression.DynamicHandlerSetExpression
-   :noindex:
+
+Bases
+-----
+
+- :class:`musicexpressiontools.CounttimeComponentSelectExpressionSetExpression <experimental.tools.musicexpressiontools.CounttimeComponentSelectExpressionSetExpression.CounttimeComponentSelectExpressionSetExpression.CounttimeComponentSelectExpressionSetExpression>`
+
+- :class:`musicexpressiontools.Expression <experimental.tools.musicexpressiontools.Expression.Expression.Expression>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

@@ -4,7 +4,17 @@ musicexpressiontools.IterablePayloadExpression
 .. abjad-lineage:: experimental.tools.musicexpressiontools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression
 
 .. autoclass:: experimental.tools.musicexpressiontools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression
-   :noindex:
+
+Bases
+-----
+
+- :class:`musicexpressiontools.PayloadExpression <experimental.tools.musicexpressiontools.PayloadExpression.PayloadExpression.PayloadExpression>`
+
+- :class:`musicexpressiontools.Expression <experimental.tools.musicexpressiontools.Expression.Expression.Expression>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

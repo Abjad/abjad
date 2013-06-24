@@ -4,7 +4,15 @@ musicexpressiontools.TimeContiguousSetMethodMixin
 .. abjad-lineage:: experimental.tools.musicexpressiontools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin
 
 .. autoclass:: experimental.tools.musicexpressiontools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin
-   :noindex:
+
+Bases
+-----
+
+- :class:`musicexpressiontools.SetMethodMixin <experimental.tools.musicexpressiontools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

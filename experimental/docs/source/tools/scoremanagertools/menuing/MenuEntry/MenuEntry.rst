@@ -4,7 +4,13 @@ scoremanagertools.menuing.MenuEntry
 .. abjad-lineage:: experimental.tools.scoremanagertools.menuing.MenuEntry.MenuEntry.MenuEntry
 
 .. autoclass:: experimental.tools.scoremanagertools.menuing.MenuEntry.MenuEntry.MenuEntry
-   :noindex:
+
+Bases
+-----
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

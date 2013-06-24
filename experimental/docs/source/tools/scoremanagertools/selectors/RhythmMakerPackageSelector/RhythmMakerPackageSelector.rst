@@ -4,7 +4,19 @@ scoremanagertools.selectors.RhythmMakerPackageSelector
 .. abjad-lineage:: experimental.tools.scoremanagertools.selectors.RhythmMakerPackageSelector.RhythmMakerPackageSelector.RhythmMakerPackageSelector
 
 .. autoclass:: experimental.tools.scoremanagertools.selectors.RhythmMakerPackageSelector.RhythmMakerPackageSelector.RhythmMakerPackageSelector
-   :noindex:
+
+Bases
+-----
+
+- :class:`scoremanagertools.selectors.MaterialPackageSelector <experimental.tools.scoremanagertools.selectors.MaterialPackageSelector.MaterialPackageSelector.MaterialPackageSelector>`
+
+- :class:`scoremanagertools.selectors.Selector <experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector>`
+
+- :class:`scoremanagertools.core.ScoreManagerObject <experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

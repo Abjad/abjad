@@ -4,7 +4,13 @@ scoremanagertools.specifiers.Specifier
 .. abjad-lineage:: experimental.tools.scoremanagertools.specifiers.Specifier.Specifier.Specifier
 
 .. autoclass:: experimental.tools.scoremanagertools.specifiers.Specifier.Specifier.Specifier
-   :noindex:
+
+Bases
+-----
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

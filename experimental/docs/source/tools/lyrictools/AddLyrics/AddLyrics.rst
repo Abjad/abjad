@@ -4,7 +4,17 @@ lyrictools.AddLyrics
 .. abjad-lineage:: experimental.tools.lyrictools.AddLyrics.AddLyrics.AddLyrics
 
 .. autoclass:: experimental.tools.lyrictools.AddLyrics.AddLyrics.AddLyrics
-   :noindex:
+
+Bases
+-----
+
+- :class:`abjad.tools.containertools.Container <abjad.tools.containertools.Container.Container.Container>`
+
+- :class:`abjad.tools.componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

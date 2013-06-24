@@ -4,7 +4,15 @@ windungen.WindungenScoreTemplate
 .. abjad-lineage:: experimental.demos.windungen.WindungenScoreTemplate.WindungenScoreTemplate.WindungenScoreTemplate
 
 .. autoclass:: experimental.demos.windungen.WindungenScoreTemplate.WindungenScoreTemplate.WindungenScoreTemplate
-   :noindex:
+
+Bases
+-----
+
+- :class:`abjad.tools.scoretemplatetools.ScoreTemplate <abjad.tools.scoretemplatetools.ScoreTemplate.ScoreTemplate.ScoreTemplate>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------

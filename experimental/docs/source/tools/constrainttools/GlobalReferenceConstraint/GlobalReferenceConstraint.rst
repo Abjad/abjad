@@ -4,7 +4,17 @@ constrainttools.GlobalReferenceConstraint
 .. abjad-lineage:: experimental.tools.constrainttools.GlobalReferenceConstraint.GlobalReferenceConstraint.GlobalReferenceConstraint
 
 .. autoclass:: experimental.tools.constrainttools.GlobalReferenceConstraint.GlobalReferenceConstraint.GlobalReferenceConstraint
-   :noindex:
+
+Bases
+-----
+
+- :class:`constrainttools._GlobalConstraint <experimental.tools.constrainttools._GlobalConstraint._GlobalConstraint._GlobalConstraint>`
+
+- :class:`constrainttools._Constraint <experimental.tools.constrainttools._Constraint._Constraint._Constraint>`
+
+- :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
 
 Read-only properties
 --------------------
