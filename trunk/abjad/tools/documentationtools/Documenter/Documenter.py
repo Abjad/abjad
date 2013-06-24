@@ -2,14 +2,8 @@ import abc
 from abjad.tools import abctools
 
 
-class Documenter(abctools.AbjadObject):
+class Documenter(abctools.Maker):
     '''Documenter is an abstract base class for documentation classes.'''
-
-    ### CLASS VARIABLES ###
-
-    __metaclass__ = abc.ABCMeta
-
-    __slots__ = ('_object', '_prefix')
 
     ### INITIALIZER ###
 
@@ -18,15 +12,7 @@ class Documenter(abctools.AbjadObject):
         self._object = obj
         self._prefix = prefix
 
-    ### SPECIAL METHODS ###
-
-    def __call__(self):
-        raise NotImplemented
-
     ### PRIVATE METHOD ###
-
-    def _format_heading(self, text, character='='):
-        return [text, character * len(text), '']
 
     def _shrink_module_name(self, module):
         if self.prefix and module.startswith(self.prefix):

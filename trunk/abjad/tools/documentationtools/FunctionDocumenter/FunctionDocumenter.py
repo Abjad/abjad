@@ -18,10 +18,6 @@ class FunctionDocumenter(Documenter):
     Returns ``FunctionDocumenter``` instance.
     '''
 
-    ### CLASS VARIABLES ###
-
-    __slots__ = ('_object', '_prefix')
-
     ### INITIALIZER ###
 
     def __init__(self, obj, prefix='abjad.tools.'):

@@ -10,6 +10,8 @@ Bases
 
 - :class:`documentationtools.Documenter <abjad.tools.documentationtools.Documenter.Documenter.Documenter>`
 
+- :class:`abctools.Maker <abjad.tools.abctools.Maker.Maker.Maker>`
+
 - :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 - :class:`__builtin__.object <object>`
@@ -27,6 +29,12 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: abjad.tools.documentationtools.ToolsPackageDocumenter.ToolsPackageDocumenter.ToolsPackageDocumenter.storage_format
+   :noindex:
+
+Methods
+-------
+
+.. automethod:: abjad.tools.documentationtools.ToolsPackageDocumenter.ToolsPackageDocumenter.ToolsPackageDocumenter.new
    :noindex:
 
 Special methods
