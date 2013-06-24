@@ -40,15 +40,13 @@ class SegmentPackageWrangler(PackageWrangler):
             segment_package_proxy._run()
 
     def _make_main_menu(self, head=None):
-        menu_entries = self.list_asset_names(head=head)
-        menu, menu_section = self._io.make_menu(
-            where=self._where,
-            menu_entries=menu_entries,
-            is_numbered=True,
-            )
-        menu_section = menu.make_section(return_value_attribute='key')
-        menu_section.append(('new segment', 'new'))
-        return menu
+        main_menu = self._io.make_only_menu(where=self._where)
+        asset_section = main_menu.make_asset_section()
+        asset_menu_entries = self._make_asset_menu_entries(head=head)
+        asset_section.menu_entires = asset_menu_entries
+        command_section = main_menu.make_command_section()
+        command_section.append(('new segment', 'new'))
+        return main_menu
 
     ### PUBLIC PROPERTIES ###
 
