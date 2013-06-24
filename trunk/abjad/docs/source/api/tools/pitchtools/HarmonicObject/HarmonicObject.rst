@@ -4,6 +4,7 @@ pitchtools.HarmonicObject
 .. abjad-lineage:: abjad.tools.pitchtools.HarmonicObject.HarmonicObject.HarmonicObject
 
 .. autoclass:: abjad.tools.pitchtools.HarmonicObject.HarmonicObject.HarmonicObject
+   :noindex:
 
 Bases
 -----

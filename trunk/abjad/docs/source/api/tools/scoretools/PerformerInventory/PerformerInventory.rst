@@ -4,6 +4,7 @@ scoretools.PerformerInventory
 .. abjad-lineage:: abjad.tools.scoretools.PerformerInventory.PerformerInventory.PerformerInventory
 
 .. autoclass:: abjad.tools.scoretools.PerformerInventory.PerformerInventory.PerformerInventory
+   :noindex:
 
 Bases
 -----

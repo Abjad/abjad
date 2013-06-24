@@ -4,6 +4,7 @@ markuptools.MarkupInventory
 .. abjad-lineage:: abjad.tools.markuptools.MarkupInventory.MarkupInventory.MarkupInventory
 
 .. autoclass:: abjad.tools.markuptools.MarkupInventory.MarkupInventory.MarkupInventory
+   :noindex:
 
 Bases
 -----

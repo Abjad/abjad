@@ -4,6 +4,7 @@ instrumenttools.Piano
 .. abjad-lineage:: abjad.tools.instrumenttools.Piano.Piano.Piano
 
 .. autoclass:: abjad.tools.instrumenttools.Piano.Piano.Piano
+   :noindex:
 
 Bases
 -----

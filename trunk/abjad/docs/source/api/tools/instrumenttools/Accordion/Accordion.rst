@@ -4,6 +4,7 @@ instrumenttools.Accordion
 .. abjad-lineage:: abjad.tools.instrumenttools.Accordion.Accordion.Accordion
 
 .. autoclass:: abjad.tools.instrumenttools.Accordion.Accordion.Accordion
+   :noindex:
 
 Bases
 -----

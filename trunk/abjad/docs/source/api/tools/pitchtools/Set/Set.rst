@@ -4,6 +4,7 @@ pitchtools.Set
 .. abjad-lineage:: abjad.tools.pitchtools.Set.Set.Set
 
 .. autoclass:: abjad.tools.pitchtools.Set.Set.Set
+   :noindex:
 
 Bases
 -----

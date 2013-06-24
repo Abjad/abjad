@@ -4,6 +4,7 @@ pitchtools.DiatonicIntervalClass
 .. abjad-lineage:: abjad.tools.pitchtools.DiatonicIntervalClass.DiatonicIntervalClass.DiatonicIntervalClass
 
 .. autoclass:: abjad.tools.pitchtools.DiatonicIntervalClass.DiatonicIntervalClass.DiatonicIntervalClass
+   :noindex:
 
 Bases
 -----

@@ -4,6 +4,7 @@ tietools.TieSpanner
 .. abjad-lineage:: abjad.tools.tietools.TieSpanner.TieSpanner.TieSpanner
 
 .. autoclass:: abjad.tools.tietools.TieSpanner.TieSpanner.TieSpanner
+   :noindex:
 
 Bases
 -----

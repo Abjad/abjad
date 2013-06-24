@@ -4,6 +4,7 @@ instrumenttools.Oboe
 .. abjad-lineage:: abjad.tools.instrumenttools.Oboe.Oboe.Oboe
 
 .. autoclass:: abjad.tools.instrumenttools.Oboe.Oboe.Oboe
+   :noindex:
 
 Bases
 -----

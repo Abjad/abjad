@@ -4,6 +4,7 @@ instrumenttools.PercussionInstrument
 .. abjad-lineage:: abjad.tools.instrumenttools.PercussionInstrument.PercussionInstrument.PercussionInstrument
 
 .. autoclass:: abjad.tools.instrumenttools.PercussionInstrument.PercussionInstrument.PercussionInstrument
+   :noindex:
 
 Bases
 -----

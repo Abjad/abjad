@@ -4,6 +4,7 @@ instrumenttools.AltoSaxophone
 .. abjad-lineage:: abjad.tools.instrumenttools.AltoSaxophone.AltoSaxophone.AltoSaxophone
 
 .. autoclass:: abjad.tools.instrumenttools.AltoSaxophone.AltoSaxophone.AltoSaxophone
+   :noindex:
 
 Bases
 -----

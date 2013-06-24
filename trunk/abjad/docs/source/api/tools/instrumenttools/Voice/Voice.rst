@@ -4,6 +4,7 @@ instrumenttools.Voice
 .. abjad-lineage:: abjad.tools.instrumenttools.Voice.Voice.Voice
 
 .. autoclass:: abjad.tools.instrumenttools.Voice.Voice.Voice
+   :noindex:
 
 Bases
 -----

@@ -4,6 +4,7 @@ quantizationtools.QEventSequence
 .. abjad-lineage:: abjad.tools.quantizationtools.QEventSequence.QEventSequence.QEventSequence
 
 .. autoclass:: abjad.tools.quantizationtools.QEventSequence.QEventSequence.QEventSequence
+   :noindex:
 
 Bases
 -----
@@ -34,7 +35,7 @@ Methods
 .. automethod:: abjad.tools.quantizationtools.QEventSequence.QEventSequence.QEventSequence.index
    :noindex:
 
-Class Methods
+Class methods
 -------------
 
 .. automethod:: abjad.tools.quantizationtools.QEventSequence.QEventSequence.QEventSequence.from_millisecond_durations

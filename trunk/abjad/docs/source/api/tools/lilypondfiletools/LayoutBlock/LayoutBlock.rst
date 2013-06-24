@@ -4,6 +4,7 @@ lilypondfiletools.LayoutBlock
 .. abjad-lineage:: abjad.tools.lilypondfiletools.LayoutBlock.LayoutBlock.LayoutBlock
 
 .. autoclass:: abjad.tools.lilypondfiletools.LayoutBlock.LayoutBlock.LayoutBlock
+   :noindex:
 
 Bases
 -----

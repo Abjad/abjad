@@ -4,6 +4,7 @@ quantizationtools.TerminalQEvent
 .. abjad-lineage:: abjad.tools.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent
 
 .. autoclass:: abjad.tools.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent
+   :noindex:
 
 Bases
 -----

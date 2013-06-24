@@ -4,6 +4,7 @@ lilypondparsertools.LilyPondParser
 .. abjad-lineage:: abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser
 
 .. autoclass:: abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser
+   :noindex:
 
 Bases
 -----
@@ -62,7 +63,7 @@ Methods
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.tokenize
    :noindex:
 
-Class Methods
+Class methods
 -------------
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.register_markup_function

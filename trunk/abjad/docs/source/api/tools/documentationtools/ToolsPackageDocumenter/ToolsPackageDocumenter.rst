@@ -4,6 +4,7 @@ documentationtools.ToolsPackageDocumenter
 .. abjad-lineage:: abjad.tools.documentationtools.ToolsPackageDocumenter.ToolsPackageDocumenter.ToolsPackageDocumenter
 
 .. autoclass:: abjad.tools.documentationtools.ToolsPackageDocumenter.ToolsPackageDocumenter.ToolsPackageDocumenter
+   :noindex:
 
 Bases
 -----

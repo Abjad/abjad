@@ -4,6 +4,7 @@ exceptiontools.TieChainError
 .. abjad-lineage:: abjad.tools.exceptiontools.TieChainError.TieChainError
 
 .. autoclass:: abjad.tools.exceptiontools.TieChainError.TieChainError
+   :noindex:
 
 Bases
 -----

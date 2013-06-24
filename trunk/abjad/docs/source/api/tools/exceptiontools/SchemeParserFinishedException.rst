@@ -4,6 +4,7 @@ exceptiontools.SchemeParserFinishedException
 .. abjad-lineage:: abjad.tools.exceptiontools.SchemeParserFinishedException.SchemeParserFinishedException
 
 .. autoclass:: abjad.tools.exceptiontools.SchemeParserFinishedException.SchemeParserFinishedException
+   :noindex:
 
 Bases
 -----

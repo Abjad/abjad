@@ -4,6 +4,7 @@ exceptiontools.MeasureContiguityError
 .. abjad-lineage:: abjad.tools.exceptiontools.MeasureContiguityError.MeasureContiguityError
 
 .. autoclass:: abjad.tools.exceptiontools.MeasureContiguityError.MeasureContiguityError
+   :noindex:
 
 Bases
 -----

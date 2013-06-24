@@ -4,6 +4,7 @@ sequencetools.CyclicMatrix
 .. abjad-lineage:: abjad.tools.sequencetools.CyclicMatrix.CyclicMatrix.CyclicMatrix
 
 .. autoclass:: abjad.tools.sequencetools.CyclicMatrix.CyclicMatrix.CyclicMatrix
+   :noindex:
 
 Bases
 -----

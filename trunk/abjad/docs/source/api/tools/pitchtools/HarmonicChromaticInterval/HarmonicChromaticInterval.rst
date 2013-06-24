@@ -4,6 +4,7 @@ pitchtools.HarmonicChromaticInterval
 .. abjad-lineage:: abjad.tools.pitchtools.HarmonicChromaticInterval.HarmonicChromaticInterval.HarmonicChromaticInterval
 
 .. autoclass:: abjad.tools.pitchtools.HarmonicChromaticInterval.HarmonicChromaticInterval.HarmonicChromaticInterval
+   :noindex:
 
 Bases
 -----

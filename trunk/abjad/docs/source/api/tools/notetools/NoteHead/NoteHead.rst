@@ -4,6 +4,7 @@ notetools.NoteHead
 .. abjad-lineage:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead
 
 .. autoclass:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead
+   :noindex:
 
 Bases
 -----

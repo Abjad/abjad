@@ -4,6 +4,7 @@ rhythmmakertools.TaleaRhythmMaker
 .. abjad-lineage:: abjad.tools.rhythmmakertools.TaleaRhythmMaker.TaleaRhythmMaker.TaleaRhythmMaker
 
 .. autoclass:: abjad.tools.rhythmmakertools.TaleaRhythmMaker.TaleaRhythmMaker.TaleaRhythmMaker
+   :noindex:
 
 Bases
 -----

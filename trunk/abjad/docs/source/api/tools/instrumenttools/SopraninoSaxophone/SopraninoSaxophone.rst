@@ -4,6 +4,7 @@ instrumenttools.SopraninoSaxophone
 .. abjad-lineage:: abjad.tools.instrumenttools.SopraninoSaxophone.SopraninoSaxophone.SopraninoSaxophone
 
 .. autoclass:: abjad.tools.instrumenttools.SopraninoSaxophone.SopraninoSaxophone.SopraninoSaxophone
+   :noindex:
 
 Bases
 -----

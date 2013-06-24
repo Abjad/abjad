@@ -4,6 +4,7 @@ datastructuretools.BreakPointFunction
 .. abjad-lineage:: abjad.tools.datastructuretools.BreakPointFunction.BreakPointFunction.BreakPointFunction
 
 .. autoclass:: abjad.tools.datastructuretools.BreakPointFunction.BreakPointFunction.BreakPointFunction
+   :noindex:
 
 Bases
 -----

@@ -4,6 +4,7 @@ spannertools.CrescendoSpanner
 .. abjad-lineage:: abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner
 
 .. autoclass:: abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner
+   :noindex:
 
 Bases
 -----
@@ -102,7 +103,7 @@ Methods
 .. automethod:: abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.pop_left
    :noindex:
 
-Static Methods
+Static methods
 --------------
 
 .. automethod:: abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.is_hairpin_shape_string

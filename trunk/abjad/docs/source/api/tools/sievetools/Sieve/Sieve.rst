@@ -4,6 +4,7 @@ sievetools.Sieve
 .. abjad-lineage:: abjad.tools.sievetools.Sieve.Sieve.Sieve
 
 .. autoclass:: abjad.tools.sievetools.Sieve.Sieve.Sieve
+   :noindex:
 
 Bases
 -----

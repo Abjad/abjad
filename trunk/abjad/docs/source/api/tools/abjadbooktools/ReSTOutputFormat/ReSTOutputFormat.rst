@@ -4,6 +4,7 @@ abjadbooktools.ReSTOutputFormat
 .. abjad-lineage:: abjad.tools.abjadbooktools.ReSTOutputFormat.ReSTOutputFormat.ReSTOutputFormat
 
 .. autoclass:: abjad.tools.abjadbooktools.ReSTOutputFormat.ReSTOutputFormat.ReSTOutputFormat
+   :noindex:
 
 Bases
 -----

@@ -4,6 +4,7 @@ developerscripttools.RunDoctestsScript
 .. abjad-lineage:: abjad.tools.developerscripttools.RunDoctestsScript.RunDoctestsScript.RunDoctestsScript
 
 .. autoclass:: abjad.tools.developerscripttools.RunDoctestsScript.RunDoctestsScript.RunDoctestsScript
+   :noindex:
 
 Bases
 -----

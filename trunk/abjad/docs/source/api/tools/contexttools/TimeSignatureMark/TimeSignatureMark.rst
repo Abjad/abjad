@@ -4,6 +4,7 @@ contexttools.TimeSignatureMark
 .. abjad-lineage:: abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark
 
 .. autoclass:: abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark
+   :noindex:
 
 Bases
 -----

@@ -4,6 +4,7 @@ timerelationtools.SimpleInequality
 .. abjad-lineage:: abjad.tools.timerelationtools.SimpleInequality.SimpleInequality.SimpleInequality
 
 .. autoclass:: abjad.tools.timerelationtools.SimpleInequality.SimpleInequality.SimpleInequality
+   :noindex:
 
 Bases
 -----

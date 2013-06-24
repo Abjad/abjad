@@ -4,6 +4,7 @@ quantizationtools.ParallelJobHandlerWorker
 .. abjad-lineage:: abjad.tools.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker
 
 .. autoclass:: abjad.tools.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker
+   :noindex:
 
 Bases
 -----

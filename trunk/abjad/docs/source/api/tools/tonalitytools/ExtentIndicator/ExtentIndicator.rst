@@ -4,6 +4,7 @@ tonalitytools.ExtentIndicator
 .. abjad-lineage:: abjad.tools.tonalitytools.ExtentIndicator.ExtentIndicator.ExtentIndicator
 
 .. autoclass:: abjad.tools.tonalitytools.ExtentIndicator.ExtentIndicator.ExtentIndicator
+   :noindex:
 
 Bases
 -----

@@ -4,6 +4,7 @@ documentationtools.FunctionCrawler
 .. abjad-lineage:: abjad.tools.documentationtools.FunctionCrawler.FunctionCrawler.FunctionCrawler
 
 .. autoclass:: abjad.tools.documentationtools.FunctionCrawler.FunctionCrawler.FunctionCrawler
+   :noindex:
 
 Bases
 -----

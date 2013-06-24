@@ -4,6 +4,7 @@ pitchtools.NumberedPitchClass
 .. abjad-lineage:: abjad.tools.pitchtools.NumberedPitchClass.NumberedPitchClass.NumberedPitchClass
 
 .. autoclass:: abjad.tools.pitchtools.NumberedPitchClass.NumberedPitchClass.NumberedPitchClass
+   :noindex:
 
 Bases
 -----

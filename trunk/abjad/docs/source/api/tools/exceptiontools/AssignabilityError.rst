@@ -4,6 +4,7 @@ exceptiontools.AssignabilityError
 .. abjad-lineage:: abjad.tools.exceptiontools.AssignabilityError.AssignabilityError
 
 .. autoclass:: abjad.tools.exceptiontools.AssignabilityError.AssignabilityError
+   :noindex:
 
 Bases
 -----

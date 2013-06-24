@@ -4,6 +4,7 @@ componenttools.ContainmentSignature
 .. abjad-lineage:: abjad.tools.componenttools.ContainmentSignature.ContainmentSignature.ContainmentSignature
 
 .. autoclass:: abjad.tools.componenttools.ContainmentSignature.ContainmentSignature.ContainmentSignature
+   :noindex:
 
 Bases
 -----

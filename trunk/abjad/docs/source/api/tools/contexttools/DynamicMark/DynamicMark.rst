@@ -4,6 +4,7 @@ contexttools.DynamicMark
 .. abjad-lineage:: abjad.tools.contexttools.DynamicMark.DynamicMark.DynamicMark
 
 .. autoclass:: abjad.tools.contexttools.DynamicMark.DynamicMark.DynamicMark
+   :noindex:
 
 Bases
 -----
@@ -49,7 +50,7 @@ Methods
 .. automethod:: abjad.tools.contexttools.DynamicMark.DynamicMark.DynamicMark.detach
    :noindex:
 
-Static Methods
+Static methods
 --------------
 
 .. automethod:: abjad.tools.contexttools.DynamicMark.DynamicMark.DynamicMark.composite_dynamic_name_to_steady_state_dynamic_name

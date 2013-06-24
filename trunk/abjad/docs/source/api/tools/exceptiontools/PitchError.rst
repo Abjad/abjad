@@ -4,6 +4,7 @@ exceptiontools.PitchError
 .. abjad-lineage:: abjad.tools.exceptiontools.PitchError.PitchError
 
 .. autoclass:: abjad.tools.exceptiontools.PitchError.PitchError
+   :noindex:
 
 Bases
 -----

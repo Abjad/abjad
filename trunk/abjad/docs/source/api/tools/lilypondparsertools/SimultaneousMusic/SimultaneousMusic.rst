@@ -4,6 +4,7 @@ lilypondparsertools.SimultaneousMusic
 .. abjad-lineage:: abjad.tools.lilypondparsertools.SimultaneousMusic.SimultaneousMusic.SimultaneousMusic
 
 .. autoclass:: abjad.tools.lilypondparsertools.SimultaneousMusic.SimultaneousMusic.SimultaneousMusic
+   :noindex:
 
 Bases
 -----

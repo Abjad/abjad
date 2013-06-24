@@ -4,6 +4,7 @@ exceptiontools.TonalHarmonyError
 .. abjad-lineage:: abjad.tools.exceptiontools.TonalHarmonyError.TonalHarmonyError
 
 .. autoclass:: abjad.tools.exceptiontools.TonalHarmonyError.TonalHarmonyError
+   :noindex:
 
 Bases
 -----

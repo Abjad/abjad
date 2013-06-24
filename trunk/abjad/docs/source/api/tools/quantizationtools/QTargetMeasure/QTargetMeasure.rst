@@ -4,6 +4,7 @@ quantizationtools.QTargetMeasure
 .. abjad-lineage:: abjad.tools.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure
 
 .. autoclass:: abjad.tools.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure
+   :noindex:
 
 Bases
 -----

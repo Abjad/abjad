@@ -4,6 +4,7 @@ wellformednesstools.Check
 .. abjad-lineage:: abjad.tools.wellformednesstools.Check.Check.Check
 
 .. autoclass:: abjad.tools.wellformednesstools.Check.Check.Check
+   :noindex:
 
 Bases
 -----

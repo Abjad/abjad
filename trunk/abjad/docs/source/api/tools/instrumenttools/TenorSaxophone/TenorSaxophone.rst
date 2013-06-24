@@ -4,6 +4,7 @@ instrumenttools.TenorSaxophone
 .. abjad-lineage:: abjad.tools.instrumenttools.TenorSaxophone.TenorSaxophone.TenorSaxophone
 
 .. autoclass:: abjad.tools.instrumenttools.TenorSaxophone.TenorSaxophone.TenorSaxophone
+   :noindex:
 
 Bases
 -----

@@ -4,6 +4,7 @@ sequencetools.Matrix
 .. abjad-lineage:: abjad.tools.sequencetools.Matrix.Matrix.Matrix
 
 .. autoclass:: abjad.tools.sequencetools.Matrix.Matrix.Matrix
+   :noindex:
 
 Bases
 -----

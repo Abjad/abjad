@@ -4,6 +4,7 @@ instrumenttools.TenorTrombone
 .. abjad-lineage:: abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone
 
 .. autoclass:: abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone
+   :noindex:
 
 Bases
 -----

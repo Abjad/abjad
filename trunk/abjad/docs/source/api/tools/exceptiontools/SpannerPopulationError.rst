@@ -4,6 +4,7 @@ exceptiontools.SpannerPopulationError
 .. abjad-lineage:: abjad.tools.exceptiontools.SpannerPopulationError.SpannerPopulationError
 
 .. autoclass:: abjad.tools.exceptiontools.SpannerPopulationError.SpannerPopulationError
+   :noindex:
 
 Bases
 -----

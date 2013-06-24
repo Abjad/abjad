@@ -4,6 +4,7 @@ mathtools.BoundedObject
 .. abjad-lineage:: abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject
 
 .. autoclass:: abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject
+   :noindex:
 
 Bases
 -----

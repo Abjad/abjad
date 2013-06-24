@@ -4,6 +4,7 @@ pitchtools.InversionEquivalentChromaticIntervalClassSegment
 .. abjad-lineage:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassSegment.InversionEquivalentChromaticIntervalClassSegment.InversionEquivalentChromaticIntervalClassSegment
 
 .. autoclass:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassSegment.InversionEquivalentChromaticIntervalClassSegment.InversionEquivalentChromaticIntervalClassSegment
+   :noindex:
 
 Bases
 -----

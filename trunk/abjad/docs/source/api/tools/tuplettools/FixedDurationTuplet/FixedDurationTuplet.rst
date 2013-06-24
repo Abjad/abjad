@@ -4,6 +4,7 @@ tuplettools.FixedDurationTuplet
 .. abjad-lineage:: abjad.tools.tuplettools.FixedDurationTuplet.FixedDurationTuplet.FixedDurationTuplet
 
 .. autoclass:: abjad.tools.tuplettools.FixedDurationTuplet.FixedDurationTuplet.FixedDurationTuplet
+   :noindex:
 
 Bases
 -----

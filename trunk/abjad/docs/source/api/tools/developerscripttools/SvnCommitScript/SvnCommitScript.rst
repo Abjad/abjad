@@ -4,6 +4,7 @@ developerscripttools.SvnCommitScript
 .. abjad-lineage:: abjad.tools.developerscripttools.SvnCommitScript.SvnCommitScript.SvnCommitScript
 
 .. autoclass:: abjad.tools.developerscripttools.SvnCommitScript.SvnCommitScript.SvnCommitScript
+   :noindex:
 
 Bases
 -----

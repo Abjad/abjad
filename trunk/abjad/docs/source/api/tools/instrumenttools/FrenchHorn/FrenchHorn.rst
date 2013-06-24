@@ -4,6 +4,7 @@ instrumenttools.FrenchHorn
 .. abjad-lineage:: abjad.tools.instrumenttools.FrenchHorn.FrenchHorn.FrenchHorn
 
 .. autoclass:: abjad.tools.instrumenttools.FrenchHorn.FrenchHorn.FrenchHorn
+   :noindex:
 
 Bases
 -----

@@ -4,6 +4,7 @@ contexttools.Context
 .. abjad-lineage:: abjad.tools.contexttools.Context.Context.Context
 
 .. autoclass:: abjad.tools.contexttools.Context.Context.Context
+   :noindex:
 
 Bases
 -----

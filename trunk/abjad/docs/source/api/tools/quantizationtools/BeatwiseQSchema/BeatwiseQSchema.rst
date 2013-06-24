@@ -4,6 +4,7 @@ quantizationtools.BeatwiseQSchema
 .. abjad-lineage:: abjad.tools.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema
 
 .. autoclass:: abjad.tools.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema
+   :noindex:
 
 Bases
 -----

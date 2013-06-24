@@ -4,6 +4,7 @@ pitchtools.NamedChromaticPitchSegment
 .. abjad-lineage:: abjad.tools.pitchtools.NamedChromaticPitchSegment.NamedChromaticPitchSegment.NamedChromaticPitchSegment
 
 .. autoclass:: abjad.tools.pitchtools.NamedChromaticPitchSegment.NamedChromaticPitchSegment.NamedChromaticPitchSegment
+   :noindex:
 
 Bases
 -----

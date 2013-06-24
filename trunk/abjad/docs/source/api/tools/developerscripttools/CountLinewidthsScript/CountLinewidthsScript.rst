@@ -4,6 +4,7 @@ developerscripttools.CountLinewidthsScript
 .. abjad-lineage:: abjad.tools.developerscripttools.CountLinewidthsScript.CountLinewidthsScript.CountLinewidthsScript
 
 .. autoclass:: abjad.tools.developerscripttools.CountLinewidthsScript.CountLinewidthsScript.CountLinewidthsScript
+   :noindex:
 
 Bases
 -----

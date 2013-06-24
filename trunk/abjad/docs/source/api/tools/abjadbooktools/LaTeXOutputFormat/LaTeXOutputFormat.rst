@@ -4,6 +4,7 @@ abjadbooktools.LaTeXOutputFormat
 .. abjad-lineage:: abjad.tools.abjadbooktools.LaTeXOutputFormat.LaTeXOutputFormat.LaTeXOutputFormat
 
 .. autoclass:: abjad.tools.abjadbooktools.LaTeXOutputFormat.LaTeXOutputFormat.LaTeXOutputFormat
+   :noindex:
 
 Bases
 -----

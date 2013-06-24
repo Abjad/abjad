@@ -4,6 +4,7 @@ exceptiontools.MarkError
 .. abjad-lineage:: abjad.tools.exceptiontools.MarkError.MarkError
 
 .. autoclass:: abjad.tools.exceptiontools.MarkError.MarkError
+   :noindex:
 
 Bases
 -----

@@ -4,6 +4,7 @@ scoretemplatetools.ScoreTemplate
 .. abjad-lineage:: abjad.tools.scoretemplatetools.ScoreTemplate.ScoreTemplate.ScoreTemplate
 
 .. autoclass:: abjad.tools.scoretemplatetools.ScoreTemplate.ScoreTemplate.ScoreTemplate
+   :noindex:
 
 Bases
 -----

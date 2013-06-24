@@ -4,6 +4,7 @@ lilypondparsertools.GuileProxy
 .. abjad-lineage:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy
 
 .. autoclass:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy
+   :noindex:
 
 Bases
 -----

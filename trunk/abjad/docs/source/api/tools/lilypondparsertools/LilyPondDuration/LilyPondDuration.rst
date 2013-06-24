@@ -4,6 +4,7 @@ lilypondparsertools.LilyPondDuration
 .. abjad-lineage:: abjad.tools.lilypondparsertools.LilyPondDuration.LilyPondDuration.LilyPondDuration
 
 .. autoclass:: abjad.tools.lilypondparsertools.LilyPondDuration.LilyPondDuration.LilyPondDuration
+   :noindex:
 
 Bases
 -----

@@ -4,6 +4,7 @@ instrumenttools.Bassoon
 .. abjad-lineage:: abjad.tools.instrumenttools.Bassoon.Bassoon.Bassoon
 
 .. autoclass:: abjad.tools.instrumenttools.Bassoon.Bassoon.Bassoon
+   :noindex:
 
 Bases
 -----

@@ -4,6 +4,7 @@ contexttools.ClefMark
 .. abjad-lineage:: abjad.tools.contexttools.ClefMark.ClefMark.ClefMark
 
 .. autoclass:: abjad.tools.contexttools.ClefMark.ClefMark.ClefMark
+   :noindex:
 
 Bases
 -----

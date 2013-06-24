@@ -4,6 +4,7 @@ wellformednesstools.MisrepresentedFlagCheck
 .. abjad-lineage:: abjad.tools.wellformednesstools.MisrepresentedFlagCheck.MisrepresentedFlagCheck.MisrepresentedFlagCheck
 
 .. autoclass:: abjad.tools.wellformednesstools.MisrepresentedFlagCheck.MisrepresentedFlagCheck.MisrepresentedFlagCheck
+   :noindex:
 
 Bases
 -----

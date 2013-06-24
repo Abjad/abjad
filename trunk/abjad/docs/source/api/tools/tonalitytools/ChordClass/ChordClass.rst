@@ -4,6 +4,7 @@ tonalitytools.ChordClass
 .. abjad-lineage:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass
 
 .. autoclass:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass
+   :noindex:
 
 Bases
 -----

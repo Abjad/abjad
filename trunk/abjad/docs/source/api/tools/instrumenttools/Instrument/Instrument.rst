@@ -4,6 +4,7 @@ instrumenttools.Instrument
 .. abjad-lineage:: abjad.tools.instrumenttools.Instrument.Instrument.Instrument
 
 .. autoclass:: abjad.tools.instrumenttools.Instrument.Instrument.Instrument
+   :noindex:
 
 Bases
 -----

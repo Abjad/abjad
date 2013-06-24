@@ -4,6 +4,7 @@ schemetools.Scheme
 .. abjad-lineage:: abjad.tools.schemetools.Scheme.Scheme.Scheme
 
 .. autoclass:: abjad.tools.schemetools.Scheme.Scheme.Scheme
+   :noindex:
 
 Bases
 -----

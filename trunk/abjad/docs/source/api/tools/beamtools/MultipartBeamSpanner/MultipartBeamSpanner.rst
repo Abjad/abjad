@@ -4,6 +4,7 @@ beamtools.MultipartBeamSpanner
 .. abjad-lineage:: abjad.tools.beamtools.MultipartBeamSpanner.MultipartBeamSpanner.MultipartBeamSpanner
 
 .. autoclass:: abjad.tools.beamtools.MultipartBeamSpanner.MultipartBeamSpanner.MultipartBeamSpanner
+   :noindex:
 
 Bases
 -----

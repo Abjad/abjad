@@ -4,6 +4,7 @@ componenttools.Descendants
 .. abjad-lineage:: abjad.tools.componenttools.Descendants.Descendants.Descendants
 
 .. autoclass:: abjad.tools.componenttools.Descendants.Descendants.Descendants
+   :noindex:
 
 Bases
 -----

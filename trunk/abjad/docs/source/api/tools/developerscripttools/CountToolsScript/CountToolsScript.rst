@@ -4,6 +4,7 @@ developerscripttools.CountToolsScript
 .. abjad-lineage:: abjad.tools.developerscripttools.CountToolsScript.CountToolsScript.CountToolsScript
 
 .. autoclass:: abjad.tools.developerscripttools.CountToolsScript.CountToolsScript.CountToolsScript
+   :noindex:
 
 Bases
 -----

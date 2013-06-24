@@ -4,6 +4,7 @@ containertools.Cluster
 .. abjad-lineage:: abjad.tools.containertools.Cluster.Cluster.Cluster
 
 .. autoclass:: abjad.tools.containertools.Cluster.Cluster.Cluster
+   :noindex:
 
 Bases
 -----

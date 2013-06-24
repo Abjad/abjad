@@ -4,6 +4,7 @@ exceptiontools.ExtraMarkError
 .. abjad-lineage:: abjad.tools.exceptiontools.ExtraMarkError.ExtraMarkError
 
 .. autoclass:: abjad.tools.exceptiontools.ExtraMarkError.ExtraMarkError
+   :noindex:
 
 Bases
 -----

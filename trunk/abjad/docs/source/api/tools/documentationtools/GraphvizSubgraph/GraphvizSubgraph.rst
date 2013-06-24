@@ -4,6 +4,7 @@ documentationtools.GraphvizSubgraph
 .. abjad-lineage:: abjad.tools.documentationtools.GraphvizSubgraph.GraphvizSubgraph.GraphvizSubgraph
 
 .. autoclass:: abjad.tools.documentationtools.GraphvizSubgraph.GraphvizSubgraph.GraphvizSubgraph
+   :noindex:
 
 Bases
 -----

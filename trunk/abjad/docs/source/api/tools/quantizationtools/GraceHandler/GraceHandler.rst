@@ -4,6 +4,7 @@ quantizationtools.GraceHandler
 .. abjad-lineage:: abjad.tools.quantizationtools.GraceHandler.GraceHandler.GraceHandler
 
 .. autoclass:: abjad.tools.quantizationtools.GraceHandler.GraceHandler.GraceHandler
+   :noindex:
 
 Bases
 -----

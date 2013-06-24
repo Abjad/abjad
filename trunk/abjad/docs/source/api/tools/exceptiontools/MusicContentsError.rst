@@ -4,6 +4,7 @@ exceptiontools.MusicContentsError
 .. abjad-lineage:: abjad.tools.exceptiontools.MusicContentsError.MusicContentsError
 
 .. autoclass:: abjad.tools.exceptiontools.MusicContentsError.MusicContentsError
+   :noindex:
 
 Bases
 -----

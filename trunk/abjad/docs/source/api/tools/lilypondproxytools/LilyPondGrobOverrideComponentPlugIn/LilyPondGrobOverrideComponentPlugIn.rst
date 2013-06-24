@@ -4,6 +4,7 @@ lilypondproxytools.LilyPondGrobOverrideComponentPlugIn
 .. abjad-lineage:: abjad.tools.lilypondproxytools.LilyPondGrobOverrideComponentPlugIn.LilyPondGrobOverrideComponentPlugIn.LilyPondGrobOverrideComponentPlugIn
 
 .. autoclass:: abjad.tools.lilypondproxytools.LilyPondGrobOverrideComponentPlugIn.LilyPondGrobOverrideComponentPlugIn.LilyPondGrobOverrideComponentPlugIn
+   :noindex:
 
 Bases
 -----

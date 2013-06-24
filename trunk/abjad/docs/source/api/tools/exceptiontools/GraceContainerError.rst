@@ -4,6 +4,7 @@ exceptiontools.GraceContainerError
 .. abjad-lineage:: abjad.tools.exceptiontools.GraceContainerError.GraceContainerError
 
 .. autoclass:: abjad.tools.exceptiontools.GraceContainerError.GraceContainerError
+   :noindex:
 
 Bases
 -----

@@ -4,6 +4,7 @@ instrumenttools.ClarinetInA
 .. abjad-lineage:: abjad.tools.instrumenttools.ClarinetInA.ClarinetInA.ClarinetInA
 
 .. autoclass:: abjad.tools.instrumenttools.ClarinetInA.ClarinetInA.ClarinetInA
+   :noindex:
 
 Bases
 -----

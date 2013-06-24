@@ -4,6 +4,7 @@ quantizationtools.QGrid
 .. abjad-lineage:: abjad.tools.quantizationtools.QGrid.QGrid.QGrid
 
 .. autoclass:: abjad.tools.quantizationtools.QGrid.QGrid.QGrid
+   :noindex:
 
 Bases
 -----

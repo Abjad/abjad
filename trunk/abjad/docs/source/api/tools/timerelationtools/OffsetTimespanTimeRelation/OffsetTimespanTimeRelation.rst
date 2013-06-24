@@ -4,6 +4,7 @@ timerelationtools.OffsetTimespanTimeRelation
 .. abjad-lineage:: abjad.tools.timerelationtools.OffsetTimespanTimeRelation.OffsetTimespanTimeRelation.OffsetTimespanTimeRelation
 
 .. autoclass:: abjad.tools.timerelationtools.OffsetTimespanTimeRelation.OffsetTimespanTimeRelation.OffsetTimespanTimeRelation
+   :noindex:
 
 Bases
 -----

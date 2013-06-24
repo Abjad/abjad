@@ -4,6 +4,7 @@ exceptiontools.MissingNamedComponentError
 .. abjad-lineage:: abjad.tools.exceptiontools.MissingNamedComponentError.MissingNamedComponentError
 
 .. autoclass:: abjad.tools.exceptiontools.MissingNamedComponentError.MissingNamedComponentError
+   :noindex:
 
 Bases
 -----

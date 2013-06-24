@@ -4,6 +4,7 @@ lilypondfiletools.AbjadRevisionToken
 .. abjad-lineage:: abjad.tools.lilypondfiletools.AbjadRevisionToken.AbjadRevisionToken.AbjadRevisionToken
 
 .. autoclass:: abjad.tools.lilypondfiletools.AbjadRevisionToken.AbjadRevisionToken.AbjadRevisionToken
+   :noindex:
 
 Bases
 -----

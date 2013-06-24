@@ -4,6 +4,7 @@ documentationtools.ReSTInheritanceDiagram
 .. abjad-lineage:: abjad.tools.documentationtools.ReSTInheritanceDiagram.ReSTInheritanceDiagram.ReSTInheritanceDiagram
 
 .. autoclass:: abjad.tools.documentationtools.ReSTInheritanceDiagram.ReSTInheritanceDiagram.ReSTInheritanceDiagram
+   :noindex:
 
 Bases
 -----

@@ -4,6 +4,7 @@ timeintervaltools.TimeIntervalTreeDictionary
 .. abjad-lineage:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary
 
 .. autoclass:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary
+   :noindex:
 
 Bases
 -----

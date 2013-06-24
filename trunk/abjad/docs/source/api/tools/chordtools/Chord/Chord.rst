@@ -4,6 +4,7 @@ chordtools.Chord
 .. abjad-lineage:: abjad.tools.chordtools.Chord.Chord.Chord
 
 .. autoclass:: abjad.tools.chordtools.Chord.Chord.Chord
+   :noindex:
 
 Bases
 -----

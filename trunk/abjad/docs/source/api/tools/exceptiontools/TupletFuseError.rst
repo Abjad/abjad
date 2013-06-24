@@ -4,6 +4,7 @@ exceptiontools.TupletFuseError
 .. abjad-lineage:: abjad.tools.exceptiontools.TupletFuseError.TupletFuseError
 
 .. autoclass:: abjad.tools.exceptiontools.TupletFuseError.TupletFuseError
+   :noindex:
 
 Bases
 -----

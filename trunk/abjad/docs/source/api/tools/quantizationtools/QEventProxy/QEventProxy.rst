@@ -4,6 +4,7 @@ quantizationtools.QEventProxy
 .. abjad-lineage:: abjad.tools.quantizationtools.QEventProxy.QEventProxy.QEventProxy
 
 .. autoclass:: abjad.tools.quantizationtools.QEventProxy.QEventProxy.QEventProxy
+   :noindex:
 
 Bases
 -----

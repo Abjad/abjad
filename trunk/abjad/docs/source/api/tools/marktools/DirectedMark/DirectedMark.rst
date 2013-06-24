@@ -4,6 +4,7 @@ marktools.DirectedMark
 .. abjad-lineage:: abjad.tools.marktools.DirectedMark.DirectedMark.DirectedMark
 
 .. autoclass:: abjad.tools.marktools.DirectedMark.DirectedMark.DirectedMark
+   :noindex:
 
 Bases
 -----

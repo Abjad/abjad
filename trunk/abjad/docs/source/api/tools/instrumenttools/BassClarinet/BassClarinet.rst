@@ -4,6 +4,7 @@ instrumenttools.BassClarinet
 .. abjad-lineage:: abjad.tools.instrumenttools.BassClarinet.BassClarinet.BassClarinet
 
 .. autoclass:: abjad.tools.instrumenttools.BassClarinet.BassClarinet.BassClarinet
+   :noindex:
 
 Bases
 -----

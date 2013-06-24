@@ -4,6 +4,7 @@ notetools.NaturalHarmonic
 .. abjad-lineage:: abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic
 
 .. autoclass:: abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic
+   :noindex:
 
 Bases
 -----

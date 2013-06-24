@@ -4,6 +4,7 @@ testtools.BenchmarkScoreMaker
 .. abjad-lineage:: abjad.tools.testtools.BenchmarkScoreMaker.BenchmarkScoreMaker.BenchmarkScoreMaker
 
 .. autoclass:: abjad.tools.testtools.BenchmarkScoreMaker.BenchmarkScoreMaker.BenchmarkScoreMaker
+   :noindex:
 
 Bases
 -----

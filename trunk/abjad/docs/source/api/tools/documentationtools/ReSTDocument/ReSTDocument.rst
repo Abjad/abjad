@@ -4,6 +4,7 @@ documentationtools.ReSTDocument
 .. abjad-lineage:: abjad.tools.documentationtools.ReSTDocument.ReSTDocument.ReSTDocument
 
 .. autoclass:: abjad.tools.documentationtools.ReSTDocument.ReSTDocument.ReSTDocument
+   :noindex:
 
 Bases
 -----

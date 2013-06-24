@@ -4,6 +4,7 @@ documentationtools.ReSTTOCItem
 .. abjad-lineage:: abjad.tools.documentationtools.ReSTTOCItem.ReSTTOCItem.ReSTTOCItem
 
 .. autoclass:: abjad.tools.documentationtools.ReSTTOCItem.ReSTTOCItem.ReSTTOCItem
+   :noindex:
 
 Bases
 -----

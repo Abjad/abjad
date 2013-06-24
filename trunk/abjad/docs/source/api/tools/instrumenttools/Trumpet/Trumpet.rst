@@ -4,6 +4,7 @@ instrumenttools.Trumpet
 .. abjad-lineage:: abjad.tools.instrumenttools.Trumpet.Trumpet.Trumpet
 
 .. autoclass:: abjad.tools.instrumenttools.Trumpet.Trumpet.Trumpet
+   :noindex:
 
 Bases
 -----

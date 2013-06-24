@@ -4,6 +4,7 @@ pitchtools.IntervalSet
 .. abjad-lineage:: abjad.tools.pitchtools.IntervalSet.IntervalSet.IntervalSet
 
 .. autoclass:: abjad.tools.pitchtools.IntervalSet.IntervalSet.IntervalSet
+   :noindex:
 
 Bases
 -----

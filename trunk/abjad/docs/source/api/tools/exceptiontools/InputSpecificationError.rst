@@ -4,6 +4,7 @@ exceptiontools.InputSpecificationError
 .. abjad-lineage:: abjad.tools.exceptiontools.InputSpecificationError.InputSpecificationError
 
 .. autoclass:: abjad.tools.exceptiontools.InputSpecificationError.InputSpecificationError
+   :noindex:
 
 Bases
 -----

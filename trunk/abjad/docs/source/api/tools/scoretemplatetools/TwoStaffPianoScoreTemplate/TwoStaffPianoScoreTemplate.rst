@@ -4,6 +4,7 @@ scoretemplatetools.TwoStaffPianoScoreTemplate
 .. abjad-lineage:: abjad.tools.scoretemplatetools.TwoStaffPianoScoreTemplate.TwoStaffPianoScoreTemplate.TwoStaffPianoScoreTemplate
 
 .. autoclass:: abjad.tools.scoretemplatetools.TwoStaffPianoScoreTemplate.TwoStaffPianoScoreTemplate.TwoStaffPianoScoreTemplate
+   :noindex:
 
 Bases
 -----

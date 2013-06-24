@@ -4,6 +4,7 @@ layouttools.SpacingIndication
 .. abjad-lineage:: abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication
 
 .. autoclass:: abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication
+   :noindex:
 
 Bases
 -----

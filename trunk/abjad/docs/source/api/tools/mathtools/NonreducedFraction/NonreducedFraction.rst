@@ -4,6 +4,7 @@ mathtools.NonreducedFraction
 .. abjad-lineage:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction
 
 .. autoclass:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction
+   :noindex:
 
 Bases
 -----
@@ -72,7 +73,7 @@ Methods
 .. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.with_multiple_of_denominator
    :noindex:
 
-Class Methods
+Class methods
 -------------
 
 .. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.from_decimal

@@ -4,6 +4,7 @@ exceptiontools.UnderfullContainerError
 .. abjad-lineage:: abjad.tools.exceptiontools.UnderfullContainerError.UnderfullContainerError
 
 .. autoclass:: abjad.tools.exceptiontools.UnderfullContainerError.UnderfullContainerError
+   :noindex:
 
 Bases
 -----

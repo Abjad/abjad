@@ -4,6 +4,7 @@ durationtools.Duration
 .. abjad-lineage:: abjad.tools.durationtools.Duration.Duration.Duration
 
 .. autoclass:: abjad.tools.durationtools.Duration.Duration.Duration
+   :noindex:
 
 Bases
 -----
@@ -93,7 +94,7 @@ Methods
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.with_denominator
    :noindex:
 
-Class Methods
+Class methods
 -------------
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.from_decimal
@@ -102,7 +103,7 @@ Class Methods
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.from_float
    :noindex:
 
-Static Methods
+Static methods
 --------------
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.from_lilypond_duration_string

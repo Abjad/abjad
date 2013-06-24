@@ -4,6 +4,7 @@ tonalitytools.ChordQualityIndicator
 .. abjad-lineage:: abjad.tools.tonalitytools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator
 
 .. autoclass:: abjad.tools.tonalitytools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator
+   :noindex:
 
 Bases
 -----

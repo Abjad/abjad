@@ -4,6 +4,7 @@ durationtools.Multiplier
 .. abjad-lineage:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier
 
 .. autoclass:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier
+   :noindex:
 
 Bases
 -----
@@ -98,7 +99,7 @@ Methods
 .. automethod:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.with_denominator
    :noindex:
 
-Class Methods
+Class methods
 -------------
 
 .. automethod:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.from_decimal
@@ -107,7 +108,7 @@ Class Methods
 .. automethod:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.from_float
    :noindex:
 
-Static Methods
+Static methods
 --------------
 
 .. automethod:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.from_lilypond_duration_string

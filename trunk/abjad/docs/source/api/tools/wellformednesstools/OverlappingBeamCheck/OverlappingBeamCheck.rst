@@ -4,6 +4,7 @@ wellformednesstools.OverlappingBeamCheck
 .. abjad-lineage:: abjad.tools.wellformednesstools.OverlappingBeamCheck.OverlappingBeamCheck.OverlappingBeamCheck
 
 .. autoclass:: abjad.tools.wellformednesstools.OverlappingBeamCheck.OverlappingBeamCheck.OverlappingBeamCheck
+   :noindex:
 
 Bases
 -----

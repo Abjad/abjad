@@ -4,6 +4,7 @@ documentationtools.InheritanceGraph
 .. abjad-lineage:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph
 
 .. autoclass:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph
+   :noindex:
 
 Bases
 -----

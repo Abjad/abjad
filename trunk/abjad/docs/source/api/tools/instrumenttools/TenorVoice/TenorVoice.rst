@@ -4,6 +4,7 @@ instrumenttools.TenorVoice
 .. abjad-lineage:: abjad.tools.instrumenttools.TenorVoice.TenorVoice.TenorVoice
 
 .. autoclass:: abjad.tools.instrumenttools.TenorVoice.TenorVoice.TenorVoice
+   :noindex:
 
 Bases
 -----

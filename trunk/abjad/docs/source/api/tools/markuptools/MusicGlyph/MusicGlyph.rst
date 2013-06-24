@@ -4,6 +4,7 @@ markuptools.MusicGlyph
 .. abjad-lineage:: abjad.tools.markuptools.MusicGlyph.MusicGlyph.MusicGlyph
 
 .. autoclass:: abjad.tools.markuptools.MusicGlyph.MusicGlyph.MusicGlyph
+   :noindex:
 
 Bases
 -----

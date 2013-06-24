@@ -4,6 +4,7 @@ spannertools.ComplexGlissandoSpanner
 .. abjad-lineage:: abjad.tools.spannertools.ComplexGlissandoSpanner.ComplexGlissandoSpanner.ComplexGlissandoSpanner
 
 .. autoclass:: abjad.tools.spannertools.ComplexGlissandoSpanner.ComplexGlissandoSpanner.ComplexGlissandoSpanner
+   :noindex:
 
 Bases
 -----

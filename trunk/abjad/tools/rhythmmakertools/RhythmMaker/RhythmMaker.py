@@ -13,10 +13,6 @@ class RhythmMaker(Maker):
     Rhythm maker abstract base class.
     '''
 
-    ### CLASS VARIABLES ###
-
-    __metaclass__ = abc.ABCMeta
-
     ### INITIALIZER ###
 
     @abc.abstractmethod

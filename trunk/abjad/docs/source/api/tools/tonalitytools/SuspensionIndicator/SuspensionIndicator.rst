@@ -4,6 +4,7 @@ tonalitytools.SuspensionIndicator
 .. abjad-lineage:: abjad.tools.tonalitytools.SuspensionIndicator.SuspensionIndicator.SuspensionIndicator
 
 .. autoclass:: abjad.tools.tonalitytools.SuspensionIndicator.SuspensionIndicator.SuspensionIndicator
+   :noindex:
 
 Bases
 -----

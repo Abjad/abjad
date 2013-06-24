@@ -4,6 +4,7 @@ exceptiontools.MissingMeasureError
 .. abjad-lineage:: abjad.tools.exceptiontools.MissingMeasureError.MissingMeasureError
 
 .. autoclass:: abjad.tools.exceptiontools.MissingMeasureError.MissingMeasureError
+   :noindex:
 
 Bases
 -----

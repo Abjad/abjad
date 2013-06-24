@@ -4,6 +4,7 @@ pitchtools.HarmonicCounterpointInterval
 .. abjad-lineage:: abjad.tools.pitchtools.HarmonicCounterpointInterval.HarmonicCounterpointInterval.HarmonicCounterpointInterval
 
 .. autoclass:: abjad.tools.pitchtools.HarmonicCounterpointInterval.HarmonicCounterpointInterval.HarmonicCounterpointInterval
+   :noindex:
 
 Bases
 -----

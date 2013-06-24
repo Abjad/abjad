@@ -4,6 +4,7 @@ containertools.Container
 .. abjad-lineage:: abjad.tools.containertools.Container.Container.Container
 
 .. autoclass:: abjad.tools.containertools.Container.Container.Container
+   :noindex:
 
 Bases
 -----

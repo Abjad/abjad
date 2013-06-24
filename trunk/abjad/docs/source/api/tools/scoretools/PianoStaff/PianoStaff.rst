@@ -4,6 +4,7 @@ scoretools.PianoStaff
 .. abjad-lineage:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff
 
 .. autoclass:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff
+   :noindex:
 
 Bases
 -----

@@ -4,6 +4,7 @@ pitchtools.MelodicCounterpointInterval
 .. abjad-lineage:: abjad.tools.pitchtools.MelodicCounterpointInterval.MelodicCounterpointInterval.MelodicCounterpointInterval
 
 .. autoclass:: abjad.tools.pitchtools.MelodicCounterpointInterval.MelodicCounterpointInterval.MelodicCounterpointInterval
+   :noindex:
 
 Bases
 -----

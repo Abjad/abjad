@@ -4,6 +4,7 @@ instrumenttools.Piccolo
 .. abjad-lineage:: abjad.tools.instrumenttools.Piccolo.Piccolo.Piccolo
 
 .. autoclass:: abjad.tools.instrumenttools.Piccolo.Piccolo.Piccolo
+   :noindex:
 
 Bases
 -----

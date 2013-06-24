@@ -4,6 +4,7 @@ lilypondparsertools.SequentialMusic
 .. abjad-lineage:: abjad.tools.lilypondparsertools.SequentialMusic.SequentialMusic.SequentialMusic
 
 .. autoclass:: abjad.tools.lilypondparsertools.SequentialMusic.SequentialMusic.SequentialMusic
+   :noindex:
 
 Bases
 -----

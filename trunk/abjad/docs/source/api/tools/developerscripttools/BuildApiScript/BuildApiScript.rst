@@ -4,6 +4,7 @@ developerscripttools.BuildApiScript
 .. abjad-lineage:: abjad.tools.developerscripttools.BuildApiScript.BuildApiScript.BuildApiScript
 
 .. autoclass:: abjad.tools.developerscripttools.BuildApiScript.BuildApiScript.BuildApiScript
+   :noindex:
 
 Bases
 -----

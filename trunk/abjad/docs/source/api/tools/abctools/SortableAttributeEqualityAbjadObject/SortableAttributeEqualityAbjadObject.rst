@@ -4,6 +4,7 @@ abctools.SortableAttributeEqualityAbjadObject
 .. abjad-lineage:: abjad.tools.abctools.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject
 
 .. autoclass:: abjad.tools.abctools.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject
+   :noindex:
 
 Bases
 -----

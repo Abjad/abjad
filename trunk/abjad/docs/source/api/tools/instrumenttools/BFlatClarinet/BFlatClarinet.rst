@@ -4,6 +4,7 @@ instrumenttools.BFlatClarinet
 .. abjad-lineage:: abjad.tools.instrumenttools.BFlatClarinet.BFlatClarinet.BFlatClarinet
 
 .. autoclass:: abjad.tools.instrumenttools.BFlatClarinet.BFlatClarinet.BFlatClarinet
+   :noindex:
 
 Bases
 -----

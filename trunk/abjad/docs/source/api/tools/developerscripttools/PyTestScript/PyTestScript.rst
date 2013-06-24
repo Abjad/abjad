@@ -4,6 +4,7 @@ developerscripttools.PyTestScript
 .. abjad-lineage:: abjad.tools.developerscripttools.PyTestScript.PyTestScript.PyTestScript
 
 .. autoclass:: abjad.tools.developerscripttools.PyTestScript.PyTestScript.PyTestScript
+   :noindex:
 
 Bases
 -----

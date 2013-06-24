@@ -4,6 +4,7 @@ contexttools.TempoMarkInventory
 .. abjad-lineage:: abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory
 
 .. autoclass:: abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory
+   :noindex:
 
 Bases
 -----

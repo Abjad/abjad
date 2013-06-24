@@ -4,6 +4,7 @@ exceptiontools.TimeSignatureError
 .. abjad-lineage:: abjad.tools.exceptiontools.TimeSignatureError.TimeSignatureError
 
 .. autoclass:: abjad.tools.exceptiontools.TimeSignatureError.TimeSignatureError
+   :noindex:
 
 Bases
 -----

@@ -4,6 +4,7 @@ contexttools.KeySignatureMark
 .. abjad-lineage:: abjad.tools.contexttools.KeySignatureMark.KeySignatureMark.KeySignatureMark
 
 .. autoclass:: abjad.tools.contexttools.KeySignatureMark.KeySignatureMark.KeySignatureMark
+   :noindex:
 
 Bases
 -----

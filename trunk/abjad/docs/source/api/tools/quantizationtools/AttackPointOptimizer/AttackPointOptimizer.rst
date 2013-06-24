@@ -4,6 +4,7 @@ quantizationtools.AttackPointOptimizer
 .. abjad-lineage:: abjad.tools.quantizationtools.AttackPointOptimizer.AttackPointOptimizer.AttackPointOptimizer
 
 .. autoclass:: abjad.tools.quantizationtools.AttackPointOptimizer.AttackPointOptimizer.AttackPointOptimizer
+   :noindex:
 
 Bases
 -----

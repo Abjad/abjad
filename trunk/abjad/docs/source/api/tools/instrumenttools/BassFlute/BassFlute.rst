@@ -4,6 +4,7 @@ instrumenttools.BassFlute
 .. abjad-lineage:: abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute
 
 .. autoclass:: abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute
+   :noindex:
 
 Bases
 -----

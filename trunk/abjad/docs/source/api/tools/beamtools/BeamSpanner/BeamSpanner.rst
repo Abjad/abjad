@@ -4,6 +4,7 @@ beamtools.BeamSpanner
 .. abjad-lineage:: abjad.tools.beamtools.BeamSpanner.BeamSpanner.BeamSpanner
 
 .. autoclass:: abjad.tools.beamtools.BeamSpanner.BeamSpanner.BeamSpanner
+   :noindex:
 
 Bases
 -----

@@ -4,6 +4,7 @@ quantizationtools.MeasurewiseAttackPointOptimizer
 .. abjad-lineage:: abjad.tools.quantizationtools.MeasurewiseAttackPointOptimizer.MeasurewiseAttackPointOptimizer.MeasurewiseAttackPointOptimizer
 
 .. autoclass:: abjad.tools.quantizationtools.MeasurewiseAttackPointOptimizer.MeasurewiseAttackPointOptimizer.MeasurewiseAttackPointOptimizer
+   :noindex:
 
 Bases
 -----

@@ -4,6 +4,7 @@ mathtools.NonreducedRatio
 .. abjad-lineage:: abjad.tools.mathtools.NonreducedRatio.NonreducedRatio.NonreducedRatio
 
 .. autoclass:: abjad.tools.mathtools.NonreducedRatio.NonreducedRatio.NonreducedRatio
+   :noindex:
 
 Bases
 -----

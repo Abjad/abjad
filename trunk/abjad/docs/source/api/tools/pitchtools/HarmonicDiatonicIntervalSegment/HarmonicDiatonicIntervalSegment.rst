@@ -4,6 +4,7 @@ pitchtools.HarmonicDiatonicIntervalSegment
 .. abjad-lineage:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSegment.HarmonicDiatonicIntervalSegment.HarmonicDiatonicIntervalSegment
 
 .. autoclass:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSegment.HarmonicDiatonicIntervalSegment.HarmonicDiatonicIntervalSegment
+   :noindex:
 
 Bases
 -----

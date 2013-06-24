@@ -4,6 +4,7 @@ timesignaturetools.MetricalHierarchyInventory
 .. abjad-lineage:: abjad.tools.timesignaturetools.MetricalHierarchyInventory.MetricalHierarchyInventory.MetricalHierarchyInventory
 
 .. autoclass:: abjad.tools.timesignaturetools.MetricalHierarchyInventory.MetricalHierarchyInventory.MetricalHierarchyInventory
+   :noindex:
 
 Bases
 -----

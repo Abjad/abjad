@@ -4,6 +4,7 @@ lilypondfiletools.ScoreBlock
 .. abjad-lineage:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock
 
 .. autoclass:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock
+   :noindex:
 
 Bases
 -----

@@ -4,6 +4,7 @@ mathtools.Ratio
 .. abjad-lineage:: abjad.tools.mathtools.Ratio.Ratio.Ratio
 
 .. autoclass:: abjad.tools.mathtools.Ratio.Ratio.Ratio
+   :noindex:
 
 Bases
 -----

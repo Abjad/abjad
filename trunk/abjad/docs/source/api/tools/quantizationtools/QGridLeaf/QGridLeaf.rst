@@ -4,6 +4,7 @@ quantizationtools.QGridLeaf
 .. abjad-lineage:: abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf
 
 .. autoclass:: abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf
+   :noindex:
 
 Bases
 -----

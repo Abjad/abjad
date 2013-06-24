@@ -4,6 +4,7 @@ instrumenttools.Glockenspiel
 .. abjad-lineage:: abjad.tools.instrumenttools.Glockenspiel.Glockenspiel.Glockenspiel
 
 .. autoclass:: abjad.tools.instrumenttools.Glockenspiel.Glockenspiel.Glockenspiel
+   :noindex:
 
 Bases
 -----

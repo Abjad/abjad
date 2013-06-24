@@ -4,6 +4,7 @@ wellformednesstools.MispitchedTieCheck
 .. abjad-lineage:: abjad.tools.wellformednesstools.MispitchedTieCheck.MispitchedTieCheck.MispitchedTieCheck
 
 .. autoclass:: abjad.tools.wellformednesstools.MispitchedTieCheck.MispitchedTieCheck.MispitchedTieCheck
+   :noindex:
 
 Bases
 -----

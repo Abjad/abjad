@@ -4,6 +4,7 @@ instrumenttools.BrassInstrument
 .. abjad-lineage:: abjad.tools.instrumenttools.BrassInstrument.BrassInstrument.BrassInstrument
 
 .. autoclass:: abjad.tools.instrumenttools.BrassInstrument.BrassInstrument.BrassInstrument
+   :noindex:
 
 Bases
 -----

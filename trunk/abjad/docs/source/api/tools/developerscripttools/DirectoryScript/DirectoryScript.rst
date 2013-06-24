@@ -4,6 +4,7 @@ developerscripttools.DirectoryScript
 .. abjad-lineage:: abjad.tools.developerscripttools.DirectoryScript.DirectoryScript.DirectoryScript
 
 .. autoclass:: abjad.tools.developerscripttools.DirectoryScript.DirectoryScript.DirectoryScript
+   :noindex:
 
 Bases
 -----

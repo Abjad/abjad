@@ -4,6 +4,7 @@ instrumenttools.Vibraphone
 .. abjad-lineage:: abjad.tools.instrumenttools.Vibraphone.Vibraphone.Vibraphone
 
 .. autoclass:: abjad.tools.instrumenttools.Vibraphone.Vibraphone.Vibraphone
+   :noindex:
 
 Bases
 -----

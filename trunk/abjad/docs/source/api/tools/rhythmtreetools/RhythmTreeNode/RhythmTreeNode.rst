@@ -4,6 +4,7 @@ rhythmtreetools.RhythmTreeNode
 .. abjad-lineage:: abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode
 
 .. autoclass:: abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode
+   :noindex:
 
 Bases
 -----

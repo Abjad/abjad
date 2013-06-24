@@ -4,6 +4,7 @@ pitchtools.DiatonicObject
 .. abjad-lineage:: abjad.tools.pitchtools.DiatonicObject.DiatonicObject.DiatonicObject
 
 .. autoclass:: abjad.tools.pitchtools.DiatonicObject.DiatonicObject.DiatonicObject
+   :noindex:
 
 Bases
 -----

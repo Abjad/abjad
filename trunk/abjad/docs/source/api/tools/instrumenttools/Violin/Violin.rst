@@ -4,6 +4,7 @@ instrumenttools.Violin
 .. abjad-lineage:: abjad.tools.instrumenttools.Violin.Violin.Violin
 
 .. autoclass:: abjad.tools.instrumenttools.Violin.Violin.Violin
+   :noindex:
 
 Bases
 -----

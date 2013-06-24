@@ -4,6 +4,7 @@ lilypondfiletools.BookBlock
 .. abjad-lineage:: abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock
 
 .. autoclass:: abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock
+   :noindex:
 
 Bases
 -----

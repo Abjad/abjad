@@ -4,6 +4,7 @@ instrumenttools.BaritoneSaxophone
 .. abjad-lineage:: abjad.tools.instrumenttools.BaritoneSaxophone.BaritoneSaxophone.BaritoneSaxophone
 
 .. autoclass:: abjad.tools.instrumenttools.BaritoneSaxophone.BaritoneSaxophone.BaritoneSaxophone
+   :noindex:
 
 Bases
 -----

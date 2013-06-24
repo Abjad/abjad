@@ -4,6 +4,7 @@ timeintervaltools.TimeIntervalAggregateMixin
 .. abjad-lineage:: abjad.tools.timeintervaltools.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin
 
 .. autoclass:: abjad.tools.timeintervaltools.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin
+   :noindex:
 
 Bases
 -----

@@ -4,6 +4,7 @@ pitchtools.NumberedChromaticPitchClassVector
 .. abjad-lineage:: abjad.tools.pitchtools.NumberedChromaticPitchClassVector.NumberedChromaticPitchClassVector.NumberedChromaticPitchClassVector
 
 .. autoclass:: abjad.tools.pitchtools.NumberedChromaticPitchClassVector.NumberedChromaticPitchClassVector.NumberedChromaticPitchClassVector
+   :noindex:
 
 Bases
 -----

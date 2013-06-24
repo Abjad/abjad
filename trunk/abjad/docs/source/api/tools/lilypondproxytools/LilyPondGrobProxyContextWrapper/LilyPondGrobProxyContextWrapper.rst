@@ -4,6 +4,7 @@ lilypondproxytools.LilyPondGrobProxyContextWrapper
 .. abjad-lineage:: abjad.tools.lilypondproxytools.LilyPondGrobProxyContextWrapper.LilyPondGrobProxyContextWrapper.LilyPondGrobProxyContextWrapper
 
 .. autoclass:: abjad.tools.lilypondproxytools.LilyPondGrobProxyContextWrapper.LilyPondGrobProxyContextWrapper.LilyPondGrobProxyContextWrapper
+   :noindex:
 
 Bases
 -----

@@ -4,6 +4,7 @@ pitchtools.HarmonicChromaticIntervalSegment
 .. abjad-lineage:: abjad.tools.pitchtools.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment
 
 .. autoclass:: abjad.tools.pitchtools.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment
+   :noindex:
 
 Bases
 -----

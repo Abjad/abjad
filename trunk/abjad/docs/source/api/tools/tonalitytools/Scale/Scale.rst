@@ -4,6 +4,7 @@ tonalitytools.Scale
 .. abjad-lineage:: abjad.tools.tonalitytools.Scale.Scale.Scale
 
 .. autoclass:: abjad.tools.tonalitytools.Scale.Scale.Scale
+   :noindex:
 
 Bases
 -----

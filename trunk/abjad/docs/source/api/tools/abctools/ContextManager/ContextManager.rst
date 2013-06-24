@@ -4,6 +4,7 @@ abctools.ContextManager
 .. abjad-lineage:: abjad.tools.abctools.ContextManager.ContextManager.ContextManager
 
 .. autoclass:: abjad.tools.abctools.ContextManager.ContextManager.ContextManager
+   :noindex:
 
 Bases
 -----

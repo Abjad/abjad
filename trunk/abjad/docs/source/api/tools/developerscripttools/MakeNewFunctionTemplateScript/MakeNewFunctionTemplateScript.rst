@@ -4,6 +4,7 @@ developerscripttools.MakeNewFunctionTemplateScript
 .. abjad-lineage:: abjad.tools.developerscripttools.MakeNewFunctionTemplateScript.MakeNewFunctionTemplateScript.MakeNewFunctionTemplateScript
 
 .. autoclass:: abjad.tools.developerscripttools.MakeNewFunctionTemplateScript.MakeNewFunctionTemplateScript.MakeNewFunctionTemplateScript
+   :noindex:
 
 Bases
 -----

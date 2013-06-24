@@ -4,6 +4,7 @@ exceptiontools.LineBreakError
 .. abjad-lineage:: abjad.tools.exceptiontools.LineBreakError.LineBreakError
 
 .. autoclass:: abjad.tools.exceptiontools.LineBreakError.LineBreakError
+   :noindex:
 
 Bases
 -----

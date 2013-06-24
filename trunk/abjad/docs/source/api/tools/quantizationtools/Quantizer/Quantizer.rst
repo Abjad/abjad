@@ -4,6 +4,7 @@ quantizationtools.Quantizer
 .. abjad-lineage:: abjad.tools.quantizationtools.Quantizer.Quantizer.Quantizer
 
 .. autoclass:: abjad.tools.quantizationtools.Quantizer.Quantizer.Quantizer
+   :noindex:
 
 Bases
 -----

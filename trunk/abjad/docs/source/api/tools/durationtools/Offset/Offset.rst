@@ -4,6 +4,7 @@ durationtools.Offset
 .. abjad-lineage:: abjad.tools.durationtools.Offset.Offset.Offset
 
 .. autoclass:: abjad.tools.durationtools.Offset.Offset.Offset
+   :noindex:
 
 Bases
 -----
@@ -95,7 +96,7 @@ Methods
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.with_denominator
    :noindex:
 
-Class Methods
+Class methods
 -------------
 
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.from_decimal
@@ -104,7 +105,7 @@ Class Methods
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.from_float
    :noindex:
 
-Static Methods
+Static methods
 --------------
 
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.from_lilypond_duration_string

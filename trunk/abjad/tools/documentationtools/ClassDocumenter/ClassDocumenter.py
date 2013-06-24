@@ -8,8 +8,104 @@ class ClassDocumenter(Documenter):
 
     ::
 
-        >>> documenter = documentationtools.ClassDocumenter(notetools.Note)
-        >>> rest = documenter()
+        >>> cls = documentationtools.ClassDocumenter
+        >>> documenter = documentationtools.ClassDocumenter(cls)
+        >>> restructured_text = documenter()
+        >>> print restructured_text
+        documentationtools.ClassDocumenter
+        ==================================
+        <BLANKLINE>
+        .. abjad-lineage:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter
+        <BLANKLINE>
+        .. autoclass:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter
+        :noindex:
+        <BLANKLINE>
+        Bases
+        -----
+        <BLANKLINE>
+        - :class:`documentationtools.Documenter <abjad.tools.documentationtools.Documenter.Documenter.Documenter>`
+        <BLANKLINE>
+        - :class:`abctools.Maker <abjad.tools.abctools.Maker.Maker.Maker>`
+        <BLANKLINE>
+        - :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+        <BLANKLINE>
+        - :class:`__builtin__.object <object>`
+        <BLANKLINE>
+        Read-only properties
+        --------------------
+        <BLANKLINE>
+        .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.class_methods
+        :noindex:
+        <BLANKLINE>
+        .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.data
+        :noindex:
+        <BLANKLINE>
+        .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.inherited_attributes
+        :noindex:
+        <BLANKLINE>
+        .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.is_abstract
+        :noindex:
+        <BLANKLINE>
+        .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.methods
+        :noindex:
+        <BLANKLINE>
+        .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.module_name
+        :noindex:
+        <BLANKLINE>
+        .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.object
+        :noindex:
+        <BLANKLINE>
+        .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.prefix
+        :noindex:
+        <BLANKLINE>
+        .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.readonly_properties
+        :noindex:
+        <BLANKLINE>
+        .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.readwrite_properties
+        :noindex:
+        <BLANKLINE>
+        .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.special_methods
+        :noindex:
+        <BLANKLINE>
+        .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.static_methods
+        :noindex:
+        <BLANKLINE>
+        .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.storage_format
+        :noindex:
+        <BLANKLINE>
+        Methods
+        -------
+        <BLANKLINE>
+        .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.new
+        :noindex:
+        <BLANKLINE>
+        Special methods
+        ---------------
+        <BLANKLINE>
+        .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.__call__
+        :noindex:
+        <BLANKLINE>
+        .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.__eq__
+        :noindex:
+        <BLANKLINE>
+        .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.__ge__
+        :noindex:
+        <BLANKLINE>
+        .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.__gt__
+        :noindex:
+        <BLANKLINE>
+        .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.__le__
+        :noindex:
+        <BLANKLINE>
+        .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.__lt__
+        :noindex:
+        <BLANKLINE>
+        .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.__ne__
+        :noindex:
+        <BLANKLINE>
+        .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.__repr__
+        :noindex:
+        <BLANKLINE>
 
     Returns ``ClassDocumenter`` instance.
     '''
@@ -49,13 +145,13 @@ class ClassDocumenter(Documenter):
                         special_methods.append(attr)
                     elif not attr.name.startswith('_'):
                         methods.append(attr)
-            if attr.kind == 'class method':
+            elif attr.kind == 'class method':
                 if attr.name not in self._ignored_special_methods:
                     if attr.name.startswith('__'):
                         special_methods.append(attr)
                     elif not attr.name.startswith('_'):
                         class_methods.append(attr)
-            if attr.kind == 'static method':
+            elif attr.kind == 'static method':
                 if attr.name not in self._ignored_special_methods:
                     if attr.name.startswith('__'):
                         special_methods.append(attr)
@@ -66,7 +162,8 @@ class ClassDocumenter(Documenter):
                     readonly_properties.append(attr)
                 else:
                     readwrite_properties.append(attr)
-            elif attr.kind == 'data' and not attr.name.startswith('_'):
+            elif attr.kind == 'data' and not attr.name.startswith('_') \
+                and attr.name not in getattr(self.object, '__slots__', ()):
                 data.append(attr)
 
         self._class_methods = tuple(sorted(class_methods))
@@ -89,8 +186,6 @@ class ClassDocumenter(Documenter):
 
         stripped_class_name = self._shrink_module_name(self.object.__module__)
 
-        module_name = '{}.{}'.format(self.object.__module__, self.object.__name__)
-
         document = documentationtools.ReSTDocument()
 
         document.append(documentationtools.ReSTHeading(
@@ -99,96 +194,60 @@ class ClassDocumenter(Documenter):
             ))
 
         document.append(documentationtools.ReSTLineageDirective(
-            argument=module_name,
+            argument=self.module_name,
             ))
 
         document.append(documentationtools.ReSTAutodocDirective(
-            argument=module_name,
+            argument=self.module_name,
             directive='autoclass',
             options={
-                #'noindex': True, 
+                'noindex': True, 
                 },
             ))
 
-        document.extend(self._format_inheritance_note())
+        document.extend(self._build_bases_section())
 
-        if self.readonly_properties:
-            document.append(documentationtools.ReSTHeading(
-                level=3,
-                text='Read-only properties',
-                ))
-            for attr in self.readonly_properties:
-                autodoc = documentationtools.ReSTAutodocDirective(
-                    argument='{}.{}'.format(module_name, attr.name),
-                    directive='autoattribute',
-                    options={'noindex': True},
-                    )
-                document.append(autodoc)
+#        document.extend(self._build_attribute_section(
+#            self.data,
+#            'Class variables',
+#            'autodata',
+#            ))
 
-        if self.readwrite_properties:
-            document.append(documentationtools.ReSTHeading(
-                level=3,
-                text='Read/write properties',
-                ))
-            for attr in self.readwrite_properties:
-                autodoc = documentationtools.ReSTAutodocDirective(
-                    argument='{}.{}'.format(module_name, attr.name),
-                    directive='autoattribute',
-                    options={'noindex': True},
-                    )
-                document.append(autodoc)
+        document.extend(self._build_attribute_section(
+            self.readonly_properties,
+            'Read-only properties',
+            'autoattribute',
+            ))
 
-        if self.methods:
-            document.append(documentationtools.ReSTHeading(
-                level=3,
-                text='Methods',
-                ))
-            for attr in self.methods:
-                autodoc = documentationtools.ReSTAutodocDirective(
-                    argument='{}.{}'.format(module_name, attr.name),
-                    directive='automethod',
-                    options={'noindex': True},
-                    )
-                document.append(autodoc)
+        document.extend(self._build_attribute_section(
+            self.readwrite_properties,
+            'Read/write properties',
+            'autoattribute',
+            ))
 
-        if self.class_methods:
-            document.append(documentationtools.ReSTHeading(
-                level=3,
-                text='Class Methods',
-                ))
-            for attr in self.class_methods:
-                autodoc = documentationtools.ReSTAutodocDirective(
-                    argument='{}.{}'.format(module_name, attr.name),
-                    directive='automethod',
-                    options={'noindex': True},
-                    )
-                document.append(autodoc)
+        document.extend(self._build_attribute_section(
+            self.methods,
+            'Methods',
+            'automethod',
+            ))
 
-        if self.static_methods:
-            document.append(documentationtools.ReSTHeading(
-                level=3,
-                text='Static Methods',
-                ))
-            for attr in self.static_methods:
-                autodoc = documentationtools.ReSTAutodocDirective(
-                    argument='{}.{}'.format(module_name, attr.name),
-                    directive='automethod',
-                    options={'noindex': True},
-                    )
-                document.append(autodoc)
+        document.extend(self._build_attribute_section(
+            self.class_methods,
+            'Class methods',
+            'automethod',
+            ))
 
-        if self.special_methods:
-            document.append(documentationtools.ReSTHeading(
-                level=3,
-                text='Special methods',
-                ))
-            for attr in self.special_methods:
-                autodoc = documentationtools.ReSTAutodocDirective(
-                    argument='{}.{}'.format(module_name, attr.name),
-                    directive='automethod',
-                    options={'noindex': True},
-                    )
-                document.append(autodoc)
+        document.extend(self._build_attribute_section(
+            self.static_methods,
+            'Static methods',
+            'automethod',
+            ))
+
+        document.extend(self._build_attribute_section(
+            self.special_methods,
+            'Special methods',
+            'automethod',
+            ))
 
         return document.rest_format
 
@@ -199,7 +258,29 @@ class ClassDocumenter(Documenter):
             return True
         return False
 
-    def _format_inheritance_note(self):
+    def _build_attribute_section(self, attrs, title, directive):
+        from abjad.tools import documentationtools
+        result = []
+        if attrs:
+            result.append(documentationtools.ReSTHeading(
+                level=3,
+                text=title,
+                ))
+            for attr in attrs:
+                autodoc = documentationtools.ReSTAutodocDirective(
+                    argument='{}.{}'.format(
+                        self.module_name,
+                        attr.name,
+                        ),
+                    directive=directive,
+                    options={
+                        'noindex': True,
+                        },
+                    )
+                result.append(autodoc)
+        return result
+
+    def _build_bases_section(self):
         from abjad.tools import documentationtools
         pieces = []
         pieces.append(documentationtools.ReSTHeading(                     

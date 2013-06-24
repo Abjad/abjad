@@ -4,6 +4,7 @@ exceptiontools.IntervalError
 .. abjad-lineage:: abjad.tools.exceptiontools.IntervalError.IntervalError
 
 .. autoclass:: abjad.tools.exceptiontools.IntervalError.IntervalError
+   :noindex:
 
 Bases
 -----

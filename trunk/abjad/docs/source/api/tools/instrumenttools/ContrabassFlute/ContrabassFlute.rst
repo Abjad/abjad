@@ -4,6 +4,7 @@ instrumenttools.ContrabassFlute
 .. abjad-lineage:: abjad.tools.instrumenttools.ContrabassFlute.ContrabassFlute.ContrabassFlute
 
 .. autoclass:: abjad.tools.instrumenttools.ContrabassFlute.ContrabassFlute.ContrabassFlute
+   :noindex:
 
 Bases
 -----

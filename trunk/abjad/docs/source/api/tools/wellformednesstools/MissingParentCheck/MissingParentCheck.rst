@@ -4,6 +4,7 @@ wellformednesstools.MissingParentCheck
 .. abjad-lineage:: abjad.tools.wellformednesstools.MissingParentCheck.MissingParentCheck.MissingParentCheck
 
 .. autoclass:: abjad.tools.wellformednesstools.MissingParentCheck.MissingParentCheck.MissingParentCheck
+   :noindex:
 
 Bases
 -----

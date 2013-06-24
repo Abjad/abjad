@@ -4,6 +4,7 @@ pitchtools.NumberedDiatonicPitchClass
 .. abjad-lineage:: abjad.tools.pitchtools.NumberedDiatonicPitchClass.NumberedDiatonicPitchClass.NumberedDiatonicPitchClass
 
 .. autoclass:: abjad.tools.pitchtools.NumberedDiatonicPitchClass.NumberedDiatonicPitchClass.NumberedDiatonicPitchClass
+   :noindex:
 
 Bases
 -----

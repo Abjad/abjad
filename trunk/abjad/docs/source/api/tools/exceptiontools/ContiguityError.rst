@@ -4,6 +4,7 @@ exceptiontools.ContiguityError
 .. abjad-lineage:: abjad.tools.exceptiontools.ContiguityError.ContiguityError
 
 .. autoclass:: abjad.tools.exceptiontools.ContiguityError.ContiguityError
+   :noindex:
 
 Bases
 -----

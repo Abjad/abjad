@@ -4,6 +4,7 @@ instrumenttools.DoubleReedInstrument
 .. abjad-lineage:: abjad.tools.instrumenttools.DoubleReedInstrument.DoubleReedInstrument.DoubleReedInstrument
 
 .. autoclass:: abjad.tools.instrumenttools.DoubleReedInstrument.DoubleReedInstrument.DoubleReedInstrument
+   :noindex:
 
 Bases
 -----
