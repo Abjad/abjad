@@ -121,12 +121,10 @@ class PerformerCreationWizard(Wizard):
         self._session.restore_breadcrumbs(cache=cache)
 
     def make_performer_configuration_menu(self, performer):
-        menu, menu_section = self._io.make_menu(
-            where=self._where,
-            is_numbered=True,
-            is_ranged=True,
-            )
-        menu_section.title = 'select instruments'
+        menu = self._io.make_only_menu(where=self._where)
+        numbered_list_section = menu.make_numbered_list_section()
+        numbered_list_section.title = 'select instruments'
+        command_section = menu.make_command_section()
         likely_instruments = \
             performer.likely_instruments_based_on_performer_name
         likely_instrument_names = [
@@ -145,17 +143,11 @@ class PerformerCreationWizard(Wizard):
             most_likely_number = most_likely_index + 1
             default_index = most_likely_index
         if likely_instruments:
-            menu_section.menu_entries = likely_instrument_names
-            menu_section.default_index = default_index
-            menu_section = menu.make_section(
-                return_value_attribute='key',
-                )
-            menu_section.append(('more instruments', 'more'))
+            numbered_list_section.menu_entries = likely_instrument_names
+            command_section.append(('more instruments', 'more'))
         else:
-            menu_entries = instrumenttools.list_instrument_names()
-            menu_section.default_index = default_index
-            menu_section = menu.make_section(
-                return_value_attribute='key',
-                )
-        menu_section.append(('skip instruments', 'skip'))
+            instrument_names = instrumenttools.list_instrument_names()
+            numbered_list_section.menu_entries = instrument_names
+        numbered_list_section.default_index = default_index
+        command_section.append(('skip instruments', 'skip'))
         return menu

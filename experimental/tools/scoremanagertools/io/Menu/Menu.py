@@ -420,8 +420,17 @@ class Menu(ScoreManagerObject):
             ):
         command_section = self.make_section(
             is_hidden=is_hidden,
-            return_value_attribute='key')
+            return_value_attribute='key',
+            )
         return command_section
+
+    def make_numbered_list_section(self, menu_entries=None):
+        numbered_list_section = self.make_section(
+            is_numbered=True,
+            is_ranged=True,
+            return_value_attribute='display_string',
+            )
+        return numbered_list_section
 
     def toggle_menu_commands(self):
         if self._session.nonnumbered_menu_sections_are_hidden:
