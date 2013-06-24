@@ -80,8 +80,6 @@ class IO(AbjadObject):
             self._session.is_backtracking_locally = True
         elif key == 'exec':
             self.interactively_exec_statement()
-        elif key == 'grep':
-            self.interactively_grep_directories()
         elif key == 'here':
             self.interactively_edit_calling_code()
         elif key == 'next':
@@ -186,7 +184,6 @@ class IO(AbjadObject):
         hidden_section.is_hidden = True
         hidden_section.append(('back', 'b'))
         hidden_section.append(('exec statement', 'exec'))
-        hidden_section.append(('grep directories', 'grep'))
         hidden_section.append(('edit client source', 'here'))
         hidden_section.append(('display hidden menu section', 'hidden'))
         hidden_section.append(('home', 'home'))

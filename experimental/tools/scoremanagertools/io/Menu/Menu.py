@@ -248,7 +248,7 @@ class Menu(ScoreManagerObject):
         ::
 
                 >>> menu.hidden_section
-                <MenuSection (14)>
+                <MenuSection (13)>
 
         ::
 
@@ -256,7 +256,6 @@ class Menu(ScoreManagerObject):
                 ...     menu_entry
                 <MenuEntry: 'back'>
                 <MenuEntry: 'exec statement'>
-                <MenuEntry: 'grep directories'>
                 <MenuEntry: 'edit client source'>
                 <MenuEntry: 'display hidden menu section'>
                 <MenuEntry: 'home'>
@@ -283,7 +282,7 @@ class Menu(ScoreManagerObject):
 
             >>> for menu_section in menu.menu_sections:
             ...     menu_section
-            <MenuSection (14)>
+            <MenuSection (13)>
             <MenuSection (4)>
 
         Return list.
@@ -387,14 +386,6 @@ class Menu(ScoreManagerObject):
             lines.append('')
             self._io.display(lines)
             self._session.hide_next_redraw = True
-
-    def interactively_grep_directories(self):
-        regex = self._io.handle_raw_input('regex')
-        command = 'grep -Irn "{}" * | grep -v svn'.format(regex)
-        proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
-        lines = [line.strip() for line in proc.stdout.readlines()]
-        lines.append('')
-        self._io.display(lines, capitalize_first_character=False)
 
     def make_section(self, 
         is_hidden=False, 

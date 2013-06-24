@@ -9,7 +9,6 @@ def test_Menu_display_hidden_menu_section_01():
     assert score_manager._session.transcript[-2][1] == \
         ['     back (b)',
          '     exec statement (exec)',
-         '     grep directories (grep)',
          '     edit client source (here)',
          '     display hidden menu section (hidden)',
          '     home (home)',
@@ -41,7 +40,6 @@ def test_Menu_display_hidden_menu_section_02():
     assert score_manager._session.transcript[-2][1] == \
         ['     back (b)',
         '     exec statement (exec)',
-        '     grep directories (grep)',
         '     edit client source (here)',
         '     display hidden menu section (hidden)',
         '     home (home)',
