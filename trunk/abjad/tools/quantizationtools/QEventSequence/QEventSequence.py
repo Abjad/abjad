@@ -4,13 +4,16 @@ from abjad.tools.abctools import ImmutableAbjadObject
 
 
 class QEventSequence(tuple, ImmutableAbjadObject):
-    '''A well-formed sequence of ``QEvent`` instances, containing only
-    ``PitchedQEvents`` and ``SilentQEvents``, and terminating with a
-    single ``TerminalQEvent`` instance.
+    '''A well-formed sequence of :class:`~abjad.tools.quantizationtools.QEvent.QEvent.QEvent`
+    instances, containing only :class:`~abjad.tools.quantizationtools.PitchedQEvent.PitchedQEvent.PitchedQEvent` instances
+    and :class:`~abjad.tools.quantizationtools.SilentQEvent.SilentQEvent.SilentQEvent` instances, and terminating
+    with a single :class:`~abjad.tools.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent`
+    instance.
 
-    ``QEventSequence`` is the primary input to the ``Quantizer``.
+    A q-event sequence is the primary input to the
+    :class:`~abjad.tools.quantizationtools.Quantizer.Quantizer.Quantizer`.
 
-    ``QEventSequence`` provides a number of convenience functions to
+    A q-event sequence provides a number of convenience functions to
     assist with instantiating new sequences:
 
     ::
