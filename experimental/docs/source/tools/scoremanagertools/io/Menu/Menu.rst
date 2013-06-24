@@ -47,9 +47,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.io.Menu.Menu.Menu.interactively_edit_calling_code
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.io.Menu.Menu.Menu.interactively_exec_statement
-   :noindex:
-
 .. automethod:: experimental.tools.scoremanagertools.io.Menu.Menu.Menu.interactively_grep_directories
    :noindex:
 

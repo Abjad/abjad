@@ -77,8 +77,6 @@ class IO(AbjadObject):
             key = directive
         if key in ('b', 'back'):
             self._session.is_backtracking_locally = True
-        elif key == 'cmds':
-            self.toggle_menu_commands()
         elif key == 'exec':
             self.interactively_exec_statement()
         elif key == 'grep':
@@ -103,7 +101,7 @@ class IO(AbjadObject):
         elif isinstance(key, str) and \
             3 <= len(key) and 'home'.startswith(key):
             self._session.is_backtracking_to_score_manager = True
-        elif key == 'tw':
+        elif key == 'twt':
             self._session.enable_where = not self._session.enable_where
         elif key == 'where':
             self.display_calling_code_line_number()
@@ -198,8 +196,8 @@ class IO(AbjadObject):
         hidden_section.append(('quit', 'q'))
         hidden_section.append(('redraw', 'r'))
         hidden_section.append(('current score', 'score'))
-        hidden_section.append(('show/hide commands', 'cmds'))
-        hidden_section.append(('toggle where', 'tw'))
+        hidden_section.append(('toggle menu commands', 'tmc'))
+        hidden_section.append(('toggle where-tracking', 'twt'))
         hidden_section.append(('display calling code line number', 'where'))
         return hidden_section
 

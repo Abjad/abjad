@@ -166,9 +166,6 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.io.UserInputGetter.UserInputGetter.UserInputGetter.append_yes_no_string
    :noindex:
 
-.. automethod:: experimental.tools.scoremanagertools.io.UserInputGetter.UserInputGetter.UserInputGetter.interactively_exec_statement
-   :noindex:
-
 Special methods
 ---------------
 

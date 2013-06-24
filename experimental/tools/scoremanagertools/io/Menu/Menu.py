@@ -114,8 +114,9 @@ class Menu(ScoreManagerObject):
         if directive is None:
             return
         elif directive == 'hidden':
-            # TODO: make private
             self.display_hidden_menu_section()
+        elif directive == 'tmc':
+            self.toggle_menu_commands()
         else:
             return directive
 
@@ -262,8 +263,8 @@ class Menu(ScoreManagerObject):
                 <MenuEntry: 'quit'>
                 <MenuEntry: 'redraw'>
                 <MenuEntry: 'current score'>
-                <MenuEntry: 'show/hide commands'>
-                <MenuEntry: 'toggle where'>
+                <MenuEntry: 'toggle menu commands'>
+                <MenuEntry: 'toggle where-tracking'>
                 <MenuEntry: 'display calling code line number'>
 
         Return menu section or none.
@@ -380,28 +381,10 @@ class Menu(ScoreManagerObject):
         else:
             lines = []
             lines.append("where-tracking not enabled. " +
-                "Use 'tw' to toggle where-tracking.")
+                "Use 'twt' to toggle where-tracking.")
             lines.append('')
             self._io.display(lines)
             self._session.hide_next_redraw = True
-
-#    def interactively_exec_statement(self):
-#        lines = []
-#        statement = self._io.handle_raw_input('XCF', include_newline=False)
-#        command = 'from abjad import *'
-#        exec(command)
-#        try:
-#            result = None
-#            command = 'result = {}'.format(statement)
-#            exec(command)
-#            lines.append('{!r}'.format(result))
-#        except:
-#            lines.append('expression not executable.')
-#        lines.append('')
-#        self._io.display(lines)
-#        self._session.hide_next_redraw = True
-    def interactively_exec_statement(self):
-        self._io.interactively_exec_statement()
 
     def interactively_grep_directories(self):
         regex = self._io.handle_raw_input('regex')

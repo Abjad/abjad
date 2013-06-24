@@ -227,8 +227,3 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
             assert isinstance(expr, str)
             self._prompt_character = expr
         return property(**locals())
-
-    ### PUBLIC METHODS ###
-
-    def interactively_exec_statement(self):
-        self._io.interactively_exec_statement()
