@@ -104,8 +104,6 @@ class IO(AbjadObject):
             self._session.is_backtracking_to_score_manager = True
         elif key == 'twt':
             self._session.enable_where = not self._session.enable_where
-        elif key == 'where':
-            self.display_calling_code_line_number()
         else:
             return directive
 

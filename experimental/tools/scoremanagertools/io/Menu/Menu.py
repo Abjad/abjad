@@ -117,6 +117,8 @@ class Menu(ScoreManagerObject):
             self.display_hidden_menu_section()
         elif directive == 'tmc':
             self.toggle_menu_commands()
+        elif directive == 'where':
+            self.display_calling_code_line_number()
         else:
             return directive
 
