@@ -7,10 +7,12 @@ class Maker(AbjadObject):
 
     ### SPECIAL METHODS ###
 
+    @abc.abstractmethod
     def __call__(self):
         raise NotImplemented
 
     ### PUBLIC METHODS ###
 
+    @abc.abstractmethod
     def new(self):
         raise NotImplemented

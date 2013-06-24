@@ -37,3 +37,10 @@ class Documenter(abctools.Maker):
     @property
     def prefix(self):
         return self._prefix
+
+    ### PUBLIC METHODS ###
+
+    def new(self, obj=None, prefix=None):
+        obj = obj or self.obj
+        prefix = prefix or self.prefix
+        return type(self)(obj=obj, prefix=prefix)

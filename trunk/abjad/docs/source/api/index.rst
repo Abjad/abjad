@@ -4524,8 +4524,10 @@ Abjad internal packages
    .. toctree::
       :maxdepth: 1
 
+      tools/documentationtools/Documenter/Documenter
       tools/documentationtools/GraphvizObject/GraphvizObject
       tools/documentationtools/ReSTDirective/ReSTDirective
+      tools/documentationtools/ToolsPackageDocumenter/ToolsPackageDocumenter
 
    --------
 
@@ -4536,7 +4538,6 @@ Abjad internal packages
       tools/documentationtools/AbjadAPIGenerator/AbjadAPIGenerator
       tools/documentationtools/ClassCrawler/ClassCrawler
       tools/documentationtools/ClassDocumenter/ClassDocumenter
-      tools/documentationtools/Documenter/Documenter
       tools/documentationtools/FunctionCrawler/FunctionCrawler
       tools/documentationtools/FunctionDocumenter/FunctionDocumenter
       tools/documentationtools/GraphvizEdge/GraphvizEdge
@@ -4556,7 +4557,6 @@ Abjad internal packages
       tools/documentationtools/ReSTParagraph/ReSTParagraph
       tools/documentationtools/ReSTTOCDirective/ReSTTOCDirective
       tools/documentationtools/ReSTTOCItem/ReSTTOCItem
-      tools/documentationtools/ToolsPackageDocumenter/ToolsPackageDocumenter
 
    --------
 
@@ -4576,8 +4576,10 @@ Abjad internal packages
 
    .. toctree::
 
+      tools/documentationtools/Documenter/Documenter
       tools/documentationtools/GraphvizObject/GraphvizObject
       tools/documentationtools/ReSTDirective/ReSTDirective
+      tools/documentationtools/ToolsPackageDocumenter/ToolsPackageDocumenter
 
    Concrete Classes
    ----------------
@@ -4588,7 +4590,6 @@ Abjad internal packages
       tools/documentationtools/AbjadAPIGenerator/AbjadAPIGenerator
       tools/documentationtools/ClassCrawler/ClassCrawler
       tools/documentationtools/ClassDocumenter/ClassDocumenter
-      tools/documentationtools/Documenter/Documenter
       tools/documentationtools/FunctionCrawler/FunctionCrawler
       tools/documentationtools/FunctionDocumenter/FunctionDocumenter
       tools/documentationtools/GraphvizEdge/GraphvizEdge
@@ -4608,7 +4609,6 @@ Abjad internal packages
       tools/documentationtools/ReSTParagraph/ReSTParagraph
       tools/documentationtools/ReSTTOCDirective/ReSTTOCDirective
       tools/documentationtools/ReSTTOCItem/ReSTTOCItem
-      tools/documentationtools/ToolsPackageDocumenter/ToolsPackageDocumenter
 
    Functions
    ---------
