@@ -4,7 +4,7 @@ from abjad.tools.documentationtools.Documenter import Documenter
 
 
 class ClassDocumenter(Documenter):
-    '''ClassDocumenter generates an ReST API entry for a given class:
+    '''Generates an ReST API entry for a given class:
 
     ::
 

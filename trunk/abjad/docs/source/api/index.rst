@@ -4556,6 +4556,7 @@ Abjad internal packages
       tools/documentationtools/ReSTParagraph/ReSTParagraph
       tools/documentationtools/ReSTTOCDirective/ReSTTOCDirective
       tools/documentationtools/ReSTTOCItem/ReSTTOCItem
+      tools/documentationtools/ToolsPackageDocumenter/ToolsPackageDocumenter
 
    --------
 
@@ -4607,6 +4608,7 @@ Abjad internal packages
       tools/documentationtools/ReSTParagraph/ReSTParagraph
       tools/documentationtools/ReSTTOCDirective/ReSTTOCDirective
       tools/documentationtools/ReSTTOCItem/ReSTTOCItem
+      tools/documentationtools/ToolsPackageDocumenter/ToolsPackageDocumenter
 
    Functions
    ---------
