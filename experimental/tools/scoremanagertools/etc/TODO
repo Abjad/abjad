@@ -89,16 +89,24 @@
     score_package/specifiers, score_package/stylesheets, etc.
     instead.
 
-31. Install supertab.
+31. Install exuberant tags.
 
-32. Cache tags.
-
-33. Merge read-only and read / write properties private properties
+32. Merge read-only and read / write properties private properties
     into a single ### PRIVATE PROPERTIES ### category.
     Merge read-only and read / write public properties
     into a single ### PUBLIC PROPERTIES ### category.
 
-34. Next write test for FilesystemAssetWrangler.interactively_remove_assets().
+33. Next write test for FilesystemAssetWrangler.interactively_remove_assets().
 
-35. Add self.make_command_menu_section() method.
-    Set return_value_attribute to 'key' automatically.
+34. Change the name of IO to IOManager.
+
+35. Attach exactly one IOManager to each Session.
+    This will have the effect of instantiating only one IOManager
+    per run of the system.
+
+36. Move the four classes in the scoremanagertools.core package
+    to the scoremanagertools.scoremanager package. The classes
+    are ScoreManagerConfiguration, ScoreManagerObject,
+    Session and Transcript. This will remove the core package.
+
+37. Finish the docstrings for all io classes.
