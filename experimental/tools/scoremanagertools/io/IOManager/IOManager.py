@@ -7,7 +7,7 @@ from abjad.tools import stringtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class IO(AbjadObject):
+class IOManager(AbjadObject):
 
     ### INITIALIZER ###
 

@@ -40,7 +40,7 @@ class ScoreManagerObject(AbjadObject):
     def __init__(self, session=None):
         from experimental.tools import scoremanagertools
         self._session = session or scoremanagertools.core.Session()
-        self._io = scoremanagertools.io.IO(session=self._session)
+        self._io = scoremanagertools.io.IOManager(session=self._session)
         self.backtracking = ScoreManagerObject.backtracking(self)
 
     ### SPECIAL METHODS ###

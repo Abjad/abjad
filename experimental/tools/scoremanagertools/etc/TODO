@@ -98,15 +98,13 @@
 
 33. Next write test for FilesystemAssetWrangler.interactively_remove_assets().
 
-34. Change the name of IO to IOManager.
-
-35. Attach exactly one IOManager to each Session.
+34. Attach exactly one IOManager to each Session.
     This will have the effect of instantiating only one IOManager
     per run of the system.
 
-36. Move the four classes in the scoremanagertools.core package
+35. Move the four classes in the scoremanagertools.core package
     to the scoremanagertools.scoremanager package. The classes
     are ScoreManagerConfiguration, ScoreManagerObject,
     Session and Transcript. This will remove the core package.
 
-37. Finish the docstrings for all io classes.
+36. Finish the docstrings for all io classes.

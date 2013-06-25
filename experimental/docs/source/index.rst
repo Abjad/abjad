@@ -614,7 +614,7 @@ Unstable packages (load manually)
       tools/scoremanagertools/editors/TrillSpecifierEditor/TrillSpecifierEditor
       tools/scoremanagertools/editors/TropingSpecifierEditor/TropingSpecifierEditor
       tools/scoremanagertools/editors/UserInputWrapper/UserInputWrapper
-      tools/scoremanagertools/io/IO/IO
+      tools/scoremanagertools/io/IOManager/IOManager
       tools/scoremanagertools/io/Menu/Menu
       tools/scoremanagertools/io/MenuEntry/MenuEntry
       tools/scoremanagertools/io/MenuSection/MenuSection
@@ -809,7 +809,7 @@ Unstable packages (load manually)
       tools/scoremanagertools/editors/TrillSpecifierEditor/TrillSpecifierEditor
       tools/scoremanagertools/editors/TropingSpecifierEditor/TropingSpecifierEditor
       tools/scoremanagertools/editors/UserInputWrapper/UserInputWrapper
-      tools/scoremanagertools/io/IO/IO
+      tools/scoremanagertools/io/IOManager/IOManager
       tools/scoremanagertools/io/Menu/Menu
       tools/scoremanagertools/io/MenuEntry/MenuEntry
       tools/scoremanagertools/io/MenuSection/MenuSection
