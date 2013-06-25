@@ -8,7 +8,7 @@ scoremanagertools.io.UserInputGetter
 Bases
 -----
 
-- :class:`scoremanagertools.core.ScoreManagerObject <experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject>`
+- :class:`scoremanagertools.scoremanager.ScoreManagerObject <experimental.tools.scoremanagertools.scoremanager.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject>`
 
 - :class:`scoremanagertools.io.PromptMakerMixin <experimental.tools.scoremanagertools.io.PromptMakerMixin.PromptMakerMixin.PromptMakerMixin>`
 

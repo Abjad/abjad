@@ -1,7 +1,7 @@
 import types
 from abjad.tools import stringtools
 from experimental.tools.scoremanagertools import predicates
-from experimental.tools.scoremanagertools.core.ScoreManagerObject \
+from experimental.tools.scoremanagertools.scoremanager.ScoreManagerObject \
     import ScoreManagerObject
 from experimental.tools.scoremanagertools.io.Menu import Menu
 from experimental.tools.scoremanagertools.io.PromptMakerMixin \

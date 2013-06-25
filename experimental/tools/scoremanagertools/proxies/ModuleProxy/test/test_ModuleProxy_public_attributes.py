@@ -30,7 +30,7 @@ def test_ModuleProxy_public_attributes_02():
     '''With path.
     '''
 
-    configuration = scoremanagertools.core.ScoreManagerConfiguration()
+    configuration = scoremanagertools.scoremanager.ScoreManagerConfiguration()
     packagesystem_path = '.'.join([
         configuration.built_in_material_packages_package_path, 'red_notes', 'material_definition'])
     proxy = scoremanagertools.proxies.ModuleProxy(packagesystem_path=packagesystem_path)

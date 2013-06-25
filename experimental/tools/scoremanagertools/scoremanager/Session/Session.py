@@ -2,14 +2,14 @@
 import os
 from abjad.tools import stringtools
 from abjad.tools import abctools
-from experimental.tools.scoremanagertools.core.ScoreManagerConfiguration import \
+from experimental.tools.scoremanagertools.scoremanager.ScoreManagerConfiguration import \
     ScoreManagerConfiguration
 
 
 class Session(abctools.AbjadObject):
     '''Score manager session.
 
-        >>> session = scoremanagertools.core.Session()
+        >>> session = scoremanagertools.scoremanager.Session()
 
     ::
 
@@ -20,7 +20,7 @@ class Session(abctools.AbjadObject):
 
     ::
 
-        >>> session_in_score = scoremanagertools.core.Session()
+        >>> session_in_score = scoremanagertools.scoremanager.Session()
         >>> session_in_score.snake_case_current_score_name = 'foo'
 
     ::
@@ -51,7 +51,7 @@ class Session(abctools.AbjadObject):
         self._breadcrumb_stack = []
         self._command_history = []
         self._session_once_had_user_input = False
-        self._transcript = scoremanagertools.core.Transcript()
+        self._transcript = scoremanagertools.scoremanager.Transcript()
         self.snake_case_current_score_name = None
         self.display_pitch_ranges_with_numbered_pitches = False
         self.dump_transcript = False

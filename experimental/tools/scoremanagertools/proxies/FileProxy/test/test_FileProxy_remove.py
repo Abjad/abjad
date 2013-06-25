@@ -6,7 +6,7 @@ def test_FileProxy_remove_01():
     '''Nonversioned file.
     '''
 
-    score_manager_configuration = scoremanagertools.core.ScoreManagerConfiguration()
+    score_manager_configuration = scoremanagertools.scoremanager.ScoreManagerConfiguration()
     filesystem_path = os.path.join(
         score_manager_configuration.score_manager_tools_directory_path, 'temporary_file.txt')
     file_proxy = scoremanagertools.proxies.FileProxy(filesystem_path=filesystem_path)
@@ -27,7 +27,7 @@ def test_FileProxy_remove_02():
     '''Versioned file.
     '''
 
-    score_manager_configuration = scoremanagertools.core.ScoreManagerConfiguration()
+    score_manager_configuration = scoremanagertools.scoremanager.ScoreManagerConfiguration()
     filesystem_path = os.path.join(
         score_manager_configuration.score_manager_tools_directory_path, 'temporary_file.txt')
     file_proxy = scoremanagertools.proxies.FileProxy(filesystem_path=filesystem_path)

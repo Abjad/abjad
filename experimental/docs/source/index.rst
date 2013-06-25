@@ -537,9 +537,9 @@ Unstable packages (load manually)
    .. toctree::
       :maxdepth: 1
 
-      tools/scoremanagertools/core/ScoreManagerObject/ScoreManagerObject
       tools/scoremanagertools/io/PromptMakerMixin/PromptMakerMixin
       tools/scoremanagertools/proxies/FilesystemAssetProxy/FilesystemAssetProxy
+      tools/scoremanagertools/scoremanager/ScoreManagerObject/ScoreManagerObject
       tools/scoremanagertools/specifiers/DynamicSpecifier/DynamicSpecifier
       tools/scoremanagertools/specifiers/ParameterSpecifier/ParameterSpecifier
       tools/scoremanagertools/specifiers/Specifier/Specifier
@@ -556,9 +556,6 @@ Unstable packages (load manually)
    .. toctree::
       :maxdepth: 1
 
-      tools/scoremanagertools/core/ScoreManagerConfiguration/ScoreManagerConfiguration
-      tools/scoremanagertools/core/Session/Session
-      tools/scoremanagertools/core/Transcript/Transcript
       tools/scoremanagertools/editors/ArticulationHandlerEditor/ArticulationHandlerEditor
       tools/scoremanagertools/editors/ArticulationSpecifierEditor/ArticulationSpecifierEditor
       tools/scoremanagertools/editors/AttributeDetail/AttributeDetail
@@ -654,6 +651,9 @@ Unstable packages (load manually)
       tools/scoremanagertools/proxies/TagsModuleProxy/TagsModuleProxy
       tools/scoremanagertools/proxies/UserInputModuleProxy/UserInputModuleProxy
       tools/scoremanagertools/scoremanager/ScoreManager/ScoreManager
+      tools/scoremanagertools/scoremanager/ScoreManagerConfiguration/ScoreManagerConfiguration
+      tools/scoremanagertools/scoremanager/Session/Session
+      tools/scoremanagertools/scoremanager/Transcript/Transcript
       tools/scoremanagertools/selectors/ArticulationHandlerClassNameSelector/ArticulationHandlerClassNameSelector
       tools/scoremanagertools/selectors/ArticulationHandlerSelector/ArticulationHandlerSelector
       tools/scoremanagertools/selectors/ClefNameSelector/ClefNameSelector
@@ -732,9 +732,9 @@ Unstable packages (load manually)
 
    .. toctree::
 
-      tools/scoremanagertools/core/ScoreManagerObject/ScoreManagerObject
       tools/scoremanagertools/io/PromptMakerMixin/PromptMakerMixin
       tools/scoremanagertools/proxies/FilesystemAssetProxy/FilesystemAssetProxy
+      tools/scoremanagertools/scoremanager/ScoreManagerObject/ScoreManagerObject
       tools/scoremanagertools/specifiers/DynamicSpecifier/DynamicSpecifier
       tools/scoremanagertools/specifiers/ParameterSpecifier/ParameterSpecifier
       tools/scoremanagertools/specifiers/Specifier/Specifier
@@ -751,9 +751,6 @@ Unstable packages (load manually)
 
    .. toctree::
 
-      tools/scoremanagertools/core/ScoreManagerConfiguration/ScoreManagerConfiguration
-      tools/scoremanagertools/core/Session/Session
-      tools/scoremanagertools/core/Transcript/Transcript
       tools/scoremanagertools/editors/ArticulationHandlerEditor/ArticulationHandlerEditor
       tools/scoremanagertools/editors/ArticulationSpecifierEditor/ArticulationSpecifierEditor
       tools/scoremanagertools/editors/AttributeDetail/AttributeDetail
@@ -849,6 +846,9 @@ Unstable packages (load manually)
       tools/scoremanagertools/proxies/TagsModuleProxy/TagsModuleProxy
       tools/scoremanagertools/proxies/UserInputModuleProxy/UserInputModuleProxy
       tools/scoremanagertools/scoremanager/ScoreManager/ScoreManager
+      tools/scoremanagertools/scoremanager/ScoreManagerConfiguration/ScoreManagerConfiguration
+      tools/scoremanagertools/scoremanager/Session/Session
+      tools/scoremanagertools/scoremanager/Transcript/Transcript
       tools/scoremanagertools/selectors/ArticulationHandlerClassNameSelector/ArticulationHandlerClassNameSelector
       tools/scoremanagertools/selectors/ArticulationHandlerSelector/ArticulationHandlerSelector
       tools/scoremanagertools/selectors/ClefNameSelector/ClefNameSelector

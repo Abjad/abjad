@@ -6,7 +6,7 @@ def test_StylesheetFileProxy_interactively_remove_01():
     '''Nonversioned file.
     '''
 
-    score_manager_configuration = scoremanagertools.core.ScoreManagerConfiguration()
+    score_manager_configuration = scoremanagertools.scoremanager.ScoreManagerConfiguration()
     filesystem_path = os.path.join(
         score_manager_configuration.score_manager_tools_directory_path,
         'stylesheets', 'test_stylesheet.ly')
@@ -29,7 +29,7 @@ def test_StylesheetFileProxy_interactively_remove_02():
     '''Versioned file.
     '''
 
-    score_manager_configuration = scoremanagertools.core.ScoreManagerConfiguration()
+    score_manager_configuration = scoremanagertools.scoremanager.ScoreManagerConfiguration()
     filesystem_path = os.path.join(
         score_manager_configuration.score_manager_tools_directory_path,
         'stylesheets', 'temporary_stylesheet.ly')

@@ -5,7 +5,7 @@ def test_Session___init___01():
     '''Attributes assigned at initialization time.
     '''
 
-    session = scoremanagertools.core.Session()
+    session = scoremanagertools.scoremanager.Session()
 
     assert session.initial_user_input is None
     assert session._breadcrumb_stack == []

@@ -2,7 +2,7 @@ import os
 from abjad.tools import iotools
 from abjad.tools import mathtools
 from abjad.tools import stringtools
-from experimental.tools.scoremanagertools.core.ScoreManagerObject \
+from experimental.tools.scoremanagertools.scoremanager.ScoreManagerObject \
     import ScoreManagerObject
 from experimental.tools.scoremanagertools.io.MenuSection \
     import MenuSection

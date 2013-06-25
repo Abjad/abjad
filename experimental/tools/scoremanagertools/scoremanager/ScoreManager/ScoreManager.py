@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import os
 import subprocess
-from experimental.tools.scoremanagertools.core.ScoreManagerObject import \
+from experimental.tools.scoremanagertools.scoremanager.ScoreManagerObject import \
     ScoreManagerObject
 
 

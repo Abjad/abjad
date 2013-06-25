@@ -24,7 +24,7 @@ def test_FileProxy_public_attributes_02():
     '''
 
     file_name = 'clean-letter-14.ly'
-    score_manager_configuration = scoremanagertools.core.ScoreManagerConfiguration()
+    score_manager_configuration = scoremanagertools.scoremanager.ScoreManagerConfiguration()
     filesystem_path = os.path.join(
         score_manager_configuration.score_manager_tools_directory_path,
         'stylesheets', file_name)

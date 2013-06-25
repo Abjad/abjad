@@ -14,7 +14,7 @@ Bases
 
 - :class:`scoremanagertools.selectors.Selector <experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector>`
 
-- :class:`scoremanagertools.core.ScoreManagerObject <experimental.tools.scoremanagertools.core.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject>`
+- :class:`scoremanagertools.scoremanager.ScoreManagerObject <experimental.tools.scoremanagertools.scoremanager.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject>`
 
 - :class:`abjad.tools.abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 

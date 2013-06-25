@@ -32,7 +32,7 @@ class RhythmMakerMaterialPackageMaker(MaterialPackageMaker):
         measuretools.replace_contents_of_measures_in_expr(staff, music)
         score = Score([staff])
         illustration = lilypondfiletools.make_basic_lilypond_file(score)
-        score_manager_configuration = scoremanagertools.core.ScoreManagerConfiguration()
+        score_manager_configuration = scoremanagertools.scoremanager.ScoreManagerConfiguration()
         directory_path = score_manager_configuration.score_manager_tools_directory_path
         stylesheet_file_path = os.path.join(directory_path, 'stylesheets', 'rhythm-letter-16.ly')
         illustration.file_initial_user_includes.append(stylesheet_file_path)

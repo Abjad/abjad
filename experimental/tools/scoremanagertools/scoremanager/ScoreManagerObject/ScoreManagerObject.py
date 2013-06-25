@@ -4,7 +4,7 @@ import os
 from abjad.tools import stringtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.abctools.ContextManager import ContextManager
-from experimental.tools.scoremanagertools.core.ScoreManagerConfiguration \
+from experimental.tools.scoremanagertools.scoremanager.ScoreManagerConfiguration \
     import ScoreManagerConfiguration
 
 
@@ -39,7 +39,7 @@ class ScoreManagerObject(AbjadObject):
     @abc.abstractmethod
     def __init__(self, session=None):
         from experimental.tools import scoremanagertools
-        self._session = session or scoremanagertools.core.Session()
+        self._session = session or scoremanagertools.scoremanager.Session()
         self._io = scoremanagertools.io.IOManager(session=self._session)
         self.backtracking = ScoreManagerObject.backtracking(self)
 

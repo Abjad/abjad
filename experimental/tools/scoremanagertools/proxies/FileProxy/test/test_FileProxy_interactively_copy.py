@@ -4,7 +4,7 @@ from experimental import *
 
 def test_FileProxy_interactively_copy_01():
 
-    score_manager_configuration = scoremanagertools.core.ScoreManagerConfiguration()
+    score_manager_configuration = scoremanagertools.scoremanager.ScoreManagerConfiguration()
     filesystem_path = os.path.join(
         score_manager_configuration.score_manager_tools_directory_path, 'temporary_file.txt')
     file_proxy = scoremanagertools.proxies.FileProxy(filesystem_path=filesystem_path)

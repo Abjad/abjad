@@ -1,6 +1,6 @@
 import re
 from abjad import *
-from experimental.tools.scoremanagertools.core.ScoreManagerConfiguration \
+from experimental.tools.scoremanagertools.scoremanager.ScoreManagerConfiguration \
     import ScoreManagerConfiguration
 configuration = ScoreManagerConfiguration()
 

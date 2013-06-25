@@ -6,7 +6,7 @@ from abjad.tools.configurationtools.AbjadConfiguration import AbjadConfiguration
 class ScoreManagerConfiguration(Configuration):
     '''Score manager configuration.
 
-        >>> configuration = scoremanagertools.core.ScoreManagerConfiguration()
+        >>> configuration = scoremanagertools.scoremanager.ScoreManagerConfiguration()
         >>> configuration
         ScoreManagerConfiguration()
 

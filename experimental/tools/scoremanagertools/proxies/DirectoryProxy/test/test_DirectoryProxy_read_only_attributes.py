@@ -6,7 +6,7 @@ def test_DirectoryProxy_read_only_attributes_01():
     '''Named directory proxy already written to disk.
     '''
 
-    score_manager_configuration = scoremanagertools.core.ScoreManagerConfiguration()
+    score_manager_configuration = scoremanagertools.scoremanager.ScoreManagerConfiguration()
     directory_path = score_manager_configuration.score_manager_tools_directory_path
     directory_proxy = scoremanagertools.proxies.DirectoryProxy(directory_path)
     assert directory_proxy.filesystem_path is not None
@@ -16,7 +16,7 @@ def test_DirectoryProxy_read_only_attributes_01():
 
 def test_DirectoryProxy_read_only_attributes_02():
 
-    score_manager_configuration = scoremanagertools.core.ScoreManagerConfiguration()
+    score_manager_configuration = scoremanagertools.scoremanager.ScoreManagerConfiguration()
     directory_path = score_manager_configuration.score_manager_tools_directory_path
     directory_proxy_1 = scoremanagertools.proxies.DirectoryProxy(directory_path)
     directory_proxy_2 = scoremanagertools.proxies.DirectoryProxy(directory_path)

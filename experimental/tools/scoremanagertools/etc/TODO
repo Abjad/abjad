@@ -102,9 +102,4 @@
     This will have the effect of instantiating only one IOManager
     per run of the system.
 
-35. Move the four classes in the scoremanagertools.core package
-    to the scoremanagertools.scoremanager package. The classes
-    are ScoreManagerConfiguration, ScoreManagerObject,
-    Session and Transcript. This will remove the core package.
-
-36. Finish the docstrings for all io classes.
+35. Finish the docstrings for all io classes.

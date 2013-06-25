@@ -1,5 +1,5 @@
 import abc
-from experimental.tools.scoremanagertools.core.ScoreManagerObject import \
+from experimental.tools.scoremanagertools.scoremanager.ScoreManagerObject import \
     ScoreManagerObject
 
 

@@ -4,7 +4,7 @@ from experimental import *
 
 def test_StylesheetFileProxy_interactively_copy_01():
 
-    score_manager_configuration = scoremanagertools.core.ScoreManagerConfiguration()
+    score_manager_configuration = scoremanagertools.scoremanager.ScoreManagerConfiguration()
     filesystem_path = os.path.join(
         score_manager_configuration.score_manager_tools_directory_path,
         'stylesheets', 'clean-letter-14.ly')
