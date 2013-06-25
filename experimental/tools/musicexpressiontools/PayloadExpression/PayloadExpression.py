@@ -21,7 +21,7 @@ class PayloadExpression(Expression):
     def __init__(self, payload):
         self._payload = payload
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def payload(self):

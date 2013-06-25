@@ -1,11 +1,12 @@
 import copy
 from abjad.tools import durationtools
 from abjad.tools import sequencetools
-from experimental.tools.musicexpressiontools.StartPositionedPayloadExpression import \
-    StartPositionedPayloadExpression
+from experimental.tools.musicexpressiontools.StartPositionedPayloadExpression \
+    import StartPositionedPayloadExpression
 
 
-class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression):
+class StartPositionedDivisionPayloadExpression(
+    StartPositionedPayloadExpression):
     r'''Start-positioned division payload expression.
 
     ::
@@ -34,9 +35,17 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
 
     def __init__(self, payload=None, start_offset=None, voice_name=None):
         from experimental.tools import musicexpressiontools
-        payload = musicexpressiontools.DivisionList(payload, start_offset=start_offset, voice_name=voice_name)
-        StartPositionedPayloadExpression.__init__(self,
-            payload=payload, start_offset=start_offset, voice_name=voice_name)
+        payload = musicexpressiontools.DivisionList(
+            payload, 
+            start_offset=start_offset, 
+            voice_name=voice_name,
+            )
+        StartPositionedPayloadExpression.__init__(
+            self,
+            payload=payload, 
+            start_offset=start_offset, 
+            voice_name=voice_name,
+            )
 
     ### SPECIAL METHODS ###
 
@@ -332,7 +341,7 @@ class StartPositionedDivisionPayloadExpression(StartPositionedPayloadExpression)
             total_duration += shard.duration
         return result
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def elements(self):

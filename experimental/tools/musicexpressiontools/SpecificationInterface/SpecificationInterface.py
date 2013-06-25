@@ -1,14 +1,18 @@
 import abc
-from experimental.tools.musicexpressiontools.TimeContiguousSetMethodMixin import TimeContiguousSetMethodMixin
-from experimental.tools.musicexpressiontools.SelectMethodMixin import SelectMethodMixin
+from experimental.tools.musicexpressiontools.TimeContiguousSetMethodMixin \
+    import TimeContiguousSetMethodMixin
+from experimental.tools.musicexpressiontools.SelectMethodMixin \
+    import SelectMethodMixin
 
 
 class SpecificationInterface(SelectMethodMixin, TimeContiguousSetMethodMixin):
     r'''Specification interface.
 
-    Score and segment specification interfaces constitute the primary vehicle of composition.
+    Score and segment specification interfaces constitute the 
+    primary vehicle of composition.
 
-    Composers call many methods against score and segment specification interfaces.
+    Composers call many methods against score and segment specification 
+    interfaces.
     '''
 
     ### CLASS VARIABLES ##
@@ -26,13 +30,13 @@ class SpecificationInterface(SelectMethodMixin, TimeContiguousSetMethodMixin):
     def __repr__(self):
         return '{}()'.format(self._class_name)
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _expression_abbreviation(self):
         return self.specification_name
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def score_specification(self):

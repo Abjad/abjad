@@ -4,7 +4,8 @@ from abjad.tools import mathtools
 from abjad.tools import rhythmmakertools
 from abjad.tools import selectiontools
 from abjad.tools import sequencetools
-from experimental.tools.musicexpressiontools.PayloadExpression import PayloadExpression
+from experimental.tools.musicexpressiontools.PayloadExpression \
+    import PayloadExpression
 
 
 class IterablePayloadExpression(PayloadExpression):
@@ -110,7 +111,7 @@ class IterablePayloadExpression(PayloadExpression):
             duration = durationtools.Duration(expression)
             return duration
 
-    ### READ-ONLY PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def elements(self):

@@ -11,12 +11,15 @@ from abjad.tools import timerelationtools
 from abjad.tools import timespantools
 from abjad.tools import tuplettools
 from abjad.tools import wellformednesstools
-from experimental.tools.musicexpressiontools.CounttimeComponentSelectExpressionSetMethodMixin import \
-    CounttimeComponentSelectExpressionSetMethodMixin
-from experimental.tools.musicexpressiontools.SelectExpression import SelectExpression
+from experimental.tools.musicexpressiontools.CounttimeComponentSelectExpressionSetMethodMixin \
+    import CounttimeComponentSelectExpressionSetMethodMixin
+from experimental.tools.musicexpressiontools.SelectExpression \
+    import SelectExpression
 
 
-class CounttimeComponentSelectExpression(CounttimeComponentSelectExpressionSetMethodMixin, SelectExpression):
+# TODO: move mixin to rightmost spot in class creation
+class CounttimeComponentSelectExpression(
+    CounttimeComponentSelectExpressionSetMethodMixin, SelectExpression):
     r'''Counttime component select expression.
 
     Preparatory definitions:
@@ -65,9 +68,17 @@ class CounttimeComponentSelectExpression(CounttimeComponentSelectExpressionSetMe
 
     ### INITIALIZER ###
 
-    def __init__(self, anchor=None, classes=None, voice_name=None, time_relation=None, callbacks=None):
+    def __init__(
+        self, 
+        anchor=None, 
+        classes=None, 
+        voice_name=None, 
+        time_relation=None, 
+        callbacks=None,
+        ):
         from experimental.tools import musicexpressiontools
-        assert classes is None or self._is_counttime_component_class_expr(classes), repr(classes)
+        assert classes is None or \
+            self._is_counttime_component_class_expr(classes), repr(classes)
         SelectExpression.__init__(self,
             anchor=anchor,
             voice_name=voice_name,
@@ -104,7 +115,7 @@ class CounttimeComponentSelectExpression(CounttimeComponentSelectExpressionSetMe
         else:
             return False
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def classes(self):

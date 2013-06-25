@@ -1,5 +1,6 @@
 from abjad.tools import abctools
-from experimental.tools.musicexpressiontools.TimespanExpression import TimespanExpression
+from experimental.tools.musicexpressiontools.TimespanExpression \
+    import TimespanExpression
 
 
 class MixedSourceTimespanExpression(TimespanExpression):
@@ -14,8 +15,8 @@ class MixedSourceTimespanExpression(TimespanExpression):
         >>> red_segment = score_specification.append_segment(name='red')
         >>> blue_segment = score_specification.append_segment(name='blue')
 
-    Example. Mixed-source timespan starting at the left edge of the last measure
-    that starts during segment ``'red'``
+    Example. Mixed-source timespan starting at the left edge of the last 
+    measure that starts during segment ``'red'``
     and stoppding at the right edge of the first measure
     that starts during segment ``'blue'``:
 
@@ -80,7 +81,7 @@ class MixedSourceTimespanExpression(TimespanExpression):
         '''
         raise NotImplementedError
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def start_offset(self):

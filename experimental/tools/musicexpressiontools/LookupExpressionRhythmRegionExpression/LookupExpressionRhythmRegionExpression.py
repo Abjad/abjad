@@ -2,7 +2,8 @@ import copy
 from abjad.tools import timerelationtools
 from abjad.tools import timespantools
 from abjad.tools import wellformednesstools
-from experimental.tools.musicexpressiontools.RhythmRegionExpression import RhythmRegionExpression
+from experimental.tools.musicexpressiontools.RhythmRegionExpression \
+    import RhythmRegionExpression
 
 
 class LookupExpressionRhythmRegionExpression(RhythmRegionExpression):
@@ -11,10 +12,22 @@ class LookupExpressionRhythmRegionExpression(RhythmRegionExpression):
 
     ### INITIALIZER ###
 
-    def __init__(self, source_expression=None, division_list=None,
-        region_start_offset=None, start_offset=None, total_duration=None, voice_name=None):
-        RhythmRegionExpression.__init__(self, source_expression=source_expression,
-            start_offset=start_offset, total_duration=total_duration, voice_name=voice_name)
+    def __init__(
+        self, 
+        source_expression=None, 
+        division_list=None,
+        region_start_offset=None, 
+        start_offset=None, 
+        total_duration=None, 
+        voice_name=None,
+        ):
+        RhythmRegionExpression.__init__(
+            self, 
+            source_expression=source_expression,
+            start_offset=start_offset, 
+            total_duration=total_duration, 
+            voice_name=voice_name,
+            )
         self._division_list = division_list
         self._region_start_offset = region_start_offset
 
@@ -46,7 +59,7 @@ class LookupExpressionRhythmRegionExpression(RhythmRegionExpression):
         assert isinstance(result, musicexpressiontools.StartPositionedRhythmPayloadExpression), repr(result)
         return result
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def division_list(self):

@@ -1,4 +1,5 @@
-from experimental.tools.musicexpressiontools.SpecificationInterface import SpecificationInterface
+from experimental.tools.musicexpressiontools.SpecificationInterface \
+    import SpecificationInterface
 
 
 class ScoreSpecificationInterface(SpecificationInterface):
@@ -29,7 +30,7 @@ class ScoreSpecificationInterface(SpecificationInterface):
         score_specification._interface = self
         self._score_specification = score_specification
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def score_specification(self):

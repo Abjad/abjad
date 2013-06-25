@@ -28,7 +28,7 @@ class StatalServer(AbjadObject):
                 return True
         return False
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def cyclic_tree(self):

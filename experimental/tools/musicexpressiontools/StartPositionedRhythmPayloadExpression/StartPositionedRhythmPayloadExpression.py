@@ -11,8 +11,8 @@ from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools import timespantools
 from abjad.tools import wellformednesstools
-from experimental.tools.musicexpressiontools.StartPositionedPayloadExpression import \
-    StartPositionedPayloadExpression
+from experimental.tools.musicexpressiontools.StartPositionedPayloadExpression \
+    import StartPositionedPayloadExpression
 
 
 class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
@@ -327,7 +327,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         '''
         return StartPositionedPayloadExpression.__sub__(self, timespan)
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _duration(self):
@@ -353,7 +353,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
                 wellformednesstools.tabulate_well_formedness_violations_in_expr(shard)
         return shards
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def elements(self):

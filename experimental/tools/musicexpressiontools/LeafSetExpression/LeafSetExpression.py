@@ -7,7 +7,11 @@ class LeafSetExpression(Expression):
 
     ### INITIALIZER ###
 
-    def __init__(self, source_expression=None, target_select_expression_inventory=None):
+    def __init__(
+        self, 
+        source_expression=None, 
+        target_select_expression_inventory=None,
+        ):
         from experimental.tools import musicexpressiontools
         assert isinstance(source_expression, musicexpressiontools.Expression), repr(source_expression)
         assert isinstance(target_select_expression_inventory,
@@ -25,7 +29,7 @@ class LeafSetExpression(Expression):
             leaves.extend(iterable_payload_expression.payload)
         return leaves
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def source_expression(self):

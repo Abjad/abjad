@@ -2,7 +2,8 @@ from abjad.tools import chordtools
 from abjad.tools import notetools
 from abjad.tools import notetools
 from abjad.tools import sequencetools
-from experimental.tools.musicexpressiontools.LeafSetExpression import LeafSetExpression
+from experimental.tools.musicexpressiontools.LeafSetExpression \
+    import LeafSetExpression
 
 
 class PitchSetExpression(LeafSetExpression):
@@ -11,8 +12,14 @@ class PitchSetExpression(LeafSetExpression):
 
     ### INITIALIZER ###
 
-    def __init__(self, source_expression=None, target_select_expression_inventory=None,
-        node_count=None, level=None, trope=None):
+    def __init__(
+        self, 
+        source_expression=None, 
+        target_select_expression_inventory=None,
+        node_count=None, 
+        level=None, 
+        trope=None,
+        ):
         LeafSetExpression.__init__(self, source_expression=source_expression,
             target_select_expression_inventory=target_select_expression_inventory)
         assert isinstance(node_count, (int, type(None))), repr(node_count)
@@ -21,7 +28,7 @@ class PitchSetExpression(LeafSetExpression):
         self._level = level
         self._trope = trope
 
-    ### READ-ONLY PUBLIC PROPERTIES ##
+    ### PUBLIC PROPERTIES ##
 
     @property
     def level(self):

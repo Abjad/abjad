@@ -1,6 +1,7 @@
 import re
 import numbers
-from experimental.tools.musicexpressiontools.PayloadExpression import PayloadExpression
+from experimental.tools.musicexpressiontools.PayloadExpression \
+    import PayloadExpression
 
 
 class PitchClassTransformExpression(PayloadExpression):
@@ -15,7 +16,8 @@ class PitchClassTransformExpression(PayloadExpression):
         assert isinstance(payload, str), repr(payload)
         PayloadExpression.__init__(self, payload=payload)
         simple_strings = self._parse_complex_transform_string(payload)
-        transform_functions = [self._simple_string_to_transform_function(x) for x in simple_strings]
+        transform_functions = [self._simple_string_to_transform_function(x) 
+            for x in simple_strings]
         self._transform_functions = transform_functions
 
     ### SPECIAL METHODS ###
@@ -46,7 +48,7 @@ class PitchClassTransformExpression(PayloadExpression):
         else:
             raise ValueError(simple_string)
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def transform_functions(self):

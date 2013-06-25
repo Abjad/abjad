@@ -41,7 +41,11 @@ class Division(NonreducedFraction, BoundedObject):
 
     # slots definition does nothing here because multiple inheritance
     # breaks with multiple slots base classes
-    __slots__ = ('_is_left_closed', '_is_left_open', '_is_right_closed', '_is_right_open',
+    __slots__ = (
+        '_is_left_closed', 
+        '_is_left_open', 
+        '_is_right_closed', 
+        '_is_right_open',
         '_start_offset',
         )
 
@@ -103,7 +107,7 @@ class Division(NonreducedFraction, BoundedObject):
         string = '{}({!r})'.format(self._tools_package_qualified_class_name, str(self))
         return [string]
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def duration(self):

@@ -26,7 +26,7 @@ class AnchoredExpression(Expression):
             result._lexical_rank = self._lexical_rank
         return result
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _expression_abbreviation(self):
@@ -76,7 +76,7 @@ class AnchoredExpression(Expression):
             anchor._set_root_specification(root_specification_identifier)
             self._anchor = anchor
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def anchor(self):

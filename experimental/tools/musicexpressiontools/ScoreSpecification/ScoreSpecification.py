@@ -85,7 +85,7 @@ class ScoreSpecification(Specification):
             else:
                 return candidate_segment_number
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def context_names(self):

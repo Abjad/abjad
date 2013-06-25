@@ -1,4 +1,5 @@
-from experimental.tools.musicexpressiontools.SpecificationInterface import SpecificationInterface
+from experimental.tools.musicexpressiontools.SpecificationInterface \
+    import SpecificationInterface
 
 
 class SegmentSpecificationInterface(SpecificationInterface):
@@ -40,7 +41,7 @@ class SegmentSpecificationInterface(SpecificationInterface):
         '''
         return '{}({!r})'.format(self._class_name, self.segment_name)
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def score_specification(self):

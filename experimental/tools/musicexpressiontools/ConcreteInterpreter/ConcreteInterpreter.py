@@ -33,7 +33,7 @@ class ConcreteInterpreter(Interpreter):
             print 'Abjad interpretation time equal to {} seconds ...'.format(int(total_time))
         return self.score
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def leaf_offset_lists_by_voice(self):
@@ -266,7 +266,8 @@ class ConcreteInterpreter(Interpreter):
             inventory = voice_proxy.timespan_scoped_single_context_set_expressions_by_attribute[attribute]
             inventory[:] = timespan_scoped_single_context_set_expressions[:]
 
-    def merge_prolonging_rhythm_region_expressions(self, rhythm_region_expressions):
+    def merge_prolonging_rhythm_region_expressions(
+        self, rhythm_region_expressions):
         from experimental.tools import musicexpressiontools
         result = []
         for rhythm_region_expression in rhythm_region_expressions:

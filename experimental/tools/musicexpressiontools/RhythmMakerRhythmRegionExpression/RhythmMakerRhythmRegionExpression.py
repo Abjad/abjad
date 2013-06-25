@@ -14,11 +14,13 @@ class RhythmMakerRhythmRegionExpression(RhythmRegionExpression):
 
     ### INITIALIZER ###
 
-    def __init__(self, 
+    def __init__(
+        self, 
         source_expression=None, 
         division_list=None, 
         start_offset=None, 
-        voice_name=None):
+        voice_name=None,
+        ):   
         from experimental.tools import musicexpressiontools
         assert isinstance(source_expression, rhythmmakertools.RhythmMaker)
         assert isinstance(division_list, musicexpressiontools.DivisionList)
@@ -49,7 +51,7 @@ class RhythmMakerRhythmRegionExpression(RhythmRegionExpression):
                 beamtools.DuratedComplexBeamSpanner(
                     [rhythm_container], [rhythm_container.duration], span=1)
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def division_list(self):

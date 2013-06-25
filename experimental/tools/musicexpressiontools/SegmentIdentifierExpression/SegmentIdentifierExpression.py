@@ -44,7 +44,7 @@ class SegmentIdentifierExpression(AbjadObject):
     def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
         return [''.join(AbjadObject._get_tools_package_qualified_repr_pieces(self, is_indented=False))]
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def string(self):

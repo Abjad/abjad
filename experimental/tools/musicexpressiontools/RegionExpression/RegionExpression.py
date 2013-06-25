@@ -13,7 +13,13 @@ class RegionExpression(Expression):
 
     ### INITIALIZER ###
 
-    def __init__(self, source_expression=None, start_offset=None, total_duration=None, voice_name=None):
+    def __init__(
+        self, 
+        source_expression=None, 
+        start_offset=None, 
+        total_duration=None, 
+        voice_name=None,
+        ):
         assert isinstance(voice_name, str), repr(voice_name)
         start_offset = durationtools.Offset(start_offset)
         total_duration = durationtools.Duration(total_duration)
@@ -22,7 +28,7 @@ class RegionExpression(Expression):
         self._total_duration = total_duration
         self._voice_name = voice_name
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def source_expression(self):

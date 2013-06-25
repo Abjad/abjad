@@ -1,7 +1,8 @@
 import abc
 import copy
 from abjad.tools.abctools import AbjadObject
-from experimental.tools.musicexpressiontools.AttributeNameEnumeration import AttributeNameEnumeration
+from experimental.tools.musicexpressiontools.AttributeNameEnumeration \
+    import AttributeNameEnumeration
 
 
 class CallbackMixin(AbjadObject):
@@ -33,7 +34,7 @@ class CallbackMixin(AbjadObject):
         result.callbacks.append(callback)
         return result
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def callbacks(self):

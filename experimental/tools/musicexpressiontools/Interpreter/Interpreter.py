@@ -2,7 +2,8 @@ import abc
 import copy
 from abjad.tools import contexttools
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from experimental.tools.musicexpressiontools.AttributeNameEnumeration import AttributeNameEnumeration
+from experimental.tools.musicexpressiontools.AttributeNameEnumeration \
+    import AttributeNameEnumeration
 
 
 class Interpreter(AbjadObject):
@@ -29,7 +30,7 @@ class Interpreter(AbjadObject):
         self.store_score_rooted_single_context_set_expressions_by_context()
         self.store_segment_rooted_single_context_set_expressions_by_context()
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def callback_cache(self):

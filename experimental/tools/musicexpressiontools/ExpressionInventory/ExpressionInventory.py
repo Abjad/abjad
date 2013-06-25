@@ -1,6 +1,7 @@
 import copy
 from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
-from experimental.tools.musicexpressiontools.IterablePayloadExpression import IterablePayloadExpression
+from experimental.tools.musicexpressiontools.IterablePayloadExpression \
+    import IterablePayloadExpression
 
 
 class ExpressionInventory(ObjectInventory, IterablePayloadExpression):
@@ -14,7 +15,7 @@ class ExpressionInventory(ObjectInventory, IterablePayloadExpression):
         result = type(self)(tokens=tokens, name=self.name)
         return result
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def elements(self):

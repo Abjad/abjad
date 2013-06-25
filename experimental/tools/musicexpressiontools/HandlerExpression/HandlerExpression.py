@@ -1,6 +1,7 @@
 from experimental.tools import handlertools
 from experimental.tools.musicexpressiontools.Expression import Expression
-from experimental.tools.musicexpressiontools.IterablePayloadCallbackMixin import IterablePayloadCallbackMixin
+from experimental.tools.musicexpressiontools.IterablePayloadCallbackMixin \
+    import IterablePayloadCallbackMixin
 
 
 class HandlerExpression(Expression, IterablePayloadCallbackMixin):
@@ -22,7 +23,7 @@ class HandlerExpression(Expression, IterablePayloadCallbackMixin):
         '''
         raise NotImplementedError
 
-    ### READ-ONLY PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def handler(self):

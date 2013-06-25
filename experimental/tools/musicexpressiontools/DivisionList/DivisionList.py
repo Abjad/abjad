@@ -131,7 +131,7 @@ class DivisionList(BoundedObject):
         '''
         return '{}({!r})'.format(self._class_name, self._contents_string)
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _contents_string(self):
@@ -154,7 +154,7 @@ class DivisionList(BoundedObject):
         divisions.extend(right[1:])
         return type(left)(divisions)
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def divisions(self):

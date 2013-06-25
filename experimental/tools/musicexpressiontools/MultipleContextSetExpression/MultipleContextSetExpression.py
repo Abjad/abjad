@@ -1,11 +1,13 @@
 import copy
-from experimental.tools.musicexpressiontools.TimeContiguousAnchoredSetExpression import TimeContiguousAnchoredSetExpression
+from experimental.tools.musicexpressiontools.TimeContiguousAnchoredSetExpression \
+    import TimeContiguousAnchoredSetExpression
 
 
 class MultipleContextSetExpression(TimeContiguousAnchoredSetExpression):
     r'''Multiple-context set expression.
 
-    Set `attribute` to `source_expression` for `target_timespan` over all `contexts`:
+    Set `attribute` to `source_expression` for `target_timespan` over 
+    all `contexts`:
 
     ::
 
@@ -53,7 +55,7 @@ class MultipleContextSetExpression(TimeContiguousAnchoredSetExpression):
             'rhythm': musicexpressiontools.SingleContextRhythmSetExpression,
             }[attribute]
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def target_context_names(self):

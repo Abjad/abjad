@@ -18,7 +18,7 @@ class ContextProxy(AbjadObject):
             self._timespan_scoped_single_context_set_expressions_by_attribute[attribute] = \
                 musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory()
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def single_context_set_expressions_by_attribute(self):

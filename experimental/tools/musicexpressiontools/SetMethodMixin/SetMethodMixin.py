@@ -11,7 +11,7 @@ class SetMethodMixin(AbjadObject):
     '''Set method mixin.
     '''
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _target_select_expression_inventory(self):

@@ -1,7 +1,8 @@
 import abc
 from abjad.tools import *
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from experimental.tools.musicexpressiontools.AttributeNameEnumeration import AttributeNameEnumeration
+from experimental.tools.musicexpressiontools.AttributeNameEnumeration \
+    import AttributeNameEnumeration
 
 
 class Specification(AbjadObject):
@@ -30,7 +31,7 @@ class Specification(AbjadObject):
             musicexpressiontools.ContextDictionary(score_template())
         self._initialize_context_name_abbreviations()
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     def _context_name_to_improper_parentage_names(self, context_name):
         context = componenttools.get_first_component_in_expr_with_name(self.score_model, context_name)
@@ -38,8 +39,10 @@ class Specification(AbjadObject):
         parentage_names = [parent.name for parent in parentage]
         return parentage_names
 
-    def _get_first_expression_that_governs_context_name(self, expressions, context_name):
-        parentage_names = self._context_name_to_improper_parentage_names(context_name)
+    def _get_first_expression_that_governs_context_name(
+        self, expressions, context_name):
+        parentage_names = \
+            self._context_name_to_improper_parentage_names(context_name)
         for parentage_name in parentage_names:
             for expression in expressions:
                 if expression.target_context_name is None:
@@ -86,7 +89,7 @@ class Specification(AbjadObject):
                 self._context_names.append(context.name)
         self._context_names = tuple(self._context_names)
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def context_name_abbreviations(self):

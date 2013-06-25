@@ -50,7 +50,7 @@ class StatalServerCursor(AbjadObject):
             result.extend(node.manifest_payload)
         return result
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def position(self):

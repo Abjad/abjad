@@ -1,5 +1,6 @@
 from experimental.tools.musicexpressiontools.Expression import Expression
-from experimental.tools.musicexpressiontools.IterablePayloadCallbackMixin import IterablePayloadCallbackMixin
+from experimental.tools.musicexpressiontools.IterablePayloadCallbackMixin \
+    import IterablePayloadCallbackMixin
 
 
 class StatalServerExpression(Expression, IterablePayloadCallbackMixin):
@@ -28,7 +29,7 @@ class StatalServerExpression(Expression, IterablePayloadCallbackMixin):
         '''
         raise NotImplementedError
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def statal_server(self):

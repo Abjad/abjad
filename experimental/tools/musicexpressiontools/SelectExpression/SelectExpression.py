@@ -1,13 +1,21 @@
 import abc
 import copy
 from abjad.tools import timerelationtools
-from experimental.tools.musicexpressiontools.AnchoredExpression import AnchoredExpression
-from experimental.tools.musicexpressiontools.IterablePayloadCallbackMixin import IterablePayloadCallbackMixin
-from experimental.tools.musicexpressiontools.SelectMethodMixin import SelectMethodMixin
-from experimental.tools.musicexpressiontools.SetMethodMixin import SetMethodMixin
+from experimental.tools.musicexpressiontools.AnchoredExpression \
+    import AnchoredExpression
+from experimental.tools.musicexpressiontools.IterablePayloadCallbackMixin \
+    import IterablePayloadCallbackMixin
+from experimental.tools.musicexpressiontools.SelectMethodMixin \
+    import SelectMethodMixin
+from experimental.tools.musicexpressiontools.SetMethodMixin \
+    import SetMethodMixin
 
 
-class SelectExpression(AnchoredExpression, IterablePayloadCallbackMixin, SelectMethodMixin, SetMethodMixin):
+class SelectExpression(
+    AnchoredExpression, 
+    IterablePayloadCallbackMixin, 
+    SelectMethodMixin, 
+    SetMethodMixin):
     r'''Select expression.
     '''
 
@@ -17,7 +25,12 @@ class SelectExpression(AnchoredExpression, IterablePayloadCallbackMixin, SelectM
 
     ### INTIALIZER ###
 
-    def __init__(self, anchor=None, voice_name=None, time_relation=None, callbacks=None):
+    def __init__(
+        self, anchor=None, 
+        voice_name=None, 
+        time_relation=None, 
+        callbacks=None,
+        ):
         assert isinstance(voice_name, (str, type(None))), repr(voice_name)
         assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
         assert time_relation is None or time_relation.is_fully_unloaded, repr(time_relation)
@@ -38,7 +51,7 @@ class SelectExpression(AnchoredExpression, IterablePayloadCallbackMixin, SelectM
             time_relation = self.time_relation.new(timespan_1=anchor_timespan)
         return time_relation
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def time_relation(self):

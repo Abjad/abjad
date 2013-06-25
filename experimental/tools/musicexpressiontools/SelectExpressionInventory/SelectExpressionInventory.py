@@ -1,12 +1,14 @@
-from experimental.tools.musicexpressiontools.ExpressionInventory import ExpressionInventory
-from experimental.tools.musicexpressiontools.SetMethodMixin import SetMethodMixin
+from experimental.tools.musicexpressiontools.ExpressionInventory \
+    import ExpressionInventory
+from experimental.tools.musicexpressiontools.SetMethodMixin \
+    import SetMethodMixin
 
 
 class SelectExpressionInventory(ExpressionInventory, SetMethodMixin):
     '''Select expression inventory.
     '''
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def score_specification(self):

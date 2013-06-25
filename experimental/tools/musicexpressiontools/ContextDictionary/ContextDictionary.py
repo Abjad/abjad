@@ -46,7 +46,7 @@ class ContextDictionary(AbjadObject, collections.OrderedDict):
         for context_name in sorted(context_names):
             self[context_name] = musicexpressiontools.ContextProxy()
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def score(self):

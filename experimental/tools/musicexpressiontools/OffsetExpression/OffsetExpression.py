@@ -1,9 +1,13 @@
-from experimental.tools.musicexpressiontools.AnchoredExpression import AnchoredExpression
-from experimental.tools.musicexpressiontools.LookupMethodMixin import LookupMethodMixin
-from experimental.tools.musicexpressiontools.OffsetCallbackMixin import OffsetCallbackMixin
+from experimental.tools.musicexpressiontools.AnchoredExpression \
+    import AnchoredExpression
+from experimental.tools.musicexpressiontools.LookupMethodMixin \
+    import LookupMethodMixin
+from experimental.tools.musicexpressiontools.OffsetCallbackMixin \
+    import OffsetCallbackMixin
 
 
-class OffsetExpression(AnchoredExpression, OffsetCallbackMixin, LookupMethodMixin):
+class OffsetExpression(
+    AnchoredExpression, OffsetCallbackMixin, LookupMethodMixin):
     r'''Offset expression.
 
     Definitions:
@@ -14,8 +18,8 @@ class OffsetExpression(AnchoredExpression, OffsetCallbackMixin, LookupMethodMixi
         >>> score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template=score_template)
         >>> red_segment = score_specification.append_segment(name='red')
 
-    Example. Symbolic offset indicating the right edge of voice ``1`` note ``10`` that starts
-    during segment ``'red'``::
+    Example. Symbolic offset indicating the right edge of voice ``1`` 
+    note ``10`` that starts during segment ``'red'``::
 
         >>> notes = red_segment.select_notes_and_chords('Voice 1')
         >>> offset = notes.stop_offset
@@ -47,7 +51,7 @@ class OffsetExpression(AnchoredExpression, OffsetCallbackMixin, LookupMethodMixi
         OffsetCallbackMixin.__init__(self, callbacks=callbacks)
         self._edge = edge
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def edge(self):

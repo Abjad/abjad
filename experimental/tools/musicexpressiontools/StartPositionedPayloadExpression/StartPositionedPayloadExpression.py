@@ -8,7 +8,8 @@ from abjad.tools import sequencetools
 from abjad.tools import timerelationtools
 from abjad.tools import timespantools
 from abjad.tools import wellformednesstools
-from experimental.tools.musicexpressiontools.IterablePayloadExpression import IterablePayloadExpression
+from experimental.tools.musicexpressiontools.IterablePayloadExpression \
+    import IterablePayloadExpression
 
 
 class StartPositionedPayloadExpression(IterablePayloadExpression):
@@ -168,7 +169,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
             result = timespantools.TimespanInventory([self])
         return result
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _duration(self):
@@ -207,7 +208,7 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
             duration += self._get_duration_of_expr(element)
         return duration
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def elements(self):
@@ -274,8 +275,13 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
 
     ### PUBLIC METHODS ###
 
-    def get_elements_that_satisfy_time_relation(self, time_relation, callback_cache):
-        '''Get start-positioned payload expression elements that satisfy `time_relation`.
+    def get_elements_that_satisfy_time_relation(
+        self, 
+        time_relation, 
+        callback_cache,
+        ):
+        '''Get start-positioned payload expression elements that satisfy 
+        `time_relation`.
 
         Return newly constructed start-positioned payload expression.
         '''
@@ -285,7 +291,8 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
             for element in self.elements:
                 start_offsets.append(element.start_offset)
                 stop_offsets.append(element.stop_offset)
-            start_index, stop_index = time_relation.get_offset_indices(start_offsets, stop_offsets)
+            start_index, stop_index = time_relation.get_offset_indices(
+                start_offsets, stop_offsets)
             elements = self.elements[start_index:stop_index]
             if not elements:
                 return

@@ -14,18 +14,24 @@ class SetExpression(Expression):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, attribute=None, source_expression=None, target_timespan=None):
+    def __init__(
+        self, 
+        attribute=None, 
+        source_expression=None, 
+        target_timespan=None,
+        ):
         from experimental.tools import musicexpressiontools
-        assert isinstance(attribute, str), repr(attribute)
-        assert isinstance(source_expression, musicexpressiontools.Expression), repr(source_expression)
-        assert isinstance(target_timespan, (timespantools.Timespan, musicexpressiontools.TimespanExpression,
-            str, type(None))), repr(target_timespan)
+        assert isinstance(attribute, str)
+        assert isinstance(source_expression, musicexpressiontools.Expression)
+        assert isinstance(target_timespan, 
+            (timespantools.Timespan, musicexpressiontools.TimespanExpression,
+            str, type(None)))
         self._attribute = attribute
         self._source_expression = source_expression
         self._target_timespan = target_timespan
         self._lexical_rank = None
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def attribute(self):

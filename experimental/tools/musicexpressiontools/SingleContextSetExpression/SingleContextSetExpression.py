@@ -1,12 +1,14 @@
 import abc
 import copy
-from experimental.tools.musicexpressiontools.TimeContiguousAnchoredSetExpression import TimeContiguousAnchoredSetExpression
+from experimental.tools.musicexpressiontools.TimeContiguousAnchoredSetExpression \
+    import TimeContiguousAnchoredSetExpression
 
 
 class SingleContextSetExpression(TimeContiguousAnchoredSetExpression):
     r'''Single-context set expression.
 
-    Set `attribute` to `source_expression` for `target_timespan` in `target_context_name`.
+    Set `attribute` to `source_expression` for `target_timespan` in 
+    `target_context_name`.
 
     Example specification:
 
@@ -29,7 +31,8 @@ class SingleContextSetExpression(TimeContiguousAnchoredSetExpression):
 
         >>> score = score_specification.interpret()
 
-    Example. Set time signatures to ``4/8``, ``3/8`` for red segment timespan in score context:
+    Example. Set time signatures to ``4/8``, ``3/8`` for red segment timespan 
+    in score context:
 
     ::
 
@@ -85,7 +88,7 @@ class SingleContextSetExpression(TimeContiguousAnchoredSetExpression):
         new_set_expression._fresh = False
         return new_set_expression
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def fresh(self):

@@ -1,15 +1,19 @@
 import abc
 from abjad.tools import timespantools
-from experimental.tools.musicexpressiontools.AnchoredExpression import AnchoredExpression
-from experimental.tools.musicexpressiontools.IterablePayloadCallbackMixin import IterablePayloadCallbackMixin
+from experimental.tools.musicexpressiontools.AnchoredExpression \
+    import AnchoredExpression
+from experimental.tools.musicexpressiontools.IterablePayloadCallbackMixin \
+    import IterablePayloadCallbackMixin
 
 
-class SetExpressionLookupExpression(AnchoredExpression, IterablePayloadCallbackMixin):
+class SetExpressionLookupExpression(
+    AnchoredExpression, IterablePayloadCallbackMixin):
     r'''Set expression lookup expression.
 
     Look up `attribute` set expression active at `offset` in `voice_name`.
 
-    Lookup expression is assumed to resolve to a list or other iterable payload.
+    Lookup expression is assumed to resolve to a list or other iterable 
+    payload.
 
     Because of this lookup expressions afford payload callbacks.
 
@@ -23,7 +27,13 @@ class SetExpressionLookupExpression(AnchoredExpression, IterablePayloadCallbackM
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, attribute=None, offset=None, voice_name=None, callbacks=None):
+    def __init__(
+        self, 
+        attribute=None, 
+        offset=None, 
+        voice_name=None, 
+        callbacks=None,
+        ):
         from experimental.tools import musicexpressiontools
         assert attribute in self.attributes, repr(attribute)
         assert isinstance(voice_name, str), repr(voice_name)
@@ -45,7 +55,7 @@ class SetExpressionLookupExpression(AnchoredExpression, IterablePayloadCallbackM
                     result.append(timespan_scoped_single_context_set_expression)
         return result
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def attribute(self):

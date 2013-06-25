@@ -1,7 +1,8 @@
 import collections
 from abjad.tools import timespantools
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from experimental.tools.musicexpressiontools.AttributeNameEnumeration import AttributeNameEnumeration
+from experimental.tools.musicexpressiontools.AttributeNameEnumeration \
+    import AttributeNameEnumeration
 
 
 class AttributeDictionary(AbjadObject, collections.OrderedDict):
@@ -30,7 +31,7 @@ class AttributeDictionary(AbjadObject, collections.OrderedDict):
         assert isinstance(value, list), repr(value)
         collections.OrderedDict.__setitem__(self, key, value)
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _positional_argument_values(self):
