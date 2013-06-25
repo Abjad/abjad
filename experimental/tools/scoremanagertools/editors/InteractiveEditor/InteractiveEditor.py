@@ -56,14 +56,13 @@ class InteractiveEditor(ScoreManagerObject):
             self.set_target_attribute(attribute_name, attribute_value)
 
     def _make_main_menu(self):
+        main_menu = self._io.make_only_menu(where=self._where)
+        keyed_attribute_section = main_menu.make_keyed_attribute_section(
+            is_numbered=True) 
         menu_entries = self.target_attribute_tokens
-        menu, menu_section = self._io.make_menu(where=self._where)
-        menu_section.return_value_attribute = 'key'
-        menu_section.is_numbered = True
-        menu_section.menu_entries = menu_entries
-        menu_section.display_prepopulated_values = True
-        menu.hidden_section.append(('done', 'done'))
-        return menu
+        keyed_attribute_section.menu_entries = menu_entries
+        main_menu.hidden_section.append(('done', 'done'))
+        return main_menu
 
     def _run(self, 
         breadcrumb=None, 

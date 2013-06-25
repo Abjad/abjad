@@ -411,9 +411,12 @@ class Menu(ScoreManagerObject):
             )
         return command_section
 
-    def make_keyed_attribute_section(self, menu_entries=None):
+    def make_keyed_attribute_section(self, 
+        is_numbered=False, 
+        menu_entries=None):
         keyed_attribute_section = self.make_section(
             return_value_attribute='key',
+            is_numbered=is_numbered,
             )
         return keyed_attribute_section
 
