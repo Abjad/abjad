@@ -52,20 +52,19 @@ class MaterialPackageProxy(PackageProxy):
             raise ValueError(result)
 
     def _make_main_menu(self):
-        menu, hidden_section = self._io.make_menu(where=self._where)
-        hidden_section.return_value_attribute = 'key'
-        hidden_section.is_hidden = True
-        self._make_main_menu_section_for_initializer(menu, hidden_section)
-        self._make_main_menu_sections(menu, hidden_section)
+        main_menu = self._io.make_only_menu(where=self._where)
+        hidden_section = main_menu.make_command_section(is_hidden=True)
+        self._make_main_menu_section_for_initializer(
+            main_menu, hidden_section)
+        self._make_main_menu_sections(main_menu, hidden_section)
         self._make_main_menu_section_for_illustration_ly(hidden_section)
-        self._make_main_menu_section_for_illustration_pdf(menu, hidden_section)
-        self._make_main_menu_section_for_hidden_entries(menu)
-        return menu
+        self._make_main_menu_section_for_illustration_pdf(
+            main_menu, hidden_section)
+        self._make_main_menu_section_for_hidden_entries(main_menu)
+        return main_menu
 
     def _make_main_menu_section_for_hidden_entries(self, main_menu):
-        hidden_section = main_menu.make_section()
-        hidden_section.return_value_attribute='key'
-        hidden_section.is_hidden = True
+        hidden_section = main_menu.make_command_section(is_hidden=True)
         hidden_section.append(('delete package', 'rm'))
         hidden_section.append(('list package', 'ls'))
         hidden_section.append(('rename package', 'ren'))
@@ -84,12 +83,11 @@ class MaterialPackageProxy(PackageProxy):
                         material_package_path,
                         material_package_name,
                         prompt=False)
-                menu_section = main_menu.make_section()
-                menu_section.return_value_attribute = 'key'
-                menu_section.append(
+                command_section = main_menu.make_command_section()
+                command_section.append(
                     ('illustration builder - edit', 'ibe'))
                 if self.has_output_material:
-                    menu_section.append(
+                    command_section.append(
                         ('illustration builder - execute', 'ibx'))
                 hidden_section.append(
                     ('illustration builder - delete', 'ibd'))
@@ -97,7 +95,7 @@ class MaterialPackageProxy(PackageProxy):
                     ('illustration builder - stub', 'ibt'))
                 hidden_section.append(
                     ('illustration builder - edit & execute', 'ibex'))
-                menu_section.append(
+                command_section.append(
                     ('score stylesheet - select', 'sss'))
                 hidden_section.append(
                     ('source stylesheet - edit', 'ssm'))
@@ -118,22 +116,20 @@ class MaterialPackageProxy(PackageProxy):
             if self.has_illustration_builder_module or \
                 (self.has_material_package_maker and 
                 getattr(self, 'illustration_maker', None)):
-                menu_section = main_menu.make_section()
-                menu_section.return_value_attribute = 'key'
-                menu_section.append(('output pdf - make', 'pdfm'))
+                command_section = main_menu.make_command_section()
+                command_section.append(('output pdf - make', 'pdfm'))
                 has_illustration_pdf_section = True
         if self.has_illustration_pdf:
             if not has_illustration_pdf_section:
-                menu_section = main_menu.make_section()
-                menu_section.return_value_attribute = 'key'
+                command_section = main_menu.make_command_section()
             hidden_section.append(('output pdf - delete', 'pdfd'))
-            menu_section.append(('output pdf - view', 'pdfv'))
+            command_section.append(('output pdf - view', 'pdfv'))
 
     def _make_main_menu_section_for_initializer(self, 
         main_menu, hidden_section):
         if not self.has_initializer:
-            menu_section = main_menu.make_section()
-            menu_section.title = '(Note: package has no initializer.)'
+            command_section = main_menu.make__command_section()
+            command_section.title = '(Note: package has no initializer.)'
         hidden_section.append(('initializer - restore', 'inr'))
         hidden_section.append(('view package initializer', 'inv'))
         hidden_section.append(('copy canned package initializer', 'incanned'))
@@ -144,11 +140,10 @@ class MaterialPackageProxy(PackageProxy):
         if not self.has_initializer:
             return
         if self.has_material_definition_module:
-            menu_section = main_menu.make_section()
-            menu_section.return_value_attribute = 'key'
-            menu_section.append(
+            command_section = main_menu.make_command_section()
+            command_section.append(
                 ('material definition - edit', 'mde'))
-            menu_section.append(
+            command_section.append(
                 ('material definition - execute', 'mdx'))
             hidden_section.append(
                 ('material definition - copy canned module', 'mdcanned'))
@@ -159,9 +154,9 @@ class MaterialPackageProxy(PackageProxy):
             hidden_section.append(
                 ('material definition - execute & edit', 'mdxe'))
         elif self.material_package_maker_class_name is None:
-            menu_section = main_menu.make_section()
-            menu_section.return_value_attribute = 'key'
-            menu_section.append(
+            command_section = main_menu.make_command_section()
+            command_section.return_value_attribute = 'key'
+            command_section.append(
                 ('material definition - stub', 'mdstub'))
 
     def _make_main_menu_section_for_output_material(self, 
@@ -174,14 +169,12 @@ class MaterialPackageProxy(PackageProxy):
             self.has_output_material_editor:
             if self.has_material_definition or \
                 self.has_complete_user_input_wrapper_in_memory:
-                menu_section = main_menu.make_section()
-                menu_section.return_value_attribute = 'key'
-                menu_section.append(('output material = make', 'omm'))
+                command_section = main_menu.make_command_section()
+                command_section.append(('output material = make', 'omm'))
                 has_output_material_section = True
             if self.has_output_material_editor:
-                menu_section = main_menu.make_section()
-                menu_section.return_value_attribute = 'key'
-                menu_section.append(('output material - interact', 'omi'))
+                command_section = main_menu.make_command_section()
+                command_section.append(('output material - interact', 'omi'))
                 if self.has_output_material:
                     output_material_editor = self.output_material_editor(
                         target=self.output_material, 
@@ -189,13 +182,12 @@ class MaterialPackageProxy(PackageProxy):
                     target_summary_lines = \
                         output_material_editor.target_summary_lines
                     if target_summary_lines:
-                        menu_section.title = target_summary_lines
+                        command_section.title = target_summary_lines
                 has_output_material_section = True
             if self.has_output_material_module:
                 if not has_output_material_section:
-                    menu_section = main_menu.make_section()
-                    menu_section.return_value_attribute = 'key'
-                menu_section.append(
+                    command_section = main_menu.make_command_section()
+                command_section.append(
                     ('output material - view', 'omv'))
                 hidden_section.append(
                     ('output material - delete', 'omdelete'))
