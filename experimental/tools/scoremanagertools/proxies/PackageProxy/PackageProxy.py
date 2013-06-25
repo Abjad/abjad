@@ -28,6 +28,14 @@ class PackageProxy(DirectoryProxy):
 
     ### PRIVATE METHODS ###
 
+    def _make_tags_menu_entries(self):
+        result = []
+        tags = self.get_tags()
+        for key in sorted(tags):
+            display_string = key.replace('_', ' ')
+            result.append((display_string, None, tags[key], key))
+        return result
+
     def _run(self, cache=False, clear=True, pending_user_input=None):
         self._io.assign_user_input(pending_user_input=pending_user_input)
         self._session.cache_breadcrumbs(cache=cache)
@@ -48,15 +56,6 @@ class PackageProxy(DirectoryProxy):
         self._session.restore_breadcrumbs(cache=cache)
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def formatted_tags(self):
-        formatted_tags = []
-        tags = self.get_tags()
-        for key in sorted(tags):
-            formatted_tag = '{!r}: {!r}'.format(key, tags[key])
-            formatted_tags.append(formatted_tag)
-        return formatted_tags
 
     @property
     def has_initializer(self):
@@ -225,16 +224,15 @@ class PackageProxy(DirectoryProxy):
         self.initializer_file_proxy.interactively_write_boilerplate()
 
     def make_tags_menu(self):
-        menu_entries = self.formatted_tags
-        menu, menu_section = self._io.make_menu(
-            where=self._where, 
-            menu_entries=menu_entries,
-            )
-        menu_section = menu.make_section(return_value_attribute='key')
-        menu_section.append(('add tag', 'add'))
-        menu_section.append(('delete tag', 'rm'))
-        menu_section.append(('get tag', 'get'))
-        return menu
+        tags_menu = self._io.make_only_menu(where=self._where)
+        attribute_section = tags_menu.make_attribute_section()
+        menu_entries = self._make_tags_menu_entries()
+        attribute_section.menu_entries = menu_entries
+        command_section = tags_menu.make_command_section()
+        command_section.append(('add tag', 'add'))
+        command_section.append(('delete tag', 'rm'))
+        command_section.append(('get tag', 'get'))
+        return tags_menu
 
     def manage_tags(self, clear=True, cache=False):
         self._session.cache_breadcrumbs(cache=cache)
