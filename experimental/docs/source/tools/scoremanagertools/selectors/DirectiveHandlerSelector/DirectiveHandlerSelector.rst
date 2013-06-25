@@ -19,6 +19,9 @@ Bases
 Read-only properties
 --------------------
 
+.. autoattribute:: experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.session
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector.storage_format
    :noindex:
 

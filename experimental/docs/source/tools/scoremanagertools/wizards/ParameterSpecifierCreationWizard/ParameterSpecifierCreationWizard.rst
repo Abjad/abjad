@@ -19,6 +19,9 @@ Bases
 Read-only properties
 --------------------
 
+.. autoattribute:: experimental.tools.scoremanagertools.wizards.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.session
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.wizards.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.storage_format
    :noindex:
 

@@ -7,4 +7,4 @@ def test_UserInputGetterMenu_where_01():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     score_manager._run(pending_user_input='red~example~score setup performers move where q')
-    assert score_manager._session.transcript.signature == (11,)
+    assert score_manager.session.transcript.signature == (11,)

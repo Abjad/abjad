@@ -19,6 +19,9 @@ Bases
 Read-only properties
 --------------------
 
+.. autoattribute:: experimental.tools.scoremanagertools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.session
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector.storage_format
    :noindex:
 

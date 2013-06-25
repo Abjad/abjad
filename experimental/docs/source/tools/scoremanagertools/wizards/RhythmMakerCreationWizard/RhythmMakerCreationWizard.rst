@@ -21,6 +21,9 @@ Bases
 Read-only properties
 --------------------
 
+.. autoattribute:: experimental.tools.scoremanagertools.wizards.RhythmMakerCreationWizard.RhythmMakerCreationWizard.RhythmMakerCreationWizard.session
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.wizards.RhythmMakerCreationWizard.RhythmMakerCreationWizard.RhythmMakerCreationWizard.storage_format
    :noindex:
 

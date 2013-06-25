@@ -25,6 +25,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.editors.MarkupEditor.MarkupEditor.MarkupEditor.has_target
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.editors.MarkupEditor.MarkupEditor.MarkupEditor.session
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.editors.MarkupEditor.MarkupEditor.MarkupEditor.space_delimited_lowercase_target_class_name
    :noindex:
 

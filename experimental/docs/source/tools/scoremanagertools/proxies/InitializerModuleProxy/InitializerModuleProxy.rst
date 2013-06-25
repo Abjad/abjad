@@ -41,6 +41,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.InitializerModuleProxy.InitializerModuleProxy.InitializerModuleProxy.parent_directory_packagesystem_path
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.InitializerModuleProxy.InitializerModuleProxy.InitializerModuleProxy.session
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.InitializerModuleProxy.InitializerModuleProxy.InitializerModuleProxy.storage_format
    :noindex:
 

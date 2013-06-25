@@ -19,6 +19,9 @@ Bases
 Read-only properties
 --------------------
 
+.. autoattribute:: experimental.tools.scoremanagertools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.session
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector.storage_format
    :noindex:
 

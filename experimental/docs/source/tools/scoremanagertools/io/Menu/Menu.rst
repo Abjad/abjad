@@ -23,6 +23,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.io.Menu.Menu.Menu.menu_sections
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.io.Menu.Menu.Menu.session
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.io.Menu.Menu.Menu.storage_format
    :noindex:
 

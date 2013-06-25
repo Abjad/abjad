@@ -35,6 +35,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.editors.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.items_identifier
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.editors.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.session
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.editors.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.MusicContributionSpecifierEditor.space_delimited_lowercase_target_class_name
    :noindex:
 

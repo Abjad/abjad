@@ -38,22 +38,22 @@ class PackageProxy(DirectoryProxy):
 
     def _run(self, cache=False, clear=True, pending_user_input=None):
         self._io.assign_user_input(pending_user_input=pending_user_input)
-        self._session.cache_breadcrumbs(cache=cache)
+        self.session.cache_breadcrumbs(cache=cache)
         while True:
-            self._session.push_breadcrumb(self._breadcrumb)
+            self.session.push_breadcrumb(self._breadcrumb)
             menu = self._make_main_menu()
             result = menu._run(clear=clear)
-            if self._session.backtrack(source=self._backtracking_source):
+            if self.session.backtrack(source=self._backtracking_source):
                 break
             elif not result:
-                self._session.pop_breadcrumb()
+                self.session.pop_breadcrumb()
                 continue
             self._handle_main_menu_result(result)
-            if self._session.backtrack(source=self._backtracking_source):
+            if self.session.backtrack(source=self._backtracking_source):
                 break
-            self._session.pop_breadcrumb()
-        self._session.pop_breadcrumb()
-        self._session.restore_breadcrumbs(cache=cache)
+            self.session.pop_breadcrumb()
+        self.session.pop_breadcrumb()
+        self.session.restore_breadcrumbs(cache=cache)
 
     ### PUBLIC PROPERTIES ###
 
@@ -85,7 +85,7 @@ class PackageProxy(DirectoryProxy):
     def initializer_file_proxy(self):
         from experimental.tools import scoremanagertools
         return scoremanagertools.proxies.InitializerModuleProxy(
-            self.initializer_file_name, session=self._session)
+            self.initializer_file_name, session=self.session)
 
     @property
     def package_path(self):
@@ -114,7 +114,7 @@ class PackageProxy(DirectoryProxy):
         from experimental.tools import scoremanagertools
         if self.has_parent_initializer:
             return scoremanagertools.proxies.InitializerModuleProxy(
-                self.parent_initializer_file_name, session=self._session)
+                self.parent_initializer_file_name, session=self.session)
 
     @property
     def public_names(self):
@@ -137,7 +137,7 @@ class PackageProxy(DirectoryProxy):
             tags_file.write('')
             tags_file.close()
         return scoremanagertools.proxies.TagsModuleProxy(
-            self.tags_file_name, session=self._session)
+            self.tags_file_name, session=self.session)
 
     ### PUBLIC METHODS ###
 
@@ -179,7 +179,7 @@ class PackageProxy(DirectoryProxy):
         getter.append_string('tag name')
         getter.append_expr('tag value')
         result = getter._run()
-        if self._session.backtrack():
+        if self.session.backtrack():
             return
         if result:
             tag_name, tag_value = result
@@ -189,7 +189,7 @@ class PackageProxy(DirectoryProxy):
         getter = self._io.make_getter(where=self._where)
         getter.append_string('tag name')
         result = getter._run()
-        if self._session.backtrack():
+        if self.session.backtrack():
             return
         tag = self.get_tag(result)
         line = '{!r}'.format(tag)
@@ -199,7 +199,7 @@ class PackageProxy(DirectoryProxy):
         getter = self._io.make_getter(where=self._where)
         getter.append_string('tag name')
         result = getter._run()
-        if self._session.backtrack():
+        if self.session.backtrack():
             return
         if result:
             tag_name = result
@@ -213,7 +213,7 @@ class PackageProxy(DirectoryProxy):
         getter.append_snake_case_package_name(
             'package name')
         result = getter._run()
-        if self._session.backtrack():
+        if self.session.backtrack():
             return
         self.package_path = result
 
@@ -235,19 +235,19 @@ class PackageProxy(DirectoryProxy):
         return tags_menu
 
     def manage_tags(self, clear=True, cache=False):
-        self._session.cache_breadcrumbs(cache=cache)
+        self.session.cache_breadcrumbs(cache=cache)
         while True:
-            self._session.push_breadcrumb('tags')
+            self.session.push_breadcrumb('tags')
             menu = self.make_tags_menu()
             result = menu._run(clear=clear)
-            if self._session.backtrack():
+            if self.session.backtrack():
                 break
             self.handle_tags_menu_result(result)
-            if self._session.backtrack():
+            if self.session.backtrack():
                 break
-            self._session.pop_breadcrumb()
-        self._session.pop_breadcrumb()
-        self._session.restore_breadcrumbs(cache=cache)
+            self.session.pop_breadcrumb()
+        self.session.pop_breadcrumb()
+        self.session.restore_breadcrumbs(cache=cache)
 
     def remove_initializer(self, is_interactive=True):
         if self.has_initializer:

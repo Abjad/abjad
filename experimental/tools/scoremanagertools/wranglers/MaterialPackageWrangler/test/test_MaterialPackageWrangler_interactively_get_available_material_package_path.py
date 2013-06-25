@@ -15,7 +15,7 @@ def test_MaterialPackageWrangler_interactively_get_available_material_package_pa
 def test_MaterialPackageWrangler_interactively_get_available_material_package_path_02():
 
     wrangler = scoremanagertools.wranglers.MaterialPackageWrangler()
-    wrangler._session._snake_case_current_score_name = 'red_example_score'
+    wrangler.session._snake_case_current_score_name = 'red_example_score'
 
     result = wrangler.interactively_get_available_material_packagesystem_path(pending_user_input='foo')
     assert result == 'experimental.tools.scoremanagertools.scorepackages.red_example_score.music.materials.foo'

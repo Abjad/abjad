@@ -144,7 +144,7 @@ class FilesystemAssetProxy(ScoreManagerObject):
         self._io.assign_user_input(pending_user_input=pending_user_input)
         getter = self._initialize_file_name_getter()
         result = getter._run()
-        if self._session.backtrack():
+        if self.session.backtrack():
             return
         new_asset_name = self._space_delimited_lowercase_name_to_asset_name(result)
         new_path = os.path.join(self.parent_directory_filesystem_path, new_asset_name)
@@ -160,7 +160,7 @@ class FilesystemAssetProxy(ScoreManagerObject):
         getter = self._io.make_getter(where=self._where)
         getter.append_string("type 'remove' to proceed")
         result = getter._run()
-        if self._session.backtrack():
+        if self.session.backtrack():
             return
         if not result == 'remove':
             return
@@ -169,14 +169,14 @@ class FilesystemAssetProxy(ScoreManagerObject):
 
     def interactively_remove_and_backtrack_locally(self):
         self.interactively_remove()
-        self._session.is_backtracking_locally = True
+        self.session.is_backtracking_locally = True
 
     def interactively_rename(self, pending_user_input=None):
         self._io.assign_user_input(pending_user_input=pending_user_input)
         getter = self._initialize_file_name_getter()
         getter.include_newlines = False
         result = getter._run()
-        if self._session.backtrack():
+        if self.session.backtrack():
             return
         new_path = os.path.join(self.parent_directory_filesystem_path, result)
         self._io.display(['new path name will be: "{}"'.format(new_path), ''])
@@ -191,7 +191,7 @@ class FilesystemAssetProxy(ScoreManagerObject):
         getter.append_snake_case_file_name('name of boilerplate asset')
         with self.backtracking:
             boilerplate_filebuilt_in_asset_name = getter._run()
-        if self._session.backtrack():
+        if self.session.backtrack():
             return
         if self.write_boilerplate(boilerplate_filebuilt_in_asset_name):
             self._io.proceed('boilerplate asset copied.')
@@ -255,7 +255,7 @@ class FilesystemAssetProxy(ScoreManagerObject):
             getter = self._io.make_getter(where=self._where)
             getter.append_string('commit message')
             commit_message = getter._run()
-            if self._session.backtrack():
+            if self.session.backtrack():
                 return
             line = 'commit message will be: "{}"\n'.format(commit_message)
             self._io.display(line)

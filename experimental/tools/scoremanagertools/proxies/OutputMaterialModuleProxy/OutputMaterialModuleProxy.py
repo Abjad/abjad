@@ -100,7 +100,7 @@ class OutputMaterialModuleProxy(ModuleProxy, ParseableModuleMixin):
     def display_output_material(self):
         output_material = self.import_output_material_safely()
         self._io.display([repr(output_material), ''], capitalize_first_character=False)
-        self._session.hide_next_redraw = True
+        self.session.hide_next_redraw = True
 
     def import_output_material(self):
         # the next two lines actually matter
@@ -128,4 +128,4 @@ class OutputMaterialModuleProxy(ModuleProxy, ParseableModuleMixin):
 
     def unimport_materials_package(self):
         self.remove_package_path_from_sys_modules(
-            self._session.current_materials_package_path)
+            self.session.current_materials_package_path)

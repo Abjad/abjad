@@ -109,7 +109,7 @@ class Menu(ScoreManagerObject):
         user_input = self._io.handle_raw_input_with_default('')
         directive = self._change_user_input_to_directive(user_input)
         directive = self._strip_default_indicators_from_strings(directive)
-        self._session.hide_next_redraw = False
+        self.session.hide_next_redraw = False
         directive = self._io.handle_hidden_menu_section_return_value(directive)
         if directive is None:
             return
@@ -156,7 +156,7 @@ class Menu(ScoreManagerObject):
         for menu_section in self.menu_sections:
             section_menu_lines = menu_section._make_menu_lines()
             if not menu_section.is_hidden:
-                if not self._session.nonnumbered_menu_sections_are_hidden or \
+                if not self.session.nonnumbered_menu_sections_are_hidden or \
                     menu_section.is_numbered:
                     menu_lines.extend(section_menu_lines)
         if self.hide_current_run:
@@ -172,7 +172,7 @@ class Menu(ScoreManagerObject):
             if self.title is not None:
                 title = self.title
             else:
-                title = self._session.menu_header
+                title = self.session.menu_header
             result.append(stringtools.capitalize_string_start(title))
             result.append('')
         return result
@@ -203,7 +203,7 @@ class Menu(ScoreManagerObject):
             result = self._display(
                 predetermined_user_input=\
                 predetermined_user_input)
-            if self._session.is_complete:
+            if self.session.is_complete:
                 break
             elif result == 'r':
                 clear, hide_current_run = True, False
@@ -355,9 +355,9 @@ class Menu(ScoreManagerObject):
             lines.append(line)
             lines.append('')
             self._io.display(lines, capitalize_first_character=False)
-            self._session.hide_next_redraw = True
+            self.session.hide_next_redraw = True
         else:
-            self._session.enable_where = True
+            self.session.enable_where = True
 
     def display_hidden_menu_section(self):
         menu_lines = []
@@ -371,7 +371,7 @@ class Menu(ScoreManagerObject):
                     menu_lines.append(menu_line)
                 menu_lines.append('')
         self._io.display(menu_lines, capitalize_first_character=False)
-        self._session.hide_next_redraw = True
+        self.session.hide_next_redraw = True
 
     def interactively_edit_calling_code(self):
         if self.where is not None:
@@ -385,7 +385,7 @@ class Menu(ScoreManagerObject):
                 "Use 'twt' to toggle where-tracking.")
             lines.append('')
             self._io.display(lines)
-            self._session.hide_next_redraw = True
+            self.session.hide_next_redraw = True
 
     def make_asset_section(self, menu_entries=None):
         asset_section = self._make_section(
@@ -456,7 +456,7 @@ class Menu(ScoreManagerObject):
         return menu_section
 
     def toggle_menu_commands(self):
-        if self._session.nonnumbered_menu_sections_are_hidden:
-            self._session.nonnumbered_menu_sections_are_hidden = False
+        if self.session.nonnumbered_menu_sections_are_hidden:
+            self.session.nonnumbered_menu_sections_are_hidden = False
         else:
-            self._session.nonnumbered_menu_sections_are_hidden = True
+            self.session.nonnumbered_menu_sections_are_hidden = True

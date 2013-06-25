@@ -17,6 +17,9 @@ Bases
 Read-only properties
 --------------------
 
+.. autoattribute:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.session
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector.storage_format
    :noindex:
 

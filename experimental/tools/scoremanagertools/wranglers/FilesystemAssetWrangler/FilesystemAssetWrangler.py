@@ -38,9 +38,9 @@ class FilesystemAssetWrangler(ScoreManagerObject):
 
     @property
     def _current_storehouse_filesystem_path(self):
-        if self._session.is_in_score:
+        if self.session.is_in_score:
             parts = []
-            parts.append(self._session.current_score_directory_path)
+            parts.append(self.session.current_score_directory_path)
             parts.extend(self.score_package_asset_storehouse_path_infix_parts)
             return os.path.join(*parts)
         else:
@@ -78,7 +78,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     def _initialize_asset_proxy(self, filesystem_path):
         assert os.path.sep in filesystem_path, repr(filesystem_path)
         return self.asset_proxy_class(
-            filesystem_path=filesystem_path, session=self._session)
+            filesystem_path=filesystem_path, session=self.session)
 
     def _is_valid_directory_entry(self, directory_entry):
         if directory_entry not in self.forbidden_directory_entries:
@@ -117,7 +117,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
             self.asset_storehouse_filesystem_path_in_user_asset_library)
         display_strings.append('My {}'.format(self._breadcrumb))
         wrangler = scoremanagertools.wranglers.ScorePackageWrangler(
-            session=self._session)
+            session=self.session)
         for proxy in wrangler.list_asset_proxies(
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
@@ -152,24 +152,24 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         pending_user_input=None,
         ):
         self._io.assign_user_input(pending_user_input=pending_user_input)
-        breadcrumb = self._session.pop_breadcrumb(rollback=rollback)
-        self._session.cache_breadcrumbs(cache=cache)
+        breadcrumb = self.session.pop_breadcrumb(rollback=rollback)
+        self.session.cache_breadcrumbs(cache=cache)
         while True:
-            self._session.push_breadcrumb(self._breadcrumb)
+            self.session.push_breadcrumb(self._breadcrumb)
             menu = self._make_main_menu(head=head)
             result = menu._run(clear=clear)
-            if self._session.backtrack():
+            if self.session.backtrack():
                 break
             elif not result:
-                self._session.pop_breadcrumb()
+                self.session.pop_breadcrumb()
                 continue
             self._handle_main_menu_result(result)
-            if self._session.backtrack():
+            if self.session.backtrack():
                 break
-            self._session.pop_breadcrumb()
-        self._session.pop_breadcrumb()
-        self._session.push_breadcrumb(breadcrumb=breadcrumb, rollback=rollback)
-        self._session.restore_breadcrumbs(cache=cache)
+            self.session.pop_breadcrumb()
+        self.session.pop_breadcrumb()
+        self.session.push_breadcrumb(breadcrumb=breadcrumb, rollback=rollback)
+        self.session.restore_breadcrumbs(cache=cache)
 
     ### PUBLIC PROPERTIES ###
 
@@ -190,7 +190,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         getter.append_menu_section_range(
             'number(s) to remove', asset_menu_section)
         result = getter._run()
-        if self._session.backtrack():
+        if self.session.backtrack():
             return
         asset_indices = [asset_number - 1 for asset_number in result]
         total_assets_removed = 0
@@ -213,28 +213,28 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         with self.backtracking:
             asset_filesystem_path = \
                 self.interactively_select_asset_filesystem_path()
-        if self._session.backtrack():
+        if self.session.backtrack():
             return
         asset_proxy = self._initialize_asset_proxy(asset_filesystem_path)
         asset_proxy.interactively_rename()
 
     def interactively_select_asset_filesystem_path(self, 
         clear=True, cache=False):
-        self._session.cache_breadcrumbs(cache=cache)
+        self.session.cache_breadcrumbs(cache=cache)
         menu = self._make_asset_selection_menu()
         while True:
             breadcrumb = self._make_asset_selection_breadcrumb()
-            self._session.push_breadcrumb(breadcrumb)
+            self.session.push_breadcrumb(breadcrumb)
             result = menu._run(clear=clear)
-            if self._session.backtrack():
+            if self.session.backtrack():
                 break
             elif not result:
-                self._session.pop_breadcrumb()
+                self.session.pop_breadcrumb()
                 continue
             else:
                 break
-        self._session.pop_breadcrumb()
-        self._session.restore_breadcrumbs(cache=cache)
+        self.session.pop_breadcrumb()
+        self.session.restore_breadcrumbs(cache=cache)
         return result
 
     def interactively_select_asset_storehouse_filesystem_path(self,
@@ -245,7 +245,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         in_built_in_score_packages=True,
         in_user_score_packages=True,
         ):
-        self._session.cache_breadcrumbs(cache=cache)
+        self.session.cache_breadcrumbs(cache=cache)
         menu = self._io.make_menu(where=self._where)
         asset_section = menu.make_asset_section()
         menu_entries = self._make_asset_storehouse_menu_entries(
@@ -257,17 +257,17 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         while True:
             breadcrumb = self._make_asset_selection_breadcrumb(
                 is_storehouse=True)
-            self._session.push_breadcrumb(breadcrumb)
+            self.session.push_breadcrumb(breadcrumb)
             result = menu._run(clear=clear)
-            if self._session.backtrack():
+            if self.session.backtrack():
                 break
             elif not result:
-                self._session.pop_breadcrumb()
+                self.session.pop_breadcrumb()
                 continue
             else:
                 break
-        self._session.pop_breadcrumb()
-        self._session.restore_breadcrumbs(cache=cache)
+        self.session.pop_breadcrumb()
+        self.session.restore_breadcrumbs(cache=cache)
         return result
 
     def list_asset_filesystem_paths(self,

@@ -178,7 +178,7 @@ class MaterialPackageProxy(PackageProxy):
                 if self.has_output_material:
                     output_material_editor = self.output_material_editor(
                         target=self.output_material, 
-                        session=self._session)
+                        session=self.session)
                     target_summary_lines = \
                         output_material_editor.target_summary_lines
                     if target_summary_lines:
@@ -329,7 +329,7 @@ class MaterialPackageProxy(PackageProxy):
                 file(self.illustration_builder_module_file_name, 'w').write('')
             return scoremanagertools.proxies.IllustrationBuilderModuleProxy(
                 self.illustration_builder_packagesystem_path, 
-                session=self._session)
+                session=self.session)
 
     @property
     def illustration_builder_packagesystem_path(self):
@@ -348,7 +348,7 @@ class MaterialPackageProxy(PackageProxy):
             if not self.has_illustration_ly:
                 file(self.illustration_ly_file_name, 'w').write('')
             return scoremanagertools.proxies.IllustrationLyFileProxy(
-                self.illustration_ly_file_name, session=self._session)
+                self.illustration_ly_file_name, session=self.session)
 
     @property
     def illustration_pdf_file_name(self):
@@ -362,7 +362,7 @@ class MaterialPackageProxy(PackageProxy):
             if not self.has_illustration_pdf:
                 file(self.illustration_pdf_file_name, 'w').write('')
             return scoremanagertools.proxies.IllustrationPdfFileProxy(
-                self.illustration_pdf_file_name, session=self._session)
+                self.illustration_pdf_file_name, session=self.session)
 
     @property
     def illustration_with_stylesheet(self):
@@ -414,7 +414,7 @@ class MaterialPackageProxy(PackageProxy):
         from experimental.tools import scoremanagertools
         if self.should_have_material_definition_module:
             return scoremanagertools.proxies.MaterialDefinitionModuleProxy(
-                self.material_definition_packagesystem_path, session=self._session)
+                self.material_definition_packagesystem_path, session=self.session)
 
     @property
     def material_definition_packagesystem_path(self):
@@ -423,10 +423,10 @@ class MaterialPackageProxy(PackageProxy):
 
     @property
     def material_package_directory(self):
-        if self._session.current_materials_directory_path:
+        if self.session.current_materials_directory_path:
             if self.material_package_name:
                 return os.path.join(
-                    self._session.current_materials_directory_path, 
+                    self.session.current_materials_directory_path, 
                     self.material_package_name)
 
     @property
@@ -503,7 +503,7 @@ class MaterialPackageProxy(PackageProxy):
         if self.should_have_output_material_module:
             if self.has_output_material_module:
                 return scoremanagertools.proxies.OutputMaterialModuleProxy(
-                    self.output_material_module_path, session=self._session)
+                    self.output_material_module_path, session=self.session)
 
     @property
     def should_have_illustration(self):
@@ -557,7 +557,7 @@ class MaterialPackageProxy(PackageProxy):
         from experimental.tools import scoremanagertools
         if self.should_have_stylesheet:
             return scoremanagertools.proxies.StylesheetFileProxy(
-                self.stylesheet_file_name, session=self._session)
+                self.stylesheet_file_name, session=self.session)
 
     @property
     def user_input_module_file_name(self):
@@ -577,7 +577,7 @@ class MaterialPackageProxy(PackageProxy):
                 file(self.user_input_module_file_name, 'w').write('')
             return scoremanagertools.proxies.UserInputModuleProxy(
                 self.user_input_module_packagesystem_path, 
-                session=self._session)
+                session=self.session)
 
     ### PUBLIC METHODS ###
 
@@ -618,9 +618,9 @@ class MaterialPackageProxy(PackageProxy):
         else:
             output_material_handler_callable = self.output_material_editor
         output_material_handler = output_material_handler_callable(
-            target=output_material, session=self._session)
+            target=output_material, session=self.session)
         output_material_handler._run()
-        if self._session.backtrack():
+        if self.session.backtrack():
             return
         output_material_module_import_statements = \
             self.output_material_module_import_statements
@@ -651,7 +651,7 @@ class MaterialPackageProxy(PackageProxy):
         getter = self._io.make_getter(where=self._where)
         getter.append_snake_case_package_name('new material name')
         new_material_package_name = getter._run()
-        if self._session.backtrack():
+        if self.session.backtrack():
             return
         lines = []
         lines.append('current material name: {}'.format(
@@ -707,11 +707,11 @@ class MaterialPackageProxy(PackageProxy):
         from experimental.tools import scoremanagertools
         material_proxy_wrangler = \
             scoremanagertools.wranglers.MaterialPackageMakerWrangler(
-            session=self._session)
+            session=self.session)
         with self.backtracking:
             material_package_maker = \
                 material_proxy_wrangler.select_material_proxy_class_name_interactively()
-        if self._session.backtrack():
+        if self.session.backtrack():
             return
         self.add_tag('material_package_maker', material_package_maker.class_name)
         line = 'user input handler selected.'
@@ -721,10 +721,10 @@ class MaterialPackageProxy(PackageProxy):
         from experimental.tools import scoremanagertools
         stylesheet_file_wrangler = \
             scoremanagertools.wranglers.StylesheetFileWrangler(
-            session=self._session)
+            session=self.session)
         with self.backtracking:
             stylesheet_file_name = stylesheet_file_wrangler.interactively_select_asset_filesystem_path()
-        if self._session.backtrack():
+        if self.session.backtrack():
             return
         self.stylesheet_file_name_in_memory = stylesheet_file_name
         self._io.proceed('stylesheet selected.', is_interactive=prompt)
@@ -748,7 +748,7 @@ class MaterialPackageProxy(PackageProxy):
         from experimental.tools import scoremanagertools
         stylesheet_file_wrangler = \
             scoremanagertools.wranglers.StylesheetFileWrangler(
-            session=self._session)
+            session=self.session)
         stylesheet_file_wrangler._run()
 
     def overwrite_output_material_module(self):
@@ -780,7 +780,7 @@ class MaterialPackageProxy(PackageProxy):
 
     def remove_material_package(self):
         self.remove()
-        self._session.is_backtracking_locally = True
+        self.session.is_backtracking_locally = True
 
     def remove_output_material_module(self, prompt=True):
         self.remove_illustration_builder_module(prompt=False)

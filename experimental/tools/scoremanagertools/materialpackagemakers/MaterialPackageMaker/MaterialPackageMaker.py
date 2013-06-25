@@ -41,7 +41,7 @@ class MaterialPackageMaker(MaterialPackageProxy):
             file(user_input_module_file_path, 'w').write('')
         proxy = scoremanagertools.proxies.UserInputModuleProxy(
             user_input_module_packagesystem_path, 
-            session=self._session)
+            session=self.session)
         user_input_wrapper = proxy.read_user_input_wrapper_from_disk()
         if user_input_wrapper:
             user_input_wrapper._user_input_module_import_statements = \
@@ -78,9 +78,9 @@ class MaterialPackageMaker(MaterialPackageProxy):
             self.output_material_module_proxy.import_output_material_safely()
         kwargs = {}
         kwargs['title'] = self._space_delimited_lowercase_name
-        if self._session.is_in_score:
+        if self.session.is_in_score:
             kwargs['subtitle'] = '({})'.format(
-                self._session.current_score_package_proxy.title)
+                self.session.current_score_package_proxy.title)
         illustration = self.illustration_maker(output_material, **kwargs)
         return illustration
 
@@ -140,7 +140,7 @@ class MaterialPackageMaker(MaterialPackageProxy):
             setup_statement = test_tuple[2]
         else:
             setup_statement = 'evaluated_user_input = {}'
-        if self._session.use_current_user_input_values_as_default:
+        if self.session.use_current_user_input_values_as_default:
             default_value = current_value
         else:
             default_value = None
@@ -157,7 +157,7 @@ class MaterialPackageMaker(MaterialPackageProxy):
         getter.include_newlines = include_newline
         getter.allow_none = True
         new_value = getter._run()
-        if self._session.backtrack():
+        if self.session.backtrack():
             return
         self.user_input_wrapper_in_memory[key] = new_value
         self.user_input_module_proxy.write_user_input_wrapper_to_disk(
@@ -203,7 +203,7 @@ class MaterialPackageMaker(MaterialPackageProxy):
             'start at element number', 1, total_elements, default_value=1)
         with self.backtracking:
             start_element_number = getter._run()
-        if self._session.backtrack():
+        if self.session.backtrack():
             return
         current_element_number = start_element_number
         current_element_index = current_element_number - 1
@@ -211,7 +211,7 @@ class MaterialPackageMaker(MaterialPackageProxy):
             with self.backtracking:
                 self.interactively_edit_user_input_wrapper_at_number(
                     current_element_number, include_newline=False)
-            if self._session.backtrack():
+            if self.session.backtrack():
                 return
             current_element_index += 1
             current_element_index %= total_elements
@@ -220,7 +220,7 @@ class MaterialPackageMaker(MaterialPackageProxy):
                 break
 
     def swap_user_input_values_default_status(self):
-        self._session.swap_user_input_values_default_status()
+        self.session.swap_user_input_values_default_status()
 
     def write_stub_user_input_module_to_disk(self, is_interactive=False):
         empty_user_input_wrapper = self.initialize_empty_user_input_wrapper()

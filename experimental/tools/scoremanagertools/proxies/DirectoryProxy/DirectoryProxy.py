@@ -18,7 +18,7 @@ class DirectoryProxy(FilesystemAssetProxy):
         getter = self._io.make_getter(where=self._where)
         getter.append_string('directory path')
         result = getter._run()
-        if self._session.backtrack():
+        if self.session.backtrack():
             return
         self.filesystem_path = result
 
@@ -44,7 +44,7 @@ class DirectoryProxy(FilesystemAssetProxy):
     def print_directory_entries(self):
         self._io.display(self.list_directory(), capitalize_first_character=False)
         self._io.display('')
-        self._session.hide_next_redraw = True
+        self.session.hide_next_redraw = True
 
     def run_py_test(self, prompt=True):
         command = 'py.test {}'.format(self.filesystem_path)

@@ -24,9 +24,9 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
 
     @property
     def _current_storehouse_packagesystem_path(self):
-        if self._session.is_in_score:
+        if self.session.is_in_score:
             parts = []
-            parts.append(self._session.current_score_package_path)
+            parts.append(self.session.current_score_package_path)
             parts.extend(self.score_package_asset_storehouse_path_infix_parts)
             return '.'.join(parts)
         else:
@@ -50,7 +50,7 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
     def _initialize_asset_proxy(self, packagesystem_path):
         if os.path.sep in packagesystem_path:
             pacakgesystem_path = self.configuration.filesystem_path_to_packagesystem_path(packagesystem_path)
-        return self.asset_proxy_class(packagesystem_path=packagesystem_path, session=self._session)
+        return self.asset_proxy_class(packagesystem_path=packagesystem_path, session=self.session)
 
     def _make_asset_menu_entries(self, head=None):
         names = self.list_asset_names(head=head)
@@ -67,28 +67,28 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
         with self.backtracking:
             asset_package_path = self.interactively_select_asset_packagesystem_path(
                 head=head, infinitival_phrase='to rename')
-        if self._session.backtrack():
+        if self.session.backtrack():
             return
         asset_proxy = self._initialize_asset_proxy(asset_package_path)
         asset_proxy.interactively_rename()
 
     def interactively_select_asset_packagesystem_path(
         self, clear=True, cache=False, head=None, infinitival_phrase=None, pending_user_input=None):
-        self._session.cache_breadcrumbs(cache=cache)
+        self.session.cache_breadcrumbs(cache=cache)
         while True:
-            self._session.push_breadcrumb(self._make_asset_selection_breadcrumb(
+            self.session.push_breadcrumb(self._make_asset_selection_breadcrumb(
                 infinitival_phrase=infinitival_phrase))
             menu = self._make_asset_selection_menu(head=head)
             result = menu._run(clear=clear)
-            if self._session.backtrack():
+            if self.session.backtrack():
                 break
             elif not result:
-                self._session.pop_breadcrumb()
+                self.session.pop_breadcrumb()
                 continue
             else:
                 break
-        self._session.pop_breadcrumb()
-        self._session.restore_breadcrumbs(cache=cache)
+        self.session.pop_breadcrumb()
+        self.session.restore_breadcrumbs(cache=cache)
         return result
 
     def list_asset_packagesystem_paths(self,

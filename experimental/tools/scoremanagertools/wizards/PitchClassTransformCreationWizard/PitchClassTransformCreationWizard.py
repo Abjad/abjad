@@ -14,30 +14,30 @@ class PitchClassTransformCreationWizard(Wizard):
 
     def _run(self, cache=False, clear=True, head=None, pending_user_input=None):
         self._io.assign_user_input(pending_user_input=pending_user_input)
-        self._session.cache_breadcrumbs(cache=cache)
+        self.session.cache_breadcrumbs(cache=cache)
         function_application_pairs = []
         while True:
             breadcrumb = self.function_application_pairs_to_breadcrumb(function_application_pairs)
-            self._session.push_breadcrumb(breadcrumb=breadcrumb)
-            selector = selectors.PitchClassTransformSelector(session=self._session)
+            self.session.push_breadcrumb(breadcrumb=breadcrumb)
+            selector = selectors.PitchClassTransformSelector(session=self.session)
             selector.explicit_breadcrumb = self.get_explicit_breadcrumb(function_application_pairs)
             with self.backtracking:
                 function_name = selector._run(clear=clear)
-            if self._session.backtrack():
+            if self.session.backtrack():
                 break
             elif not function_name:
-                self._session.pop_breadcrumb()
+                self.session.pop_breadcrumb()
                 continue
             function_arguments = self.get_function_arguments(function_name)
-            if self._session.backtrack():
+            if self.session.backtrack():
                 break
             elif function_arguments is None:
-                self._session.pop_breadcrumb()
+                self.session.pop_breadcrumb()
                 continue
             function_application_pairs.append((function_name, function_arguments))
-            self._session.pop_breadcrumb()
-        self._session.pop_breadcrumb()
-        self._session.restore_breadcrumbs(cache=cache)
+            self.session.pop_breadcrumb()
+        self.session.pop_breadcrumb()
+        self.session.restore_breadcrumbs(cache=cache)
         self.target = function_application_pairs
         return self.target
 
@@ -66,7 +66,7 @@ class PitchClassTransformCreationWizard(Wizard):
             getter = self._io.make_getter(where=self._where)
             getter.append_integer_in_range('index', start=0, stop=11)
             result = getter._run()
-            if self._session.backtrack():
+            if self.session.backtrack():
                 return
             arguments.append(result)
         return tuple(arguments)

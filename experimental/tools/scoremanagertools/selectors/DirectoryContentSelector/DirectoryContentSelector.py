@@ -15,7 +15,7 @@ class DirectoryContentSelector(Selector):
         from experimental.tools.scoremanagertools.proxies.DirectoryProxy import DirectoryProxy
         result = []
         for directory_path in self.storehouse_filesystem_paths:
-            directory_proxy = DirectoryProxy(filesystem_path=directory_path, session=self._session)
+            directory_proxy = DirectoryProxy(filesystem_path=directory_path, session=self.session)
             result.extend(directory_proxy.list_directory(public_entries_only=True))
             if hasattr(self, 'forbidden_directory_entries'):
                 for forbidden_directory_entry in self.forbidden_directory_entries:

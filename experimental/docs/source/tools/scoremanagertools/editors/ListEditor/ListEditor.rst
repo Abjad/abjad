@@ -31,6 +31,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.items_identifier
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.session
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor.space_delimited_lowercase_target_class_name
    :noindex:
 

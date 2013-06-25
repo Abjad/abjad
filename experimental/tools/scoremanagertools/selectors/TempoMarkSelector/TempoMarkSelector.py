@@ -11,7 +11,7 @@ class TempoMarkSelector(Selector):
 
     def list_items(self):
         result = []
-        current_score_package_proxy = self._session.current_score_package_proxy
+        current_score_package_proxy = self.session.current_score_package_proxy
         try:
             result.extend(current_score_package_proxy.tempo_inventory)
         except AttributeError:

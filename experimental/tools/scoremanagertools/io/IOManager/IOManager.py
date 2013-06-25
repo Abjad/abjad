@@ -24,16 +24,16 @@ class IOManager(AbjadObject):
 
     def assign_user_input(self, pending_user_input=None):
         if pending_user_input is not None:
-            if self._session.pending_user_input:
-                self._session.pending_user_input = \
+            if self.session.pending_user_input:
+                self.session.pending_user_input = \
                     pending_user_input + ' ' + \
-                    self._session.pending_user_input
+                    self.session.pending_user_input
             else:
-                self._session.pending_user_input = pending_user_input
+                self.session.pending_user_input = pending_user_input
 
     def clear_terminal(self):
-        if not self._session.hide_next_redraw:
-            if self._session.is_displayable:
+        if not self.session.hide_next_redraw:
+            if self.session.is_displayable:
                 iotools.clear_terminal()
 
     def confirm(self, prompt_string='ok?', include_chevron=False):
@@ -41,7 +41,7 @@ class IOManager(AbjadObject):
         getter.append_yes_no_string(prompt_string)
         getter.include_newlines = False
         result = getter._run(include_chevron=include_chevron)
-        if self._session.backtrack():
+        if self.session.backtrack():
             return
         return 'yes'.startswith(result.lower())
 
@@ -49,14 +49,14 @@ class IOManager(AbjadObject):
         assert isinstance(lines, (str, list))
         if isinstance(lines, str):
             lines = [lines]
-        if not self._session.hide_next_redraw:
+        if not self.session.hide_next_redraw:
             if capitalize_first_character:
                 lines = [stringtools.capitalize_string_start(line) 
                     for line in lines]
             if lines:
-                if self._session.transcribe_next_command:
-                    self._session.transcript.append_lines(lines)
-            if self._session.is_displayable:
+                if self.session.transcribe_next_command:
+                    self.session.transcript.append_lines(lines)
+            if self.session.is_displayable:
                 for line in lines:
                     print line
 
@@ -77,31 +77,31 @@ class IOManager(AbjadObject):
         else:
             key = directive
         if key in ('b', 'back'):
-            self._session.is_backtracking_locally = True
+            self.session.is_backtracking_locally = True
         elif key == 'exec':
             self.interactively_exec_statement()
         elif key == 'here':
             self.interactively_edit_calling_code()
         elif key == 'next':
-            self._session.is_navigating_to_next_score = True
-            self._session.is_backtracking_to_score_manager = True
+            self.session.is_navigating_to_next_score = True
+            self.session.is_backtracking_to_score_manager = True
         elif key == 'prev':
-            self._session.is_navigating_to_prev_score = True
-            self._session.is_backtracking_to_score_manager = True
+            self.session.is_navigating_to_prev_score = True
+            self.session.is_backtracking_to_score_manager = True
         elif key in ('q', 'quit'):
-            self._session.user_specified_quit = True
+            self.session.user_specified_quit = True
 #        # TODO: make this redraw!
 #        elif key == 'r':
 #            pass
         elif isinstance(key, str) and \
             3 <= len(key) and 'score'.startswith(key):
-            if self._session.is_in_score:
-                self._session.is_backtracking_to_score = True
+            if self.session.is_in_score:
+                self.session.is_backtracking_to_score = True
         elif isinstance(key, str) and \
             3 <= len(key) and 'home'.startswith(key):
-            self._session.is_backtracking_to_score_manager = True
+            self.session.is_backtracking_to_score_manager = True
         elif key == 'twt':
-            self._session.enable_where = not self._session.enable_where
+            self.session.enable_where = not self.session.enable_where
         else:
             return directive
 
@@ -118,25 +118,25 @@ class IOManager(AbjadObject):
             prompt_string = prompt_string + prompt_character + ' '
         else:
             prompt_string = prompt_string + ' '
-        if self._session.is_displayable:
+        if self.session.is_displayable:
             user_input = raw_input(prompt_string)
             if include_newline:
                 if not user_input == 'help':
                     print ''
         else:
             user_input = self.pop_from_pending_user_input()
-        if self._session.transcribe_next_command:
-            self._session.command_history.append(user_input)
+        if self.session.transcribe_next_command:
+            self.session.command_history.append(user_input)
         if user_input == '.':
-            last_semantic_command = self._session.last_semantic_command
+            last_semantic_command = self.session.last_semantic_command
             user_input = last_semantic_command
-        if self._session.transcribe_next_command:
+        if self.session.transcribe_next_command:
             menu_chunk = []
             menu_chunk.append('{}{}'.format(prompt_string, user_input))
             if include_newline:
                 if not user_input == 'help':
                     menu_chunk.append('')
-            self._session.transcript.append_lines(menu_chunk)
+            self.session.transcript.append_lines(menu_chunk)
         return user_input
 
     def handle_raw_input_with_default(self, 
@@ -175,7 +175,7 @@ class IOManager(AbjadObject):
             lines.append('expression not executable.')
         lines.append('')
         self.display(lines)
-        self._session.hide_next_redraw = True
+        self.session.hide_next_redraw = True
 
     def make_default_hidden_section(self):
         from experimental.tools import scoremanagertools
@@ -200,28 +200,28 @@ class IOManager(AbjadObject):
     def make_getter(self, where=None):
         from experimental.tools import scoremanagertools
         return scoremanagertools.io.UserInputGetter(
-            where=where, session=self._session)
+            where=where, session=self.session)
 
     def make_menu(self, where=None):
         from experimental.tools import scoremanagertools
         return scoremanagertools.io.Menu(
-            where=where, session=self._session)
+            where=where, session=self.session)
 
     def pop_from_pending_user_input(self):
-        self._session.last_command_was_composite = False
-        if self._session.pending_user_input is None:
+        self.session.last_command_was_composite = False
+        if self.session.pending_user_input is None:
             return None
-        elif self._session.pending_user_input == '':
-            self._session.pending_user_input = None
+        elif self.session.pending_user_input == '':
+            self.session.pending_user_input = None
             return None
-        elif self._session.pending_user_input.startswith('{{'):
-            index = self._session.pending_user_input.find('}}')
-            user_input = self._session.pending_user_input[2:index]
-            pending_user_input = self._session.pending_user_input[index+2:]
+        elif self.session.pending_user_input.startswith('{{'):
+            index = self.session.pending_user_input.find('}}')
+            user_input = self.session.pending_user_input[2:index]
+            pending_user_input = self.session.pending_user_input[index+2:]
             pending_user_input = pending_user_input.strip()
-            self._session.last_command_was_composite = True
+            self.session.last_command_was_composite = True
         else:
-            user_input_parts = self._session.pending_user_input.split(' ')
+            user_input_parts = self.session.pending_user_input.split(' ')
             first_parts, rest_parts = [], []
             for i, part in enumerate(user_input_parts):
                 if not part.endswith((',', '-')):
@@ -231,7 +231,7 @@ class IOManager(AbjadObject):
             user_input = ' '.join(first_parts)
             pending_user_input = ' '.join(rest_parts)
         user_input = user_input.replace('~', ' ')
-        self._session.pending_user_input = pending_user_input
+        self.session.pending_user_input = pending_user_input
         return user_input
 
     def print_not_yet_implemented(self):
@@ -251,5 +251,5 @@ class IOManager(AbjadObject):
             self.display(lines)
         self.handle_raw_input(
             'press return to continue.', include_chevron=False)
-        if self._session.is_displayable:
+        if self.session.is_displayable:
             iotools.clear_terminal()

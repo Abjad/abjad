@@ -22,6 +22,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler.PackagesystemAssetWrangler.PackagesystemAssetWrangler.asset_proxy_class
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler.PackagesystemAssetWrangler.PackagesystemAssetWrangler.session
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler.PackagesystemAssetWrangler.PackagesystemAssetWrangler.storage_format
    :noindex:
 

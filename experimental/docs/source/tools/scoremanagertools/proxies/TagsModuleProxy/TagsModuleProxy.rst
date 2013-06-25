@@ -46,6 +46,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.TagsModuleProxy.TagsModuleProxy.TagsModuleProxy.parent_directory_packagesystem_path
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.proxies.TagsModuleProxy.TagsModuleProxy.TagsModuleProxy.session
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.proxies.TagsModuleProxy.TagsModuleProxy.TagsModuleProxy.storage_format
    :noindex:
 

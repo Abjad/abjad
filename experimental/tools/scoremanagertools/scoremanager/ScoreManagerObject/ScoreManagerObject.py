@@ -30,9 +30,9 @@ class ScoreManagerObject(AbjadObject):
         def __init__(self, client):
             self.client = client
         def __enter__(self):
-            self.client._session.push_backtrack()
+            self.client.session.push_backtrack()
         def __exit__(self, exg_type, exc_value, trackeback):
-            self.client._session.pop_backtrack()
+            self.client.session.pop_backtrack()
 
     ### INITIALIZER ###
 
@@ -40,7 +40,7 @@ class ScoreManagerObject(AbjadObject):
     def __init__(self, session=None):
         from experimental.tools import scoremanagertools
         self._session = session or scoremanagertools.scoremanager.Session()
-        self._io = scoremanagertools.io.IOManager(session=self._session)
+        self._io = scoremanagertools.io.IOManager(session=self.session)
         self.backtracking = ScoreManagerObject.backtracking(self)
 
     ### SPECIAL METHODS ###
@@ -77,5 +77,11 @@ class ScoreManagerObject(AbjadObject):
 
     @property
     def _where(self):
-        if self._session.enable_where:
+        if self.session.enable_where:
             return inspect.stack()[1]
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def session(self):
+        return self._session

@@ -41,12 +41,12 @@ class InteractiveEditor(ScoreManagerObject):
         kwargs = self.menu_key_to_delegated_editor_kwargs(result)
         editor = self.target_manifest.menu_key_to_editor(
             result, 
-            session=self._session, 
+            session=self.session, 
             prepopulated_value=prepopulated_value, 
             **kwargs)
         if editor is not None:
             result = editor._run()
-            if self._session.backtrack():
+            if self.session.backtrack():
                 self.is_autoadvancing = False
                 return
             if hasattr(editor, 'target'):
@@ -73,24 +73,24 @@ class InteractiveEditor(ScoreManagerObject):
         is_autostarting=False, 
         pending_user_input=None):
         self._io.assign_user_input(pending_user_input=pending_user_input)
-        self._session.cache_breadcrumbs(cache=cache)
-        self._session.push_breadcrumb(self._breadcrumb)
+        self.session.cache_breadcrumbs(cache=cache)
+        self.session.push_breadcrumb(self._breadcrumb)
         with self.backtracking:
             self.initialize_target()
-        self._session.pop_breadcrumb()
-        if self._session.backtrack():
-            self._session.restore_breadcrumbs(cache=cache)
+        self.session.pop_breadcrumb()
+        if self.session.backtrack():
+            self.session.restore_breadcrumbs(cache=cache)
             return
         result = None
         entry_point = None
         self.is_autoadvancing = is_autoadvancing
         is_first_pass = True
         if is_autoadding:
-            self._session.is_autoadding = True
+            self.session.is_autoadding = True
         while True:
             breadcrumb = breadcrumb or self._breadcrumb
-            self._session.push_breadcrumb(breadcrumb=breadcrumb)
-            if self._session.is_autoadding:
+            self.session.push_breadcrumb(breadcrumb=breadcrumb)
+            if self.session.is_autoadding:
                 menu = self._make_main_menu()
                 result = 'add'
                 menu._run(
@@ -110,25 +110,25 @@ class InteractiveEditor(ScoreManagerObject):
                     result)
                 if result == entry_point:
                     self.is_autoadvancing = False
-                    self._session.pop_breadcrumb()
+                    self.session.pop_breadcrumb()
                     continue
             else:
                 menu = self._make_main_menu()
                 result = menu._run(clear=clear)
-                if self._session.backtrack():
+                if self.session.backtrack():
                     break
                 elif not result:
-                    self._session.pop_breadcrumb()
+                    self.session.pop_breadcrumb()
                     continue
             if result == 'done':
                 break
             self._handle_main_menu_result(result)
-            if self._session.backtrack():
+            if self.session.backtrack():
                 break
-            self._session.pop_breadcrumb()
-        self._session.is_autoadding = False
-        self._session.pop_breadcrumb()
-        self._session.restore_breadcrumbs(cache=cache)
+            self.session.pop_breadcrumb()
+        self.session.is_autoadding = False
+        self.session.pop_breadcrumb()
+        self.session.restore_breadcrumbs(cache=cache)
         self.clean_up_attributes_in_memory()
 
     ### PUBLIC PROPERTIES ###
@@ -311,7 +311,7 @@ class InteractiveEditor(ScoreManagerObject):
     def set_target_attribute(self, 
         attribute_name, attribute_value):
         if self.target is not None:
-            if not self._session.is_complete:
+            if not self.session.is_complete:
                 # if the attribute is read / write
                 try:
                     setattr(self.target, attribute_name, attribute_value)

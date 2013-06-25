@@ -12,21 +12,21 @@ class ScorePackageProxy(PackageProxy):
         PackageProxy.__init__(self, packagesystem_path, session=session)
         self._distribution_proxy = \
             scoremanagertools.proxies.DistributionDirectoryProxy(
-            score_package_path=packagesystem_path, session=self._session)
+            score_package_path=packagesystem_path, session=self.session)
         self._exergue_directory_proxy = \
             scoremanagertools.proxies.ExergueDirectoryProxy(
-            score_package_path=packagesystem_path, session=self._session)
+            score_package_path=packagesystem_path, session=self.session)
         self._music_proxy = scoremanagertools.proxies.MusicPackageProxy(
-            score_package_path=packagesystem_path, session=self._session)
+            score_package_path=packagesystem_path, session=self.session)
         self._segment_wrangler = \
             scoremanagertools.wranglers.SegmentPackageWrangler(
-            session=self._session)
+            session=self.session)
         self._material_package_wrangler = \
             scoremanagertools.wranglers.MaterialPackageWrangler(
-            session=self._session)
+            session=self.session)
         self._material_package_maker_wrangler = \
             scoremanagertools.wranglers.MaterialPackageMakerWrangler(
-            session=self._session)
+            session=self.session)
 
     ### PRIVATE METHODS ###
 
@@ -356,7 +356,7 @@ class ScorePackageProxy(PackageProxy):
         getter = self._io.make_getter(where=self._where)
         getter.append_string('Forces tagline')
         result = getter._run()
-        if self._session.backtrack():
+        if self.session.backtrack():
             return
         self.add_tag('forces_tagline', result)
 
@@ -364,7 +364,7 @@ class ScorePackageProxy(PackageProxy):
         from experimental.tools import scoremanagertools
         target = self.get_tag('instrumentation')
         editor = scoremanagertools.editors.InstrumentationEditor(
-            session=self._session, target=target)
+            session=self.session, target=target)
         editor._run() # maybe check for backtracking after this?
         self.add_tag('instrumentation', editor.target)
 
@@ -372,7 +372,7 @@ class ScorePackageProxy(PackageProxy):
         getter = self._io.make_getter(where=self._where)
         getter.append_string('new title')
         result = getter._run()
-        if self._session.backtrack():
+        if self.session.backtrack():
             return
         self.add_tag('title', result)
 
@@ -381,7 +381,7 @@ class ScorePackageProxy(PackageProxy):
         getter.append_integer_in_range('year of completion', 
             start=1, allow_none=True)
         result = getter._run()
-        if self._session.backtrack():
+        if self.session.backtrack():
             return
         self.add_tag('year_of_completion', result)
 
@@ -396,14 +396,14 @@ class ScorePackageProxy(PackageProxy):
         getter.append_string("type 'clobberscore' to proceed")
         with self.backtracking:
             should_clobber = getter._run()
-        if self._session.backtrack():
+        if self.session.backtrack():
             return
         if should_clobber == 'clobberscore':
             with self.backtracking:
                 self.remove()
-            if self._session.backtrack():
+            if self.session.backtrack():
                 return
-            self._session.is_backtracking_locally = True
+            self.session.is_backtracking_locally = True
 
     def make_asset_structure(self):
         self.fix_score_package_directory_structure(is_interactive=False)
@@ -429,44 +429,44 @@ class ScorePackageProxy(PackageProxy):
         self.segment_wrangler._run(head=self.package_path)
 
     def manage_setup(self, clear=True, cache=True):
-        self._session.cache_breadcrumbs(cache=cache)
+        self.session.cache_breadcrumbs(cache=cache)
         while True:
             breadcrumb = '{} - setup'.format(self.annotated_title)
-            self._session.push_breadcrumb(breadcrumb)
+            self.session.push_breadcrumb(breadcrumb)
             setup_menu = self.make_setup_menu()
             result = setup_menu._run(clear=clear)
-            if self._session.backtrack():
+            if self.session.backtrack():
                 break
             elif not result:
-                self._session.pop_breadcrumb()
+                self.session.pop_breadcrumb()
                 continue
             self.handle_setup_menu_result(result)
-            if self._session.backtrack():
+            if self.session.backtrack():
                 break
-            self._session.pop_breadcrumb()
-        self._session.pop_breadcrumb()
-        self._session.restore_breadcrumbs(cache=cache)
+            self.session.pop_breadcrumb()
+        self.session.pop_breadcrumb()
+        self.session.restore_breadcrumbs(cache=cache)
 
     def manage_specifiers(self):
         self.music_speicifer_module_wrangler._run()
 
     def manage_svn(self, clear=True, cache=False):
-        self._session.cache_breadcrumbs(cache=cache)
+        self.session.cache_breadcrumbs(cache=cache)
         while True:
-            self._session.push_breadcrumb('repository commands')
+            self.session.push_breadcrumb('repository commands')
             menu = self.make_svn_menu()
             result = menu._run(clear=clear)
-            if self._session.backtrack():
+            if self.session.backtrack():
                 break
             elif not result:
-                self._session.pop_breadcrumb()
+                self.session.pop_breadcrumb()
                 continue
             self.handle_svn_menu_result(result)
-            if self._session.backtrack():
+            if self.session.backtrack():
                 break
-            self._session.pop_breadcrumb()
-        self._session.pop_breadcrumb()
-        self._session.restore_breadcrumbs(cache=cache)
+            self.session.pop_breadcrumb()
+        self.session.pop_breadcrumb()
+        self.session.restore_breadcrumbs(cache=cache)
 
     def profile(self, prompt=True):
         if not os.path.exists(self.filesystem_path):

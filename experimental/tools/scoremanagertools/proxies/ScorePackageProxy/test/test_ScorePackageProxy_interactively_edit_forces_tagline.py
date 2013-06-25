@@ -8,16 +8,16 @@ def test_ScorePackageProxy_interactively_edit_forces_tagline_01():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     score_manager._run(pending_user_input='red~example~score setup tagline q')
-    assert score_manager._session.transcript.signature == (7,)
+    assert score_manager.session.transcript.signature == (7,)
 
     score_manager._run(pending_user_input='red~example~score setup tagline b q')
-    assert score_manager._session.transcript.signature == (9, (4, 7))
+    assert score_manager.session.transcript.signature == (9, (4, 7))
 
     score_manager._run(pending_user_input='red~example~score setup tagline score q')
-    assert score_manager._session.transcript.signature == (9, (2, 7))
+    assert score_manager.session.transcript.signature == (9, (2, 7))
 
     score_manager._run(pending_user_input='red~example~score setup tagline home q')
-    assert score_manager._session.transcript.signature == (9, (0, 7))
+    assert score_manager.session.transcript.signature == (9, (0, 7))
 
 
 def test_ScorePackageProxy_interactively_edit_forces_tagline_02():

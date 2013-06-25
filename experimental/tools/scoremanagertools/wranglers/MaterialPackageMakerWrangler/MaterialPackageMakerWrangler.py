@@ -56,7 +56,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             package_path = self.configuration.filesystem_path_to_packagesystem_path(package_path)
         material_package_proxy = \
             scoremanagertools.proxies.MaterialPackageProxy(
-            package_path, session=self._session)
+            package_path, session=self.session)
         material_package_maker_class_name = \
             material_package_proxy.material_package_maker_class_name
         if material_package_maker_class_name is not None:
@@ -73,7 +73,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
                     material_package_maker_class_name)
                 exec(command)
             material_package_proxy = material_package_maker_class(
-                package_path, session=self._session)
+                package_path, session=self.session)
         return material_package_proxy
 
     def _make_main_menu(self, head=None):
@@ -130,7 +130,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         getter.append_space_delimited_lowercase_string(
             'generic output product')
         result = getter._run()
-        if self._session.backtrack():
+        if self.session.backtrack():
             return
         material_package_maker_class_name, generic_output_product_name = result
         material_package_maker_directory = os.path.join(

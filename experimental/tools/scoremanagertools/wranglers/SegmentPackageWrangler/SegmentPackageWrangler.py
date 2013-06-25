@@ -80,7 +80,7 @@ class SegmentPackageWrangler(PackageWrangler):
     ### PUBLIC METHODS ###
 
     def interactively_make_asset(self):
-        segment_package_proxy = self.asset_proxy_class(session=self._session)
+        segment_package_proxy = self.asset_proxy_class(session=self.session)
         segment_package_proxy.interactively_make_asset()
 
     def list_asset_filesystem_paths(self,

@@ -134,7 +134,7 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
                 break
             user_input = self._io.handle_hidden_menu_section_return_value(
                 user_input)
-            if self._session.backtrack():
+            if self.session.backtrack():
                 self._current_prompt_is_done = True
                 self._all_prompts_are_done = True
             elif user_input is None:

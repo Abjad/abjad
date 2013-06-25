@@ -29,6 +29,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.segment_package_wrangler
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.session
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.scoremanager.ScoreManager.ScoreManager.ScoreManager.storage_format
    :noindex:
 

@@ -15,7 +15,7 @@ class MusicSpecifierModuleProxy(ModuleProxy):
     def __init__(self, packagesystem_path=None, session=None):
         ModuleProxy.__init__(self, packagesystem_path=packagesystem_path, session=session)
         self.load_target_into_memory()
-        self._editor = self.editor_class(target=self.target_in_memory, session=self._session)
+        self._editor = self.editor_class(target=self.target_in_memory, session=self.session)
         self.target_lines = []
 
     ### CLASS ATTRIUBTES ###

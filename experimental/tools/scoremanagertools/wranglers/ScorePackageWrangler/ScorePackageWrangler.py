@@ -18,7 +18,7 @@ class ScorePackageWrangler(PackageWrangler):
 
         >>> wrangler_in_built_in_score = \
         ...     scoremanagertools.wranglers.ScorePackageWrangler()
-        >>> wrangler_in_built_in_score._session._snake_case_current_score_name = 'red_example_score'
+        >>> wrangler_in_built_in_score.session._snake_case_current_score_name = 'red_example_score'
         >>> wrangler_in_built_in_score
         ScorePackageWrangler()
 
@@ -49,8 +49,8 @@ class ScorePackageWrangler(PackageWrangler):
 
     @property
     def _current_storehouse_filesystem_path(self):
-        if self._session.is_in_score:
-            if self._session.snake_case_current_score_name in \
+        if self.session.is_in_score:
+            if self.session.snake_case_current_score_name in \
                     os.listdir(
                 self.configuration.built_in_score_packages_directory_path):
                 return \
@@ -123,7 +123,7 @@ class ScorePackageWrangler(PackageWrangler):
         return results
 
     def interactively_make_asset(self, rollback=False):
-        breadcrumb = self._session.pop_breadcrumb(rollback=rollback)
+        breadcrumb = self.session.pop_breadcrumb(rollback=rollback)
         getter = self._io.make_getter(where=self._where)
         getter.indent_level = 1
         getter.prompt_character = ':'
@@ -135,14 +135,14 @@ class ScorePackageWrangler(PackageWrangler):
             'package name')
         getter.append_integer_in_range('year', start=1, allow_none=True)
         result = getter._run()
-        if self._session.backtrack():
+        if self.session.backtrack():
             return
         title, score_package_name, year = result
         self.make_asset(score_package_name)
         score_package_proxy = self._initialize_asset_proxy(score_package_name)
         score_package_proxy.add_tag('title', title)
         score_package_proxy.year_of_completion = year
-        self._session.push_breadcrumb(breadcrumb=breadcrumb, rollback=rollback)
+        self.session.push_breadcrumb(breadcrumb=breadcrumb, rollback=rollback)
 
     def list_asset_filesystem_paths(self,
         in_built_in_asset_library=True, 
@@ -340,7 +340,7 @@ class ScorePackageWrangler(PackageWrangler):
         Return list.
         '''
         result = []
-        scores_to_show = self._session.scores_to_show
+        scores_to_show = self.session.scores_to_show
         for asset_proxy in PackageWrangler.list_asset_proxies(self,
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
@@ -416,7 +416,7 @@ class ScorePackageWrangler(PackageWrangler):
         Return list.
         '''
         result = []
-        scores_to_show = self._session.scores_to_show
+        scores_to_show = self.session.scores_to_show
         for asset_proxy in PackageWrangler.list_asset_proxies(self,
             in_built_in_asset_library=in_built_in_asset_library,
             in_user_asset_library=in_user_asset_library,
@@ -451,7 +451,7 @@ class ScorePackageWrangler(PackageWrangler):
         getter = self._io.make_getter(where=self._where)
         getter.append_string('commit message')
         commit_message = getter._run()
-        if self._session.backtrack():
+        if self.session.backtrack():
             return
         line = 'commit message will be: "{}"\n'.format(commit_message)
         self._io.display(line)

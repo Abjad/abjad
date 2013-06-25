@@ -123,7 +123,7 @@ class StylesheetFileWrangler(FileWrangler):
 
     def interactively_edit_asset(self, filesystem_path):
         proxy = self.asset_proxy_class(
-            filesystem_path=filesystem_path, session=self._session)
+            filesystem_path=filesystem_path, session=self.session)
         proxy.interactively_edit()
 
     def interactively_make_asset(self):
@@ -135,12 +135,12 @@ class StylesheetFileWrangler(FileWrangler):
                 in_user_asset_library=True,
                 in_built_in_score_packages=False,
                 in_user_score_packages=False)
-        if self._session.backtrack():
+        if self.session.backtrack():
             return
         getter = self._io.make_getter(where=self._where)
         getter.append_string('stylesheet name')
         stylesheet_file_name = getter._run()
-        if self._session.backtrack():
+        if self.session.backtrack():
             return
 
         stylesheet_file_name = \
@@ -156,9 +156,9 @@ class StylesheetFileWrangler(FileWrangler):
             )
 
         proxy = scoremanagertools.proxies.StylesheetFileProxy(
-            stylesheet_file_path, session=self._session)
+            stylesheet_file_path, session=self.session)
 
-        if self._session.is_test:
+        if self.session.is_test:
             proxy.make_empty_asset()
         else:
             proxy.interactively_edit()

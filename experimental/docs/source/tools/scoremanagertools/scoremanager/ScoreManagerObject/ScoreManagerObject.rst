@@ -15,6 +15,9 @@ Bases
 Read-only properties
 --------------------
 
+.. autoattribute:: experimental.tools.scoremanagertools.scoremanager.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.session
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.scoremanager.ScoreManagerObject.ScoreManagerObject.ScoreManagerObject.storage_format
    :noindex:
 

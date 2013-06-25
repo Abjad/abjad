@@ -22,6 +22,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.io.UserInputGetter.UserInputGetter.UserInputGetter.prompts
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.io.UserInputGetter.UserInputGetter.UserInputGetter.session
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.io.UserInputGetter.UserInputGetter.UserInputGetter.storage_format
    :noindex:
 

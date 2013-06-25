@@ -21,7 +21,7 @@ class MaterialPackageWrangler(PackageWrangler):
 
         >>> wrangler_in_built_in_score = \
         ...     scoremanagertools.wranglers.MaterialPackageWrangler()
-        >>> session = wrangler_in_built_in_score._session
+        >>> session = wrangler_in_built_in_score.session
         >>> session.snake_case_current_score_name = \
         ...     'red_example_score'
         >>> wrangler_in_built_in_score
@@ -47,7 +47,7 @@ class MaterialPackageWrangler(PackageWrangler):
         PackageWrangler.__init__(self, session=session)
         self._material_package_maker_wrangler = \
             scoremanagertools.wranglers.MaterialPackageMakerWrangler(
-                session=self._session)
+                session=self.session)
 
     ### PRIVATE PROPERTIES ###
 
@@ -63,11 +63,11 @@ class MaterialPackageWrangler(PackageWrangler):
         if material_package_maker_class_name is None:
             material_package_proxy = \
                 scoremanagertools.proxies.MaterialPackageProxy(
-                material_package_path, session=self._session)
+                material_package_path, session=self.session)
         else:
             command = 'material_package_proxy = '
             command += 'scoremanagertools.materialpackagemakers.{}'
-            command += '(material_package_path, session=self._session)'
+            command += '(material_package_path, session=self.session)'
             command = command.format(material_package_maker_class_name)
             try:
                 exec(command)
@@ -78,7 +78,7 @@ class MaterialPackageWrangler(PackageWrangler):
                     material_package_maker_class_name)
                 exec(command)
                 material_package_proxy = material_package_maker_class(
-                    material_package_path, session=self._session)
+                    material_package_path, session=self.session)
         return material_package_proxy
 
     def _handle_main_menu_result(self, result):
@@ -146,7 +146,7 @@ class MaterialPackageWrangler(PackageWrangler):
             getter.append_space_delimited_lowercase_string('material name')
             with self.backtracking:
                 package_name = getter._run()
-            if self._session.backtrack():
+            if self.session.backtrack():
                 return
             material_package_name = \
                 stringtools.string_to_accent_free_snake_case(
@@ -167,7 +167,7 @@ class MaterialPackageWrangler(PackageWrangler):
         with self.backtracking:
             material_package_path = \
                 self.interactively_get_available_material_packagesystem_path()
-        if self._session.backtrack():
+        if self.session.backtrack():
             return
         self.make_data_package(material_package_path, tags=tags)
 
@@ -176,7 +176,7 @@ class MaterialPackageWrangler(PackageWrangler):
         with self.backtracking:
             material_package_path = \
                 self.interactively_get_available_material_packagesystem_path()
-        if self._session.backtrack():
+        if self.session.backtrack():
             return
         self.make_handmade_material_package(material_package_path)
 
@@ -186,7 +186,7 @@ class MaterialPackageWrangler(PackageWrangler):
             wrangler = self._material_package_maker_wrangler
             result = wrangler.interactively_select_asset_packagesystem_path(
                 cache=True, clear=False)
-        if self._session.backtrack():
+        if self.session.backtrack():
             return
         material_package_maker_package_path = result
         material_package_maker_class_name = \
@@ -194,7 +194,7 @@ class MaterialPackageWrangler(PackageWrangler):
         with self.backtracking:
             material_package_path = \
                 self.interactively_get_available_material_packagesystem_path()
-        if self._session.backtrack():
+        if self.session.backtrack():
             return
         self.make_makermade_material_package(
             material_package_path, material_package_maker_class_name)

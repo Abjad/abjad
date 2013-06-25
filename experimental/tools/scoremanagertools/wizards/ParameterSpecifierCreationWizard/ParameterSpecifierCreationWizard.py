@@ -14,24 +14,24 @@ class ParameterSpecifierCreationWizard(Wizard):
 
     def _run(self, cache=False, clear=True, head=None, pending_user_input=None):
         self._io.assign_user_input(pending_user_input=pending_user_input)
-        self._session.cache_breadcrumbs(cache=cache)
-        self._session.push_breadcrumb(self._breadcrumb)
-        selector = selectors.ParameterSpecifierClassNameSelector(session=self._session)
+        self.session.cache_breadcrumbs(cache=cache)
+        self.session.push_breadcrumb(self._breadcrumb)
+        selector = selectors.ParameterSpecifierClassNameSelector(session=self.session)
         with self.backtracking:
             target_class_name = selector._run()
-        if self._session.backtrack():
-            self._session.pop_breadcrumb()
-            self._session.restore_breadcrumbs(cache=cache)
+        if self.session.backtrack():
+            self.session.pop_breadcrumb()
+            self.session.restore_breadcrumbs(cache=cache)
             return
         target_editor = self.get_target_editor(target_class_name)
         with self.backtracking:
             target_editor._run()
-        if self._session.backtrack():
-            self._session.pop_breadcrumb()
-            self._session.restore_breadcrumbs(cache=cache)
+        if self.session.backtrack():
+            self.session.pop_breadcrumb()
+            self.session.restore_breadcrumbs(cache=cache)
             return
-        self._session.pop_breadcrumb()
-        self._session.restore_breadcrumbs(cache=cache)
+        self.session.pop_breadcrumb()
+        self.session.restore_breadcrumbs(cache=cache)
         self.target = target_editor.target
         return self.target
 
@@ -42,5 +42,5 @@ class ParameterSpecifierCreationWizard(Wizard):
         target_editor_class_name = target_class_name + self.target_editor_class_name_suffix
         command = 'from experimental.tools.scoremanagertools.editors import {} as target_editor_class'.format(target_editor_class_name)
         exec(command)
-        target_editor = target_editor_class(session=self._session, target=target)
+        target_editor = target_editor_class(session=self.session, target=target)
         return target_editor
