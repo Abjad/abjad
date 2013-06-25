@@ -131,4 +131,4 @@ class MaterialDefinitionModuleProxy(ModuleProxy, ParseableModuleMixin):
             self.write_stub_data_material_definition_to_disk()
         else:
             self.write_stub_music_material_definition_to_disk()
-        self._io.proceed('stub material definitiion written to disk.', is_interactive=is_interactive)
+        self.session.io_manager.proceed('stub material definitiion written to disk.', is_interactive=is_interactive)

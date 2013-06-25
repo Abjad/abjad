@@ -120,13 +120,13 @@ class ScoreManager(ScoreManagerObject):
         else:
             menu_entries = \
                 self.score_package_wrangler._make_asset_menu_entries()
-        menu = self._io.make_menu(where=self._where)
+        menu = self.session.io_manager.make_menu(where=self._where)
         asset_section = menu.make_asset_section()
         asset_section.menu_entries = menu_entries
         return menu
 
     def _make_svn_menu(self):
-        menu = self._io.make_menu(where=self._where)
+        menu = self.session.io_manager.make_menu(where=self._where)
         command_section = menu.make_command_section()
         command_section.append(('svn add scores', 'add'))
         command_section.append(('svn commit scores', 'ci'))
@@ -141,7 +141,7 @@ class ScoreManager(ScoreManagerObject):
         is_test=False, 
         dump_transcript=False):
         type(self).__init__(self)
-        self._io.assign_user_input(pending_user_input=pending_user_input)
+        self.session.io_manager.assign_user_input(pending_user_input=pending_user_input)
         self.session.cache_breadcrumbs(cache=cache)
         self.session.push_breadcrumb(self._breadcrumb)
         if is_test:
@@ -323,9 +323,9 @@ class ScoreManager(ScoreManagerObject):
         proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
         lines = [line.strip() for line in proc.stdout.readlines()]
         if lines:
-            self._io.display(lines, capitalize_first_character=False)
+            self.session.io_manager.display(lines, capitalize_first_character=False)
         line = 'tests complete.'
-        self._io.proceed(line, is_interactive=prompt)
+        self.session.io_manager.proceed(line, is_interactive=prompt)
 
     def write_cache(self):
         cache_file_path = os.path.join(

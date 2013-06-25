@@ -87,11 +87,11 @@ class ModuleProxy(FileProxy):
 
     def run_abjad(self, prompt=True):
         os.system('abjad {}'.format(self.filesystem_path))
-        self._io.proceed('file executed', is_interactive=prompt)
+        self.session.io_manager.proceed('file executed', is_interactive=prompt)
 
     def run_python(self, prompt=True):
         os.system('python {}'.format(self.filesystem_path))
-        self._io.proceed('file executed.', is_interactive=prompt)
+        self.session.io_manager.proceed('file executed.', is_interactive=prompt)
 
     # TODO: remove entirely
     def unimport(self):

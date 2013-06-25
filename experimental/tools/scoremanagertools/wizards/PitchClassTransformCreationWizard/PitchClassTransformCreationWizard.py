@@ -13,7 +13,7 @@ class PitchClassTransformCreationWizard(Wizard):
     ### PRIVATE METHODS ###
 
     def _run(self, cache=False, clear=True, head=None, pending_user_input=None):
-        self._io.assign_user_input(pending_user_input=pending_user_input)
+        self.session.io_manager.assign_user_input(pending_user_input=pending_user_input)
         self.session.cache_breadcrumbs(cache=cache)
         function_application_pairs = []
         while True:
@@ -63,7 +63,7 @@ class PitchClassTransformCreationWizard(Wizard):
     def get_function_arguments(self, function_name):
         arguments = []
         if function_name in ('transpose', 'multiply'):
-            getter = self._io.make_getter(where=self._where)
+            getter = self.session.io_manager.make_getter(where=self._where)
             getter.append_integer_in_range('index', start=0, stop=11)
             result = getter._run()
             if self.session.backtrack():

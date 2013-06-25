@@ -20,7 +20,7 @@ class InstrumentCreationWizard(Wizard):
     ### PRIVATE METHODS ###
 
     def _run(self, cache=False, clear=True, head=None, pending_user_input=None):
-        self._io.assign_user_input(pending_user_input=pending_user_input)
+        self.session.io_manager.assign_user_input(pending_user_input=pending_user_input)
         self.session.cache_breadcrumbs(cache=cache)
         self.session.push_breadcrumb(self._breadcrumb)
         kwargs = {'session': self.session, 'is_ranged': self.is_ranged}

@@ -67,7 +67,7 @@ class FilesystemAssetProxy(ScoreManagerObject):
     ### PRIVATE METHODS ###
 
     def _initialize_file_name_getter(self):
-        getter = self._io.make_getter()
+        getter = self.session.io_manager.make_getter()
         getter.append_snake_case_file_name('new name')
         return getter
 
@@ -141,23 +141,23 @@ class FilesystemAssetProxy(ScoreManagerObject):
         return False
 
     def interactively_copy(self, pending_user_input=None):
-        self._io.assign_user_input(pending_user_input=pending_user_input)
+        self.session.io_manager.assign_user_input(pending_user_input=pending_user_input)
         getter = self._initialize_file_name_getter()
         result = getter._run()
         if self.session.backtrack():
             return
         new_asset_name = self._space_delimited_lowercase_name_to_asset_name(result)
         new_path = os.path.join(self.parent_directory_filesystem_path, new_asset_name)
-        self._io.display('new path will be {}'.format(new_path))
-        if not self._io.confirm():
+        self.session.io_manager.display('new path will be {}'.format(new_path))
+        if not self.session.io_manager.confirm():
             return
         self.copy(new_path)
-        self._io.proceed('asset copied.')
+        self.session.io_manager.proceed('asset copied.')
 
     def interactively_remove(self, pending_user_input=None):
-        self._io.assign_user_input(pending_user_input=pending_user_input)
-        self._io.display(['{} will be removed.'.format(self.filesystem_path), ''])
-        getter = self._io.make_getter(where=self._where)
+        self.session.io_manager.assign_user_input(pending_user_input=pending_user_input)
+        self.session.io_manager.display(['{} will be removed.'.format(self.filesystem_path), ''])
+        getter = self.session.io_manager.make_getter(where=self._where)
         getter.append_string("type 'remove' to proceed")
         result = getter._run()
         if self.session.backtrack():
@@ -165,38 +165,38 @@ class FilesystemAssetProxy(ScoreManagerObject):
         if not result == 'remove':
             return
         if self.remove():
-            self._io.proceed('{} removed.'.format(self.filesystem_path))
+            self.session.io_manager.proceed('{} removed.'.format(self.filesystem_path))
 
     def interactively_remove_and_backtrack_locally(self):
         self.interactively_remove()
         self.session.is_backtracking_locally = True
 
     def interactively_rename(self, pending_user_input=None):
-        self._io.assign_user_input(pending_user_input=pending_user_input)
+        self.session.io_manager.assign_user_input(pending_user_input=pending_user_input)
         getter = self._initialize_file_name_getter()
         getter.include_newlines = False
         result = getter._run()
         if self.session.backtrack():
             return
         new_path = os.path.join(self.parent_directory_filesystem_path, result)
-        self._io.display(['new path name will be: "{}"'.format(new_path), ''])
-        if not self._io.confirm():
+        self.session.io_manager.display(['new path name will be: "{}"'.format(new_path), ''])
+        if not self.session.io_manager.confirm():
             return
         if self.rename(new_path):
-            self._io.proceed('asset renamed.')
+            self.session.io_manager.proceed('asset renamed.')
 
     def interactively_write_boilerplate(self, pending_user_input=None):
-        self._io.assign_user_input(pending_user_input=pending_user_input)
-        getter = self._io.make_getter(where=self._where)
+        self.session.io_manager.assign_user_input(pending_user_input=pending_user_input)
+        getter = self.session.io_manager.make_getter(where=self._where)
         getter.append_snake_case_file_name('name of boilerplate asset')
         with self.backtracking:
             boilerplate_filebuilt_in_asset_name = getter._run()
         if self.session.backtrack():
             return
         if self.write_boilerplate(boilerplate_filebuilt_in_asset_name):
-            self._io.proceed('boilerplate asset copied.')
+            self.session.io_manager.proceed('boilerplate asset copied.')
         else:
-            self._io.proceed('boilerplate asset {!r} does not exist.'.format(
+            self.session.io_manager.proceed('boilerplate asset {!r} does not exist.'.format(
                 boilerplate_filebuilt_in_asset_name))
 
     def is_versioned(self):
@@ -242,24 +242,24 @@ class FilesystemAssetProxy(ScoreManagerObject):
 
     def svn_add(self, is_interactive=False):
         if is_interactive:
-            self._io.display(self.filesystem_path)
+            self.session.io_manager.display(self.filesystem_path)
         proc = subprocess.Popen(self._svn_add_command, shell=True, stdout=subprocess.PIPE)
         lines = [line.strip() for line in proc.stdout.readlines()]
         lines.append('')
         if is_interactive:
-            self._io.display(lines)
-        self._io.proceed(is_interactive=is_interactive)
+            self.session.io_manager.display(lines)
+        self.session.io_manager.proceed(is_interactive=is_interactive)
 
     def svn_ci(self, commit_message=None, is_interactive=True):
         if commit_message is None:
-            getter = self._io.make_getter(where=self._where)
+            getter = self.session.io_manager.make_getter(where=self._where)
             getter.append_string('commit message')
             commit_message = getter._run()
             if self.session.backtrack():
                 return
             line = 'commit message will be: "{}"\n'.format(commit_message)
-            self._io.display(line)
-            if not self._io.confirm():
+            self.session.io_manager.display(line)
+            if not self.session.io_manager.confirm():
                 return
         lines = []
         lines.append(self.filesystem_path)
@@ -267,28 +267,28 @@ class FilesystemAssetProxy(ScoreManagerObject):
         proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
         lines.extend([line.strip() for line in proc.stdout.readlines()])
         lines.append('')
-        self._io.display(lines)
-        self._io.proceed(is_interactive=is_interactive)
+        self.session.io_manager.display(lines)
+        self.session.io_manager.proceed(is_interactive=is_interactive)
 
     def svn_st(self, is_interactive=True):
         if is_interactive:
-            self._io.display(self.filesystem_path)
+            self.session.io_manager.display(self.filesystem_path)
         command = 'svn st -u {}'.format(self.filesystem_path)
         proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
         lines = [line.strip() for line in proc.stdout.readlines()]
         lines.append('')
-        self._io.display(lines)
-        self._io.proceed(is_interactive=is_interactive)
+        self.session.io_manager.display(lines)
+        self.session.io_manager.proceed(is_interactive=is_interactive)
 
     def svn_up(self, is_interactive=True):
         if is_interactive:
-            self._io.display(self.filesystem_path)
+            self.session.io_manager.display(self.filesystem_path)
         command = 'svn up {}'.format(self.filesystem_path)
         proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
         lines = [line.strip() for line in proc.stdout.readlines()]
         lines.append('')
-        self._io.display(lines)
-        self._io.proceed(is_interactive=is_interactive)
+        self.session.io_manager.display(lines)
+        self.session.io_manager.proceed(is_interactive=is_interactive)
 
     def write_boilerplate(self, boilerplate_filebuilt_in_asset_name):
         if not os.path.exists(boilerplate_filebuilt_in_asset_name):

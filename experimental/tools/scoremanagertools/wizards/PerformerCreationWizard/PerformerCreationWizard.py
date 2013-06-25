@@ -23,7 +23,7 @@ class PerformerCreationWizard(Wizard):
     ### PRIVATE METHODS ###
 
     def _run(self, cache=False, clear=True, head=None, pending_user_input=None):
-        self._io.assign_user_input(pending_user_input=pending_user_input)
+        self.session.io_manager.assign_user_input(pending_user_input=pending_user_input)
         self.session.cache_breadcrumbs(cache=cache)
         try_again = False
         performers = []
@@ -121,7 +121,7 @@ class PerformerCreationWizard(Wizard):
         self.session.restore_breadcrumbs(cache=cache)
 
     def make_performer_configuration_menu(self, performer):
-        menu = self._io.make_menu(where=self._where)
+        menu = self.session.io_manager.make_menu(where=self._where)
         numbered_list_section = menu.make_numbered_list_section()
         numbered_list_section.title = 'select instruments'
         command_section = menu.make_command_section()

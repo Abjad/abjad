@@ -40,7 +40,7 @@ class SegmentPackageWrangler(PackageWrangler):
             segment_package_proxy._run()
 
     def _make_main_menu(self, head=None):
-        main_menu = self._io.make_menu(where=self._where)
+        main_menu = self.session.io_manager.make_menu(where=self._where)
         asset_section = main_menu.make_asset_section()
         asset_menu_entries = self._make_asset_menu_entries(head=head)
         asset_section.menu_entires = asset_menu_entries

@@ -48,14 +48,14 @@ class TagsModuleProxy(ModuleProxy, ParseableModuleMixin):
 
     def interactively_restore(self, prompt=True):
         from experimental.tools import scoremanagertools
-        getter = self._io.make_getter(where=self._where)
+        getter = self.session.io_manager.make_getter(where=self._where)
         getter.append_yes_no_string('handmade')
         result = getter._run()
         if self.session.backtrack():
             return
         if 'yes'.startswith(result.lower()):
             material_package_maker_class_name = None
-            getter = self._io.make_getter(where=self._where)
+            getter = self.session.io_manager.make_getter(where=self._where)
             getter.append_yes_no_string('should have illustration')
             result = getter._run()
             if self.session.backtrack():
@@ -75,7 +75,7 @@ class TagsModuleProxy(ModuleProxy, ParseableModuleMixin):
         tags['should_have_illustration'] = should_have_illustration
         tags['material_package_maker_class_name'] = material_package_maker_class_name
         self.write_stub_to_disk()
-        self._io.proceed('initializer restored.', is_interactive=prompt)
+        self.session.io_manager.proceed('initializer restored.', is_interactive=prompt)
 
     def make_tag_lines(self, tags):
         if tags:

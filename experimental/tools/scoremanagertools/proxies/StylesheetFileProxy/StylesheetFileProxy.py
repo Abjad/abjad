@@ -44,12 +44,12 @@ class StylesheetFileProxy(FileProxy):
             raise ValueError
 
     def _initialize_file_name_getter(self):
-        getter = self._io.make_getter()
+        getter = self.session.io_manager.make_getter()
         getter.append_dash_case_file_name('new name')
         return getter
 
     def _make_main_menu(self):
-        main_menu = self._io.make_menu(where=self._where)
+        main_menu = self.session.io_manager.make_menu(where=self._where)
         command_section = main_menu.make_command_section()
         command_section.append(('copy stylesheet', 'cp'))
         command_section.append(('delete stylesheet', 'rm'))

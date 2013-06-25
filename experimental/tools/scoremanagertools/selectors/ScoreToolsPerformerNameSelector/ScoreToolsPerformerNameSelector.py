@@ -11,7 +11,7 @@ class ScoreToolsPerformerNameSelector(Selector):
     ### PUBLIC METHODS ###
 
     def _make_main_menu(self, head=None):
-        main_menu = self._io.make_menu(where=self._where)
+        main_menu = self.session.io_manager.make_menu(where=self._where)
         menu_section = main_menu._make_section(
             return_value_attribute='display_string',
             is_numbered=self.is_numbered,

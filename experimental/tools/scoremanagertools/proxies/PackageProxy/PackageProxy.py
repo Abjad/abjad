@@ -37,7 +37,7 @@ class PackageProxy(DirectoryProxy):
         return result
 
     def _run(self, cache=False, clear=True, pending_user_input=None):
-        self._io.assign_user_input(pending_user_input=pending_user_input)
+        self.session.io_manager.assign_user_input(pending_user_input=pending_user_input)
         self.session.cache_breadcrumbs(cache=cache)
         while True:
             self.session.push_breadcrumb(self._breadcrumb)
@@ -175,7 +175,7 @@ class PackageProxy(DirectoryProxy):
         return bool(tag_name in tags)
 
     def interactively_add_tag(self):
-        getter = self._io.make_getter(where=self._where)
+        getter = self.session.io_manager.make_getter(where=self._where)
         getter.append_string('tag name')
         getter.append_expr('tag value')
         result = getter._run()
@@ -186,17 +186,17 @@ class PackageProxy(DirectoryProxy):
             self.add_tag(tag_name, tag_value)
 
     def interactively_get_tag(self):
-        getter = self._io.make_getter(where=self._where)
+        getter = self.session.io_manager.make_getter(where=self._where)
         getter.append_string('tag name')
         result = getter._run()
         if self.session.backtrack():
             return
         tag = self.get_tag(result)
         line = '{!r}'.format(tag)
-        self._io.proceed(line)
+        self.session.io_manager.proceed(line)
 
     def interactively_remove_tag(self):
-        getter = self._io.make_getter(where=self._where)
+        getter = self.session.io_manager.make_getter(where=self._where)
         getter.append_string('tag name')
         result = getter._run()
         if self.session.backtrack():
@@ -209,7 +209,7 @@ class PackageProxy(DirectoryProxy):
         self.initializer_file_proxy.interactively_restore(prompt=True)
 
     def interactively_set_package_path(self):
-        getter = self._io.make_getter(where=self._where)
+        getter = self.session.io_manager.make_getter(where=self._where)
         getter.append_snake_case_package_name(
             'package name')
         result = getter._run()
@@ -224,7 +224,7 @@ class PackageProxy(DirectoryProxy):
         self.initializer_file_proxy.interactively_write_boilerplate()
 
     def make_tags_menu(self):
-        tags_menu = self._io.make_menu(where=self._where)
+        tags_menu = self.session.io_manager.make_menu(where=self._where)
         attribute_section = tags_menu.make_attribute_section()
         menu_entries = self._make_tags_menu_entries()
         attribute_section.menu_entries = menu_entries
@@ -253,7 +253,7 @@ class PackageProxy(DirectoryProxy):
         if self.has_initializer:
             os.remove(self.initializer_file_name)
             line = 'initializer deleted.'
-            self._io.proceed(line, is_interactive=is_interactive)
+            self.session.io_manager.proceed(line, is_interactive=is_interactive)
 
     def remove_tag(self, tag_name):
         tags = self.get_tags()

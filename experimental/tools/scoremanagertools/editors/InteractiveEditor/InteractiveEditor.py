@@ -56,7 +56,7 @@ class InteractiveEditor(ScoreManagerObject):
             self.set_target_attribute(attribute_name, attribute_value)
 
     def _make_main_menu(self):
-        main_menu = self._io.make_menu(where=self._where)
+        main_menu = self.session.io_manager.make_menu(where=self._where)
         keyed_attribute_section = main_menu.make_keyed_attribute_section(
             is_numbered=True) 
         menu_entries = self.target_attribute_tokens
@@ -72,7 +72,7 @@ class InteractiveEditor(ScoreManagerObject):
         is_autoadvancing=False, 
         is_autostarting=False, 
         pending_user_input=None):
-        self._io.assign_user_input(pending_user_input=pending_user_input)
+        self.session.io_manager.assign_user_input(pending_user_input=pending_user_input)
         self.session.cache_breadcrumbs(cache=cache)
         self.session.push_breadcrumb(self._breadcrumb)
         with self.backtracking:
@@ -203,7 +203,7 @@ class InteractiveEditor(ScoreManagerObject):
             for target_attribute_name in self.target_attribute_names:
                 name = stringtools.string_to_space_delimited_lowercase(
                     target_attribute_name)
-                value = self._io.get_one_line_menuing_summary(
+                value = self.session.io_manager.get_one_line_menuing_summary(
                     getattr(self.target, target_attribute_name))
                 result.append('{}: {}'.format(name, value))
         return result
@@ -294,7 +294,7 @@ class InteractiveEditor(ScoreManagerObject):
             if hasattr(attribute_value, '__len__') and \
                 not len(attribute_value):
                 attribute_value = None
-            prepopulated_value = self._io.get_one_line_menuing_summary(
+            prepopulated_value = self.session.io_manager.get_one_line_menuing_summary(
                 attribute_value)
             menu_entry = (display_string, key, prepopulated_value)
             result.append(menu_entry)
@@ -326,7 +326,7 @@ class InteractiveEditor(ScoreManagerObject):
         result = []
         for arg in getattr(target, 'args', []):
             name = stringtools.string_to_space_delimited_lowercase(arg)
-            value = self._io.get_one_line_menuing_summary(getattr(target, arg))
+            value = self.session.io_manager.get_one_line_menuing_summary(getattr(target, arg))
             result.append('{}: {}'.format(name, value))
         return result
 
@@ -334,7 +334,7 @@ class InteractiveEditor(ScoreManagerObject):
         result = []
         for kwarg in getattr(target, 'kwargs', []):
             name = stringtools.string_to_space_delimited_lowercase(kwarg)
-            value = self._io.get_one_line_menuing_summary(
+            value = self.session.io_manager.get_one_line_menuing_summary(
                 getattr(target, kwarg))
             result.append('{}: {}'.format(name, value))
         return result

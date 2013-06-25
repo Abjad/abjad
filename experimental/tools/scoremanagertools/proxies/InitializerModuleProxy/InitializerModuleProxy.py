@@ -30,7 +30,7 @@ class InitializerModuleProxy(ModuleProxy):
 
     def interactively_restore(self, prompt=False):
         self.write_stub_to_disk()
-        self._io.proceed(is_interactive=prompt)
+        self.session.io_manager.proceed(is_interactive=prompt)
 
     def write_stub_to_disk(self):
         file_pointer = open(self.filesystem_path, 'w')

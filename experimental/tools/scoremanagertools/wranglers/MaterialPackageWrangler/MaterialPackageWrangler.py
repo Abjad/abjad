@@ -93,7 +93,7 @@ class MaterialPackageWrangler(PackageWrangler):
             package_path)
 
     def _make_main_menu(self, head=None):
-        main_menu = self._io.make_menu(where=self._where)
+        main_menu = self.session.io_manager.make_menu(where=self._where)
         asset_section = main_menu.make_asset_section()
         asset_menu_entries = self._make_asset_menu_entries(head=head)
         asset_section.menu_entries = asset_menu_entries
@@ -140,9 +140,9 @@ class MaterialPackageWrangler(PackageWrangler):
 
     def interactively_get_available_material_packagesystem_path(
         self, pending_user_input=None):
-        self._io.assign_user_input(pending_user_input=pending_user_input)
+        self.session.io_manager.assign_user_input(pending_user_input=pending_user_input)
         while True:
-            getter = self._io.make_getter(where=self._where)
+            getter = self.session.io_manager.make_getter(where=self._where)
             getter.append_space_delimited_lowercase_string('material name')
             with self.backtracking:
                 package_name = getter._run()
@@ -158,12 +158,12 @@ class MaterialPackageWrangler(PackageWrangler):
                 material_package_path):
                 line = 'Material package {!r} already exists.'.format(
                     material_package_path)
-                self._io.display([line, ''])
+                self.session.io_manager.display([line, ''])
             else:
                 return material_package_path
 
     def interactively_make_data_package(self, tags=None, pending_user_input=None):
-        self._io.assign_user_input(pending_user_input=pending_user_input)
+        self.session.io_manager.assign_user_input(pending_user_input=pending_user_input)
         with self.backtracking:
             material_package_path = \
                 self.interactively_get_available_material_packagesystem_path()
@@ -172,7 +172,7 @@ class MaterialPackageWrangler(PackageWrangler):
         self.make_data_package(material_package_path, tags=tags)
 
     def interactively_make_handmade_material_package(self, pending_user_input=None):
-        self._io.assign_user_input(pending_user_input=pending_user_input)
+        self.session.io_manager.assign_user_input(pending_user_input=pending_user_input)
         with self.backtracking:
             material_package_path = \
                 self.interactively_get_available_material_packagesystem_path()
@@ -181,7 +181,7 @@ class MaterialPackageWrangler(PackageWrangler):
         self.make_handmade_material_package(material_package_path)
 
     def interactively_make_makermade_material_package(self, pending_user_input=None):
-        self._io.assign_user_input(pending_user_input=pending_user_input)
+        self.session.io_manager.assign_user_input(pending_user_input=pending_user_input)
         with self.backtracking:
             wrangler = self._material_package_maker_wrangler
             result = wrangler.interactively_select_asset_packagesystem_path(
@@ -431,7 +431,7 @@ class MaterialPackageWrangler(PackageWrangler):
         material_package_proxy.conditionally_write_stub_material_definition_module_to_disk()
         material_package_proxy.conditionally_write_stub_user_input_module_to_disk()
         line = 'material package {!r} created.'.format(material_package_path)
-        self._io.proceed(line, is_interactive=is_interactive)
+        self.session.io_manager.proceed(line, is_interactive=is_interactive)
 
     def make_numeric_sequence_package(self, package_path):
         tags = {'is_numeric_sequence': True}

@@ -47,4 +47,4 @@ class IllustrationBuilderModuleProxy(ModuleProxy):
         file_pointer = file(self.filesystem_path, 'w')
         file_pointer.write(''.join(lines))
         file_pointer.close()
-        self._io.proceed('stub illustration builder written to disk.', is_interactive=prompt)
+        self.session.io_manager.proceed('stub illustration builder written to disk.', is_interactive=prompt)

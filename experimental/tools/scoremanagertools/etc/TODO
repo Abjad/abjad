@@ -98,8 +98,4 @@
 
 33. Next write test for FilesystemAssetWrangler.interactively_remove_assets().
 
-34. Attach exactly one IOManager to each Session.
-    This will have the effect of instantiating only one IOManager
-    per run of the system.
-
-35. Finish the docstrings for all io classes.
+34. Finish the docstrings for all io classes.

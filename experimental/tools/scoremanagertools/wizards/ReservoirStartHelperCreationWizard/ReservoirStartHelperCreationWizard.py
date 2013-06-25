@@ -13,7 +13,7 @@ class ReservoirStartHelperCreationWizard(Wizard):
     ### PRIVATE METHODS ###
 
     def _run(self, cache=False, clear=True, head=None, pending_user_input=None):
-        self._io.assign_user_input(pending_user_input=pending_user_input)
+        self.session.io_manager.assign_user_input(pending_user_input=pending_user_input)
         self.session.cache_breadcrumbs(cache=cache)
         while True:
             function_application_pairs = []
@@ -44,7 +44,7 @@ class ReservoirStartHelperCreationWizard(Wizard):
     def get_function_arguments(self, function_name):
         arguments = []
         if function_name in ('start at index n'):
-            getter = self._io.make_getter(where=self._where)
+            getter = self.session.io_manager.make_getter(where=self._where)
             getter.append_integer('index')
             result = getter._run()
             if self.session.backtrack():

@@ -164,7 +164,7 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
             in_built_in_score_packages=True,
             in_user_score_packages=True):
             self.make_empty_package(package_path)
-        self._io.proceed('missing packages created.', is_interactive=is_interactive)
+        self.session.io_manager.proceed('missing packages created.', is_interactive=is_interactive)
 
     def make_empty_package(self, package_path):
         if package_path is None:

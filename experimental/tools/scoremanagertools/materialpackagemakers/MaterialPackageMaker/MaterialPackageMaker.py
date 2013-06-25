@@ -96,13 +96,13 @@ class MaterialPackageMaker(MaterialPackageProxy):
 
     def clear_user_input_wrapper(self, prompt=False):
         if self.user_input_wrapper_in_memory.is_empty:
-            self._io.proceed(
+            self.session.io_manager.proceed(
                 'user input already empty.', is_interactive=prompt)
         else:
             self.user_input_wrapper_in_memory.clear()
             self.user_input_module_proxy.write_user_input_wrapper_to_disk(
                 self.user_input_wrapper_in_memory)
-            self._io.proceed(
+            self.session.io_manager.proceed(
                 'user input wrapper cleared and written to disk.', 
                 is_interactive=prompt)
 
@@ -112,8 +112,8 @@ class MaterialPackageMaker(MaterialPackageProxy):
             line = '    {}: {!r}'.format(key.replace('_', ' '), value)
             lines.append(line)
         lines.append('')
-        self._io.display(lines)
-        self._io.proceed(is_interactive=prompt)
+        self.session.io_manager.display(lines)
+        self.session.io_manager.proceed(is_interactive=prompt)
 
     def initialize_empty_user_input_wrapper(self):
         from experimental.tools import scoremanagertools
@@ -144,7 +144,7 @@ class MaterialPackageMaker(MaterialPackageProxy):
             default_value = current_value
         else:
             default_value = None
-        getter = self._io.make_getter()
+        getter = self.session.io_manager.make_getter()
         spaced_attribute_name = key.replace('_', ' ')
         message = "value for '{}' must satisfy " + test.__name__ + '().'
         getter._make_prompt(
@@ -173,7 +173,7 @@ class MaterialPackageMaker(MaterialPackageProxy):
             self.user_input_wrapper_in_memory[key] = value
         self.user_input_module_proxy.write_user_input_wrapper_to_disk(
             self.user_input_wrapper_in_memory)
-        self._io.proceed(
+        self.session.io_manager.proceed(
             'demo values loaded and written to disk.', 
             is_interactive=prompt)
 
@@ -198,7 +198,7 @@ class MaterialPackageMaker(MaterialPackageProxy):
 
     def populate_user_input_wrapper(self, prompt=False):
         total_elements = len(self.user_input_wrapper_in_memory)
-        getter = self._io.make_getter(where=self._where)
+        getter = self.session.io_manager.make_getter(where=self._where)
         getter.append_integer_in_range(
             'start at element number', 1, total_elements, default_value=1)
         with self.backtracking:
@@ -226,7 +226,7 @@ class MaterialPackageMaker(MaterialPackageProxy):
         empty_user_input_wrapper = self.initialize_empty_user_input_wrapper()
         self.user_input_module_proxy.write_user_input_wrapper_to_disk(
             empty_user_input_wrapper)
-        self._io.proceed(
+        self.session.io_manager.proceed(
             'stub user input module written to disk.', 
             is_interactive=is_interactive)
 

@@ -20,10 +20,10 @@ class PackageWrangler(PackagesystemAssetWrangler):
     ### PRIVATE METHODS ###
 
     def _handle_main_menu_result(self, result):
-        self._io.print_not_yet_implemented()
+        self.session.io_manager.print_not_yet_implemented()
 
     def _make_main_menu(self, head=None):
-        self._io.print_not_yet_implemented()
+        self.session.io_manager.print_not_yet_implemented()
 
     ### PUBLIC PROPERTIES ###
 
@@ -35,7 +35,7 @@ class PackageWrangler(PackagesystemAssetWrangler):
     ### PUBLIC METHODS ###
 
     def interactively_make_asset(self):
-        self._io.print_not_yet_implemented()
+        self.session.io_manager.print_not_yet_implemented()
 
     def make_asset(self, asset_name):
         assert stringtools.is_snake_case_package_name(asset_name)

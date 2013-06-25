@@ -77,7 +77,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
         return material_package_proxy
 
     def _make_main_menu(self, head=None):
-        main_menu = self._io.make_menu(where=self._where)
+        main_menu = self.session.io_manager.make_menu(where=self._where)
         asset_section = main_menu.make_asset_section()
         asset_menu_entries = self._make_asset_menu_entries(head=head)
         asset_section.menu_entries = asset_menu_entries
@@ -124,7 +124,7 @@ class MaterialPackageMakerWrangler(PackageWrangler):
     ### PUBLIC METHODS ###
 
     def interactively_make_asset(self):
-        getter = self._io.make_getter(where=self._where)
+        getter = self.session.io_manager.make_getter(where=self._where)
         getter.append_material_package_maker_class_name(
             'material proxy name')
         getter.append_space_delimited_lowercase_string(

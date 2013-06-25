@@ -65,7 +65,7 @@ class StylesheetFileWrangler(FileWrangler):
             self.interactively_edit_asset(result)
 
     def _make_main_menu(self, head=None):
-        main_menu = self._io.make_menu(where=self._where)
+        main_menu = self.session.io_manager.make_menu(where=self._where)
         self._main_menu = main_menu
         asset_section = main_menu.make_asset_section()
         main_menu._asset_section = asset_section
@@ -137,7 +137,7 @@ class StylesheetFileWrangler(FileWrangler):
                 in_user_score_packages=False)
         if self.session.backtrack():
             return
-        getter = self._io.make_getter(where=self._where)
+        getter = self.session.io_manager.make_getter(where=self._where)
         getter.append_string('stylesheet name')
         stylesheet_file_name = getter._run()
         if self.session.backtrack():

@@ -58,10 +58,6 @@ class ScoreManagerObject(AbjadObject):
         return
 
     @property
-    def _io(self):
-        return self.session.io_manager
-
-    @property
     def _keyword_argument_names(self):
         result = []
         result.extend(AbjadObject._keyword_argument_names.fget(self))

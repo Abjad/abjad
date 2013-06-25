@@ -21,7 +21,7 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
     def __init__(self, session=None, where=None):
         ScoreManagerObject.__init__(self, session=session)
         PromptMakerMixin.__init__(self)
-        hidden_section = self._io.make_default_hidden_section()
+        hidden_section = self.session.io_manager.make_default_hidden_section()
         self._prompts = []
         self.allow_none = False
         self.capitalize_prompts = True
@@ -58,7 +58,7 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
         lines = []
         lines.append(self._current_prompt.help_string)
         lines.append('')
-        self._io.display(lines)
+        self.session.io_manager.display(lines)
 
     def _evaluate_user_input(self, user_input):
         target_menu_section = self._current_prompt.target_menu_section
@@ -122,7 +122,7 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
                 prompt_string)
             default_value = str(self._current_prompt.default_value)
             include_chevron = self._current_prompt.include_chevron
-            user_input = self._io.handle_raw_input_with_default(
+            user_input = self.session.io_manager.handle_raw_input_with_default(
                 prompt_string, 
                 default_value=default_value,
                 include_chevron=include_chevron, 
@@ -132,7 +132,7 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
             if user_input is None:
                 self._prompt_index += 1
                 break
-            user_input = self._io.handle_hidden_menu_section_return_value(
+            user_input = self.session.io_manager.handle_hidden_menu_section_return_value(
                 user_input)
             if self.session.backtrack():
                 self._current_prompt_is_done = True
@@ -149,10 +149,10 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
             elif isinstance(user_input, str):
                 self._evaluate_user_input(user_input)
             else:
-                self._io.print_not_yet_implemented()
+                self.session.io_manager.print_not_yet_implemented()
 
     def _present_prompts_and_evaluate_user_input(self, include_chevron=True):
-        self._io.clear_terminal()
+        self.session.io_manager.clear_terminal()
         self._prompt_index = 0
         self._prompt_strings = []
         self._evaluated_user_input = []
@@ -163,7 +163,7 @@ class UserInputGetter(ScoreManagerObject, PromptMakerMixin):
                 include_chevron=include_chevron)
 
     def _run(self, pending_user_input=None, include_chevron=True):
-        self._io.assign_user_input(pending_user_input=pending_user_input)
+        self.session.io_manager.assign_user_input(pending_user_input=pending_user_input)
         with self.backtracking:
             self._present_prompts_and_evaluate_user_input(
                 include_chevron=include_chevron)

@@ -99,7 +99,7 @@ class OutputMaterialModuleProxy(ModuleProxy, ParseableModuleMixin):
 
     def display_output_material(self):
         output_material = self.import_output_material_safely()
-        self._io.display([repr(output_material), ''], capitalize_first_character=False)
+        self.session.io_manager.display([repr(output_material), ''], capitalize_first_character=False)
         self.session.hide_next_redraw = True
 
     def import_output_material(self):

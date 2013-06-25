@@ -52,7 +52,7 @@ class MaterialPackageProxy(PackageProxy):
             raise ValueError(result)
 
     def _make_main_menu(self):
-        main_menu = self._io.make_menu(where=self._where)
+        main_menu = self.session.io_manager.make_menu(where=self._where)
         hidden_section = main_menu.make_command_section(is_hidden=True)
         self._make_main_menu_section_for_initializer(
             main_menu, hidden_section)
@@ -375,7 +375,7 @@ class MaterialPackageProxy(PackageProxy):
     # TODO: port
     @property
     def is_changed(self):
-        self._io.print_not_yet_implemented()
+        self.session.io_manager.print_not_yet_implemented()
         material_definition = \
             self.material_definition_module_proxy.import_material_definition()
         output_material = \
@@ -647,8 +647,8 @@ class MaterialPackageProxy(PackageProxy):
 
     def interactively_rename_material(self):
         line = 'current material name: {}'.format(self.material_package_name)
-        self._io.display(line)
-        getter = self._io.make_getter(where=self._where)
+        self.session.io_manager.display(line)
+        getter = self.session.io_manager.make_getter(where=self._where)
         getter.append_snake_case_package_name('new material name')
         new_material_package_name = getter._run()
         if self.session.backtrack():
@@ -659,8 +659,8 @@ class MaterialPackageProxy(PackageProxy):
         lines.append('new material name:     {}'.format(
             new_material_package_name))
         lines.append('')
-        self._io.display(lines)
-        if not self._io.confirm():
+        self.session.io_manager.display(lines)
+        if not self.session.io_manager.confirm():
             return
         if self.is_versioned():
             # rename package directory
@@ -715,7 +715,7 @@ class MaterialPackageProxy(PackageProxy):
             return
         self.add_tag('material_package_maker', material_package_maker.class_name)
         line = 'user input handler selected.'
-        self._io.proceed(line, is_interactive=prompt)
+        self.session.io_manager.proceed(line, is_interactive=prompt)
 
     def interactively_select_stylesheet(self, prompt=True):
         from experimental.tools import scoremanagertools
@@ -727,7 +727,7 @@ class MaterialPackageProxy(PackageProxy):
         if self.session.backtrack():
             return
         self.stylesheet_file_name_in_memory = stylesheet_file_name
-        self._io.proceed('stylesheet selected.', is_interactive=prompt)
+        self.session.io_manager.proceed('stylesheet selected.', is_interactive=prompt)
 
     def interactively_view_illustration_ly(self):
         self.illustration_ly_file_proxy.interactively_view()
@@ -828,7 +828,7 @@ class MaterialPackageProxy(PackageProxy):
             illustration, 
             self.illustration_ly_file_name, 
             print_status=False)
-        self._io.proceed(
+        self.session.io_manager.proceed(
             'PDF and LilyPond file written to disk.', 
             is_interactive=prompt)
 
@@ -838,7 +838,7 @@ class MaterialPackageProxy(PackageProxy):
             illustration, 
             self.illustration_ly_file_name, 
             print_status=False)
-        self._io.proceed(
+        self.session.io_manager.proceed(
             'LilyPond file written to disk.', 
             is_interactive=prompt)
 
@@ -848,7 +848,7 @@ class MaterialPackageProxy(PackageProxy):
             illustration, 
             self.illustration_pdf_file_name, 
             print_status=False)
-        self._io.proceed(
+        self.session.io_manager.proceed(
             'PDF written to disk.', 
             is_interactive=prompt)
 
@@ -871,7 +871,7 @@ class MaterialPackageProxy(PackageProxy):
             output_material_module_body_lines
         output_material_module_proxy.write_to_disk()
         self.write_tags_to_disk()
-        self._io.proceed(
+        self.session.io_manager.proceed(
             'output material written to disk.', 
             is_interactive=prompt)
 

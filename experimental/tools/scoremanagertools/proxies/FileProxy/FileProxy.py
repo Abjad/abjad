@@ -25,7 +25,7 @@ class FileProxy(FilesystemAssetProxy):
             file_reference = file(self.filesystem_path, 'w')
             file_reference.write('')
             file_reference.close()
-        self._io.proceed(is_interactive=is_interactive)
+        self.session.io_manager.proceed(is_interactive=is_interactive)
 
     def read_lines(self):
         result = []

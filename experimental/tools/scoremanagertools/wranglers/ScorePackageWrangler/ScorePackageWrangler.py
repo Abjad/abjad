@@ -70,10 +70,10 @@ class ScorePackageWrangler(PackageWrangler):
     ### PRIVATE METHODS ###
 
     def _handle_main_menu_result(self):
-        self._io.print_not_yet_implemented()
+        self.session.io_manager.print_not_yet_implemented()
 
     def _make_main_menu(self):
-        self._io.print_not_yet_implemented()
+        self.session.io_manager.print_not_yet_implemented()
 
     def _make_asset_menu_entries(self, head=None):
         menuing_pairs = \
@@ -124,7 +124,7 @@ class ScorePackageWrangler(PackageWrangler):
 
     def interactively_make_asset(self, rollback=False):
         breadcrumb = self.session.pop_breadcrumb(rollback=rollback)
-        getter = self._io.make_getter(where=self._where)
+        getter = self.session.io_manager.make_getter(where=self._where)
         getter.indent_level = 1
         getter.prompt_character = ':'
         getter.capitalize_prompts = False
@@ -445,17 +445,17 @@ class ScorePackageWrangler(PackageWrangler):
                 in_built_in_score_packages=True, in_user_score_packages=True)
         for proxy in proxies:
             proxy.svn_add(is_interactive=False)
-        self._io.proceed(is_interactive=is_interactive)
+        self.session.io_manager.proceed(is_interactive=is_interactive)
 
     def svn_ci_assets(self, is_interactive=True):
-        getter = self._io.make_getter(where=self._where)
+        getter = self.session.io_manager.make_getter(where=self._where)
         getter.append_string('commit message')
         commit_message = getter._run()
         if self.session.backtrack():
             return
         line = 'commit message will be: "{}"\n'.format(commit_message)
-        self._io.display(line)
-        if not self._io.confirm():
+        self.session.io_manager.display(line)
+        if not self.session.io_manager.confirm():
             return
         if hasattr(self, 'list_visible_asset_proxies'):
             proxies = self.list_visible_asset_proxies()
@@ -465,7 +465,7 @@ class ScorePackageWrangler(PackageWrangler):
                 in_built_in_score_packages=True, in_user_score_packages=True)
         for proxy in proxies:
             proxy.svn_ci(commit_message=commit_message, is_interactive=False)
-        self._io.proceed(is_interactive=is_interactive)
+        self.session.io_manager.proceed(is_interactive=is_interactive)
 
     def svn_st_assets(self, is_interactive=True):
         if hasattr(self, 'list_visible_asset_proxies'):
@@ -476,7 +476,7 @@ class ScorePackageWrangler(PackageWrangler):
                 in_built_in_score_packages=True, in_user_score_packages=True)
         for proxy in proxies:
             proxy.svn_st(is_interactive=False)
-        self._io.proceed(is_interactive=is_interactive)
+        self.session.io_manager.proceed(is_interactive=is_interactive)
 
     def svn_up_assets(self, is_interactive=True):
         if hasattr(self, 'list_visible_asset_proxies'):
@@ -487,4 +487,4 @@ class ScorePackageWrangler(PackageWrangler):
                 in_built_in_score_packages=True, in_user_score_packages=True)
         for proxy in proxies:
             proxy.svn_up(is_interactive=False)
-        self._io.proceed(is_interactive=is_interactive)
+        self.session.io_manager.proceed(is_interactive=is_interactive)
