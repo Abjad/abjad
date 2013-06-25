@@ -51,7 +51,7 @@ set smartcase
 set softtabstop=4
 set scrolloff=7
 set tabstop=4
-set tags=./tags
+set tags=$ABJADROOT/tags
 set textwidth=79
 set notitle
 set undolevels=700
