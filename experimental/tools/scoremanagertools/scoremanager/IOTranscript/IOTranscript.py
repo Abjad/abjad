@@ -6,7 +6,7 @@ from experimental.tools.scoremanagertools.scoremanager.ScoreManagerConfiguration
     ScoreManagerConfiguration
 
 
-class Transcript(AbjadObject):
+class IOTranscript(AbjadObject):
 
     ### CLASS VARIABLES ###
 

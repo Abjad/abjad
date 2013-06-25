@@ -650,10 +650,10 @@ Unstable packages (load manually)
       tools/scoremanagertools/proxies/StylesheetFileProxy/StylesheetFileProxy
       tools/scoremanagertools/proxies/TagsModuleProxy/TagsModuleProxy
       tools/scoremanagertools/proxies/UserInputModuleProxy/UserInputModuleProxy
+      tools/scoremanagertools/scoremanager/IOTranscript/IOTranscript
       tools/scoremanagertools/scoremanager/ScoreManager/ScoreManager
       tools/scoremanagertools/scoremanager/ScoreManagerConfiguration/ScoreManagerConfiguration
       tools/scoremanagertools/scoremanager/Session/Session
-      tools/scoremanagertools/scoremanager/Transcript/Transcript
       tools/scoremanagertools/selectors/ArticulationHandlerClassNameSelector/ArticulationHandlerClassNameSelector
       tools/scoremanagertools/selectors/ArticulationHandlerSelector/ArticulationHandlerSelector
       tools/scoremanagertools/selectors/ClefNameSelector/ClefNameSelector
@@ -845,10 +845,10 @@ Unstable packages (load manually)
       tools/scoremanagertools/proxies/StylesheetFileProxy/StylesheetFileProxy
       tools/scoremanagertools/proxies/TagsModuleProxy/TagsModuleProxy
       tools/scoremanagertools/proxies/UserInputModuleProxy/UserInputModuleProxy
+      tools/scoremanagertools/scoremanager/IOTranscript/IOTranscript
       tools/scoremanagertools/scoremanager/ScoreManager/ScoreManager
       tools/scoremanagertools/scoremanager/ScoreManagerConfiguration/ScoreManagerConfiguration
       tools/scoremanagertools/scoremanager/Session/Session
-      tools/scoremanagertools/scoremanager/Transcript/Transcript
       tools/scoremanagertools/selectors/ArticulationHandlerClassNameSelector/ArticulationHandlerClassNameSelector
       tools/scoremanagertools/selectors/ArticulationHandlerSelector/ArticulationHandlerSelector
       tools/scoremanagertools/selectors/ClefNameSelector/ClefNameSelector
