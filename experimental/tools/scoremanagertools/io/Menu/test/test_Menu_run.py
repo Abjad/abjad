@@ -14,7 +14,7 @@ def test_Menu_run_01():
     menu_section.title = 'section'
 
     result = menu._run(pending_user_input='foo')
-    assert menu.session.transcript[-2][1] == \
+    assert menu.session.io_transcript[-2][1] == \
     ['Location',
       '',
       '     Section',
@@ -58,7 +58,7 @@ def test_Menu_run_02():
     menu_section.title = 'section'
     result = menu._run(pending_user_input='foo')
 
-    assert menu.session.transcript[-2][1] == \
+    assert menu.session.io_transcript[-2][1] == \
     ['Location', '']
     assert result is None
 
@@ -95,7 +95,7 @@ def test_Menu_run_03():
     menu_section.title = 'section'
     result = menu._run(pending_user_input='foo')
 
-    assert menu.session.transcript[-2][1] == \
+    assert menu.session.io_transcript[-2][1] == \
     ['Location',
       '',
       '     Section',
@@ -139,7 +139,7 @@ def test_Menu_run_04():
     menu_section.title = 'section'
     result = menu._run(pending_user_input='foo')
 
-    assert menu.session.transcript[-2][1] == \
+    assert menu.session.io_transcript[-2][1] == \
     ['Location',
       '',
       '     Section',
@@ -186,7 +186,7 @@ def test_Menu_run_05():
 
     result = menu._run(pending_user_input='foo')
 
-    assert menu.session.transcript[-2][1] == \
+    assert menu.session.io_transcript[-2][1] == \
     ['Location',
       '',
       '     Section',
@@ -292,7 +292,7 @@ def test_Menu_run_07():
     menu_section.title = 'section'
     result = menu._run(pending_user_input='foo')
 
-    assert menu.session.transcript[-2][1] == \
+    assert menu.session.io_transcript[-2][1] == \
     ['Location', '']
 
     assert result is None
@@ -392,7 +392,7 @@ def test_Menu_run_09():
     menu_section.title = 'section'
     result = menu._run(pending_user_input='foo')
 
-    assert menu.session.transcript[-2][1] == \
+    assert menu.session.io_transcript[-2][1] == \
     ['Location',
       '',
       '     Section',
@@ -450,7 +450,7 @@ def test_Menu_run_10():
     menu_section.title = 'section'
     result = menu._run(pending_user_input='foo')
 
-    assert menu.session.transcript[-2][1] == \
+    assert menu.session.io_transcript[-2][1] == \
     ['Location',
       '',
       '     Section',

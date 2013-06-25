@@ -574,15 +574,15 @@ class Session(abctools.AbjadObject):
         return property(**locals())
 
     @property
-    def transcript(self):
-        '''Session transcript:
+    def io_transcript(self):
+        '''Session io_transcript:
 
         ::
 
-            >>> session.transcript
+            >>> session.io_transcript
             IOTranscript()
 
-        Return transcript.
+        Return io_transcript.
         '''
         return self._transcript
 
@@ -663,7 +663,7 @@ class Session(abctools.AbjadObject):
 
     def clean_up(self):
         if self.dump_transcript:
-            self.transcript.write_to_disk()
+            self.io_transcript.write_to_disk()
 
     def display_active_scores(self):
         self._scores_to_show = 'active'

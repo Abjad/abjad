@@ -57,6 +57,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.scoremanager.Session.Session.Session.io_manager
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.scoremanager.Session.Session.Session.io_transcript
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.scoremanager.Session.Session.Session.is_complete
    :noindex:
 
@@ -85,9 +88,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.scoremanager.Session.Session.Session.testable_command_history_string
-   :noindex:
-
-.. autoattribute:: experimental.tools.scoremanagertools.scoremanager.Session.Session.Session.transcript
    :noindex:
 
 .. autoattribute:: experimental.tools.scoremanagertools.scoremanager.Session.Session.Session.user_input_is_consumed

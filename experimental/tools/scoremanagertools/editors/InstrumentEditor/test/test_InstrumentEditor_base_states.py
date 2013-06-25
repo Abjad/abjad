@@ -8,8 +8,8 @@ def test_InstrumentEditor_base_states_01():
 
     editor = scoremanagertools.editors.InstrumentEditor()
     editor._run(pending_user_input='1 q')
-    assert editor.session.transcript.signature == (4,)
-    assert editor.session.transcript[-2][1] == \
+    assert editor.session.io_transcript.signature == (4,)
+    assert editor.session.io_transcript[-2][1] == \
     ['Accordion',
       '',
       "     1: instrument name (in): accordion",

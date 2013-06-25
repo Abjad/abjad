@@ -7,16 +7,16 @@ def test_PackageProxy_manage_tags_01():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     score_manager._run(pending_user_input='red~example~score tags q')
-    assert score_manager.session.transcript.signature == (6,)
+    assert score_manager.session.io_transcript.signature == (6,)
 
     score_manager._run(pending_user_input='red~example~score tags b q')
-    assert score_manager.session.transcript.signature == (8, (2, 6))
+    assert score_manager.session.io_transcript.signature == (8, (2, 6))
 
     score_manager._run(pending_user_input='red~example~score tags home q')
-    assert score_manager.session.transcript.signature == (8, (0, 6))
+    assert score_manager.session.io_transcript.signature == (8, (0, 6))
 
     score_manager._run(pending_user_input='red~example~score tags score q')
-    assert score_manager.session.transcript.signature == (8, (2, 6))
+    assert score_manager.session.io_transcript.signature == (8, (2, 6))
 
     score_manager._run(pending_user_input='red~example~score tags foo q')
-    assert score_manager.session.transcript.signature == (8, (4, 6))
+    assert score_manager.session.io_transcript.signature == (8, (4, 6))

@@ -55,7 +55,7 @@ class IOManager(AbjadObject):
                     for line in lines]
             if lines:
                 if self.session.transcribe_next_command:
-                    self.session.transcript.append_lines(lines)
+                    self.session.io_transcript.append_lines(lines)
             if self.session.is_displayable:
                 for line in lines:
                     print line
@@ -136,7 +136,7 @@ class IOManager(AbjadObject):
             if include_newline:
                 if not user_input == 'help':
                     menu_chunk.append('')
-            self.session.transcript.append_lines(menu_chunk)
+            self.session.io_transcript.append_lines(menu_chunk)
         return user_input
 
     def handle_raw_input_with_default(self, 
