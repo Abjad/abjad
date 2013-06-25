@@ -23,7 +23,7 @@ class ToyLanguageParser(Parser):
         Parser.__init__(self, *args, **kwargs)
         self.assignments = {}
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def lexer_rules_object(self):
