@@ -27,18 +27,15 @@ class SegmentPackageProxy(PackageProxy):
             self.user_input_to_action[result](self)
 
     def _make_main_menu(self):
-        menu, menu_section = self._io.make_menu(
-            where=self._where,
-            return_value_attribute='key',
-            menu_entries=menu_entries,
-            )
-        menu_section.append(('initializer', 'n'))
-        menu_section = menu.make_section(
-            menu_entries=menu_entries,
-            return_value_attribute='key',
-            )
-        menu_section.append(('remove', 'rm'))
-        return menu
+        raise Exception('BAZ')
+        main_menu = self._io.make_only_menu(where=self._where)
+        asset_section = main_menu.make_asset_section()
+        asset_section.menu_entries = self._make_asset_menu_entries()
+        command_section = main_menu.make_command_section()
+        command_section.append(('initializer', 'n'))
+        command_section = main_menu.make_command_section()
+        command_section.append(('remove', 'rm'))
+        return main_menu
 
     ### PUBLIC PROPERTIES ###
 

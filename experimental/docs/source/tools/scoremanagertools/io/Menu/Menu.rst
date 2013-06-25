@@ -50,6 +50,9 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.io.Menu.Menu.Menu.make_asset_section
    :noindex:
 
+.. automethod:: experimental.tools.scoremanagertools.io.Menu.Menu.Menu.make_attribute_section
+   :noindex:
+
 .. automethod:: experimental.tools.scoremanagertools.io.Menu.Menu.Menu.make_command_section
    :noindex:
 

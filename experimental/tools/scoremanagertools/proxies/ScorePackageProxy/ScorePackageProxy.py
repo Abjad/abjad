@@ -38,18 +38,13 @@ class ScorePackageProxy(PackageProxy):
             raise ValueError
 
     def _make_main_menu(self):
-        menu, menu_section = self._io.make_menu(
-            where=self._where,
-            return_value_attribute='key',
-            )
-        menu_section.append(('segments', 'h'))
-        menu_section.append(('materials', 'm'))
-        menu_section.append(('specifiers', 'f'))
-        menu_section.append(('setup', 's'))
-        hidden_section = menu.make_section(
-            return_value_attribute='key',
-            is_hidden=True,
-            )
+        main_menu = self._io.make_only_menu(where=self._where)
+        command_section = main_menu.make_command_section()
+        command_section.append(('segments', 'h'))
+        command_section.append(('materials', 'm'))
+        command_section.append(('specifiers', 'f'))
+        command_section.append(('setup', 's'))
+        hidden_section = main_menu.make_command_section(is_hidden=True)
         hidden_section.append(('fix package structure', 'fix'))
         hidden_section.append(('list directory contents', 'ls'))
         hidden_section.append(('profile package structure', 'profile'))
@@ -57,7 +52,7 @@ class ScorePackageProxy(PackageProxy):
         hidden_section.append(('remove score package', 'removescore'))
         hidden_section.append(('manage repository', 'svn'))
         hidden_section.append(('manage tags', 'tags'))
-        return menu
+        return main_menu
 
     ### PRIVATE PROPERTIES ###
 
@@ -68,6 +63,34 @@ class ScorePackageProxy(PackageProxy):
     @property
     def _breadcrumb(self):
         return self.annotated_title
+
+    ### PRIVATE METHODS ###
+
+    def _make_setup_menu_entries(self):
+        result = []
+        return_value = 'title'
+        prepopulated_value = None
+        prepopulated_value = self.title or None
+        result.append((return_value, None, prepopulated_value, return_value))
+        return_value = 'year'
+        prepopulated_value = None
+        if self.year_of_completion:
+            prepopulated_value = str(self.year_of_completion)
+        result.append((return_value, None, prepopulated_value, return_value))
+        return_value = 'performers'
+        prepopulated_value = None
+        instrumentation = self.get_tag('instrumentation')
+        if instrumentation:
+            string = instrumentation.performer_name_string
+            prepopulated_value = string
+        result.append((return_value, None, prepopulated_value, return_value))
+        forces_tagline = self.forces_tagline
+        prepopulated_value = None
+        return_value = 'tagline'
+        if forces_tagline:
+            prepopulated_value = self.forces_tagline
+        result.append((return_value, None, prepopulated_value, return_value))
+        return result
 
     ### PUBLIC PROPERTIES ###
 
@@ -181,31 +204,6 @@ class ScorePackageProxy(PackageProxy):
     def segments_package_path(self):
         return '.'.join([self.package_path, 'music', 'segments'])
 
-    # TODO: reverse the order of body string and key throughout method
-    @property
-    def setup_value_menu_entries(self):
-        result = []
-        if self.title:
-            result.append(('title', 'title: {!r}'.format(self.title)))
-        else:
-            result.append(('title', 'title:'))
-        if self.year_of_completion:
-            result.append(('year', 'year: {!r}'.format(
-                self.year_of_completion)))
-        else:
-            result.append(('year', 'year:'))
-        if self.get_tag('instrumentation'):
-            result.append(('performers', 'performers: {}'.format(
-                self.get_tag('instrumentation').performer_name_string)))
-        else:
-            result.append(('performers', 'performers:'))
-        if self.forces_tagline:
-            result.append(('tagline', 'tagline: {!r}'.format(
-                self.forces_tagline)))
-        else:
-            result.append(('tagline', 'tagline:'))
-        result = [(x[1], x[0]) for x in result]
-        return result
     @property
     def stylesheets_directory_path(self):
         return os.path.join(self.filesystem_path, 'music', 'stylesheets')
@@ -341,7 +339,7 @@ class ScorePackageProxy(PackageProxy):
         elif result == 'performers':
             self.interactively_edit_instrumentation_specifier()
         else:
-            raise ValueError()
+            raise ValueError(result)
 
     def handle_svn_menu_result(self, result):
         if result == 'add':
@@ -411,23 +409,18 @@ class ScorePackageProxy(PackageProxy):
         self.fix_score_package_directory_structure(is_interactive=False)
 
     def make_setup_menu(self):
-        setup_menu, menu_section = self._io.make_menu(
-            where=self._where,
-            return_value_attribute='key',
-            is_numbered=True,
-            )
-        menu_section.menu_entries = self.setup_value_menu_entries
+        setup_menu = self._io.make_only_menu(where=self._where)
+        attribute_section = setup_menu.make_attribute_section()
+        attribute_section.menu_entries = self._make_setup_menu_entries()
         return setup_menu
 
     def make_svn_menu(self):
-        menu, menu_section = self._io.make_menu(
-            where=self._where,
-            return_value_attribute='key',
-            )
-        menu_section.append(('st', 'st'))
-        menu_section.append(('add', 'add'))
-        menu_section.append(('ci', 'ci'))
-        return menu
+        svn_menu = self._io.make_only_menu(where=self._where)
+        command_section = svn_menu.make_command_section()
+        command_section.append(('st', 'st'))
+        command_section.append(('add', 'add'))
+        command_section.append(('ci', 'ci'))
+        return svn_menu
 
     def manage_materials(self):
         self.material_package_wrangler._run(head=self.package_path)

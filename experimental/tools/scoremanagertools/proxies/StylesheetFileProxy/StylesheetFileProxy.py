@@ -12,9 +12,12 @@ class StylesheetFileProxy(FileProxy):
 
         >>> score_manager = scoremanagertools.scoremanager.ScoreManager()
         >>> wrangler = score_manager.stylesheet_file_wrangler
-        >>> directory_name = wrangler.asset_storehouse_filesystem_path_in_built_in_asset_library
-        >>> filesystem_path = os.path.join(directory_name, 'clean-letter-14.ly')
-        >>> proxy = scoremanagertools.proxies.StylesheetFileProxy(filesystem_path=filesystem_path)
+        >>> directory_name = \
+        ...     wrangler.asset_storehouse_filesystem_path_in_built_in_asset_library
+        >>> filesystem_path = os.path.join(
+        ...     directory_name, 'clean-letter-14.ly')
+        >>> proxy = scoremanagertools.proxies.StylesheetFileProxy(
+        ...     filesystem_path=filesystem_path)
 
     ::
 
@@ -46,15 +49,13 @@ class StylesheetFileProxy(FileProxy):
         return getter
 
     def _make_main_menu(self):
-        menu, menu_section = self._io.make_menu(
-            where=self.where,
-            return_value_attribute='key',
-            )
-        menu_section.append(('copy stylesheet', 'cp'))
-        menu_section.append(('delete stylesheet', 'rm'))
-        menu_section.append(('rename stylesheet', 'ren'))
-        menu_section.append(('vim stylesheet', 'vim'))
-        return menu
+        main_menu = self._io.make_only_menu(where=self._where)
+        command_section = main_menu.make_command_section()
+        command_section.append(('copy stylesheet', 'cp'))
+        command_section.append(('delete stylesheet', 'rm'))
+        command_section.append(('rename stylesheet', 'ren'))
+        command_section.append(('vim stylesheet', 'vim'))
+        return main_menu
 
     def _space_delimited_lowercase_name_to_asset_name(self, 
         space_delimited_lowercase_name):
