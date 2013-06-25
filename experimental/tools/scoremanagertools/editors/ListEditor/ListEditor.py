@@ -40,7 +40,7 @@ class ListEditor(InteractiveEditor):
             super(ListEditor, self)._handle_main_menu_result(result)
 
     def _make_main_menu(self):
-        main_menu = self._io.make_only_menu(where=self._where)
+        main_menu = self._io.make_menu(where=self._where)
         keyed_attribute_section = main_menu.make_keyed_attribute_section()
         keyed_attribute_section.menu_entries = self.target_attribute_tokens
         numbered_section = main_menu.make_numbered_section()

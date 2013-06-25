@@ -224,7 +224,7 @@ class PackageProxy(DirectoryProxy):
         self.initializer_file_proxy.interactively_write_boilerplate()
 
     def make_tags_menu(self):
-        tags_menu = self._io.make_only_menu(where=self._where)
+        tags_menu = self._io.make_menu(where=self._where)
         attribute_section = tags_menu.make_attribute_section()
         menu_entries = self._make_tags_menu_entries()
         attribute_section.menu_entries = menu_entries

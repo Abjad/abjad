@@ -49,7 +49,7 @@ class StylesheetFileProxy(FileProxy):
         return getter
 
     def _make_main_menu(self):
-        main_menu = self._io.make_only_menu(where=self._where)
+        main_menu = self._io.make_menu(where=self._where)
         command_section = main_menu.make_command_section()
         command_section.append(('copy stylesheet', 'cp'))
         command_section.append(('delete stylesheet', 'rm'))

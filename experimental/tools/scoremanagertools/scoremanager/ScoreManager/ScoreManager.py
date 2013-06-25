@@ -120,13 +120,13 @@ class ScoreManager(ScoreManagerObject):
         else:
             menu_entries = \
                 self.score_package_wrangler._make_asset_menu_entries()
-        menu = self._io.make_only_menu(where=self._where)
+        menu = self._io.make_menu(where=self._where)
         asset_section = menu.make_asset_section()
         asset_section.menu_entries = menu_entries
         return menu
 
     def _make_svn_menu(self):
-        menu = self._io.make_only_menu(where=self._where)
+        menu = self._io.make_menu(where=self._where)
         command_section = menu.make_command_section()
         command_section.append(('svn add scores', 'add'))
         command_section.append(('svn commit scores', 'ci'))

@@ -1,10 +1,13 @@
-Note that as of r9,872 it takes only 181 function calls to initialize the score manager ...
+Note that as of r9,872 it takes only 181 function calls to initialize 
+the score manager ...
 
-    >>> iotools.profile_expr('score_manager = scoremanagertools.scoremanager.ScoreManager()')
+    >>> expr = 'score_manager = scoremanagertools.scoremanager.ScoreManager()'
+    >>> iotools.profile_expr(expr)
     181 function calls in 0.000 seconds
 
-... but that it takes 819,997 function calls to start and immediately quit the score manager
-a first time and then significantly fewer function calls on successive tests:
+... but that it takes 819,997 function calls to start and immediately quit 
+the score manager a first time and then significantly fewer function calls 
+on successive tests:
 
     >>> iotools.profile_expr("score_manager._run(pending_user_input='q')")
     819997 function calls (819894 primitive calls) in 0.734 seconds
@@ -15,25 +18,29 @@ a first time and then significantly fewer function calls on successive tests:
     >>> iotools.profile_expr("score_manager._run(pending_user_input='q')")
     241391 function calls in 0.220 seconds
 
-CONCLUSION: don't know what's going on here but it's clear that the score manager takes
-quite a few unnecessary steps on start-up. ScoreManager start up should be as simple
-as listing the names of all scores in the system, possibly with the additional
-work of inspecting each score package tag file for date of composition.
-All of that should take far fewer than 820,000 function calls.
-Optimizing score manager start up should save as much as 0.7 seconds on each
-score manager-initiated test.
+CONCLUSION: don't know what's going on here but it's clear that the score 
+manager takes quite a few unnecessary steps on start-up. ScoreManager start 
+up should be as simple as listing the names of all scores in the system, 
+possibly with the additional work of inspecting each score package tag file 
+for date of composition. All of that should take far fewer than 820,000 
+function calls. Optimizing score manager start up should save as much as 
+0.7 seconds on each score manager-initiated test.
 
 OBSERVATION: Note that the following ...
 
     def make_score_selection_menu(self):
-        #menu, menu_section = self._io.make_menu(where=self._where, is_numbered=True)
-        menu, menu_section = self._io.make_menu(where='foo', is_numbered=True)
-        menu_section.menu_entries = self.score_package_wrangler._make_asset_menu_entries()
+        #menu, menu_section = self._io.make_menu(
+            where=self._where, is_numbered=True)
+        menu, menu_section = self._io.make_menu(
+            where='foo', is_numbered=True)
+        menu_section.menu_entries = \
+            self.score_package_wrangler._make_asset_menu_entries()
         return menu
 
-... reduces score manager start-up from 820,000 function calls to 153,000 function calls.
-Removing the call to self._where removes the call to inspect.stack().
-This was tricky to find because iotools.profile_expr('inspect.stack()') is lean.
+... reduces score manager start-up from 820,000 function calls to 
+153,000 function calls. Removing the call to self._where removes the call 
+to inspect.stack(). This was tricky to find because 
+iotools.profile_expr('inspect.stack()') is lean.
 The function must be called inside a complex stack to reveal its true cost.
 
 CONCLUSION: Stack inspection can not be a mandatory part of menu creation
@@ -44,7 +51,8 @@ because stack inspection is expensive.
 
 As of r10,249 it takes 6,658 function calls to initialize the score manager ...
 
-    >>> iotools.profile_expr('score_manager = scoremanagertools.scoremanager.ScoreManager()')
+    >>> expr = 'score_manager = scoremanagertools.scoremanager.ScoreManager()'
+    >>> iotools.profile_expr(expr)
     6658 function calls (6646 primitive calls) in 0.008 seconds
 
    Ordered by: cumulative time
@@ -69,8 +77,8 @@ As of r10,249 it takes 6,658 function calls to initialize the score manager ...
 This is most likely due to the integration of ScoreManagerConfiguration.
 This increase from 181 to 6,658 is probably nothing to worry about.
 
-But note that it takes between 325,000 and 323,000 function calls to start and then
-immediately quit the score manager, totaling ~0.4 seconds on the iMac:
+But note that it takes between 325,000 and 323,000 function calls to start 
+and then immediately quit the score manager, totaling ~0.4 seconds on the iMac:
 
     >>> iotools.profile_expr("score_manager._run(pending_user_input='q')")
     325311 function calls (324734 primitive calls) in 0.407 seconds
@@ -89,9 +97,11 @@ task of starting the score manager and then immediately quitting.
 
 ### r10,250 ###
 
-Turning on the quick-and-dirty caching code included in r10,250 gives the following results:
+Turning on the quick-and-dirty caching code included in r10,250 gives the 
+following results:
 
-    >>> iotools.profile_expr('score_manager = scoremanagertools.scoremanager.ScoreManager()')
+    >>> expr = 'score_manager = scoremanagertools.scoremanager.ScoreManager()'
+    >>> iotools.profile_expr(expr)
     6658 function calls (6646 primitive calls) in 0.008 seconds
 
     >>> iotools.profile_expr("score_manager._run(pending_user_input='q')")
@@ -103,17 +113,19 @@ Turning on the quick-and-dirty caching code included in r10,250 gives the follow
     >>> iotools.profile_expr("score_manager._run(pending_user_input='q')")
     8169 function calls (8157 primitive calls) in 0.009 seconds
 
-CONCLUSION: the quick-and-dirty caching code turned on in r10,250 effectively eliminates
-*all* the effort associated with starting the score manager. This shows that the
-effort involved in starting the score manager comes exclusively from the call ...
+CONCLUSION: the quick-and-dirty caching code turned on in r10,250 effectively 
+eliminates *all* the effort associated with starting the score manager. This 
+shows that the effort involved in starting the score manager comes exclusively 
+from the call ...
     menu_section.menu_entries = self.score_package_wrangler._make_asset_menu_entries()
 ... found in the score manager. The py.test battery runs in 160 seconds on the 
-iMac with caching turned off; the py.test battery runs in 94 seconds on the iMac
-with caching turned on.
+iMac with caching turned off; the py.test battery runs in 94 seconds on the 
+iMac with caching turned on.
 
-PROSPECTUS: Should caching become a permament part of the system? There are risks 
-associated with caching; these all come from the work necessary to keep the cache
-up to date. Perhaps more to the point is the fact that every rebuild of the main menu ...
+PROSPECTUS: Should caching become a permament part of the system? There are 
+risks associated with caching; these all come from the work necessary to keep 
+the cache up to date. Perhaps more to the point is the fact that every rebuild 
+of the main menu ...
     menu_section.menu_entries = self.score_package_wrangler._make_asset_menu_entries()
 ... now costs ~320,000 fuction calls (~0.4 seconds). So whether caching is left
 permanently turned on or not, it is clear that ...
@@ -121,23 +133,26 @@ permanently turned on or not, it is clear that ...
 ... must be optimized regardless.
 Probably what should happen is that ...
     menu_section.menu_entries = self.score_package_wrangler._make_asset_menu_entries()
-... should be optimized and caching should be left permanently turned on. Why?
-Because leaving caching turned on gives almost a 80% speed *when running the test battery*.
-That reason alone is probably enough to leave caching turned on.
+... should be optimized and caching should be left permanently turned on. 
+Why? Because leaving caching turned on gives almost a 80% speed *when running 
+the test battery*. That reason alone is probably enough to leave caching 
+turned on.
 
 
 ### r10,251 ###
 
-Revision r10,251 fives an inefficiency in packagesystem_path_to_filesystem_path()
-and the same inefficiency in filesystem_path_to_packagesystem_path().
-Specifically, a ScoreManagerConfiguration object was being instantiated for each and every
-call to both of these functions; note that there is disk read time incurred every time
-a ScoreManagerConfiguration object is istantiated.
+Revision r10,251 fives an inefficiency in 
+packagesystem_path_to_filesystem_path() and the same inefficiency in 
+filesystem_path_to_packagesystem_path(). Specifically, a 
+ScoreManagerConfiguration object was being instantiated for each and every
+call to both of these functions; note that there is disk read time incurred 
+every time a ScoreManagerConfiguration object is istantiated.
 
 RESULTS: correcting the inefficiency produces the following results.
 Note that all of these results are with caching turned off:
 
-    >>> iotools.profile_expr('score_manager = scoremanagertools.scoremanager.ScoreManager()')
+    >>> expr = 'score_manager = scoremanagertools.scoremanager.ScoreManager()'
+    >>> iotools.profile_expr(expr)
     760 function calls in 0.001 seconds
 
     >>> iotools.profile_expr("score_manager._run(pending_user_input='q')")
@@ -151,19 +166,22 @@ Note that all of these results are with caching turned off:
 
 Also, the py.test battery now runs in 46 seconds on the iMac.
 
-CONCLUSION: these are extremely good results. The identified inefficiency was the problem.
+CONCLUSION: these are extremely good results. The identified inefficiency was 
+the problem.
 
-It is possible that turning caching back on could increase py.test battery performance.
-Such will results will be recorded in a future entry to this log.
+It is possible that turning caching back on could increase py.test battery 
+performance. Such will results will be recorded in a future entry to this log.
 
 
 ### r10,252 ###
 
 Revision r10,252 turns caching back on.
 
-RESULTS: py.test battery time decreases from 46 seconds to 37 seconds. Also these:
+RESULTS: py.test battery time decreases from 46 seconds to 37 seconds. 
+Also these:
 
-    >>> iotools.profile_expr('score_manager = scoremanagertools.scoremanager.ScoreManager()')
+    >>> expr = 'score_manager = scoremanagertools.scoremanager.ScoreManager()'
+    >>> iotools.profile_expr(expr)
     760 function calls in 0.001 seconds
 
     >>> iotools.profile_expr("score_manager._run(pending_user_input='q')")
@@ -175,6 +193,6 @@ RESULTS: py.test battery time decreases from 46 seconds to 37 seconds. Also thes
     >>> iotools.profile_expr("score_manager._run(pending_user_input='q')")
     2415 function calls in 0.002 seconds
 
-CONCLUSION: quick-and-dirty caching saves about 20% of py.test run time for scoremanagertools.
-So a reasonable path forward is to leave caching on *during development* and then turn
-it off before shipping public releases.
+CONCLUSION: quick-and-dirty caching saves about 20% of py.test run time for 
+scoremanagertools. So a reasonable path forward is to leave caching on *during
+development* and then turn it off before shipping public releases.

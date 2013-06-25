@@ -38,7 +38,7 @@ class ScorePackageProxy(PackageProxy):
             raise ValueError
 
     def _make_main_menu(self):
-        main_menu = self._io.make_only_menu(where=self._where)
+        main_menu = self._io.make_menu(where=self._where)
         command_section = main_menu.make_command_section()
         command_section.append(('segments', 'h'))
         command_section.append(('materials', 'm'))
@@ -409,13 +409,13 @@ class ScorePackageProxy(PackageProxy):
         self.fix_score_package_directory_structure(is_interactive=False)
 
     def make_setup_menu(self):
-        setup_menu = self._io.make_only_menu(where=self._where)
+        setup_menu = self._io.make_menu(where=self._where)
         attribute_section = setup_menu.make_attribute_section()
         attribute_section.menu_entries = self._make_setup_menu_entries()
         return setup_menu
 
     def make_svn_menu(self):
-        svn_menu = self._io.make_only_menu(where=self._where)
+        svn_menu = self._io.make_menu(where=self._where)
         command_section = svn_menu.make_command_section()
         command_section.append(('st', 'st'))
         command_section.append(('add', 'add'))

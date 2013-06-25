@@ -202,37 +202,10 @@ class IO(AbjadObject):
         return scoremanagertools.io.UserInputGetter(
             where=where, session=self._session)
 
-    def make_menu(self, 
-        is_hidden=False, 
-        is_numbered=False, 
-        is_ranged=False, 
-        where=None,
-        menu_entries=None, 
-        return_value_attribute='display_string',
-        ):
+    def make_menu(self, where=None):
         from experimental.tools import scoremanagertools
-        menu = scoremanagertools.io.Menu(
-            where=where, 
-            session=self._session,
-            )
-        menu_section = menu.make_section(
-            is_hidden=is_hidden,
-            is_numbered=is_numbered,
-            is_ranged=is_ranged,
-            menu_entries=menu_entries,
-            return_value_attribute=return_value_attribute,
-            )
-        return menu, menu_section
-
-    def make_only_menu(self, 
-        where=None,
-        ):
-        from experimental.tools import scoremanagertools
-        menu = scoremanagertools.io.Menu(
-            where=where, 
-            session=self._session,
-            )
-        return menu
+        return scoremanagertools.io.Menu(
+            where=where, session=self._session)
 
     def pop_from_pending_user_input(self):
         self._session.last_command_was_composite = False

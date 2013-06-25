@@ -100,7 +100,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                 self.asset_proxy_class._generic_class_name)
 
     def _make_asset_selection_menu(self, head=None):
-        menu = self._io.make_only_menu(where=self._where)
+        menu = self._io.make_menu(where=self._where)
         asset_section = menu.make_asset_section()
         asset_menu_entries = self._make_asset_menu_entries(head=head)
         asset_section.menu_entries = asset_menu_entries
@@ -246,7 +246,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         in_user_score_packages=True,
         ):
         self._session.cache_breadcrumbs(cache=cache)
-        menu = self._io.make_only_menu(where=self._where)
+        menu = self._io.make_menu(where=self._where)
         asset_section = menu.make_asset_section()
         menu_entries = self._make_asset_storehouse_menu_entries(
             in_built_in_asset_library=False,

@@ -28,7 +28,7 @@ class SegmentPackageProxy(PackageProxy):
 
     def _make_main_menu(self):
         raise Exception('BAZ')
-        main_menu = self._io.make_only_menu(where=self._where)
+        main_menu = self._io.make_menu(where=self._where)
         asset_section = main_menu.make_asset_section()
         asset_section.menu_entries = self._make_asset_menu_entries()
         command_section = main_menu.make_command_section()

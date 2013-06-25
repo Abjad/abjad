@@ -102,6 +102,3 @@
 
 35. Add self.make_command_menu_section() method.
     Set return_value_attribute to 'key' automatically.
-
-36. Deprecate IO.make_menu() and replace with IO.make_only_menu().
-    Then change IO.make_only_menu() to IO.make_menu().

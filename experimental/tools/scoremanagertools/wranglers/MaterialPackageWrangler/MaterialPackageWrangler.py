@@ -93,7 +93,7 @@ class MaterialPackageWrangler(PackageWrangler):
             package_path)
 
     def _make_main_menu(self, head=None):
-        main_menu = self._io.make_only_menu(where=self._where)
+        main_menu = self._io.make_menu(where=self._where)
         asset_section = main_menu.make_asset_section()
         asset_menu_entries = self._make_asset_menu_entries(head=head)
         asset_section.menu_entries = asset_menu_entries

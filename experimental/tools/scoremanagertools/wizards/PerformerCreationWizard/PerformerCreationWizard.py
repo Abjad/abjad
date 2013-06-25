@@ -121,7 +121,7 @@ class PerformerCreationWizard(Wizard):
         self._session.restore_breadcrumbs(cache=cache)
 
     def make_performer_configuration_menu(self, performer):
-        menu = self._io.make_only_menu(where=self._where)
+        menu = self._io.make_menu(where=self._where)
         numbered_list_section = menu.make_numbered_list_section()
         numbered_list_section.title = 'select instruments'
         command_section = menu.make_command_section()

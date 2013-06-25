@@ -65,7 +65,7 @@ class StylesheetFileWrangler(FileWrangler):
             self.interactively_edit_asset(result)
 
     def _make_main_menu(self, head=None):
-        main_menu = self._io.make_only_menu(where=self._where)
+        main_menu = self._io.make_menu(where=self._where)
         self._main_menu = main_menu
         asset_section = main_menu.make_asset_section()
         main_menu._asset_section = asset_section

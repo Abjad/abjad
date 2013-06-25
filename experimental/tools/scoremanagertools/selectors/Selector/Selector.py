@@ -32,7 +32,7 @@ class Selector(ScoreManagerObject):
     ### PRIVATE METHODS ###
 
     def _make_main_menu(self, head=None):
-        main_menu = self._io.make_only_menu(where=self._where)
+        main_menu = self._io.make_menu(where=self._where)
         # TODO: call main_menu.make_asset_section() instead?
         menu_section = main_menu.make_section(
             return_value_attribute='explicit',

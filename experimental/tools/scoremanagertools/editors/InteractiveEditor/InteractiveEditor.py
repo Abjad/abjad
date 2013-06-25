@@ -56,7 +56,7 @@ class InteractiveEditor(ScoreManagerObject):
             self.set_target_attribute(attribute_name, attribute_value)
 
     def _make_main_menu(self):
-        main_menu = self._io.make_only_menu(where=self._where)
+        main_menu = self._io.make_menu(where=self._where)
         keyed_attribute_section = main_menu.make_keyed_attribute_section(
             is_numbered=True) 
         menu_entries = self.target_attribute_tokens

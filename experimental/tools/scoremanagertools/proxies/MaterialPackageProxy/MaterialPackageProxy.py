@@ -52,7 +52,7 @@ class MaterialPackageProxy(PackageProxy):
             raise ValueError(result)
 
     def _make_main_menu(self):
-        main_menu = self._io.make_only_menu(where=self._where)
+        main_menu = self._io.make_menu(where=self._where)
         hidden_section = main_menu.make_command_section(is_hidden=True)
         self._make_main_menu_section_for_initializer(
             main_menu, hidden_section)
