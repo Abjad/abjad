@@ -186,9 +186,9 @@ class FilesystemAssetWrangler(ScoreManagerObject):
     # TODO: write test
     def interactively_remove_assets(self, head=None):
         getter = self.session.io_manager.make_getter(where=self._where)
-        asset_menu_section = self._main_menu._asset_menu_section
+        asset_section = self._main_menu._asset_section
         getter.append_menu_section_range(
-            'number(s) to remove', asset_menu_section)
+            'number(s) to remove', asset_section)
         result = getter._run()
         if self.session.backtrack():
             return
@@ -196,7 +196,7 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         total_assets_removed = 0
         for asset_number in result:
             asset_index = asset_number - 1
-            menu_entry = asset_menu_section.menu_entries[asset_index]
+            menu_entry = asset_section.menu_entries[asset_index]
             asset_filesystem_path = menu_entry.return_value
             asset_proxy = self._initialize_asset_proxy(asset_filesystem_path)
             asset_proxy.remove()

@@ -63,8 +63,8 @@
     MaterialPackageProxy.user_input_to_action dictionary.
 
 24. Author StylesheetFileWrangler.interactively_remove_assets() test.
-    Will involve making pending_user_input='... rm ...' work with named arguments 
-    instead of just numeric arguments.
+    Will involve making pending_user_input='... rm ...' work with named 
+    arguments instead of just numeric arguments.
 
 25. Make MaterialPackageMaker classes stop creating materials in 
     tools.scoremanagertools.materialpackages.
@@ -76,10 +76,13 @@
 26. Implement material methods to move material packages 
     from one location to another.
 
-27. Find a way to include tags management in hidden menu 
+27. Find a way to include metadata management in hidden menu 
     of every package proxy.
 
-28. Rename all tags.py files to __tags__.py instead.
+28. Implement a menuing decorator in decoratortools.
+    Then integrate against all classes.
+
+28. Rename all tags.py files to __metadata__.py instead.
 
 29. Flatten all score_package/music directories.
     So instead of score_package/music/material_packages,
@@ -89,8 +92,6 @@
     score_package/specifiers, score_package/stylesheets, etc.
     instead.
 
+30. Finish the docstrings for all io classes.
+
 31. Install exuberant tags.
-
-32. Next write test for FilesystemAssetWrangler.interactively_remove_assets().
-
-33. Finish the docstrings for all io classes.
