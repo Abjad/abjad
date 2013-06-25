@@ -5,8 +5,6 @@ from experimental.tools.scoremanagertools.editors.ObjectInventoryEditor \
     import ObjectInventoryEditor
 from experimental.tools.scoremanagertools.editors.TargetManifest \
     import TargetManifest
-from experimental.tools.scoremanagertools.editors.get_parameter_specifier_editor \
-    import get_parameter_specifier_editor
 
 
 class MusicContributionSpecifierEditor(ObjectInventoryEditor):
@@ -14,10 +12,23 @@ class MusicContributionSpecifierEditor(ObjectInventoryEditor):
     ### CLASS VARIABLES ###
 
     item_class = specifiers.ParameterSpecifier
+
     item_creator_class = wizards.ParameterSpecifierCreationWizard
-    item_editor_class = staticmethod(get_parameter_specifier_editor)
+
+    @staticmethod
+    def item_editor_class(target=None, session=None):
+        from experimental.tools import scoremanagertools
+        if target:
+            wizard = \
+                scoremanagertools.wizards.ParameterSpecifierCreationWizard()
+            target_editor = wizard.get_target_editor(
+                target._class_name, target=target)
+            return target_editor
+
     item_identifier = 'parameter specifier'
-    target_manifest = TargetManifest(specifiers.MusicContributionSpecifier,
+
+    target_manifest = TargetManifest(
+        specifiers.MusicContributionSpecifier,
         ('name', 'nm', getters.get_string),
         ('description', 'ds', getters.get_string),
         target_attribute_name='name',

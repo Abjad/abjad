@@ -1,7 +1,7 @@
-from experimental.tools.scoremanagertools.editors.get_dynamic_handler_editor import get_dynamic_handler_editor
-from experimental.tools.scoremanagertools.materialpackagemakers.MaterialPackageMaker import MaterialPackageMaker
-from experimental.tools.scoremanagertools.wizards.DynamicHandlerCreationWizard import DynamicHandlerCreationWizard
-from experimental.tools.handlertools.DynamicHandler import DynamicHandler
+from experimental.tools.scoremanagertools.materialpackagemakers.MaterialPackageMaker \
+    import MaterialPackageMaker
+from experimental.tools.scoremanagertools.wizards.DynamicHandlerCreationWizard import \
+    DynamicHandlerCreationWizard
 
 
 class DynamicHandlerMaterialPackageMaker(MaterialPackageMaker):
@@ -9,10 +9,27 @@ class DynamicHandlerMaterialPackageMaker(MaterialPackageMaker):
     ### CLASS VARIABLES ###
 
     generic_output_name = 'dynamic handler'
-    output_material_checker = staticmethod(lambda x: isinstance(x, DynamicHandler))
-    output_material_editor = staticmethod(get_dynamic_handler_editor)
+
     output_material_maker = DynamicHandlerCreationWizard
+
     output_material_module_import_statements = [
         'from abjad.tools import durationtools',
         'from experimental.tools import handlertools',
         ]
+
+    ### STATIC METHODS ###
+
+    @staticmethod
+    def output_material_checker(expr):
+        from experimental.tools import scoremanagertools
+        return isinstance(expr, scoremanagertools.handlers.DynamicHandler)
+
+    @staticmethod
+    def output_material_editor(target=None, session=None):
+        from experimental.tools import scoremanagertools
+        if target:
+            wizard = scoremanagertools.wizards.DynamicHandlerCreationWizard()
+            # TODO: generalize get_handler_editor to get_target_editor?
+            dynamic_handler_editor = wizard.get_handler_editor(
+                target._class_name, target=target)
+            return dynamic_handler_editor

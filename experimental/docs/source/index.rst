@@ -715,16 +715,6 @@ Unstable packages (load manually)
       tools/scoremanagertools/wranglers/SegmentPackageWrangler/SegmentPackageWrangler
       tools/scoremanagertools/wranglers/StylesheetFileWrangler/StylesheetFileWrangler
 
-   --------
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/scoremanagertools/editors/get_articulation_handler_editor
-      tools/scoremanagertools/editors/get_dynamic_handler_editor
-      tools/scoremanagertools/editors/get_parameter_specifier_editor
-      tools/scoremanagertools/editors/get_rhythm_maker_editor
-
 .. only:: latex
 
    Abstract Classes
@@ -909,13 +899,3 @@ Unstable packages (load manually)
       tools/scoremanagertools/wranglers/ScorePackageWrangler/ScorePackageWrangler
       tools/scoremanagertools/wranglers/SegmentPackageWrangler/SegmentPackageWrangler
       tools/scoremanagertools/wranglers/StylesheetFileWrangler/StylesheetFileWrangler
-
-   Functions
-   ---------
-
-   .. toctree::
-
-      tools/scoremanagertools/editors/get_articulation_handler_editor
-      tools/scoremanagertools/editors/get_dynamic_handler_editor
-      tools/scoremanagertools/editors/get_parameter_specifier_editor
-      tools/scoremanagertools/editors/get_rhythm_maker_editor

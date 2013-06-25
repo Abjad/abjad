@@ -1,9 +1,9 @@
 import os
 from abjad import *
-from experimental.tools.scoremanagertools.editors.get_rhythm_maker_editor import get_rhythm_maker_editor
-from experimental.tools.scoremanagertools.materialpackagemakers.MaterialPackageMaker import MaterialPackageMaker
-from experimental.tools.scoremanagertools.wizards.RhythmMakerCreationWizard import RhythmMakerCreationWizard
-from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
+from experimental.tools.scoremanagertools.materialpackagemakers.MaterialPackageMaker \
+    import MaterialPackageMaker
+from experimental.tools.scoremanagertools.wizards.RhythmMakerCreationWizard \
+    import RhythmMakerCreationWizard
 
 
 class RhythmMakerMaterialPackageMaker(MaterialPackageMaker):
@@ -11,10 +11,27 @@ class RhythmMakerMaterialPackageMaker(MaterialPackageMaker):
     ### CLASS VARIABLES ###
 
     generic_output_name = 'time-menu_entry maker'
-    output_material_checker = staticmethod(lambda x: isinstance(x, RhythmMaker))
-    output_material_editor = staticmethod(get_rhythm_maker_editor)
+
+
     output_material_maker = RhythmMakerCreationWizard
-    output_material_module_import_statements = ['from abjad.tools import rhythmmakertools']
+
+    output_material_module_import_statements = [
+        'from abjad.tools import rhythmmakertools',
+        ]
+
+    ### STATIC METHODS ###
+
+    @staticmethod
+    def output_material_checker(expr):
+        return isinstance(expr, rhythmmakertools.RhythmMaker)
+
+    @staticmethod
+    def output_material_editor(target=None, session=None):
+        if target:
+            wizard = RhythmMakerCreationWizard()
+            rhythm_maker_editor = wizard.get_handler_editor(
+                target._class_name, target=target)
+            return rhythm_maker_editor
 
     ### PUBLIC METHODS ###
 
@@ -27,18 +44,24 @@ class RhythmMakerMaterialPackageMaker(MaterialPackageMaker):
             ]
         music = output_material(meter_tokens)
         music = sequencetools.flatten_sequence(music)
-        measures = measuretools.make_measures_with_full_measure_spacer_skips(meter_tokens)
+        measures = measuretools.make_measures_with_full_measure_spacer_skips(
+            meter_tokens)
         staff = stafftools.RhythmicStaff(measures)
         measuretools.replace_contents_of_measures_in_expr(staff, music)
         score = Score([staff])
         illustration = lilypondfiletools.make_basic_lilypond_file(score)
-        score_manager_configuration = scoremanagertools.scoremanager.ScoreManagerConfiguration()
-        directory_path = score_manager_configuration.score_manager_tools_directory_path
-        stylesheet_file_path = os.path.join(directory_path, 'stylesheets', 'rhythm-letter-16.ly')
+        score_manager_configuration = \
+            scoremanagertools.scoremanager.ScoreManagerConfiguration()
+        directory_path = \
+            score_manager_configuration.score_manager_tools_directory_path
+        stylesheet_file_path = os.path.join(
+            directory_path, 'stylesheets', 'rhythm-letter-16.ly')
         illustration.file_initial_user_includes.append(stylesheet_file_path)
         scoretools.add_double_bar_to_end_of_score(score)
         if 'title' in kwargs:
-            illustration.header_block.title = markuptools.Markup(kwargs.get('title'))
+            illustration.header_block.title = \
+                markuptools.Markup(kwargs.get('title'))
         if 'subtitle' in kwargs:
-            illustration.header_block.subtitle = markuptools.Markup(kwargs.get('subtitle'))
+            illustration.header_block.subtitle = \
+                markuptools.Markup(kwargs.get('subtitle'))
         return illustration
