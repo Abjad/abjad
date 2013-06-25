@@ -2,7 +2,8 @@ from abjad.tools import iterationtools
 from abjad.tools import marktools
 from abjad.tools import notetools
 from abjad.tools import sequencetools
-from experimental.tools.handlertools.ArticulationHandler import ArticulationHandler
+from experimental.tools.handlertools.ArticulationHandler \
+    import ArticulationHandler
 
 
 class PatternedArticulationsHandler(ArticulationHandler):
@@ -55,7 +56,7 @@ class PatternedArticulationsHandler(ArticulationHandler):
             marktools.attach_articulations_to_notes_and_chords_in_expr(note_or_chord, articulation_list)
         return expr
 
-    ### READ / WRITE PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @apply
     def articulation_lists():

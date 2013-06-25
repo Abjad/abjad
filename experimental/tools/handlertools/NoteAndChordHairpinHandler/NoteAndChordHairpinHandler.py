@@ -40,7 +40,7 @@ class NoteAndChordHairpinHandler(DynamicHandler):
             spannertools.HairpinSpanner(group, descriptor, include_rests=False)
         return expr
 
-    ### READ / WRITE PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @apply
     def hairpin_token():

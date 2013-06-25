@@ -26,7 +26,7 @@ class TerracedDynamicsHandler(DynamicHandler):
                 marktools.LilyPondCommandMark(dynamic_name, 'right')(note_or_chord)
         return expr
 
-    ### READ / WRITE PUBLIC PROPERTIES ###
+    ###  PUBLIC PROPERTIES ###
 
     @apply
     def dynamics():

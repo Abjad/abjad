@@ -2,7 +2,8 @@ from abjad.tools import iterationtools
 from abjad.tools import marktools
 from abjad.tools import notetools
 from abjad.tools import sequencetools
-from experimental.tools.handlertools.ArticulationHandler import ArticulationHandler
+from experimental.tools.handlertools.ArticulationHandler \
+    import ArticulationHandler
 
 
 class ReiteratedArticulationHandler(ArticulationHandler):
@@ -57,7 +58,7 @@ class ReiteratedArticulationHandler(ArticulationHandler):
                 note_or_chord, self.articulation_list)
         return expr
 
-    ### READ / WRITE PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @apply
     def articulation_list():

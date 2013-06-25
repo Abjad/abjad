@@ -23,7 +23,7 @@ class Handler(abctools.AbjadObject):
                     return True
         return False
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @abc.abstractproperty
     def _tools_package_name(self):

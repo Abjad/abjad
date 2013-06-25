@@ -67,7 +67,7 @@ class TwoStageHairpinHandler(DynamicHandler):
         else:
             raise ValueError(len(leaves))
 
-    ### READ / WRITE PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @apply
     def swell_dynamics():

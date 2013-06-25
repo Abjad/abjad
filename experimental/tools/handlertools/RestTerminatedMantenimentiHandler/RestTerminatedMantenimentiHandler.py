@@ -38,7 +38,7 @@ class RestTerminatedMantenimentiHandler(DynamicHandler):
             spanner.override.text_spanner.bound_details__left__stencil_align_dir_y = 0
         return groups
 
-    ### READ / WRITE PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @apply
     def dynamics_talea():

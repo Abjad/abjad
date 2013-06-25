@@ -35,7 +35,7 @@ class ArticulationHandler(Handler):
         else:
             self.maximum_written_pitch = pitchtools.NamedChromaticPitch(maximum_written_pitch)
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _tools_package_name(self):

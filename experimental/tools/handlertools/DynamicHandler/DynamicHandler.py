@@ -15,13 +15,13 @@ class DynamicHandler(Handler):
     def __init__(self, minimum_duration=None):
         self.minimum_duration = minimum_duration
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _tools_package_name(self):
         return 'handlertools'
 
-    ### READ / WRITE PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @apply
     def minimum_duration():
