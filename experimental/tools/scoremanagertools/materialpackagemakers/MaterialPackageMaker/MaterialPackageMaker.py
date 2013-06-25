@@ -53,17 +53,14 @@ class MaterialPackageMaker(MaterialPackageProxy):
     def _make_main_menu_section_for_user_input_module(self, 
         main_menu, hidden_section):
         menu_entries = self.user_input_wrapper_in_memory.editable_lines
-        menu_section = main_menu.make_section(
-            return_value_attribute='number',
-            is_numbered=True,
-            menu_entries=menu_entries,
-            )
-        menu_section = main_menu.make_section(return_value_attribute='key')
-        menu_section.append(('user input - clear', 'uic'))
-        menu_section.append(('user input - load demo values', 'uil'))
-        menu_section.append(('user input - populate', 'uip'))
-        menu_section.append(('user input - show demo values', 'uis'))
-        menu_section.append(('user input module - view', 'uimv'))
+        numbered_section = main_menu.make_numbered_section()
+        numbered_section.menu_entries = menu_entries
+        command_section = main_menu.make_command_section()
+        command_section.append(('user input - clear', 'uic'))
+        command_section.append(('user input - load demo values', 'uil'))
+        command_section.append(('user input - populate', 'uip'))
+        command_section.append(('user input - show demo values', 'uis'))
+        command_section.append(('user input module - view', 'uimv'))
         hidden_section.append(('user input - toggle default mode', 'uit'))
         hidden_section.append(('user input module - delete', 'uimdelete'))
 
