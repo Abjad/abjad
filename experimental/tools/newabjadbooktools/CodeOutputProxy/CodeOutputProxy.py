@@ -25,7 +25,7 @@ class CodeOutputProxy(OutputProxy):
     def __init__(self, payload):
         self._payload = tuple(payload)
     
-    ### READ-ONLY PRIVATE ATTRIBUTES ###
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _contents_repr_string(self):

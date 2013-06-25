@@ -43,13 +43,13 @@ class OutputProxy(AbjadObject):
     def __init__(self, payload):
         raise NotImplemented
         
-    ### READ-ONLY PRIVATE ATTRIBUTES ###
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _contents_repr_string(self):
         return ''
 
-    ### READ-ONLY PUBLIC ATTRIBUTES ###
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def payload(self):

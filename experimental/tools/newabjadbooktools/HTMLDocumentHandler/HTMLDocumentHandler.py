@@ -1,4 +1,5 @@
-from experimental.tools.newabjadbooktools.TextualDocumentHandler import TextualDocumentHandler
+from experimental.tools.newabjadbooktools.TextualDocumentHandler \
+    import TextualDocumentHandler
 
 
 class HTMLDocumentHandler(TextualDocumentHandler):
@@ -78,7 +79,7 @@ class HTMLDocumentHandler(TextualDocumentHandler):
     Return document handler.
     """
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def image_format(self):

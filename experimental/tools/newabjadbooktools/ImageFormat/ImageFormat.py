@@ -12,7 +12,7 @@ class ImageFormat(AbjadObject):
     def __init__(self):
         pass
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @abc.abstractproperty
     def file_extension(self):

@@ -51,7 +51,7 @@ class ReSTDocumentHandler(TextualDocumentHandler):
     Return document handler.
     """
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def image_format(self):

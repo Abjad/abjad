@@ -254,7 +254,7 @@ class CodeBlock(AbjadObject):
         
         return self.output_proxies
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def allow_exceptions(self):

@@ -91,11 +91,6 @@
 
 31. Install exuberant tags.
 
-32. Merge read-only and read / write properties private properties
-    into a single ### PRIVATE PROPERTIES ### category.
-    Merge read-only and read / write public properties
-    into a single ### PUBLIC PROPERTIES ### category.
+32. Next write test for FilesystemAssetWrangler.interactively_remove_assets().
 
-33. Next write test for FilesystemAssetWrangler.interactively_remove_assets().
-
-34. Finish the docstrings for all io classes.
+33. Finish the docstrings for all io classes.

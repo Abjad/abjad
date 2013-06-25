@@ -12,7 +12,7 @@ class AssetOutputProxy(OutputProxy):
     Examples include notation, charts and graphs.
     '''
 
-    ### READ-ONLY PUBLIC ATTRIBUTES ###
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def file_name_prefix(self):
