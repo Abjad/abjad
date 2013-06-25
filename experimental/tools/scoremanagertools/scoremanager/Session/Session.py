@@ -34,8 +34,9 @@ class Session(abctools.AbjadObject):
     ### CLASS VARIABLES ###
 
     configuration = ScoreManagerConfiguration()
+
     # this is a temporary hack to avoid constantly reading from disk;
-    # this will eventually be replaced with something more robust, perhaps a real cache.
+    # this will eventually be replaced with something more robust.
     cache_of_built_in_score_names = (
         'red_example_score',
         'green_example_score',
@@ -50,6 +51,7 @@ class Session(abctools.AbjadObject):
         self._breadcrumb_cache_stack = []
         self._breadcrumb_stack = []
         self._command_history = []
+        self._io_manager = scoremanagertools.io.IOManager(self)
         self._session_once_had_user_input = False
         self._transcript = scoremanagertools.scoremanager.Transcript()
         self.snake_case_current_score_name = None
@@ -67,7 +69,7 @@ class Session(abctools.AbjadObject):
         self.is_navigating_to_prev_score = False
         self.is_test = False
         self.last_command_was_composite = False
-        self.menu_header_width = 100
+        self.menu_header_width = 80
         self.nonnumbered_menu_sections_are_hidden = False
         self.transcribe_next_command = True
         self.use_current_user_input_values_as_default = False
@@ -374,6 +376,10 @@ class Session(abctools.AbjadObject):
             assert isinstance(hide_next_redraw, bool)
             self._hide_next_redraw = hide_next_redraw
         return property(**locals())
+
+    @property
+    def io_manager(self):
+        return self._io_manager
 
     @apply
     def is_autoadding():

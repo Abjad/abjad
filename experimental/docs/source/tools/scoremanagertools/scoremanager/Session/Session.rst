@@ -54,6 +54,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.scoremanager.Session.Session.Session.explicit_command_history
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.scoremanager.Session.Session.Session.io_manager
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.scoremanager.Session.Session.Session.is_complete
    :noindex:
 
