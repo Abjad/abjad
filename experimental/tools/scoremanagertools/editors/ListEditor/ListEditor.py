@@ -10,14 +10,6 @@ from experimental.tools.scoremanagertools.editors.TargetManifest \
 
 class ListEditor(InteractiveEditor):
 
-#    ### INITIALIZER ###
-#
-#    def __init__(self, session=None, target=None):
-#        InteractiveEditor.__init__(self, session=session, target=target)
-#        self._attribute_management_menu_section = None
-#        self._item_management_menu_section = None
-#        self._command_menu_section = None
-
     ### CLASS VARIABLES ###
 
     item_class = None
@@ -48,29 +40,21 @@ class ListEditor(InteractiveEditor):
             super(ListEditor, self)._handle_main_menu_result(result)
 
     def _make_main_menu(self):
-        menu, attribute_management_menu_section = \
-            self._io.make_menu(where=self._where)
-        attribute_management_menu_section.return_value_attribute = 'key'
-        attribute_management_menu_section.menu_entries = \
-            self.target_attribute_tokens
-        attribute_management_menu_section.display_prepopulated_values = True
-        item_management_menu_section = menu.make_section()
-        self._item_management_menu_section = item_management_menu_section
-        item_management_menu_section.return_value_attribute = 'number'
-        item_management_menu_section.is_numbered = True
-        item_management_menu_section.menu_entries = self.target_summary_lines
-        command_menu_section = menu.make_section()
-        command_menu_section.return_value_attribute = 'key'
-        command_menu_section.append(('add elements', 'add'))
+        main_menu = self._io.make_only_menu(where=self._where)
+        keyed_attribute_section = main_menu.make_keyed_attribute_section()
+        keyed_attribute_section.menu_entries = self.target_attribute_tokens
+        numbered_section = main_menu.make_numbered_section()
+        self._numbered_section = numbered_section
+        numbered_section.menu_entries = self.target_summary_lines
+        command_section = main_menu.make_command_section()
+        command_section.append(('add elements', 'add'))
         if 0 < len(self.items):
-            command_menu_section.append(('remove elements', 'rm'))
+            command_section.append(('remove elements', 'rm'))
         if 1 < len(self.items):
-            command_menu_section.append(('move elements', 'mv'))
-        hidden_section = menu.make_section()
-        hidden_section.return_value_attribute = 'key'
-        hidden_section.is_hidden = True
+            command_section.append(('move elements', 'mv'))
+        hidden_section = main_menu.make_command_section(is_hidden=True)
         hidden_section.append(('done', 'done'))
-        return menu
+        return main_menu
 
     ### PUBLIC PROPERTIES ###
 
@@ -167,7 +151,7 @@ class ListEditor(InteractiveEditor):
     def interactively_remove_items(self):
         getter = self._io.make_getter(where=self._where)
         getter.append_menu_section_range(
-            self.items_identifier, self._item_management_menu_section)
+            self.items_identifier, self._numbered_section)
         argument_range = getter._run()
         if self._session.backtrack():
             return

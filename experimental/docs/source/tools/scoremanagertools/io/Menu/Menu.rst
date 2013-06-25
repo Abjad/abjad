@@ -56,7 +56,13 @@ Methods
 .. automethod:: experimental.tools.scoremanagertools.io.Menu.Menu.Menu.make_command_section
    :noindex:
 
+.. automethod:: experimental.tools.scoremanagertools.io.Menu.Menu.Menu.make_keyed_attribute_section
+   :noindex:
+
 .. automethod:: experimental.tools.scoremanagertools.io.Menu.Menu.Menu.make_numbered_list_section
+   :noindex:
+
+.. automethod:: experimental.tools.scoremanagertools.io.Menu.Menu.Menu.make_numbered_section
    :noindex:
 
 .. automethod:: experimental.tools.scoremanagertools.io.Menu.Menu.Menu.make_section

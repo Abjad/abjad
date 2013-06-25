@@ -411,6 +411,12 @@ class Menu(ScoreManagerObject):
             )
         return command_section
 
+    def make_keyed_attribute_section(self, menu_entries=None):
+        keyed_attribute_section = self.make_section(
+            return_value_attribute='key',
+            )
+        return keyed_attribute_section
+
     def make_numbered_list_section(self, menu_entries=None):
         numbered_list_section = self.make_section(
             is_numbered=True,
@@ -418,6 +424,13 @@ class Menu(ScoreManagerObject):
             return_value_attribute='display_string',
             )
         return numbered_list_section
+
+    def make_numbered_section(self, menu_entries=None):
+        numbered_section = self.make_section(
+            is_numbered=True,
+            return_value_attribute='number',
+            )
+        return numbered_section
 
     def make_section(self, 
         is_hidden=False, 
