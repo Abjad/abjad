@@ -30,7 +30,7 @@ class ENPParser(Parser):
     Return `ENPParser` instance.
     '''
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def lexer_rules_object(self):
