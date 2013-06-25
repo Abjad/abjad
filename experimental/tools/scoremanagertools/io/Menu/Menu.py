@@ -388,14 +388,14 @@ class Menu(ScoreManagerObject):
             self._session.hide_next_redraw = True
 
     def make_asset_section(self, menu_entries=None):
-        asset_section = self.make_section(
+        asset_section = self._make_section(
             is_numbered=True,
             return_value_attribute='explicit',
             )
         return asset_section
 
     def make_attribute_section(self, menu_entries=None):
-        attribute_section = self.make_section(
+        attribute_section = self._make_section(
             is_numbered=True,
             return_value_attribute='explicit',
             )
@@ -405,7 +405,7 @@ class Menu(ScoreManagerObject):
             is_hidden=False,
             menu_entries=None,
             ):
-        command_section = self.make_section(
+        command_section = self._make_section(
             is_hidden=is_hidden,
             return_value_attribute='key',
             )
@@ -414,14 +414,14 @@ class Menu(ScoreManagerObject):
     def make_keyed_attribute_section(self, 
         is_numbered=False, 
         menu_entries=None):
-        keyed_attribute_section = self.make_section(
+        keyed_attribute_section = self._make_section(
             return_value_attribute='key',
             is_numbered=is_numbered,
             )
         return keyed_attribute_section
 
     def make_numbered_list_section(self, menu_entries=None):
-        numbered_list_section = self.make_section(
+        numbered_list_section = self._make_section(
             is_numbered=True,
             is_ranged=True,
             return_value_attribute='display_string',
@@ -429,13 +429,13 @@ class Menu(ScoreManagerObject):
         return numbered_list_section
 
     def make_numbered_section(self, menu_entries=None):
-        numbered_section = self.make_section(
+        numbered_section = self._make_section(
             is_numbered=True,
             return_value_attribute='number',
             )
         return numbered_section
 
-    def make_section(self, 
+    def _make_section(self, 
         is_hidden=False, 
         is_numbered=False, 
         is_ranged=False, 

@@ -7,7 +7,7 @@ def test_Menu_run_01():
 
     menu = scoremanagertools.io.Menu()
     menu._session.push_breadcrumb('location')
-    menu_section = menu.make_section()
+    menu_section = menu._make_section()
     menu_section.append('apple')
     menu_section.append('banana')
     menu_section.append('cherry')
@@ -51,7 +51,7 @@ def test_Menu_run_02():
 
     menu = scoremanagertools.io.Menu()
     menu._session.push_breadcrumb('location')
-    menu_section = menu.make_section(is_hidden=True)
+    menu_section = menu._make_section(is_hidden=True)
     menu_section.append('apple')
     menu_section.append('banana')
     menu_section.append('cherry')
@@ -88,7 +88,7 @@ def test_Menu_run_03():
 
     menu = scoremanagertools.io.Menu()
     menu._session.push_breadcrumb('location')
-    menu_section = menu.make_section(is_numbered=True)
+    menu_section = menu._make_section(is_numbered=True)
     menu_section.append('apple')
     menu_section.append('banana')
     menu_section.append('cherry')
@@ -132,7 +132,7 @@ def test_Menu_run_04():
 
     menu = scoremanagertools.io.Menu()
     menu._session.push_breadcrumb('location')
-    menu_section = menu.make_section(is_ranged=True)
+    menu_section = menu._make_section(is_ranged=True)
     menu_section.append('apple')
     menu_section.append('banana')
     menu_section.append('cherry')
@@ -177,7 +177,7 @@ def test_Menu_run_05():
 
     menu = scoremanagertools.io.Menu()
     menu._session.push_breadcrumb('location')
-    menu_section = menu.make_section()
+    menu_section = menu._make_section()
     menu_section.return_value_attribute = 'key'
     menu_section.append(('first command', 'add'))
     menu_section.append(('second command', 'rm'))
@@ -235,7 +235,7 @@ def test_Menu_run_06():
 
     menu = scoremanagertools.io.Menu()
     menu._session.push_breadcrumb('location')
-    menu_section = menu.make_section()
+    menu_section = menu._make_section()
     menu_section.append(('first command', 'add'))
     menu_section.append(('second command', 'rm'))
     menu_section.append(('third command', 'mod'))
@@ -283,7 +283,7 @@ def test_Menu_run_07():
 
     menu = scoremanagertools.io.Menu()
     menu._session.push_breadcrumb('location')
-    menu_section = menu.make_section()
+    menu_section = menu._make_section()
     menu_section.return_value_attribute = 'key'
     menu_section.is_hidden = True
     menu_section.append(('first command', 'add'))
@@ -335,7 +335,7 @@ def test_Menu_run_08():
 
     menu = scoremanagertools.io.Menu()
     menu._session.push_breadcrumb('location')
-    menu_section = menu.make_section(is_hidden=True)
+    menu_section = menu._make_section(is_hidden=True)
     menu_section.append(('first command', 'add'))
     menu_section.append(('second command', 'rm'))
     menu_section.append(('third command', 'mod'))
@@ -383,7 +383,7 @@ def test_Menu_run_09():
 
     menu = scoremanagertools.io.Menu()
     menu._session.push_breadcrumb('location')
-    menu_section = menu.make_section()
+    menu_section = menu._make_section()
     menu_section.return_value_attribute = 'key'
     menu_section.is_numbered = True 
     menu_section.append(('first command', 'add'))
@@ -441,7 +441,7 @@ def test_Menu_run_10():
 
     menu = scoremanagertools.io.Menu()
     menu._session.push_breadcrumb('location')
-    menu_section = menu.make_section()
+    menu_section = menu._make_section()
     menu_section.return_value_attribute = 'key'
     menu_section.is_ranged = True
     menu_section.append(('first command', 'add'))
@@ -499,7 +499,7 @@ def test_Menu_run_11():
 
     menu = scoremanagertools.io.Menu()
     menu._session.push_breadcrumb('location')
-    menu_section = menu.make_section(is_ranged=True)
+    menu_section = menu._make_section(is_ranged=True)
     menu_section.append(('first command', 'add'))
     menu_section.append(('second command', 'rm'))
     menu_section.append(('third command', 'mod'))

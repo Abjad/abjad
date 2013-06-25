@@ -33,7 +33,7 @@ class Selector(ScoreManagerObject):
 
     def _make_main_menu(self, head=None):
         main_menu = self._io.make_menu(where=self._where)
-        menu_section = main_menu.make_section(
+        menu_section = main_menu._make_section(
             return_value_attribute='explicit',
             is_numbered=self.is_numbered,
             is_ranged=self.is_ranged,
