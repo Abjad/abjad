@@ -18,7 +18,7 @@ class VoiceProxy(AbjadObject):
             self._payload_expressions_by_attribute[attribute] = timespantools.TimespanInventory()
         self._voice_division_list = None
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def leaf_start_offsets(self):

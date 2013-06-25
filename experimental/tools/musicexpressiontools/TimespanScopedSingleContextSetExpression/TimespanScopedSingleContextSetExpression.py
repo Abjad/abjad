@@ -15,11 +15,21 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
 
     ### INTIAILIZER ###
 
-    def __init__(self, attribute=None, source_expression=None, target_timespan=None, target_context_name=None,
-        fresh=None):
-        assert isinstance(target_context_name, (str, type(None))), repr(target_context_name)
+    def __init__(self, 
+        attribute=None, 
+        source_expression=None, 
+        target_timespan=None, 
+        target_context_name=None,
+        fresh=None,
+        ):
+        assert isinstance(target_context_name, (str, type(None)))
         assert isinstance(fresh, (bool, type(None))), repr(fresh)
-        SetExpression.__init__(self, attribute=attribute, source_expression=source_expression, target_timespan=target_timespan)
+        SetExpression.__init__(
+            self, 
+            attribute=attribute, 
+            source_expression=source_expression, 
+            target_timespan=target_timespan,
+            )
         self._target_context_name = target_context_name
         self._fresh = fresh
 
@@ -40,8 +50,8 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
         return False
 
     def __lt__(self, expr):
-        '''True when timespan-scoped single-context set expression target timespan
-        is less than `expr` target_timespan.
+        '''True when timespan-scoped single-context set expression 
+        target timespan is less than `expr` target_timespan.
         Otherwise false.
 
         Return boolean.
@@ -53,22 +63,27 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
         return False
 
     def __or__(self, set_expression):
-        '''Logical OR of timespan-scoped single-context set expression and `set_expression`.
+        '''Logical OR of timespan-scoped single-context set expression 
+        and `set_expression`.
 
-        Raise exception when timespan-scoped single-context set expression can not fuse with `set_expression`.
+        Raise exception when timespan-scoped single-context set expression 
+        can not fuse with `set_expression`.
 
         Return timespan inventory.
         '''
         assert self._can_fuse(set_expression)
-        stop_offset = self.target_timespan.stop_offset + set_expression.target_timespan.duration
+        stop_offset = self.target_timespan.stop_offset + \
+            set_expression.target_timespan.duration
         target_timespan = self.target_timespan.new(stop_offset=stop_offset)
         result = self.new(target_timespan=target_timespan)
         return timespantools.TimespanInventory([result])
 
     def __sub__(self, timespan):
-        '''Subtract `timespan` from timespan-scoped single-context set expression.
+        '''Subtract `timespan` from timespan-scoped single-context 
+        set expression.
 
-        Operate in place and return timespan-scoped single-context set expression inventory.
+        Operate in place and return timespan-scoped single-context 
+        set expression inventory.
         '''
         from experimental.tools import musicexpressiontools
         timespans = self.target_timespan - timespan
@@ -84,7 +99,7 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
     def _can_fuse(self, expr):
         pass
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def fresh(self):

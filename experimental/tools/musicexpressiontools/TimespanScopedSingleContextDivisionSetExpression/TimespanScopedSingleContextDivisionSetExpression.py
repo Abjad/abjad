@@ -4,17 +4,28 @@ from experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpre
     TimespanScopedSingleContextSetExpression
 
 
-class TimespanScopedSingleContextDivisionSetExpression(TimespanScopedSingleContextSetExpression):
+class TimespanScopedSingleContextDivisionSetExpression(
+    TimespanScopedSingleContextSetExpression):
     r'''Timespan-scoped single-context division set expression.
     '''
 
     ### INITIALIZER ###
 
-    def __init__(self, source_expression=None, target_timespan=None, target_context_name=None,
-        fresh=None, truncate=None):
-        TimespanScopedSingleContextSetExpression.__init__(self, attribute='divisions',
-            source_expression=source_expression, target_timespan=target_timespan,
-            target_context_name=target_context_name, fresh=fresh)
+    def __init__(self, 
+        source_expression=None, 
+        target_timespan=None, 
+        target_context_name=None,
+        fresh=None, 
+        truncate=None,
+        ):
+        TimespanScopedSingleContextSetExpression.__init__(
+            self, 
+            attribute='divisions',
+            source_expression=source_expression, 
+            target_timespan=target_timespan,
+            target_context_name=target_context_name, 
+            fresh=fresh,
+            )
         assert isinstance(truncate, (bool, type(None))), repr(truncate)
         self._truncate = truncate
 
@@ -29,11 +40,12 @@ class TimespanScopedSingleContextDivisionSetExpression(TimespanScopedSingleConte
             return False
         if expr.source_expression != self.source_expression:
             return False
-        if not self.target_timespan.stops_when_timespan_starts(expr.target_timespan):
+        if not self.target_timespan.stops_when_timespan_starts(
+            expr.target_timespan):
             return False
         return True
 
-    ## READ-ONLY PUBLIC PROPERTIES ###
+    ## PUBLIC PROPERTIES ###
 
     @property
     def truncate(self):
@@ -61,20 +73,42 @@ class TimespanScopedSingleContextDivisionSetExpression(TimespanScopedSingleConte
         Return division region expression.
         '''
         from experimental.tools import musicexpressiontools
-        start_offset, total_duration = self.target_timespan.start_offset, self.target_timespan.duration
-        if isinstance(self.source_expression, musicexpressiontools.SelectExpression):
-            region_expression = musicexpressiontools.SelectExpressionDivisionRegionExpression(
-                self.source_expression, start_offset, total_duration, voice_name)
-        elif isinstance(self.source_expression, musicexpressiontools.DivisionSetExpressionLookupExpression):
+        start_offset = self.target_timespan.start_offset
+        total_duration = self.target_timespan.duration
+        if isinstance(
+            self.source_expression, musicexpressiontools.SelectExpression):
+            region_expression = \
+                musicexpressiontools.SelectExpressionDivisionRegionExpression(
+                self.source_expression, 
+                start_offset, 
+                total_duration, 
+                voice_name,
+                )
+        elif isinstance(
+            self.source_expression, 
+            musicexpressiontools.DivisionSetExpressionLookupExpression):
             expression = self.source_expression.evaluate()
-            assert isinstance(expression, musicexpressiontools.IterablePayloadExpression)
+            assert isinstance(
+                expression, musicexpressiontools.IterablePayloadExpression)
             divisions = expression.elements
-            region_expression = musicexpressiontools.LiteralDivisionRegionExpression(
-                divisions, start_offset, total_duration, voice_name)
-        elif isinstance(self.source_expression, musicexpressiontools.IterablePayloadExpression):
+            region_expression = \
+                musicexpressiontools.LiteralDivisionRegionExpression(
+                divisions, 
+                start_offset, 
+                total_duration, 
+                voice_name,
+                )
+        elif isinstance(
+            self.source_expression, 
+            musicexpressiontools.IterablePayloadExpression):
             divisions = self.source_expression.elements
-            region_expression = musicexpressiontools.LiteralDivisionRegionExpression(
-                divisions, start_offset, total_duration, voice_name)
+            region_expression = \
+                musicexpressiontools.LiteralDivisionRegionExpression(
+                divisions, 
+                start_offset, 
+                total_duration, 
+                voice_name,
+                )
         else:
             raise TypeError(self.source_expression)
         return region_expression

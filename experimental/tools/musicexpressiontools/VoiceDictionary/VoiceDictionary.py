@@ -40,7 +40,7 @@ class VoiceDictionary(AbjadObject, collections.OrderedDict):
         for voice_name in sorted(voice_names):
             self[voice_name] = musicexpressiontools.VoiceProxy()
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def score(self):
