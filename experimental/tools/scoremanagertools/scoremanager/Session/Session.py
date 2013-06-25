@@ -53,7 +53,7 @@ class Session(abctools.AbjadObject):
         self._command_history = []
         self._io_manager = scoremanagertools.io.IOManager(self)
         self._session_once_had_user_input = False
-        self._transcript = scoremanagertools.scoremanager.IOTranscript()
+        self._transcript = scoremanagertools.io.IOTranscript()
         self.snake_case_current_score_name = None
         self.display_pitch_ranges_with_numbered_pitches = False
         self.dump_transcript = False

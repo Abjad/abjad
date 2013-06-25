@@ -612,6 +612,7 @@ Unstable packages (load manually)
       tools/scoremanagertools/editors/TropingSpecifierEditor/TropingSpecifierEditor
       tools/scoremanagertools/editors/UserInputWrapper/UserInputWrapper
       tools/scoremanagertools/io/IOManager/IOManager
+      tools/scoremanagertools/io/IOTranscript/IOTranscript
       tools/scoremanagertools/io/Menu/Menu
       tools/scoremanagertools/io/MenuEntry/MenuEntry
       tools/scoremanagertools/io/MenuSection/MenuSection
@@ -650,7 +651,6 @@ Unstable packages (load manually)
       tools/scoremanagertools/proxies/StylesheetFileProxy/StylesheetFileProxy
       tools/scoremanagertools/proxies/TagsModuleProxy/TagsModuleProxy
       tools/scoremanagertools/proxies/UserInputModuleProxy/UserInputModuleProxy
-      tools/scoremanagertools/scoremanager/IOTranscript/IOTranscript
       tools/scoremanagertools/scoremanager/ScoreManager/ScoreManager
       tools/scoremanagertools/scoremanager/ScoreManagerConfiguration/ScoreManagerConfiguration
       tools/scoremanagertools/scoremanager/Session/Session
@@ -807,6 +807,7 @@ Unstable packages (load manually)
       tools/scoremanagertools/editors/TropingSpecifierEditor/TropingSpecifierEditor
       tools/scoremanagertools/editors/UserInputWrapper/UserInputWrapper
       tools/scoremanagertools/io/IOManager/IOManager
+      tools/scoremanagertools/io/IOTranscript/IOTranscript
       tools/scoremanagertools/io/Menu/Menu
       tools/scoremanagertools/io/MenuEntry/MenuEntry
       tools/scoremanagertools/io/MenuSection/MenuSection
@@ -845,7 +846,6 @@ Unstable packages (load manually)
       tools/scoremanagertools/proxies/StylesheetFileProxy/StylesheetFileProxy
       tools/scoremanagertools/proxies/TagsModuleProxy/TagsModuleProxy
       tools/scoremanagertools/proxies/UserInputModuleProxy/UserInputModuleProxy
-      tools/scoremanagertools/scoremanager/IOTranscript/IOTranscript
       tools/scoremanagertools/scoremanager/ScoreManager/ScoreManager
       tools/scoremanagertools/scoremanager/ScoreManagerConfiguration/ScoreManagerConfiguration
       tools/scoremanagertools/scoremanager/Session/Session
