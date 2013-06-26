@@ -34,6 +34,12 @@ class BaritoneVoice(Voice):
 
     The baritone voice targets staff context by default.
     '''
+    
+    ### CLASS VARIABLES ###
+
+    default_performer_abbreviation = 'bar.'
+
+    ### INITIALIZER ###
 
     def __init__(self, **kwargs):
         Voice.__init__(self, **kwargs)

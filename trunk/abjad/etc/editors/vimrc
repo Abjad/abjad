@@ -125,10 +125,11 @@ let g:ctrlp_match_window_bottom = 0
 let g:ctrlp_match_window_reversed = 0
 let g:ctrlp_max_height = 30
 map <leader>jj :CtrlP $ABJADTRUNK/abjad<cr>
-map <leader>jx :CtrlP $ABJADEXPERIMENTAL<cr>
 map <leader>jt :CtrlP $ABJADTRUNK<cr>
-map <leader>sm :CtrlP $ABJADEXPERIMENTAL/tools/scoremanagertools<cr>
+map <leader>jx :CtrlP $ABJADEXPERIMENTAL<cr>
+map <leader>mx :CtrlP $ABJADEXPERIMENTAL/tools/musicexpressiontools<cr>
 map <leader>nj :CtrlP $ABJADEXPERIMENTAL/tools/newabjadbooktools<cr>
+map <leader>sm :CtrlP $ABJADEXPERIMENTAL/tools/scoremanagertools<cr>
 
 " jedi-vim (https://github.com/davidhalter/jedi-vim)
 let g:jedi#popup_on_dot = 0

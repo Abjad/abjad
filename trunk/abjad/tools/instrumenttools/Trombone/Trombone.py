@@ -8,6 +8,12 @@ class Trombone(BrassInstrument):
     Abjad model of the family of trombones.
     '''
 
+    ### CLASS VARIABLES ###
+
+    default_performer_abbreviation = 'trb.'
+
+    ### INITIALIZER ###
+
     @abc.abstractmethod
     def __init__(self, **kwargs):
         BrassInstrument.__init__(self, **kwargs)

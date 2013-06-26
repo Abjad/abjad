@@ -7,7 +7,9 @@ from abjad.tools.instrumenttools.Voice import Voice
 class SopranoVoice(Voice):
     r'''.. versionadded:: 2.8
 
-    Abjad model of the soprano voice::
+    Abjad model of the soprano voice:
+
+    ::
 
         >>> staff = Staff("c''8 d''8 e''8 f''8")
 
@@ -35,13 +37,20 @@ class SopranoVoice(Voice):
     The soprano voice targets staff context by default.
     '''
 
+    ### CLASS VARIABLES ###
+
+    default_performer_abbreviation = 'sop.'
+
+    ### INITIALIZER ###
+
     def __init__(self, **kwargs):
         Voice.__init__(self, **kwargs)
         self._default_instrument_name = 'soprano voice'
         self._default_performer_names.append('soprano')
         self._default_short_instrument_name = 'soprano'
         self._is_primary_instrument = True
-        self.sounding_pitch_of_written_middle_c = pitchtools.NamedChromaticPitch("c'")
+        self.sounding_pitch_of_written_middle_c = \
+            pitchtools.NamedChromaticPitch("c'")
         self.primary_clefs = [contexttools.ClefMark('treble')]
         self._copy_primary_clefs_to_all_clefs()
         self._traditional_pitch_range = pitchtools.PitchRange(('C4', 'E6'))

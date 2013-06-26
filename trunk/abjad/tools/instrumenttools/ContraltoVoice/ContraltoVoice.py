@@ -35,13 +35,20 @@ class ContraltoVoice(Voice):
     The contralto voice targets staff context by default.
     '''
 
+    ### CLASS VARIABLES ###
+
+    default_performer_abbreviation = 'contr.'
+
+    ### INITIALIZER ###
+
     def __init__(self, **kwargs):
         Voice.__init__(self, **kwargs)
         self._default_instrument_name = 'contralto voice'
         self._default_performer_names.append('contralto')
         self._default_short_instrument_name = 'contralto'
         self._is_primary_instrument = True
-        self.sounding_pitch_of_written_middle_c = pitchtools.NamedChromaticPitch("c'")
+        self.sounding_pitch_of_written_middle_c = \
+            pitchtools.NamedChromaticPitch("c'")
         self.primary_clefs = [contexttools.ClefMark('treble')]
         self._copy_primary_clefs_to_all_clefs()
         self._traditional_pitch_range = pitchtools.PitchRange(('F3', 'G5'))

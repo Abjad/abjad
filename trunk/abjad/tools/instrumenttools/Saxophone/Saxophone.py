@@ -1,5 +1,6 @@
 import abc
-from abjad.tools.instrumenttools.SingleReedInstrument import SingleReedInstrument
+from abjad.tools.instrumenttools.SingleReedInstrument \
+    import SingleReedInstrument
 
 
 class Saxophone(SingleReedInstrument):
@@ -7,6 +8,12 @@ class Saxophone(SingleReedInstrument):
 
     Abjad model of the family of saxophones.
     '''
+
+    ### CLASS VARIABLES ###
+
+    default_perfomer_abbreviation = 'sax.'
+
+    ### INITIALIZER ###
 
     @abc.abstractmethod
     def __init__(self, **kwargs):

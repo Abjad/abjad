@@ -7,7 +7,9 @@ from abjad.tools.instrumenttools.Voice import Voice
 class MezzoSopranoVoice(Voice):
     r'''.. versionadded:: 2.8
 
-    Abjad model of the mezzo-soprano voice::
+    Abjad model of the mezzo-soprano voice:
+
+    ::
 
         >>> staff = Staff("c''8 d''8 e''8 f''8")
 
@@ -35,13 +37,20 @@ class MezzoSopranoVoice(Voice):
     The mezzo-soprano voice targets staff context by default.
     '''
 
+    ### CLASS VARIABLES ###
+
+    default_performer_abbreviation = 'ms.'
+
+    ### INITIALIZER ###
+
     def __init__(self, **kwargs):
         Voice.__init__(self, **kwargs)
         self._default_instrument_name = 'mezzo-soprano voice'
         self._default_performer_names.append('mezzo-soprano')
         self._default_short_instrument_name = 'mezzo-soprano'
         self._is_primary_instrument = True
-        self.sounding_pitch_of_written_middle_c = pitchtools.NamedChromaticPitch("c'")
+        self.sounding_pitch_of_written_middle_c = \
+            pitchtools.NamedChromaticPitch("c'")
         self.primary_clefs = [contexttools.ClefMark('treble')]
         self._copy_primary_clefs_to_all_clefs()
         self._traditional_pitch_range = pitchtools.PitchRange(('A3', 'C6'))

@@ -1,5 +1,6 @@
 import abc
-from abjad.tools.instrumenttools.SingleReedInstrument import SingleReedInstrument
+from abjad.tools.instrumenttools.SingleReedInstrument \
+    import SingleReedInstrument
 
 
 class Clarinet(SingleReedInstrument):
@@ -7,6 +8,10 @@ class Clarinet(SingleReedInstrument):
 
     Abjad model of the family of clarinets.
     '''
+    
+    ### CLASS VARIABLES ###
+
+    default_performer_abbreviation = 'cl.'
 
     ### INITIALIZER ###
 
