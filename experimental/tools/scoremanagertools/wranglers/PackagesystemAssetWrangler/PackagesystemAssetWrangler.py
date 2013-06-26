@@ -50,8 +50,11 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
 
     def _initialize_asset_proxy(self, packagesystem_path):
         if os.path.sep in packagesystem_path:
-            pacakgesystem_path = self.configuration.filesystem_path_to_packagesystem_path(packagesystem_path)
-        return self.asset_proxy_class(packagesystem_path=packagesystem_path, session=self.session)
+            pacakgesystem_path = \
+            self.configuration.filesystem_path_to_packagesystem_path(
+            packagesystem_path)
+        return self.asset_proxy_class(
+            packagesystem_path=packagesystem_path, session=self.session)
 
     def _make_asset_menu_entries(self, head=None):
         names = self.list_asset_names(head=head)
@@ -66,7 +69,8 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
 
     def interactively_rename_asset(self, head=None):
         with self.backtracking:
-            asset_package_path = self.interactively_select_asset_packagesystem_path(
+            asset_package_path = \
+                self.interactively_select_asset_packagesystem_path(
                 head=head, infinitival_phrase='to rename')
         if self.session.backtrack():
             return

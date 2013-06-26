@@ -1,5 +1,4 @@
 from experimental import *
-import py
 
 
 def test_MaterialPackageWrangler_run_01():
@@ -29,4 +28,15 @@ def test_MaterialPackageWrangler_run_02():
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     score_manager._run(pending_user_input='m q')
-    assert score_manager.session.io_transcript[-2][1][0] == 'Score manager - materials'
+    title_line = 'Score manager - materials'
+    assert score_manager.session.io_transcript[-2][1][0] == title_line
+
+
+def test_MaterialPackageWrangler_run_03():
+    '''Menu displays at least one test material.
+    '''
+
+    score_manager = scoremanagertools.scoremanager.ScoreManager()
+    score_manager._run(pending_user_input='m q')
+    menu_lines = score_manager.session.io_transcript[-2][1]
+    assert any(x.endswith('red sargasso measures') for x in menu_lines)
