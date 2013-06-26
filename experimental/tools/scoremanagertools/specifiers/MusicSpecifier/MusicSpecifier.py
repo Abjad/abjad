@@ -1,7 +1,8 @@
 from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
-from experimental.tools.scoremanagertools.specifiers.MusicContributionSpecifier import \
-    MusicContributionSpecifier
-from experimental.tools.scoremanagertools.specifiers.Specifier import Specifier
+from experimental.tools.scoremanagertools.specifiers.MusicContributionSpecifier \
+    import MusicContributionSpecifier
+from experimental.tools.scoremanagertools.specifiers.Specifier \
+    import Specifier
 
 
 class MusicSpecifier(Specifier, ObjectInventory):

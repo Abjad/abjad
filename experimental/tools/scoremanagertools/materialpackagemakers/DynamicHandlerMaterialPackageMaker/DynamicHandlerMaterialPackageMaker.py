@@ -1,7 +1,7 @@
 from experimental.tools.scoremanagertools.materialpackagemakers.MaterialPackageMaker \
     import MaterialPackageMaker
-from experimental.tools.scoremanagertools.wizards.DynamicHandlerCreationWizard import \
-    DynamicHandlerCreationWizard
+from experimental.tools.scoremanagertools.wizards.DynamicHandlerCreationWizard \
+    import DynamicHandlerCreationWizard
 
 
 class DynamicHandlerMaterialPackageMaker(MaterialPackageMaker):

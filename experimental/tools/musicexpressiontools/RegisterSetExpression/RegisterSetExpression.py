@@ -1,6 +1,7 @@
 from abjad.tools import notetools
 from abjad.tools import pitchtools
-from experimental.tools.musicexpressiontools.LeafSetExpression import LeafSetExpression
+from experimental.tools.musicexpressiontools.LeafSetExpression \
+    import LeafSetExpression
 
 
 class RegisterSetExpression(LeafSetExpression):

@@ -1,4 +1,5 @@
-from experimental.tools.musicexpressiontools.RegionExpression import RegionExpression
+from experimental.tools.musicexpressiontools.RegionExpression \
+    import RegionExpression
 
 
 class RhythmRegionExpression(RegionExpression):

@@ -1,6 +1,7 @@
 import os
 from abjad.tools.configurationtools.Configuration import Configuration
-from abjad.tools.configurationtools.AbjadConfiguration import AbjadConfiguration
+from abjad.tools.configurationtools.AbjadConfiguration \
+    import AbjadConfiguration
 
 
 class ScoreManagerConfiguration(Configuration):
@@ -264,7 +265,8 @@ class ScoreManagerConfiguration(Configuration):
         package_path = package_path.replace(os.path.sep, '.')
         return package_path
 
-    def list_score_directory_paths(self, built_in=False, user=False, head=None):
+    def list_score_directory_paths(
+        self, built_in=False, user=False, head=None):
         '''List score directory paths.
 
         Example. List built-in score directory paths:
@@ -309,7 +311,8 @@ class ScoreManagerConfiguration(Configuration):
         filesystem_path = self.packagesystem_path_to_filesystem_path(packagesystem_path)
         return os.path.exists(filesystem_path)
 
-    def packagesystem_path_to_filesystem_path(self, package_path, is_module=False):
+    def packagesystem_path_to_filesystem_path(
+        self, package_path, is_module=False):
         '''Change `package_path` to directory path.
 
         Return string.

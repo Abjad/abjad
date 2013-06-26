@@ -1,6 +1,7 @@
 import copy
 from abjad.tools import iotools
-from experimental.tools.musicexpressiontools.SetMethodMixin import SetMethodMixin
+from experimental.tools.musicexpressiontools.SetMethodMixin \
+    import SetMethodMixin
 
 
 class TimeContiguousSetMethodMixin(SetMethodMixin):

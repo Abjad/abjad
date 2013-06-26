@@ -1,4 +1,5 @@
-from experimental.tools.musicexpressiontools.LeafSetExpression import LeafSetExpression
+from experimental.tools.musicexpressiontools.LeafSetExpression \
+    import LeafSetExpression
 
 
 class TempoSetExpression(LeafSetExpression):

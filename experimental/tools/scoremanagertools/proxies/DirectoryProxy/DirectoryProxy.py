@@ -42,7 +42,8 @@ class DirectoryProxy(FilesystemAssetProxy):
         self.session.io_manager.proceed(is_interactive=is_interactive)
 
     def print_directory_entries(self):
-        self.session.io_manager.display(self.list_directory(), capitalize_first_character=False)
+        self.session.io_manager.display(
+            self.list_directory(), capitalize_first_character=False)
         self.session.io_manager.display('')
         self.session.hide_next_redraw = True
 

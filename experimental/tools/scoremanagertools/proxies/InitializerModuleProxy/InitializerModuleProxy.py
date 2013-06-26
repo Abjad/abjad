@@ -1,6 +1,7 @@
 import collections
 import os
-from experimental.tools.scoremanagertools.proxies.ModuleProxy import ModuleProxy
+from experimental.tools.scoremanagertools.proxies.ModuleProxy \
+    import ModuleProxy
 
 
 class InitializerModuleProxy(ModuleProxy):

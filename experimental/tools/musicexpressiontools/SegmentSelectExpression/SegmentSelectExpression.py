@@ -1,5 +1,6 @@
 from abjad.tools import durationtools
-from experimental.tools.musicexpressiontools.SelectExpression import SelectExpression
+from experimental.tools.musicexpressiontools.SelectExpression \
+    import SelectExpression
 
 
 class SegmentSelectExpression(SelectExpression):

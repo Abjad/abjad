@@ -1,7 +1,9 @@
 import random
 from experimental.tools.constrainttools.Domain import Domain
-from experimental.tools.constrainttools._Constraint._Constraint import _Constraint
-from experimental.tools.constrainttools._SolutionNode._SolutionNode import _SolutionNode
+from experimental.tools.constrainttools._Constraint._Constraint \
+    import _Constraint
+from experimental.tools.constrainttools._SolutionNode._SolutionNode \
+    import _SolutionNode
 from experimental.tools.constrainttools._Solver._Solver import _Solver
 
 

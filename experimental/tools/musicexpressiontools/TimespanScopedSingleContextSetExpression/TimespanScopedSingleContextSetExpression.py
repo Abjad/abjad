@@ -2,7 +2,8 @@ import abc
 from abjad.tools import durationtools
 from abjad.tools import timerelationtools
 from abjad.tools import timespantools
-from experimental.tools.musicexpressiontools.SetExpression import SetExpression
+from experimental.tools.musicexpressiontools.SetExpression \
+    import SetExpression
 
 
 class TimespanScopedSingleContextSetExpression(SetExpression):

@@ -1,5 +1,6 @@
 from abjad.tools import labeltools
-from experimental.tools.musicexpressiontools.LeafSetExpression import LeafSetExpression
+from experimental.tools.musicexpressiontools.LeafSetExpression \
+    import LeafSetExpression
 
 
 class LeafColorSetExpression(LeafSetExpression):

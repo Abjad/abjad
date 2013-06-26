@@ -7,6 +7,7 @@ class MaterialPackageSelector(Selector):
 	### CLASS VARIABLES ###
 
     asset_subtree_package_paths = []
+
     space_delimited_lowercase_target_name = 'material package'
 
     ### PUBLIC METHODS ###
@@ -37,7 +38,8 @@ class MaterialPackageSelector(Selector):
                             result.append(os.path.join(subtree_path, directory_name))
         return result
 
-    def list_public_directory_paths_with_initializers_in_subtree(self, subtree_path):
+    def list_public_directory_paths_with_initializers_in_subtree(
+        self, subtree_path):
         result = []
         for directory_path in self.list_public_directory_paths_in_subtree(subtree_path):
             if '__init__.py' in os.listdir(directory_path):

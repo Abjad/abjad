@@ -1,6 +1,7 @@
 import collections
 import os
-from experimental.tools.newabjadbooktools.DocumentHandler import DocumentHandler
+from experimental.tools.newabjadbooktools.DocumentHandler \
+    import DocumentHandler
 
 
 class TextualDocumentHandler(DocumentHandler):

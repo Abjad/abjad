@@ -4,7 +4,8 @@ import collections
 class AttributeNameEnumeration(collections.OrderedDict):
     r'''Attribute name enumeration.
 
-    The allowable attribute names known to the ``musicexpressiontools`` classes:
+    The allowable attribute names known to the ``musicexpressiontools`` 
+    classes:
 
     ::
 
@@ -23,7 +24,8 @@ class AttributeNameEnumeration(collections.OrderedDict):
 
     Attribute names are alphabetized.
 
-    The integer constants serve only to fit the attribute names into dictionary form.
+    The integer constants serve only to fit the attribute names into 
+    dictionary form.
 
     The class will grow as more attributes are added to the system.
     '''

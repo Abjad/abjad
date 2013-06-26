@@ -31,7 +31,8 @@ class ModuleProxy(FileProxy):
 
     ### PRIVATE METHODS ###
 
-    def _space_delimited_lowercase_name_to_asset_name(self, space_delimited_lowercase_name):
+    def _space_delimited_lowercase_name_to_asset_name(
+        self, space_delimited_lowercase_name):
         asset_name = FileProxy._space_delimited_lowercase_name_to_asset_name(
             self, space_delimited_lowercase_name)
         asset_name += '.py'

@@ -1,5 +1,6 @@
 from abjad.tools import mathtools
-from experimental.tools.musicexpressiontools.SingleContextSetExpression import SingleContextSetExpression
+from experimental.tools.musicexpressiontools.SingleContextSetExpression \
+    import SingleContextSetExpression
 
 
 class SingleContextTimeSignatureSetExpression(SingleContextSetExpression):

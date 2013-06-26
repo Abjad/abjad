@@ -1,8 +1,11 @@
 from experimental.tools.scoremanagertools import getters
 from experimental.tools.scoremanagertools import selectors
-from experimental.tools.scoremanagertools.editors.ParameterSpecifierEditor import ParameterSpecifierEditor
-from experimental.tools.scoremanagertools.editors.TargetManifest import TargetManifest
-from experimental.tools.scoremanagertools.specifiers.ArticulationSpecifier import ArticulationSpecifier
+from experimental.tools.scoremanagertools.editors.ParameterSpecifierEditor \
+    import ParameterSpecifierEditor
+from experimental.tools.scoremanagertools.editors.TargetManifest \
+    import TargetManifest
+from experimental.tools.scoremanagertools.specifiers.ArticulationSpecifier \
+    import ArticulationSpecifier
 
 
 class ArticulationSpecifierEditor(ParameterSpecifierEditor):

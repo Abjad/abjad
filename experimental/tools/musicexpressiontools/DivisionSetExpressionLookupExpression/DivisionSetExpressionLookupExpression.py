@@ -1,6 +1,7 @@
 from experimental.tools import timerelationtools
 from experimental.tools import timespantools
-from experimental.tools.musicexpressiontools.SetExpressionLookupExpression import SetExpressionLookupExpression
+from experimental.tools.musicexpressiontools.SetExpressionLookupExpression \
+    import SetExpressionLookupExpression
 
 
 class DivisionSetExpressionLookupExpression(SetExpressionLookupExpression):

@@ -1,6 +1,6 @@
 import abc
-from experimental.tools.scoremanagertools.scoremanager.ScoreManagerObject import \
-    ScoreManagerObject
+from experimental.tools.scoremanagertools.scoremanager.ScoreManagerObject \
+    import ScoreManagerObject
 
 
 # TODO: extend repr to show target, if any

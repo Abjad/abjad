@@ -1,7 +1,8 @@
 from abjad import *
-from experimental.tools.scoremanagertools.materialpackagemakers.InventoryMaterialPackageMaker import \
-    InventoryMaterialPackageMaker
-from experimental.tools.scoremanagertools.editors.MarkupInventoryEditor import MarkupInventoryEditor
+from experimental.tools.scoremanagertools.materialpackagemakers.InventoryMaterialPackageMaker \
+    import InventoryMaterialPackageMaker
+from experimental.tools.scoremanagertools.editors.MarkupInventoryEditor \
+    import MarkupInventoryEditor
 
 
 class MarkupInventoryMaterialPackageMaker(InventoryMaterialPackageMaker):
@@ -9,10 +10,17 @@ class MarkupInventoryMaterialPackageMaker(InventoryMaterialPackageMaker):
     ### CLASS VARIABLES ###
 
     generic_output_name = 'markup inventory'
-    output_material_checker = staticmethod(lambda x: isinstance(x, markuptools.MarkupInventory))
+
+    output_material_checker = staticmethod(
+        lambda x: isinstance(x, markuptools.MarkupInventory))
+
     output_material_editor = MarkupInventoryEditor
+
     output_material_maker = markuptools.MarkupInventory
-    output_material_module_import_statements = ['from abjad.tools import markuptools']
+
+    output_material_module_import_statements = [
+        'from abjad.tools import markuptools',
+        ]
 
     ### PUBLIC METHODS ###
 

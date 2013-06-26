@@ -15,10 +15,15 @@ class TempoMarkInventoryEditor(ObjectInventoryEditor):
     ### CLASS VARIABLES ###
 
     item_class = contexttools.TempoMark
+
     item_editor_class = TempoMarkEditor
+
     item_getter_configuration_method = UserInputGetter.append_tempo
+
     item_identifier = 'tempo mark'
-    target_manifest = TargetManifest(contexttools.TempoMarkInventory,
+
+    target_manifest = TargetManifest(
+        contexttools.TempoMarkInventory,
         ('name', 'name', 'nm', getters.get_string),
         target_name_attribute='inventory name',
         )

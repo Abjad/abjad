@@ -1,5 +1,6 @@
 from abjad.tools import sequencetools
-from experimental.tools.musicexpressiontools.DivisionRegionExpression import DivisionRegionExpression
+from experimental.tools.musicexpressiontools.DivisionRegionExpression \
+    import DivisionRegionExpression
 
 
 class SelectExpressionDivisionRegionExpression(DivisionRegionExpression):

@@ -1,4 +1,5 @@
-from experimental.tools.scoremanagertools.selectors.HandlerClassNameSelector import HandlerClassNameSelector
+from experimental.tools.scoremanagertools.selectors.HandlerClassNameSelector \
+    import HandlerClassNameSelector
 
 
 class ArticulationHandlerClassNameSelector(HandlerClassNameSelector):

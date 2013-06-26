@@ -6,7 +6,8 @@ from abjad.tools.abctools import AbjadObject
 
 
 class DocumentHandler(AbjadObject):
-    '''Abstract base class of all document handlers.'''
+    '''Abstract base class of all document handlers.
+    '''
 
     ### INITIALIZER ###
 

@@ -1,4 +1,5 @@
-from experimental.tools.musicexpressiontools.PayloadExpression import PayloadExpression
+from experimental.tools.musicexpressiontools.PayloadExpression \
+    import PayloadExpression
 
 
 class StatalServerCursorExpression(PayloadExpression):

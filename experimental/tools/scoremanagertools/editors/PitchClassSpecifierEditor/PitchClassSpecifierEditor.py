@@ -13,7 +13,8 @@ class PitchClassSpecifierEditor(ParameterSpecifierEditor):
 
     ### CLASS VARIABLES ###
 
-    target_manifest = TargetManifest(PitchClassSpecifier,
+    target_manifest = TargetManifest(
+        PitchClassSpecifier,
         ('name', 'nm', getters.get_string),
         ('description', 'ds', getters.get_string),
         (),

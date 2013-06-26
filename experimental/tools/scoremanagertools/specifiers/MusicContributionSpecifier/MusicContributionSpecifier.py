@@ -1,5 +1,6 @@
 from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
-from experimental.tools.scoremanagertools.specifiers.Specifier import Specifier
+from experimental.tools.scoremanagertools.specifiers.Specifier \
+    import Specifier
 from experimental.tools.scoremanagertools.specifiers.ArticulationSpecifier \
     import ArticulationSpecifier
 

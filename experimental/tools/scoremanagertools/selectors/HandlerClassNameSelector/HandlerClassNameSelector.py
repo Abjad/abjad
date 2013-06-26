@@ -1,5 +1,6 @@
 import os
-from experimental.tools.scoremanagertools.selectors.DirectoryContentSelector import DirectoryContentSelector
+from experimental.tools.scoremanagertools.selectors.DirectoryContentSelector \
+    import DirectoryContentSelector
 
 
 class HandlerClassNameSelector(DirectoryContentSelector):
@@ -9,6 +10,7 @@ class HandlerClassNameSelector(DirectoryContentSelector):
     handler_tools_directory_path = os.path.join(
         DirectoryContentSelector.configuration.abjad_configuration.abjad_experimental_directory_path,
         'tools',
-        'handlertools')
+        'handlertools',
+        )
 
     storehouse_filesystem_paths = [handler_tools_directory_path]

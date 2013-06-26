@@ -1,5 +1,6 @@
 import os
-from experimental.tools.scoremanagertools.proxies.DirectoryProxy import DirectoryProxy
+from experimental.tools.scoremanagertools.proxies.DirectoryProxy \
+    import DirectoryProxy
 
 
 class ExergueDirectoryProxy(DirectoryProxy):

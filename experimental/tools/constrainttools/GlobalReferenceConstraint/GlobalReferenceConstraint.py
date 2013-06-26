@@ -1,4 +1,5 @@
-from experimental.tools.constrainttools._GlobalConstraint._GlobalConstraint import _GlobalConstraint
+from experimental.tools.constrainttools._GlobalConstraint._GlobalConstraint \
+    import _GlobalConstraint
 
 
 class GlobalReferenceConstraint(_GlobalConstraint):

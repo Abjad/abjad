@@ -2,8 +2,8 @@
 import os
 from abjad.tools import stringtools
 from abjad.tools import abctools
-from experimental.tools.scoremanagertools.scoremanager.ScoreManagerConfiguration import \
-    ScoreManagerConfiguration
+from experimental.tools.scoremanagertools.scoremanager.ScoreManagerConfiguration \
+    import ScoreManagerConfiguration
 
 
 class Session(abctools.AbjadObject):

@@ -1,7 +1,8 @@
 from abjad.tools import durationtools
 from abjad.tools import timerelationtools
 from abjad.tools import timespantools
-from experimental.tools.musicexpressiontools.SelectExpression import SelectExpression
+from experimental.tools.musicexpressiontools.SelectExpression \
+    import SelectExpression
 
 
 class DivisionSelectExpression(SelectExpression):
@@ -28,7 +29,8 @@ class DivisionSelectExpression(SelectExpression):
             voice_name='Voice 1'
             )
 
-    Example 2. Select voice ``1`` divisions that start during segment ``'red'``:
+    Example 2. Select voice ``1`` divisions that start during segment 
+    ``'red'``:
 
     ::
 

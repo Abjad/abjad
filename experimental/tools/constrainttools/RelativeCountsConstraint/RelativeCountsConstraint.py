@@ -1,4 +1,5 @@
-from experimental.tools.constrainttools._RelativeConstraint._RelativeConstraint import _RelativeConstraint
+from experimental.tools.constrainttools._RelativeConstraint._RelativeConstraint \
+    import _RelativeConstraint
 
 
 class RelativeCountsConstraint(_RelativeConstraint):

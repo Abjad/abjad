@@ -8,16 +8,20 @@ class CounttimeComponentSelectExpressionSetMethodMixin(AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    def _store_counttime_component_select_expression_set_expression(self, attribute, source_expression):
+    def _store_counttime_component_select_expression_set_expression(
+        self, attribute, source_expression):
         from experimental.tools import musicexpressiontools
-        set_expression_class = self._attribute_to_set_expression_class(attribute)
+        set_expression_class = \
+            self._attribute_to_set_expression_class(attribute)
         source_expression = self._expr_to_expression(source_expression)
-        counttime_component_select_expression_set_expression = set_expression_class(
+        counttime_component_select_expression_set_expression = \
+            set_expression_class(
             source_expression=source_expression,
             target_counttime_component_select_expression=self
             )
         assert self.score_specification is not None
-        counttime_component_select_expression_set_expression._score_specification = self.score_specification
+        counttime_component_select_expression_set_expression._score_specification = \
+            self.score_specification
         counttime_component_select_expression_set_expression._lexical_rank = \
             self.score_specification._next_lexical_rank
         self.score_specification._next_lexical_rank += 1

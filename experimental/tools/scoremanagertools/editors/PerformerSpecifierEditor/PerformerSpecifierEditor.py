@@ -11,7 +11,8 @@ class PerformerSpecifierEditor(ParameterSpecifierEditor):
 
     ### CLASS VARIABLES ###
 
-    target_manifest = TargetManifest(PerformerSpecifier,
+    target_manifest = TargetManifest(
+        PerformerSpecifier,
         ('performer', 'pf', selectors.PerformerSelector),
         )
 

@@ -1,4 +1,5 @@
-from experimental.tools.musicexpressiontools.MeasureSelectExpression import MeasureSelectExpression
+from experimental.tools.musicexpressiontools.MeasureSelectExpression \
+    import MeasureSelectExpression
 
 
 class TimeSignatureSelectExpression(MeasureSelectExpression):

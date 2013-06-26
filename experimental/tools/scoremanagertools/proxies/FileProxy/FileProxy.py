@@ -1,5 +1,6 @@
 import os
-from experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy import FilesystemAssetProxy
+from experimental.tools.scoremanagertools.proxies.FilesystemAssetProxy \
+    import FilesystemAssetProxy
 
 
 class FileProxy(FilesystemAssetProxy):

@@ -2,7 +2,8 @@ import abc
 from abjad.tools import durationtools
 from abjad.tools import sequencetools
 from abjad.tools import timespantools
-from experimental.tools.musicexpressiontools.RegionExpression import RegionExpression
+from experimental.tools.musicexpressiontools.RegionExpression \
+    import RegionExpression
 
 
 class DivisionRegionExpression(RegionExpression):

@@ -3,8 +3,8 @@ from abjad import *
 from experimental.tools.scoremanagertools import predicates
 from experimental.tools.scoremanagertools.editors.UserInputWrapper \
     import UserInputWrapper
-from experimental.tools.scoremanagertools.materialpackagemakers.FunctionInputMaterialPackageMaker import \
-    FunctionInputMaterialPackageMaker
+from experimental.tools.scoremanagertools.materialpackagemakers.FunctionInputMaterialPackageMaker \
+    import FunctionInputMaterialPackageMaker
 
 
 class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
@@ -12,7 +12,9 @@ class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
     ### CLASS VARIABLES ###
 
     generic_output_name = 'sargasso measures'
+
     output_material_checker = staticmethod(measuretools.all_are_measures)
+
     output_material_module_import_statements = [
         'from abjad.tools import measuretools']
 

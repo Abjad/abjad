@@ -1,5 +1,6 @@
 from abjad.tools import durationtools
-from experimental.tools.musicexpressiontools.CallbackMixin import CallbackMixin
+from experimental.tools.musicexpressiontools.CallbackMixin \
+    import CallbackMixin
 
 
 class OffsetCallbackMixin(CallbackMixin):

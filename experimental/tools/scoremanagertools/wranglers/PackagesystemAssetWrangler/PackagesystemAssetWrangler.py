@@ -1,6 +1,7 @@
 import os
 from abjad.tools import sequencetools
-from experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler import FilesystemAssetWrangler
+from experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler \
+    import FilesystemAssetWrangler
 
 
 class PackagesystemAssetWrangler(FilesystemAssetWrangler):

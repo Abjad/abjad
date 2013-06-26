@@ -1,4 +1,5 @@
-from experimental.tools.musicexpressiontools.SingleContextSetExpression import SingleContextSetExpression
+from experimental.tools.musicexpressiontools.SingleContextSetExpression \
+    import SingleContextSetExpression
 
 
 class SingleContextDivisionSetExpression(SingleContextSetExpression):

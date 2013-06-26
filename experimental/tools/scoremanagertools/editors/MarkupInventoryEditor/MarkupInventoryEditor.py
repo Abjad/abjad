@@ -16,10 +16,15 @@ class MarkupInventoryEditor(ObjectInventoryEditor):
     ### CLASS VARIABLES ###
 
     item_class = markuptools.Markup
+
     item_creator_class = MarkupEditor
+
     item_editor_class = MarkupEditor
+
     item_identifier = 'markup'
-    target_manifest = TargetManifest(markuptools.MarkupInventory,
+
+    target_manifest = TargetManifest(
+        markuptools.MarkupInventory,
         ('name', 'name', 'nm', getters.get_string),
         target_name_attribute='inventory name',
         )

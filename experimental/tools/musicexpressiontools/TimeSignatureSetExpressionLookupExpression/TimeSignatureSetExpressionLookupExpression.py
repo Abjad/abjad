@@ -1,4 +1,5 @@
-from experimental.tools.musicexpressiontools.SetExpressionLookupExpression import SetExpressionLookupExpression
+from experimental.tools.musicexpressiontools.SetExpressionLookupExpression \
+    import SetExpressionLookupExpression
 
 
 class TimeSignatureSetExpressionLookupExpression(SetExpressionLookupExpression):

@@ -1,5 +1,6 @@
 from abjad.tools import markuptools
-from experimental.tools.musicexpressiontools.LeafSetExpression import LeafSetExpression
+from experimental.tools.musicexpressiontools.LeafSetExpression \
+    import LeafSetExpression
 
 
 class MarkupSetExpression(LeafSetExpression):

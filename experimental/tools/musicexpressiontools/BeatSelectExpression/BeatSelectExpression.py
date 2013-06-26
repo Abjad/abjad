@@ -3,7 +3,8 @@ from abjad.tools import mathtools
 from abjad.tools import sequencetools
 from abjad.tools import timerelationtools
 from abjad.tools import timespantools
-from experimental.tools.musicexpressiontools.SelectExpression import SelectExpression
+from experimental.tools.musicexpressiontools.SelectExpression \
+    import SelectExpression
 
 
 class BeatSelectExpression(SelectExpression):

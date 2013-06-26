@@ -1,5 +1,6 @@
 from experimental.tools.scoremanagertools import selectors
-from experimental.tools.scoremanagertools.wizards.HandlerCreationWizard import HandlerCreationWizard
+from experimental.tools.scoremanagertools.wizards.HandlerCreationWizard \
+    import HandlerCreationWizard
 
 
 class RhythmMakerCreationWizard(HandlerCreationWizard):

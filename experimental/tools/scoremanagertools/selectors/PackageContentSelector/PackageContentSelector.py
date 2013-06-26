@@ -1,5 +1,6 @@
-from experimental.tools.scoremanagertools.selectors.DirectoryContentSelector import DirectoryContentSelector
 import os
+from experimental.tools.scoremanagertools.selectors.DirectoryContentSelector \
+    import DirectoryContentSelector
 
 
 class PackageContentSelector(DirectoryContentSelector):
@@ -7,6 +8,7 @@ class PackageContentSelector(DirectoryContentSelector):
     ### CLASS VARIABLES ###
 
     storehouse_package_paths = []
+
     space_delimited_lowercase_target_name = 'item'
 
     ### PUBLIC METHODS ###

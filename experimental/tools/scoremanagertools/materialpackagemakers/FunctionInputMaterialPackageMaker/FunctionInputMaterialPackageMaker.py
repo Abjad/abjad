@@ -1,4 +1,5 @@
-from experimental.tools.scoremanagertools.materialpackagemakers.MaterialPackageMaker import MaterialPackageMaker
+from experimental.tools.scoremanagertools.materialpackagemakers.MaterialPackageMaker \
+    import MaterialPackageMaker
 
 
 class FunctionInputMaterialPackageMaker(MaterialPackageMaker):

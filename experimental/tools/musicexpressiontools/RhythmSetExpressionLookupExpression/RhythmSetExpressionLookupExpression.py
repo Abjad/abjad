@@ -2,7 +2,8 @@ import copy
 from abjad.tools import rhythmmakertools
 from abjad.tools import timerelationtools
 from abjad.tools import timespantools
-from experimental.tools.musicexpressiontools.SetExpressionLookupExpression import SetExpressionLookupExpression
+from experimental.tools.musicexpressiontools.SetExpressionLookupExpression \
+    import SetExpressionLookupExpression
 
 
 class RhythmSetExpressionLookupExpression(SetExpressionLookupExpression):

@@ -1,4 +1,5 @@
-from experimental.tools.newabjadbooktools.ImageOutputProxy import ImageOutputProxy
+from experimental.tools.newabjadbooktools.ImageOutputProxy \
+    import ImageOutputProxy
 
 
 class GnuplotOutputProxy(ImageOutputProxy):

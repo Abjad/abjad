@@ -69,7 +69,8 @@ class TimespanScopedSingleContextSetExpressionInventory(TimespanInventory):
         self[:] = cooked_set_expressions
         return self
 
-    def supply_missing_set_expressions(self, attribute, score_specification, voice_name):
+    def supply_missing_set_expressions(
+        self, attribute, score_specification, voice_name):
         '''Operate in place and return inventory.
         '''
         assert self.is_sorted
@@ -81,7 +82,8 @@ class TimespanScopedSingleContextSetExpressionInventory(TimespanInventory):
                 attribute, timespan, voice_name)
             self[:] = [set_expression]
             return self
-        timespans = timespantools.TimespanInventory([expr.target_timespan for expr in self])
+        timespans = timespantools.TimespanInventory([
+            expr.target_timespan for expr in self])
         timespans.append(score_specification.timespan)
         missing_region_timespans = timespans.compute_logical_xor()
         for missing_region_timespan in missing_region_timespans:

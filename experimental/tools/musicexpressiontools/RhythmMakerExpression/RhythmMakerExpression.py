@@ -1,5 +1,6 @@
 from abjad.tools import rhythmmakertools
-from experimental.tools.musicexpressiontools.PayloadExpression import PayloadExpression
+from experimental.tools.musicexpressiontools.PayloadExpression \
+    import PayloadExpression
 
 
 class RhythmMakerExpression(PayloadExpression):

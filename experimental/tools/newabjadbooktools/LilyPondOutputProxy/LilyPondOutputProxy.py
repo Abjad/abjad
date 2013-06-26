@@ -2,8 +2,10 @@ import copy
 import os
 from abjad.tools import configurationtools
 from abjad.tools import lilypondfiletools
-from abjad.tools.iotools._insert_expr_into_lilypond_file import _insert_expr_into_lilypond_file
-from experimental.tools.newabjadbooktools.ImageOutputProxy import ImageOutputProxy
+from abjad.tools.iotools._insert_expr_into_lilypond_file \
+    import _insert_expr_into_lilypond_file
+from experimental.tools.newabjadbooktools.ImageOutputProxy \
+    import ImageOutputProxy
 
 
 class LilyPondOutputProxy(ImageOutputProxy):

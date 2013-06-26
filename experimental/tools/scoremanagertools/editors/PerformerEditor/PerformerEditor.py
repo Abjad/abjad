@@ -16,11 +16,17 @@ class PerformerEditor(ListEditor):
     ### CLASS VARIABLES ###
 
     item_class = Instrument
+
     item_creator_class = wizards.InstrumentCreationWizard
+
     item_creator_class_kwargs = {'is_ranged': True}
+
     item_editor_class = InstrumentEditor
+
     item_identifier = 'instrument'
-    target_manifest = TargetManifest(scoretools.Performer,
+
+    target_manifest = TargetManifest(
+        scoretools.Performer,
         ('name', 'nm', getters.get_string),
         target_attribute_name='name',
         )

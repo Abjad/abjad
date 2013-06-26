@@ -6,7 +6,8 @@ from experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpre
     TimespanScopedSingleContextSetExpression
 
 
-class TimespanScopedSingleContextRhythmSetExpression(TimespanScopedSingleContextSetExpression):
+class TimespanScopedSingleContextRhythmSetExpression(
+    TimespanScopedSingleContextSetExpression):
     r'''Timespan-scoped single-context rhythm set expression.
     '''
 

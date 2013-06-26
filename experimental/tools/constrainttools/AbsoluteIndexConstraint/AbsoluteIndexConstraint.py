@@ -1,4 +1,5 @@
-from experimental.tools.constrainttools._AbsoluteConstraint._AbsoluteConstraint import _AbsoluteConstraint
+from experimental.tools.constrainttools._AbsoluteConstraint._AbsoluteConstraint \
+    import _AbsoluteConstraint
 
 
 class AbsoluteIndexConstraint(_AbsoluteConstraint):

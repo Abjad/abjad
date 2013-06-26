@@ -33,7 +33,8 @@ class IllustrationBuilderModuleProxy(ModuleProxy):
         illustration.header_block.title = markuptools.Markup(material_package_name)
         return illustration
 
-    def write_stub_to_disk(self, material_package_path, material_package_name, prompt=True):
+    def write_stub_to_disk(
+        self, material_package_path, material_package_name, prompt=True):
         lines = []
         lines.append('from abjad import *\n')
         line = 'from {}.output_material import {}\n'.format(
@@ -47,4 +48,6 @@ class IllustrationBuilderModuleProxy(ModuleProxy):
         file_pointer = file(self.filesystem_path, 'w')
         file_pointer.write(''.join(lines))
         file_pointer.close()
-        self.session.io_manager.proceed('stub illustration builder written to disk.', is_interactive=prompt)
+        self.session.io_manager.proceed(
+            'stub illustration builder written to disk.', 
+            is_interactive=prompt)

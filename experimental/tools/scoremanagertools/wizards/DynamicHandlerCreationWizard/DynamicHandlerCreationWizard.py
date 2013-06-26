@@ -8,6 +8,7 @@ class DynamicHandlerCreationWizard(HandlerCreationWizard):
     ### CLASS VARIABLES ###
 
     handler_class_name_selector = selectors.DynamicHandlerClassNameSelector
+
     handler_editor_class_name_suffix = 'Editor'
 
     ### PRIVATE PROPERTIES ###

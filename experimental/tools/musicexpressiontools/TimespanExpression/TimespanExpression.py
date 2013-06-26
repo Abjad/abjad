@@ -1,11 +1,18 @@
 from abjad.tools import timespantools
-from experimental.tools.musicexpressiontools.AnchoredExpression import AnchoredExpression
-from experimental.tools.musicexpressiontools.TimeContiguousSetMethodMixin import TimeContiguousSetMethodMixin
-from experimental.tools.musicexpressiontools.SelectMethodMixin import SelectMethodMixin
-from experimental.tools.musicexpressiontools.TimespanCallbackMixin import TimespanCallbackMixin
+from experimental.tools.musicexpressiontools.AnchoredExpression \
+    import AnchoredExpression
+from experimental.tools.musicexpressiontools.TimeContiguousSetMethodMixin \
+    import TimeContiguousSetMethodMixin
+from experimental.tools.musicexpressiontools.SelectMethodMixin \
+    import SelectMethodMixin
+from experimental.tools.musicexpressiontools.TimespanCallbackMixin \
+    import TimespanCallbackMixin
 
 
-class TimespanExpression(AnchoredExpression, TimespanCallbackMixin, SelectMethodMixin,
+class TimespanExpression(
+    AnchoredExpression, 
+    TimespanCallbackMixin, 
+    SelectMethodMixin,
     TimeContiguousSetMethodMixin):
     r'''Timespan expression.
 

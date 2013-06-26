@@ -1,4 +1,5 @@
-from experimental.tools.scoremanagertools.proxies.PackageProxy import PackageProxy
+from experimental.tools.scoremanagertools.proxies.PackageProxy \
+    import PackageProxy
 
 
 class MusicPackageProxy(PackageProxy):

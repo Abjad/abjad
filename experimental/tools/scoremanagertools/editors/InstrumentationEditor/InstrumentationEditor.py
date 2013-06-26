@@ -14,10 +14,15 @@ class InstrumentationEditor(ListEditor):
     ### CLASS VARIABLES ###
 
     item_class = scoretools.Performer
+
     item_creator_class = wizards.PerformerCreationWizard
+
     item_creator_class_kwargs = {'is_ranged': True}
+
     item_editor_class = PerformerEditor
+
     item_identifier = 'performer'
+
     target_manifest = TargetManifest(scoretools.InstrumentationSpecifier,
         )
 

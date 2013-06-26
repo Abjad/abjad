@@ -3,7 +3,8 @@ from abjad.tools import mathtools
 from abjad.tools import measuretools
 from abjad.tools import sequencetools
 from abjad.tools import timespantools
-from experimental.tools.musicexpressiontools.SelectExpression import SelectExpression
+from experimental.tools.musicexpressiontools.SelectExpression \
+    import SelectExpression
 
 
 class MeasureSelectExpression(SelectExpression):
@@ -44,7 +45,8 @@ class MeasureSelectExpression(SelectExpression):
             voice_name='Voice 1'
             )
 
-    Example 3. Select voice ``1`` measures that start during three contiguous segments:
+    Example 3. Select voice ``1`` measures that start during three contiguous 
+    segments:
 
     ::
 

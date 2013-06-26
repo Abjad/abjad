@@ -1,6 +1,7 @@
 import abc
 import os
-from experimental.tools.newabjadbooktools.AssetOutputProxy import AssetOutputProxy
+from experimental.tools.newabjadbooktools.AssetOutputProxy \
+    import AssetOutputProxy
 
 
 class ImageOutputProxy(AssetOutputProxy):

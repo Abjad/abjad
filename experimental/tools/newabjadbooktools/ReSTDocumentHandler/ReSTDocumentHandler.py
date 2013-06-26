@@ -1,5 +1,5 @@
-from experimental.tools.newabjadbooktools.TextualDocumentHandler import \
-    TextualDocumentHandler
+from experimental.tools.newabjadbooktools.TextualDocumentHandler \
+    import TextualDocumentHandler
 
 
 class ReSTDocumentHandler(TextualDocumentHandler):
