@@ -13,7 +13,8 @@ class BFlatClarinet(Clarinet):
 
     ::
 
-        >>> instrumenttools.BFlatClarinet()(staff)
+        >>> clarinet = instrumenttools.BFlatClarinet()(staff)
+        >>> clarinet
         BFlatClarinet()(Staff{4})
 
     ::
@@ -35,13 +36,34 @@ class BFlatClarinet(Clarinet):
     The B-flat clarinet targets staff context by default.
     '''
 
+    ### INITIALIZER ###
+
     def __init__(self, **kwargs):
         Clarinet.__init__(self, **kwargs)
         self._default_instrument_name = 'clarinet in B-flat'
-        self._default_performer_names.extend(['clarinettist', 'clarinetist'])
         self._default_short_instrument_name = 'cl. in B-flat'
         self._is_primary_instrument = True
-        self.sounding_pitch_of_fingered_middle_c = pitchtools.NamedChromaticPitch('bf')
+        self.sounding_pitch_of_fingered_middle_c = \
+            pitchtools.NamedChromaticPitch('bf')
         self.primary_clefs = [contexttools.ClefMark('treble')]
         self._copy_primary_clefs_to_all_clefs()
         self._traditional_pitch_range = pitchtools.PitchRange(-10, 34)
+
+    ### PUBLIC METHODS ###
+
+    def get_performer_names(self):
+        '''Get performer names:
+
+        ::
+
+            >>> for performer_name in clarinet.get_performer_names():
+            ...     performer_name
+            'instrumentalist'
+            'reed player'
+            'single reed player'
+            'clarinettist'
+            'clarinetist'
+
+        Return list.
+        '''
+        return super(BFlatClarinet, self).get_performer_names()

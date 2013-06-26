@@ -123,26 +123,14 @@ class Instrument(contexttools.InstrumentMark):
 
     ### PUBLIC METHODS ###
 
-    def get_default_performer_name(self, locale=None):
+    def get_default_performer_name(self):
         r'''.. versionadded:: 2.5
 
         Get default player name.
-
-        Available values for `locale` are ``'en-us'`` and ``'en-uk'``.
         '''
-        locale = locale or 'en-us'
         if self._default_performer_names is None:
             performer_name = '{} player'.format(self.default_instrument_name)
             return performer_name
-#        elif locale == 'en-us':
-#            return self._default_performer_names[0]
-#        elif locale == 'en-uk':
-#            if 1 <= len(self._default_performer_names):
-#                return self._default_performer_names[1]
-#            else:
-#                return self._default_performer_names[0]
-#        else:
-#            raise ValueError
         else:
             return self._default_performer_names[-1]
 

@@ -35,13 +35,15 @@ class ClarinetInA(Clarinet):
     The clarinet in A targets staff context by default.
     '''
 
+    ### INITIALIZER ###
+
     def __init__(self, **kwargs):
         Clarinet.__init__(self, **kwargs)
         self._default_instrument_name = 'clarinet in A'
-        self._default_performer_names.extend(['clarinettist', 'clarinetist'])
         self._default_short_instrument_name = r'cl. A \natural'
         self._is_primary_instrument = False
-        self.sounding_pitch_of_fingered_middle_c = pitchtools.NamedChromaticPitch('a')
+        self.sounding_pitch_of_fingered_middle_c = \
+            pitchtools.NamedChromaticPitch('a')
         self.primary_clefs = [contexttools.ClefMark('treble')]
         self._copy_primary_clefs_to_all_clefs()
         self._traditional_pitch_range = pitchtools.PitchRange(-11, 33)

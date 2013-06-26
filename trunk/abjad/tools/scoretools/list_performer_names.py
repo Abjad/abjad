@@ -1,4 +1,4 @@
-def list_performer_names(locale='en-us'):
+def list_performer_names():
     r'''.. versionadded:: 2.5
 
     List performer names::
@@ -34,7 +34,7 @@ def list_performer_names(locale='en-us'):
         'violist'
         'xylophonist'
 
-    Available values for `locale` are ``'en-us'`` and ``'en-uk'``.
+    Return list.
     '''
     from abjad.tools import instrumenttools
 
@@ -42,7 +42,7 @@ def list_performer_names(locale='en-us'):
 
     for instrument_class in instrumenttools.list_instruments():
         instrument = instrument_class()
-        performer_name = instrument.get_default_performer_name(locale=locale)
+        performer_name = instrument.get_default_performer_name()
         performer_names.add(performer_name)
 
     return list(sorted(performer_names))
