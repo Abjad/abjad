@@ -131,6 +131,7 @@ class PerformerCreationWizard(Wizard):
             performer.likely_instruments_based_on_performer_name
         likely_instrument_names = [
             x().instrument_name for x in likely_instruments]
+        likely_instrument_names.sort()
         most_likely_instrument = \
             performer.most_likely_instrument_based_on_performer_name
         default_index = None

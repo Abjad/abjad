@@ -21,6 +21,9 @@ Read-only properties
 .. autoattribute:: experimental.tools.scoremanagertools.io.IOTranscript.IOTranscript.IOTranscript.entries
    :noindex:
 
+.. autoattribute:: experimental.tools.scoremanagertools.io.IOTranscript.IOTranscript.IOTranscript.last_menu_lines
+   :noindex:
+
 .. autoattribute:: experimental.tools.scoremanagertools.io.IOTranscript.IOTranscript.IOTranscript.signature
    :noindex:
 

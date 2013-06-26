@@ -34,6 +34,10 @@ class IOTranscript(AbjadObject):
         return self._entries
 
     @property
+    def last_menu_lines(self):
+        return self[-2][1]
+
+    @property
     def signature(self):
         result = []
         short_transcript = [entry[1] for entry in self.entries]

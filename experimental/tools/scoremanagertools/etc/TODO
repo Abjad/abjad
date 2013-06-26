@@ -2,84 +2,80 @@
 
 2.  Edit instrument clefs.
 
-3.  Remove extra appearance of B-flat clarinet from clarinetist config menu.
-
-4.  Make user input getter defaults work like menu defaults.
+3.  Make user input getter defaults work like menu defaults.
     Implement default value on user input getter.
 
-5.  Fix ScoreManagerObject.handle_user_input_with_default() default handling.
+4.  Fix ScoreManagerObject.handle_user_input_with_default() default handling.
 
-6.  Define range inventories for all scores.
+5.  Define range inventories for all scores.
 
-7.  Make user input handler creation work.
+6.  Make user input handler creation work.
 
-8.  Find a way dynamcially to present default indicator 
+7.  Find a way dynamcially to present default indicator 
     with default menu entries.
 
-9.  Distinguish positional editor parameters from keyword editor parameters.
+8.  Distinguish positional editor parameters from keyword editor parameters.
 
-10. Implement something to tour all materials everywhere 
+9.  Implement something to tour all materials everywhere 
     and examine in sequence.
 
-11. Currently MaterialPackageMaker inherits from MaterialPackageProxy.
+10. Currently MaterialPackageMaker inherits from MaterialPackageProxy.
     Maybe MaterialPackageMaker should *have* a MaterialPackageProxy instead.
     This would clean up the inheritance schema somewhat.
 
-12. Audit the UI of the entire materials management system by hand.
+11. Audit the UI of the entire materials management system by hand.
 
-13. Add a scores/test directory and check it into the scores repository.
-    Then add a scores/test/test_scores_import_scores.py file.
+12. Add a top-level test directory to every score package directory.
+    Then add a score/test/test_import_score.py file.
     The file will test 'import red_example_score', 
     'import green_example_score', and so on.
-    This will be a very high-level test to make sure 
-    that entire score packages remain importable.
 
-14. Implement example_score_i.music.materials.divisions to import 
+13. Implement example_score_i.music.materials.divisions to import 
     example_score_i.music.materials.time_signatures.
     This will implement an intrapackage material import.
     Implement example_score_ii.music.materials.divisions to 
     import example_score_i.music.materials.time_signatures.
     This will implement an interpackage material import.
 
-15. Remove ModuleProxy.unimport() entirely.
+14. Remove ModuleProxy.unimport() entirely.
 
-16. Replace all _read_only_attributes.py and _public_attributes.py 
+15. Replace all _read_only_attributes.py and _public_attributes.py 
     test files with doctests.
 
-17. Sweep inline scoremanagertools TODO items.
+16. Sweep inline scoremanagertools TODO items.
 
-18. Author ScorePackageProxy docstrings.
+17. Author ScorePackageProxy docstrings.
 
-19. Add PackageystemAssetProxy to superclass ModuleProxy and PackageProxy.
+18. Add PackageystemAssetProxy to superclass ModuleProxy and PackageProxy.
 
-20. Create a PackagesystemAssetProxy to parallel PacakagesystemAssetWrangler.
+19. Create a PackagesystemAssetProxy to parallel PacakagesystemAssetWrangler.
 
-21. Harmonize user input strings with method names in 
+20. Harmonize user input strings with method names in 
     MaterialPackageProxy.user_input_to_action dictionary.
 
-22. Author StylesheetFileWrangler.interactively_remove_assets() test.
+21. Author StylesheetFileWrangler.interactively_remove_assets() test.
     Will involve making pending_user_input='... rm ...' work with named 
     arguments instead of just numeric arguments.
 
-23. Make MaterialPackageMaker classes stop creating materials in 
+22. Make MaterialPackageMaker classes stop creating materials in 
     tools.scoremanagertools.materialpackages.
     Those classes should create material packages in the user asset 
     library material packages directory.
     Or in user score packages. But no material packages should ever 
     be created in the built-in asset library material packages directory.
 
-24. Implement material methods to move material packages 
+23. Implement material methods to move material packages 
     from one location to another.
 
-25. Find a way to include metadata management in hidden menu 
+24. Find a way to include metadata management in hidden menu 
     of every package proxy.
 
-26. Implement a menuing decorator in decoratortools.
+25. Implement a menuing decorator in decoratortools.
     Then integrate against all classes.
 
-26. Rename all tags.py files to __metadata__.py instead.
+25. Rename all tags.py files to __metadata__.py instead.
 
-27. Flatten all score_package/music directories.
+26. Flatten all score_package/music directories.
     So instead of score_package/music/material_packages,
     score_package/music/segments, score_package/music/specifiers,
     score_package/music/stylesheets, etc. we'll have
@@ -87,4 +83,4 @@
     score_package/specifiers, score_package/stylesheets, etc.
     instead.
 
-28. Finish the docstrings for all io classes.
+27. Finish the docstrings for all io classes.
