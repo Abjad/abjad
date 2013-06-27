@@ -557,7 +557,9 @@ class ScoreSpecification(Specification):
     ### PUBLIC METHODS ###
 
     def append_segment(self, name=None):
-        r'''Append segment specification to score specification::
+        r'''Append segment specification to score specification:
+
+        ::
 
             >>> score_specification.append_segment(name='green')
             SegmentSpecificationInterface('green')
@@ -616,7 +618,9 @@ class ScoreSpecification(Specification):
             return self.segment_specifications[segment_index]
 
     def get_time_signature_slice(self, timespan):
-        '''Get time signature slice::
+        '''Get time signature slice:
+
+        ::
 
             >>> timespan = timespantools.Timespan((0, 4), (5, 4))
             >>> score_specification.get_time_signature_slice(timespan)

@@ -17,15 +17,18 @@ import wranglers
 Do the following to install the score manager on your system:
 
     1. verify the score manager directories
-    2. add abjad/experimental/scr to your PATH for the start-score-manager script
-    3. create a user-specific scores directory to house scores you will make with the score manager
+    2. add abjad/experimental/scr to your PATH for the 
+       start-score-manager script
+    3. create a user-specific scores directory to house scores you will 
+       make with the score manager
     4. start and stop the score manager
     5. run the score manager tools py.test battery
     6. rebuild the Abjad experimental API
     7. run doctest on the experimental branch of the repository
 
 1. Verify the score manager directories.
-The following six directories should appear on your filesystem after checkout:
+The following six directories should appear on your filesystem 
+after checkout:
 
     abjad/experimental/materials
     abjad/experimental/scm
@@ -45,15 +48,18 @@ Set the scores environment variable to your scores directory:
     export scores=$DOCUMENTS/scores
 
 4. Start and stop the score manager.
-Type start-score-manager from the commandline and the score manager should start.
+Type start-score-manager from the commandline and the score manager 
+should start.
 What you see here probably won't be very interesting because you
 won't yet have any score manager scores created on your system.
-But you should see an empty list of scores as well as three or four menu options.
+But you should see an empty list of scores as well as three or four 
+menu options.
 The menu options will allow you to manage materials and specifiers.
 There will also be a menu option to create a new score.
 If the shell can't find start-score-manager then make sure you added 
 the abjad/experimental/scr directory to your PATH.
-After score manager tools starts correctly enter 'q' to quit the score manager.
+After score manager tools starts correctly enter 'q' to quit the 
+score manager.
 
 5. Run py.test against the scoremanagertools directory.
 Fix or report tests that break.

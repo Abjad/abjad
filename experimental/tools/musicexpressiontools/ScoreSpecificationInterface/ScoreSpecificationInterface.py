@@ -168,7 +168,9 @@ class ScoreSpecificationInterface(SpecificationInterface):
             return self.score_specification.segment_specifications.pop(n)
 
     def select_segments(self, voice_name):
-        '''Select voice ``1`` segments in score::
+        '''Select voice ``1`` segments in score:
+
+        ::
 
             >>> select_expression = score_specification.select_segments('Voice 1')
 
