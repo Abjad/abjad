@@ -7,7 +7,9 @@ from abjad.tools.instrumenttools.DoubleReedInstrument import DoubleReedInstrumen
 class Oboe(DoubleReedInstrument):
     r'''.. versionadded:: 2.0
 
-    Abjad model of the oboe::
+    Abjad model of the oboe:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
 

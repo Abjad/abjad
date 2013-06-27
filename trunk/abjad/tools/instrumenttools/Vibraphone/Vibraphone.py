@@ -7,7 +7,9 @@ from abjad.tools.instrumenttools.PercussionInstrument import PercussionInstrumen
 class Vibraphone(PercussionInstrument):
     r'''.. versionadded:: 2.0
 
-    Abjad model of the vibraphone::
+    Abjad model of the vibraphone:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
 

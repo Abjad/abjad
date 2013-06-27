@@ -7,7 +7,9 @@ from abjad.tools.instrumenttools.PercussionInstrument import PercussionInstrumen
 class Xylophone(PercussionInstrument):
     r'''.. versionadded:: 2.0
 
-    Abjad model of the xylphone::
+    Abjad model of the xylphone:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
 
@@ -30,6 +32,8 @@ class Xylophone(PercussionInstrument):
 
     The xylophone targets staff context by default.
     '''
+
+    ### INITIALIZER ###
 
     def __init__(self, **kwargs):
         PercussionInstrument.__init__(self, **kwargs)

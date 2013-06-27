@@ -7,7 +7,9 @@ from abjad.tools.instrumenttools.Saxophone.Saxophone import Saxophone
 class TenorSaxophone(Saxophone):
     r'''.. versionadded:: 2.6
 
-    Abjad model of the tenor saxophone::
+    Abjad model of the tenor saxophone:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
 

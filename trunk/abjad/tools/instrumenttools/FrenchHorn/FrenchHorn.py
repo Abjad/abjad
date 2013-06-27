@@ -8,7 +8,9 @@ from abjad.tools.instrumenttools.WindInstrument import WindInstrument
 class FrenchHorn(BrassInstrument, WindInstrument):
     r'''.. versionadded:: 2.0
 
-    Abjad model of the French horn::
+    Abjad model of the French horn:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
 

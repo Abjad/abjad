@@ -7,7 +7,9 @@ from abjad.tools.instrumenttools.Clarinet.Clarinet import Clarinet
 class BassClarinet(Clarinet):
     r'''.. versionadded:: 2.0
 
-    Abjad model of the bass clarinet::
+    Abjad model of the bass clarinet:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
 

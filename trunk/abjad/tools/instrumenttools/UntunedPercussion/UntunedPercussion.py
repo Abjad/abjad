@@ -8,7 +8,9 @@ from abjad.tools.instrumenttools.PercussionInstrument import PercussionInstrumen
 class UntunedPercussion(PercussionInstrument):
     r'''.. versionadded:: 2.0
 
-    Abjad model of untuned percussion::
+    Abjad model of untuned percussion:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
 

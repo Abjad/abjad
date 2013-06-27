@@ -7,7 +7,9 @@ from abjad.tools.instrumenttools.BrassInstrument import BrassInstrument
 class Trumpet(BrassInstrument):
     r'''.. versionadded:: 2.0
 
-    Abjad model of the trumpet::
+    Abjad model of the trumpet:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
 

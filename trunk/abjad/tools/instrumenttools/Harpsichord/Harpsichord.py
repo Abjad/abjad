@@ -8,7 +8,9 @@ from abjad.tools.instrumenttools.KeyboardInstrument import KeyboardInstrument
 class Harpsichord(KeyboardInstrument):
     r'''.. versionadded:: 2.5
 
-    Abjad model of the harpsichord::
+    Abjad model of the harpsichord:
+
+    ::
 
         >>> piano_staff = scoretools.PianoStaff([Staff("c'8 d'8 e'8 f'8"), Staff("c'4 b4")])
 

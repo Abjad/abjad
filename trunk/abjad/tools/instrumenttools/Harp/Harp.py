@@ -8,7 +8,9 @@ from abjad.tools.instrumenttools.StringInstrument import StringInstrument
 class Harp(StringInstrument):
     r'''.. versionadded:: 2.0
 
-    Abjad model of the harp::
+    Abjad model of the harp:
+
+    ::
 
         >>> piano_staff = scoretools.PianoStaff([Staff("c'8 d'8 e'8 f'8"), Staff("c'4 b4")])
 

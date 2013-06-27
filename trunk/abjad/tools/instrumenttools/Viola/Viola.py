@@ -7,7 +7,9 @@ from abjad.tools.instrumenttools.StringInstrument import StringInstrument
 class Viola(StringInstrument):
     r'''.. versionadded:: 2.0
 
-    Abjad model of the viola::
+    Abjad model of the viola:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> contexttools.ClefMark('alto')(staff)

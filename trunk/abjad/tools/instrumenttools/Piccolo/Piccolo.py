@@ -6,7 +6,9 @@ from abjad.tools.instrumenttools.Flute import Flute
 class Piccolo(Flute):
     r'''.. versionadded:: 2.0
 
-    Abjad model of the piccolo::
+    Abjad model of the piccolo:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
 

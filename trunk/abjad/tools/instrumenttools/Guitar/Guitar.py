@@ -7,7 +7,9 @@ from abjad.tools.instrumenttools.StringInstrument import StringInstrument
 class Guitar(StringInstrument):
     r'''.. versionadded:: 2.0
 
-    Abjad model of the guitar::
+    Abjad model of the guitar:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
 

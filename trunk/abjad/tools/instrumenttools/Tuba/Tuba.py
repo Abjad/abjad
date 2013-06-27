@@ -7,7 +7,9 @@ from abjad.tools.instrumenttools.BrassInstrument import BrassInstrument
 class Tuba(BrassInstrument):
     r'''.. versionadded:: 2.0
 
-    Abjad model of the tuba::
+    Abjad model of the tuba:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> contexttools.ClefMark('bass')(staff)
