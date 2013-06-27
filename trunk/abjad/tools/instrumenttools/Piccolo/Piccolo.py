@@ -36,10 +36,13 @@ class Piccolo(Flute):
     The piccolo targets staff context by default.
     '''
 
+    ### INITIALIZER ###
+
     def __init__(self, **kwargs):
         Flute.__init__(self, **kwargs)
         self._default_instrument_name = 'piccolo'
         self._default_short_instrument_name = 'picc.'
         self._is_primary_instrument = False
-        self.sounding_pitch_of_fingered_middle_c = pitchtools.NamedChromaticPitch("c''")
+        self.sounding_pitch_of_fingered_middle_c = \
+            pitchtools.NamedChromaticPitch("c''")
         self._traditional_pitch_range = pitchtools.PitchRange(14, 48)

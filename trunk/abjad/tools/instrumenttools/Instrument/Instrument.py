@@ -18,7 +18,8 @@ class Instrument(contexttools.InstrumentMark):
         instrument_name_markup=None,
         short_instrument_name_markup=None,
         target_context=None):
-        self.sounding_pitch_of_fingered_middle_c = pitchtools.NamedChromaticPitch("c'")
+        self.sounding_pitch_of_fingered_middle_c = \
+            pitchtools.NamedChromaticPitch("c'")
         contexttools.InstrumentMark.__init__(self,
             instrument_name,
             short_instrument_name,
@@ -54,7 +55,8 @@ class Instrument(contexttools.InstrumentMark):
 
         Return melodic diatonic interval.
         '''
-        return pitchtools.NamedChromaticPitch("c'") - self.sounding_pitch_of_fingered_middle_c
+        return pitchtools.NamedChromaticPitch("c'") - \
+            self.sounding_pitch_of_fingered_middle_c
 
     @property
     def is_primary_instrument(self):
@@ -70,7 +72,8 @@ class Instrument(contexttools.InstrumentMark):
 
         Return boolean.
         '''
-        return not self.sounding_pitch_of_fingered_middle_c == pitchtools.NamedChromaticPitch("c'")
+        return not self.sounding_pitch_of_fingered_middle_c == \
+            pitchtools.NamedChromaticPitch("c'")
 
     @apply
     def pitch_range():

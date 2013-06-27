@@ -34,12 +34,15 @@ class UntunedPercussion(PercussionInstrument):
     Untuned percussion targets the staff context by default.
     '''
 
+    ### INITIALIZER ###
+
     def __init__(self, **kwargs):
         PercussionInstrument.__init__(self, **kwargs)
         self._default_instrument_name = 'untuned percussion'
         self._default_short_instrument_name = 'perc.'
         self._is_primary_instrument = False
-        self.sounding_pitch_of_written_middle_c = pitchtools.NamedChromaticPitch("c'")
+        self.sounding_pitch_of_written_middle_c = \
+            pitchtools.NamedChromaticPitch("c'")
         self.primary_clefs = [contexttools.ClefMark('percussion')]
         self._copy_primary_clefs_to_all_clefs()
         self._traditional_pitch_range = pitchtools.PitchRange(-48, 39)

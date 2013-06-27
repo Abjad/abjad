@@ -37,13 +37,16 @@ class Flute(WindInstrument):
     The flute targets staff context by default.
     '''
 
+    ### INITIALIZER ###
+
     def __init__(self, **kwargs):
         WindInstrument.__init__(self, **kwargs)
         self._default_instrument_name = 'flute'
         self._default_performer_names.extend(['flautist', 'flutist'])
         self._default_short_instrument_name = 'fl.'
         self._is_primary_instrument = True
-        self.sounding_pitch_of_written_middle_c = pitchtools.NamedChromaticPitch("c'")
+        self.sounding_pitch_of_written_middle_c = \
+            pitchtools.NamedChromaticPitch("c'")
         self.primary_clefs = [contexttools.ClefMark('treble')]
         self._copy_primary_clefs_to_all_clefs()
         self._traditional_pitch_range = pitchtools.PitchRange(0, 38)

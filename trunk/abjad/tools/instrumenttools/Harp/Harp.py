@@ -44,15 +44,20 @@ class Harp(StringInstrument):
     The harp targets piano staff context by default.
     '''
 
+    ### INITIALIZER ###
+
     def __init__(self, target_context=None, **kwargs):
         if target_context is None:
             target_context = scoretools.PianoStaff
-        StringInstrument.__init__(self, target_context=target_context, **kwargs)
+        StringInstrument.__init__(
+            self, target_context=target_context, **kwargs)
         self._default_instrument_name = 'harp'
         self._default_performer_names.append('harpist')
         self._default_short_instrument_name = 'hp.'
         self._is_primary_instrument = True
-        self.sounding_pitch_of_written_middle_c = pitchtools.NamedChromaticPitch("c'")
-        self.primary_clefs = [contexttools.ClefMark('treble'), contexttools.ClefMark('bass')]
+        self.sounding_pitch_of_written_middle_c = \
+            pitchtools.NamedChromaticPitch("c'")
+        self.primary_clefs = [
+            contexttools.ClefMark('treble'), contexttools.ClefMark('bass')]
         self._copy_primary_clefs_to_all_clefs()
         self._traditional_pitch_range = pitchtools.PitchRange(-37, 44)

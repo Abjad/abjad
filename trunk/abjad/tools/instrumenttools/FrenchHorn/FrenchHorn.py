@@ -38,13 +38,17 @@ class FrenchHorn(BrassInstrument, WindInstrument):
     The French horn targets staff context by default.
     '''
 
+    ### INITIALIZER ###
+
     def __init__(self, **kwargs):
         BrassInstrument.__init__(self, **kwargs)
         self._default_instrument_name = 'horn'
         self._default_performer_names.append('hornist')
         self._default_short_instrument_name = 'hn.'
         self._is_primary_instrument = True
-        self.sounding_pitch_of_fingered_middle_c = pitchtools.NamedChromaticPitch('f')
-        self.primary_clefs = [contexttools.ClefMark('treble'), contexttools.ClefMark('bass')]
+        self.sounding_pitch_of_fingered_middle_c = \
+            pitchtools.NamedChromaticPitch('f')
+        self.primary_clefs = [
+            contexttools.ClefMark('treble'), contexttools.ClefMark('bass')]
         self._copy_primary_clefs_to_all_clefs()
         self._traditional_pitch_range = pitchtools.PitchRange(-25, 17)

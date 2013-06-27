@@ -36,13 +36,16 @@ class Viola(StringInstrument):
     The viola targets staff context by default.
     '''
 
+    ### INITIALIZER ###
+
     def __init__(self, **kwargs):
         StringInstrument.__init__(self, **kwargs)
         self._default_instrument_name = 'viola'
         self._default_performer_names.append('violist')
         self._default_short_instrument_name = 'va.'
         self._is_primary_instrument = True
-        self.sounding_pitch_of_written_middle_c = pitchtools.NamedChromaticPitch("c'")
+        self.sounding_pitch_of_written_middle_c = \
+            pitchtools.NamedChromaticPitch("c'")
         self.primary_clefs = [contexttools.ClefMark('alto')]
         self.all_clefs = [
             contexttools.ClefMark('alto'),

@@ -33,13 +33,16 @@ class Vibraphone(PercussionInstrument):
     The vibraphone targets staff context by default.
     '''
 
+    ### INITIALIZER ###
+
     def __init__(self, **kwargs):
         PercussionInstrument.__init__(self, **kwargs)
         self._default_instrument_name = 'vibraphone'
         self._default_performer_names.append('vibraphonist')
         self._default_short_instrument_name = 'vibr.'
         self._is_primary_instrument = False
-        self.sounding_pitch_of_written_middle_c = pitchtools.NamedChromaticPitch("c'")
+        self.sounding_pitch_of_written_middle_c = \
+            pitchtools.NamedChromaticPitch("c'")
         self.primary_clefs = [contexttools.ClefMark('treble')]
         self._copy_primary_clefs_to_all_clefs()
         self._traditional_pitch_range = pitchtools.PitchRange(-7, 29)

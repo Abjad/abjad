@@ -37,13 +37,16 @@ class Oboe(DoubleReedInstrument):
     The oboe targets staff context by default.
     '''
 
+    ### INITIALIZER ###
+
     def __init__(self, **kwargs):
         DoubleReedInstrument.__init__(self, **kwargs)
         self._default_instrument_name = 'oboe'
         self._default_performer_names.append('oboist')
         self._default_short_instrument_name = 'ob.'
         self._is_primary_instrument = True
-        self.sounding_pitch_of_written_middle_c = pitchtools.NamedChromaticPitch("c'")
+        self.sounding_pitch_of_written_middle_c = \
+            pitchtools.NamedChromaticPitch("c'")
         self.primary_clefs = [contexttools.ClefMark('treble')]
         self._copy_primary_clefs_to_all_clefs()
         self._traditional_pitch_range = pitchtools.PitchRange(-2, 33)
