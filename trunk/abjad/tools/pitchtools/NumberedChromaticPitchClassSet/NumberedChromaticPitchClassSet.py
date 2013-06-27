@@ -5,7 +5,9 @@ from abjad.tools.pitchtools.PitchClassSet import PitchClassSet
 class  NumberedChromaticPitchClassSet(PitchClassSet):
     '''.. versionadded:: 2.0
 
-    Abjad model of a numbered chromatic pitch-class set::
+    Abjad model of a numbered chromatic pitch-class set:
+
+    ::
 
         >>> ncpcs = pitchtools.NumberedChromaticPitchClassSet([-2, -1.5, 6, 7, -1.5, 7])
 
@@ -26,9 +28,9 @@ class  NumberedChromaticPitchClassSet(PitchClassSet):
 
     __slots__ = ()
 
-    ### INITIALIZER ###
+    ### CONSTRUCTOR ###
 
-    def __new__(klass, expr):
+    def __new__(cls, expr):
         from abjad.tools import pitchtools
         pcs = []
         # assume expr is iterable
@@ -48,7 +50,7 @@ class  NumberedChromaticPitchClassSet(PitchClassSet):
             # expr is a Rest or non-PC type
             except TypeError:
                 pcs = []
-        return frozenset.__new__(klass, pcs)
+        return frozenset.__new__(cls, pcs)
 
     ### SPECIAL METHODS ###
 
@@ -94,16 +96,20 @@ class  NumberedChromaticPitchClassSet(PitchClassSet):
         '''
         from abjad.tools import pitchtools
         interval_class_set = set([])
-        for first_pc, second_pc in sequencetools.yield_all_unordered_pairs_of_sequence(self):
+        for first_pc, second_pc in \
+            sequencetools.yield_all_unordered_pairs_of_sequence(self):
             interval_class = first_pc - second_pc
             interval_class_set.add(interval_class)
-        interval_class_set = pitchtools.InversionEquivalentChromaticIntervalClassSet(
+        interval_class_set = \
+            pitchtools.InversionEquivalentChromaticIntervalClassSet(
             interval_class_set)
         return interval_class_set
 
     @property
     def inversion_equivalent_chromatic_interval_class_vector(self):
-        '''Read-only inversion-equivalent chromatic interval-class vector::
+        '''Read-only inversion-equivalent chromatic interval-class vector:
+
+        ::
 
             >>> ncpcs.inversion_equivalent_chromatic_interval_class_vector
             InversionEquivalentChromaticIntervalClassVector(0 | 1 0 1 1 0 0 1 0 0 1 1 0)
@@ -112,14 +118,18 @@ class  NumberedChromaticPitchClassSet(PitchClassSet):
         '''
         from abjad.tools import pitchtools
         interval_classes = []
-        for first_pc, second_pc in sequencetools.yield_all_unordered_pairs_of_sequence(self):
+        for first_pc, second_pc in \
+            sequencetools.yield_all_unordered_pairs_of_sequence(self):
             interval_class = first_pc - second_pc
             interval_classes.append(interval_class)
-        return pitchtools.InversionEquivalentChromaticIntervalClassVector(interval_classes)
+        return pitchtools.InversionEquivalentChromaticIntervalClassVector(
+            interval_classes)
 
     @property
     def numbered_chromatic_pitch_classes(self):
-        '''Read-only numbered chromatic pitch-classes::
+        '''Read-only numbered chromatic pitch-classes:
+
+        ::
 
             >>> result = ncpcs.numbered_chromatic_pitch_classes
 
@@ -140,13 +150,16 @@ class  NumberedChromaticPitchClassSet(PitchClassSet):
 
     @property
     def prime_form(self):
-        '''To be implemented.'''
+        '''To be implemented.
+        '''
         return None
 
     ### PUBLIC METHODS ###
 
     def invert(self):
-        '''Invert numbered chromatic pitch-class set::
+        '''Invert numbered chromatic pitch-class set:
+
+        ::
 
             >>> ncpcs.invert()
             NumberedChromaticPitchClassSet([1.5, 2, 5, 6])
@@ -157,7 +170,9 @@ class  NumberedChromaticPitchClassSet(PitchClassSet):
 
     def is_transposed_subset(self, pcset):
         '''True when self is transposed subset of `pcset`.
-        False otherwise::
+        False otherwise:
+
+        ::
 
             >>> pcset_1 = pitchtools.NumberedChromaticPitchClassSet(
             ... [-2, -1.5, 6, 7, -1.5, 7])
@@ -178,7 +193,9 @@ class  NumberedChromaticPitchClassSet(PitchClassSet):
 
     def is_transposed_superset(self, pcset):
         '''True when self is transposed superset of `pcset`.
-        False otherwise::
+        False otherwise:
+
+        ::
 
             >>> pcset_1 = pitchtools.NumberedChromaticPitchClassSet(
             ... [-2, -1.5, 6, 7, -1.5, 7])
@@ -198,7 +215,9 @@ class  NumberedChromaticPitchClassSet(PitchClassSet):
         return False
 
     def multiply(self, n):
-        '''Multiply numbered chromatic pitch-class set by `n`::
+        '''Multiply numbered chromatic pitch-class set by `n`:
+
+        ::
 
             >>> ncpcs.multiply(5)
             NumberedChromaticPitchClassSet([2, 4.5, 6, 11])
@@ -208,7 +227,9 @@ class  NumberedChromaticPitchClassSet(PitchClassSet):
         return type(self)([pc.multiply(n) for pc in self])
 
     def transpose(self, n):
-        '''Transpose numbered chromatic pitch-class set by `n`::
+        '''Transpose numbered chromatic pitch-class set by `n`:
+
+        ::
 
             >>> ncpcs.transpose(5)
             NumberedChromaticPitchClassSet([0, 3, 3.5, 11])

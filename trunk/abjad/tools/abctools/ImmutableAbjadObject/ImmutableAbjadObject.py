@@ -12,15 +12,16 @@ class ImmutableAbjadObject(AbjadObject):
     ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
+
     __slots__ = ()
 
-    ### INITIALIZER ###
+    ### INITIALIZER & CONSTRUCTOR ###
 
     def __init__(self, *args, **kwargs):
         pass
 
     @abc.abstractmethod
-    def __new__(klass, *args, **kwargs):
+    def __new__(cls, *args, **kwargs):
         pass
 
     ### READ-ONLY PRIVATE PROPERTIES ###
@@ -33,7 +34,8 @@ class ImmutableAbjadObject(AbjadObject):
         else:
             keyword_argument_count = 0
         initializer_code = initializer.func_code
-        positional_argument_count = (initializer_code.co_argcount - keyword_argument_count - 1)
+        positional_argument_count = (
+            initializer_code.co_argcount - keyword_argument_count - 1)
         start_index, stop_index = 1, 1 + positional_argument_count
         return initializer_code.co_varnames[start_index:stop_index]
 

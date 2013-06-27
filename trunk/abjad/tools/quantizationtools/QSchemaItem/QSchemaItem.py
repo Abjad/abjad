@@ -4,7 +4,8 @@ from abjad.tools.abctools import ImmutableAbjadObject
 
 
 class QSchemaItem(tuple, ImmutableAbjadObject):
-    '''`QSchemaItem` represents a change of state in the timeline of a quantization process.
+    '''`QSchemaItem` represents a change of state in the timeline of a 
+    quantization process.
 
     `QSchemaItem` is abstract and immutable.
     '''
@@ -13,10 +14,10 @@ class QSchemaItem(tuple, ImmutableAbjadObject):
 
     __slots__ = ()
 
-    ### INITIALIZER ###
+    ### CONSTRUCTOR ###
 
     @abc.abstractmethod
-    def __new__(klass):
+    def __new__(cls):
         raise Exception
 
     ### SPECIAL METHODS ###
@@ -26,10 +27,12 @@ class QSchemaItem(tuple, ImmutableAbjadObject):
         return tuple(self)
 
     def __repr__(self):
-        pieces = self._get_tools_package_qualified_keyword_argument_repr_pieces()
+        pieces = \
+            self._get_tools_package_qualified_keyword_argument_repr_pieces()
         if pieces:
             result = ['{}('.format(self._class_name)]
-            result.extend(self._get_tools_package_qualified_keyword_argument_repr_pieces())
+            result.extend(
+                self._get_tools_package_qualified_keyword_argument_repr_pieces())
             result.append('\t)')
             return '\n'.join(result)
         return '{}()'.format(self._class_name)

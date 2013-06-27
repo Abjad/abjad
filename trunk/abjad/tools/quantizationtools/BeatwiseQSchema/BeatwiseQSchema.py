@@ -4,7 +4,8 @@ from abjad.tools.quantizationtools.QSchema import QSchema
 
 
 class BeatwiseQSchema(QSchema):
-    '''Concrete ``QSchema`` subclass which treats "beats" as its time-step unit:
+    '''Concrete ``QSchema`` subclass which treats "beats" as its 
+    time-step unit:
 
     ::
 
@@ -37,8 +38,8 @@ class BeatwiseQSchema(QSchema):
         * ``search_tree``
         * ``tempo``
 
-    These settings can be applied as global defaults for the schema via keyword arguments,
-    which persist until overridden:
+    These settings can be applied as global defaults for the schema 
+    via keyword arguments, which persist until overridden:
 
     ::
 
@@ -51,7 +52,8 @@ class BeatwiseQSchema(QSchema):
         ...     tempo=tempo,
         ...     )
 
-    The computed value at any non-negative time-step can be found by subscripting:
+    The computed value at any non-negative time-step can be found 
+    by subscripting:
 
     ::
 
@@ -112,8 +114,8 @@ class BeatwiseQSchema(QSchema):
         >>> q_schema[3]['beatspan']
         Duration(1, 8)
 
-    Similarly, instantiating the schema from a single dictionary, consisting of
-    integer:specification pairs, or a sequence via ``*args`` of (integer,
+    Similarly, instantiating the schema from a single dictionary, consisting 
+    of integer:specification pairs, or a sequence via ``*args`` of (integer,
     specification) pairs, allows for applying settings to  non-sequential
     time-steps:
 
@@ -199,7 +201,13 @@ class BeatwiseQSchema(QSchema):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_beatspan', '_items', '_lookups', '_search_tree', '_tempo',)
+    __slots__ = (
+        '_beatspan', 
+        '_items', 
+        '_lookups', 
+        '_search_tree', 
+        '_tempo',
+        )
 
     ### INITIALIZER ###
 

@@ -4,8 +4,8 @@ from abjad.tools.quantizationtools.QSchemaItem import QSchemaItem
 
 
 class BeatwiseQSchemaItem(QSchemaItem):
-    '''`BeatwiseQSchemaItem` represents a change of state in the timeline of an unmetered
-    quantization process.
+    '''`BeatwiseQSchemaItem` represents a change of state in the timeline 
+    of an unmetered quantization process.
 
     ::
 
@@ -41,14 +41,19 @@ class BeatwiseQSchemaItem(QSchemaItem):
     ### CLASS VARIABLES ###
 
     __slots__ = ()
-    _fields = ('beatspan', 'search_tree', 'tempo')
 
-    ### INITIALIZER ###
+    _fields = (
+        'beatspan', 
+        'search_tree', 
+        'tempo',
+        )
+
+    ### INITIALIZER & CONSTRUCTOR ###
 
     def __init__(self, beatspan=None, search_tree=None, tempo=None):
         pass
 
-    def __new__(klass, beatspan=None, search_tree=None, tempo=None):
+    def __new__(cls, beatspan=None, search_tree=None, tempo=None):
         from abjad.tools import quantizationtools
 
         if beatspan is not None:
@@ -62,7 +67,7 @@ class BeatwiseQSchemaItem(QSchemaItem):
             tempo = contexttools.TempoMark(tempo)
             assert not tempo.is_imprecise
 
-        return tuple.__new__(klass, (beatspan, search_tree, tempo))
+        return tuple.__new__(cls, (beatspan, search_tree, tempo))
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

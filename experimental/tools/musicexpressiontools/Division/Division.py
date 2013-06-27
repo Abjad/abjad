@@ -22,7 +22,8 @@ class Division(NonreducedFraction, BoundedObject):
 
     ::
 
-        >>> musicexpressiontools.Division((5, 8), is_right_open=True, start_offset=Offset(1, 8))
+        >>> musicexpressiontools.Division((5, 8), 
+        ...     is_right_open=True, start_offset=Offset(1, 8))
         Division('[5, 8)', start_offset=Offset(1, 8))
 
     Example 3. Initialize from other division:
@@ -49,20 +50,20 @@ class Division(NonreducedFraction, BoundedObject):
         '_start_offset',
         )
 
-    ### INITIALIZER ###
+    ### CONSTRUCTOR ###
 
-    def __new__(klass, arg,
+    def __new__(cls, arg,
         is_left_open=None, is_right_open=None, start_offset=None):
         if isinstance(arg, str):
             triple = mathtools.interval_string_to_pair_and_indicators(arg)
             pair, is_left_open, is_right_open = triple
-        elif isinstance(arg, klass):
+        elif isinstance(arg, cls):
             pair = arg
         elif hasattr(arg, 'duration'):
             pair = (arg.duration.numerator, arg.duration.denominator)
         else:
             pair = arg
-        self = NonreducedFraction.__new__(klass, pair)
+        self = NonreducedFraction.__new__(cls, pair)
         if is_left_open is None:
             is_left_open = getattr(pair, 'is_left_open', False)
         if is_right_open is None:
@@ -86,7 +87,8 @@ class Division(NonreducedFraction, BoundedObject):
 
     def __repr__(self):
         if self.start_offset is not None:
-            return '{}({!r}, start_offset={!r})'.format(self._class_name, str(self), self.start_offset)
+            return '{}({!r}, start_offset={!r})'.format(
+                self._class_name, str(self), self.start_offset)
         else:
             return '{}({!r})'.format(self._class_name, str(self))
 
@@ -99,12 +101,14 @@ class Division(NonreducedFraction, BoundedObject):
             right_symbol = ')'
         else:
             right_symbol = ']'
-        return '{}{}, {}{}'.format(left_symbol, self.numerator, self.denominator, right_symbol)
+        return '{}{}, {}{}'.format(
+            left_symbol, self.numerator, self.denominator, right_symbol)
 
     ### PRIVATE METHODS ###
 
     def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
-        string = '{}({!r})'.format(self._tools_package_qualified_class_name, str(self))
+        string = '{}({!r})'.format(
+            self._tools_package_qualified_class_name, str(self))
         return [string]
 
     ### PUBLIC PROPERTIES ###
@@ -165,7 +169,9 @@ class Division(NonreducedFraction, BoundedObject):
                 raise KeyError(key)
         positional_argument_values = []
         for positional_argument_name in self._positional_argument_names:
-            positional_argument_value = positional_argument_dictionary[positional_argument_name]
+            positional_argument_value = \
+                positional_argument_dictionary[positional_argument_name]
             positional_argument_values.append(positional_argument_value)
-        result = type(self)(*positional_argument_values, **keyword_argument_dictionary)
+        result = type(self)(
+            *positional_argument_values, **keyword_argument_dictionary)
         return result

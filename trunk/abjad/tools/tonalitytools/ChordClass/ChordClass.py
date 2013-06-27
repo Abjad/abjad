@@ -12,9 +12,17 @@ class ChordClass(NamedChromaticPitchClassSet):
     there are many different spacings and registrations of a G 7 chord.
     '''
 
-    __slots__ = ('_bass', '_quality_indicator', '_root', )
+    ### CLASS VARIABLES ###
 
-    def __new__(klass, root, *args):
+    __slots__ = (
+        '_bass', 
+        '_quality_indicator', 
+        '_root',
+        )
+
+    ### CONSTRUCTOR ###
+
+    def __new__(cls, root, *args):
         from abjad.tools import tonalitytools
         root = pitchtools.NamedChromaticPitchClass(root)
         quality_indicator = tonalitytools.ChordQualityIndicator(*args)
@@ -24,7 +32,7 @@ class ChordClass(NamedChromaticPitchClassSet):
             npc = root + mdi
             npcs.append(npc)
         bass = npcs[0]
-        self = pitchtools.NamedChromaticPitchClassSet.__new__(klass, npcs)
+        self = pitchtools.NamedChromaticPitchClassSet.__new__(cls, npcs)
         object.__setattr__(self, '_root', root)
         object.__setattr__(self, '_quality_indicator', quality_indicator)
         object.__setattr__(self, '_bass', bass)
@@ -52,7 +60,8 @@ class ChordClass(NamedChromaticPitchClassSet):
 
     @property
     def _markup_root(self):
-        if self.quality_indicator._quality_string in ('major', 'augmented', 'dominant'):
+        if self.quality_indicator._quality_string in (
+            'major', 'augmented', 'dominant'):
             root = str(self.root).upper()
         else:
             root = str(self.root).lower()
@@ -102,7 +111,8 @@ class ChordClass(NamedChromaticPitchClassSet):
     @property
     def extent(self):
         from abjad.tools import tonalitytools
-        extent = tonalitytools.chord_class_cardinality_to_extent(self.cardinality)
+        extent = \
+            tonalitytools.chord_class_cardinality_to_extent(self.cardinality)
         return tonalitytools.ExtentIndicator(extent)
 
     @property

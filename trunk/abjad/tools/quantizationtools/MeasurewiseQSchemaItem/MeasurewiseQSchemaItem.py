@@ -4,8 +4,8 @@ from abjad.tools.quantizationtools.QSchemaItem import QSchemaItem
 
 
 class MeasurewiseQSchemaItem(QSchemaItem):
-    '''`MeasurewiseQSchemaItem` represents a change of state in the timeline of a metered
-    quantization process.
+    '''`MeasurewiseQSchemaItem` represents a change of state in the 
+    timeline of a metered quantization process.
 
     ::
 
@@ -50,11 +50,19 @@ class MeasurewiseQSchemaItem(QSchemaItem):
     ### CLASS VARIABLES ###
 
     __slots__ = ()
-    _fields = ('search_tree', 'tempo', 'time_signature', 'use_full_measure')
 
-    ### INITIALIZER ###
+    _fields = (
+        'search_tree', 
+        'tempo', 
+        'time_signature', 
+        'use_full_measure',
+        )
 
-    def __new__(klass, search_tree=None, tempo=None, time_signature=None, use_full_measure=None):
+    ### CONSTRUCTOR ###
+
+    def __new__(cls, 
+        search_tree=None, 
+        tempo=None, time_signature=None, use_full_measure=None):
         from abjad.tools import quantizationtools
 
         if search_tree is not None:
@@ -70,7 +78,7 @@ class MeasurewiseQSchemaItem(QSchemaItem):
         if use_full_measure is not None:
             use_full_measure = bool(use_full_measure)
 
-        return tuple.__new__(klass, (search_tree, tempo, time_signature, use_full_measure))
+        return tuple.__new__(cls, (search_tree, tempo, time_signature, use_full_measure))
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

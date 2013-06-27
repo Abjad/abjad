@@ -33,7 +33,8 @@ class NonreducedFraction(ImmutableAbjadObject, fractions.Fraction):
         >>> mathtools.NonreducedFraction((3,))
         NonreducedFraction(3, 1)
 
-    Similar to built-in fraction except that numerator and denominator do not reduce.
+    Similar to built-in fraction except that numerator and denominator 
+    do not reduce.
 
     Nonreduced fractions inherit from built-in fraction:
 
@@ -53,7 +54,8 @@ class NonreducedFraction(ImmutableAbjadObject, fractions.Fraction):
         >>> isinstance(mathtools.NonreducedFraction(3, 6), numbers.Number)
         True
 
-    Nonreduced fraction initialization requires more function calls that fraction initialization.
+    Nonreduced fraction initialization requires more function calls that 
+    fraction initialization.
     But nonreduced fraction initialization is reasonably fast anyway:
 
     ::
@@ -72,14 +74,18 @@ class NonreducedFraction(ImmutableAbjadObject, fractions.Fraction):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_numerator', '_denominator')
+    __slots__ = (
+        '_numerator', 
+        '_denominator',
+        )
 
-    ### INITIALIZER ###
+    ### CONSTRUCTOR ###
 
-    def __new__(klass, *args):
+    def __new__(cls, *args):
         from abjad.tools import mathtools
         from abjad.tools import sequencetools
-        if len(args) == 1 and hasattr(args[0], 'numerator') and hasattr(args[0], 'denominator'):
+        if len(args) == 1 and hasattr(args[0], 'numerator') and \
+            hasattr(args[0], 'denominator'):
             numerator = args[0].numerator
             denominator = args[0].denominator
         elif len(args) == 1 and isinstance(args[0], int):
@@ -94,10 +100,12 @@ class NonreducedFraction(ImmutableAbjadObject, fractions.Fraction):
             numerator = args[0]
             denominator = args[1]
         else:
-            raise ValueError('can not initialize NonreducedFraction from {!r}.'.format(args))
+            message = 'can not initialize NonreducedFraction from {!r}.'
+            message = message.format(args)
+            raise ValueError(message)
         numerator *= mathtools.sign(denominator)
         denominator = abs(denominator)
-        self = fractions.Fraction.__new__(klass, numerator, denominator)
+        self = fractions.Fraction.__new__(cls, numerator, denominator)
         self._numerator = numerator
         self._denominator = denominator
         return self
@@ -151,12 +159,14 @@ class NonreducedFraction(ImmutableAbjadObject, fractions.Fraction):
                 numerator = self.numerator + expr.numerator
                 return NonreducedFraction(numerator, self.denominator)
             else:
-                denominator = mathtools.least_common_multiple(self.denominator, expr.denominator)
+                denominator = mathtools.least_common_multiple(
+                    self.denominator, expr.denominator)
                 self_multiplier = denominator / self.denominator
                 expr_multiplier = denominator / expr.denominator
                 self_numerator = self_multiplier * self.numerator
                 expr_numerator = expr_multiplier * expr.numerator
-                return NonreducedFraction(self_numerator + expr_numerator, denominator)
+                return NonreducedFraction(
+                    self_numerator + expr_numerator, denominator)
         else:
             raise ValueError(expr)
 
@@ -375,13 +385,15 @@ class NonreducedFraction(ImmutableAbjadObject, fractions.Fraction):
     def _fraction_with_denominator(self, fraction, denominator):
         from abjad.tools import durationtools
         from abjad.tools import mathtools
-        denominator = mathtools.least_common_multiple(denominator, fraction.denominator)
+        denominator = mathtools.least_common_multiple(
+            denominator, fraction.denominator)
         return NonreducedFraction(fraction).with_denominator(denominator)
 
     # do not indent in storage
     def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
         return [''.join(
-            ImmutableAbjadObject._get_tools_package_qualified_repr_pieces(self, is_indented=False))]
+            ImmutableAbjadObject._get_tools_package_qualified_repr_pieces(
+            self, is_indented=False))]
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -544,8 +556,8 @@ class NonreducedFraction(ImmutableAbjadObject, fractions.Fraction):
         return NonreducedFraction(result_numerator, result_denominator)
 
     def multiply_with_numerator_preservation(self, multiplier):
-        '''Multiply nonreduced fraction by `multiplier` with numerator preservation
-        where possible:
+        '''Multiply nonreduced fraction by `multiplier` with numerator 
+        preservation where possible:
 
         ::
 
@@ -638,13 +650,16 @@ class NonreducedFraction(ImmutableAbjadObject, fractions.Fraction):
         multiplier = durationtools.Multiplier(denominator, d)
         new_numerator = multiplier * n
         new_denominator = multiplier * d
-        if new_numerator.denominator == 1 and new_denominator.denominator == 1:
-            return type(self)(new_numerator.numerator, new_denominator.numerator)
+        if new_numerator.denominator == 1 and \
+            new_denominator.denominator == 1:
+            return type(self)(
+                new_numerator.numerator, new_denominator.numerator)
         else:
             return type(self)(n, d)
 
     def with_multiple_of_denominator(self, denominator):
-        '''Return new nonreduced fraction with multiple of integer `denominator`:
+        '''Return new nonreduced fraction with multiple of integer 
+        `denominator`:
 
         ::
 

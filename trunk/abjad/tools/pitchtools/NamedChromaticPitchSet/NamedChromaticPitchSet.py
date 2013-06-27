@@ -4,19 +4,24 @@ from abjad.tools.pitchtools.PitchSet import PitchSet
 class NamedChromaticPitchSet(PitchSet):
     '''.. versionadded:: 2.0
 
-    Abjad model of a named chromatic pitch set::
+    Abjad model of a named chromatic pitch set:
 
-        >>> pitchtools.NamedChromaticPitchSet(['bf', 'bqf', "fs'", "g'", 'bqf', "g'"])
+    ::
+
+        >>> pitchtools.NamedChromaticPitchSet(
+        ...     ['bf', 'bqf', "fs'", "g'", 'bqf', "g'"])
         NamedChromaticPitchSet(['bf', 'bqf', "fs'", "g'"])
 
     Named chromatic pitch sets are immutable.
     '''
 
+    ### CLASS VARIABLES ###
+
     __slots__ = ()
 
-    ### INITIALIZER ###
+    ### CONSTRUCTOR ###
 
-    def __new__(klass, pitchs):
+    def __new__(cls, pitchs):
         from abjad.tools import notetools
         from abjad.tools import pitchtools
         pitches = []
@@ -27,7 +32,7 @@ class NamedChromaticPitchSet(PitchSet):
             else:
                 pitch = pitchtools.NamedChromaticPitch(pitch)
                 pitches.append(pitch)
-        return frozenset.__new__(klass, pitches)
+        return frozenset.__new__(cls, pitches)
 
     ### SPECIAL METHODS ###
 
@@ -47,7 +52,8 @@ class NamedChromaticPitchSet(PitchSet):
         return '%s([%s])' % (type(self).__name__, self._repr_string)
 
     def __str__(self):
-        return '{%s}' % ' '.join([str(pitch) for pitch in self.named_chromatic_pitches])
+        return '{%s}' % ' '.join([str(pitch) 
+            for pitch in self.named_chromatic_pitches])
 
     ### PRIVATE PROPERTIES ###
 
@@ -57,14 +63,17 @@ class NamedChromaticPitchSet(PitchSet):
 
     @property
     def _repr_string(self):
-        return ', '.join([repr(str(pitch)) for pitch in self.named_chromatic_pitches])
+        return ', '.join([repr(str(pitch)) 
+            for pitch in self.named_chromatic_pitches])
 
     ### PUBLIC PROPERTIES ###
 
     @property
     #def numbers(self):
     def chromatic_pitch_numbers(self):
-        return tuple(sorted([pitch.numbered_chromatic_pitch._chromatic_pitch_number for pitch in self]))
+        return tuple(sorted([
+            pitch.numbered_chromatic_pitch._chromatic_pitch_number 
+            for pitch in self]))
 
     @property
     def duplicate_pitch_classes(self):
@@ -76,7 +85,8 @@ class NamedChromaticPitchSet(PitchSet):
             if pitch_class in pitch_classes:
                 duplicate_pitch_classes.append(pitch_class)
             pitch_classes.append(pitch_class)
-        return pitchtools.NumberedChromaticPitchClassSet(duplicate_pitch_classes)
+        return pitchtools.NumberedChromaticPitchClassSet(
+            duplicate_pitch_classes)
 
     @property
     def is_pitch_class_unique(self):
@@ -96,7 +106,8 @@ class NamedChromaticPitchSet(PitchSet):
     @property
     #def pitch_classes(self):
     def numbered_chromatic_pitch_classes(self):
-        return tuple([pitch.numbered_chromatic_pitch_class for pitch in self.pitches])
+        return tuple([pitch.numbered_chromatic_pitch_class 
+            for pitch in self.pitches])
 
     ### PUBLIC METHODS ###
 
@@ -107,8 +118,10 @@ class NamedChromaticPitchSet(PitchSet):
     #    return PCSet([pc.invert() for pc in self])
 
     def transpose(self, n):
-        '''Transpose all pcs in self by n.'''
+        '''Transpose all pcs in self by n.
+        '''
         from abjad.tools import pitchtools
         interval = pitchtools.MelodicChromaticInterval(n)
         return type(self)([
-            pitchtools.transpose_pitch_carrier_by_melodic_interval(pitch, interval) for pitch in self])
+            pitchtools.transpose_pitch_carrier_by_melodic_interval(
+            pitch, interval) for pitch in self])

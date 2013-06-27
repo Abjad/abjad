@@ -101,29 +101,36 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
     Durations are immutable.
     '''
 
-    def __new__(klass, *args):
+    ### CONSTRUCTOR ###
+
+    def __new__(cls, *args):
         from abjad.tools import sequencetools
         try:
-            return fractions.Fraction.__new__(klass, *args)
+            return fractions.Fraction.__new__(cls, *args)
         except TypeError:
             pass
         try:
-            return fractions.Fraction.__new__(klass, *args[0])
+            return fractions.Fraction.__new__(cls, *args[0])
         except (AttributeError, TypeError):
             pass
         try:
-            return fractions.Fraction.__new__(klass, args[0].numerator, args[0].denominator)
+            return fractions.Fraction.__new__(
+                cls, args[0].numerator, args[0].denominator)
         except AttributeError:
             pass
-        if len(args) == 1 and sequencetools.is_integer_equivalent_singleton(args[0]):
-            self = fractions.Fraction.__new__(klass, int(args[0][0]))
-        elif len(args) == 1 and sequencetools.is_fraction_equivalent_pair(args[0]):
-            self = fractions.Fraction.__new__(klass, int(args[0][0]), int(args[0][1]))
-        elif len(args) == 1 and isinstance(args[0], str) and not '/' in args[0]:
+        if len(args) == 1 and \
+            sequencetools.is_integer_equivalent_singleton(args[0]):
+            self = fractions.Fraction.__new__(cls, int(args[0][0]))
+        elif len(args) == 1 and \
+            sequencetools.is_fraction_equivalent_pair(args[0]):
+            self = fractions.Fraction.__new__(
+                cls, int(args[0][0]), int(args[0][1]))
+        elif len(args) == 1 and \
+            isinstance(args[0], str) and not '/' in args[0]:
             result = Duration._init_from_lilypond_duration_string(args[0])
-            self = fractions.Fraction.__new__(klass, result)
+            self = fractions.Fraction.__new__(cls, result)
         elif sequencetools.all_are_integer_equivalent_numbers(args):
-            self = fractions.Fraction.__new__(klass, *[int(x) for x in args])
+            self = fractions.Fraction.__new__(cls, *[int(x) for x in args])
         else:
             raise ValueError(args)
         return self
@@ -134,7 +141,8 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
         return type(self)(fractions.Fraction.__abs__(self, *args))
 
     def __add__(self, *args):
-        if len(args) == 1 and isinstance(args[0], mathtools.NonreducedFraction):
+        if len(args) == 1 and \
+            isinstance(args[0], mathtools.NonreducedFraction):
             return args[0].__radd__(self)
         else:
             return type(self)(fractions.Fraction.__add__(self, *args))
@@ -142,8 +150,10 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
     def __div__(self, *args):
         from abjad.tools import durationtools
         if len(args) == 1 and isinstance(args[0], type(self)):
-            return durationtools.Multiplier(fractions.Fraction.__div__(self, *args))
-        elif len(args) == 1 and isinstance(args[0], mathtools.NonreducedFraction):
+            return durationtools.Multiplier(
+                fractions.Fraction.__div__(self, *args))
+        elif len(args) == 1 and isinstance(
+            args[0], mathtools.NonreducedFraction):
             return args[0].__rdiv__(self)
         else:
             return type(self)(fractions.Fraction.__div__(self, *args))
@@ -170,7 +180,8 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
         return type(self)(fractions.Fraction.__mod__(self, *args))
 
     def __mul__(self, *args):
-        if len(args) == 1 and isinstance(args[0], mathtools.NonreducedFraction):
+        if len(args) == 1 and \
+            isinstance(args[0], mathtools.NonreducedFraction):
             return args[0].__rmul__(self)
         else:
             return type(self)(fractions.Fraction.__mul__(self, *args))
@@ -203,7 +214,8 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
         return self.__class__, (self.numerator, self.denominator)
 
     def __repr__(self):
-        return '%s(%s, %s)' % (type(self).__name__, self.numerator, self.denominator)
+        return '%s(%s, %s)' % (
+            type(self).__name__, self.numerator, self.denominator)
 
     def __rmod__(self, *args):
         return type(self)(fractions.Fraction.__rmod__(self, *args))
@@ -221,7 +233,8 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
         return type(self)(fractions.Fraction.__rtruediv__(self, *args))
 
     def __sub__(self, *args):
-        if len(args) == 1 and isinstance(args[0], mathtools.NonreducedFraction):
+        if len(args) == 1 and \
+            isinstance(args[0], mathtools.NonreducedFraction):
             return args[0].__rsub__(self)
         else:
             return type(self)(fractions.Fraction.__sub__(self, *args))
@@ -247,7 +260,8 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
     # do not indent in storage
     def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
         return [''.join(
-            ImmutableAbjadObject._get_tools_package_qualified_repr_pieces(self, is_indented=False))]
+            ImmutableAbjadObject._get_tools_package_qualified_repr_pieces(
+                self, is_indented=False))]
 
     @staticmethod
     def _init_from_lilypond_duration_string(duration_string):
@@ -292,7 +306,9 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
     def dot_count(self):
         r'''.. versionadded:: 2.11
 
-        Positive integer number of dots required to notate duration::
+        Positive integer number of dots required to notate duration:
+
+        ::
 
             >>> for n in range(1, 16 + 1):
             ...     try:
@@ -332,7 +348,9 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
 
     @property
     def equal_or_greater_assignable(self):
-        r'''Equal or greater assignable::
+        r'''Equal or greater assignable:
+
+        ::
 
             >>> for numerator in range(1, 16 + 1):
             ...     duration = Duration(numerator, 16)
@@ -358,7 +376,8 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
 
         Return new duration.
         '''
-        good_denominator = mathtools.greatest_power_of_two_less_equal(self.denominator)
+        good_denominator = mathtools.greatest_power_of_two_less_equal(
+            self.denominator)
         current_numerator = self.numerator
         candidate = type(self)(current_numerator, good_denominator)
         while not candidate.is_assignable:
@@ -368,7 +387,9 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
 
     @property
     def equal_or_greater_power_of_two(self):
-        r'''Equal or greater power of ``2``::
+        r'''Equal or greater power of ``2``:
+
+        ::
 
             >>> for numerator in range(1, 16 + 1):
             ...     duration = Duration(numerator, 16)
@@ -399,7 +420,9 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
 
     @property
     def equal_or_lesser_assignable(self):
-        r'''Equal or lesser assignable::
+        r'''Equal or lesser assignable:
+
+        ::
 
             >>> for numerator in range(1, 16 + 1):
             ...     duration = Duration(numerator, 16)
@@ -425,7 +448,8 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
 
         Return new duration.
         '''
-        good_denominator = mathtools.least_power_of_two_greater_equal(self.denominator)
+        good_denominator = mathtools.least_power_of_two_greater_equal(
+            self.denominator)
         current_numerator = self.numerator
         candidate = type(self)(current_numerator, good_denominator)
         while not candidate.is_assignable:
@@ -435,7 +459,9 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
 
     @property
     def equal_or_lesser_power_of_two(self):
-        r'''Equal or lesser power of ``2``::
+        r'''Equal or lesser power of ``2``:
+
+        ::
 
             >>> for numerator in range(1, 16 + 1):
             ...     duration = Duration(numerator, 16)
@@ -468,7 +494,9 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
     def flag_count(self):
         r'''.. versionadded:: 2.11
 
-        Nonnegative integer number of flags required to notate duration::
+        Nonnegative integer number of flags required to notate duration:
+
+        ::
 
             >>> for n in range(1, 16 + 1):
             ...     duration = Duration(n, 64)
@@ -503,11 +531,14 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
         r'''.. versionadded:: 2.11
 
         True when duration is an integer power of ``2``.
-        Otherwise false::
+        Otherwise false:
+
+        ::
 
             >>> for n in range(1, 16 + 1):
             ...     duration = Duration(1, n)
-            ...     print '{}\t{}'.format(duration, duration.has_power_of_two_denominator)
+            ...     print '{}\t{}'.format(duration, 
+            ...         duration.has_power_of_two_denominator)
             ...
             1       True
             1/2     True
@@ -535,11 +566,14 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
     def implied_prolation(self):
         r'''.. versionadded:: 2.11
 
-        Implied prolation of multiplier::
+        Implied prolation of multiplier:
+
+        ::
 
             >>> for denominator in range(1, 16 + 1):
             ...     multiplier = Multiplier(1, denominator)
-            ...     print '{}\t{}'.format(multiplier, multiplier.implied_prolation)
+            ...     print '{}\t{}'.format(multiplier, 
+            ...         multiplier.implied_prolation)
             ...
             1       1
             1/2     1
@@ -561,18 +595,22 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
         Return new multipler.
         '''
         from abjad.tools import durationtools
-        numerator = mathtools.greatest_power_of_two_less_equal(self.denominator)
+        numerator = \
+            mathtools.greatest_power_of_two_less_equal(self.denominator)
         return durationtools.Multiplier(numerator, self.denominator)
 
     @property
     def is_assignable(self):
         r'''.. versionadded:: 2.11
 
-        True when assignable. Otherwise false::
+        True when assignable. Otherwise false:
+
+        ::
 
             >>> for numerator in range(0, 16 + 1):
             ...     duration = Duration(numerator, 16)
-            ...     print '{}\t{}'.format(duration.with_denominator(16), duration.is_assignable)
+            ...     print '{}\t{}'.format(duration.with_denominator(16), 
+            ...         duration.is_assignable)
             ...
             0/16    False
             1/16    True
@@ -595,7 +633,8 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
         Return boolean.
         '''
         if 0 < self < 16:
-            if mathtools.is_nonnegative_integer_power_of_two(self.denominator):
+            if mathtools.is_nonnegative_integer_power_of_two(
+                self.denominator):
                 if mathtools.is_assignable_integer(self.numerator):
                     return True
         return False
@@ -617,7 +656,6 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
 
         if not self.is_assignable:
             raise AssignabilityError
-
         undotted_rational = self.equal_or_lesser_power_of_two
         if undotted_rational <= 1:
             undotted_duration_string = str(undotted_rational.denominator)
@@ -628,8 +666,9 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
         elif undotted_rational == type(self)(8, 1):
             undotted_duration_string = r'\maxima'
         else:
-            raise ValueError('can not process undotted rational: %s' % undotted_rational)
-
+            message = 'can not process undotted rational: {}'
+            message = message.format(undotted_rational)
+            raise ValueError(message)
         dot_count = self.dot_count
         dot_string = '.' * dot_count
         dotted_duration_string = undotted_duration_string + dot_string
@@ -639,7 +678,9 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
     def pair(self):
         '''.. versionadded:: 2.9
 
-        Read-only pair of duration numerator and denominator::
+        Read-only pair of duration numerator and denominator:
+
+        ::
 
             >>> duration = Duration(3, 16)
 
@@ -656,7 +697,9 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
     def prolation_string(self):
         r'''.. versionadded:: 2.11
 
-        Prolation string.
+        Prolation string:
+
+        ::
 
             >>> generator = durationtools.yield_durations(unique=True)
             >>> for n in range(16):
@@ -708,7 +751,8 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
 
         Return duration.
         '''
-        fraction = Duration._init_from_lilypond_duration_string(lilypond_duration_string)
+        fraction = Duration._init_from_lilypond_duration_string(
+            lilypond_duration_string)
         return Duration(fraction)
 
     @staticmethod
@@ -730,7 +774,9 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
             return False
 
     def with_denominator(self, denominator):
-        '''Duration with `denominator`::
+        '''Duration with `denominator`:
+
+        ::
 
             >>> duration = Duration(1, 4)
 

@@ -5,7 +5,9 @@ import fractions
 class MelodicChromaticIntervalSegment(IntervalSegment):
     '''.. versionadded:: 2.0
 
-    Abjad model of melodic chromatic interval segment::
+    Abjad model of melodic chromatic interval segment:
+
+    ::
 
         >>> pitchtools.MelodicChromaticIntervalSegment([11, 13, 13.5, -2, 2.5])
         MelodicChromaticIntervalSegment(+11, +13, +13.5, -2, +2.5)
@@ -13,13 +15,15 @@ class MelodicChromaticIntervalSegment(IntervalSegment):
     Melodic chromatic interval segments are immutable.
     '''
 
-    def __new__(klass, mci_tokens):
+    ### CONSTRUCTOR ###
+
+    def __new__(cls, mci_tokens):
         from abjad.tools import pitchtools
         mcis = []
         for token in mci_tokens:
             mci = pitchtools.MelodicChromaticInterval(token)
             mcis.append(mci)
-        return tuple.__new__(klass, mcis)
+        return tuple.__new__(cls, mcis)
 
     ### SPECIAL METHODS ###
 
@@ -49,8 +53,10 @@ class MelodicChromaticIntervalSegment(IntervalSegment):
 
     @property
     def slope(self):
-        '''The slope of a melodic interval segment is the sum of its intervals
-        divided by its length::
+        '''The slope of a melodic interval segment is the sum of its 
+        intervals divided by its length:
+
+        ::
 
             >>> pitchtools.MelodicChromaticIntervalSegment([1, 2]).slope
             Fraction(3, 2)
@@ -61,8 +67,10 @@ class MelodicChromaticIntervalSegment(IntervalSegment):
 
     @property
     def spread(self):
-        '''The maximum harmonic interval spanned by any combination of the intervals within
-        a harmonic chromatic interval segment::
+        '''The maximum harmonic interval spanned by any combination of 
+        the intervals within a harmonic chromatic interval segment:
+
+        ::
 
             >>> pitchtools.MelodicChromaticIntervalSegment([1, 2, -3, 1, -2, 1]).spread
             HarmonicChromaticInterval(4)

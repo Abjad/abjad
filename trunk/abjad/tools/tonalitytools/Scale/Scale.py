@@ -1,7 +1,8 @@
 from abjad.tools import contexttools
 from abjad.tools import pitchtools
 from abjad.tools import sequencetools
-from abjad.tools.pitchtools.NamedChromaticPitchClassSegment import NamedChromaticPitchClassSegment
+from abjad.tools.pitchtools.NamedChromaticPitchClassSegment \
+    import NamedChromaticPitchClassSegment
 
 
 class Scale(NamedChromaticPitchClassSegment):
@@ -16,8 +17,9 @@ class Scale(NamedChromaticPitchClassSegment):
 
     ### INITIALIZER ###
 
-    def __new__(klass, *args):
-        if len(args) == 1 and isinstance(args[0], contexttools.KeySignatureMark):
+    def __new__(cls, *args):
+        if len(args) == 1 and isinstance(
+            args[0], contexttools.KeySignatureMark):
             key_signature = args[0]
         elif len(args) == 1 and isinstance(args[0], Scale):
             key_signature = args[0].key_signature
@@ -29,7 +31,7 @@ class Scale(NamedChromaticPitchClassSegment):
         for mdi in key_signature.mode.melodic_diatonic_interval_segment[:-1]:
             named_chromatic_pitch_class = npcs[-1] + mdi
             npcs.append(named_chromatic_pitch_class)
-        new = tuple.__new__(klass, npcs)
+        new = tuple.__new__(cls, npcs)
         tuple.__setattr__(new, '_key_signature', key_signature)
         return new
 
@@ -51,7 +53,8 @@ class Scale(NamedChromaticPitchClassSegment):
     @property
     def diatonic_interval_class_segment(self):
         dics = []
-        for left, right in sequencetools.iterate_sequence_pairwise_wrapped(self):
+        for left, right in \
+            sequencetools.iterate_sequence_pairwise_wrapped(self):
             dic = left - right
             dics.append(dic)
         dicg = pitchtools.InversionEquivalentDiatonicIntervalClassSegment(dics)
@@ -93,7 +96,8 @@ class Scale(NamedChromaticPitchClassSegment):
 
     def create_named_chromatic_pitch_set_in_pitch_range(self, pitch_range):
         if not isinstance(pitch_range, pitchtools.PitchRange):
-            pitch_range = pitchtools.PitchRange(float(pitchtools.NamedChromaticPitch(pitch_range[0])), \
+            pitch_range = pitchtools.PitchRange(
+                float(pitchtools.NamedChromaticPitch(pitch_range[0])),
                 float(pitchtools.NamedChromaticPitch(pitch_range[1])))
         low = pitch_range.start_pitch.octave_number
         high = pitch_range.stop_pitch.octave_number

@@ -6,7 +6,9 @@ class OrdinalConstant(ImmutableAbjadObject):
 
     Ordinal constant.
 
-    Initialize with `dimension`, `value` and `representation`::
+    Initialize with `dimension`, `value` and `representation`:
+
+    ::
 
         >>> Left = datastructuretools.OrdinalConstant('x', -1, 'Left')
         >>> Left
@@ -23,7 +25,9 @@ class OrdinalConstant(ImmutableAbjadObject):
         >>> Left < Right
         True
 
-    Comparing like-dimensioned ordinal constants is allowed::
+    Comparing like-dimensioned ordinal constants is allowed:
+
+    ::
 
         >>> Up = datastructuretools.OrdinalConstant('y', 1, 'Up')
         >>> Up
@@ -40,7 +44,9 @@ class OrdinalConstant(ImmutableAbjadObject):
         >>> Down < Up
         True
 
-    Comparing differently dimensioned ordinal constants raises an exception::
+    Comparing differently dimensioned ordinal constants raises an exception:
+
+    ::
 
         >>> import py.test
 
@@ -49,8 +55,8 @@ class OrdinalConstant(ImmutableAbjadObject):
         >>> bool(py.test.raises(Exception, 'Left < Up'))
         True
 
-    The ``Left``, ``Right``, ``Center``, ``Up`` and ``Down`` constants shown here
-    load into Python's built-in namespace on Abjad import.
+    The ``Left``, ``Right``, ``Center``, ``Up`` and ``Down`` constants 
+    shown here load into Python's built-in namespace on Abjad import.
 
     These four objects can be used as constant values supplied to keywords.
 
@@ -67,12 +73,12 @@ class OrdinalConstant(ImmutableAbjadObject):
         '_value',
         )
 
-    ### INITIALIZER ###
+    ### CONSTRUCTOR ###
 
-    def __new__(klass, dimension, value, representation):
+    def __new__(cls, dimension, value, representation):
         assert isinstance(dimension, str), repr(dimension)
         assert isinstance(representation, str), repr(representation)
-        self = object.__new__(klass)
+        self = object.__new__(cls)
         self._dimension = dimension
         self._value = value
         self._representation = representation
@@ -124,7 +130,8 @@ class OrdinalConstant(ImmutableAbjadObject):
     def _check_comparator(self, expr):
         if not isinstance(expr, type(self)) or \
             not self._dimension == expr._dimension:
-            raise Exception('can only compare like-dimensioned ordinal constants.')
+            message = 'can only compare like-dimensioned ordinal constants.'
+            raise Exception(message)
 
     # ordinal constants appear as constants in storage format
     def _get_tools_package_qualified_repr_pieces(self, is_indented=True):

@@ -6,12 +6,16 @@ class NonreducedRatio(ImmutableAbjadObject, tuple):
 
     Nonreduced ratio of one or more nonzero integers.
 
-    Initialize from one or more nonzero integers::
+    Initialize from one or more nonzero integers:
+
+    ::
 
         >>> mathtools.NonreducedRatio(2, 4, 2)
         NonreducedRatio(2, 4, 2)
 
-    Or initialize from a tuple or list::
+    Or initialize from a tuple or list:
+
+    ::
 
         >>> ratio = mathtools.NonreducedRatio((2, 4, 2))
         >>> ratio
@@ -25,14 +29,14 @@ class NonreducedRatio(ImmutableAbjadObject, tuple):
     Nonreduced ratios are immutable.
     '''
 
-    ### INITIALIZER ###
+    ### CONSTRUCTOR ###
 
-    def __new__(klass, *args):
+    def __new__(cls, *args):
         if len(args) == 1 and isinstance(args[0], (list, tuple)):
             args = args[0]
         assert args, repr(args)
         assert all([x != 0 for x in args]), repr(args)
-        self = tuple.__new__(klass, args)
+        self = tuple.__new__(cls, args)
         return self
 
     ### SPECIAL METHODS ###
@@ -52,4 +56,5 @@ class NonreducedRatio(ImmutableAbjadObject, tuple):
     # do not indent in storage
     def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
         return [''.join(
-            ImmutableAbjadObject._get_tools_package_qualified_repr_pieces(self, is_indented=False))]
+            ImmutableAbjadObject._get_tools_package_qualified_repr_pieces(
+            self, is_indented=False))]
