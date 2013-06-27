@@ -13,11 +13,17 @@ class ListEditor(InteractiveEditor):
     ### CLASS VARIABLES ###
 
     item_class = None
+
     item_creator_class = None
+
     item_creator_class_kwargs = {}
+
     item_editor_class = None
+
     item_getter_configuration_method = io.UserInputGetter.append_expr
+
     item_identifier = 'element'
+
     target_manifest = TargetManifest(list,)
 
     ### PRIVATE PROPERTIES ###
@@ -120,7 +126,7 @@ class ListEditor(InteractiveEditor):
             result = self.item_class()
         if result is None:
             result = []
-        if result.__class__.__name__ == 'list':
+        if type(result) is list:
             items = result
         else:
             items = [result]

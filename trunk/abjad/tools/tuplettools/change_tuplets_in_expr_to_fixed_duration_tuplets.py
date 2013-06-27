@@ -5,7 +5,9 @@ from abjad.tools import containertools
 def change_tuplets_in_expr_to_fixed_duration_tuplets(expr):
     r'''.. versionadded:: 2.9
 
-    Change tuplets in `expr` to fixed-duration tuplets::
+    Change tuplets in `expr` to fixed-duration tuplets:
+
+    ::
 
         >>> staff = Staff(r"\times 2/3 { c'8 d'8 e'8 } \times 2/3 { c'8 d'8 e'8 }")
 
@@ -34,7 +36,7 @@ def change_tuplets_in_expr_to_fixed_duration_tuplets(expr):
 
     result = []
     for tuplet in iterationtools.iterate_tuplets_in_expr(expr):
-        if tuplet._class_name == 'Tuplet':
+        if type(tuplet) is tuplettools.Tuplet:
             target_duration = tuplet.preprolated_duration
             new_tuplet = tuplettools.FixedDurationTuplet(target_duration, [])
             containertools.move_parentage_children_and_spanners_from_components_to_empty_container(

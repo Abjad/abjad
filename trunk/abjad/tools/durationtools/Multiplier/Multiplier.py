@@ -11,9 +11,12 @@ class Multiplier(Duration):
 
     ### SPECIAL METHODS ###
 
-    # multiplier times duration gives duration
     def __mul__(self, *args):
-        if len(args) == 1 and args[0].__class__.__name__ == 'Duration':
+        '''Multiplier times duration gives duration.
+
+        Return duration.
+        '''
+        if len(args) == 1 and type(args[0]) is Duration:
             return Duration(Duration.__mul__(self, *args))
         else:
             return Duration.__mul__(self, *args)
@@ -25,7 +28,9 @@ class Multiplier(Duration):
         '''.. versionadded:: 2.11
 
         True when mutliplier is greater than ``1/2`` and less than ``2``.
-        Otherwise false::
+        Otherwise false:
+
+        ::
 
             >>> Multiplier(3, 2).is_proper_tuplet_multiplier
             True
