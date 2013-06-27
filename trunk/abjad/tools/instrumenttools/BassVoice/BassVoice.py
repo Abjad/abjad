@@ -7,7 +7,9 @@ from abjad.tools.instrumenttools.Voice import Voice
 class BassVoice(Voice):
     r'''.. versionadded:: 2.8
 
-    Abjad model of the bass voice::
+    Abjad model of the bass voice:
+
+    ::
 
         >>> staff = Staff("c8 d8 e8 f8")
 
@@ -35,13 +37,16 @@ class BassVoice(Voice):
     The bass voice targets staff context by default.
     '''
 
+    ### INITIALIZER ###
+
     def __init__(self, **kwargs):
         Voice.__init__(self, **kwargs)
         self._default_instrument_name = 'bass voice'
         self._default_performer_names.append('bass')
         self._default_short_instrument_name = 'bass'
         self._is_primary_instrument = True
-        self.sounding_pitch_of_written_middle_c = pitchtools.NamedChromaticPitch("c'")
+        self.sounding_pitch_of_written_middle_c = \
+            pitchtools.NamedChromaticPitch("c'")
         self.primary_clefs = [contexttools.ClefMark('bass')]
         self._copy_primary_clefs_to_all_clefs()
         self._traditional_pitch_range = pitchtools.PitchRange(('E2', 'F4'))

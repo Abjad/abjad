@@ -67,7 +67,7 @@ class NonreducedFraction(ImmutableAbjadObject, fractions.Fraction):
     ::
 
         >>> iotools.count_function_calls('mathtools.NonreducedFraction(3, 6)', globals())
-        28
+        31
 
     Nonreduced fractions are immutable.
     '''
@@ -139,14 +139,14 @@ class NonreducedFraction(ImmutableAbjadObject, fractions.Fraction):
             >>> a = mathtools.NonreducedFraction(3, 6)
             >>> b = mathtools.NonreducedFraction(3, 12)
             >>> iotools.count_function_calls('a + b', globals())
-            65
+            68
 
         Adding an integer is even faster:
 
         ::
 
             >>> iotools.count_function_calls('a + 10', globals())
-            33
+            36
 
         Return nonreduced fraction.
         '''

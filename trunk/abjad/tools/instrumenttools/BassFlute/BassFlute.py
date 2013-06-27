@@ -6,7 +6,9 @@ from abjad.tools.instrumenttools.Flute import Flute
 class BassFlute(Flute):
     r'''.. versionadded:: 2.0
 
-    Abjad model of the bass flute::
+    Abjad model of the bass flute:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
 
@@ -34,10 +36,13 @@ class BassFlute(Flute):
     The bass flute targets staff context by default.
     '''
 
+    ### INITIALIZER ###
+
     def __init__(self, **kwargs):
         Flute.__init__(self, **kwargs)
         self._default_instrument_name = 'bass flute'
         self._default_short_instrument_name = 'bass fl.'
         self._is_primary_instrument = False
-        self.sounding_pitch_of_fingered_middle_c = pitchtools.NamedChromaticPitch('c')
+        self.sounding_pitch_of_fingered_middle_c = \
+            pitchtools.NamedChromaticPitch('c')
         self._traditional_pitch_range = pitchtools.PitchRange(-12, 24)

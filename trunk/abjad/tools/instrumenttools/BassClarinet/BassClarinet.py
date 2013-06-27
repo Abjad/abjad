@@ -35,12 +35,16 @@ class BassClarinet(Clarinet):
     The bass clarinet targets staff context by default.
     '''
 
+    ### INITIALIZER ###
+
     def __init__(self, **kwargs):
         Clarinet.__init__(self, **kwargs)
         self._default_instrument_name = 'bass clarinet'
         self._default_short_instrument_name = 'bass cl.'
         self._is_primary_instrument = False
-        self.sounding_pitch_of_fingered_middle_c = pitchtools.NamedChromaticPitch('bf,')
+        self.sounding_pitch_of_fingered_middle_c = \
+            pitchtools.NamedChromaticPitch('bf,')
         self.primary_clefs = [contexttools.ClefMark('treble')]
-        self.all_clefs = [contexttools.ClefMark('treble'), contexttools.ClefMark('bass')]
+        self.all_clefs = [
+            contexttools.ClefMark('treble'), contexttools.ClefMark('bass')]
         self._traditional_pitch_range = pitchtools.PitchRange(-26, 19)

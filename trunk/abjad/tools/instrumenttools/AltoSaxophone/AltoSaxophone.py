@@ -7,7 +7,9 @@ from abjad.tools.instrumenttools.Saxophone.Saxophone import Saxophone
 class AltoSaxophone(Saxophone):
     r'''.. versionadded:: 2.6
 
-    Abjad model of the alto saxophone::
+    Abjad model of the alto saxophone:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
 
@@ -37,13 +39,16 @@ class AltoSaxophone(Saxophone):
     The alto saxophone targets staff context by default.
     '''
 
+    ### INITIALIZER ###
+
     def __init__(self, **kwargs):
         Saxophone.__init__(self, **kwargs)
         self._default_instrument_name = 'alto saxophone'
         self._default_performer_names.extend(['saxophonist'])
         self._default_short_instrument_name = 'alto sax.'
         self._is_primary_instrument = True
-        self.sounding_pitch_of_fingered_middle_c = pitchtools.NamedChromaticPitch('ef')
+        self.sounding_pitch_of_fingered_middle_c = \
+            pitchtools.NamedChromaticPitch('ef')
         self.primary_clefs = [contexttools.ClefMark('treble')]
         self._copy_primary_clefs_to_all_clefs()
         self._traditional_pitch_range = pitchtools.PitchRange(-11, 21)

@@ -7,7 +7,9 @@ from abjad.tools.instrumenttools.Voice import Voice
 class ContraltoVoice(Voice):
     r'''.. versionadded:: 2.8
 
-    Abjad model of the contralto voice::
+    Abjad model of the contralto voice:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
 
