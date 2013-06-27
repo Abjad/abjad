@@ -26,7 +26,7 @@ def map_sequence_elements_to_canonic_tuples(sequence, decrease_parts_monotonical
     if not isinstance(sequence, list):
         raise TypeError
 
-    if not all([isinstance(x, (int, long)) for x in sequence]):
+    if not all(isinstance(x, (int, long)) for x in sequence):
         raise ValueError
 
     result = []

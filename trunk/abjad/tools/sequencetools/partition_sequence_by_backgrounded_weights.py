@@ -69,7 +69,7 @@ def partition_sequence_by_backgrounded_weights(sequence, weights):
     '''
     from abjad.tools import sequencetools
 
-    assert all([0 < x for x in weights])
+    assert all(0 < x for x in weights)
     assert mathtools.weight(sequence) == mathtools.weight(weights)
 
     start_offsets = mathtools.cumulative_sums_zero([abs(x) for x in sequence])[:-1]

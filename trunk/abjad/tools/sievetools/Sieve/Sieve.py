@@ -57,7 +57,7 @@ class Sieve(_BaseResidueClass):
 
     def _sort_rcs(self):
         from abjad.tools import sievetools
-        if all([isinstance(rc, sievetools.ResidueClass) for rc in self.rcs]):
+        if all(isinstance(rc, sievetools.ResidueClass) for rc in self.rcs):
             self.rcs.sort()
 
     ### PUBLIC PROPERTIES ###

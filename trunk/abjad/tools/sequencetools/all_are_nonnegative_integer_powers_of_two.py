@@ -24,6 +24,6 @@ def all_are_nonnegative_integer_powers_of_two(expr):
     '''
 
     try:
-        return all([mathtools.is_nonnegative_integer_power_of_two(x) for x in expr])
+        return all(mathtools.is_nonnegative_integer_power_of_two(x) for x in expr)
     except TypeError:
         return False

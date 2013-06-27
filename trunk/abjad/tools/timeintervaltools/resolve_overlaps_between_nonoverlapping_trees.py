@@ -28,8 +28,8 @@ def resolve_overlaps_between_nonoverlapping_trees(trees, minimum_duration=None):
     from abjad.tools import timeintervaltools
 
     assert isinstance(trees, collections.Iterable) and len(trees) \
-        and all([isinstance(x, timeintervaltools.TimeIntervalTree) for x in trees]) \
-        and all([timeintervaltools.all_intervals_are_nonoverlapping(x) for x in trees])
+        and all(isinstance(x, timeintervaltools.TimeIntervalTree) for x in trees) \
+        and all(timeintervaltools.all_intervals_are_nonoverlapping(x) for x in trees)
 
     if minimum_duration is None:
         minimum_duration = durationtools.Duration(0)

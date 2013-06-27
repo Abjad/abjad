@@ -99,7 +99,7 @@ def make_leaves_from_talea(talea, talea_denominator,
     '''
     from abjad.tools import leaftools
 
-    assert all([x != 0 for x in talea]), repr(talea)
+    assert all(x != 0 for x in talea), repr(talea)
 
     # make leaves
     result = []

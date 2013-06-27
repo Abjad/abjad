@@ -36,7 +36,7 @@ class QGridLeaf(RhythmTreeNode):
         if q_event_proxies is None:
             self._q_event_proxies = []
         else:
-            assert all([isinstance(x, quantizationtools.QEventProxy) for x in q_event_proxies])
+            assert all(isinstance(x, quantizationtools.QEventProxy) for x in q_event_proxies)
             self._q_event_proxies = list(q_event_proxies)
         self._is_divisible = bool(is_divisible)
 

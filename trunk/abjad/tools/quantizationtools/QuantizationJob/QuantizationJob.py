@@ -55,14 +55,14 @@ class QuantizationJob(AbjadObject):
         from abjad.tools import quantizationtools
 
         assert isinstance(search_tree, quantizationtools.SearchTree)
-        assert all([isinstance(x, quantizationtools.QEventProxy) for x in q_event_proxies])
+        assert all(isinstance(x, quantizationtools.QEventProxy) for x in q_event_proxies)
         self._job_id = job_id
         self._search_tree = search_tree
         self._q_event_proxies = tuple(q_event_proxies)
         if q_grids is None:
             self._q_grids = ()
         else:
-            assert all([isinstance(x, quantizationtools.QGrid) for x in q_grids])
+            assert all(isinstance(x, quantizationtools.QGrid) for x in q_grids)
             self._q_grids = tuple(q_grids)
 
     ### SPECIAL METHODS ###

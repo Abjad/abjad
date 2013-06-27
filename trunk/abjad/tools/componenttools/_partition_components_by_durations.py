@@ -29,7 +29,7 @@ def _partition_components_by_durations(duration_type, components, durations,
             except TypeError:
                 raise AssertionError
     durations = _durations
-    assert all([isinstance(x, (int, float, durationtools.Duration)) for x in durations])
+    assert all(isinstance(x, (int, float, durationtools.Duration)) for x in durations)
 
     result = []
     part = []

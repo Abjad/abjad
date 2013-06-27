@@ -104,7 +104,7 @@ class CounttimeComponentSelectExpression(
 
     def _is_counttime_component_class_expr(self, expr):
         from experimental.tools import musicexpressiontools
-        if isinstance(expr, tuple) and all([self._is_counttime_component_class_expr(x) for x in expr]):
+        if isinstance(expr, tuple) and all(self._is_counttime_component_class_expr(x) for x in expr):
             return True
         elif isinstance(expr, musicexpressiontools.ClassInventory):
             return True

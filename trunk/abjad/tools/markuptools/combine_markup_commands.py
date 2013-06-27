@@ -30,7 +30,7 @@ def combine_markup_commands(*commands):
     from abjad.tools import markuptools
 
     assert len(commands)
-    assert all([isinstance(command, (markuptools.MarkupCommand, str)) for command in commands])
+    assert all(isinstance(command, (markuptools.MarkupCommand, str)) for command in commands)
 
     if 1 == len(commands):
         return commands[0]

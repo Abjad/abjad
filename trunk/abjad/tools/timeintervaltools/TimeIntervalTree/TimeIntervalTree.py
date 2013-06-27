@@ -377,7 +377,7 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
             start, stop = args[0].start, args[0].stop
         elif len(args) == 2:
             start, stop = args[0], args[1]
-            assert all([isinstance(x, (int, Fraction)) for x in (start, stop)])
+            assert all(isinstance(x, (int, Fraction)) for x in (start, stop))
             assert start <= stop
         else:
             raise ValueError
@@ -527,7 +527,7 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
             start, stop = args[0].start, args[0].stop
         elif len(args) == 2:
             start, stop = args[0], args[1]
-            assert all([isinstance(x, (int, Fraction)) for x in (start, stop)])
+            assert all(isinstance(x, (int, Fraction)) for x in (start, stop))
             assert start <= stop
         else:
             raise ValueError
@@ -709,7 +709,7 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
             start, stop = args[0].start, args[0].stop
         elif len(args) == 2:
             start, stop = args[0], args[1]
-            assert all([isinstance(x, (int, Fraction)) for x in (start, stop)])
+            assert all(isinstance(x, (int, Fraction)) for x in (start, stop))
             assert start <= stop
         else:
             raise ValueError
@@ -903,7 +903,7 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
             start, stop = args[0].start, args[0].stop
         elif len(args) == 2:
             start, stop = args[0], args[1]
-            assert all([isinstance(x, (int, Fraction)) for x in (start, stop)])
+            assert all(isinstance(x, (int, Fraction)) for x in (start, stop))
             assert start <= stop
         else:
             raise ValueError

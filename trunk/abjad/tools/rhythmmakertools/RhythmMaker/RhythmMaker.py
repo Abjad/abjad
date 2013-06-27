@@ -67,7 +67,7 @@ class RhythmMaker(Maker):
     def _all_are_tuplets_or_all_are_leaf_lists(self, expr):
         if tuplettools.all_are_tuplets(expr):
             return True
-        elif all([leaftools.all_are_leaves(x) for x in expr]):
+        elif all(leaftools.all_are_leaves(x) for x in expr):
             return True
         else:
             return False

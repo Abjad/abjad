@@ -3,7 +3,7 @@ from experimental.tools.constrainttools import *
 
 def test_FixedLengthStreamSolver_01():
     domain = Domain([1, 2, 3, 4], 4)
-    all_unique = GlobalCountsConstraint(lambda x: all([y == 1 for y in x.values()]))
+    all_unique = GlobalCountsConstraint(lambda x: all(y == 1 for y in x.values()))
     max_interval = RelativeIndexConstraint([0, 1], lambda x, y: abs(x - y) < 3)
 
     ordered_solver = FixedLengthStreamSolver(domain, [all_unique, max_interval])

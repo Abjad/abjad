@@ -250,7 +250,7 @@ class PitchArrayColumn(AbjadObject):
         self._cells.append(cell)
 
     def extend(self, cells):
-        if not all([isinstance(cell, PitchArrayCell) for cell in cells]):
+        if not all(isinstance(cell, PitchArrayCell) for cell in cells):
             raise TypeError('must be cells.')
         for cell in cells:
             self.append(cell)

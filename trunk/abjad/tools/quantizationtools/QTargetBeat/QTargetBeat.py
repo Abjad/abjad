@@ -81,7 +81,7 @@ class QTargetBeat(AbjadObject):
         from abjad.tools import quantizationtools
         if not self.q_events:
             return None
-        assert all([isinstance(x, quantizationtools.QEvent) for x in self.q_events])
+        assert all(isinstance(x, quantizationtools.QEvent) for x in self.q_events)
         q_event_proxies = []
         for q_event in self.q_events:
             q_event_proxy = quantizationtools.QEventProxy(

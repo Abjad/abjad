@@ -24,4 +24,4 @@ def all_are_durations(expr):
     '''
     from abjad.tools import durationtools
 
-    return all([isinstance(x, durationtools.Duration) for x in expr])
+    return all(isinstance(x, durationtools.Duration) for x in expr)

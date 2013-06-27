@@ -18,6 +18,6 @@ def all_are_nonnegative_integers(expr):
     '''
 
     try:
-        return all([mathtools.is_nonnegative_integer(x) for x in expr])
+        return all(mathtools.is_nonnegative_integer(x) for x in expr)
     except TypeError:
         return False

@@ -32,9 +32,9 @@ def get_shared_numeric_sign(sequence):
 
     if len(sequence) == 0:
         return 0
-    elif all([0 < x for x in sequence]):
+    elif all(0 < x for x in sequence):
         return 1
-    elif all([x < 0 for x in sequence]):
+    elif all(x < 0 for x in sequence):
         return -1
     else:
         return None

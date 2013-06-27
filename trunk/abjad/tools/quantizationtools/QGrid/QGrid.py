@@ -230,7 +230,7 @@ class QGrid(AbjadObject):
         Return None
         '''
         from abjad.tools import quantizationtools
-        assert all([isinstance(x, quantizationtools.QEventProxy) for x in q_event_proxies])
+        assert all(isinstance(x, quantizationtools.QEventProxy) for x in q_event_proxies)
         leaves, offsets = self.leaves, self.offsets
         for q_event_proxy in q_event_proxies:
             idx = bisect.bisect_left(offsets, q_event_proxy.offset)

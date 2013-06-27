@@ -23,7 +23,7 @@ def _give_music_from_donor_components_to_recipient_components(donors, recipient)
     # make sure there's no music in donor components to hand over
     if isinstance(recipient, leaftools.Leaf) or \
         (isinstance(recipient, containertools.Container) and len(recipient)):
-        if all([len(x.music) == 0 for x in donors]):
+        if all(len(x.music) == 0 for x in donors):
             return donors
         else:
             raise MusicContentsError('can not give music to leaf: "%s".' % recipient)

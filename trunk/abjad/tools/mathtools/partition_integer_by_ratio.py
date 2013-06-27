@@ -38,7 +38,7 @@ def partition_integer_by_ratio(n, ratio):
     if not mathtools.is_integer_equivalent_number(n):
         raise TypeError('input "%s" is not integer-equivalent number.' % n)
 
-    if not all([mathtools.is_integer_equivalent_number(part) for part in ratio]):
+    if not all(mathtools.is_integer_equivalent_number(part) for part in ratio):
         raise TypeError('some parts in "%s" not integer-equivalent numbers.' % ratio)
 
     result = [0]

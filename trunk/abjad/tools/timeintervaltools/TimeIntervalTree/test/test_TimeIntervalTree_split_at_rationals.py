@@ -13,7 +13,7 @@ def test_TimeIntervalTree_split_at_rationals_01():
 
     result = tree.split_at_rationals(4)
     assert 2 == len(result)
-    assert all([isinstance(x, type(tree)) for x in result])
+    assert all(isinstance(x, type(tree)) for x in result)
 
     result_1, result_2 = result
     assert 2 == len(result_1)

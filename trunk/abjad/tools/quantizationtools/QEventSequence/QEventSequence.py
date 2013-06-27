@@ -75,7 +75,7 @@ class QEventSequence(tuple, ImmutableAbjadObject):
         clses = (
             quantizationtools.PitchedQEvent, quantizationtools.SilentQEvent)
         assert 1 < len(args)
-        assert all([isinstance(x, clses) for x in args[:-1]])
+        assert all(isinstance(x, clses) for x in args[:-1])
         assert isinstance(args[-1], quantizationtools.TerminalQEvent)
         assert sequencetools.is_monotonically_increasing_sequence(
             [x.offset for x in args])

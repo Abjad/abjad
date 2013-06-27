@@ -10,8 +10,8 @@ def test_RhythmTreeNode___call___01():
 
     assert isinstance(result, (list, selectiontools.Selection))
     assert len(result) == 4
-    assert all([isinstance(x, Note) for x in result])
-    assert all([x.written_duration == Duration(1, 16) for x in result])
+    assert all(isinstance(x, Note) for x in result)
+    assert all(x.written_duration == Duration(1, 16) for x in result)
 
 
 def test_RhythmTreeNode___call___02():

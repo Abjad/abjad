@@ -15,7 +15,7 @@ class GlobalCountsConstraint(_GlobalConstraint):
 
     ::
 
-        >>> all_unique = GlobalCountsConstraint(lambda x: all([y == 1 for y in x.values()]))
+        >>> all_unique = GlobalCountsConstraint(lambda x: all(y == 1 for y in x.values()))
         >>> one_climax = GlobalCountsConstraint(lambda x: x[max(x.keys())] == 1)
 
     ::

@@ -67,7 +67,7 @@ def insert_and_transpose_nested_subruns_in_chromatic_pitch_class_number_list(not
     from abjad.tools import pitchtools
 
     assert isinstance(notes, list)
-    assert all([isinstance(x, notetools.Note) for x in notes])
+    assert all(isinstance(x, notetools.Note) for x in notes)
     assert isinstance(subrun_indicators, list)
 
     len_notes = len(notes)

@@ -78,7 +78,7 @@ def copy_and_partition_governed_component_subtree_by_leaf_counts(container, leaf
     from abjad.tools import containertools
 
     assert isinstance(container, containertools.Container)
-    assert all([isinstance(x, int) for x in leaf_counts])
+    assert all(isinstance(x, int) for x in leaf_counts)
 
     result = []
     sums = mathtools.cumulative_sums_zero(leaf_counts)

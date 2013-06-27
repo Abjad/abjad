@@ -46,7 +46,7 @@ def inversion_equivalent_chromatic_interval_class_number_dictionary(pitches):
     vector = {}
 
     # 12-ET pitches only
-    if all([isinstance(interval, int) for interval in intervals]):
+    if all(isinstance(interval, int) for interval in intervals):
         for i in range(7):
             vector[i] = intervals.count(i)
     # 24-ET pitches included

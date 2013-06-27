@@ -127,13 +127,13 @@ class ScorePackageProxy(PackageProxy):
 
     @property
     def has_correct_directory_structure(self):
-        return all([os.path.exists(name) 
-            for name in self.top_level_directory_paths])
+        return all(os.path.exists(name) 
+            for name in self.top_level_directory_paths)
 
     @property
     def has_correct_initializers(self):
-        return all([os.path.exists(initializer) 
-            for initializer in self.score_initializer_file_names])
+        return all(os.path.exists(initializer) 
+            for initializer in self.score_initializer_file_names)
 
     @property
     def has_correct_package_structure(self):

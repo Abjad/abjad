@@ -96,7 +96,7 @@ class Performer(AbjadObject):
             if instruments is None:
                 self._instruments[:] = []
             elif isinstance(instruments, list):
-                assert all([isinstance(x, Instrument) for x in instruments])
+                assert all(isinstance(x, Instrument) for x in instruments)
                 self._instruments[:] = instruments[:]
             else:
                 message = 'instruments {!r} must be list or none.'

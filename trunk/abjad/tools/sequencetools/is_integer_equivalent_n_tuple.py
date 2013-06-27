@@ -17,5 +17,5 @@ def is_integer_equivalent_n_tuple(expr, n):
     Return boolean.
     '''
 
-    return isinstance(expr, tuple) and len(expr) == n and all([
-        mathtools.is_integer_equivalent_expr(x) for x in expr])
+    return isinstance(expr, tuple) and len(expr) == n and \
+        all(mathtools.is_integer_equivalent_expr(x) for x in expr)

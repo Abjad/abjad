@@ -14,4 +14,4 @@ def is_integer_n_tuple(expr, n):
     Return boolean.
     '''
 
-    return isinstance(expr, tuple) and len(expr) == n and all([isinstance(x, int) for x in expr])
+    return isinstance(expr, tuple) and len(expr) == n and all(isinstance(x, int) for x in expr)

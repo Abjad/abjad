@@ -24,4 +24,4 @@ def all_are_pitch_arrays(expr):
     '''
     from abjad.tools import pitcharraytools
 
-    return all([isinstance(x, pitcharraytools.PitchArray) for x in expr])
+    return all(isinstance(x, pitcharraytools.PitchArray) for x in expr)

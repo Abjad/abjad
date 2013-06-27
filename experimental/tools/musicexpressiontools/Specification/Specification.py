@@ -63,11 +63,11 @@ class Specification(AbjadObject):
             context_names = [context_token]
         elif context_token in self.context_name_abbreviations:
             context_names = [context_token]
-        elif isinstance(context_token, (tuple, list)) and all([
-            x in self.context_name_abbreviations for x in context_token]):
+        elif isinstance(context_token, (tuple, list)) and all(
+            x in self.context_name_abbreviations for x in context_token):
             context_names = context_token
-        elif isinstance(context_token, (tuple, list)) and all([
-            x in self.context_names for x in context_token]):
+        elif isinstance(context_token, (tuple, list)) and all(
+            x in self.context_names for x in context_token):
             context_names = context_token
         elif isinstance(context_token, contexttools.Context):
             context_names = [context_token.name]

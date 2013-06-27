@@ -128,20 +128,20 @@ def is_yes_no_string(expr):
 
 def are_articulation_tokens(expr):
     if isinstance(expr, (tuple, list)):
-        return all([is_articulation_token(x) for x in expr])
+        return all(is_articulation_token(x) for x in expr)
 
 def are_dynamic_tokens(expr):
     if isinstance(expr, (tuple, list)):
-        return all([is_dynamic_token(x) for x in expr])
+        return all(is_dynamic_token(x) for x in expr)
 
 def are_hairpin_tokens(expr):
     if isinstance(expr, (tuple, list)):
-        return all([is_hairpin_token(x) for x in expr])
+        return all(is_hairpin_token(x) for x in expr)
 
 def are_lists(expr):
     if isinstance(expr, (tuple, list)):
-        return all([is_list(x) for x in expr])
+        return all(is_list(x) for x in expr)
 
 def are_strings(expr):
     if isinstance(expr, (tuple, list)):
-        return all([is_string(x) for x in expr])
+        return all(is_string(x) for x in expr)

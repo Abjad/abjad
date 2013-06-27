@@ -66,9 +66,9 @@ def repeat_runs_in_sequence_to_count(sequence, indicators):
     from abjad.tools import componenttools
 
     assert isinstance(sequence, list)
-    assert all([not isinstance(x, componenttools.Component) for x in sequence])
+    assert all(not isinstance(x, componenttools.Component) for x in sequence)
     assert isinstance(indicators, list)
-    assert all([len(x) == 3 for x in indicators])
+    assert all(len(x) == 3 for x in indicators)
 
     len_l = len(sequence)
     instructions = []

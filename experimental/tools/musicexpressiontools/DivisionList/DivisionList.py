@@ -82,7 +82,7 @@ class DivisionList(BoundedObject):
             positioned_divisions.append(positioned_division)
             total_duration += positioned_division.duration
         divisions = positioned_divisions
-        assert all([x.start_offset is not None for x in divisions]), repr(divisions)
+        assert all(x.start_offset is not None for x in divisions), repr(divisions)
         self._divisions = divisions
         self._voice_name = voice_name
         assert self.is_well_formed

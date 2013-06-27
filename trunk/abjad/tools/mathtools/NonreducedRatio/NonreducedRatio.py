@@ -35,7 +35,7 @@ class NonreducedRatio(ImmutableAbjadObject, tuple):
         if len(args) == 1 and isinstance(args[0], (list, tuple)):
             args = args[0]
         assert args, repr(args)
-        assert all([x != 0 for x in args]), repr(args)
+        assert all(x != 0 for x in args), repr(args)
         self = tuple.__new__(cls, args)
         return self
 

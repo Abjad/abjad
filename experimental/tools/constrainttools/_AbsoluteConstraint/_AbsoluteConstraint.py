@@ -13,7 +13,7 @@ class _AbsoluteConstraint(_Constraint):
             indices = [indices]
         elif isinstance(indices, (list, tuple)):
             indices = sorted(set(indices))
-            assert all([0 <= x for x in indices])
+            assert all(0 <= x for x in indices)
         else:
             raise Exception('Cannot determine indices from %s' % indices)
         object.__setattr__(self, '_indices', indices)

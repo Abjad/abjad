@@ -21,7 +21,7 @@ class PitchArray(AbjadObject):
             if isinstance(args[0], (tuple, list)):
                 self._init_by_cell_token_lists(*args)
         elif len(args) == 2:
-            if all([isinstance(arg, int) for arg in args]):
+            if all(isinstance(arg, int) for arg in args):
                 self._init_by_counts(*args)
 
     ### SPECIAL METHODS ###
@@ -177,7 +177,7 @@ class PitchArray(AbjadObject):
 
     @property
     def is_rectangular(self):
-        return all([not row.is_defective for row in self.rows])
+        return all(not row.is_defective for row in self.rows)
 
     @property
     def pitches(self):

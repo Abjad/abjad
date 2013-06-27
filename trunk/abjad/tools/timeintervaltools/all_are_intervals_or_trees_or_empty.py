@@ -17,6 +17,6 @@ def all_are_intervals_or_trees_or_empty(input):
         else:
             return [x]
 
-    return all([isinstance(x, (timeintervaltools.TimeInterval,
+    return all(isinstance(x, (timeintervaltools.TimeInterval,
         timeintervaltools.TimeIntervalTree))
-        for x in recurse(input)])
+        for x in recurse(input))

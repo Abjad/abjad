@@ -32,7 +32,7 @@ class Domain(AbjadObject):
     def __init__(self, *args):
         if 1 == len(args):
             assert 0 < len(args[0])
-            assert all([len(x) for x in args[0]])
+            assert all(len(x) for x in args[0])
             domain = tuple([tuple(x) for x in args[0]])
         elif 2 == len(args):
             assert 0 < len(args[0])

@@ -25,4 +25,4 @@ def all_are_spanners(expr):
     '''
     from abjad.tools import spannertools
 
-    return all([isinstance(x, spannertools.Spanner) for x in expr])
+    return all(isinstance(x, spannertools.Spanner) for x in expr)

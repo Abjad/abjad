@@ -20,7 +20,7 @@ class _IntervalNode(_RedBlackNode):
         _RedBlackNode.__init__(self, key)
         self.payload = []
         if isinstance(intervals, (list, set, tuple)):
-            assert all([isinstance(interval, TimeInterval) for interval in intervals])
+            assert all(isinstance(interval, TimeInterval) for interval in intervals)
             self.payload.extend(intervals)
         elif isinstance(intervals, (TimeInterval, type(None))):
             self.payload.append(intervals)

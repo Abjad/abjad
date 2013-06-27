@@ -92,7 +92,7 @@ class Markup(DirectedMark):
         elif isinstance(argument, str):
             to_parse = r'\markup {{ {} }}'.format(argument)
             parsed = lilypondparsertools.LilyPondParser()(to_parse)
-            if all([isinstance(x, str) for x in parsed.contents]):
+            if all(isinstance(x, str) for x in parsed.contents):
                 contents = (' '.join(parsed.contents),)
             else:
                 contents = tuple(parsed.contents)

@@ -281,7 +281,7 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
             elif isinstance(expr, list) and len(expr) == 1 and isinstance(expr[0], str):
                 expr = RhythmTreeParser()(expr[0])
             else:
-                assert all([isinstance(x, self._node_klass) for x in expr])
+                assert all(isinstance(x, self._node_klass) for x in expr)
             if i.start == i.stop and i.start is not None \
                 and i.stop is not None and i.start <= -len(self):
                 start, stop = 0, 0

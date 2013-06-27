@@ -16,7 +16,7 @@ class GlobalReferenceConstraint(_GlobalConstraint):
     ::
 
         >>> reference = [0, 1, 2, 3]
-        >>> predicate = lambda solution, reference: all([item not in reference for item in solution])
+        >>> predicate = lambda solution, reference: all(item not in reference for item in solution)
         >>> constraint = GlobalReferenceConstraint(reference, predicate)
 
     ::

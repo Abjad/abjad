@@ -66,7 +66,7 @@ class ReiteratedArticulationHandler(ArticulationHandler):
             return self._articulation_list
         def fset(self, articulation_list):
             if isinstance(articulation_list, list):
-                if all([isinstance(x, str) for x in articulation_list]):
+                if all(isinstance(x, str) for x in articulation_list):
                     self._articulation_list = articulation_list
             elif isinstance(articulation_list, str):
                 self._articulation_list = [articulation_list]

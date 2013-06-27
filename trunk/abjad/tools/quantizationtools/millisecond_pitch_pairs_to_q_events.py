@@ -51,14 +51,14 @@ def millisecond_pitch_pairs_to_q_events(pairs):
 
     # validate input
     assert isinstance(pairs, collections.Iterable)
-    assert all([isinstance(x, collections.Iterable) for x in pairs])
-    assert all([len(x) == 2 for x in pairs])
-    assert all([0 < x[0] for x in pairs])
+    assert all(isinstance(x, collections.Iterable) for x in pairs)
+    assert all(len(x) == 2 for x in pairs)
+    assert all(0 < x[0] for x in pairs)
     for pair in pairs:
         assert isinstance(pair[1], (numbers.Number, type(None), collections.Iterable))
         if isinstance(pair[1], collections.Iterable):
             assert 0 < len(pair[1])
-            assert all([isinstance(x, numbers.Number) for x in pair[1]])
+            assert all(isinstance(x, numbers.Number) for x in pair[1])
 
     # fuse silences
     g = itertools.groupby(pairs, lambda x: x[1] is not None)
@@ -81,7 +81,7 @@ def millisecond_pitch_pairs_to_q_events(pairs):
         pitches = pair[1][1]
 
         if isinstance(pitches, collections.Iterable):
-            assert all([isinstance(x, numbers.Number) for x in pitches])
+            assert all(isinstance(x, numbers.Number) for x in pitches)
             q_events.append(quantizationtools.PitchedQEvent(offset, pitches))
         elif isinstance(pitches, type(None)):
             q_events.append(quantizationtools.SilentQEvent(offset))

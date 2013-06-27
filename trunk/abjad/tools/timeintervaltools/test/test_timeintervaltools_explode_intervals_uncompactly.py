@@ -15,7 +15,7 @@ def test_timeintervaltools_explode_intervals_uncompactly_02():
     '''All resulting trees are non-zero in length.'''
     tree = TimeIntervalTree(_make_test_intervals())
     xtrees = explode_intervals_uncompactly(tree)
-    assert all([len(xtree) for xtree in xtrees])
+    assert all(len(xtree) for xtree in xtrees)
 
 def test_timeintervaltools_explode_intervals_uncompactly_03():
     '''All intervals in the source tree appear in the resulting trees once and only once.'''

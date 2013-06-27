@@ -20,9 +20,9 @@ def all_are_pairs_of_types(expr, first_type, second_type):
     '''
 
     try:
-        return all([len(x) == 2 and \
+        return all(len(x) == 2 and \
             isinstance(x[0], first_type) and \
-            isinstance(x[1], second_type) for x in expr])
+            isinstance(x[1], second_type) for x in expr)
     except TypeError:
         return False
     except KeyError:

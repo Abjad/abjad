@@ -102,7 +102,7 @@ class StaffLinesSpanner(Spanner):
             if isinstance(arg, int) and 0 < arg:
                 self._lines = arg
             elif isinstance(arg, (tuple, list)) \
-                and all([isinstance(x, (int, float)) for x in arg]):
+                and all(isinstance(x, (int, float)) for x in arg):
                 self._lines = tuple(arg)
             else:
                 raise ValueError('StaffLinesSpanner requires either an int, '

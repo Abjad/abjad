@@ -91,9 +91,9 @@ class WeightedSearchTree(SearchTree):
             return False
         elif not len(definition['divisors']):
             return False
-        elif not all([isinstance(x, int) and 1 < x for x in definition['divisors']]):
+        elif not all(isinstance(x, int) and 1 < x for x in definition['divisors']):
             return False
-        elif not all([mathtools.divisors(x) == [1, x] for x in definition['divisors']]):
+        elif not all(mathtools.divisors(x) == [1, x] for x in definition['divisors']):
             return False
         elif 'max_depth' not in definition:
             return False

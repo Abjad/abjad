@@ -30,7 +30,7 @@ def sum_sequence_elements_at_indices(sequence, pairs, period=None, overhang=True
     '''
 
     assert isinstance(sequence, list)
-    assert all([isinstance(x, (int, float, fractions.Fraction)) for x in sequence])
+    assert all(isinstance(x, (int, float, fractions.Fraction)) for x in sequence)
     assert isinstance(period, (int, type(None)))
     assert isinstance(overhang, bool)
 
@@ -79,8 +79,8 @@ def sum_sequence_elements_at_indices(sequence, pairs, period=None, overhang=True
 def _check_sum_slices_at_specification(pairs):
     try:
         assert isinstance(pairs, list)
-        assert all([isinstance(x, tuple) and len(x) == 2 and 0 < x[-1]
-            for x in pairs])
+        assert all(isinstance(x, tuple) and len(x) == 2 and 0 < x[-1]
+            for x in pairs)
         indices_affected = []
         for pair in pairs:
             indices_affected.extend(range(pair[0], sum(pair)))

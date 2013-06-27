@@ -65,9 +65,9 @@ class BurnishedRhythmMaker(RhythmMaker):
         assert sequencetools.all_are_integer_equivalent_numbers(talea)
         assert mathtools.is_positive_integer_equivalent_number(talea_denominator)
         assert sequencetools.all_are_nonnegative_integer_equivalent_numbers(prolation_addenda)
-        assert all([x in (-1, 0, 1) for x in lefts])
-        assert all([x in (-1, 0, 1) for x in middles])
-        assert all([x in (-1, 0, 1) for x in rights])
+        assert all(x in (-1, 0, 1) for x in lefts)
+        assert all(x in (-1, 0, 1) for x in middles)
+        assert all(x in (-1, 0, 1) for x in rights)
         assert sequencetools.all_are_nonnegative_integer_equivalent_numbers(left_lengths)
         assert sequencetools.all_are_nonnegative_integer_equivalent_numbers(right_lengths)
         assert sequencetools.all_are_nonnegative_integer_equivalent_numbers(secondary_divisions)
@@ -133,7 +133,7 @@ class BurnishedRhythmMaker(RhythmMaker):
         if self.tie_split_notes:
             self._add_ties(result)
         assert isinstance(result, list), repr(result)
-        assert all([isinstance(x, list) for x in result]) or tuplettools.all_are_tuplets(result), repr(result)
+        assert all(isinstance(x, list) for x in result) or tuplettools.all_are_tuplets(result), repr(result)
         return result
 
     ### PRIVATE METHODS ###

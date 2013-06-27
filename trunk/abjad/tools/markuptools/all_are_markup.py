@@ -24,4 +24,4 @@ def all_are_markup(expr):
     '''
     from abjad.tools import markuptools
 
-    return all([isinstance(x, markuptools.Markup) for x in expr])
+    return all(isinstance(x, markuptools.Markup) for x in expr)

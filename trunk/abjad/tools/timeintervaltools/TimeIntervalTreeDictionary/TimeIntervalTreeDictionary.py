@@ -75,7 +75,7 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
             object.__setattr__(self, '_stop', result.stop)
 
         # fuse dictionaries keywise
-        elif 1 < len(args) and all([isinstance(x, type(self)) for x in args]):
+        elif 1 < len(args) and all(isinstance(x, type(self)) for x in args):
             result = { }
             for arg in args:
                 for key, tree in arg.iteritems():

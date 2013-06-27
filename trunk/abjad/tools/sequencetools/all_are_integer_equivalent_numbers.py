@@ -18,6 +18,6 @@ def all_are_integer_equivalent_numbers(expr):
     '''
 
     try:
-        return all([mathtools.is_integer_equivalent_number(x) for x in expr])
+        return all(mathtools.is_integer_equivalent_number(x) for x in expr)
     except TypeError:
         return False

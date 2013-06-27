@@ -535,7 +535,7 @@ class LilyPondParser(abctools.Parser):
 
         # without voice separators
         if 1 == len(groups):
-            assert all([isinstance(x, contexttools.Context) for x in groups[0]])
+            assert all(isinstance(x, contexttools.Context) for x in groups[0])
             container.extend(groups[0])
         # with voice separators
         else:
@@ -558,7 +558,7 @@ class LilyPondParser(abctools.Parser):
             'ly:pitch?':          lambda x: isinstance(x, pitchtools.NamedChromaticPitch),
             'markup?':            lambda x: isinstance(x, markuptools.MarkupCommand),
             'number-list?':       lambda x: isinstance(x, (list, tuple)) and \
-                                            all([isinstance(y, (int, float)) for y in x]),
+                                            all(isinstance(y, (int, float)) for y in x),
             'number?':            lambda x: isinstance(x, (int, float)),
             'real?':              lambda x: isinstance(x, (int, float)),
             'string?':            lambda x: isinstance(x, (str, unicode)),
@@ -730,11 +730,11 @@ class LilyPondParser(abctools.Parser):
         from abjad.ly.markup_functions import markup_functions
 
         assert isinstance(name, str)
-        assert all([not x.isspace() for x in name])
+        assert all(not x.isspace() for x in name)
         assert isinstance(signature, (list, tuple))
         for predicate in signature:
             assert isinstance(predicate, str)
-            assert all([not x.isspace() for x in predicate])
+            assert all(not x.isspace() for x in predicate)
             assert predicate.endswith('?')
 
         markup_functions[name] = tuple(signature)

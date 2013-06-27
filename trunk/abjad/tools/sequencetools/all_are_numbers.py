@@ -23,6 +23,6 @@ def all_are_numbers(expr):
     '''
 
     try:
-        return all([isinstance(x, numbers.Number) for x in expr])
+        return all(isinstance(x, numbers.Number) for x in expr)
     except TypeError:
         return False

@@ -100,7 +100,7 @@ class TempoMark(ContextMark):
         assert isinstance(units_per_minute, (int, long, float, durationtools.Duration, list, tuple, type(None)))
         if isinstance(units_per_minute, (list, tuple)):
             assert len(units_per_minute) == 2
-            assert all([isinstance(x, (int, long, float, durationtools.Duration)) for x in units_per_minute])
+            assert all(isinstance(x, (int, long, float, durationtools.Duration)) for x in units_per_minute)
             units_per_minute = tuple(sorted(units_per_minute))
 
         object.__setattr__(self, '_duration', duration)
@@ -365,7 +365,7 @@ class TempoMark(ContextMark):
             assert isinstance(units_per_minute, (numbers.Number, list, tuple, type(None)))
             if isinstance(units_per_minute, (list, tuple)):
                 assert len(units_per_minute) == 2
-                assert all([isinstance(x, numbers.Number) for x in units_per_minute])
+                assert all(isinstance(x, numbers.Number) for x in units_per_minute)
                 units_per_minute = tuple(sorted(units_per_minute))
             self._units_per_minute = units_per_minute
         return property(**locals())

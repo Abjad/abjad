@@ -31,7 +31,7 @@ class QTarget(AbjadObject):
 
     def __init__(self, items):
         assert len(items)
-        assert all([isinstance(x, self.item_klass) for x in items])
+        assert all(isinstance(x, self.item_klass) for x in items)
         self._items = tuple(sorted(items, key=lambda x: x.offset_in_ms))
 
     ### SPECIAL METHODS ###

@@ -51,11 +51,11 @@ class QSchema(AbjadObject):
             items = [(x, self.item_klass(**y)) for x, y in args]
             items = dict(items)
 
-        elif all([isinstance(x, self.item_klass) for x in args]):
+        elif all(isinstance(x, self.item_klass) for x in args):
             items = [(i, x) for i, x in enumerate(args)]
             items = dict(items)
 
-        elif all([isinstance(x, dict) for x in args]):
+        elif all(isinstance(x, dict) for x in args):
             items = [(i, self.item_klass(**x)) for i, x in enumerate(args)]
             items = dict(items)
 

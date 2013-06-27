@@ -52,8 +52,8 @@ class VariableLengthStreamSolver(_Solver):
 
     def __init__(self, domain, constraints, terminators, randomized=False):
         assert isinstance(domain, Domain)
-        assert all([isinstance(x, _Constraint) for x in constraints])
-        assert all([isinstance(x, _Constraint) for x in terminators])
+        assert all(isinstance(x, _Constraint) for x in constraints)
+        assert all(isinstance(x, _Constraint) for x in terminators)
         object.__setattr__(self, '_domain', domain)
         object.__setattr__(self, '_constraints', tuple(sorted(constraints, key=lambda x: x._sort_tuple)))
         object.__setattr__(self, '_terminators', tuple(sorted(terminators, key=lambda x: x._sort_tuple)))

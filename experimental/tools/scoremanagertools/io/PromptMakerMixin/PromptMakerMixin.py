@@ -244,7 +244,7 @@ class PromptMakerMixin(AbjadObject):
     def append_integers(
         self, spaced_attribute_name, default_value=None):
         help_template = 'value for {!r} must be integers.'
-        function = lambda x: all([predicates.is_integer(y) for y in x])
+        function = lambda x: all(predicates.is_integer(y) for y in x)
         self._make_prompt(
             spaced_attribute_name, 
             validation_function=function,

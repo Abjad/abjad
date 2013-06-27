@@ -9,7 +9,7 @@ def concatenate_trees(trees, padding=0):
     '''
     from abjad.tools import timeintervaltools
 
-    assert all([isinstance(tree, timeintervaltools.TimeIntervalTree) for tree in trees])
+    assert all(isinstance(tree, timeintervaltools.TimeIntervalTree) for tree in trees)
     padding = durationtools.Duration(padding)
     assert 0 <= padding
 

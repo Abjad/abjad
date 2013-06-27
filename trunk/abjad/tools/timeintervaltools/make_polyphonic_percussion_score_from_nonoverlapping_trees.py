@@ -20,7 +20,7 @@ def make_polyphonic_percussion_score_from_nonoverlapping_trees(trees, colorkey=N
         trees = trees.values()
     else:
         assert isinstance(trees, collections.Iterable) and len(trees) and \
-            all([isinstance(tree, timeintervaltools.TimeIntervalTree) for tree in trees])
+            all(isinstance(tree, timeintervaltools.TimeIntervalTree) for tree in trees)
 
 
     pitches = pitchtools.make_n_middle_c_centered_pitches(len(trees))

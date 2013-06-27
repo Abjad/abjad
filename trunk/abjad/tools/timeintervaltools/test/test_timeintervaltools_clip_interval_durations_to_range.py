@@ -18,7 +18,7 @@ def test_timeintervaltools_clip_interval_durations_to_range_02():
     stop = None
     tree = TimeIntervalTree(_make_test_intervals())
     clipped = clip_interval_durations_to_range(tree, start, stop)
-    assert all([start <= x.duration for x in clipped])
+    assert all(start <= x.duration for x in clipped)
     assert sorted([x.start for x in tree]) == sorted([x.start for x in clipped])
 
 
@@ -27,7 +27,7 @@ def test_timeintervaltools_clip_interval_durations_to_range_03():
     stop = Fraction(1, 5)
     tree = TimeIntervalTree(_make_test_intervals())
     clipped = clip_interval_durations_to_range(tree, start, stop)
-    assert all([x.duration <= stop for x in clipped])
+    assert all(x.duration <= stop for x in clipped)
     assert sorted([x.start for x in tree]) == sorted([x.start for x in clipped])
 
 
@@ -36,7 +36,7 @@ def test_timeintervaltools_clip_interval_durations_to_range_04():
     stop = Fraction(1, 3)
     tree = TimeIntervalTree(_make_test_intervals())
     clipped = clip_interval_durations_to_range(tree, start, stop)
-    assert all([start <= x.duration <= stop for x in clipped])
+    assert all(start <= x.duration <= stop for x in clipped)
     assert sorted([x.start for x in tree]) == sorted([x.start for x in clipped])
 
 

@@ -22,7 +22,7 @@ def truncate_runs_in_sequence(sequence):
     if not isinstance(sequence, list):
         raise TypeError
 
-    assert all([isinstance(x, numbers.Number) for x in sequence])
+    assert all(isinstance(x, numbers.Number) for x in sequence)
 
     result = []
 

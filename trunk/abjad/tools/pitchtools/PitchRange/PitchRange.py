@@ -101,18 +101,18 @@ class PitchRange(AbjadObject):
         elif isinstance(arg, Note):
             return self._contains_pitch(arg.sounding_pitch)
         elif isinstance(arg, Chord):
-            return all([self._contains_pitch(x) for x in arg.sounding_pitches])
+            return all(self._contains_pitch(x) for x in arg.sounding_pitches)
         elif isinstance(arg, (resttools.Rest, skiptools.Skip)):
             return True
         elif isinstance(arg, containertools.Container):
-            return all([x in self for x in arg.leaves])
+            return all(x in self for x in arg.leaves)
         else:
             pitches = pitchtools.list_named_chromatic_pitches_in_expr(arg)
             if pitches:
-                return all([self._contains_pitch(x) for x in pitches])
+                return all(self._contains_pitch(x) for x in pitches)
             else:
                 try:
-                    return all([self._contains_pitch(x) for x in arg])
+                    return all(self._contains_pitch(x) for x in arg)
                 except TypeError:
                     return False
         return False

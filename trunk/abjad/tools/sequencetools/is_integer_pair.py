@@ -14,4 +14,4 @@ def is_integer_pair(expr):
     Return boolean.
     '''
 
-    return isinstance(expr, tuple) and len(expr) == 2 and all([isinstance(x, int) for x in expr])
+    return isinstance(expr, tuple) and len(expr) == 2 and all(isinstance(x, int) for x in expr)

@@ -24,4 +24,4 @@ def all_are_named_chromatic_pitch_tokens(expr):
     '''
     from abjad.tools import pitchtools
 
-    return all([pitchtools.is_named_chromatic_pitch_token(x) for x in expr])
+    return all(pitchtools.is_named_chromatic_pitch_token(x) for x in expr)

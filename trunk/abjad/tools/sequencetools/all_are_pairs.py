@@ -18,6 +18,6 @@ def all_are_pairs(expr):
     '''
 
     try:
-        return all([len(x) == 2 for x in expr])
+        return all(len(x) == 2 for x in expr)
     except TypeError:
         return False

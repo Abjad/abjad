@@ -65,7 +65,7 @@ class Scheme(AbjadObject):
         force_quotes = bool(kwargs.get('force_quotes'))
         assert isinstance(quoting, (str, type(None)))
         if quoting is not None:
-            assert all([x in ("'", ',', '@', '`', '#') for x in quoting])
+            assert all(x in ("'", ',', '@', '`', '#') for x in quoting)
         self._force_quotes = force_quotes
         self._quoting = quoting
         self._value = args

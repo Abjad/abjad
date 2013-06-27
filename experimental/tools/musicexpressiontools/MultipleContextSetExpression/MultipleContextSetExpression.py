@@ -100,6 +100,6 @@ class MultipleContextSetExpression(TimeContiguousAnchoredSetExpression):
         Return none.
         '''
         fresh_single_context_set_expressions = self.evaluate()
-        assert all([x.fresh for x in fresh_single_context_set_expressions])
+        assert all(x.fresh for x in fresh_single_context_set_expressions)
         self.root_specification.fresh_single_context_set_expressions.extend(
             fresh_single_context_set_expressions)

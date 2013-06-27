@@ -36,7 +36,7 @@ def concatenate_pitch_arrays(pitch_arrays):
     '''
     from abjad.tools import pitcharraytools
 
-    if not all([isinstance(x, pitcharraytools.PitchArray) for x in pitch_arrays]):
+    if not all(isinstance(x, pitcharraytools.PitchArray) for x in pitch_arrays):
         raise TypeError('must be pitch arrays.')
 
     if not pitch_arrays:

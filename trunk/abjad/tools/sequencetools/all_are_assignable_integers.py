@@ -23,6 +23,6 @@ def all_are_assignable_integers(expr):
     '''
 
     try:
-        return all([mathtools.is_assignable_integer(x) for x in expr])
+        return all(mathtools.is_assignable_integer(x) for x in expr)
     except TypeError:
         return False

@@ -17,5 +17,5 @@ def is_integer_equivalent_pair(expr):
     Return boolean.
     '''
 
-    return isinstance(expr, tuple) and len(expr) == 2 and all([
-        mathtools.is_integer_equivalent_expr(x) for x in expr])
+    return isinstance(expr, tuple) and len(expr) == 2 and \
+        all(mathtools.is_integer_equivalent_expr(x) for x in expr)

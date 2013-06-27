@@ -59,7 +59,7 @@ class PitchSetExpression(LeafSetExpression):
         '''
         statal_server_cursor = self.source_expression.payload
         leaves = list(self._iterate_selected_leaves_in_score(score))
-        assert all([isinstance(leaf, (notetools.Note, chordtools.Chord)) for leaf in leaves]), repr(leaves)
+        assert all(isinstance(leaf, (notetools.Note, chordtools.Chord)) for leaf in leaves), repr(leaves)
         if self.level is None:
             level = -1
         else:

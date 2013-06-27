@@ -192,7 +192,7 @@ class PitchArrayRow(AbjadObject):
 
     @property
     def is_in_range(self):
-        return all([pitch in self.pitch_range for pitch in self.pitches])
+        return all(pitch in self.pitch_range for pitch in self.pitches)
 
     @property
     def parent_array(self):

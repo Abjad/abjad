@@ -257,7 +257,7 @@ class TreeContainer(TreeNode):
             expr._switch_parent(self)
             self._children.insert(i, expr)
         else:
-            assert all([isinstance(x, self._node_klass) for x in expr])
+            assert all(isinstance(x, self._node_klass) for x in expr)
             if i.start == i.stop and i.start is not None \
                 and i.stop is not None and i.start <= -len(self):
                 start, stop = 0, 0

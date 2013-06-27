@@ -22,7 +22,7 @@ class FixedLengthStreamSolver(_Solver):
     ::
 
         >>> domain = Domain([1, 2, 3, 4], 4)
-        >>> all_unique = GlobalCountsConstraint(lambda x: all([y == 1 for y in x.values()]))
+        >>> all_unique = GlobalCountsConstraint(lambda x: all(y == 1 for y in x.values()))
         >>> max_interval = RelativeIndexConstraint([0, 1], lambda x, y: abs(x - y) < 3)
         >>> solver = FixedLengthStreamSolver(domain, [all_unique, max_interval])
 
@@ -70,7 +70,7 @@ class FixedLengthStreamSolver(_Solver):
 
     def __init__(self, domain, constraints, randomized=False):
         assert isinstance(domain, Domain)
-        assert all([isinstance(x, _Constraint) for x in constraints])
+        assert all(isinstance(x, _Constraint) for x in constraints)
         object.__setattr__(self, '_domain', domain)
         object.__setattr__(self, '_constraints', tuple(sorted(constraints, key=lambda x: x._sort_tuple)))
         object.__setattr__(self, '_randomized', bool(randomized))

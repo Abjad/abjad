@@ -35,7 +35,7 @@ class TerracedDynamicsHandler(DynamicHandler):
         def fset(self, dynamics):
             if dynamics is None:
                 self._dynamics = dynamics
-            elif all([contexttools.DynamicMark.is_dynamic_name(x) for x in dynamics]):
+            elif all(contexttools.DynamicMark.is_dynamic_name(x) for x in dynamics):
                 self._dynamics = dynamics
             else:
                 raise TypeError(dynamics)

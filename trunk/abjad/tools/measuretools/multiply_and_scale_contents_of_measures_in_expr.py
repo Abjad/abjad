@@ -44,7 +44,7 @@ def multiply_and_scale_contents_of_measures_in_expr(expr, multiplier_pairs):
     from abjad.tools import measuretools
 
     assert isinstance(multiplier_pairs, list)
-    assert all([isinstance(pair, tuple) for pair in multiplier_pairs])
+    assert all(isinstance(pair, tuple) for pair in multiplier_pairs)
 
     result = []
     num_pairs = len(multiplier_pairs)

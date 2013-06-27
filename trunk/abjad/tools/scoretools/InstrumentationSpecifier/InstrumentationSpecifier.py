@@ -144,6 +144,6 @@ class InstrumentationSpecifier(AbjadObject):
             if performers is None:
                 self._performers[:] = []
             else:
-                assert all([isinstance(x, scoretools.Performer) for x in performers])
+                assert all(isinstance(x, scoretools.Performer) for x in performers)
                 self._performers[:] = list(performers[:])
         return property(**locals())

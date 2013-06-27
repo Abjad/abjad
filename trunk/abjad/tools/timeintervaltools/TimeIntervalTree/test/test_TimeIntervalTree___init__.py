@@ -27,7 +27,7 @@ def test_TimeIntervalTree___init___02():
     b = TimeInterval(5, 15, {'b': 2})
     c = TimeInterval(10, 25, {'c': 3})
     tree = TimeIntervalTree([a, b, c])
-    assert all([block in tree for block in [a, b, c]])
+    assert all(block in tree for block in [a, b, c])
 
 
 def test_TimeIntervalTree___init___03():

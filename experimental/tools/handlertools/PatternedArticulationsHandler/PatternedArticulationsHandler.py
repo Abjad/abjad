@@ -63,7 +63,7 @@ class PatternedArticulationsHandler(ArticulationHandler):
         def fget(self):
             return self._articulation_lists
         def fset(self, articulation_lists):
-            if all([isinstance(x, (tuple, list)) for x in articulation_lists]):
+            if all(isinstance(x, (tuple, list)) for x in articulation_lists):
                 self._articulation_lists = articulation_lists
             else:
                 raise TypeError(articulation_lists)

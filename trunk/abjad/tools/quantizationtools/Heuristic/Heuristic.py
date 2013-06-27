@@ -21,7 +21,7 @@ class Heuristic(AbjadObject):
         from abjad.tools import quantizationtools
 
         assert len(q_target_beats)
-        assert all([isinstance(x, quantizationtools.QTargetBeat) for x in q_target_beats])
+        assert all(isinstance(x, quantizationtools.QTargetBeat) for x in q_target_beats)
         return self._process(q_target_beats)
 
     ### PRIVATE METHODS ###
