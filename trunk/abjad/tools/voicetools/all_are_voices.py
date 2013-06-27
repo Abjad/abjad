@@ -4,7 +4,9 @@ from abjad.tools import componenttools
 def all_are_voices(expr):
     '''.. versionadded:: 2.6
 
-    True when `expr` is a sequence of Abjad voices::
+    True when `expr` is a sequence of Abjad voices:
+
+    ::
 
         >>> voice = Voice("c'4 d'4 e'4 f'4")
 
@@ -13,12 +15,16 @@ def all_are_voices(expr):
         >>> voicetools.all_are_voices([voice])
         True
 
-    True when `expr` is an empty sequence::
+    True when `expr` is an empty sequence:
+
+    ::
 
         >>> voicetools.all_are_voices([])
         True
 
-    Otherwise false::
+    Otherwise false:
+
+    ::
 
         >>> voicetools.all_are_voices('foo')
         False

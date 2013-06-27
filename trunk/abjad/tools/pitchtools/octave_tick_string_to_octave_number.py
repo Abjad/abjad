@@ -4,7 +4,9 @@ import re
 def octave_tick_string_to_octave_number(tick_string):
     '''.. versionadded:: 2.0
 
-    Change `tick_string` to octave number::
+    Change `tick_string` to octave number:
+
+    ::
 
         >>> pitchtools.octave_tick_string_to_octave_number("'")
         4

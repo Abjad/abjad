@@ -19,7 +19,9 @@ def transpose_pitch_carrier_by_melodic_interval(pitch_carrier, melodic_interval)
         >>> pitchtools.transpose_pitch_carrier_by_melodic_interval(chord, 1)
         Chord("<cs' f' af'>4")
 
-    Return non-pitch-carrying input unchaged::
+    Return non-pitch-carrying input unchaged:
+
+    ::
 
         >>> rest = Rest('r4')
 

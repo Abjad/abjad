@@ -4,7 +4,9 @@ from abjad.tools import componenttools
 def all_are_contexts(expr):
     '''.. versionadded:: 2.10
 
-    True when `expr` is a sequence of Abjad contexts::
+    True when `expr` is a sequence of Abjad contexts:
+
+    ::
 
         >>> contexts = 3 * Voice("c'8 d'8 e'8")
 
@@ -13,12 +15,16 @@ def all_are_contexts(expr):
         >>> contexttools.all_are_contexts(contexts)
         True
 
-    True when `expr` is an empty sequence::
+    True when `expr` is an empty sequence:
+
+    ::
 
         >>> contexttools.all_are_contexts([])
         True
 
-    Otherwise false::
+    Otherwise false:
+
+    ::
 
         >>> contexttools.all_are_contexts('foo')
         False

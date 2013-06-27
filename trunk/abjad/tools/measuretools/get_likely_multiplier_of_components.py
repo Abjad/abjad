@@ -25,7 +25,9 @@ def get_likely_multiplier_of_components(components):
         >>> measuretools.get_likely_multiplier_of_components(staff[:])
         Multiplier(7, 4)
 
-    Return 1 when no multiplier is likely::
+    Return 1 when no multiplier is likely:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
 
@@ -44,7 +46,9 @@ def get_likely_multiplier_of_components(components):
         >>> measuretools.get_likely_multiplier_of_components(staff[:])
         Multiplier(1, 1)
 
-    Return none when more than one multiplier is likely::
+    Return none when more than one multiplier is likely:
+
+    ::
 
         >>> staff = Staff(notetools.make_notes([0, 2, 4, 5], [(3, 16), (7, 32)]))
 

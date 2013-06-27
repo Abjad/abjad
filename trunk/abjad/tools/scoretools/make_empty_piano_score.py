@@ -1,7 +1,9 @@
 def make_empty_piano_score():
     r'''.. versionadded:: 1.1
 
-    Make empty piano score::
+    Make empty piano score:
+
+    ::
 
         >>> score, treble, bass = scoretools.make_empty_piano_score()
 

@@ -21,17 +21,23 @@ def make_notes(pitches, durations, decrease_durations_monotonically=True):
         >>> notetools.make_notes([0, 2, 4, 5, 7], [(1, 16), (1, 8), (1, 8)])
         [Note("c'16"), Note("d'8"), Note("e'8"), Note("f'16"), Note("g'8")]
 
-    Create ad hoc tuplets for nonassignable durations::
+    Create ad hoc tuplets for nonassignable durations:
+
+    ::
 
         >>> notetools.make_notes([0], [(1, 16), (1, 12), (1, 8)])
         [Note("c'16"), Tuplet(2/3, [c'8]), Note("c'8")]
 
-    Set ``decrease_durations_monotonically=True`` to express tied values in decreasing duration::
+    Set ``decrease_durations_monotonically=True`` to express tied values in decreasing duration:
+
+    ::
 
         >>> notetools.make_notes([0], [(13, 16)], decrease_durations_monotonically=True)
         [Note("c'2."), Note("c'16")]
 
-    Set ``decrease_durations_monotonically=False`` to express tied values in increasing duration::
+    Set ``decrease_durations_monotonically=False`` to express tied values in increasing duration:
+
+    ::
 
         >>> notetools.make_notes([0], [(13, 16)], decrease_durations_monotonically=False)
         [Note("c'16"), Note("c'2.")]

@@ -1,7 +1,9 @@
 def instantiate_pitch_and_interval_test_collection():
     r'''.. versionadded:: 2.0
 
-    Instantiate pitch and interval test collection::
+    Instantiate pitch and interval test collection:
+
+    ::
 
         >>> for x in pitchtools.instantiate_pitch_and_interval_test_collection(): x
         ...

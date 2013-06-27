@@ -1,5 +1,7 @@
 def list_package_dependency_versions():
-    r'''List package dependency versions::
+    r'''List package dependency versions:
+
+    ::
 
         >>> configurationtools.list_package_dependency_versions() # doctest: +SKIP
         {'sphinx': '1.1.2', 'py.test': '2.1.2'}

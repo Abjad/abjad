@@ -4,7 +4,9 @@ from abjad.tools.contexttools.ContextMark import ContextMark
 class KeySignatureMark(ContextMark):
     r'''.. versionadded:: 2.0
 
-    Abjad model of a key signature setting or key signature change::
+    Abjad model of a key signature setting or key signature change:
+
+    ::
 
         >>> staff = Staff("e'8 fs'8 gs'8 a'8")
 
@@ -98,13 +100,17 @@ class KeySignatureMark(ContextMark):
     @apply
     def mode():
         def fget(self):
-            r'''Get mode of key signature::
+            r'''Get mode of key signature:
+
+            ::
 
                 >>> key_signature = contexttools.KeySignatureMark('e', 'major')
                 >>> key_signature.mode
                 Mode('major')
 
-            Set mode of key signature::
+            Set mode of key signature:
+
+            ::
 
                 >>> key_signature.mode = 'minor'
                 >>> key_signature.mode
@@ -140,13 +146,17 @@ class KeySignatureMark(ContextMark):
     @apply
     def tonic():
         def fget(self):
-            r'''Get tonic of key signature::
+            r'''Get tonic of key signature:
+
+            ::
 
                 >>> key_signature = contexttools.KeySignatureMark('e', 'major')
                 >>> key_signature.tonic
                 NamedChromaticPitchClass('e')
 
-            Set tonic of key signature::
+            Set tonic of key signature:
+
+            ::
 
                 >>> key_signature.tonic = 'd'
                 >>> key_signature.tonic

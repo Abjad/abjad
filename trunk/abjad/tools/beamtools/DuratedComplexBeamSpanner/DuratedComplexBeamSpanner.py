@@ -136,7 +136,9 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
     @apply
     def durations():
         def fget(self):
-            '''Get spanner leaf group durations::
+            '''Get spanner leaf group durations:
+
+            ::
 
                 >>> staff = Staff("c'16 d'16 e'16 f'16")
                 >>> durations = [Duration(1, 8), Duration(1, 8)]
@@ -144,7 +146,9 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
                 >>> beam.durations
                 [Duration(1, 8), Duration(1, 8)]
 
-            Set spanner leaf group durations::
+            Set spanner leaf group durations:
+
+            ::
 
                 >>> staff = Staff("c'16 d'16 e'16 f'16")
                 >>> durations = [Duration(1, 8), Duration(1, 8)]
@@ -173,7 +177,9 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
     @apply
     def span():
         def fget(self):
-            r'''Get top-level beam count::
+            r'''Get top-level beam count:
+
+            ::
 
                 >>> staff = Staff("c'16 d'16 e'16 f'16")
                 >>> durations = [Duration(1, 8), Duration(1, 8)]
@@ -181,7 +187,9 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
                 >>> beam.span
                 1
 
-            Set top-level beam count::
+            Set top-level beam count:
+
+            ::
 
                 >>> staff = Staff("c'16 d'16 e'16 f'16")
                 >>> durations = [Duration(1, 8), Duration(1, 8)]

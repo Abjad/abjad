@@ -1,7 +1,9 @@
 class CyclicList(list):
     '''.. versionadded:: 2.0
 
-    Abjad model of cyclic list::
+    Abjad model of cyclic list:
+
+    ::
 
         >>> cyclic_list = sequencetools.CyclicList('abcd')
 

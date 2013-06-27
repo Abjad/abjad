@@ -4,7 +4,9 @@ from abjad.tools import durationtools
 def is_bar_line_crossing_leaf(leaf):
     r'''.. versionadded:: 2.0
 
-    True when `leaf` crosses bar line::
+    True when `leaf` crosses bar line:
+
+    ::
 
         >>> t = Staff("c'8 d'8 e'8 f'8")
         >>> t[2].written_duration *= 2
@@ -22,7 +24,9 @@ def is_bar_line_crossing_leaf(leaf):
         >>> leaftools.is_bar_line_crossing_leaf(t.leaves[2])
         True
 
-    Otherwise false::
+    Otherwise false:
+
+    ::
 
         >>> leaftools.is_bar_line_crossing_leaf(t.leaves[3])
         False

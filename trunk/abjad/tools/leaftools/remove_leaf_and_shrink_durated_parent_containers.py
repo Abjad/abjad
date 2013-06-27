@@ -6,7 +6,9 @@ from abjad.tools import mathtools
 def remove_leaf_and_shrink_durated_parent_containers(leaf):
     r'''.. versionadded:: 1.1
 
-    Remove `leaf` and shrink durated parent containers::
+    Remove `leaf` and shrink durated parent containers:
+
+    ::
 
         >>> measure = Measure((4, 8), [])
         >>> measure.append(tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8"))

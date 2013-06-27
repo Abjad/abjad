@@ -1,7 +1,9 @@
 def iterate_sequence_pairwise_wrapped(sequence):
     '''.. versionadded:: 1.1
 
-    Iterate `sequence` pairwise wrapped::
+    Iterate `sequence` pairwise wrapped:
+
+    ::
 
         >>> list(sequencetools.iterate_sequence_pairwise_wrapped(range(6)))
         [(0, 1), (1, 2), (2, 3), (3, 4), (4, 5), (5, 0)]

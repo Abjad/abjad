@@ -1,7 +1,9 @@
 def yield_groups_of_mixed_klasses_in_sequence(sequence, klasses):
     r'''.. versionadded:: 2.0
 
-    Example 1. Yield groups of notes and chords at only the top level of score::
+    Example 1. Yield groups of notes and chords at only the top level of score:
+
+    ::
 
         >>> staff = Staff(r"\times 2/3 { c'8 d'8 r8 } \times 2/3 { r8 <e' g'>8 <f' a'>8 }")
         >>> staff.extend("g'8 a'8 r8 r8 <b' d''>8 <c'' e''>8")
@@ -36,7 +38,9 @@ def yield_groups_of_mixed_klasses_in_sequence(sequence, klasses):
         (Note("g'8"), Note("a'8"))
         (Chord("<b' d''>8"), Chord("<c'' e''>8"))
 
-    Example 2. Yield groups of notes and chords at all levels of score::
+    Example 2. Yield groups of notes and chords at all levels of score:
+
+    ::
 
         >>> leaves = iterationtools.iterate_leaves_in_expr(staff)
 

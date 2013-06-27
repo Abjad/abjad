@@ -4,7 +4,9 @@ from abjad.tools import mathtools
 def pentatonic_pitch_number_to_chromatic_pitch_number(pentatonic_scale_degree, transpose=1, phase=0):
     '''.. versionadded:: 1.1
 
-    Changed `pentatonic_scale_degree` number to chromatic pitch number::
+    Changed `pentatonic_scale_degree` number to chromatic pitch number:
+
+    ::
 
         >>> for pentatonic_scale_degree in range(9):
         ...     result = pitchtools.pentatonic_pitch_number_to_chromatic_pitch_number(
@@ -21,7 +23,9 @@ def pentatonic_pitch_number_to_chromatic_pitch_number(pentatonic_scale_degree, t
         7  18
         8  20
 
-    Pentatonic scale degrees may be negative::
+    Pentatonic scale degrees may be negative:
+
+    ::
 
         >>> for pentatonic_scale_degree in range(-1, -9, -1):
         ...     result = pitchtools.pentatonic_pitch_number_to_chromatic_pitch_number(

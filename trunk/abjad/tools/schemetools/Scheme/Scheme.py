@@ -2,7 +2,9 @@ from abjad.tools.abctools import AbjadObject
 
 
 class Scheme(AbjadObject):
-    r'''Abjad model of Scheme code::
+    r'''Abjad model of Scheme code:
+
+    ::
 
         >>> s = schemetools.Scheme(True)
         >>> s.lilypond_format
@@ -104,7 +106,9 @@ class Scheme(AbjadObject):
 
     @property
     def lilypond_format(self):
-        '''Hash-mark-prepended format of Scheme::
+        '''Hash-mark-prepended format of Scheme:
+
+        ::
 
             >>> schemetools.Scheme(True).lilypond_format
             '##t'

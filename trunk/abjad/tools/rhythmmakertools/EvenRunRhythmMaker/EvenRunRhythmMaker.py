@@ -34,7 +34,9 @@ class EvenRunRhythmMaker(RhythmMaker):
 
     Example 2. Make even run of notes each equal in duration to ``1/(2**d)``
     with ``d`` equal to the denominator of each division on which
-    the rhythm-maker is called::
+    the rhythm-maker is called:
+
+    ::
 
         >>> maker = rhythmmakertools.EvenRunRhythmMaker(1)
 

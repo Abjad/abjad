@@ -6,7 +6,9 @@ def copy_governed_component_subtree_by_leaf_range(component, start=0, stop=None)
     Governed subtree means `component` together with children of `component`.
 
     Leaf range refers to the sequential parentage of `component` from `start` leaf index
-    to `stop` leaf index::
+    to `stop` leaf index:
+
+    ::
 
         >>> voice = Voice(r"\times 2/3 { c'8 d'8 e'8 } \times 2/3 { f'8 g'8 a'8 }")
         >>> t = Staff([voice])

@@ -4,7 +4,9 @@ from abjad.tools.schemetools.Scheme import Scheme
 class SchemeVector(Scheme):
     '''.. versionadded:: 2.0
 
-    Abjad model of Scheme vector::
+    Abjad model of Scheme vector:
+
+    ::
 
         >>> schemetools.SchemeVector(True, True, False)
         SchemeVector((True, True, False))

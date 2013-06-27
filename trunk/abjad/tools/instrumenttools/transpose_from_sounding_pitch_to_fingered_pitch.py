@@ -8,7 +8,9 @@ from abjad.tools import pitchtools
 def transpose_from_sounding_pitch_to_fingered_pitch(expr):
     r'''.. versionadded:: 2.0
 
-    Transpose notes and chords in `expr` from sounding pitch to fingered pitch::
+    Transpose notes and chords in `expr` from sounding pitch to fingered pitch:
+
+    ::
 
         >>> staff = Staff("<c' e' g'>4 d'4 r4 e'4")
         >>> instrumenttools.BFlatClarinet()(staff)

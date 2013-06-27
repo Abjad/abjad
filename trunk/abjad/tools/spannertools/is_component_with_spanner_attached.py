@@ -4,7 +4,9 @@ from abjad.tools import componenttools
 def is_component_with_spanner_attached(expr, klass=None):
     r'''.. versionadded:: 2.0
 
-    True when `expr` is a component with spanner attached::
+    True when `expr` is a component with spanner attached:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> beam = beamtools.BeamSpanner(staff.leaves)
@@ -21,7 +23,9 @@ def is_component_with_spanner_attached(expr, klass=None):
         >>> spannertools.is_component_with_spanner_attached(staff[0])
         True
 
-    Otherwise false::
+    Otherwise false:
+
+    ::
 
         >>> spannertools.is_component_with_spanner_attached(staff)
         False

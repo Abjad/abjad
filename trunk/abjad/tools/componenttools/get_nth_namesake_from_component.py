@@ -13,7 +13,9 @@ def get_nth_namesake_from_component(component, n):
         >>> componenttools.get_nth_namesake_from_component(t[1], -1)
         Note("c'8")
 
-    Return `component` when `n` is zero::
+    Return `component` when `n` is zero:
+
+    ::
 
         >>> t = Staff("c'8 d'8 e'8 f'8")
         >>> componenttools.get_nth_namesake_from_component(t[1], 0)

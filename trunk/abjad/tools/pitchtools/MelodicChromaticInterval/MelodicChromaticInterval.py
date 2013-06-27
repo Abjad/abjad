@@ -6,7 +6,9 @@ from abjad.tools.pitchtools.MelodicInterval import MelodicInterval
 class MelodicChromaticInterval(ChromaticInterval, MelodicInterval):
     '''.. versionadded:: 2.0
 
-    Abjad model of melodic chromatic interval::
+    Abjad model of melodic chromatic interval:
+
+    ::
 
         >>> pitchtools.MelodicChromaticInterval(-14)
         MelodicChromaticInterval(-14)
@@ -83,7 +85,9 @@ class MelodicChromaticInterval(ChromaticInterval, MelodicInterval):
 
     @property
     def chromatic_interval_number(self):
-        '''Read-only chromatic interval number::
+        '''Read-only chromatic interval number:
+
+        ::
 
             >>> pitchtools.MelodicChromaticInterval(-14).chromatic_interval_number
             -14
@@ -94,7 +98,9 @@ class MelodicChromaticInterval(ChromaticInterval, MelodicInterval):
 
     @property
     def direction_number(self):
-        '''Read-only numeric sign::
+        '''Read-only numeric sign:
+
+        ::
 
             >>> pitchtools.MelodicChromaticInterval(-14).direction_number
             -1
@@ -105,7 +111,9 @@ class MelodicChromaticInterval(ChromaticInterval, MelodicInterval):
 
     @property
     def harmonic_chromatic_interval(self):
-        '''Read-only harmonic chromatic interval::
+        '''Read-only harmonic chromatic interval:
+
+        ::
 
             >>> pitchtools.MelodicChromaticInterval(-14).harmonic_chromatic_interval
             HarmonicChromaticInterval(14)
@@ -118,7 +126,9 @@ class MelodicChromaticInterval(ChromaticInterval, MelodicInterval):
 
     @property
     def melodic_chromatic_interval_class(self):
-        '''Read-only melodic chromatic interval-class::
+        '''Read-only melodic chromatic interval-class:
+
+        ::
 
             >>> pitchtools.MelodicChromaticInterval(-14).melodic_chromatic_interval_class
             MelodicChromaticIntervalClass(-2)

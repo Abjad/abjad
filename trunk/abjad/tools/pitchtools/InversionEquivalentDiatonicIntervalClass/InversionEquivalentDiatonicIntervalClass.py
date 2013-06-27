@@ -5,7 +5,9 @@ import numbers
 class InversionEquivalentDiatonicIntervalClass(DiatonicIntervalClass):
     '''.. versionadded:: 2.0
 
-    Abjad model of inversion-equivalent diatonic interval-class::
+    Abjad model of inversion-equivalent diatonic interval-class:
+
+    ::
 
         >>> pitchtools.InversionEquivalentDiatonicIntervalClass('-m14')
         InversionEquivalentDiatonicIntervalClass('M2')

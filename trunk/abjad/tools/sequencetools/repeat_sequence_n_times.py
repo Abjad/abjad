@@ -5,12 +5,16 @@ import copy
 def repeat_sequence_n_times(sequence, n):
     '''.. versionadded:: 2.0
 
-    Repeat `sequence` `n` times::
+    Repeat `sequence` `n` times:
+
+    ::
 
         >>> sequencetools.repeat_sequence_n_times((1, 2, 3, 4, 5), 3)
         (1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5)
 
-    Repeat `sequence` ``0`` times::
+    Repeat `sequence` ``0`` times:
+
+    ::
 
         >>> sequencetools.repeat_sequence_n_times((1, 2, 3, 4, 5), 0)
         ()

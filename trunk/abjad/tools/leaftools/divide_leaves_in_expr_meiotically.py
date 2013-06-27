@@ -4,7 +4,9 @@ from abjad.tools import componenttools
 def divide_leaves_in_expr_meiotically(expr, n=2):
     r'''.. versionadded:: 1.1
 
-    Divide leaves meiotically in `expr` `n` times::
+    Divide leaves meiotically in `expr` `n` times:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> beamtools.BeamSpanner(staff.leaves)

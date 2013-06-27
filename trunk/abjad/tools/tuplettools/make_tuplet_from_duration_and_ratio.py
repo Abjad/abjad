@@ -41,7 +41,9 @@ def make_tuplet_from_duration_and_ratio(duration, proportions,
         {@ 11:12 c'64, c'16, r64, c'64, c'16 @}
 
     Example set 2. Make augmented tuplet from `duration` and `proportions` and
-    encourage dots::
+    encourage dots:
+
+    ::
 
         >>> tuplettools.make_tuplet_from_duration_and_ratio(
         ...     Duration(3, 16), [1, 1, 1, -1, -1], avoid_dots=False,
@@ -86,7 +88,9 @@ def make_tuplet_from_duration_and_ratio(duration, proportions,
         {@ 11:6 c'32, c'8, r32, c'32, c'8 @}
 
     Example set 4. Make diminished tuplet from `duration` and `proportions` and
-    encourage dots::
+    encourage dots:
+
+    ::
 
         >>> tuplettools.make_tuplet_from_duration_and_ratio(
         ...     Duration(3, 16), [1, 1, 1, -1, -1], avoid_dots=False,

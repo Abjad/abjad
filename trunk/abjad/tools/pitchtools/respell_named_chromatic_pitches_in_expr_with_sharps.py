@@ -1,7 +1,9 @@
 def respell_named_chromatic_pitches_in_expr_with_sharps(expr):
     r'''.. versionadded:: 1.1
 
-    Respell named chromatic pitches in `expr` with sharps::
+    Respell named chromatic pitches in `expr` with sharps:
+
+    ::
 
         >>> staff = Staff(notetools.make_repeated_notes(6))
         >>> pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(staff)

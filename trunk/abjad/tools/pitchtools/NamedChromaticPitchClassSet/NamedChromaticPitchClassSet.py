@@ -4,7 +4,9 @@ from abjad.tools.pitchtools.PitchClassSet import PitchClassSet
 class NamedChromaticPitchClassSet(PitchClassSet):
     '''.. versionadded:: 2.0
 
-    Abjad model of a named chromatic pitch-class set::
+    Abjad model of a named chromatic pitch-class set:
+
+    ::
 
         >>> named_chromatic_pitch_class_set = pitchtools.NamedChromaticPitchClassSet(
         ...     ['gs', 'g', 'as', 'c', 'cs'])
@@ -101,7 +103,9 @@ class NamedChromaticPitchClassSet(PitchClassSet):
 
     @property
     def named_chromatic_pitch_classes(self):
-        '''Read-only named chromatic pitch-classes::
+        '''Read-only named chromatic pitch-classes:
+
+        ::
 
             >>> named_chromatic_pitch_class_set = pitchtools.NamedChromaticPitchClassSet(
             ...     ['gs', 'g', 'as', 'c', 'cs'])

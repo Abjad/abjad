@@ -7,7 +7,9 @@ from abjad.tools.chordtools.Chord import Chord
 def divide_chord_by_diatonic_pitch_number(chord, pitch=pitchtools.NamedChromaticPitch('b', 3)):
     r'''.. versionadded:: 1.1
 
-    Divide `chord` by diatonic `pitch` number::
+    Divide `chord` by diatonic `pitch` number:
+
+    ::
 
         >>> chord = Chord(range(12), Duration(1, 4))
 

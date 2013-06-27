@@ -1,7 +1,9 @@
 def list_checks():
     '''.. versionadded:: 2.8
 
-    List checks::
+    List checks:
+
+    ::
 
         >>> for check in wellformednesstools.list_checks(): check
         ...

@@ -6,7 +6,9 @@ def transpose_chromatic_pitch_number_by_octave_transposition_mapping(chromatic_p
     Derive correct number of octaves from `mapping` where
     `mapping` is a list of ``(range_spec, octave)`` pairs
     and ``range_spec`` is, in turn, a ``(start, stop)`` pair
-    suitable to pass to the built-in Python ``range()`` function::
+    suitable to pass to the built-in Python ``range()`` function:
+
+    ::
 
         >>> mapping = [((-39, -13), 0), ((-12, 23), 12), ((24, 48), 24)]
 
@@ -34,7 +36,9 @@ def transpose_chromatic_pitch_number_by_octave_transposition_mapping(chromatic_p
     disjunct subranges and then explains how to transpose pitches
     found in any of those three disjunct subranges. This means that,
     for example, all the f-sharps within the range of the piano now
-    undergo a known transposition under `mapping` as defined here::
+    undergo a known transposition under `mapping` as defined here:
+
+    ::
 
         >>> pitchtools.transpose_chromatic_pitch_number_by_octave_transposition_mapping(
         ...     -30, mapping)

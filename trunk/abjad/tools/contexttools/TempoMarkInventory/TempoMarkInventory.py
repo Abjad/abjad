@@ -5,7 +5,9 @@ from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
 class TempoMarkInventory(ObjectInventory):
     r'''.. versionadded:: 2.7
 
-    Abjad model of an ordered list of tempo marks::
+    Abjad model of an ordered list of tempo marks:
+
+    ::
 
         >>> inventory = contexttools.TempoMarkInventory([
         ...     ('Andante', Duration(1, 8), 72),

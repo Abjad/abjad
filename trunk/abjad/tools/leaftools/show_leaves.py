@@ -4,7 +4,9 @@ from abjad.tools import iotools
 def show_leaves(leaves, suppress_pdf=False):
     r""".. versionadded:: 2.0
 
-    Show `leaves` in temporary piano staff score::
+    Show `leaves` in temporary piano staff score:
+
+    ::
 
         >>> leaves = leaftools.make_leaves([None, 1, (-24, -22, 7, 21), None], (1, 4))
         >>> score = leaftools.show_leaves(leaves) # doctest: +SKIP

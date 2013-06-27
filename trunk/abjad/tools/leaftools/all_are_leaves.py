@@ -4,7 +4,9 @@ from abjad.tools import componenttools
 def all_are_leaves(expr):
     '''.. versionadded:: 2.6
 
-    True when `expr` is a sequence of Abjad leaves::
+    True when `expr` is a sequence of Abjad leaves:
+
+    ::
 
         >>> leaves = [Note("c'4"), Rest('r4'), Note("d'4")]
 
@@ -13,12 +15,16 @@ def all_are_leaves(expr):
         >>> leaftools.all_are_leaves(leaves)
         True
 
-    True when `expr` is an empty sequence::
+    True when `expr` is an empty sequence:
+
+    ::
 
         >>> leaftools.all_are_leaves([])
         True
 
-    Otherwise false::
+    Otherwise false:
+
+    ::
 
         >>> leaftools.all_are_leaves('foo')
         False

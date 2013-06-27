@@ -47,7 +47,9 @@ def leaf_to_tuplet_with_ratio(leaf, proportions, is_diminution=True):
         ...     note, [1, 2, 2, 3, 3, 4], is_diminution=False)
         {@ 5:8 c'128, c'64, c'64, c'64., c'64., c'32 @}
 
-    Example 2. Change `leaf` to diminished tuplet::
+    Example 2. Change `leaf` to diminished tuplet:
+
+    ::
 
         >>> note = Note(0, (3, 16))
 

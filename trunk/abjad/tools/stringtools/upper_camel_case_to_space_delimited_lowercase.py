@@ -1,7 +1,9 @@
 def upper_camel_case_to_space_delimited_lowercase(string):
     r'''.. versionadded:: 2.6
 
-    Change uppercamelcase `string` to space-delimited lowercase::
+    Change uppercamelcase `string` to space-delimited lowercase:
+
+    ::
 
         >>> string = 'KeySignatureMark'
 

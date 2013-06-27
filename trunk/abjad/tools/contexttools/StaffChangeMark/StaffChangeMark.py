@@ -4,7 +4,9 @@ from abjad.tools.contexttools.ContextMark import ContextMark
 class StaffChangeMark(ContextMark):
     r'''.. versionadded:: 2.0
 
-    Abjad model of a staff change::
+    Abjad model of a staff change:
+
+    ::
 
         >>> piano_staff = scoretools.PianoStaff([])
         >>> rh_staff = Staff("c'8 d'8 e'8 f'8")
@@ -112,7 +114,9 @@ class StaffChangeMark(ContextMark):
     @apply
     def staff():
         def fget(self):
-            r'''Get staff of staff change mark::
+            r'''Get staff of staff change mark:
+
+            ::
 
                 >>> rh_staff = Staff("c'8 d'8 e'8 f'8")
                 >>> rh_staff.name = 'RHStaff'
@@ -120,7 +124,9 @@ class StaffChangeMark(ContextMark):
                 >>> staff_change.staff
                 Staff-"RHStaff"{4}
 
-            Set staff of staff change mark::
+            Set staff of staff change mark:
+
+            ::
 
                 >>> lh_staff = Staff("s2")
                 >>> lh_staff.name = 'LHStaff'

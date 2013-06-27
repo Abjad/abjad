@@ -4,7 +4,9 @@ from abjad.tools import componenttools
 def all_are_skips(expr):
     '''.. versionadded:: 2.6
 
-    True when `expr` is a sequence of Abjad skips::
+    True when `expr` is a sequence of Abjad skips:
+
+    ::
 
         >>> skips = 3 * skiptools.Skip('s4')
 
@@ -18,12 +20,16 @@ def all_are_skips(expr):
         >>> skiptools.all_are_skips(skips)
         True
 
-    True when `expr` is an empty sequence::
+    True when `expr` is an empty sequence:
+
+    ::
 
         >>> skiptools.all_are_skips([])
         True
 
-    Otherwise false::
+    Otherwise false:
+
+    ::
 
         >>> skiptools.all_are_skips('foo')
         False

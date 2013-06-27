@@ -3,7 +3,9 @@ from abjad.tools.leaftools.Leaf import Leaf
 
 
 class GraceContainer(Container):
-    r'''Abjad model of grace music::
+    r'''Abjad model of grace music:
+
+    ::
 
         >>> voice = Voice("c'8 d'8 e'8 f'8")
         >>> beamtools.BeamSpanner(voice[:])
@@ -133,7 +135,9 @@ class GraceContainer(Container):
     @apply
     def kind():
         def fget(self):
-            r'''Get `kind` of grace container::
+            r'''Get `kind` of grace container:
+
+            ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
                 >>> gracetools.GraceContainer([Note("cs'16")], kind = 'grace')(staff[1])
@@ -144,7 +148,9 @@ class GraceContainer(Container):
 
             Return string.
 
-            Set `kind` of grace container::
+            Set `kind` of grace container:
+
+            ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
                 >>> gracetools.GraceContainer([Note("cs'16")], kind = 'grace')(staff[1])
@@ -167,7 +173,9 @@ class GraceContainer(Container):
     ### PUBLIC METHODS ###
 
     def detach(self):
-        r'''Detach grace container from leaf::
+        r'''Detach grace container from leaf:
+
+        ::
 
             >>> staff = Staff("c'8 d'8 e'8 f'8")
             >>> grace_container = gracetools.GraceContainer([Note("cs'16")], kind = 'grace')

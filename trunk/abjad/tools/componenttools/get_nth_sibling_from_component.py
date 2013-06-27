@@ -35,12 +35,16 @@ def get_nth_sibling_from_component(component, n):
         >>> componenttools.get_nth_sibling_from_component(staff[1], 0)
         Note("d'4")
 
-    Return none when `n` is out of range::
+    Return none when `n` is out of range:
+
+    ::
 
         >>> componenttools.get_nth_sibling_from_component(staff[1], 99) is None
         True
 
-    Return none when `component` has no parent::
+    Return none when `component` has no parent:
+
+    ::
 
         >>> componenttools.get_nth_sibling_from_component(staff, 1) is None
         True

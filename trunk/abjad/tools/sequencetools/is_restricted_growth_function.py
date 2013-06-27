@@ -2,7 +2,9 @@ def is_restricted_growth_function(expr):
     '''.. versionadded:: 2.0
 
     True when `expr` is a sequence and `expr` meets the criteria for a restricted
-    growth function::
+    growth function:
+
+    ::
 
         >>> sequencetools.is_restricted_growth_function([1, 1, 1, 1])
         True
@@ -23,7 +25,9 @@ def is_restricted_growth_function(expr):
         >>> sequencetools.is_restricted_growth_function([1, 1, 2, 2])
         True
 
-    Otherwise false::
+    Otherwise false:
+
+    ::
 
         >>> sequencetools.is_restricted_growth_function([1, 1, 1, 3])
         False

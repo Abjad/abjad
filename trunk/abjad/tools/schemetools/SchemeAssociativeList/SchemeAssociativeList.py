@@ -4,7 +4,9 @@ from abjad.tools.schemetools.Scheme import Scheme
 class SchemeAssociativeList(Scheme):
     '''.. versionadded:: 2.0
 
-    Abjad model of Scheme associative list::
+    Abjad model of Scheme associative list:
+
+    ::
 
         >>> schemetools.SchemeAssociativeList(('space', 2), ('padding', 0.5))
         SchemeAssociativeList((SchemePair(('space', 2)), SchemePair(('padding', 0.5))))

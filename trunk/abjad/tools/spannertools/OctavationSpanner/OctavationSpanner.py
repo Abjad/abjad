@@ -2,7 +2,9 @@ from abjad.tools.spannertools.Spanner import Spanner
 
 
 class OctavationSpanner(Spanner):
-    r'''Abjad octavation spanner::
+    r'''Abjad octavation spanner:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
 
@@ -62,14 +64,18 @@ class OctavationSpanner(Spanner):
     @apply
     def start():
         def fget(self):
-            r'''Get octavation start::
+            r'''Get octavation start:
+
+            ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
                 >>> octavation = spannertools.OctavationSpanner(staff[:], start=1)
                 >>> octavation.start
                 1
 
-            Set octavation start::
+            Set octavation start:
+
+            ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
                 >>> octavation = spannertools.OctavationSpanner(staff[:], start=1)
@@ -87,14 +93,18 @@ class OctavationSpanner(Spanner):
     @apply
     def stop():
         def fget(self):
-            r'''Get octavation stop::
+            r'''Get octavation stop:
+
+            ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
                 >>> octavation = spannertools.OctavationSpanner(staff[:], start=2, stop=1)
                 >>> octavation.stop
                 1
 
-            Set octavation stop::
+            Set octavation stop:
+
+            ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
                 >>> octavation = spannertools.OctavationSpanner(staff[:], start=2, stop=1)

@@ -6,7 +6,9 @@ from abjad.tools.pitchtools.HarmonicInterval import HarmonicInterval
 class HarmonicChromaticInterval(ChromaticInterval, HarmonicInterval):
     '''.. versionadded:: 2.0
 
-    Abjad model of harmonic chromatic interval::
+    Abjad model of harmonic chromatic interval:
+
+    ::
 
         >>> pitchtools.HarmonicChromaticInterval(-14)
         HarmonicChromaticInterval(14)
@@ -46,7 +48,9 @@ class HarmonicChromaticInterval(ChromaticInterval, HarmonicInterval):
 
     @property
     def harmonic_chromatic_interval_class(self):
-        '''Read-only harmonic chromatic interval-class::
+        '''Read-only harmonic chromatic interval-class:
+
+        ::
 
             >>> harmonic_chromatic_interval = pitchtools.HarmonicChromaticInterval(14)
             >>> harmonic_chromatic_interval.harmonic_chromatic_interval_class

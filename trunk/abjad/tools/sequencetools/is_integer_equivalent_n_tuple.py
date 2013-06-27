@@ -4,12 +4,16 @@ from abjad.tools import mathtools
 def is_integer_equivalent_n_tuple(expr, n):
     r'''.. versionadded:: 2.9
 
-    True when `expr` is a tuple of `n` integer-equivalent expressions::
+    True when `expr` is a tuple of `n` integer-equivalent expressions:
+
+    ::
 
         >>> sequencetools.is_integer_equivalent_n_tuple((2.0, '3', Fraction(4, 1)), 3)
         True
 
-    Otherwise false::
+    Otherwise false:
+
+    ::
 
         >>> sequencetools.is_integer_equivalent_n_tuple((2.5, '3', Fraction(4, 1)), 3)
         False

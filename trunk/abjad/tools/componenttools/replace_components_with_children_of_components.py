@@ -1,7 +1,9 @@
 def replace_components_with_children_of_components(components):
     r'''.. versionadded:: 1.1
 
-    Remove arbitrary `components` from score but retain children of `components` in score::
+    Remove arbitrary `components` from score but retain children of `components` in score:
+
+    ::
 
         >>> staff = Staff(Container(notetools.make_repeated_notes(2)) * 2)
         >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)

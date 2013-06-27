@@ -7,7 +7,9 @@ from abjad.tools import mathtools
 def set_measure_denominator_and_adjust_numerator(measure, denominator):
     r'''.. versionadded:: 1.1
 
-    Set `measure` time signature `denominator` and multiply time signature numerator accordingly::
+    Set `measure` time signature `denominator` and multiply time signature numerator accordingly:
+
+    ::
 
         >>> measure = Measure((3, 8), "c'8 d'8 e'8")
         >>> beamtools.BeamSpanner(measure.leaves)

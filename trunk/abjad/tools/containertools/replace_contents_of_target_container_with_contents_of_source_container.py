@@ -72,7 +72,9 @@ def replace_contents_of_target_container_with_contents_of_source_container(targe
             }
         }
 
-    Leave `source_container` empty::
+    Leave `source_container` empty:
+
+    ::
 
         >>> container
         {}

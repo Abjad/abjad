@@ -1,7 +1,9 @@
 def list_primary_performer_names():
     r'''.. versionadded:: 2.5
 
-    List performer names::
+    List performer names:
+
+    ::
 
         >>> for pair in scoretools.list_primary_performer_names():
         ...     pair

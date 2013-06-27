@@ -1,7 +1,9 @@
 def yield_all_set_partitions_of_sequence(sequence):
     '''.. versionadded:: 2.0
 
-    Yield all set partitions of `sequence` in restricted growth function order::
+    Yield all set partitions of `sequence` in restricted growth function order:
+
+    ::
 
         >>> for set_partition in sequencetools.yield_all_set_partitions_of_sequence(
         ...     [21, 22, 23, 24]):

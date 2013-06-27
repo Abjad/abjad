@@ -4,7 +4,9 @@ from abjad.tools.beamtools.BeamSpanner import BeamSpanner
 class MultipartBeamSpanner(BeamSpanner):
     r'''.. versionadded:: 2.0
 
-    Abjad multipart beam spanner::
+    Abjad multipart beam spanner:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'4 f'8 g'8 r4")
 

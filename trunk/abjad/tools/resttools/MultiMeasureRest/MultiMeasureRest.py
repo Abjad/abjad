@@ -4,7 +4,9 @@ from abjad.tools.resttools.Rest import Rest
 class MultiMeasureRest(Rest):
     '''.. versionadded:: 2.0
 
-    Abjad model of a multi-measure rest::
+    Abjad model of a multi-measure rest:
+
+    ::
 
         >>> resttools.MultiMeasureRest((1, 4))
         MultiMeasureRest('R4')

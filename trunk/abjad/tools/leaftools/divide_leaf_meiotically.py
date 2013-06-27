@@ -6,7 +6,9 @@ from abjad.tools import mathtools
 def divide_leaf_meiotically(leaf, n=2):
     r'''.. versionadded:: 1.1
 
-    Divide `leaf` meiotically `n` times::
+    Divide `leaf` meiotically `n` times:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> beamtools.BeamSpanner(staff.leaves)

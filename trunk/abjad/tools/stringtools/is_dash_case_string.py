@@ -7,12 +7,16 @@ hyphen_delimited_lowercase_regex = re.compile('^%s$' % hyphen_delimited_lowercas
 def is_dash_case_string(expr):
     r'''.. versionadded:: 2.13
 
-    True when `expr` is a string and is hyphen delimited lowercase::
+    True when `expr` is a string and is hyphen delimited lowercase:
+
+    ::
 
         >>> stringtools.is_dash_case_string('foo-bar')
         True
 
-    False otherwise::
+    False otherwise:
+
+    ::
 
         >>> stringtools.is_dash_case_string('foo bar')
         False

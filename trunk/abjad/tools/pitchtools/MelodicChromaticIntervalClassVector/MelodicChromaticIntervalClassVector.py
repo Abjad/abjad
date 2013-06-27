@@ -4,7 +4,9 @@ from abjad.tools.pitchtools.Vector import Vector
 class MelodicChromaticIntervalClassVector(Vector):
     '''.. versionadded:: 2.0
 
-    Abjad model of melodic chromatic interval-class vector::
+    Abjad model of melodic chromatic interval-class vector:
+
+    ::
 
         >>> print pitchtools.MelodicChromaticIntervalClassVector([-2, -14, 3, 5.5, 6.5])
             .   |   .   .   1   .   .   .   |   .   .   .   .   .   .

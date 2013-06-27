@@ -5,7 +5,9 @@ from abjad.tools.scoretools.PerformerInventory import PerformerInventory
 class InstrumentationSpecifier(AbjadObject):
     r'''.. versionadded:: 2.5
 
-    Abjad model of score instrumentation::
+    Abjad model of score instrumentation:
+
+    ::
 
         >>> flute = scoretools.Performer('Flute')
         >>> flute.instruments.append(instrumenttools.Flute())
@@ -65,7 +67,9 @@ class InstrumentationSpecifier(AbjadObject):
 
     @property
     def instrument_count(self):
-        r'''Read-only number of instruments in score::
+        r'''Read-only number of instruments in score:
+
+        ::
 
             >>> instrumentation_specifier.instrument_count
             3
@@ -76,7 +80,9 @@ class InstrumentationSpecifier(AbjadObject):
 
     @property
     def instruments(self):
-        r'''Read-only list of instruments derived from performers::
+        r'''Read-only list of instruments derived from performers:
+
+        ::
 
             >>> instrumentation_specifier.instruments
             [Flute(), AltoFlute(), Guitar()]
@@ -90,7 +96,9 @@ class InstrumentationSpecifier(AbjadObject):
 
     @property
     def performer_count(self):
-        r'''Read-only number of performers in score::
+        r'''Read-only number of performers in score:
+
+        ::
 
             >>> instrumentation_specifier.performer_count
             2
@@ -101,7 +109,9 @@ class InstrumentationSpecifier(AbjadObject):
 
     @property
     def performer_name_string(self):
-        r'''Read-only string of performer names::
+        r'''Read-only string of performer names:
+
+        ::
 
             >>> instrumentation_specifier.performer_name_string
             'Flute, Guitar'
@@ -116,7 +126,9 @@ class InstrumentationSpecifier(AbjadObject):
     @apply
     def performers():
         def fget(self):
-            r'''Read / write list of performers in score::
+            r'''Read / write list of performers in score:
+
+            ::
 
                 >>> z(instrumentation_specifier.performers)
                 scoretools.PerformerInventory([

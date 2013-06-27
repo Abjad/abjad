@@ -43,7 +43,9 @@ def iterate_notes_in_expr(expr, reverse=False, start=0, stop=None):
         Note("a'8")
 
     Use optional `start` and `stop` keyword parameters to control
-    start and stop indices of iteration::
+    start and stop indices of iteration:
+
+    ::
 
         >>> for note in iterationtools.iterate_notes_in_expr(staff, start=3):
         ...     note
@@ -108,7 +110,9 @@ def iterate_notes_in_expr(expr, reverse=False, start=0, stop=None):
         Note("c'8")
 
     Use optional `start` and `stop` keyword parameters to control
-    indices of iteration::
+    indices of iteration:
+
+    ::
 
         >>> for note in iterationtools.iterate_notes_in_expr(staff, reverse=True, start=3):
         ...     note

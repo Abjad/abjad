@@ -4,7 +4,9 @@ from abjad.tools import componenttools
 def is_component_with_annotation_attached(expr, annotation_name=None, annotation_value=None):
     '''.. versionadded:: 2.3
 
-    True when `expr` is component with annotation attached::
+    True when `expr` is component with annotation attached:
+
+    ::
 
         >>> note = Note("c'4")
         >>> marktools.Annotation('foo', 'bar')(note)
@@ -15,7 +17,9 @@ def is_component_with_annotation_attached(expr, annotation_name=None, annotation
         >>> marktools.is_component_with_annotation_attached(note)
         True
 
-    False otherwise::
+    False otherwise:
+
+    ::
 
         >>> note = Note("c'4")
 

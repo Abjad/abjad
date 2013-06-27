@@ -4,7 +4,9 @@ from abjad.tools import componenttools
 def replace_leaves_in_expr_with_skips(expr):
     r'''.. versionadded:: 1.1
 
-    Replace leaves in `expr` with skips::
+    Replace leaves in `expr` with skips:
+
+    ::
 
         >>> staff = Staff(Measure((2, 8), "c'8 d'8") * 2)
         >>> skiptools.replace_leaves_in_expr_with_skips(staff[0])

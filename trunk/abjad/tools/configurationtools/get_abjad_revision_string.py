@@ -4,7 +4,9 @@ import subprocess
 def get_abjad_revision_string():
     '''.. versionadded:: 2.0
 
-    Get Abjad revision string::
+    Get Abjad revision string:
+
+    ::
 
         >>> configurationtools.get_abjad_revision_string() # doctest: +SKIP
         '5280'

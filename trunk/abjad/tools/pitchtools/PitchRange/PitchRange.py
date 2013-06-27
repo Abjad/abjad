@@ -6,7 +6,9 @@ from abjad.tools.abctools import AbjadObject
 class PitchRange(AbjadObject):
     r""".. versionadded:: 2.0
 
-    Abjad model of pitch range::
+    Abjad model of pitch range:
+
+    ::
 
         >>> pitchtools.PitchRange(-12, 36)
         PitchRange('[C3, C7]')
@@ -262,7 +264,9 @@ class PitchRange(AbjadObject):
 
     @property
     def one_line_named_chromatic_pitch_repr(self):
-        r'''Read-only one-line named chromatic pitch repr of pitch of range::
+        r'''Read-only one-line named chromatic pitch repr of pitch of range:
+
+        ::
 
             >>> pitch_range = pitchtools.PitchRange(-12, 36)
             >>> pitch_range.one_line_named_chromatic_pitch_repr
@@ -283,7 +287,9 @@ class PitchRange(AbjadObject):
 
     @property
     def one_line_numbered_chromatic_pitch_repr(self):
-        r'''Read-only one-line numbered chromatic pitch repr of pitch of range::
+        r'''Read-only one-line numbered chromatic pitch repr of pitch of range:
+
+        ::
 
             >>> pitch_range = pitchtools.PitchRange(-12, 36)
             >>> pitch_range.one_line_numbered_chromatic_pitch_repr
@@ -304,7 +310,9 @@ class PitchRange(AbjadObject):
     def pitch_range_name(self):
         r'''.. versionadded:: 2.7
 
-        Read-only name of pitch range::
+        Read-only name of pitch range:
+
+        ::
 
             >>> pitch_range = pitchtools.PitchRange(-12, 36, pitch_range_name='four-octave range')
             >>> pitch_range.pitch_range_name
@@ -318,7 +326,9 @@ class PitchRange(AbjadObject):
     def pitch_range_name_markup(self):
         r'''.. versionadded:: 2.7
 
-        Read-only markup of pitch range name::
+        Read-only markup of pitch range name:
+
+        ::
 
             >>> pitch_range = pitchtools.PitchRange(-12, 36,
             ...     pitch_range_name_markup=markuptools.Markup('four-octave range'))
@@ -337,7 +347,9 @@ class PitchRange(AbjadObject):
 
     @property
     def start_pitch(self):
-        r'''Read-only start pitch of range::
+        r'''Read-only start pitch of range:
+
+        ::
 
             >>> pitch_range = pitchtools.PitchRange(-12, 36)
             >>> pitch_range.start_pitch
@@ -351,7 +363,9 @@ class PitchRange(AbjadObject):
 
     @property
     def start_pitch_is_included_in_range(self):
-        '''Read-only boolean true when start pitch is included in range. Otherwise false::
+        '''Read-only boolean true when start pitch is included in range. Otherwise false:
+
+        ::
 
             >>> pitch_range = pitchtools.PitchRange(-12, 36)
             >>> pitch_range.start_pitch_is_included_in_range
@@ -365,7 +379,9 @@ class PitchRange(AbjadObject):
 
     @property
     def stop_pitch(self):
-        r"""Read-only stop pitch of range::
+        r"""Read-only stop pitch of range:
+
+        ::
 
             >>> pitch_range = pitchtools.PitchRange(-12, 36)
             >>> pitch_range.stop_pitch
@@ -379,7 +395,9 @@ class PitchRange(AbjadObject):
 
     @property
     def stop_pitch_is_included_in_range(self):
-        '''Read-only boolean true when stop pitch is included in range. Otherwise false::
+        '''Read-only boolean true when stop pitch is included in range. Otherwise false:
+
+        ::
 
             >>> pitch_range = pitchtools.PitchRange(-12, 36)
             >>> pitch_range.stop_pitch_is_included_in_range

@@ -4,7 +4,9 @@ from abjad.tools import mathtools
 def yield_all_restricted_growth_functions_of_length(length):
     '''.. versionadded:: 2.0
 
-    Generate all restricted growth functions of `length` in lex order::
+    Generate all restricted growth functions of `length` in lex order:
+
+    ::
 
         >>> for rgf in sequencetools.yield_all_restricted_growth_functions_of_length(4):
         ...     rgf

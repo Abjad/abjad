@@ -5,7 +5,9 @@ from abjad.tools import selectiontools
 def all_are_thread_contiguous_components(expr, klasses=None, allow_orphans=True):
     r'''.. versionadded:: 1.1
 
-    True when elements in `expr` are all thread-contiguous components::
+    True when elements in `expr` are all thread-contiguous components:
+
+    ::
 
         t = Voice(notetools.make_repeated_notes(4))
         t.insert(2, Voice(notetools.make_repeated_notes(2)))

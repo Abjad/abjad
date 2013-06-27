@@ -3,7 +3,9 @@ from abjad.tools.spannertools.DirectedSpanner.DirectedSpanner import DirectedSpa
 
 
 class TieSpanner(DirectedSpanner):
-    r'''Abjad tie spanner::
+    r'''Abjad tie spanner:
+
+    ::
 
         >>> staff = Staff(notetools.make_repeated_notes(4))
         >>> tietools.TieSpanner(staff[:])

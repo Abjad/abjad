@@ -10,13 +10,17 @@ from abjad.tools import resttools
 def make_tuplet_from_nonreduced_ratio_and_nonreduced_fraction(proportions, (n, d)):
     '''Divide nonreduced fraction `(n, d)` according to `proportions`.
 
-    Return container when no prolation is necessary::
+    Return container when no prolation is necessary:
+
+    ::
 
         >>> tuplettools.make_tuplet_from_nonreduced_ratio_and_nonreduced_fraction(
         ...     [1], (7, 16))
         {c'4..}
 
-    Return fixed-duration tuplet when prolation is necessary::
+    Return fixed-duration tuplet when prolation is necessary:
+
+    ::
 
         >>> tuplettools.make_tuplet_from_nonreduced_ratio_and_nonreduced_fraction(
         ...     [1, 2], (7, 16))

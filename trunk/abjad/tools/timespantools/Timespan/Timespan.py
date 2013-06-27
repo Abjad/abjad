@@ -90,12 +90,16 @@ class Timespan(BoundedObject):
         return timespantools.TimespanInventory([timespan])
 
     def __eq__(self, timespan):
-        '''True when `timespan` is a timespan with equal offsets::
+        '''True when `timespan` is a timespan with equal offsets:
+
+        ::
 
             >>> timespantools.Timespan(1, 3) == timespantools.Timespan(1, 3)
             True
 
-        Otherwise false::
+        Otherwise false:
+
+        ::
 
             >>> timespantools.Timespan(1, 3) == timespantools.Timespan(2, 3)
             False
@@ -227,12 +231,16 @@ class Timespan(BoundedObject):
         return self.start_offset < expr.start_offset
 
     def __ne__(self, timespan):
-        '''True when `timespan` is not a timespan with equivalent offsets::
+        '''True when `timespan` is not a timespan with equivalent offsets:
+
+        ::
 
             >>> timespantools.Timespan(1, 3) != timespantools.Timespan(2, 3)
             True
 
-        Otherwise false::
+        Otherwise false:
+
+        ::
 
             >>> timespantools.Timespan(1, 3) != timespantools.Timespan(2/2, (3, 1))
             False
@@ -628,7 +636,9 @@ class Timespan(BoundedObject):
 
     @property
     def axis(self):
-        '''Arithmetic mean of timespan start- and stop-offsets::
+        '''Arithmetic mean of timespan start- and stop-offsets:
+
+        ::
 
             >>> timespan_1.axis
             Offset(5, 1)
@@ -639,7 +649,9 @@ class Timespan(BoundedObject):
 
     @property
     def duration(self):
-        '''Get timespan duration::
+        '''Get timespan duration:
+
+        ::
 
             >>> timespan_1.duration
             Duration(10, 1)
@@ -749,7 +761,9 @@ class Timespan(BoundedObject):
     @property
     def is_well_formed(self):
         '''True when timespan start offset preceeds timespan stop offset.
-        Otherwise false::
+        Otherwise false:
+
+        ::
 
             >>> timespan_1.is_well_formed
             True
@@ -760,7 +774,9 @@ class Timespan(BoundedObject):
 
     @property
     def offsets(self):
-        '''Timespan offsets::
+        '''Timespan offsets:
+
+        ::
 
             >>> timespan_1.offsets
             (Offset(0, 1), Offset(10, 1))
@@ -771,7 +787,9 @@ class Timespan(BoundedObject):
 
     @property
     def start_offset(self):
-        '''Timespan start offset::
+        '''Timespan start offset:
+
+        ::
 
             >>> timespan_1.start_offset
             Offset(0, 1)
@@ -782,7 +800,9 @@ class Timespan(BoundedObject):
 
     @property
     def stop_offset(self):
-        '''Timespan stop offset::
+        '''Timespan stop offset:
+
+        ::
 
             >>> timespan_1.stop_offset
             Offset(10, 1)
@@ -1246,12 +1266,16 @@ class Timespan(BoundedObject):
             >>> timespan.set_offsets(stop_offset=Offset(7, 8))
             Timespan(start_offset=Offset(1, 2), stop_offset=Offset(7, 8))
 
-        Subtract negative `start_offset` from existing stop offset::
+        Subtract negative `start_offset` from existing stop offset:
+
+        ::
 
             >>> timespan.set_offsets(start_offset=Offset(-1, 2))
             Timespan(start_offset=Offset(1, 1), stop_offset=Offset(3, 2))
 
-        Subtract negative `stop_offset` from existing stop offset::
+        Subtract negative `stop_offset` from existing stop offset:
+
+        ::
 
             >>> timespan.set_offsets(stop_offset=Offset(-1, 2))
             Timespan(start_offset=Offset(1, 2), stop_offset=Offset(1, 1))
@@ -1275,7 +1299,9 @@ class Timespan(BoundedObject):
 
     # TODO: extend to self.split_at_offsets()
     def split_at_offset(self, offset):
-        '''Split into two parts when `offset` happens during timespan::
+        '''Split into two parts when `offset` happens during timespan:
+
+        ::
 
             >>> timespan = timespantools.Timespan(0, 5)
 
@@ -1293,7 +1319,9 @@ class Timespan(BoundedObject):
             >>> right
             Timespan(start_offset=Offset(2, 1), stop_offset=Offset(5, 1))
 
-        Otherwise return a copy of timespan::
+        Otherwise return a copy of timespan:
+
+        ::
 
             >>> timespan.split_at_offset(Offset(12))
             Timespan(start_offset=Offset(0, 1), stop_offset=Offset(5, 1))

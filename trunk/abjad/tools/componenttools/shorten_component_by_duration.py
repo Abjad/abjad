@@ -8,7 +8,9 @@ def shorten_component_by_duration(component, duration):
 
     Shorten `component` by prolated `duration`.
 
-    Example 1. Shorten container and produce note with dotted duration::
+    Example 1. Shorten container and produce note with dotted duration:
+
+    ::
 
         >>> staff = Staff("c'8 [ d'8 e'8 f'8 ]")
 
@@ -30,7 +32,9 @@ def shorten_component_by_duration(component, duration):
 
         >>> show(staff) # doctest: +SKIP
 
-    Example 2. Shorten container and produce note with tied duration::
+    Example 2. Shorten container and produce note with tied duration:
+
+    ::
 
         >>> staff = Staff("c'8 [ d'8 e'8 f'8 ]")
 
@@ -53,7 +57,9 @@ def shorten_component_by_duration(component, duration):
 
         >>> show(staff) # doctest: +SKIP
 
-    Example 3. Shorten container and produce note with non-power-of-two duration::
+    Example 3. Shorten container and produce note with non-power-of-two duration:
+
+    ::
 
         >>> staff = Staff("c'8 [ d'8 e'8 f'8 ]")
 

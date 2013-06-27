@@ -5,7 +5,9 @@ from abjad.tools.componenttools.Component import Component
 class Mark(AbjadObject):
     '''.. versionadded:: 2.0
 
-    Abstract class from which concrete marks inherit::
+    Abstract class from which concrete marks inherit:
+
+    ::
 
         >>> note = Note("c'4")
 
@@ -99,7 +101,9 @@ class Mark(AbjadObject):
 
     @property
     def start_component(self):
-        '''Read-only reference to mark start component::
+        '''Read-only reference to mark start component:
+
+        ::
 
             >>> note = Note("c'4")
             >>> mark = marktools.Mark()(note)
@@ -137,7 +141,9 @@ class Mark(AbjadObject):
         return self
 
     def detach(self):
-        '''Detach mark::
+        '''Detach mark:
+
+        ::
 
             >>> note = Note("c'4")
             >>> mark = marktools.Mark()(note)

@@ -15,7 +15,9 @@ def sum_sequence_elements_at_indices(sequence, pairs, period=None, overhang=True
         [3, 3, 15, 7, 17]
 
     Sum `sequence` elements cyclically at indices according to `pairs` and `period`
-    and do not return incomplete final sum::
+    and do not return incomplete final sum:
+
+    ::
 
         >>> sequencetools.sum_sequence_elements_at_indices(
         ...     range(10), [(0, 3)], period=4, overhang=False)

@@ -76,13 +76,17 @@ class NoteHead(SortableAttributeEqualityAbjadObject):
     @apply
     def is_cautionary():
         def fget(self):
-            '''Get cautionary accidental flag::
+            '''Get cautionary accidental flag:
+
+            ::
 
                 >>> note_head = notetools.NoteHead("cs''")
                 >>> note_head.is_cautionary
                 False
 
-            Set cautionary accidental flag::
+            Set cautionary accidental flag:
+
+            ::
 
                 >>> note_head = notetools.NoteHead("cs''")
                 >>> note_head.is_cautionary = True
@@ -96,13 +100,17 @@ class NoteHead(SortableAttributeEqualityAbjadObject):
 
     @apply
     def is_forced():
-        '''Get forced accidental flag::
+        '''Get forced accidental flag:
+
+        ::
 
             >>> note_head = notetools.NoteHead("cs''")
             >>> note_head.is_forced
             False
 
-        Set forced accidental flag::
+        Set forced accidental flag:
+
+        ::
 
             >>> note_head = notetools.NoteHead("cs''")
             >>> note_head.is_forced = True
@@ -117,7 +125,9 @@ class NoteHead(SortableAttributeEqualityAbjadObject):
 
     @property
     def lilypond_format(self):
-        '''Read-only LilyPond input format of note head::
+        '''Read-only LilyPond input format of note head:
+
+        ::
 
             >>> note_head = notetools.NoteHead("cs''")
             >>> note_head.lilypond_format
@@ -130,7 +140,9 @@ class NoteHead(SortableAttributeEqualityAbjadObject):
 
     @property
     def named_chromatic_pitch(self):
-        '''Read-only named chromatic pitch equal to note head::
+        '''Read-only named chromatic pitch equal to note head:
+
+        ::
 
             >>> note_head = notetools.NoteHead("cs''")
             >>> note_head.named_chromatic_pitch
@@ -142,7 +154,9 @@ class NoteHead(SortableAttributeEqualityAbjadObject):
 
     @property
     def tweak(self):
-        '''Read-only LilyPond tweak reservoir::
+        '''Read-only LilyPond tweak reservoir:
+
+        ::
 
             >>> note_head = notetools.NoteHead("cs''")
             >>> note_head.tweak
@@ -157,13 +171,17 @@ class NoteHead(SortableAttributeEqualityAbjadObject):
     @apply
     def written_pitch():
         def fget(self):
-            '''Get named pitch of note head::
+            '''Get named pitch of note head:
+
+            ::
 
                 >>> note_head = notetools.NoteHead("cs''")
                 >>> note_head.written_pitch
                 NamedChromaticPitch("cs''")
 
-            Set named pitch of note head::
+            Set named pitch of note head:
+
+            ::
 
                 >>> note_head = notetools.NoteHead("cs''")
                 >>> note_head.written_pitch = "d''"

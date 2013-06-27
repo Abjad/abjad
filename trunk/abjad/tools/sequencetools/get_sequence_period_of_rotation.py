@@ -6,7 +6,9 @@ from abjad.tools.sequencetools.get_sequence_degree_of_rotational_symmetry import
 def get_sequence_period_of_rotation(sequence, n):
     '''.. versionadded:: 2.0
 
-    Change `sequence` to period of rotation::
+    Change `sequence` to period of rotation:
+
+    ::
 
         >>> sequencetools.get_sequence_period_of_rotation([1, 2, 3, 1, 2, 3], 1)
         3

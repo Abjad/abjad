@@ -4,7 +4,9 @@ from abjad.tools.abctools import AbjadObject
 class NumberedChromaticPitchClassColorMap(AbjadObject):
     '''.. versionadded:: 2.0
 
-    Abjad model of a numbered chromatic pitch-class color map::
+    Abjad model of a numbered chromatic pitch-class color map:
+
+    ::
 
         >>> chromatic_pitch_class_numbers = [[-8, 2, 10, 21], [0, 11, 32, 41], [15, 25, 42, 43]]
         >>> colors = ['red', 'green', 'blue']

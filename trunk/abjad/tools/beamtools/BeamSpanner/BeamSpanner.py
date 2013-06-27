@@ -2,7 +2,9 @@ from abjad.tools.spannertools.DirectedSpanner.DirectedSpanner import DirectedSpa
 
 
 class BeamSpanner(DirectedSpanner):
-    r'''Abjad beam spanner::
+    r'''Abjad beam spanner:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8 g'2")
 

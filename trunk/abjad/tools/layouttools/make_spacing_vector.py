@@ -4,11 +4,15 @@ from abjad.tools import schemetools
 def make_spacing_vector(basic_distance, minimum_distance, padding, stretchability):
     r'''.. versionadded:: 2.0
 
-    Make spacing vector::
+    Make spacing vector:
+
+    ::
 
         >>> vector = layouttools.make_spacing_vector(0, 0, 12, 0)
 
-    Use to set paper block spacing attributes::
+    Use to set paper block spacing attributes:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file(staff)

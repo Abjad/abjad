@@ -232,7 +232,9 @@ class Tuplet(Container):
 
     @property
     def has_non_power_of_two_denominator(self):
-        '''Read-only boolean true when multiplier numerator is not power of two. Otherwise false::
+        '''Read-only boolean true when multiplier numerator is not power of two. Otherwise false:
+
+        ::
 
             >>> tuplet = Tuplet((3, 5), "c'8 d'8 e'8 f'8 g'8")
             >>> tuplet.has_non_power_of_two_denominator
@@ -244,7 +246,9 @@ class Tuplet(Container):
 
     @property
     def has_power_of_two_denominator(self):
-        '''Read-only boolean true when multiplier numerator is power of two. Otherwise false::
+        '''Read-only boolean true when multiplier numerator is power of two. Otherwise false:
+
+        ::
 
             >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
             >>> tuplet.has_power_of_two_denominator
@@ -270,7 +274,9 @@ class Tuplet(Container):
     @property
     def is_augmentation(self):
         '''True when multiplier is greater than 1.
-        Otherwise false::
+        Otherwise false:
+
+        ::
 
             >>> t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
             >>> t.is_augmentation
@@ -285,7 +291,9 @@ class Tuplet(Container):
 
     @property
     def is_diminution(self):
-        '''True when multiplier is less than 1.  Otherwise false::
+        '''True when multiplier is less than 1.  Otherwise false:
+
+        ::
 
             >>> t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
             >>> t.is_diminution
@@ -300,7 +308,9 @@ class Tuplet(Container):
 
     @property
     def is_trivial(self):
-        '''True when tuplet multiplier is one. Otherwise false::
+        '''True when tuplet multiplier is one. Otherwise false:
+
+        ::
 
             >>> tuplet = Tuplet((1, 1), "c'8 d'8 e'8")
             >>> tuplet.is_trivial
@@ -317,7 +327,9 @@ class Tuplet(Container):
 
     @property
     def multiplied_duration(self):
-        '''Read-only multiplied duration of tuplet::
+        '''Read-only multiplied duration of tuplet:
+
+        ::
 
             >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
             >>> tuplet.multiplied_duration
@@ -343,7 +355,9 @@ class Tuplet(Container):
 
     @property
     def ratio_string(self):
-        '''Read-only tuplet multiplier formatted with colon as ratio::
+        '''Read-only tuplet multiplier formatted with colon as ratio:
+
+        ::
 
             >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
             >>> tuplet.ratio_string
@@ -362,7 +376,9 @@ class Tuplet(Container):
     @apply
     def force_fraction():
         def fget(self):
-            r'''Read / write boolean to force ``n:m`` fraction in LilyPond format::
+            r'''Read / write boolean to force ``n:m`` fraction in LilyPond format:
+
+            ::
 
                 >>> tuplet = Tuplet(Fraction(2, 3), "c'8 d'8 e'8")
 
@@ -452,7 +468,9 @@ class Tuplet(Container):
     @apply
     def multiplier():
         def fget(self):
-            r'''Read / write tuplet multiplier::
+            r'''Read / write tuplet multiplier:
+
+            ::
 
                 >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
                 >>> tuplet.multiplier
@@ -479,7 +497,9 @@ class Tuplet(Container):
         def fget(self):
             r'''.. versionadded:: 2.0
 
-            Integer denominator in terms of which tuplet fraction should format::
+            Integer denominator in terms of which tuplet fraction should format:
+
+            ::
 
                 >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
                 >>> tuplet.preferred_denominator = 4

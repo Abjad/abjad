@@ -4,7 +4,9 @@ from abjad.tools import componenttools
 def fuse_tied_leaves_in_components_once_by_durations_without_overhang(components, durations):
     r'''.. versionadded:: 1.1
 
-    Fuse tied leaves in `components` once by prolated `durations` without overhang::
+    Fuse tied leaves in `components` once by prolated `durations` without overhang:
+
+    ::
 
         >>> staff = Staff(notetools.make_repeated_notes(8))
         >>> tietools.TieSpanner(staff.leaves)

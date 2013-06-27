@@ -1,7 +1,9 @@
 def chromatic_pitch_name_to_chromatic_pitch_class_name(chromatic_pitch_name):
     '''.. versionadded:: 2.0
 
-    Change `chromatic_pitch_name` to chromatic pitch-class name::
+    Change `chromatic_pitch_name` to chromatic pitch-class name:
+
+    ::
 
         >>> pitchtools.chromatic_pitch_name_to_chromatic_pitch_class_name("cs''")
         'cs'

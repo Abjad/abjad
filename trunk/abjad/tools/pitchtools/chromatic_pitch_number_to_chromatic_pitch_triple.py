@@ -7,7 +7,9 @@ def chromatic_pitch_number_to_chromatic_pitch_triple(
     '''.. versionadded: 1.1.1
 
     Change `chromatic_pitch_number` to diatonic pitch-class name / alphabetic
-    accidental abbreviation / octave number triple::
+    accidental abbreviation / octave number triple:
+
+    ::
 
         >>> pitchtools.chromatic_pitch_number_to_chromatic_pitch_triple(
         ... 13, accidental_spelling='sharps')

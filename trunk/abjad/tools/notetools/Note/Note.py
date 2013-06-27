@@ -116,7 +116,9 @@ class Note(Leaf):
 
     @property
     def fingered_pitch(self):
-        r'''Read-only fingered pitch of note::
+        r'''Read-only fingered pitch of note:
+
+        ::
 
             >>> staff = Staff("d''8 e''8 f''8 g''8")
             >>> piccolo = instrumenttools.Piccolo()(staff)
@@ -157,13 +159,17 @@ class Note(Leaf):
     @apply
     def note_head():
         def fget(self):
-            '''Get note head of note::
+            '''Get note head of note:
+
+            ::
 
                 >>> note = Note(13, (3, 16))
                 >>> note.note_head
                 NoteHead("cs''")
 
-            Set note head of note::
+            Set note head of note:
+
+            ::
 
                 >>> note = Note(13, (3, 16))
                 >>> note.note_head = 14
@@ -186,7 +192,9 @@ class Note(Leaf):
     @apply
     def sounding_pitch():
         def fget(self):
-            r'''Get sounding pitch of note::
+            r'''Get sounding pitch of note:
+
+            ::
 
                 >>> staff = Staff("d''8 e''8 f''8 g''8")
                 >>> piccolo = instrumenttools.Piccolo()(staff)
@@ -209,7 +217,9 @@ class Note(Leaf):
                 >>> staff[0].sounding_pitch
                 NamedChromaticPitch("d''")
 
-            Set sounding pitch of note::
+            Set sounding pitch of note:
+
+            ::
 
                 >>> staff[0].sounding_pitch = "dqs''"
                 >>> f(staff)
@@ -251,13 +261,17 @@ class Note(Leaf):
     @apply
     def written_pitch():
         def fget(self):
-            '''Get named pitch of note::
+            '''Get named pitch of note:
+
+            ::
 
                 >>> note = Note(13, (3, 16))
                 >>> note.written_pitch
                 NamedChromaticPitch("cs''")
 
-            Set named pitch of note::
+            Set named pitch of note:
+
+            ::
 
                 >>> note = Note(13, (3, 16))
                 >>> note.written_pitch = 14

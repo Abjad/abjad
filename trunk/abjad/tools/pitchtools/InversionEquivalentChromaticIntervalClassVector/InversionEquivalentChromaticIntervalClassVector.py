@@ -4,12 +4,16 @@ from abjad.tools.pitchtools.Vector import Vector
 class InversionEquivalentChromaticIntervalClassVector(Vector):
     '''.. versionadded:: 2.0
 
-    Abjad model of inversion-equivalent chromatic interval-class vector::
+    Abjad model of inversion-equivalent chromatic interval-class vector:
+
+    ::
 
         >>> pitchtools.InversionEquivalentChromaticIntervalClassVector([1, 1, 6, 2, 2, 2])
         InversionEquivalentChromaticIntervalClassVector(0 | 2 3 0 0 0 1)
 
-    Initialize by inversion-equivalent chromatic interval-class counts::
+    Initialize by inversion-equivalent chromatic interval-class counts:
+
+    ::
 
         >>> pitchtools.InversionEquivalentChromaticIntervalClassVector(counts=[2, 3, 0, 0, 0, 1])
         InversionEquivalentChromaticIntervalClassVector(0 | 2 3 0 0 0 1)

@@ -1,7 +1,9 @@
 def diatonic_pitch_name_to_diatonic_pitch_number(diatonic_pitch_name):
     '''.. versionadded:: 2.0
 
-    Change `diatonic_pitch_name` to diatonic pitch number::
+    Change `diatonic_pitch_name` to diatonic pitch number:
+
+    ::
 
         >>> pitchtools.diatonic_pitch_name_to_diatonic_pitch_number("c''")
         7

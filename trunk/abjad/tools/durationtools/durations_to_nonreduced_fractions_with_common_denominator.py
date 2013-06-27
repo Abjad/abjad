@@ -4,7 +4,9 @@ from abjad.tools import mathtools
 def durations_to_nonreduced_fractions_with_common_denominator(durations):
     '''.. versionadded:: 2.0
 
-    Change `durations` to nonreduced fractions with least common denominator::
+    Change `durations` to nonreduced fractions with least common denominator:
+
+    ::
 
         >>> durations = [Duration(2, 4), 3, (5, 16)]
         >>> for x in durationtools.durations_to_nonreduced_fractions_with_common_denominator(

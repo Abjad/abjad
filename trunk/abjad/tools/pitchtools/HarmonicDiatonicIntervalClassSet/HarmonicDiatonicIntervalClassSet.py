@@ -4,7 +4,9 @@ from abjad.tools.pitchtools.IntervalClassSet import IntervalClassSet
 class HarmonicDiatonicIntervalClassSet(IntervalClassSet):
     '''.. versionadded:: 2.0
 
-    Abjad model of harmonic diatonic interval-class set::
+    Abjad model of harmonic diatonic interval-class set:
+
+    ::
 
         >>> pitchtools.HarmonicDiatonicIntervalClassSet('m2 M2 m3 M3') # doctest: +SKIP
         HarmonicDiatonicIntervalClassSet('m2 M2 m3 M3')

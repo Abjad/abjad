@@ -1,7 +1,9 @@
 def list_clef_names():
     r'''.. versionadded:: 2.8
 
-    List clef names::
+    List clef names:
+
+    ::
 
         >>> contexttools.list_clef_names()
         ['alto', 'baritone', 'bass', 'mezzosoprano', 'percussion', 'soprano', 'treble']

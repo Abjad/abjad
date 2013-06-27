@@ -8,7 +8,9 @@ def label_leaves_in_expr_with_pitch_class_numbers(expr, number=True, color=False
     markup_direction=Down):
     r'''.. versionadded:: 1.1
 
-    Label leaves in `expr` with pitch-class numbers::
+    Label leaves in `expr` with pitch-class numbers:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> labeltools.label_leaves_in_expr_with_pitch_class_numbers(staff)

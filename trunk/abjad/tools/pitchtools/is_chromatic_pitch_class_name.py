@@ -15,7 +15,9 @@ chromatic_pitch_class_name_regex = re.compile(
 def is_chromatic_pitch_class_name(expr):
     '''.. versionadded:: 2.0
 
-    True when `expr` is a chromatic pitch-class name. Otherwise false::
+    True when `expr` is a chromatic pitch-class name. Otherwise false:
+
+    ::
 
         >>> pitchtools.is_chromatic_pitch_class_name('fs')
         True

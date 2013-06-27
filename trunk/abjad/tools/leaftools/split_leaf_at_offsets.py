@@ -11,7 +11,9 @@ def split_leaf_at_offsets(leaf, offsets, cyclic=False,
 
     Split `leaf` at `offsets`.
 
-    Example 1. Split note once at `offsets` and tie split notes::
+    Example 1. Split note once at `offsets` and tie split notes:
+
+    ::
 
         >>> staff = Staff("c'1 ( d'1 )")
 
@@ -39,7 +41,9 @@ def split_leaf_at_offsets(leaf, offsets, cyclic=False,
             d'1 )
         }
 
-    Example 2. Split note cyclically at `offsets` and tie split notes::
+    Example 2. Split note cyclically at `offsets` and tie split notes:
+
+    ::
 
         >>> staff = Staff("c'1 ( d'1 )")
 
@@ -67,7 +71,9 @@ def split_leaf_at_offsets(leaf, offsets, cyclic=False,
             d'1 )
         }
 
-    Example 3. Split note once at `offsets` and do no tie split notes::
+    Example 3. Split note once at `offsets` and do no tie split notes:
+
+    ::
 
         >>> staff = Staff("c'1 ( d'1 )")
 
@@ -95,7 +101,9 @@ def split_leaf_at_offsets(leaf, offsets, cyclic=False,
             d'1 )
         }
 
-    Example 4. Split note cyclically at `offsets` and do not tie split notes::
+    Example 4. Split note cyclically at `offsets` and do not tie split notes:
+
+    ::
 
         >>> staff = Staff("c'1 ( d'1 )")
 
@@ -123,7 +131,9 @@ def split_leaf_at_offsets(leaf, offsets, cyclic=False,
             d'1 )
         }
 
-    Example 5. Split tupletted note once at `offsets` and tie split notes::
+    Example 5. Split tupletted note once at `offsets` and tie split notes:
+
+    ::
 
         >>> staff = Staff(r"\times 2/3 { c'2 ( d'2 e'2 ) }")
 

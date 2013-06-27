@@ -7,7 +7,9 @@ from abjad.tools import voicetools
 def notes_and_chords_in_expr_are_within_traditional_instrument_ranges(expr):
     '''.. versionadded:: 2.0
 
-    True when notes and chords in `expr` are within traditional instrument ranges::
+    True when notes and chords in `expr` are within traditional instrument ranges:
+
+    ::
 
         >>> staff = Staff("c'8 r8 <d' fs'>8 r8")
         >>> instrumenttools.Violin()(staff)
@@ -19,7 +21,9 @@ def notes_and_chords_in_expr_are_within_traditional_instrument_ranges(expr):
         ...     staff)
         True
 
-    False otherwise::
+    False otherwise:
+
+    ::
 
         >>> staff = Staff("c'8 r8 <d fs>8 r8")
         >>> instrumenttools.Violin()(staff)

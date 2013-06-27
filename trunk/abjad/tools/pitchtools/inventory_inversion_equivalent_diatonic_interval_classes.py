@@ -1,7 +1,9 @@
 def inventory_inversion_equivalent_diatonic_interval_classes():
     '''.. versionadded:: 2.0
 
-    Inventory inversion-equivalent diatonic interval-classes::
+    Inventory inversion-equivalent diatonic interval-classes:
+
+    ::
 
         >>> for dic in pitchtools.inventory_inversion_equivalent_diatonic_interval_classes():
         ...     dic

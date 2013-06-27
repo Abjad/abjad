@@ -13,12 +13,16 @@ underscore_delimited_lowercase_file_name_regex = re.compile('^%s$' %
 def is_snake_case_file_name(expr):
     r'''.. versionadded:: 2.7
 
-    True when `expr` is a string and is underscore-delimited lowercase file name with extension::
+    True when `expr` is a string and is underscore-delimited lowercase file name with extension:
+
+    ::
 
         >>> stringtools.is_snake_case_file_name('foo_bar')
         True
 
-    False otherwise::
+    False otherwise:
+
+    ::
 
         >>> stringtools.is_snake_case_file_name('foo.bar.blah')
         False

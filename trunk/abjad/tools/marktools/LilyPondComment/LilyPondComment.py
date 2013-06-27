@@ -6,7 +6,9 @@ import copy
 class LilyPondComment(Mark):
     r'''.. versionadded:: 2.0
 
-    User-defined LilyPond comment::
+    User-defined LilyPond comment:
+
+    ::
 
         >>> note = Note("c'4")
 
@@ -77,13 +79,17 @@ class LilyPondComment(Mark):
     @apply
     def contents_string():
         def fget(self):
-            r'''Get contents string of comment::
+            r'''Get contents string of comment:
+
+            ::
 
                 >>> comment = marktools.LilyPondComment('comment contents string')
                 >>> comment.contents_string
                 'comment contents string'
 
-            Set contents string of comment::
+            Set contents string of comment:
+
+            ::
 
                 >>> comment.contents_string = 'new comment contents string'
                 >>> comment.contents_string
@@ -102,14 +108,18 @@ class LilyPondComment(Mark):
         def fget(self):
             '''.. versionadded:: 2.3
 
-            Get format slot of LilyPond comment::
+            Get format slot of LilyPond comment:
+
+            ::
 
                 >>> note = Note("c'4")
                 >>> lilypond_comment = marktools.LilyPondComment('comment')
                 >>> lilypond_comment.format_slot
                 'before'
 
-            Set format slot of LiyPond comment::
+            Set format slot of LiyPond comment:
+
+            ::
 
                 >>> note = Note("c'4")
                 >>> lilypond_comment = marktools.LilyPondComment('comment')

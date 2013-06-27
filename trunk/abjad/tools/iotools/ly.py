@@ -3,7 +3,9 @@ from abjad.tools import configurationtools
 
 
 def ly(target=-1):
-    r'''Open the last LilyPond output file in text editor::
+    r'''Open the last LilyPond output file in text editor:
+
+    ::
 
         >>> iotools.ly() # doctest: +SKIP
 
@@ -19,7 +21,9 @@ def ly(target=-1):
             c'4
         }
 
-    Open the next-to-last LilyPond output file in text editor::
+    Open the next-to-last LilyPond output file in text editor:
+
+    ::
 
         >>> iotools.ly(-2) # doctest: +SKIP
 

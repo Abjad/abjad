@@ -4,7 +4,9 @@ import itertools
 def yield_topmost_components_grouped_by_type(expr):
     r'''.. versionadded:: 2.0
 
-    Example 1. Yield topmost components in `expr` grouped by type::
+    Example 1. Yield topmost components in `expr` grouped by type:
+
+    ::
 
         >>> staff = Staff(r"\times 2/3 { c'8 d'8 r8 } \times 2/3 { r8 <e' g'>8 <f' a'>8 }")
         >>> staff.extend("g'8 a'8 r8 r8 <b' d''>8 <c'' e''>8")
@@ -40,7 +42,9 @@ def yield_topmost_components_grouped_by_type(expr):
         (Rest('r8'), Rest('r8'))
         (Chord("<b' d''>8"), Chord("<c'' e''>8"))
 
-    Example 2. Yield leaves at all score levels in `expr` grouped by type::
+    Example 2. Yield leaves at all score levels in `expr` grouped by type:
+
+    ::
 
         >>> leaves = iterationtools.iterate_leaves_in_expr(staff)
 

@@ -10,7 +10,9 @@ def make_gridded_test_rhythm(grid_length, rhythm_number, denominator=16):
 
     Return selection of one or more possibly tied notes.
 
-    Example 1. The eight test rhythms that fit a length-``4`` grid::
+    Example 1. The eight test rhythms that fit a length-``4`` grid:
+
+    ::
 
         >>> for rhythm_number in range(8):
         ...     notes = timesignaturetools.make_gridded_test_rhythm(
@@ -27,7 +29,9 @@ def make_gridded_test_rhythm(grid_length, rhythm_number, denominator=16):
         6   |4/4 c'4 c'2 c'4|
         7   |4/4 c'4 c'2.|
 
-    Example 2. The sixteenth test rhythms for that a length-``5`` grid::
+    Example 2. The sixteenth test rhythms for that a length-``5`` grid:
+
+    ::
 
         >>> for rhythm_number in range(16):
         ...     notes = timesignaturetools.make_gridded_test_rhythm(

@@ -6,7 +6,9 @@ from abjad.tools.marktools.Mark import Mark
 class StemTremolo(Mark):
     '''.. versionadded:: 2.0
 
-    Abjad model of stem tremolo::
+    Abjad model of stem tremolo:
+
+    ::
 
         >>> note = Note("c'4")
 
@@ -119,7 +121,9 @@ class StemTremolo(Mark):
 
     @property
     def lilypond_format(self):
-        '''Read-only LilyPond format string::
+        '''Read-only LilyPond format string:
+
+        ::
 
             >>> stem_tremolo = marktools.StemTremolo(16)
             >>> stem_tremolo.lilypond_format
@@ -132,13 +136,17 @@ class StemTremolo(Mark):
     @apply
     def tremolo_flags():
         def fget(self):
-            '''Get tremolo flags::
+            '''Get tremolo flags:
+
+            ::
 
                 >>> stem_tremolo = marktools.StemTremolo(16)
                 >>> stem_tremolo.tremolo_flags
                 16
 
-            Set tremolo flags::
+            Set tremolo flags:
+
+            ::
 
                 >>> stem_tremolo.tremolo_flags = 32
                 >>> stem_tremolo.tremolo_flags

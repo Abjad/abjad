@@ -1,7 +1,9 @@
 def repeat_leaves_in_expr(expr, total=1):
     r'''.. versionadded:: 1.1
 
-    Repeat leaves in `expr` and extend spanners::
+    Repeat leaves in `expr` and extend spanners:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> beamtools.BeamSpanner(staff.leaves)

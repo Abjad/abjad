@@ -7,17 +7,23 @@ def make_rests(durations, decrease_durations_monotonically=True, tie_parts=False
 
     Make rests.
 
-    Make rests and drecrease durations monotonically::
+    Make rests and drecrease durations monotonically:
+
+    ::
 
         >>> resttools.make_rests([(5, 16), (9, 16)], decrease_durations_monotonically=True)
         [Rest('r4'), Rest('r16'), Rest('r2'), Rest('r16')]
 
-    Makes rests and increase durations monotonically::
+    Makes rests and increase durations monotonically:
+
+    ::
 
         >>> resttools.make_rests([(5, 16), (9, 16)], decrease_durations_monotonically=False)
         [Rest('r16'), Rest('r4'), Rest('r16'), Rest('r2')]
 
-    Make tied rests::
+    Make tied rests:
+
+    ::
 
         >>> voice = Voice(resttools.make_rests([(5, 16), (9, 16)], tie_parts=True))
 

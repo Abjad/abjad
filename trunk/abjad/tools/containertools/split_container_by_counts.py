@@ -12,7 +12,9 @@ def split_container_by_counts(components, counts, fracture_spanners=False, cycli
     Return list of component lists.
 
     Example 1. Split container cyclically by counts and do not fracture
-    crossing spanners::
+    crossing spanners:
+
+    ::
 
         >>> container = Container("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
         >>> voice = Voice([container])
@@ -63,7 +65,9 @@ def split_container_by_counts(components, counts, fracture_spanners=False, cycli
             }
         }
 
-    Example 2. Split container cyclically by counts and fracture crossing spanners::
+    Example 2. Split container cyclically by counts and fracture crossing spanners:
+
+    ::
 
         >>> container = Container("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
         >>> voice = Voice([container])
@@ -114,7 +118,9 @@ def split_container_by_counts(components, counts, fracture_spanners=False, cycli
             }
         }
 
-    Example 3. Split container once by counts and do not fracture crossing spanners::
+    Example 3. Split container once by counts and do not fracture crossing spanners:
+
+    ::
 
         >>> container = Container("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
         >>> voice = Voice([container])
@@ -164,7 +170,9 @@ def split_container_by_counts(components, counts, fracture_spanners=False, cycli
         }
 
 
-    Example 4. Split container once by counts and fracture crossing spanners::
+    Example 4. Split container once by counts and fracture crossing spanners:
+
+    ::
 
         >>> container = Container("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
         >>> voice = Voice([container])

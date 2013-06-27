@@ -3,7 +3,9 @@ def contains_subsegment(chromatic_pitch_class_numbers, chromatic_pitch_numbers):
     '''.. versionadded:: 1.1
 
     True when `chromatic_pitch_numbers` contain `chromatic_pitch_class_numbers`
-    as subsegment::
+    as subsegment:
+
+    ::
 
         >>> pcs = [2, 7, 10]
         >>> pitches = [6, 9, 12, 13, 14, 19, 22, 27, 28, 29, 32, 35]

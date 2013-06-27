@@ -9,7 +9,9 @@ from abjad.tools.contexttools.ContextMark import ContextMark
 class TempoMark(ContextMark):
     r'''.. versionadded:: 2.0
 
-    Abjad model of a tempo indication::
+    Abjad model of a tempo indication:
+
+    ::
 
         >>> score = Score([])
         >>> staff = Staff("c'8 d'8 e'8 f'8")
@@ -211,13 +213,17 @@ class TempoMark(ContextMark):
     @apply
     def duration():
         def fget(self):
-            '''Get duration of tempo mark::
+            '''Get duration of tempo mark:
+
+            ::
 
                 >>> tempo = contexttools.TempoMark(Duration(1, 8), 52)
                 >>> tempo.duration
                 Duration(1, 8)
 
-            Set duration of tempo mark::
+            Set duration of tempo mark:
+
+            ::
 
                 >>> tempo.duration = Duration(1, 4)
                 >>> tempo.duration
@@ -304,7 +310,9 @@ class TempoMark(ContextMark):
 
     @property
     def quarters_per_minute(self):
-        r'''Read-only quarters per minute of tempo mark::
+        r'''Read-only quarters per minute of tempo mark:
+
+        ::
 
             >>> tempo = contexttools.TempoMark(Duration(1, 8), 52)
             >>> tempo.quarters_per_minute
@@ -329,7 +337,9 @@ class TempoMark(ContextMark):
     @apply
     def textual_indication():
         def fget(self):
-            r'''Get textual indication of tempo mark::
+            r'''Get textual indication of tempo mark:
+
+            ::
 
                 >>> tempo = contexttools.TempoMark('Langsam', Duration(1, 8), 52)
                 >>> tempo.textual_indication
@@ -346,13 +356,17 @@ class TempoMark(ContextMark):
     @apply
     def units_per_minute():
         def fget(self):
-            r'''Get units per minute of tempo mark::
+            r'''Get units per minute of tempo mark:
+
+            ::
 
                 >>> tempo = contexttools.TempoMark(Duration(1, 8), 52)
                 >>> tempo.units_per_minute
                 52
 
-            Set units per minute of tempo mark::
+            Set units per minute of tempo mark:
+
+            ::
 
                 >>> tempo.units_per_minute = 56
                 >>> tempo.units_per_minute
@@ -373,13 +387,17 @@ class TempoMark(ContextMark):
     ### PUBLIC METHODS ###
 
     def is_tempo_mark_token(self, expr):
-        '''True when `expr` has the form of a tempo mark initializer::
+        '''True when `expr` has the form of a tempo mark initializer:
+
+        ::
 
             >>> tempo_mark = contexttools.TempoMark(Duration(1, 4), 72)
             >>> tempo_mark.is_tempo_mark_token((Duration(1, 4), 84))
             True
 
-        Otherwise false::
+        Otherwise false:
+
+        ::
 
             >>> tempo_mark.is_tempo_mark_token(84)
             False

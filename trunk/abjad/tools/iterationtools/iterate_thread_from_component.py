@@ -84,7 +84,9 @@ def iterate_thread_from_component(component, klass=None, reverse=False):
         Note("f'8")
         Note("e'8")
 
-    Yield all components in thread::
+    Yield all components in thread:
+
+    ::
 
         >>> for x in iterationtools.iterate_thread_from_component(
         ...     staff.leaves[-1], reverse=True):

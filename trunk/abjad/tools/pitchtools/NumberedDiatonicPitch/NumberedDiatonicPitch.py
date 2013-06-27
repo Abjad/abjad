@@ -5,7 +5,9 @@ from abjad.tools.pitchtools.NumberedPitch import NumberedPitch
 class NumberedDiatonicPitch(DiatonicPitch, NumberedPitch):
     '''.. versionadded:: 2.0
 
-    Abjad model of a numbered diatonic pitch::
+    Abjad model of a numbered diatonic pitch:
+
+    ::
 
         >>> pitchtools.NumberedDiatonicPitch(7)
         NumberedDiatonicPitch(7)
@@ -48,7 +50,9 @@ class NumberedDiatonicPitch(DiatonicPitch, NumberedPitch):
 
     @property
     def chromatic_pitch_number(self):
-        '''Read-only chromatic pitch number::
+        '''Read-only chromatic pitch number:
+
+        ::
 
             >>> pitchtools.NumberedDiatonicPitch(7).chromatic_pitch_number
             12
@@ -60,7 +64,9 @@ class NumberedDiatonicPitch(DiatonicPitch, NumberedPitch):
 
     @property
     def diatonic_pitch_number(self):
-        '''Read-only diatonic pitch number::
+        '''Read-only diatonic pitch number:
+
+        ::
 
             >>> pitchtools.NumberedDiatonicPitch(7).diatonic_pitch_number
             7
@@ -71,7 +77,9 @@ class NumberedDiatonicPitch(DiatonicPitch, NumberedPitch):
 
     @property
     def named_diatonic_pitch(self):
-        '''Read-only named diatonic pitch::
+        '''Read-only named diatonic pitch:
+
+        ::
 
             >>> pitchtools.NumberedDiatonicPitch(7).named_diatonic_pitch
             NamedDiatonicPitch("c''")
@@ -85,7 +93,9 @@ class NumberedDiatonicPitch(DiatonicPitch, NumberedPitch):
 
     @property
     def named_diatonic_pitch_class(self):
-        '''Read-only named diatonic pitch-class::
+        '''Read-only named diatonic pitch-class:
+
+        ::
 
             >>> pitchtools.NumberedDiatonicPitch(7).named_diatonic_pitch_class
             NamedDiatonicPitchClass('c')
@@ -99,7 +109,9 @@ class NumberedDiatonicPitch(DiatonicPitch, NumberedPitch):
 
     @property
     def numbered_diatonic_pitch_class(self):
-        '''Read-only numbered diatonic pitch-class::
+        '''Read-only numbered diatonic pitch-class:
+
+        ::
 
             >>> pitchtools.NumberedDiatonicPitch(7).numbered_diatonic_pitch_class
             NumberedDiatonicPitchClass(0)

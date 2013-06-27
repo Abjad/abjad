@@ -7,12 +7,16 @@ underscore_delimited_lowercase_regex = re.compile('^%s$' % underscore_delimited_
 def is_snake_case_string(expr):
     r'''.. versionadded:: 2.5
 
-    True when `expr` is a string and is underscore delimited lowercase::
+    True when `expr` is a string and is underscore delimited lowercase:
+
+    ::
 
         >>> stringtools.is_snake_case_string('foo_bar')
         True
 
-    False otherwise::
+    False otherwise:
+
+    ::
 
         >>> stringtools.is_snake_case_string('foo bar')
         False

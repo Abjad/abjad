@@ -3,7 +3,9 @@ from abjad.tools.spannertools.Spanner import Spanner
 
 
 class TrillSpanner(Spanner):
-    r'''Abjad trill spanner::
+    r'''Abjad trill spanner:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
 

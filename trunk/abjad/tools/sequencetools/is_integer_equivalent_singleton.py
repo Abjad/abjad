@@ -4,12 +4,16 @@ from abjad.tools import mathtools
 def is_integer_equivalent_singleton(expr):
     r'''.. versionadded:: 2.9
 
-    True when `expr` is a singleton of integer-equivalent expressions::
+    True when `expr` is a singleton of integer-equivalent expressions:
+
+    ::
 
         >>> sequencetools.is_integer_equivalent_singleton((2.0,))
         True
 
-    Otherwise false::
+    Otherwise false:
+
+    ::
 
         >>> sequencetools.is_integer_equivalent_singleton((2.5,))
         False

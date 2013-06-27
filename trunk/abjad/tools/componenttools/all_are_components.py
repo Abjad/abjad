@@ -5,12 +5,16 @@ from abjad.tools import selectiontools
 def all_are_components(expr, klasses=None):
     '''.. versionadded:: 1.1
 
-    True when elements in `expr` are all components::
+    True when elements in `expr` are all components:
+
+    ::
 
         >>> componenttools.all_are_components(3 * Note("c'4"))
         True
 
-    Otherwise false::
+    Otherwise false:
+
+    ::
 
         >>> componenttools.all_are_components(['foo', 'bar'])
         False
@@ -20,7 +24,9 @@ def all_are_components(expr, klasses=None):
         >>> componenttools.all_are_components(3 * Note("c'4"), klasses = Note)
         True
 
-    Otherwise false::
+    Otherwise false:
+
+    ::
 
         >>> componenttools.all_are_components(['foo', 'bar'], klasses = Note)
         False

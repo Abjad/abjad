@@ -2,7 +2,9 @@ from abjad.tools.marktools.Mark import Mark
 
 
 class BendAfter(Mark):
-    r'''Abjad model of a fall or doit::
+    r'''Abjad model of a fall or doit:
+
+    ::
 
         >>> note = Note("c'4")
 
@@ -68,13 +70,17 @@ class BendAfter(Mark):
     @apply
     def bend_amount():
         def fget(self):
-            '''Get bend amount::
+            '''Get bend amount:
+
+            ::
 
                 >>> bend = marktools.BendAfter(8)
                 >>> bend.bend_amount
                 8.0
 
-            Set bend amount::
+            Set bend amount:
+
+            ::
 
                 >>> bend.bend_amount = -4
                 >>> bend.bend_amount
@@ -90,7 +96,9 @@ class BendAfter(Mark):
 
     @property
     def lilypond_format(self):
-        r'''Read-only LilyPond format string::
+        r'''Read-only LilyPond format string:
+
+        ::
 
             >>> bend = marktools.BendAfter(-4)
             >>> bend.lilypond_format

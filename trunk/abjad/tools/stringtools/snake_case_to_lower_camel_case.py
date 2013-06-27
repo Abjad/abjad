@@ -1,7 +1,9 @@
 def snake_case_to_lower_camel_case(string):
     '''.. versionadded:: 2.0
 
-    Change underscore-delimited lowercase `string` to lowercamelcase::
+    Change underscore-delimited lowercase `string` to lowercamelcase:
+
+    ::
 
         >>> string = 'bass_figure_alignment_positioning'
         >>> stringtools.snake_case_to_lower_camel_case(string)

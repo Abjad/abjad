@@ -1,7 +1,9 @@
 def get_noncontext_marks_attached_to_component(component):
     r'''.. versionadded:: 2.0
 
-    Get noncontext marks attached to component::
+    Get noncontext marks attached to component:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> contexttools.TimeSignatureMark((2, 4))(staff[0])

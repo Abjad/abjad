@@ -3,7 +3,9 @@ def get_most_distant_sequential_container_in_improper_parentage_of_component(com
 
     Get first sequential container in the improper parentage of `component`
     such that the parent of sequential container is either a parellel container
-    or else none::
+    or else none:
+
+    ::
 
         >>> voice_1 = Voice("c'8 d'8")
         >>> voice_2 = Voice("e'8 f'8")

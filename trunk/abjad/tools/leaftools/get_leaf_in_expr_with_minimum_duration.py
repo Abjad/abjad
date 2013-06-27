@@ -1,7 +1,9 @@
 def get_leaf_in_expr_with_minimum_duration(expr):
     r'''.. versionadded:: 2.5
 
-    Get leaf in `expr` with minimum prolated duration::
+    Get leaf in `expr` with minimum prolated duration:
+
+    ::
 
         >>> staff = Staff("c'4.. d'16 e'4.. f'16")
 
@@ -13,7 +15,9 @@ def get_leaf_in_expr_with_minimum_duration(expr):
     When two leaves in `expr` are both of equally minimal prolated duration,
     return the first leaf encountered in forward iteration.
 
-    Return none when `expr` contains no leaves::
+    Return none when `expr` contains no leaves:
+
+    ::
 
         >>> leaftools.get_leaf_in_expr_with_minimum_duration([]) is None
         True

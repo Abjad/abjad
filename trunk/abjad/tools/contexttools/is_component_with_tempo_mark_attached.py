@@ -1,7 +1,9 @@
 def is_component_with_tempo_mark_attached(expr):
     r'''.. versionadded:: 2.3
 
-    True when `expr` is a component with tempo mark attached::
+    True when `expr` is a component with tempo mark attached:
+
+    ::
 
         >>> score = Score([])
         >>> staff = Staff("c'8 d'8 e'8 f'8")
@@ -30,7 +32,9 @@ def is_component_with_tempo_mark_attached(expr):
         >>> contexttools.is_component_with_tempo_mark_attached(staff)
         True
 
-    Otherwise false::
+    Otherwise false:
+
+    ::
 
         >>> contexttools.is_component_with_tempo_mark_attached(staff[0])
         False

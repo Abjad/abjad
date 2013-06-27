@@ -14,7 +14,9 @@ diatonic_pitch_name_regex = re.compile(
 def is_diatonic_pitch_name(expr):
     '''.. versionadded:: 2.0
 
-    True when `expr` is a diatonic pitch name. Otherwise false::
+    True when `expr` is a diatonic pitch name. Otherwise false:
+
+    ::
 
         >>> pitchtools.is_diatonic_pitch_name("c''")
         True

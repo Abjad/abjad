@@ -4,7 +4,9 @@ from abjad.tools import componenttools
 def is_component_with_lilypond_command_mark_attached(expr, command_name=None):
     '''.. versionadded:: 2.0
 
-    True when `expr` is component with LilyPond command mark attached::
+    True when `expr` is component with LilyPond command mark attached:
+
+    ::
 
         >>> note = Note("c'4")
         >>> marktools.LilyPondCommandMark('stemUp')(note)
@@ -15,7 +17,9 @@ def is_component_with_lilypond_command_mark_attached(expr, command_name=None):
         >>> marktools.is_component_with_lilypond_command_mark_attached(note)
         True
 
-    False otherwise::
+    False otherwise:
+
+    ::
 
         >>> note = Note("c'4")
 

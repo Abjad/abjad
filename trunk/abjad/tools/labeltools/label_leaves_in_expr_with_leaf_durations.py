@@ -1,7 +1,9 @@
 def label_leaves_in_expr_with_leaf_durations(expr, markup_direction=Down):
     r'''.. versionadded:: 1.1
 
-    Label leaves in `expr` with leaf durations::
+    Label leaves in `expr` with leaf durations:
+
+    ::
 
         >>> tuplet = tuplettools.FixedDurationTuplet(Duration(1, 4), "c'8 d'8 e'8")
         >>> labeltools.label_leaves_in_expr_with_leaf_durations(tuplet)

@@ -81,7 +81,9 @@ class FixedDurationTuplet(Tuplet):
 
     @property
     def multiplied_duration(self):
-        '''Read-only multiplied duration of tuplet::
+        '''Read-only multiplied duration of tuplet:
+
+        ::
 
             >>> tuplet = tuplettools.FixedDurationTuplet((1, 4), "c'8 d'8 e'8")
             >>> tuplet.multiplied_duration
@@ -94,7 +96,9 @@ class FixedDurationTuplet(Tuplet):
     @apply
     def multiplier():
         def fget(self):
-            '''Read-only multiplier of tuplet::
+            '''Read-only multiplier of tuplet:
+
+            ::
 
                 >>> tuplet = tuplettools.FixedDurationTuplet((1, 4), "c'8 d'8 e'8")
                 >>> tuplet.multiplier
@@ -113,7 +117,9 @@ class FixedDurationTuplet(Tuplet):
     @apply
     def target_duration():
         def fget(self):
-            r'''Read / write target duration of fixed-duration tuplet::
+            r'''Read / write target duration of fixed-duration tuplet:
+
+            ::
 
                 >>> tuplet = tuplettools.FixedDurationTuplet((1, 4), "c'8 d'8 e'8")
                 >>> tuplet.target_duration

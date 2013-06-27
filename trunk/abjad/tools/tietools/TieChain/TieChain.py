@@ -10,7 +10,9 @@ from abjad.tools.selectiontools.Selection import Selection
 class TieChain(Selection):
     '''.. versionadded:: 2.9
 
-    All the notes in a tie chain::
+    All the notes in a tie chain:
+
+    ::
 
         >>> staff = Staff("c' d' e' ~ e'")
 

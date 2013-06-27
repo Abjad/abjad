@@ -2,7 +2,9 @@ def is_pitch_carrier(expr):
     '''.. versionadded:: 1.1
 
     True when `expr` is an Abjad pitch, note, note-head of chord instance.
-    Otherwise false::
+    Otherwise false:
+
+    ::
 
         >>> note = Note("c'4")
         >>> pitchtools.is_pitch_carrier(note)

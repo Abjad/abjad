@@ -4,7 +4,9 @@ from abjad.tools import mathtools
 def get_nth_component_in_time_order_from_component(component, n):
     r'''.. versionadded:: 2.9
 
-    Get nth component from `component` in temporal order::
+    Get nth component from `component` in temporal order:
+
+    ::
 
         >>> staff = Staff(r"c'4 \times 2/3 { d'8 e'8 f'8 } g'2")
 
@@ -56,13 +58,17 @@ def get_nth_component_in_time_order_from_component(component, n):
         ...     staff.leaves[1], 0)
         Note("d'8")
 
-    Return none when `n` is out of range::
+    Return none when `n` is out of range:
+
+    ::
 
         >>> componenttools.get_nth_component_in_time_order_from_component(
         ...     staff.leaves[1], 99) is None
         True
 
-    Return none when `component` has no parent::
+    Return none when `component` has no parent:
+
+    ::
 
         >>> componenttools.get_nth_component_in_time_order_from_component(
         ...     staff, 1) is None

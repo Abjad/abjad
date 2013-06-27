@@ -8,7 +8,9 @@ def show(expr, return_timing=False, suppress_pdf=False, docs=False):
         >>> note = Note("c'4")
         >>> show(note) # doctest: +SKIP
 
-    Show `expr` and return both Abjad and LilyPond processing time in seconds::
+    Show `expr` and return both Abjad and LilyPond processing time in seconds:
+
+    ::
 
         >>> staff = Staff(Note("c'4") * 200)
         >>> show(note, return_timing=True) # doctest: +SKIP

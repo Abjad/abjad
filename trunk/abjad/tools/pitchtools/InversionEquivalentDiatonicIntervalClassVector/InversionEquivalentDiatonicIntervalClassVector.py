@@ -8,7 +8,9 @@ from abjad.tools.pitchtools.list_harmonic_diatonic_intervals_in_expr import \
 class InversionEquivalentDiatonicIntervalClassVector(Vector):
     '''.. versionadded:: 2.0
 
-    Abjad model of inversion-equivalent diatonic interval-class vector::
+    Abjad model of inversion-equivalent diatonic interval-class vector:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8 g'8")
         >>> vector = pitchtools.InversionEquivalentDiatonicIntervalClassVector(staff)

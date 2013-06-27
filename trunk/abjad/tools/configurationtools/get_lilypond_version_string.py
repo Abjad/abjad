@@ -5,7 +5,9 @@ import subprocess
 def get_lilypond_version_string():
     '''.. versionadded:: 2.0
 
-    Get LilyPond version string::
+    Get LilyPond version string:
+
+    ::
 
         >>> configurationtools.get_lilypond_version_string() # doctest: +SKIP
         '2.13.61'

@@ -41,7 +41,9 @@ def color_chord_note_heads_in_expr_by_pitch_class_color_map(chord, color_map):
 
         >>> show(chord) # doctest: +SKIP
 
-    Also works on notes::
+    Also works on notes:
+
+    ::
 
         >>> note = Note("c'4")
 
@@ -60,7 +62,9 @@ def color_chord_note_heads_in_expr_by_pitch_class_color_map(chord, color_map):
 
         >>> show(note) # doctest: +SKIP
 
-    When `chord` is neither a chord nor note return `chord` unchanged::
+    When `chord` is neither a chord nor note return `chord` unchanged:
+
+    ::
 
         >>> staff = Staff([])
 

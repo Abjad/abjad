@@ -4,7 +4,9 @@ from abjad.tools.pitchtools.Vector import Vector
 class NamedChromaticPitchVector(Vector):
     '''.. versionadded:: 2.0
 
-    Abjad model of named chromatic pitch vector::
+    Abjad model of named chromatic pitch vector:
+
+    ::
 
         >>> named_chromatic_pitch_vector = pitchtools.NamedChromaticPitchVector(
         ...     ["c''", "c''", "cs''", "cs''", "cs''"])

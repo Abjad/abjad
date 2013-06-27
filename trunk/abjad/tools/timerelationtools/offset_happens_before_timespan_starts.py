@@ -64,7 +64,9 @@ def offset_happens_before_timespan_starts(timespan=None, offset=None, hold=False
             )
 
     Make time relation indicating that offset ``1/2`` happens before
-    timespan ``[2, 8)`` starts::
+    timespan ``[2, 8)`` starts:
+
+    ::
 
         >>> time_relation = timerelationtools.offset_happens_before_timespan_starts(
         ...     timespan=timespan, offset=offset, hold=True)
@@ -86,7 +88,9 @@ def offset_happens_before_timespan_starts(timespan=None, offset=None, hold=False
             )
 
     Evaluate time relation indicating that offset ``1/2`` happens before
-    timespan ``[2, 8)`` starts::
+    timespan ``[2, 8)`` starts:
+
+    ::
 
         >>> timerelationtools.offset_happens_before_timespan_starts(
         ...     timespan=timespan, offset=offset, hold=False)

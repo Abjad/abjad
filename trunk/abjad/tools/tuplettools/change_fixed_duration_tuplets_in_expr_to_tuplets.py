@@ -5,7 +5,9 @@ from abjad.tools import containertools
 def change_fixed_duration_tuplets_in_expr_to_tuplets(expr):
     r'''.. versionadded:: 2.9
 
-    Change fixed-duration tuplets in `expr` to tuplets::
+    Change fixed-duration tuplets in `expr` to tuplets:
+
+    ::
 
         >>> staff = Staff(2 * tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8"))
 

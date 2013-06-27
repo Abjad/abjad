@@ -1,7 +1,9 @@
 def format_input_lines_as_regression_test(input_lines, tab_width=3):
     r""".. versionadded:: 2.0
 
-    Format `input_lines` as regression test::
+    Format `input_lines` as regression test:
+
+    ::
 
         >>> input_lines = '''
         ... staff = Staff("c'8 d'8 e'8 f'8")

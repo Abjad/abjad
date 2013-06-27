@@ -1,7 +1,9 @@
 def get_down_markup_attached_to_component(component):
     '''.. versionadded:: 2.0
 
-    Get down-markup attached to component::
+    Get down-markup attached to component:
+
+    ::
 
         >>> chord = Chord([-11, 2, 5], (1, 4))
 

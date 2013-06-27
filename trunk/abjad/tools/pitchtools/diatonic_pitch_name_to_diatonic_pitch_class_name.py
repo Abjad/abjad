@@ -1,7 +1,9 @@
 def diatonic_pitch_name_to_diatonic_pitch_class_name(diatonic_pitch_name):
     '''.. versionadded:: 2.0
 
-    Change `diatonic_pitch_name` to diatonic pitch-class name::
+    Change `diatonic_pitch_name` to diatonic pitch-class name:
+
+    ::
 
         >>> pitchtools.diatonic_pitch_name_to_diatonic_pitch_class_name("c''")
         'c'

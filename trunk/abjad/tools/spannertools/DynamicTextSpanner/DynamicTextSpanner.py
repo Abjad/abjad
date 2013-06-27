@@ -2,7 +2,9 @@ from abjad.tools.spannertools.Spanner import Spanner
 
 
 class DynamicTextSpanner(Spanner):
-    r'''Abjad dynamic text spanner::
+    r'''Abjad dynamic text spanner:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
 
@@ -52,14 +54,18 @@ class DynamicTextSpanner(Spanner):
     @apply
     def mark():
         def fget(self):
-            '''Get dynamic string::
+            '''Get dynamic string:
+
+            ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
                 >>> dynamic_text_spanner = spannertools.DynamicTextSpanner(staff[:], 'f')
                 >>> dynamic_text_spanner.mark
                 'f'
 
-            Set dynamic string::
+            Set dynamic string:
+
+            ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
                 >>> dynamic_text_spanner = spannertools.DynamicTextSpanner(staff[:], 'f')

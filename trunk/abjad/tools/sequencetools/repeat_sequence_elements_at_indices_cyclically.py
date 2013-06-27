@@ -4,12 +4,16 @@ from abjad.tools import sievetools
 def repeat_sequence_elements_at_indices_cyclically(sequence, cycle_token, total):
     '''.. versionadded:: 2.0
 
-    Repeat `sequence` elements at indices specified by `cycle_token` to `total` length::
+    Repeat `sequence` elements at indices specified by `cycle_token` to `total` length:
+
+    ::
 
         >>> sequencetools.repeat_sequence_elements_at_indices_cyclically(range(10), (5, [1, 2]), 3)
         [0, [1, 1, 1], [2, 2, 2], 3, 4, 5, [6, 6, 6], [7, 7, 7], 8, 9]
 
-    The `cycle_token` may be a sieve::
+    The `cycle_token` may be a sieve:
+
+    ::
 
         >>> sieve = sievetools.cycle_tokens_to_sieve((5, [1, 2]))
         >>> sequencetools.repeat_sequence_elements_at_indices_cyclically(range(10), sieve, 3)

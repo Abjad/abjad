@@ -6,7 +6,9 @@ from abjad.tools import leaftools
 def change_defective_chord_to_note_or_rest(chord):
     '''.. versionadded:: 1.1
 
-    Change zero-length `chord` to rest::
+    Change zero-length `chord` to rest:
+
+    ::
 
         >>> chord = Chord([], (3, 16))
 
@@ -20,7 +22,9 @@ def change_defective_chord_to_note_or_rest(chord):
         >>> chordtools.change_defective_chord_to_note_or_rest(chord)
         Rest('r8.')
 
-    Change length-one chord to note::
+    Change length-one chord to note:
+
+    ::
 
         >>> chord = Chord("<cs''>8.")
 
@@ -34,7 +38,9 @@ def change_defective_chord_to_note_or_rest(chord):
         >>> chordtools.change_defective_chord_to_note_or_rest(chord)
         Note("cs''8.")
 
-    Return chords with length greater than one unchanged::
+    Return chords with length greater than one unchanged:
+
+    ::
 
         >>> chord = Chord("<c' c'' cs''>8.")
 
@@ -48,7 +54,9 @@ def change_defective_chord_to_note_or_rest(chord):
         >>> chordtools.change_defective_chord_to_note_or_rest(chord)
         Chord("<c' c'' cs''>8.")
 
-    Return notes unchanged::
+    Return notes unchanged:
+
+    ::
 
         >>> note = Note("c'4")
 
@@ -62,7 +70,9 @@ def change_defective_chord_to_note_or_rest(chord):
         >>> chordtools.change_defective_chord_to_note_or_rest(note)
         Note("c'4")
 
-    Return rests unchanged::
+    Return rests unchanged:
+
+    ::
 
         >>> rest = Rest('r4')
 

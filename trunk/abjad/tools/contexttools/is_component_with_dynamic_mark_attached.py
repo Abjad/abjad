@@ -1,7 +1,9 @@
 def is_component_with_dynamic_mark_attached(expr):
     r'''.. versionadded:: 2.3
 
-    True when `expr` is a component and has a dynamic mark attached::
+    True when `expr` is a component and has a dynamic mark attached:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> contexttools.DynamicMark('p')(staff[0])
@@ -22,7 +24,9 @@ def is_component_with_dynamic_mark_attached(expr):
         >>> contexttools.is_component_with_dynamic_mark_attached(staff[0])
         True
 
-    Otherwise false::
+    Otherwise false:
+
+    ::
 
         >>> contexttools.is_component_with_dynamic_mark_attached(staff)
         False

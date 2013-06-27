@@ -8,7 +8,9 @@ def insert_component(container, i, component, fracture_spanners=False):
     Insert `component` into `container` at index `i`.
 
     Example 1.  Insert `component` into `container` at index `i`.
-    Do not fracture crossing spanners::
+    Do not fracture crossing spanners:
+
+    ::
 
         >>> staff = Staff("c'8 [ d'8 e'8 f'8 ]")
 

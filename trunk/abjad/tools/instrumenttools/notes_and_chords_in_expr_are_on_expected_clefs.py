@@ -5,7 +5,9 @@ from abjad.tools import iterationtools
 def notes_and_chords_in_expr_are_on_expected_clefs(expr, percussion_clef_is_allowed=True):
     r'''.. versionadded:: 2.0
 
-    True when notes and chords in `expr` are on expected clefs::
+    True when notes and chords in `expr` are on expected clefs:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> contexttools.ClefMark('treble')(staff)
@@ -18,7 +20,9 @@ def notes_and_chords_in_expr_are_on_expected_clefs(expr, percussion_clef_is_allo
         >>> instrumenttools.notes_and_chords_in_expr_are_on_expected_clefs(staff)
         True
 
-    False otherwise::
+    False otherwise:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> contexttools.ClefMark('alto')(staff)
@@ -31,7 +35,9 @@ def notes_and_chords_in_expr_are_on_expected_clefs(expr, percussion_clef_is_allo
         >>> instrumenttools.notes_and_chords_in_expr_are_on_expected_clefs(staff)
         False
 
-    Allow percussion clef when `percussion_clef_is_allowed` is true::
+    Allow percussion clef when `percussion_clef_is_allowed` is true:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> contexttools.ClefMark('percussion')(staff)
@@ -58,7 +64,9 @@ def notes_and_chords_in_expr_are_on_expected_clefs(expr, percussion_clef_is_allo
         ...     staff, percussion_clef_is_allowed=True)
         True
 
-    Disallow percussion clef when `percussion_clef_is_allowed` is false::
+    Disallow percussion clef when `percussion_clef_is_allowed` is false:
+
+    ::
 
         >>> instrumenttools.notes_and_chords_in_expr_are_on_expected_clefs(
         ...     staff, percussion_clef_is_allowed=False)

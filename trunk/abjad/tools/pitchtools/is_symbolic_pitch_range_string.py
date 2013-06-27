@@ -17,7 +17,9 @@ symbolic_pitch_range_string_regex = re.compile('^%s$' % symbolic_pitch_range_str
 def is_symbolic_pitch_range_string(expr):
     '''.. versionadded:: 2.5
 
-    True when `expr` is a symbolic pitch range string. Otherwise false::
+    True when `expr` is a symbolic pitch range string. Otherwise false:
+
+    ::
 
         >>> pitchtools.is_symbolic_pitch_range_string('[A0, C8]')
         True

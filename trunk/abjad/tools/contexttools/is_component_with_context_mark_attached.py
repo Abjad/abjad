@@ -4,7 +4,9 @@ from abjad.tools import componenttools
 def is_component_with_context_mark_attached(expr, klasses=None):
     r'''.. versionadded:: 2.0
 
-    True when `expr` is a component with context mark of `klasses` attached::
+    True when `expr` is a component with context mark of `klasses` attached:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> contexttools.TimeSignatureMark((4, 8))(staff[0])
@@ -20,7 +22,9 @@ def is_component_with_context_mark_attached(expr, klasses=None):
         >>> contexttools.is_component_with_context_mark_attached(staff[0])
         True
 
-    Otherwise false::
+    Otherwise false:
+
+    ::
 
         >>> contexttools.is_component_with_context_mark_attached(staff)
         False

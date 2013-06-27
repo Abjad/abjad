@@ -2,7 +2,9 @@ from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
 
 
 class MetricalHierarchyInventory(ObjectInventory):
-    '''Abjad model of an ordered list of metrical hierarchies::
+    '''Abjad model of an ordered list of metrical hierarchies:
+
+    ::
 
         >>> inventory = timesignaturetools.MetricalHierarchyInventory([(4, 4), (3, 4), (6, 8)])
 

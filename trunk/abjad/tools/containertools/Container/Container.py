@@ -357,7 +357,9 @@ class Container(Component):
     @apply
     def is_parallel():
         def fget(self):
-            r'''Get parallel container::
+            r'''Get parallel container:
+
+            ::
 
                 >>> container = Container([Voice("c'8 d'8 e'8"), Voice('g4.')])
 
@@ -386,7 +388,9 @@ class Container(Component):
 
             Return boolean.
 
-            Set parallel container::
+            Set parallel container:
+
+            ::
 
                 >>> container.is_parallel = True
 
@@ -423,7 +427,9 @@ class Container(Component):
 
     @property
     def leaves(self):
-        '''Read-only tuple of leaves in container::
+        '''Read-only tuple of leaves in container:
+
+        ::
 
             >>> container = Container("c'8 d'8 e'8")
 
@@ -439,7 +445,9 @@ class Container(Component):
 
     @property
     def music(self):
-        '''Read-only tuple of components in container::
+        '''Read-only tuple of components in container:
+
+        ::
 
             >>> container = Container("c'8 d'8 e'8")
 
@@ -512,7 +520,9 @@ class Container(Component):
     ### PUBLIC METHODS ###
 
     def append(self, component):
-        r'''Append `component` to container::
+        r'''Append `component` to container:
+
+        ::
 
             >>> container = Container("c'8 d'8 e'8")
             >>> beam = beamtools.BeamSpanner(container.music)
@@ -555,7 +565,9 @@ class Container(Component):
         self.__setitem__(slice(len(self), len(self)), [component])
 
     def extend(self, expr):
-        '''Extend `expr` against container::
+        '''Extend `expr` against container:
+
+        ::
 
             >>> container = Container("c'8 d'8 e'8")
             >>> beam = beamtools.BeamSpanner(container.music)
@@ -604,7 +616,9 @@ class Container(Component):
         self.__setitem__(slice(len(self), len(self)), expr.__getitem__(slice(0, len(expr))))
 
     def index(self, component):
-        '''Index `component` in container::
+        '''Index `component` in container:
+
+        ::
 
             >>> container = Container("c'8 d'8 e'8")
 
@@ -671,7 +685,9 @@ class Container(Component):
         self.__setitem__(slice(i, i), [component])
 
     def pop(self, i=-1):
-        '''Pop component at index `i` from container::
+        '''Pop component at index `i` from container:
+
+        ::
 
             >>> container = Container("c'8 d'8 e'8")
             >>> beam = beamtools.BeamSpanner(container.music)
@@ -713,7 +729,9 @@ class Container(Component):
         return component
 
     def remove(self, component):
-        '''Remove `component` from container::
+        '''Remove `component` from container:
+
+        ::
 
             >>> container = Container("c'8 d'8 e'8")
             >>> beam = beamtools.BeamSpanner(container.music)

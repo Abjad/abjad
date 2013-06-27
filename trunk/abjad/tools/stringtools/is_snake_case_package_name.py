@@ -13,12 +13,16 @@ underscore_delimited_lowercase_package_regex = re.compile('^%s$' %
 def is_snake_case_package_name(expr):
     r'''.. versionadded:: 2.5
 
-    True when `expr` is a string and is underscore-delimited lowercase package name::
+    True when `expr` is a string and is underscore-delimited lowercase package name:
+
+    ::
 
         >>> stringtools.is_snake_case_package_name('foo.bar.blah_package')
         True
 
-    False otherwise::
+    False otherwise:
+
+    ::
 
         >>> stringtools.is_snake_case_package_name('foo.bar.BlahPackage')
         False

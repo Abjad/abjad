@@ -4,7 +4,9 @@ from abjad.tools.pitchtools.PitchClass import PitchClass
 class NamedChromaticPitchClass(PitchClass):
     '''.. versionadded:: 2.0
 
-    Abjad model of named chromatic pitch-class::
+    Abjad model of named chromatic pitch-class:
+
+    ::
 
         >>> ncpc = pitchtools.NamedChromaticPitchClass('cs')
 
@@ -138,7 +140,9 @@ class NamedChromaticPitchClass(PitchClass):
 
     @property
     def numbered_chromatic_pitch_class(self):
-        '''Read-only numbered chromatic pitch-class::
+        '''Read-only numbered chromatic pitch-class:
+
+        ::
 
             >>> ncpc.numbered_chromatic_pitch_class
             NumberedChromaticPitchClass(1)

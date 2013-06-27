@@ -3,7 +3,9 @@ from abjad.tools.spannertools.Spanner import Spanner
 
 
 class StaffLinesSpanner(Spanner):
-    r'''Abjad staff lines spanner::
+    r'''Abjad staff lines spanner:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
 
@@ -80,14 +82,18 @@ class StaffLinesSpanner(Spanner):
     @apply
     def lines():
         def fget(self):
-            r'''Get staff lines spanner line count::
+            r'''Get staff lines spanner line count:
+
+            ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
                 >>> spanner = spannertools.StaffLinesSpanner(staff[:2], 1)
                 >>> spanner.lines
                 1
 
-            Set staff lines spanner line count::
+            Set staff lines spanner line count:
+
+            ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
                 >>> spanner = spannertools.StaffLinesSpanner(staff[:2], 1)

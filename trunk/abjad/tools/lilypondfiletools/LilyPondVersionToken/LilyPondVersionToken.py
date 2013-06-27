@@ -37,7 +37,9 @@ class LilyPondVersionToken(AbjadObject):
 
     @property
     def lilypond_format(self):
-        r'''Format contribution of LilyPond version token::
+        r'''Format contribution of LilyPond version token:
+
+        ::
 
             >>> lilypondfiletools.LilyPondVersionToken().lilypond_format
             '\\version "..."'

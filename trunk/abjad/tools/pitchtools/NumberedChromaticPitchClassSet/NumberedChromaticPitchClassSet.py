@@ -87,7 +87,9 @@ class  NumberedChromaticPitchClassSet(PitchClassSet):
 
     @property
     def inversion_equivalent_chromatic_interval_class_set(self):
-        '''Read-only inversion-equivalent chromatic interval-class set::
+        '''Read-only inversion-equivalent chromatic interval-class set:
+
+        ::
 
             >>> ncpcs.inversion_equivalent_chromatic_interval_class_set
             InversionEquivalentChromaticIntervalClassSet(0.5, 1, 3, 3.5, 4, 4.5)

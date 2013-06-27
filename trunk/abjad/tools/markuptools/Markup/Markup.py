@@ -173,7 +173,9 @@ class Markup(DirectedMark):
 
     @property
     def indented_lilypond_format(self):
-        r'''Read-only indented LilyPond format of markup::
+        r'''Read-only indented LilyPond format of markup:
+
+        ::
 
             >>> markup = markuptools.Markup(r'\bold { "This is markup text." }')
             >>> print markup.indented_lilypond_format
@@ -189,7 +191,9 @@ class Markup(DirectedMark):
 
     @property
     def lilypond_format(self):
-        r'''Read-only LilyPond format of markup::
+        r'''Read-only LilyPond format of markup:
+
+        ::
 
             >>> markup = markuptools.Markup(r'\bold { "This is markup text." }')
             >>> markup.lilypond_format
@@ -201,7 +205,9 @@ class Markup(DirectedMark):
 
     @property
     def markup_name(self):
-        r'''Read-only name of markup::
+        r'''Read-only name of markup:
+
+        ::
 
             >>> markup = markuptools.Markup(
             ...     r'\bold { allegro ma non troppo }', markup_name='non troppo')

@@ -10,7 +10,9 @@ from abjad.tools.scoretemplatetools.ScoreTemplate import ScoreTemplate
 class GroupedStavesScoreTemplate(ScoreTemplate):
     r'''.. versionadded:: 2.10
 
-    Grouped staves score template::
+    Grouped staves score template:
+
+    ::
 
         >>> template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=4)
         >>> score = template()

@@ -5,7 +5,9 @@ def all_are_nonnegative_integer_equivalent_numbers(expr):
     '''.. versionadded:: 2.0
 
     True `expr` is a sequence and when all elements in `expr` are nonnegative
-    integer-equivalent numbers. Otherwise false::
+    integer-equivalent numbers. Otherwise false:
+
+    ::
 
 
         >>> expr = [0, 0.0, Fraction(0), 2, 2.0, Fraction(2)]

@@ -5,7 +5,9 @@ def inversion_equivalent_chromatic_interval_class_number_dictionary(pitches):
     r'''.. versionadded:: 1.1
 
     Change named chromatic `pitches` to inversion-equivalent chromatic interval-class number
-    dictionary::
+    dictionary:
+
+    ::
 
         >>> chord = Chord("<c' d' b''>4")
         >>> vector = pitchtools.inversion_equivalent_chromatic_interval_class_number_dictionary(

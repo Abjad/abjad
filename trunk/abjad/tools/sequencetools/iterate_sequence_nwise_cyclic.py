@@ -1,7 +1,9 @@
 def iterate_sequence_nwise_cyclic(sequence, n):
     '''.. versionadded:: 2.0
 
-    Iterate elements in `sequence` cyclically `n` at a time::
+    Iterate elements in `sequence` cyclically `n` at a time:
+
+    ::
 
         >>> g = sequencetools.iterate_sequence_nwise_cyclic(range(6), 3)
         >>> for n in range(10):

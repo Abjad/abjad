@@ -4,7 +4,9 @@ from abjad.tools import componenttools
 def all_are_scores(expr):
     '''.. versionadded:: 2.6
 
-    True when `expr` is a sequence of Abjad scores::
+    True when `expr` is a sequence of Abjad scores:
+
+    ::
 
         >>> score = Score([Staff([Note("c'4")])])
 
@@ -18,12 +20,16 @@ def all_are_scores(expr):
         >>> scoretools.all_are_scores([score])
         True
 
-    True when `expr` is an empty sequence::
+    True when `expr` is an empty sequence:
+
+    ::
 
         >>> scoretools.all_are_scores([])
         True
 
-    Otherwise false::
+    Otherwise false:
+
+    ::
 
         >>> scoretools.all_are_scores('foo')
         False

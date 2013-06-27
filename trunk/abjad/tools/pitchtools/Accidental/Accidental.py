@@ -171,7 +171,9 @@ class Accidental(AbjadObject):
 
     @property
     def alphabetic_accidental_abbreviation(self):
-        '''Read-only alphabetic string::
+        '''Read-only alphabetic string:
+
+        ::
 
             >>> accidental = pitchtools.Accidental('s')
             >>> accidental.alphabetic_accidental_abbreviation
@@ -183,7 +185,9 @@ class Accidental(AbjadObject):
 
     @property
     def is_adjusted(self):
-        '''True for all accidentals equal to a nonzero number of semitones. False otherwise::
+        '''True for all accidentals equal to a nonzero number of semitones. False otherwise:
+
+        ::
 
             >>> accidental = pitchtools.Accidental('s')
             >>> accidental.is_adjusted
@@ -195,7 +199,9 @@ class Accidental(AbjadObject):
 
     @property
     def lilypond_format(self):
-        '''Read-only LilyPond input format of accidental::
+        '''Read-only LilyPond input format of accidental:
+
+        ::
 
             >>> accidental = pitchtools.Accidental('s')
             >>> accidental.lilypond_format
@@ -207,7 +213,9 @@ class Accidental(AbjadObject):
 
     @property
     def name(self):
-        '''Read-only name of accidental::
+        '''Read-only name of accidental:
+
+        ::
 
             >>> accidental = pitchtools.Accidental('s')
             >>> accidental.name
@@ -219,7 +227,9 @@ class Accidental(AbjadObject):
 
     @property
     def semitones(self):
-        '''Read-only semitones of accidental::
+        '''Read-only semitones of accidental:
+
+        ::
 
             >>> accidental = pitchtools.Accidental('s')
             >>> accidental.semitones
@@ -231,7 +241,9 @@ class Accidental(AbjadObject):
 
     @property
     def symbolic_accidental_string(self):
-        '''Read-only symbolic string of accidental::
+        '''Read-only symbolic string of accidental:
+
+        ::
 
             >>> accidental = pitchtools.Accidental('s')
             >>> accidental.symbolic_accidental_string

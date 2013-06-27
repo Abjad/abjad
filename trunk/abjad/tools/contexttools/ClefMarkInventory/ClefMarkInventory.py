@@ -5,7 +5,9 @@ from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
 class ClefMarkInventory(ObjectInventory):
     '''.. versionadded:: 2.8
 
-    Abjad model of an ordered list of clefs::
+    Abjad model of an ordered list of clefs:
+
+    ::
 
         >>> inventory = contexttools.ClefMarkInventory(['treble', 'bass'])
 

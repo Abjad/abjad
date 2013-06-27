@@ -5,7 +5,9 @@ from abjad.tools import iterationtools
 def label_notes_in_expr_with_note_indices(expr, markup_direction=Down):
     r'''.. versionadded:: 2.0
 
-    Label notes in `expr` with note indices::
+    Label notes in `expr` with note indices:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 r8 r8 g'8 a'8 r8 c''8")
 

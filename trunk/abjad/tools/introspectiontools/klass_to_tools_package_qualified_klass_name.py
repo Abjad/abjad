@@ -1,7 +1,9 @@
 def klass_to_tools_package_qualified_klass_name(klass):
     r'''.. versionadded:: 2.10
 
-    Change `klass` to tools package-qualified class name::
+    Change `klass` to tools package-qualified class name:
+
+    ::
 
         >>> introspectiontools.klass_to_tools_package_qualified_klass_name(Note)
         'notetools.Note'

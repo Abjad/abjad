@@ -2,7 +2,9 @@ from abjad.tools.spannertools.Spanner import Spanner
 
 
 class HiddenStaffSpanner(Spanner):
-    r'''Abjad hidden staff spanner::
+    r'''Abjad hidden staff spanner:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
 

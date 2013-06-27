@@ -155,7 +155,9 @@ class Articulation(DirectedMark):
 
     @property
     def lilypond_format(self):
-        '''Read-only LilyPond format string of articulation::
+        '''Read-only LilyPond format string of articulation:
+
+        ::
 
             >>> articulation = marktools.Articulation('marcato', Up)
             >>> articulation.lilypond_format
@@ -168,13 +170,17 @@ class Articulation(DirectedMark):
     @apply
     def name():
         def fget(self):
-            '''Get name of articulation::
+            '''Get name of articulation:
+
+            ::
 
                 >>> articulation = marktools.Articulation('staccato', Up)
                 >>> articulation.name
                 'staccato'
 
-            Set name of articulation::
+            Set name of articulation:
+
+            ::
 
                 >>> articulation.name = 'marcato'
                 >>> articulation.name

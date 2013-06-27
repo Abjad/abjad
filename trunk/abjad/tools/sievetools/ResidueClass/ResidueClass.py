@@ -142,7 +142,9 @@ class ResidueClass(_BaseResidueClass):
         The method takes one or two integer arguments. If only one is given,
         it is taken as the max range and the min is assumed to be 0.
 
-        Example::
+        Example:
+
+        ::
 
             >>> r = RC(3, 0)
             >>> r.get_boolean_train(6)
@@ -170,7 +172,9 @@ class ResidueClass(_BaseResidueClass):
         If only one it given, it is taken as the max range and
         the min is assumed to be 0.
 
-        Example::
+        Example:
+
+        ::
 
             >>> r = RC(3, 0)
             >>> r.get_congruent_bases(6)

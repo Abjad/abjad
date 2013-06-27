@@ -4,7 +4,9 @@ from abjad.tools.pitchtools.DiatonicPitchClass import DiatonicPitchClass
 class NamedDiatonicPitchClass(DiatonicPitchClass):
     '''.. versionadded:: 2.0
 
-    Abjad model of a named diatonic pitch-class::
+    Abjad model of a named diatonic pitch-class:
+
+    ::
 
         >>> pitchtools.NamedDiatonicPitchClass('c')
         NamedDiatonicPitchClass('c')
@@ -60,7 +62,9 @@ class NamedDiatonicPitchClass(DiatonicPitchClass):
 
     @property
     def numbered_diatonic_pitch_class(self):
-        '''Read-only numbered diatonic pitch-class from named diatonic pitch-class::
+        '''Read-only numbered diatonic pitch-class from named diatonic pitch-class:
+
+        ::
 
             >>> named_diatonic_pitch_class = pitchtools.NamedDiatonicPitchClass('c')
             >>> named_diatonic_pitch_class.numbered_diatonic_pitch_class

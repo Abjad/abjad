@@ -10,7 +10,9 @@ from abjad.tools.selectiontools import Selection
 class VerticalMoment(Selection):
     r'''.. versionadded: 1.1.2
 
-    Everything happening at a single moment in musical time::
+    Everything happening at a single moment in musical time:
+
+    ::
 
         >>> score = Score([])
         >>> piano_staff = scoretools.PianoStaff([])

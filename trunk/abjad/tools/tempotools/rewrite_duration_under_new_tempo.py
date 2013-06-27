@@ -18,7 +18,9 @@ def rewrite_duration_under_new_tempo(duration, tempo_mark_1, tempo_mark_2):
 
     The second tempo indication specifies quarter equal to ``90 MM``.
 
-    The second tempo is ``3/2`` times as fast as the first::
+    The second tempo is ``3/2`` times as fast as the first:
+
+    ::
 
         >>> tempo_mark_2 / tempo_mark_1
         Multiplier(3, 2)

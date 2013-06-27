@@ -128,13 +128,17 @@ class DynamicMark(ContextMark):
     @apply
     def dynamic_name():
         def fget(self):
-            r'''Get dynamic name::
+            r'''Get dynamic name:
+
+            ::
 
                 >>> dynamic = contexttools.DynamicMark('f')
                 >>> dynamic.dynamic_name
                 'f'
 
-            Set dynamic name::
+            Set dynamic name:
+
+            ::
 
                 >>> dynamic.dynamic_name = 'p'
                 >>> dynamic.dynamic_name
@@ -166,7 +170,9 @@ class DynamicMark(ContextMark):
 
     @staticmethod
     def composite_dynamic_name_to_steady_state_dynamic_name(dynamic_name):
-        '''Change composite `dynamic_name` to steady state dynamic name::
+        '''Change composite `dynamic_name` to steady state dynamic name:
+
+        ::
 
             >>> contexttools.DynamicMark.composite_dynamic_name_to_steady_state_dynamic_name('sfp')
             'p'
@@ -177,7 +183,9 @@ class DynamicMark(ContextMark):
 
     @staticmethod
     def dynamic_name_to_dynamic_ordinal(dynamic_name):
-        '''Change `dynamic_name` to dynamic ordinal::
+        '''Change `dynamic_name` to dynamic ordinal:
+
+        ::
 
             >>> contexttools.DynamicMark.dynamic_name_to_dynamic_ordinal('fff')
             4
@@ -193,7 +201,9 @@ class DynamicMark(ContextMark):
 
     @staticmethod
     def dynamic_ordinal_to_dynamic_name(dynamic_ordinal):
-        '''Change `dynamic_ordinal` to dynamic name::
+        '''Change `dynamic_ordinal` to dynamic name:
+
+        ::
 
             >>> contexttools.DynamicMark.dynamic_ordinal_to_dynamic_name(-5)
             'pppp'
@@ -204,7 +214,9 @@ class DynamicMark(ContextMark):
 
     @staticmethod
     def is_dynamic_name(arg):
-        '''True when `arg` is dynamic name. False otherwise::
+        '''True when `arg` is dynamic name. False otherwise:
+
+        ::
 
             >>> contexttools.DynamicMark.is_dynamic_name('f')
             True

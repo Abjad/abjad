@@ -1,7 +1,9 @@
 def all_are_durations(expr):
     '''.. versionadded:: 2.6
 
-    True when `expr` is a sequence of Abjad durations::
+    True when `expr` is a sequence of Abjad durations:
+
+    ::
 
         >>> durations = [Duration((3, 16)), Duration((4, 16))]
 
@@ -10,12 +12,16 @@ def all_are_durations(expr):
         >>> durationtools.all_are_durations(durations)
         True
 
-    True when `expr` is an empty sequence::
+    True when `expr` is an empty sequence:
+
+    ::
 
         >>> durationtools.all_are_durations([])
         True
 
-    Otherwise false::
+    Otherwise false:
+
+    ::
 
         >>> durationtools.all_are_durations('foo')
         False

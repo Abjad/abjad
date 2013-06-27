@@ -4,7 +4,9 @@ from abjad.tools.pitchtools.IntervalSet import IntervalSet
 class HarmonicChromaticIntervalSet(IntervalSet):
     '''.. versionadded:: 2.0
 
-    Abjad model of harmonic chromatic interval set::
+    Abjad model of harmonic chromatic interval set:
+
+    ::
 
         >>> pitchtools.HarmonicChromaticIntervalSet([10, -12, -13, -13, -13.5])
         HarmonicChromaticIntervalSet(10, 12, 13, 13.5)

@@ -6,7 +6,9 @@ import copy
 class LilyPondCommandMark(Mark):
     r'''.. versionadded:: 2.0
 
-    LilyPond command mark::
+    LilyPond command mark:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> slur = spannertools.SlurSpanner(staff.leaves)
@@ -86,13 +88,17 @@ class LilyPondCommandMark(Mark):
     @apply
     def command_name():
         def fget(self):
-            '''Get command name of LilyPond command mark::
+            '''Get command name of LilyPond command mark:
+
+            ::
 
                 >>> lilypond_command = marktools.LilyPondCommandMark('slurDotted')
                 >>> lilypond_command.command_name
                 'slurDotted'
 
-            Set command name of LilyPond command mark::
+            Set command name of LilyPond command mark:
+
+            ::
 
                 >>> lilypond_command.command_name = 'slurDashed'
                 >>> lilypond_command.command_name
@@ -111,14 +117,18 @@ class LilyPondCommandMark(Mark):
         def fget(self):
             '''.. versionadded:: 2.3
 
-            Get format slot of LilyPond command mark::
+            Get format slot of LilyPond command mark:
+
+            ::
 
                 >>> note = Note("c'4")
                 >>> lilypond_command = marktools.LilyPondCommandMark('break', 'after')
                 >>> lilypond_command.format_slot
                 'after'
 
-            Set format slot of LiyPond command mark::
+            Set format slot of LiyPond command mark:
+
+            ::
 
                 >>> note = Note("c'4")
                 >>> lilypond_command = marktools.LilyPondCommandMark('break', 'after')
@@ -139,7 +149,9 @@ class LilyPondCommandMark(Mark):
 
     @property
     def lilypond_format(self):
-        '''Read-only LilyPond input format of LilyPond command mark::
+        '''Read-only LilyPond input format of LilyPond command mark:
+
+        ::
 
             >>> note = Note("c'4")
             >>> lilypond_command = marktools.LilyPondCommandMark('slurDotted')(note)

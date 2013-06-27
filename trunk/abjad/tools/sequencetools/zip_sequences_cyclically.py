@@ -4,7 +4,9 @@ from __future__ import division
 def zip_sequences_cyclically(*sequences):
     '''.. versionadded:: 1.1
 
-    Zip `sequences` cyclically::
+    Zip `sequences` cyclically:
+
+    ::
 
         >>> sequencetools.zip_sequences_cyclically([1, 2, 3], ['a', 'b'])
         [(1, 'a'), (2, 'b'), (3, 'a')]

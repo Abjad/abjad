@@ -6,7 +6,9 @@ def is_integer_singleton(expr):
         >>> sequencetools.is_integer_singleton((19,))
         True
 
-    Otherwise false::
+    Otherwise false:
+
+    ::
 
         >>> sequencetools.is_integer_singleton(('text',))
         False

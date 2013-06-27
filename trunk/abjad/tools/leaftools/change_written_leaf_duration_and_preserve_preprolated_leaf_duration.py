@@ -5,7 +5,9 @@ def change_written_leaf_duration_and_preserve_preprolated_leaf_duration(leaf, wr
     '''.. versionadded:: 1.1
 
     Change `leaf` written duration to `written_duration`
-    and preserve preprolated `leaf` duration::
+    and preserve preprolated `leaf` duration:
+
+    ::
 
         >>> note = Note("c'4")
 

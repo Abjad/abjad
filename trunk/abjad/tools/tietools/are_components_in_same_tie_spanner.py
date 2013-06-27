@@ -3,7 +3,9 @@ from abjad.tools import spannertools
 
 
 def are_components_in_same_tie_spanner(components):
-    r'''True when `components` are in same tie spanner::
+    r'''True when `components` are in same tie spanner:
+
+    ::
 
         >>> voice = Voice("c'8 ~ c' d' ~ d'")
 
@@ -22,7 +24,9 @@ def are_components_in_same_tie_spanner(components):
         >>> tietools.are_components_in_same_tie_spanner(voice[:2])
         True
 
-    Otherwise false::
+    Otherwise false:
+
+    ::
 
         >>> tietools.are_components_in_same_tie_spanner(voice[1:3])
         False

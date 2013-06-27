@@ -1,7 +1,9 @@
 def yield_all_permutations_of_sequence_in_orbit(sequence, permutation):
     '''.. versionadded:: 2.0
 
-    Yield all permutations of `sequence` in orbit of `permutation` in lex order::
+    Yield all permutations of `sequence` in orbit of `permutation` in lex order:
+
+    ::
 
         >>> list(sequencetools.yield_all_permutations_of_sequence_in_orbit(
         ...     (1, 2, 3, 4), [1, 2, 3, 0]))

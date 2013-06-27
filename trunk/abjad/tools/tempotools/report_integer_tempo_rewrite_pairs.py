@@ -17,7 +17,9 @@ def report_integer_tempo_rewrite_pairs(integer_tempo,
         2:3     87
         1:2     116
 
-    With more lenient numerator and denominator::
+    With more lenient numerator and denominator:
+
+    ::
 
         >>> tempotools.report_integer_tempo_rewrite_pairs(
         ...     58, maximum_numerator=30, maximum_denominator=30)

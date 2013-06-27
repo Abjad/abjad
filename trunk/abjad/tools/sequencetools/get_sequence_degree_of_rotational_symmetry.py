@@ -1,7 +1,9 @@
 def get_sequence_degree_of_rotational_symmetry(sequence):
     '''.. versionadded:: 2.0
 
-    Change `sequence` to degree of rotational symmetry::
+    Change `sequence` to degree of rotational symmetry:
+
+    ::
 
         >>> sequencetools.get_sequence_degree_of_rotational_symmetry([1, 2, 3, 4, 5, 6])
         1

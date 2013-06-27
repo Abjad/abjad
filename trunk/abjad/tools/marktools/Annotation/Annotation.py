@@ -6,7 +6,9 @@ from abjad.tools.marktools.Mark import Mark
 class Annotation(Mark):
     r'''.. versionadded:: 2.0
 
-    User-defined annotation::
+    User-defined annotation:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
 
@@ -85,14 +87,18 @@ class Annotation(Mark):
     @apply
     def name():
         def fget(self):
-            '''Get name of annotation::
+            '''Get name of annotation:
+
+            ::
 
                 >>> pitch = pitchtools.NamedChromaticPitch('ds')
                 >>> annotation = marktools.Annotation('special_pitch', pitch)
                 >>> annotation.name
                 'special_pitch'
 
-            Set name of annotation::
+            Set name of annotation:
+
+            ::
 
                 >>> annotation.name = 'revised special pitch'
                 >>> annotation.name
@@ -109,12 +115,16 @@ class Annotation(Mark):
     @apply
     def value():
         def fget(self):
-            '''Get value of annotation::
+            '''Get value of annotation:
+
+            ::
 
                 >>> annotation.value
                 NamedChromaticPitch('ds')
 
-            Set value of annotation::
+            Set value of annotation:
+
+            ::
 
                 >>> annotation.value = pitchtools.NamedChromaticPitch('e')
                 >>> annotation.value

@@ -6,7 +6,9 @@ def is_singleton(expr):
         >>> sequencetools.is_singleton((19,))
         True
 
-    Otherwise false::
+    Otherwise false:
+
+    ::
 
         >>> sequencetools.is_singleton((19, 20, 21))
         False

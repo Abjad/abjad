@@ -1,7 +1,9 @@
 def clef_and_staff_position_number_to_named_chromatic_pitch(clef, staff_position_number):
     r'''.. versionadded:: 2.0
 
-    Change `clef` and `staff_position_number` to named chromatic pitch::
+    Change `clef` and `staff_position_number` to named chromatic pitch:
+
+    ::
 
         >>> clef = contexttools.ClefMark('treble')
         >>> for n in range(-6, 6):

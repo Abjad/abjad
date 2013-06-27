@@ -73,7 +73,9 @@ class Parentage(Selection):
     def containment_signature(self):
         r'''.. versionadded:: 1.1
 
-        Containment signature of component::
+        Containment signature of component:
+
+        ::
 
             >>> score = Score(
             ... r"""\context Staff = "CustomStaff" { """
@@ -154,7 +156,9 @@ class Parentage(Selection):
     def parentage_signature(self):
         r'''.. versionadded:: 1.1
 
-        Parentage signature of component::
+        Parentage signature of component:
+
+        ::
 
             >>> tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
             >>> staff = Staff([tuplet])
@@ -194,7 +198,9 @@ class Parentage(Selection):
 
     @property
     def score_index(self):
-        r'''Score index of component::
+        r'''Score index of component:
+
+        ::
 
             >>> staff_1 = Staff(r"\times 2/3 { c'8 d'8 e'8 } \times 2/3 { f'8 g'8 a'8 }")
             >>> staff_2 = Staff(r"\times 2/3 { b'8 c''8 d''8 }")
@@ -253,7 +259,9 @@ class Parentage(Selection):
 
     @property
     def tuplet_depth(self):
-        '''Tuplet-depth of component::
+        '''Tuplet-depth of component:
+
+        ::
 
             >>> tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
             >>> staff = Staff([tuplet])

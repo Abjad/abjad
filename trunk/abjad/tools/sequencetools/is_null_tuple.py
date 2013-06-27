@@ -6,7 +6,9 @@ def is_null_tuple(expr):
         >>> sequencetools.is_null_tuple(())
         True
 
-    Otherwise false::
+    Otherwise false:
+
+    ::
 
         >>> sequencetools.is_null_tuple((19, 20, 21))
         False

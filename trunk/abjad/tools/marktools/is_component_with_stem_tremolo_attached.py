@@ -4,7 +4,9 @@ from abjad.tools import componenttools
 def is_component_with_stem_tremolo_attached(expr):
     '''.. versionadded:: 2.3
 
-    True when `expr` is component with LilyPond command mark attached::
+    True when `expr` is component with LilyPond command mark attached:
+
+    ::
 
         >>> note = Note("c'4")
         >>> marktools.StemTremolo(16)(note)
@@ -15,7 +17,9 @@ def is_component_with_stem_tremolo_attached(expr):
         >>> marktools.is_component_with_stem_tremolo_attached(note)
         True
 
-    False otherwise::
+    False otherwise:
+
+    ::
 
         >>> note = Note("c'4")
 

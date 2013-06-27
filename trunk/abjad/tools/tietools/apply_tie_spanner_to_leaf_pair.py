@@ -3,7 +3,9 @@ from abjad.tools import spannertools
 
 
 def apply_tie_spanner_to_leaf_pair(left, right):
-    r'''Apply tie spanner to `left` leaf and `right` leaf::
+    r'''Apply tie spanner to `left` leaf and `right` leaf:
+
+    ::
 
         >>> staff = Staff("c'8 ~ c' c' c'")
 

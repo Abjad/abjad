@@ -2,7 +2,9 @@ from abjad.tools.schemetools.Scheme import Scheme
 
 
 class SchemeColor(Scheme):
-    '''Abjad model of Scheme color::
+    '''Abjad model of Scheme color:
+
+    ::
 
         >>> schemetools.SchemeColor('ForestGreen')
         SchemeColor('ForestGreen')

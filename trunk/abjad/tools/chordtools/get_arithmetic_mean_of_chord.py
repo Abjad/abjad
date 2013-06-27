@@ -15,7 +15,9 @@ def get_arithmetic_mean_of_chord(chord):
         >>> chordtools.get_arithmetic_mean_of_chord(chord)
         11.666666666666666
 
-    Return none when `chord` is empty::
+    Return none when `chord` is empty:
+
+    ::
 
         >>> chord = Chord("< >4")
 

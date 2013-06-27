@@ -5,7 +5,9 @@ import itertools
 def yield_all_permutations_of_sequence(sequence):
     '''.. versionadded:: 1.1
 
-    Yield all permutations of `sequence` in lex order::
+    Yield all permutations of `sequence` in lex order:
+
+    ::
 
         >>> list(sequencetools.yield_all_permutations_of_sequence((1, 2, 3)))
         [(1, 2, 3), (1, 3, 2), (2, 1, 3), (2, 3, 1), (3, 1, 2), (3, 2, 1)]

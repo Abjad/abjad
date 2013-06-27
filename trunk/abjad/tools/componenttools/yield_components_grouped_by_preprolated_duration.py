@@ -1,7 +1,9 @@
 def yield_components_grouped_by_preprolated_duration(components):
     r'''.. versionadded:: 2.0
 
-    Example 1. Yield topmost components grouped by preprolated duration::
+    Example 1. Yield topmost components grouped by preprolated duration:
+
+    ::
 
         >>> staff = Staff(r"\times 2/3 { c'4 c'4 c'8 c'16 c'16 } c'16 c'16 c'8 c'8")
 
@@ -37,7 +39,9 @@ def yield_components_grouped_by_preprolated_duration(components):
     Note that function treats input as a flat sequence and
     attempts no navigation of the score tree.
     But it's possible to group components lower in the score tree by passing
-    the output of a component iterator as input to this function::
+    the output of a component iterator as input to this function:
+
+    ::
 
         >>> staff = Staff(r"\times 2/3 { c'4 c'4 c'8 c'16 c'16 } c'16 c'16 c'8 c'8")
 

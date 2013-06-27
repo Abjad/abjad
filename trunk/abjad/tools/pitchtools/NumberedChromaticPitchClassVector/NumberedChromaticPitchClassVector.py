@@ -4,7 +4,9 @@ from abjad.tools.pitchtools.Vector import Vector
 class NumberedChromaticPitchClassVector(Vector):
     '''.. versionadded:: 2.0
 
-    Abjad model of numbered chromatic pitch-class vector::
+    Abjad model of numbered chromatic pitch-class vector:
+
+    ::
 
         >>> ncpcv = pitchtools.NumberedChromaticPitchClassVector(
         ...     [13, 13, 14.5, 14.5, 14.5, 6, 6, 6])
@@ -122,7 +124,9 @@ class NumberedChromaticPitchClassVector(Vector):
     @property
     def chromatic_pitch_class_numbers(self):
         '''Read-only chromatic pitch-class numbers from numbered chromatic
-        pitch-class vector::
+        pitch-class vector:
+
+        ::
 
             >>> ncpcv.chromatic_pitch_class_numbers
             [1, 2.5, 6]
@@ -135,7 +139,9 @@ class NumberedChromaticPitchClassVector(Vector):
 
     @property
     def numbered_chromatic_pitch_classes(self):
-        '''Read-only numbered chromatic pitch-classes from numbered chromatic pitch-class vector::
+        '''Read-only numbered chromatic pitch-classes from numbered chromatic pitch-class vector:
+
+        ::
 
             >>> result = ncpcv.numbered_chromatic_pitch_classes
 

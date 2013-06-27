@@ -4,7 +4,9 @@ from abjad.tools.lilypondfiletools.AttributedBlock import AttributedBlock
 class HeaderBlock(AttributedBlock):
     r'''.. versionadded:: 2.0
 
-    Abjad model of LilyPond input file header block::
+    Abjad model of LilyPond input file header block:
+
+    ::
 
         >>> header_block = lilypondfiletools.HeaderBlock()
 

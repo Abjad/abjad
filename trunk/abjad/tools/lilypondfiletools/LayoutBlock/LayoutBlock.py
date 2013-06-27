@@ -4,7 +4,9 @@ from abjad.tools.lilypondfiletools.AttributedBlock import AttributedBlock
 class LayoutBlock(AttributedBlock):
     r'''.. versionadded:: 2.0
 
-    Abjad model of LilyPond input file layout block::
+    Abjad model of LilyPond input file layout block:
+
+    ::
 
         >>> layout_block = lilypondfiletools.LayoutBlock()
 
@@ -58,7 +60,9 @@ class LayoutBlock(AttributedBlock):
 
     @property
     def context_blocks(self):
-        r'''Read-only list of context blocks::
+        r'''Read-only list of context blocks:
+
+        ::
 
             >>> layout_block = lilypondfiletools.LayoutBlock()
 

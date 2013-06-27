@@ -8,7 +8,9 @@ from abjad.tools import notetools
 def label_leaves_in_expr_with_melodic_chromatic_interval_classes(expr, markup_direction=Up):
     r""".. versionadded:: 2.0
 
-    Label leaves in `expr` with melodic chromatic interval classes::
+    Label leaves in `expr` with melodic chromatic interval classes:
+
+    ::
 
         >>> notes = notetools.make_notes([0, 25, 11, -4, -14, -13, 9, 10, 6, 5], [Duration(1, 8)])
         >>> staff = Staff(notes)

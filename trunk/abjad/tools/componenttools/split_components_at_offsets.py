@@ -7,7 +7,9 @@ def split_components_at_offsets(components, offsets,
     fracture_spanners=False, cyclic=False, tie_split_notes=True, tie_split_rests=False):
     r'''.. versionadded:: 2.0
 
-    Example 1. Split components cyclically and do not fracture crossing spanners::
+    Example 1. Split components cyclically and do not fracture crossing spanners:
+
+    ::
 
         >>> staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
 
@@ -69,7 +71,9 @@ def split_components_at_offsets(components, offsets,
 
         >>> show(staff) # doctest: +SKIP
 
-    Example 2. Split components cyclically and fracture spanners::
+    Example 2. Split components cyclically and fracture spanners:
+
+    ::
 
         >>> staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
 
@@ -135,7 +139,9 @@ def split_components_at_offsets(components, offsets,
 
         >>> show(staff) # doctest: +SKIP
 
-    Example 3. Split components once and do not fracture crossing spanners::
+    Example 3. Split components once and do not fracture crossing spanners:
+
+    ::
 
         >>> staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
 
@@ -203,7 +209,9 @@ def split_components_at_offsets(components, offsets,
 
         >>> show(staff) # doctest: +SKIP
 
-    Example 4. Split components once and fracture crossing spanners::
+    Example 4. Split components once and fracture crossing spanners:
+
+    ::
 
         >>> staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
 
@@ -268,7 +276,9 @@ def split_components_at_offsets(components, offsets,
 
         >>> show(staff) # doctest: +SKIP
 
-    Example 5. Split tupletted components once and fracture crossing spanners::
+    Example 5. Split tupletted components once and fracture crossing spanners:
+
+    ::
 
         >>> staff = Staff(r"\times 2/3 { c'8 d'8 e'8 } \times 2/3 { f'8 g'8 a'8 }")
 

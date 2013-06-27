@@ -1,7 +1,9 @@
 class CyclicTuple(tuple):
     '''.. versionadded:: 2.0
 
-    Abjad model of cyclic tuple::
+    Abjad model of cyclic tuple:
+
+    ::
 
         >>> cyclic_tuple = sequencetools.CyclicTuple('abcd')
 

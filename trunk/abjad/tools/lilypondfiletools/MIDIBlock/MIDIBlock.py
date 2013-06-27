@@ -4,7 +4,9 @@ from abjad.tools.lilypondfiletools.AttributedBlock import AttributedBlock
 class MIDIBlock(AttributedBlock):
     r'''.. versionadded:: 2.0
 
-    Abjad model of LilyPond input file MIDI block::
+    Abjad model of LilyPond input file MIDI block:
+
+    ::
 
         >>> staff = Staff("c'4 d'4 e'4 f'4")
         >>> score = Score([staff])

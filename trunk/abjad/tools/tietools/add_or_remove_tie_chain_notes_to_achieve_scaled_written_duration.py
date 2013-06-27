@@ -1,5 +1,7 @@
 def add_or_remove_tie_chain_notes_to_achieve_scaled_written_duration(tie_chain, multiplier):
-    r'''Add or remove `tie_chain` notes to achieve scaled written duration::
+    r'''Add or remove `tie_chain` notes to achieve scaled written duration:
+
+    ::
 
         >>> staff = Staff("c'8 [ ]")
 

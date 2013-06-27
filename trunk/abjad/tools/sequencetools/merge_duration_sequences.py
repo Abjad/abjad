@@ -9,7 +9,9 @@ def merge_duration_sequences(*sequences):
         >>> sequencetools.merge_duration_sequences([10, 10, 10], [7])
         [7, 3, 10, 10]
 
-    Merge more duration sequences::
+    Merge more duration sequences:
+
+    ::
 
         >>> sequencetools.merge_duration_sequences([10, 10, 10], [10, 10])
         [10, 10, 10]

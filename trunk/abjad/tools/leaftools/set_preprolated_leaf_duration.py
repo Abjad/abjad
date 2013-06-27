@@ -5,7 +5,9 @@ from abjad.tools import durationtools
 def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
     r'''.. versionadded:: 1.1
 
-    Set preprolated `leaf` duration::
+    Set preprolated `leaf` duration:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> beamtools.BeamSpanner(staff.leaves)
@@ -20,7 +22,9 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
             f'8 ]
         }
 
-    Set tied preprolated `leaf` duration::
+    Set tied preprolated `leaf` duration:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> beamtools.BeamSpanner(staff.leaves)
@@ -36,7 +40,9 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
             f'8 ]
         }
 
-    Set preprolated `leaf` duration without power-of-two denominator::
+    Set preprolated `leaf` duration without power-of-two denominator:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> beamtools.BeamSpanner(staff.leaves)
@@ -53,7 +59,9 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
             f'8 ]
         }
 
-    Set preprolated `leaf` duration without power-of-two denominator::
+    Set preprolated `leaf` duration without power-of-two denominator:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> beamtools.BeamSpanner(staff.leaves)
@@ -71,7 +79,9 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
             f'8 ]
         }
 
-    Set preprolated `leaf` duration with LilyPond multiplier::
+    Set preprolated `leaf` duration with LilyPond multiplier:
+
+    ::
 
         >>> note = Note(0, (1, 8))
         >>> note.duration_multiplier = Duration(1, 2)

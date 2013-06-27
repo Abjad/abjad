@@ -8,7 +8,9 @@ def split_component_at_offset(component, offset,
 
     Split `component` at `offset`.
 
-    Example 1. Split `component` at `offset`. Don't fracture spanners::
+    Example 1. Split `component` at `offset`. Don't fracture spanners:
+
+    ::
 
         >>> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
         >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
@@ -66,7 +68,9 @@ def split_component_at_offset(component, offset,
 
         >>> show(staff) # doctest: +SKIP
 
-    Example 2. Split component at offset at fracture crossing spanners::
+    Example 2. Split component at offset at fracture crossing spanners:
+
+    ::
 
         >>> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
         >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)

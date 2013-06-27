@@ -6,7 +6,9 @@ from abjad.tools import pitchtools
 def label_leaves_in_expr_with_pitch_numbers(expr, markup_direction=Down):
     r'''.. versionadded:: 1.1
 
-    Label leaves in `expr` with pitch numbers::
+    Label leaves in `expr` with pitch numbers:
+
+    ::
 
         >>> staff = Staff(leaftools.make_leaves([None, 12, [13, 14, 15], None], [(1, 4)]))
         >>> labeltools.label_leaves_in_expr_with_pitch_numbers(staff)

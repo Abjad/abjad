@@ -4,7 +4,9 @@ from abjad.tools import componenttools
 def all_are_rests(expr):
     '''.. versionadded:: 2.6
 
-    True when `expr` is a sequence of Abjad rests::
+    True when `expr` is a sequence of Abjad rests:
+
+    ::
 
         >>> rests = [Rest('r4'), Rest('r4'), Rest('r4')]
 
@@ -13,12 +15,16 @@ def all_are_rests(expr):
         >>> resttools.all_are_rests(rests)
         True
 
-    True when `expr` is an empty sequence::
+    True when `expr` is an empty sequence:
+
+    ::
 
         >>> resttools.all_are_rests([])
         True
 
-    Otherwise false::
+    Otherwise false:
+
+    ::
 
         >>> resttools.all_are_rests('foo')
         False

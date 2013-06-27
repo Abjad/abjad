@@ -1,7 +1,9 @@
 def is_chromatic_pitch_class_number(expr):
     '''.. versionadded:: 2.0
 
-    True `expr` is a chromatic pitch-class number. Otherwise false::
+    True `expr` is a chromatic pitch-class number. Otherwise false:
+
+    ::
 
         >>> pitchtools.is_chromatic_pitch_class_number(1)
         True

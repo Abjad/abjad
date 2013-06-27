@@ -5,7 +5,9 @@ import copy
 class NamedChromaticPitchClassSegment(PitchClassSegment):
     '''.. versionadded:: 2.0
 
-    Abjad model of named chromatic pitch-class segment::
+    Abjad model of named chromatic pitch-class segment:
+
+    ::
 
         >>> pitchtools.NamedChromaticPitchClassSegment(['gs', 'a', 'as', 'c', 'cs'])
         NamedChromaticPitchClassSegment(['gs', 'a', 'as', 'c', 'cs'])

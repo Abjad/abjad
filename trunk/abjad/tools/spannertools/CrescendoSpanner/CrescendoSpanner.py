@@ -2,7 +2,9 @@ from abjad.tools.spannertools.HairpinSpanner import HairpinSpanner
 
 
 class CrescendoSpanner(HairpinSpanner):
-    r'''Abjad crescendo spanner that includes rests::
+    r'''Abjad crescendo spanner that includes rests:
+
+    ::
 
         >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
 
@@ -39,7 +41,9 @@ class CrescendoSpanner(HairpinSpanner):
 
         >>> show(staff) # doctest: +SKIP
 
-    Abjad crescendo spanner that does not include rests::
+    Abjad crescendo spanner that does not include rests:
+
+    ::
 
         >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
 

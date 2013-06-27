@@ -1,7 +1,9 @@
 def named_chromatic_pitch_and_clef_to_staff_position_number(pitch, clef):
     r'''.. versionadded:: 2.0
 
-    Change named chromatic `pitch` and `clef` to staff position number::
+    Change named chromatic `pitch` and `clef` to staff position number:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
         >>> clef = contexttools.ClefMark('treble')

@@ -1,7 +1,9 @@
 def alphabetic_accidental_abbreviation_to_symbolic_accidental_string(alphabetic_accidental_abbreviation):
     '''.. versionadded:: 2.5
 
-    Change `alphabetic_accidental_abbreviation` to symbolic accidental string::
+    Change `alphabetic_accidental_abbreviation` to symbolic accidental string:
+
+    ::
 
         >>> pitchtools.alphabetic_accidental_abbreviation_to_symbolic_accidental_string('tqs')
         '#+'

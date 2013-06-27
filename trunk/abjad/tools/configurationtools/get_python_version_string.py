@@ -4,7 +4,9 @@ import subprocess
 def get_python_version_string():
     '''.. versionadded:: 2.0
 
-    Get Python version string::
+    Get Python version string:
+
+    ::
 
         >>> configurationtools.get_python_version_string() # doctest: +SKIP
         '2.6.1'

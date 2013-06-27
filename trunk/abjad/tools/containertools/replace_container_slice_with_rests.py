@@ -10,7 +10,9 @@ def replace_container_slice_with_rests(container, start=None, stop=None,
     Replace `container` slice from `start` to `stop` with rests that decrease
     durations monotonically.
 
-    Example 1. Replace all container elements::
+    Example 1. Replace all container elements:
+
+    ::
 
         >>> container = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b' c''8")
 
@@ -23,7 +25,9 @@ def replace_container_slice_with_rests(container, start=None, stop=None,
             r1
         }
 
-    Example 2. Replace container elements from ``1`` forward::
+    Example 2. Replace container elements from ``1`` forward:
+
+    ::
 
         >>> container = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b' c''8")
 

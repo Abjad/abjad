@@ -8,7 +8,9 @@ from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
 class TimespanInventory(ObjectInventory):
     r'''Timespan inventory.
 
-    Example 1::
+    Example 1:
+
+    ::
 
         >>> timespan_inventory_1 = timespantools.TimespanInventory([
         ...     timespantools.Timespan(0, 3),
@@ -33,7 +35,9 @@ class TimespanInventory(ObjectInventory):
                 )
             ])
 
-    Example 2::
+    Example 2:
+
+    ::
 
         >>> timespan_inventory_2 = timespantools.TimespanInventory([
         ...     timespantools.Timespan(0, 10),
@@ -181,17 +185,23 @@ class TimespanInventory(ObjectInventory):
 
     @property
     def all_are_contiguous(self):
-        '''True when all timespans are time-contiguous::
+        '''True when all timespans are time-contiguous:
+
+        ::
 
             >>> timespan_inventory_1.all_are_contiguous
             True
 
-        False when timespans not time-contiguous::
+        False when timespans not time-contiguous:
+
+        ::
 
             >>> timespan_inventory_2.all_are_contiguous
             False
 
-        True when empty::
+        True when empty:
+
+        ::
 
             >>> timespan_inventory_3.all_are_contiguous
             True
@@ -209,7 +219,9 @@ class TimespanInventory(ObjectInventory):
 
     @property
     def all_are_well_formed(self):
-        '''True when all timespans are well-formed::
+        '''True when all timespans are well-formed:
+
+        ::
 
             >>> timespan_inventory_1.all_are_well_formed
             True
@@ -258,7 +270,9 @@ class TimespanInventory(ObjectInventory):
 
     @property
     def duration(self):
-        '''Time from start offset to stop offset::
+        '''Time from start offset to stop offset:
+
+        ::
 
             >>> timespan_inventory_1.duration
             Duration(10, 1)
@@ -1342,7 +1356,9 @@ class TimespanInventory(ObjectInventory):
         '''Translate timespans by `start_offset_translation`
         and `stop_offset_translation`.
 
-        Example 1. Translate timespan start- and stop-offsets equally::
+        Example 1. Translate timespan start- and stop-offsets equally:
+
+        ::
 
             >>> timespan_inventory = timespantools.TimespanInventory([
             ...     timespantools.Timespan(0, 3),

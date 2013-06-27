@@ -3,7 +3,9 @@ from abjad.tools import schemetools
 
 
 def color_note_head_by_numbered_chromatic_pitch_class_color_map(pitch_carrier):
-    r'''Color `pitch_carrier` note head::
+    r'''Color `pitch_carrier` note head:
+
+    ::
 
         >>> note = Note("c'4")
 
@@ -22,7 +24,9 @@ def color_note_head_by_numbered_chromatic_pitch_class_color_map(pitch_carrier):
 
         >>> show(note) # doctest: +SKIP
 
-    Numbered chromatic pitch-class color map::
+    Numbered chromatic pitch-class color map:
+
+    ::
 
         0: red
         1: MediumBlue

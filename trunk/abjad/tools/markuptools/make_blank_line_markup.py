@@ -1,7 +1,9 @@
 def make_blank_line_markup():
     r'''.. versionadded:: 2.9
 
-    Make blank line markup::
+    Make blank line markup:
+
+    ::
 
         >>> markup = markuptools.make_blank_line_markup()
 

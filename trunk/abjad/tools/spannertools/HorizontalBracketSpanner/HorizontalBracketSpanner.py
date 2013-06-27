@@ -4,7 +4,9 @@ from abjad.tools.spannertools.Spanner import Spanner
 class HorizontalBracketSpanner(Spanner):
     r'''.. versionadded:: 2.4
 
-    Abjad horizontal bracket spanner::
+    Abjad horizontal bracket spanner:
+
+    ::
 
         >>> voice = Voice("c'4 d'4 e'4 f'4")
         >>> voice.engraver_consists.append('Horizontal_bracket_engraver')

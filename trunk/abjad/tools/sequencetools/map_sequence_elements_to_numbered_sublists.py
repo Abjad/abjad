@@ -4,7 +4,9 @@ from abjad.tools import mathtools
 def map_sequence_elements_to_numbered_sublists(sequence):
     '''.. versionadded:: 1.1
 
-    Map `sequence` elements to numbered sublists::
+    Map `sequence` elements to numbered sublists:
+
+    ::
 
         >>> sequencetools.map_sequence_elements_to_numbered_sublists([1, 2, -3, -4, 5])
         [[1], [2, 3], [-4, -5, -6], [-7, -8, -9, -10], [11, 12, 13, 14, 15]]

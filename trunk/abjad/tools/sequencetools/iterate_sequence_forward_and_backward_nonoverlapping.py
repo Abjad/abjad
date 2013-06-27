@@ -2,7 +2,9 @@ def iterate_sequence_forward_and_backward_nonoverlapping(sequence):
     '''.. versionadded:: 2.0
 
     Iterate `sequence` first forward and then backward, with first
-    and last elements repeated::
+    and last elements repeated:
+
+    ::
 
         >>> list(sequencetools.iterate_sequence_forward_and_backward_nonoverlapping(
         ...     [1, 2, 3, 4, 5]))

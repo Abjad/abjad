@@ -5,7 +5,9 @@ def all_are_positive_integer_equivalent_numbers(expr):
     '''.. versionadded:: 2.0
 
     True when `expr` is a sequence and all elements in `expr` are positive
-    integer-equivalent numbers. Otherwise false::
+    integer-equivalent numbers. Otherwise false:
+
+    ::
 
         >>> sequencetools.all_are_positive_integer_equivalent_numbers([Fraction(4, 2), 2.0, 2])
         True

@@ -110,7 +110,9 @@ class MarkupCommand(AbjadObject):
 
     @property
     def lilypond_format(self):
-        r'''Read-only format of markup command::
+        r'''Read-only format of markup command:
+
+        ::
 
             >>> markup_command = markuptools.MarkupCommand('draw-circle', 2.5, 0.1, False)
             >>> markup_command.lilypond_format

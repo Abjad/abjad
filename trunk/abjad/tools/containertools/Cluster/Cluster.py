@@ -4,7 +4,9 @@ from abjad.tools.containertools.Container import Container
 class Cluster(Container):
     '''.. versionadded:: 1.1
 
-    Abjad model of a tone cluster container::
+    Abjad model of a tone cluster container:
+
+    ::
 
         >>> cluster = containertools.Cluster("c'8 <d' g'>8 b'8")
 

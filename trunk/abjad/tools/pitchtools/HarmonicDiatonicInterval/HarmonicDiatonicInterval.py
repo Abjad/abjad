@@ -6,7 +6,9 @@ from abjad.tools.pitchtools.HarmonicInterval import HarmonicInterval
 class HarmonicDiatonicInterval(DiatonicInterval, HarmonicInterval):
     '''.. versionadded:: 2.0
 
-    Abjad model harmonic diatonic interval::
+    Abjad model harmonic diatonic interval:
+
+    ::
 
         >>> pitchtools.HarmonicDiatonicInterval('M9')
         HarmonicDiatonicInterval('M9')

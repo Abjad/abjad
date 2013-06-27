@@ -4,7 +4,9 @@ import inspect
 def get_current_function_name():
     r'''.. versionadded:: 2.10
 
-    Get current function name::
+    Get current function name:
+
+    ::
 
         >>> def foo():
         ...        function_name = introspectiontools.get_current_function_name()

@@ -4,12 +4,16 @@ import fractions
 def numeric_seconds_to_clock_string(seconds, escape_ticks=False):
     r'''.. versionadded:: 2.0
 
-    Example 1. Change numeric `seconds` to clock string::
+    Example 1. Change numeric `seconds` to clock string:
+
+    ::
 
         >>> durationtools.numeric_seconds_to_clock_string(117)
         '1\'57"'
 
-    Example 2. Change numeric `seconds` to escaped clock string::
+    Example 2. Change numeric `seconds` to escaped clock string:
+
+    ::
 
         >>> note = Note("c'4")
         >>> clock_string = durationtools.numeric_seconds_to_clock_string(117, escape_ticks=True)

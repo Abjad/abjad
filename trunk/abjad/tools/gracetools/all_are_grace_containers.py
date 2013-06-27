@@ -1,7 +1,9 @@
 def all_are_grace_containers(expr, kind=None):
     r'''.. versionadded:: 2.6
 
-    True when `expr` is a sequence of Abjad grace containers::
+    True when `expr` is a sequence of Abjad grace containers:
+
+    ::
 
         >>> graces = [
         ...     gracetools.GraceContainer("<c' e' g'>4"),
@@ -31,12 +33,16 @@ def all_are_grace_containers(expr, kind=None):
         >>> gracetools.all_are_grace_containers([grace_container])
         True
 
-    True when `expr` is an empty sequence::
+    True when `expr` is an empty sequence:
+
+    ::
 
         >>> gracetools.all_are_grace_containers([])
         True
 
-    Otherwise false::
+    Otherwise false:
+
+    ::
 
         >>> gracetools.all_are_grace_containers('foo')
         False

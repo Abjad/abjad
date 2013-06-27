@@ -4,7 +4,9 @@ def partition_components_by_durations_not_less_than(components, durations,
 
     Partition `components` by `durations`.
 
-    Example 1. Partition `components` cyclically by prolated `durations`. Keep overhang::
+    Example 1. Partition `components` cyclically by prolated `durations`. Keep overhang:
+
+    ::
 
         >>> string = "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
         >>> staff = Staff(string)

@@ -1,7 +1,9 @@
 def remove_component_subtree_from_score_and_spanners(components):
     r'''.. versionadded:: 1.1
 
-    Example 1. Remove one leaf from score::
+    Example 1. Remove one leaf from score:
+
+    ::
 
         >>> voice = Voice("c'8 [ { d'8 e'8 } f'8 ]")
         >>> spannertools.GlissandoSpanner(voice.leaves)
@@ -35,7 +37,9 @@ def remove_component_subtree_from_score_and_spanners(components):
             f'8 ]
         }
 
-    Example 2. Remove contiguous leaves from score::
+    Example 2. Remove contiguous leaves from score:
+
+    ::
 
         >>> voice = Voice("c'8 [ { d'8 e'8 } f'8 ]")
         >>> spannertools.GlissandoSpanner(voice.leaves)
@@ -68,7 +72,9 @@ def remove_component_subtree_from_score_and_spanners(components):
             f'8 ]
         }
 
-    Example 3. Remove noncontiguous leaves from score::
+    Example 3. Remove noncontiguous leaves from score:
+
+    ::
 
         >>> voice = Voice("c'8 [ { d'8 e'8 } f'8 ]")
         >>> spannertools.GlissandoSpanner(voice.leaves)
@@ -101,7 +107,9 @@ def remove_component_subtree_from_score_and_spanners(components):
             f'8 ]
         }
 
-    Example 4. Remove container from score::
+    Example 4. Remove container from score:
+
+    ::
 
         >>> voice = Voice("c'8 [ { d'8 e'8 } f'8 ]")
         >>> spannertools.GlissandoSpanner(voice.leaves)

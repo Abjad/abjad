@@ -4,7 +4,9 @@ from abjad.tools.pitchtools.IntervalSegment import IntervalSegment
 class MelodicDiatonicIntervalSegment(IntervalSegment):
     '''.. versionadded:: 2.0
 
-    Abjad model of melodic diatonic interval segment::
+    Abjad model of melodic diatonic interval segment:
+
+    ::
 
         >>> pitchtools.MelodicDiatonicIntervalSegment('M2 M9 -m3 -P4')
         MelodicDiatonicIntervalSegment('+M2 +M9 -m3 -P4')

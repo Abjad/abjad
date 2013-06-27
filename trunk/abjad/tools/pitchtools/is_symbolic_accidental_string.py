@@ -15,7 +15,9 @@ symbolic_accidental_string_regex = re.compile('^%s$' % symbolic_accidental_strin
 def is_symbolic_accidental_string(expr):
     '''.. versionadded:: 2.5
 
-    True when `expr` is a symbolic accidental string. Otherwise false::
+    True when `expr` is a symbolic accidental string. Otherwise false:
+
+    ::
 
         >>> pitchtools.is_symbolic_accidental_string('#+')
         True

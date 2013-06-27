@@ -1009,7 +1009,9 @@ class Tree(AbjadObject):
             >>> tree[1][1].is_at_level(-1)
             True
 
-        False otherwise::
+        False otherwise:
+
+        ::
 
             >>> tree[1][1].is_at_level(0)
             False

@@ -4,7 +4,9 @@ from abjad.tools import componenttools
 def all_are_containers(expr):
     '''.. versionadded:: 2.6
 
-    True when `expr` is a sequence of Abjad containers::
+    True when `expr` is a sequence of Abjad containers:
+
+    ::
 
         >>> containers = 3 * Container("c'8 d'8 e'8")
 
@@ -13,12 +15,16 @@ def all_are_containers(expr):
         >>> containertools.all_are_containers(containers)
         True
 
-    True when `expr` is an empty sequence::
+    True when `expr` is an empty sequence:
+
+    ::
 
         >>> containertools.all_are_containers([])
         True
 
-    Otherwise false::
+    Otherwise false:
+
+    ::
 
         >>> containertools.all_are_containers('foo')
         False

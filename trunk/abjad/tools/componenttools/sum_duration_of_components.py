@@ -27,17 +27,23 @@ def sum_duration_of_components(components, preprolated=False, in_seconds=False):
 
         >>> show(score) # doctest: +SKIP
 
-    Example 1. Sum duration of components::
+    Example 1. Sum duration of components:
+
+    ::
 
         >>> componenttools.sum_duration_of_components(tuplet[:])
         Duration(1, 4)
 
-    Example 2. Sum preprolated duration of components::
+    Example 2. Sum preprolated duration of components:
+
+    ::
 
         >>> componenttools.sum_duration_of_components(tuplet[:], preprolated=True)
         Duration(3, 8)
 
-    Example 3. Sum duration of components in seconds::
+    Example 3. Sum duration of components in seconds:
+
+    ::
 
         >>> componenttools.sum_duration_of_components(tuplet[:], in_seconds=True)
         Duration(5, 4)

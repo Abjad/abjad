@@ -5,7 +5,9 @@ from abjad.tools.pitchtools.IntervalSegment import IntervalSegment
 class InversionEquivalentDiatonicIntervalClassSegment(IntervalSegment):
     '''.. versionadded:: 2.0
 
-    Abjad model of inversion-equivalent diatonic interval-class segment::
+    Abjad model of inversion-equivalent diatonic interval-class segment:
+
+    ::
 
         >>> pitchtools.InversionEquivalentDiatonicIntervalClassSegment(
         ... [('major', 2), ('major', 9), ('minor', -2), ('minor', -9)])
@@ -31,7 +33,9 @@ class InversionEquivalentDiatonicIntervalClassSegment(IntervalSegment):
     @property
     def is_tertian(self):
         '''True when all diatonic interval-classes in segment are tertian.
-        Otherwise false::
+        Otherwise false:
+
+        ::
 
             >>> dics = pitchtools.InversionEquivalentDiatonicIntervalClassSegment(
             ... [('major', 3), ('minor', 6), ('major', 6)])

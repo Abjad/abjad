@@ -6,7 +6,9 @@ from abjad.tools import resttools
 def color_leaf(leaf, color):
     r'''.. versionadded:: 2.0
 
-    Color note::
+    Color note:
+
+    ::
 
         >>> note = Note("c'4")
 
@@ -29,7 +31,9 @@ def color_leaf(leaf, color):
 
         >>> show(note) # doctest: +SKIP
 
-    Color rest::
+    Color rest:
+
+    ::
 
         >>> rest = Rest('r4')
 
@@ -49,7 +53,9 @@ def color_leaf(leaf, color):
 
         >>> show(rest) # doctest: +SKIP
 
-    Color chord::
+    Color chord:
+
+    ::
 
         >>> chord = Chord("<c' e' bf'>4")
 

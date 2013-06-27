@@ -5,7 +5,9 @@ from abjad.tools.containertools.Container import Container
 class FixedDurationContainer(Container):
     r'''.. versionadded:: 2.9
 
-    Fixed-duration container::
+    Fixed-duration container:
+
+    ::
 
         >>> container = containertools.FixedDurationContainer((3, 8), "c'8 d'8 e'8")
 

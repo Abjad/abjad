@@ -4,7 +4,9 @@ from abjad.tools import mathtools
 def inventory_aggregate_subsets():
     '''.. versionadded:: 2.0
 
-    Inventory aggregate subsets::
+    Inventory aggregate subsets:
+
+    ::
 
         >>> U_star = pitchtools.inventory_aggregate_subsets()
         >>> len(U_star)

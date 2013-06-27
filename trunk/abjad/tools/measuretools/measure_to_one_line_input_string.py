@@ -1,7 +1,9 @@
 def measure_to_one_line_input_string(measure):
     r'''.. versionadded:: 2.6
 
-    Change `measure` to one-line input string::
+    Change `measure` to one-line input string:
+
+    ::
 
         >>> measure = Measure((4, 4), "c'4 d'4 e'4 f'4")
 

@@ -2,7 +2,9 @@ from abjad.tools.schemetools.Scheme import Scheme
 
 
 class SchemePair(Scheme):
-    '''Abjad model of Scheme pair::
+    '''Abjad model of Scheme pair:
+
+    ::
 
         >>> schemetools.SchemePair('spacing', 4)
         SchemePair(('spacing', 4))

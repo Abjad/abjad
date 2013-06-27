@@ -5,7 +5,9 @@ from abjad.tools.pitchtools.HarmonicIntervalClass import HarmonicIntervalClass
 class HarmonicDiatonicIntervalClass(DiatonicIntervalClass, HarmonicIntervalClass):
     '''.. versionadded:: 2.0
 
-    Abjad model harmonic diatonic interval-class::
+    Abjad model harmonic diatonic interval-class:
+
+    ::
 
         >>> pitchtools.HarmonicDiatonicIntervalClass('-M9')
         HarmonicDiatonicIntervalClass('M2')
@@ -73,7 +75,9 @@ class HarmonicDiatonicIntervalClass(DiatonicIntervalClass, HarmonicIntervalClass
     ### PUBLIC METHODS ###
 
     def invert(self):
-        '''Read-only inversion of harmonic diatonic interval-class::
+        '''Read-only inversion of harmonic diatonic interval-class:
+
+        ::
 
             >>> hdic = pitchtools.HarmonicDiatonicIntervalClass('major', -9)
             >>> hdic.invert()

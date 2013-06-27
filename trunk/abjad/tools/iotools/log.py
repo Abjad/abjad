@@ -3,7 +3,9 @@ from abjad.tools import configurationtools
 
 
 def log():
-    '''Open the LilyPond log file in operating system-specific text editor::
+    '''Open the LilyPond log file in operating system-specific text editor:
+
+    ::
 
         >>> iotools.log() # doctest: +SKIP
 

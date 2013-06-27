@@ -9,7 +9,9 @@ def truncate_runs_in_sequence(sequence):
         >>> sequencetools.truncate_runs_in_sequence([1, 1, 2, 3, 3, 3, 9, 4, 4, 4])
         [1, 2, 3, 9, 4]
 
-    Return empty list when `sequence` is empty::
+    Return empty list when `sequence` is empty:
+
+    ::
 
         >>> sequencetools.truncate_runs_in_sequence([])
         []

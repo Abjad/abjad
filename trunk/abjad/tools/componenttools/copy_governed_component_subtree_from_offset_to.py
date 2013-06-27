@@ -60,7 +60,9 @@ def copy_governed_component_subtree_from_offset_to(component, start=0, stop=None
 
     Raise contiguity error when attempting to copy fleaves from parallel container.
 
-    But note that cases with ``0 = start`` work correctly::
+    But note that cases with ``0 = start`` work correctly:
+
+    ::
 
         >>> new = componenttools.copy_governed_component_subtree_from_offset_to(
         ...     voice, (0, 8), (1, 8))
@@ -72,7 +74,9 @@ def copy_governed_component_subtree_from_offset_to(component, start=0, stop=None
             c'8
         }
 
-    Cases with ``0 < start`` do not work correctly::
+    Cases with ``0 < start`` do not work correctly:
+
+    ::
 
         >>> new = componenttools.copy_governed_component_subtree_from_offset_to(
         ...     voice, (1, 8), (2, 8))
@@ -85,7 +89,9 @@ def copy_governed_component_subtree_from_offset_to(component, start=0, stop=None
             d'8
         }
 
-    Create ad hoc tuplets as required::
+    Create ad hoc tuplets as required:
+
+    ::
 
         >>> voice = Voice([Note("c'4")])
         >>> new = componenttools.copy_governed_component_subtree_from_offset_to(
@@ -100,7 +106,9 @@ def copy_governed_component_subtree_from_offset_to(component, start=0, stop=None
             }
         }
 
-    Function does NOT copy parentage of `component` when `component` is a leaf::
+    Function does NOT copy parentage of `component` when `component` is a leaf:
+
+    ::
 
         >>> voice = Voice([Note("c'4")])
         >>> new_leaf = componenttools.copy_governed_component_subtree_from_offset_to(

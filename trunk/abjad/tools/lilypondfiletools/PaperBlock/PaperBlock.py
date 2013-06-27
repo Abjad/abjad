@@ -5,7 +5,9 @@ import types
 class PaperBlock(AttributedBlock):
     r'''.. versionadded:: 2.0
 
-    Abjad model of LilyPond input file paper block::
+    Abjad model of LilyPond input file paper block:
+
+    ::
 
         >>> paper_block = lilypondfiletools.PaperBlock()
 

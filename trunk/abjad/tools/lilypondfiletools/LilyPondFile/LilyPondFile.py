@@ -8,7 +8,9 @@ import os
 class LilyPondFile(list):
     r'''.. versionadded:: 2.0
 
-    Abjad model of LilyPond input file::
+    Abjad model of LilyPond input file:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file(staff)

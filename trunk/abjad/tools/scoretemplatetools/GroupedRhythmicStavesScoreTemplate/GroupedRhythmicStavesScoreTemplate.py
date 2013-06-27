@@ -10,7 +10,9 @@ from abjad.tools.scoretemplatetools.ScoreTemplate import ScoreTemplate
 class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
     r'''.. versionadded:: 2.9
 
-    Example 1. Grouped rhythmic staves score template with one voice per staff::
+    Example 1. Grouped rhythmic staves score template with one voice per staff:
+
+    ::
 
         >>> template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
         >>> score = template()
@@ -44,7 +46,9 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
             >>
         >>
 
-    Example 2. Grouped rhythmic staves score template with more than one voice per staff::
+    Example 2. Grouped rhythmic staves score template with more than one voice per staff:
+
+    ::
 
         >>> template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=[2, 1, 2])
         >>> score = template()

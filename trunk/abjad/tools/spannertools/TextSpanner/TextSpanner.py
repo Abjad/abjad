@@ -4,7 +4,9 @@ from abjad.tools.spannertools.Spanner import Spanner
 class TextSpanner(Spanner):
     r'''.. versionadded:: 2.0
 
-    Abjad text spanner::
+    Abjad text spanner:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> text_spanner = spannertools.TextSpanner(staff[:])

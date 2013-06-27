@@ -4,7 +4,9 @@ from abjad.tools.lilypondfiletools.NonattributedBlock import NonattributedBlock
 class BookpartBlock(NonattributedBlock):
     r'''.. versionadded:: 2.0
 
-    Abjad model of LilyPond input file bookpart block::
+    Abjad model of LilyPond input file bookpart block:
+
+    ::
 
         >>> bookpart_block = lilypondfiletools.BookpartBlock()
 

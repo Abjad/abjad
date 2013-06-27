@@ -4,7 +4,9 @@ from abjad.tools import mathtools
 def yield_durations(unique=False):
     r'''.. versionadded:: 2.0
 
-    Example 1. Yield all positive durations in Cantor diagonalized order::
+    Example 1. Yield all positive durations in Cantor diagonalized order:
+
+    ::
 
         >>> generator = durationtools.yield_durations()
         >>> for n in range(16):
@@ -27,7 +29,9 @@ def yield_durations(unique=False):
         Duration(5, 1)
         Duration(6, 1)
 
-    Example 2. Yield all positive durations in Cantor diagonalized order uniquely::
+    Example 2. Yield all positive durations in Cantor diagonalized order uniquely:
+
+    ::
 
         >>> generator = durationtools.yield_durations(unique=True)
         >>> for n in range(16):

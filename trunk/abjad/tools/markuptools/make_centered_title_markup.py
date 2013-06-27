@@ -1,7 +1,9 @@
 def make_centered_title_markup(title, font_name='Times', font_size=18, vspace_before=6, vspace_after=12):
     r'''.. versionadded:: 2.9
 
-    Make centered `title` markup::
+    Make centered `title` markup:
+
+    ::
 
         >>> markup = markuptools.make_centered_title_markup('String Quartet')
 

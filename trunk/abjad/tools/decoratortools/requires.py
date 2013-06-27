@@ -7,7 +7,9 @@ def requires(*tests):
 
     Function decorator to require input parameter `tests`.
 
-    Example::
+    Example:
+
+    ::
 
         >>> @decoratortools.requires(
         ...     mathtools.is_nonnegative_integer, string) # doctest: +SKIP
@@ -24,12 +26,16 @@ def requires(*tests):
         ...
         AssertionError: is_nonnegative_integer(2.5) does not return true.
 
-    Decorator target is available like this::
+    Decorator target is available like this:
+
+    ::
 
         >>> multiply_string.func_closure[1].cell_contents # doctest: +SKIP
         <function multiply_string at 0x104e512a8>
 
-    Decorator tests are available like this::
+    Decorator tests are available like this:
+
+    ::
 
         >>> multiply_string.func_closure[0].cell_contents # doctest: +SKIP
         (<function is_nonnegative_integer at 0x104725d70>, <type 'str'>)

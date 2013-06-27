@@ -5,7 +5,9 @@ from abjad.tools.pitchtools.NumberedPitch import NumberedPitch
 class NumberedChromaticPitch(ChromaticPitch, NumberedPitch):
     '''.. versionadded:: 2.0
 
-    Abjad model of a numbered chromatic pitch::
+    Abjad model of a numbered chromatic pitch:
+
+    ::
 
         >>> pitchtools.NumberedChromaticPitch(13)
         NumberedChromaticPitch(13)
@@ -84,7 +86,9 @@ class NumberedChromaticPitch(ChromaticPitch, NumberedPitch):
 
     @property
     def chromatic_pitch_number(self):
-        '''Read-only chromatic pitch-class number::
+        '''Read-only chromatic pitch-class number:
+
+        ::
 
             >>> pitchtools.NumberedChromaticPitch(13).chromatic_pitch_number
             13
@@ -95,7 +99,9 @@ class NumberedChromaticPitch(ChromaticPitch, NumberedPitch):
 
     @property
     def diatonic_pitch_class_number(self):
-        '''Read-only diatonic pitch-class number::
+        '''Read-only diatonic pitch-class number:
+
+        ::
 
             >>> pitchtools.NumberedChromaticPitch(13).diatonic_pitch_class_number
             0
@@ -108,7 +114,9 @@ class NumberedChromaticPitch(ChromaticPitch, NumberedPitch):
 
     @property
     def diatonic_pitch_number(self):
-        '''Read-only diatonic pitch-class number::
+        '''Read-only diatonic pitch-class number:
+
+        ::
 
             >>> pitchtools.NumberedChromaticPitch(13).diatonic_pitch_number
             7
@@ -134,7 +142,9 @@ class NumberedChromaticPitch(ChromaticPitch, NumberedPitch):
         return type(self)(semitones)
 
     def transpose(self, n=0):
-        '''Tranpose by `n` semitones::
+        '''Tranpose by `n` semitones:
+
+        ::
 
             >>> pitchtools.NumberedChromaticPitch(13).transpose(1)
             NumberedChromaticPitch(14)

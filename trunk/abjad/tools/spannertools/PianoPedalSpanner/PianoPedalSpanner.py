@@ -71,14 +71,18 @@ class PianoPedalSpanner(Spanner):
     @apply
     def kind():
         def fget(self):
-            r'''Get piano pedal spanner kind::
+            r'''Get piano pedal spanner kind:
+
+            ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
                 >>> spanner = spannertools.PianoPedalSpanner(staff[:])
                 >>> spanner.kind
                 'sustain'
 
-            Set piano pedal spanner kind::
+            Set piano pedal spanner kind:
+
+            ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
                 >>> spanner = spannertools.PianoPedalSpanner(staff[:])
@@ -98,14 +102,18 @@ class PianoPedalSpanner(Spanner):
     @apply
     def style():
         def fget(self):
-            r'''Get piano pedal spanner style::
+            r'''Get piano pedal spanner style:
+
+            ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
                 >>> spanner = spannertools.PianoPedalSpanner(staff[:])
                 >>> spanner.style
                 'mixed'
 
-            Set piano pedal spanner style::
+            Set piano pedal spanner style:
+
+            ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
                 >>> spanner = spannertools.PianoPedalSpanner(staff[:])

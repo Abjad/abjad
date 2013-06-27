@@ -1,7 +1,9 @@
 def list_secondary_instruments():
     r'''.. versionadded:: 2.5
 
-    List secondary instruments::
+    List secondary instruments:
+
+    ::
 
         >>> for secondary_instrument in instrumenttools.list_secondary_instruments()[:5]:
         ...     secondary_instrument

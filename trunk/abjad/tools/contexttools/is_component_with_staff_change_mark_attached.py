@@ -1,7 +1,9 @@
 def is_component_with_staff_change_mark_attached(expr):
     r'''.. versionadded:: 2.3
 
-    True when `expr` is a component with staff change mark attached::
+    True when `expr` is a component with staff change mark attached:
+
+    ::
 
         >>> piano_staff = scoretools.PianoStaff([])
         >>> rh_staff = Staff("c'8 d'8 e'8 f'8")
@@ -33,7 +35,9 @@ def is_component_with_staff_change_mark_attached(expr):
         >>> contexttools.is_component_with_staff_change_mark_attached(rh_staff[2])
         True
 
-    Otherwise false::
+    Otherwise false:
+
+    ::
 
         >>> contexttools.is_component_with_staff_change_mark_attached(rh_staff)
         False

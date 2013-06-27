@@ -5,7 +5,9 @@ from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
 class MarkupInventory(ObjectInventory):
     '''.. versionadded:: 2.8
 
-    Abjad model of an ordered list of markup::
+    Abjad model of an ordered list of markup:
+
+    ::
 
         >>> inventory = markuptools.MarkupInventory(['foo', 'bar'])
 

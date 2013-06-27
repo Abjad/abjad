@@ -4,7 +4,9 @@ from abjad.tools import componenttools
 def is_component_with_lilypond_comment_attached(expr, comment_contents_string=None):
     '''.. versionadded:: 2.3
 
-    True when `expr` is component with LilyPond comment mark attached::
+    True when `expr` is component with LilyPond comment mark attached:
+
+    ::
 
         >>> note = Note("c'4")
         >>> marktools.LilyPondComment('comment here')(note)
@@ -15,7 +17,9 @@ def is_component_with_lilypond_comment_attached(expr, comment_contents_string=No
         >>> marktools.is_component_with_lilypond_comment_attached(note)
         True
 
-    False otherwise::
+    False otherwise:
+
+    ::
 
         >>> note = Note("c'4")
 

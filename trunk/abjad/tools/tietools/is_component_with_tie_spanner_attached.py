@@ -5,7 +5,9 @@ from abjad.tools import spannertools
 def is_component_with_tie_spanner_attached(expr):
     r'''.. versionadded:: 2.0
 
-    True when `expr` is component with tie spanner attached::
+    True when `expr` is component with tie spanner attached:
+
+    ::
 
         >>> staff = Staff("c'8 ~ c' ~ c' ~ c'")
 
@@ -24,7 +26,9 @@ def is_component_with_tie_spanner_attached(expr):
         >>> tietools.is_component_with_tie_spanner_attached(staff[1])
         True
 
-    Otherwise false::
+    Otherwise false:
+
+    ::
 
         >>> tietools.is_component_with_tie_spanner_attached(staff)
         False

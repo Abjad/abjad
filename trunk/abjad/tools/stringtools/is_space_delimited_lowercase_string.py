@@ -6,12 +6,16 @@ space_delimited_lowercase_regex = re.compile('^(([a-z,0-9]+[ ]+)*[a-z,0-9]+)?$')
 def is_space_delimited_lowercase_string(expr):
     r'''.. versionadded:: 2.5
 
-    True when `expr` is a string and is space-delimited lowercase::
+    True when `expr` is a string and is space-delimited lowercase:
+
+    ::
 
         >>> stringtools.is_space_delimited_lowercase_string('foo bar')
         True
 
-    False otherwise::
+    False otherwise:
+
+    ::
 
         >>> stringtools.is_space_delimited_lowercase_string('foo_bar')
         False

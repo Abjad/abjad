@@ -11,7 +11,9 @@ def all_are_components_scalable_by_multiplier(components, multiplier):
         >>> componenttools.all_are_components_scalable_by_multiplier(components, Multiplier(3, 2))
         True
 
-    Otherwise false::
+    Otherwise false:
+
+    ::
 
         >>> components = [Note(0, (1, 8))]
         >>> componenttools.all_are_components_scalable_by_multiplier(components, Multiplier(2, 3))

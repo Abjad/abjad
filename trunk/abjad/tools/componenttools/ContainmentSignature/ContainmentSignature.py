@@ -4,7 +4,9 @@ from abjad.tools.abctools import AbjadObject
 class ContainmentSignature(AbjadObject):
     r'''.. versionadded:: 2.9
 
-    Containment signature of Abjad component::
+    Containment signature of Abjad component:
+
+    ::
 
         >>> score = Score(r"""\context Staff = "CustomStaff" { """
         ...     r"""\context Voice = "CustomVoice" { c' d' e' f' } }""")

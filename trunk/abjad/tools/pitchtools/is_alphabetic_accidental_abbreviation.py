@@ -14,7 +14,9 @@ alphabetic_accidental_regex = re.compile('^%s$' % alphabetic_accidental_regex_bo
 def is_alphabetic_accidental_abbreviation(expr):
     '''.. versionadded:: 2.0
 
-    True when `expr` is an alphabetic accidental abbrevation. Otherwise false::
+    True when `expr` is an alphabetic accidental abbrevation. Otherwise false:
+
+    ::
 
         >>> pitchtools.is_alphabetic_accidental_abbreviation('tqs')
         True

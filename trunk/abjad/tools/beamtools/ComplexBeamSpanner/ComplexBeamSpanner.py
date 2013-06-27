@@ -219,7 +219,9 @@ class ComplexBeamSpanner(BeamSpanner):
                 \set stemRightBeamCount = #0
                 c'16 [ ]
 
-            Beam lone leaf and force beam nibs to right::
+            Beam lone leaf and force beam nibs to right:
+
+            ::
 
                 >>> note = Note("c'16")
 
@@ -234,7 +236,9 @@ class ComplexBeamSpanner(BeamSpanner):
                 \set stemRightBeamCount = #2
                 c'16 [ ]
 
-            Beam lone leaf and force beam nibs to both left and right::
+            Beam lone leaf and force beam nibs to both left and right:
+
+            ::
 
                 >>> note = Note("c'16")
 
@@ -249,7 +253,9 @@ class ComplexBeamSpanner(BeamSpanner):
                 \set stemRightBeamCount = #2
                 c'16 [ ]
 
-            Beam lone leaf and accept LilyPond default nibs at both left and right::
+            Beam lone leaf and accept LilyPond default nibs at both left and right:
+
+            ::
 
                 >>> note = Note("c'16")
 
@@ -264,7 +270,9 @@ class ComplexBeamSpanner(BeamSpanner):
                 \set stemRightBeamCount = #2
                 c'16 [ ]
 
-            Do not beam lone leaf::
+            Do not beam lone leaf:
+
+            ::
 
                 >>> note = Note("c'16")
 

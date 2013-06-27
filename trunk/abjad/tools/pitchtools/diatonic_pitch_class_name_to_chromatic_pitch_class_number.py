@@ -1,7 +1,9 @@
 def diatonic_pitch_class_name_to_chromatic_pitch_class_number(diatonic_pitch_class_name):
     '''.. versionadded:: 1.1
 
-    Change `diatonic_pitch_class_name` to chromatic pitch-class number::
+    Change `diatonic_pitch_class_name` to chromatic pitch-class number:
+
+    ::
 
         >>> pitchtools.diatonic_pitch_class_name_to_chromatic_pitch_class_number('f')
         5

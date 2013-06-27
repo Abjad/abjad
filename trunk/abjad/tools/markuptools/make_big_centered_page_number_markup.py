@@ -1,7 +1,9 @@
 def make_big_centered_page_number_markup(text=None):
     r'''.. versionadded:: 1.1
 
-    Make big centered page number markup::
+    Make big centered page number markup:
+
+    ::
 
         >>> markup = markuptools.make_big_centered_page_number_markup()
 

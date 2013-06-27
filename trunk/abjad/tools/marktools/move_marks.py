@@ -4,7 +4,9 @@ from abjad.tools import componenttools
 def move_marks(donor, recipient):
     r'''.. versionadded 2.9
 
-    Move marks from `donor` component to `recipient` component::
+    Move marks from `donor` component to `recipient` component:
+
+    ::
 
         >>> staff = Staff(r'\clef "bass" c \staccato d e f')
 

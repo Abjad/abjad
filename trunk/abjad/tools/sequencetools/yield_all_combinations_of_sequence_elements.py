@@ -5,7 +5,9 @@ from abjad.tools import mathtools
 def yield_all_combinations_of_sequence_elements(sequence, min_length=None, max_length=None):
     '''.. versionadded:: 2.0
 
-    Yield all combinations of `sequence` in binary string order::
+    Yield all combinations of `sequence` in binary string order:
+
+    ::
 
         >>> list(sequencetools.yield_all_combinations_of_sequence_elements(
         ...     [1, 2, 3, 4]))
@@ -13,21 +15,27 @@ def yield_all_combinations_of_sequence_elements(sequence, min_length=None, max_l
         [2, 4], [1, 2, 4], [3, 4], [1, 3, 4], [2, 3, 4], [1, 2, 3, 4]]
 
     Yield all combinations of `sequence` greater than or equal to `min_length`
-    in binary string order::
+    in binary string order:
+
+    ::
 
         >>> list(sequencetools.yield_all_combinations_of_sequence_elements(
         ...     [1, 2, 3, 4], min_length=3))
         [[1, 2, 3], [1, 2, 4], [1, 3, 4], [2, 3, 4], [1, 2, 3, 4]]
 
     Yield all combinations of `sequence` less than or equal to `max_length`
-    in binary string order::
+    in binary string order:
+
+    ::
 
         >>> list(sequencetools.yield_all_combinations_of_sequence_elements(
         ...     [1, 2, 3, 4], max_length=2))
         [[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [4], [1, 4], [2, 4], [3, 4]]
 
     Yield all combiantions of `sequence` greater than or equal to `min_length` and
-    less than or equal to `max_length` in lex order::
+    less than or equal to `max_length` in lex order:
+
+    ::
 
         >>> list(sequencetools.yield_all_combinations_of_sequence_elements(
         ...     [1, 2, 3, 4], min_length=2, max_length=2))

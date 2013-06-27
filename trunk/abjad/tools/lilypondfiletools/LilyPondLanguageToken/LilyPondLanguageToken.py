@@ -5,7 +5,9 @@ from abjad.tools.configurationtools.get_lilypond_version_string import get_lilyp
 class LilyPondLanguageToken(AbjadObject):
     r'''.. versionadded:: 2.0
 
-    LilyPond language token::
+    LilyPond language token:
+
+    ::
 
         >>> lilypondfiletools.LilyPondLanguageToken()
         LilyPondLanguageToken('english')
@@ -29,7 +31,9 @@ class LilyPondLanguageToken(AbjadObject):
 
     @property
     def lilypond_format(self):
-        r'''Format contribution of LilyPond language token::
+        r'''Format contribution of LilyPond language token:
+
+        ::
 
             >>> lilypondfiletools.LilyPondLanguageToken().lilypond_format
             '\\language "english"'

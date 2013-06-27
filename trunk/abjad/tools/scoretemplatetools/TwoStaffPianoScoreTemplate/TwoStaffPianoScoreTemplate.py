@@ -10,7 +10,9 @@ from abjad.tools.scoretemplatetools.ScoreTemplate import ScoreTemplate
 class TwoStaffPianoScoreTemplate(ScoreTemplate):
     '''.. versionadded:: 2.8
 
-    Two-staff piano score template::
+    Two-staff piano score template:
+
+    ::
 
         >>> template = scoretemplatetools.TwoStaffPianoScoreTemplate()
         >>> score = template()

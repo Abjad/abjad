@@ -5,7 +5,9 @@ from abjad.tools import lilypondproxytools
 class ContextBlock(AttributedBlock):
     r'''.. versionadded:: 2.5
 
-    Abjad model of LilyPond input file context block::
+    Abjad model of LilyPond input file context block:
+
+    ::
 
         >>> context_block = lilypondfiletools.ContextBlock()
 

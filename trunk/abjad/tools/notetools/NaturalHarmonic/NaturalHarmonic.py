@@ -5,12 +5,16 @@ from abjad.tools.notetools._Flageolet._Flageolet import _Flageolet
 class NaturalHarmonic(Note, _Flageolet):
     '''Abjad model of natural harmonic.
 
-    Initialize natural harmonic by hand::
+    Initialize natural harmonic by hand:
+
+    ::
 
         >>> notetools.NaturalHarmonic("cs'8.")
         NaturalHarmonic(cs', 8.)
 
-    Initialize natural harmonic from note::
+    Initialize natural harmonic from note:
+
+    ::
 
         >>> note = Note("cs'8.")
 

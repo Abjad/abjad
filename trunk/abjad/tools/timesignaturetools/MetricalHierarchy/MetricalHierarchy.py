@@ -20,7 +20,9 @@ class MetricalHierarchy(AbjadObject):
     Prime divisions greater than ``3`` are converted to sequences of ``2`` and ``3``
     summing to that prime. Hence ``5`` becomes ``3+2`` and ``7`` becomes ``3+2+2``.
 
-    The metrical hierarchy models many parts of the common practice understanding of meter::
+    The metrical hierarchy models many parts of the common practice understanding of meter:
+
+    ::
 
         >>> metrical_hierarchy = timesignaturetools.MetricalHierarchy((4, 4))
 
@@ -206,7 +208,9 @@ class MetricalHierarchy(AbjadObject):
         return False
 
     def __iter__(self):
-        '''Iterate metrical hierarchy::
+        '''Iterate metrical hierarchy:
+
+        ::
 
             >>> metrical_hierarchy = timesignaturetools.MetricalHierarchy((5, 4))
 
@@ -263,7 +267,9 @@ class MetricalHierarchy(AbjadObject):
         '''True if the metrical hierarchy divides large primes into collections of
         ``2`` and ``3`` that decrease monotonically.
 
-        Example 1. Metrical hiearchy with durations that increase monotonically::
+        Example 1. Metrical hiearchy with durations that increase monotonically:
+
+        ::
 
             >>> metrical_hierarchy = timesignaturetools.MetricalHierarchy((5, 4),
             ...     decrease_durations_monotonically=False)
@@ -285,7 +291,9 @@ class MetricalHierarchy(AbjadObject):
                     1/4
                     1/4))))
 
-        Example 2. Metrical hierarchy with durations that decrease monotonically::
+        Example 2. Metrical hierarchy with durations that decrease monotonically:
+
+        ::
 
             >>> metrical_hierarchy = timesignaturetools.MetricalHierarchy((5, 4),
             ...     decrease_durations_monotonically=True)
@@ -313,7 +321,9 @@ class MetricalHierarchy(AbjadObject):
 
     @property
     def denominator(self):
-        r'''Beat hierarchy denominator::
+        r'''Beat hierarchy denominator:
+
+        ::
 
             >>> metrical_hierarchy.denominator
             4
@@ -324,7 +334,9 @@ class MetricalHierarchy(AbjadObject):
 
     @property
     def depthwise_offset_inventory(self):
-        '''Depthwise inventory of offsets at each grouping level::
+        '''Depthwise inventory of offsets at each grouping level:
+
+        ::
 
             >>> for depth, offsets in enumerate(metrical_hierarchy.depthwise_offset_inventory):
             ...     print depth, offsets
@@ -399,7 +411,9 @@ class MetricalHierarchy(AbjadObject):
 
     @property
     def numerator(self):
-        r'''Beat hierarchy numerator::
+        r'''Beat hierarchy numerator:
+
+        ::
 
             >>> metrical_hierarchy.numerator
             5
@@ -410,7 +424,9 @@ class MetricalHierarchy(AbjadObject):
 
     @property
     def preprolated_duration(self):
-        '''Beat hierarchy preprolated_duration::
+        '''Beat hierarchy preprolated_duration:
+
+        ::
 
             >>> metrical_hierarchy.preprolated_duration
             Duration(5, 4)
@@ -421,7 +437,9 @@ class MetricalHierarchy(AbjadObject):
 
     @property
     def pretty_rtm_format(self):
-        '''Beat hiearchy pretty RTM format::
+        '''Beat hiearchy pretty RTM format:
+
+        ::
 
             >>> print metrical_hierarchy.pretty_rtm_format
             (5/4 (
@@ -439,7 +457,9 @@ class MetricalHierarchy(AbjadObject):
 
     @property
     def root_node(self):
-        '''Beat hiearchy root node::
+        '''Beat hiearchy root node:
+
+        ::
 
             >>> metrical_hierarchy.root_node
             RhythmTreeContainer(
@@ -484,7 +504,9 @@ class MetricalHierarchy(AbjadObject):
 
     @property
     def rtm_format(self):
-        '''Beat hierarchy RTM format::
+        '''Beat hierarchy RTM format:
+
+        ::
 
             >>> metrical_hierarchy.rtm_format
             '(5/4 ((3/4 (1/4 1/4 1/4)) (2/4 (1/4 1/4))))'
@@ -495,7 +517,9 @@ class MetricalHierarchy(AbjadObject):
 
     @property
     def storage_format(self):
-        '''Beat hierarchy storage format::
+        '''Beat hierarchy storage format:
+
+        ::
 
             >>> print metrical_hierarchy.storage_format
             timesignaturetools.MetricalHierarchy(

@@ -6,7 +6,9 @@ class Matrix(AbjadObject):
 
     Abjad model of matrix.
 
-    Initialize from rows::
+    Initialize from rows:
+
+    ::
 
         >>> matrix = sequencetools.Matrix([[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
 
@@ -30,7 +32,9 @@ class Matrix(AbjadObject):
         >>> matrix[2][0]
         20
 
-    Initialize from columns::
+    Initialize from columns:
+
+    ::
 
         >>> matrix = sequencetools.Matrix(
         ...     columns=[[0, 10, 20], [1, 11, 21], [2, 12, 22], [3, 13, 23]])
@@ -110,7 +114,9 @@ class Matrix(AbjadObject):
 
     @property
     def columns(self):
-        '''Read-only columns::
+        '''Read-only columns:
+
+        ::
 
             >>> matrix = sequencetools.Matrix([[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
 
@@ -125,7 +131,9 @@ class Matrix(AbjadObject):
 
     @property
     def rows(self):
-        '''Read-only rows::
+        '''Read-only rows:
+
+        ::
 
             >>> matrix = sequencetools.Matrix([[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
 

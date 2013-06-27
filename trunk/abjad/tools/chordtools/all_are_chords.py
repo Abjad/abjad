@@ -6,7 +6,9 @@ from abjad.tools import decoratortools
 def all_are_chords(expr):
     '''.. versionadded:: 2.6
 
-    True when `expr` is a sequence of Abjad chords::
+    True when `expr` is a sequence of Abjad chords:
+
+    ::
 
         >>> chords = [Chord("<c' e' g'>4"), Chord("<c' f' a'>4")]
 
@@ -15,12 +17,16 @@ def all_are_chords(expr):
         >>> chordtools.all_are_chords(chords)
         True
 
-    True when `expr` is an empty sequence::
+    True when `expr` is an empty sequence:
+
+    ::
 
         >>> chordtools.all_are_chords([])
         True
 
-    Otherwise false::
+    Otherwise false:
+
+    ::
 
         >>> chordtools.all_are_chords('foo')
         False

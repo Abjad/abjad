@@ -55,7 +55,9 @@ def get_vertical_moment_starting_with_component(component, governor=None):
         VerticalMoment(1/8, <<3>>)
 
     Get vertical moment starting with `component` in `governor` when
-    `governor` is not none::
+    `governor` is not none:
+
+    ::
 
         >>> verticalitytools.get_vertical_moment_starting_with_component(leaf,
         ... governor=piano_staff)

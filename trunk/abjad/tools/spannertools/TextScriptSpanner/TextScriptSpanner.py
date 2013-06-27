@@ -5,7 +5,9 @@ from abjad.tools.spannertools.Spanner import Spanner
 class TextScriptSpanner(Spanner):
     r'''.. versionadded:: 2.0
 
-    Abjad text script spanner::
+    Abjad text script spanner:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
 

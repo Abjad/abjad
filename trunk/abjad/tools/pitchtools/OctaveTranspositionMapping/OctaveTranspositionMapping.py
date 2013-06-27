@@ -5,7 +5,9 @@ from abjad.tools.pitchtools.OctaveTranspositionMappingComponent import OctaveTra
 class OctaveTranspositionMapping(ObjectInventory):
     '''.. versionadded:: 2.8
 
-    Octave transposition mapping::
+    Octave transposition mapping:
+
+    ::
 
         >>> mapping = pitchtools.OctaveTranspositionMapping([('[A0, C4)', 15), ('[C4, C8)', 27)])
 

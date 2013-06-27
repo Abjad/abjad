@@ -3,7 +3,9 @@ def interval_string_to_pair_and_indicators(interval_string):
     r'''.. versionadded:: 1.0
 
     Change `interval_string` to pair, boolean start indicator and
-    boolean stop indicator::
+    boolean stop indicator:
+
+    ::
 
         >>> mathtools.interval_string_to_pair_and_indicators('[5, 8)')
         ((5, 8), False, True)

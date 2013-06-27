@@ -1,7 +1,9 @@
 def p(arg, language='english'):
     r'''.. versionadded:: 2.7
 
-    Parse `arg` as LilyPond string::
+    Parse `arg` as LilyPond string:
+
+    ::
 
         >>> p("{c'4 d'4 e'4 f'4}")
         {c'4, d'4, e'4, f'4}

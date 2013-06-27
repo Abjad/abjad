@@ -17,7 +17,9 @@ def yield_all_unordered_pairs_of_sequence(sequence):
         >>> list(sequencetools.yield_all_unordered_pairs_of_sequence([]))
         []
 
-    Yield all unordered pairs of `sequence` with duplicate elements::
+    Yield all unordered pairs of `sequence` with duplicate elements:
+
+    ::
 
         >>> list(sequencetools.yield_all_unordered_pairs_of_sequence([1, 1, 1]))
         [(1, 1), (1, 1), (1, 1)]

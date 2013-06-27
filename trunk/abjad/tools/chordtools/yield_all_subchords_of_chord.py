@@ -8,7 +8,9 @@ from abjad.tools.chordtools.Chord import Chord
 def yield_all_subchords_of_chord(chord):
     '''.. versionadded:: 2.0
 
-    Yield all subchords of `chord` in binary string order::
+    Yield all subchords of `chord` in binary string order:
+
+    ::
 
         >>> chord = Chord("<c' d' af' a'>4")
 

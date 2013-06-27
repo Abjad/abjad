@@ -1,7 +1,9 @@
 def get_indices_of_sequence_elements_equal_to_true(sequence):
     '''.. versionadded:: 1.1
 
-    Get indices of `sequence` elements equal to true::
+    Get indices of `sequence` elements equal to true:
+
+    ::
 
         >>> sequence = [0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1]
 

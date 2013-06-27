@@ -5,7 +5,9 @@ import numbers
 class InversionEquivalentChromaticIntervalClass(IntervalClass):
     '''.. versionadded:: 2.0
 
-    Abjad model of inversion-equivalent chromatic interval-class::
+    Abjad model of inversion-equivalent chromatic interval-class:
+
+    ::
 
         >>> pitchtools.InversionEquivalentChromaticIntervalClass(1)
         InversionEquivalentChromaticIntervalClass(1)

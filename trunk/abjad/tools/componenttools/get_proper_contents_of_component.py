@@ -20,7 +20,9 @@ def get_proper_contents_of_component(component):
         >>> componenttools.get_proper_contents_of_component(staff)
         [Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")]
 
-    The function works on leaves::
+    The function works on leaves:
+
+    ::
 
         >>> componenttools.get_proper_contents_of_component(staff[0])
         []

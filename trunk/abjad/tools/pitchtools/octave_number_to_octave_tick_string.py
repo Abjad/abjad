@@ -1,7 +1,9 @@
 def octave_number_to_octave_tick_string(octave_number):
     r""".. versionadded:: 2.0
 
-    Change `octave_number` to octave tick string::
+    Change `octave_number` to octave tick string:
+
+    ::
 
         >>> for octave_number in range(-1, 9):
         ...     tick_string = pitchtools.octave_number_to_octave_tick_string(octave_number)

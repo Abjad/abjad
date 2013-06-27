@@ -1,7 +1,9 @@
 def is_diatonic_pitch_number(expr):
     '''.. versionadded:: 2.0
 
-    True when `expr` is a diatonic pitch number. Otherwise false::
+    True when `expr` is a diatonic pitch number. Otherwise false:
+
+    ::
 
         >>> pitchtools.is_diatonic_pitch_number(7)
         True

@@ -6,7 +6,9 @@ def is_n_tuple(expr, n):
         >>> sequencetools.is_n_tuple((19, 20, 21), 3)
         True
 
-    Otherwise false::
+    Otherwise false:
+
+    ::
 
         >>> sequencetools.is_n_tuple((19, 20, 21), 4)
         False

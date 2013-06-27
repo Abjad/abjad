@@ -4,7 +4,9 @@ from abjad.tools import componenttools
 def is_component_with_articulation_attached(expr, articulation_name=None):
     '''.. versionadded:: 2.3
 
-    True when `expr` is component with articulation attached::
+    True when `expr` is component with articulation attached:
+
+    ::
 
         >>> note = Note("c'4")
         >>> marktools.Articulation('staccato')(note)
@@ -15,7 +17,9 @@ def is_component_with_articulation_attached(expr, articulation_name=None):
         >>> marktools.is_component_with_articulation_attached(note)
         True
 
-    False otherwise::
+    False otherwise:
+
+    ::
 
         >>> note = Note("c'4")
 

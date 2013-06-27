@@ -49,7 +49,9 @@ class Spanner(AbjadObject):
     def __call__(self, expr):
         r'''.. versionadded:: 2.9
 
-        Call spanner on `expr` as a shortcut to extend spanner::
+        Call spanner on `expr` as a shortcut to extend spanner:
+
+        ::
 
             >>> staff = Staff("c'8 d'8 e'8 f'8")
 
@@ -497,7 +499,9 @@ class Spanner(AbjadObject):
         self._components.insert(0, component)
 
     def clear(self):
-        r'''Remove all components from spanner::
+        r'''Remove all components from spanner:
+
+        ::
 
             >>> voice = Voice("c'8 d'8 e'8 f'8")
             >>> spanner = beamtools.BeamSpanner(voice[:])
@@ -515,7 +519,9 @@ class Spanner(AbjadObject):
         self._sever_all_components()
 
     def extend(self, components):
-        '''Add iterable `components` to right of spanner::
+        '''Add iterable `components` to right of spanner:
+
+        ::
 
             >>> voice = Voice("c'8 d'8 e'8 f'8")
             >>> spanner = beamtools.BeamSpanner(voice[:2])
@@ -538,7 +544,9 @@ class Spanner(AbjadObject):
             self.append(component)
 
     def extend_left(self, components):
-        '''Add iterable `components` to left of spanner::
+        '''Add iterable `components` to left of spanner:
+
+        ::
 
             >>> voice = Voice("c'8 d'8 e'8 f'8")
             >>> spanner = beamtools.BeamSpanner(voice[2:])
@@ -661,7 +669,9 @@ class Spanner(AbjadObject):
         return self._fuse_by_reference(spanner)
 
     def index(self, component):
-        '''Return nonnegative integer index of `component` in spanner::
+        '''Return nonnegative integer index of `component` in spanner:
+
+        ::
 
             >>> voice = Voice("c'8 d'8 e'8 f'8")
             >>> spanner = beamtools.BeamSpanner(voice[2:])

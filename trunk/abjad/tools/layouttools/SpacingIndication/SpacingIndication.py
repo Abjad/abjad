@@ -10,7 +10,9 @@ class SpacingIndication(AbjadObject):
     will equal ``proportional_notation_duration`` when tempo
     equals ``tempo_indication``.
 
-    Initialize from tempo mark and proportional notation duration::
+    Initialize from tempo mark and proportional notation duration:
+
+    ::
 
         >>> tempo = contexttools.TempoMark(Duration(1, 8), 44)
         >>> indication = layouttools.SpacingIndication(tempo, Duration(1, 68))
@@ -20,12 +22,16 @@ class SpacingIndication(AbjadObject):
         >>> indication
         SpacingIndication(TempoMark(Duration(1, 8), 44), Duration(1, 68))
 
-    Initialize from constants::
+    Initialize from constants:
+
+    ::
 
         >>> layouttools.SpacingIndication(((1, 8), 44), (1, 68))
         SpacingIndication(TempoMark(Duration(1, 8), 44), Duration(1, 68))
 
-    Initialize from other spacing indication::
+    Initialize from other spacing indication:
+
+    ::
 
         >>> layouttools.SpacingIndication(indication)
         SpacingIndication(TempoMark(Duration(1, 8), 44), Duration(1, 68))

@@ -6,7 +6,9 @@ from abjad.tools.pitcharraytools.PitchArrayCell.PitchArrayCell import PitchArray
 class PitchArrayColumn(AbjadObject):
     '''.. versionadded:: 2.0
 
-    Column in a pitch array::
+    Column in a pitch array:
+
+    ::
 
         >>> array = pitcharraytools.PitchArray([
         ...   [1, (2, 1), (-1.5, 2)],

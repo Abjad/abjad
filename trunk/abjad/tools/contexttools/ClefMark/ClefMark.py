@@ -4,7 +4,9 @@ from abjad.tools.contexttools.ContextMark import ContextMark
 class ClefMark(ContextMark):
     r'''.. versionadded:: 2.0
 
-    Abjad model of a clef::
+    Abjad model of a clef:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
 
@@ -109,13 +111,17 @@ class ClefMark(ContextMark):
     @apply
     def clef_name():
         def fget(self):
-            r'''Get clef name::
+            r'''Get clef name:
+
+            ::
 
                 >>> clef = contexttools.ClefMark('treble')
                 >>> clef.clef_name
                 'treble'
 
-            Set clef name::
+            Set clef name:
+
+            ::
 
                 >>> clef.clef_name = 'alto'
                 >>> clef.clef_name

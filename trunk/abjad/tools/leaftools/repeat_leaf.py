@@ -4,7 +4,9 @@ from abjad.tools import componenttools
 def repeat_leaf(leaf, total=1):
     r'''.. versionadded:: 1.1
 
-    Repeat `leaf` and extend spanners::
+    Repeat `leaf` and extend spanners:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> beamtools.BeamSpanner(staff.leaves)

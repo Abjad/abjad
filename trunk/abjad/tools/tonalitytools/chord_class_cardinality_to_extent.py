@@ -1,7 +1,9 @@
 def chord_class_cardinality_to_extent(cardinality):
     '''..versionadded:: 2.0
 
-    Change integer chord class `cardinality` to integer chord class extent::
+    Change integer chord class `cardinality` to integer chord class extent:
+
+    ::
 
         >>> tonalitytools.chord_class_cardinality_to_extent(4)
         7

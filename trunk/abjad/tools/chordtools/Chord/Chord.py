@@ -131,7 +131,9 @@ class Chord(Leaf):
 
     @property
     def fingered_pitches(self):
-        r"""Read-only fingered pitches::
+        r"""Read-only fingered pitches:
+
+        ::
 
             >>> staff = Staff("<c''' e'''>4 <d''' fs'''>4")
             >>> glockenspiel = instrumenttools.Glockenspiel()(staff)
@@ -171,13 +173,17 @@ class Chord(Leaf):
     @apply
     def note_heads():
         def fget(self):
-            '''Get read-only tuple of note heads in chord::
+            '''Get read-only tuple of note heads in chord:
+
+            ::
 
                 >>> chord = Chord([7, 12, 16], (1, 4))
                 >>> chord.note_heads
                 (NoteHead("g'"), NoteHead("c''"), NoteHead("e''"))
 
-            Set chord note heads from any iterable::
+            Set chord note heads from any iterable:
+
+            ::
 
                 >>> chord = Chord([7, 12, 16], (1, 4))
                 >>> chord.note_heads = [0, 2, 6]
@@ -195,7 +201,9 @@ class Chord(Leaf):
 
     @property
     def sounding_pitches(self):
-        r"""Read-only sounding pitches::
+        r"""Read-only sounding pitches:
+
+        ::
 
             >>> staff = Staff("<c''' e'''>4 <d''' fs'''>4")
             >>> glockenspiel = instrumenttools.Glockenspiel()(staff)
@@ -234,13 +242,17 @@ class Chord(Leaf):
     @apply
     def written_pitches():
         def fget(self):
-            '''Get read-only tuple of pitches in chord::
+            '''Get read-only tuple of pitches in chord:
+
+            ::
 
                 >>> chord = Chord([7, 12, 16], (1, 4))
                 >>> chord.written_pitches
                 (NamedChromaticPitch("g'"), NamedChromaticPitch("c''"), NamedChromaticPitch("e''"))
 
-            Set chord pitches from any iterable::
+            Set chord pitches from any iterable:
+
+            ::
 
                 >>> chord = Chord([7, 12, 16], (1, 4))
                 >>> chord.written_pitches = [0, 2, 6]
@@ -256,7 +268,9 @@ class Chord(Leaf):
     ### PUBLIC METHODS ###
 
     def append(self, note_head):
-        '''Append `note_head` to chord::
+        '''Append `note_head` to chord:
+
+        ::
 
             >>> chord = Chord([4, 13, 17], (1, 4))
             >>> chord
@@ -298,7 +312,9 @@ class Chord(Leaf):
             self.append(note_head)
 
     def pop(self, i=-1):
-        '''Remove note head at index `i` in chord::
+        '''Remove note head at index `i` in chord:
+
+        ::
 
             >>> chord = Chord([4, 13, 17], (1, 4))
             >>> chord
@@ -321,7 +337,9 @@ class Chord(Leaf):
         return note_head
 
     def remove(self, note_head):
-        '''Remove `note_head` from chord::
+        '''Remove `note_head` from chord:
+
+        ::
 
             >>> chord = Chord([4, 13, 17], (1, 4))
             >>> chord

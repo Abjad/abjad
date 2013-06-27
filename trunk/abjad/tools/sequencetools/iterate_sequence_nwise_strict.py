@@ -1,7 +1,9 @@
 def iterate_sequence_nwise_strict(sequence, n):
     '''.. versionadded:: 2.0
 
-    Iterate elements in `sequence` `n` at a time::
+    Iterate elements in `sequence` `n` at a time:
+
+    ::
 
         >>> for x in sequencetools.iterate_sequence_nwise_strict(range(10), 4):
         ...     x

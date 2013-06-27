@@ -25,7 +25,9 @@ class ScoreBlock(NonattributedBlock):
         }
 
     ScoreBlocks does not format when empty, as this generates a
-    parser error in LilyPond::
+    parser error in LilyPond:
+
+    ::
 
         >>> score_block = lilypondfiletools.ScoreBlock()
         >>> score_block.lilypond_format == ''

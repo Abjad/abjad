@@ -7,7 +7,9 @@ from abjad.tools.pitchtools.PitchRange import PitchRange
 class OctaveTranspositionMappingComponent(AbjadObject):
     '''.. versionadded:: 2.8
 
-    Octave transposition mapping component::
+    Octave transposition mapping component:
+
+    ::
 
         >>> pitchtools.OctaveTranspositionMappingComponent('[A0, C8]', 15)
         OctaveTranspositionMappingComponent('[A0, C8]', 15)
@@ -102,7 +104,9 @@ class OctaveTranspositionMappingComponent(AbjadObject):
     @apply
     def source_pitch_range():
         def fget(self):
-            '''Read / write source pitch range::
+            '''Read / write source pitch range:
+
+            ::
 
                 >>> mapping_component = pitchtools.OctaveTranspositionMappingComponent(
                 ...     '[A0, C8]', 15)
@@ -119,7 +123,9 @@ class OctaveTranspositionMappingComponent(AbjadObject):
     @apply
     def target_octave_start_pitch():
         def fget(self):
-            '''Read / write target octave start pitch::
+            '''Read / write target octave start pitch:
+
+            ::
 
                 >>> mapping_component = pitchtools.OctaveTranspositionMappingComponent(
                 ...     '[A0, C8]', 15)

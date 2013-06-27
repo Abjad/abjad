@@ -2,7 +2,9 @@ def expr_has_duplicate_numbered_chromatic_pitch_class(expr):
     '''.. versionadded:: 2.0
 
     True when `expr` has duplicate numbered chromatic pitch-class.
-    Otherwise false::
+    Otherwise false:
+
+    ::
 
         >>> chord = Chord([1, 13, 14], (1, 4))
         >>> pitchtools.expr_has_duplicate_numbered_chromatic_pitch_class(chord)

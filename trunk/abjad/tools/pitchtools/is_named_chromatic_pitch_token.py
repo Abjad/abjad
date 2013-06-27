@@ -3,7 +3,9 @@ def is_named_chromatic_pitch_token(pitch_token):
     '''.. versionadded:: 1.1
 
     True when `pitch_token` has the form of an Abjad pitch token.
-    Otherwise false::
+    Otherwise false:
+
+    ::
 
         >>> pitchtools.is_named_chromatic_pitch_token(('c', 4))
         True

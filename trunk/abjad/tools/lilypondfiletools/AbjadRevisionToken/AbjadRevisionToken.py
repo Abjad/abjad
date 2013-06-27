@@ -5,7 +5,9 @@ from abjad.tools.configurationtools.get_abjad_revision_string import get_abjad_r
 class AbjadRevisionToken(AbjadObject):
     '''.. versionadded:: 2.0
 
-    Abjad version token::
+    Abjad version token:
+
+    ::
 
         >>> lilypondfiletools.AbjadRevisionToken()
         AbjadRevisionToken(Abjad revision ...)
@@ -27,7 +29,9 @@ class AbjadRevisionToken(AbjadObject):
 
     @property
     def lilypond_format(self):
-        '''Format contribution of Abjad version token::
+        '''Format contribution of Abjad version token:
+
+        ::
 
             >>> lilypondfiletools.AbjadRevisionToken().lilypond_format
             'Abjad revision ...'

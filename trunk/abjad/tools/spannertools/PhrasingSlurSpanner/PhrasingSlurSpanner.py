@@ -3,7 +3,9 @@ from abjad.tools.spannertools.DirectedSpanner.DirectedSpanner import DirectedSpa
 
 
 class PhrasingSlurSpanner(DirectedSpanner):
-    r'''Abjad phrasing slur spanner::
+    r'''Abjad phrasing slur spanner:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
 

@@ -3,7 +3,9 @@ from abjad.tools import durationtools
 
 
 class MeasuredComplexBeamSpanner(ComplexBeamSpanner):
-    r'''Abjad measured complex beam spanner::
+    r'''Abjad measured complex beam spanner:
+
+    ::
 
         >>> staff = Staff([Measure((2, 16), "c'16 d'16"), Measure((2, 16), "e'16 f'16")])
 
@@ -101,14 +103,18 @@ class MeasuredComplexBeamSpanner(ComplexBeamSpanner):
     @apply
     def span():
         def fget(self):
-            '''Get top-level beam count::
+            '''Get top-level beam count:
+
+            ::
 
                 >>> staff = Staff([Measure((2, 16), "c'16 d'16"), Measure((2, 16), "e'16 f'16")])
                 >>> beam = beamtools.MeasuredComplexBeamSpanner(staff.leaves)
                 >>> beam.span
                 1
 
-            Set top-level beam count::
+            Set top-level beam count:
+
+            ::
 
                 >>> staff = Staff([Measure((2, 16), "c'16 d'16"), Measure((2, 16), "e'16 f'16")])
                 >>> beam = beamtools.MeasuredComplexBeamSpanner(staff.leaves)

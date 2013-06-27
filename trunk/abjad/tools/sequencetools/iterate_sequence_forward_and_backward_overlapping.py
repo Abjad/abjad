@@ -2,7 +2,9 @@ def iterate_sequence_forward_and_backward_overlapping(sequence):
     '''.. versionadded:: 2.0
 
     Iterate `sequence` first forward and then backward,
-    with first and last elements appearing only once::
+    with first and last elements appearing only once:
+
+    ::
 
         >>> list(sequencetools.iterate_sequence_forward_and_backward_overlapping([1, 2, 3, 4, 5]))
         [1, 2, 3, 4, 5, 4, 3, 2]

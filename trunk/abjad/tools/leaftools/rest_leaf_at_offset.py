@@ -6,7 +6,9 @@ from abjad.tools import durationtools
 def rest_leaf_at_offset(leaf, offset):
     r'''.. versionadded:: 1.1
 
-    Split `leaf` at `offset` and rest right half::
+    Split `leaf` at `offset` and rest right half:
+
+    ::
 
         >>> staff = Staff("c'8 ( d'8 e'8 f'8 )")
 

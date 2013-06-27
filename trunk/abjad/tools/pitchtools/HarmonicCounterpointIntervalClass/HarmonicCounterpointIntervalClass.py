@@ -5,7 +5,9 @@ from abjad.tools.pitchtools.HarmonicIntervalClass import HarmonicIntervalClass
 class HarmonicCounterpointIntervalClass(CounterpointIntervalClass, HarmonicIntervalClass):
     '''.. versionadded:: 2.0
 
-    Abjad model of harmonic counterpoint interval-class::
+    Abjad model of harmonic counterpoint interval-class:
+
+    ::
 
         >>> pitchtools.HarmonicCounterpointIntervalClass(-9)
         HarmonicCounterpointIntervalClass(2)

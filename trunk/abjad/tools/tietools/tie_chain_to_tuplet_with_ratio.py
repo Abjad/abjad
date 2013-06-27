@@ -10,7 +10,9 @@ def tie_chain_to_tuplet_with_ratio(tie_chain, proportions, is_diminution=True, d
     r'''.. versionadded:: 2.0
 
     Example 1a. Change `tie_chain` to augmented tuplet with proportions ``[1]``.
-    Avoid dots::
+    Avoid dots:
+
+    ::
 
         >>> staff = Staff("c'8 [ ~ c'16 c'16 ]")
 
@@ -42,7 +44,9 @@ def tie_chain_to_tuplet_with_ratio(tie_chain, proportions, is_diminution=True, d
         }
 
     Exampl 1b. Change `tie_chain` to augment tuplet with proportions ``[1, 2]``.
-    Avoid dots::
+    Avoid dots:
+
+    ::
 
         >>> staff = Staff("c'8 [ ~ c'16 c'16 ]")
 
@@ -74,7 +78,9 @@ def tie_chain_to_tuplet_with_ratio(tie_chain, proportions, is_diminution=True, d
         }
 
     Examle 1c. Change `tie_chain` to augmented tuplet with proportions ``[1, 2, 2]``.
-    Avoid dots::
+    Avoid dots:
+
+    ::
 
         >>> staff = Staff("c'8 [ ~ c'16 c'16 ]")
 

@@ -5,7 +5,9 @@ import time
 class DateTimeToken(AbjadObject):
     '''.. versionadded:: 2.0
 
-    Date time token::
+    Date time token:
+
+    ::
 
         >>> lilypondfiletools.DateTimeToken()
         DateTimeToken(...)
@@ -27,7 +29,9 @@ class DateTimeToken(AbjadObject):
 
     @property
     def lilypond_format(self):
-        '''Format contribution of date time token::
+        '''Format contribution of date time token:
+
+        ::
 
             >>> lilypondfiletools.DateTimeToken().lilypond_format
             '...'
