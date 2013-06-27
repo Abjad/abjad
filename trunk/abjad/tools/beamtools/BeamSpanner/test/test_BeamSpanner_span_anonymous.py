@@ -3,29 +3,29 @@ import py.test
 
 
 def test_BeamSpanner_span_anonymous_01():
-    '''Spanned empty sequential container;
-        container formats no beam indications.'''
+    '''Empty container.
+    '''
 
-    t = Container([])
-    p = beamtools.BeamSpanner(t)
+    container = Container([])
+    beam = beamtools.BeamSpanner(container)
 
     r'''
     {
     }
     '''
 
-    assert len(p.components) == 1
-    assert isinstance(p.components[0], Container)
-    assert len(p.leaves) == 0
-    assert t.lilypond_format == '{\n}'
+    assert len(beam.components) == 1
+    assert isinstance(beam.components[0], Container)
+    assert len(beam.leaves) == 0
+    assert container.lilypond_format == '{\n}'
 
 
 def test_BeamSpanner_span_anonymous_02():
-    '''Nonempty spanned sequential container;
-        container formats beam indications on first and last leaves.'''
+    '''Nonempty container.
+    '''
 
-    t = Container(Note(0, (1, 8)) * 8)
-    p = beamtools.BeamSpanner(t)
+    container = Container("c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8")
+    beam = beamtools.BeamSpanner(container)
 
     r'''
     {
@@ -40,19 +40,18 @@ def test_BeamSpanner_span_anonymous_02():
     }
     '''
 
-    assert len(p.components) == 1
-    assert isinstance(p.components[0], Container)
-    assert len(p.leaves) == 8
-    assert t.lilypond_format == "{\n\tc'8 [\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8 ]\n}"
+    assert len(beam.components) == 1
+    assert isinstance(beam.components[0], Container)
+    assert len(beam.leaves) == 8
+    assert container.lilypond_format == "{\n\tc'8 [\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8 ]\n}"
 
 
 def test_BeamSpanner_span_anonymous_03():
-    '''Contiguous nonempty spanned containers;
-        first and last leaves in contiguity chain format
-        beam indications.'''
+    '''Nested nonempty containers.
+    '''
 
-    t = Staff(Container(Note(0, (1, 8)) * 4) * 2)
-    p = beamtools.BeamSpanner(t[:])
+    staff = Staff("{ c'8 c'8 c'8 c'8 } { c'8 c'8 c'8 c'8 }")
+    beam = beamtools.BeamSpanner(staff[:])
 
     r'''
     \new Staff {
@@ -71,21 +70,20 @@ def test_BeamSpanner_span_anonymous_03():
     }
     '''
 
-    assert len(p.components) == 2
-    assert isinstance(p.components[0], Container)
-    assert isinstance(p.components[1], Container)
-    assert len(p.leaves) == 8
-    "\\new Staff {\n\t{\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n\t{\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8 ]\n\t}\n}"
+    assert len(beam.components) == 2
+    assert type(beam.components[0]) is Container
+    assert type(beam.components[1]) is Container
+    assert len(beam.leaves) == 8
+
+    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n\t{\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8 ]\n\t}\n}"
 
 
 def test_BeamSpanner_span_anonymous_04():
-    '''Contiguous nonempty containers and leaves;
-        top-level attachment;
-        first and last leaves in contiguity chain format
-        beam indications.'''
+    '''Beamed staff with container and top-level leaves.
+    '''
 
-    t = Staff([Container(notetools.make_repeated_notes(4)), Note(0, (1, 8)), Note(0, (1, 8))])
-    p = beamtools.BeamSpanner(t)
+    staff = Staff("{ c'8 c'8 c'8 c'8 } c'8 c'8")
+    beam = beamtools.BeamSpanner(staff)
 
     r'''
     \new Staff {
@@ -100,19 +98,19 @@ def test_BeamSpanner_span_anonymous_04():
     }
     '''
 
-    assert len(p.components) == 1
-    assert isinstance(p.components[0], Staff)
-    assert len(p.leaves) == 6
-    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n\tc'8\n\tc'8 ]\n}"
+    assert len(beam.components) == 1
+    assert type(beam.components[0]) is Staff
+    assert len(beam.leaves) == 6
+
+    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n\tc'8\n\tc'8 ]\n}"
 
 
 def test_BeamSpanner_span_anonymous_05():
-    '''Contiguous nonempty containers and leaves;
-        intermediate attachment;
-        first and last leaves in contiguity chain format beam indications.'''
+    '''Beamed container and top-level leaves housed in staff.
+    '''
 
-    t = Staff([Container(notetools.make_repeated_notes(4)), Note(0, (1, 8)), Note(0, (1, 8))])
-    p = beamtools.BeamSpanner(t[:])
+    staff = Staff("{ c'8 c'8 c'8 c'8 } c'8 c'8")
+    beam = beamtools.BeamSpanner(staff[:])
 
     r'''
     \new Staff {
@@ -127,21 +125,21 @@ def test_BeamSpanner_span_anonymous_05():
     }
     '''
 
-    assert len(p.components) == 3
-    assert isinstance(p.components[0], Container)
-    assert isinstance(p.components[1], Note)
-    assert isinstance(t[2], Note)
-    assert len(p.leaves) == 6
-    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n\tc'8\n\tc'8 ]\n}"
+    assert len(beam.components) == 3
+    assert type(beam.components[0]) is Container
+    assert type(beam.components[1]) is Note
+    assert type(staff[2]) is Note
+    assert len(beam.leaves) == 6
+
+    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n\tc'8\n\tc'8 ]\n}"
 
 
 def test_BeamSpanner_span_anonymous_06():
-    '''Contiguous nonempty containers and leaves;
-        leaf-level attachment;
-        first and last leaves in contiguity chain format beam indications.'''
+    '''Beamed leaves housed in staff and container.
+    '''
 
-    t = Staff([Container(notetools.make_repeated_notes(4)), Note(0, (1, 8)), Note(0, (1, 8))])
-    p = beamtools.BeamSpanner(t.leaves)
+    staff = Staff("{ c'8 c'8 c'8 c'8 } c'8 c'8")
+    beam = beamtools.BeamSpanner(staff.leaves)
 
     r'''
     \new Staff {
@@ -156,24 +154,19 @@ def test_BeamSpanner_span_anonymous_06():
     }
     '''
 
-    assert len(p.components) == 6
-    for x in p.components:
-        assert isinstance(x, Note)
-    assert len(p.leaves) == 6
-    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n\tc'8\n\tc'8 ]\n}"
+    assert len(beam.components) == 6
+    assert all(type(x) is Note for x in beam.components)
+    assert len(beam.leaves) == 6
+
+    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n\tc'8\n\tc'8 ]\n}"
 
 
 def test_BeamSpanner_span_anonymous_07():
-    '''Contiguous empty containers are OK;
-        no beams appear at format-time.'''
+    '''Staff with empty containers.
+    '''
 
-    t = Staff(Container([]) * 3)
-    p = beamtools.BeamSpanner(t[:])
-
-    assert len(p.components) == 3
-    for x in p.components:
-        assert isinstance(x, Container)
-    assert len(p.leaves) == 0
+    staff = Staff("{} {} {}")
+    beam = beamtools.BeamSpanner(staff[:])
 
     r'''
     \new Staff {
@@ -186,19 +179,19 @@ def test_BeamSpanner_span_anonymous_07():
     }
     '''
 
+    assert len(beam.components) == 3
+    assert all(type(x) is Container for x in beam.components)
+    assert len(beam.leaves) == 0
+    
+    assert staff.lilypond_format == '\\new Staff {\n\t{\n\t}\n\t{\n\t}\n\t{\n\t}\n}'
+
 
 def test_BeamSpanner_span_anonymous_08():
-    '''Intervening empty containers are OK.'''
+    '''Staff with empty containers in the middle.
+    '''
 
-    t = Staff(Container(Note(0, (1, 8)) * 4) * 2)
-    t.insert(1, Container([]))
-    p = beamtools.BeamSpanner(t[:])
-
-    assert len(p.components) == 3
-    for x in p.components:
-        assert isinstance(x, Container)
-    assert len(p.leaves) == 8
-    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n\t{\n\t}\n\t{\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8 ]\n\t}\n}"
+    staff = Staff("{ c'8 c'8 c'8 c'8 } {} { c'8 c'8 c'8 c'8 }")
+    beam = beamtools.BeamSpanner(staff[:])
 
     r'''
     \new Staff {
@@ -219,20 +212,21 @@ def test_BeamSpanner_span_anonymous_08():
     }
     '''
 
+    assert len(beam.components) == 3
+    assert all(type(x) is Container for x in beam.components)
+    assert len(beam.leaves) == 8
+
+    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n\t{\n\t}\n\t{\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8 ]\n\t}\n}"
+
 
 def test_BeamSpanner_span_anonymous_09():
-    '''Empty containers at edges are OK.'''
+    '''Staff with empty containers at the edges.
+    '''
 
     t = Staff(Container([]) * 2)
     t.insert(1, Container(Note(0, (1, 8)) * 4))
     p = beamtools.BeamSpanner(t[:])
 
-    assert len(p.components) == 3
-    for x in p.components:
-        assert isinstance(x, Container)
-    assert len(p.leaves) == 4
-    assert t.lilypond_format == "\\new Staff {\n\t{\n\t}\n\t{\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8 ]\n\t}\n\t{\n\t}\n}"
-
     r'''
     \new Staff {
         {
@@ -248,13 +242,17 @@ def test_BeamSpanner_span_anonymous_09():
     }
     '''
 
+    assert len(p.components) == 3
+    for x in p.components:
+        assert isinstance(x, Container)
+    assert len(p.leaves) == 4
+
+    assert t.lilypond_format == "\\new Staff {\n\t{\n\t}\n\t{\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8 ]\n\t}\n\t{\n\t}\n}"
+
 
 def test_BeamSpanner_span_anonymous_10():
-    '''Spanners group anonymous containers at
-        completely different depths just fine;
-        the only requirement is that the *leaves* of all
-        arguments passed to beamtools.BeamSpanner() be *temporarly contiguous*.
-        Ie, there's a *leaf temporal contiguity* requirement.'''
+    '''Deeply nested containers of equal depth.
+    '''
 
     s1 = Container([Note(i, (1,8)) for i in range(4)])
     s1 = Container([s1])
@@ -263,26 +261,6 @@ def test_BeamSpanner_span_anonymous_10():
     t = Voice([s1, s2])
     p = beamtools.BeamSpanner(t)
     assert len(p.components) == 1
-    assert len(p.leaves) == 8
-
-    p.clear()
-    p = beamtools.BeamSpanner([t[0], t[1]])
-    assert len(p.components) == 2
-    assert len(p.leaves) == 8
-
-    p.clear()
-    p = beamtools.BeamSpanner([t[0][0], t[1][0]])
-    assert len(p.components) == 2
-    assert len(p.leaves) == 8
-
-    p.clear()
-    p = beamtools.BeamSpanner([t[0], t[1][0]])
-    assert len(p.components) == 2
-    assert len(p.leaves) == 8
-
-    p.clear()
-    p = beamtools.BeamSpanner([t[0][0], t[1]])
-    assert len(p.components) == 2
     assert len(p.leaves) == 8
 
     r'''
@@ -306,36 +284,36 @@ def test_BeamSpanner_span_anonymous_10():
     }
     '''
 
+    p.clear()
+    p = beamtools.BeamSpanner([t[0], t[1]])
+    assert len(p.components) == 2
+    assert len(p.leaves) == 8
+
+    p.clear()
+    p = beamtools.BeamSpanner([t[0][0], t[1][0]])
+    assert len(p.components) == 2
+    assert len(p.leaves) == 8
+
+    p.clear()
+    p = beamtools.BeamSpanner([t[0], t[1][0]])
+    assert len(p.components) == 2
+    assert len(p.leaves) == 8
+
+    p.clear()
+    p = beamtools.BeamSpanner([t[0][0], t[1]])
+    assert len(p.components) == 2
+    assert len(p.leaves) == 8
+
 
 def test_BeamSpanner_span_anonymous_11():
-    '''Asymmetric structure;
-        but otherwise same as immediately above.'''
+    '''Deeply nested containers of unequal depth.
+    '''
 
     s1 = Container([Note(i, (1,8)) for i in range(4)])
     s1 = Container([s1])
     s1 = Container([s1])
     s2 = Container([Note(i, (1,8)) for i in range(4,8)])
     t = Voice([s1, s2])
-
-    p = beamtools.BeamSpanner(t)
-    assert len(p.components) == 1
-    assert len(p.leaves) == 8
-    p.clear()
-
-    p = beamtools.BeamSpanner([t[0], t[1]])
-    assert len(p.components) == 2
-    assert len(p.leaves) == 8
-    p.clear()
-
-    p = beamtools.BeamSpanner([t[0][0], t[1]])
-    assert len(p.components) == 2
-    assert len(p.leaves) == 8
-    p.clear()
-
-    p = beamtools.BeamSpanner([t[0][0][0], t[1]])
-    assert len(p.components) == 2
-    assert len(p.leaves) == 8
-    p.clear()
 
     r'''
     \new Voice {
@@ -358,23 +336,34 @@ def test_BeamSpanner_span_anonymous_11():
     }
     '''
 
+    p = beamtools.BeamSpanner(t)
+    assert len(p.components) == 1
+    assert len(p.leaves) == 8
+    p.clear()
+
+    p = beamtools.BeamSpanner([t[0], t[1]])
+    assert len(p.components) == 2
+    assert len(p.leaves) == 8
+    p.clear()
+
+    p = beamtools.BeamSpanner([t[0][0], t[1]])
+    assert len(p.components) == 2
+    assert len(p.leaves) == 8
+    p.clear()
+
+    p = beamtools.BeamSpanner([t[0][0][0], t[1]])
+    assert len(p.components) == 2
+    assert len(p.leaves) == 8
+    p.clear()
+
 
 def test_BeamSpanner_span_anonymous_12():
-    '''Docs.'''
+    '''Voice with containers and top-level leaves.
+    '''
 
     s1 = Container([Note(i, (1, 8)) for i in range(2)])
     s2 = Container([Note(i, (1, 8)) for i in range(3, 5)])
     v = Voice([s1, Note(2, (1, 8)), s2])
-
-    p = beamtools.BeamSpanner(v)
-    assert len(p.components) == 1
-    assert len(p.leaves) == 5
-    p.clear()
-
-    p = beamtools.BeamSpanner(v[:])
-    assert len(p.components) == 3
-    assert len(p.leaves) == 5
-    p.clear()
 
     r'''
     \new Voice {
@@ -390,9 +379,20 @@ def test_BeamSpanner_span_anonymous_12():
     }
     '''
 
+    p = beamtools.BeamSpanner(v)
+    assert len(p.components) == 1
+    assert len(p.leaves) == 5
+    p.clear()
+
+    p = beamtools.BeamSpanner(v[:])
+    assert len(p.components) == 3
+    assert len(p.leaves) == 5
+    p.clear()
+
 
 def test_BeamSpanner_span_anonymous_13():
-    '''Alternating sequences of tuplets and notes span correctly.'''
+    '''Voice with tuplets and top-level leaves.
+    '''
 
     t1 = tuplettools.FixedDurationTuplet(Duration(1,4), [Note(i, (1,8)) for i in range(3)])
     t2 = tuplettools.FixedDurationTuplet(Duration(1,4), [Note(i, (1,8)) for i in range(4,7)])
@@ -426,7 +426,8 @@ def test_BeamSpanner_span_anonymous_13():
 
 
 def test_BeamSpanner_span_anonymous_14():
-    '''Asymmetrically nested tuplets span correctly.'''
+    '''Nested tuplets.
+    '''
 
     tinner = tuplettools.FixedDurationTuplet(Duration(1, 4), Note(0, (1, 8)) * 3)
     t = tuplettools.FixedDurationTuplet(Duration(2, 4), [Note("c'4"), tinner, Note("c'4")])
@@ -454,9 +455,8 @@ def test_BeamSpanner_span_anonymous_14():
 
 
 def test_BeamSpanner_span_anonymous_15():
-    '''Parent asymmetric structures DO NOT allow spanning.
-        LilyPond will correspondingly not render the beam
-        through two different anonymous voices.'''
+    '''Beams cannot cross voice boundaries.
+    '''
 
     v1 = Voice([Note(i , (1, 8)) for i in range(3)])
     n = Note(3, (1,8))
@@ -480,5 +480,10 @@ def test_BeamSpanner_span_anonymous_15():
     }
     '''
 
-    assert py.test.raises(AssertionError, 'p = beamtools.BeamSpanner([t[0], t[1]])')
-    assert py.test.raises(AssertionError, 'p = beamtools.BeamSpanner([t[1], t[2]])')
+    assert py.test.raises(
+        AssertionError, 
+        'p = beamtools.BeamSpanner([t[0], t[1]])')
+
+    assert py.test.raises(
+        AssertionError, 
+        'p = beamtools.BeamSpanner([t[1], t[2]])')

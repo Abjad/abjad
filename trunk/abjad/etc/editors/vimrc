@@ -125,6 +125,7 @@ let g:ctrlp_match_window_bottom = 0
 let g:ctrlp_match_window_reversed = 0
 let g:ctrlp_max_height = 30
 map <leader>jj :CtrlP $ABJADTRUNK/abjad<cr>
+map <leader>jjt :CtrlP $ABJADTRUNK/abjad/tools<cr>
 map <leader>jt :CtrlP $ABJADTRUNK<cr>
 map <leader>jx :CtrlP $ABJADEXPERIMENTAL<cr>
 map <leader>mx :CtrlP $ABJADEXPERIMENTAL/tools/musicexpressiontools<cr>
