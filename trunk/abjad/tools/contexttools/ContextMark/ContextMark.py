@@ -1,4 +1,3 @@
-from abjad.tools.contexttools.Context import Context
 from abjad.tools.marktools.Mark import Mark
 
 
@@ -23,7 +22,10 @@ class ContextMark(Mark):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_effective_context', '_target_context', )
+    __slots__ = (
+        '_effective_context', 
+        '_target_context',
+        )
 
     ### INITIALIZER ###
 
@@ -32,7 +34,9 @@ class ContextMark(Mark):
         self._effective_context = None
         if target_context is not None:
             if not isinstance(target_context, type):
-                raise TypeError('target context "%s" must be context class.' % target_context)
+                message = 'target context {!r} must be context class.'
+                message = message.format(target_context)
+                raise TypeError(message)
         self._target_context = target_context
 
     ### SPECIAL METHODS ###

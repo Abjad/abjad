@@ -64,8 +64,6 @@ class InstrumentMark(ContextMark):
     ### INITIALIZER ###
 
     def __init__(self,
-#        instrument_name,
-#        short_instrument_name,
         instrument_name=None,
         short_instrument_name=None,
         instrument_name_markup=None,
@@ -75,8 +73,6 @@ class InstrumentMark(ContextMark):
         from abjad.tools.stafftools.Staff import Staff
         target_context = target_context or Staff
         ContextMark.__init__(self, target_context=target_context)
-#        if self.target_context is None:
-#            self._target_context = Staff
         self._default_instrument_name = None
         self._default_instrument_name_markup = None
         self._default_short_instrument_name = None

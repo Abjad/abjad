@@ -74,6 +74,7 @@ noremap <leader>nn ?###$<cr>
 noremap <leader>mm /###$<cr>
 noremap <leader>#C /CLASS<cr>
 noremap <leader>#I /INITIALIZER<cr>
+noremap <leader>#S /SPECIAL<cr>
 noremap <leader>#OM /PRIVATE METHODS<cr>
 noremap <leader>#OP /PRIVATE PROPERTIES<cr>
 noremap <leader>#PM /PUBLIC METHODS<cr>

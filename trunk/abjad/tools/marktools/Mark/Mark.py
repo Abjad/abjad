@@ -23,7 +23,9 @@ class Mark(AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_start_component', )
+    __slots__ = (
+        '_start_component',
+        )
 
     ### INITIALIZER ###
 
@@ -33,11 +35,19 @@ class Mark(AbjadObject):
         elif len(args) == 1 and isinstance(args[0], type(self)):
             self._start_component = None
         else:
-            raise ValueError('can not initialize mark from {!r}.'.format(args))
+            message = 'can not initialize mark from {!r}.'
+            message = message.format(args)
+            raise ValueError(message)
 
     ### SPECIAL METHODS ###
 
     def __call__(self, *args):
+        '''Detach mark from component when called with no arguments.
+
+        Attach mark to component when called with one argument.
+
+        Return self.
+        '''
         if len(args) == 0:
             return self.detach()
         elif len(args) == 1:
@@ -46,13 +56,17 @@ class Mark(AbjadObject):
             raise ValueError('must call mark with at most 1 argument.')
 
     def __copy__(self, *args):
-        #return type(self)()
+        '''Copy mark.
+            
+        Return new mark.
+        '''
         new = type(self)()
         new.format_slot = self.format_slot
         return new
 
     def __delattr__(self, *args):
-        raise AttributeError('can not delete %s attributes.' % type(self).__name__)
+        message = 'can not delete {} attributes.'.format(self._class_name)
+        raise AttributeError(message)
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):

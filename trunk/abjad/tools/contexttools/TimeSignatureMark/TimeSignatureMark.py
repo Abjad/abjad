@@ -52,19 +52,19 @@ class TimeSignatureMark(ContextMark):
 
     ### CLASS VARIABLES ###
 
-    _default_positional_input_arguments = ((4, 8), )
+    _default_positional_input_arguments = (
+        (4, 8),
+        )
 
     _format_slot = 'opening'
 
     ### INITIALIZER ###
 
     def __init__(self, *args, **kwargs):
-        from abjad.tools.stafftools.Staff import Staff
-        target_context = kwargs.get('target_context', None)
+        from abjad.tools import stafftools
+        target_context = kwargs.get('target_context', stafftools.Staff)
         ContextMark.__init__(self, target_context=target_context)
-        if self.target_context is None:
-            self._target_context = Staff
-        if self._target_context == Staff:
+        if self._target_context == stafftools.Staff:
             self._has_default_target_context = True
         else:
             self._has_default_target_context = False
@@ -74,17 +74,21 @@ class TimeSignatureMark(ContextMark):
         # initialize numerator and denominator from *args
         if len(args) == 1 and isinstance(args[0], type(self)):
             time_signature = args[0]
-            numerator, denominator = time_signature.numerator, time_signature.denominator
+            numerator = time_signature.numerator
+            denominator = time_signature.denominator
             partial = time_signature.partial
             suppress = time_signature.suppress
         elif len(args) == 1 and isinstance(args[0], durationtools.Duration):
             numerator, denominator = args[0].numerator, args[0].denominator
         elif len(args) == 1 and isinstance(args[0], tuple):
             numerator, denominator = args[0][0], args[0][1]
-        elif len(args) == 1 and hasattr(args[0], 'numerator') and hasattr(args[0], 'denominator'):
+        elif len(args) == 1 and hasattr(args[0], 'numerator') and \
+            hasattr(args[0], 'denominator'):
             numerator, denominator = args[0].numerator, args[0].denominator
         else:
-            raise TypeError('invalid time_signature initialization: {!r}.'.format(args))
+            message = 'invalid time_signature initialization: {!r}.'
+            message = message.format(args)
+            raise TypeError(message)
         self._numerator = numerator
         self._denominator = denominator
 

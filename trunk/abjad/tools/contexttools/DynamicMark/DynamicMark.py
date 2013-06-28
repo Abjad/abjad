@@ -53,16 +53,18 @@ class DynamicMark(ContextMark):
 
     ### CLASS VARIABLES ###
 
-    _default_positional_input_arguments = (repr('f'), )
+    _default_positional_input_arguments = (
+        repr('f'),
+        )
+
     _format_slot = 'right'
 
     ### INITIALIZER ###
 
     def __init__(self, dynamic_name, target_context=None):
         from abjad.tools.stafftools.Staff import Staff
+        target_context = target_context or Staff
         ContextMark.__init__(self, target_context=target_context)
-        if self.target_context is None:
-            self._target_context = Staff
         if isinstance(dynamic_name, type(self)):
             dynamic_name = dynamic_name.dynamic_name
         self._dynamic_name = dynamic_name

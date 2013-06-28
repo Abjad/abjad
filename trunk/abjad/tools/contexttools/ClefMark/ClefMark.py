@@ -56,25 +56,24 @@ class ClefMark(ContextMark):
 
     ### CLASS VARIABLES ###
 
-    _default_positional_input_arguments = (repr('alto'), )
+    _default_positional_input_arguments = (
+        repr('alto'),
+        )
 
     _format_slot = 'opening'
 
-    #default_target_context = Staff
-
     ### INITIALIZER ###
 
-    def __init__(self, arg, target_context=None):
+    def __init__(self, expr, target_context=None):
         from abjad.tools.stafftools.Staff import Staff
+        target_context = target_context or Staff
         ContextMark.__init__(self, target_context=target_context)
-        if self.target_context is None:
-            self._target_context = Staff
-        if isinstance(arg, str):
-            self._clef_name = arg
-        elif isinstance(arg, type(self)):
-            self._clef_name = arg.clef_name
+        if isinstance(expr, str):
+            self._clef_name = expr
+        elif isinstance(expr, type(self)):
+            self._clef_name = expr.clef_name
         else:
-            raise TypeError('can not init clef from %s.' % arg)
+            raise TypeError('can not init clef from {}.'.format(expr))
 
     ### SPECIAL METHODS ###
 

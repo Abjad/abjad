@@ -56,55 +56,48 @@ class TempoMark(ContextMark):
     ### INITIALIZER ###
 
     def __init__(self, *args, **kwargs):
-        from abjad.tools.scoretools.Score import Score
-        ContextMark.__init__(self, **kwargs)
-
-        if self.target_context is None:
-            self._target_context = Score
-
+        from abjad.tools import scoretools
+        target_context = kwargs.get('target_context', scoretools.Score)
+        ContextMark.__init__(self, target_context=target_context)
         if len(args) == 1 and isinstance(args[0], type(self)):
             tempo_indication = args[0]
             duration = durationtools.Duration(tempo_indication.duration)
             textual_indication = tempo_indication.textual_indication
             units_per_minute = tempo_indication.units_per_minute
-
         elif len(args) == 1 and isinstance(args[0], str):
             duration = None
             textual_indication = args[0]
             units_per_minute = None
             assert isinstance(textual_indication, (str, type(None)))
-
-        elif len(args) == 1 and isinstance(args[0], tuple) and len(args[0]) == 2:
+        elif len(args) == 1 and isinstance(args[0], tuple) and \
+            len(args[0]) == 2:
             textual_indication = None
             duration, units_per_minute = args[0]
-
-        elif len(args) == 1 and isinstance(args[0], tuple) and len(args[0]) == 3:
+        elif len(args) == 1 and isinstance(args[0], tuple) and \
+            len(args[0]) == 3:
             textual_indication, duration, units_per_minute = args[0]
-
         elif len(args) in [2, 3]:
             if len(args) == 3:
                 textual_indication, duration, units_per_minute = args
             else:
                 textual_indication = None
                 duration, units_per_minute = args
-
         else:
             raise ValueError('can not initialize tempo indication.')
-
         assert isinstance(textual_indication, (str, type(None)))
-
         if duration:
             try:
                 duration = durationtools.Duration(duration)
             except TypeError:
                 duration = durationtools.Duration(*duration)
-
-        assert isinstance(units_per_minute, (int, long, float, durationtools.Duration, list, tuple, type(None)))
+        assert isinstance(units_per_minute, (int, long, float, 
+            durationtools.Duration, list, tuple, type(None)))
         if isinstance(units_per_minute, (list, tuple)):
             assert len(units_per_minute) == 2
-            assert all(isinstance(x, (int, long, float, durationtools.Duration)) for x in units_per_minute)
+            assert all(
+                isinstance(x, (int, long, float, durationtools.Duration)) 
+                for x in units_per_minute)
             units_per_minute = tuple(sorted(units_per_minute))
-
         object.__setattr__(self, '_duration', duration)
         object.__setattr__(self, '_textual_indication', textual_indication)
         object.__setattr__(self, '_units_per_minute', units_per_minute)
@@ -376,10 +369,12 @@ class TempoMark(ContextMark):
             '''
             return self._units_per_minute
         def fset(self, units_per_minute):
-            assert isinstance(units_per_minute, (numbers.Number, list, tuple, type(None)))
+            valid_types = (numbers.Number, list, tuple, type(None))
+            assert isinstance(units_per_minute, valid_types)
             if isinstance(units_per_minute, (list, tuple)):
                 assert len(units_per_minute) == 2
-                assert all(isinstance(x, numbers.Number) for x in units_per_minute)
+                assert all(
+                    isinstance(x, numbers.Number) for x in units_per_minute)
                 units_per_minute = tuple(sorted(units_per_minute))
             self._units_per_minute = units_per_minute
         return property(**locals())

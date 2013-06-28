@@ -69,12 +69,14 @@ class StaffChangeMark(ContextMark):
     ### INITIALIZER ###
 
     def __init__(self, staff=None, target_context=None):
-        from abjad.tools.stafftools.Staff import Staff
+        from abjad.tools import stafftools
+        target_context = target_context or stafftools.Staff
         ContextMark.__init__(self, target_context=target_context)
-        if self.target_context is None:
-            self._target_context = Staff
-        if not isinstance(staff, (Staff, type(None))):
-            raise TypeError('staff change mark input value "%s" must be staff instance.' % str(staff))
+        if not isinstance(staff, (stafftools.Staff, type(None))):
+            message = 'staff change mark input value {!r}'
+            message += ' must be staff instance.'
+            message.format(staff)
+            raise TypeError(message)
         self._staff = staff
 
     ### SPECIAL METHODS ###

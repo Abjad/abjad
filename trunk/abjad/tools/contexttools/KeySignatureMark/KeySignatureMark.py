@@ -35,8 +35,6 @@ class KeySignatureMark(ContextMark):
 
     ### CLASS VARIABLES ###
 
-    #__slots__ = ('_tonic', '_mode')
-
     _default_positional_input_arguments = (
         repr('c'),
         repr('major'),
@@ -47,12 +45,11 @@ class KeySignatureMark(ContextMark):
     ### INITIALIZER ###
 
     def __init__(self, tonic, mode, target_context=None):
-        from abjad.tools.stafftools.Staff import Staff
         from abjad.tools import pitchtools
+        from abjad.tools import stafftools
         from abjad.tools import tonalitytools
+        target_context = target_context or stafftools.Staff
         ContextMark.__init__(self, target_context=target_context)
-        if self.target_context is None:
-            self._target_context = Staff
         tonic = pitchtools.NamedChromaticPitchClass(tonic)
         mode = tonalitytools.Mode(mode)
         self._tonic = tonic
