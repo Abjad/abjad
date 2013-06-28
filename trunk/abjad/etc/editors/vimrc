@@ -148,6 +148,10 @@ call Pl#Theme#RemoveSegment('fileformat')
 call Pl#Theme#RemoveSegment('fileencoding')
 call Pl#Theme#RemoveSegment('filetype')
 
+" vim-pythontextobj (https://github.com/natw/vim-pythontextobj.git)
+" provides these text objects: ac, ic, af, if
+" no configuration required
+
 
 " 5. other
 " ========
