@@ -17,7 +17,13 @@ class Accordion(KeyboardInstrument, ReedInstrument):
 
     ::
 
-        >>> instrumenttools.Accordion()(piano_staff)
+        >>> accordion = instrumenttools.Accordion()
+        >>> accordion
+        Accordion()
+
+    ::
+
+        >>> accordion.attach(piano_staff)
         Accordion()(PianoStaff<<2>>)
 
     ::
@@ -45,6 +51,21 @@ class Accordion(KeyboardInstrument, ReedInstrument):
     The accordion targets piano staff context by default.
     '''
 
+    ### CLASS VARIABLES ###
+
+    _default_instrument_name = 'accordion'
+
+    #_default_performer_names.append('accordionist')
+
+    _default_short_instrument_name = 'acc.'
+
+    _is_primary_instrument = True
+
+    _primary_clefs = [
+        contexttools.ClefMark('treble'), contexttools.ClefMark('bass')]
+
+    _traditional_pitch_range = (-32, 48)
+
     ### INITIALIZER ###
 
     def __init__(self, target_context=None, **kwargs):
@@ -71,3 +92,87 @@ class Accordion(KeyboardInstrument, ReedInstrument):
     @property
     def _positional_argument_values(self):
         return ()
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def default_instrument_name(self):
+        '''Default instrument name:
+
+        ::
+
+            >>> accordion.default_instrument_name
+            'accordion'
+
+        Return string.
+        '''
+        return self._default_instrument_name
+
+    @property
+    def default_performer_names(self):
+        '''Default instrument name:
+
+        ::
+
+            >>> for name in accordion.default_performer_names:
+            ...     name
+            'instrumentalist'
+            'keyboardist'
+            'accordionist'
+
+        Return list.
+        '''
+        return self._default_performer_names
+
+    @property
+    def default_short_instrument_name(self):
+        '''Default short instrument name:
+
+        ::
+
+            >>> accordion.default_short_instrument_name
+            'acc.'
+
+        Return string.
+        '''
+        return self._default_short_instrument_name
+
+    @property
+    def is_primary_instrument(self):
+        '''True when instrument is primary.
+        Otherwise false:
+
+        ::
+
+            >>> accordion.is_primary_instrument
+            True
+
+        Return string.
+        '''
+        return self._is_primary_instrument
+
+#    @property
+#    def primary_clefs(self):
+#        '''Primary clefs:
+#
+#        ::
+#
+#            >>> for clef in accordion.primary_clefs:
+#            ...     clef
+#
+#        Return list.
+#        '''
+#        return self._primary_clefs
+
+    @property
+    def traditional_pitch_range(self):
+        '''Primary clefs:
+
+        ::
+
+            >>> accordion.traditional_pitch_range
+            PitchRange('[E1, C8]')
+
+        Return pitch range.
+        '''
+        return self._traditional_pitch_range

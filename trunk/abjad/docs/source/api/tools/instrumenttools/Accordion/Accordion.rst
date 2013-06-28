@@ -30,6 +30,9 @@ Read-only properties
 .. autoattribute:: abjad.tools.instrumenttools.Accordion.Accordion.Accordion.default_instrument_name
    :noindex:
 
+.. autoattribute:: abjad.tools.instrumenttools.Accordion.Accordion.Accordion.default_performer_names
+   :noindex:
+
 .. autoattribute:: abjad.tools.instrumenttools.Accordion.Accordion.Accordion.default_short_instrument_name
    :noindex:
 
