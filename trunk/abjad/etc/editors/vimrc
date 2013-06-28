@@ -69,6 +69,16 @@ set wildmode=list:longest
 " alternate file
 map <leader>e :edit#<cr>
 
+" classfile navigation
+noremap <leader>nn ?###$<cr>
+noremap <leader>mm /###$<cr>
+noremap <leader>#C /CLASS<cr>
+noremap <leader>#I /INITIALIZER<cr>
+noremap <leader>#OM /PRIVATE METHODS<cr>
+noremap <leader>#OP /PRIVATE PROPERTIES<cr>
+noremap <leader>#PM /PUBLIC METHODS<cr>
+noremap <leader>#PP /PUBLIC PROPERTIES<cr>
+
 " debugging
 map <leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 
