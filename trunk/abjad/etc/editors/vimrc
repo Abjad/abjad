@@ -3,6 +3,7 @@
 
 autocmd! bufwritepost .vimrc source %
 call pathogen#infect()
+call pathogen#helptags()
 filetype off
 filetype plugin on
 syntax on
