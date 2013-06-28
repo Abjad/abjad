@@ -116,9 +116,6 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.BassClarinet.BassClarinet.BassClarinet.__copy__
    :noindex:
 
-.. automethod:: abjad.tools.instrumenttools.BassClarinet.BassClarinet.BassClarinet.__delattr__
-   :noindex:
-
 .. automethod:: abjad.tools.instrumenttools.BassClarinet.BassClarinet.BassClarinet.__eq__
    :noindex:
 

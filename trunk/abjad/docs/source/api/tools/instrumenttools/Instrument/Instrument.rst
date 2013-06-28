@@ -108,9 +108,6 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.Instrument.Instrument.Instrument.__copy__
    :noindex:
 
-.. automethod:: abjad.tools.instrumenttools.Instrument.Instrument.Instrument.__delattr__
-   :noindex:
-
 .. automethod:: abjad.tools.instrumenttools.Instrument.Instrument.Instrument.__eq__
    :noindex:
 

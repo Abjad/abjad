@@ -116,9 +116,6 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.AltoSaxophone.AltoSaxophone.AltoSaxophone.__copy__
    :noindex:
 
-.. automethod:: abjad.tools.instrumenttools.AltoSaxophone.AltoSaxophone.AltoSaxophone.__delattr__
-   :noindex:
-
 .. automethod:: abjad.tools.instrumenttools.AltoSaxophone.AltoSaxophone.AltoSaxophone.__eq__
    :noindex:
 

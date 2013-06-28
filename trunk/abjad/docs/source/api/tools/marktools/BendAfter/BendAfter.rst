@@ -50,9 +50,6 @@ Special methods
 .. automethod:: abjad.tools.marktools.BendAfter.BendAfter.BendAfter.__copy__
    :noindex:
 
-.. automethod:: abjad.tools.marktools.BendAfter.BendAfter.BendAfter.__delattr__
-   :noindex:
-
 .. automethod:: abjad.tools.marktools.BendAfter.BendAfter.BendAfter.__eq__
    :noindex:
 

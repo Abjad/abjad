@@ -112,9 +112,6 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.UntunedPercussion.UntunedPercussion.UntunedPercussion.__copy__
    :noindex:
 
-.. automethod:: abjad.tools.instrumenttools.UntunedPercussion.UntunedPercussion.UntunedPercussion.__delattr__
-   :noindex:
-
 .. automethod:: abjad.tools.instrumenttools.UntunedPercussion.UntunedPercussion.UntunedPercussion.__eq__
    :noindex:
 

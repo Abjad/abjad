@@ -112,9 +112,6 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.Harp.Harp.Harp.__copy__
    :noindex:
 
-.. automethod:: abjad.tools.instrumenttools.Harp.Harp.Harp.__delattr__
-   :noindex:
-
 .. automethod:: abjad.tools.instrumenttools.Harp.Harp.Harp.__eq__
    :noindex:
 

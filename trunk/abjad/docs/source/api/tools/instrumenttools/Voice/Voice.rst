@@ -110,9 +110,6 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.Voice.Voice.Voice.__copy__
    :noindex:
 
-.. automethod:: abjad.tools.instrumenttools.Voice.Voice.Voice.__delattr__
-   :noindex:
-
 .. automethod:: abjad.tools.instrumenttools.Voice.Voice.Voice.__eq__
    :noindex:
 

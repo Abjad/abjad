@@ -50,9 +50,6 @@ Special methods
 .. automethod:: abjad.tools.marktools.StemTremolo.StemTremolo.StemTremolo.__copy__
    :noindex:
 
-.. automethod:: abjad.tools.marktools.StemTremolo.StemTremolo.StemTremolo.__delattr__
-   :noindex:
-
 .. automethod:: abjad.tools.marktools.StemTremolo.StemTremolo.StemTremolo.__eq__
    :noindex:
 

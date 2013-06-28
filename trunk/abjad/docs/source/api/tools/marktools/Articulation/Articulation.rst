@@ -55,9 +55,6 @@ Special methods
 .. automethod:: abjad.tools.marktools.Articulation.Articulation.Articulation.__copy__
    :noindex:
 
-.. automethod:: abjad.tools.marktools.Articulation.Articulation.Articulation.__delattr__
-   :noindex:
-
 .. automethod:: abjad.tools.marktools.Articulation.Articulation.Articulation.__eq__
    :noindex:
 

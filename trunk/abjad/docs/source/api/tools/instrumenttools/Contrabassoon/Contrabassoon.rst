@@ -116,9 +116,6 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.Contrabassoon.Contrabassoon.Contrabassoon.__copy__
    :noindex:
 
-.. automethod:: abjad.tools.instrumenttools.Contrabassoon.Contrabassoon.Contrabassoon.__delattr__
-   :noindex:
-
 .. automethod:: abjad.tools.instrumenttools.Contrabassoon.Contrabassoon.Contrabassoon.__eq__
    :noindex:
 

@@ -58,9 +58,6 @@ Special methods
 .. automethod:: abjad.tools.marktools.BarLine.BarLine.BarLine.__copy__
    :noindex:
 
-.. automethod:: abjad.tools.marktools.BarLine.BarLine.BarLine.__delattr__
-   :noindex:
-
 .. automethod:: abjad.tools.marktools.BarLine.BarLine.BarLine.__eq__
    :noindex:
 

@@ -61,9 +61,6 @@ Special methods
 .. automethod:: abjad.tools.markuptools.Markup.Markup.Markup.__copy__
    :noindex:
 
-.. automethod:: abjad.tools.markuptools.Markup.Markup.Markup.__delattr__
-   :noindex:
-
 .. automethod:: abjad.tools.markuptools.Markup.Markup.Markup.__eq__
    :noindex:
 

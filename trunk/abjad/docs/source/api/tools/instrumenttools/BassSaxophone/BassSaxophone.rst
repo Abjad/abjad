@@ -116,9 +116,6 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.BassSaxophone.BassSaxophone.BassSaxophone.__copy__
    :noindex:
 
-.. automethod:: abjad.tools.instrumenttools.BassSaxophone.BassSaxophone.BassSaxophone.__delattr__
-   :noindex:
-
 .. automethod:: abjad.tools.instrumenttools.BassSaxophone.BassSaxophone.BassSaxophone.__eq__
    :noindex:
 

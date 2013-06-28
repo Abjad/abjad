@@ -116,9 +116,6 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.BFlatClarinet.BFlatClarinet.BFlatClarinet.__copy__
    :noindex:
 
-.. automethod:: abjad.tools.instrumenttools.BFlatClarinet.BFlatClarinet.BFlatClarinet.__delattr__
-   :noindex:
-
 .. automethod:: abjad.tools.instrumenttools.BFlatClarinet.BFlatClarinet.BFlatClarinet.__eq__
    :noindex:
 

@@ -112,9 +112,6 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.Tuba.Tuba.Tuba.__copy__
    :noindex:
 
-.. automethod:: abjad.tools.instrumenttools.Tuba.Tuba.Tuba.__delattr__
-   :noindex:
-
 .. automethod:: abjad.tools.instrumenttools.Tuba.Tuba.Tuba.__eq__
    :noindex:
 

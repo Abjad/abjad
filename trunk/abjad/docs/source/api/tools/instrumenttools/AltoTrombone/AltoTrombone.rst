@@ -114,9 +114,6 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.AltoTrombone.AltoTrombone.AltoTrombone.__copy__
    :noindex:
 
-.. automethod:: abjad.tools.instrumenttools.AltoTrombone.AltoTrombone.AltoTrombone.__delattr__
-   :noindex:
-
 .. automethod:: abjad.tools.instrumenttools.AltoTrombone.AltoTrombone.AltoTrombone.__eq__
    :noindex:
 

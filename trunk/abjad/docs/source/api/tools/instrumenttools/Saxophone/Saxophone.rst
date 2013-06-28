@@ -114,9 +114,6 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.Saxophone.Saxophone.Saxophone.__copy__
    :noindex:
 
-.. automethod:: abjad.tools.instrumenttools.Saxophone.Saxophone.Saxophone.__delattr__
-   :noindex:
-
 .. automethod:: abjad.tools.instrumenttools.Saxophone.Saxophone.Saxophone.__eq__
    :noindex:
 

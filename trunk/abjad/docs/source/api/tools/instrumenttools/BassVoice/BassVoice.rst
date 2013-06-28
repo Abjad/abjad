@@ -112,9 +112,6 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.BassVoice.BassVoice.BassVoice.__copy__
    :noindex:
 
-.. automethod:: abjad.tools.instrumenttools.BassVoice.BassVoice.BassVoice.__delattr__
-   :noindex:
-
 .. automethod:: abjad.tools.instrumenttools.BassVoice.BassVoice.BassVoice.__eq__
    :noindex:
 

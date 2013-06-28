@@ -112,9 +112,6 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.Marimba.Marimba.Marimba.__copy__
    :noindex:
 
-.. automethod:: abjad.tools.instrumenttools.Marimba.Marimba.Marimba.__delattr__
-   :noindex:
-
 .. automethod:: abjad.tools.instrumenttools.Marimba.Marimba.Marimba.__eq__
    :noindex:
 

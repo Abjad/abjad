@@ -112,9 +112,6 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.Vibraphone.Vibraphone.Vibraphone.__copy__
    :noindex:
 
-.. automethod:: abjad.tools.instrumenttools.Vibraphone.Vibraphone.Vibraphone.__delattr__
-   :noindex:
-
 .. automethod:: abjad.tools.instrumenttools.Vibraphone.Vibraphone.Vibraphone.__eq__
    :noindex:
 

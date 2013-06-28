@@ -7,17 +7,18 @@ class AbjadObject(object):
 
     Abstract base class from which all custom classes should inherit.
 
-    Abajd objects raise exceptions on ``__gt__``, ``__ge__``, ``__lt__``, ``__le__``.
+    Abajd objects raise exceptions on ``__gt__``, ``__ge__``, 
+    ``__lt__``, ``__le__``.
 
     Abjad objects compare equal only with equal object IDs.
-
-    Authors of custom classes should override these behaviors as required.
     '''
 
     ### CLASS VARIABLES ###
 
     _has_default_attribute_values = False
+
     __metaclass__ = abc.ABCMeta
+
     __slots__ = ()
 
     ### INITIALIZER ###
@@ -40,28 +41,32 @@ class AbjadObject(object):
 
         Raise exception.
         '''
-        raise NotImplementedError('Greater-equal not implemented on {!r}.'.format(expr))
+        message = 'Greater-equal not implemented on {!r}.'.format(expr)
+        raise NotImplementedError(message)
 
     def __gt__(self, expr):
         '''Abjad objects by default do not implement this method.
 
         Raise exception
         '''
-        raise NotImplementedError('Greater-than not implemented on {!r}.'.format(expr))
+        message = 'Greater-than not implemented on {!r}.'.format(expr)
+        raise NotImplementedError(message)
 
     def __le__(self, expr):
         '''Abjad objects by default do not implement this method.
 
         Raise exception.
         '''
-        raise NotImplementedError('Less-equal not implemented on {!r}.'.format(expr))
+        message = 'Less-equal not implemented on {!r}.'.format(expr)
+        raise NotImplementedError(message)
 
     def __lt__(self, expr):
         '''Abjad objects by default do not implement this method.
 
         Raise exception.
         '''
-        raise NotImplementedError('Less-than not implemented on {!r}.'.format(expr))
+        message = 'Less-than not implemented on {!r}.'.format(expr)
+        raise NotImplementedError(message)
 
     def __ne__(self, expr):
         '''Defined equal to the opposite of equality.
@@ -77,7 +82,7 @@ class AbjadObject(object):
         '''
         return '{}({})'.format(self._class_name, self._contents_repr_string)
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _class_name(self):
@@ -86,17 +91,20 @@ class AbjadObject(object):
     @property
     def _contents_repr_string(self):
         result = []
-        positional_argument_repr_string = self._positional_argument_repr_string
+        positional_argument_repr_string = \
+            self._positional_argument_repr_string
         if positional_argument_repr_string:
             result.append(positional_argument_repr_string)
-        keyword_argument_repr_string = ', '.join(self._keyword_argument_name_value_strings)
+        keyword_argument_repr_string = ', '.join(
+            self._keyword_argument_name_value_strings)
         if keyword_argument_repr_string:
             result.append(keyword_argument_repr_string)
         return ', '.join(result)
 
     @property
     def _input_argument_values(self):
-        return self._positional_argument_values + self._keyword_argument_values
+        return self._positional_argument_values + \
+            self._keyword_argument_values
 
     @property
     def _keyword_argument_dictionary(self):
@@ -110,12 +118,15 @@ class AbjadObject(object):
     def _keyword_argument_name_value_strings(self):
         from abjad.tools import introspectiontools
         result = []
+        tmp = introspectiontools.klass_to_tools_package_qualified_klass_name
         for name in self._keyword_argument_names:
             value = getattr(self, name)
             if value is not None:
                 # if the value is a class like Note (which is unusual)
-                if type(value) == abc.ABCMeta:
-                    value = introspectiontools.klass_to_tools_package_qualified_klass_name(value)
+                #if type(value) == abc.ABCMeta:
+                if type(value) is abc.ABCMeta:
+                    #value = introspectiontools.klass_to_tools_package_qualified_klass_name(value)
+                    value = tmp(value)
                     string = '{}={}'.format(name, value)
                     result.append(string)
                 elif not isinstance(value, types.MethodType):
@@ -155,15 +166,18 @@ class AbjadObject(object):
             else:
                 keyword_argument_count = 0
             initializer_code = initializer.func_code
-            positional_argument_count = (initializer_code.co_argcount - keyword_argument_count - 1)
+            positional_argument_count = (
+                initializer_code.co_argcount - keyword_argument_count - 1)
             start_index, stop_index = 1, 1 + positional_argument_count
             return initializer_code.co_varnames[start_index:stop_index]
         return ()
 
     @property
     def _positional_argument_repr_string(self):
-        positional_argument_repr_string = [repr(x) for x in self._positional_argument_values]
-        positional_argument_repr_string = ', '.join(positional_argument_repr_string)
+        positional_argument_repr_string = [
+            repr(x) for x in self._positional_argument_values]
+        positional_argument_repr_string = ', '.join(
+            positional_argument_repr_string)
         return positional_argument_repr_string
 
     @property
@@ -193,14 +207,15 @@ class AbjadObject(object):
 
     @property
     def _tools_package_qualified_indented_repr(self):
-        return '\n'.join(self._get_tools_package_qualified_repr_pieces(is_indented=True))
+        return '\n'.join(
+            self._get_tools_package_qualified_repr_pieces(is_indented=True))
 
     @property
     def _tools_package_qualified_repr(self):
-        repr_pieces = self._get_tools_package_qualified_repr_pieces(is_indented=False)
+        repr_pieces = self._get_tools_package_qualified_repr_pieces(
+            is_indented=False)
         return ''.join(repr_pieces)
 
-    # temporary alias to be removed after development
     @property
     def _z(self):
         return self._tools_package_qualified_indented_repr
@@ -242,13 +257,15 @@ class AbjadObject(object):
                 return ()
         return ()
 
-    def _get_tools_package_qualified_keyword_argument_repr_pieces(self, is_indented=True):
+    def _get_tools_package_qualified_keyword_argument_repr_pieces(
+        self, is_indented=True):
         from abjad.tools import introspectiontools
         result = []
         if is_indented:
             prefix, suffix = '\t', ','
         else:
             prefix, suffix = '', ', '
+        tmp = introspectiontools.klass_to_tools_package_qualified_klass_name
         for name in self._keyword_argument_names:
             if self._has_default_attribute_values:
                 private_keyword_argument_name = '_{}'.format(name)
@@ -259,44 +276,63 @@ class AbjadObject(object):
                 if not isinstance(value, types.MethodType):
                     # if value is noninstantiable class
                     if type(value) == abc.ABCMeta:
-                        value = introspectiontools.klass_to_tools_package_qualified_klass_name(value)
-                        result.append('{}{}={}{}'.format(prefix, name, value, suffix))
-                    elif hasattr(value, '_get_tools_package_qualified_repr_pieces'):
-                        pieces = value._get_tools_package_qualified_repr_pieces(is_indented=is_indented)
+                        #value = introspectiontools.klass_to_tools_package_qualified_klass_name(value)
+                        value = tmp(value)
+                        result.append('{}{}={}{}'.format(
+                            prefix, name, value, suffix))
+                    elif hasattr(
+                        value, '_get_tools_package_qualified_repr_pieces'):
+                        pieces = \
+                            value._get_tools_package_qualified_repr_pieces(
+                            is_indented=is_indented)
                         if len(pieces) == 1:
-                            result.append('{}{}={}{}'.format(prefix, name, pieces[0], suffix))
+                            result.append('{}{}={}{}'.format(
+                                prefix, name, pieces[0], suffix))
                         else:
                             assert 3 <= len(pieces)
-                            result.append('{}{}={}'.format(prefix, name, pieces[0]))
+                            result.append('{}{}={}'.format(
+                                prefix, name, pieces[0]))
                             for piece in pieces[1:-1]:
                                 result.append('{}{}'.format(prefix, piece))
-                            result.append('{}{}{}'.format(prefix, pieces[-1], suffix))
+                            result.append('{}{}{}'.format(
+                                prefix, pieces[-1], suffix))
                     elif hasattr(value, '_tools_package_name'):
                         result.append('{}{}={}.{!r}{}'.format(
-                            prefix, name, value._tools_package_name, value, suffix))
+                            prefix, 
+                            name, 
+                            value._tools_package_name, 
+                            value, 
+                            suffix,
+                            ))
                     else:
-                        result.append('{}{}={!r}{}'.format(prefix, name, value, suffix))
+                        result.append('{}{}={!r}{}'.format(
+                            prefix, name, value, suffix))
         return tuple(result)
 
-    def _get_tools_package_qualified_positional_argument_repr_pieces(self, is_indented=True):
+    def _get_tools_package_qualified_positional_argument_repr_pieces(
+        self, is_indented=True):
         from abjad.tools import introspectiontools
         result = []
         if is_indented:
             prefix, suffix = '\t', ','
         else:
             prefix, suffix = '', ', '
+        tmp = introspectiontools.klass_to_tools_package_qualified_klass_name
         for value in self._positional_argument_values:
             # if value is a (noninstantiated) class
             if type(value) == abc.ABCMeta:
-                value = introspectiontools.klass_to_tools_package_qualified_klass_name(value)
+                #value = introspectiontools.klass_to_tools_package_qualified_klass_name(value)
+                value = tmp(value)
                 result.append('{}{}{}'.format(prefix, value, suffix))
             elif hasattr(value, '_get_tools_package_qualified_repr_pieces'):
-                pieces = value._get_tools_package_qualified_repr_pieces(is_indented=is_indented)
+                pieces = value._get_tools_package_qualified_repr_pieces(
+                    is_indented=is_indented)
                 for piece in pieces[:-1]:
                     result.append('{}{}'.format(prefix, piece))
                 result.append('{}{}{}'.format(prefix, pieces[-1], suffix))
             elif hasattr(value, '_tools_package_name'):
-                result.append('{}{}.{!r}{}'.format(prefix, value._tools_package_name, value, suffix))
+                result.append('{}{}.{!r}{}'.format(
+                    prefix, value._tools_package_name, value, suffix))
             else:
                 result.append('{}{!r}{}'.format(prefix, value, suffix))
         return tuple(result)
@@ -305,16 +341,20 @@ class AbjadObject(object):
         result = []
         argument_repr_pieces = []
         argument_repr_pieces.extend(
-            self._get_tools_package_qualified_positional_argument_repr_pieces(is_indented=is_indented))
+            self._get_tools_package_qualified_positional_argument_repr_pieces(
+                is_indented=is_indented))
         argument_repr_pieces.extend(
-            self._get_tools_package_qualified_keyword_argument_repr_pieces(is_indented=is_indented))
+            self._get_tools_package_qualified_keyword_argument_repr_pieces(
+                is_indented=is_indented))
         if argument_repr_pieces:
             argument_repr_pieces[-1] = argument_repr_pieces[-1].rstrip(' ')
             argument_repr_pieces[-1] = argument_repr_pieces[-1].rstrip(',')
         if len(argument_repr_pieces) == 0:
-            result.append('{}()'.format(self._tools_package_qualified_class_name))
+            result.append('{}()'.format(
+                self._tools_package_qualified_class_name))
         else:
-            result.append('{}('.format(self._tools_package_qualified_class_name))
+            result.append('{}('.format(
+                self._tools_package_qualified_class_name))
             result.extend(argument_repr_pieces)
             if is_indented:
                 result.append('\t)')
@@ -322,7 +362,7 @@ class AbjadObject(object):
                 result.append(')')
         return tuple(result)
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def storage_format(self):

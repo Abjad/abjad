@@ -76,9 +76,6 @@ Special methods
 .. automethod:: abjad.tools.contexttools.TempoMark.TempoMark.TempoMark.__copy__
    :noindex:
 
-.. automethod:: abjad.tools.contexttools.TempoMark.TempoMark.TempoMark.__delattr__
-   :noindex:
-
 .. automethod:: abjad.tools.contexttools.TempoMark.TempoMark.TempoMark.__div__
    :noindex:
 

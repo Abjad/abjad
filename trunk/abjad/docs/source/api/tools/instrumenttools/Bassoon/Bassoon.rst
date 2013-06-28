@@ -114,9 +114,6 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.Bassoon.Bassoon.Bassoon.__copy__
    :noindex:
 
-.. automethod:: abjad.tools.instrumenttools.Bassoon.Bassoon.Bassoon.__delattr__
-   :noindex:
-
 .. automethod:: abjad.tools.instrumenttools.Bassoon.Bassoon.Bassoon.__eq__
    :noindex:
 

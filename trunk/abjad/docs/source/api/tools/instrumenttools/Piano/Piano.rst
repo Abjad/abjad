@@ -112,9 +112,6 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.Piano.Piano.Piano.__copy__
    :noindex:
 
-.. automethod:: abjad.tools.instrumenttools.Piano.Piano.Piano.__delattr__
-   :noindex:
-
 .. automethod:: abjad.tools.instrumenttools.Piano.Piano.Piano.__eq__
    :noindex:
 

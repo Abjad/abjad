@@ -1,5 +1,4 @@
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from abjad.tools.componenttools.Component import Component
 
 
 class Mark(AbjadObject):
@@ -64,17 +63,22 @@ class Mark(AbjadObject):
         new.format_slot = self.format_slot
         return new
 
-    def __delattr__(self, *args):
-        message = 'can not delete {} attributes.'.format(self._class_name)
-        raise AttributeError(message)
+#    def __delattr__(self, *args):
+#        message = 'can not delete {} attributes.'.format(self._class_name)
+#        raise AttributeError(message)
 
-    def __eq__(self, arg):
-        if isinstance(arg, type(self)):
+    def __eq__(self, expr):
+        '''True when `expr` is the same type as self.
+        Otherwise false.
+
+        Return boolean.
+        '''
+        if isinstance(expr, type(self)):
             return True
         return False
 
-    def __ne__(self, arg):
-        return not self == arg
+    def __ne__(self, expr):
+        return not self == expr
 
     def __repr__(self):
         return '%s(%s)%s' % (type(self).__name__,
@@ -96,8 +100,9 @@ class Mark(AbjadObject):
     ### PRIVATE METHODS ###
 
     def _bind_start_component(self, start_component):
+        from abjad.tools import componenttools
         #print 'binding MARK to start component ...'
-        assert isinstance(start_component, Component)
+        assert isinstance(start_component, componenttools.Component)
         self._unbind_start_component()
         start_component._marks_for_which_component_functions_as_start_component.append(self)
         self._start_component = start_component

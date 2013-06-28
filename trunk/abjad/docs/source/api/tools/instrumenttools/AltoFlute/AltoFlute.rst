@@ -114,9 +114,6 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.AltoFlute.AltoFlute.AltoFlute.__copy__
    :noindex:
 
-.. automethod:: abjad.tools.instrumenttools.AltoFlute.AltoFlute.AltoFlute.__delattr__
-   :noindex:
-
 .. automethod:: abjad.tools.instrumenttools.AltoFlute.AltoFlute.AltoFlute.__eq__
    :noindex:
 

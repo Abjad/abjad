@@ -114,9 +114,6 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.BassTrombone.BassTrombone.BassTrombone.__copy__
    :noindex:
 
-.. automethod:: abjad.tools.instrumenttools.BassTrombone.BassTrombone.BassTrombone.__delattr__
-   :noindex:
-
 .. automethod:: abjad.tools.instrumenttools.BassTrombone.BassTrombone.BassTrombone.__eq__
    :noindex:
 

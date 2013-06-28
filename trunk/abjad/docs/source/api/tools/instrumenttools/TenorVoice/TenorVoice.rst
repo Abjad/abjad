@@ -112,9 +112,6 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.TenorVoice.TenorVoice.TenorVoice.__copy__
    :noindex:
 
-.. automethod:: abjad.tools.instrumenttools.TenorVoice.TenorVoice.TenorVoice.__delattr__
-   :noindex:
-
 .. automethod:: abjad.tools.instrumenttools.TenorVoice.TenorVoice.TenorVoice.__eq__
    :noindex:
 

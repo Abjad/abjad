@@ -112,9 +112,6 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.DoubleReedInstrument.DoubleReedInstrument.DoubleReedInstrument.__copy__
    :noindex:
 
-.. automethod:: abjad.tools.instrumenttools.DoubleReedInstrument.DoubleReedInstrument.DoubleReedInstrument.__delattr__
-   :noindex:
-
 .. automethod:: abjad.tools.instrumenttools.DoubleReedInstrument.DoubleReedInstrument.DoubleReedInstrument.__eq__
    :noindex:
 

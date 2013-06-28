@@ -110,9 +110,6 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.KeyboardInstrument.KeyboardInstrument.KeyboardInstrument.__copy__
    :noindex:
 
-.. automethod:: abjad.tools.instrumenttools.KeyboardInstrument.KeyboardInstrument.KeyboardInstrument.__delattr__
-   :noindex:
-
 .. automethod:: abjad.tools.instrumenttools.KeyboardInstrument.KeyboardInstrument.KeyboardInstrument.__eq__
    :noindex:
 

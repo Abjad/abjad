@@ -112,9 +112,6 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.Violin.Violin.Violin.__copy__
    :noindex:
 
-.. automethod:: abjad.tools.instrumenttools.Violin.Violin.Violin.__delattr__
-   :noindex:
-
 .. automethod:: abjad.tools.instrumenttools.Violin.Violin.Violin.__eq__
    :noindex:
 

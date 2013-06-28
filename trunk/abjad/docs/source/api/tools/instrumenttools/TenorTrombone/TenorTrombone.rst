@@ -114,9 +114,6 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone.__copy__
    :noindex:
 
-.. automethod:: abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone.__delattr__
-   :noindex:
-
 .. automethod:: abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone.__eq__
    :noindex:
 

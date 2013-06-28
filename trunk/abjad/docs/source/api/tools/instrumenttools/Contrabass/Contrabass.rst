@@ -112,9 +112,6 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.Contrabass.Contrabass.Contrabass.__copy__
    :noindex:
 
-.. automethod:: abjad.tools.instrumenttools.Contrabass.Contrabass.Contrabass.__delattr__
-   :noindex:
-
 .. automethod:: abjad.tools.instrumenttools.Contrabass.Contrabass.Contrabass.__eq__
    :noindex:
 

@@ -114,9 +114,6 @@ Special methods
 .. automethod:: abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute.__copy__
    :noindex:
 
-.. automethod:: abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute.__delattr__
-   :noindex:
-
 .. automethod:: abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute.__eq__
    :noindex:
 
