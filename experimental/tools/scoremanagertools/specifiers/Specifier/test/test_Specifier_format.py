@@ -1,4 +1,5 @@
-from experimental.tools.scoremanagertools.specifiers.Specifier import Specifier
+from experimental.tools.scoremanagertools.specifiers.Specifier \
+	import Specifier
 from experimental import *
 
 

@@ -2,7 +2,8 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
 from abjad.tools import timespantools
-from experimental.tools.musicexpressiontools.CallbackMixin import CallbackMixin
+from experimental.tools.musicexpressiontools.CallbackMixin \
+	import CallbackMixin
 
 
 class IterablePayloadCallbackMixin(CallbackMixin):

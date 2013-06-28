@@ -1,4 +1,5 @@
-from experimental.tools.newabjadbooktools.DocumentHandler import DocumentHandler
+from experimental.tools.newabjadbooktools.DocumentHandler \
+	import DocumentHandler
 
 
 class DoctreeDocumentHandler(DocumentHandler):

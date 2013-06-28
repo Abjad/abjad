@@ -1,6 +1,7 @@
 import re
 from abjad.tools import *
-from experimental.tools.musicexpressiontools.Specification import Specification
+from experimental.tools.musicexpressiontools.Specification \
+	import Specification
 
 
 class ScoreSpecification(Specification):

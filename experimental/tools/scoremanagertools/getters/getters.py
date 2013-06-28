@@ -1,4 +1,5 @@
-from experimental.tools.scoremanagertools.io.UserInputGetter import UserInputGetter
+from experimental.tools.scoremanagertools.io.UserInputGetter \
+	import UserInputGetter
 
 
 def get_articulation(space_delimited_attribute_name, session=None, prepopulated_value=None, allow_none=True):
