@@ -1,15 +1,27 @@
-from abjad.tools.contexttools.ContextMark import ContextMark
 from abjad.tools import stringtools
+from abjad.tools.contexttools.ContextMark import ContextMark
 
 
-# Note that instruments are the classes in the system that implement default attribute values.
+# Note that instruments are the classes in the system that 
+# implement default attribute values.
+#
 # That means that three things are true.
-# First, all instruments come supplied with a default name and a default short instrument name.
-# Second, all instruments allow users to override both instrument name and short instrument name.
-# Third, all instruments 'remember' default values when such values are overridden.
-# When all three of these things are the case we talk about a class implementing default attribute values.
+#
+# First, all instruments come supplied with a default name and 
+# a default short instrument name.
+#
+# Second, all instruments allow users to override both instrument name 
+# and short instrument name.
+#
+# Third, all instruments 'remember' default values 
+# when such values are overridden.
+#
+# When all three of these things are the case we talk about a class 
+# implementing default attribute values.
+#
 # This is the meaning of the '_has_default_attribute_values' class attribute.
-# The impact this currently has in the system concerns the _storage_format of such objects.
+# The impact this currently has in the system concerns the 
+# storage format of such objects.
 class InstrumentMark(ContextMark):
     r'''.. versionadded:: 2.0
 
@@ -52,15 +64,19 @@ class InstrumentMark(ContextMark):
     ### INITIALIZER ###
 
     def __init__(self,
-        instrument_name,
-        short_instrument_name,
+#        instrument_name,
+#        short_instrument_name,
+        instrument_name=None,
+        short_instrument_name=None,
         instrument_name_markup=None,
         short_instrument_name_markup=None,
-        target_context=None):
+        target_context=None,
+        ):
         from abjad.tools.stafftools.Staff import Staff
+        target_context = target_context or Staff
         ContextMark.__init__(self, target_context=target_context)
-        if self.target_context is None:
-            self._target_context = Staff
+#        if self.target_context is None:
+#            self._target_context = Staff
         self._default_instrument_name = None
         self._default_instrument_name_markup = None
         self._default_short_instrument_name = None
@@ -73,8 +89,11 @@ class InstrumentMark(ContextMark):
     ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
-        return type(self)(self._instrument_name_markup, self._short_instrument_name_markup,
-            target_context = self.target_context)
+        return type(self)(
+            instrument_name_markup=self._instrument_name_markup, 
+            short_instrument_name_markup=self._short_instrument_name_markup,
+            target_context=self.target_context,
+            )
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):
@@ -84,7 +103,11 @@ class InstrumentMark(ContextMark):
         return False
 
     def __hash__(self):
-        return hash((type(self).__name__, self.instrument_name, self.short_instrument_name))
+        return hash((
+            type(self).__name__, 
+            self.instrument_name, 
+            self.short_instrument_name,
+            ))
 
     ### PRIVATE PROPERTIES ###
 
@@ -92,14 +115,18 @@ class InstrumentMark(ContextMark):
     def _contents_repr_string(self):
         result = []
         for keyword_argument_name in self._keyword_argument_names:
-            private_keyword_argument_name = '_{}'.format(keyword_argument_name)
-            private_keyword_argument_value = getattr(self, private_keyword_argument_name, None)
+            private_keyword_argument_name = '_{}'.format(
+                keyword_argument_name)
+            private_keyword_argument_value = \
+                getattr(self, private_keyword_argument_name, None)
             if private_keyword_argument_value is not None:
-                string = '{}={!r}'.format(keyword_argument_name, private_keyword_argument_value)
+                string = '{}={!r}'.format(
+                    keyword_argument_name, private_keyword_argument_value)
                 result.append(string)
         result = ', '.join(result)
         return result
 
+    # TODO: remove in favor of all subclass inits implementing only keywords
     @property
     def _keyword_argument_names(self):
         return (
@@ -113,7 +140,7 @@ class InstrumentMark(ContextMark):
     def _one_line_menuing_summary(self):
         return self.instrument_name
 
-    # will probably need to change definition at some point #
+    # will probably need to change definition at some point
     @property
     def _target_context_name(self):
         return self.target_context.__name__
@@ -122,7 +149,7 @@ class InstrumentMark(ContextMark):
 
     @property
     def default_instrument_name(self):
-        r'''Read-only default instrument name.
+        r'''Default instrument name.
 
         Return string.
         '''
@@ -130,7 +157,7 @@ class InstrumentMark(ContextMark):
 
     @property
     def default_short_instrument_name(self):
-        r'''Read-only default short instrument name.
+        r'''Default short instrument name.
 
         Return string.
         '''
@@ -169,7 +196,7 @@ class InstrumentMark(ContextMark):
     @apply
     def instrument_name_markup():
         def fget(self):
-            r'''Get instrument name:
+            r'''Get instrument name markup:
 
             ::
 
@@ -177,7 +204,7 @@ class InstrumentMark(ContextMark):
                 >>> instrument.instrument_name_markup
                 Markup(('Flute',))
 
-            Set instrument name:
+            Set instrument name markup:
 
             ::
 
@@ -203,7 +230,7 @@ class InstrumentMark(ContextMark):
 
     @property
     def lilypond_format(self):
-        '''Read-only LilyPond input format of instrument mark:
+        '''LilyPond format:
 
         ::
 
@@ -254,7 +281,7 @@ class InstrumentMark(ContextMark):
     @apply
     def short_instrument_name_markup():
         def fget(self):
-            r'''Get short instrument name:
+            r'''Get short instrument name markup:
 
             ::
 
@@ -262,7 +289,7 @@ class InstrumentMark(ContextMark):
                 >>> instrument.short_instrument_name_markup
                 Markup(('Fl.',))
 
-            Set short instrument name:
+            Set short instrument name markup:
 
             ::
 
