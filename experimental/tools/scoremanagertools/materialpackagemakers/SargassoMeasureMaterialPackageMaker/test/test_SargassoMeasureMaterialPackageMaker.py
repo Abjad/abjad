@@ -2,7 +2,8 @@ from experimental import *
 
 
 def test_SargassoMeasureMaterialPackageMaker_01():
-    '''Empty wrapper.'''
+    '''Empty wrapper.
+    '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     assert not score_manager.configuration.packagesystem_path_exists(
@@ -32,7 +33,8 @@ def test_SargassoMeasureMaterialPackageMaker_01():
 
 
 def test_SargassoMeasureMaterialPackageMaker_02():
-    '''Load demo values.'''
+    '''Load demo values.
+    '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     assert not score_manager.configuration.packagesystem_path_exists(
@@ -64,7 +66,8 @@ def test_SargassoMeasureMaterialPackageMaker_02():
 
 
 def test_SargassoMeasureMaterialPackageMaker_03():
-    '''Load demo values and then clear all.'''
+    '''Load demo values and then clear all.
+    '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     assert not score_manager.configuration.packagesystem_path_exists(
@@ -95,7 +98,8 @@ def test_SargassoMeasureMaterialPackageMaker_03():
 
 
 def test_SargassoMeasureMaterialPackageMaker_04():
-    '''Edit one value.'''
+    '''Edit one value.
+    '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     assert not score_manager.configuration.packagesystem_path_exists(
@@ -126,7 +130,8 @@ def test_SargassoMeasureMaterialPackageMaker_04():
 
 
 def test_SargassoMeasureMaterialPackageMaker_05():
-    '''Populate wrapper.'''
+    '''Populate wrapper.
+    '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     assert not score_manager.configuration.packagesystem_path_exists(
@@ -158,7 +163,8 @@ def test_SargassoMeasureMaterialPackageMaker_05():
 
 
 def test_SargassoMeasureMaterialPackageMaker_06():
-    '''Partial population.'''
+    '''Partial population.
+    '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     assert not score_manager.configuration.packagesystem_path_exists(
@@ -190,7 +196,8 @@ def test_SargassoMeasureMaterialPackageMaker_06():
 
 
 def test_SargassoMeasureMaterialPackageMaker_07():
-    '''Set some values to none.'''
+    '''Set some values to none.
+    '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     assert not score_manager.configuration.packagesystem_path_exists(
@@ -221,7 +228,8 @@ def test_SargassoMeasureMaterialPackageMaker_07():
 
 
 def test_SargassoMeasureMaterialPackageMaker_08():
-    '''Make output from demo values.'''
+    '''Make output from demo values.
+    '''
 
     score_manager = scoremanagertools.scoremanager.ScoreManager()
     assert not score_manager.configuration.packagesystem_path_exists(

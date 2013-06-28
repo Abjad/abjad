@@ -43,7 +43,8 @@ class DocumentHandler(AbjadObject):
 
     @property
     def asset_output_proxies(self):
-        '''All asset output proxies.'''
+        '''All asset output proxies.
+        '''
         result = []
         for code_block in self.source_to_code_block_mapping.iteritems():
             for output_proxy in code_block.output_proxies:
@@ -58,7 +59,8 @@ class DocumentHandler(AbjadObject):
 
     @property
     def console(self):
-        '''Interactive console.'''
+        '''Interactive console.
+        '''
         return self._console
 
     @property
