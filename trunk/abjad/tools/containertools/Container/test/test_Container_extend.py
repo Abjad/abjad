@@ -123,7 +123,8 @@ def test_Container_extend_06():
 
 
 def test_Container_extend_07():
-    '''Extend container with partial and spanned contents of other container.'''
+    '''Extend container with partial and spanned contents of other container.
+    '''
 
     t = Voice("c'8 d'8")
     beamtools.BeamSpanner(t[:])

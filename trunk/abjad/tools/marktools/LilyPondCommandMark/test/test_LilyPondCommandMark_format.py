@@ -38,7 +38,8 @@ def test_LilyPondCommandMark_format_02():
 
 
 def test_LilyPondCommandMark_format_03():
-    '''Barline after leaf.'''
+    '''Barline after leaf.
+    '''
 
     t = Note("c'4")
     marktools.LilyPondCommandMark(r'break', 'after')(t)
@@ -52,7 +53,8 @@ def test_LilyPondCommandMark_format_03():
 
 
 def test_LilyPondCommandMark_format_04():
-    '''Barline at container closing.'''
+    '''Barline at container closing.
+    '''
 
     t = Staff()
     marktools.LilyPondCommandMark(r'break')(t)
@@ -67,7 +69,8 @@ def test_LilyPondCommandMark_format_04():
 
 
 def test_LilyPondCommandMark_format_05():
-    '''Add a natural harmonic.'''
+    '''Add a natural harmonic.
+    '''
 
     t = Note("c'4")
     marktools.LilyPondCommandMark('flageolet', 'right')(t)
@@ -75,7 +78,8 @@ def test_LilyPondCommandMark_format_05():
 
 
 def test_LilyPondCommandMark_format_06():
-    '''Add and then remove natural harmonic.'''
+    '''Add and then remove natural harmonic.
+    '''
 
     t = Note("c'4")
     marktools.LilyPondCommandMark('flageolet', 'right')(t)
@@ -114,7 +118,8 @@ def test_LilyPondCommandMark_format_08():
 
 
 def test_LilyPondCommandMark_format_09():
-    '''Voice number can be set on leaves.'''
+    '''Voice number can be set on leaves.
+    '''
 
     t = Voice(notetools.make_repeated_notes(4))
     marktools.LilyPondCommandMark('voiceOne')(t[0])

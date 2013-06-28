@@ -252,7 +252,8 @@ class MeasurewiseQSchema(QSchema):
 
     @property
     def item_klass(self):
-        '''The schema's item class.'''
+        '''The schema's item class.
+        '''
         from abjad.tools import quantizationtools
         return quantizationtools.MeasurewiseQSchemaItem
 
@@ -268,10 +269,12 @@ class MeasurewiseQSchema(QSchema):
 
     @property
     def time_signature(self):
-        '''The default time signature.'''
+        '''The default time signature.
+        '''
         return self._time_signature
 
     @property
     def use_full_measure(self):
-        '''The full-measure-as-beatspan default.'''
+        '''The full-measure-as-beatspan default.
+        '''
         return self._use_full_measure

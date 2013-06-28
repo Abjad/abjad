@@ -2,7 +2,8 @@ from abjad import *
 
 
 def test_measuretools_fuse_contiguous_measures_in_container_cyclically_by_counts_01():
-    '''Docs.'''
+    '''Docs.
+    '''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 5)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
@@ -69,7 +70,8 @@ def test_measuretools_fuse_contiguous_measures_in_container_cyclically_by_counts
 
 
 def test_measuretools_fuse_contiguous_measures_in_container_cyclically_by_counts_02():
-    '''Docs.'''
+    '''Docs.
+    '''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 5)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)

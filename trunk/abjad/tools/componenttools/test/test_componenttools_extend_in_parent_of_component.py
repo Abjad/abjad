@@ -25,7 +25,8 @@ def test_componenttools_extend_in_parent_of_component_01():
 
 
 def test_componenttools_extend_in_parent_of_component_02():
-    '''Splice leaf after interior leaf.'''
+    '''Splice leaf after interior leaf.
+    '''
 
     t = Voice("c'8 d'8 e'8")
     beamtools.BeamSpanner(t[:])
@@ -47,7 +48,8 @@ def test_componenttools_extend_in_parent_of_component_02():
 
 
 def test_componenttools_extend_in_parent_of_component_03():
-    '''Splice tuplet after tuplet.'''
+    '''Splice tuplet after tuplet.
+    '''
 
     t = Voice([tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")])
     beamtools.BeamSpanner(t[0])
@@ -75,7 +77,8 @@ def test_componenttools_extend_in_parent_of_component_03():
 
 
 def test_componenttools_extend_in_parent_of_component_04():
-    '''Splice after container with underspanners.'''
+    '''Splice after container with underspanners.
+    '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
     beamtools.BeamSpanner(t.leaves)
@@ -102,7 +105,8 @@ def test_componenttools_extend_in_parent_of_component_04():
 
 
 def test_componenttools_extend_in_parent_of_component_05():
-    '''Extend leaves rightwards after leaf.'''
+    '''Extend leaves rightwards after leaf.
+    '''
 
     t = Voice("c'8 d'8 e'8")
     beamtools.BeamSpanner(t[:])
@@ -126,7 +130,8 @@ def test_componenttools_extend_in_parent_of_component_05():
 
 
 def test_componenttools_extend_in_parent_of_component_06():
-    '''Extend leaf rightwards after interior leaf.'''
+    '''Extend leaf rightwards after interior leaf.
+    '''
 
     t = Voice("c'8 d'8 e'8")
     beamtools.BeamSpanner(t[:])

@@ -20,7 +20,8 @@ def test_Mode___eq___01():
 
 
 def test_Mode___eq___02():
-    '''Synonym modes do not compare equal, by definition.'''
+    '''Synonym modes do not compare equal, by definition.
+    '''
 
     major = tonalitytools.Mode('major')
     ionian = tonalitytools.Mode('ionian')

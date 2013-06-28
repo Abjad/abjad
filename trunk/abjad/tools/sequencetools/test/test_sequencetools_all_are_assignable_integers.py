@@ -24,6 +24,7 @@ def test_sequencetools_all_are_assignable_integers_03():
 
 
 def test_sequencetools_all_are_assignable_integers_04():
-    '''False when expr is not a sequence.'''
+    '''False when expr is not a sequence.
+    '''
 
     assert not sequencetools.all_are_assignable_integers(16)

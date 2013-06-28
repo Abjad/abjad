@@ -44,7 +44,8 @@ class NumberedChromaticPitchClass(PitchClass):
         return self._chromatic_pitch_class_number
 
     def __add__(self, arg):
-        '''Addition defined against melodic chromatic intervals only.'''
+        '''Addition defined against melodic chromatic intervals only.
+        '''
         from abjad.tools import pitchtools
         if not isinstance(arg, pitchtools.MelodicChromaticInterval):
             raise TypeError('must be melodic chromatic interval.')
@@ -87,20 +88,24 @@ class NumberedChromaticPitchClass(PitchClass):
     ### PUBLIC METHODS ###
 
     def apply_accidental(self, accidental=None):
-        '''Emit new numbered chromatic pitch-class as sum of self and accidental.'''
+        '''Emit new numbered chromatic pitch-class as sum of self and accidental.
+        '''
         from abjad.tools import pitchtools
         accidental = pitchtools.Accidental(accidental)
         semitones = abs(self) + accidental.semitones
         return type(self)(semitones)
 
     def invert(self):
-        '''Invert pitch-class.'''
+        '''Invert pitch-class.
+        '''
         return type(self)(12 - abs(self))
 
     def multiply(self, n):
-        '''Multiply pitch-class by n.'''
+        '''Multiply pitch-class by n.
+        '''
         return type(self)(abs(self) * n)
 
     def transpose(self, n):
-        '''Transpose pitch-class by n.'''
+        '''Transpose pitch-class by n.
+        '''
         return type(self)(abs(self) + n)

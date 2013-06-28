@@ -6,7 +6,8 @@ from abjad.tools import quantizationtools
 
 
 def test_quantizationtools_tempo_scaled_durations_to_q_events_01():
-    '''Test basic functionality.'''
+    '''Test basic functionality.
+    '''
 
     durations = [durationtools.Duration(x) for x in [(1, 4), (1, 3), (1, 7), (2, 5), (3, 4)]]
     tempo = contexttools.TempoMark((1, 4), 55)
@@ -40,7 +41,8 @@ def test_quantizationtools_tempo_scaled_durations_to_q_events_01():
 
 
 def test_quantizationtools_tempo_scaled_durations_to_q_events_02():
-    '''Silences are fused.'''
+    '''Silences are fused.
+    '''
 
     durations = [durationtools.Duration(x) for x in
         [(1, 4), (-1, 4), (1, 4), (1, 4), (-1, 4), (-1, 4), (1, 4)]]

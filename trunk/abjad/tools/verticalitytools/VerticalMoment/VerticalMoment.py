@@ -156,7 +156,8 @@ class VerticalMoment(Selection):
 
     @property
     def next_vertical_moment(self):
-        '''Read-only reference to next vertical moment forward in time.'''
+        '''Read-only reference to next vertical moment forward in time.
+        '''
         from abjad.tools import verticalitytools
         candidate_shortest_leaf = self.leaves[0]
         for leaf in self.leaves[1:]:
@@ -168,7 +169,8 @@ class VerticalMoment(Selection):
 
     @property
     def next_vertical_moment(self):
-        '''Read-only reference to next vertical moment forward in time.'''
+        '''Read-only reference to next vertical moment forward in time.
+        '''
         from abjad.tools import verticalitytools
         candidate_shortest_leaf = self.leaves[0]
         for leaf in self.leaves[1:]:
@@ -233,7 +235,8 @@ class VerticalMoment(Selection):
 
     @property
     def previous_vertical_moment(self):
-        '''Read-only reference to prev vertical moment backward in time.'''
+        '''Read-only reference to prev vertical moment backward in time.
+        '''
         from abjad.tools import verticalitytools
         if self.offset == 0:
             raise IndexError

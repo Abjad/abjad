@@ -2,7 +2,8 @@ from abjad import *
 
 
 def test_beamtools_apply_multipart_beam_spanner_to_bottommost_tuplets_in_expr_01():
-    '''Beam nonnested tuplets.'''
+    '''Beam nonnested tuplets.
+    '''
 
     t = Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
@@ -28,7 +29,8 @@ def test_beamtools_apply_multipart_beam_spanner_to_bottommost_tuplets_in_expr_01
 
 
 def test_beamtools_apply_multipart_beam_spanner_to_bottommost_tuplets_in_expr_02():
-    '''Beam bottommost nested tuplets.'''
+    '''Beam bottommost nested tuplets.
+    '''
 
 
     inner = tuplettools.FixedDurationTuplet(Duration(2, 16), notetools.make_repeated_notes(3, Fraction(1, 16)))

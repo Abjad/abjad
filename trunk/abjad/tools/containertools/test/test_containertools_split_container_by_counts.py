@@ -56,7 +56,8 @@ def test_containertools_split_container_by_counts_01():
 
 
 def test_containertools_split_container_by_counts_02():
-    '''Cyclic by [1] splits all elements in container.'''
+    '''Cyclic by [1] splits all elements in container.
+    '''
 
     t = Voice([Container("c'8 d'8 e'8 f'8")])
     beamtools.BeamSpanner(t[0])
@@ -151,7 +152,8 @@ def test_containertools_split_container_by_counts_03():
 
 
 def test_containertools_split_container_by_counts_04():
-    '''Cyclic by [1] splits all elements in container.'''
+    '''Cyclic by [1] splits all elements in container.
+    '''
 
     t = Voice([Container("c'8 d'8 e'8 f'8")])
     beamtools.BeamSpanner(t[0])

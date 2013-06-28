@@ -2,7 +2,8 @@ from abjad import *
 
 
 def test_Spanner___getitem___01():
-    '''Get at nonnegative index in spanner.'''
+    '''Get at nonnegative index in spanner.
+    '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
@@ -29,7 +30,8 @@ def test_Spanner___getitem___01():
 
 
 def test_Spanner___getitem___02():
-    '''Get at negative index in spanner.'''
+    '''Get at negative index in spanner.
+    '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
@@ -56,7 +58,8 @@ def test_Spanner___getitem___02():
 
 
 def test_Spanner___getitem___03():
-    '''Get slice from spanner.'''
+    '''Get slice from spanner.
+    '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)

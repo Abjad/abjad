@@ -510,7 +510,8 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___23():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___24():
-    '''Notehead styles are handled just like all other grob overrides.'''
+    '''Notehead styles are handled just like all other grob overrides.
+    '''
 
     t = Note(1, (1, 4))
     t.override.note_head.style = 'mystrangehead'
@@ -542,7 +543,8 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___25():
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___26():
-    '''Notehead shape style overrides are just normal grob overrides.'''
+    '''Notehead shape style overrides are just normal grob overrides.
+    '''
 
     t = Note(1, (1, 4))
     t.override.note_head.style = 'triangle'

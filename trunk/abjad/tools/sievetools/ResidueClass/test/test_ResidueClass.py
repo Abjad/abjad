@@ -6,13 +6,15 @@ import py.test
 RC = ResidueClass
 
 def test_ResidueClass_01():
-    '''modulo must be positive.'''
+    '''modulo must be positive.
+    '''
 
     py.test.raises(ValueError, 't = RC(0, 1)')
 
 
 def test_ResidueClass_02():
-    '''residue must be non-negative and < modulo.'''
+    '''residue must be non-negative and < modulo.
+    '''
 
     py.test.raises(ValueError, 't = RC(2, 13)')
     py.test.raises(ValueError, 't = RC(2, 2)')
@@ -20,7 +22,8 @@ def test_ResidueClass_02():
 
 
 def test_ResidueClass_03():
-    '''modulo may be 1.'''
+    '''modulo may be 1.
+    '''
 
     t = RC(1, 0)
 

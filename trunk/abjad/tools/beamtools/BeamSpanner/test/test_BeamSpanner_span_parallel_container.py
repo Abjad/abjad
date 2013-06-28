@@ -3,7 +3,8 @@ import py.test
 
 
 def test_BeamSpanner_span_parallel_container_01():
-    '''Abjad spanners will not inspect the contents of parallel containers.'''
+    '''Abjad spanners will not inspect the contents of parallel containers.
+    '''
 
     t = Container([])
     t.is_parallel = True
@@ -16,7 +17,8 @@ def test_BeamSpanner_span_parallel_container_01():
 
 
 def test_BeamSpanner_span_parallel_container_02():
-    '''Nonempty spanned parallel container.'''
+    '''Nonempty spanned parallel container.
+    '''
 
     t = Container(Voice(notetools.make_repeated_notes(4)) * 2)
     t.is_parallel = True
@@ -76,7 +78,8 @@ def test_BeamSpanner_span_parallel_container_03():
     '''
 
 def test_BeamSpanner_span_parallel_container_04():
-    '''Abjad forbids but LilyPond is happy.'''
+    '''Abjad forbids but LilyPond is happy.
+    '''
 
     t = Staff(notetools.make_repeated_notes(4))
     new = Container(Voice(notetools.make_repeated_notes(4)) * 2)

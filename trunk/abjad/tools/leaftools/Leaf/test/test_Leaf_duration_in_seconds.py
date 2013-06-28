@@ -3,7 +3,8 @@ import py.test
 
 
 def test_Leaf_duration_in_seconds_01():
-    '''Clock duration equals prolated duration divide by effective tempo.'''
+    '''Clock duration equals prolated duration divide by effective tempo.
+    '''
 
     t = Staff("c'8 d'8 e'8 f'8")
     contexttools.TempoMark(Duration(1, 4), 38)(t)
@@ -28,7 +29,8 @@ def test_Leaf_duration_in_seconds_01():
 
 
 def test_Leaf_duration_in_seconds_02():
-    '''Clock duration can not calculate without tempo.'''
+    '''Clock duration can not calculate without tempo.
+    '''
 
     t = Note("c'4")
     assert py.test.raises(MissingTempoError, 't.duration_in_seconds')

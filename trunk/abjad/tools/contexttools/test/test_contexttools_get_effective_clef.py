@@ -90,7 +90,8 @@ def test_contexttools_get_effective_clef_06():
 
 
 def test_contexttools_get_effective_clef_07():
-    '''Clefs with transposition are allowed and work as expected.'''
+    '''Clefs with transposition are allowed and work as expected.
+    '''
 
     t = Staff(notetools.make_repeated_notes(8))
     pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
@@ -117,7 +118,8 @@ def test_contexttools_get_effective_clef_07():
 
 
 def test_contexttools_get_effective_clef_08():
-    '''InputSetExpression and then clearing works as expected.'''
+    '''InputSetExpression and then clearing works as expected.
+    '''
 
     t = Staff("c'8 d'8 e'8 f'8")
     contexttools.ClefMark('alto')(t[0])

@@ -133,32 +133,38 @@ class QSchema(AbjadObject):
 
     @abc.abstractproperty
     def item_klass(self):
-        '''The schema's item class.'''
+        '''The schema's item class.
+        '''
         raise NotImplemented
 
     @property
     def items(self):
-        '''The item dictionary.'''
+        '''The item dictionary.
+        '''
         return self._items
 
     @property
     def search_tree(self):
-        '''The default search tree.'''
+        '''The default search tree.
+        '''
         return self._search_tree
 
     @abc.abstractproperty
     def target_item_klass(self):
-        '''The schema's target class' item class.'''
+        '''The schema's target class' item class.
+        '''
         raise NotImplemented
 
     @abc.abstractproperty
     def target_klass(self):
-        '''The schema's target class.'''
+        '''The schema's target class.
+        '''
         raise NotImplemented
 
     @property
     def tempo(self):
-        '''The default tempo.'''
+        '''The default tempo.
+        '''
         return self._tempo
 
     ### PRIVATE METHODS ###

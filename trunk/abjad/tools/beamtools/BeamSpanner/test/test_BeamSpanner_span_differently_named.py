@@ -3,7 +3,8 @@ import py.test
 
 
 def test_BeamSpanner_span_differently_named_01():
-    '''Abjad does NOT let you span across differently named Voices.'''
+    '''Abjad does NOT let you span across differently named Voices.
+    '''
 
     v1 = Voice(notetools.make_repeated_notes(4))
     v1.name = 'foo'

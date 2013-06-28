@@ -2,7 +2,8 @@ from abjad import *
 
 
 def test_HarmonicDiatonicIntervalSegment_rotate_01():
-    '''Rotate right.'''
+    '''Rotate right.
+    '''
 
     hdig = pitchtools.HarmonicDiatonicIntervalSegment([
         pitchtools.HarmonicDiatonicInterval('minor', 2),
@@ -22,7 +23,8 @@ def test_HarmonicDiatonicIntervalSegment_rotate_01():
 
 
 def test_HarmonicDiatonicIntervalSegment_rotate_02():
-    '''Rotate left.'''
+    '''Rotate left.
+    '''
 
     hdig = pitchtools.HarmonicDiatonicIntervalSegment([
         pitchtools.HarmonicDiatonicInterval('minor', 2),

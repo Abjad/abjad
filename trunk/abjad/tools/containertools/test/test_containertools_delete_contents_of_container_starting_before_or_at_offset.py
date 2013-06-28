@@ -36,7 +36,8 @@ def test_containertools_delete_contents_of_container_starting_before_or_at_offse
 
 
 def test_containertools_delete_contents_of_container_starting_before_or_at_offset_03():
-    '''Delete nothing when no contents start after prolated offset.'''
+    '''Delete nothing when no contents start after prolated offset.
+    '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
     beamtools.BeamSpanner(staff.leaves)
@@ -56,7 +57,8 @@ def test_containertools_delete_contents_of_container_starting_before_or_at_offse
 
 
 def test_containertools_delete_contents_of_container_starting_before_or_at_offset_04():
-    '''Delete everything when all contents start after prolated offset.'''
+    '''Delete everything when all contents start after prolated offset.
+    '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
     beamtools.BeamSpanner(staff.leaves)

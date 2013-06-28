@@ -2,7 +2,8 @@ from abjad import *
 
 
 def test_leaftools_get_nth_leaf_in_expr_01():
-    '''Read forwards for positive n.'''
+    '''Read forwards for positive n.
+    '''
 
     staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
@@ -36,7 +37,8 @@ def test_leaftools_get_nth_leaf_in_expr_01():
 
 
 def test_leaftools_get_nth_leaf_in_expr_02():
-    '''Read backwards for negative n.'''
+    '''Read backwards for negative n.
+    '''
 
     staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)

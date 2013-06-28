@@ -100,12 +100,14 @@ class MarkupCommand(AbjadObject):
 
     @property
     def args(self):
-        r'''Read-only tuple of markup command arguments.'''
+        r'''Read-only tuple of markup command arguments.
+        '''
         return self._args
 
     @property
     def command(self):
-        r'''Read-only string of markup command command-name.'''
+        r'''Read-only string of markup command command-name.
+        '''
         return self._command
 
     @property

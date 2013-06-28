@@ -125,7 +125,8 @@ def test_Note___init___11():
 
 
 def test_Note___init___12():
-    '''Cast skip as note.'''
+    '''Cast skip as note.
+    '''
     s = skiptools.Skip((1, 8))
     d = s.written_duration
     n = Note(s)

@@ -3,7 +3,8 @@ from abjad.tools import sievetools
 
 
 def test_Sieve__sort_rcs_01():
-    '''Unsorted RCs are sorted on RC expression initialization.'''
+    '''Unsorted RCs are sorted on RC expression initialization.
+    '''
 
     RC = sievetools.ResidueClass
     rcexpression = sievetools.Sieve([RC(10, 0), RC(9, 0), RC(8, 0)])
@@ -11,7 +12,8 @@ def test_Sieve__sort_rcs_01():
 
 
 def test_Sieve__sort_rcs_02():
-    '''Unsorted RCs are sorted on RC expression initialization.'''
+    '''Unsorted RCs are sorted on RC expression initialization.
+    '''
 
     RC = sievetools.ResidueClass
     rcexpression = sievetools.Sieve([RC(8, 7), RC(8, 1), RC(8, 2)])

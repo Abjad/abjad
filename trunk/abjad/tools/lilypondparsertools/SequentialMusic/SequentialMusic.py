@@ -4,7 +4,8 @@ from abjad.tools.lilypondparsertools.Music import Music
 
 
 class SequentialMusic(Music):
-    '''Abjad model of the LilyPond AST sequential music node.'''
+    '''Abjad model of the LilyPond AST sequential music node.
+    '''
 
     ### PUBLIC METHODS ###
 

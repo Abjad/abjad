@@ -2,7 +2,8 @@ from abjad import *
 
 
 def test_Spanner_pop_01():
-    '''Remove and return rightmost component in spanner.'''
+    '''Remove and return rightmost component in spanner.
+    '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)

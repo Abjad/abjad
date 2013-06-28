@@ -6,7 +6,8 @@ from abjad.tools.quantizationtools._time_segments import _time_segments
 
 
 def test_quantizationtools_milliseconds_to_q_events_01():
-    '''Test basic functionality.'''
+    '''Test basic functionality.
+    '''
 
     durations = mathtools.difference_series([x[0] for x in _time_segments])
     q_events = quantizationtools.milliseconds_to_q_events(durations)
@@ -199,7 +200,8 @@ def test_quantizationtools_milliseconds_to_q_events_01():
 
 
 def test_quantizationtools_milliseconds_to_q_events_02():
-    '''Silences are not fused.'''
+    '''Silences are not fused.
+    '''
 
     durations = [100, -100, 100, -100, -100, 100]
     q_events = quantizationtools.milliseconds_to_q_events(durations, fuse_silences=False)
@@ -233,7 +235,8 @@ def test_quantizationtools_milliseconds_to_q_events_02():
 
 
 def test_quantizationtools_milliseconds_to_q_events_03():
-    '''Silences are fused.'''
+    '''Silences are fused.
+    '''
 
     durations = [100, -100, 100, -100, -100, 100]
     q_events = quantizationtools.milliseconds_to_q_events(durations, fuse_silences=True)

@@ -39,7 +39,8 @@ def test_componenttools_get_most_distant_sequential_container_in_improper_parent
 
 
 def test_componenttools_get_most_distant_sequential_container_in_improper_parentage_of_component_02( ):
-    '''Unicorporated leaves have no governor.'''
+    '''Unicorporated leaves have no governor.
+    '''
 
     t = Note(0, (1, 8))
     assert componenttools.get_most_distant_sequential_container_in_improper_parentage_of_component(t) is None

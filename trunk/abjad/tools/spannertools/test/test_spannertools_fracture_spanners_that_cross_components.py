@@ -46,14 +46,16 @@ def test_spannertools_fracture_spanners_that_cross_components_02():
 
 
 def test_spannertools_fracture_spanners_that_cross_components_03():
-    '''Empty list raises no exception.'''
+    '''Empty list raises no exception.
+    '''
 
     result = spannertools.fracture_spanners_that_cross_components([])
     assert result == []
 
 
 def test_spannertools_fracture_spanners_that_cross_components_04():
-    '''Fractures around components at only top level of list.'''
+    '''Fractures around components at only top level of list.
+    '''
 
     t = Staff(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
@@ -101,7 +103,8 @@ def test_spannertools_fracture_spanners_that_cross_components_04():
 
 
 def test_spannertools_fracture_spanners_that_cross_components_05():
-    '''Fractures around components at only top level of list.'''
+    '''Fractures around components at only top level of list.
+    '''
 
     t = Staff(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)

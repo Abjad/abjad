@@ -56,7 +56,8 @@ class Parser(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, input_string):
-        '''Parse `input_string` and return result.'''
+        '''Parse `input_string` and return result.
+        '''
 
         if hasattr(self, '_setup'):
             self._setup()
@@ -80,54 +81,64 @@ class Parser(AbjadObject):
 
     @property
     def debug(self):
-        '''True if the parser runs in debugging mode.'''
+        '''True if the parser runs in debugging mode.
+        '''
         return self._debug
 
     @property
     def lexer(self):
-        '''The parser's PLY Lexer instance.'''
+        '''The parser's PLY Lexer instance.
+        '''
         return self._lexer
 
     @abc.abstractproperty
     def lexer_rules_object(self):
-        '''The object containing the parser's lexical rule definitions.'''
+        '''The object containing the parser's lexical rule definitions.
+        '''
         raise NotImplemented
 
     @property
     def logger(self):
-        '''The parser's Logger instance.'''
+        '''The parser's Logger instance.
+        '''
         return self._logger
 
     @property
     def logger_path(self):
-        '''The output path for the parser's logfile.'''
+        '''The output path for the parser's logfile.
+        '''
         return os.path.join(self.output_path, 'parselog.txt')
 
     @property
     def output_path(self):
-        '''The output path for files associated with the parser.'''
+        '''The output path for files associated with the parser.
+        '''
         klass_path = inspect.getfile(self.__class__)
         return klass_path.rpartition(os.path.sep)[0]
 
     @property
     def parser(self):
-        '''The parser's PLY LRParser instance.'''
+        '''The parser's PLY LRParser instance.
+        '''
         return self._parser
 
     @abc.abstractproperty
     def parser_rules_object(self):
-        '''The object containing the parser's syntactical rule definitions.'''
+        '''The object containing the parser's syntactical rule definitions.
+        '''
         raise NotImplemented
 
     @property
     def pickle_path(self):
-        '''The output path for the parser's pickled parsing tables.'''
+        '''The output path for the parser's pickled parsing tables.
+        '''
         return os.path.join(self.output_path, '_parsetab.pkl')
 
     ### PUBLIC METHODS ###
 
     def tokenize(self, input_string):
-        '''Tokenize `input string` and print results.'''
+        '''Tokenize `input string` and print results.
+        '''
         self.lexer.input(input_string)
         for token in self.lexer:
             print token

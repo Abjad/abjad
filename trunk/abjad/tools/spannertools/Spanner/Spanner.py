@@ -378,7 +378,8 @@ class Spanner(AbjadObject):
 
     @property
     def duration_in_seconds(self):
-        '''Sum of duration of all leaves in spanner, in seconds.'''
+        '''Sum of duration of all leaves in spanner, in seconds.
+        '''
         duration = durationtools.Duration(0)
         for leaf in self.leaves:
             duration += leaf.duration_in_seconds

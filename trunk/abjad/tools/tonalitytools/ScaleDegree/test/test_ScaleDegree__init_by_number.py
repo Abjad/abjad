@@ -10,7 +10,8 @@ def test_ScaleDegree__init_by_number_01():
 
 
 def test_ScaleDegree__init_by_number_02():
-    '''Init from other scale degree instance.'''
+    '''Init from other scale degree instance.
+    '''
 
     degree = tonalitytools.ScaleDegree(2)
     new = tonalitytools.ScaleDegree(degree)

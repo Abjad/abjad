@@ -3,7 +3,8 @@ import py.test
 
 
 def test_tuplettools_fuse_tuplets_01():
-    '''Fuse two unincorporated fixed-duration tuplets with same multiplier.'''
+    '''Fuse two unincorporated fixed-duration tuplets with same multiplier.
+    '''
 
     t1 = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
     beamtools.BeamSpanner(t1[:])
@@ -49,7 +50,8 @@ def test_tuplettools_fuse_tuplets_01():
 
 
 def test_tuplettools_fuse_tuplets_02():
-    '''Fuse fixed-duration tuplets with same multiplier in score.'''
+    '''Fuse fixed-duration tuplets with same multiplier in score.
+    '''
 
     t1 = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
     beamtools.BeamSpanner(t1[:])
@@ -92,7 +94,8 @@ def test_tuplettools_fuse_tuplets_02():
 
 
 def test_tuplettools_fuse_tuplets_03():
-    '''Fuse fixed-multiplier tuplets with same multiplier in score.'''
+    '''Fuse fixed-multiplier tuplets with same multiplier in score.
+    '''
 
     #t1 = Tuplet(Fraction(2, 3), "c'8 d'8 e'8")
     t1 = Tuplet(Fraction(2, 3), "c'8 d'8 e'8")
@@ -141,7 +144,8 @@ def test_tuplettools_fuse_tuplets_03():
 
 
 def test_tuplettools_fuse_tuplets_04():
-    '''Tuplets must carry same multiplier.'''
+    '''Tuplets must carry same multiplier.
+    '''
 
     t1 = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
     t2 = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8 f'8 g'8")
@@ -150,7 +154,8 @@ def test_tuplettools_fuse_tuplets_04():
 
 
 def test_tuplettools_fuse_tuplets_05():
-    '''Tuplets must be same type.'''
+    '''Tuplets must be same type.
+    '''
 
     t1 = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
     #t2 = Tuplet(Fraction(2, 3), "c'8 d'8 e'8")
@@ -160,7 +165,8 @@ def test_tuplettools_fuse_tuplets_05():
 
 
 def test_tuplettools_fuse_tuplets_06():
-    '''Dominant spanners on contents are preserved.'''
+    '''Dominant spanners on contents are preserved.
+    '''
 
     t = Voice([
         tuplettools.FixedDurationTuplet(Duration(1, 12), [Note(0, (1, 8))]),

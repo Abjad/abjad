@@ -65,7 +65,8 @@ def test_Spanner_leaves_03():
 
 
 def test_Spanner_leaves_04():
-    '''Spanner attaching to container with multidimensional contents.'''
+    '''Spanner attaching to container with multidimensional contents.
+    '''
 
     class MockSpanner(spannertools.Spanner):
         def __init__(self, components=None):
@@ -104,7 +105,8 @@ def test_Spanner_leaves_04():
 
 
 def test_Spanner_leaves_05():
-    '''Spanner spanning a mixture of containers and leaves.'''
+    '''Spanner spanning a mixture of containers and leaves.
+    '''
 
     class MockSpanner(spannertools.Spanner):
         def __init__(self, components=None):

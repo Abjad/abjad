@@ -4,7 +4,8 @@ import py.test
 
 
 def test_sequencetools_sum_sequence_elements_at_indices_01():
-    '''Sum slices cyclically at every fourth index.'''
+    '''Sum slices cyclically at every fourth index.
+    '''
 
     t = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 
@@ -79,7 +80,8 @@ def test_sequencetools_sum_sequence_elements_at_indices_04():
 
 
 def test_sequencetools_sum_sequence_elements_at_indices_05():
-    '''Sum at multiple points in each period.'''
+    '''Sum at multiple points in each period.
+    '''
 
     t = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 
@@ -88,7 +90,8 @@ def test_sequencetools_sum_sequence_elements_at_indices_05():
 
 
 def test_sequencetools_sum_sequence_elements_at_indices_06():
-    '''Affected indices must be less than period.'''
+    '''Affected indices must be less than period.
+    '''
 
     t = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
     assert py.test.raises(ValueError, 'sequencetools.sum_sequence_elements_at_indices(t, [(0, 99)], period=4)')

@@ -2,7 +2,8 @@ from abjad import *
 
 
 def test_LilyPondComment_before_01():
-    '''Test context comments before.'''
+    '''Test context comments before.
+    '''
 
     t = Voice("c'8 d'8 e'8 f'8")
     beam = beamtools.BeamSpanner(t[:])
@@ -28,7 +29,8 @@ def test_LilyPondComment_before_01():
 
 
 def test_LilyPondComment_before_02():
-    '''Leaf comments before.'''
+    '''Leaf comments before.
+    '''
 
     t = Note(0, (1, 8))
     t.override.beam.thickness = 3

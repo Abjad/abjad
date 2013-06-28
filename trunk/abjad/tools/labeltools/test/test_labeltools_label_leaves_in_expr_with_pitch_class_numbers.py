@@ -2,7 +2,8 @@ from abjad import *
 
 
 def test_labeltools_label_leaves_in_expr_with_pitch_class_numbers_01():
-    '''With number = True.'''
+    '''With number = True.
+    '''
 
     t = Staff("c'8 d'8 e'8 f'8")
     labeltools.label_leaves_in_expr_with_pitch_class_numbers(t, number=True)
@@ -37,7 +38,8 @@ def test_labeltools_label_leaves_in_expr_with_pitch_class_numbers_01():
 
 
 def test_labeltools_label_leaves_in_expr_with_pitch_class_numbers_02():
-    '''With color = True.'''
+    '''With color = True.
+    '''
 
     t = Staff("c'8 d'8 e'8 f'8")
     labeltools.label_leaves_in_expr_with_pitch_class_numbers(t, number=False, color=True)

@@ -3,7 +3,8 @@ import py.test
 
 
 def test_chordtools_get_note_head_from_chord_by_pitch_01():
-    '''Return reference to note_head in chord with pitch equal to pitch.'''
+    '''Return reference to note_head in chord with pitch equal to pitch.
+    '''
 
     chord = Chord([0, 2, 11], Duration(1, 4))
 
@@ -18,7 +19,8 @@ def test_chordtools_get_note_head_from_chord_by_pitch_01():
 
 
 def test_chordtools_get_note_head_from_chord_by_pitch_02():
-    '''Raise MissingNoteHeadError and ExtraNoteHeadError as required.'''
+    '''Raise MissingNoteHeadError and ExtraNoteHeadError as required.
+    '''
 
     chord = Chord([0, 2, 2], Duration(1, 4))
 

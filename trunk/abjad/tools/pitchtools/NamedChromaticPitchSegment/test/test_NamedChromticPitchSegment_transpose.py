@@ -2,7 +2,8 @@ from abjad import *
 
 
 def test_NamedChromticPitchSegment_transpose_01():
-    '''Transpose pitch segment by melodic chromatic interval.'''
+    '''Transpose pitch segment by melodic chromatic interval.
+    '''
 
     pitch_segment = pitchtools.NamedChromaticPitchSegment([-2, -1, 6, 7, -1, 7])
     mci = pitchtools.MelodicChromaticInterval(-15)
@@ -14,7 +15,8 @@ def test_NamedChromticPitchSegment_transpose_01():
 
 
 def test_NamedChromticPitchSegment_transpose_02():
-    '''Transpose pitch segment by melodic diatonic interval.'''
+    '''Transpose pitch segment by melodic diatonic interval.
+    '''
 
     pitch_segment = pitchtools.NamedChromaticPitchSegment([-2, -1, 6, 7, -1, 7])
     mdi = pitchtools.MelodicDiatonicInterval('major', 2)

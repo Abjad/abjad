@@ -4,7 +4,8 @@ from abjad.tools.abctools import AbjadObject
 
 
 class GraphvizObject(AbjadObject):
-    '''An attributed Graphviz object.'''
+    '''An attributed Graphviz object.
+    '''
 
     ### INITIALIZER ###
 

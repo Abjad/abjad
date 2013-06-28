@@ -3,7 +3,8 @@ import py.test
 
 
 def test_pitchtools_NumberedChromaticPitchClassColorMap_01():
-    '''Test basic pc color map attributes.'''
+    '''Test basic pc color map attributes.
+    '''
 
     pitches = [[-8, 2, 10, 21], [0, 11, 32, 41], [15, 25, 42, 43]]
     colors = ['red', 'green', 'blue']
@@ -19,7 +20,8 @@ def test_pitchtools_NumberedChromaticPitchClassColorMap_01():
 
 
 def test_pitchtools_NumberedChromaticPitchClassColorMap_02():
-    '''Test pc color map get item variations.'''
+    '''Test pc color map get item variations.
+    '''
 
     pitches = [[-8, 2, 10, 21], [0, 11, 32, 41], [15, 25, 42, 43]]
     colors = ['red', 'green', 'blue']

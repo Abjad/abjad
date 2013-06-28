@@ -94,7 +94,8 @@ def test_componenttools_all_are_thread_contiguous_components_03():
 
 
 def test_componenttools_all_are_thread_contiguous_components_04():
-    '''True for strictly contiguous leaves in same staff.'''
+    '''True for strictly contiguous leaves in same staff.
+    '''
 
     t = Staff("c'8 d'8 e'8 f'8")
     assert componenttools.all_are_thread_contiguous_components(t[:])
@@ -110,26 +111,30 @@ def test_componenttools_all_are_thread_contiguous_components_05():
 
 
 def test_componenttools_all_are_thread_contiguous_components_06():
-    '''False for time reordered leaves in staff.'''
+    '''False for time reordered leaves in staff.
+    '''
 
     t = Staff("c'8 d'8 e'8 f'8")
     assert not componenttools.all_are_thread_contiguous_components(t[2:] + t[:2])
 
 
 def test_componenttools_all_are_thread_contiguous_components_07():
-    '''True for unincorporated component.'''
+    '''True for unincorporated component.
+    '''
 
     assert componenttools.all_are_thread_contiguous_components([Staff("c'8 d'8 e'8 f'8")])
 
 
 def test_componenttools_all_are_thread_contiguous_components_08():
-    '''True for empty list.'''
+    '''True for empty list.
+    '''
 
     assert componenttools.all_are_thread_contiguous_components([])
 
 
 def test_componenttools_all_are_thread_contiguous_components_09():
-    '''False when components belonging to same thread are ommitted.'''
+    '''False when components belonging to same thread are ommitted.
+    '''
 
     t = Voice("c'8 d'8 e'8 f'8 g'8 a'8")
     beamtools.BeamSpanner(t[:])
@@ -149,7 +154,8 @@ def test_componenttools_all_are_thread_contiguous_components_09():
 
 
 def test_componenttools_all_are_thread_contiguous_components_10():
-    '''False when components belonging to same thread are ommitted.'''
+    '''False when components belonging to same thread are ommitted.
+    '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)

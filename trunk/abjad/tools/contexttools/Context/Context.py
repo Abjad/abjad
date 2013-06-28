@@ -157,7 +157,8 @@ class Context(Container):
     @apply
     def context_name():
         def fget(self):
-            '''Read / write name of context as a string.'''
+            '''Read / write name of context as a string.
+            '''
             return self._context_name
         def fset(self, arg):
             assert isinstance(arg, str)

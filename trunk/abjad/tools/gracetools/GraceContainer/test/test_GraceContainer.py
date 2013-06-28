@@ -3,7 +3,8 @@ import py.test
 
 
 def test_GraceContainer_01():
-    '''Grace music is a container.'''
+    '''Grace music is a container.
+    '''
 
     t = gracetools.GraceContainer([Note(0, (1, 16)), Note(2, (1, 16)), Note(4, (1, 16))])
 
@@ -38,7 +39,8 @@ def test_GraceContainer_02():
 
 
 def test_GraceContainer_03():
-    '''Grace formats correctly as grace.'''
+    '''Grace formats correctly as grace.
+    '''
 
     t = gracetools.GraceContainer(notetools.make_repeated_notes(3))
     t.kind = 'grace'
@@ -54,7 +56,8 @@ def test_GraceContainer_03():
 
 
 def test_GraceContainer_04():
-    '''Grace formats correctly as acciaccatura.'''
+    '''Grace formats correctly as acciaccatura.
+    '''
 
     t = gracetools.GraceContainer(notetools.make_repeated_notes(3))
     t.kind = 'acciaccatura'
@@ -70,7 +73,8 @@ def test_GraceContainer_04():
 
 
 def test_GraceContainer_05():
-    '''Grace formats correctly as appoggiatura.'''
+    '''Grace formats correctly as appoggiatura.
+    '''
 
     t = gracetools.GraceContainer(notetools.make_repeated_notes(3))
     t.kind = 'appoggiatura'
@@ -86,7 +90,8 @@ def test_GraceContainer_05():
 
 
 def test_GraceContainer_06():
-    '''Grace formats correctly as after grace.'''
+    '''Grace formats correctly as after grace.
+    '''
 
     t = gracetools.GraceContainer(notetools.make_repeated_notes(3))
     t.kind = 'after'
@@ -102,7 +107,8 @@ def test_GraceContainer_06():
 
 
 def test_GraceContainer_07():
-    '''Grace containers can be appended.'''
+    '''Grace containers can be appended.
+    '''
 
     t = gracetools.GraceContainer(notetools.make_repeated_notes(2))
     n = Note(1, (1, 4))
@@ -112,7 +118,8 @@ def test_GraceContainer_07():
 
 
 def test_GraceContainer_08():
-    '''Grace containers can be extended.'''
+    '''Grace containers can be extended.
+    '''
 
     t = gracetools.GraceContainer(notetools.make_repeated_notes(2))
     ns = Note(1, (1, 4)) * 2

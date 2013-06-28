@@ -3,7 +3,8 @@ import py.test
 
 
 def test_NamedChromaticPitch___cmp___01():
-    '''Referentially equal pitches compare equally.'''
+    '''Referentially equal pitches compare equally.
+    '''
     p1 = pitchtools.NamedChromaticPitch('fs', 4)
     assert      p1 == p1
     assert not p1 != p1
@@ -14,7 +15,8 @@ def test_NamedChromaticPitch___cmp___01():
 
 
 def test_NamedChromaticPitch___cmp___02():
-    '''Pitches equal by name, accidental and octave compare equally.'''
+    '''Pitches equal by name, accidental and octave compare equally.
+    '''
     p1, p2 = pitchtools.NamedChromaticPitch('fs', 4), pitchtools.NamedChromaticPitch('fs', 4)
     assert      p1 == p2
     assert not p1 != p2
@@ -25,7 +27,8 @@ def test_NamedChromaticPitch___cmp___02():
 
 
 def test_NamedChromaticPitch___cmp___03():
-    '''Pitches enharmonically equal compare unequally.'''
+    '''Pitches enharmonically equal compare unequally.
+    '''
     p1, p2 = pitchtools.NamedChromaticPitch('fs', 4), pitchtools.NamedChromaticPitch('gf', 4)
     assert not p1 == p2
     assert      p1 != p2
@@ -36,7 +39,8 @@ def test_NamedChromaticPitch___cmp___03():
 
 
 def test_NamedChromaticPitch___cmp___04():
-    '''Pitches manifestly different compare unequally.'''
+    '''Pitches manifestly different compare unequally.
+    '''
     p1, p2 = pitchtools.NamedChromaticPitch('f', 4), pitchtools.NamedChromaticPitch('g', 4)
     assert not p1 == p2
     assert      p1 != p2
@@ -47,7 +51,8 @@ def test_NamedChromaticPitch___cmp___04():
 
 
 def test_NamedChromaticPitch___cmp___05():
-    '''Pitches typographically crossed compare unequally.'''
+    '''Pitches typographically crossed compare unequally.
+    '''
     p1, p2 = pitchtools.NamedChromaticPitch('fss', 4), pitchtools.NamedChromaticPitch('gff', 4)
     assert not p1 == p2
     assert      p1 != p2

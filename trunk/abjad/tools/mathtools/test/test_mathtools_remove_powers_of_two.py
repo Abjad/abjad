@@ -4,7 +4,8 @@ import py.test
 
 
 def test_mathtools_remove_powers_of_two_01():
-    '''Remove powers of two from integer n.'''
+    '''Remove powers of two from integer n.
+    '''
 
     assert mathtools.remove_powers_of_two(10) == 5
     assert mathtools.remove_powers_of_two(20) == 5

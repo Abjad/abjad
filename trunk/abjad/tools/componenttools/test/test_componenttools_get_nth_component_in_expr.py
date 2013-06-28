@@ -38,7 +38,8 @@ def test_componenttools_get_nth_component_in_expr_01():
 
 
 def test_componenttools_get_nth_component_in_expr_02():
-    '''Iterates backwards with negative values of n.'''
+    '''Iterates backwards with negative values of n.
+    '''
 
     staff = Staff([])
     durations = [Duration(n, 16) for n in range(1, 5)]

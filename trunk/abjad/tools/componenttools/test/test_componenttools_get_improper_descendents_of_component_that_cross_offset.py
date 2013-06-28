@@ -2,7 +2,8 @@ from abjad import *
 
 
 def test_componenttools_get_improper_descendents_of_component_that_cross_offset_01():
-    '''Staff and first measure cross offset at 1/8.'''
+    '''Staff and first measure cross offset at 1/8.
+    '''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
@@ -24,7 +25,8 @@ def test_componenttools_get_improper_descendents_of_component_that_cross_offset_
 
 
 def test_componenttools_get_improper_descendents_of_component_that_cross_offset_02():
-    '''Staff, first measure and first note cross 1/16.'''
+    '''Staff, first measure and first note cross 1/16.
+    '''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
@@ -46,7 +48,8 @@ def test_componenttools_get_improper_descendents_of_component_that_cross_offset_
 
 
 def test_componenttools_get_improper_descendents_of_component_that_cross_offset_03():
-    '''Nothing crosses 0.'''
+    '''Nothing crosses 0.
+    '''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
@@ -68,7 +71,8 @@ def test_componenttools_get_improper_descendents_of_component_that_cross_offset_
 
 
 def test_componenttools_get_improper_descendents_of_component_that_cross_offset_04():
-    '''Nothing crosses 100.'''
+    '''Nothing crosses 100.
+    '''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)

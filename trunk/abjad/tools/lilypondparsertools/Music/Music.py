@@ -3,7 +3,8 @@ from abjad.tools.abctools import AbjadObject
 
 
 class Music(AbjadObject):
-    '''Abjad model of the LilyPond AST music node.'''
+    '''Abjad model of the LilyPond AST music node.
+    '''
 
     ### CLASS VARIABLES ###
 

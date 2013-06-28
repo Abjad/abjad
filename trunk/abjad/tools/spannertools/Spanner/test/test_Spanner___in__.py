@@ -2,7 +2,8 @@ from abjad import *
 
 
 def test_Spanner___in___01():
-    '''Spanner containment tests components.'''
+    '''Spanner containment tests components.
+    '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
@@ -31,7 +32,8 @@ def test_Spanner___in___01():
 
 
 def test_Spanner___in___02():
-    '''Spanner containment tests components.'''
+    '''Spanner containment tests components.
+    '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)

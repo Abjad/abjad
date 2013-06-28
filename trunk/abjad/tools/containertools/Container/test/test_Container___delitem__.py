@@ -80,7 +80,8 @@ def test_Container___delitem___02():
 
 
 def test_Container___delitem___03():
-    '''Delete slice in middle of container.'''
+    '''Delete slice in middle of container.
+    '''
 
     t = Voice("c'8 d'8 e'8 f'8")
     beamtools.BeamSpanner(t[:])
@@ -99,7 +100,8 @@ def test_Container___delitem___03():
 
 
 def test_Container___delitem___04():
-    '''Delete slice from beginning to middle of container.'''
+    '''Delete slice from beginning to middle of container.
+    '''
 
     t = Voice("c'8 d'8 e'8 f'8")
     beamtools.BeamSpanner(t[:])
@@ -118,7 +120,8 @@ def test_Container___delitem___04():
 
 
 def test_Container___delitem___05():
-    '''Delete slice from middle to end of container.'''
+    '''Delete slice from middle to end of container.
+    '''
 
     t = Voice("c'8 d'8 e'8 f'8")
     beamtools.BeamSpanner(t[:])
@@ -137,7 +140,8 @@ def test_Container___delitem___05():
 
 
 def test_Container___delitem___06():
-    '''Delete slice from beginning to end of container.'''
+    '''Delete slice from beginning to end of container.
+    '''
 
     t = Voice("c'8 d'8 e'8 f'8")
     beamtools.BeamSpanner(t[:])
@@ -154,7 +158,8 @@ def test_Container___delitem___06():
 
 
 def test_Container___delitem___07():
-    '''Detach leaf from tuplet and spanner.'''
+    '''Detach leaf from tuplet and spanner.
+    '''
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
     beamtools.BeamSpanner(t[:])

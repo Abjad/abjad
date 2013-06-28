@@ -42,7 +42,8 @@ def test_spannertools_get_spanners_that_dominate_components_01():
 
 
 def test_spannertools_get_spanners_that_dominate_components_02():
-    '''Beam, glissando and trill all dominante second container.'''
+    '''Beam, glissando and trill all dominante second container.
+    '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
@@ -59,7 +60,8 @@ def test_spannertools_get_spanners_that_dominate_components_02():
 
 
 def test_spannertools_get_spanners_that_dominate_components_03():
-    '''Glissando and trill dominate last container.'''
+    '''Glissando and trill dominate last container.
+    '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
@@ -75,7 +77,8 @@ def test_spannertools_get_spanners_that_dominate_components_03():
 
 
 def test_spannertools_get_spanners_that_dominate_components_04():
-    '''Beam and trill dominate first two containers.'''
+    '''Beam and trill dominate first two containers.
+    '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
@@ -91,7 +94,8 @@ def test_spannertools_get_spanners_that_dominate_components_04():
 
 
 def test_spannertools_get_spanners_that_dominate_components_05():
-    '''Glissando and trill dominate last two containers.'''
+    '''Glissando and trill dominate last two containers.
+    '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
@@ -107,7 +111,8 @@ def test_spannertools_get_spanners_that_dominate_components_05():
 
 
 def test_spannertools_get_spanners_that_dominate_components_06():
-    '''Only trill dominates all three containers.'''
+    '''Only trill dominates all three containers.
+    '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
@@ -122,7 +127,8 @@ def test_spannertools_get_spanners_that_dominate_components_06():
 
 
 def test_spannertools_get_spanners_that_dominate_components_07():
-    '''Only trill dominates voice.'''
+    '''Only trill dominates voice.
+    '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)

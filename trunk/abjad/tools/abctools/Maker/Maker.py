@@ -3,7 +3,8 @@ from abjad.tools.abctools.AbjadObject.AbjadObject import AbjadObject
 
 
 class Maker(AbjadObject):
-    '''Abstract base class for all maker classers.'''
+    '''Abstract base class for all maker classers.
+    '''
 
     ### SPECIAL METHODS ###
 

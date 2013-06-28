@@ -81,7 +81,8 @@ def test_pitchtools_set_default_accidental_spelling_03():
 
 
 def test_pitchtools_set_default_accidental_spelling_04():
-    '''Revert back to default mixed spelling.'''
+    '''Revert back to default mixed spelling.
+    '''
 
     pitchtools.set_default_accidental_spelling('mixed')
     t = Staff([Note(n, (1, 8)) for n in range(12)])

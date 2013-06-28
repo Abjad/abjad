@@ -2,7 +2,8 @@ from abjad import *
 
 
 def test_contexttools_get_effective_staff_01():
-    '''Staff changes work on the first note of a staff.'''
+    '''Staff changes work on the first note of a staff.
+    '''
 
     piano = scoretools.PianoStaff(Staff("c'8 d'8 e'8 f'8") * 2)
     piano.is_parallel = True
@@ -42,7 +43,8 @@ def test_contexttools_get_effective_staff_01():
 
 
 def test_contexttools_get_effective_staff_02():
-    '''Staff changes work on middle notes of a staff.'''
+    '''Staff changes work on middle notes of a staff.
+    '''
 
     piano = scoretools.PianoStaff(Staff("c'8 d'8 e'8 f'8") * 2)
     piano.is_parallel = True
@@ -84,7 +86,8 @@ def test_contexttools_get_effective_staff_02():
 
 
 def test_contexttools_get_effective_staff_03():
-    '''Staff changes work on the last note of a staff.'''
+    '''Staff changes work on the last note of a staff.
+    '''
 
     piano = scoretools.PianoStaff(Staff("c'8 d'8 e'8 f'8") * 2)
     piano.is_parallel = True
@@ -115,7 +118,8 @@ def test_contexttools_get_effective_staff_03():
 
 
 def test_contexttools_get_effective_staff_04():
-    '''Redudant staff changes are allowed.'''
+    '''Redudant staff changes are allowed.
+    '''
 
     piano = scoretools.PianoStaff(Staff("c'8 d'8 e'8 f'8") * 2)
     piano.is_parallel = True

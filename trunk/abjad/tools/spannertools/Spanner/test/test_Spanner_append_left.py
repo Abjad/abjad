@@ -2,7 +2,8 @@ from abjad import *
 
 
 def test_Spanner_append_left_01():
-    '''Append container to the left.'''
+    '''Append container to the left.
+    '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
@@ -49,7 +50,8 @@ def test_Spanner_append_left_01():
 
 
 def test_Spanner_append_left_02():
-    '''Spanner appends one leaf to the right.'''
+    '''Spanner appends one leaf to the right.
+    '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)

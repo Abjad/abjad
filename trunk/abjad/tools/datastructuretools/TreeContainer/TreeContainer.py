@@ -200,7 +200,8 @@ class TreeContainer(TreeNode):
             yield child
 
     def __len__(self):
-        '''Return nonnegative integer number of nodes in container.'''
+        '''Return nonnegative integer number of nodes in container.
+        '''
         return len(self._children)
 
     def __setitem__(self, i, expr):

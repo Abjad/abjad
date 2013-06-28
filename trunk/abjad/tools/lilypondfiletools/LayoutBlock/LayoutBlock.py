@@ -94,5 +94,6 @@ class LayoutBlock(AttributedBlock):
 
     @property
     def contexts(self):
-        r'''DEPRECATED. USE CONTEXT_BLOCKS INSTEAD.'''
+        r'''DEPRECATED. USE CONTEXT_BLOCKS INSTEAD.
+        '''
         return self._contexts

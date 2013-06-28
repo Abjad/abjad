@@ -2,7 +2,8 @@ from abjad import *
 
 
 def test_pitchtools_PitchRange___contains___01():
-    '''Closed / closed range.'''
+    '''Closed / closed range.
+    '''
 
     pr = pitchtools.PitchRange((-39, 'inclusive'), (48, 'inclusive'))
     assert -99 not in pr
@@ -13,7 +14,8 @@ def test_pitchtools_PitchRange___contains___01():
 
 
 def test_pitchtools_PitchRange___contains___02():
-    '''Closed / open range.'''
+    '''Closed / open range.
+    '''
 
     pr = pitchtools.PitchRange((-39, 'inclusive'), (48, 'exclusive'))
     assert -99 not in pr
@@ -24,7 +26,8 @@ def test_pitchtools_PitchRange___contains___02():
 
 
 def test_pitchtools_PitchRange___contains___03():
-    '''Closed / infinite range.'''
+    '''Closed / infinite range.
+    '''
 
     pr = pitchtools.PitchRange((-39, 'inclusive'), None)
     assert -99 not in pr
@@ -35,7 +38,8 @@ def test_pitchtools_PitchRange___contains___03():
 
 
 def test_pitchtools_PitchRange___contains___04():
-    '''Open / closed range.'''
+    '''Open / closed range.
+    '''
 
     pr = pitchtools.PitchRange((-39, 'exclusive'), (48, 'inclusive'))
     assert -99 not in pr
@@ -46,7 +50,8 @@ def test_pitchtools_PitchRange___contains___04():
 
 
 def test_pitchtools_PitchRange___contains___05():
-    '''Open / open range.'''
+    '''Open / open range.
+    '''
 
     pr = pitchtools.PitchRange((-39, 'exclusive'), (48, 'exclusive'))
     assert -99 not in pr
@@ -57,7 +62,8 @@ def test_pitchtools_PitchRange___contains___05():
 
 
 def test_pitchtools_PitchRange___contains___06():
-    '''Open / infinite range.'''
+    '''Open / infinite range.
+    '''
 
     pr = pitchtools.PitchRange((-39, 'exclusive'), None)
     assert -99 not in pr
@@ -68,7 +74,8 @@ def test_pitchtools_PitchRange___contains___06():
 
 
 def test_pitchtools_PitchRange___contains___07():
-    '''Infinite / closed range.'''
+    '''Infinite / closed range.
+    '''
 
     pr = pitchtools.PitchRange(None, (48, 'inclusive'))
     assert -99      in pr
@@ -79,7 +86,8 @@ def test_pitchtools_PitchRange___contains___07():
 
 
 def test_pitchtools_PitchRange___contains___08():
-    '''Infinite / open range.'''
+    '''Infinite / open range.
+    '''
 
     pr = pitchtools.PitchRange(None, (48, 'exclusive'))
     assert -99      in pr
@@ -90,7 +98,8 @@ def test_pitchtools_PitchRange___contains___08():
 
 
 def test_pitchtools_PitchRange___contains___09():
-    '''Infinite / infinite range.'''
+    '''Infinite / infinite range.
+    '''
 
     pr = pitchtools.PitchRange(None, None)
     assert -99      in pr
@@ -101,7 +110,8 @@ def test_pitchtools_PitchRange___contains___09():
 
 
 def test_pitchtools_PitchRange___contains___10():
-    '''Chord containement.'''
+    '''Chord containement.
+    '''
 
     pr = pitchtools.PitchRange((-39, 'inclusive'), (48, 'inclusive'))
     assert Chord([-99, -98, -97], (1, 4)) not in pr
@@ -112,7 +122,8 @@ def test_pitchtools_PitchRange___contains___10():
 
 
 def test_pitchtools_PitchRange___contains___11():
-    '''Note containement.'''
+    '''Note containement.
+    '''
 
     pr = pitchtools.PitchRange((-39, 'inclusive'), (48, 'inclusive'))
     assert Note(-99, (1, 4)) not in pr
@@ -123,7 +134,8 @@ def test_pitchtools_PitchRange___contains___11():
 
 
 def test_pitchtools_PitchRange___contains___12():
-    '''Rest and skip containement.'''
+    '''Rest and skip containement.
+    '''
 
     pr = pitchtools.PitchRange((-39, 'inclusive'), (48, 'inclusive'))
     assert Rest((1, 4)) in pr
@@ -131,7 +143,8 @@ def test_pitchtools_PitchRange___contains___12():
 
 
 def test_pitchtools_PitchRange___contains___13():
-    '''Iterable containment.'''
+    '''Iterable containment.
+    '''
 
     chromatic_pitch_numbers = range(10)
 

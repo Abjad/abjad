@@ -4,7 +4,8 @@ from abjad.tools.wellformednesstools.Check import Check
 
 
 class OverlappingOctavationCheck(Check):
-    '''Octavation spanners must not overlap.'''
+    '''Octavation spanners must not overlap.
+    '''
 
     def _run(self, expr):
         violators = []

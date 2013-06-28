@@ -3,7 +3,8 @@ import py.test
 
 
 def test_NamedChromaticPitchClass___cmp___01():
-    '''Referentially equal named pitch-classes compare equally.'''
+    '''Referentially equal named pitch-classes compare equally.
+    '''
 
     npc = pitchtools.NamedChromaticPitchClass('fs')
     assert      npc == npc
@@ -15,7 +16,8 @@ def test_NamedChromaticPitchClass___cmp___01():
 
 
 def test_NamedChromaticPitchClass___cmp___02():
-    '''Different letter strings.'''
+    '''Different letter strings.
+    '''
 
     npc_1 = pitchtools.NamedChromaticPitchClass('fs')
     npc_2 = pitchtools.NamedChromaticPitchClass('gf')
@@ -29,7 +31,8 @@ def test_NamedChromaticPitchClass___cmp___02():
 
 
 def test_NamedChromaticPitchClass___cmp___03():
-    '''Same letter strings.'''
+    '''Same letter strings.
+    '''
 
     npc_1 = pitchtools.NamedChromaticPitchClass('f')
     npc_2 = pitchtools.NamedChromaticPitchClass('fs')

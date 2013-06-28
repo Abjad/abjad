@@ -2,7 +2,8 @@ from abjad import *
 
 
 def test_iterationtools_iterate_thread_from_component_01():
-    '''Iterate only notes.'''
+    '''Iterate only notes.
+    '''
 
     container = Container(Voice(notetools.make_repeated_notes(2)) * 2)
     container.is_parallel = True
@@ -49,7 +50,8 @@ def test_iterationtools_iterate_thread_from_component_01():
 
 
 def test_iterationtools_iterate_thread_from_component_02():
-    '''Iterate all components.'''
+    '''Iterate all components.
+    '''
 
     container = Container(Voice(notetools.make_repeated_notes(2)) * 2)
     container.is_parallel = True

@@ -2,7 +2,8 @@ from abjad import *
 
 
 def test_componenttools_report_component_format_contributions_01():
-    '''You can report_component_format_contributions on a heavily tweaked leaf.'''
+    '''You can report_component_format_contributions on a heavily tweaked leaf.
+    '''
 
     t = Note("c'4")
     t.override.note_head.style = 'cross'

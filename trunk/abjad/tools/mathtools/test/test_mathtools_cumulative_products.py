@@ -4,7 +4,8 @@ import py.test
 
 
 def test_mathtools_cumulative_products_01():
-    '''Return list of the cumulative products of the elements in input.'''
+    '''Return list of the cumulative products of the elements in input.
+    '''
 
     assert mathtools.cumulative_products([1, 2, 3]) == [1, 2, 6]
     assert mathtools.cumulative_products([10, -9, -8]) == [10, -90, 720]

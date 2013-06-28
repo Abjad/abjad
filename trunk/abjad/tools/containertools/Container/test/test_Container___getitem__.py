@@ -3,7 +3,8 @@ import py.test
 
 
 def test_Container___getitem___01():
-    '''Get one container component with positive index.'''
+    '''Get one container component with positive index.
+    '''
 
     notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
     t = Voice(notes)
@@ -15,7 +16,8 @@ def test_Container___getitem___01():
 
 
 def test_Container___getitem___02():
-    '''Get one container component with negative index.'''
+    '''Get one container component with negative index.
+    '''
 
     notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
     t = Voice(notes)
@@ -27,7 +29,8 @@ def test_Container___getitem___02():
 
 
 def test_Container___getitem___03():
-    '''Get slice from container.'''
+    '''Get slice from container.
+    '''
 
     notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
     t = Voice(notes)
@@ -39,7 +42,8 @@ def test_Container___getitem___03():
 
 
 def test_Container___getitem___04():
-    '''Bad index raises IndexError.'''
+    '''Bad index raises IndexError.
+    '''
 
     t = Voice("c'8 d'8 e'8 f'8")
 
@@ -47,7 +51,8 @@ def test_Container___getitem___04():
 
 
 def test_Container___getitem___05():
-    '''Get one named component in subtree rooted at container.'''
+    '''Get one named component in subtree rooted at container.
+    '''
 
     template = scoretemplatetools.StringQuartetScoreTemplate()
     score = template()
@@ -57,7 +62,8 @@ def test_Container___getitem___05():
 
 
 def test_Container___getitem___06():
-    '''Bad name raises MissingNamedComponentError.'''
+    '''Bad name raises MissingNamedComponentError.
+    '''
 
     template = scoretemplatetools.StringQuartetScoreTemplate()
     score = template()
@@ -66,7 +72,8 @@ def test_Container___getitem___06():
 
 
 def test_Container___getitem___07():
-    '''Duplicate named contexts raise ExtraNamedComponentError.'''
+    '''Duplicate named contexts raise ExtraNamedComponentError.
+    '''
 
     template = scoretemplatetools.StringQuartetScoreTemplate()
     score = template()

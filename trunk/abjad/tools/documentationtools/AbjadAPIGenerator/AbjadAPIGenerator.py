@@ -193,7 +193,8 @@ class AbjadAPIGenerator(abctools.AbjadObject):
 
     @property
     def docs_api_index_path(self):
-        '''Path to index.rst for Abjad API.'''
+        '''Path to index.rst for Abjad API.
+        '''
         from abjad import abjad_configuration
         return os.path.join(abjad_configuration.abjad_directory_path, 'docs', 'source', 'api', 'index.rst')
 
@@ -203,7 +204,8 @@ class AbjadAPIGenerator(abctools.AbjadObject):
 
     @property
     def path_definitions(self):
-        '''Code path / docs path / package prefix triples.'''
+        '''Code path / docs path / package prefix triples.
+        '''
         from abjad import abjad_configuration
         return (
             (

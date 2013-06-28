@@ -22,7 +22,8 @@ def test_pitchtools_transpose_pitch_carrier_by_melodic_interval_02():
 
 
 def test_pitchtools_transpose_pitch_carrier_by_melodic_interval_03():
-    '''Transpose pitch.'''
+    '''Transpose pitch.
+    '''
 
     pitch = pitchtools.NamedChromaticPitch(12)
     interval = pitchtools.MelodicChromaticInterval(-3)
@@ -32,7 +33,8 @@ def test_pitchtools_transpose_pitch_carrier_by_melodic_interval_03():
 
 
 def test_pitchtools_transpose_pitch_carrier_by_melodic_interval_04():
-    '''Transpose note.'''
+    '''Transpose note.
+    '''
 
     note = Note(12, (1, 4))
     interval = pitchtools.MelodicChromaticInterval(-3)
@@ -42,7 +44,8 @@ def test_pitchtools_transpose_pitch_carrier_by_melodic_interval_04():
 
 
 def test_pitchtools_transpose_pitch_carrier_by_melodic_interval_05():
-    '''Transpose chord.'''
+    '''Transpose chord.
+    '''
 
     chord = Chord([12, 13, 14], (1, 4))
     interval = pitchtools.MelodicChromaticInterval(-3)

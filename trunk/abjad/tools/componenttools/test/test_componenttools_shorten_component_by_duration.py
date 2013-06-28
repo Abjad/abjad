@@ -2,7 +2,8 @@ from abjad import *
 
 
 def test_componenttools_shorten_component_by_duration_01():
-    '''Cut component by prolated duration.'''
+    '''Cut component by prolated duration.
+    '''
 
     t = Voice("c'8 d'8 e'8 f'8")
     beamtools.BeamSpanner(t[:])

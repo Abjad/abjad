@@ -107,7 +107,8 @@ def test_iterationtools_iterate_namesakes_from_component_02():
 
 
 def test_iterationtools_iterate_namesakes_from_component_03():
-    '''Optional start and stop keywords.'''
+    '''Optional start and stop keywords.
+    '''
 
     t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
@@ -137,7 +138,8 @@ def test_iterationtools_iterate_namesakes_from_component_03():
 
 
 def test_iterationtools_iterate_namesakes_from_component_04():
-    '''Optional start and stop keywords.'''
+    '''Optional start and stop keywords.
+    '''
 
     t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
@@ -264,7 +266,8 @@ def test_iterationtools_iterate_namesakes_from_component_06():
 
 
 def test_iterationtools_iterate_namesakes_from_component_07():
-    '''Optional start and stop keywords.'''
+    '''Optional start and stop keywords.
+    '''
 
     t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
@@ -293,7 +296,8 @@ def test_iterationtools_iterate_namesakes_from_component_07():
 
 
 def test_iterationtools_iterate_namesakes_from_component_08():
-    '''Optional start and stop keywords.'''
+    '''Optional start and stop keywords.
+    '''
 
     t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)

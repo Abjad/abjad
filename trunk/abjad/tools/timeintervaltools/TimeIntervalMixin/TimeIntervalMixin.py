@@ -126,7 +126,8 @@ class TimeIntervalMixin(AbjadObject):
     ### PUBLIC METHODS ###
 
     def get_overlap_with_interval(self, interval):
-        '''Return amount of overlap with `interval`.'''
+        '''Return amount of overlap with `interval`.
+        '''
         assert isinstance(interval, TimeIntervalMixin)
 
         if self.start is None or self.stop is None:
@@ -144,7 +145,8 @@ class TimeIntervalMixin(AbjadObject):
             return interval.stop - self.start
 
     def is_contained_by_interval(self, interval):
-        '''True if interval is contained by `interval`.'''
+        '''True if interval is contained by `interval`.
+        '''
         assert isinstance(interval, TimeIntervalMixin)
 
         if self.start is None or self.stop is None:
@@ -156,7 +158,8 @@ class TimeIntervalMixin(AbjadObject):
             return False
 
     def is_container_of_interval(self, interval):
-        '''True if interval contains `interval`.'''
+        '''True if interval contains `interval`.
+        '''
         assert isinstance(interval, TimeIntervalMixin)
 
         if self.start is None or self.stop is None:
@@ -168,7 +171,8 @@ class TimeIntervalMixin(AbjadObject):
             return False
 
     def is_overlapped_by_interval(self, interval):
-        '''True if interval is overlapped by `interval`.'''
+        '''True if interval is overlapped by `interval`.
+        '''
         assert isinstance(interval, TimeIntervalMixin)
 
         if self.start is None or self.stop is None:
@@ -189,7 +193,8 @@ class TimeIntervalMixin(AbjadObject):
         return False
 
     def is_tangent_to_interval(self, interval):
-        '''True if interval is tangent to `interval`.'''
+        '''True if interval is tangent to `interval`.
+        '''
         assert isinstance(interval, TimeIntervalMixin)
 
         if self.start is None or self.stop is None:

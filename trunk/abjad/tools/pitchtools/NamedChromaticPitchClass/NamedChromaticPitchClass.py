@@ -93,7 +93,8 @@ class NamedChromaticPitchClass(PitchClass):
 
     @property
     def _accidental(self):
-        '''Read-only accidental string of pitch-class name.'''
+        '''Read-only accidental string of pitch-class name.
+        '''
         from abjad.tools import pitchtools
         return pitchtools.Accidental(str(self)[1:])
 
@@ -103,7 +104,8 @@ class NamedChromaticPitchClass(PitchClass):
 
     @property
     def _diatonic_pitch_class_name(self):
-        '''Read-only first letter of pitch-class name.'''
+        '''Read-only first letter of pitch-class name.
+        '''
         return str(self)[0]
 
     @property
@@ -112,7 +114,8 @@ class NamedChromaticPitchClass(PitchClass):
 
     @property
     def _symbolic_name(self):
-        '''Read-only letter plus punctuation of pitch name.'''
+        '''Read-only letter plus punctuation of pitch name.
+        '''
         accidental_to_symbol = {
             '': '', 's': '#', 'f': 'b', 'ss': '###', 'ff': 'bb',
             'qs': 'qs', 'qf': 'qf', 'tqs': 'tqs', 'tqf': 'tqf'}

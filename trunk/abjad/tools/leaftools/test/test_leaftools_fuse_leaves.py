@@ -2,21 +2,24 @@ from abjad import *
 
 
 def test_leaftools_fuse_leaves_01():
-    '''Wokrs with list of leaves.'''
+    '''Wokrs with list of leaves.
+    '''
     fused = leaftools.fuse_leaves(notetools.make_repeated_notes(8, Duration(1, 4)))
     assert len(fused) == 1
     assert fused[0].written_duration == Duration(2)
 
 
 def test_leaftools_fuse_leaves_02():
-    '''Works with Leaf component.'''
+    '''Works with Leaf component.
+    '''
     fused = leaftools.fuse_leaves([Note("c'4")])
     assert len(fused) == 1
     assert fused[0].written_duration == Duration(1, 4)
 
 
 def test_leaftools_fuse_leaves_03():
-    '''Works with containers.'''
+    '''Works with containers.
+    '''
     t = Voice(Note("c'4") * 8)
     fused = leaftools.fuse_leaves(t[:])
     assert len(fused) == 1
@@ -25,7 +28,8 @@ def test_leaftools_fuse_leaves_03():
 
 
 def test_leaftools_fuse_leaves_04():
-    '''Fusion results in tied notes.'''
+    '''Fusion results in tied notes.
+    '''
     t = Voice([Note(0, (2, 16)), Note(9, (3, 16))])
     fused = leaftools.fuse_leaves(t[:])
     assert len(fused) == 2
@@ -42,7 +46,8 @@ def test_leaftools_fuse_leaves_04():
 
 
 def test_leaftools_fuse_leaves_05():
-    '''Fuse leaves with differing LilyPond multipliers.'''
+    '''Fuse leaves with differing LilyPond multipliers.
+    '''
 
     t = Staff([skiptools.Skip((1, 1)), skiptools.Skip((1, 1))])
     t[0].duration_multiplier = Duration(1, 16)

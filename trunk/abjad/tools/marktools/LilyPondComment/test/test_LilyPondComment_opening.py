@@ -2,7 +2,8 @@ from abjad import *
 
 
 def test_LilyPondComment_opening_01():
-    '''Opening comments in container.'''
+    '''Opening comments in container.
+    '''
 
     t = Voice("c'8 d'8 e'8 f'8")
     beamtools.BeamSpanner(t[:])
@@ -25,7 +26,8 @@ def test_LilyPondComment_opening_01():
 
 
 def test_LilyPondComment_opening_02():
-    '''Opening comments on leaf.'''
+    '''Opening comments on leaf.
+    '''
 
     t = Note(0, (1, 8))
     t.override.beam.thickness = 3

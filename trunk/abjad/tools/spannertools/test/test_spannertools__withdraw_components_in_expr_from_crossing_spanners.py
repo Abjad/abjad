@@ -4,7 +4,8 @@ import py.test
 
 
 def test_spannertools__withdraw_components_in_expr_from_crossing_spanners_01():
-    '''Withdraw thread-contiguous components from crossing spanners.'''
+    '''Withdraw thread-contiguous components from crossing spanners.
+    '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
@@ -39,7 +40,8 @@ def test_spannertools__withdraw_components_in_expr_from_crossing_spanners_01():
 
 
 def test_spannertools__withdraw_components_in_expr_from_crossing_spanners_02():
-    '''Withdraw thread-contiguous components from crossing spanners.'''
+    '''Withdraw thread-contiguous components from crossing spanners.
+    '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
@@ -88,7 +90,8 @@ def test_spannertools__withdraw_components_in_expr_from_crossing_spanners_02():
 
 
 def test_spannertools__withdraw_components_in_expr_from_crossing_spanners_03():
-    '''Withdraw thread-contiguous components from crossing spanners.'''
+    '''Withdraw thread-contiguous components from crossing spanners.
+    '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)

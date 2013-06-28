@@ -57,7 +57,8 @@ def test_sequencetools_replace_sequence_elements_cyclically_with_new_material_04
 
 
 def test_sequencetools_replace_sequence_elements_cyclically_with_new_material_05():
-    '''Raise TypeError when l is not a list.'''
+    '''Raise TypeError when l is not a list.
+    '''
 
     assert py.test.raises(TypeError,
         "sequencetools.replace_sequence_elements_cyclically_with_new_material('foo', ([0], 2), ([10, 12], 3))")

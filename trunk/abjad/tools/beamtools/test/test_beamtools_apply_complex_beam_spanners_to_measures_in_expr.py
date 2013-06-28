@@ -2,7 +2,8 @@ from abjad import *
 
 
 def test_beamtools_apply_complex_beam_spanners_to_measures_in_expr_01():
-    '''Beam all measures in expr with plain old Beam spanner.'''
+    '''Beam all measures in expr with plain old Beam spanner.
+    '''
 
     staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)

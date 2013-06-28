@@ -3,7 +3,8 @@ import py.test
 
 
 def test_NamedChromaticPitch___init___01():
-    '''Init by name and octave.'''
+    '''Init by name and octave.
+    '''
 
     p = pitchtools.NamedChromaticPitch('df', 5)
     assert p.lilypond_format == "df''"
@@ -22,7 +23,8 @@ def test_NamedChromaticPitch___init___02():
 
 
 def test_NamedChromaticPitch___init___03():
-    '''Init by number.'''
+    '''Init by number.
+    '''
 
     p = pitchtools.NamedChromaticPitch(13)
 
@@ -34,7 +36,8 @@ def test_NamedChromaticPitch___init___03():
 
 
 def test_NamedChromaticPitch___init___04():
-    '''Init by number and diatonic_pitch_class_name.'''
+    '''Init by number and diatonic_pitch_class_name.
+    '''
 
     p = pitchtools.NamedChromaticPitch(13, 'd')
 
@@ -46,7 +49,8 @@ def test_NamedChromaticPitch___init___04():
 
 
 def test_NamedChromaticPitch___init___05():
-    '''Init by pair.'''
+    '''Init by pair.
+    '''
 
     p = pitchtools.NamedChromaticPitch(('df', 5))
 
@@ -70,7 +74,8 @@ def test_NamedChromaticPitch___init___06():
 
 
 def test_NamedChromaticPitch___init___07():
-    '''Init by reference.'''
+    '''Init by reference.
+    '''
 
     r = pitchtools.NamedChromaticPitch('df', 5)
     p = pitchtools.NamedChromaticPitch(r)
@@ -82,7 +87,8 @@ def test_NamedChromaticPitch___init___07():
 
 
 def test_NamedChromaticPitch___init___08():
-    '''Init by pitch-class / octave number string.'''
+    '''Init by pitch-class / octave number string.
+    '''
 
     assert pitchtools.NamedChromaticPitch('A4') == pitchtools.NamedChromaticPitch("a'")
     assert pitchtools.NamedChromaticPitch('C#2') == pitchtools.NamedChromaticPitch('cs,')

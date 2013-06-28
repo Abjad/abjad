@@ -3,7 +3,8 @@ import py.test
 
 
 def test_Container___setitem___slice_01():
-    '''Containers set single leaves correctly in an unspanned structure.'''
+    '''Containers set single leaves correctly in an unspanned structure.
+    '''
 
     t = Staff("c'8 d'8 e'8 f'8")
     t[2:2] = [Note(7, (1, 8))]
@@ -23,7 +24,8 @@ def test_Container___setitem___slice_01():
 
 
 def test_Container___setitem___slice_02():
-    '''Set single leaf between spanned components.'''
+    '''Set single leaf between spanned components.
+    '''
 
     t = Staff("c'8 d'8 e'8 f'8")
     p = beamtools.BeamSpanner(t[:])
@@ -84,7 +86,8 @@ def test_Container___setitem___slice_03():
 
 
 def test_Container___setitem___slice_04():
-    '''Replace sequence of spanned components with a single leaf.'''
+    '''Replace sequence of spanned components with a single leaf.
+    '''
 
     t = Staff("c'8 d'8 e'8 f'8")
     p = beamtools.BeamSpanner(t[:])
@@ -127,7 +130,8 @@ def test_Container___setitem___slice_05():
 
 
 def test_Container___setitem___slice_06():
-    '''Donor and recipient container are the same.'''
+    '''Donor and recipient container are the same.
+    '''
 
     t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
@@ -166,7 +170,8 @@ def test_Container___setitem___slice_06():
 
 
 def test_Container___setitem___slice_07():
-    '''Donor and recipient container are the same.'''
+    '''Donor and recipient container are the same.
+    '''
 
     t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
@@ -206,7 +211,8 @@ def test_Container___setitem___slice_07():
 
 
 def test_Container___setitem___slice_08():
-    '''Donor and recipient container are the same.'''
+    '''Donor and recipient container are the same.
+    '''
 
     t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
@@ -244,7 +250,8 @@ def test_Container___setitem___slice_08():
 
 
 def test_Container___setitem___slice_09():
-    '''Donor and recipient container are the same.'''
+    '''Donor and recipient container are the same.
+    '''
 
     t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
@@ -285,7 +292,8 @@ def test_Container___setitem___slice_09():
 
 
 def test_Container___setitem___slice_10():
-    '''Donor and recipient container are the same.'''
+    '''Donor and recipient container are the same.
+    '''
 
     t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
@@ -325,7 +333,8 @@ def test_Container___setitem___slice_10():
 
 
 def test_Container___setitem___slice_11():
-    '''Extremely small coequal indices act as zero.'''
+    '''Extremely small coequal indices act as zero.
+    '''
 
     t = Voice("c'8 d'8 e'8 f'8")
     beamtools.BeamSpanner(t[:])
@@ -346,7 +355,8 @@ def test_Container___setitem___slice_11():
 
 
 def test_Container___setitem___slice_12():
-    '''Extremely large, coequal indices work correctly.'''
+    '''Extremely large, coequal indices work correctly.
+    '''
 
     t = Voice("c'8 d'8 e'8 f'8")
     beamtools.BeamSpanner(t[:])

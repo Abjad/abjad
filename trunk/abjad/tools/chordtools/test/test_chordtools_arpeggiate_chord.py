@@ -2,7 +2,8 @@ from abjad import *
 
 
 def test_chordtools_arpeggiate_chord_01():
-    '''Returns list of notes with pitches equal to those in chord.'''
+    '''Returns list of notes with pitches equal to those in chord.
+    '''
 
     t = Chord([0, 2, 9], (1, 4))
     notes = chordtools.arpeggiate_chord(t)

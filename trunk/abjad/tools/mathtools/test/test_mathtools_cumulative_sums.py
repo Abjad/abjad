@@ -4,7 +4,8 @@ import py.test
 
 
 def test_mathtools_cumulative_sums_01():
-    '''Return list of the cumulative sums of the integer elements in input.'''
+    '''Return list of the cumulative sums of the integer elements in input.
+    '''
 
     assert mathtools.cumulative_sums([1, 2, 3]) == [1, 3, 6]
     assert mathtools.cumulative_sums([10, -9, -8]) == [10, 1, -7]

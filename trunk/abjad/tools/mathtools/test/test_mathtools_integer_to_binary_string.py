@@ -4,7 +4,8 @@ import py.test
 
 
 def test_mathtools_integer_to_binary_string_01():
-    '''Return base-2 representation of integer n as string.'''
+    '''Return base-2 representation of integer n as string.
+    '''
 
     assert mathtools.integer_to_binary_string(1) == '1'
     assert mathtools.integer_to_binary_string(2) == '10'
@@ -25,6 +26,7 @@ def test_mathtools_integer_to_binary_string_02():
 
 
 def test_mathtools_integer_to_binary_string_03():
-    '''Raise TypeError for noninteger input.'''
+    '''Raise TypeError for noninteger input.
+    '''
 
     assert py.test.raises(TypeError, 'mathtools.integer_to_binary_string(5.5)')

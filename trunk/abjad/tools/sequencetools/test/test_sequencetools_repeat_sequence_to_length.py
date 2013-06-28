@@ -4,13 +4,15 @@ import py.test
 
 
 def test_sequencetools_repeat_sequence_to_length_01():
-    '''Repeat list to length.'''
+    '''Repeat list to length.
+    '''
 
     assert sequencetools.repeat_sequence_to_length(range(5), 11) == [0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0]
 
 
 def test_sequencetools_repeat_sequence_to_length_02():
-    '''Repeat list to length.'''
+    '''Repeat list to length.
+    '''
 
     t = sequencetools.repeat_sequence_to_length([0, -1, -2, -3, -4], 11)
     assert t == [0, -1, -2, -3, -4, 0, -1, -2, -3, -4, 0]
@@ -26,20 +28,23 @@ def test_sequencetools_repeat_sequence_to_length_03():
 
 
 def test_sequencetools_repeat_sequence_to_length_04():
-    '''When length is zero, return an empty list.'''
+    '''When length is zero, return an empty list.
+    '''
 
     t = sequencetools.repeat_sequence_to_length(range(5), 0)
     assert t == []
 
 
 def test_sequencetools_repeat_sequence_to_length_05():
-    '''List must not be empty.'''
+    '''List must not be empty.
+    '''
 
     assert py.test.raises(ValueError, 'sequencetools.repeat_sequence_to_length([], 2)')
 
 
 def test_sequencetools_repeat_sequence_to_length_06():
-    '''Optional start index less than length of list.'''
+    '''Optional start index less than length of list.
+    '''
 
     t = sequencetools.repeat_sequence_to_length([1, 2, 3], 10, 2)
 
@@ -47,7 +52,8 @@ def test_sequencetools_repeat_sequence_to_length_06():
 
 
 def test_sequencetools_repeat_sequence_to_length_07():
-    '''Optional start index greater than length of list is OK.'''
+    '''Optional start index greater than length of list is OK.
+    '''
 
     t = sequencetools.repeat_sequence_to_length([1, 2, 3], 10, 100)
 

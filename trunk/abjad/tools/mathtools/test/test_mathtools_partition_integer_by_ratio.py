@@ -4,7 +4,8 @@ import py.test
 
 
 def test_mathtools_partition_integer_by_ratio_01():
-    '''Partition integer n according to ratio.'''
+    '''Partition integer n according to ratio.
+    '''
 
     t = mathtools.partition_integer_by_ratio(10, [1])
     assert t == [10]
@@ -23,7 +24,8 @@ def test_mathtools_partition_integer_by_ratio_01():
 
 
 def test_mathtools_partition_integer_by_ratio_02():
-    '''Partition integer n according to ratio.'''
+    '''Partition integer n according to ratio.
+    '''
 
     t = mathtools.partition_integer_by_ratio(10, [1, 2])
     assert t == [3, 7]

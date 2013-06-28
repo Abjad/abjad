@@ -18,7 +18,8 @@ def test_pitchtools_pentatonic_pitch_number_to_chromatic_pitch_number_01():
 
 
 def test_pitchtools_pentatonic_pitch_number_to_chromatic_pitch_number_02():
-    '''Pentatonic scale can be transposed.'''
+    '''Pentatonic scale can be transposed.
+    '''
 
     assert pitchtools.pentatonic_pitch_number_to_chromatic_pitch_number(0, 0) == 0
     assert pitchtools.pentatonic_pitch_number_to_chromatic_pitch_number(1, 0) == 2
@@ -42,7 +43,8 @@ def test_pitchtools_pentatonic_pitch_number_to_chromatic_pitch_number_02():
 
 
 def test_pitchtools_pentatonic_pitch_number_to_chromatic_pitch_number_03():
-    '''Pentatonic scale can be rotated.'''
+    '''Pentatonic scale can be rotated.
+    '''
 
     # Interval sequence 3,2,2,3,2
     assert pitchtools.pentatonic_pitch_number_to_chromatic_pitch_number(0, 1, 1) == 1
@@ -68,6 +70,7 @@ def test_pitchtools_pentatonic_pitch_number_to_chromatic_pitch_number_03():
 
 
 def test_pitchtools_pentatonic_pitch_number_to_chromatic_pitch_number_04():
-    '''Phase must be positive.'''
+    '''Phase must be positive.
+    '''
 
     assert py.test.raises(AssertionError, 'pitchtools.pentatonic_pitch_number_to_chromatic_pitch_number(0, 1, -3)')

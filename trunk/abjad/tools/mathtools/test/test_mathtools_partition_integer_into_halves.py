@@ -16,14 +16,16 @@ def test_mathtools_partition_integer_into_halves_02():
 
 
 def test_mathtools_partition_integer_into_halves_03():
-    '''Partition zero into halves.'''
+    '''Partition zero into halves.
+    '''
 
     assert mathtools.partition_integer_into_halves(0, bigger='left') == (0, 0)
     assert mathtools.partition_integer_into_halves(0, bigger='right') == (0, 0)
 
 
 def test_mathtools_partition_integer_into_halves_04():
-    '''Divide zero only into even halves.'''
+    '''Divide zero only into even halves.
+    '''
 
     assert py.test.raises(PartitionError,
         "mathtools.partition_integer_into_halves(0, even='disallowed')")

@@ -48,7 +48,8 @@ def test_contexttools_get_effective_tempo_02():
 
 
 def test_contexttools_get_effective_tempo_03():
-    '''Tempo interface accepts durations.'''
+    '''Tempo interface accepts durations.
+    '''
 
     staff = Staff([Note("c'4")])
     contexttools.TempoMark(Duration(1, 8), 38, target_context = Staff)(staff[0])

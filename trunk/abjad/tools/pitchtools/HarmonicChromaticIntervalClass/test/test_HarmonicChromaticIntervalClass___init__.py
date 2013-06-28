@@ -43,7 +43,8 @@ def test_HarmonicChromaticIntervalClass___init___02():
 
 
 def test_HarmonicChromaticIntervalClass___init___03():
-    '''Works on harmonic chromatic interval instances.'''
+    '''Works on harmonic chromatic interval instances.
+    '''
 
     hci = pitchtools.HarmonicChromaticInterval(-14)
     hcic = pitchtools.HarmonicChromaticIntervalClass(hci)

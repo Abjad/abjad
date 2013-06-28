@@ -2,7 +2,7 @@ S'3.2'
 p1
 .S'LALR'
 p1
-.S'\xa1(I{\x83\xa2<&k\x19\xc6d\x93\xfe\x81\x11'
+.S' \x93\x89\xa5<`X\xc7\xa0\xfd\xdb.\x91N\xafs'
 p1
 .(dp1
 I0
@@ -1877,9 +1877,9 @@ p6
 I1
 S'p_apostrophes__APOSTROPHE'
 p7
-S'/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
+S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/ReducedLyParser/ReducedLyParser.py'
 p8
-I226
+I224
 tp9
 a(S'apostrophes -> apostrophes APOSTROPHE'
 p10
@@ -1888,9 +1888,9 @@ p11
 I2
 S'p_apostrophes__apostrophes__APOSTROPHE'
 p12
-S'/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
+S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/ReducedLyParser/ReducedLyParser.py'
 p13
-I230
+I229
 tp14
 a(S'beam -> BRACKET_L'
 p15
@@ -1899,7 +1899,7 @@ p16
 I1
 S'p_beam__BRACKET_L'
 p17
-S'/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
+S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/ReducedLyParser/ReducedLyParser.py'
 p18
 I234
 tp19
@@ -1910,9 +1910,9 @@ p21
 I1
 S'p_beam__BRACKET_R'
 p22
-S'/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
+S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/ReducedLyParser/ReducedLyParser.py'
 p23
-I238
+I239
 tp24
 a(S'chord_body -> chord_pitches'
 p25
@@ -1921,9 +1921,9 @@ p26
 I1
 S'p_chord_body__chord_pitches'
 p27
-S'/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
+S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/ReducedLyParser/ReducedLyParser.py'
 p28
-I242
+I244
 tp29
 a(S'chord_body -> chord_pitches positive_leaf_duration'
 p30
@@ -1932,9 +1932,9 @@ p31
 I2
 S'p_chord_body__chord_pitches__positive_leaf_duration'
 p32
-S'/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
+S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/ReducedLyParser/ReducedLyParser.py'
 p33
-I246
+I249
 tp34
 a(S'chord_pitches -> CARAT_L pitches CARAT_R'
 p35
@@ -1943,9 +1943,9 @@ p36
 I3
 S'p_chord_pitches__CARAT_L__pitches__CARAT_R'
 p37
-S'/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
+S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/ReducedLyParser/ReducedLyParser.py'
 p38
-I250
+I254
 tp39
 a(S'commas -> COMMA'
 p40
@@ -1954,9 +1954,9 @@ p41
 I1
 S'p_commas__COMMA'
 p42
-S'/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
+S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/ReducedLyParser/ReducedLyParser.py'
 p43
-I254
+I259
 tp44
 a(S'commas -> commas COMMA'
 p45
@@ -1965,9 +1965,9 @@ p46
 I2
 S'p_commas__commas__commas'
 p47
-S'/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
+S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/ReducedLyParser/ReducedLyParser.py'
 p48
-I258
+I264
 tp49
 a(S'component -> container'
 p50
@@ -1976,9 +1976,9 @@ p51
 I1
 S'p_component__container'
 p52
-S'/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
+S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/ReducedLyParser/ReducedLyParser.py'
 p53
-I262
+I269
 tp54
 a(S'component -> fixed_duration_container'
 p55
@@ -1987,9 +1987,9 @@ p56
 I1
 S'p_component__fixed_duration_container'
 p57
-S'/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
+S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/ReducedLyParser/ReducedLyParser.py'
 p58
-I266
+I274
 tp59
 a(S'component -> leaf'
 p60
@@ -1998,9 +1998,9 @@ p61
 I1
 S'p_component__leaf'
 p62
-S'/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
+S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/ReducedLyParser/ReducedLyParser.py'
 p63
-I270
+I279
 tp64
 a(S'component -> tuplet'
 p65
@@ -2009,9 +2009,9 @@ p66
 I1
 S'p_component__tuplet'
 p67
-S'/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
+S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/ReducedLyParser/ReducedLyParser.py'
 p68
-I274
+I284
 tp69
 a(S'component_list -> <empty>'
 p70
@@ -2020,9 +2020,9 @@ p71
 I0
 S'p_component_list__EMPTY'
 p72
-S'/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
+S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/ReducedLyParser/ReducedLyParser.py'
 p73
-I278
+I289
 tp74
 a(S'component_list -> component_list component'
 p75
@@ -2031,9 +2031,9 @@ p76
 I2
 S'p_component_list__component_list__component'
 p77
-S'/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
+S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/ReducedLyParser/ReducedLyParser.py'
 p78
-I282
+I294
 tp79
 a(S'container -> BRACE_L component_list BRACE_R'
 p80
@@ -2042,9 +2042,9 @@ p81
 I3
 S'p_container__BRACE_L__component_list__BRACE_R'
 p82
-S'/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
+S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/ReducedLyParser/ReducedLyParser.py'
 p83
-I286
+I299
 tp84
 a(S'dots -> dots DOT'
 p85
@@ -2053,9 +2053,9 @@ p86
 I2
 S'p_dots__dots__DOT'
 p87
-S'/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
+S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/ReducedLyParser/ReducedLyParser.py'
 p88
-I292
+I306
 tp89
 a(S'dots -> <empty>'
 p90
@@ -2064,9 +2064,9 @@ p91
 I0
 S'p_dots__EMPTY'
 p92
-S'/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
+S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/ReducedLyParser/ReducedLyParser.py'
 p93
-I296
+I311
 tp94
 a(S'fixed_duration_container -> BRACE_L FRACTION BRACE_R'
 p95
@@ -2075,9 +2075,9 @@ p96
 I3
 S'p_fixed_duration_container__BRACE_L__FRACTION__BRACE_R'
 p97
-S'/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
+S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/ReducedLyParser/ReducedLyParser.py'
 p98
-I300
+I316
 tp99
 a(S'leaf -> leaf_body post_events'
 p100
@@ -2086,9 +2086,9 @@ p101
 I2
 S'p_leaf__leaf_body__post_events'
 p102
-S'/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
+S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/ReducedLyParser/ReducedLyParser.py'
 p103
-I304
+I321
 tp104
 a(S'leaf_body -> chord_body'
 p105
@@ -2097,9 +2097,9 @@ p106
 I1
 S'p_leaf_body__chord_body'
 p107
-S'/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
+S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/ReducedLyParser/ReducedLyParser.py'
 p108
-I311
+I328
 tp109
 a(S'leaf_body -> note_body'
 p110
@@ -2108,9 +2108,9 @@ p111
 I1
 S'p_leaf_body__note_body'
 p112
-S'/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
+S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/ReducedLyParser/ReducedLyParser.py'
 p113
-I315
+I333
 tp114
 a(S'leaf_body -> rest_body'
 p115
@@ -2119,9 +2119,9 @@ p116
 I1
 S'p_leaf_body__rest_body'
 p117
-S'/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
+S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/ReducedLyParser/ReducedLyParser.py'
 p118
-I319
+I338
 tp119
 a(S'measure -> PIPE FRACTION component_list PIPE'
 p120
@@ -2130,9 +2130,9 @@ p121
 I4
 S'p_measure__PIPE__FRACTION__component_list__PIPE'
 p122
-S'/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
+S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/ReducedLyParser/ReducedLyParser.py'
 p123
-I323
+I343
 tp124
 a(S'negative_leaf_duration -> INTEGER_N dots'
 p125
@@ -2141,9 +2141,9 @@ p126
 I2
 S'p_negative_leaf_duration__INTEGER_N__dots'
 p127
-S'/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
+S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/ReducedLyParser/ReducedLyParser.py'
 p128
-I329
+I350
 tp129
 a(S'note_body -> pitch'
 p130
@@ -2152,9 +2152,9 @@ p131
 I1
 S'p_note_body__pitch'
 p132
-S'/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
+S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/ReducedLyParser/ReducedLyParser.py'
 p133
-I337
+I361
 tp134
 a(S'note_body -> pitch positive_leaf_duration'
 p135
@@ -2163,9 +2163,9 @@ p136
 I2
 S'p_note_body__pitch__positive_leaf_duration'
 p137
-S'/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
+S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/ReducedLyParser/ReducedLyParser.py'
 p138
-I341
+I366
 tp139
 a(S'note_body -> positive_leaf_duration'
 p140
@@ -2174,9 +2174,9 @@ p141
 I1
 S'p_note_body__positive_leaf_duration'
 p142
-S'/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
+S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/ReducedLyParser/ReducedLyParser.py'
 p143
-I345
+I371
 tp144
 a(S'pitch -> PITCHNAME'
 p145
@@ -2185,9 +2185,9 @@ p146
 I1
 S'p_pitch__PITCHNAME'
 p147
-S'/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
+S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/ReducedLyParser/ReducedLyParser.py'
 p148
-I349
+I376
 tp149
 a(S'pitch -> PITCHNAME apostrophes'
 p150
@@ -2196,9 +2196,9 @@ p151
 I2
 S'p_pitch__PITCHNAME__apostrophes'
 p152
-S'/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
+S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/ReducedLyParser/ReducedLyParser.py'
 p153
-I353
+I381
 tp154
 a(S'pitch -> PITCHNAME commas'
 p155
@@ -2207,9 +2207,9 @@ p156
 I2
 S'p_pitch__PITCHNAME__commas'
 p157
-S'/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
+S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/ReducedLyParser/ReducedLyParser.py'
 p158
-I357
+I386
 tp159
 a(S'pitches -> pitch'
 p160
@@ -2218,9 +2218,9 @@ p161
 I1
 S'p_pitches__pitch'
 p162
-S'/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
+S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/ReducedLyParser/ReducedLyParser.py'
 p163
-I361
+I391
 tp164
 a(S'pitches -> pitches pitch'
 p165
@@ -2229,9 +2229,9 @@ p166
 I2
 S'p_pitches__pitches__pitch'
 p167
-S'/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
+S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/ReducedLyParser/ReducedLyParser.py'
 p168
-I365
+I396
 tp169
 a(S'positive_leaf_duration -> INTEGER_P dots'
 p170
@@ -2240,9 +2240,9 @@ p171
 I2
 S'p_positive_leaf_duration__INTEGER_P__dots'
 p172
-S'/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
+S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/ReducedLyParser/ReducedLyParser.py'
 p173
-I369
+I401
 tp174
 a(S'post_event -> beam'
 p175
@@ -2251,9 +2251,9 @@ p176
 I1
 S'p_post_event__beam'
 p177
-S'/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
+S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/ReducedLyParser/ReducedLyParser.py'
 p178
-I377
+I412
 tp179
 a(S'post_event -> slur'
 p180
@@ -2262,9 +2262,9 @@ p181
 I1
 S'p_post_event__slur'
 p182
-S'/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
+S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/ReducedLyParser/ReducedLyParser.py'
 p183
-I381
+I417
 tp184
 a(S'post_event -> tie'
 p185
@@ -2273,9 +2273,9 @@ p186
 I1
 S'p_post_event__tie'
 p187
-S'/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
+S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/ReducedLyParser/ReducedLyParser.py'
 p188
-I385
+I422
 tp189
 a(S'post_events -> <empty>'
 p190
@@ -2284,9 +2284,9 @@ p191
 I0
 S'p_post_events__EMPTY'
 p192
-S'/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
+S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/ReducedLyParser/ReducedLyParser.py'
 p193
-I389
+I427
 tp194
 a(S'post_events -> post_events post_event'
 p195
@@ -2295,9 +2295,9 @@ p196
 I2
 S'p_post_events__post_events__post_event'
 p197
-S'/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
+S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/ReducedLyParser/ReducedLyParser.py'
 p198
-I393
+I432
 tp199
 a(S'rest_body -> negative_leaf_duration'
 p200
@@ -2306,9 +2306,9 @@ p201
 I1
 S'p_rest_body__negative_leaf_duration'
 p202
-S'/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
+S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/ReducedLyParser/ReducedLyParser.py'
 p203
-I402
+I442
 tp204
 a(S'rest_body -> RESTNAME'
 p205
@@ -2317,9 +2317,9 @@ p206
 I1
 S'p_rest_body__RESTNAME'
 p207
-S'/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
+S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/ReducedLyParser/ReducedLyParser.py'
 p208
-I406
+I447
 tp209
 a(S'rest_body -> RESTNAME positive_leaf_duration'
 p210
@@ -2328,9 +2328,9 @@ p211
 I2
 S'p_rest_body__RESTNAME__positive_leaf_duration'
 p212
-S'/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
+S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/ReducedLyParser/ReducedLyParser.py'
 p213
-I410
+I452
 tp214
 a(S'slur -> PAREN_L'
 p215
@@ -2339,9 +2339,9 @@ p216
 I1
 S'p_slur__PAREN_L'
 p217
-S'/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
+S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/ReducedLyParser/ReducedLyParser.py'
 p218
-I414
+I457
 tp219
 a(S'slur -> PAREN_R'
 p220
@@ -2350,9 +2350,9 @@ p221
 I1
 S'p_slur__PAREN_R'
 p222
-S'/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
+S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/ReducedLyParser/ReducedLyParser.py'
 p223
-I418
+I462
 tp224
 a(S'start -> <empty>'
 p225
@@ -2361,9 +2361,9 @@ p226
 I0
 S'p_start__EMPTY'
 p227
-S'/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
+S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/ReducedLyParser/ReducedLyParser.py'
 p228
-I422
+I467
 tp229
 a(S'start -> start component'
 p230
@@ -2372,9 +2372,9 @@ p231
 I2
 S'p_start__start__component'
 p232
-S'/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
+S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/ReducedLyParser/ReducedLyParser.py'
 p233
-I426
+I473
 tp234
 a(S'start -> start measure'
 p235
@@ -2383,9 +2383,9 @@ p236
 I2
 S'p_start__start__measure'
 p237
-S'/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
+S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/ReducedLyParser/ReducedLyParser.py'
 p238
-I430
+I479
 tp239
 a(S'tie -> TILDE'
 p240
@@ -2394,9 +2394,9 @@ p241
 I1
 S'p_tie__TILDE'
 p242
-S'/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
+S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/ReducedLyParser/ReducedLyParser.py'
 p243
-I434
+I485
 tp244
 a(S'tuplet -> FRACTION container'
 p245
@@ -2405,8 +2405,8 @@ p246
 I2
 S'p_tuplet__FRACTION__container'
 p247
-S'/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
+S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/lilypondparsertools/ReducedLyParser/ReducedLyParser.py'
 p248
-I438
+I490
 tp249
 a.

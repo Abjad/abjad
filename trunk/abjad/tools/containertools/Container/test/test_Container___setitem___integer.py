@@ -3,7 +3,8 @@ import py.test
 
 
 def test_Container___setitem___integer_01():
-    '''Spanned leaves exchange correctly.'''
+    '''Spanned leaves exchange correctly.
+    '''
 
     t = Voice("c'8 d'8 e'8 f'8")
     beamtools.BeamSpanner(t[:2])
@@ -34,7 +35,8 @@ def test_Container___setitem___integer_01():
 
 
 def test_Container___setitem___integer_02():
-    '''Spanned leaf hands position over to container correctly.'''
+    '''Spanned leaf hands position over to container correctly.
+    '''
 
     t = Voice("c'8 d'8 e'8 f'8")
     beamtools.BeamSpanner(t[:2])
@@ -145,7 +147,8 @@ def test_Container___setitem___integer_04():
 
 
 def test_Container___setitem___integer_05():
-    '''Directly spanned containers hand over to other containers correctly.'''
+    '''Directly spanned containers hand over to other containers correctly.
+    '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
@@ -186,7 +189,8 @@ def test_Container___setitem___integer_05():
 
 
 def test_Container___setitem___integer_06():
-    '''Indirectly spanned containers hand over correctly to a single leaf.'''
+    '''Indirectly spanned containers hand over correctly to a single leaf.
+    '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)

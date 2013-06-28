@@ -3,7 +3,8 @@ from abjad.tools import sequencetools
 
 
 def test_sequencetools_partition_sequence_by_ratio_of_weights_01():
-    '''Common cases.'''
+    '''Common cases.
+    '''
 
     l = [1] * 10
 
@@ -21,7 +22,8 @@ def test_sequencetools_partition_sequence_by_ratio_of_weights_01():
 
 
 def test_sequencetools_partition_sequence_by_ratio_of_weights_02():
-    '''Unusual cases.'''
+    '''Unusual cases.
+    '''
 
     l = [5, 5]
 
@@ -39,7 +41,8 @@ def test_sequencetools_partition_sequence_by_ratio_of_weights_02():
 
 
 def test_sequencetools_partition_sequence_by_ratio_of_weights_03():
-    '''More unusual cases.'''
+    '''More unusual cases.
+    '''
 
     l = [7, 3]
 

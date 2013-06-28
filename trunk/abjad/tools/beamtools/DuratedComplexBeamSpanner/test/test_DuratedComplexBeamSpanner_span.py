@@ -2,7 +2,8 @@ from abjad import *
 
 
 def test_DuratedComplexBeamSpanner_span_01():
-    '''1-beam span between adjacent groups of 1/16th notes.'''
+    '''1-beam span between adjacent groups of 1/16th notes.
+    '''
 
     t = Voice("c'16 d'16 e'16 f'16")
     beamtools.DuratedComplexBeamSpanner(t, durations=[(1, 8), (1, 8)], span=1)
@@ -30,7 +31,8 @@ def test_DuratedComplexBeamSpanner_span_01():
 
 
 def test_DuratedComplexBeamSpanner_span_02():
-    '''2-beam span between adjacent groups of 1/16th notes.'''
+    '''2-beam span between adjacent groups of 1/16th notes.
+    '''
 
     t = Voice("c'16 d'16 e'16 f'16")
     beamtools.DuratedComplexBeamSpanner(t, durations=[(1, 8), (1, 8)], span=2)

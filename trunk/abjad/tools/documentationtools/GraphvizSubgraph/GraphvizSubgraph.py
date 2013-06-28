@@ -2,7 +2,8 @@ from abjad.tools.documentationtools.GraphvizGraph import GraphvizGraph
 
 
 class GraphvizSubgraph(GraphvizGraph):
-    '''A Graphviz cluster subgraph.'''
+    '''A Graphviz cluster subgraph.
+    '''
 
     ### INITIALIZER ###
 

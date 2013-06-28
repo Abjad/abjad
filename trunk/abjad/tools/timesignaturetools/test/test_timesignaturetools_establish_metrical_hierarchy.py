@@ -21,7 +21,8 @@ def test_timesignaturetools_establish_metrical_hierarchy_02():
 
 
 def test_timesignaturetools_establish_metrical_hierarchy_03():
-    '''Descends into tuplets.'''
+    '''Descends into tuplets.
+    '''
     source = p('abj: | 2/4 2 ~ || 5/4 8 ~ 8 ~ 2/3 { 4 ~ 4 4 ~ } 4 ~ 4 ~ || 2/4 2 |')
     target = p('abj: | 2/4 2 ~ || 5/4 4 ~ 2/3 { 2 4 ~ } 2 ~ || 2/4 2 |')
     metrical_hierarchy = timesignaturetools.MetricalHierarchy(source[1])
@@ -59,7 +60,8 @@ def test_timesignaturetools_establish_metrical_hierarchy_06():
 
 
 def test_timesignaturetools_establish_metrical_hierarchy_07():
-    '''Can limit dot count.'''
+    '''Can limit dot count.
+    '''
 
     metrical_hierarchy = '(4/4 (1/4 1/4 1/4 1/4))'
 

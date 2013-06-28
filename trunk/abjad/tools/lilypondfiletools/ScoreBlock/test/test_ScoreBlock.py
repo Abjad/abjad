@@ -35,7 +35,8 @@ def test_ScoreBlock_01():
 
 
 def test_ScoreBlock_02():
-    '''ScoreBlock does not format when empty by default.'''
+    '''ScoreBlock does not format when empty by default.
+    '''
 
     score_block = lilypondfiletools.ScoreBlock()
     assert score_block.lilypond_format == ''

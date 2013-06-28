@@ -3,14 +3,16 @@ from abjad.tools import sequencetools
 
 
 def test_sequencetools_iterate_sequence_pairwise_strict_01():
-    '''Pairwise list of numbers.'''
+    '''Pairwise list of numbers.
+    '''
     t = range(6)
     pairs = sequencetools.iterate_sequence_pairwise_strict(t)
     assert list(pairs) == [(0, 1), (1, 2), (2, 3), (3, 4), (4, 5)]
 
 
 def test_sequencetools_iterate_sequence_pairwise_strict_02():
-    '''Pairwise list of notes.'''
+    '''Pairwise list of notes.
+    '''
     t = [Note(x, (1, 4)) for x in range(6)]
     pairs = sequencetools.iterate_sequence_pairwise_strict(t)
     for i, pair in enumerate(pairs):
@@ -26,7 +28,8 @@ def test_sequencetools_iterate_sequence_pairwise_strict_02():
 
 
 def test_sequencetools_iterate_sequence_pairwise_strict_04():
-    '''Works on generators.'''
+    '''Works on generators.
+    '''
     t = xrange(6)
     pairs = sequencetools.iterate_sequence_pairwise_strict(t)
     pairs = list(pairs)

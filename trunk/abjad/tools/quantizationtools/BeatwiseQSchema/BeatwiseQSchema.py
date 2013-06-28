@@ -238,12 +238,14 @@ class BeatwiseQSchema(QSchema):
 
     @property
     def beatspan(self):
-        '''The default beatspan.'''
+        '''The default beatspan.
+        '''
         return self._beatspan
 
     @property
     def item_klass(self):
-        '''The schema's item class.'''
+        '''The schema's item class.
+        '''
         from abjad.tools import quantizationtools
         return quantizationtools.BeatwiseQSchemaItem
 

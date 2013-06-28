@@ -10,14 +10,16 @@ def test_sequencetools_iterate_sequence_nwise_strict_01():
 
 
 def test_sequencetools_iterate_sequence_nwise_strict_02():
-    '''Empty iterable boundary case.'''
+    '''Empty iterable boundary case.
+    '''
 
     t = list(sequencetools.iterate_sequence_nwise_strict([], 3))
     assert t == []
 
 
 def test_sequencetools_iterate_sequence_nwise_strict_03():
-    '''Length-1 boundary case.'''
+    '''Length-1 boundary case.
+    '''
 
     t = list(sequencetools.iterate_sequence_nwise_strict(range(10), 1))
     assert t == [(0,), (1,), (2,), (3,), (4,), (5,), (6,), (7,), (8,), (9,)]

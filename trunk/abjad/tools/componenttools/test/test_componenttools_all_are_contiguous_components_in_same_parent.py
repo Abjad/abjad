@@ -68,7 +68,8 @@ def test_componenttools_all_are_contiguous_components_in_same_parent_03():
 
 
 def test_componenttools_all_are_contiguous_components_in_same_parent_04():
-    '''Empty list returns True.'''
+    '''Empty list returns True.
+    '''
 
     t = []
 

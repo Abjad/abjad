@@ -3,7 +3,8 @@ import py.test
 
 
 def test_FixedDurationTuplet___add___01():
-    '''Add two fixed-duration tuplets with same multiplier outside of score.'''
+    '''Add two fixed-duration tuplets with same multiplier outside of score.
+    '''
 
     t1 = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
     beamtools.BeamSpanner(t1[:])
@@ -48,7 +49,8 @@ def test_FixedDurationTuplet___add___01():
 
 
 def test_FixedDurationTuplet___add___02():
-    '''Add fixed-duration tuplets with same multiplier in score.'''
+    '''Add fixed-duration tuplets with same multiplier in score.
+    '''
 
     t1 = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
     beamtools.BeamSpanner(t1[:])
@@ -91,7 +93,8 @@ def test_FixedDurationTuplet___add___02():
 
 
 def test_FixedDurationTuplet___add___03():
-    '''Tuplets must carry same multiplier.'''
+    '''Tuplets must carry same multiplier.
+    '''
 
     t1 = tuplettools.FixedDurationTuplet(Duration(4, 16), "c'8 d'8 e'8 f'8 g'8")
     t2 = tuplettools.FixedDurationTuplet(Duration(4, 16), "c'8 d'8 e'8 f'8 g'8 a'8")

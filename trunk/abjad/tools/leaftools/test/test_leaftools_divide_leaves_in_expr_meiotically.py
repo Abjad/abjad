@@ -2,7 +2,8 @@ from abjad import *
 
 
 def test_leaftools_divide_leaves_in_expr_meiotically_01():
-    '''Meiose each leaf in two.'''
+    '''Meiose each leaf in two.
+    '''
 
     t = Voice("c'8 d'8 e'8")
     beamtools.BeamSpanner(t[:])
@@ -24,7 +25,8 @@ def test_leaftools_divide_leaves_in_expr_meiotically_01():
 
 
 def test_leaftools_divide_leaves_in_expr_meiotically_02():
-    '''Meiose one leaf in four.'''
+    '''Meiose one leaf in four.
+    '''
 
     t = Voice("c'8 d'8 e'8")
     beamtools.BeamSpanner(t[:])

@@ -62,12 +62,14 @@ class Pipe(abctools.AbjadObject, subprocess.Popen):
     ### PUBLIC METHODS ###
 
     def close(self):
-        '''Close the pipe.'''
+        '''Close the pipe.
+        '''
         self.terminate()
         self.wait()
 
     def read(self):
-        '''Read from the pipe.'''
+        '''Read from the pipe.
+        '''
         c = self._readbyte()
         string = ""
         while c != None:
@@ -87,7 +89,8 @@ class Pipe(abctools.AbjadObject, subprocess.Popen):
             time.sleep(seconds)
 
     def write(self, data):
-        '''Write `data` into the pipe.'''
+        '''Write `data` into the pipe.
+        '''
         poll = select.poll()
         poll.register(self.stdin.fileno(), select.POLLOUT)
         fd = poll.poll(self.timeout)
@@ -97,5 +100,6 @@ class Pipe(abctools.AbjadObject, subprocess.Popen):
                 self.stdin.write(data)
 
     def write_line(self, data):
-        '''Write `data` into the pipe, terminated by a newline.'''
+        '''Write `data` into the pipe, terminated by a newline.
+        '''
         self.write('%s\n' % data)

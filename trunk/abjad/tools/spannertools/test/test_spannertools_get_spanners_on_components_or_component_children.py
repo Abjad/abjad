@@ -2,7 +2,8 @@ from abjad import *
 
 
 def test_spannertools_get_spanners_on_components_or_component_children_01():
-    '''Get all spanners attaching directly to any component in list.'''
+    '''Get all spanners attaching directly to any component in list.
+    '''
 
     t = Staff("c'8 d'8 e'8 f'8")
     b1 = beamtools.BeamSpanner(t[:2])
@@ -26,7 +27,8 @@ def test_spannertools_get_spanners_on_components_or_component_children_01():
 
 
 def test_spannertools_get_spanners_on_components_or_component_children_02():
-    '''Accept empty component list.'''
+    '''Accept empty component list.
+    '''
 
     spanners = spannertools.get_spanners_on_components_or_component_children([])
 
@@ -34,7 +36,8 @@ def test_spannertools_get_spanners_on_components_or_component_children_02():
 
 
 def test_spannertools_get_spanners_on_components_or_component_children_03():
-    '''Return empty set when no spanners.'''
+    '''Return empty set when no spanners.
+    '''
 
     t = Staff("c'8 d'8 e'8 f'8")
     spanners = spannertools.get_spanners_on_components_or_component_children(t[:])

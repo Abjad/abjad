@@ -58,7 +58,8 @@ def test_Staff___setitem___01():
 
 
 def test_Staff___setitem___02():
-    '''Reassign the *entire* contents of t.'''
+    '''Reassign the *entire* contents of t.
+    '''
     t = Staff(Note("c'4") * 4)
     assert t.contents_duration == Duration(4, 4)
     t[:] = Note(0, (1, 8)) * 4
@@ -66,19 +67,22 @@ def test_Staff___setitem___02():
 
 
 def test_Staff___setitem___03():
-    '''Item-assign an empty container to t.'''
+    '''Item-assign an empty container to t.
+    '''
     t = Staff(Note("c'4") * 4)
     t[0] = Voice([])
 
 
 def test_Staff___setitem___04():
-    '''Slice-assign empty containers to t.'''
+    '''Slice-assign empty containers to t.
+    '''
     t = Staff(Note("c'4") * 4)
     t[0:2] = [Voice([]), Voice([])]
 
 
 def test_Staff___setitem___05():
-    '''Bark when user assigns a slice to an item.'''
+    '''Bark when user assigns a slice to an item.
+    '''
 
     t = Staff(Note("c'4") * 4)
 
@@ -86,7 +90,8 @@ def test_Staff___setitem___05():
 
 
 def test_Staff___setitem___06():
-    '''Bark when user assigns an item to a slice.'''
+    '''Bark when user assigns an item to a slice.
+    '''
 
     t = Staff(Note("c'4") * 4)
 
@@ -94,7 +99,8 @@ def test_Staff___setitem___06():
 
 
 def test_Staff___setitem___07():
-    '''Slice-assign notes.'''
+    '''Slice-assign notes.
+    '''
     t = Staff(Note(0, (1, 8)) * 8)
     t[0:4] = Note(2, (1, 8)) * 4
     assert len(t) == 8
@@ -106,7 +112,8 @@ def test_Staff___setitem___07():
 
 
 def test_Staff___setitem___08():
-    '''Slice-assign chords.'''
+    '''Slice-assign chords.
+    '''
     t = Staff(Note(0, (1, 8)) * 8)
     t[0:4] = Chord([2, 3, 4], (1, 4)) * 4
     assert len(t) == 8
@@ -118,7 +125,8 @@ def test_Staff___setitem___08():
 
 
 def test_Staff___setitem___09():
-    '''Slice-assign tuplets.'''
+    '''Slice-assign tuplets.
+    '''
     t = Staff(Note(0, (1, 8)) * 8)
     t[0:4] = tuplettools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3) * 2
     assert len(t) == 6
@@ -131,7 +139,8 @@ def test_Staff___setitem___09():
 
 
 def test_Staff___setitem___10():
-    '''Slice-assign measures.'''
+    '''Slice-assign measures.
+    '''
     t = Staff(Note(0, (1, 8)) * 8)
     t[0:4] = Measure((2, 8), Note(0, (1, 8)) * 2) * 2
     assert len(t) == 6

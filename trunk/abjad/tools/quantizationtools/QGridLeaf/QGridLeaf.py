@@ -102,7 +102,8 @@ class QGridLeaf(RhythmTreeNode):
     @apply
     def is_divisible():
         def fget(self):
-            '''Flag for whether the node may be further divided under some search tree.'''
+            '''Flag for whether the node may be further divided under some search tree.
+            '''
             return self._is_divisible
         def fset(self, arg):
             self._is_divisible = bool(arg)

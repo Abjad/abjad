@@ -29,7 +29,8 @@ def test_Container_insert_01():
 
 
 def test_Container_insert_02():
-    '''Insert works inside a spanner.'''
+    '''Insert works inside a spanner.
+    '''
 
     t = Voice("c'8 d'8 e'8 f'8")
     beamtools.BeamSpanner(t[:])
@@ -51,7 +52,8 @@ def test_Container_insert_02():
 
 
 def test_Container_insert_03():
-    '''Insert works just after a spanner.'''
+    '''Insert works just after a spanner.
+    '''
 
     t = Staff([Note(n, (1, 8)) for n in range(4)])
     beamtools.BeamSpanner(t[:])
@@ -72,7 +74,8 @@ def test_Container_insert_03():
 
 
 def test_Container_insert_04():
-    '''Insert works with really big positive values.'''
+    '''Insert works with really big positive values.
+    '''
 
     t = Staff([Note(n, (1, 8)) for n in range(4)])
     beamtools.BeamSpanner(t[:])
@@ -93,7 +96,8 @@ def test_Container_insert_04():
 
 
 def test_Container_insert_05():
-    '''Insert works with negative values.'''
+    '''Insert works with negative values.
+    '''
 
     t = Voice("c'8 d'8 e'8 f'8")
     beamtools.BeamSpanner(t[:])
@@ -114,7 +118,8 @@ def test_Container_insert_05():
 
 
 def test_Container_insert_06():
-    '''Insert works with really big negative values.'''
+    '''Insert works with really big negative values.
+    '''
 
     t = Voice("c'8 d'8 e'8 f'8")
     beamtools.BeamSpanner(t[:])

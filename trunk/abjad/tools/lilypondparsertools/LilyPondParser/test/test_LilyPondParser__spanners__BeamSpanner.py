@@ -23,7 +23,8 @@ def test_LilyPondParser__spanners__BeamSpanner_01():
 
 
 def test_LilyPondParser__spanners__BeamSpanner_02():
-    '''With start and stop reversed.'''
+    '''With start and stop reversed.
+    '''
     target = Container(notetools.make_notes([0] * 4, [(1, 4)]))
     beamtools.BeamSpanner(target[0:3])
     beamtools.BeamSpanner(target[3:])
@@ -89,7 +90,8 @@ def test_LilyPondParser__spanners__BeamSpanner_06():
 
 
 def test_LilyPondParser__spanners__BeamSpanner_07():
-    '''With direction.'''
+    '''With direction.
+    '''
     target = Container(notetools.make_notes([0] * 4, [(1, 4)]))
     beamtools.BeamSpanner(target[0:3], direction=Up)
     beamtools.BeamSpanner(target[3:], direction=Down)

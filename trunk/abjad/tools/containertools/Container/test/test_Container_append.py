@@ -3,7 +3,8 @@ import py.test
 
 
 def test_Container_append_01():
-    '''Append sequential to voice.'''
+    '''Append sequential to voice.
+    '''
 
     t = Voice(notetools.make_repeated_notes(2))
     beamtools.BeamSpanner(t[:])
@@ -26,7 +27,8 @@ def test_Container_append_01():
 
 
 def test_Container_append_02():
-    '''Append leaf to tuplet.'''
+    '''Append leaf to tuplet.
+    '''
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
     beamtools.BeamSpanner(t[:])
@@ -59,7 +61,8 @@ def test_Container_append_03():
 
 
 def test_Container_append_04():
-    '''Append spanned leaf from donor container to recipient container.'''
+    '''Append spanned leaf from donor container to recipient container.
+    '''
 
     t = Voice("c'8 d'8 e'8")
     beamtools.BeamSpanner(t[:])

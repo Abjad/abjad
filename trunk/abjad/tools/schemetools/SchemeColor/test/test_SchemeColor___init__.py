@@ -17,7 +17,8 @@ def test_SchemeColor___init___01():
 
 
 def test_SchemeColor___init___02():
-    '''Normal (non-X11) color names specify with a string.'''
+    '''Normal (non-X11) color names specify with a string.
+    '''
 
     t = Note("c'4")
     t.override.note_head.color = 'grey'

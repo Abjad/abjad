@@ -3,7 +3,8 @@ import py.test
 
 
 def test_NumberedChromaticPitchClass___init___01():
-    '''Pitch class initialization works with numbers.'''
+    '''Pitch class initialization works with numbers.
+    '''
 
     assert isinstance(pitchtools.NumberedChromaticPitchClass(0),
         pitchtools.NumberedChromaticPitchClass)
@@ -20,7 +21,8 @@ def test_NumberedChromaticPitchClass___init___01():
 
 
 def test_NumberedChromaticPitchClass___init___02():
-    '''Pitch class initialization works with other pitch-classes.'''
+    '''Pitch class initialization works with other pitch-classes.
+    '''
 
     pc = pitchtools.NumberedChromaticPitchClass(pitchtools.NumberedChromaticPitchClass(0))
     assert isinstance(pc, pitchtools.NumberedChromaticPitchClass)
@@ -30,7 +32,8 @@ def test_NumberedChromaticPitchClass___init___02():
 
 
 def test_NumberedChromaticPitchClass___init___03():
-    '''PitchClass initialization works with pitches.'''
+    '''PitchClass initialization works with pitches.
+    '''
 
     pc = pitchtools.NumberedChromaticPitchClass(pitchtools.NamedChromaticPitch(0))
     assert isinstance(pc, pitchtools.NumberedChromaticPitchClass)
@@ -40,7 +43,8 @@ def test_NumberedChromaticPitchClass___init___03():
 
 
 def test_NumberedChromaticPitchClass___init___04():
-    '''Pitch class initialization works with notes.'''
+    '''Pitch class initialization works with notes.
+    '''
 
     note = Note(13, (1, 4))
     pc = pitchtools.NumberedChromaticPitchClass(note)
@@ -48,7 +52,8 @@ def test_NumberedChromaticPitchClass___init___04():
 
 
 def test_NumberedChromaticPitchClass___init___05():
-    '''Pitch class initialization works with one-note chords.'''
+    '''Pitch class initialization works with one-note chords.
+    '''
 
     chord = Chord([13], (1, 4))
     pc = pitchtools.NumberedChromaticPitchClass(chord)
@@ -56,7 +61,8 @@ def test_NumberedChromaticPitchClass___init___05():
 
 
 def test_NumberedChromaticPitchClass___init___06():
-    '''Init with named pitch-class instance.'''
+    '''Init with named pitch-class instance.
+    '''
 
     npc = pitchtools.NamedChromaticPitchClass('cs')
     pc = pitchtools.NumberedChromaticPitchClass(npc)
@@ -64,27 +70,31 @@ def test_NumberedChromaticPitchClass___init___06():
 
 
 def test_NumberedChromaticPitchClass___init___07():
-    '''PitchClass initialization raises ValueError.'''
+    '''PitchClass initialization raises ValueError.
+    '''
 
     assert py.test.raises(Exception, "pitchtools.NumberedChromaticPitchClass('foo')")
 
 
 def test_NumberedChromaticPitchClass___init___08():
-    '''PitchClass initialization raises TypeError on rest.'''
+    '''PitchClass initialization raises TypeError on rest.
+    '''
 
     rest = Rest((1, 4))
     assert py.test.raises(Exception, 'pitchtools.NumberedChromaticPitchClass(rest)')
 
 
 def test_NumberedChromaticPitchClass___init___09():
-    '''PitchClass initialization raises MissingPitchError on empty chord.'''
+    '''PitchClass initialization raises MissingPitchError on empty chord.
+    '''
 
     chord = Chord([], (1, 4))
     assert py.test.raises(MissingPitchError, 'pitchtools.NumberedChromaticPitchClass(chord)')
 
 
 def test_NumberedChromaticPitchClass___init___10():
-    '''Init from named pitch-class string.'''
+    '''Init from named pitch-class string.
+    '''
 
     assert pitchtools.NumberedChromaticPitchClass('c') == 0
     assert pitchtools.NumberedChromaticPitchClass('cs') == 1

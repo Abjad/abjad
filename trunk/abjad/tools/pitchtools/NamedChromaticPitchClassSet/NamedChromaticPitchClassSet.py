@@ -143,5 +143,6 @@ class NamedChromaticPitchClassSet(PitchClassSet):
         raise ValueError(message % (self, npc_seg))
 
     def transpose(self, melodic_diatonic_interval):
-        '''Transpose all npcs in self by melodic diatonic interval.'''
+        '''Transpose all npcs in self by melodic diatonic interval.
+        '''
         return type(self)([npc + melodic_diatonic_interval for npc in self])

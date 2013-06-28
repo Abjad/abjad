@@ -88,12 +88,14 @@ class Digraph(AbjadObject):
 
     @property
     def cyclic_nodes(self):
-        '''A tuple of those nodes which partake in a cycle.'''
+        '''A tuple of those nodes which partake in a cycle.
+        '''
         return self._cyclic_nodes
 
     @property
     def edges(self):
-        '''A tuple of all edges in the graph.'''
+        '''A tuple of all edges in the graph.
+        '''
         edges = []
         for node in self.nodes:
             for child in self.parent_graph[node]:
@@ -102,14 +104,16 @@ class Digraph(AbjadObject):
 
     @property
     def is_cyclic(self):
-        '''Return True if the digraph contains any cycles.'''
+        '''Return True if the digraph contains any cycles.
+        '''
         if self.cyclic_nodes:
             return True
         return False
 
     @property
     def nodes(self):
-        '''A tuple of all nodes in the graph.'''
+        '''A tuple of all nodes in the graph.
+        '''
         return tuple(sorted(self.parent_graph.keys()))
 
     @property
@@ -120,12 +124,14 @@ class Digraph(AbjadObject):
 
     @property
     def root_nodes(self):
-        '''A tuple of those nodes which have no parents.'''
+        '''A tuple of those nodes which have no parents.
+        '''
         return self._root_nodes
 
     @property
     def terminal_nodes(self):
-        '''A tuple of those nodes which have no children.'''
+        '''A tuple of those nodes which have no children.
+        '''
         return self._terminal_nodes
 
     ### PRIVATE METHODS ###

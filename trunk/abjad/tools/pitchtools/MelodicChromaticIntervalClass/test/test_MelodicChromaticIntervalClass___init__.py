@@ -11,7 +11,8 @@ def test_MelodicChromaticIntervalClass___init___01():
 
 
 def test_MelodicChromaticIntervalClass___init___02():
-    '''Works with numbers less or equal to -12.'''
+    '''Works with numbers less or equal to -12.
+    '''
 
     mcic = pitchtools.MelodicChromaticIntervalClass(-12)
     assert repr(mcic) == 'MelodicChromaticIntervalClass(-12)'
@@ -25,7 +26,8 @@ def test_MelodicChromaticIntervalClass___init___02():
 
 
 def test_MelodicChromaticIntervalClass___init___03():
-    '''Works with numbers greater than 12.'''
+    '''Works with numbers greater than 12.
+    '''
 
     mcic = pitchtools.MelodicChromaticIntervalClass(12)
     assert repr(mcic) == 'MelodicChromaticIntervalClass(+12)'
@@ -39,7 +41,8 @@ def test_MelodicChromaticIntervalClass___init___03():
 
 
 def test_MelodicChromaticIntervalClass___init___04():
-    '''Works with other interval-class instances.'''
+    '''Works with other interval-class instances.
+    '''
 
     mcic = pitchtools.MelodicChromaticIntervalClass(12)
     new_mcic = pitchtools.MelodicChromaticIntervalClass(mcic)

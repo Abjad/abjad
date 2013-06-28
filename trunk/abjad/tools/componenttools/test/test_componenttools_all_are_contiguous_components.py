@@ -28,7 +28,8 @@ def test_componenttools_all_are_contiguous_components_01():
 
 
 def test_componenttools_all_are_contiguous_components_02():
-    '''True for strictly contiguous components.'''
+    '''True for strictly contiguous components.
+    '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
@@ -56,7 +57,8 @@ def test_componenttools_all_are_contiguous_components_02():
 
 
 def test_componenttools_all_are_contiguous_components_03():
-    '''Unicorporated leaves can not be evaluated for contiguity.'''
+    '''Unicorporated leaves can not be evaluated for contiguity.
+    '''
 
     notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
 
@@ -65,7 +67,8 @@ def test_componenttools_all_are_contiguous_components_03():
 
 
 def test_componenttools_all_are_contiguous_components_04():
-    '''Empty list returns True.'''
+    '''Empty list returns True.
+    '''
 
     t = []
 

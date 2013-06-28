@@ -93,7 +93,8 @@ def test_containertools_insert_component_04():
 
 
 def test_containertools_insert_component_05():
-    '''Insert works with really big positive values.'''
+    '''Insert works with really big positive values.
+    '''
 
     t = Staff([Note(n, (1, 8)) for n in range(4)])
     beamtools.BeamSpanner(t[:])

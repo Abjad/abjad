@@ -3,7 +3,8 @@ from abjad.tools import abctools
 
 
 class Documenter(abctools.Maker):
-    '''Documenter is an abstract base class for documentation classes.'''
+    '''Documenter is an abstract base class for documentation classes.
+    '''
 
     ### INITIALIZER ###
 

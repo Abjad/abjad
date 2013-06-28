@@ -66,7 +66,8 @@ def test_QGrid___call___02():
 
 
 def test_QGrid___call___03():
-    '''Non-binary works too.'''
+    '''Non-binary works too.
+    '''
 
     q_grid = QGrid()
     q_grid.subdivide_leaves([(0, (1, 1))])

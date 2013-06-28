@@ -192,7 +192,8 @@ class LilyPondFile(list):
     @apply
     def default_paper_size():
         def fget(self):
-            '''LilyPond default paper size.'''
+            '''LilyPond default paper size.
+            '''
             return self._default_paper_size
         def fset(self, args):
             # #(set-default-paper-size "11x17" 'landscape)
@@ -255,7 +256,8 @@ class LilyPondFile(list):
     @apply
     def global_staff_size():
         def fget(self):
-            '''LilyPond global staff size.'''
+            '''LilyPond global staff size.
+            '''
             return self._global_staff_size
         def fset(self, arg):
             assert isinstance(arg, (int, float, long, type(None)))

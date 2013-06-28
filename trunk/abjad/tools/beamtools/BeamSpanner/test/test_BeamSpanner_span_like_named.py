@@ -3,7 +3,8 @@ import py.test
 
 
 def test_BeamSpanner_span_like_named_01():
-    '''Abjad lets you span liked named voices.'''
+    '''Abjad lets you span liked named voices.
+    '''
 
     t = Staff(Voice(notetools.make_repeated_notes(4)) * 2)
     t[0].name = 'foo'

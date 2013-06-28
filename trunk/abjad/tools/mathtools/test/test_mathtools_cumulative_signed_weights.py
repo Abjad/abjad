@@ -3,7 +3,8 @@ from abjad.tools import mathtools
 
 
 def test_mathtools_cumulative_signed_weights_01():
-    '''Yield signed weights of the cumulative elements in *l*.'''
+    '''Yield signed weights of the cumulative elements in *l*.
+    '''
 
     l = [1, -2, -3, 4, -5, -6, 7, -8, -9, 10]
     t = list(mathtools.cumulative_signed_weights(l))

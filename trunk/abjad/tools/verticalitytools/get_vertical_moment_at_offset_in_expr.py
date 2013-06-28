@@ -67,7 +67,8 @@ def get_vertical_moment_at_offset_in_expr(expr, offset):
     from abjad.tools import verticalitytools
 
     def find_index(container, offset):
-        '''Based off of Python's bisect.bisect() function.'''
+        '''Based off of Python's bisect.bisect() function.
+        '''
         lo = 0
         hi = len(container)
         while lo < hi:

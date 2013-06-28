@@ -10,7 +10,8 @@ def test_HarmonicCounterpointInterval___init___01():
 
 
 def test_HarmonicCounterpointInterval___init___02():
-    '''Works with ascending diatonic interval instances.'''
+    '''Works with ascending diatonic interval instances.
+    '''
 
     mdi = pitchtools.MelodicDiatonicInterval('major', 10)
     hcpi = pitchtools.HarmonicCounterpointInterval(mdi)
@@ -20,7 +21,8 @@ def test_HarmonicCounterpointInterval___init___02():
 
 
 def test_HarmonicCounterpointInterval___init___03():
-    '''Works with descending diatonic interval instances.'''
+    '''Works with descending diatonic interval instances.
+    '''
 
     mdi = pitchtools.MelodicDiatonicInterval('major', -10)
     hcpi = pitchtools.HarmonicCounterpointInterval(mdi)

@@ -3,7 +3,8 @@ import py.test
 
 
 def test_Spanner__is_my_first_leaf_01():
-    '''Spanner attached to flat container.'''
+    '''Spanner attached to flat container.
+    '''
 
     class MockSpanner(spannertools.Spanner):
         def __init__(self, components=None):
@@ -35,7 +36,8 @@ def test_Spanner__is_my_first_leaf_01():
 
 
 def test_Spanner__is_my_first_leaf_02():
-    '''Spanner attached to container with nested contents.'''
+    '''Spanner attached to container with nested contents.
+    '''
 
     class MockSpanner(spannertools.Spanner):
         def __init__(self, components=None):

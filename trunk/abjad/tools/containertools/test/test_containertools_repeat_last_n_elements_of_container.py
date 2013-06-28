@@ -2,7 +2,8 @@ from abjad import *
 
 
 def test_containertools_repeat_last_n_elements_of_container_01():
-    '''Cyclic extend measures in voice.'''
+    '''Cyclic extend measures in voice.
+    '''
 
     t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
@@ -60,7 +61,8 @@ def test_containertools_repeat_last_n_elements_of_container_01():
 
 
 def test_containertools_repeat_last_n_elements_of_container_02():
-    '''Cyclic extend tuplets in voice.'''
+    '''Cyclic extend tuplets in voice.
+    '''
 
     t = Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)

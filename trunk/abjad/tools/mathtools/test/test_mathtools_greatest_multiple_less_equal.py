@@ -3,7 +3,8 @@ from abjad.tools import mathtools
 
 
 def test_mathtools_greatest_multiple_less_equal_01():
-    '''Return the least multiple of m greater than or equal to n.'''
+    '''Return the least multiple of m greater than or equal to n.
+    '''
 
     assert mathtools.greatest_multiple_less_equal(10, 0) == 0
     assert mathtools.greatest_multiple_less_equal(10, 1) == 0
@@ -15,7 +16,8 @@ def test_mathtools_greatest_multiple_less_equal_01():
 
 
 def test_mathtools_greatest_multiple_less_equal_02():
-    '''Return the least multiple of m greater than or equal to n.'''
+    '''Return the least multiple of m greater than or equal to n.
+    '''
 
     assert mathtools.greatest_multiple_less_equal(7, 0) == 0
     assert mathtools.greatest_multiple_less_equal(7, 1) == 0

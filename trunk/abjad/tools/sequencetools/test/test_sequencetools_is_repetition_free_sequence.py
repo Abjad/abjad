@@ -13,12 +13,14 @@ def test_sequencetools_is_repetition_free_sequence_02():
 
 
 def test_sequencetools_is_repetition_free_sequence_03():
-    '''True when expr is an empty sequence.'''
+    '''True when expr is an empty sequence.
+    '''
 
     assert sequencetools.is_repetition_free_sequence([])
 
 
 def test_sequencetools_is_repetition_free_sequence_04():
-    '''False when expr is not a sequence.'''
+    '''False when expr is not a sequence.
+    '''
 
     assert not sequencetools.is_repetition_free_sequence(17)

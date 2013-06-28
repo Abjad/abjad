@@ -7,7 +7,8 @@ from abjad.tools.documentationtools.ModuleCrawler import ModuleCrawler
 
 
 class APICrawler(abctools.AbjadObject):
-    '''Generates directories containing ReST to parallel directories containing code.'''
+    '''Generates directories containing ReST to parallel directories containing code.
+    '''
 
     ### CLASS VARIABLES ###
 

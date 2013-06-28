@@ -2,7 +2,8 @@ from abjad import *
 
 
 def test_pitchtools_calculate_melodic_chromatic_interval_class_01():
-    '''Ascending intervals greater than an octave.'''
+    '''Ascending intervals greater than an octave.
+    '''
 
     mcic = pitchtools.calculate_melodic_chromatic_interval_class(
         pitchtools.NamedChromaticPitch(-3), pitchtools.NamedChromaticPitch(12))
@@ -18,7 +19,8 @@ def test_pitchtools_calculate_melodic_chromatic_interval_class_01():
 
 
 def test_pitchtools_calculate_melodic_chromatic_interval_class_02():
-    '''Ascending octave.'''
+    '''Ascending octave.
+    '''
 
     mcic = pitchtools.calculate_melodic_chromatic_interval_class(
         pitchtools.NamedChromaticPitch(0), pitchtools.NamedChromaticPitch(12))
@@ -26,7 +28,8 @@ def test_pitchtools_calculate_melodic_chromatic_interval_class_02():
 
 
 def test_pitchtools_calculate_melodic_chromatic_interval_class_03():
-    '''Ascending intervals less than an octave.'''
+    '''Ascending intervals less than an octave.
+    '''
 
     mcic = pitchtools.calculate_melodic_chromatic_interval_class(
         pitchtools.NamedChromaticPitch(9), pitchtools.NamedChromaticPitch(12))
@@ -42,7 +45,8 @@ def test_pitchtools_calculate_melodic_chromatic_interval_class_03():
 
 
 def test_pitchtools_calculate_melodic_chromatic_interval_class_04():
-    '''Unison.'''
+    '''Unison.
+    '''
 
     mcic = pitchtools.calculate_melodic_chromatic_interval_class(
         pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(12))
@@ -50,7 +54,8 @@ def test_pitchtools_calculate_melodic_chromatic_interval_class_04():
 
 
 def test_pitchtools_calculate_melodic_chromatic_interval_class_05():
-    '''Descending intervals greater than an octave.'''
+    '''Descending intervals greater than an octave.
+    '''
 
     mcic = pitchtools.calculate_melodic_chromatic_interval_class(
         pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(-3))
@@ -66,7 +71,8 @@ def test_pitchtools_calculate_melodic_chromatic_interval_class_05():
 
 
 def test_pitchtools_calculate_melodic_chromatic_interval_class_06():
-    '''Descending octave.'''
+    '''Descending octave.
+    '''
 
     mcic = pitchtools.calculate_melodic_chromatic_interval_class(
         pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(0))
@@ -74,7 +80,8 @@ def test_pitchtools_calculate_melodic_chromatic_interval_class_06():
 
 
 def test_pitchtools_calculate_melodic_chromatic_interval_class_07():
-    '''Descending intervals less than an octave.'''
+    '''Descending intervals less than an octave.
+    '''
 
     mcic = pitchtools.calculate_melodic_chromatic_interval_class(
         pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(9))
@@ -90,7 +97,8 @@ def test_pitchtools_calculate_melodic_chromatic_interval_class_07():
 
 
 def test_pitchtools_calculate_melodic_chromatic_interval_class_08():
-    '''Quartertones.'''
+    '''Quartertones.
+    '''
 
     mcic = pitchtools.calculate_melodic_chromatic_interval_class(
         pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(-2.5))

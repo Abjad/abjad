@@ -2,7 +2,8 @@ from abjad import *
 
 
 def test_FixedDurationTuplet___init___01():
-    '''Initialize typical fixed-duration tuplet.'''
+    '''Initialize typical fixed-duration tuplet.
+    '''
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3)
 
@@ -16,7 +17,8 @@ def test_FixedDurationTuplet___init___01():
 
 
 def test_FixedDurationTuplet___init___02():
-    '''Initialize empty fixed-duration tuplet.'''
+    '''Initialize empty fixed-duration tuplet.
+    '''
 
     t = tuplettools.FixedDurationTuplet(Duration(1, 4), [])
 

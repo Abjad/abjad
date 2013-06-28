@@ -53,10 +53,12 @@ class QEvent(AbjadObject):
 
     @property
     def index(self):
-        '''The optional index, for sorting QEvents with identical offsets.'''
+        '''The optional index, for sorting QEvents with identical offsets.
+        '''
         return self._index
 
     @property
     def offset(self):
-        '''The offset in milliseconds of the event.'''
+        '''The offset in milliseconds of the event.
+        '''
         return self._offset

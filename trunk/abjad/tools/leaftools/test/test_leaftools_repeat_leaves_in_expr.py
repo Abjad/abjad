@@ -2,7 +2,8 @@ from abjad import *
 
 
 def test_leaftools_repeat_leaves_in_expr_01():
-    '''Multiply each leaf in voice by 1.'''
+    '''Multiply each leaf in voice by 1.
+    '''
 
     t = Voice("c'8 d'8 e'8")
     p = beamtools.BeamSpanner(t[:])
@@ -24,7 +25,8 @@ def test_leaftools_repeat_leaves_in_expr_01():
 
 
 def test_leaftools_repeat_leaves_in_expr_02():
-    '''Multiply each leaf in voice by 2.'''
+    '''Multiply each leaf in voice by 2.
+    '''
 
     t = Voice("c'8 d'8 e'8")
     beamtools.BeamSpanner(t[:])

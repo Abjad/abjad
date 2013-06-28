@@ -78,12 +78,14 @@ class NamedChromaticPitch(Pitch):
         return abs(self.numbered_chromatic_pitch)
 
     def __add__(self, melodic_interval):
-        '''.. versionadded:: 2.0'''
+        '''.. versionadded:: 2.0
+        '''
         from abjad.tools import pitchtools
         return pitchtools.transpose_pitch_carrier_by_melodic_interval(self, melodic_interval)
 
     def __copy__(self, *args):
-        '''.. versionadded:: 2.0'''
+        '''.. versionadded:: 2.0
+        '''
         return type(self)(self)
 
     __deepcopy__ = __copy__

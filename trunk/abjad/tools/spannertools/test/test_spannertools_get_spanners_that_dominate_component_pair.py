@@ -37,7 +37,8 @@ def test_spannertools_get_spanners_that_dominate_component_pair_01():
 
 
 def test_spannertools_get_spanners_that_dominate_component_pair_02():
-    '''Beam and trill both dominate crack at t[1:1].'''
+    '''Beam and trill both dominate crack at t[1:1].
+    '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
@@ -53,7 +54,8 @@ def test_spannertools_get_spanners_that_dominate_component_pair_02():
 
 
 def test_spannertools_get_spanners_that_dominate_component_pair_03():
-    '''Glissando and trill both dominate crack at t[2:2].'''
+    '''Glissando and trill both dominate crack at t[2:2].
+    '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
@@ -69,7 +71,8 @@ def test_spannertools_get_spanners_that_dominate_component_pair_03():
 
 
 def test_spannertools_get_spanners_that_dominate_component_pair_04():
-    '''No spanners dominate 'crack' following voice.'''
+    '''No spanners dominate 'crack' following voice.
+    '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)

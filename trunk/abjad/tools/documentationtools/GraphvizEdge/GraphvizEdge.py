@@ -2,7 +2,8 @@ from abjad.tools.documentationtools.GraphvizObject import GraphvizObject
 
 
 class GraphvizEdge(GraphvizObject):
-    '''A Graphviz edge.'''
+    '''A Graphviz edge.
+    '''
 
     ### INITIALIZER ###
 

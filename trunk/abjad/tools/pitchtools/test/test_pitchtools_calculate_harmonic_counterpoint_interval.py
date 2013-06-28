@@ -2,7 +2,8 @@ from abjad import *
 
 
 def test_pitchtools_calculate_harmonic_counterpoint_interval_01():
-    '''Ascending intervals greater than an octave.'''
+    '''Ascending intervals greater than an octave.
+    '''
 
     hcpi = pitchtools.calculate_harmonic_counterpoint_interval(
         pitchtools.NamedChromaticPitch(-3), pitchtools.NamedChromaticPitch(12))
@@ -18,7 +19,8 @@ def test_pitchtools_calculate_harmonic_counterpoint_interval_01():
 
 
 def test_pitchtools_calculate_harmonic_counterpoint_interval_02():
-    '''Ascending octave.'''
+    '''Ascending octave.
+    '''
 
     hcpi = pitchtools.calculate_harmonic_counterpoint_interval(
         pitchtools.NamedChromaticPitch(0), pitchtools.NamedChromaticPitch(12))
@@ -26,7 +28,8 @@ def test_pitchtools_calculate_harmonic_counterpoint_interval_02():
 
 
 def test_pitchtools_calculate_harmonic_counterpoint_interval_03():
-    '''Ascending intervals less than an octave.'''
+    '''Ascending intervals less than an octave.
+    '''
 
     hcpi = pitchtools.calculate_harmonic_counterpoint_interval(
         pitchtools.NamedChromaticPitch(9), pitchtools.NamedChromaticPitch(12))
@@ -42,7 +45,8 @@ def test_pitchtools_calculate_harmonic_counterpoint_interval_03():
 
 
 def test_pitchtools_calculate_harmonic_counterpoint_interval_04():
-    '''Unison.'''
+    '''Unison.
+    '''
 
     hcpi = pitchtools.calculate_harmonic_counterpoint_interval(
         pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(12))
@@ -50,7 +54,8 @@ def test_pitchtools_calculate_harmonic_counterpoint_interval_04():
 
 
 def test_pitchtools_calculate_harmonic_counterpoint_interval_05():
-    '''Descending intervals greater than an octave.'''
+    '''Descending intervals greater than an octave.
+    '''
 
     hcpi = pitchtools.calculate_harmonic_counterpoint_interval(
         pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(-3))
@@ -66,7 +71,8 @@ def test_pitchtools_calculate_harmonic_counterpoint_interval_05():
 
 
 def test_pitchtools_calculate_harmonic_counterpoint_interval_06():
-    '''Descending octave.'''
+    '''Descending octave.
+    '''
 
     hcpi = pitchtools.calculate_harmonic_counterpoint_interval(
         pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(0))
@@ -74,7 +80,8 @@ def test_pitchtools_calculate_harmonic_counterpoint_interval_06():
 
 
 def test_pitchtools_calculate_harmonic_counterpoint_interval_07():
-    '''Descending intervals less than an octave.'''
+    '''Descending intervals less than an octave.
+    '''
 
     hcpi = pitchtools.calculate_harmonic_counterpoint_interval(
         pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(9))

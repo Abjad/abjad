@@ -60,7 +60,8 @@ class DeveloperScript(abctools.AbjadObject):
 
     @property
     def argument_parser(self):
-        '''The script's instance of argparse.ArgumentParser.'''
+        '''The script's instance of argparse.ArgumentParser.
+        '''
         return self._argument_parser
 
     @property
@@ -77,19 +78,22 @@ class DeveloperScript(abctools.AbjadObject):
 
     @abc.abstractproperty
     def long_description(self):
-        '''The long description, printed after arguments explanations.'''
+        '''The long description, printed after arguments explanations.
+        '''
         raise NotImplemented
 
     @property
     def program_name(self):
-        '''The name of the script, callable from the command line.'''
+        '''The name of the script, callable from the command line.
+        '''
         name = self._class_name[:self._class_name.rfind('Script')]
         return stringtools.upper_camel_case_to_space_delimited_lowercase(
             name).replace(' ', '-')
 
     @property
     def scripting_group(self):
-        '''The script's scripting subcommand group.'''
+        '''The script's scripting subcommand group.
+        '''
         return None
 
     @abc.abstractproperty
@@ -103,7 +107,8 @@ class DeveloperScript(abctools.AbjadObject):
 
     @abc.abstractproperty
     def version(self):
-        '''The version number of the script.'''
+        '''The version number of the script.
+        '''
         raise NotImplemented
 
     ### PUBLIC METHODS ###

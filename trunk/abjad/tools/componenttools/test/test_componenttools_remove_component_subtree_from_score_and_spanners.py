@@ -2,7 +2,8 @@ from abjad import *
 
 
 def test_componenttools_remove_component_subtree_from_score_and_spanners_01():
-    '''Detach sequential from score tree.'''
+    '''Detach sequential from score tree.
+    '''
 
     t = Voice(notetools.make_repeated_notes(2))
     t.insert(1, Container(notetools.make_repeated_notes(2)))
@@ -37,7 +38,8 @@ def test_componenttools_remove_component_subtree_from_score_and_spanners_01():
 
 
 def test_componenttools_remove_component_subtree_from_score_and_spanners_02():
-    '''Detach leaf from score tree.'''
+    '''Detach leaf from score tree.
+    '''
 
     t = Voice(notetools.make_repeated_notes(2))
     t.insert(1, Container(notetools.make_repeated_notes(2)))

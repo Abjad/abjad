@@ -22,7 +22,8 @@ def test_LilyPondParser__spanners__TieSpanner_03():
 
 
 def test_LilyPondParser__spanners__TieSpanner_04():
-    '''With direction.'''
+    '''With direction.
+    '''
     target = Container([Note(0, 1), Note(0, 1)])
     tietools.TieSpanner(target[:], direction=Up)
     parser = LilyPondParser()
@@ -31,7 +32,8 @@ def test_LilyPondParser__spanners__TieSpanner_04():
 
 
 def test_LilyPondParser__spanners__TieSpanner_05():
-    '''With direction.'''
+    '''With direction.
+    '''
     target = Container([Note(0, 1), Note(0, 1)])
     tietools.TieSpanner(target[:], direction=Down)
     parser = LilyPondParser()

@@ -43,7 +43,8 @@ def test_componenttools_copy_components_and_fracture_crossing_spanners_01():
 
 
 def test_componenttools_copy_components_and_fracture_crossing_spanners_02():
-    '''Copy one measure and fracture spanners.'''
+    '''Copy one measure and fracture spanners.
+    '''
 
     t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
@@ -90,7 +91,8 @@ def test_componenttools_copy_components_and_fracture_crossing_spanners_02():
 
 
 def test_componenttools_copy_components_and_fracture_crossing_spanners_03():
-    '''Three notes crossing measure boundaries.'''
+    '''Three notes crossing measure boundaries.
+    '''
 
     t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
@@ -135,7 +137,8 @@ def test_componenttools_copy_components_and_fracture_crossing_spanners_03():
 
 
 def test_componenttools_copy_components_and_fracture_crossing_spanners_04():
-    '''Optional 'n' argument for multiple copies.'''
+    '''Optional 'n' argument for multiple copies.
+    '''
 
     t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
