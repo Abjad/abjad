@@ -1,5 +1,6 @@
 from abjad import *
-from abjad.tools.lilypondproxytools import LilyPondContextSettingComponentPlugIn
+from abjad.tools.lilypondproxytools \
+	import LilyPondContextSettingComponentPlugIn
 
 
 def test_LilyPondContextSettingComponentPlugIn___repr___01():

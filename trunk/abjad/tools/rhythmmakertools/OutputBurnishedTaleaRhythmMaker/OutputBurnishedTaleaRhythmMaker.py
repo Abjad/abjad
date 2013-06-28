@@ -1,6 +1,7 @@
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
-from abjad.tools.rhythmmakertools.BurnishedRhythmMaker import BurnishedRhythmMaker
+from abjad.tools.rhythmmakertools.BurnishedRhythmMaker \
+	import BurnishedRhythmMaker
 
 
 class OutputBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):

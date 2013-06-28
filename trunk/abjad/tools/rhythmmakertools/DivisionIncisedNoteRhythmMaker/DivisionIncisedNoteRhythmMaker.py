@@ -1,5 +1,6 @@
 from abjad.tools import mathtools
-from abjad.tools.rhythmmakertools.DivisionIncisedRhythmMaker import DivisionIncisedRhythmMaker
+from abjad.tools.rhythmmakertools.DivisionIncisedRhythmMaker \
+	import DivisionIncisedRhythmMaker
 
 
 class DivisionIncisedNoteRhythmMaker(DivisionIncisedRhythmMaker):

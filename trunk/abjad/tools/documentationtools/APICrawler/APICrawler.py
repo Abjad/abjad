@@ -2,7 +2,8 @@ import os
 import types
 from abjad.tools import abctools
 from abjad.tools.documentationtools.ClassDocumenter import ClassDocumenter
-from abjad.tools.documentationtools.FunctionDocumenter import FunctionDocumenter
+from abjad.tools.documentationtools.FunctionDocumenter \
+	import FunctionDocumenter
 from abjad.tools.documentationtools.ModuleCrawler import ModuleCrawler
 
 

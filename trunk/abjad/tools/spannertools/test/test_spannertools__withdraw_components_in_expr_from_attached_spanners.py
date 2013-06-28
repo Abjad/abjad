@@ -1,5 +1,6 @@
 from abjad import *
-from abjad.tools.spannertools._withdraw_components_in_expr_from_attached_spanners import _withdraw_components_in_expr_from_attached_spanners
+from abjad.tools.spannertools._withdraw_components_in_expr_from_attached_spanners \
+	import _withdraw_components_in_expr_from_attached_spanners
 
 
 def test_spannertools__withdraw_components_in_expr_from_attached_spanners_01():

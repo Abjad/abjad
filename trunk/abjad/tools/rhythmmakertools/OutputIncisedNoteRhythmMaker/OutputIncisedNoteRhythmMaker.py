@@ -1,4 +1,5 @@
-from abjad.tools.rhythmmakertools.OutputIncisedRhythmMaker import OutputIncisedRhythmMaker
+from abjad.tools.rhythmmakertools.OutputIncisedRhythmMaker \
+	import OutputIncisedRhythmMaker
 
 
 class OutputIncisedNoteRhythmMaker(OutputIncisedRhythmMaker):

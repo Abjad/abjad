@@ -1,6 +1,7 @@
 from abjad.tools.timeintervaltools import compute_depth_of_intervals
 from abjad.tools.timeintervaltools.TimeIntervalTree import TimeIntervalTree
-from abjad.tools.timeintervaltools._make_test_intervals import _make_test_intervals
+from abjad.tools.timeintervaltools._make_test_intervals \
+	import _make_test_intervals
 
 
 def test_timeintervaltools_compute_depth_of_intervals_01():

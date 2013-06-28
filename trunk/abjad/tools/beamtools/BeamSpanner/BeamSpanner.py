@@ -1,4 +1,5 @@
-from abjad.tools.spannertools.DirectedSpanner.DirectedSpanner import DirectedSpanner
+from abjad.tools.spannertools.DirectedSpanner.DirectedSpanner \
+	import DirectedSpanner
 
 
 class BeamSpanner(DirectedSpanner):

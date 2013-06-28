@@ -3,7 +3,8 @@ import os
 from abjad.tools import abctools
 from abjad.tools.documentationtools.APICrawler import APICrawler
 from abjad.tools.documentationtools.ClassDocumenter import ClassDocumenter
-from abjad.tools.documentationtools.FunctionDocumenter import FunctionDocumenter
+from abjad.tools.documentationtools.FunctionDocumenter \
+	import FunctionDocumenter
 
 
 class AbjadAPIGenerator(abctools.AbjadObject):

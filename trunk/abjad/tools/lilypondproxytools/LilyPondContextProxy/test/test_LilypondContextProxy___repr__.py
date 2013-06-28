@@ -1,5 +1,6 @@
 from abjad import *
-from abjad.tools.lilypondproxytools.LilyPondContextProxy import LilyPondContextProxy
+from abjad.tools.lilypondproxytools.LilyPondContextProxy \
+	import LilyPondContextProxy
 
 
 def test_LilypondContextProxy___repr___01():

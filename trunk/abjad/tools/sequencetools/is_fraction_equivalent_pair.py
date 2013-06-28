@@ -1,4 +1,5 @@
-from abjad.tools.sequencetools.is_integer_equivalent_pair import is_integer_equivalent_pair
+from abjad.tools.sequencetools.is_integer_equivalent_pair \
+	import is_integer_equivalent_pair
 
 
 def is_fraction_equivalent_pair(expr):

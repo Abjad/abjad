@@ -1,5 +1,6 @@
 from abjad import *
-from abjad.tools.lilypondproxytools.LilyPondTweakReservoir import LilyPondTweakReservoir
+from abjad.tools.lilypondproxytools.LilyPondTweakReservoir \
+	import LilyPondTweakReservoir
 
 
 def test_LilyPondTweaksReservoir___repr___01():

@@ -1,7 +1,8 @@
 from abjad.tools.pitchtools import MelodicChromaticIntervalSegment
 from abjad.tools.pitchtools import NamedChromaticPitch
 from abjad.tools.pitchtools import NumberedChromaticPitch
-from abjad.tools.pitchtools import transpose_chromatic_pitch_by_melodic_chromatic_interval_segment
+from abjad.tools.pitchtools \
+	import transpose_chromatic_pitch_by_melodic_chromatic_interval_segment
 
 
 def test_pitchtools_transpose_chromatic_pitch_by_melodic_chromatic_interval_segment_01():

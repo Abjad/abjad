@@ -2,7 +2,8 @@ import abc
 from abjad.tools import documentationtools
 from abjad.tools import iotools
 from abjad.tools.developerscripttools.DeveloperScript import DeveloperScript
-from abjad.tools.developerscripttools.ReplaceInFilesScript import ReplaceInFilesScript
+from abjad.tools.developerscripttools.ReplaceInFilesScript \
+	import ReplaceInFilesScript
 import os
 
 

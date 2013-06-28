@@ -2,7 +2,8 @@
 from abjad.tools import contexttools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
-from abjad.tools.instrumenttools.PercussionInstrument import PercussionInstrument
+from abjad.tools.instrumenttools.PercussionInstrument \
+	import PercussionInstrument
 
 
 class UntunedPercussion(PercussionInstrument):

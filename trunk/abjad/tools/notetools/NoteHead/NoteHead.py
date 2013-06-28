@@ -1,6 +1,7 @@
 import copy
 from abjad.tools import leaftools
-from abjad.tools.abctools.SortableAttributeEqualityAbjadObject import SortableAttributeEqualityAbjadObject
+from abjad.tools.abctools.SortableAttributeEqualityAbjadObject \
+	import SortableAttributeEqualityAbjadObject
 from abjad.tools.lilypondproxytools import LilyPondTweakReservoir
 
 

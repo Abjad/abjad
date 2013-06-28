@@ -1,4 +1,5 @@
-from abjad.tools.mathtools.get_shared_numeric_sign import get_shared_numeric_sign
+from abjad.tools.mathtools.get_shared_numeric_sign \
+	import get_shared_numeric_sign
 
 
 def join_subsequences_by_sign_of_subsequence_elements(sequence):

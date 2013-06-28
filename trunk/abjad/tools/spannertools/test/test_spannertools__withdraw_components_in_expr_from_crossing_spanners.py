@@ -1,5 +1,6 @@
 from abjad import *
-from abjad.tools.spannertools._withdraw_components_in_expr_from_crossing_spanners import _withdraw_components_in_expr_from_crossing_spanners
+from abjad.tools.spannertools._withdraw_components_in_expr_from_crossing_spanners \
+	import _withdraw_components_in_expr_from_crossing_spanners
 import py.test
 
 

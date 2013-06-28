@@ -1,5 +1,6 @@
 from abjad.tools.abctools import AbjadObject
-from abjad.tools.configurationtools.get_abjad_revision_string import get_abjad_revision_string
+from abjad.tools.configurationtools.get_abjad_revision_string \
+	import get_abjad_revision_string
 
 
 class AbjadRevisionToken(AbjadObject):

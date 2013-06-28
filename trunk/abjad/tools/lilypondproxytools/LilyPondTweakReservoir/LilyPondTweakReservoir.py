@@ -1,4 +1,5 @@
-from abjad.tools.lilypondproxytools.LilyPondObjectProxy import LilyPondObjectProxy
+from abjad.tools.lilypondproxytools.LilyPondObjectProxy \
+	import LilyPondObjectProxy
 
 
 class LilyPondTweakReservoir(LilyPondObjectProxy):

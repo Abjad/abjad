@@ -1,4 +1,5 @@
-from abjad.tools.stringtools.is_snake_case_string import underscore_delimited_lowercase_regex_body
+from abjad.tools.stringtools.is_snake_case_string \
+	import underscore_delimited_lowercase_regex_body
 import re
 
 

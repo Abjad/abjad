@@ -1,5 +1,6 @@
 from abjad import *
-from abjad.tools.pitchtools.OctaveTranspositionMapping import OctaveTranspositionMapping
+from abjad.tools.pitchtools.OctaveTranspositionMapping \
+	import OctaveTranspositionMapping
 
 
 def test_OctaveTranspositionMapping___repr___01():

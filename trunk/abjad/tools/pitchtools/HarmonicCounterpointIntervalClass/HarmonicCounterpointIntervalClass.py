@@ -1,4 +1,5 @@
-from abjad.tools.pitchtools.CounterpointIntervalClass import CounterpointIntervalClass
+from abjad.tools.pitchtools.CounterpointIntervalClass \
+	import CounterpointIntervalClass
 from abjad.tools.pitchtools.HarmonicIntervalClass import HarmonicIntervalClass
 
 

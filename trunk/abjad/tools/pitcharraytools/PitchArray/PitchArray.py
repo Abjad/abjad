@@ -1,9 +1,13 @@
 from abjad.tools.abctools import AbjadObject
 from abjad.tools import sequencetools
-from abjad.tools.pitcharraytools.PitchArrayCell.PitchArrayCell import PitchArrayCell
-from abjad.tools.pitcharraytools.PitchArrayColumn.PitchArrayColumn import PitchArrayColumn
-from abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow import PitchArrayRow
-from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
+from abjad.tools.pitcharraytools.PitchArrayCell.PitchArrayCell \
+	import PitchArrayCell
+from abjad.tools.pitcharraytools.PitchArrayColumn.PitchArrayColumn \
+	import PitchArrayColumn
+from abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow \
+	import PitchArrayRow
+from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch \
+	import NamedChromaticPitch
 
 
 class PitchArray(AbjadObject):

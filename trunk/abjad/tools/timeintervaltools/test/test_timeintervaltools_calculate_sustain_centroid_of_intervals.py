@@ -1,6 +1,7 @@
 from abjad import *
 from abjad.tools.timeintervaltools import *
-from abjad.tools.timeintervaltools._make_test_intervals import _make_test_intervals
+from abjad.tools.timeintervaltools._make_test_intervals \
+	import _make_test_intervals
 
 
 def test_timeintervaltools_calculate_sustain_centroid_of_intervals_01():

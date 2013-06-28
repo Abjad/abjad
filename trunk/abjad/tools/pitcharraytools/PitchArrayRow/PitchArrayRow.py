@@ -1,5 +1,6 @@
 from abjad.tools.abctools import AbjadObject
-from abjad.tools.pitcharraytools.PitchArrayCell.PitchArrayCell import PitchArrayCell
+from abjad.tools.pitcharraytools.PitchArrayCell.PitchArrayCell \
+	import PitchArrayCell
 from abjad.tools.pitchtools.PitchRange.PitchRange import PitchRange
 import copy
 

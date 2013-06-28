@@ -1,6 +1,8 @@
 import re
-from abjad.tools.pitchtools.is_alphabetic_accidental_abbreviation import alphabetic_accidental_regex_body
-from abjad.tools.pitchtools.is_diatonic_pitch_class_name import diatonic_pitch_class_name_regex_body
+from abjad.tools.pitchtools.is_alphabetic_accidental_abbreviation \
+	import alphabetic_accidental_regex_body
+from abjad.tools.pitchtools.is_diatonic_pitch_class_name \
+	import diatonic_pitch_class_name_regex_body
 
 
 chromatic_pitch_class_name_regex_body = '''

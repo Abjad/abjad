@@ -1,5 +1,6 @@
 from abjad.tools.sequencetools.flatten_sequence import flatten_sequence
-from abjad.tools.sequencetools.zip_sequences_without_truncation import zip_sequences_without_truncation
+from abjad.tools.sequencetools.zip_sequences_without_truncation \
+	import zip_sequences_without_truncation
 
 
 def interlace_sequences(*sequences):

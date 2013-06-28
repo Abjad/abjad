@@ -1,5 +1,6 @@
 from abjad import *
-from abjad.tools.componenttools._switch_components_to_parent import _switch_components_to_parent
+from abjad.tools.componenttools._switch_components_to_parent \
+	import _switch_components_to_parent
 
 
 def test_componenttools__switch_components_to_parent_01():

@@ -1,5 +1,6 @@
 from abjad import *
-from abjad.tools.componenttools._ignore_parentage_of_components import _ignore_parentage_of_components
+from abjad.tools.componenttools._ignore_parentage_of_components \
+	import _ignore_parentage_of_components
 
 
 def test_componenttools__ignore_parentage_of_components_01():

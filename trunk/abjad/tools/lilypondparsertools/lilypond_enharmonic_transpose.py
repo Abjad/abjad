@@ -1,7 +1,9 @@
 from abjad.tools.pitchtools.Accidental import Accidental
-from abjad.tools.pitchtools.NamedDiatonicPitchClass import NamedDiatonicPitchClass
+from abjad.tools.pitchtools.NamedDiatonicPitchClass \
+	import NamedDiatonicPitchClass
 from abjad.tools.pitchtools.NamedChromaticPitch import NamedChromaticPitch
-from abjad.tools.pitchtools.octave_number_to_octave_tick_string import octave_number_to_octave_tick_string
+from abjad.tools.pitchtools.octave_number_to_octave_tick_string \
+	import octave_number_to_octave_tick_string
 
 
 def lilypond_enharmonic_transpose(pitch_a, pitch_b, pitch_c):

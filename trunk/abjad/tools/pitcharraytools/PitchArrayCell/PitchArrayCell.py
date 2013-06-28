@@ -1,5 +1,6 @@
 from abjad.tools.abctools import AbjadObject
-from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
+from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch \
+	import NamedChromaticPitch
 
 
 class PitchArrayCell(AbjadObject):

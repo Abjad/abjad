@@ -1,7 +1,8 @@
 from abjad.tools import contexttools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
-from abjad.tools.instrumenttools.DoubleReedInstrument import DoubleReedInstrument
+from abjad.tools.instrumenttools.DoubleReedInstrument \
+	import DoubleReedInstrument
 
 
 class Oboe(DoubleReedInstrument):

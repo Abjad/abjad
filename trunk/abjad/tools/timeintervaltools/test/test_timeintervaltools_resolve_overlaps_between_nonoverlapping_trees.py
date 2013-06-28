@@ -1,6 +1,7 @@
 from abjad.tools.timeintervaltools import TimeInterval
 from abjad.tools.timeintervaltools import TimeIntervalTree
-from abjad.tools.timeintervaltools import resolve_overlaps_between_nonoverlapping_trees
+from abjad.tools.timeintervaltools \
+	import resolve_overlaps_between_nonoverlapping_trees
 
 
 def test_timeintervaltools_resolve_overlaps_between_nonoverlapping_trees_01():

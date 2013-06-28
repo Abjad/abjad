@@ -1,4 +1,5 @@
-from abjad.tools.stringtools.is_dash_case_string import hyphen_delimited_lowercase_regex_body
+from abjad.tools.stringtools.is_dash_case_string \
+	import hyphen_delimited_lowercase_regex_body
 import re
 
 

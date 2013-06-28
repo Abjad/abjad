@@ -1,6 +1,7 @@
 from abjad.tools.pitchtools.Accidental import Accidental
 from abjad.tools.pitchtools.Pitch import Pitch
-from abjad.tools.pitchtools.is_chromatic_pitch_name import chromatic_pitch_name_regex
+from abjad.tools.pitchtools.is_chromatic_pitch_name \
+	import chromatic_pitch_name_regex
 
 
 class NamedChromaticPitch(Pitch):

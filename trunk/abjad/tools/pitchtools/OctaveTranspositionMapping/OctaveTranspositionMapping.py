@@ -1,5 +1,6 @@
 from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
-from abjad.tools.pitchtools.OctaveTranspositionMappingComponent import OctaveTranspositionMappingComponent
+from abjad.tools.pitchtools.OctaveTranspositionMappingComponent \
+	import OctaveTranspositionMappingComponent
 
 
 class OctaveTranspositionMapping(ObjectInventory):

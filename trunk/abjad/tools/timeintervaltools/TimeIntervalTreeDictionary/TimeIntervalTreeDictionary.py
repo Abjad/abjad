@@ -2,7 +2,8 @@ from abjad.tools import abctools
 from abjad.tools import durationtools
 from abjad.tools import sequencetools
 from abjad.tools.datastructuretools import ImmutableDictionary
-from abjad.tools.timeintervaltools.TimeIntervalAggregateMixin import TimeIntervalAggregateMixin
+from abjad.tools.timeintervaltools.TimeIntervalAggregateMixin \
+	import TimeIntervalAggregateMixin
 
 
 class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary):

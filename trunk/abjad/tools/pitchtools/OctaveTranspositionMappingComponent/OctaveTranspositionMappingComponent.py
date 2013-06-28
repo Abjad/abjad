@@ -1,6 +1,7 @@
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.pitchtools.NamedChromaticPitch import NamedChromaticPitch
-from abjad.tools.pitchtools.NumberedChromaticPitch import NumberedChromaticPitch
+from abjad.tools.pitchtools.NumberedChromaticPitch \
+	import NumberedChromaticPitch
 from abjad.tools.pitchtools.PitchRange import PitchRange
 
 

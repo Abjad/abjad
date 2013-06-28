@@ -1,5 +1,6 @@
 from abjad.tools.abctools import AbjadObject
-from abjad.tools.configurationtools.get_lilypond_version_string import get_lilypond_version_string
+from abjad.tools.configurationtools.get_lilypond_version_string \
+	import get_lilypond_version_string
 
 
 class LilyPondLanguageToken(AbjadObject):

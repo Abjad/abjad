@@ -2,7 +2,8 @@ import collections
 import copy
 import fractions
 from abjad.tools import durationtools
-from abjad.tools.timeintervaltools.TimeIntervalAggregateMixin import TimeIntervalAggregateMixin
+from abjad.tools.timeintervaltools.TimeIntervalAggregateMixin \
+	import TimeIntervalAggregateMixin
 from abjad.tools.timeintervaltools._RedBlackTree import _RedBlackTree
 
 

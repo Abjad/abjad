@@ -1,4 +1,5 @@
-from abjad.tools.rhythmmakertools.DivisionIncisedRestRhythmMaker import DivisionIncisedRestRhythmMaker
+from abjad.tools.rhythmmakertools.DivisionIncisedRestRhythmMaker \
+	import DivisionIncisedRestRhythmMaker
 
 
 class RestRhythmMaker(DivisionIncisedRestRhythmMaker):

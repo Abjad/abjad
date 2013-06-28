@@ -1,5 +1,6 @@
 import numbers
-from abjad.tools.pitchtools.ChromaticIntervalClass import ChromaticIntervalClass
+from abjad.tools.pitchtools.ChromaticIntervalClass \
+	import ChromaticIntervalClass
 from abjad.tools.pitchtools.HarmonicIntervalClass import HarmonicIntervalClass
 
 

@@ -1,6 +1,7 @@
 from abjad.tools.abctools import AbjadObject
 from abjad.tools import sequencetools
-from abjad.tools.pitcharraytools.PitchArrayCell.PitchArrayCell import PitchArrayCell
+from abjad.tools.pitcharraytools.PitchArrayCell.PitchArrayCell \
+	import PitchArrayCell
 
 
 class PitchArrayColumn(AbjadObject):

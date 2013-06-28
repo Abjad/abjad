@@ -1,5 +1,6 @@
 import abc
-from abjad.tools.abctools.AttributeEqualityAbjadObject import AttributeEqualityAbjadObject
+from abjad.tools.abctools.AttributeEqualityAbjadObject \
+	import AttributeEqualityAbjadObject
 
 
 class SortableAttributeEqualityAbjadObject(AttributeEqualityAbjadObject):

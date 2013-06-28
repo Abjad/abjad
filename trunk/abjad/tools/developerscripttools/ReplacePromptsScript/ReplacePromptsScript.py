@@ -1,5 +1,6 @@
 from abjad.tools.developerscripttools.DirectoryScript import DirectoryScript
-from abjad.tools.developerscripttools.ReplaceInFilesScript import ReplaceInFilesScript
+from abjad.tools.developerscripttools.ReplaceInFilesScript \
+	import ReplaceInFilesScript
 import os
 
 

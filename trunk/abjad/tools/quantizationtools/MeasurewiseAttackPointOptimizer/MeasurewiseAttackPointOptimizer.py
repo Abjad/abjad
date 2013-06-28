@@ -1,7 +1,8 @@
 from abjad.tools import contexttools
 from abjad.tools import measuretools
 from abjad.tools import tuplettools
-from abjad.tools.quantizationtools.AttackPointOptimizer import AttackPointOptimizer
+from abjad.tools.quantizationtools.AttackPointOptimizer \
+	import AttackPointOptimizer
 
 
 class MeasurewiseAttackPointOptimizer(AttackPointOptimizer):

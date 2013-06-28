@@ -1,5 +1,7 @@
-from abjad.tools.configurationtools.get_abjad_revision_string import get_abjad_revision_string
-from abjad.tools.configurationtools.get_abjad_version_string import get_abjad_version_string
+from abjad.tools.configurationtools.get_abjad_revision_string \
+	import get_abjad_revision_string
+from abjad.tools.configurationtools.get_abjad_version_string \
+	import get_abjad_version_string
 
 
 def get_abjad_startup_string():

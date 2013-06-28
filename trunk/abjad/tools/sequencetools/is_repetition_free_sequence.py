@@ -1,4 +1,5 @@
-from abjad.tools.sequencetools.iterate_sequence_pairwise_strict import iterate_sequence_pairwise_strict
+from abjad.tools.sequencetools.iterate_sequence_pairwise_strict \
+	import iterate_sequence_pairwise_strict
 
 
 def is_repetition_free_sequence(expr):

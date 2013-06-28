@@ -1,5 +1,7 @@
-from abjad.tools.formattools.get_context_mark_format_pieces import get_context_mark_format_pieces
-from abjad.tools.formattools.is_formattable_context_mark_for_component import is_formattable_context_mark_for_component
+from abjad.tools.formattools.get_context_mark_format_pieces \
+	import get_context_mark_format_pieces
+from abjad.tools.formattools.is_formattable_context_mark_for_component \
+	import is_formattable_context_mark_for_component
 
 
 def get_context_mark_format_contributions_for_slot(component, slot):

@@ -1,4 +1,5 @@
-from abjad.tools.lilypondfiletools.NonattributedBlock import NonattributedBlock
+from abjad.tools.lilypondfiletools.NonattributedBlock \
+	import NonattributedBlock
 
 
 class BookpartBlock(NonattributedBlock):

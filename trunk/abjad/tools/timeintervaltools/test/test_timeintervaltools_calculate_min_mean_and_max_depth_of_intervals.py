@@ -1,7 +1,9 @@
 from abjad import *
 from abjad.tools.timeintervaltools import TimeIntervalTree
-from abjad.tools.timeintervaltools import calculate_min_mean_and_max_depth_of_intervals
-from abjad.tools.timeintervaltools._make_test_intervals import _make_test_intervals
+from abjad.tools.timeintervaltools \
+	import calculate_min_mean_and_max_depth_of_intervals
+from abjad.tools.timeintervaltools._make_test_intervals \
+	import _make_test_intervals
 
 
 def test_timeintervaltools_calculate_min_mean_and_max_depth_of_intervals_01():

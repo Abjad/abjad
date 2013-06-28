@@ -2,7 +2,8 @@ from abjad.tools import durationtools
 from abjad.tools import leaftools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
-from abjad.tools.rhythmmakertools.OutputIncisedRhythmMaker import OutputIncisedRhythmMaker
+from abjad.tools.rhythmmakertools.OutputIncisedRhythmMaker \
+	import OutputIncisedRhythmMaker
 
 
 class OutputIncisedRestRhythmMaker(OutputIncisedRhythmMaker):

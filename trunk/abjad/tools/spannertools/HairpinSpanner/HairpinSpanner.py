@@ -2,7 +2,8 @@ from abjad.tools import chordtools
 from abjad.tools import notetools
 from abjad.tools import contexttools
 from abjad.tools import stringtools
-from abjad.tools.spannertools.DirectedSpanner.DirectedSpanner import DirectedSpanner
+from abjad.tools.spannertools.DirectedSpanner.DirectedSpanner \
+	import DirectedSpanner
 
 
 class HairpinSpanner(DirectedSpanner):
