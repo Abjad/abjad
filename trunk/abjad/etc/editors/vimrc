@@ -42,7 +42,7 @@ set nobackup
 set noswapfile
 set nowrap
 set nowritebackup
-set paste
+"set paste
 set pastetoggle=<F2>
 set shiftround
 set shiftwidth=4
@@ -95,10 +95,11 @@ vnoremap <F6> :s/^/#/<cr>
 noremap <leader>zm zMzr
 
 " hjkl navigation only
-noremap   <Up>     <NOP>
-noremap   <Down>   <NOP>
-noremap   <Left>   <NOP>
-noremap   <Right>  <NOP>
+" but note that arrow keys always work in paste mode
+map   <Up>     <NOP>
+map   <Down>   <NOP>
+map   <Left>   <NOP>
+map   <Right>  <NOP>
 
 " indentation 
 vnoremap < <gv
