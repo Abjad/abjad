@@ -51,7 +51,7 @@ def get_effective_context_mark(component, klass):
     # gathering candidate marks
     candidate_marks = datastructuretools.SortedCollection(key=lambda x: x.start_component.timespan.start_offset)
     for parent in componenttools.get_improper_parentage_of_component(component):
-        parent_marks = parent._context_marks_for_which_component_functions_as_effective_context
+        parent_marks = parent._dependent_context_marks
         for mark in parent_marks:
             if isinstance(mark, klass):
                 if mark.effective_context is not None:

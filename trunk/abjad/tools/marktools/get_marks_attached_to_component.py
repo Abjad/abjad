@@ -30,7 +30,7 @@ def get_marks_attached_to_component(component):
     Return tuple of zero or more marks.
     '''
 
-    marks = component._marks_for_which_component_functions_as_start_component
+    marks = component._start_marks
     marks = tuple(marks)
 
     return marks

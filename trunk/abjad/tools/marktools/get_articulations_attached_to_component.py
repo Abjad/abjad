@@ -29,7 +29,7 @@ def get_articulations_attached_to_component(component):
     from abjad.tools import marktools
 
     result = []
-    for mark in component._marks_for_which_component_functions_as_start_component:
+    for mark in component._start_marks:
         if isinstance(mark, (marktools.Articulation, marktools.BendAfter)):
             result.append(mark)
 

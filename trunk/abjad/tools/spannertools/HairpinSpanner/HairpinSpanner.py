@@ -101,7 +101,7 @@ class HairpinSpanner(DirectedSpanner):
                     effective_dynamic = contexttools.get_effective_dynamic(leaf)
                     if effective_dynamic is None or \
                         effective_dynamic not in \
-                        leaf._marks_for_which_component_functions_as_start_component:
+                        leaf._start_marks:
                         result.append('\\!')
         else:
             if self._is_my_first(leaf, (chordtools.Chord, notetools.Note)):

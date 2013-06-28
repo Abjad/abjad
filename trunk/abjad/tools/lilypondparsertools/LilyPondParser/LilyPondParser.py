@@ -449,7 +449,7 @@ class LilyPondParser(abctools.Parser):
             component = music.pop(0)
             context.append(component)
 
-        marks = music._marks_for_which_component_functions_as_start_component
+        marks = music._start_marks
         for mark in marks:
             mark(context)
 

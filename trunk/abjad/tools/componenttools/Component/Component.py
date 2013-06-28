@@ -16,8 +16,8 @@ class Component(AbjadObject):
     __metaclass__ = abc.ABCMeta
 
     __slots__ = ('_duration', '_is_forbidden_to_update', '_marks_are_current',
-        '_context_marks_for_which_component_functions_as_effective_context',
-        '_marks_for_which_component_functions_as_start_component',
+        '_dependent_context_marks',
+        '_start_marks',
         '_offset', '_offset_values_in_seconds_are_current', '_override', '_parent',
         '_prolated_offset_values_are_current', '_set', '_spanners',
         '_start_offset', '_start_offset_in_seconds', '_stop_offset', '_stop_offset_in_seconds',
@@ -30,8 +30,8 @@ class Component(AbjadObject):
     def __init__(self):
         self._is_forbidden_to_update = False
         self._marks_are_current = False
-        self._context_marks_for_which_component_functions_as_effective_context = list()
-        self._marks_for_which_component_functions_as_start_component = list()
+        self._dependent_context_marks = list()
+        self._start_marks = list()
         self._offset_values_in_seconds_are_current = False
         self._parent = None
         self._prolated_offset_values_are_current = False
@@ -362,7 +362,7 @@ class Component(AbjadObject):
         '''
         components = self._iterate_score_components_depth_first()
         for component in components:
-            for mark in component._marks_for_which_component_functions_as_start_component:
+            for mark in component._start_marks:
                 if hasattr(mark, '_update_effective_context'):
                     mark._update_effective_context()
             component._marks_are_current = True

@@ -33,7 +33,7 @@ def get_context_marks_attached_to_component(component, klasses=None):
         klasses = (contexttools.ContextMark,)
 
     result = []
-    for mark in component._marks_for_which_component_functions_as_start_component:
+    for mark in component._start_marks:
         if isinstance(mark, klasses):
             result.append(mark)
 

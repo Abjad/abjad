@@ -102,14 +102,14 @@ class Mark(AbjadObject):
         #print 'binding MARK to start component ...'
         assert isinstance(start_component, componenttools.Component)
         self._unbind_start_component()
-        start_component._marks_for_which_component_functions_as_start_component.append(self)
+        start_component._start_marks.append(self)
         self._start_component = start_component
 
     def _unbind_start_component(self):
         start_component = self._start_component
         if start_component is not None:
             try:
-                start_component._marks_for_which_component_functions_as_start_component.remove(self)
+                start_component._start_marks.remove(self)
             except ValueError:
                 pass
         self._start_component = None

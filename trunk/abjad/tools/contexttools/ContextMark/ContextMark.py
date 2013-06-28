@@ -58,7 +58,7 @@ class ContextMark(Mark):
     def _bind_correct_effective_context(self, correct_effective_context):
         self._unbind_effective_context()
         if correct_effective_context is not None:
-            correct_effective_context._context_marks_for_which_component_functions_as_effective_context.append(
+            correct_effective_context._dependent_context_marks.append(
                 self)
         self._effective_context = correct_effective_context
         self._update_effective_context()
@@ -91,7 +91,7 @@ class ContextMark(Mark):
         effective_context = self._effective_context
         if effective_context is not None:
             try:
-                effective_context._context_marks_for_which_component_functions_as_effective_context.remove(self)
+                effective_context._dependent_context_marks.remove(self)
             except ValueError:
                 pass
         self._effective_context = None
