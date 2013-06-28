@@ -2,22 +2,20 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class Mark(AbjadObject):
-    '''.. versionadded:: 2.0
+    r'''.. versionadded:: 2.0
 
-    Abstract class from which concrete marks inherit:
+    Abstract base class from which concrete marks inherit:
+
+        >>> mark = marktools.Mark()
+        >>> mark
+        Mark()
 
     ::
 
         >>> note = Note("c'4")
-
-    ::
-
-        >>> marktools.Mark()(note)
+        >>> mark.attach(note)
         Mark()(c'4)
 
-    Marks override ``___call__`` to attach to a note, rest or chord.
-
-    Marks are immutable.
     '''
 
     ### CLASS VARIABLES ###
@@ -63,10 +61,6 @@ class Mark(AbjadObject):
         new.format_slot = self.format_slot
         return new
 
-#    def __delattr__(self, *args):
-#        message = 'can not delete {} attributes.'.format(self._class_name)
-#        raise AttributeError(message)
-
     def __eq__(self, expr):
         '''True when `expr` is the same type as self.
         Otherwise false.
@@ -77,14 +71,18 @@ class Mark(AbjadObject):
             return True
         return False
 
-    def __ne__(self, expr):
-        return not self == expr
-
     def __repr__(self):
-        return '%s(%s)%s' % (type(self).__name__,
-            self._contents_repr_string, self._attachment_repr_string)
+        '''Mark interpreter representation.
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+        Return string.
+        '''
+        return '{}({}){}'.format(
+            self._class_name,
+            self._contents_repr_string, 
+            self._attachment_repr_string,
+            )
+
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _attachment_repr_string(self):
@@ -116,16 +114,11 @@ class Mark(AbjadObject):
                 pass
         self._start_component = None
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def start_component(self):
         '''Read-only reference to mark start component:
-
-        ::
-
-            >>> note = Note("c'4")
-            >>> mark = marktools.Mark()(note)
 
         ::
 
@@ -139,20 +132,19 @@ class Mark(AbjadObject):
     ### PUBLIC METHODS ###
 
     def attach(self, start_component):
-        '''Attach mark to `start_component`::
+        '''Attach mark to `start_component`:
+
+        ::
+
+            >>> mark = marktools.Mark()
+            >>> mark
+            Mark()
+
+        ::
 
             >>> note = Note("c'4")
-            >>> mark = marktools.Mark()
-
-        ::
-
             >>> mark.attach(note)
             Mark()(c'4)
-
-        ::
-
-            >>> mark.start_component
-            Note("c'4")
 
         Return mark.
         '''
@@ -160,27 +152,17 @@ class Mark(AbjadObject):
         return self
 
     def detach(self):
-        '''Detach mark:
+        '''Detach mark from start component:
 
         ::
 
-            >>> note = Note("c'4")
-            >>> mark = marktools.Mark()(note)
-
-        ::
-
-            >>> mark.start_component
-            Note("c'4")
+            >>> mark
+            Mark()(c'4)
 
         ::
 
             >>> mark.detach()
             Mark()
-
-        ::
-
-            >>> mark.start_component is None
-            True
 
         Return mark.
         '''
