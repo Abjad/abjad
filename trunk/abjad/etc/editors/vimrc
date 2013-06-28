@@ -152,6 +152,10 @@ call Pl#Theme#RemoveSegment('filetype')
 " provides these text objects: ac, ic, af, if
 " no configuration required
 
+" vim-surround (https://github.com/tpope/vim-surround.git)
+" provides matchfix transform commands
+" no configuration required
+
 " vim-unimpaired (https://github.com/tpope/vim-unimpaired.git)
 " provides bracket aliases for :previous, :next, :bprevious, :bnext, etc.
 " no configuration required
