@@ -32,6 +32,9 @@ Read-only properties
 .. autoattribute:: abjad.tools.instrumenttools.EFlatClarinet.EFlatClarinet.EFlatClarinet.default_instrument_name
    :noindex:
 
+.. autoattribute:: abjad.tools.instrumenttools.EFlatClarinet.EFlatClarinet.EFlatClarinet.default_pitch_range
+   :noindex:
+
 .. autoattribute:: abjad.tools.instrumenttools.EFlatClarinet.EFlatClarinet.EFlatClarinet.default_short_instrument_name
    :noindex:
 
@@ -60,9 +63,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: abjad.tools.instrumenttools.EFlatClarinet.EFlatClarinet.EFlatClarinet.target_context
-   :noindex:
-
-.. autoattribute:: abjad.tools.instrumenttools.EFlatClarinet.EFlatClarinet.EFlatClarinet.traditional_pitch_range
    :noindex:
 
 Read/write properties

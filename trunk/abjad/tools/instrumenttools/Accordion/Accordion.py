@@ -165,12 +165,12 @@ class Accordion(KeyboardInstrument, ReedInstrument):
 #        return self._primary_clefs
 
     @property
-    def traditional_pitch_range(self):
+    def default_pitch_range(self):
         '''Primary clefs:
 
         ::
 
-            >>> accordion.traditional_pitch_range
+            >>> accordion.default_pitch_range
             PitchRange('[E1, C8]')
 
         Return pitch range.

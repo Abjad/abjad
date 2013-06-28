@@ -17,15 +17,18 @@ class Instrument(contexttools.InstrumentMark):
         short_instrument_name=None,
         instrument_name_markup=None,
         short_instrument_name_markup=None,
-        target_context=None):
+        target_context=None,
+        ):
         self.sounding_pitch_of_fingered_middle_c = \
             pitchtools.NamedChromaticPitch("c'")
-        contexttools.InstrumentMark.__init__(self,
+        contexttools.InstrumentMark.__init__(
+            self,
             instrument_name,
             short_instrument_name,
             instrument_name_markup=instrument_name_markup,
             short_instrument_name_markup=short_instrument_name_markup,
-            target_context=target_context)
+            target_context=target_context,
+            )
         self._default_performer_names = ['instrumentalist']
         self._is_primary_instrument = False
         self._pitch_range = None
@@ -87,7 +90,7 @@ class Instrument(contexttools.InstrumentMark):
             self._pitch_range = pitch_range
         def fget(self):
             if self._pitch_range is None:
-                return self.traditional_pitch_range
+                return self.default_pitch_range
             return self._pitch_range
         return property(**locals())
 
@@ -117,7 +120,7 @@ class Instrument(contexttools.InstrumentMark):
         return property(**locals())
 
     @property
-    def traditional_pitch_range(self):
+    def default_pitch_range(self):
         r'''Read-only traditional pitch range.
 
         Return pitch range.

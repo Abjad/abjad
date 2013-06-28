@@ -119,10 +119,10 @@ Implements 197 public classes and 941 public functions totalling 153,000 lines o
     >>> marimba.pitch_range
     PitchRange('[C2, C7]')
 
-* Added read-only ``_Instrument.traditional_pitch_range``::
+* Added read-only ``_Instrument.default_pitch_range``::
 
     >>> marimba = instrumenttools = instrumenttools.Marimba()
-    >>> marimba.traditional_pitch_range
+    >>> marimba.default_pitch_range
     PitchRange('[F2, C7]')
 
 * Added ``instrumenttools.list_instruments()``::

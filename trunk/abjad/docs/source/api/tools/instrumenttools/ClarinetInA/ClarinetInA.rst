@@ -32,6 +32,9 @@ Read-only properties
 .. autoattribute:: abjad.tools.instrumenttools.ClarinetInA.ClarinetInA.ClarinetInA.default_instrument_name
    :noindex:
 
+.. autoattribute:: abjad.tools.instrumenttools.ClarinetInA.ClarinetInA.ClarinetInA.default_pitch_range
+   :noindex:
+
 .. autoattribute:: abjad.tools.instrumenttools.ClarinetInA.ClarinetInA.ClarinetInA.default_short_instrument_name
    :noindex:
 
@@ -60,9 +63,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: abjad.tools.instrumenttools.ClarinetInA.ClarinetInA.ClarinetInA.target_context
-   :noindex:
-
-.. autoattribute:: abjad.tools.instrumenttools.ClarinetInA.ClarinetInA.ClarinetInA.traditional_pitch_range
    :noindex:
 
 Read/write properties

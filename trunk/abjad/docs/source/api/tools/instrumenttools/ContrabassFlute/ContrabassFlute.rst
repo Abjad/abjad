@@ -30,6 +30,9 @@ Read-only properties
 .. autoattribute:: abjad.tools.instrumenttools.ContrabassFlute.ContrabassFlute.ContrabassFlute.default_instrument_name
    :noindex:
 
+.. autoattribute:: abjad.tools.instrumenttools.ContrabassFlute.ContrabassFlute.ContrabassFlute.default_pitch_range
+   :noindex:
+
 .. autoattribute:: abjad.tools.instrumenttools.ContrabassFlute.ContrabassFlute.ContrabassFlute.default_short_instrument_name
    :noindex:
 
@@ -58,9 +61,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: abjad.tools.instrumenttools.ContrabassFlute.ContrabassFlute.ContrabassFlute.target_context
-   :noindex:
-
-.. autoattribute:: abjad.tools.instrumenttools.ContrabassFlute.ContrabassFlute.ContrabassFlute.traditional_pitch_range
    :noindex:
 
 Read/write properties

@@ -15315,7 +15315,7 @@ top_level_directory_paths	experimental/tools/scoremanagertools/proxies/ScorePack
 top_level_directory_proxies	experimental/tools/scoremanagertools/proxies/ScorePackageProxy/ScorePackageProxy.py	/^    def top_level_directory_proxies(self):$/;"	m	class:ScorePackageProxy
 total	trunk/abjad/scr/devel/find-noninstantiable-concrete-classes	/^total = 0$/;"	v
 total_duration	experimental/tools/musicexpressiontools/RegionExpression/RegionExpression.py	/^    def total_duration(self):$/;"	m	class:RegionExpression
-traditional_pitch_range	trunk/abjad/tools/instrumenttools/Instrument/Instrument.py	/^    def traditional_pitch_range(self):$/;"	m	class:Instrument
+default_pitch_range	trunk/abjad/tools/instrumenttools/Instrument/Instrument.py	/^    def default_pitch_range(self):$/;"	m	class:Instrument
 transcribe_next_command	experimental/tools/scoremanagertools/scoremanager/Session/Session.py	/^    def transcribe_next_command():$/;"	m	class:Session
 transform_functions	experimental/tools/musicexpressiontools/PitchClassTransformExpression/PitchClassTransformExpression.py	/^    def transform_functions(self):$/;"	m	class:PitchClassTransformExpression
 translate	experimental/tools/musicexpressiontools/OffsetCallbackMixin/OffsetCallbackMixin.py	/^    def translate(self, translation):$/;"	m	class:OffsetCallbackMixin

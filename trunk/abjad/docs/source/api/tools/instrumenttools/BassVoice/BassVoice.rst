@@ -28,6 +28,9 @@ Read-only properties
 .. autoattribute:: abjad.tools.instrumenttools.BassVoice.BassVoice.BassVoice.default_instrument_name
    :noindex:
 
+.. autoattribute:: abjad.tools.instrumenttools.BassVoice.BassVoice.BassVoice.default_pitch_range
+   :noindex:
+
 .. autoattribute:: abjad.tools.instrumenttools.BassVoice.BassVoice.BassVoice.default_short_instrument_name
    :noindex:
 
@@ -56,9 +59,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: abjad.tools.instrumenttools.BassVoice.BassVoice.BassVoice.target_context
-   :noindex:
-
-.. autoattribute:: abjad.tools.instrumenttools.BassVoice.BassVoice.BassVoice.traditional_pitch_range
    :noindex:
 
 Read/write properties

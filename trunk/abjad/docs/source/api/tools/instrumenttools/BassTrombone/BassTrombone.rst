@@ -30,6 +30,9 @@ Read-only properties
 .. autoattribute:: abjad.tools.instrumenttools.BassTrombone.BassTrombone.BassTrombone.default_instrument_name
    :noindex:
 
+.. autoattribute:: abjad.tools.instrumenttools.BassTrombone.BassTrombone.BassTrombone.default_pitch_range
+   :noindex:
+
 .. autoattribute:: abjad.tools.instrumenttools.BassTrombone.BassTrombone.BassTrombone.default_short_instrument_name
    :noindex:
 
@@ -58,9 +61,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: abjad.tools.instrumenttools.BassTrombone.BassTrombone.BassTrombone.target_context
-   :noindex:
-
-.. autoattribute:: abjad.tools.instrumenttools.BassTrombone.BassTrombone.BassTrombone.traditional_pitch_range
    :noindex:
 
 Read/write properties

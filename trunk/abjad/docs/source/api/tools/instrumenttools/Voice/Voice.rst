@@ -26,6 +26,9 @@ Read-only properties
 .. autoattribute:: abjad.tools.instrumenttools.Voice.Voice.Voice.default_instrument_name
    :noindex:
 
+.. autoattribute:: abjad.tools.instrumenttools.Voice.Voice.Voice.default_pitch_range
+   :noindex:
+
 .. autoattribute:: abjad.tools.instrumenttools.Voice.Voice.Voice.default_short_instrument_name
    :noindex:
 
@@ -54,9 +57,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: abjad.tools.instrumenttools.Voice.Voice.Voice.target_context
-   :noindex:
-
-.. autoattribute:: abjad.tools.instrumenttools.Voice.Voice.Voice.traditional_pitch_range
    :noindex:
 
 Read/write properties

@@ -30,6 +30,9 @@ Read-only properties
 .. autoattribute:: abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute.default_instrument_name
    :noindex:
 
+.. autoattribute:: abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute.default_pitch_range
+   :noindex:
+
 .. autoattribute:: abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute.default_short_instrument_name
    :noindex:
 
@@ -58,9 +61,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute.target_context
-   :noindex:
-
-.. autoattribute:: abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute.traditional_pitch_range
    :noindex:
 
 Read/write properties

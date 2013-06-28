@@ -169,11 +169,11 @@ def test_pitchtools_PitchRange___contains___14():
     }
     '''
 
-    assert staff[0] in glockenspiel.traditional_pitch_range
-    assert staff[1] in glockenspiel.traditional_pitch_range
-    assert staff in glockenspiel.traditional_pitch_range
+    assert staff[0] in glockenspiel.default_pitch_range
+    assert staff[1] in glockenspiel.default_pitch_range
+    assert staff in glockenspiel.default_pitch_range
 
-    assert not Note("c'4") in glockenspiel.traditional_pitch_range
+    assert not Note("c'4") in glockenspiel.default_pitch_range
 
 
 def test_pitchtools_PitchRange___contains___15():
@@ -200,4 +200,4 @@ def test_pitchtools_PitchRange___contains___15():
     }
     '''
 
-    assert staff in flute.traditional_pitch_range
+    assert staff in flute.default_pitch_range

@@ -28,6 +28,9 @@ Read-only properties
 .. autoattribute:: abjad.tools.instrumenttools.Guitar.Guitar.Guitar.default_instrument_name
    :noindex:
 
+.. autoattribute:: abjad.tools.instrumenttools.Guitar.Guitar.Guitar.default_pitch_range
+   :noindex:
+
 .. autoattribute:: abjad.tools.instrumenttools.Guitar.Guitar.Guitar.default_short_instrument_name
    :noindex:
 
@@ -56,9 +59,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: abjad.tools.instrumenttools.Guitar.Guitar.Guitar.target_context
-   :noindex:
-
-.. autoattribute:: abjad.tools.instrumenttools.Guitar.Guitar.Guitar.traditional_pitch_range
    :noindex:
 
 Read/write properties

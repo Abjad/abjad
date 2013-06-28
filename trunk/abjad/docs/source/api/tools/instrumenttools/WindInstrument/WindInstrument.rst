@@ -26,6 +26,9 @@ Read-only properties
 .. autoattribute:: abjad.tools.instrumenttools.WindInstrument.WindInstrument.WindInstrument.default_instrument_name
    :noindex:
 
+.. autoattribute:: abjad.tools.instrumenttools.WindInstrument.WindInstrument.WindInstrument.default_pitch_range
+   :noindex:
+
 .. autoattribute:: abjad.tools.instrumenttools.WindInstrument.WindInstrument.WindInstrument.default_short_instrument_name
    :noindex:
 
@@ -54,9 +57,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: abjad.tools.instrumenttools.WindInstrument.WindInstrument.WindInstrument.target_context
-   :noindex:
-
-.. autoattribute:: abjad.tools.instrumenttools.WindInstrument.WindInstrument.WindInstrument.traditional_pitch_range
    :noindex:
 
 Read/write properties

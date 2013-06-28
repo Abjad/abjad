@@ -33,6 +33,9 @@ Read-only properties
 .. autoattribute:: abjad.tools.instrumenttools.Accordion.Accordion.Accordion.default_performer_names
    :noindex:
 
+.. autoattribute:: abjad.tools.instrumenttools.Accordion.Accordion.Accordion.default_pitch_range
+   :noindex:
+
 .. autoattribute:: abjad.tools.instrumenttools.Accordion.Accordion.Accordion.default_short_instrument_name
    :noindex:
 
@@ -61,9 +64,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: abjad.tools.instrumenttools.Accordion.Accordion.Accordion.target_context
-   :noindex:
-
-.. autoattribute:: abjad.tools.instrumenttools.Accordion.Accordion.Accordion.traditional_pitch_range
    :noindex:
 
 Read/write properties

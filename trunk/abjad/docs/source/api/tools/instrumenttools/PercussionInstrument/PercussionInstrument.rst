@@ -26,6 +26,9 @@ Read-only properties
 .. autoattribute:: abjad.tools.instrumenttools.PercussionInstrument.PercussionInstrument.PercussionInstrument.default_instrument_name
    :noindex:
 
+.. autoattribute:: abjad.tools.instrumenttools.PercussionInstrument.PercussionInstrument.PercussionInstrument.default_pitch_range
+   :noindex:
+
 .. autoattribute:: abjad.tools.instrumenttools.PercussionInstrument.PercussionInstrument.PercussionInstrument.default_short_instrument_name
    :noindex:
 
@@ -54,9 +57,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: abjad.tools.instrumenttools.PercussionInstrument.PercussionInstrument.PercussionInstrument.target_context
-   :noindex:
-
-.. autoattribute:: abjad.tools.instrumenttools.PercussionInstrument.PercussionInstrument.PercussionInstrument.traditional_pitch_range
    :noindex:
 
 Read/write properties

@@ -30,6 +30,9 @@ Read-only properties
 .. autoattribute:: abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone.default_instrument_name
    :noindex:
 
+.. autoattribute:: abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone.default_pitch_range
+   :noindex:
+
 .. autoattribute:: abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone.default_short_instrument_name
    :noindex:
 
@@ -58,9 +61,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone.target_context
-   :noindex:
-
-.. autoattribute:: abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone.traditional_pitch_range
    :noindex:
 
 Read/write properties
