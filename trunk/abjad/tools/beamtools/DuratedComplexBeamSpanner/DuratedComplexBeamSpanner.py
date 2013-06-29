@@ -1,6 +1,6 @@
-from abjad.tools.beamtools.ComplexBeamSpanner import ComplexBeamSpanner
 from abjad.tools import durationtools
 from abjad.tools import sequencetools
+from abjad.tools.beamtools.ComplexBeamSpanner import ComplexBeamSpanner
 
 
 class DuratedComplexBeamSpanner(ComplexBeamSpanner):
@@ -50,13 +50,23 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
     Return durated complex beam spanner.
     '''
 
-    def __init__(self, components=None, durations=None, span=1, lone=False, direction=None):
-        ComplexBeamSpanner.__init__(self, components=components, direction=direction)
+    def __init__(self, 
+        components=None, 
+        durations=None, 
+        span=1, 
+        lone=False, 
+        direction=None,
+        ):
+        ComplexBeamSpanner.__init__(
+            self, 
+            components=components, 
+            direction=direction,
+            )
         self.durations = durations
         self.span = span
         self.lone = lone
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _span_points(self):
@@ -82,8 +92,8 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
             if self._is_exterior_leaf(leaf):
                 left, right = self._get_left_right_for_exterior_leaf(leaf)
             # just right of span gap
-            elif self._duration_offset_in_me(leaf) in self._span_points and not \
-                (self._duration_offset_in_me(leaf) + leaf.duration in \
+            elif self._duration_offset_in_me(leaf) in self._span_points and \
+                not (self._duration_offset_in_me(leaf) + leaf.duration in \
                 self._span_points):
                 assert isinstance(self.span, int)
                 left = self.span
@@ -91,8 +101,8 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
                 right = leaf.written_duration.flag_count
             # just left of span gap
             elif self._duration_offset_in_me(leaf) + leaf.duration in \
-                self._span_points and not self._duration_offset_in_me(leaf) in \
-                self._span_points:
+                self._span_points and \
+                not self._duration_offset_in_me(leaf) in self._span_points:
                 assert isinstance(self.span, int)
                 #left = leaf.duration._flags
                 left = leaf.written_duration.flag_count
@@ -131,7 +141,7 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
         ComplexBeamSpanner._reverse_components(self)
         self._durations.reverse()
 
-    ### READ / WRITE PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @apply
     def durations():
@@ -142,7 +152,8 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
 
                 >>> staff = Staff("c'16 d'16 e'16 f'16")
                 >>> durations = [Duration(1, 8), Duration(1, 8)]
-                >>> beam = beamtools.DuratedComplexBeamSpanner(staff[:], durations)
+                >>> beam = beamtools.DuratedComplexBeamSpanner(
+                ...     staff[:], durations)
                 >>> beam.durations
                 [Duration(1, 8), Duration(1, 8)]
 
@@ -152,7 +163,8 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
 
                 >>> staff = Staff("c'16 d'16 e'16 f'16")
                 >>> durations = [Duration(1, 8), Duration(1, 8)]
-                >>> beam = beamtools.DuratedComplexBeamSpanner(staff[:], durations)
+                >>> beam = beamtools.DuratedComplexBeamSpanner(
+                ...     staff[:], durations)
                 >>> beam.durations = [Duration(1, 4)]
                 >>> beam.durations
                 [Duration(1, 4)]
@@ -171,7 +183,8 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
                         arg[i] = durationtools.Duration(d)
                 self._durations = arg
             else:
-                raise ValueError('durations must be list of Durations, or None.')
+                message = 'durations must be list of durations or none.'
+                raise ValueError(message)
         return property(**locals())
 
     @apply
@@ -183,7 +196,8 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
 
                 >>> staff = Staff("c'16 d'16 e'16 f'16")
                 >>> durations = [Duration(1, 8), Duration(1, 8)]
-                >>> beam = beamtools.DuratedComplexBeamSpanner(staff[:], durations, 1)
+                >>> beam = beamtools.DuratedComplexBeamSpanner(
+                ...     staff[:], durations, 1)
                 >>> beam.span
                 1
 
@@ -193,7 +207,8 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
 
                 >>> staff = Staff("c'16 d'16 e'16 f'16")
                 >>> durations = [Duration(1, 8), Duration(1, 8)]
-                >>> beam = beamtools.DuratedComplexBeamSpanner(staff[:], durations, 1)
+                >>> beam = beamtools.DuratedComplexBeamSpanner(
+                ...     staff[:], durations, 1)
                 >>> beam.span = 2
                 >>> beam.span
                 2

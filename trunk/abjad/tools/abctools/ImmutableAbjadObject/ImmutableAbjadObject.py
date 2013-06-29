@@ -7,6 +7,8 @@ class ImmutableAbjadObject(AbjadObject):
 
     Abstract base class from which all custom classes which also subclass
     immutable builtin classes, such as tuple and frozenset, should inherit.
+
+    .. note:: deprecated.
     '''
 
     ### CLASS VARIABLES ###

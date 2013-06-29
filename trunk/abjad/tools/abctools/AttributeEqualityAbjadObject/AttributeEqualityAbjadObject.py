@@ -5,23 +5,31 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 class AttributeEqualityAbjadObject(AbjadObject):
     '''.. versionadded:: 2.0
 
-    Abstract base class to confer nonsorting attribute-equality to any custom class.
+    Abstract base class to confer nonsorting attribute-equality 
+    to any custom class.
 
-    Nonsorting objects raise exceptions on ``__gt__``, ``__ge__``, ``__lt__``, ``__le__``.
+    Nonsorting objects raise exceptions on ``__gt__``, ``__ge__``, 
+    ``__lt__``, ``__le__``.
 
-    Attribute-equality objects compare equal only with equal comparison attributes.
+    Attribute-equality objects compare equal only with 
+    equal comparison attributes.
+
+    .. note:: deprecated.
     '''
 
     ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
-    #__slots__ = ('_comparison_attribute', '_format_string')
-    __slots__ = ('_comparison_attribute', )
+
+    __slots__ = (
+        '_comparison_attribute',
+        )
 
     ### SPECIAL METHODS ###
 
     def __eq__(self, arg):
-        '''Initialize new object from `arg` and evaluate comparison attributes.
+        '''Initialize new object from `arg` and evaluate 
+        comparison attributes.
 
         Return boolean.
         '''
@@ -29,14 +37,16 @@ class AttributeEqualityAbjadObject(AbjadObject):
         return arg and self._comparison_attribute == arg._comparison_attribute
 
     def __ne__(self, arg):
-        '''Initialize new object from `arg` and evaluate comparison attributes.
+        '''Initialize new object from `arg` and evaluate 
+        comparison attributes.
 
         Return boolean.
         '''
         return not self == arg
 
     def __repr__(self):
-        '''Interpreter representation of object defined equal to class name and format string.
+        '''Interpreter representation of object defined equal 
+        to class name and format string.
 
         Return string.
         '''

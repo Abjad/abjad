@@ -50,7 +50,10 @@ class Parentage(Selection):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_component', '_root')
+    __slots__ = (
+        '_component', 
+        '_root',
+        )
 
     ### INITIALIZER ###
 
@@ -111,17 +114,24 @@ class Parentage(Selection):
         signature = componenttools.ContainmentSignature()
         signature._self = self[0]._id_string
         for component in self:
-            if isinstance(component, voicetools.Voice) and signature._voice is None:
+            if isinstance(component, voicetools.Voice) and \
+                signature._voice is None:
                 signature._voice = component._id_string
-            elif isinstance(component, stafftools.Staff) and signature._staff is None:
-                # leaves inside different staves have diff containment signatures regardless of staff name
-                signature._staff = '{}-{}'.format(component._class_name, id(component))
-            elif isinstance(component, scoretools.StaffGroup) and signature._staff_group is None:
+            elif isinstance(component, stafftools.Staff) and \
+                signature._staff is None:
+                # leaves inside different staves have diff 
+                # containment signatures regardless of staff name
+                signature._staff = '{}-{}'.format(
+                    component._class_name, id(component))
+            elif isinstance(component, scoretools.StaffGroup) and \
+                signature._staff_group is None:
                 signature._staff_group = component._id_string
-            elif isinstance(component, scoretools.Score) and signature._score is None:
+            elif isinstance(component, scoretools.Score) and \
+                signature._score is None:
                 signature._score = component._id_string
         else:
-            # root components must be the same object for containment signatures to compare true
+            # root components must be the same object 
+            # for containment signatures to compare true
             signature._root = id(component)
             signature._root_str = component._id_string
         return signature
@@ -160,7 +170,8 @@ class Parentage(Selection):
 
         ::
 
-            >>> tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
+            >>> tuplet = tuplettools.FixedDurationTuplet(
+            ...     Duration(2, 8), "c'8 d'8 e'8")
             >>> staff = Staff([tuplet])
             >>> note = staff.leaves[0]
             >>> print note.parentage.parentage_signature
@@ -176,13 +187,17 @@ class Parentage(Selection):
         signature = componenttools.ContainmentSignature()
         signature._self = self[0]._id_string
         for component in self:
-            if isinstance(component, voicetools.Voice) and not signature._voice:
+            if isinstance(component, voicetools.Voice) and \
+                not signature._voice:
                 signature._voice = component._id_string
-            elif isinstance(component, stafftools.Staff) and not signature._staff:
+            elif isinstance(component, stafftools.Staff) and \
+                not signature._staff:
                 signature._staff = component._id_string
-            elif isinstance(component, scoretools.StaffGroup) and not signature._staff_group:
+            elif isinstance(component, scoretools.StaffGroup) and \
+                not signature._staff_group:
                 signature._staff_group = component._id_string
-            elif isinstance(component, scoretools.Score) and not signature._score:
+            elif isinstance(component, scoretools.Score) and \
+                not signature._score:
                 signature._score = component._id_string
         else:
             # root components must be manifestly equal to compare true
@@ -202,7 +217,8 @@ class Parentage(Selection):
 
         ::
 
-            >>> staff_1 = Staff(r"\times 2/3 { c'8 d'8 e'8 } \times 2/3 { f'8 g'8 a'8 }")
+            >>> staff_1 = Staff(
+            ...     r"\times 2/3 { c'8 d'8 e'8 } \times 2/3 { f'8 g'8 a'8 }")
             >>> staff_2 = Staff(r"\times 2/3 { b'8 c''8 d''8 }")
             >>> score = Score([staff_1, staff_2])
 
@@ -263,7 +279,8 @@ class Parentage(Selection):
 
         ::
 
-            >>> tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
+            >>> tuplet = tuplettools.FixedDurationTuplet(
+            ...     Duration(2, 8), "c'8 d'8 e'8")
             >>> staff = Staff([tuplet])
             >>> note = staff.leaves[0]
 
@@ -287,8 +304,10 @@ class Parentage(Selection):
         from abjad.tools import tuplettools
         from abjad.tools import componenttools
         result = 0
-        # should probably interate up to only first parallel container in parentage.
-        # note that we probably need a named idea for 'parentage up to first parallel container'.
+        # should probably interate up to only first parallel container 
+        # in parentage.
+        # note that we probably need a named idea for 'parentage 
+        # up to first parallel container'.
         for parent in self[1:]:
             if isinstance(parent, tuplettools.Tuplet):
                 result += 1

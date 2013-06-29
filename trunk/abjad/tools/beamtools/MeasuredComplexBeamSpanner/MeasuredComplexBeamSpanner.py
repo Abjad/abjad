@@ -7,7 +7,9 @@ class MeasuredComplexBeamSpanner(ComplexBeamSpanner):
 
     ::
 
-        >>> staff = Staff([Measure((2, 16), "c'16 d'16"), Measure((2, 16), "e'16 f'16")])
+        >>> staff = Staff(
+        ...     [Measure((2, 16), "c'16 d'16"), 
+        ...     Measure((2, 16), "e'16 f'16")])
 
     ::
 
@@ -57,7 +59,12 @@ class MeasuredComplexBeamSpanner(ComplexBeamSpanner):
     ### INITIALIZER ###
 
     def __init__(self, components=None, lone=False, span=1, direction=None):
-        ComplexBeamSpanner.__init__(self, components=components, lone=lone, direction=direction)
+        ComplexBeamSpanner.__init__(
+            self, 
+            components=components, 
+            lone=lone, 
+            direction=direction,
+            )
         self.span = span
 
     ### PRIVATE METHODS ###
@@ -98,7 +105,7 @@ class MeasuredComplexBeamSpanner(ComplexBeamSpanner):
                 result.append(r'\set stemRightBeamCount = #%s' % right)
         return result
 
-    ### READ / WRITE PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @apply
     def span():
@@ -107,7 +114,9 @@ class MeasuredComplexBeamSpanner(ComplexBeamSpanner):
 
             ::
 
-                >>> staff = Staff([Measure((2, 16), "c'16 d'16"), Measure((2, 16), "e'16 f'16")])
+                >>> staff = Staff([
+                ...     Measure((2, 16), "c'16 d'16"), 
+                ...     Measure((2, 16), "e'16 f'16")])
                 >>> beam = beamtools.MeasuredComplexBeamSpanner(staff.leaves)
                 >>> beam.span
                 1
@@ -116,7 +125,9 @@ class MeasuredComplexBeamSpanner(ComplexBeamSpanner):
 
             ::
 
-                >>> staff = Staff([Measure((2, 16), "c'16 d'16"), Measure((2, 16), "e'16 f'16")])
+                >>> staff = Staff([
+                ...     Measure((2, 16), "c'16 d'16"), 
+                ...     Measure((2, 16), "e'16 f'16")])
                 >>> beam = beamtools.MeasuredComplexBeamSpanner(staff.leaves)
                 >>> beam.span = 2
                 >>> beam.span

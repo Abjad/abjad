@@ -47,20 +47,22 @@ class Descendants(Selection):
         Voice-"Bass Voice"{1}
         Note('b,4')
 
-    Descendants is treated as the selection of the component's improper descendants.
+    Descendants is treated as the selection of the component's 
+    improper descendants.
 
-    Return Descendants instance.
+    Return descendants instance.
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_component',)
+    __slots__ = (
+        '_component',
+        )
 
     ### INITIALIZER ###
 
     def __init__(self, component):
         from abjad.tools import componenttools
-
         assert isinstance(component, componenttools.Component)
         music = componenttools.get_improper_descendents_of_component(component)
         Selection.__init__(self, music)

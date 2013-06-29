@@ -7,12 +7,24 @@ class OutputFormat(abctools.AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_code_block_closing', '_code_block_opening', '_code_indent', '_image_block', '_image_format')
+    __slots__ = (
+        '_code_block_closing', 
+        '_code_block_opening', 
+        '_code_indent', 
+        '_image_block', 
+        '_image_format',
+        )
 
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, code_block_opening, code_block_closing, code_indent, image_block, image_format):
+    def __init__(self, 
+        code_block_opening, 
+        code_block_closing, 
+        code_indent, 
+        image_block, 
+        image_format,
+        ):
         self._code_block_opening = code_block_opening
         self._code_block_closing = code_block_closing
         self._code_indent = code_indent
@@ -38,22 +50,27 @@ class OutputFormat(abctools.AbjadObject):
                 page_range = result['page_range']
 
                 if page_range is None:
-                    image_file_names = [v for k, v in sorted(image_dict[image_count].items())]
+                    image_file_names = [v for k, v in sorted(
+                        image_dict[image_count].items())]
                     for image_file_name in image_file_names:
                         image_file_name = image_file_name.rpartition('.')[0]
-                        reformatted.append(self.image_block.format(image_file_name))
+                        reformatted.append(
+                            self.image_block.format(image_file_name))
 
                 else:
-                    for page_number, image_file_name in sorted(image_dict[image_count].items()):
+                    for page_number, image_file_name in sorted(
+                        image_dict[image_count].items()):
                         if page_number in page_range:
-                            image_file_name = image_file_name.rpartition('.')[0]
-                            reformatted.append(self.image_block.format(image_file_name))
+                            image_file_name = \
+                                image_file_name.rpartition('.')[0]
+                            reformatted.append(
+                                self.image_block.format(image_file_name))
                         else:
                             os.remove(image_file_name)
 
         return tuple(reformatted)
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def code_block_closing(self):

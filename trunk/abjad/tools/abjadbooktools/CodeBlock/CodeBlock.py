@@ -7,8 +7,14 @@ class CodeBlock(AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_ending_line_number', '_hide', '_lines', '_processed_results',
-        '_starting_line_number', '_strip_prompt')
+    __slots__ = (
+        '_ending_line_number', 
+        '_hide', 
+        '_lines', 
+        '_processed_results',
+        '_starting_line_number', 
+        '_strip_prompt',
+        )
 
     ### INITIALIZER ###
 
@@ -21,18 +27,6 @@ class CodeBlock(AbjadObject):
         self._hide = bool(hide)
         self._strip_prompt = bool(strip_prompt)
         self._processed_results = None
-
-    ### SPECIAL METHODS ###
-
-    def __eq__(self, expr):
-        if type(self) == type(expr) and \
-            self.lines == expr.lines and \
-            self.starting_line_number == expr.starting_line_number and \
-            self.ending_line_number == expr.ending_line_number and \
-            self.hide == expr.hide and \
-            self.strip_prompt == expr.strip_prompt:
-            return True
-        return False
 
     ### SPECIAL METHODS ###
 
@@ -100,10 +94,12 @@ class CodeBlock(AbjadObject):
                     object_name = line.partition(')')[0][5:]
 
                 if directory:
-                    command = "iotools.write_expr_to_ly({}, {!r}, docs={})".format(
+                    command = \
+                        "iotools.write_expr_to_ly({}, {!r}, docs={})".format(
                         object_name, os.path.join(directory, file_name), docs)
                 else:
-                    command = "iotools.write_expr_to_ly({}, {!r}, docs={})".format(
+                    command = \
+                        "iotools.write_expr_to_ly({}, {!r}, docs={})".format(
                         object_name, file_name, docs)
 
                 pipe.write(command)
@@ -149,7 +145,8 @@ class CodeBlock(AbjadObject):
         grouped_results.append(result)
 
         if self.strip_prompt:
-            for result in [group for group in grouped_results if isinstance(group, list)]:
+            for result in [group for group in grouped_results 
+                if isinstance(group, list)]:
                 for i, line in enumerate(result):
                     if line.startswith(('>>> ', '... ')):
                         result[i] = line[4:]
@@ -164,7 +161,17 @@ class CodeBlock(AbjadObject):
 
         return image_count
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    def __eq__(self, expr):
+        if type(self) == type(expr) and \
+            self.lines == expr.lines and \
+            self.starting_line_number == expr.starting_line_number and \
+            self.ending_line_number == expr.ending_line_number and \
+            self.hide == expr.hide and \
+            self.strip_prompt == expr.strip_prompt:
+            return True
+        return False
+
+    ### PUBLIC PROPERTIES ###
 
     @property
     def ending_line_number(self):

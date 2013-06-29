@@ -123,9 +123,7 @@ class AbjadObject(object):
             value = getattr(self, name)
             if value is not None:
                 # if the value is a class like Note (which is unusual)
-                #if type(value) == abc.ABCMeta:
                 if type(value) is abc.ABCMeta:
-                    #value = introspectiontools.klass_to_tools_package_qualified_klass_name(value)
                     value = tmp(value)
                     string = '{}={}'.format(name, value)
                     result.append(string)
@@ -275,8 +273,7 @@ class AbjadObject(object):
             if value is not None:
                 if not isinstance(value, types.MethodType):
                     # if value is noninstantiable class
-                    if type(value) == abc.ABCMeta:
-                        #value = introspectiontools.klass_to_tools_package_qualified_klass_name(value)
+                    if type(value) is abc.ABCMeta:
                         value = tmp(value)
                         result.append('{}{}={}{}'.format(
                             prefix, name, value, suffix))
@@ -320,8 +317,7 @@ class AbjadObject(object):
         tmp = introspectiontools.klass_to_tools_package_qualified_klass_name
         for value in self._positional_argument_values:
             # if value is a (noninstantiated) class
-            if type(value) == abc.ABCMeta:
-                #value = introspectiontools.klass_to_tools_package_qualified_klass_name(value)
+            if type(value) is abc.ABCMeta:
                 value = tmp(value)
                 result.append('{}{}{}'.format(prefix, value, suffix))
             elif hasattr(value, '_get_tools_package_qualified_repr_pieces'):

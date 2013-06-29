@@ -49,24 +49,25 @@ class Lineage(Selection):
         Voice-"Bass Voice"{1}
         Note('b,4')
 
-    Return Lineage instance.
+    Return lineage instance.
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_component',)
+    __slots__ = (
+        '_component',
+        )
 
     ### INITIALIZER ###
 
     def __init__(self, component):
         from abjad.tools import componenttools
-
         assert isinstance(component, componenttools.Component)
         music = componenttools.get_lineage_of_component(component)
         Selection.__init__(self, music)
         self._component = component
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def component(self):

@@ -79,6 +79,7 @@ class MultipartBeamSpanner(BeamSpanner):
                             result.append(']')
                 else:
                     next = leaftools.get_nth_leaf_in_thread_from_leaf(leaf, 1)
-                    if next is not None and not beamtools.is_beamable_component(next):
+                    if next is not None and \
+                        not beamtools.is_beamable_component(next):
                         result.append(']')
         return result

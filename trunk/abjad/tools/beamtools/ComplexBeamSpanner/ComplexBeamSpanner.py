@@ -92,7 +92,8 @@ class ComplexBeamSpanner(BeamSpanner):
         result = []
         #if leaf.beam.beamable:
         if beamtools.is_beamable_component(leaf):
-            previous_leaf = leaftools.get_nth_leaf_in_thread_from_leaf(leaf, -1)
+            previous_leaf = \
+                leaftools.get_nth_leaf_in_thread_from_leaf(leaf, -1)
             next_leaf = leaftools.get_nth_leaf_in_thread_from_leaf(leaf, 1)
             # lone
             if self._is_my_only_leaf(leaf):
@@ -126,11 +127,13 @@ class ComplexBeamSpanner(BeamSpanner):
         if self._is_my_only_leaf(leaf):
             left, right = self._get_left_right_for_lone_leaf(leaf)
         # first
-        elif self._is_my_first_leaf(leaf) or not leaftools.get_nth_leaf_in_thread_from_leaf(leaf, -1):
+        elif self._is_my_first_leaf(leaf) or \
+            not leaftools.get_nth_leaf_in_thread_from_leaf(leaf, -1):
             left = 0
             right = leaf.written_duration.flag_count
         # last
-        elif self._is_my_last_leaf(leaf) or not leaftools.get_nth_leaf_in_thread_from_leaf(leaf, 1):
+        elif self._is_my_last_leaf(leaf) or \
+            not leaftools.get_nth_leaf_in_thread_from_leaf(leaf, 1):
             left = leaf.written_duration.flag_count
             right = 0
         else:
@@ -253,7 +256,8 @@ class ComplexBeamSpanner(BeamSpanner):
                 \set stemRightBeamCount = #2
                 c'16 [ ]
 
-            Beam lone leaf and accept LilyPond default nibs at both left and right:
+            Beam lone leaf and accept LilyPond default nibs at 
+            both left and right:
 
             ::
 
@@ -285,7 +289,8 @@ class ComplexBeamSpanner(BeamSpanner):
                 >>> f(note)
                 c'16
 
-            Set to ``'left'``, ``'right'``, ``'both'``, true or false as shown above.
+            Set to ``'left'``, ``'right'``, ``'both'``, true or false 
+            as shown above.
 
             Ignore this setting when spanner contains more than one leaf.
             '''

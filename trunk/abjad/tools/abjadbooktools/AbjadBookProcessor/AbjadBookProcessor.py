@@ -13,8 +13,14 @@ class AbjadBookProcessor(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, directory, lines, output_format, skip_rendering=False,
-        image_prefix='image', verbose=False):
+    def __init__(self, 
+        directory, 
+        lines, 
+        output_format, 
+        skip_rendering=False,
+        image_prefix='image', 
+        verbose=False,
+        ):
         from abjad.tools import abjadbooktools
         assert isinstance(output_format, abjadbooktools.OutputFormat)
         self._current_code_line = 0
@@ -39,10 +45,10 @@ class AbjadBookProcessor(AbjadObject):
         tmp_directory = self._setup_tmp_directory(self.directory)
         os.chdir(tmp_directory)
 
-        # Process code blocks, and render images inside the temporary directory
+        # Process code blocks and render images inside the temporary directory
         pipe = self._setup_pipe()
-        image_count = self._process_code_blocks(pipe, code_blocks, tmp_directory,
-            self.image_prefix)
+        image_count = self._process_code_blocks(
+            pipe, code_blocks, tmp_directory, self.image_prefix)
         ly_file_names = self._extract_ly_file_names(code_blocks)
         self._cleanup_pipe(pipe)
         if not self.skip_rendering:
@@ -57,7 +63,8 @@ class AbjadBookProcessor(AbjadObject):
 
         # Step out of the tmp directory, back to the original, and cleanup.
         os.chdir(self.directory)
-        self._cleanup_image_files(self.directory, tmp_directory, image_count, self.image_prefix,
+        self._cleanup_image_files(
+            self.directory, tmp_directory, image_count, self.image_prefix,
             self.output_format.image_format)
         self._cleanup_tmp_directory(tmp_directory)
 

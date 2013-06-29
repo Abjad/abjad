@@ -24,7 +24,10 @@ class Chord(Leaf):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_note_heads', '_written_pitches', )
+    __slots__ = (
+        '_note_heads', 
+        '_written_pitches',
+        )
 
     ### INITIALIZER ###
 
@@ -61,7 +64,8 @@ class Chord(Leaf):
             raise ValueError('can not initialize chord from "%s".' % str(args))
         Leaf.__init__(self, written_duration, lilypond_multiplier)
         self.written_pitches = written_pitches
-        for note_head, cautionary, forced in zip(self.note_heads, is_cautionary, is_forced):
+        for note_head, cautionary, forced in zip(
+            self.note_heads, is_cautionary, is_forced):
             note_head.is_cautionary = cautionary
             note_head.is_forced = forced
         self._initialize_keyword_values(**kwargs)
@@ -161,10 +165,13 @@ class Chord(Leaf):
         if self.written_pitch_indication_is_at_sounding_pitch:
             instrument = contexttools.get_effective_instrument(self)
             if not instrument:
-                raise InstrumentError('effective instrument of note can not be determined.')
+                message = 'effective instrument of note can not be determined.'
+                raise InstrumentError(message)
             t_n = instrument.interval_of_transposition
             t_n *= -1
-            fingered_pitches = [pitchtools.transpose_pitch_carrier_by_melodic_interval(pitch, t_n)
+            fingered_pitches = [
+                pitchtools.transpose_pitch_carrier_by_melodic_interval(
+                pitch, t_n)
                 for pitch in self.written_pitches]
             return tuple(fingered_pitches)
         else:
@@ -233,10 +240,12 @@ class Chord(Leaf):
         else:
             instrument = contexttools.get_effective_instrument(self)
             if not instrument:
-                raise InstrumentError('effective instrument of note can not be determined.')
+                message = 'effective instrument of note can not be determined.'
+                raise InstrumentError(message)
             t_n = instrument.interval_of_transposition
-            sounding_pitches = [pitchtools.transpose_pitch_carrier_by_melodic_interval(pitch, t_n)
-                for pitch in self.written_pitches]
+            sounding_pitches = [
+                pitchtools.transpose_pitch_carrier_by_melodic_interval(
+                pitch, t_n) for pitch in self.written_pitches]
             return tuple(sounding_pitches)
 
     @apply
@@ -247,8 +256,11 @@ class Chord(Leaf):
             ::
 
                 >>> chord = Chord([7, 12, 16], (1, 4))
-                >>> chord.written_pitches
-                (NamedChromaticPitch("g'"), NamedChromaticPitch("c''"), NamedChromaticPitch("e''"))
+                >>> for written_pitch in chord.written_pitches:
+                ...     written_pitch
+                NamedChromaticPitch("g'")
+                NamedChromaticPitch("c''")
+                NamedChromaticPitch("e''")
 
             Set chord pitches from any iterable:
 

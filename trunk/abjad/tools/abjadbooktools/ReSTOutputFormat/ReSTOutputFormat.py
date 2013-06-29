@@ -11,5 +11,11 @@ class ReSTOutputFormat(OutputFormat):
         code_indent = 3
         image_block = '.. image:: images/{}.png\n'
         image_format = 'png'
-        OutputFormat.__init__(self, code_block_opening, code_block_closing,
-            code_indent, image_block, image_format)
+        OutputFormat.__init__(
+            self, 
+            code_block_opening, 
+            code_block_closing,
+            code_indent, 
+            image_block, 
+            image_format,
+            )

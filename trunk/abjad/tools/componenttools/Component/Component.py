@@ -15,12 +15,23 @@ class Component(AbjadObject):
 
     __metaclass__ = abc.ABCMeta
 
-    __slots__ = ('_duration', '_is_forbidden_to_update', '_marks_are_current',
+    __slots__ = (
+        '_duration', 
+        '_is_forbidden_to_update', 
+        '_marks_are_current',
         '_dependent_context_marks',
         '_start_marks',
-        '_offset', '_offset_values_in_seconds_are_current', '_override', '_parent',
-        '_prolated_offset_values_are_current', '_set', '_spanners',
-        '_start_offset', '_start_offset_in_seconds', '_stop_offset', '_stop_offset_in_seconds',
+        '_offset', 
+        '_offset_values_in_seconds_are_current', 
+        '_override', 
+        '_parent',
+        '_prolated_offset_values_are_current', 
+        '_set', 
+        '_spanners',
+        '_start_offset', 
+        '_start_offset_in_seconds', 
+        '_stop_offset', 
+        '_stop_offset_in_seconds',
         '_timespan',
         'lilypond_file',
         )
@@ -74,7 +85,8 @@ class Component(AbjadObject):
         result = []
         parent = self.parent
         while parent is not None:
-            result.append(getattr(parent, 'implied_prolation', fractions.Fraction(1)))
+            result.append(getattr(
+                parent, 'implied_prolation', fractions.Fraction(1)))
             parent = parent.parent
         return result
 
@@ -112,7 +124,8 @@ class Component(AbjadObject):
         '''Read-only reference to LilyPond grob override component plug-in.
         '''
         if not hasattr(self, '_override'):
-            self._override = lilypondproxytools.LilyPondGrobOverrideComponentPlugIn()
+            self._override = \
+                lilypondproxytools.LilyPondGrobOverrideComponentPlugIn()
         return self._override
 
     @property
@@ -128,7 +141,8 @@ class Component(AbjadObject):
 
     @property
     def prolation(self):
-        products = mathtools.cumulative_products([fractions.Fraction(1)] + self._prolations)
+        products = mathtools.cumulative_products(
+            [fractions.Fraction(1)] + self._prolations)
         return products[-1]
 
     @property
@@ -136,12 +150,14 @@ class Component(AbjadObject):
         '''Read-only reference LilyPond context setting component plug-in.
         '''
         if not hasattr(self, '_set'):
-            self._set = lilypondproxytools.LilyPondContextSettingComponentPlugIn()
+            self._set = \
+                lilypondproxytools.LilyPondContextSettingComponentPlugIn()
         return self._set
 
     @property
     def spanners(self):
-        '''Read-only reference to unordered set of spanners attached to component.
+        '''Read-only reference to unordered set of spanners attached 
+        to component.
         '''
         return set(self._spanners)
 
@@ -160,7 +176,9 @@ class Component(AbjadObject):
         if self._start_offset_in_seconds is None:
             raise MissingTempoError
         return timespantools.Timespan(
-            start_offset=self._start_offset_in_seconds, stop_offset=self._stop_offset_in_seconds)
+            start_offset=self._start_offset_in_seconds, 
+            stop_offset=self._stop_offset_in_seconds,
+            )
 
     ### PRIVATE METHODS ###
 
@@ -180,8 +198,8 @@ class Component(AbjadObject):
         return new
 
     def _cut(self):
-        '''Component loses pointer to parent and parent loses pointer to component.
-        Not composer-safe.
+        '''Component loses pointer to parent and parent loses pointer 
+        to component. Not composer-safe.
         '''
         if self.parent is not None:
             index = self.parent.index(self)
@@ -229,10 +247,18 @@ class Component(AbjadObject):
 
     def _get_format_contributions_for_slot(self, n, format_contributions=None):
         if format_contributions is None:
-            format_contributions = formattools.get_all_format_contributions(self)
+            format_contributions = \
+                formattools.get_all_format_contributions(self)
         result = []
-        slots = ('before', 'open_brackets', 'opening',
-            'contents', 'closing', 'close_brackets', 'after')
+        slots = (
+            'before', 
+            'open_brackets', 
+            'opening',
+            'contents', 
+            'closing', 
+            'close_brackets', 
+            'after',
+            )
         if isinstance(n, str):
             n = n.replace(' ', '_')
         elif isinstance(n, int):
@@ -244,8 +270,8 @@ class Component(AbjadObject):
 
     # TODO: change name to something self-documenting
     def _ignore(self):
-        '''Component loses pointer to parent but parent preserves pointer to component.
-        Not composer-safe.
+        '''Component loses pointer to parent but parent preserves 
+        pointer to component. Not composer-safe.
         '''
         self._mark_entire_score_tree_for_later_update('prolated')
         self._parent = None
@@ -267,7 +293,8 @@ class Component(AbjadObject):
         elif plug_in_name == 'override':
             if len(names) == 2:
                 grob_name, attribute_name = names
-                exec('self.override.%s.%s = %r' % (grob_name, attribute_name, value))
+                exec('self.override.%s.%s = %r' % (
+                    grob_name, attribute_name, value))
             elif len(names) == 3:
                 context_name, grob_name, attribute_name = names
                 exec('self.override.%s.%s.%s = %r' % (
@@ -280,16 +307,19 @@ class Component(AbjadObject):
                 exec('self.set.%s = %r' % (setting_name, value))
             elif len(names) == 2:
                 context_name, setting_name = names
-                exec('self.set.%s.%s = %r' % (context_name, setting_name, value))
+                exec('self.set.%s.%s = %r' % (
+                    context_name, setting_name, value))
             else:
                 raise ValueError
         else:
-            raise ValueError('\n\t: Unknown keyword argument plug-in name: "%s".' % plug_in_name)
+            message = 'Unknown keyword argument plug-in name: "%s".'
+            message = message.format(plug_in_name)
+            raise ValueError(message)
 
     # TODO: rename to something self-documenting
     def _switch(self, new_parent):
-        '''Component loses pointer to parent and parent loses pointer to component.
-        Then assign component to new parent.
+        '''Component loses pointer to parent and parent loses 
+        pointer to component. Then assign component to new parent.
         '''
         from abjad.tools import componenttools
 
@@ -340,15 +370,18 @@ class Component(AbjadObject):
         from abjad.tools import measuretools
         score_root = self.parentage.root
         if isinstance(score_root, contexttools.Context):
-            for context in iterationtools.iterate_contexts_in_expr(score_root):
-                for leaf_index, leaf in enumerate(iterationtools.iterate_leaves_in_expr(context)):
+            for context in \
+                iterationtools.iterate_contexts_in_expr(score_root):
+                for leaf_index, leaf in enumerate(
+                    iterationtools.iterate_leaves_in_expr(context)):
                     leaf._leaf_index = leaf_index
                 for measure_index, measure in enumerate(
                     iterationtools.iterate_measures_in_expr(context)):
                     measure_number = measure_index + 1
                     measure._measure_number = measure_number
         else:
-            for leaf_index, leaf in enumerate(iterationtools.iterate_leaves_in_expr(score_root)):
+            for leaf_index, leaf in enumerate(
+                iterationtools.iterate_leaves_in_expr(score_root)):
                 leaf._leaf_index = leaf_index
             for measure_index, measure in enumerate(
                 iterationtools.iterate_measures_in_expr(score_root)):
@@ -376,7 +409,8 @@ class Component(AbjadObject):
 
     def _update_prolated_offset_values_of_entire_score_tree(self):
         '''Updating prolated offset values does NOT update marks.
-        Updating prolated offset values does NOT update offset values in seconds.
+        Updating prolated offset values does NOT update offset values 
+        in seconds.
         '''
         from abjad.tools import offsettools
         components = self._iterate_score_components_depth_first()
@@ -412,8 +446,14 @@ class Component(AbjadObject):
     def _iterate_score_components_depth_first(self):
         from abjad.tools import componenttools
         from abjad.tools import iterationtools
-        kwargs = {'capped': True, 'unique': True, 'forbid': None, 'direction': 'left'}
-        components = iterationtools.iterate_components_depth_first(self.parentage.root, **kwargs)
+        kwargs = {
+            'capped': True, 
+            'unique': True, 
+            'forbid': None, 
+            'direction': 'left',
+            }
+        components = iterationtools.iterate_components_depth_first(
+            self.parentage.root, **kwargs)
         return components
 
     def _mark_entire_score_tree_for_later_update(self, value):
@@ -422,7 +462,8 @@ class Component(AbjadObject):
         Only dynamic measures mark time signature for udpate.
         '''
         from abjad.tools import componenttools
-        for component in componenttools.get_improper_parentage_of_component(self):
+        for component in \
+            componenttools.get_improper_parentage_of_component(self):
             if value == 'prolated':
                 component._prolated_offset_values_are_current = False
             elif value == 'seconds':
@@ -443,7 +484,8 @@ class Component(AbjadObject):
             self._update_marks_of_entire_score_tree()
             self._update_offset_values_in_seconds_of_entire_score_tree()
 
-    def _update_offset_values_in_seconds_of_entire_score_tree_if_necessary(self):
+    def _update_offset_values_in_seconds_of_entire_score_tree_if_necessary(
+        self):
         if self._is_forbidden_to_update:
             return
         state_flags = self._get_score_tree_state_flags()
