@@ -49,7 +49,7 @@ class NamedChromaticPitchSet(PitchSet):
         return not self == arg
 
     def __repr__(self):
-        return '%s([%s])' % (type(self).__name__, self._repr_string)
+        return '%s([%s])' % (self._class_name, self._repr_string)
 
     def __str__(self):
         return '{%s}' % ' '.join([str(pitch) 

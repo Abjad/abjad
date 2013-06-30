@@ -54,7 +54,7 @@ class NumberedDiatonicPitchClass(NumberedPitchClass, DiatonicPitchClass):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        return '%s(%s)' % (type(self).__name__, str(self))
+        return '%s(%s)' % (self._class_name, str(self))
 
     def __str__(self):
         return str(self._diatonic_pitch_class_number)

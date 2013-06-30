@@ -55,7 +55,7 @@ class Leaf(Component):
         return self._operate(arg, operator.__or__)
 
     def __repr__(self):
-        return '%s(%r)' % (type(self).__name__, self._compact_representation)
+        return '%s(%r)' % (self._class_name, self._compact_representation)
 
     def __str__(self):
         return self._compact_representation

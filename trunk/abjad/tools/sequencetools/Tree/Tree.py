@@ -251,7 +251,7 @@ class Tree(AbjadObject):
 
         Return string.
         '''
-        return '%s(%s)' % (type(self).__name__, self)
+        return '%s(%s)' % (self._class_name, self)
 
     def __str__(self):
         '''String representation of tree:
@@ -294,7 +294,7 @@ class Tree(AbjadObject):
             if not part == type(self).__name__:
                 tools_package = part
                 break
-        return '{}.{}({})'.format(tools_package, type(self).__name__, self)
+        return '{}.{}({})'.format(tools_package, self._class_name, self)
 
     ### PRIVATE METHODS ###
 

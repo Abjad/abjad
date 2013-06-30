@@ -54,7 +54,7 @@ class InversionEquivalentDiatonicIntervalClassVector(Vector):
         return not self == arg
 
     def __repr__(self):
-        return '%s(%s)' % (type(self).__name__, self._contents_string)
+        return '%s(%s)' % (self._class_name, self._contents_string)
 
     def __str__(self):
         return '{%s}' % self._contents_string

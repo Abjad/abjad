@@ -24,7 +24,7 @@ class NonattributedBlock(list, AbjadObject):
         if not len(self):
             return '%s()' % type(self).__name__
         else:
-            return '%s(%s)' % (type(self).__name__, len(self))
+            return '%s(%s)' % (self._class_name, len(self))
 
     ### PRIVATE PROPERTIES ###
 

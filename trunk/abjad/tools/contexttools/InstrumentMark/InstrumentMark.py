@@ -100,7 +100,7 @@ class InstrumentMark(ContextMark):
 
     def __hash__(self):
         return hash((
-            type(self).__name__, 
+            self._class_name, 
             self.instrument_name, 
             self.short_instrument_name,
             ))

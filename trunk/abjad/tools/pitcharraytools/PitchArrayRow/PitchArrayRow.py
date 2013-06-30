@@ -130,7 +130,7 @@ class PitchArrayRow(AbjadObject):
         return not self == arg
 
     def __repr__(self):
-        return '%s(%s)' % (type(self).__name__, self._compact_summary)
+        return '%s(%s)' % (self._class_name, self._compact_summary)
 
     def __str__(self):
         result = [str(cell) for cell in self.cells]

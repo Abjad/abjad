@@ -62,7 +62,7 @@ class ChromaticInterval(Interval, ChromaticObject):
         return not self == arg
 
     def __repr__(self):
-        return '%s(%s)' % (type(self).__name__, self._number)
+        return '%s(%s)' % (self._class_name, self._number)
 
     def __str__(self):
         return '%s' % self.number

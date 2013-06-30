@@ -90,7 +90,7 @@ class Scheme(AbjadObject):
         return (self._value,)
 
     def __repr__(self):
-        return "%s(%r)" % (type(self).__name__, self._value)
+        return "%s(%r)" % (self._class_name, self._value)
 
     def __str__(self):
         if self._quoting is not None:

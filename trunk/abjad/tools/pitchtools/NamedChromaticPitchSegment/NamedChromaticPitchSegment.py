@@ -34,7 +34,7 @@ class NamedChromaticPitchSegment(PitchSegment):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        return '%s("%s")' % (type(self).__name__, self._repr_string)
+        return '%s("%s")' % (self._class_name, self._repr_string)
 
     ### PRIVATE PROPERTIES ###
 

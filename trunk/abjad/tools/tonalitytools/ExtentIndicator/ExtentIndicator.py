@@ -39,7 +39,7 @@ class ExtentIndicator(AbjadObject):
         return not self == arg
 
     def __repr__(self):
-        return '%s(%s)' % (type(self).__name__, self.number)
+        return '%s(%s)' % (self._class_name, self.number)
 
     ### PRIVATE PROPERTIES ###
 

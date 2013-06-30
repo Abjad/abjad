@@ -97,7 +97,7 @@ class PitchArrayCell(AbjadObject):
 
     def __repr__(self):
         return '%s(%s)' % (
-            type(self).__name__, self._format_pitch_width_string)
+            self._class_name, self._format_pitch_width_string)
 
     def __str__(self):
         return self._format_string

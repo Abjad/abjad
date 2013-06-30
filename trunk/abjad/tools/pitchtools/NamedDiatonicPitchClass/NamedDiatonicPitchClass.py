@@ -62,7 +62,7 @@ class NamedDiatonicPitchClass(DiatonicPitchClass):
         return int(self.numbered_diatonic_pitch_class)
 
     def __repr__(self):
-        return '%s(%r)' % (type(self).__name__, str(self))
+        return '%s(%r)' % (self._class_name, str(self))
 
     def __str__(self):
         return self._diatonic_pitch_class_name

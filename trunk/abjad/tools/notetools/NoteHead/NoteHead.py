@@ -60,7 +60,7 @@ class NoteHead(SortableAttributeEqualityAbjadObject):
         args = [repr(self._format_string)]
         args.extend(self.tweak._get_attribute_pairs())
         args = ', '.join([str(x) for x in args])
-        return '%s(%s)' % (type(self).__name__, args)
+        return '%s(%s)' % (self._class_name, args)
 
     def __str__(self):
         return self._format_string

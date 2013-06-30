@@ -97,7 +97,7 @@ class VerticalMoment(Selection):
         return not self == expr
 
     def __repr__(self):
-        return '%s(%s, <<%s>>)' % (type(self).__name__, self.offset, len(self.leaves))
+        return '%s(%s, <<%s>>)' % (self._class_name, self.offset, len(self.leaves))
 
     ### PRIVATE PROPERTIES ###
 

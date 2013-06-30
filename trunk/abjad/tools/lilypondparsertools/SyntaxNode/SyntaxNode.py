@@ -35,7 +35,7 @@ class SyntaxNode(AbjadObject):
         raise Exception
 
     def __repr__(self):
-        return '%s(%s, %s)' % (type(self).__name__, self.type, type(self.value))
+        return '%s(%s, %s)' % (self._class_name, self.type, type(self.value))
 
     def __str__(self):
         return '\n'.join(self._format(self))

@@ -141,7 +141,7 @@ class Markup(DirectedMark):
         return False
 
     def __hash__(self):
-        return hash((type(self).__name__, self.contents))
+        return hash((self._class_name, self.contents))
 
     def __ne__(self, expr):
         return not self == expr

@@ -55,7 +55,7 @@ class InversionEquivalentChromaticIntervalClassVector(Vector):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        return '%s(%s)' % (type(self).__name__, self._format_string)
+        return '%s(%s)' % (self._class_name, self._format_string)
 
     ### PRIVATE PROPERTIES ###
 

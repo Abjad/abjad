@@ -112,7 +112,7 @@ class Spanner(AbjadObject):
         return repr(self) < repr(expr)
 
     def __repr__(self):
-        return '%s(%s)' % (type(self).__name__, self._compact_summary)
+        return '%s(%s)' % (self._class_name, self._compact_summary)
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 

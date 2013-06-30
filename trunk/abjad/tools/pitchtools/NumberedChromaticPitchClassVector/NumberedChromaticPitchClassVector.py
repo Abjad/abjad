@@ -41,7 +41,7 @@ class NumberedChromaticPitchClassVector(Vector):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        return '%s(%s)' % (type(self).__name__, self._format_string)
+        return '%s(%s)' % (self._class_name, self._format_string)
 
     def __str__(self):
         string = self._twelve_tone_format_string

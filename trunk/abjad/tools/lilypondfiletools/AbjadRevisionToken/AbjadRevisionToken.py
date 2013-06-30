@@ -24,7 +24,7 @@ class AbjadRevisionToken(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        return '%s(%s)' % (type(self).__name__, self.lilypond_format)
+        return '%s(%s)' % (self._class_name, self.lilypond_format)
 
     ### PUBLIC PROPERTIES ###
 

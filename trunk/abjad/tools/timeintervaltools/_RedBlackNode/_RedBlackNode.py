@@ -20,7 +20,7 @@ class _RedBlackNode(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        return '%s(%s, %r)' % (type(self).__name__, self.key, self.payload)
+        return '%s(%s, %r)' % (self._class_name, self.key, self.payload)
 
     ### PUBLIC PROPERTIES ###
 

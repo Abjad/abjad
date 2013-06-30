@@ -192,7 +192,7 @@ class MetricalHierarchy(AbjadObject):
             recurse(root, factors, denominator, decrease_durations_monotonically)
 
         else:
-            raise ValueError("Can't initialize {} from {!r}.".format(type(self).__name__, arg))
+            raise ValueError("Can't initialize {} from {!r}.".format(self._class_name, arg))
 
         self._root_node = root
         self._numerator = numerator
