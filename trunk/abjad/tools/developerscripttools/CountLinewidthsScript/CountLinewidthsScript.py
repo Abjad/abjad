@@ -38,7 +38,7 @@ class CountLinewidthsScript(DirectoryScript):
     Return `CountLinewidthsScript` instance.
     '''
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def alias(self):
@@ -76,7 +76,8 @@ class CountLinewidthsScript(DirectoryScript):
                     modules[obj.__module__] = 0
                 else:
                     lines = docstring.split('\n')
-                    modules[obj.__module__] = max([len(line) for line in lines])
+                    modules[obj.__module__] = \
+                        max([len(line) for line in lines])
             for obj in documentationtools.ClassCrawler(args.path)():
                 docstring = obj.__doc__
                 width = 0
@@ -103,7 +104,8 @@ class CountLinewidthsScript(DirectoryScript):
                     module_filename = module_filename[:-1]
                 with open(module_filename, 'r') as f:
                     lines = f.read().split('\n')
-                    modules[obj.__module__] = max([len(line) for line in lines])
+                    modules[obj.__module__] = \
+                        max([len(line) for line in lines])
             for obj in documentationtools.ClassCrawler(args.path)():
                 module_path = obj.__module__
                 module_obj = importlib.import_module(module_path)
@@ -112,7 +114,8 @@ class CountLinewidthsScript(DirectoryScript):
                     module_filename = module_filename[:-1]
                 with open(module_filename, 'r') as f:
                     lines = f.read().split('\n')
-                    modules[obj.__module__] = max([len(line) for line in lines])
+                    modules[obj.__module__] = \
+                        max([len(line) for line in lines])
 
         if args.order_by == 'm':
             order_by = lambda x: (x[0], x[1])

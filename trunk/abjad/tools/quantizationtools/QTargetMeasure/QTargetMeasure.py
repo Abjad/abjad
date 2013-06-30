@@ -4,7 +4,8 @@ from abjad.tools.abctools import AbjadObject
 
 
 class QTargetMeasure(AbjadObject):
-    '''Representation of a single "measure" in a measure-wise quantization target.
+    '''Representation of a single "measure" in a measure-wise 
+    quantization target:
 
     ::
 
@@ -50,8 +51,8 @@ class QTargetMeasure(AbjadObject):
         3000 1000
         4000 1000
 
-    If ``use_full_measure`` is set, the ``QTargetMeasure`` will only ever contain
-    a single ``QTargetBeat`` instance:
+    If ``use_full_measure`` is set, the ``QTargetMeasure`` will only 
+    ever contain a single ``QTargetBeat`` instance:
 
     ::
 
@@ -78,13 +79,24 @@ class QTargetMeasure(AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_beats', '_offset_in_ms', '_search_tree', '_tempo', '_time_signature',
-        '_use_full_measure')
+    __slots__ = (
+        '_beats', 
+        '_offset_in_ms', 
+        '_search_tree', 
+        '_tempo', 
+        '_time_signature',
+        '_use_full_measure',
+        )
 
     ### INITIALIZER ###
 
-    def __init__(self, offset_in_ms=None, search_tree=None, time_signature=None,
-        tempo=None, use_full_measure=False):
+    def __init__(self, 
+        offset_in_ms=None, 
+        search_tree=None, 
+        time_signature=None,
+        tempo=None, 
+        use_full_measure=False,
+        ):
 
         from abjad.tools import quantizationtools
 
@@ -112,7 +124,9 @@ class QTargetMeasure(AbjadObject):
         else:
             beatspan = durationtools.Duration(1, time_signature.denominator)
             current_offset_in_ms = offset_in_ms
-            beatspan_duration_in_ms = quantizationtools.tempo_scaled_duration_to_milliseconds(beatspan, tempo)
+            beatspan_duration_in_ms = \
+                quantizationtools.tempo_scaled_duration_to_milliseconds(
+                    beatspan, tempo)
             for i in range(time_signature.numerator):
                 beat = quantizationtools.QTargetBeat(
                     beatspan=beatspan,

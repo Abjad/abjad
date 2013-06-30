@@ -44,7 +44,8 @@ class MeasurewiseQTarget(QTarget):
             measure = measuretools.Measure(q_target_measure_two.time_signature)
             for beat in q_target_measure_two.beats:
                 measure.extend(beat.q_grid(beat.beatspan))
-            if (q_target_measure_two.tempo != q_target_measure_one.tempo) and attach_tempo_marks:
+            if (q_target_measure_two.tempo != q_target_measure_one.tempo) and \
+                attach_tempo_marks:
                 copy.copy(q_target_measure_two.tempo)(measure)
             voice.append(measure)
 

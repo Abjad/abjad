@@ -14,11 +14,17 @@ class Leaf(Component):
     __metaclass__ = abc.ABCMeta
 
     # TODO: see if _grace and _after_grace can be removed #
-    __slots__ = ('_after_grace', '_grace', '_leaf_index',
-        '_duration_multiplier', '_written_duration',
+    __slots__ = (
+        '_after_grace', 
+        '_grace', 
+        '_leaf_index',
+        '_duration_multiplier', 
+        '_written_duration',
         '_written_pitch_indication_is_nonsemantic',
         '_written_pitch_indication_is_at_sounding_pitch',
-        'after_grace', 'grace', )
+        'after_grace', 
+        'grace',
+        )
 
     ### INITIALIZER ###
 
@@ -89,18 +95,24 @@ class Leaf(Component):
     def _copy_with_marks_but_without_children_or_spanners(self):
         from abjad.tools import gracetools
         new = Component._copy_with_marks_but_without_children_or_spanners(self)
-        for grace_container in gracetools.get_grace_containers_attached_to_leaf(self):
-            new_grace_container = grace_container._copy_with_children_and_marks_but_without_spanners()
+        for grace_container in \
+            gracetools.get_grace_containers_attached_to_leaf(self):
+            new_grace_container = \
+                grace_container._copy_with_children_and_marks_but_without_spanners()
             new_grace_container(new)
         return new
 
     def _format_after_slot(leaf, format_contributions):
         result = []
-        result.append(('spanners', format_contributions.get('after', {}).get('spanners', [])))
-        result.append(('context marks', format_contributions.get('after', {}).get('context marks', [])))
+        result.append(('spanners', 
+            format_contributions.get('after', {}).get('spanners', [])))
+        result.append(('context marks', 
+            format_contributions.get('after', {}).get('context marks', [])))
         result.append(('lilypond command marks',
-            format_contributions.get('after', {}).get('lilypond command marks', [])))
-        result.append(('comments', format_contributions.get('after', {}).get('comments', [])))
+            format_contributions.get(
+                'after', {}).get('lilypond command marks', [])))
+        result.append(('comments', 
+            format_contributions.get('after', {}).get('comments', [])))
         return result
 
     def _format_agrace_body(leaf):
@@ -121,13 +133,19 @@ class Leaf(Component):
     def _format_before_slot(leaf, format_contributions):
         result = []
         result.append(leaf._format_grace_body())
-        result.append(('comments', format_contributions.get('before', {}).get('comments', [])))
+        result.append(('comments', 
+            format_contributions.get('before', {}).get('comments', [])))
         result.append(('lilypond command marks',
-            format_contributions.get('before', {}).get('lilypond command marks', [])))
-        result.append(('context marks', format_contributions.get('before', {}).get('context marks', [])))
-        result.append(('grob overrides', format_contributions.get('grob overrides', [])))
-        result.append(('context settings', format_contributions.get('context settings', [])))
-        result.append(('spanners', format_contributions.get('before', {}).get('spanners', [])))
+            format_contributions.get(
+                'before', {}).get('lilypond command marks', [])))
+        result.append(('context marks', 
+            format_contributions.get('before', {}).get('context marks', [])))
+        result.append(('grob overrides', 
+            format_contributions.get('grob overrides', [])))
+        result.append(('context settings', 
+            format_contributions.get('context settings', [])))
+        result.append(('spanners', 
+            format_contributions.get('before', {}).get('spanners', [])))
         return result
 
     def _format_close_brackets_slot(leaf, format_contributions):
@@ -136,11 +154,15 @@ class Leaf(Component):
     def _format_closing_slot(leaf, format_contributions):
         result = []
         result.append(leaf._format_agrace_body())
-        result.append(('spanners', format_contributions.get('closing', {}).get('spanners', [])))
+        result.append(('spanners', 
+            format_contributions.get('closing', {}).get('spanners', [])))
         result.append(('lilypond command marks',
-            format_contributions.get('closing', {}).get('lilypond command marks', [])))
-        result.append(('context marks', format_contributions.get('closing', {}).get('context marks', [])))
-        result.append(('comments', format_contributions.get('closing', {}).get('comments', [])))
+            format_contributions.get(
+                'closing', {}).get('lilypond command marks', [])))
+        result.append(('context marks', 
+            format_contributions.get('closing', {}).get('context marks', [])))
+        result.append(('comments', 
+            format_contributions.get('closing', {}).get('comments', [])))
         return result
 
     def _format_contents_slot(leaf, format_contributions):
@@ -205,11 +227,15 @@ class Leaf(Component):
 
     def _format_opening_slot(leaf, format_contributions):
         result = []
-        result.append(('comments', format_contributions.get('opening', {}).get('comments', [])))
-        result.append(('context marks', format_contributions.get('opening', {}).get('context marks', [])))
+        result.append(('comments', 
+            format_contributions.get('opening', {}).get('comments', [])))
+        result.append(('context marks', 
+            format_contributions.get('opening', {}).get('context marks', [])))
         result.append(('lilypond command marks',
-            format_contributions.get('opening', {}).get('lilypond command marks', [])))
-        result.append(('spanners', format_contributions.get('opening', {}).get('spanners', [])))
+            format_contributions.get(
+                'opening', {}).get('lilypond command marks', [])))
+        result.append(('spanners', 
+            format_contributions.get('opening', {}).get('spanners', [])))
         result.append(leaf._format_agrace_opening())
         return result
 
@@ -248,16 +274,21 @@ class Leaf(Component):
         format_contributions = formattools.get_all_format_contributions(self)
         report = ''
         report += 'slot 1:\n'
-        report += self._process_contribution_packet(self._format_before_slot(format_contributions))
+        report += self._process_contribution_packet(
+            self._format_before_slot(format_contributions))
         report += 'slot 3:\n'
-        report += self._process_contribution_packet(self._format_opening_slot(format_contributions))
+        report += self._process_contribution_packet(
+            self._format_opening_slot(format_contributions))
         report += 'slot 4:\n'
         report += '\tleaf body:\n'
-        report += '\t\t' + self._format_contents_slot(format_contributions)[0][1][0] + '\n'
+        report += '\t\t' + self._format_contents_slot(
+            format_contributions)[0][1][0] + '\n'
         report += 'slot 5:\n'
-        report += self._process_contribution_packet(self._format_closing_slot(format_contributions))
+        report += self._process_contribution_packet(
+            self._format_closing_slot(format_contributions))
         report += 'slot 7:\n'
-        report += self._process_contribution_packet(self._format_after_slot(format_contributions))
+        report += self._process_contribution_packet(
+            self._format_after_slot(format_contributions))
         return report
 
     ### PUBLIC PROPERTIES ###
@@ -310,14 +341,16 @@ class Leaf(Component):
         def fset(self, expr):
             rational = durationtools.Duration(expr)
             if not rational.is_assignable:
-                raise AssignabilityError('not assignable duration: "%s".' % str(rational))
+                message = 'not assignable duration: "%s".'
+                raise AssignabilityError(message % str(rational))
             self._written_duration = rational
         return property(**locals())
 
     @apply
     def written_pitch_indication_is_at_sounding_pitch():
         def fset(self, arg):
-            '''Read / write flag to be set to false when pitch indication is transposed.
+            '''Read / write flag to be set to false when pitch indication 
+            is transposed.
             '''
             if not isinstance(arg, bool):
                 raise TypeError

@@ -22,7 +22,9 @@ class NumberedChromaticPitchClassVector(Vector):
 
     ### CLASS VARIABLES ###
 
-    _default_positional_input_arguments = ([13, 13, 14.5, 14.5, 14.5, 6, 6, 6], )
+    _default_positional_input_arguments = (
+        [13, 13, 14.5, 14.5, 14.5, 6, 6, 6],
+        )
 
     ### INITIALIZER ###
 
@@ -33,7 +35,8 @@ class NumberedChromaticPitchClassVector(Vector):
             dict.__setitem__(self, pcn + 0.5, 0)
         for token in pitch_class_tokens:
             pitch_class = pitchtools.NumberedChromaticPitchClass(token)
-            dict.__setitem__(self, abs(pitch_class), self[abs(pitch_class)] + 1)
+            dict.__setitem__(
+                self, abs(pitch_class), self[abs(pitch_class)] + 1)
 
     ### SPECIAL METHODS ###
 
@@ -133,13 +136,15 @@ class NumberedChromaticPitchClassVector(Vector):
 
         Return list.
         '''
-        numbers = [abs(pitch_class) for pitch_class in self.numbered_chromatic_pitch_classes]
+        numbers = [abs(pitch_class) 
+            for pitch_class in self.numbered_chromatic_pitch_classes]
         numbers.sort()
         return numbers
 
     @property
     def numbered_chromatic_pitch_classes(self):
-        '''Read-only numbered chromatic pitch-classes from numbered chromatic pitch-class vector:
+        '''Read-only numbered chromatic pitch-classes from numbered 
+        chromatic pitch-class vector:
 
         ::
 
@@ -159,6 +164,7 @@ class NumberedChromaticPitchClassVector(Vector):
         pitch_classes = []
         for pitch_class_number, count in self.items():
             if 0 < count:
-                pitch_class = pitchtools.NumberedChromaticPitchClass(pitch_class_number)
+                pitch_class = pitchtools.NumberedChromaticPitchClass(
+                    pitch_class_number)
                 pitch_classes.append(pitch_class)
         return pitch_classes

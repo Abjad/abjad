@@ -8,11 +8,14 @@ class MelodicChromaticIntervalClassSegment(IntervalClassSegment):
 
     ::
 
-        >>> pitchtools.MelodicChromaticIntervalClassSegment([-2, -14, 3, 5.5, 6.5])
+        >>> pitchtools.MelodicChromaticIntervalClassSegment(
+        ...     [-2, -14, 3, 5.5, 6.5])
         MelodicChromaticIntervalClassSegment(-2, -2, +3, +5.5, +6.5)
 
     Melodic chromatic interval-class segments are immutable.
     '''
+
+    ### CONSTRUCTOR ###
 
     def __new__(self, mcic_tokens):
         from abjad.tools import pitchtools

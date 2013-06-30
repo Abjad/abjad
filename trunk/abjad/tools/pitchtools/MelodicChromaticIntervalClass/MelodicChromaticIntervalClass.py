@@ -5,7 +5,8 @@ from abjad.tools.pitchtools.MelodicIntervalClass import MelodicIntervalClass
 import numbers
 
 
-class MelodicChromaticIntervalClass(ChromaticIntervalClass, MelodicIntervalClass):
+class MelodicChromaticIntervalClass(
+    ChromaticIntervalClass, MelodicIntervalClass):
     '''.. versionadded:: 2.0
 
     Abjad model of melodic chromatic interval-class:
@@ -17,6 +18,8 @@ class MelodicChromaticIntervalClass(ChromaticIntervalClass, MelodicIntervalClass
 
     Melodic chromatic interval-classes are immutable.
     '''
+
+    ### INITIALIZER ###
 
     def __init__(self, token):
         from abjad.tools import pitchtools
@@ -57,6 +60,3 @@ class MelodicChromaticIntervalClass(ChromaticIntervalClass, MelodicIntervalClass
             if self.number == arg.number:
                 return True
         return False
-
-    def __ne__(self, arg):
-        return not self == arg

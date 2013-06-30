@@ -112,9 +112,16 @@ class ClassDocumenter(Documenter):
     ### CLASS VARIABLES ###
 
     _ignored_special_methods = (
-        '__format__', '__getattribute__',
-        '__getnewargs__', '__init__', '__reduce__', '__reduce_ex__',
-        '__sizeof__', '__subclasshook__', 'fromkeys', 'pipe_cloexec',
+        '__format__', 
+        '__getattribute__',
+        '__getnewargs__', 
+        '__init__', 
+        '__reduce__', 
+        '__reduce_ex__',
+        '__sizeof__', 
+        '__subclasshook__', 
+        'fromkeys', 
+        'pipe_cloexec',
     )
 
     ### INITIALIZER ###
@@ -292,7 +299,8 @@ class ClassDocumenter(Documenter):
             stripped_packagesystem_path = self._shrink_module_name(
                 packagesystem_path)
             if packagesystem_path.startswith('__builtin__'):
-                packagesystem_path = packagesystem_path.partition('__builtin__.')[-1]
+                packagesystem_path = \
+                    packagesystem_path.partition('__builtin__.')[-1]
             text = '- :class:`{} <{}>`'.format(
                 stripped_packagesystem_path,
                 packagesystem_path,

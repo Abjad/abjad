@@ -43,7 +43,15 @@ class Annotation(Mark):
     Annotations implement ``__slots__``.
     '''
 
-    __slots__ = ('_format_slot', '_name', '_value', )
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_format_slot', 
+        '_name', 
+        '_value',
+        )
+
+    ### INITIALIZER ###
 
     def __init__(self, *args):
         Mark.__init__(self)
@@ -64,8 +72,6 @@ class Annotation(Mark):
 
     def __copy__(self, *args):
         return type(self)(self.name, self.value)
-
-    #__deepcopy__ = __copy__
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):

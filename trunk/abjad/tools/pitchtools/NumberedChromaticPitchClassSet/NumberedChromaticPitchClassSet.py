@@ -9,7 +9,8 @@ class  NumberedChromaticPitchClassSet(PitchClassSet):
 
     ::
 
-        >>> ncpcs = pitchtools.NumberedChromaticPitchClassSet([-2, -1.5, 6, 7, -1.5, 7])
+        >>> ncpcs = pitchtools.NumberedChromaticPitchClassSet(
+        ...     [-2, -1.5, 6, 7, -1.5, 7])
 
     ::
 
@@ -26,7 +27,8 @@ class  NumberedChromaticPitchClassSet(PitchClassSet):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### CONSTRUCTOR ###
 
@@ -39,7 +41,6 @@ class  NumberedChromaticPitchClassSet(PitchClassSet):
                 try:
                     pcs.append(pitchtools.NumberedChromaticPitchClass(x))
                 except TypeError:
-                    #pcs.extend(get_pitch_classes(x))
                     pcs.extend(pitchtools.get_numbered_chromatic_pitch_classes_from_pitch_carrier(x))
         # if expr is not iterable
         except TypeError:

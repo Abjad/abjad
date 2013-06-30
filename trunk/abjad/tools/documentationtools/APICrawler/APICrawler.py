@@ -8,18 +8,28 @@ from abjad.tools.documentationtools.ModuleCrawler import ModuleCrawler
 
 
 class APICrawler(abctools.AbjadObject):
-    '''Generates directories containing ReST to parallel directories containing code.
+    '''Generates directories containing ReST to parallel 
+    directories containing code.
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_code_root', '_docs_root', '_module_crawler', '_prefix')
+    __slots__ = (
+        '_code_root', 
+        '_docs_root', 
+        '_module_crawler', 
+        '_prefix',
+        )
 
     ### INITIALIZER ###
 
-    def __init__(self, code_root, docs_root, root_package_name,
-        ignored_directories = ['test', '.svn', '__pycache__'],
-        prefix='abjad.tools.'):
+    def __init__(self, 
+        code_root, 
+        docs_root, 
+        root_package_name,
+        ignored_directories=['test', '.svn', '__pycache__'],
+        prefix='abjad.tools.',
+        ):
         self._module_crawler = ModuleCrawler(code_root,
             root_package_name=root_package_name,
             ignored_directories=ignored_directories)
@@ -52,13 +62,17 @@ class APICrawler(abctools.AbjadObject):
 
             # create directory
             code_directory = os.path.dirname(module.__file__)
-            docs_directory = code_directory.replace(self.code_root, self.docs_root)
+            docs_directory = code_directory.replace(
+                self.code_root, self.docs_root)
             if not os.path.exists(docs_directory):
-                print 'CREATING DIRECTORY: {}'.format(os.path.relpath(docs_directory))
+                print 'CREATING DIRECTORY: {}'.format(
+                    os.path.relpath(docs_directory))
                 os.makedirs(docs_directory)
 
             # create ReST, if changed
-            docs_file = '{}.rst'.format(module.__file__.rpartition('.py')[0].replace(self.code_root, self.docs_root))
+            docs_file = '{}.rst'.format(
+                module.__file__.rpartition('.py')[0].replace(
+                    self.code_root, self.docs_root))
             new_docs = documenter()
             if os.path.exists(docs_file):
                 file_handler = open(docs_file, 'r')

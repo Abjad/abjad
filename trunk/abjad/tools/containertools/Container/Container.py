@@ -24,9 +24,16 @@ class Container(Component):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_formatter', '_music', '_named_children', '_parallel', )
+    __slots__ = (
+        '_formatter', 
+        '_music', 
+        '_named_children', 
+        '_parallel',
+        )
 
-    _default_positional_input_arguments = ([], )
+    _default_positional_input_arguments = (
+        [],
+        )
 
     ### INITIALIZER ###
 
@@ -48,9 +55,12 @@ class Container(Component):
         '''
         from abjad.tools import componenttools
         from abjad.tools import containertools
-        left = componenttools.copy_components_and_fracture_crossing_spanners([self])[0]
-        right = componenttools.copy_components_and_fracture_crossing_spanners([expr])[0]
-        result = containertools.fuse_like_named_contiguous_containers_in_expr([left, right])
+        left = componenttools.copy_components_and_fracture_crossing_spanners(
+            [self])[0]
+        right = componenttools.copy_components_and_fracture_crossing_spanners(
+            [expr])[0]
+        result = containertools.fuse_like_named_contiguous_containers_in_expr(
+            [left, right])
         if result is None:
             raise Exception('can not add: {!r}.'.format(expr))
         else:
@@ -102,8 +112,10 @@ class Container(Component):
         '''
         from abjad.tools import componenttools
         from abjad.tools import containertools
-        return containertools.fuse_like_named_contiguous_containers_in_expr([self,
-            componenttools.copy_components_and_fracture_crossing_spanners([expr])[0]])
+        return containertools.fuse_like_named_contiguous_containers_in_expr(
+            [self,
+            componenttools.copy_components_and_fracture_crossing_spanners(
+            [expr])[0]])
 
     def __imul__(self, total):
         '''Multiply contents of container 'total' times.
@@ -137,7 +149,7 @@ class Container(Component):
         '''
         return self._set_item(i, expr)
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _compact_representation(self):
@@ -159,7 +171,6 @@ class Container(Component):
                     result.append(x._compact_representation_with_tie)
                 else:
                     result.append(str(x))
-            #return ' '.join([str(x) for x in self._music])
             return ' '.join(result)
         else:
             return ''
@@ -175,7 +186,8 @@ class Container(Component):
 
     ### PRIVATE METHODS ###
 
-    # this is a composer-unsafe method to be called only by other private functions
+    # this is a composer-unsafe method to be called only by other 
+    # private functions
     def _append_without_withdrawing_from_crossing_spanners(self, component):
         self._set_item(slice(len(self), len(self)), [component],
             withdraw_components_in_expr_from_crossing_spanners=False)
@@ -183,7 +195,8 @@ class Container(Component):
     def _copy_with_children_and_marks_but_without_spanners(self):
         new = self._copy_with_marks_but_without_children_or_spanners()
         for component in self.music:
-            new_component = component._copy_with_children_and_marks_but_without_spanners()
+            new_component = \
+                component._copy_with_children_and_marks_but_without_spanners()
             new.append(new_component)
         return new
 
@@ -194,16 +207,22 @@ class Container(Component):
 
     def _format_after_slot(self, format_contributions):
         result = []
-        result.append(('lilypond command marks',
-            format_contributions.get('after', {}).get('lilypond command marks', [])))
-        result.append(('comments', format_contributions.get('after', {}).get('comments', [])))
+        result.append((
+            'lilypond command marks',
+            format_contributions.get(
+                'after', {}).get('lilypond command marks', [])))
+        result.append((
+            'comments', 
+            format_contributions.get('after', {}).get('comments', [])))
         return tuple(result)
 
     def _format_before_slot(self, format_contributions):
         result = []
-        result.append(('comments', format_contributions.get('before', {}).get('comments', [])))
+        result.append(('comments', 
+            format_contributions.get('before', {}).get('comments', [])))
         result.append(('lilypond command marks',
-            format_contributions.get('before', {}).get('lilypond command marks', [])))
+            format_contributions.get('before', {}).get(
+                'lilypond command marks', [])))
         return tuple(result)
 
     def _format_close_brackets_slot(self, format_contributions):
@@ -217,10 +236,13 @@ class Container(Component):
 
     def _format_closing_slot(self, format_contributions):
         result = []
-        result.append(('grob reverts', format_contributions.get('grob reverts', [])))
+        result.append((
+            'grob reverts', format_contributions.get('grob reverts', [])))
         result.append(('lilypond command marks',
-            format_contributions.get('closing', {}).get('lilypond command marks', [])))
-        result.append(('comments', format_contributions.get('closing', {}).get('comments', [])))
+            format_contributions.get(
+                'closing', {}).get('lilypond command marks', [])))
+        result.append(('comments', 
+            format_contributions.get('closing', {}).get('comments', [])))
         return self._format_slot_contributions_with_indent(result)
 
     def _format_content_pieces(self):
@@ -232,7 +254,8 @@ class Container(Component):
 
     def _format_contents_slot(self, format_contributions):
         result = []
-        result.append([('contents', '_contents'), self._format_content_pieces()])
+        result.append(
+            [('contents', '_contents'), self._format_content_pieces()])
         return tuple(result)
 
     def _format_open_brackets_slot(self, format_contributions):
@@ -246,22 +269,29 @@ class Container(Component):
 
     def _format_opening_slot(self, format_contributions):
         result = []
-        result.append(('comments', format_contributions.get('opening', {}).get('comments', [])))
+        result.append(('comments', 
+            format_contributions.get('opening', {}).get('comments', [])))
         result.append(('lilypond command marks',
-            format_contributions.get('opening', {}).get('lilypond command marks', [])))
-        result.append(('grob overrides', format_contributions.get('grob overrides', [])))
-        result.append(('context settings', format_contributions.get('context settings', [])))
+            format_contributions.get(
+                'opening', {}).get('lilypond command marks', [])))
+        result.append(('grob overrides', 
+            format_contributions.get('grob overrides', [])))
+        result.append(('context settings', 
+            format_contributions.get('context settings', [])))
         return self._format_slot_contributions_with_indent(result)
 
     def _format_slot_contributions_with_indent(self, slot):
         result = []
         for contributor, contributions in slot:
-            result.append((contributor, tuple(['\t' + x for x in contributions])))
+            result.append(
+                (contributor, tuple(['\t' + x for x in contributions])))
         return tuple(result)
 
-    def _set_item(self, i, expr, withdraw_components_in_expr_from_crossing_spanners=True):
+    def _set_item(self, i, expr, 
+        withdraw_components_in_expr_from_crossing_spanners=True):
         '''This method exists beacuse __setitem__ can not accept keywords.
-        Note that setting withdraw_components_in_expr_from_crossing_spanners=False
+        Note that setting 
+        withdraw_components_in_expr_from_crossing_spanners=False
         constitutes a composer-unsafe use of this method.
         Only pivate methods should set this keyword.
         '''
@@ -275,7 +305,8 @@ class Container(Component):
         # remember context marks attached to expr
         expr_context_marks = []
         for component in iterationtools.iterate_components_in_expr(expr):
-            context_marks = contexttools.get_context_marks_attached_to_component(component)
+            context_marks = \
+                contexttools.get_context_marks_attached_to_component(component)
             expr_context_marks.extend(context_marks)
         # item assignment
         if isinstance(i, int):
@@ -285,16 +316,19 @@ class Container(Component):
                 expr = expr[0]
             assert componenttools.all_are_components([expr]), repr([expr])
             if any([isinstance(x, gracetools.GraceContainer) for x in [expr]]):
-                raise GraceContainerError('must attach grace container to note or chord.')
+                message = 'must attach grace container to note or chord.'
+                raise GraceContainerError(message)
             old = self[i]
-            spanners_receipt = spannertools.get_spanners_that_dominate_components([old])
+            spanners_receipt = \
+                spannertools.get_spanners_that_dominate_components([old])
             # must withdraw from spanners before parentage!
             # otherwise begin / end assessments don't work!
             if withdraw_components_in_expr_from_crossing_spanners:
                 _withdraw_components_in_expr_from_crossing_spanners([expr])
             expr._switch(self)
             self._music.insert(i, expr)
-            componenttools.remove_component_subtree_from_score_and_spanners([old])
+            componenttools.remove_component_subtree_from_score_and_spanners(
+                [old])
             for spanner, index in spanners_receipt:
                 spanner._insert(index, expr)
                 expr._spanners.add(spanner)
@@ -302,20 +336,25 @@ class Container(Component):
         else:
             if isinstance(expr, str):
                 expr = self._parse_string(expr)[:]
-            elif isinstance(expr, list) and len(expr) == 1 and isinstance(expr[0], str):
+            elif isinstance(expr, list) and \
+                len(expr) == 1 and \
+                isinstance(expr[0], str):
                 expr = self._parse_string(expr[0])[:]
             assert componenttools.all_are_components(expr), repr(expr)
             if any([isinstance(x, gracetools.GraceContainer) for x in expr]):
-                raise GraceContainerError('must attach grace container to note or chord.')
+                message = 'must attach grace container to note or chord.'
+                raise GraceContainerError(message)
             if i.start == i.stop and i.start is not None \
                 and i.stop is not None and i.start <= -len(self):
                 start, stop = 0, 0
             else:
                 start, stop, stride = i.indices(len(self))
             old = self[start:stop]
-            spanners_receipt = spannertools.get_spanners_that_dominate_container_components_from_to(
+            spanners_receipt = \
+                spannertools.get_spanners_that_dominate_container_components_from_to(
                 self, start, stop)
-            componenttools.remove_component_subtree_from_score_and_spanners(old)
+            componenttools.remove_component_subtree_from_score_and_spanners(
+                old)
             # must withdraw before setting in self!
             # otherwise circular withdraw ensues!
             if withdraw_components_in_expr_from_crossing_spanners:
@@ -337,7 +376,8 @@ class Container(Component):
     @property
     def contents_duration(self):
         if self.is_parallel:
-            return max([durationtools.Duration(0)] + [x.preprolated_duration for x in self])
+            return max([durationtools.Duration(0)] + 
+                [x.preprolated_duration for x in self])
         else:
             duration = durationtools.Duration(0)
             for x in self:
@@ -347,7 +387,8 @@ class Container(Component):
     @property
     def duration_in_seconds(self):
         if self.is_parallel:
-            return max([durationtools.Duration(0)] + [x.duration_in_seconds for x in self])
+            return max([durationtools.Duration(0)] + 
+                [x.duration_in_seconds for x in self])
         else:
             duration = durationtools.Duration(0)
             for leaf in self.leaves:
@@ -420,7 +461,8 @@ class Container(Component):
             from abjad.tools import componenttools
             assert isinstance(expr, bool), repr(expr)
             if expr == True:
-                assert componenttools.all_are_components(self._music, klasses=(Context, ))
+                assert componenttools.all_are_components(
+                    self._music, klasses=(Context, ))
             self._parallel = expr
             self._mark_entire_score_tree_for_later_update('prolated')
         return property(**locals())
@@ -468,11 +510,13 @@ class Container(Component):
 
     def _initialize_music(self, music):
         from abjad.tools import componenttools
-        from abjad.tools.componenttools._switch_components_to_parent import _switch_components_to_parent
+        from abjad.tools.componenttools._switch_components_to_parent \
+            import _switch_components_to_parent
         if music is None:
             music = []
         if componenttools.all_are_contiguous_components_in_same_thread(music):
-            parent, index, stop_index = componenttools.get_parent_and_start_stop_indices_of_components(
+            parent, index, stop_index = \
+                componenttools.get_parent_and_start_stop_indices_of_components(
                 music)
             self._music = list(music)
             _switch_components_to_parent(self._music, self)
@@ -483,13 +527,17 @@ class Container(Component):
             parsed = self._parse_string(music)
             self._music = []
             self.is_parallel = parsed.is_parallel
-            if parsed.is_parallel or not componenttools.all_are_thread_contiguous_components(parsed[:]):
+            if parsed.is_parallel or \
+                not componenttools.all_are_thread_contiguous_components(
+                parsed[:]):
                 while len(parsed):
                     self.append(parsed.pop(0))
             else:
                 self[:] = parsed[:]
         else:
-            raise TypeError('can not initialize container from {!r}.'.format((music)))
+            message = 'can not initialize container from {!r}.'
+            message = message.format((music))
+            raise TypeError(message)
 
     def _is_one_of_my_first_leaves(self, leaf):
         from abjad.tools import componenttools
@@ -511,7 +559,8 @@ class Container(Component):
         elif user_input.startswith('rtm:'):
             parsed = rhythmtreetools.parse_rtm_syntax(user_input[4:])
         else:
-            if not user_input.startswith('<<') and not user_input.endswith('>>'):
+            if not user_input.startswith('<<') and \
+                not user_input.endswith('>>'):
                 user_input = '{ %s }' % user_input
             parsed = lilypondparsertools.LilyPondParser()(user_input)
             assert isinstance(parsed, Container)
@@ -613,7 +662,9 @@ class Container(Component):
         #return self
         # to make pychecker happy
         #self[len(self):len(self)] = expr[:]
-        self.__setitem__(slice(len(self), len(self)), expr.__getitem__(slice(0, len(expr))))
+        self.__setitem__(
+            slice(len(self), len(self)), 
+            expr.__getitem__(slice(0, len(expr))))
 
     def index(self, component):
         '''Index `component` in container:
@@ -639,7 +690,9 @@ class Container(Component):
             if element is component:
                 return i
         else:
-            raise ValueError('component {!r} not in Abjad container {!r}.'.format(component, self))
+            message = 'component {!r} not in Abjad container {!r}.'
+            message = message.format(component, self)
+            raise ValueError(message)
 
     def insert(self, i, component):
         '''Insert `component` in container at index `i`::

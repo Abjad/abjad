@@ -32,6 +32,8 @@ class PaperBlock(AttributedBlock):
     Return paper block.
     '''
 
+    ### INITIALIZER ###
+
     def __init__(self):
         AttributedBlock.__init__(self)
         self._escaped_name = r'\paper'

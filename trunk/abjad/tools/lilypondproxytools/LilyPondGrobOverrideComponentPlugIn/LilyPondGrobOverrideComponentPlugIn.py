@@ -62,13 +62,21 @@ class LilyPondGrobOverrideComponentPlugIn(LilyPondComponentPlugIn):
         for name, value in vars(self).iteritems():
             if isinstance(value, LilyPondGrobProxy):
                 grob_name, grob_proxy = name, value
-                for attribute_name, attribute_value in vars(grob_proxy).iteritems():
-                    result.append((grob_name, attribute_name, attribute_value))
+                for attribute_name, attribute_value in \
+                    vars(grob_proxy).iteritems():
+                    result.append(
+                        (grob_name, attribute_name, attribute_value))
             else:
                 context_name, context_proxy = name.strip('_'), value
                 for grob_name, grob_proxy in vars(context_proxy).iteritems():
-                    for attribute_name, attribute_value in vars(grob_proxy).iteritems():
-                        result.append((context_name, grob_name, attribute_name, attribute_value))
+                    for attribute_name, attribute_value in \
+                        vars(grob_proxy).iteritems():
+                        result.append((
+                            context_name, 
+                            grob_name, 
+                            attribute_name, 
+                            attribute_value,
+                            ))
         return tuple(result)
 
     def _get_skeleton_strings(self):
@@ -82,8 +90,10 @@ class LilyPondGrobOverrideComponentPlugIn(LilyPondComponentPlugIn):
         return tuple(skeleton_strings)
 
     def _list_format_contributions(self, contribution_type, is_once=False):
-        from abjad.tools.lilypondfiletools._make_lilypond_override_string import _make_lilypond_override_string
-        from abjad.tools.lilypondfiletools._make_lilypond_revert_string import _make_lilypond_revert_string
+        from abjad.tools.lilypondfiletools._make_lilypond_override_string \
+            import _make_lilypond_override_string
+        from abjad.tools.lilypondfiletools._make_lilypond_revert_string \
+            import _make_lilypond_revert_string
         assert contribution_type in ('override', 'revert')
         result = []
         for attribute_tuple in self._get_attribute_tuples():
@@ -91,14 +101,20 @@ class LilyPondGrobOverrideComponentPlugIn(LilyPondComponentPlugIn):
                 context_name = None
                 grob_name, attribute_name, attribute_value = attribute_tuple
             elif len(attribute_tuple) == 4:
-                context_name, grob_name, attribute_name, attribute_value = attribute_tuple
+                context_name, grob_name, attribute_name, attribute_value = \
+                    attribute_tuple
             else:
                 raise ValueError
             if contribution_type == 'override':
-                result.append(_make_lilypond_override_string(grob_name, attribute_name,
-                    attribute_value, context_name = context_name, is_once = is_once))
+                result.append(_make_lilypond_override_string(
+                    grob_name, 
+                    attribute_name,
+                    attribute_value, 
+                    context_name=context_name, 
+                    is_once=is_once))
             else:
                 result.append(
-                    _make_lilypond_revert_string(grob_name, attribute_name, context_name=context_name))
+                    _make_lilypond_revert_string(
+                        grob_name, attribute_name, context_name=context_name))
         result.sort()
         return result

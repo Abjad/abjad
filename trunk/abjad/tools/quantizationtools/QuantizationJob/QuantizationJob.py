@@ -3,8 +3,9 @@ from abjad.tools.abctools import AbjadObject
 
 
 class QuantizationJob(AbjadObject):
-    '''A copiable, picklable class for generating all ``QGrids`` which are valid
-    under a given ``SearchTree`` for a sequence of ``QEventProxies``:
+    '''A copiable, picklable class for generating all ``QGrids`` which 
+    are valid under a given ``SearchTree`` for a sequence 
+    of ``QEventProxies``:
 
     ::
 
@@ -26,8 +27,8 @@ class QuantizationJob(AbjadObject):
         ...     1, search_tree, [proxy_a, proxy_b, proxy_c])
 
     ``QuantizationJob`` generates ``QGrids`` when called, and stores those
-    ``QGrids`` on its ``q_grids`` attribute, allowing them to be recalled later,
-    even if pickled:
+    ``QGrids`` on its ``q_grids`` attribute, allowing them to be recalled 
+    later, even if pickled:
 
     ::
 
@@ -40,14 +41,20 @@ class QuantizationJob(AbjadObject):
         (1 (1 1))
         (1 ((1 (1 1)) (1 (1 1))))
 
-    ``QuantizationJob`` is intended to be useful in multiprocessing-enabled environments.
+    ``QuantizationJob`` is intended to be useful in 
+    multiprocessing-enabled environments.
 
     Return ``QuantizationJob`` instance.
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_job_id', '_q_event_proxies', '_q_grids', '_search_tree')
+    __slots__ = (
+        '_job_id', 
+        '_q_event_proxies', 
+        '_q_grids', 
+        '_search_tree',
+        )
 
     ### INITIALIZER ###
 
@@ -55,7 +62,8 @@ class QuantizationJob(AbjadObject):
         from abjad.tools import quantizationtools
 
         assert isinstance(search_tree, quantizationtools.SearchTree)
-        assert all(isinstance(x, quantizationtools.QEventProxy) for x in q_event_proxies)
+        assert all(isinstance(x, quantizationtools.QEventProxy) 
+            for x in q_event_proxies)
         self._job_id = job_id
         self._search_tree = search_tree
         self._q_event_proxies = tuple(q_event_proxies)
@@ -89,7 +97,8 @@ class QuantizationJob(AbjadObject):
         return False
 
     def __getnewargs__(self):
-        return (self.job_id, self.search_tree, self.q_event_proxies, self.q_grids)
+        return (
+            self.job_id, self.search_tree, self.q_event_proxies, self.q_grids)
 
     def __getstate__(self):
         return {
@@ -123,7 +132,8 @@ class QuantizationJob(AbjadObject):
 
     @property
     def q_event_proxies(self):
-        '''The ``QEventProxies`` the ``QuantizationJob`` was instantiated with:
+        '''The ``QEventProxies`` the ``QuantizationJob`` was instantiated 
+        with:
 
         ::
 

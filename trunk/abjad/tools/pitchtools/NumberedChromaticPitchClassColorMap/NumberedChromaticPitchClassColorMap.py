@@ -8,7 +8,8 @@ class NumberedChromaticPitchClassColorMap(AbjadObject):
 
     ::
 
-        >>> chromatic_pitch_class_numbers = [[-8, 2, 10, 21], [0, 11, 32, 41], [15, 25, 42, 43]]
+        >>> chromatic_pitch_class_numbers = \
+        ...     [[-8, 2, 10, 21], [0, 11, 32, 41], [15, 25, 42, 43]]
         >>> colors = ['red', 'green', 'blue']
         >>> mapping = pitchtools.NumberedChromaticPitchClassColorMap(
         ... chromatic_pitch_class_numbers, colors)
@@ -18,7 +19,11 @@ class NumberedChromaticPitchClassColorMap(AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_color_dictionary', '_colors', '_pitch_iterables', )
+    __slots__ = (
+        '_color_dictionary', 
+        '_colors', 
+        '_pitch_iterables',
+        )
 
     ### INITIALIZER ###
 
@@ -40,7 +45,11 @@ class NumberedChromaticPitchClassColorMap(AbjadObject):
     def __repr__(self):
         sorted_keys = self._color_dictionary.keys()
         sorted_keys.sort()
-        return '%s(%s, %s)' % (type(self).__name__, self._pitch_iterables, self._colors)
+        return '%s(%s, %s)' % (
+            self._class_name, 
+            self._pitch_iterables, 
+            self._colors,
+            )
 
     ### PRIVATE METHODS ###
 
@@ -51,7 +60,8 @@ class NumberedChromaticPitchClassColorMap(AbjadObject):
                 pc = pitchtools.NumberedChromaticPitchClass(pitch)
                 if abs(pc) in self._color_dictionary.keys():
                     print pc, self._color_dictionary.keys()
-                    raise KeyError('Duplicated pitch-class %s in color dictionary.' % pc)
+                    raise KeyError(
+                        'duplicated pitch-class %s in color dictionary.' % pc)
                 self._color_dictionary[abs(pc)] = color
 
     ### PUBLIC PROPERTIES ###

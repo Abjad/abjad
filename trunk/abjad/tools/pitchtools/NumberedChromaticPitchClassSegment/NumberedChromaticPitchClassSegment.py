@@ -9,7 +9,8 @@ class NumberedChromaticPitchClassSegment(PitchClassSegment):
 
     ::
 
-        >>> pitchtools.NumberedChromaticPitchClassSegment([-2, -1.5, 6, 7, -1.5, 7])
+        >>> pitchtools.NumberedChromaticPitchClassSegment(
+        ...     [-2, -1.5, 6, 7, -1.5, 7])
         NumberedChromaticPitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
 
     Numbered chromatic pitch-class segments are immutable.
@@ -17,15 +18,19 @@ class NumberedChromaticPitchClassSegment(PitchClassSegment):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
-    _default_positional_input_arguments = ([-2, -1.5, 6, 7, -1.5, 7], )
+    _default_positional_input_arguments = (
+        [-2, -1.5, 6, 7, -1.5, 7],
+        )
 
     ### INITIALIZER ###
 
     def __new__(self, pitch_class_tokens):
         from abjad.tools import pitchtools
-        pitch_classes = [pitchtools.NumberedChromaticPitchClass(x) for x in pitch_class_tokens]
+        pitch_classes = [pitchtools.NumberedChromaticPitchClass(x) 
+            for x in pitch_class_tokens]
         return tuple.__new__(self, pitch_classes)
 
     ### SPECIAL METHODS ###
@@ -54,7 +59,8 @@ class NumberedChromaticPitchClassSegment(PitchClassSegment):
 
         ::
 
-            >>> segment = pitchtools.NumberedChromaticPitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
+            >>> segment = pitchtools.NumberedChromaticPitchClassSegment(
+            ...     [10, 10.5, 6, 7, 10.5, 7])
 
         ::
 
@@ -66,12 +72,13 @@ class NumberedChromaticPitchClassSegment(PitchClassSegment):
         from abjad.tools import mathtools
         from abjad.tools import pitchtools
         interval_classes = list(mathtools.difference_series(self))
-        return pitchtools.InversionEquivalentChromaticIntervalClassSegment(interval_classes)
+        return pitchtools.InversionEquivalentChromaticIntervalClassSegment(
+            interval_classes)
 
     @property
     def numbered_chromatic_pitch_class_set(self):
-        '''Read-only numbered chromatic pitch-class set from numbered chromatic
-        pitch-class segment:
+        '''Read-only numbered chromatic pitch-class set from numbered 
+        chromatic pitch-class segment:
 
         ::
 
@@ -126,7 +133,9 @@ class NumberedChromaticPitchClassSegment(PitchClassSegment):
         return type(self)([pc.invert() for pc in self])
 
     def multiply(self, n):
-        '''Multiply numbered chromatic pitch-class segment by `n`::
+        '''Multiply numbered chromatic pitch-class segment by `n`:
+
+        ::
 
             >>> segment.multiply(5)
             NumberedChromaticPitchClassSegment([2, 4.5, 6, 11, 4.5, 11])

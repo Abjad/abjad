@@ -53,8 +53,10 @@ class LilyPondContextSettingComponentPlugIn(LilyPondComponentPlugIn):
                 prefixed_context_name = name
                 context_name = prefixed_context_name.strip('_')
                 context_proxy = value
-                for attribute_name, attribute_value in context_proxy._get_attribute_pairs():
-                    result.append((context_name, attribute_name, attribute_value))
+                for attribute_name, attribute_value in \
+                    context_proxy._get_attribute_pairs():
+                    result.append(
+                        (context_name, attribute_name, attribute_value))
             else:
                 attribute_name, attribute_value = name, value
                 result.append((attribute_name, attribute_value))
@@ -65,9 +67,11 @@ class LilyPondContextSettingComponentPlugIn(LilyPondComponentPlugIn):
         for attribute_tuple in self._get_attribute_tuples():
             if len(attribute_tuple) == 2:
                 attribute_name, attribute_value = attribute_tuple
-                result.append('%s=%s' % (attribute_name, repr(attribute_value)))
+                result.append('%s=%s' % (
+                    attribute_name, repr(attribute_value)))
             elif len(attribute_tuple) == 3:
-                context_name, attribute_name, attribute_value = attribute_tuple
+                context_name, attribute_name, attribute_value = \
+                    attribute_tuple
                 key = '__'.join((context_name, attribute_name))
                 result.append('%s=%s' % (key, repr(attribute_value)))
             else:

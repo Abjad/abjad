@@ -4,13 +4,16 @@ from abjad.tools.marktools.Mark import Mark
 
 
 class DirectedMark(Mark):
-    '''Abstract base class of Marks which possess a vertical, typographic direction,
-    i.e. above or below the staff.
+    '''Abstract base class of Marks which possess a vertical, 
+    typographic direction, i.e. above or below the staff.
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_direction', '_format_slot')
+    __slots__ = (
+        '_direction', 
+        '_format_slot',
+        )
 
     ### INITIALIZER ###
 
@@ -29,5 +32,6 @@ class DirectedMark(Mark):
         def fget(self):
             return self._direction
         def fset(self, arg):
-            self._direction = stringtools.arg_to_tridirectional_ordinal_constant(arg)
+            self._direction = \
+                stringtools.arg_to_tridirectional_ordinal_constant(arg)
         return property(**locals())

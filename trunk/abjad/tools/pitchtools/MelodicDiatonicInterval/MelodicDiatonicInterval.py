@@ -16,19 +16,31 @@ class MelodicDiatonicInterval(DiatonicInterval, MelodicInterval):
     Melodic diatonic intervals are immutable.
     '''
 
-    __slots__ = ('_quality_string', '_number', )
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_quality_string', 
+        '_number',
+        )
+
+    ### INITIALIZER ###
 
     def __init__(self, *args):
-        from abjad.tools.pitchtools.is_melodic_diatonic_interval_abbreviation import melodic_diatonic_interval_abbreviation_regex
+        from abjad.tools.pitchtools.is_melodic_diatonic_interval_abbreviation \
+            import melodic_diatonic_interval_abbreviation_regex
         if len(args) == 1 and isinstance(args[0], type(self)):
             quality_string = args[0].quality_string
             number = args[0].number
         elif len(args) == 1 and isinstance(args[0], str):
             match = melodic_diatonic_interval_abbreviation_regex.match(args[0])
             if match is None:
-                raise ValueError('"%s" does not have the form of a mdi abbreviation.' % args[0])
-            direction_string, quality_abbreviation, number_string = match.groups()
-            quality_string = self._quality_abbreviation_to_quality_string[quality_abbreviation]
+                raise ValueError(
+                    '"%s" does not have the form of a mdi abbreviation.' % 
+                    args[0])
+            direction_string, quality_abbreviation, number_string = \
+                match.groups()
+            quality_string = self._quality_abbreviation_to_quality_string[
+                quality_abbreviation]
             number = int(direction_string + number_string)
         elif len(args) == 2:
             quality_string, number = args
@@ -39,7 +51,8 @@ class MelodicDiatonicInterval(DiatonicInterval, MelodicInterval):
 
     def __abs__(self):
         from abjad.tools import pitchtools
-        return pitchtools.HarmonicDiatonicInterval(self.quality_string, abs(self.number))
+        return pitchtools.HarmonicDiatonicInterval(
+            self.quality_string, abs(self.number))
 
     def __add__(self, arg):
         from abjad.tools import pitchtools
@@ -78,7 +91,11 @@ class MelodicDiatonicInterval(DiatonicInterval, MelodicInterval):
         return self * arg
 
     def __str__(self):
-        return '%s%s%s' % (self._direction_symbol, self._quality_abbreviation, abs(self.number))
+        return '%s%s%s' % (
+            self._direction_symbol, 
+            self._quality_abbreviation, 
+            abs(self.number),
+            )
 
     def __sub__(self, arg):
         from abjad.tools import pitchtools
@@ -149,11 +166,27 @@ class MelodicDiatonicInterval(DiatonicInterval, MelodicInterval):
     @property
     def semitones(self):
         result = 0
-        interval_class_number_to_semitones = {1: 0,  2: 1,  3: 3, 4: 5, 5: 7, 6: 8, 7: 10, 8: 0}
-        interval_class_number = abs(self.melodic_diatonic_interval_class.number)
+        interval_class_number_to_semitones = {
+            1: 0,  
+            2: 1,  
+            3: 3, 
+            4: 5, 
+            5: 7, 
+            6: 8, 
+            7: 10, 
+            8: 0,
+            }
+        interval_class_number = abs(
+            self.melodic_diatonic_interval_class.number)
         result += interval_class_number_to_semitones[interval_class_number]
         result += (abs(self.number) - 1) / 7 * 12
-        quality_string_to_semitones = {'perfect': 0, 'major': 1, 'minor': 0, 'augmented': 1, 'diminished': -1}
+        quality_string_to_semitones = {
+            'perfect': 0, 
+            'major': 1, 
+            'minor': 0, 
+            'augmented': 1, 
+            'diminished': -1,
+            }
         result += quality_string_to_semitones[self.quality_string]
         if self.number < 0:
             result *= -1

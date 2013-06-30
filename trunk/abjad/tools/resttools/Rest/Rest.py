@@ -24,9 +24,13 @@ class Rest(Leaf):
     ### CLASS VARIABLES ###
 
     # TODO: add vertical positioning pitch only as needed #
-    __slots__ = ('_vertical_positioning_pitch', )
+    __slots__ = (
+        '_vertical_positioning_pitch',
+        )
 
-    _default_positional_input_arguments = (repr('r4'), )
+    _default_positional_input_arguments = (
+        repr('r4'),
+        )
 
     ### INITIALIZER ###
 
@@ -53,7 +57,8 @@ class Rest(Leaf):
         elif len(args) == 2:
             written_duration, lilypond_multiplier = args
         else:
-            raise ValueError('can not initialize rest from "%s".' % str(args))
+            raise ValueError(
+                'can not initialize rest from "%s".' % str(args))
 
         Leaf.__init__(self, written_duration, lilypond_multiplier)
         self._initialize_keyword_values(**kwargs)
@@ -65,7 +70,8 @@ class Rest(Leaf):
         '''Read-only body of rest.
         '''
         result = ''
-        vertical_positioning_pitch = getattr(self, '_vertical_positioning_pitch', None)
+        vertical_positioning_pitch = getattr(
+            self, '_vertical_positioning_pitch', None)
         if vertical_positioning_pitch:
             result += str(vertical_positioning_pitch)
         else:

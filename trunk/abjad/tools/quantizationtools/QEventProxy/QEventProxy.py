@@ -4,8 +4,8 @@ from abjad.tools.abctools import AbjadObject
 
 
 class QEventProxy(AbjadObject):
-    '''Proxies a `QEvent`, mapping that QEvent's offset with the range of its
-    beatspan to the range 0-1:
+    '''Proxies a `QEvent`, mapping that QEvent's offset with the range of 
+    its beatspan to the range 0-1:
 
     ::
 
@@ -30,7 +30,10 @@ class QEventProxy(AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_offset', '_q_event')
+    __slots__ = (
+        '_offset', 
+        '_q_event',
+        )
 
     ### INITIALIZER ###
 

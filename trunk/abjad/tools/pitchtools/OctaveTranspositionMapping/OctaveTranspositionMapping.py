@@ -10,7 +10,8 @@ class OctaveTranspositionMapping(ObjectInventory):
 
     ::
 
-        >>> mapping = pitchtools.OctaveTranspositionMapping([('[A0, C4)', 15), ('[C4, C8)', 27)])
+        >>> mapping = pitchtools.OctaveTranspositionMapping(
+        ...     [('[A0, C4)', 15), ('[C4, C8)', 27)])
 
     ::
 
@@ -18,9 +19,11 @@ class OctaveTranspositionMapping(ObjectInventory):
         OctaveTranspositionMapping([('[A0, C4)', 15), ('[C4, C8)', 27)])
 
     Octave transposition mappings model
-    ``pitchtools.transpose_chromatic_pitch_number_by_octave_transposition_mapping`` input.
+    ``pitchtools.transpose_chromatic_pitch_number_by_octave_transposition_mapping`` 
+    input.
 
-    Octave transposition mappings implement the list interface and are mutable.
+    Octave transposition mappings implement the list interface and 
+    are mutable.
     '''
 
     ### SPECIAL METHODS ###
@@ -46,7 +49,8 @@ class OctaveTranspositionMapping(ObjectInventory):
             return '{}([{}], name={!r})'.format(
                 self._class_name, self._repr_contents_string, self.name)
         else:
-            return '{}([{}])'.format(self._class_name, self._repr_contents_string)
+            return '{}([{}])'.format(
+                self._class_name, self._repr_contents_string)
 
     ### PRIVATE METHODS ###
 
@@ -58,9 +62,11 @@ class OctaveTranspositionMapping(ObjectInventory):
             if pitch in component.source_pitch_range:
                 target_octave = range(
                     component.target_octave_start_pitch.chromatic_pitch_number,
-                    component.target_octave_start_pitch.chromatic_pitch_number + 12)
+                    component.target_octave_start_pitch.chromatic_pitch_number 
+                    + 12)
                 for candidate_pitch in target_octave:
-                    if candidate_pitch % 12 == pitch.chromatic_pitch_class_number:
+                    if candidate_pitch % 12 == \
+                        pitch.chromatic_pitch_class_number:
                         return candidate_pitch
 
     ### READ-ONLY PRIVATE PROPERTIES ###

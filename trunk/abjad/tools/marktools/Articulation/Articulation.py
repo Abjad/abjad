@@ -57,7 +57,11 @@ class Articulation(DirectedMark):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_string', '_direction', '_format_slot')
+    __slots__ = (
+        '_string', 
+        '_direction', 
+        '_format_slot',
+        )
 
     ### INITIALIZER ###
 
@@ -66,13 +70,17 @@ class Articulation(DirectedMark):
         assert len(args) in range(3), repr(args)
         if 2 <= len(args):
             assert isinstance(args[0], (str, type(None))), repr(args[0])
-            assert isinstance(args[1], (str, type(None), datastructuretools.OrdinalConstant)), repr(args[1])
+            assert isinstance(args[1], 
+                (str, type(None), datastructuretools.OrdinalConstant)), \
+                repr(args[1])
             string, direction = args
         elif len(args) == 1 and isinstance(args[0], type(self)):
             string = args[0].name
             direction = args[0].direction
         elif len(args) == 1:
-            assert isinstance(args[0], (str, type(None), datastructuretools.OrdinalConstant)), repr(args[0])
+            assert isinstance(args[0], 
+                (str, type(None), datastructuretools.OrdinalConstant)), \
+                repr(args[0])
             if args[0]:
                 splits = args[0].split('\\')
                 assert len(splits) in (1, 2), repr(splits)
@@ -97,8 +105,6 @@ class Articulation(DirectedMark):
     def __copy__(self, *args):
         return type(self)(self.name, self.direction)
 
-    #__deepcopy__ = __copy__
-
     def __eq__(self, expr):
         if isinstance(expr, type(self)):
             if expr.name == self.name:
@@ -114,35 +120,77 @@ class Articulation(DirectedMark):
             if self.direction is None:
                 direction = '-'
             else:
-                direction = stringtools.arg_to_tridirectional_lilypond_symbol(self.direction)
+                direction = \
+                    stringtools.arg_to_tridirectional_lilypond_symbol(
+                    self.direction)
             return '%s\%s' % (direction, string)
         else:
             return ''
 
     ### PRIVATE PROPERTIES ###
 
-    # this causes unnecessary coupling to changeable lilypond codebase and is discouraged
-    _articulations_supported = ('accent', 'marcato',
-        'staccatissimo',        'espressivo'
-        'staccato',             'tenuto'                 'portato'
-        'upbow',                  'downbow'                'flageolet'
-        'thumb',                  'lheel'                  'rheel'
-        'ltoe',                   'rtoe'                   'open'
-        'stopped',                'turn'                   'reverseturn'
-        'trill',                  'prall'                  'mordent'
-        'prallprall'            'prallmordent',        'upprall',
-        'downprall',            'upmordent',           'downmordent',
-        'pralldown',            'prallup',             'lineprall',
-        'signumcongruentiae', 'shortfermata',        'fermata',
-        'longfermata',          'verylongfermata',   'segno',
-        'coda',                   'varcoda',
-        '^', '+', '-', '|', '>', '.', '_',
+    # this causes unnecessary coupling to changeable lilypond codebase 
+    # and is discouraged
+    _articulations_supported = (
+        'accent', 
+        'marcato',
+        'staccatissimo',        
+        'espressivo'
+        'staccato',             
+        'tenuto'                 
+        'portato'
+        'upbow',                  
+        'downbow'                
+        'flageolet'
+        'thumb',                  
+        'lheel'                  
+        'rheel'
+        'ltoe',                   
+        'rtoe'                   
+        'open'
+        'stopped',                
+        'turn'                   
+        'reverseturn'
+        'trill',                  
+        'prall'                  
+        'mordent'
+        'prallprall'            
+        'prallmordent',        
+        'upprall',
+        'downprall',            
+        'upmordent',           
+        'downmordent',
+        'pralldown',            
+        'prallup',             
+        'lineprall',
+        'signumcongruentiae', 
+        'shortfermata',        
+        'fermata',
+        'longfermata',          
+        'verylongfermata',   
+        'segno',
+        'coda',                   
+        'varcoda',
+        '^', 
+        '+', 
+        '-', 
+        '|', 
+        '>', 
+        '.', 
+        '_',
         )
 
-    # this causes unnecessary coupling to changeable lilypond codebase and is discouraged
+    # this causes unnecessary coupling to changeable lilypond codebase 
+    # and is discouraged
     _shortcut_to_word = {
-            '^':'marcato', '+':'stopped', '-':'tenuto', '|':'staccatissimo',
-            '>':'accent', '.':'staccato', '_':'portato' }
+        '^':'marcato', 
+        '+':'stopped', 
+        '-':'tenuto', 
+        '|':'staccatissimo',
+        '>':'accent', 
+        '.':'staccato', 
+        '_':'portato',
+        }
 
     @property
     def _contents_repr_string(self):

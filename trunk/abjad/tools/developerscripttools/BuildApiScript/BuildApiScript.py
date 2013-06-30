@@ -25,7 +25,7 @@ class BuildApiScript(DeveloperScript):
     Return `BuildApiScript` instance.
     '''
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def alias(self):
@@ -66,13 +66,21 @@ class BuildApiScript(DeveloperScript):
                 from abjad import abjad_configuration
                 return (
                     (
-                        os.path.join(abjad_configuration.abjad_experimental_directory_path, 'tools'),
-                        os.path.join(abjad_configuration.abjad_experimental_directory_path, 'docs', 'source', 'tools'),
+                        os.path.join(
+                            abjad_configuration.abjad_experimental_directory_path, 
+                            'tools'),
+                        os.path.join(
+                            abjad_configuration.abjad_experimental_directory_path, 
+                            'docs', 'source', 'tools'),
                         'experimental.tools.',
                     ),
                     (
-                        os.path.join(abjad_configuration.abjad_experimental_directory_path, 'demos'),
-                        os.path.join(abjad_configuration.abjad_experimental_directory_path, 'docs', 'source', 'demos'),
+                        os.path.join(
+                            abjad_configuration.abjad_experimental_directory_path, 
+                            'demos'),
+                        os.path.join(
+                            abjad_configuration.abjad_experimental_directory_path, 
+                            'docs', 'source', 'demos'),
                         'experimental.demos.',
                     ),
                 )
@@ -88,11 +96,13 @@ class BuildApiScript(DeveloperScript):
         ExperimentalAPIGenerator()(verbose=True)
 
         # print greeting
-        print 'Now building the Experimental {} docs ...'.format(format.upper())
+        print 'Now building the Experimental {} docs ...'.format(
+            format.upper())
         print ''
 
         # change to docs directory because makefile lives there
-        docs_directory = os.path.join(abjad_configuration.abjad_experimental_directory_path, 'docs')
+        docs_directory = os.path.join(
+            abjad_configuration.abjad_experimental_directory_path, 'docs')
         os.chdir(docs_directory)
 
         # optionally, make clean before building
@@ -114,7 +124,8 @@ class BuildApiScript(DeveloperScript):
         print ''
 
         # change to docs directory because makefile lives there
-        docs_directory = os.path.relpath(os.path.join(abjad_configuration.abjad_directory_path, 'docs'))
+        docs_directory = os.path.relpath(os.path.join(
+            abjad_configuration.abjad_directory_path, 'docs'))
         os.chdir(docs_directory)
 
         # optionally, make clean before building

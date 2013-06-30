@@ -4,11 +4,14 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 class ImmutableDictionary(dict, AbjadObject):
     '''.. versionadded:: 2.0
 
+    .. note:: deprecated.
+
     Immutable dictionary:
 
     ::
 
-        >>> dictionary = datastructuretools.ImmutableDictionary({'color': 'red', 'number': 9})
+        >>> dictionary = datastructuretools.ImmutableDictionary(
+        ...     {'color': 'red', 'number': 9})
 
     ::
 
@@ -35,12 +38,15 @@ class ImmutableDictionary(dict, AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### SPECIAL METHODS ###
 
     def __delitem__(self, *args):
-        raise AttributeError('{} objects are immutable.'.format(self._class_name))
+        raise AttributeError('{} objects are immutable.'.format(
+            self._class_name))
 
     def __setitem__(self, *args):
-        raise AttributeError('{} objects are immutable.'.format(self._class_name))
+        raise AttributeError('{} objects are immutable.'.format(
+            self._class_name))

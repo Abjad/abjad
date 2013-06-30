@@ -18,7 +18,8 @@ class DirectoryScript(DeveloperScript):
         return False
 
     def _validate_path(self, path):
-        error = argparse.ArgumentTypeError('{!r} is not a valid directory.'.format(path))
+        message = '{!r} is not a valid directory.'
+        error = argparse.ArgumentTypeError(message.format(path))
         path = os.path.abspath(path)
         if not self._is_valid_path(path):
             raise error

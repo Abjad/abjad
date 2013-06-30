@@ -5,7 +5,8 @@ import shutil
 
 
 class CleanScript(DirectoryScript):
-    '''Remove *.pyc, *.swp files and __pycache__ and tmp* directories recursively in a path:
+    '''Remove *.pyc, *.swp files and __pycache__ and tmp* directories 
+    recursively in a path:
 
     ::
 
@@ -45,7 +46,8 @@ class CleanScript(DirectoryScript):
 
     @property
     def short_description(self):
-        return 'Clean *.pyc, *.swp, __pycache__ and tmp* files and folders from PATH.'
+        return 'Clean *.pyc, *.swp, __pycache__ and tmp* files' + \
+            ' and folders from PATH.'
 
     @property
     def version(self):
@@ -54,7 +56,8 @@ class CleanScript(DirectoryScript):
     ### PUBLIC METHODS ###
 
     def process_args(self, args):
-        if not args.pyc and not args.pycache and not args.swp and not args.tmp:
+        if not args.pyc and not args.pycache and \
+            not args.swp and not args.tmp:
             args.pyc, args.pycache, args.swp, args.tmp = True, True, True, True
 
         print 'Cleaning...'

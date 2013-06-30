@@ -52,7 +52,8 @@ class HarmonicChromaticInterval(ChromaticInterval, HarmonicInterval):
 
         ::
 
-            >>> harmonic_chromatic_interval = pitchtools.HarmonicChromaticInterval(14)
+            >>> harmonic_chromatic_interval = \
+            ...     pitchtools.HarmonicChromaticInterval(14)
             >>> harmonic_chromatic_interval.harmonic_chromatic_interval_class
             HarmonicChromaticIntervalClass(2)
 

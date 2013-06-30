@@ -18,7 +18,8 @@ class MarkupCommand(AbjadObject):
         >>> print combine
         \combine \rotate #60 \line { \rounded-box hello? wow! } \draw-circle #2.5 #0.1 ##f
 
-    Insert a markup command in markup in order to attach it to score components:
+    Insert a markup command in markup in order to attach it to 
+    score components:
 
     ::
 
@@ -63,7 +64,10 @@ class MarkupCommand(AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_args', '_command')
+    __slots__ = (
+        '_args', 
+        '_command',
+        )
 
     ### INITIALIZER ###
 
@@ -116,7 +120,8 @@ class MarkupCommand(AbjadObject):
 
         ::
 
-            >>> markup_command = markuptools.MarkupCommand('draw-circle', 2.5, 0.1, False)
+            >>> markup_command = markuptools.MarkupCommand(
+            ...     'draw-circle', 2.5, 0.1, False)
             >>> markup_command.lilypond_format
             '\\draw-circle #2.5 #0.1 ##f'
 
@@ -149,7 +154,8 @@ class MarkupCommand(AbjadObject):
                     result.extend(recurse(x))
                     result.append('}')
                 elif isinstance(x, type(self)):
-                    result.extend(x._get_format_pieces(is_indented=is_indented))
+                    result.extend(x._get_format_pieces(
+                        is_indented=is_indented))
                 elif isinstance(x, schemetools.Scheme):
                     result.append(x.lilypond_format)
                 else:
@@ -177,7 +183,8 @@ class MarkupCommand(AbjadObject):
                 else:
                     comma = ','
                 if isinstance(arg, AbjadObject):
-                    pieces = arg._get_tools_package_qualified_repr_pieces(is_indented=is_indented)
+                    pieces = arg._get_tools_package_qualified_repr_pieces(
+                        is_indented=is_indented)
                     for piece in pieces[:-1]:
                         result.append('{}{}'.format(indent, piece))
                     result.append('{}{}{}'.format(indent, pieces[-1], comma))

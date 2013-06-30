@@ -58,7 +58,7 @@ class ReSTTOCDirective(ReSTDirective):
                 newexpr.append(x)
         datastructuretools.TreeContainer.__setitem__(self, i, newexpr)
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _children_rest_format_contributions(self):
@@ -72,7 +72,7 @@ class ReSTTOCDirective(ReSTDirective):
                     result.append(x)
         return result
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def directive(self):

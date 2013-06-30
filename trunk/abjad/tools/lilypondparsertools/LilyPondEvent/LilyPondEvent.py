@@ -9,14 +9,20 @@ class LilyPondEvent(AbjadObject):
     Used internally by LilyPondParser.
     '''
 
+    ### INITIALIZER ###
+
     def __init__(self, name, **kwargs):
         self.name = name
         for k, v in kwargs.iteritems():
             if k != 'name':
                 setattr(self, k, v)
 
+    ### SPECIAL METHODS ###
+
     def __repr__(self):
         return '%s(%s)' % (type(self).__name__, self._format_string)
+
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _format_string(self):

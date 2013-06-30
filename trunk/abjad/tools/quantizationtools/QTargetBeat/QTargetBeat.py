@@ -46,12 +46,26 @@ class QTargetBeat(AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_beatspan', '_distances', '_grouping', '_offset_in_ms',
-        '_q_events', '_q_grid', '_q_grids', '_search_tree', '_tempo')
+    __slots__ = (
+        '_beatspan', 
+        '_distances', 
+        '_grouping', 
+        '_offset_in_ms',
+        '_q_events', 
+        '_q_grid', 
+        '_q_grids', 
+        '_search_tree', 
+        '_tempo',
+        )
 
     ### INITIALIZER ###
 
-    def __init__(self, beatspan=None, offset_in_ms=None, search_tree=None, tempo=None):
+    def __init__(self, 
+        beatspan=None, 
+        offset_in_ms=None, 
+        search_tree=None, 
+        tempo=None,
+        ):
         from abjad.tools import quantizationtools
 
         beatspan = durationtools.Duration(beatspan)
@@ -81,13 +95,18 @@ class QTargetBeat(AbjadObject):
         from abjad.tools import quantizationtools
         if not self.q_events:
             return None
-        assert all(isinstance(x, quantizationtools.QEvent) for x in self.q_events)
+        assert all(isinstance(x, quantizationtools.QEvent) 
+            for x in self.q_events)
         q_event_proxies = []
         for q_event in self.q_events:
             q_event_proxy = quantizationtools.QEventProxy(
-                q_event, self.offset_in_ms, self.offset_in_ms + self.duration_in_ms)
+                q_event, 
+                self.offset_in_ms, 
+                self.offset_in_ms + self.duration_in_ms,
+                )
             q_event_proxies.append(q_event_proxy)
-        return quantizationtools.QuantizationJob(job_id, self.search_tree, q_event_proxies)
+        return quantizationtools.QuantizationJob(
+            job_id, self.search_tree, q_event_proxies)
 
     def __repr__(self):
         return self._tools_package_qualified_indented_repr

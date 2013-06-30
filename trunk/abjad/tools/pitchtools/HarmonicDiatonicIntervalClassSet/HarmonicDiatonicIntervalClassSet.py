@@ -14,13 +14,16 @@ class HarmonicDiatonicIntervalClassSet(IntervalClassSet):
     Harmonic diatonic interval-class sets are immutable.
     '''
 
+    ### CONSTRUCTOR ###
+
     def __new__(self, arg):
         from abjad.tools import pitchtools
         if isinstance(arg, str):
             interval_tokens = arg.split()
         else:
             interval_tokens = arg
-        hdics = [pitchtools.HarmonicDiatonicIntervalClass(x) for x in interval_tokens]
+        hdics = [pitchtools.HarmonicDiatonicIntervalClass(x) 
+            for x in interval_tokens]
         return frozenset.__new__(self, hdics)
 
     ### SPECIAL METHODS ###
@@ -38,11 +41,11 @@ class HarmonicDiatonicIntervalClassSet(IntervalClassSet):
 
     @property
     def _format_string(self):
-        return ' '.join([str(x) for x in sorted(self.harmonic_diatonic_interval_classes)])
+        return ' '.join([str(x) for x in 
+            sorted(self.harmonic_diatonic_interval_classes)])
 
     ### PUBLIC PROPERTIES ###
 
     @property
-    #def interval_classes(self):
     def harmonic_diatonic_interval_classes(self):
         return set(self)

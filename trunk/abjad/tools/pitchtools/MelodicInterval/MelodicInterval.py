@@ -41,7 +41,7 @@ class MelodicInterval(Interval):
     def __neg__(self):
         pass
 
-    # PRIVATE ATTRIUBTES #
+    ### PRIVATE PROPERTIES ###    
 
     @property
     def _direction_symbol(self):

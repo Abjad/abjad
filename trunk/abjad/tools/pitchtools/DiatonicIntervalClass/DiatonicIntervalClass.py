@@ -22,7 +22,8 @@ class DiatonicIntervalClass(IntervalClass, DiatonicObject):
     ### SPECIAL METHODS ###
 
     def __abs__(self):
-        from abjad.tools.pitchtools.HarmonicDiatonicIntervalClass import HarmonicDiatonicIntervalClass
+        from abjad.tools.pitchtools.HarmonicDiatonicIntervalClass \
+            import HarmonicDiatonicIntervalClass
         return HarmonicDiatonicIntervalClass(str(self))
 
     def __float__(self):
@@ -39,21 +40,44 @@ class DiatonicIntervalClass(IntervalClass, DiatonicObject):
 
     ### PRIVATE PROPERTIES ###
 
-    _acceptable_quality_strings = ('perfect', 'major', 'minor', 'diminished', 'augmented')
+    _acceptable_quality_strings = (
+        'perfect', 
+        'major', 
+        'minor', 
+        'diminished', 
+        'augmented',
+        )
 
     @property
     def _format_string(self):
         return '%s%s' % (self._quality_abbreviation, self.number)
 
-    _interval_number_to_interval_string = {1: 'unison', 2: 'second',
-            3: 'third', 4: 'fourth', 5: 'fifth', 6: 'sixth',
-            7: 'seventh', 8: 'octave'}
+    _interval_number_to_interval_string = {
+            1: 'unison', 
+            2: 'second',
+            3: 'third', 
+            4: 'fourth', 
+            5: 'fifth', 
+            6: 'sixth',
+            7: 'seventh', 
+            8: 'octave',
+            }
 
     _quality_abbreviation_to_quality_string = {
-        'M': 'major', 'm': 'minor', 'P': 'perfect', 'aug': 'augmented', 'dim': 'diminished'}
+        'M': 'major', 
+        'm': 'minor', 
+        'P': 'perfect', 
+        'aug': 'augmented', 
+        'dim': 'diminished',
+        }
 
     _quality_string_to_quality_abbreviation = {
-            'major': 'M', 'minor': 'm', 'perfect': 'P', 'augmented': 'aug', 'diminished': 'dim'}
+        'major': 'M', 
+        'minor': 'm', 
+        'perfect': 'P', 
+        'augmented': 'aug', 
+        'diminished': 'dim',
+        }
 
     @property
     def _interval_string(self):
@@ -61,7 +85,8 @@ class DiatonicIntervalClass(IntervalClass, DiatonicObject):
 
     @property
     def _quality_abbreviation(self):
-        return self._quality_string_to_quality_abbreviation[self._quality_string]
+        return self._quality_string_to_quality_abbreviation[
+            self._quality_string]
 
     ### PUBLIC PROPERTIES ###
 

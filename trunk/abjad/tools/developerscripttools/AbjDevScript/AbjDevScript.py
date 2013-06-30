@@ -5,7 +5,8 @@ import os
 
 
 class AbjDevScript(DeveloperScript):
-    '''`AbjDevScript` is the commandline entry-point to the Abjad developer scripts catalog.
+    '''`AbjDevScript` is the commandline entry-point to the Abjad 
+    developer scripts catalog.
 
     Can be accessed on the commandline via `abj-dev` or `ajv`:
 
@@ -70,7 +71,7 @@ class AbjDevScript(DeveloperScript):
             args = self.argument_parser.parse_known_args(args)
         self.process_args(args)
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def developer_script_aliases(self):
@@ -85,17 +86,23 @@ class AbjDevScript(DeveloperScript):
                     scripting_groups.append(instance.scripting_group)
                     entry = (instance.scripting_group, instance.alias)
                     if (instance.scripting_group,) in aliases:
-                        raise Exception('Alias conflict between scripting group {!r} and {}'.format(
-                            instance.scripting_group, aliases[(instance.scripting_group,)].__name__))
+                        message = 'Alias conflict between scripting group'
+                        message += ' {!r} and {}'
+                        raise Exception(message.format(
+                            instance.scripting_group, 
+                            aliases[(instance.scripting_group,)].__name__))
                     if entry in aliases:
-                        raise Exception('Alias conflict between {} and {}'.format(
+                        message = 'Alias conflict between {} and {}'
+                        raise Exception(message.format(
                             aliases[entry].__name__ and klass.__name__))
                     aliases[entry] = klass
 
                 else:
                     entry = (instance.alias,)
                     if entry in scripting_groups:
-                        raise Exception('Alias conflict between {} and scripting group {!r}'.format(
+                        message = 'Alias conflict between {}'
+                        message += ' and scripting group {!r}'
+                        raise Exception(message.format(
                             klass.__name__, instance.alias))
                     if entry in aliases:
                         raise Exception('Alias conflict be {} and {}'.format(
@@ -104,7 +111,9 @@ class AbjDevScript(DeveloperScript):
 
             else:
                 if instance.program_name in scripting_groups:
-                    raise Exception('Alias conflict between {} and scripting group {!r}'.format(
+                    message = 'Alias conflict between {}'
+                    message += ' and scripting group {!r}'
+                    raise Exception(message.format(
                         klass.__name__, instance.program_name))
                 aliases[(instance.program_name,)] = klass
 
@@ -122,7 +131,8 @@ class AbjDevScript(DeveloperScript):
 
     @property
     def developer_script_classes(self):
-        from abjad.tools.developerscripttools.get_developer_script_classes import get_developer_script_classes
+        from abjad.tools.developerscripttools.get_developer_script_classes \
+            import get_developer_script_classes
         klasses = get_developer_script_classes()
         klasses.remove(self.__class__)
         return klasses
@@ -181,17 +191,20 @@ class AbjDevScript(DeveloperScript):
                 alias = ''
                 if instance.alias is not None:
                     if instance.scripting_group is not None:
-                        alias = '\n[{} {}]'.format(instance.scripting_group, instance.alias)
+                        alias = '\n[{} {}]'.format(
+                            instance.scripting_group, instance.alias)
                     else:
                         alias = '\n[{}]'.format(instance.alias)
-                entries.append('{}{}\n\t{}'.format(instance.program_name, alias, instance.short_description))
+                entries.append('{}{}\n\t{}'.format(
+                    instance.program_name, alias, instance.short_description))
             print ''
             print '\n\n'.join(entries)
             print ''
 
         else:
             if hasattr(args, 'subsubparser_name'):
-                klass = self.developer_script_aliases[args.subparser_name][args.subsubparser_name]
+                klass = self.developer_script_aliases[
+                    args.subparser_name][args.subsubparser_name]
             else:
                 klass = self.developer_script_aliases[args.subparser_name]
             instance = klass()

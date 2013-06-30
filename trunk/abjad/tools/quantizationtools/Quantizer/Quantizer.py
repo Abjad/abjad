@@ -124,8 +124,8 @@ class Quantizer(AbjadObject):
 
     Here we quantize using settings specified by a ``BeatwiseQSchema``, which
     keeps the output of the quantizer "flattened", without measures or explicit
-    time signatures.  The default beat-wise settings of quarter=60 persists until
-    the third "beatspan":
+    time signatures.  The default beat-wise settings of quarter=60 persists 
+    until the third "beatspan":
 
     ::
 
@@ -175,8 +175,8 @@ class Quantizer(AbjadObject):
 
         >>> show(score) # doctest: +SKIP
 
-    Note that ``TieChains`` are generally fused together in the above example, but
-    break at tempo changes.
+    Note that ``TieChains`` are generally fused together in the above example, 
+    but break at tempo changes.
 
     Other keyword arguments are:
 
@@ -193,15 +193,15 @@ class Quantizer(AbjadObject):
           parallel processing is used during the quantization process.  Options
           include the ``SerialJobHandler`` and ``ParallelJobHandler`` classes.
 
-        * ``attack_point_optimizer``: an ``AttackPointOptimizer`` instance controls
-          whether and how tie chains are re-notated.  Options currently include
-          ``MeasurewiseAttackPointOptimizer``, ``NaiveAttackPointOptimizer`` and
-          ``NullAttackPointOptimizer``.
+        * ``attack_point_optimizer``: an ``AttackPointOptimizer`` instance 
+          controls whether and how tie chains are re-notated.  
+          Options currently include ``MeasurewiseAttackPointOptimizer``, 
+          ``NaiveAttackPointOptimizer`` and ``NullAttackPointOptimizer``.
 
-    Refer to the reference pages for ``BeatwiseQSchema`` and ``MeasurewiseQSchema``
-    for more information on controlling the ``Quantizer``'s output, and to the
-    reference on ``SearchTree`` for information on controlling the rhythmic
-    complexity of that same output.
+    Refer to the reference pages for ``BeatwiseQSchema`` and 
+    ``MeasurewiseQSchema`` for more information on controlling the 
+    ``Quantizer``'s output, and to the reference on ``SearchTree`` for 
+    information on controlling the rhythmic complexity of that same output.
 
     Return ``Quantizer`` instance.
     '''
@@ -213,9 +213,15 @@ class Quantizer(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, q_event_sequence, q_schema=None, grace_handler=None,
-        heuristic=None, job_handler=None, attack_point_optimizer=None,
-        attach_tempo_marks=True):
+    def __call__(self, 
+        q_event_sequence, 
+        q_schema=None, 
+        grace_handler=None,
+        heuristic=None, 
+        job_handler=None, 
+        attack_point_optimizer=None,
+        attach_tempo_marks=True,
+        ):
         from abjad.tools import quantizationtools
 
         q_event_sequence = quantizationtools.QEventSequence(q_event_sequence)
@@ -234,5 +240,4 @@ class Quantizer(AbjadObject):
             attach_tempo_marks=attach_tempo_marks,
             )
 
-        #return notation, q_target
         return notation

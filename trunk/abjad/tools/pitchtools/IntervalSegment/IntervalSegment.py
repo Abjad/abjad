@@ -46,5 +46,4 @@ class IntervalSegment(Segment):
     ### PUBLIC METHODS ###
 
     def rotate(self, n):
-        #self[:] = self[-n:] + self[:-n]
         return type(self)(self[-n:] + self[:-n])

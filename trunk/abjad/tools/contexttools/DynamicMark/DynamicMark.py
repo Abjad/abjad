@@ -76,15 +76,19 @@ class DynamicMark(ContextMark):
         if len(args) == 1:
             dynamic_spanners = \
                 spannertools.get_spanners_attached_to_any_improper_parent_of_component(
-                args[0], klass=(spannertools.DynamicTextSpanner, spannertools.HairpinSpanner))
+                args[0], klass=(
+                    spannertools.DynamicTextSpanner, 
+                    spannertools.HairpinSpanner))
             for dynamic_spanner in dynamic_spanners:
                 if not dynamic_spanner._is_exterior_leaf(args[0]):
-                    raise WellFormednessError(
-                        '\n\tCan not attach dynamic mark to interior component of dynamic spanner.')
+                    message = 'can not attach dynamic mark'
+                    message += ' to interior component of dynamic spanner.'
+                    raise WellFormednessError(message)
         return ContextMark.__call__(self, *args)
 
     def __copy__(self, *args):
-        return type(self)(self._dynamic_name, target_context=self.target_context)
+        return type(self)(
+            self._dynamic_name, target_context=self.target_context)
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):
@@ -94,9 +98,14 @@ class DynamicMark(ContextMark):
     ### PRIVATE PROPERTIES ###
 
     _composite_dynamic_name_to_steady_state_dynamic_name = {
-        'fp': 'p', 'sf': 'f', 'sff': 'ff',
-        'sp': 'p', 'spp': 'pp',
-        'sfz': 'f', 'sfp': 'p', 'rfz': 'f',
+        'fp': 'p', 
+        'sf': 'f', 
+        'sff': 'ff',
+        'sp': 'p', 
+        'spp': 'pp',
+        'sfz': 'f', 
+        'sfp': 'p', 
+        'rfz': 'f',
     }
 
     @property
@@ -104,25 +113,56 @@ class DynamicMark(ContextMark):
         return repr(self._dynamic_name)
 
     _dynamic_name_to_dynamic_ordinal = {
-        'ppppp': -6, 'pppp': -5, 'ppp': -4, 'pp': -3, 'p': -2,
+        'ppppp': -6, 
+        'pppp': -5, 
+        'ppp': -4, 
+        'pp': -3, 
+        'p': -2,
         'mp': -1,
         'mf': 1,
-        'f': 2, 'ff': 3, 'fff': 4, 'ffff': 5, 'fffff': 6,
+        'f': 2, 
+        'ff': 3, 
+        'fff': 4, 
+        'ffff': 5, 
+        'fffff': 6,
         }
 
     _dynamic_names = (
-        'ppppp', 'pppp', 'ppp', 'pp', 'p',
-        'mp', 'mf',
-        'f', 'ff', 'fff', 'ffff', 'fffff',
-        'fp', 'sf', 'sff', 'sp', 'spp',
-        'sfz', 'sfp', 'rfz',
+        'ppppp', 
+        'pppp', 
+        'ppp', 
+        'pp', 
+        'p',
+        'mp', 
+        'mf',
+        'f', 
+        'ff', 
+        'fff', 
+        'ffff', 
+        'fffff',
+        'fp', 
+        'sf', 
+        'sff', 
+        'sp', 
+        'spp',
+        'sfz', 
+        'sfp', 
+        'rfz',
         )
 
     _dynamic_ordinal_to_dynamic_name = {
-        -6: 'ppppp', -5: 'pppp', -4: 'ppp', -3: 'pp', -2: 'p',
+        -6: 'ppppp', 
+        -5: 'pppp', 
+        -4: 'ppp', 
+        -3: 'pp', 
+        -2: 'p',
         -1: 'mp',
         1: 'mf',
-        2: 'f', 3: 'ff', 4: 'fff', 5: 'ffff', 6: 'fffff',
+        2: 'f', 
+        3: 'ff', 
+        4: 'fff', 
+        5: 'ffff', 
+        6: 'fffff',
         }
 
     ### PUBLIC PROPERTIES ###

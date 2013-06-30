@@ -27,9 +27,9 @@ class SvnUpdateScript(DirectoryScript):
 
         If no path flag is specified, the current directory will be updated.
 
-    It is usually most useful to run the script with the `--clean` flag, in case
-    there are incoming deletes, as `svn` will not delete directories containing
-    unversioned files, such as .pyc:
+    It is usually most useful to run the script with the `--clean` flag, 
+    in case there are incoming deletes, as `svn` will not delete 
+    directories containing unversioned files, such as .pyc:
 
     ::
 
@@ -38,7 +38,7 @@ class SvnUpdateScript(DirectoryScript):
     Return `SvnUpdateScript` instance.
     '''
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def alias(self):
@@ -46,7 +46,8 @@ class SvnUpdateScript(DirectoryScript):
 
     @property
     def long_description(self):
-        return 'If no path flag is specified, the current directory will be updated.'
+        return 'If no path flag is specified,' + \
+            ' the current directory will be updated.'
 
     @property
     def scripting_group(self):

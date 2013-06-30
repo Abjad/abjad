@@ -25,9 +25,15 @@ class ReSTLineageDirective(ReSTDirective):
     def __init__(self, argument=None, children=None, name=None, options=None):
         if isinstance(argument, types.TypeType):
             argument = argument.__module__ + '.' + argument.__name__
-        ReSTDirective.__init__(self, argument=argument, children=children, name=name, options=options)
+        ReSTDirective.__init__(
+            self, 
+            argument=argument, 
+            children=children, 
+            name=name, 
+            options=options,
+            )
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def directive(self):

@@ -1,6 +1,6 @@
+import copy
 from abjad.tools.componenttools.Component import Component
 from abjad.tools.marktools.Mark import Mark
-import copy
 
 
 class LilyPondComment(Mark):
@@ -23,16 +23,20 @@ class LilyPondComment(Mark):
         % this is a comment
         c'4
 
-    Initialize LilyPond comment from contents string; or contents string and format
-    slot; or from other LilyPond comment; or from other LilyPond comment and format
-    slot.
+    Initialize LilyPond comment from contents string; 
+    or contents string and format slot; 
+    or from other LilyPond comment; 
+    or from other LilyPond comment and format slot.
 
     LilyPond comments implement ``__slots__``.
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_contents_string', '_format_slot', )
+    __slots__ = (
+        '_contents_string', 
+        '_format_slot',
+        )
 
     ### INITIALIZER ###
 
@@ -56,12 +60,9 @@ class LilyPondComment(Mark):
     ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
-        #return type(self)(self._contents_string)
         new = type(self)(self._contents_string)
         new.format_slot = self.format_slot
         return new
-
-    #__deepcopy__ = __copy__
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):
@@ -83,7 +84,8 @@ class LilyPondComment(Mark):
 
             ::
 
-                >>> comment = marktools.LilyPondComment('comment contents string')
+                >>> comment = \
+                ...     marktools.LilyPondComment('comment contents string')
                 >>> comment.contents_string
                 'comment contents string'
 
@@ -127,11 +129,13 @@ class LilyPondComment(Mark):
                 >>> lilypond_comment.format_slot
                 'after'
 
-            Set to ``'before'``, ``'after'``, ``'opening'``, ``'closing'``, ``'right'`` or none.
+            Set to ``'before'``, ``'after'``, ``'opening'``, 
+            ``'closing'``, ``'right'`` or none.
             '''
             return self._format_slot
         def fset(self, format_slot):
-            assert format_slot in ('before', 'after', 'opening', 'closing', 'right', None)
+            assert format_slot in (
+                'before', 'after', 'opening', 'closing', 'right', None)
             if format_slot is None:
                 self._format_slot = 'before'
             else:
@@ -151,5 +155,6 @@ class LilyPondComment(Mark):
         Return string.
         '''
         from abjad.tools import stringtools
-        command = stringtools.snake_case_to_lower_camel_case(self.contents_string)
+        command = stringtools.snake_case_to_lower_camel_case(
+            self.contents_string)
         return r'%% %s' % command

@@ -45,7 +45,7 @@ class NonreducedRatio(ImmutableAbjadObject, tuple):
         other = type(self)(expr)
         return tuple(self) == tuple(expr)
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _positional_argument_values(self):

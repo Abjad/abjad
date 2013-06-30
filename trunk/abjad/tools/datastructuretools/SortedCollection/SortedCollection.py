@@ -4,19 +4,19 @@ import bisect
 class SortedCollection(object):
     '''Sequence sorted by a key function.
 
-    SortedCollection() is much easier to work with than using bisect() directly.
-    It supports key functions like those use in sorted(), min(), and max().
-    The result of the key function call is saved so that keys can be searched
-    efficiently.
+    SortedCollection() is much easier to work with than using bisect() 
+    directly. It supports key functions like those use in sorted(), min(), 
+    and max(). The result of the key function call is saved so that keys 
+    can be searched efficiently.
 
     Instead of returning an insertion-point which can be hard to interpret, the
     five find-methods return a specific item in the sequence. They can scan for
     exact matches, the last item less-than-or-equal to a key, or the first item
     greater-than-or-equal to a key.
 
-    Once found, an item's ordinal position can be located with the index() method.
-    New items can be added with the insert() and insert_right() methods.
-    Old items can be deleted with the remove() method.
+    Once found, an item's ordinal position can be located with the index() 
+    method. New items can be added with the insert() and insert_right() 
+    methods. Old items can be deleted with the remove() method.
 
     The usual sequence methods are provided to support indexing, slicing,
     length lookup, clearing, copying, forward and reverse iteration, contains
@@ -26,7 +26,8 @@ class SortedCollection(object):
     are O(n).  The initial sort is O(n log n).
 
     The key function is stored in the 'key' attibute for easy introspection or
-    so that you can assign a new key function (triggering an automatic re-sort).
+    so that you can assign a new key function 
+    (triggering an automatic re-sort).
 
     In short, the class was designed to handle all of the common use cases for
     bisect but with a simpler API and support for key functions.
@@ -180,7 +181,7 @@ class SortedCollection(object):
         raise ValueError('No item found with key below: %r' % (k,))
 
     def find_ge(self, k):
-        'Return first item with a key >= equal to k.  Raise ValueError if not found'
+        'Return first item with a key >= equal to k. Raise ValueError if not found'
         i = bisect.bisect_left(self._keys, k)
         if i != len(self):
             return self._items[i]

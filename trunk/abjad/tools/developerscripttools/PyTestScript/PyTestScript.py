@@ -29,7 +29,7 @@ class PyTestScript(DirectoryScript):
     Return `PyTestScript` instance.
     '''
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def alias(self):
@@ -112,14 +112,16 @@ class PyTestScript(DirectoryScript):
 
         group.add_argument('-D', '--demos',
             action='store_const',
-            const=[os.path.join(abjad_configuration.abjad_directory_path, 'demos')],
+            const=[os.path.join(
+                abjad_configuration.abjad_directory_path, 'demos')],
             dest='path',
             help='test demos directory',
             )
 
         group.add_argument('-M', '--mainline',
             action='store_const',
-            const=[os.path.join(abjad_configuration.abjad_directory_path, 'tools')],
+            const=[os.path.join(
+                abjad_configuration.abjad_directory_path, 'tools')],
             dest='path',
             help='test mainline tools directory',
             )

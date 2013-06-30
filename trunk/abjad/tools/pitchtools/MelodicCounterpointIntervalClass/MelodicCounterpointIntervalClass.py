@@ -4,7 +4,8 @@ from abjad.tools.pitchtools.CounterpointIntervalClass \
 from abjad.tools.pitchtools.MelodicIntervalClass import MelodicIntervalClass
 
 
-class MelodicCounterpointIntervalClass(CounterpointIntervalClass, MelodicIntervalClass):
+class MelodicCounterpointIntervalClass(
+    CounterpointIntervalClass, MelodicIntervalClass):
     '''.. versionadded:: 2.0
 
     Abjad model of melodic counterpoint interval-class:
@@ -19,7 +20,9 @@ class MelodicCounterpointIntervalClass(CounterpointIntervalClass, MelodicInterva
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_number', )
+    __slots__ = (
+        '_number',
+        )
 
     ### INITIALIZER ###
 
@@ -50,6 +53,3 @@ class MelodicCounterpointIntervalClass(CounterpointIntervalClass, MelodicInterva
             if self.number == arg.number:
                 return True
         return False
-
-    def __ne__(self, arg):
-        return not self == arg

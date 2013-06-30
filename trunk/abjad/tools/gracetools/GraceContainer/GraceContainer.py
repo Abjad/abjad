@@ -72,12 +72,16 @@ class GraceContainer(Container):
 
     Grace containers override the special ``__call__`` method.
 
-    Use ``GraceContainer()`` to attach grace containers to nongrace notes, rests and chords.
+    Use ``GraceContainer()`` to attach grace containers to nongrace 
+    notes, rests and chords.
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_carrier', '_kind', )
+    __slots__ = (
+        '_carrier', 
+        '_kind',
+        )
 
     ### INITIALIZER ###
 
@@ -92,7 +96,9 @@ class GraceContainer(Container):
 
     def __call__(self, arg):
         if not isinstance(arg, Leaf):
-            raise TypeError('object to which grace container attaches much be leaf: "%s".' % arg)
+            message = 'object to which grace container attaches'
+            message += ' must be leaf: "%s".'
+            raise TypeError(message.format(arg))
         if self.kind == 'after':
             arg._after_grace = self
             arg.after_grace = self
@@ -123,14 +129,7 @@ class GraceContainer(Container):
             result.append([contributor, contributions])
         return tuple(result)
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
-
-    @property
-    def lilypond_format(self):
-        self._update_marks_of_entire_score_tree_if_necessary()
-        return self._format_component()
-
-    ### READ / WRITE PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @apply
     def kind():
@@ -162,13 +161,19 @@ class GraceContainer(Container):
 
             Set string.
 
-            Valid options include ``'after'``, ``'grace'``, ``'acciaccatura'``, ``'appoggiatura'``.
+            Valid options include ``'after'``, ``'grace'``, 
+            ``'acciaccatura'``, ``'appoggiatura'``.
             '''
             return self._kind
         def fset(self, arg):
             assert arg in ('after', 'grace', 'acciaccatura', 'appoggiatura')
             self._kind = arg
         return property(**locals())
+
+    @property
+    def lilypond_format(self):
+        self._update_marks_of_entire_score_tree_if_necessary()
+        return self._format_component()
 
     ### PUBLIC METHODS ###
 
@@ -178,7 +183,8 @@ class GraceContainer(Container):
         ::
 
             >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> grace_container = gracetools.GraceContainer([Note("cs'16")], kind = 'grace')
+            >>> grace_container = gracetools.GraceContainer(
+            ...     [Note("cs'16")], kind = 'grace')
             >>> grace_container(staff[1])
             Note("d'8")
             >>> f(staff)

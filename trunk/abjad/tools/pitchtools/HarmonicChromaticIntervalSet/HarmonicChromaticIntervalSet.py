@@ -14,7 +14,7 @@ class HarmonicChromaticIntervalSet(IntervalSet):
     Harmonic chromatic interval sets are immutable.
     '''
 
-    ### INITIALIZER ###
+    ### CONSTRUCTOR ###
 
     def __new__(self, interval_tokens):
         from abjad.tools import pitchtools
@@ -39,7 +39,8 @@ class HarmonicChromaticIntervalSet(IntervalSet):
 
     @property
     def _format_string(self):
-        return ', '.join([str(x) for x in sorted(self.harmonic_chromatic_intervals)])
+        return ', '.join([str(x) for x in sorted(
+            self.harmonic_chromatic_intervals)])
 
     ### PUBLIC PROPERTIES ###
 

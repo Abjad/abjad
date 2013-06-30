@@ -14,13 +14,16 @@ class MelodicDiatonicIntervalSet(IntervalSet):
     Melodic diatonic interval sets are immutable.
     '''
 
+    ### CONSTRUCTOR ###
+
     def __new__(self, arg):
         from abjad.tools import pitchtools
         if isinstance(arg, str):
             interval_tokens = arg.split()
         else:
             interval_tokens = arg
-        mdis = [pitchtools.MelodicDiatonicInterval(x) for x in interval_tokens]
+        mdis = [pitchtools.MelodicDiatonicInterval(x) 
+            for x in interval_tokens]
         return frozenset.__new__(self, mdis)
 
     ### SPECIAL METHODS ###

@@ -6,7 +6,8 @@ import os
 
 
 class SvnCommitScript(DirectoryScript):
-    '''Run `svn commit`, using the commit message stored in the `.abjad` directory.
+    '''Run `svn commit`, using the commit message stored in the 
+    `.abjad` directory.
 
     The commit message will be printed to the terminal, and must be manually
     accepted or rejected before proceeding:
@@ -28,7 +29,7 @@ class SvnCommitScript(DirectoryScript):
     Return `SvnCommitScript` instance.
     '''
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def alias(self):
@@ -55,7 +56,9 @@ class SvnCommitScript(DirectoryScript):
     def process_args(self, args):
         from abjad import abjad_configuration
         commit_file = 'abjad_commit.txt'
-        commit_path = os.path.join(abjad_configuration.abjad_configuration_directory_path, commit_file)
+        commit_path = os.path.join(
+            abjad_configuration.abjad_configuration_directory_path, 
+            commit_file)
 
         while not os.path.exists(commit_path):
             SvnMessageScript()()

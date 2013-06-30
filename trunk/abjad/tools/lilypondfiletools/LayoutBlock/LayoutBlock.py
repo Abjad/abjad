@@ -31,13 +31,15 @@ class LayoutBlock(AttributedBlock):
     Return layout block.
     '''
 
+    ### INITIALIZER ###
+
     def __init__(self):
         AttributedBlock.__init__(self)
         self._escaped_name = r'\layout'
         self._context_blocks = []
         self._contexts = []
 
-    # PRIVATE ATTRIUBTES #
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _formatted_context_blocks(self):
@@ -74,7 +76,8 @@ class LayoutBlock(AttributedBlock):
         ::
 
             >>> scheme_expr = schemetools.Scheme('end-of-line-invisible')
-            >>> context_block.override.time_signature.break_visibility = scheme_expr
+            >>> context_block.override.time_signature.break_visibility = \
+            ...     scheme_expr
             >>> layout_block.context_blocks.append(context_block)
 
         ::

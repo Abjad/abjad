@@ -6,7 +6,8 @@ class ReSTHeading(TreeNode):
 
     ::
 
-        >>> heading = documentationtools.ReSTHeading(level=2, text='Section A')
+        >>> heading = documentationtools.ReSTHeading(
+        ...     level=2, text='Section A')
         >>> heading
         ReSTHeading(
             level=2,
@@ -29,7 +30,7 @@ class ReSTHeading(TreeNode):
         self.level = level
         self.text = text
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _rest_format_contributions(self):
@@ -41,7 +42,7 @@ class ReSTHeading(TreeNode):
         result.append(underline * len(self.text))
         return result
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def heading_characters(self):
@@ -54,12 +55,6 @@ class ReSTHeading(TreeNode):
             ('"', None),
         )
 
-    @property
-    def rest_format(self):
-        return '\n'.join(self._rest_format_contributions)
-
-    ### READ/WRITE PUBLIC PROPERTIES ###
-
     @apply
     def level():
         def fget(self):
@@ -69,6 +64,10 @@ class ReSTHeading(TreeNode):
                 0 <= arg < len(self.heading_characters)
             self._level = arg
         return property(**locals())
+
+    @property
+    def rest_format(self):
+        return '\n'.join(self._rest_format_contributions)
 
     @apply
     def text():

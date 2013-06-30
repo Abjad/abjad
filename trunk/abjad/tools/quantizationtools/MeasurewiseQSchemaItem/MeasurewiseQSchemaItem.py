@@ -49,7 +49,8 @@ class MeasurewiseQSchemaItem(QSchemaItem):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     _fields = (
         'search_tree', 
@@ -78,7 +79,8 @@ class MeasurewiseQSchemaItem(QSchemaItem):
         if use_full_measure is not None:
             use_full_measure = bool(use_full_measure)
 
-        return tuple.__new__(cls, (search_tree, tempo, time_signature, use_full_measure))
+        return tuple.__new__(cls, (
+            search_tree, tempo, time_signature, use_full_measure))
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -92,7 +94,8 @@ class MeasurewiseQSchemaItem(QSchemaItem):
             if self.use_full_measure:
                 return self.time_signature.duration
             else:
-                return durationtools.Duration(1, self.time_signature.denominator)
+                return durationtools.Duration(
+                    1, self.time_signature.denominator)
         return None
 
     @property

@@ -29,7 +29,14 @@ class StemTremolo(Mark):
     Stem tremolos implement ``__slots__``.
     '''
 
-    __slots__ = ('_format_slot', '_tremolo_flags')
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_format_slot', 
+        '_tremolo_flags',
+        )
+
+    ### INITIALIZER ###
 
     def __init__(self, *args):
         Mark.__init__(self)
@@ -67,8 +74,6 @@ class StemTremolo(Mark):
         new = type(self)(self.tremolo_flags)
         new._format_slot = self._format_slot
         return new
-
-    #__deepcopy__ = __copy__
 
     def __eq__(self, expr):
         '''True when `expr` is a stem tremolo with equal tremolo flags:
@@ -156,7 +161,10 @@ class StemTremolo(Mark):
             '''
             return self._tremolo_flags
         def fset(self, tremolo_flags):
-            if not mathtools.is_nonnegative_integer_power_of_two(tremolo_flags):
-                raise ValueError('tremolo flags must be nonnegative integer power of 2.')
+            if not mathtools.is_nonnegative_integer_power_of_two(
+                tremolo_flags):
+                message ='tremolo flags must be'
+                message += ' nonnegative integer power of 2.'
+                raise ValueError(message)
             self._tremolo_flags = tremolo_flags
         return property(**locals())

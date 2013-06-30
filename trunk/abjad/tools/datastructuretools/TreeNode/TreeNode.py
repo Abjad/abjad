@@ -23,6 +23,7 @@ class TreeNode(AbjadObject):
             *[copy.deepcopy(x) for x in self.__getnewargs__()]
             )
 
+    # TODO: remove? we shouldn't alias deepcopy anywhere
     __deepcopy__ = __copy__
 
     def __eq__(self, expr):
@@ -31,17 +32,14 @@ class TreeNode(AbjadObject):
         return False
 
     def __getnewargs__(self):
-        return self._positional_argument_values + self._keyword_argument_values
+        return self._positional_argument_values + \
+            self._keyword_argument_values
 
     def __getstate__(self):
         state = {}
-        #for name in self._positional_argument_names:
-        #    state['_' + name] = getattr(self, name)
-        #for name in self._keyword_argument_names:
-        #    state['_' + name] = getattr(self, name)
-        #state['_parent'] = self._parent
         class_dir = set(dir(self.__class__))
-        self_dir = set(x for x in dir(self) if x.startswith('_') and not x.startswith('__'))
+        self_dir = set(x for x in dir(self) if x.startswith('_') and 
+            not x.startswith('__'))
         for name in self_dir.difference(class_dir):
             state[name] = getattr(self, name)
         return state
@@ -416,7 +414,7 @@ class TreeNode(AbjadObject):
             node = node.parent
         return node
 
-    ### READ/WRITE PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @apply
     def name():

@@ -111,7 +111,8 @@ class Measure(FixedDurationContainer):
     def __str__(self):
         '''String form of measure with pipes for single string display.
         '''
-        forced_time_signature = contexttools.get_effective_time_signature(self)
+        forced_time_signature = \
+            contexttools.get_effective_time_signature(self)
         summary = self._space_delimited_summary
         length = len(self)
         if forced_time_signature and length:

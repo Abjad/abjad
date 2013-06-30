@@ -14,6 +14,8 @@ class HarmonicChromaticIntervalSegment(IntervalSegment):
     Harmonic chromatic interval segments are immutable.
     '''
 
+    ### CONSTRUCTOR ###
+
     def __new__(self, hci_tokens):
         from abjad.tools import pitchtools
         hcis = []

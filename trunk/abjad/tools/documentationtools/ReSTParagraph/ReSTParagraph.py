@@ -7,7 +7,8 @@ class ReSTParagraph(TreeNode):
 
     ::
 
-        >>> paragraph = documentationtools.ReSTParagraph(text='blah blah blah')
+        >>> paragraph = documentationtools.ReSTParagraph(
+        ...     text='blah blah blah')
         >>> paragraph
         ReSTParagraph(
             text='blah blah blah',
@@ -31,7 +32,7 @@ class ReSTParagraph(TreeNode):
         self.text = text
         self.wrap = wrap
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _rest_format_contributions(self):
@@ -40,13 +41,13 @@ class ReSTParagraph(TreeNode):
             return textwrap.wrap(text)
         return [self.text]
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def rest_format(self):
         return '\n'.join(self._rest_format_contributions)
 
-    ### READ/WRITE PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @apply
     def text():

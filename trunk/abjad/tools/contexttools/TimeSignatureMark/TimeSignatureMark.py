@@ -110,7 +110,8 @@ class TimeSignatureMark(ContextMark):
 
         # initialize derived attributes
         self._multiplier = self.implied_prolation
-        self._has_non_power_of_two_denominator = not mathtools.is_nonnegative_integer_power_of_two(
+        self._has_non_power_of_two_denominator = \
+            not mathtools.is_nonnegative_integer_power_of_two(
             self.denominator)
 
     ### SPECIAL METHODS ###
@@ -119,12 +120,10 @@ class TimeSignatureMark(ContextMark):
         return type(self)((self.numerator, self.denominator),
             partial = self.partial, target_context = self.target_context)
 
-    # note that this can not be defined on superclass
-    #__deepcopy__ = __copy__
-
     def __eq__(self, arg):
         if isinstance(arg, type(self)):
-            return self.numerator == arg.numerator and self.denominator == arg.denominator
+            return self.numerator == arg.numerator and \
+                self.denominator == arg.denominator
         elif isinstance(arg, tuple):
             return self.numerator == arg[0] and self.denominator == arg[1]
         else:
@@ -135,8 +134,6 @@ class TimeSignatureMark(ContextMark):
             return self.duration >= arg.duration
         else:
             raise TypeError
-
-    # TODO: define __getnewargs__?
 
     def __gt__(self, arg):
         if isinstance(arg, type(self)):
@@ -164,13 +161,22 @@ class TimeSignatureMark(ContextMark):
 
     def __repr__(self):
         if self._has_default_target_context:
-            return '%s((%s, %s)%s)%s' % (type(self).__name__, self.numerator,
-                self.denominator, self._partial_repr_string, self._attachment_repr_string)
+            return '%s((%s, %s)%s)%s' % (
+                type(self).__name__, 
+                self.numerator,
+                self.denominator, 
+                self._partial_repr_string, 
+                self._attachment_repr_string,
+                )
         else:
             return '%s((%s, %s)%s, target_context=%s)%s' % (
-                type(self).__name__, self.numerator,
-                self.denominator, self._partial_repr_string, self._target_context_name,
-                self._attachment_repr_string)
+                type(self).__name__, 
+                self.numerator,
+                self.denominator, 
+                self._partial_repr_string, 
+                self._target_context_name,
+                self._attachment_repr_string,
+                )
 
     def __str__(self):
         return '%s/%s' % (self.numerator, self.denominator)
@@ -192,7 +198,40 @@ class TimeSignatureMark(ContextMark):
     def _positional_argument_values(self):
         return (self.pair, )
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
+
+    @apply
+    def denominator():
+        def fget(self):
+            r'''Get denominator of time signature mark:
+
+            ::
+
+                >>> time_signature = contexttools.TimeSignatureMark((3, 8))
+
+            ::
+
+                >>> time_signature.denominator
+                8
+
+            Set denominator of time signature mark:
+
+            ::
+
+                >>> time_signature.denominator = 16
+
+            ::
+
+                >>> time_signature.denominator
+                16
+
+            Return integer.
+            '''
+            return self._denominator
+        def fset(self, denominator):
+            assert isinstance(denominator, int)
+            self._denominator = denominator
+        return property(**locals())
 
     @property
     def duration(self):
@@ -245,14 +284,16 @@ class TimeSignatureMark(ContextMark):
 
         ::
 
-            >>> contexttools.TimeSignatureMark((7, 12)).has_non_power_of_two_denominator
+            >>> time_signature = contexttools.TimeSignatureMark((7, 12))
+            >>> time_signature.has_non_power_of_two_denominator
             True
 
         Otherwise false:
 
         ::
 
-            >>> contexttools.TimeSignatureMark((3, 8)).has_non_power_of_two_denominator
+            >>> time_signature = contexttools.TimeSignatureMark((3, 8))
+            >>> time_signature.has_non_power_of_two_denominator
             False
 
         Return boolean.
@@ -265,14 +306,16 @@ class TimeSignatureMark(ContextMark):
 
         Time signature mark implied prolation.
 
-        Example 1. Implied prolation of time signature with power-of-two denominator:
+        Example 1. Implied prolation of time signature 
+        with power-of-two denominator:
 
         ::
 
             >>> contexttools.TimeSignatureMark((3, 8)).implied_prolation
             Multiplier(1, 1)
 
-        Example 2. Implied prolation of time signature with non-power-of-two denominator:
+        Example 2. Implied prolation of time signature 
+        with non-power-of-two denominator:
 
         ::
 
@@ -307,6 +350,33 @@ class TimeSignatureMark(ContextMark):
             result.append(r'\time %s/%s' % (self.numerator, self.denominator))
             return result
 
+    @apply
+    def numerator():
+        def fget(self):
+            '''Get numerator of time signature mark:
+
+            ::
+
+                >>> time_signature = contexttools.TimeSignatureMark((3, 8))
+                >>> time_signature.numerator
+                3
+
+            Set numerator of time signature mark:
+
+            ::
+
+                >>> time_signature.numerator = 4
+                >>> time_signature.numerator
+                4
+
+            Set integer.
+            '''
+            return self._numerator
+        def fset(self, numerator):
+            assert isinstance(numerator, int)
+            self._numerator = numerator
+        return property(**locals())
+
     @property
     def pair(self):
         '''.. versionadded:: 2.8
@@ -321,6 +391,35 @@ class TimeSignatureMark(ContextMark):
         Return pair.
         '''
         return (self.numerator, self.denominator)
+
+    @apply
+    def partial():
+        def fget(self):
+            '''Get partial measure pick-up of time signature mark:
+
+            ::
+
+                >>> time_signature = contexttools.TimeSignatureMark(
+                ...     (3, 8), partial=Duration(1, 8))
+                >>> time_signature.partial
+                Duration(1, 8)
+
+            Set partial measure pick-up of time signature mark:
+
+            ::
+
+                >>> time_signature.partial = Duration(1, 4)
+                >>> time_signature.partial
+                Duration(1, 4)
+
+            Set duration or none.
+            '''
+            return self._partial
+        def fset(self, partial):
+            if partial is not None:
+                partial = durationtools.Duration(partial)
+            self._partial = partial
+        return property(**locals())
 
     @property
     def start_component(self):
@@ -383,102 +482,13 @@ class TimeSignatureMark(ContextMark):
         '''
         return ContextMark.target_context.fget(self)
 
-    ### READ / WRITE PUBLIC PROPERTIES ###
-
-    @apply
-    def denominator():
-        def fget(self):
-            r'''Get denominator of time signature mark:
-
-            ::
-
-                >>> time_signature = contexttools.TimeSignatureMark((3, 8))
-
-            ::
-
-                >>> time_signature.denominator
-                8
-
-            Set denominator of time signature mark:
-
-            ::
-
-                >>> time_signature.denominator = 16
-
-            ::
-
-                >>> time_signature.denominator
-                16
-
-            Return integer.
-            '''
-            return self._denominator
-        def fset(self, denominator):
-            assert isinstance(denominator, int)
-            self._denominator = denominator
-        return property(**locals())
-
-    @apply
-    def numerator():
-        def fget(self):
-            '''Get numerator of time signature mark:
-
-            ::
-
-                >>> time_signature = contexttools.TimeSignatureMark((3, 8))
-                >>> time_signature.numerator
-                3
-
-            Set numerator of time signature mark:
-
-            ::
-
-                >>> time_signature.numerator = 4
-                >>> time_signature.numerator
-                4
-
-            Set integer.
-            '''
-            return self._numerator
-        def fset(self, numerator):
-            assert isinstance(numerator, int)
-            self._numerator = numerator
-        return property(**locals())
-
-    @apply
-    def partial():
-        def fget(self):
-            '''Get partial measure pick-up of time signature mark:
-
-            ::
-
-                >>> time_signature = contexttools.TimeSignatureMark(
-                ...     (3, 8), partial=Duration(1, 8))
-                >>> time_signature.partial
-                Duration(1, 8)
-
-            Set partial measure pick-up of time signature mark:
-
-            ::
-
-                >>> time_signature.partial = Duration(1, 4)
-                >>> time_signature.partial
-                Duration(1, 4)
-
-            Set duration or none.
-            '''
-            return self._partial
-        def fset(self, partial):
-            if partial is not None:
-                partial = durationtools.Duration(partial)
-            self._partial = partial
-        return property(**locals())
-
     ### PUBLIC METHODS ###
 
-    # Time signature marks do not check for other conflicting time signature marks at attachment.
-    # The reason for this is that voodoo is being done to time signature marks elsewhere in the code.
-    # This is less than optimal and someday time signature marks should check for conflicts at attachment.
+    # Time signature marks do not check for other conflicting time signature 
+    # marks at attachment. The reason for this is that voodoo is being done 
+    # to time signature marks elsewhere in the code. This is less than 
+    # optimal and someday time signature marks should check for conflicts 
+    # at attachment.
     def attach(self, start_component):
         r'''Attach time signature mark to `start_component`::
 
@@ -495,8 +505,10 @@ class TimeSignatureMark(ContextMark):
         from abjad.tools import contexttools
         from abjad.tools import marktools
         klasses = (type(self), )
-        if contexttools.is_component_with_context_mark_attached(start_component, klasses):
-            raise ExtraMarkError('component already has context mark attached.')
+        if contexttools.is_component_with_context_mark_attached(
+            start_component, klasses):
+            message = 'component already has context mark attached.'
+            raise ExtraMarkError(message)
         return marktools.Mark.attach(self, start_component)
 
     def detach(self):
@@ -521,7 +533,8 @@ class TimeSignatureMark(ContextMark):
         '''
         return ContextMark.detach(self)
 
-    def with_power_of_two_denominator(self, contents_multiplier=durationtools.Multiplier(1)):
+    def with_power_of_two_denominator(self, 
+        contents_multiplier=durationtools.Multiplier(1)):
         r'''Create new time signature equivalent to current
         time signature with power-of-two denominator.
 
@@ -542,15 +555,18 @@ class TimeSignatureMark(ContextMark):
 
         # find power_of_two denominator
         if contents_multiplier == durationtools.Multiplier(1):
-            power_of_two_denominator = mathtools.greatest_power_of_two_less_equal(
+            power_of_two_denominator = \
+                mathtools.greatest_power_of_two_less_equal(
                 non_power_of_two_denominator)
         else:
-            power_of_two_denominator = mathtools.greatest_power_of_two_less_equal(
+            power_of_two_denominator = \
+                mathtools.greatest_power_of_two_less_equal(
                 non_power_of_two_denominator, 1)
 
         # find power_of_two pair
         non_power_of_two_pair = mathtools.NonreducedFraction(self.pair)
-        power_of_two_pair = non_power_of_two_pair.with_denominator(power_of_two_denominator)
+        power_of_two_pair = non_power_of_two_pair.with_denominator(
+            power_of_two_denominator)
 
         # return new power_of_two time signature mark
         return type(self)(power_of_two_pair)

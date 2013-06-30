@@ -4,7 +4,8 @@ from abjad.tools.pitchtools.ChromaticIntervalClass \
 from abjad.tools.pitchtools.HarmonicIntervalClass import HarmonicIntervalClass
 
 
-class HarmonicChromaticIntervalClass(ChromaticIntervalClass, HarmonicIntervalClass):
+class HarmonicChromaticIntervalClass(
+    ChromaticIntervalClass, HarmonicIntervalClass):
     '''.. versionadded:: 2.0
 
     Abjad model of harmonic chromatic interval-class:
@@ -40,6 +41,3 @@ class HarmonicChromaticIntervalClass(ChromaticIntervalClass, HarmonicIntervalCla
             if self.number == arg.number:
                 return True
         return False
-
-    def __ne__(self, arg):
-        return not self == arg

@@ -25,19 +25,19 @@ class Pitch(SortableAttributeEqualityAbjadObject):
     ### SPECIAL METHODS ###
 
     def __abs__(self):
-        raise NotImplementedError('TODO: all pitch-related classes must implement abs.')
+        raise NotImplementedError(
+            'TODO: all pitch-related classes must implement abs.')
 
     def __float__(self):
-        raise NotImplementedError('TODO: all pitch-related classes must implement float.')
+        raise NotImplementedError(
+            'TODO: all pitch-related classes must implement float.')
 
     def __hash__(self):
         return hash(repr(self))
 
     def __int__(self):
-        raise NotImplementedError('TODO: all pitch-related classes must implement int.')
-
-    def __ne__(self, arg):
-        return not self == arg
+        raise NotImplementedError(
+            'TODO: all pitch-related classes must implement int.')
 
     def __repr__(self):
-        return '%s(%s)' % (type(self).__name__, self._format_string)
+        return '%s(%s)' % (self._class_name, self._format_string)

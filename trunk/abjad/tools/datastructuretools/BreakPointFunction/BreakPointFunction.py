@@ -32,12 +32,17 @@ class BreakPointFunction(AbjadObject):
         0.25
         0.25
 
-    Return `BreakPointFunction` instance.
+    Return break-point function instance.
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_bpf', '_dc_bias', '_x_values', '_y_range')
+    __slots__ = (
+        '_bpf', 
+        '_dc_bias', 
+        '_x_values', 
+        '_y_range',
+        )
 
     ### INITIALIZER ###
 
@@ -144,7 +149,8 @@ class BreakPointFunction(AbjadObject):
         if 1 < len(self.x_values):
             for x in self.x_values[:-1]:
                 result.append('\t{!r}: {!r},'.format(x, self._bpf[x]))
-        result.append('\t{!r}: {!r}'.format(self.x_values[-1], self._bpf[self.x_values[-1]]))
+        result.append('\t{!r}: {!r}'.format(
+            self.x_values[-1], self._bpf[self.x_values[-1]]))
         result.append('})')
         return '\n'.join(result)
 
@@ -588,7 +594,8 @@ class BreakPointFunction(AbjadObject):
                 1.0: (0.0,)
             })
 
-        If `x_center` is not None, reflection will take `x_center` as the axis of reflection:
+        If `x_center` is not None, reflection will take `x_center` 
+        as the axis of reflection:
 
         ::
 
@@ -675,7 +682,8 @@ class BreakPointFunction(AbjadObject):
         bpf = {}
         y_min, y_max = self.y_range
         for x, ys in self._bpf.iteritems():
-            bpf[x] = tuple([self._scale(y, y_min, y_max, minimum, maximum) for y in ys])
+            bpf[x] = tuple(
+                [self._scale(y, y_min, y_max, minimum, maximum) for y in ys])
         return type(self)(bpf)
 
     def set_y_at_x(self, x, y):
@@ -729,7 +737,8 @@ class BreakPointFunction(AbjadObject):
         if isinstance(y, numbers.Real):
             self._bpf[x] = (y,)
         elif isinstance(y, (list, tuple)):
-            assert len(y) in (1, 2) and all(isinstance(j, numbers.Real) for j in y)
+            assert len(y) in (1, 2) and \
+                all(isinstance(j, numbers.Real) for j in y)
             if len(y) == 2 and y[0] == y[1]:
                 self._bpf[x] = (y[0],)
             else:
@@ -741,9 +750,14 @@ class BreakPointFunction(AbjadObject):
             raise ValueError
         self._update_caches()
 
-    def tessalate_by_ratio(self, ratio, invert_on_negative=False, reflect_on_negative=False,
-        y_center=None):
-        '''Concatenate copies of a BreakPointFunction, stretched by the weights in `ratio`:
+    def tessalate_by_ratio(self, 
+        ratio, 
+        invert_on_negative=False, 
+        reflect_on_negative=False,
+        y_center=None,
+        ):
+        '''Concatenate copies of a BreakPointFunction, stretched by 
+        the weights in `ratio`:
 
         ::
 
@@ -765,8 +779,8 @@ class BreakPointFunction(AbjadObject):
 
         Negative ratio values are still treated as weights.
 
-        If `invert_on_negative` is True, copies corresponding to negative ratio values
-        will be inverted:
+        If `invert_on_negative` is True, copies corresponding to 
+        negative ratio values will be inverted:
 
         ::
 
@@ -781,11 +795,13 @@ class BreakPointFunction(AbjadObject):
                 6.0: (1.0,)
             })
 
-        If `y_center` is not None, inversion will take `y_center` as the axis of inversion:
+        If `y_center` is not None, inversion will take `y_center` as 
+        the axis of inversion:
 
         ::
 
-            >>> bpf.tessalate_by_ratio((1, -2, 3), invert_on_negative=True, y_center=0)
+            >>> bpf.tessalate_by_ratio((1, -2, 3), 
+            ...     invert_on_negative=True, y_center=0)
             BreakPointFunction({
                 0.0: (0.0,),
                 0.25: (0.9,),
@@ -796,8 +812,8 @@ class BreakPointFunction(AbjadObject):
                 6.0: (1.0,)
             })
 
-        If `reflect_on_negative` is True, copies corresponding to negative ratio values
-        will be reflectd:
+        If `reflect_on_negative` is True, copies corresponding to 
+        negative ratio values will be reflectd:
 
         ::
 

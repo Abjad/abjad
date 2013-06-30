@@ -26,7 +26,12 @@ class NaturalHarmonic(Note, _Flageolet):
     Natural harmonics are immutable.
     '''
 
-    __slots__ = ()
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        )
+
+    ### INITIALIZER ###
 
     def __init__(self, *args):
         Note.__init__(self, *args)
@@ -35,4 +40,5 @@ class NaturalHarmonic(Note, _Flageolet):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        return '%s(%s, %s)' % (type(self).__name__, self.written_pitch, self._formatted_duration)
+        return '%s(%s, %s)' % (
+            type(self).__name__, self.written_pitch, self._formatted_duration)

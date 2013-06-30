@@ -8,7 +8,9 @@ class Music(AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('music',)
+    __slots__ = (
+        'music',
+        )
 
     ### INITIALIZER ###
 

@@ -15,6 +15,8 @@ class MelodicCounterpointInterval(CounterpointInterval, MelodicInterval):
     Melodic counterpoint intervals are immutable.
     '''
 
+    ### INITIALIZER ###
+
     def __init__(self, number):
         if not isinstance(number, int):
             raise TypeError('must be integer.')
@@ -49,7 +51,6 @@ class MelodicCounterpointInterval(CounterpointInterval, MelodicInterval):
             raise ValueError
 
     @property
-    #def interval_class(self):
     def melodic_counterpoint_interval_class(self):
         from abjad.tools import pitchtools
         return pitchtools.MelodicCounterpointIntervalClass(self)

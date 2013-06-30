@@ -75,17 +75,23 @@ class ContextMark(Mark):
             return None
         elif isinstance(target_context, type):
             target_context_type = target_context
-            for component in componenttools.get_improper_parentage_of_component(self.start_component):
+            for component in \
+                componenttools.get_improper_parentage_of_component(
+                self.start_component):
                 if isinstance(component, target_context_type):
                     return component
         elif isinstance(target_context, str):
             target_context_name = target_context
-            for component in componenttools.get_improper_parentage_of_component(self.start_component):
+            for component in \
+                componenttools.get_improper_parentage_of_component(
+                self.start_component):
                 if component.name == target_context_name:
                     return component
         else:
-            raise TypeError('target context "%s" must be context type, context name or none.' %
-                target_context)
+            message = 'target context {!r} must be'
+            message += ' context type, context name or none.'
+            message = message.format(target_context)
+            raise TypeError(message)
 
     def _unbind_effective_context(self):
         effective_context = self._effective_context
@@ -97,7 +103,8 @@ class ContextMark(Mark):
         self._effective_context = None
 
     def _update_effective_context(self):
-        '''This function is designed to be called by score components during score update.
+        '''This function is designed to be called by score components 
+        during score update.
         '''
         #print '\tupdating effective context of %s ...' % type(self).__name__
         current_effective_context = self._effective_context
@@ -148,21 +155,19 @@ class ContextMark(Mark):
     ### PUBLIC METHODS ###
 
     def attach(self, start_component):
-        '''Make sure no context mark of same type is already attached to score component
-        that starts with start component.
+        '''Make sure no context mark of same type is already attached 
+        to score component that starts with start component.
         '''
         from abjad.tools import contexttools
         klasses = (type(self), )
-        effective_context_mark = contexttools.get_effective_context_mark(start_component, klasses)
+        effective_context_mark = contexttools.get_effective_context_mark(
+            start_component, klasses)
         if effective_context_mark is not None:
             if effective_context_mark.start_component.timespan.start_offset == \
                 start_component.timespan.start_offset:
-                raise ExtraMarkError(
-                    'effective context mark already attached to component starting at same time.')
-        #from abjad.tools import componenttools
-        #for parent in componenttools.get_improper_parentage_of_component_that_start_with_component(
-        #    start_component):
-        #
+                message = 'effective context mark already attached'
+                message += ' to component starting at same time.'
+                raise ExtraMarkError(message)
         return Mark.attach(self, start_component)
 
     def detach(self):

@@ -7,3 +7,5 @@ class LilyPondContextProxy(LilyPondObjectProxy):
 
     LilyPond context proxy.
     '''
+
+    pass

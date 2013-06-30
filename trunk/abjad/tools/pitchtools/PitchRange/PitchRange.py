@@ -13,12 +13,13 @@ class PitchRange(AbjadObject):
         >>> pitchtools.PitchRange(-12, 36)
         PitchRange('[C3, C7]')
 
-    Initalize from pitch numbers, pitch names, pitch instances, one-line reprs
-    or other pitch range objects.
+    Initalize from pitch numbers, pitch names, pitch instances, 
+    one-line reprs or other pitch range objects.
 
     Pitch ranges implement equality testing against other pitch ranges.
 
-    Pitch ranges test less than, greater than, less-equal and greater-equal against pitches.
+    Pitch ranges test less than, greater than, less-equal and 
+    greater-equal against pitches.
 
     Pitch ranges do not sort relative to other pitch ranges.
 
@@ -27,7 +28,12 @@ class PitchRange(AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_start', '_stop', '_pitch_range_name', '_pitch_range_name_markup', )
+    __slots__ = (
+        '_start', 
+        '_stop', 
+        '_pitch_range_name', 
+        '_pitch_range_name_markup',
+        )
 
     ### INITIALIZER ###
 
@@ -75,14 +81,17 @@ class PitchRange(AbjadObject):
             else:
                 assert len(stop) == 2, repr(stop)
                 pitch, containment = stop
-                assert containment in ('inclusive', 'exclusive'), repr(containment)
+                assert containment in ('inclusive', 'exclusive'), \
+                    repr(containment)
                 pitch = pitchtools.NamedChromaticPitch(pitch)
                 stop = (pitch, containment)
             object.__setattr__(self, '_stop', stop)
         pitch_range_name = kwargs.get('pitch_range_name')
-        object.__setattr__(self, '_pitch_range_name', pitch_range_name)
+        object.__setattr__(
+            self, '_pitch_range_name', pitch_range_name)
         pitch_range_name_markup = kwargs.get('pitch_range_name_markup')
-        object.__setattr__(self, '_pitch_range_name_markup', pitch_range_name_markup)
+        object.__setattr__(
+            self, '_pitch_range_name_markup', pitch_range_name_markup)
 
     ### SPECIAL METHODS ###
 
@@ -173,11 +182,13 @@ class PitchRange(AbjadObject):
 
     _start_punctuation_to_inclusivity_string = {
         '[': 'inclusive',
-        '(': 'exclusive'}
+        '(': 'exclusive',
+        }
 
     _stop_punctuation_to_inclusivity_string = {
         ']': 'inclusive',
-        ')': 'exclusive'}
+        ')': 'exclusive',
+        }
 
     ### PRIVATE PROPERTIES ###
 
@@ -246,15 +257,20 @@ class PitchRange(AbjadObject):
 
     def _init_by_symbolic_pitch_range_string(self, symbolic_pitch_range_string):
         from abjad.tools import pitchtools
-        from abjad.tools.pitchtools.is_symbolic_pitch_range_string import symbolic_pitch_range_string_regex
-        assert pitchtools.is_symbolic_pitch_range_string(symbolic_pitch_range_string)
-        groups = symbolic_pitch_range_string_regex.match(symbolic_pitch_range_string).groups()
+        from abjad.tools.pitchtools.is_symbolic_pitch_range_string \
+            import symbolic_pitch_range_string_regex
+        assert pitchtools.is_symbolic_pitch_range_string(
+            symbolic_pitch_range_string)
+        groups = symbolic_pitch_range_string_regex.match(
+            symbolic_pitch_range_string).groups()
         start_punctuation = groups[0]
         start_pitch_string = groups[1]
         stop_pitch_string = groups[8]
         stop_punctuation = groups[-1]
-        start_inclusivity_string = self._start_punctuation_to_inclusivity_string[start_punctuation]
-        stop_inclusivity_string = self._stop_punctuation_to_inclusivity_string[stop_punctuation]
+        start_inclusivity_string = \
+            self._start_punctuation_to_inclusivity_string[start_punctuation]
+        stop_inclusivity_string = \
+            self._stop_punctuation_to_inclusivity_string[stop_punctuation]
         start_pair = (start_pitch_string, start_inclusivity_string)
         stop_pair = (stop_pitch_string, stop_inclusivity_string)
         type(self).__init__(self, start_pair, stop_pair)
@@ -314,7 +330,8 @@ class PitchRange(AbjadObject):
 
         ::
 
-            >>> pitch_range = pitchtools.PitchRange(-12, 36, pitch_range_name='four-octave range')
+            >>> pitch_range = pitchtools.PitchRange(
+            ...     -12, 36, pitch_range_name='four-octave range')
             >>> pitch_range.pitch_range_name
             'four-octave range'
 
@@ -330,12 +347,14 @@ class PitchRange(AbjadObject):
 
         ::
 
-            >>> pitch_range = pitchtools.PitchRange(-12, 36,
-            ...     pitch_range_name_markup=markuptools.Markup('four-octave range'))
+            >>> pitch_range = pitchtools.PitchRange(
+            ...     -12, 36, pitch_range_name_markup=markuptools.Markup(
+            ...     'four-octave range'))
             >>> pitch_range.pitch_range_name_markup
             Markup(('four-octave range',))
 
-        Default to `pitch_range_name` when `pitch_range_name_markup` not set explicitly.
+        Default to `pitch_range_name` when `pitch_range_name_markup` 
+        not set explicitly.
 
         Return markup or none.
         '''
@@ -363,7 +382,8 @@ class PitchRange(AbjadObject):
 
     @property
     def start_pitch_is_included_in_range(self):
-        '''Read-only boolean true when start pitch is included in range. Otherwise false:
+        '''Read-only boolean true when start pitch is included in range. 
+        Otherwise false:
 
         ::
 
@@ -395,7 +415,8 @@ class PitchRange(AbjadObject):
 
     @property
     def stop_pitch_is_included_in_range(self):
-        '''Read-only boolean true when stop pitch is included in range. Otherwise false:
+        '''Read-only boolean true when stop pitch is included in range. 
+        Otherwise false:
 
         ::
 

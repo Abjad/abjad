@@ -5,7 +5,8 @@ import os
 
 
 class SvnMessageScript(DeveloperScript):
-    '''Edit a temporary `svn` commit message, stored in the `.abjad` directory:
+    '''Edit a temporary `svn` commit message, stored in the `.abjad` 
+    directory:
 
     ::
 
@@ -22,7 +23,7 @@ class SvnMessageScript(DeveloperScript):
     Return `SvnMessageScript` instance.
     '''
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def alias(self):
@@ -32,7 +33,9 @@ class SvnMessageScript(DeveloperScript):
     def commit_message_path(self):
         from abjad import abjad_configuration
         commit_file = 'abjad_commit.txt'
-        commit_path = os.path.join(abjad_configuration.abjad_configuration_directory_path, commit_file)
+        commit_path = os.path.join(
+            abjad_configuration.abjad_configuration_directory_path, 
+            commit_file)
         return commit_path
 
     @property

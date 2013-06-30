@@ -19,7 +19,9 @@ class ConcatenatingGraceHandler(GraceHandler):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_grace_duration',)
+    __slots__ = (
+        '_grace_duration',
+        )
 
     ### INITIALIZER ###
 
@@ -47,9 +49,11 @@ class ConcatenatingGraceHandler(GraceHandler):
             for q_event in grace_events:
                 if isinstance(q_event, quantizationtools.PitchedQEvent):
                     if len(q_event.pitches) == 1:
-                        leaf = notetools.Note(q_event.pitches[0], self.grace_duration)
+                        leaf = notetools.Note(
+                            q_event.pitches[0], self.grace_duration)
                     else:
-                        leaf = chordtools.Chord(q_event.pitches, self.grace_duration)
+                        leaf = chordtools.Chord(
+                            q_event.pitches, self.grace_duration)
                 else:
                     leaf = resttools.Rest(self.grace_duration)
                 grace_container.append(leaf)

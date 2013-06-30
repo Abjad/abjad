@@ -26,12 +26,15 @@ class HarmonicChromaticIntervalClassVector(Vector):
     Harmonic chromatic interval-class vectors are immutable.
     '''
 
+    ### INITIALIZER ###
+
     def __init__(self, expr):
         from abjad.tools import pitchtools
         for interval_number in range(12):
             dict.__setitem__(self, interval_number, 0)
             dict.__setitem__(self, interval_number + 0.5, 0)
-        for chromatic_interval in pitchtools.list_harmonic_chromatic_intervals_in_expr(expr):
+        for chromatic_interval in \
+            pitchtools.list_harmonic_chromatic_intervals_in_expr(expr):
             interval_number = chromatic_interval.harmonic_chromatic_interval_class.number
             current_tally = self[interval_number]
             dict.__setitem__(self, interval_number, current_tally + 1)

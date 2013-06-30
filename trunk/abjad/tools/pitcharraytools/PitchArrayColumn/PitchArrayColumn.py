@@ -37,7 +37,9 @@ class PitchArrayColumn(AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    _default_positional_input_arguments = ([], )
+    _default_positional_input_arguments = (
+        [],
+        )
 
     ### INITIALIZER ###
 
@@ -178,10 +180,12 @@ class PitchArrayColumn(AbjadObject):
 
     @property
     def has_voice_crossing(self):
-        for upper, lower in sequencetools.iterate_sequence_pairwise_strict(self.cells):
+        for upper, lower in \
+            sequencetools.iterate_sequence_pairwise_strict(self.cells):
             for lower_pitch in lower.pitches:
                 for upper_pitch in upper.pitches:
-                    if upper_pitch.numbered_chromatic_pitch < lower_pitch.numbered_chromatic_pitch:
+                    if upper_pitch.numbered_chromatic_pitch < \
+                        lower_pitch.numbered_chromatic_pitch:
                         return True
         return False
 

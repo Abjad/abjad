@@ -25,7 +25,9 @@ class QTarget(AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_items',)
+    __slots__ = (
+        '_items',
+        )
 
     ### INITIALIZATION ###
 
@@ -61,8 +63,10 @@ class QTarget(AbjadObject):
         assert isinstance(job_handler, quantizationtools.JobHandler)
 
         if attack_point_optimizer is None:
-            attack_point_optimizer = quantizationtools.NaiveAttackPointOptimizer()
-        assert isinstance(attack_point_optimizer, quantizationtools.AttackPointOptimizer)
+            attack_point_optimizer = \
+                quantizationtools.NaiveAttackPointOptimizer()
+        assert isinstance(
+            attack_point_optimizer, quantizationtools.AttackPointOptimizer)
 
         # if next-to-last QEvent is silent, pop the TerminalQEvent,
         # in order to prevent rest-tuplets
@@ -102,7 +106,8 @@ class QTarget(AbjadObject):
 
         # convert the QGrid representation into notation,
         # handling grace-note behavior with the GraceHandler
-        return self._notate(grace_handler, attack_point_optimizer, attach_tempo_marks)
+        return self._notate(
+            grace_handler, attack_point_optimizer, attach_tempo_marks)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -134,19 +139,22 @@ class QTarget(AbjadObject):
             new_leaf = chordtools.Chord(leaf_one.written_pitches, duration)
         else:
             new_leaf = resttools.Rest(duration)
-        tempo_marks = contexttools.get_tempo_marks_attached_to_component(leaf_two)
+        tempo_marks = \
+            contexttools.get_tempo_marks_attached_to_component(leaf_two)
         if tempo_marks:
             tempo_marks[0](new_leaf)
         leaf_two.parent[index] = new_leaf
         return new_leaf
 
     @abc.abstractmethod
-    def _notate(self, grace_handler, attack_point_optimizer, attach_tempo_marks):
+    def _notate(
+        self, grace_handler, attack_point_optimizer, attach_tempo_marks):
         raise NotImplemented
 
     def _notate_leaves_pairwise(self, voice, grace_handler):
         # check first against second, notating first, tying as necessry
-        # keep track of the leaf index, as we're mutating the structure as we go
+        # keep track of the leaf index, as we're mutating the 
+        # structure as we go
         leaves = list(voice.leaves)
         for i in range(len(leaves) - 1):
             leaf_one, leaf_two = leaves[i], leaves[i + 1]
@@ -154,16 +162,21 @@ class QTarget(AbjadObject):
             leaves[i] = leaf_one
             if not marktools.get_annotations_attached_to_component(leaf_two):
                 klass = tietools.TieSpanner
-                spanner = tuple(spannertools.get_spanners_attached_to_component(leaf_one, klass))[0]
-                leaf_two = self._copy_leaf_type_and_pitches(leaf_one, leaf_two)
+                spanner = tuple(
+                    spannertools.get_spanners_attached_to_component(
+                        leaf_one, klass))[0]
+                leaf_two = self._copy_leaf_type_and_pitches(
+                    leaf_one, leaf_two)
                 leaves[i + 1] = leaf_two
                 spanner.append(leaf_two)
         # notate final leaf, if necessary
         self._notate_one_leaf(leaves[-1], grace_handler)
 
     def _notate_one_leaf(self, leaf, grace_handler):
-        leaf_annotations = marktools.get_annotations_attached_to_component(leaf)
-        tempo_marks = contexttools.get_tempo_marks_attached_to_component(leaf)
+        leaf_annotations = \
+            marktools.get_annotations_attached_to_component(leaf)
+        tempo_marks = \
+            contexttools.get_tempo_marks_attached_to_component(leaf)
         if leaf_annotations:
             pitches, grace_container = grace_handler(leaf_annotations[0].value)
             if not pitches:

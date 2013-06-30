@@ -8,11 +8,14 @@ class InversionEquivalentChromaticIntervalClassSet(IntervalClassSet):
 
     ::
 
-        >>> pitchtools.InversionEquivalentChromaticIntervalClassSet([1, 1, 6, 2, 2])
+        >>> pitchtools.InversionEquivalentChromaticIntervalClassSet(
+        ...     [1, 1, 6, 2, 2])
         InversionEquivalentChromaticIntervalClassSet(1, 2, 6)
 
     Inversion-equivalent chromatic interval-class sets are immutable.
     '''
+
+    ### CONSTRUCTOR ###
 
     def __new__(self, interval_class_tokens):
         from abjad.tools import pitchtools
@@ -34,7 +37,8 @@ class InversionEquivalentChromaticIntervalClassSet(IntervalClassSet):
 
     @property
     def _format_string(self):
-        return ', '.join([str(x) for x in sorted(self.inversion_equivalent_chromatic_interval_class_numbers)])
+        return ', '.join([str(x) for x in sorted(
+            self.inversion_equivalent_chromatic_interval_class_numbers)])
 
     ### PUBLIC PROPERTIES ###
 

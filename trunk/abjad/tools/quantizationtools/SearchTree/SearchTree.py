@@ -8,20 +8,23 @@ from abjad.tools.abctools import AbjadObject
 
 
 class SearchTree(AbjadObject):
-    '''Abstract base class from which concrete ``SearchTree`` subclasses inherit.
+    '''Abstract base class from which concrete ``SearchTree`` subclasses 
+    inherit.
 
-    ``SearchTrees`` encapsulate strategies for generating collections of ``QGrids``,
-    given a set of ``QEventProxy`` instances as input.
+    ``SearchTrees`` encapsulate strategies for generating collections of 
+    ``QGrids``, given a set of ``QEventProxy`` instances as input.
 
     They allow composers to define the degree and quality of nested rhythmic
-    subdivisions in the quantization output.  That is to say, they allow composers
-    to specify what sorts of tuplets and ratios of pulses may be contained within
-    other tuplets, to arbitrary levels of nesting.
+    subdivisions in the quantization output.  That is to say, they allow 
+    composers to specify what sorts of tuplets and ratios of pulses may be 
+    contained within other tuplets, to arbitrary levels of nesting.
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_definition',)
+    __slots__ = (
+        '_definition',
+        )
 
     ### INITIALIZER ###
 
@@ -67,7 +70,8 @@ class SearchTree(AbjadObject):
 
     def __repr__(self):
         result = ['{}('.format(self._class_name)]
-        definition = pprint.pformat(self.definition, indent=4, width=64).splitlines()
+        definition = pprint.pformat(
+            self.definition, indent=4, width=64).splitlines()
         result.append('\tdefinition={}'.format(definition[0]))
         result.extend(['\t' + x for x in definition[1:]])
         result.append('\t)')
@@ -98,21 +102,27 @@ class SearchTree(AbjadObject):
     ### PRIVATE METHODS ###
 
     def _find_divisible_leaf_indices_and_subdivisions(self, q_grid):
-        # TODO: This should actually check for all QEvents which fall within the leaf's duration,
+        # TODO: This should actually check for all QEvents which fall 
+        # within the leaf's duration,
         # including QEvents attached to the next leaf
-        # It may be prudent to actually store QEvents in two lists: before_offset and after_offset
+        # It may be prudent to actually store QEvents in two lists: 
+        # before_offset and after_offset
         indices, subdivisions = [], []
 
         leaves = q_grid.leaves
         i = 0
-        for leaf_one, leaf_two in sequencetools.iterate_sequence_pairwise_strict(leaves):
-            if (leaf_one.succeeding_q_event_proxies or leaf_two.preceding_q_event_proxies) \
-                and leaf_one.is_divisible:
-                if len(leaf_one.q_event_proxies) == 1 and leaf_one.q_event_proxies[0].offset == leaf_one.start_offset:
+        for leaf_one, leaf_two in \
+            sequencetools.iterate_sequence_pairwise_strict(leaves):
+            if (leaf_one.succeeding_q_event_proxies or 
+                leaf_two.preceding_q_event_proxies) and \
+                leaf_one.is_divisible:
+                if len(leaf_one.q_event_proxies) == 1 and \
+                    leaf_one.q_event_proxies[0].offset == leaf_one.start_offset:
                     pass # a perfect match, don't bother to continue subdivision
                 else:
                     parentage_ratios = leaf_one.parentage_ratios
-                    leaf_subdivisions = self._find_leaf_subdivisions(parentage_ratios)
+                    leaf_subdivisions = \
+                        self._find_leaf_subdivisions(parentage_ratios)
                     if leaf_subdivisions:
                         indices.append(i)
                         subdivisions.append(tuple(leaf_subdivisions))
@@ -124,10 +134,13 @@ class SearchTree(AbjadObject):
         raise NotImplemented
 
     def _generate_all_subdivision_commands(self, q_grid):
-        indices, subdivisions = self._find_divisible_leaf_indices_and_subdivisions(q_grid)
+        indices, subdivisions = \
+            self._find_divisible_leaf_indices_and_subdivisions(q_grid)
         if not indices:
             return ()
-        combinations = [tuple(x) for x in sequencetools.yield_outer_product_of_sequences(subdivisions)]
+        combinations = [tuple(x) 
+            for x in sequencetools.yield_outer_product_of_sequences(
+            subdivisions)]
         return tuple(tuple(zip(indices, combo)) for combo in combinations)
 
     def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
@@ -135,7 +148,8 @@ class SearchTree(AbjadObject):
         if not is_indented:
             indent = ''
         result = ['{}('.format(self._tools_package_qualified_class_name)]
-        definition = pprint.pformat(self.definition, indent=4, width=64).splitlines()
+        definition = pprint.pformat(
+            self.definition, indent=4, width=64).splitlines()
         result.append('{}definition={}'.format(indent, definition[0]))
         result.extend([indent + x for x in definition[1:]])
         result.append('{})'.format(indent))

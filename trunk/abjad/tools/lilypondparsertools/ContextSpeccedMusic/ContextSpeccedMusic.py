@@ -7,7 +7,12 @@ class ContextSpeccedMusic(Music):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('context', 'music', 'optional_id', 'optional_context_mod')
+    __slots__ = (
+        'context', 
+        'music', 
+        'optional_id', 
+        'optional_context_mod',
+        )
 
     ### INITIALIZER ###
 
@@ -25,7 +30,8 @@ class ContextSpeccedMusic(Music):
         if self.context_name in self.known_contexts:
             context = known_contexts[self.context_name]([])
         else:
-            raise Exception('Context type %s not supported.' % self.context_name)
+            message = 'context type %s not supported.'
+            raise Exception(message % self.context_name)
 
         if self.optional_id is not None:
             context.name = self.optional_id
@@ -41,7 +47,7 @@ class ContextSpeccedMusic(Music):
 
         return context
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def known_contexts(self):

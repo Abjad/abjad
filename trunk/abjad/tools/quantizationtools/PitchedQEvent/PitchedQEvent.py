@@ -22,7 +22,12 @@ class PitchedQEvent(QEvent):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_attachments', '_index', '_offset', '_pitches')
+    __slots__ = (
+        '_attachments', 
+        '_index', 
+        '_offset', 
+        '_pitches',
+        )
 
     ### INITIALIZER ###
 

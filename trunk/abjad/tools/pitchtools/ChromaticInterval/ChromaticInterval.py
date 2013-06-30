@@ -14,7 +14,9 @@ class ChromaticInterval(Interval, ChromaticObject):
 
     __metaclass__ = abc.ABCMeta
 
-    __slots__ = ('_number', )
+    __slots__ = (
+        '_number',
+        )
 
     ### INITIALIZER ###
 
@@ -31,7 +33,8 @@ class ChromaticInterval(Interval, ChromaticObject):
     ### SPECIAL METHODS ###
 
     def __abs__(self):
-        from abjad.tools.pitchtools.HarmonicChromaticInterval import HarmonicChromaticInterval
+        from abjad.tools.pitchtools.HarmonicChromaticInterval \
+            import HarmonicChromaticInterval
         return HarmonicChromaticInterval(abs(self._number))
 
     def __add__(self, arg):

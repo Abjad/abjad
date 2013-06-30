@@ -13,20 +13,29 @@ class InversionEquivalentDiatonicIntervalClassVector(Vector):
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8 g'8")
-        >>> vector = pitchtools.InversionEquivalentDiatonicIntervalClassVector(staff)
+        >>> vector = \
+        ...     pitchtools.InversionEquivalentDiatonicIntervalClassVector(
+        ...     staff)
 
     ::
 
         >>> print vector
         {P1: 0, aug1: 0, m2: 1, M2: 3, aug2: 0, dim3: 0, m3: 2, M3: 1, dim4: 0, P4: 3, aug4: 0}
 
-    Inversion-equivalent diatonic interval-class vector are not quatertone-aware.
+    Inversion-equivalent diatonic interval-class vector are 
+    not quatertone-aware.
 
     Inversion-equivalent diatonic interval-class vectors are immutable.
     '''
 
+    ### INITIALIZER ###
+
     def __init__(self, expr):
-        object.__setattr__(self, 'all_dics', inventory_inversion_equivalent_diatonic_interval_classes())
+        object.__setattr__(
+            self, 
+            'all_dics', 
+            inventory_inversion_equivalent_diatonic_interval_classes(),
+            )
         for dic in self.all_dics:
             dict.__setitem__(self, dic, 0)
         for hdi in list_harmonic_diatonic_intervals_in_expr(expr):

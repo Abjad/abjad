@@ -172,7 +172,7 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
         self._verify_attributes(node_attributes, '_node_attributes')
         self._is_digraph = bool(is_digraph)
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _node_klass(self):
@@ -180,7 +180,7 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
         return (documentationtools.GraphvizSubgraph,
             documentationtools.GraphvizNode)
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def canonical_name(self):
@@ -251,6 +251,14 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
             return '\n'.join(recurse(self, indent=0, prefix='digraph'))
         return '\n'.join(recurse(self, indent=0, prefix='graph'))
 
+    @apply
+    def is_digraph():
+        def fget(self):
+            return self._is_digraph
+        def fset(self, arg):
+            self._is_digraph = bool(arg)
+        return property(**locals())
+
     @property
     def node_attributes(self):
         return self._node_attributes
@@ -268,13 +276,3 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
             )
         result = process.communicate(graphviz_format)[0]
         return result
-
-    ### READ/WRITE PUBLIC PROPERTIES ###
-
-    @apply
-    def is_digraph():
-        def fget(self):
-            return self._is_digraph
-        def fset(self, arg):
-            self._is_digraph = bool(arg)
-        return property(**locals())

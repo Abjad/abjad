@@ -54,11 +54,12 @@ class ContextBlock(AttributedBlock):
 
     @property
     def _format_pieces(self):
-        from abjad.tools.lilypondfiletools._format_lilypond_context_setting_in_with_block import \
-            _format_lilypond_context_setting_in_with_block
+        from abjad.tools.lilypondfiletools._format_lilypond_context_setting_in_with_block \
+            import _format_lilypond_context_setting_in_with_block
         result = []
         result.append('%s {' % self._escaped_name)
-        # CAUTION: source context name must come before type to allow context redefinition
+        # CAUTION: source context name must come before type to allow 
+        # context redefinition.
         # TODO: rename self.context_name to self.source_context_name
         if self.context_name is not None:
             result.append('\t' + r'\%s' % self.context_name)
@@ -79,14 +80,15 @@ class ContextBlock(AttributedBlock):
             result.append('\t' + override)
         setting_contributions = []
         for key, value in self.set._get_attribute_tuples():
-            setting_contribution = _format_lilypond_context_setting_in_with_block(key, value)
+            setting_contribution = \
+                _format_lilypond_context_setting_in_with_block(key, value)
             setting_contributions.append(setting_contribution)
         for setting_contribution in sorted(setting_contributions):
             result.append('\t' + setting_contribution)
         result.append('}')
         return result
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def accepts(self):
@@ -105,7 +107,8 @@ class ContextBlock(AttributedBlock):
         '''Read-only reference to LilyPond grob override component plug-in.
         '''
         if not hasattr(self, '_override'):
-            self._override = lilypondproxytools.LilyPondGrobOverrideComponentPlugIn()
+            self._override = \
+                lilypondproxytools.LilyPondGrobOverrideComponentPlugIn()
         return self._override
 
     @property
@@ -113,10 +116,11 @@ class ContextBlock(AttributedBlock):
         '''Read-only reference LilyPond context setting component plug-in.
         '''
         if not hasattr(self, '_set'):
-            self._set = lilypondproxytools.LilyPondContextSettingComponentPlugIn()
+            self._set = \
+                lilypondproxytools.LilyPondContextSettingComponentPlugIn()
         return self._set
 
-    ### READ / WRITE PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @apply
     def alias():

@@ -15,7 +15,14 @@ class NumberedDiatonicPitch(DiatonicPitch, NumberedPitch):
     Numbered diatonic pitches are immutable.
     '''
 
-    __slots__ = ('_diatonic_pitch_number', '_number')
+    ### CLASS VARIABLES ##
+
+    __slots__ = (
+        '_diatonic_pitch_number', 
+        '_number',
+        )
+
+    ### INITIALIZER ###
 
     def __init__(self, arg):
         from abjad.tools import mathtools
@@ -25,14 +32,18 @@ class NumberedDiatonicPitch(DiatonicPitch, NumberedPitch):
         elif mathtools.is_integer_equivalent_number(arg):
             diatonic_pitch_number = arg
         elif pitchtools.is_diatonic_pitch_name(arg):
-            diatonic_pitch_number = pitchtools.diatonic_pitch_name_to_diatonic_pitch_number(arg)
+            diatonic_pitch_number = \
+                pitchtools.diatonic_pitch_name_to_diatonic_pitch_number(arg)
         elif pitchtools.is_chromatic_pitch_name(arg):
-            diatonic_pitch_number = pitchtools.chromatic_pitch_name_to_diatonic_pitch_number(arg)
+            diatonic_pitch_number = \
+                pitchtools.chromatic_pitch_name_to_diatonic_pitch_number(arg)
         else:
             raise TypeError
-        object.__setattr__(self, '_diatonic_pitch_number', diatonic_pitch_number)
+        object.__setattr__(
+            self, '_diatonic_pitch_number', diatonic_pitch_number)
         object.__setattr__(self, '_number', diatonic_pitch_number)
-        object.__setattr__(self, '_comparison_attribute', diatonic_pitch_number)
+        object.__setattr__(
+            self, '_comparison_attribute', diatonic_pitch_number)
         object.__setattr__(self, '_format_string', diatonic_pitch_number)
 
     ### SPECIAL METHODS ###
@@ -60,7 +71,8 @@ class NumberedDiatonicPitch(DiatonicPitch, NumberedPitch):
         Return integer.
         '''
         from abjad.tools import pitchtools
-        return pitchtools.diatonic_pitch_number_to_chromatic_pitch_number(self.diatonic_pitch_number)
+        return pitchtools.diatonic_pitch_number_to_chromatic_pitch_number(
+            self.diatonic_pitch_number)
 
     @property
     def diatonic_pitch_number(self):
@@ -121,4 +133,5 @@ class NumberedDiatonicPitch(DiatonicPitch, NumberedPitch):
         from abjad.tools import pitchtools
         tmp = pitchtools.diatonic_pitch_number_to_diatonic_pitch_class_number
         diatonic_pitch_class_number = tmp(self._diatonic_pitch_number)
-        return pitchtools.NumberedDiatonicPitchClass(diatonic_pitch_class_number)
+        return pitchtools.NumberedDiatonicPitchClass(
+            diatonic_pitch_class_number)

@@ -12,6 +12,7 @@ class CounterpointIntervalClass(IntervalClass, CounterpointObject):
     ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
+    
     __slots__ = ()
 
     ### INITIALIZER ###

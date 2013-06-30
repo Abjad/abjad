@@ -9,7 +9,8 @@ class FixedDurationContainer(Container):
 
     ::
 
-        >>> container = containertools.FixedDurationContainer((3, 8), "c'8 d'8 e'8")
+        >>> container = containertools.FixedDurationContainer(
+        ...     (3, 8), "c'8 d'8 e'8")
 
     ::
 
@@ -34,7 +35,9 @@ class FixedDurationContainer(Container):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_target_duration', )
+    __slots__ = (
+        '_target_duration',
+        )
 
     ### INITIALIZER ###
 
@@ -47,7 +50,8 @@ class FixedDurationContainer(Container):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        return '{}({!r}, {})'.format(self._class_name, self.target_duration, list(self[:]))
+        return '{}({!r}, {})'.format(
+            self._class_name, self.target_duration, list(self[:]))
 
     ### PRIVATE METHODS ###
 
@@ -59,7 +63,7 @@ class FixedDurationContainer(Container):
         if self.target_duration < preprolatedg_duration:
             raise OverfullContainerError
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def is_full(self):

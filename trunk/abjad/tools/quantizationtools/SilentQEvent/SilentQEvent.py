@@ -17,7 +17,10 @@ class SilentQEvent(QEvent):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_attachments', '_offset',)
+    __slots__ = (
+        '_attachments', 
+        '_offset',
+        )
 
     ### INITIALIZER ###
 

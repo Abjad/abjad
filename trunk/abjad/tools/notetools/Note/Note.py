@@ -26,9 +26,14 @@ class Note(Leaf):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_note_head', '_pitch', )
+    __slots__ = (
+        '_note_head', 
+        '_pitch',
+        )
 
-    _default_positional_input_arguments = (repr("c'4"), )
+    _default_positional_input_arguments = (
+        repr("c'4"),
+        )
 
     _repr_is_evaluable = True
 
@@ -52,7 +57,8 @@ class Note(Leaf):
                 pitch = leaf.written_pitch
                 is_cautionary = leaf.note_head.is_cautionary
                 is_forced = leaf.note_head.is_forced
-            elif hasattr(leaf, 'written_pitches') and 0 < len(leaf.written_pitches):
+            elif hasattr(leaf, 'written_pitches') and \
+                0 < len(leaf.written_pitches):
                 pitch = leaf.written_pitches[0]
                 is_cautionary = leaf.note_heads[0].is_cautionary
                 is_forced = leaf.note_heads[0].is_forced
@@ -148,10 +154,13 @@ class Note(Leaf):
         if self.written_pitch_indication_is_at_sounding_pitch:
             instrument = contexttools.get_effective_instrument(self)
             if not instrument:
-                raise InstrumentError('effective instrument of note can not be determined.')
+                message = 'effective instrument of note can not be determined.'
+                raise InstrumentError(message)
             t_n = instrument.interval_of_transposition
             t_n *= -1
-            fingered_pitch = pitchtools.transpose_pitch_carrier_by_melodic_interval(self.written_pitch, t_n)
+            fingered_pitch = \
+                pitchtools.transpose_pitch_carrier_by_melodic_interval(
+                    self.written_pitch, t_n)
             return fingered_pitch
         else:
             return self.written_pitch
@@ -240,9 +249,13 @@ class Note(Leaf):
             else:
                 instrument = contexttools.get_effective_instrument(self)
                 if not instrument:
-                    raise InstrumentError('effective instrument of note can not be determined.')
+                    message = 'effective instrument of note'
+                    message += ' can not be determined.'
+                    raise InstrumentError(message)
                 t_n = instrument.interval_of_transposition
-                sounding_pitch = pitchtools.transpose_pitch_carrier_by_melodic_interval(self.written_pitch, t_n)
+                sounding_pitch = \
+                    pitchtools.transpose_pitch_carrier_by_melodic_interval(
+                        self.written_pitch, t_n)
                 return sounding_pitch
         def fset(self, arg):
             from abjad.tools import contexttools
@@ -253,9 +266,13 @@ class Note(Leaf):
             else:
                 instrument = contexttools.get_effective_instrument(self)
                 if not instrument:
-                    raise InstrumentError('effective instrument of note can not be determined.')
+                    message = 'effective instrument of note'
+                    message += ' can not be determined.'
+                    raise InstrumentError(message)
                 t_n = -1 * instrument.interval_of_transposition
-                self.written_pitch = pitchtools.transpose_pitch_carrier_by_melodic_interval(pitch, t_n)
+                self.written_pitch = \
+                    pitchtools.transpose_pitch_carrier_by_melodic_interval(
+                        pitch, t_n)
         return property(**locals())
 
     @apply
@@ -279,7 +296,8 @@ class Note(Leaf):
                 Note("d''8.")
 
             '''
-            if self.note_head is not None and hasattr(self.note_head, 'written_pitch'):
+            if self.note_head is not None and \
+                hasattr(self.note_head, 'written_pitch'):
                 return self._note_head.written_pitch
             else:
                 return None

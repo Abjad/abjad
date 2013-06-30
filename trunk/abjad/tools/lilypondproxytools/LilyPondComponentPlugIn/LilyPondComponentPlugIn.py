@@ -8,7 +8,12 @@ class LilyPondComponentPlugIn(AbjadObject):
 
     Shared LilyPond grob proxy and LilyPond context proxy functionality.
     '''
+
+    ### CLASS VARIABLES ###
+
     __metaclass__ = abc.ABCMeta
+
+    ### INITIALIZER ###
 
     def __init__(self, **kwargs):
         # note_head__color = 'red' or staff__tuplet_full_length = True

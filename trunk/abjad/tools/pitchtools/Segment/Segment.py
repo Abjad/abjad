@@ -12,9 +12,10 @@ class Segment(tuple, ImmutableAbjadObject):
     ### CLASS VARIABLES ##
 
     __metaclass__ = abc.ABCMeta
+
     __slots__ = ()
 
-    ### INITIALIZER ###
+    ### CONSTRUCTOR ###
 
     @abc.abstractmethod
     def __new__(self):

@@ -14,9 +14,12 @@ class MelodicChromaticIntervalSet(IntervalSet):
     Melodic chromatic interval sets are immutable.
     '''
 
+    ### CONSTRUCTOR ###
+
     def __new__(self, interval_tokens):
         from abjad.tools import pitchtools
-        mcis = [pitchtools.MelodicChromaticInterval(x) for x in interval_tokens]
+        mcis = [pitchtools.MelodicChromaticInterval(x) 
+            for x in interval_tokens]
         return frozenset.__new__(self, mcis)
 
     ### SPECIAL METHODS ###

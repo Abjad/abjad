@@ -28,7 +28,10 @@ class QSchema(AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_items', '_lookups')
+    __slots__ = (
+        '_items', 
+        '_lookups',
+        )
 
     ### INITIALIZER ###
 
@@ -41,7 +44,8 @@ class QSchema(AbjadObject):
             items = args[0].items()
             if sequencetools.all_are_pairs_of_types(items, int, dict):
                 items = [(x, self.item_klass(**y)) for x, y in items]
-            assert sequencetools.all_are_pairs_of_types(items, int, self.item_klass)
+            assert sequencetools.all_are_pairs_of_types(
+                items, int, self.item_klass)
             items = dict(items)
 
         elif sequencetools.all_are_pairs_of_types(args, int, self.item_klass):
@@ -102,7 +106,8 @@ class QSchema(AbjadObject):
 
     def __repr__(self):
         if self.items:
-            result = ['{}({{'.format(self._tools_package_qualified_class_name)]
+            result = ['{}({{'.format(
+                self._tools_package_qualified_class_name)]
             for i, pair in enumerate(sorted(self.items.items())):
                 key, value = pair
                 itemrepr = value._get_tools_package_qualified_repr_pieces()
@@ -115,7 +120,8 @@ class QSchema(AbjadObject):
             result.append('\t},')
         else:
             result = ['{}('.format(self._tools_package_qualified_class_name)]
-        result.extend(self._get_tools_package_qualified_keyword_argument_repr_pieces())
+        result.extend(
+            self._get_tools_package_qualified_keyword_argument_repr_pieces())
         result.append('\t)')
         return '\n'.join(result)
 
@@ -178,7 +184,8 @@ class QSchema(AbjadObject):
                 value = getattr(item, field)
                 if value is not None:
                     lookups[field][position] = value
-            lookups[field] = datastructuretools.ImmutableDictionary(lookups[field])
+            lookups[field] = datastructuretools.ImmutableDictionary(
+                lookups[field])
         return datastructuretools.ImmutableDictionary(lookups)
 
     def _get_tools_package_qualified_repr_pieces(self):

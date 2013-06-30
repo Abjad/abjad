@@ -16,8 +16,11 @@ class HarmonicDiatonicInterval(DiatonicInterval, HarmonicInterval):
     Harmonic diatonic intervals are immutable.
     '''
 
+    ### INITIALIZER ###
+
     def __init__(self, *args):
-        from abjad.tools.pitchtools.is_harmonic_diatonic_interval_abbreviation import harmonic_diatonic_interval_abbreviation_regex
+        from abjad.tools.pitchtools.is_harmonic_diatonic_interval_abbreviation \
+            import harmonic_diatonic_interval_abbreviation_regex
         if len(args) == 1 and isinstance(args[0], DiatonicInterval):
             _quality_string = args[0].quality_string
             _number = abs(args[0].number)
@@ -26,7 +29,9 @@ class HarmonicDiatonicInterval(DiatonicInterval, HarmonicInterval):
             if match is None:
                 raise ValueError('"%s" does not have the form of an hdi abbreviation.' % args[0])
             quality_abbreviation, number_string = match.groups()
-            _quality_string = DiatonicInterval._quality_abbreviation_to_quality_string[quality_abbreviation]
+            _quality_string = \
+                DiatonicInterval._quality_abbreviation_to_quality_string[
+                    quality_abbreviation]
             _number = int(number_string)
         elif len(args) == 2:
             _quality_string = args[0]
@@ -39,6 +44,7 @@ class HarmonicDiatonicInterval(DiatonicInterval, HarmonicInterval):
     def __copy__(self, *args):
         return type(self)(self)
 
+    # TODO: remove?
     __deepcopy__ = __copy__
 
     def __ge__(self, arg):
@@ -78,20 +84,19 @@ class HarmonicDiatonicInterval(DiatonicInterval, HarmonicInterval):
     ### PUBLIC PROPERTIES ###
 
     @property
-    #def counterpoint_interval(self):
     def harmonic_counterpoint_interval(self):
         from abjad.tools import pitchtools
         return pitchtools.HarmonicCounterpointInterval(self)
 
     @property
-    #def interval_class(self):
     def harmonic_diatonic_interval_class(self):
         from abjad.tools import pitchtools
         return pitchtools.HarmonicDiatonicIntervalClass(self)
 
     @property
     def melodic_diatonic_interval_ascending(self):
-        from abjad.tools.pitchtools.MelodicDiatonicInterval import MelodicDiatonicInterval
+        from abjad.tools.pitchtools.MelodicDiatonicInterval \
+            import MelodicDiatonicInterval
         return MelodicDiatonicInterval(self.quality_string, self.number)
 
     @property
@@ -102,15 +107,22 @@ class HarmonicDiatonicInterval(DiatonicInterval, HarmonicInterval):
     @property
     def semitones(self):
         result = 0
-        interval_class_number_to_semitones = {1: 0,  2: 1,  3: 3, 4: 5, 5: 7, 6: 8, 7: 10, 8:0}
+        interval_class_number_to_semitones = {
+            1: 0,  2: 1,  3: 3, 4: 5, 5: 7, 6: 8, 7: 10, 8:0}
         try:
-            interval_class_number = abs(self.harmonic_diatonic_interval_class.number)
+            interval_class_number = abs(
+                self.harmonic_diatonic_interval_class.number)
         except AttributeError:
             interval_class_number = self.number
         result += interval_class_number_to_semitones[interval_class_number]
         result += (abs(self.number) - 1) / 7 * 12
         quality_string_to_semitones = {
-            'perfect': 0, 'major': 1, 'minor': 0, 'augmented': 1, 'diminished': -1}
+            'perfect': 0, 
+            'major': 1, 
+            'minor': 0, 
+            'augmented': 1, 
+            'diminished': -1,
+            }
         result += quality_string_to_semitones[self.quality_string]
         if self.number < 0:
             result *= -1

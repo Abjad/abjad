@@ -10,8 +10,8 @@ import os
 class RenameModulesScript(DeveloperScript):
     '''Rename classes and functions.
 
-    Handle renaming the module and package, as well as any tests, documentation or
-    mentions of the class throughout the Abjad codebase:
+    Handle renaming the module and package, as well as any tests, 
+    documentation or mentions of the class throughout the Abjad codebase:
 
     ::
 
@@ -29,7 +29,7 @@ class RenameModulesScript(DeveloperScript):
     Return `RenameModulesScript` instance.
     '''
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def alias(self):
@@ -56,20 +56,28 @@ class RenameModulesScript(DeveloperScript):
     def _codebase_name_to_codebase_docs_path(self, codebase):
         from abjad import abjad_configuration
         if codebase == 'mainline':
-            return os.path.join(abjad_configuration.abjad_directory_path, 'docs', 'source', 'api', 'tools')
+            return os.path.join(
+                abjad_configuration.abjad_directory_path, 
+                'docs', 'source', 'api', 'tools')
         elif codebase == 'experimental':
-            return os.path.join(abjad_configuration.abjad_experimental_directory_path, 'docs', 'source', 'tools')
+            return os.path.join(
+                abjad_configuration.abjad_experimental_directory_path, 
+                'docs', 'source', 'tools')
         raise Exception('Bad codebase name {!r}.'.format(codebase))
 
     def _codebase_name_to_codebase_tools_path(self, codebase):
         from abjad import abjad_configuration
         if codebase == 'mainline':
-            return os.path.join(abjad_configuration.abjad_directory_path, 'tools')
+            return os.path.join(
+                abjad_configuration.abjad_directory_path, 'tools')
         elif codebase == 'experimental':
-            return os.path.join(abjad_configuration.abjad_experimental_directory_path, 'tools')
+            return os.path.join(
+                abjad_configuration.abjad_experimental_directory_path, 'tools')
         raise Exception('Bad codebase name {!r}.'.format(codebase))
 
-    def _confirm_name_changes(self, kind, old_codebase, old_package_name, old_object_name,
+    def _confirm_name_changes(self, 
+        kind, 
+        old_codebase, old_package_name, old_object_name,
         new_codebase, new_package_name, new_object_name):
 
         max_codebase = max(len(old_codebase), len(new_codebase))
@@ -79,9 +87,11 @@ class RenameModulesScript(DeveloperScript):
         print ''
         print 'Is ...'
         print ''
-        print '    [{}] {}.{}()'.format(old_codebase, old_package_name, old_object_name)
+        print '    [{}] {}.{}()'.format(
+            old_codebase, old_package_name, old_object_name)
         print '    ===>'
-        print '    [{}] {}.{}()'.format(new_codebase, new_package_name, new_object_name)
+        print '    [{}] {}.{}()'.format(
+            new_codebase, new_package_name, new_object_name)
         print ''
         input = raw_input('... correct [Y(es)/n(o)]? ').lower()
         print ''
@@ -95,9 +105,11 @@ class RenameModulesScript(DeveloperScript):
         tools_path = self._codebase_name_to_codebase_tools_path(codebase)
         path = os.path.join(tools_path, tools_package_name)
         if kind == 'class':
-            crawler = documentationtools.ClassCrawler(path, include_private_objects=True)
+            crawler = documentationtools.ClassCrawler(
+                path, include_private_objects=True)
         elif kind == 'function':
-            crawler = documentationtools.FunctionCrawler(path, include_private_objects=True)
+            crawler = documentationtools.FunctionCrawler(
+                path, include_private_objects=True)
         objs = crawler()
         return tuple(sorted([x.__name__ for x in objs]))
 
@@ -132,11 +144,13 @@ class RenameModulesScript(DeveloperScript):
             print ''
 
         while True:
-            message = 'Enter new tools package-qualified {} name:     '.format(kind)
+            message = 'Enter new tools package-qualified {} name:     '
+            message = message.format(kind)
             qualified_object_name = raw_input(message)
             if qualified_object_name.count('.') != 1:
                 print ''
-                print 'Input not in toolspackage.{} format: {!r}'.format(kind, qualified_object_name)
+                print 'Input not in toolspackage.{} format: {!r}'.format(
+                    kind, qualified_object_name)
                 print ''
                 continue
             qualified_object_name_parts = qualified_object_name.split('.')
@@ -144,12 +158,15 @@ class RenameModulesScript(DeveloperScript):
             object_name = qualified_object_name_parts[1]
             if package_name not in self._get_tools_package_names(codebase):
                 print ''
-                print 'Error: can not find {!r} in {!r} tools packages.'.format(package_name, codebase)
+                message = 'Error: can not find {!r} in {!r} tools packages.'
+                print message.format(package_name, codebase)
                 print ''
                 continue
-            if object_name in self._get_object_names(kind, codebase, package_name):
+            if object_name in self._get_object_names(
+                kind, codebase, package_name):
                 print ''
-                print 'Error: the {} {!r} already exists in {!r}.'.format(kind, object_name, package_name)
+                print 'Error: the {} {!r} already exists in {!r}.'.format(
+                    kind, object_name, package_name)
                 print ''
                 continue
             return codebase, package_name, object_name
@@ -176,11 +193,13 @@ class RenameModulesScript(DeveloperScript):
             print ''
 
         while True:
-            message = 'Enter current tools package-qualified {} name: '.format(kind)
+            message = 'Enter current tools package-qualified {} name: '
+            message = message.format(kind)
             qualified_object_name = raw_input(message)
             if qualified_object_name.count('.') != 1:
                 print ''
-                print 'Input not in toolspackage.{} format: {!r}'.format(kind, qualified_object_name)
+                print 'Input not in toolspackage.{} format: {!r}'.format(
+                    kind, qualified_object_name)
                 print ''
                 continue
             qualified_object_name_parts = qualified_object_name.split('.')
@@ -188,17 +207,22 @@ class RenameModulesScript(DeveloperScript):
             object_name = qualified_object_name_parts[1]
             if package_name not in self._get_tools_package_names(codebase):
                 print ''
-                print 'Error: can not find {!r} in {!r} tools packages.'.format(package_name, codebase)
+                message = 'Error: can not find {!r} in {!r} tools packages.'
+                print message.format(package_name, codebase)
                 print ''
                 continue
-            if object_name not in self._get_object_names(kind, codebase, package_name):
+            if object_name not in self._get_object_names(
+                kind, codebase, package_name):
                 print ''
-                print 'Error: can not find {!r} in {!r}.'.format(object_name, package_name)
+                print 'Error: can not find {!r} in {!r}.'.format(
+                    object_name, package_name)
                 print ''
                 continue
             return codebase, package_name, object_name
 
-    def _rename_old_api_page(self, kind, old_codebase, old_package_name, old_object_name,
+    def _rename_old_api_page(self, 
+        kind, 
+        old_codebase, old_package_name, old_object_name,
         new_codebase, new_package_name, new_object_name):
 
         print 'Renaming old API page ...'
@@ -210,88 +234,122 @@ class RenameModulesScript(DeveloperScript):
         new_rst_file_name = new_object_name + '.rst'
 
         if kind == 'function':
-            old_api_path = os.path.join(old_docs_path, old_package_name, old_rst_file_name)
-            new_api_path = os.path.join(new_docs_path, new_package_name, new_rst_file_name)
-            command = 'svn --force mv {} {} > /dev/null'.format(old_api_path, new_api_path)
+            old_api_path = os.path.join(
+                old_docs_path, old_package_name, old_rst_file_name)
+            new_api_path = os.path.join(
+                new_docs_path, new_package_name, new_rst_file_name)
+            command = 'svn --force mv {} {} > /dev/null'.format(
+                old_api_path, new_api_path)
             iotools.spawn_subprocess(command)
 
         elif kind == 'class':
             # move the folder...
-            old_api_path = os.path.join(old_docs_path, old_package_name, old_object_name)
-            new_api_path = os.path.join(new_docs_path, new_package_name, new_object_name)
-            command = 'svn --force mv {} {} > /dev/null'.format(old_api_path, new_api_path)
+            old_api_path = os.path.join(
+                old_docs_path, old_package_name, old_object_name)
+            new_api_path = os.path.join(
+                new_docs_path, new_package_name, new_object_name)
+            command = 'svn --force mv {} {} > /dev/null'.format(
+                old_api_path, new_api_path)
             iotools.spawn_subprocess(command)
 
             # ...then the file
             old_rst_file_name = os.path.join(new_api_path, old_rst_file_name)
             new_rst_file_name = os.path.join(new_api_path, new_rst_file_name)
-            command = 'svn --force mv {} {} > /dev/null'.format(old_rst_file_name, new_rst_file_name)
+            command = 'svn --force mv {} {} > /dev/null'.format(
+                old_rst_file_name, new_rst_file_name)
             iotools.spawn_subprocess(command)
 
         print ''
 
-    def _rename_old_module(self, kind, old_codebase, old_package_name, old_object_name,
+    def _rename_old_module(self, 
+        kind, 
+        old_codebase, old_package_name, old_object_name,
         new_codebase, new_package_name, new_object_name):
 
         print 'Renaming old module ...'
 
-        old_tools_path = self._codebase_name_to_codebase_tools_path(old_codebase)
-        new_tools_path = self._codebase_name_to_codebase_tools_path(new_codebase)
+        old_tools_path = self._codebase_name_to_codebase_tools_path(
+            old_codebase)
+        new_tools_path = self._codebase_name_to_codebase_tools_path(
+            new_codebase)
 
         if kind == 'function':
             old_module = old_object_name + '.py'
-            old_path = os.path.join(old_tools_path, old_package_name, old_module)
+            old_path = os.path.join(
+                old_tools_path, old_package_name, old_module)
             new_module = new_object_name + '.py'
-            new_path = os.path.join(new_tools_path, new_package_name, new_module)
-            command = 'svn --force mv {} {} > /dev/null'.format(old_path, new_path)
+            new_path = os.path.join(
+                new_tools_path, new_package_name, new_module)
+            command = 'svn --force mv {} {} > /dev/null'.format(
+                old_path, new_path)
             iotools.spawn_subprocess(command)
 
         elif kind == 'class':
             # move the folder...
-            old_class_package = os.path.join(old_tools_path, old_package_name, old_object_name)
-            new_class_package = os.path.join(new_tools_path, new_package_name, new_object_name)
-            command = 'svn --force mv {} {} > /dev/null'.format(old_class_package, new_class_package)
+            old_class_package = os.path.join(
+                old_tools_path, old_package_name, old_object_name)
+            new_class_package = os.path.join(
+                new_tools_path, new_package_name, new_object_name)
+            command = 'svn --force mv {} {} > /dev/null'.format(
+                old_class_package, new_class_package)
             iotools.spawn_subprocess(command)
 
             # ...then the file
-            old_class_module = os.path.join(new_class_package, '{}.py'.format(old_object_name))
-            new_class_module = os.path.join(new_class_package, '{}.py'.format(new_object_name))
-            command = 'svn --force mv {} {} > /dev/null'.format(old_class_module, new_class_module)
+            old_class_module = os.path.join(
+                new_class_package, '{}.py'.format(old_object_name))
+            new_class_module = os.path.join(
+                new_class_package, '{}.py'.format(new_object_name))
+            command = 'svn --force mv {} {} > /dev/null'.format(
+                old_class_module, new_class_module)
             iotools.spawn_subprocess(command)
 
         print ''
 
-    def _rename_old_test_files(self, kind, old_codebase, old_package_name, old_object_name,
+    def _rename_old_test_files(self, 
+        kind, 
+        old_codebase, old_package_name, old_object_name,
         new_codebase, new_package_name, new_object_name):
 
         print 'Renaming old test file(s) ...'
 
-        old_tools_path = self._codebase_name_to_codebase_tools_path(old_codebase)
-        new_tools_path = self._codebase_name_to_codebase_tools_path(new_codebase)
+        old_tools_path = self._codebase_name_to_codebase_tools_path(
+            old_codebase)
+        new_tools_path = self._codebase_name_to_codebase_tools_path(
+            new_codebase)
 
         if kind == 'function':
-            old_test_file = 'test_{}_{}.py'.format(old_package_name, old_object_name)
-            old_path = os.path.join(old_tools_path, old_package_name, 'test')
+            old_test_file = 'test_{}_{}.py'.format(
+                old_package_name, old_object_name)
+            old_path = os.path.join(
+                old_tools_path, old_package_name, 'test')
             old_path = os.path.join(old_path, old_test_file)
-            new_test_file = 'test_{}_{}.py'.format(new_package_name, new_object_name)
+            new_test_file = 'test_{}_{}.py'.format(
+                new_package_name, new_object_name)
             new_path = os.path.join(new_tools_path, new_package_name, 'test')
             new_path = os.path.join(new_path, new_test_file)
-            command = 'svn --force mv {} {} > /dev/null'.format(old_path, new_path)
+            command = 'svn --force mv {} {} > /dev/null'.format(
+                old_path, new_path)
             iotools.spawn_subprocess(command)
 
         elif kind == 'class':
-            test_path = os.path.join(new_tools_path, new_package_name, new_object_name, 'test')
+            test_path = os.path.join(
+                new_tools_path, new_package_name, new_object_name, 'test')
             for x in os.listdir(test_path):
                 if x.startswith('test_') and x.endswith('.py'):
                     old_path = os.path.join(test_path, x)
                     new_path = os.path.join(test_path,
-                        x.replace('test_{}'.format(old_object_name), 'test_{}'.format(new_object_name)))
-                    command = 'svn --force mv {} {} > /dev/null'.format(old_path, new_path)
+                        x.replace(
+                            'test_{}'.format(old_object_name), 
+                            'test_{}'.format(new_object_name)))
+                    command = 'svn --force mv {} {} > /dev/null'.format(
+                        old_path, new_path)
                     iotools.spawn_subprocess(command)
 
         print ''
 
-    def _update_codebase(self, kind, old_codebase, old_package_name, old_object_name,
+    def _update_codebase(self, 
+        kind, 
+        old_codebase, old_package_name, old_object_name,
         new_codebase, new_package_name, new_object_name):
 
         from abjad import abjad_configuration
@@ -304,7 +362,14 @@ class RenameModulesScript(DeveloperScript):
 
         old_text = '{}.{}'.format(old_package_name, old_object_name)
         new_text = '{}.{}'.format(new_package_name, new_object_name)
-        command = [directory, old_text, new_text, '--force', '--whole-words-only', '--verbose']
+        command = [
+            directory, 
+            old_text, 
+            new_text, 
+            '--force', 
+            '--whole-words-only', 
+            '--verbose',
+            ]
         command.extend(without_dirs)
         ReplaceInFilesScript()(command)
 
@@ -324,7 +389,14 @@ class RenameModulesScript(DeveloperScript):
 
         old_text = old_object_name
         new_text = new_object_name
-        command = [directory, old_text, new_text, '--force', '--whole-words-only', '--verbose']
+        command = [
+            directory, 
+            old_text, 
+            new_text, 
+            '--force', 
+            '--whole-words-only', 
+            '--verbose',
+            ]
         command.extend(without_dirs)
         ReplaceInFilesScript()(command)
 
@@ -338,11 +410,16 @@ class RenameModulesScript(DeveloperScript):
         # print args
 
         kind = args.kind
-        old_codebase, old_package_name, old_object_name = self._prompt_for_old_name(kind)
-        new_codebase, new_package_name, new_object_name = self._prompt_for_new_name(kind)
+        old_codebase, old_package_name, old_object_name = \
+            self._prompt_for_old_name(kind)
+        new_codebase, new_package_name, new_object_name = \
+            self._prompt_for_new_name(kind)
 
-        args = (kind, old_codebase, old_package_name, old_object_name,
-            new_codebase, new_package_name, new_object_name)
+        args = (
+            kind, 
+            old_codebase, old_package_name, old_object_name,
+            new_codebase, new_package_name, new_object_name,
+            )
 
         self._confirm_name_changes(*args)
 

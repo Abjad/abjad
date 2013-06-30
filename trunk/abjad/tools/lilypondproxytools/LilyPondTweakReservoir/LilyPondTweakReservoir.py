@@ -7,3 +7,5 @@ class LilyPondTweakReservoir(LilyPondObjectProxy):
 
     LilyPond tweak reservoir.
     '''
+
+    pass

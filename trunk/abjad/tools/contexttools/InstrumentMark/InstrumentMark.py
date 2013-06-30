@@ -212,12 +212,14 @@ class InstrumentMark(ContextMark):
             '''
             from abjad.tools.markuptools import Markup
             if self._instrument_name_markup is None:
-                return Markup(stringtools.capitalize_string_start(self.instrument_name))
+                return Markup(stringtools.capitalize_string_start(
+                    self.instrument_name))
             else:
                 return self._instrument_name_markup
         def fset(self, instrument_name_markup):
             from abjad.tools.markuptools import Markup
-            assert isinstance(instrument_name_markup, (str, type(Markup('')), type(None)))
+            assert isinstance(
+                instrument_name_markup, (str, type(Markup('')), type(None)))
             if instrument_name_markup is None:
                 self._instrument_name_markup = instrument_name_markup
             else:
@@ -297,14 +299,18 @@ class InstrumentMark(ContextMark):
             '''
             from abjad.tools.markuptools import Markup
             if self._short_instrument_name_markup is None:
-                return Markup(stringtools.capitalize_string_start(self.short_instrument_name))
+                return Markup(stringtools.capitalize_string_start(
+                    self.short_instrument_name))
             else:
                 return self._short_instrument_name_markup
         def fset(self, short_instrument_name_markup):
             from abjad.tools.markuptools import Markup
-            assert isinstance(short_instrument_name_markup, (str, type(Markup('')), type(None)))
+            assert isinstance(short_instrument_name_markup, 
+                (str, type(Markup('')), type(None)))
             if short_instrument_name_markup is None:
-                self._short_instrument_name_markup = short_instrument_name_markup
+                self._short_instrument_name_markup = \
+                    short_instrument_name_markup
             else:
-                self._short_instrument_name_markup = Markup(short_instrument_name_markup)
+                self._short_instrument_name_markup = \
+                    Markup(short_instrument_name_markup)
         return property(**locals())

@@ -4,7 +4,8 @@ from abjad.tools.quantizationtools.SearchTree import SearchTree
 
 
 class UnweightedSearchTree(SearchTree):
-    '''Concrete ``SearchTree`` subclass, based on Paul Nauert's search tree model:
+    '''Concrete ``SearchTree`` subclass, based on Paul Nauert's search 
+    tree model:
 
     ::
 
@@ -19,23 +20,25 @@ class UnweightedSearchTree(SearchTree):
                 13: None}
             )
 
-    The search tree defines how nodes in a ``QGrid`` may be subdivided, if they
-    happen to contain ``QEvents`` (or, in actuality, ``QEventProxy`` instances
-    which reference ``QEvents``, but rescale their offsets between ``0`` and ``1``).
+    The search tree defines how nodes in a ``QGrid`` may be subdivided, 
+    if they happen to contain ``QEvents`` (or, in actuality, ``QEventProxy`` 
+    instances which reference ``QEvents``, but rescale their offsets between 
+    ``0`` and ``1``).
 
-    In the default definition, the root node of the ``QGrid`` may be subdivided
-    into ``2``, ``3``, ``5``, ``7``, ``11`` or ``13`` equal parts.  If divided into
-    ``2`` parts, the divisions of the root node may be divided again into ``2``,
-    ``3``, ``5`` or ``7``, and so forth.
+    In the default definition, the root node of the ``QGrid`` may be 
+    subdivided into ``2``, ``3``, ``5``, ``7``, ``11`` or ``13`` equal parts.
+    If divided into ``2`` parts, the divisions of the root node may be 
+    divided again into ``2``, ``3``, ``5`` or ``7``, and so forth.
 
-    This definition is structured as a collection of nested dictionaries, whose
-    keys are integers, and whose values are either the sentinel ``None`` indicating
-    no further permissable divisions, or dictionaries obeying these same rules, which
-    then indicate the possibilities for further division.
+    This definition is structured as a collection of nested dictionaries, 
+    whose keys are integers, and whose values are either the sentinel ``None`` 
+    indicating no further permissable divisions, or dictionaries obeying 
+    these same rules, which then indicate the possibilities for further 
+    division.
 
-    Calling a ``UnweightedSearchTree`` with a ``QGrid`` instance will generate all
-    permissable subdivided ``QGrids``, according to the definition of the called
-    search tree:
+    Calling a ``UnweightedSearchTree`` with a ``QGrid`` instance will 
+    generate all permissable subdivided ``QGrids``, according to the 
+    definition of the called search tree:
 
     ::
 
@@ -58,10 +61,10 @@ class UnweightedSearchTree(SearchTree):
         (1 (1 1 1 1 1 1 1 1 1 1 1))
         (1 (1 1 1 1 1 1 1 1 1 1 1 1 1))
 
-    A custom ``UnweightedSearchTree`` may be defined by passing in a dictionary, as
-    described above.  The following search tree only permits divisions of the
-    root node into ``2s`` and ``3s``, and if divided into ``2``, a node may be
-    divided once more into ``2`` parts:
+    A custom ``UnweightedSearchTree`` may be defined by passing in a dictionary,
+    as described above.  The following search tree only permits divisions of 
+    the root node into ``2s`` and ``3s``, and if divided into ``2``, 
+    a node may be divided once more into ``2`` parts:
 
     ::
 
@@ -79,7 +82,7 @@ class UnweightedSearchTree(SearchTree):
     Return ``UnweightedSearchTree`` instance.
     '''
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def default_definition(self):

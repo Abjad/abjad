@@ -15,7 +15,13 @@ class InversionEquivalentChromaticIntervalClass(IntervalClass):
     Inversion-equivalent chromatic interval-classes are immutable.
     '''
 
-    __slots__ = ('_number', )
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_number',
+        )
+
+    ### INITIALIZER ###
 
     def __init__(self, interval_class_token):
         if isinstance(interval_class_token, type(self)):
@@ -66,6 +72,5 @@ class InversionEquivalentChromaticIntervalClass(IntervalClass):
     ### PUBLIC PROPERTIES ###
 
     @property
-    #def number(self):
     def inversion_equivalent_chromatic_interval_number(self):
         return self._number

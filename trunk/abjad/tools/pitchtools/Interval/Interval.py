@@ -11,6 +11,7 @@ class Interval(AbjadObject):
     ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
+
     __slots__ = ('_format_string', )
 
     ### INITIALIZER ###
@@ -22,16 +23,19 @@ class Interval(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __abs__(self):
-        raise NotImplementedError('abs needs to be implemented on %s.' % type(self))
+        raise NotImplementedError(
+            'abs needs to be implemented on %s.' % type(self))
 
     def __float__(self):
-        raise NotImplementedError('float needs to be implemented on %s.' % type(self))
+        raise NotImplementedError(
+            'float needs to be implemented on %s.' % type(self))
 
     def __hash__(self):
         return hash(repr(self))
 
     def __int__(self):
-        raise NotImplementedError('int needs to be implemented on %s.' % type(self))
+        raise NotImplementedError(
+            'int needs to be implemented on %s.' % type(self))
 
     def __repr__(self):
         return '%s(%s)' % (type(self).__name__, self._format_string)

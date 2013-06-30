@@ -10,7 +10,8 @@ class ReSTOnlyDirective(ReSTDirective):
 
     ::
 
-        >>> heading = documentationtools.ReSTHeading(level=3, text='A LaTeX-Only Heading')
+        >>> heading = documentationtools.ReSTHeading(
+        ...     level=3, text='A LaTeX-Only Heading')
         >>> only.append(heading)
         >>> only
         ReSTOnlyDirective(
@@ -37,9 +38,14 @@ class ReSTOnlyDirective(ReSTDirective):
     ### INITIALIZER ###
 
     def __init__(self, argument=None, children=None, name=None):
-        ReSTDirective.__init__(self, argument=argument, children=children, name=name)
+        ReSTDirective.__init__(
+            self, 
+            argument=argument, 
+            children=children, 
+            name=name,
+            )
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def directive(self):

@@ -52,7 +52,8 @@ class Markup(DirectedMark):
 
     ::
 
-        >>> markup = markuptools.Markup(r'\italic { "This is also markup text." }', direction=Up)
+        >>> markup = markuptools.Markup(
+        ...     r'\italic { "This is also markup text." }', direction=Up)
 
     ::
 
@@ -78,9 +79,16 @@ class Markup(DirectedMark):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_contents', '_direction', '_format_slot', '_markup_name')
+    __slots__ = (
+        '_contents', 
+        '_direction', 
+        '_format_slot', 
+        '_markup_name',
+        )
 
-    _default_positional_input_arguments = (repr(r'\bold { "This is markup text." }'), )
+    _default_positional_input_arguments = (
+        repr(r'\bold { "This is markup text." }'),
+        )
 
     ### INITIALIZER ###
 
@@ -126,8 +134,6 @@ class Markup(DirectedMark):
             markup_name=self._markup_name,
             )
 
-    #__deepcopy__ = __copy__
-
     def __eq__(self, expr):
         if isinstance(expr, type(self)):
             if self.lilypond_format == expr.lilypond_format:
@@ -143,7 +149,7 @@ class Markup(DirectedMark):
     def __str__(self):
         return self.lilypond_format
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _format_pieces(self):
@@ -155,7 +161,7 @@ class Markup(DirectedMark):
             self.contents,
             )
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def contents(self):
@@ -163,7 +169,8 @@ class Markup(DirectedMark):
 
         ::
 
-            >>> markup = markuptools.Markup(r'\bold { "This is markup text." }')
+            >>> markup = \
+            ...     markuptools.Markup(r'\bold { "This is markup text." }')
             >>> markup.contents
             (MarkupCommand('bold', ['This is markup text.']),)
 
@@ -177,7 +184,8 @@ class Markup(DirectedMark):
 
         ::
 
-            >>> markup = markuptools.Markup(r'\bold { "This is markup text." }')
+            >>> markup = \
+            ...     markuptools.Markup(r'\bold { "This is markup text." }')
             >>> print markup.indented_lilypond_format
             \markup {
                 \bold {
@@ -195,7 +203,8 @@ class Markup(DirectedMark):
 
         ::
 
-            >>> markup = markuptools.Markup(r'\bold { "This is markup text." }')
+            >>> markup = \
+            ...     markuptools.Markup(r'\bold { "This is markup text." }')
             >>> markup.lilypond_format
             '\\markup { \\bold { "This is markup text." } }'
 
@@ -210,7 +219,8 @@ class Markup(DirectedMark):
         ::
 
             >>> markup = markuptools.Markup(
-            ...     r'\bold { allegro ma non troppo }', markup_name='non troppo')
+            ...     r'\bold { allegro ma non troppo }', 
+            ...     markup_name='non troppo')
 
         ::
 
@@ -230,7 +240,8 @@ class Markup(DirectedMark):
 
         direction = ''
         if self.direction is not None:
-            direction = stringtools.arg_to_tridirectional_lilypond_symbol(self.direction)
+            direction = stringtools.arg_to_tridirectional_lilypond_symbol(
+                self.direction)
 
         # None
         if self.contents is None:

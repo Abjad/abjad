@@ -73,12 +73,13 @@ class Configuration(collections.MutableMapping, abctools.AbjadObject):
     def __setitem__(self, i, arg):
         self._settings[i] = arg
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _config_specification(self):
         specs = self._option_specification
-        return ['{} = {}'.format(key, value) for key, value in sorted(specs.items())]
+        return ['{} = {}'.format(key, value) 
+            for key, value in sorted(specs.items())]
 
     @property
     def _current_time(self):
@@ -116,7 +117,8 @@ class Configuration(collections.MutableMapping, abctools.AbjadObject):
 
     @property
     def configuration_file_path(self):
-        return os.path.join(self.configuration_directory_path, self.configuration_file_name)
+        return os.path.join(
+            self.configuration_directory_path, self.configuration_file_name)
 
     @property
     def home_directory_path(self):

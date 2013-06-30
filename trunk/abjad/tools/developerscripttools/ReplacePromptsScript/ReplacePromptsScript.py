@@ -37,12 +37,13 @@ class ReplacePromptsScript(DirectoryScript):
 
           $ abj-dev replace prompts --abjad-to-python ../..
 
-    `ReplacePromptsScript` uses `ReplaceInFilesScript` for its replacement functionality.
+    `ReplacePromptsScript` uses `ReplaceInFilesScript` for its 
+    replacement functionality.
 
     Return `ReplacePromptsScript` instance.
     '''
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def alias(self):

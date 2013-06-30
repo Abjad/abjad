@@ -16,9 +16,13 @@ class NamedDiatonicPitchClass(DiatonicPitchClass):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_diatonic_pitch_class_name', )
+    __slots__ = (
+        '_diatonic_pitch_class_name',
+        )
 
-    _default_positional_input_arguments = (repr('c'), )
+    _default_positional_input_arguments = (
+        repr('c'),
+        )
 
     ### INITIALIZER ###
 
@@ -36,10 +40,15 @@ class NamedDiatonicPitchClass(DiatonicPitchClass):
             tmp = pitchtools.diatonic_pitch_number_to_diatonic_pitch_class_name
             diatonic_pitch_class_name = tmp(arg)
         else:
-            raise TypeError('\n\tCan not initialize named diatonic pitch-class from %r.' % arg)
-        object.__setattr__(self, '_diatonic_pitch_class_name', diatonic_pitch_class_name)
-        object.__setattr__(self, '_comparison_attribute', diatonic_pitch_class_name)
-        object.__setattr__(self, '_format_string', repr(diatonic_pitch_class_name))
+            raise TypeError(
+                'can not initialize named diatonic pitch-class from %r.' % 
+                arg)
+        object.__setattr__(
+            self, '_diatonic_pitch_class_name', diatonic_pitch_class_name)
+        object.__setattr__(
+            self, '_comparison_attribute', diatonic_pitch_class_name)
+        object.__setattr__(
+            self, '_format_string', repr(diatonic_pitch_class_name))
 
     ### SPECIAL METHODS ###
 
@@ -62,11 +71,13 @@ class NamedDiatonicPitchClass(DiatonicPitchClass):
 
     @property
     def numbered_diatonic_pitch_class(self):
-        '''Read-only numbered diatonic pitch-class from named diatonic pitch-class:
+        '''Read-only numbered diatonic pitch-class from named 
+        diatonic pitch-class:
 
         ::
 
-            >>> named_diatonic_pitch_class = pitchtools.NamedDiatonicPitchClass('c')
+            >>> named_diatonic_pitch_class = \
+            ...     pitchtools.NamedDiatonicPitchClass('c')
             >>> named_diatonic_pitch_class.numbered_diatonic_pitch_class
             NumberedDiatonicPitchClass(0)
 
@@ -74,4 +85,5 @@ class NamedDiatonicPitchClass(DiatonicPitchClass):
         '''
         from abjad.tools import pitchtools
         tmp = pitchtools.diatonic_pitch_class_name_to_diatonic_pitch_class_number
-        return pitchtools.NumberedDiatonicPitchClass(tmp(self._diatonic_pitch_class_name))
+        return pitchtools.NumberedDiatonicPitchClass(
+            tmp(self._diatonic_pitch_class_name))

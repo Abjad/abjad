@@ -8,7 +8,7 @@ from abjad.tools.developerscripttools.DeveloperScript import DeveloperScript
 
 class TestAndRebuildScript(DeveloperScript):
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def alias(self):
@@ -69,7 +69,8 @@ class TestAndRebuildScript(DeveloperScript):
         globs = importlib.import_module('abjad').__dict__.copy()
         try:
             globs.update(importlib.import_module('experimental').__dict__)
-            globs.update(importlib.import_module('experimental.demos').__dict__)
+            globs.update(
+                importlib.import_module('experimental.demos').__dict__)
         except ImportError:
             pass
         failed_tests = 0
@@ -81,7 +82,8 @@ class TestAndRebuildScript(DeveloperScript):
                 if file_name.endswith('.py') and \
                     not file_name.startswith('test_') and \
                     not file_name == '__init__.py':
-                    full_file_name = os.path.abspath(os.path.join(dir_path, file_name))
+                    full_file_name = os.path.abspath(
+                        os.path.join(dir_path, file_name))
                     print os.path.relpath(full_file_name)
                     failure_count, test_count = doctest.testfile(
                         full_file_name,

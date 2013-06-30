@@ -27,13 +27,13 @@ class InheritanceGraph(AbjadObject):
 
         >>> graph = documentationtools.InheritanceGraph(addresses=(F, E))
 
-    ``InheritanceGraph`` may be instantiated from one or more instances, klasses or
-    modules.  If instantiated from a module, all public klasses in that module
-    will be taken into the graph.
+    ``InheritanceGraph`` may be instantiated from one or more instances, 
+    klasses or modules. If instantiated from a module, all public klasses 
+    in that module will be taken into the graph.
 
     A `root_class` keyword may be defined at instantiation, which filters out
-    all klasses from the graph which do not inherit from that `root_class` (or
-    are not already the `root_class`):
+    all klasses from the graph which do not inherit from that `root_class`
+    (or are not already the `root_class`):
 
     ::
 
@@ -49,7 +49,8 @@ class InheritanceGraph(AbjadObject):
         >>> graph = documentationtools.InheritanceGraph(
         ...     addresses=('abjad',))
 
-    To document only those classes descending from Container, use this formulation:
+    To document only those classes descending from Container, 
+    use this formulation:
 
     ::
 
@@ -68,8 +69,9 @@ class InheritanceGraph(AbjadObject):
         ...     lineage_addresses=(componenttools,),
         ...     )
 
-    When creating the Graphviz representation, classes in the inheritance graph
-    may be hidden, based on their distance from any defined lineage class:
+    When creating the Graphviz representation, classes in the inheritance 
+    graph may be hidden, based on their distance from any defined lineage 
+    class:
 
     ::
 
@@ -153,13 +155,16 @@ class InheritanceGraph(AbjadObject):
             self._root_addresses = None
             self._root_klasses = frozenset([object])
 
-        child_parents_mapping, parent_children_mapping = self._build_basic_mappings(all_main_klasses)
-        self._strip_nonlineage_klasses(child_parents_mapping, parent_children_mapping)
+        child_parents_mapping, parent_children_mapping = \
+            self._build_basic_mappings(all_main_klasses)
+        self._strip_nonlineage_klasses(
+            child_parents_mapping, parent_children_mapping)
 
         self._child_parents_mapping = child_parents_mapping
         self._parent_children_mapping = parent_children_mapping
 
-        self._immediate_klasses = main_immediate_klasses.intersection(self._parent_children_mapping.viewkeys())
+        self._immediate_klasses = main_immediate_klasses.intersection(
+            self._parent_children_mapping.viewkeys())
 
         self._lineage_distance_mapping = self._find_lineage_distances()
 
@@ -219,8 +224,10 @@ class InheritanceGraph(AbjadObject):
                     if isinstance(y, types.TypeType):
                         all_klasses.add(y)
                         immediate_klasses.add(y)
-                    elif isinstance(y, types.ModuleType) and recurse_into_submodules:
-                        all_klasses.update(self._submodule_recurse(y, visited_modules))
+                    elif isinstance(y, types.ModuleType) and \
+                        recurse_into_submodules:
+                        all_klasses.update(
+                            self._submodule_recurse(y, visited_modules))
                 address = module.__name__
             cached_addresses.append(address)
         return all_klasses, immediate_klasses, tuple(cached_addresses)
@@ -245,7 +252,8 @@ class InheritanceGraph(AbjadObject):
             recurse_downward(klass)
         return distance_mapping
 
-    def _strip_nonlineage_klasses(self, child_parents_mapping, parent_children_mapping):
+    def _strip_nonlineage_klasses(self, 
+        child_parents_mapping, parent_children_mapping):
         if not self.lineage_klasses:
             return
         def recurse_upward(klass, invalid_klasses):
@@ -262,7 +270,8 @@ class InheritanceGraph(AbjadObject):
                 if child in invalid_klasses:
                     invalid_klasses.remove(child)
                     recurse_downward(child, invalid_klasses)
-        invalid_klasses = set(child_parents_mapping.keys() + parent_children_mapping.keys())
+        invalid_klasses = set(
+            child_parents_mapping.keys() + parent_children_mapping.keys())
         for klass in self.lineage_klasses:
             if klass in invalid_klasses:
                 invalid_klasses.remove(klass)
@@ -281,12 +290,13 @@ class InheritanceGraph(AbjadObject):
         for obj in module.__dict__.values():
             if isinstance(obj, types.TypeType):
                 result.append(obj)
-            elif isinstance(obj, types.ModuleType) and obj not in visited_modules:
+            elif isinstance(obj, types.ModuleType) and \
+                obj not in visited_modules:
                 visited_modules.add(obj)
                 result.extend(self._submodule_recurse(obj, visited_modules))
         return result
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def addresses(self):
@@ -403,12 +413,14 @@ class InheritanceGraph(AbjadObject):
                 elif parent not in distances:
                     if child not in distances:
                         ok_to_join = True
-                    elif child in distances and distances[child] <= ok_distance:
+                    elif child in distances and \
+                        distances[child] <= ok_distance:
                         ok_to_join = True
                 elif child not in distances:
                     if parent not in distances:
                         ok_to_join = True
-                    elif parent in distances and distances[parent] <= ok_distance:
+                    elif parent in distances and \
+                        distances[parent] <= ok_distance:
                         ok_to_join = True
                 elif distances[child] <= ok_distance and \
                     distances[parent] <= ok_distance:
@@ -418,7 +430,8 @@ class InheritanceGraph(AbjadObject):
                     child_node = klass_nodes[child]
                     documentationtools.GraphvizEdge()(parent_node, child_node)
 
-        for i, cluster in enumerate(sorted(graph.children, key=lambda x: x.name)):
+        for i, cluster in enumerate(
+            sorted(graph.children, key=lambda x: x.name)):
             color = i % 9 + 1
             for node in cluster:
                 if 'color' not in node.attributes:

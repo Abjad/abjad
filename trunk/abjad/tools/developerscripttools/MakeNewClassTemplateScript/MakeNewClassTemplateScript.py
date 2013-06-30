@@ -58,7 +58,8 @@ class MakeNewClassTemplateScript(DeveloperScript):
 
     def _get_class_names_in_tools_package(self, root, tools_package_name):
         path = os.path.join(root, tools_package_name)
-        crawler = documentationtools.ClassCrawler(path, include_private_objects=True)
+        crawler = documentationtools.ClassCrawler(
+            path, include_private_objects=True)
         objs = crawler()
         return tuple(sorted([x.__name__ for x in objs]))
 
@@ -86,18 +87,22 @@ class MakeNewClassTemplateScript(DeveloperScript):
         from abjad import abjad_configuration
 
         if args.name.count('.') != 1:
-            print 'Error: {!r} not in tools_package.class_name format.'.format(args.name)
+            message = 'Error: {!r} not in tools_package.class_name format.'
+            print message.format(args.name)
             return
 
         root = args.path
         tools_package_name, class_name = args.name.split('.')
 
         if tools_package_name not in self._get_tools_package_names(root):
-            print 'Error: {!r} is not a valid tools package.'.format(tools_package_name)
+            print 'Error: {!r} is not a valid tools package.'.format(
+                tools_package_name)
             return
 
-        if class_name in self._get_class_names_in_tools_package(root, tools_package_name):
-            print 'Error: {!r} already exists in {!r}'.format(class_name, tools_package_name)
+        if class_name in self._get_class_names_in_tools_package(
+            root, tools_package_name):
+            print 'Error: {!r} already exists in {!r}'.format(
+                class_name, tools_package_name)
             return
 
         package_path = os.path.join(root, tools_package_name, class_name)
@@ -105,9 +110,11 @@ class MakeNewClassTemplateScript(DeveloperScript):
         os.mkdir(package_path)
         os.mkdir(os.path.join(package_path, 'test'))
 
-        if args.path == os.path.join(abjad_configuration.abjad_experimental_directory_path, 'tools'):
+        if args.path == os.path.join(
+            abjad_configuration.abjad_experimental_directory_path, 'tools'):
             package_root_name = 'experimental'
-        elif args.path == os.path.join(abjad_configuration.abjad_directory_path, 'tools'):
+        elif args.path == os.path.join(
+            abjad_configuration.abjad_directory_path, 'tools'):
             package_root_name = 'abjad'
         else:
             raise Exception
@@ -116,7 +123,8 @@ class MakeNewClassTemplateScript(DeveloperScript):
         module_text = '\n'.join(self._get_class_text(class_name)) + '\n'
 
         init_path = os.path.join(package_path, '__init__.py')
-        init_text = '\n'.join(self._get___init___text(package_root_name)) + '\n'
+        init_text = '\n'.join(self._get___init___text(package_root_name))
+        init_text += '\n'
 
         with open(module_path, 'w') as f:
             f.write(module_text)
@@ -136,14 +144,17 @@ class MakeNewClassTemplateScript(DeveloperScript):
 
         path_group.add_argument('-X', '--experimental',
             action='store_const',
-            const=os.path.join(abjad_configuration.abjad_experimental_directory_path, 'tools'),
+            const=os.path.join(
+                abjad_configuration.abjad_experimental_directory_path, 
+                'tools'),
             dest='path',
             help='use the Abjad experimental tools path',
             )
 
         path_group.add_argument('-M', '--mainline',
             action='store_const',
-            const=os.path.join(abjad_configuration.abjad_directory_path, 'tools'),
+            const=os.path.join(
+                abjad_configuration.abjad_directory_path, 'tools'),
             dest='path',
             help='use the Abjad mainline tools path',
             )

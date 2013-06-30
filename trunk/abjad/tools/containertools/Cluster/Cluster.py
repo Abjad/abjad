@@ -33,7 +33,8 @@ class Cluster(Container):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### INITIALIZER ###
 
@@ -60,7 +61,7 @@ class Cluster(Container):
         result.append([contributor, contributions])
         return tuple(result)
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def lilypond_format(self):

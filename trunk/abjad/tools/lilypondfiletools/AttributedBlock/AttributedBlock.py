@@ -31,7 +31,8 @@ class AttributedBlock(list, AbjadObject):
     @property
     def _format_pieces(self):
         result = []
-        if not self._formatted_user_attributes and not getattr(self, 'contexts', None) \
+        if not self._formatted_user_attributes and \
+            not getattr(self, 'contexts', None) \
             and not getattr(self, 'context_blocks', None):
             if self.is_formatted_when_empty:
                 result.append('%s {}' % self._escaped_name)
@@ -45,8 +46,10 @@ class AttributedBlock(list, AbjadObject):
         formatted_attributes = self._formatted_user_attributes
         formatted_attributes = ['\t' + x for x in formatted_attributes]
         result.extend(formatted_attributes)
-        formatted_context_blocks = getattr(self, '_formatted_context_blocks', [])
-        formatted_context_blocks = ['\t' + line for line in formatted_context_blocks]
+        formatted_context_blocks = getattr(
+            self, '_formatted_context_blocks', [])
+        formatted_context_blocks = [
+            '\t' + line for line in formatted_context_blocks]
         result.extend(formatted_context_blocks)
         result.append('}')
         return result
@@ -59,7 +62,8 @@ class AttributedBlock(list, AbjadObject):
         from abjad.tools import schemetools
         result = []
         for value in self:
-            if isinstance(value, (schemetools.Scheme, marktools.LilyPondCommandMark)):
+            if isinstance(value, 
+                (schemetools.Scheme, marktools.LilyPondCommandMark)):
                 result.append(value.lilypond_format)
         for key, value in sorted(vars(self).items()):
             if not key.startswith('_'):
@@ -80,7 +84,8 @@ class AttributedBlock(list, AbjadObject):
                     )):
                     formatted_value = [value.lilypond_format]
                 else:
-                    formatted_value = [schemetools.Scheme(value).lilypond_format]
+                    formatted_value = [
+                        schemetools.Scheme(value).lilypond_format]
                 setting = '%s = %s' % (formatted_key, formatted_value[0])
                 result.append(setting)
                 result.extend(formatted_value[1:])

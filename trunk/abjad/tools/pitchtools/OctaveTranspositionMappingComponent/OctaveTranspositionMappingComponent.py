@@ -18,7 +18,8 @@ class OctaveTranspositionMappingComponent(AbjadObject):
     Initialize from input parameters separately, from a pair, from
     a string or from another mapping component.
 
-    Model ``pitchtools.transpose_chromatic_pitch_number_by_octave_transposition_mapping``
+    Model 
+    ``pitchtools.transpose_chromatic_pitch_number_by_octave_transposition_mapping``
     input part. (See the docs for that function.)
 
     Octave transposition mapping components are mutable.
@@ -38,12 +39,15 @@ class OctaveTranspositionMappingComponent(AbjadObject):
             source_pitch_range, target_octave_start_pitch = args[0]
         elif len(args) == 1 and isinstance(args[0], str):
             assert ' => ' in args[0]
-            source_pitch_range, target_octave_start_pitch = args[0].split(' => ')
+            source_pitch_range, target_octave_start_pitch = \
+                args[0].split(' => ')
             try:
                 target_octave_start_pitch = eval(target_octave_start_pitch)
             except NameError:
-                target_octave_start_pitch = NamedChromaticPitch(target_octave_start_pitch)
-                target_octave_start_pitch = target_octave_start_pitch.chromatic_pitch_number
+                target_octave_start_pitch = NamedChromaticPitch(
+                    target_octave_start_pitch)
+                target_octave_start_pitch = \
+                    target_octave_start_pitch.chromatic_pitch_number
         elif len(args) == 1 and isinstance(args[0], type(self)):
             source_pitch_range = args[0].source_pitch_range
             target_octave_start_pitch = args[0].target_octave_start_pitch
@@ -59,7 +63,8 @@ class OctaveTranspositionMappingComponent(AbjadObject):
     def __eq__(self, expr):
         if isinstance(expr, type(self)):
             if self.source_pitch_range == expr.source_pitch_range:
-                if self.target_octave_start_pitch == expr.target_octave_start_pitch:
+                if self.target_octave_start_pitch == \
+                    expr.target_octave_start_pitch:
                     return True
         return False
 
@@ -91,7 +96,9 @@ class OctaveTranspositionMappingComponent(AbjadObject):
     @property
     def _one_line_menuing_summary(self):
         return '{} => {}'.format(
-            self.source_pitch_range.one_line_named_chromatic_pitch_repr, self.target_octave_start_pitch)
+            self.source_pitch_range.one_line_named_chromatic_pitch_repr, 
+            self.target_octave_start_pitch,
+            )
 
     @property
     def _positional_argument_values(self):
@@ -109,7 +116,8 @@ class OctaveTranspositionMappingComponent(AbjadObject):
 
             ::
 
-                >>> mapping_component = pitchtools.OctaveTranspositionMappingComponent(
+                >>> mapping_component = \
+                ...     pitchtools.OctaveTranspositionMappingComponent(
                 ...     '[A0, C8]', 15)
                 >>> mapping_component.source_pitch_range
                 PitchRange('[A0, C8]')
@@ -128,7 +136,8 @@ class OctaveTranspositionMappingComponent(AbjadObject):
 
             ::
 
-                >>> mapping_component = pitchtools.OctaveTranspositionMappingComponent(
+                >>> mapping_component = \
+                ...     pitchtools.OctaveTranspositionMappingComponent(
                 ...     '[A0, C8]', 15)
                 >>> mapping_component.target_octave_start_pitch
                 NumberedChromaticPitch(15)
@@ -137,5 +146,6 @@ class OctaveTranspositionMappingComponent(AbjadObject):
             '''
             return self._target_octave_start_pitch
         def fset(self, target_octave_start_pitch):
-            self._target_octave_start_pitch = NumberedChromaticPitch(target_octave_start_pitch)
+            self._target_octave_start_pitch = NumberedChromaticPitch(
+                target_octave_start_pitch)
         return property(**locals())

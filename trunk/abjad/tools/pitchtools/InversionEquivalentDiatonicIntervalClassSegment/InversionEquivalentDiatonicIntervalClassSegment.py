@@ -17,6 +17,8 @@ class InversionEquivalentDiatonicIntervalClassSegment(IntervalSegment):
     Inversion-equivalent diatonic interval-class segments are immutable.
     '''
 
+    ### CONSTRUCTOR ###
+
     def __new__(self, diatonic_interval_class_tokens):
         dics = []
         for token in diatonic_interval_class_tokens:
@@ -38,8 +40,9 @@ class InversionEquivalentDiatonicIntervalClassSegment(IntervalSegment):
 
         ::
 
-            >>> dics = pitchtools.InversionEquivalentDiatonicIntervalClassSegment(
-            ... [('major', 3), ('minor', 6), ('major', 6)])
+            >>> dics = \
+            ...     pitchtools.InversionEquivalentDiatonicIntervalClassSegment(
+            ...     [('major', 3), ('minor', 6), ('major', 6)])
             >>> dics.is_tertian
             True
 

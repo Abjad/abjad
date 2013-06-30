@@ -25,7 +25,8 @@ class NegativeInfinity(Infinity):
         >>> NegativeInfinity < Infinity
         True
 
-    Negative infinity is initialize at start-up and is available in the global Abjad namespace.
+    Negative infinity is initialize at start-up and is available in the 
+    global Abjad namespace.
     '''
 
     ### INITIALIZER ###

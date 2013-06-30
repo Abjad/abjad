@@ -18,7 +18,11 @@ class Pipe(abctools.AbjadObject, subprocess.Popen):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_arguments', '_executable', '_timeout')
+    __slots__ = (
+        '_arguments', 
+        '_executable', 
+        '_timeout',
+        )
 
     ### INITIALIZER ###
 
@@ -78,7 +82,8 @@ class Pipe(abctools.AbjadObject, subprocess.Popen):
         return string
 
     def read_wait(self, seconds=0.01):
-        '''Try to read from the pipe.  Wait `seconds` if nothing comes out, and repeat.
+        '''Try to read from the pipe.  Wait `seconds` 
+        if nothing comes out, and repeat.
 
         Should be used with caution, as this may loop forever.
         '''

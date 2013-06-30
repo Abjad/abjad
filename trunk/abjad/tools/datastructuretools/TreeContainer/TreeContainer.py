@@ -39,7 +39,9 @@ class TreeContainer(TreeNode):
         elif isinstance(children, (list, tuple)):
             self.extend(children)
         else:
-            raise ValueError('Cannot instantiate {} with {!r}.'.format(type(self), children))
+            message = 'cannot instantiate {} with {!r}.'
+            message = message.format(type(self), children)
+            raise ValueError(message)
 
     ### SPECIAL METHODS ###
 
@@ -71,7 +73,8 @@ class TreeContainer(TreeNode):
         return False
 
     def __delitem__(self, i):
-        '''Find node at index or slice `i` in container and detach from parentage:
+        '''Find node at index or slice `i` in container and detach 
+        from parentage:
 
         ::
 
@@ -205,9 +208,10 @@ class TreeContainer(TreeNode):
         return len(self._children)
 
     def __setitem__(self, i, expr):
-        '''Set `expr` in self at nonnegative integer index `i`, or set `expr` in self at slice i.
-        Replace contents of `self[i]` with `expr`.
-        Attach parentage to contents of `expr`, and detach parentage of any replaced nodes.
+        '''Set `expr` in self at nonnegative integer index `i`, or set `expr` 
+        in self at slice i. Replace contents of `self[i]` with `expr`.
+        Attach parentage to contents of `expr`, and detach parentage 
+        of any replaced nodes:
 
         ::
 
@@ -274,7 +278,7 @@ class TreeContainer(TreeNode):
             self._children.__setitem__(slice(start, start), expr)
         self._mark_entire_tree_for_later_update()
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _leaf_klass(self):

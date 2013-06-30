@@ -8,18 +8,22 @@ class InversionEquivalentChromaticIntervalClassVector(Vector):
 
     ::
 
-        >>> pitchtools.InversionEquivalentChromaticIntervalClassVector([1, 1, 6, 2, 2, 2])
+        >>> pitchtools.InversionEquivalentChromaticIntervalClassVector(
+        ...     [1, 1, 6, 2, 2, 2])
         InversionEquivalentChromaticIntervalClassVector(0 | 2 3 0 0 0 1)
 
     Initialize by inversion-equivalent chromatic interval-class counts:
 
     ::
 
-        >>> pitchtools.InversionEquivalentChromaticIntervalClassVector(counts=[2, 3, 0, 0, 0, 1])
+        >>> pitchtools.InversionEquivalentChromaticIntervalClassVector(
+        ...     counts=[2, 3, 0, 0, 0, 1])
         InversionEquivalentChromaticIntervalClassVector(0 | 2 3 0 0 0 1)
 
     Inversion-equivalent chromatic interval-class vectors are immutable.
     '''
+
+    ### INITIALIZER ###
 
     def __init__(self, *args, **kwargs):
         from abjad.tools import pitchtools
@@ -31,9 +35,11 @@ class InversionEquivalentChromaticIntervalClassVector(Vector):
             interval_class_tokens = args[0]
             for token in interval_class_tokens:
                 interval_class_number = \
-                    pitchtools.InversionEquivalentChromaticIntervalClass(token).number
+                    pitchtools.InversionEquivalentChromaticIntervalClass(
+                        token).number
                 current_tally = self[interval_class_number]
-                dict.__setitem__(self, interval_class_number, current_tally + 1)
+                dict.__setitem__(
+                    self, interval_class_number, current_tally + 1)
         elif 'counts' in kwargs.keys():
             counts = kwargs['counts']
             assert len(counts) in (6, 7)

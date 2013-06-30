@@ -9,7 +9,14 @@ class LilyPondFraction(AbjadObject):
     Used internally by LilyPondParser.
     '''
 
-    __slots__ = ('numerator', 'denominator')
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        'numerator', 
+        'denominator',
+        )
+
+    ### INITIALIZER ###
 
     def __init__(self, numerator, denominator):
         self.numerator = numerator

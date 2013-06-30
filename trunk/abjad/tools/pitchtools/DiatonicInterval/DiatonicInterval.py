@@ -14,7 +14,10 @@ class DiatonicInterval(Interval, DiatonicObject):
 
     __metaclass__ = abc.ABCMeta
 
-    __slots__ = ('_number', '_quality_string')
+    __slots__ = (
+        '_number', 
+        '_quality_string',
+        )
 
     ### INITIALIZER ###
 
@@ -40,7 +43,8 @@ class DiatonicInterval(Interval, DiatonicObject):
     ### SPECIAL METHODS ###
 
     def __abs__(self):
-        from abjad.tools.pitchtools.HarmonicDiatonicInterval import HarmonicDiatonicInterval
+        from abjad.tools.pitchtools.HarmonicDiatonicInterval \
+            import HarmonicDiatonicInterval
         return HarmonicDiatonicInterval(self.quality_string, self.number)
 
     def __eq__(self, arg):
@@ -67,10 +71,21 @@ class DiatonicInterval(Interval, DiatonicObject):
 
     ### PRIVATE PROPERTIES ###
 
-    _acceptable_quality_strings = ('perfect', 'major', 'minor', 'diminished', 'augmented')
+    _acceptable_quality_strings = (
+        'perfect', 
+        'major', 
+        'minor', 
+        'diminished', 
+        'augmented',
+        )
 
     _quality_abbreviation_to_quality_string = {
-        'M': 'major', 'm': 'minor', 'P': 'perfect', 'aug': 'augmented', 'dim': 'diminished'}
+        'M': 'major', 
+        'm': 'minor', 
+        'P': 'perfect', 
+        'aug': 'augmented', 
+        'dim': 'diminished',
+        }
 
     @property
     def _format_string(self):
@@ -111,7 +126,8 @@ class DiatonicInterval(Interval, DiatonicObject):
     def diatonic_interval_class(self):
         from abjad.tools import pitchtools
         quality_string, number = self._quality_string, self.number
-        return pitchtools.InversionEquivalentDiatonicIntervalClass(quality_string, number)
+        return pitchtools.InversionEquivalentDiatonicIntervalClass(
+            quality_string, number)
 
     @property
     def interval_class(self):
@@ -132,7 +148,8 @@ class DiatonicInterval(Interval, DiatonicObject):
     @property
     def semitones(self):
         result = 0
-        interval_class_number_to_semitones = {1: 0,  2: 1,  3: 3, 4: 5, 5: 7, 6: 8, 7: 10, 8:0}
+        interval_class_number_to_semitones = {
+            1: 0,  2: 1,  3: 3, 4: 5, 5: 7, 6: 8, 7: 10, 8:0}
         try:
             interval_class_number = abs(self.interval_class.number)
         except AttributeError:
@@ -140,7 +157,12 @@ class DiatonicInterval(Interval, DiatonicObject):
         result += interval_class_number_to_semitones[interval_class_number]
         result += (abs(self.number) - 1) / 7 * 12
         quality_string_to_semitones = {
-            'perfect': 0, 'major': 1, 'minor': 0, 'augmented': 1, 'diminished': -1}
+            'perfect': 0, 
+            'major': 1, 
+            'minor': 0, 
+            'augmented': 1, 
+            'diminished': -1,
+            }
         result += quality_string_to_semitones[self.quality_string]
         if self.number < 0:
             result *= -1

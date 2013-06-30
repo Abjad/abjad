@@ -18,7 +18,7 @@ class AbjUpScript(DeveloperScript):
     Return `AbjUpScript` instance.
     '''
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def alias(self):

@@ -25,9 +25,13 @@ class NamedDiatonicPitch(DiatonicPitch):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_diatonic_pitch_name', )
+    __slots__ = (
+        '_diatonic_pitch_name',
+        )
 
-    _default_positional_input_arguments = (repr("c''"), )
+    _default_positional_input_arguments = (
+        repr("c''"),
+        )
 
     ### INITIALIZER ###
 
@@ -41,13 +45,16 @@ class NamedDiatonicPitch(DiatonicPitch):
         elif pitchtools.is_diatonic_pitch_name(arg):
             diatonic_pitch_name = arg
         elif pitchtools.is_diatonic_pitch_number(arg):
-            diatonic_pitch_name = pitchtools.diatonic_pitch_number_to_diatonic_pitch_name(arg)
+            diatonic_pitch_name = \
+                pitchtools.diatonic_pitch_number_to_diatonic_pitch_name(arg)
         else:
-            raise TypeError('\n\tCan not initialize named diatonic pitch: "%s".' % arg)
+            raise TypeError(
+                'can not initialize named diatonic pitch: "%s".' % arg)
         tmp = pitchtools.diatonic_pitch_name_to_diatonic_pitch_number
         diatonic_pitch_number = tmp(diatonic_pitch_name)
         object.__setattr__(self, '_diatonic_pitch_name', diatonic_pitch_name)
-        object.__setattr__(self, '_comparison_attribute', diatonic_pitch_number)
+        object.__setattr__(
+            self, '_comparison_attribute', diatonic_pitch_number)
         object.__setattr__(self, '_format_string', repr(diatonic_pitch_name))
 
     ### SPECIAL METHODS ###
@@ -81,7 +88,8 @@ class NamedDiatonicPitch(DiatonicPitch):
         Return string.
         '''
         from abjad.tools import pitchtools
-        return pitchtools.diatonic_pitch_name_to_chromatic_pitch_class_name(self.diatonic_pitch_name)
+        return pitchtools.diatonic_pitch_name_to_chromatic_pitch_class_name(
+            self.diatonic_pitch_name)
 
     @property
     def chromatic_pitch_class_number(self):
@@ -110,7 +118,8 @@ class NamedDiatonicPitch(DiatonicPitch):
         Return string.
         '''
         from abjad.tools import pitchtools
-        return pitchtools.diatonic_pitch_name_to_chromatic_pitch_name(self.diatonic_pitch_name)
+        return pitchtools.diatonic_pitch_name_to_chromatic_pitch_name(
+            self.diatonic_pitch_name)
 
     @property
     def chromatic_pitch_number(self):
@@ -124,7 +133,8 @@ class NamedDiatonicPitch(DiatonicPitch):
         Return integer.
         '''
         from abjad.tools import pitchtools
-        return pitchtools.diatonic_pitch_name_to_chromatic_pitch_number(self.diatonic_pitch_name)
+        return pitchtools.diatonic_pitch_name_to_chromatic_pitch_number(
+            self.diatonic_pitch_name)
 
     @property
     def diatonic_pitch_class_name(self):
@@ -138,7 +148,8 @@ class NamedDiatonicPitch(DiatonicPitch):
         Return string.
         '''
         from abjad.tools import pitchtools
-        return pitchtools.diatonic_pitch_name_to_diatonic_pitch_class_name(self.diatonic_pitch_name)
+        return pitchtools.diatonic_pitch_name_to_diatonic_pitch_class_name(
+            self.diatonic_pitch_name)
 
     @property
     def diatonic_pitch_class_number(self):
@@ -152,7 +163,8 @@ class NamedDiatonicPitch(DiatonicPitch):
         Return integer.
         '''
         from abjad.tools import pitchtools
-        return pitchtools.diatonic_pitch_name_to_diatonic_pitch_class_number(self.diatonic_pitch_name)
+        return pitchtools.diatonic_pitch_name_to_diatonic_pitch_class_number(
+            self.diatonic_pitch_name)
 
     @property
     def diatonic_pitch_name(self):
@@ -179,7 +191,8 @@ class NamedDiatonicPitch(DiatonicPitch):
         Return integer.
         '''
         from abjad.tools import pitchtools
-        return pitchtools.diatonic_pitch_name_to_diatonic_pitch_number(self.diatonic_pitch_name)
+        return pitchtools.diatonic_pitch_name_to_diatonic_pitch_number(
+            self.diatonic_pitch_name)
 
     @property
     def lilypond_format(self):
@@ -220,7 +233,8 @@ class NamedDiatonicPitch(DiatonicPitch):
         Return named chromatic pitch-class.
         '''
         from abjad.tools import pitchtools
-        return pitchtools.NamedChromaticPitchClass(self.chromatic_pitch_class_name)
+        return pitchtools.NamedChromaticPitchClass(
+            self.chromatic_pitch_class_name)
 
     @property
     def named_diatonic_pitch_class(self):
@@ -235,7 +249,8 @@ class NamedDiatonicPitch(DiatonicPitch):
         '''
         from abjad.tools import pitchtools
         tmp = pitchtools.diatonic_pitch_name_to_diatonic_pitch_class_name
-        return pitchtools.NamedDiatonicPitchClass(tmp(self._diatonic_pitch_name))
+        return pitchtools.NamedDiatonicPitchClass(
+            tmp(self._diatonic_pitch_name))
 
     @property
     def numbered_chromatic_pitch(self):
@@ -263,7 +278,8 @@ class NamedDiatonicPitch(DiatonicPitch):
         Return numbered chromatic pitch-class.
         '''
         from abjad.tools import pitchtools
-        return pitchtools.NumberedChromaticPitchClass(self.chromatic_pitch_class_number)
+        return pitchtools.NumberedChromaticPitchClass(
+            self.chromatic_pitch_class_number)
 
     @property
     def numbered_diatonic_pitch(self):
@@ -293,4 +309,5 @@ class NamedDiatonicPitch(DiatonicPitch):
         '''
         from abjad.tools import pitchtools
         tmp = pitchtools.diatonic_pitch_name_to_diatonic_pitch_class_number
-        return pitchtools.NumberedDiatonicPitchClass(tmp(self._diatonic_pitch_name))
+        return pitchtools.NumberedDiatonicPitchClass(
+            tmp(self._diatonic_pitch_name))

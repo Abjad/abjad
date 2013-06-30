@@ -15,12 +15,13 @@ class LilyPondGrobProxyContextWrapper(object):
         try:
             return vars(self)[name]
         except KeyError:
-            if stringtools.snake_case_to_upper_camel_case(name) in ly.grob_interfaces:
+            if stringtools.snake_case_to_upper_camel_case(name) in \
+                ly.grob_interfaces:
                 vars(self)[name] = LilyPondGrobProxy()
                 return vars(self)[name]
             else:
-                raise AttributeError('object can have only LilyPond grob attributes: "%s".' %
-                    self.__class__.__name__)
+                message = 'object can have only LilyPond grob attributes: "%s".'
+                raise AttributeError(message % self._class_name)
 
     def __repr__(self):
         return '%s()' % self.__class__.__name__

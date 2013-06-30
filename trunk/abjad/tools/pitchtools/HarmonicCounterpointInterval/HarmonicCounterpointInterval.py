@@ -15,6 +15,8 @@ class HarmonicCounterpointInterval(CounterpointInterval, HarmonicInterval):
     Harmonic counterpoint intervals are immutable.
     '''
 
+    ### INITIALIZER ###
+
     def __init__(self, token):
         from abjad.tools import pitchtools
         if isinstance(token, int):
@@ -39,7 +41,6 @@ class HarmonicCounterpointInterval(CounterpointInterval, HarmonicInterval):
     ### PUBLIC PROPERTIES ###
 
     @property
-    #def interval_class(self):
     def harmonic_counterpoint_interval_class(self):
         from abjad.tools import pitchtools
         return pitchtools.HarmonicCounterpointIntervalClass(self)

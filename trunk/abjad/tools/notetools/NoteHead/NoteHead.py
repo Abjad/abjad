@@ -18,7 +18,13 @@ class NoteHead(SortableAttributeEqualityAbjadObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_client', '_is_cautionary', '_is_forced', '_tweak', '_written_pitch')
+    __slots__ = (
+        '_client', 
+        '_is_cautionary', 
+        '_is_forced', 
+        '_tweak', 
+        '_written_pitch',
+        )
 
     ### INITIALIZER ###
 
@@ -29,7 +35,7 @@ class NoteHead(SortableAttributeEqualityAbjadObject):
         self.written_pitch = written_pitch
         self.is_cautionary = is_cautionary
         self.is_forced = is_forced
-        # must assign comparison attribute after written pitch initialization #
+        # must assign comparison attribute after written pitch initialization
         self._comparison_attribute = self.written_pitch
         for tweak_pair in tweak_pairs:
             key, value = tweak_pair

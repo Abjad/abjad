@@ -44,7 +44,7 @@ class ReplaceInFilesScript(DirectoryScript):
     Return `ReplaceInFilesScript` instance.
     '''
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def alias(self):
@@ -119,12 +119,14 @@ class ReplaceInFilesScript(DirectoryScript):
                     self.pattern = re.compile(pattern)
                     self.whole_words_only = whole_words_only
                 except:
-                    raise ValueError("Can't compile {!r} as a regex pattern.".format(pattern))
+                    message = "can't compile {!r} as a regex pattern."
+                    raise ValueError(message.format(pattern))
 
             def __call__(self, line, pos):
                 start, length = self._search(line, pos)
                 if self.whole_words_only and 0 < start:
-                    while start != -1 and (line[start-1].isalnum() or line[start-1] == '_'):
+                    while start != -1 and (
+                        line[start-1].isalnum() or line[start-1] == '_'):
                         start, length = self._search(line, start + length)
                 return start, length
 
@@ -134,7 +136,11 @@ class ReplaceInFilesScript(DirectoryScript):
                     return -1, 0
                 return match.start(), match.end() - match.start()
 
-        return RegexSearch(args.old, escaped=not args.regex, whole_words_only=args.whole_words_only)
+        return RegexSearch(
+            args.old, 
+            escaped=not args.regex, 
+            whole_words_only=args.whole_words_only,
+            )
 
     def _process_file(self, args, path):
 
@@ -146,7 +152,8 @@ class ReplaceInFilesScript(DirectoryScript):
 
         results = []
         for i, line in enumerate(lines):
-            line, changes = self._process_line(line, i, path, args.old, args.new, args.force, args.verbose)
+            line, changes = self._process_line(
+                line, i, path, args.old, args.new, args.force, args.verbose)
             results.append(line)
             if changes:
                 changed_items += changes
@@ -158,7 +165,8 @@ class ReplaceInFilesScript(DirectoryScript):
 
         return changed_lines, changed_items
 
-    def _process_line(self, line, line_number, filename, search, replacement, force, verbose):
+    def _process_line(self, 
+        line, line_number, filename, search, replacement, force, verbose):
         index, changes = 0, 0
         index, length = search(line, index)
 
@@ -214,7 +222,8 @@ class ReplaceInFilesScript(DirectoryScript):
             args.old = self._get_regex_search_callable(args)
             index, length = args.old('', 0)
             if 0 <= index:
-                raise ValueError('Regex pattern {!r} matches the empty string.'.format(args.old.pattern.pattern))
+                message = 'regex pattern {!r} matches the empty string.'
+                raise ValueError(message.format(args.old.pattern.pattern))
         else:
             args.old = self._get_naive_search_callable(args)
 
@@ -242,7 +251,8 @@ class ReplaceInFilesScript(DirectoryScript):
                 if not valid:
                     continue
 
-                changed_lines, changed_items = self._process_file(args, os.path.join(root, file))
+                changed_lines, changed_items = self._process_file(
+                    args, os.path.join(root, file))
                 if changed_lines:
                     changed_file_count += 1
                     changed_line_count += changed_lines

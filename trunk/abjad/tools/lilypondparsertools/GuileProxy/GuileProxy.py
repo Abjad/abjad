@@ -27,56 +27,47 @@ class GuileProxy(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, function_name, args):
-        #signature = self.client._current_module[function_name[1:]]['signature'][1:]
         if hasattr(self, function_name[1:]):
             result = getattr(self, function_name[1:])(*args)
             return result
-        raise Exception("LilyPondParser can't emulate music function %s." % function_name)
-
+        message = "LilyPondParser can't emulate music function %s."
+        raise Exception(message % function_name)
 
     ### FUNCTION EMULATORS ###
-
 
     def acciaccatura(self, music):
         grace = gracetools.GraceContainer(music[:])
         grace.kind = 'acciaccatura'
         return grace
 
-
     # afterGrace
-
 
     def appoggiatura(self, music):
         grace = gracetools.GraceContainer(music[:])
         grace.kind = 'appoggiatura'
         return grace
 
-
     def bar(self, string):
         return marktools.BarLine(string)
-
 
     def breathe(self):
         return marktools.LilyPondCommandMark('breathe', 'after')
 
-
     def clef(self, string):
         return contexttools.ClefMark(string)
 
-
     def grace(self, music):
         return gracetools.GraceContainer(music[:])
-
 
     def key(self, notename_pitch, number_list):
         if number_list is None:
             number_list = 'major'
         return contexttools.KeySignatureMark(notename_pitch, number_list)
 
-
     def language(self, string):
         if string in self.client._language_pitch_names:
-            self.client._pitch_names = self.client._language_pitch_names[string]
+            self.client._pitch_names = \
+                self.client._language_pitch_names[string]
         # try reparsing the next note name, if a note name immediately follows
         lookahead = self.client._parser.lookahead
         if lookahead.type == 'STRING':
@@ -84,23 +75,18 @@ class GuileProxy(AbjadObject):
                 lookahead.type = 'NOTENAME_PITCH'
                 lookahead.value = self.client._pitch_names[lookahead.value]
 
-
     def makeClusters(self, music):
         return containertools.Cluster(music[:])
-
 
     def mark(self, label):
         if label is None:
             label = '\default'
         return marktools.LilyPondCommandMark('mark %s' % label)
 
-
     def one_voice(self):
         return marktools.LilyPondCommandMark('oneVoice')
 
-
     # pitchedTrill
-
 
     def relative(self, pitch, music):
         # We should always keep track of the last chord entered.
@@ -128,8 +114,10 @@ class GuileProxy(AbjadObject):
             elif isinstance(component, (chordtools.Chord, notetools.Note)):
                 pitch = self._make_relative_leaf(component, pitch)
                 if component in self.client._repeated_chords:
-                    for repeated_chord in self.client._repeated_chords[component]:
-                        repeated_chord.written_pitches = component.written_pitches
+                    for repeated_chord in \
+                        self.client._repeated_chords[component]:
+                        repeated_chord.written_pitches = \
+                            component.written_pitches
             elif isinstance(component, containertools.Container):
                 for child in component:
                     pitch = recurse(child, pitch)
@@ -141,28 +129,26 @@ class GuileProxy(AbjadObject):
 
         return music
 
-
     def skip(self, duration):
         leaf = skiptools.Skip(duration.duration)
         if duration.multiplier is not None:
             leaf.duration_multiplier = duration.multiplier
         return leaf
 
-
     def slashed_grace_container(self, music):
         grace = gracetools.GraceContainer(music[:])
         grace.kind = 'slashedGrace'
         return grace
 
-
     def time(self, number_list, fraction):
         n, d = fraction.numerator, fraction.denominator
-        return contexttools.TimeSignatureMark((n, d), target_context=stafftools.Staff)
-
+        return contexttools.TimeSignatureMark(
+            (n, d), target_context=stafftools.Staff)
 
     def times(self, fraction, music):
         n, d  = fraction.numerator, fraction.denominator
-        if not isinstance(music, contexttools.Context) and not isinstance(music, leaftools.Leaf):
+        if not isinstance(music, contexttools.Context) and \
+            not isinstance(music, leaftools.Leaf):
             return tuplettools.Tuplet((n, d), music[:])
         return tuplettools.Tuplet((n, d), [music])
 
@@ -172,18 +158,22 @@ class GuileProxy(AbjadObject):
         self._make_unrelativable(music)
 
         def recurse(music):
-            key_signatures = contexttools.get_key_signature_marks_attached_to_component(music)
+            key_signatures = \
+                contexttools.get_key_signature_marks_attached_to_component(
+                    music)
             if key_signatures:
                 for x in key_signatures:
                     tonic = pitchtools.NamedChromaticPitch(x.tonic, 4)
                     x.tonic = lilypondparsertools.lilypond_enharmonic_transpose(
                         from_pitch, to_pitch, tonic).named_chromatic_pitch_class
             if isinstance(music, notetools.Note):
-                music.written_pitch = lilypondparsertools.lilypond_enharmonic_transpose(
+                music.written_pitch = \
+                    lilypondparsertools.lilypond_enharmonic_transpose(
                     from_pitch, to_pitch, music.written_pitch)
             elif isinstance(music, chordtools.Chord):
                 for note_head in music.note_heads:
-                    note_head.written_pitch = lilypondparsertools.lilypond_enharmonic_transpose(
+                    note_head.written_pitch = \
+                        lilypondparsertools.lilypond_enharmonic_transpose(
                         from_pitch, to_pitch, note_head.written_pitch)
             elif isinstance(music, containertools.Container):
                 for x in music:
@@ -193,38 +183,29 @@ class GuileProxy(AbjadObject):
 
         return music
 
-
     # transposition
 
-
     # tweak
-
 
     def voiceFour(self):
         return marktools.LilyPondCommandMark('voiceTwo')
 
-
     def voiceOne(self):
         return marktools.LilyPondCommandMark('voiceOne')
-
 
     def voiceThree(self):
         return marktools.LilyPondCommandMark('voiceThree')
 
-
     def voiceTwo(self):
         return marktools.LilyPondCommandMark('voiceFour')
 
-
     ### HELPER FUNCTIONS ###
-
 
     def _is_unrelativable(self, music):
         annotations = marktools.get_annotations_attached_to_component(music)
         if 'UnrelativableMusic' in [x.name for x in annotations]:
             return True
         return False
-
 
     def _make_relative_leaf(self, leaf, pitch):
         if self._is_unrelativable(leaf):
@@ -233,7 +214,8 @@ class GuileProxy(AbjadObject):
             pitch = self._to_relative_octave(leaf.written_pitch, pitch)
             leaf.written_pitch = pitch
         elif isinstance(leaf, chordtools.Chord):
-            # TODO: This is not ideal w/r/t post events as LilyPond does not sort chord contents
+            # TODO: This is not ideal w/r/t post events as LilyPond does 
+            # not sort chord contents
             chord_pitches = self.client._chord_pitch_orders[leaf]
             for i, chord_pitch in enumerate(chord_pitches):
                 pitch = self._to_relative_octave(chord_pitch, pitch)
@@ -242,34 +224,33 @@ class GuileProxy(AbjadObject):
             pitch = min(leaf.written_pitches)
         return pitch
 
-
     def _make_unrelativable(self, music):
         if not self._is_unrelativable(music):
             marktools.Annotation('UnrelativableMusic')(music)
 
-
     def _to_relative_octave(self, pitch, reference):
-        if pitch.chromatic_pitch_class_number > reference.chromatic_pitch_class_number:
+        if pitch.chromatic_pitch_class_number > \
+            reference.chromatic_pitch_class_number:
             up_pitch = pitchtools.NamedChromaticPitch(
                 pitch.chromatic_pitch_class_name, reference.octave_number)
             down_pitch = pitchtools.NamedChromaticPitch(
                 pitch.chromatic_pitch_class_name, reference.octave_number - 1)
-            up_octave, down_octave = up_pitch.octave_number, down_pitch.octave_number
+            up_octave, down_octave = \
+                up_pitch.octave_number, down_pitch.octave_number
         else:
             up_pitch = pitchtools.NamedChromaticPitch(
                 pitch.chromatic_pitch_class_name, reference.octave_number + 1)
             down_pitch = pitchtools.NamedChromaticPitch(
                 pitch.chromatic_pitch_class_name, reference.octave_number)
-            up_octave, down_octave = up_pitch.octave_number, down_pitch.octave_number
-
+            up_octave, down_octave = \
+                up_pitch.octave_number, down_pitch.octave_number
         if abs(float(up_pitch.named_diatonic_pitch) - float(reference.named_diatonic_pitch)) \
             < abs(float(down_pitch.named_diatonic_pitch) - float(reference.named_diatonic_pitch)):
-            #pitch = up_pitch + (12 * (pitch.octave_number - 3))
             pitch = pitchtools.NamedChromaticPitch(
-                up_pitch.named_chromatic_pitch_class, up_octave + pitch.octave_number - 3)
+                up_pitch.named_chromatic_pitch_class, 
+                up_octave + pitch.octave_number - 3)
         else:
-            #pitch = down_pitch + (12 * (pitch.octave_number - 3))
             pitch = pitchtools.NamedChromaticPitch(
-                down_pitch.named_chromatic_pitch_class, down_octave + pitch.octave_number - 3)
-
+                down_pitch.named_chromatic_pitch_class, 
+                down_octave + pitch.octave_number - 3)
         return pitch

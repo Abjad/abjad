@@ -10,9 +10,12 @@ class OctaveTranspositionMappingInventory(ObjectInventory):
 
     ::
 
-        >>> mapping_1 = pitchtools.OctaveTranspositionMapping([('[A0, C4)', 15), ('[C4, C8)', 27)])
-        >>> mapping_2 = pitchtools.OctaveTranspositionMapping([('[A0, C8]', -18)])
-        >>> inventory = pitchtools.OctaveTranspositionMappingInventory([mapping_1, mapping_2])
+        >>> mapping_1 = pitchtools.OctaveTranspositionMapping(
+        ...     [('[A0, C4)', 15), ('[C4, C8)', 27)])
+        >>> mapping_2 = pitchtools.OctaveTranspositionMapping(
+        ...     [('[A0, C8]', -18)])
+        >>> inventory = pitchtools.OctaveTranspositionMappingInventory(
+        ...     [mapping_1, mapping_2])
 
     ::
 
@@ -48,10 +51,11 @@ class OctaveTranspositionMappingInventory(ObjectInventory):
                 ])
             ])
 
-    Octave transposition mapping inventories implement list interface and are mutable.
+    Octave transposition mapping inventories implement list interface 
+    and are mutable.
     '''
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _item_callable(self):

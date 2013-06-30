@@ -109,7 +109,8 @@ class PitchArrayCell(AbjadObject):
         composite_column_width = 0
         columns = self.parent_array.columns
         for column_index in self.column_indices:
-            composite_column_width += columns[column_index]._column_format_width
+            composite_column_width += \
+                columns[column_index]._column_format_width
         return composite_column_width
 
     @property
@@ -190,7 +191,8 @@ class PitchArrayCell(AbjadObject):
         elif isinstance(cell_token, PitchArrayCell):
             pitches, width = cell_token.pitches, cell_token.width
         else:
-            raise TypeError('cell token must be integer width, pitch or pair.')
+            message = 'cell token must be integer width, pitch or pair.'
+            raise TypeError(message)
         return pitches, width
 
     def _parse_pitch_token(self, pitch_token):
@@ -311,17 +313,27 @@ class PitchArrayCell(AbjadObject):
             return self.width
         elif len(self.pitches) == 1:
             if self.width == 1:
-                return str(self.pitches[0].named_chromatic_pitch_class), self.pitches[0].octave_number
+                return (
+                    str(self.pitches[0].named_chromatic_pitch_class), 
+                    self.pitches[0].octave_number,
+                    )
             else:
-                return (str(self.pitches[0].named_chromatic_pitch_class), self.pitches[0].octave_number), \
-                    self.width
+                return (
+                    str(self.pitches[0].named_chromatic_pitch_class), 
+                    self.pitches[0].octave_number,
+                    self.width,
+                    )
         else:
             if self.width == 1:
-                return [(str(pitch.named_chromatic_pitch_class), pitch.octave_number) for pitch in self.pitches]
+                return [(str(pitch.named_chromatic_pitch_class), 
+                    pitch.octave_number) 
+                    for pitch in self.pitches]
             else:
-                return [
-                    (str(pitch.named_chromatic_pitch_class), pitch.octave_number) for pitch in self.pitches], \
+                return (
+                    [(str(pitch.named_chromatic_pitch_class), 
+                    pitch.octave_number) for pitch in self.pitches],
                     self.width
+                    )
 
     @property
     def weight(self):

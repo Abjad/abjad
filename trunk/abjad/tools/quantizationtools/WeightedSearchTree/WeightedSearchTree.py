@@ -51,7 +51,11 @@ class WeightedSearchTree(SearchTree):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_all_compositions', '_compositions', '_definition')
+    __slots__ = (
+        '_all_compositions', 
+        '_compositions', 
+        '_definition',
+        )
 
     ### INITIALIZER ###
 
@@ -63,7 +67,7 @@ class WeightedSearchTree(SearchTree):
             all_compositions.extend(value)
         self._all_compositions = tuple(all_compositions)
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def all_compositions(self):
@@ -91,9 +95,11 @@ class WeightedSearchTree(SearchTree):
             return False
         elif not len(definition['divisors']):
             return False
-        elif not all(isinstance(x, int) and 1 < x for x in definition['divisors']):
+        elif not all(isinstance(x, int) and \
+            1 < x for x in definition['divisors']):
             return False
-        elif not all(mathtools.divisors(x) == [1, x] for x in definition['divisors']):
+        elif not all(mathtools.divisors(x) == [1, x] 
+            for x in definition['divisors']):
             return False
         elif 'max_depth' not in definition:
             return False
@@ -113,6 +119,7 @@ class WeightedSearchTree(SearchTree):
         compositions = {}
         max_divisions = self._definition['max_divisions']
         for divisor in self._definition['divisors']:
-            compositions[divisor] = [tuple(x) for x in mathtools.yield_all_compositions_of_integer(divisor)
+            compositions[divisor] = [tuple(x) for x in 
+                mathtools.yield_all_compositions_of_integer(divisor)
                 if 1 < len(x) <= max_divisions]
         return compositions

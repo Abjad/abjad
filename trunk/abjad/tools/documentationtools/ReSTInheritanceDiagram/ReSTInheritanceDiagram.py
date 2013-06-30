@@ -7,7 +7,8 @@ class ReSTInheritanceDiagram(ReSTDirective):
 
     ::
 
-        >>> documentationtools.ReSTInheritanceDiagram(argument=beamtools.BeamSpanner)
+        >>> documentationtools.ReSTInheritanceDiagram(
+        ...     argument=beamtools.BeamSpanner)
         ReSTInheritanceDiagram(
             argument='abjad.tools.beamtools.BeamSpanner.BeamSpanner.BeamSpanner',
             options={
@@ -32,9 +33,15 @@ class ReSTInheritanceDiagram(ReSTDirective):
         new_options = {'private-bases': True}
         if options is not None:
             new_options.update(options)
-        ReSTDirective.__init__(self, argument=argument, children=children, name=name, options=new_options)
+        ReSTDirective.__init__(
+            self, 
+            argument=argument, 
+            children=children, 
+            name=name, 
+            options=new_options,
+            )
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def directive(self):

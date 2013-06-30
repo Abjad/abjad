@@ -66,7 +66,8 @@ class QEventSequence(tuple, ImmutableAbjadObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### INITIALIZER ###
 
@@ -115,7 +116,8 @@ class QEventSequence(tuple, ImmutableAbjadObject):
 
         ::
 
-            >>> sequence = quantizationtools.QEventSequence.from_millisecond_durations(
+            >>> sequence = \
+            ...     quantizationtools.QEventSequence.from_millisecond_durations(
             ...     durations)
 
         ::
@@ -257,12 +259,14 @@ class QEventSequence(tuple, ImmutableAbjadObject):
 
         Return ``QEventSequence`` instance.
         '''
-        from abjad.tools.quantizationtools import millisecond_pitch_pairs_to_q_events
+        from abjad.tools.quantizationtools \
+            import millisecond_pitch_pairs_to_q_events
         return cls(millisecond_pitch_pairs_to_q_events(pairs))
 
     @classmethod
     def from_tempo_scaled_durations(cls, durations, tempo=None):
-        '''Convert ``durations``, scaled by ``tempo`` into a ``QEventSequence``:
+        '''Convert ``durations``, scaled by ``tempo`` 
+        into a ``QEventSequence``:
 
         ::
 
@@ -303,12 +307,14 @@ class QEventSequence(tuple, ImmutableAbjadObject):
 
         Return ``QEventSequence`` instance.
         '''
-        from abjad.tools.quantizationtools import tempo_scaled_durations_to_q_events
+        from abjad.tools.quantizationtools \
+            import tempo_scaled_durations_to_q_events
         return cls(tempo_scaled_durations_to_q_events(durations, tempo))
 
     @classmethod
     def from_tempo_scaled_leaves(cls, leaves, tempo=None):
-        '''Convert ``leaves``, optionally with ``tempo`` into a ``QEventSequence``:
+        '''Convert ``leaves``, optionally with ``tempo`` 
+        into a ``QEventSequence``:
 
         ::
 
@@ -348,11 +354,13 @@ class QEventSequence(tuple, ImmutableAbjadObject):
                 durationtools.Offset(10000, 3)
                 )
 
-        If ``tempo`` is ``None``, all leaves in ``leaves`` must have an effective,
-        non-imprecise tempo.  The millisecond-duration of each leaf will be
-        determined by its effective tempo.
+        If ``tempo`` is ``None``, all leaves in ``leaves`` must 
+        have an effective, non-imprecise tempo.  
+        The millisecond-duration of each leaf will be determined 
+        by its effective tempo.
 
         Return ``QEventSequence`` instance.
         '''
-        from abjad.tools.quantizationtools import tempo_scaled_leaves_to_q_events
+        from abjad.tools.quantizationtools \
+            import tempo_scaled_leaves_to_q_events
         return cls(tempo_scaled_leaves_to_q_events(leaves, tempo))

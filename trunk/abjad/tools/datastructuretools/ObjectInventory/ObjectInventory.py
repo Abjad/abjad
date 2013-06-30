@@ -2,6 +2,7 @@ import types
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
+# TODO: inherit from AbjadObject only
 class ObjectInventory(list, AbjadObject):
     '''.. versionadded:: 2.8
 
@@ -18,7 +19,9 @@ class ObjectInventory(list, AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_name', )
+    __slots__ = (
+        '_name',
+        )
 
     ### INITIALIZER ###
 
@@ -48,7 +51,7 @@ class ObjectInventory(list, AbjadObject):
     def __repr__(self):
         return AbjadObject.__repr__(self)
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _item_callable(self):
@@ -65,16 +68,19 @@ class ObjectInventory(list, AbjadObject):
 
     @property
     def _positional_argument_repr_string(self):
-        positional_argument_repr_string = [repr(x) for x in self._positional_argument_values]
-        positional_argument_repr_string = ', '.join(positional_argument_repr_string)
-        positional_argument_repr_string = '[{}]'.format(positional_argument_repr_string)
+        positional_argument_repr_string = [
+            repr(x) for x in self._positional_argument_values]
+        positional_argument_repr_string = ', '.join(
+            positional_argument_repr_string)
+        positional_argument_repr_string = '[{}]'.format(
+            positional_argument_repr_string)
         return positional_argument_repr_string
 
     @property
     def _positional_argument_values(self):
         return tuple(self)
 
-    ### READ / WRITE PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @apply
     def name():
@@ -95,25 +101,33 @@ class ObjectInventory(list, AbjadObject):
             prefix = '\t'
         else:
             prefix = ''
-        positionals = self._get_tools_package_qualified_positional_argument_repr_pieces(is_indented=is_indented)
-        keywords = self._get_tools_package_qualified_keyword_argument_repr_pieces(is_indented=is_indented)
+        positionals = \
+            self._get_tools_package_qualified_positional_argument_repr_pieces(
+            is_indented=is_indented)
+        keywords = \
+            self._get_tools_package_qualified_keyword_argument_repr_pieces(
+            is_indented=is_indented)
         positionals, keywords = list(positionals), list(keywords)
         if not positionals and not keywords:
-            result.append('{}([])'.format(self._tools_package_qualified_class_name))
+            result.append('{}([])'.format(
+                self._tools_package_qualified_class_name))
         elif not positionals and keywords:
-            result.append('{}([],'.format(self._tools_package_qualified_class_name))
+            result.append('{}([],'.format(
+                self._tools_package_qualified_class_name))
             keywords[-1] = keywords[-1].rstrip(' ')
             keywords[-1] = keywords[-1].rstrip(',')
             result.extend(keywords)
             result.append('{})'.format(prefix))
         elif positionals and not keywords:
-            result.append('{}(['.format(self._tools_package_qualified_class_name))
+            result.append('{}(['.format(
+                self._tools_package_qualified_class_name))
             positionals[-1] = positionals[-1].rstrip(' ')
             positionals[-1] = positionals[-1].rstrip(',')
             result.extend(positionals)
             result.append('{}])'.format(prefix))
         elif positionals and keywords:
-            result.append('{}(['.format(self._tools_package_qualified_class_name))
+            result.append('{}(['.format(
+                self._tools_package_qualified_class_name))
             positionals[-1] = positionals[-1].rstrip(' ')
             positionals[-1] = positionals[-1].rstrip(',')
             result.extend(positionals)

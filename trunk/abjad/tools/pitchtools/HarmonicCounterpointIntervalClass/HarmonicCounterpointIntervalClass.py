@@ -3,7 +3,8 @@ from abjad.tools.pitchtools.CounterpointIntervalClass \
 from abjad.tools.pitchtools.HarmonicIntervalClass import HarmonicIntervalClass
 
 
-class HarmonicCounterpointIntervalClass(CounterpointIntervalClass, HarmonicIntervalClass):
+class HarmonicCounterpointIntervalClass(
+    CounterpointIntervalClass, HarmonicIntervalClass):
     '''.. versionadded:: 2.0
 
     Abjad model of harmonic counterpoint interval-class:
@@ -15,6 +16,8 @@ class HarmonicCounterpointIntervalClass(CounterpointIntervalClass, HarmonicInter
 
     Harmonic counterpoint interval-classes are immutable.
     '''
+
+    ### INITIALIZER ###
 
     def __init__(self, token):
         from abjad.tools import pitchtools
@@ -43,6 +46,3 @@ class HarmonicCounterpointIntervalClass(CounterpointIntervalClass, HarmonicInter
             if self.number == arg.number:
                 return True
         return False
-
-    def __ne__(self, arg):
-        return not self == arg

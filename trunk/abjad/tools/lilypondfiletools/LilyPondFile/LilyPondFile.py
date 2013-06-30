@@ -17,18 +17,26 @@ class LilyPondFile(list):
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file(staff)
-        >>> lilypond_file.file_initial_user_comments.append('File construct as an example.')
-        >>> lilypond_file.file_initial_user_comments.append('Parts shown here for positioning.')
-        >>> lilypond_file.file_initial_user_includes.append('external-settings-file-1.ly')
-        >>> lilypond_file.file_initial_user_includes.append('external-settings-file-2.ly')
+        >>> lilypond_file.file_initial_user_comments.append(
+        ...     'File construct as an example.')
+        >>> lilypond_file.file_initial_user_comments.append(
+        ...     'Parts shown here for positioning.')
+        >>> lilypond_file.file_initial_user_includes.append(
+        ...     'external-settings-file-1.ly')
+        >>> lilypond_file.file_initial_user_includes.append(
+        ...     'external-settings-file-2.ly')
         >>> lilypond_file.default_paper_size = 'letter', 'portrait'
         >>> lilypond_file.global_staff_size = 16
-        >>> lilypond_file.header_block.composer = markuptools.Markup('Josquin')
-        >>> lilypond_file.header_block.title = markuptools.Markup('Missa sexti tonus')
+        >>> lilypond_file.header_block.composer = \
+        ...     markuptools.Markup('Josquin')
+        >>> lilypond_file.header_block.title = \
+        ...     markuptools.Markup('Missa sexti tonus')
         >>> lilypond_file.layout_block.indent = 0
         >>> lilypond_file.layout_block.left_margin = 15
-        >>> lilypond_file.paper_block.oddFooterMarkup = markuptools.Markup('The odd-page footer')
-        >>> lilypond_file.paper_block.evenFooterMarkup = markuptools.Markup('The even-page footer')
+        >>> lilypond_file.paper_block.oddFooterMarkup = \
+        ...     markuptools.Markup('The odd-page footer')
+        >>> lilypond_file.paper_block.evenFooterMarkup = \
+        ...     markuptools.Markup('The even-page footer')
 
     ::
 
@@ -81,12 +89,6 @@ class LilyPondFile(list):
         self._file_initial_system_includes = []
         self._file_initial_system_includes.append(LilyPondVersionToken())
         self._file_initial_system_includes.append(LilyPondLanguageToken())
-        #self._file_initial_system_includes.append(
-        #    os.path.join(
-        #        abjad_configuration.abjad_directory_path,
-        #        'cfg',
-        #        'abjad.scm',
-        #        ))
         self._file_initial_user_includes = []
         self.default_paper_size = None
         self.global_staff_size = None
@@ -130,7 +132,8 @@ class LilyPondFile(list):
         default_paper_size = self.default_paper_size
         if default_paper_size is not None:
             dimension, orientation = default_paper_size
-            result.append("#(set-default-paper-size \"%s\" '%s)" % (dimension, orientation))
+            result.append("#(set-default-paper-size \"%s\" '%s)" % (
+                dimension, orientation))
         global_staff_size = self.global_staff_size
         if global_staff_size is not None:
             result.append('#(set-global-staff-size %s)' % global_staff_size)

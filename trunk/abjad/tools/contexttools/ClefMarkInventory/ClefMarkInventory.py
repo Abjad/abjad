@@ -34,7 +34,7 @@ class ClefMarkInventory(ObjectInventory):
     Clef mark inventories implement list interface and are mutable.
     '''
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _item_callable(self):

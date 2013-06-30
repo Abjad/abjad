@@ -2,7 +2,8 @@ from abjad.tools.pitchtools.DiatonicIntervalClass import DiatonicIntervalClass
 from abjad.tools.pitchtools.HarmonicIntervalClass import HarmonicIntervalClass
 
 
-class HarmonicDiatonicIntervalClass(DiatonicIntervalClass, HarmonicIntervalClass):
+class HarmonicDiatonicIntervalClass(
+    DiatonicIntervalClass, HarmonicIntervalClass):
     '''.. versionadded:: 2.0
 
     Abjad model harmonic diatonic interval-class:
@@ -16,7 +17,8 @@ class HarmonicDiatonicIntervalClass(DiatonicIntervalClass, HarmonicIntervalClass
     '''
 
     def __init__(self, *args):
-        from abjad.tools.pitchtools.is_melodic_diatonic_interval_abbreviation import melodic_diatonic_interval_abbreviation_regex
+        from abjad.tools.pitchtools.is_melodic_diatonic_interval_abbreviation \
+            import melodic_diatonic_interval_abbreviation_regex
         from abjad.tools import pitchtools
         if len(args) == 1:
             if isinstance(args[0], pitchtools.HarmonicDiatonicInterval):
@@ -27,7 +29,9 @@ class HarmonicDiatonicIntervalClass(DiatonicIntervalClass, HarmonicIntervalClass
                 if match is None:
                     raise ValueError('"%s" does not have the form of an hdic abbreviation.' % args[0])
                 direction_string, quality_abbreviation, number_string = match.groups()
-                quality_string = DiatonicIntervalClass._quality_abbreviation_to_quality_string[quality_abbreviation]
+                quality_string = \
+                    DiatonicIntervalClass._quality_abbreviation_to_quality_string[
+                        quality_abbreviation]
                 number = int(number_string)
             elif isinstance(args[0], tuple) and len(args[0]) == 2:
                 quality_string, number = args[0]
@@ -35,7 +39,8 @@ class HarmonicDiatonicIntervalClass(DiatonicIntervalClass, HarmonicIntervalClass
                 raise TypeError
         else:
             quality_string, number = args
-        if quality_string not in DiatonicIntervalClass._acceptable_quality_strings:
+        if quality_string not in \
+            DiatonicIntervalClass._acceptable_quality_strings:
             raise ValueError('not acceptable quality string.')
         object.__setattr__(self, '_quality_string', quality_string)
         if not isinstance(number, int):

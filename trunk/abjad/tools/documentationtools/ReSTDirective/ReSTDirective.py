@@ -14,7 +14,7 @@ class ReSTDirective(TreeContainer):
         if options is not None:
             self._options.update(options)
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _children_rest_format_contributions(self):
@@ -49,7 +49,7 @@ class ReSTDirective(TreeContainer):
         result.extend(self._children_rest_format_contributions)
         return result
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @abc.abstractproperty
     def directive(self):
@@ -73,7 +73,7 @@ class ReSTDirective(TreeContainer):
     def rest_format(self):
         return '\n'.join(self._rest_format_contributions)
 
-    ### READ/WRITE PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @apply
     def argument():

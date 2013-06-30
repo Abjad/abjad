@@ -11,11 +11,13 @@ class AbjadConfiguration(Configuration):
         >>> ABJCONFIG['accidental_spelling']
         'mixed'
 
-    `AbjadConfiguration` creates the `$home/.abjad/` directory on instantiation.
+    `AbjadConfiguration` creates the `$home/.abjad/` directory 
+    on instantiation.
 
-    `AbjadConfiguration` then attempts to read an `abjad.cfg` file in that directory
-    and parse the file as a `ConfigObj` configuration.
-    `AbjadConfiguration` generates a default configuration if no file is found.
+    `AbjadConfiguration` then attempts to read an `abjad.cfg` file in 
+    that directory and parse the file as a `ConfigObj` configuration.
+    `AbjadConfiguration` generates a default configuration if no file 
+    is found.
 
     `AbjadConfiguration` validates the `ConfigObj` instance
     and replaces key-value pairs which fail validation with default values.
@@ -60,7 +62,8 @@ class AbjadConfiguration(Configuration):
                     'Defaults to $home/.abjad/output/'
                 ],
                 'spec': 'string(default={!r})'.format(
-                    os.path.join(self.abjad_configuration_directory_path, 'output'))
+                    os.path.join(
+                        self.abjad_configuration_directory_path, 'output'))
             },
             'accidental_spelling': {
                 'comment': [
@@ -119,7 +122,7 @@ class AbjadConfiguration(Configuration):
         }
         return options
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def abjad_configuration_directory_path(self):
@@ -132,7 +135,8 @@ class AbjadConfiguration(Configuration):
     @property
     def abjad_directory_path(self):
         module_parts = self.__module__.split('.')
-        filepath_parts = os.path.abspath(__file__).rpartition('.py')[0].split(os.path.sep)
+        filepath_parts = os.path.abspath(__file__).rpartition('.py')
+        filepath_parts = filepath_parts[0].split(os.path.sep)
         for part in reversed(module_parts):
             if part == 'abjad':
                 break
@@ -141,7 +145,8 @@ class AbjadConfiguration(Configuration):
 
     @property
     def abjad_experimental_directory_path(self):
-        return os.path.abspath(os.path.join(self.abjad_directory_path, '..', '..', 'experimental'))
+        return os.path.abspath(os.path.join(
+            self.abjad_directory_path, '..', '..', 'experimental'))
 
     @property
     def abjad_output_directory_path(self):
@@ -149,7 +154,8 @@ class AbjadConfiguration(Configuration):
 
     @property
     def abjad_root_directory_path(self):
-        return os.path.abspath(os.path.join(self.abjad_directory_path, '..', '..'))
+        return os.path.abspath(os.path.join(
+            self.abjad_directory_path, '..', '..'))
 
     @property
     def configuration_directory_path(self):

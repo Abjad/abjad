@@ -11,7 +11,9 @@ class BoundedObject(AbjadObject):
     ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
-    __slots__ = ()
+
+    __slots__ = (
+        )
 
     ### INITIALIZER ###
 
@@ -19,7 +21,7 @@ class BoundedObject(AbjadObject):
     def __init__(self):
         pass
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def is_closed(self):
@@ -32,12 +34,6 @@ class BoundedObject(AbjadObject):
     @property
     def is_half_open(self):
         return not self.is_left_open == self.is_right_open
-
-    @property
-    def is_open(self):
-        return not self.is_left_closed and not self.is_right_closed
-
-    ### READ / WRITE PUBLIC PROPERTIES ###
 
     @apply
     def is_left_closed():
@@ -56,6 +52,10 @@ class BoundedObject(AbjadObject):
             assert isinstance(is_left_open, bool), is_left_open
             self._is_left_closed = not is_left_open
         return property(**locals())
+
+    @property
+    def is_open(self):
+        return not self.is_left_closed and not self.is_right_closed
 
     @apply
     def is_right_closed():

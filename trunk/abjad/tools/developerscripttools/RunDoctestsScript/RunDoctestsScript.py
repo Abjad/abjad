@@ -22,7 +22,7 @@ class RunDoctestsScript(DirectoryScript):
     Return `RunDoctestsScript` instance.
     '''
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def alias(self):
@@ -50,7 +50,8 @@ class RunDoctestsScript(DirectoryScript):
         globs = importlib.import_module('abjad').__dict__.copy()
         try:
             globs.update(importlib.import_module('experimental').__dict__)
-            globs.update(importlib.import_module('experimental.demos').__dict__)
+            globs.update(
+                importlib.import_module('experimental.demos').__dict__)
         except:
             pass
         if args.diff:
@@ -65,13 +66,17 @@ class RunDoctestsScript(DirectoryScript):
                     not file_name.startswith('test_') and \
                     not file_name == '__init__.py':
                     total_modules += 1
-                    full_file_name = os.path.abspath(os.path.join(dir_path, file_name))
-                    doctest.testfile(full_file_name, module_relative=False, globs=globs,
-                       optionflags=optionflags)
+                    full_file_name = os.path.abspath(
+                        os.path.join(dir_path, file_name))
+                    doctest.testfile(
+                        full_file_name, 
+                        module_relative=False, 
+                        globs=globs,
+                       optionflags=optionflags,
+                       )
         print 'Total modules: %s' % total_modules
 
     def setup_argument_parser(self, parser):
-
         parser.add_argument('--diff',
             action='store_true',
             help='print diff-like output on failed tests.',

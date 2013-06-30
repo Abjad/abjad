@@ -9,7 +9,8 @@ class MelodicChromaticIntervalSegment(IntervalSegment):
 
     ::
 
-        >>> pitchtools.MelodicChromaticIntervalSegment([11, 13, 13.5, -2, 2.5])
+        >>> pitchtools.MelodicChromaticIntervalSegment(
+        ...     [11, 13, 13.5, -2, 2.5])
         MelodicChromaticIntervalSegment(+11, +13, +13.5, -2, +2.5)
 
     Melodic chromatic interval segments are immutable.
@@ -63,7 +64,8 @@ class MelodicChromaticIntervalSegment(IntervalSegment):
 
         Return fraction.
         '''
-        return fractions.Fraction.from_float(sum([x.number for x in self])) / len(self)
+        return fractions.Fraction.from_float(
+            sum([x.number for x in self])) / len(self)
 
     @property
     def spread(self):
@@ -72,9 +74,11 @@ class MelodicChromaticIntervalSegment(IntervalSegment):
 
         ::
 
-            >>> pitchtools.MelodicChromaticIntervalSegment([1, 2, -3, 1, -2, 1]).spread
+            >>> pitchtools.MelodicChromaticIntervalSegment(
+            ...     [1, 2, -3, 1, -2, 1]).spread
             HarmonicChromaticInterval(4)
-            >>> pitchtools.MelodicChromaticIntervalSegment([1, 1, 1, 2, -3, -2]).spread
+            >>> pitchtools.MelodicChromaticIntervalSegment(
+            ...     [1, 1, 1, 2, -3, -2]).spread
             HarmonicChromaticInterval(5)
 
         Return harmonic chromatic interval.

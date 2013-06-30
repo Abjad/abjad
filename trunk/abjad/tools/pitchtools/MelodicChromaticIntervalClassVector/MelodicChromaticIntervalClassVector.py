@@ -8,7 +8,8 @@ class MelodicChromaticIntervalClassVector(Vector):
 
     ::
 
-        >>> print pitchtools.MelodicChromaticIntervalClassVector([-2, -14, 3, 5.5, 6.5])
+        >>> print pitchtools.MelodicChromaticIntervalClassVector(
+        ...     [-2, -14, 3, 5.5, 6.5])
             .   |   .   .   1   .   .   .   |   .   .   .   .   .   .
                 |   .   2   .   .   .   .   |   .   .   .   .   .   .
                 |   .   .   .   .   .   1   |   1   .   .   .   .   .
@@ -16,6 +17,8 @@ class MelodicChromaticIntervalClassVector(Vector):
 
     Melodic chromatic interval-class vectors are immutable.
     '''
+
+    ### INITIALIZER ###
 
     def __init__(self, mcic_tokens):
         from abjad.tools import pitchtools

@@ -108,7 +108,8 @@ If no PATH flag is specified, the current directory will be searched.
 
         group.add_argument('-T', '--tools',
             action='store_const',
-            const=os.path.join(abjad_configuration.abjad_directory_path, 'tools'),
+            const=os.path.join(
+                abjad_configuration.abjad_directory_path, 'tools'),
             dest='path',
             help='grep Abjad mainline tools directory',
             )

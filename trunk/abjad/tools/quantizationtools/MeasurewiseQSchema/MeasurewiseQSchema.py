@@ -4,7 +4,8 @@ from abjad.tools.quantizationtools.QSchema import QSchema
 
 
 class MeasurewiseQSchema(QSchema):
-    '''Concrete QSchema subclass which treats "measures" as its time-step unit:
+    '''Concrete QSchema subclass which treats "measures" as 
+    its time-step unit:
 
     ::
 
@@ -41,8 +42,8 @@ class MeasurewiseQSchema(QSchema):
         * ``time_signature``
         * ``use_full_measure``
 
-    These settings can be applied as global defaults for the schema via keyword arguments,
-    which persist until overridden:
+    These settings can be applied as global defaults for the schema via 
+    keyword arguments, which persist until overridden:
 
     ::
 
@@ -58,18 +59,21 @@ class MeasurewiseQSchema(QSchema):
         ...     )
 
     All of these settings are self-descriptive, except for
-    ``use_full_measure``, which controls whether the measure is subdivided by the
-    ``Quantizer`` into beats according to its time signature.
+    ``use_full_measure``, which controls whether the measure is 
+    subdivided by the ``Quantizer`` into beats according to its 
+    time signature.
 
-    If ``use_full_measure`` is ``False``, the time-step's measure will be divided
-    into units according to its time-signature.  For example, a 4/4 measure
-    will be divided into 4 units, each having a beatspan of 1/4.
+    If ``use_full_measure`` is ``False``, the time-step's measure 
+    will be divided into units according to its time-signature.  
+    For example, a 4/4 measure will be divided into 4 units, 
+    each having a beatspan of 1/4.
 
-    On the other hand, if ``use_full_measure`` is set to ``True``, the time-step's
-    measure will not be subdivided into independent quantization units.  This
-    usually results in full-measure tuplets.
+    On the other hand, if ``use_full_measure`` is set to ``True``, 
+    the time-step's measure will not be subdivided into independent 
+    quantization units. This usually results in full-measure tuplets.
 
-    The computed value at any non-negative time-step can be found by subscripting:
+    The computed value at any non-negative time-step can be 
+    found by subscripting:
 
     ::
 
@@ -98,9 +102,9 @@ class MeasurewiseQSchema(QSchema):
     Per-time-step settings can be applied in a variety of ways.
 
     Instantiating the schema via ``*args`` with a series of either
-    ``MeasurewiseQSchemaItem`` instances, or dictionaries which could be used
-    to instantiate ``MeasurewiseQSchemaItem`` instances, will apply those
-    settings sequentially, starting from time-step ``0``:
+    ``MeasurewiseQSchemaItem`` instances, or dictionaries which could be 
+    used to instantiate ``MeasurewiseQSchemaItem`` instances, will apply 
+    those settings sequentially, starting from time-step ``0``:
 
     ::
 
@@ -140,10 +144,10 @@ class MeasurewiseQSchema(QSchema):
             definition={   5: None}
             )
 
-    Similarly, instantiating the schema from a single dictionary, consisting of
-    integer:specification pairs, or a sequence via ``*args`` of (integer,
-    specification) pairs, allows for applying settings to non-sequential
-    time-steps:
+    Similarly, instantiating the schema from a single dictionary, 
+    consisting of integer:specification pairs, or a sequence via 
+    ``*args`` of (integer, specification) pairs, allows for applying 
+    settings to non-sequential time-steps:
 
     ::
 
@@ -218,15 +222,22 @@ class MeasurewiseQSchema(QSchema):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_items', '_lookups', '_search_tree', '_tempo',
-        '_time_signature', '_use_full_measure')
+    __slots__ = (
+        '_items', 
+        '_lookups', 
+        '_search_tree', 
+        '_tempo',
+        '_time_signature', 
+        '_use_full_measure',
+        )
 
     ### INITIALIZER ###
 
     def __init__(self, *args, **kwargs):
         from abjad.tools import quantizationtools
 
-        search_tree = kwargs.get('search_tree', quantizationtools.UnweightedSearchTree())
+        search_tree = kwargs.get(
+            'search_tree', quantizationtools.UnweightedSearchTree())
         assert isinstance(search_tree, quantizationtools.SearchTree)
         self._search_tree = search_tree
 
@@ -242,13 +253,13 @@ class MeasurewiseQSchema(QSchema):
 
         QSchema.__init__(self, *args, **kwargs)
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _keyword_argument_names(self):
         return ('search_tree', 'tempo', 'time_signature', 'use_full_measure')
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def item_klass(self):

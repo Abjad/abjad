@@ -3,7 +3,8 @@ from abjad.tools.pitchtools.DiatonicIntervalClass import DiatonicIntervalClass
 from abjad.tools.pitchtools.MelodicIntervalClass import MelodicIntervalClass
 
 
-class MelodicDiatonicIntervalClass(DiatonicIntervalClass, MelodicIntervalClass):
+class MelodicDiatonicIntervalClass(
+    DiatonicIntervalClass, MelodicIntervalClass):
     '''.. versionadded:: 2.0
 
     Abjad model of melodic diatonic interval-class:
@@ -16,25 +17,35 @@ class MelodicDiatonicIntervalClass(DiatonicIntervalClass, MelodicIntervalClass):
     Melodic diatonic interval-classes are immutable.
     '''
 
+    ### INITIALIZER ###
+
     def __init__(self, *args):
         from abjad.tools import pitchtools
-        from abjad.tools.pitchtools.is_melodic_diatonic_interval_abbreviation import melodic_diatonic_interval_abbreviation_regex
+        from abjad.tools.pitchtools.is_melodic_diatonic_interval_abbreviation \
+            import melodic_diatonic_interval_abbreviation_regex
         if len(args) == 1:
             if isinstance(args[0], pitchtools.MelodicDiatonicInterval):
                 quality_string = args[0]._quality_string
                 number = args[0].number
             elif isinstance(args[0], str):
-                match = melodic_diatonic_interval_abbreviation_regex.match(args[0])
+                match = melodic_diatonic_interval_abbreviation_regex.match(
+                    args[0])
                 if match is None:
-                    raise ValueError('"%s" does not have the form of an abbreviation.' % args[0])
-                direction_string, quality_abbreviation, number_string = match.groups()
-                quality_string = DiatonicIntervalClass._quality_abbreviation_to_quality_string[quality_abbreviation]
+                    raise ValueError(
+                        '"%s" does not have the form of an abbreviation.' % 
+                        args[0])
+                direction_string, quality_abbreviation, number_string = \
+                    match.groups()
+                quality_string = \
+                    DiatonicIntervalClass._quality_abbreviation_to_quality_string[
+                        quality_abbreviation]
                 number = int(direction_string + number_string)
             else:
                 raise TypeError('what type of instance is this?')
         else:
             quality_string, number = args
-        if quality_string not in DiatonicIntervalClass._acceptable_quality_strings:
+        if quality_string not in \
+            DiatonicIntervalClass._acceptable_quality_strings:
             raise ValueError('not acceptable quality string.')
         if not isinstance(number, int):
             raise TypeError('must be integer.')

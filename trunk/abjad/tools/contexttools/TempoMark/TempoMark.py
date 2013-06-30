@@ -108,13 +108,20 @@ class TempoMark(ContextMark):
         if isinstance(expr, type(self)):
             if self.is_imprecise or expr.is_imprecise:
                 raise ImpreciseTempoError
-            new_quarters_per_minute = self.quarters_per_minute + expr.quarters_per_minute
-            minimum_denominator = min((self.duration.denominator, expr.duration.denominator))
-            nonreduced_fraction = mathtools.NonreducedFraction(new_quarters_per_minute / 4)
-            nonreduced_fraction = nonreduced_fraction.with_denominator(minimum_denominator)
-            new_units_per_minute, new_duration_denominator = nonreduced_fraction.pair
-            new_duration = durationtools.Duration(1, new_duration_denominator)
-            new_tempo_indication = type(self)(new_duration, new_units_per_minute)
+            new_quarters_per_minute = \
+                self.quarters_per_minute + expr.quarters_per_minute
+            minimum_denominator = \
+                min((self.duration.denominator, expr.duration.denominator))
+            nonreduced_fraction = \
+                mathtools.NonreducedFraction(new_quarters_per_minute / 4)
+            nonreduced_fraction = \
+                nonreduced_fraction.with_denominator(minimum_denominator)
+            new_units_per_minute, new_duration_denominator = \
+                nonreduced_fraction.pair
+            new_duration = \
+                durationtools.Duration(1, new_duration_denominator)
+            new_tempo_indication = \
+                type(self)(new_duration, new_units_per_minute)
             return new_tempo_indication
 
     def __copy__(self, *args):
@@ -144,31 +151,42 @@ class TempoMark(ContextMark):
                 raise ImpreciseTempoError
             new_units_per_minute = multiplier * self.units_per_minute
             new_duration = durationtools.Duration(self.duration)
-            new_tempo_indication = type(self)(new_duration, new_units_per_minute)
+            new_tempo_indication = \
+                type(self)(new_duration, new_units_per_minute)
             return new_tempo_indication
 
     def __sub__(self, expr):
         if isinstance(expr, type(self)):
             if self.is_imprecise or expr.is_imprecise:
                 raise ImpreciseTempoError
-            new_quarters_per_minute = self.quarters_per_minute - expr.quarters_per_minute
-            minimum_denominator = min((self.duration.denominator, expr.duration.denominator))
-            nonreduced_fraction = mathtools.NonreducedFraction(new_quarters_per_minute / 4)
-            nonreduced_fraction = nonreduced_fraction.with_denominator(minimum_denominator)
-            new_units_per_minute, new_duration_denominator = nonreduced_fraction.pair
-            new_duration = durationtools.Duration(1, new_duration_denominator)
-            new_tempo_indication = type(self)(new_duration, new_units_per_minute)
+            new_quarters_per_minute = \
+                self.quarters_per_minute - expr.quarters_per_minute
+            minimum_denominator = \
+                min((self.duration.denominator, expr.duration.denominator))
+            nonreduced_fraction = \
+                mathtools.NonreducedFraction(new_quarters_per_minute / 4)
+            nonreduced_fraction = \
+                nonreduced_fraction.with_denominator(minimum_denominator)
+            new_units_per_minute, new_duration_denominator = \
+                nonreduced_fraction.pair
+            new_duration = \
+                durationtools.Duration(1, new_duration_denominator)
+            new_tempo_indication = \
+                type(self)(new_duration, new_units_per_minute)
             return new_tempo_indication
 
     ### PRIVATE METHODS ###
 
     def _bind_correct_effective_context(self, correct_effective_context):
-        ContextMark._bind_correct_effective_context(self, correct_effective_context)
-        correct_effective_context._mark_entire_score_tree_for_later_update('seconds')
+        ContextMark._bind_correct_effective_context(
+            self, correct_effective_context)
+        correct_effective_context._mark_entire_score_tree_for_later_update(
+            'seconds')
 
     def _bind_start_component(self, start_component):
         ContextMark._bind_start_component(self, start_component)
-        self._start_component._mark_entire_score_tree_for_later_update('seconds')
+        self._start_component._mark_entire_score_tree_for_later_update(
+            'seconds')
 
     ### PRIVATE PROPERTIES ###
 
@@ -183,7 +201,10 @@ class TempoMark(ContextMark):
         '''Dotted numeral and units per minute together around equal sign.
         '''
         if isinstance(self.units_per_minute, tuple):
-            return '%s=%s~%s' % (self._dotted, self.units_per_minute[0], self.units_per_minute[1])
+            return '%s=%s~%s' % (
+                self._dotted, 
+                self.units_per_minute[0], 
+                self.units_per_minute[1])
         return '%s=%s' % (self._dotted, self.units_per_minute)
 
     @property
@@ -319,12 +340,14 @@ class TempoMark(ContextMark):
         '''
         if self.is_imprecise:
             return None
-
         if isinstance(self.units_per_minute, tuple):
-            low = durationtools.Duration(1, 4) / self.duration * self.units_per_minute[0]
-            high = durationtools.Duration(1, 4) / self.duration * self.units_per_minute[1]
+            low = durationtools.Duration(1, 4) / self.duration * \
+                self.units_per_minute[0]
+            high = durationtools.Duration(1, 4) / self.duration * \
+                self.units_per_minute[1]
             return (low, high)
-        result = durationtools.Duration(1, 4) / self.duration * self.units_per_minute
+        result = durationtools.Duration(1, 4) / self.duration * \
+            self.units_per_minute
         return fractions.Fraction(result)
 
     @apply
@@ -334,7 +357,8 @@ class TempoMark(ContextMark):
 
             ::
 
-                >>> tempo = contexttools.TempoMark('Langsam', Duration(1, 8), 52)
+                >>> tempo = contexttools.TempoMark(
+                ...     'Langsam', Duration(1, 8), 52)
                 >>> tempo.textual_indication
                 'Langsam'
 

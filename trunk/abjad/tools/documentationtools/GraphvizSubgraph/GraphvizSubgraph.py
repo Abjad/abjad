@@ -25,7 +25,7 @@ class GraphvizSubgraph(GraphvizGraph):
         self.is_cluster = is_cluster
         self._edges = set([])
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _graphviz_format_pieces(self):
@@ -35,9 +35,12 @@ class GraphvizSubgraph(GraphvizGraph):
     @property
     def _node_klass(self):
         from abjad.tools import documentationtools
-        return (documentationtools.GraphvizSubgraph, documentationtools.GraphvizNode)
+        return (
+            documentationtools.GraphvizSubgraph, 
+            documentationtools.GraphvizNode,
+            )
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def canonical_name(self):
@@ -53,8 +56,6 @@ class GraphvizSubgraph(GraphvizGraph):
     @property
     def edges(self):
         return tuple(self._edges)
-
-    ### READ/WRITE PUBLIC PROPERTIES ###
 
     @apply
     def is_cluster():

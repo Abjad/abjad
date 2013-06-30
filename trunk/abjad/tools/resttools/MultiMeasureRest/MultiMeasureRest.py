@@ -16,9 +16,12 @@ class MultiMeasureRest(Rest):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
-    _default_positional_input_arguments = ((1, 4), )
+    _default_positional_input_arguments = (
+        (1, 4),
+        )
 
     ### PRIVATE PROPERTIES ###
 

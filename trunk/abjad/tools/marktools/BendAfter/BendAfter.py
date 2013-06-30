@@ -48,8 +48,6 @@ class BendAfter(Mark):
         new.format_slot = self.format_slot
         return new
 
-    #__deepcopy__ = __copy__
-
     def __eq__(self, expr):
         assert isinstance(expr, type(self))
         if self.bend_amount == expr.bend_amount:
@@ -59,13 +57,13 @@ class BendAfter(Mark):
     def __str__(self):
         return r"- \bendAfter #'%s" % self.bend_amount
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _contents_repr_string(self):
         return '%s' % self.bend_amount
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @apply
     def bend_amount():

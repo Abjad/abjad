@@ -12,7 +12,8 @@ class QSchemaItem(tuple, ImmutableAbjadObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### CONSTRUCTOR ###
 

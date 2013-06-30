@@ -61,12 +61,14 @@ class NonreducedFraction(ImmutableAbjadObject, fractions.Fraction):
     ::
 
         >>> import fractions
-        >>> iotools.count_function_calls('fractions.Fraction(3, 6)', globals())
+        >>> iotools.count_function_calls(
+        ...     'fractions.Fraction(3, 6)', globals())
         13
 
     ::
 
-        >>> iotools.count_function_calls('mathtools.NonreducedFraction(3, 6)', globals())
+        >>> iotools.count_function_calls(
+        ...     'mathtools.NonreducedFraction(3, 6)', globals())
         31
 
     Nonreduced fractions are immutable.
@@ -395,7 +397,7 @@ class NonreducedFraction(ImmutableAbjadObject, fractions.Fraction):
             ImmutableAbjadObject._get_tools_package_qualified_repr_pieces(
             self, is_indented=False))]
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def denominator(self):
@@ -527,7 +529,8 @@ class NonreducedFraction(ImmutableAbjadObject, fractions.Fraction):
         multiplier = durationtools.Multiplier(multiplier)
 
         self_numerator_factors = mathtools.factors(self.numerator)
-        multiplier_denominator_factors = mathtools.factors(multiplier.denominator)
+        multiplier_denominator_factors = mathtools.factors(
+            multiplier.denominator)
         for factor in multiplier_denominator_factors[:]:
             if factor in self_numerator_factors:
                 self_numerator_factors.remove(factor)
@@ -588,9 +591,11 @@ class NonreducedFraction(ImmutableAbjadObject, fractions.Fraction):
         candidate_result_denominator = self_denominator / multiplier
 
         if candidate_result_denominator.denominator == 1:
-            return NonreducedFraction(self.numerator, candidate_result_denominator.numerator)
+            return NonreducedFraction(
+                self.numerator, candidate_result_denominator.numerator)
         else:
-            result_numerator = self.numerator * candidate_result_denominator.denominator
+            result_numerator = \
+                self.numerator * candidate_result_denominator.denominator
             result_denominator = candidate_result_denominator.numerator
             return NonreducedFraction(result_numerator, result_denominator)
 

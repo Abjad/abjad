@@ -168,7 +168,9 @@ class ClefMark(ContextMark):
             elif suffix == '15':
                 alteration = 13
             else:
-                raise Exception, "Bad clef alteration suffix: {!r}".format(suffix)
+                message = "Bad clef alteration suffix: {!r}"
+                message = message.format(suffix)
+                raise Exception(message)
         elif '^' in self._clef_name:
             base_name, part, suffix = self._clef_name.partition('^')
             if suffix == '8':
@@ -176,7 +178,9 @@ class ClefMark(ContextMark):
             elif suffix == '15':
                 alteration = -13
             else:
-                raise Exception, "Bad clef alteration suffix: {!r}".format(suffix)
+                message = "Bad clef alteration suffix: {!r}"
+                message = message.format(suffix)
+                raise Exception(message)
         else:
             base_name = self._clef_name
         return self._clef_name_to_middle_c_position[base_name] + alteration

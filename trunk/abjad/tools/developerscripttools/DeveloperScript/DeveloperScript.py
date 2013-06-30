@@ -49,7 +49,7 @@ class DeveloperScript(abctools.AbjadObject):
             args = self.argument_parser.parse_args(args)
         self.process_args(args)
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def alias(self):

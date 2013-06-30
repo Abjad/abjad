@@ -32,11 +32,23 @@ class ReSTAutodocDirective(ReSTDirective):
 
     ### INITIALIZER ###
 
-    def __init__(self, argument=None, children=None, directive=None, name=None, options=None):
-        ReSTDirective.__init__(self, argument=argument, children=children, name=name, options=options)
+    def __init__(self, 
+        argument=None, 
+        children=None, 
+        directive=None, 
+        name=None, 
+        options=None,
+        ):
+        ReSTDirective.__init__(
+            self, 
+            argument=argument, 
+            children=children, 
+            name=name, 
+            options=options,
+            )
         self.directive = directive
 
-    ### READ/WRITE PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @apply
     def directive():

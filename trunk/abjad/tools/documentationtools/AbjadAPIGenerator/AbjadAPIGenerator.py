@@ -12,7 +12,8 @@ class AbjadAPIGenerator(abctools.AbjadObject):
 
         * writes ReST pages for individual classes and functions
         * writes the API index ReST
-        * handles sorting tools packages into composition, manual-loading and unstable
+        * handles sorting tools packages into composition, manual-loading 
+          and unstable
         * handles ignoring private tools packages
 
     Returns `AbjadAPIGenerator` instance.
@@ -59,7 +60,8 @@ class AbjadAPIGenerator(abctools.AbjadObject):
             crawler = APICrawler(code_path, docs_path, self.root_package,
                 ignored_directories=ignored_directories, prefix=package_prefix)
             all_visited_modules.extend(crawler())
-        package_dictionary, tools_package_dictionary = self._sort_modules(all_visited_modules)
+        package_dictionary, tools_package_dictionary = \
+            self._sort_modules(all_visited_modules)
 
         if verbose:
             print 'Now making API index ...'
@@ -80,7 +82,8 @@ class AbjadAPIGenerator(abctools.AbjadObject):
                     options={'maxdepth': 1},
                     ))
                 for package_name, package in sorted(packages.items()):
-                    document.extend(self._create_package_toc(package_name, package, tools_package_dictionary))
+                    document.extend(self._create_package_toc(
+                        package_name, package, tools_package_dictionary))
 
         f = open(self.docs_api_index_path, 'w')
         f.write(document.rest_format)
@@ -93,11 +96,13 @@ class AbjadAPIGenerator(abctools.AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    def _create_package_toc(self, package_name, package_modules, tools_package_dictionary):
+    def _create_package_toc(self, 
+        package_name, package_modules, tools_package_dictionary):
         from abjad.tools import documentationtools
         result = [documentationtools.ReSTHeading(
             level=2,
-            text=':py:mod:`{} <{}>`'.format(package_name, tools_package_dictionary[package_name])
+            text=':py:mod:`{} <{}>`'.format(
+                package_name, tools_package_dictionary[package_name])
             )
         ]
         only_html = documentationtools.ReSTOnlyDirective(argument='html')
@@ -143,7 +148,8 @@ class AbjadAPIGenerator(abctools.AbjadObject):
                 options={'maxdepth': 1},
                 )
             toc_latex = documentationtools.ReSTTOCDirective()
-            if package_modules['concrete_classes'] or package_modules['abstract_classes']:
+            if package_modules['concrete_classes'] or \
+                package_modules['abstract_classes']:
                 only_html.append(documentationtools.ReSTHorizontalRule())
             for obj in package_modules['functions']:
                 toc_entry = self._module_name_to_toc_entry(obj.module_name)
@@ -162,13 +168,16 @@ class AbjadAPIGenerator(abctools.AbjadObject):
         packages = {}
         module_mapping = {}
         for obj in sorted(objects, key=lambda x: x.module_name):
-            tools_package_name = obj.module_name.split('.')[self.tools_package_path_index]
-            tools_package_path = '.'.join(obj.module_name.split('.')[:self.tools_package_path_index + 1])
+            tools_package_name = obj.module_name.split('.')[
+                self.tools_package_path_index]
+            tools_package_path = '.'.join(
+                obj.module_name.split('.')[:self.tools_package_path_index + 1])
             tools_package_module = importlib.import_module(tools_package_path)
             if tools_package_name not in module_mapping:
                 module_mapping[tools_package_name] = tools_package_path
             if hasattr(tools_package_module, '_documentation_section'):
-                declared_documentation_section = getattr(tools_package_module, '_documentation_section')
+                declared_documentation_section = \
+                    getattr(tools_package_module, '_documentation_section')
                 if declared_documentation_section not in packages:
                     packages[declared_documentation_section] = {}
                 collection = packages[declared_documentation_section]
@@ -182,9 +191,11 @@ class AbjadAPIGenerator(abctools.AbjadObject):
                 }
             if isinstance(obj, ClassDocumenter):
                 if obj.is_abstract:
-                    collection[tools_package_name]['abstract_classes'].append(obj)
+                    collection[tools_package_name][
+                        'abstract_classes'].append(obj)
                 else:
-                    collection[tools_package_name]['concrete_classes'].append(obj)
+                    collection[tools_package_name][
+                        'concrete_classes'].append(obj)
             else:
                 collection[tools_package_name]['functions'].append(obj)
         return packages, module_mapping
@@ -197,7 +208,9 @@ class AbjadAPIGenerator(abctools.AbjadObject):
         '''Path to index.rst for Abjad API.
         '''
         from abjad import abjad_configuration
-        return os.path.join(abjad_configuration.abjad_directory_path, 'docs', 'source', 'api', 'index.rst')
+        return os.path.join(
+            abjad_configuration.abjad_directory_path, 
+            'docs', 'source', 'api', 'index.rst')
 
     @property
     def package_prefix(self):
@@ -210,13 +223,19 @@ class AbjadAPIGenerator(abctools.AbjadObject):
         from abjad import abjad_configuration
         return (
             (
-                os.path.join(abjad_configuration.abjad_directory_path, 'tools'),
-                os.path.join(abjad_configuration.abjad_directory_path, 'docs', 'source', 'api', 'tools'),
+                os.path.join(
+                    abjad_configuration.abjad_directory_path, 'tools'),
+                os.path.join(
+                    abjad_configuration.abjad_directory_path, 
+                    'docs', 'source', 'api', 'tools'),
                 'abjad.tools.',
             ),
             (
-                os.path.join(abjad_configuration.abjad_directory_path, 'demos'),
-                os.path.join(abjad_configuration.abjad_directory_path, 'docs', 'source', 'api', 'demos'),
+                os.path.join(
+                    abjad_configuration.abjad_directory_path, 'demos'),
+                os.path.join(
+                    abjad_configuration.abjad_directory_path, 
+                    'docs', 'source', 'api', 'demos'),
                 'abjad.demos.',
             ),
         )

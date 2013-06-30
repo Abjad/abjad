@@ -17,7 +17,9 @@ class NumberedChromaticPitch(ChromaticPitch, NumberedPitch):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_chromatic_pitch_number', )
+    __slots__ = (
+        '_chromatic_pitch_number',
+        )
 
     ### INITIALIZER ###
 
@@ -28,11 +30,16 @@ class NumberedChromaticPitch(ChromaticPitch, NumberedPitch):
         elif pitchtools.is_chromatic_pitch_number(arg):
             chromatic_pitch_number = arg
         elif pitchtools.is_chromatic_pitch_name(arg):
-            chromatic_pitch_number = pitchtools.chromatic_pitch_name_to_chromatic_pitch_number(arg)
+            chromatic_pitch_number = \
+                pitchtools.chromatic_pitch_name_to_chromatic_pitch_number(arg)
         else:
-            raise TypeError('can not initialize numbered chromatic pitch from "%s".' % arg)
-        object.__setattr__(self, '_chromatic_pitch_number', chromatic_pitch_number)
-        object.__setattr__(self, '_comparison_attribute', chromatic_pitch_number)
+            raise TypeError(
+                'can not initialize numbered chromatic pitch from "%s".' % 
+                arg)
+        object.__setattr__(
+            self, '_chromatic_pitch_number', chromatic_pitch_number)
+        object.__setattr__(
+            self, '_comparison_attribute', chromatic_pitch_number)
 
     ### SPECIAL METHODS ###
 
@@ -124,7 +131,8 @@ class NumberedChromaticPitch(ChromaticPitch, NumberedPitch):
         Return integer.
         '''
         from abjad.tools import pitchtools
-        return pitchtools.chromatic_pitch_number_to_diatonic_pitch_number(self.chromatic_pitch_number)
+        return pitchtools.chromatic_pitch_number_to_diatonic_pitch_number(
+            self.chromatic_pitch_number)
 
     ### PUBLIC METHODS ###
 

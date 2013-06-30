@@ -37,6 +37,8 @@ class ScoreBlock(NonattributedBlock):
     Return score block.
     '''
 
+    ### INITIALIZER ###
+
     def __init__(self):
         NonattributedBlock.__init__(self)
         self._escaped_name = r'\score'
@@ -55,15 +57,18 @@ class ScoreBlock(NonattributedBlock):
             result.append(r'%s {' % self._escaped_name)
             if len(self) == 1 and isinstance(self[0], leaftools.Leaf):
                 result.append('\t{')
-                result.extend(['\t\t' + piece for piece in self[0]._format_pieces])
+                result.extend(
+                    ['\t\t' + piece for piece in self[0]._format_pieces])
                 result.append('\t}')
             else:
                 for x in self:
                     if isinstance(x, str):
                         result.append('\t%s' % x)
                     elif hasattr(x, '_get_format_pieces'):
-                        result.extend(['\t' + piece for piece in x._get_format_pieces()])
+                        result.extend(
+                            ['\t' + piece for piece in x._get_format_pieces()])
                     else:
-                        result.extend(['\t' + piece for piece in x._format_pieces])
+                        result.extend(
+                            ['\t' + piece for piece in x._format_pieces])
             result.append('}')
         return result

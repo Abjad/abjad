@@ -20,7 +20,8 @@ class GraphvizEdge(GraphvizObject):
         if args:
             assert len(args) == 2
             assert all(isinstance(x,
-                (documentationtools.GraphvizSubgraph, documentationtools.GraphvizNode))
+                (documentationtools.GraphvizSubgraph, 
+                    documentationtools.GraphvizNode))
                 for x in args)
             tail, head = args
             self._disconnect()

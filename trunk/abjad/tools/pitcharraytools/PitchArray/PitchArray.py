@@ -89,7 +89,8 @@ class PitchArray(AbjadObject):
     def __setitem__(self, i, arg):
         if isinstance(i, int):
             if not isinstance(arg, PitchArrayRow):
-                raise TypeError('can assign only pitch array row to pitch array.')
+                message = 'can assign only pitch array row to pitch array.'
+                raise TypeError(message)
             self._rows[i]._parent_array = None
             arg._parent_array = self
             self._rows[i] = arg
@@ -157,7 +158,8 @@ class PitchArray(AbjadObject):
     def columns(self):
         columns = []
         rows = self.rows
-        for i, cells in enumerate(sequencetools.zip_sequences_without_truncation(*self.rows)):
+        for i, cells in enumerate(
+            sequencetools.zip_sequences_without_truncation(*self.rows)):
             column = PitchArrayColumn(cells)
             column._parent_array = self
             column._column_index = i
@@ -252,9 +254,11 @@ class PitchArray(AbjadObject):
         start_i, start_j = upper_left_pair
         stop_i, stop_j = lower_right_pair
         if not start_i <= stop_i:
-            raise ValueError('start row must not be greater than stop row.')
+            message = 'start row must not be greater than stop row.'
+            raise ValueError(message)
         if not start_j <= stop_j:
-            raise ValueError('start column must not be greater than stop column.')
+            message = 'start column must not be greater than stop column.'
+            raise ValueError(message)
         new_array = PitchArray([])
         rows = self.rows
         row_indices = range(start_i, stop_i)

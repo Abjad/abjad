@@ -26,19 +26,19 @@ class ReSTTOCItem(TreeNode):
         TreeNode.__init__(self, name)
         self.text = text
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _rest_format_contributions(self):
         return [self.text]
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def rest_format(self):
         return '\n'.join(self._rest_format_contributions)
 
-    ### READ/WRITE PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @apply
     def text():

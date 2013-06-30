@@ -33,15 +33,18 @@ class LilyPondCommandMark(Mark):
         >>> show(staff) # doctest: +SKIP
 
     Initialize LilyPond command marks from command name; or from command name
-    with format slot; or from another LilyPond command mark; or from another LilyPond
-    command mark with format slot.
+    with format slot; or from another LilyPond command mark; 
+    or from another LilyPond command mark with format slot.
 
     LilyPond command marks implement ``__slots__``.
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_command_name', '_format_slot', )
+    __slots__ = (
+        '_command_name', 
+        '_format_slot',
+        )
 
     ### INITIALIZER ###
 
@@ -65,12 +68,9 @@ class LilyPondCommandMark(Mark):
     ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
-        #return type(self)(self._command_name)
         new = type(self)(self._command_name)
         new.format_slot = self.format_slot
         return new
-
-    #__deepcopy__ = __copy__
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):
@@ -92,7 +92,8 @@ class LilyPondCommandMark(Mark):
 
             ::
 
-                >>> lilypond_command = marktools.LilyPondCommandMark('slurDotted')
+                >>> lilypond_command = marktools.LilyPondCommandMark(
+                ...     'slurDotted')
                 >>> lilypond_command.command_name
                 'slurDotted'
 
@@ -122,7 +123,8 @@ class LilyPondCommandMark(Mark):
             ::
 
                 >>> note = Note("c'4")
-                >>> lilypond_command = marktools.LilyPondCommandMark('break', 'after')
+                >>> lilypond_command = \
+                ...     marktools.LilyPondCommandMark('break', 'after')
                 >>> lilypond_command.format_slot
                 'after'
 
@@ -131,16 +133,19 @@ class LilyPondCommandMark(Mark):
             ::
 
                 >>> note = Note("c'4")
-                >>> lilypond_command = marktools.LilyPondCommandMark('break', 'after')
+                >>> lilypond_command = \
+                ...     marktools.LilyPondCommandMark('break', 'after')
                 >>> lilypond_command.format_slot = 'before'
                 >>> lilypond_command.format_slot
                 'before'
 
-            Set to ``'before'``, ``'after'``, ``'opening'``, ``'closing'``, ``'right'`` or none.
+            Set to ``'before'``, ``'after'``, ``'opening'``, 
+            ``'closing'``, ``'right'`` or none.
             '''
             return self._format_slot
         def fset(self, format_slot):
-            assert format_slot in ('before', 'after', 'opening', 'closing', 'right', None)
+            assert format_slot in (
+                'before', 'after', 'opening', 'closing', 'right', None)
             if format_slot is None:
                 self._format_slot = 'opening'
             else:
@@ -154,7 +159,8 @@ class LilyPondCommandMark(Mark):
         ::
 
             >>> note = Note("c'4")
-            >>> lilypond_command = marktools.LilyPondCommandMark('slurDotted')(note)
+            >>> lilypond_command = \
+            ...     marktools.LilyPondCommandMark('slurDotted')(note)
             >>> lilypond_command.lilypond_format
             '\\slurDotted'
 

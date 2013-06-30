@@ -1,5 +1,5 @@
-from abjad.tools.pitchtools.PitchClassSegment import PitchClassSegment
 import copy
+from abjad.tools.pitchtools.PitchClassSegment import PitchClassSegment
 
 
 class NamedChromaticPitchClassSegment(PitchClassSegment):
@@ -9,17 +9,23 @@ class NamedChromaticPitchClassSegment(PitchClassSegment):
 
     ::
 
-        >>> pitchtools.NamedChromaticPitchClassSegment(['gs', 'a', 'as', 'c', 'cs'])
+        >>> pitchtools.NamedChromaticPitchClassSegment(
+        ...     ['gs', 'a', 'as', 'c', 'cs'])
         NamedChromaticPitchClassSegment(['gs', 'a', 'as', 'c', 'cs'])
 
     Named chromatic pitch-class segments are immutable.
     '''
 
+    ### CLASS VARIABLES ###
+
     __slots__ = ()
+
+    ### CONSTRUCTOR ###
 
     def __new__(self, named_chromatic_pitch_class_tokens):
         from abjad.tools import pitchtools
-        npcs = [pitchtools.NamedChromaticPitchClass(x) for x in named_chromatic_pitch_class_tokens]
+        npcs = [pitchtools.NamedChromaticPitchClass(x) 
+            for x in named_chromatic_pitch_class_tokens]
         return tuple.__new__(self, npcs)
 
     ### SPECIAL METHODS ###
@@ -43,7 +49,6 @@ class NamedChromaticPitchClassSegment(PitchClassSegment):
     ### PUBLIC PROPERTIES ###
 
     @property
-    #def diatonic_interval_class_segment(self):
     def inversion_equivalent_diatonic_interval_class_segment(self):
         from abjad.tools import mathtools
         from abjad.tools import pitchtools
@@ -60,19 +65,16 @@ class NamedChromaticPitchClassSegment(PitchClassSegment):
         return tuple(self[:])
 
     @property
-    #def pitch_class_segment(self):
     def numbered_chromatic_pitch_class_segment(self):
         from abjad.tools import pitchtools
         return pitchtools.NumberedChromaticPitchClassSegment(self)
 
     @property
-    #def pitch_class_set(self):
     def numbered_chromatic_pitch_class_set(self):
         from abjad.tools import pitchtools
         return pitchtools.NumberedChromaticPitchClassSet(self)
 
     @property
-    #def pitch_classes(self):
     def numbered_chromatic_pitch_classes(self):
         return self.pitch_class_segment.pitch_classes
 

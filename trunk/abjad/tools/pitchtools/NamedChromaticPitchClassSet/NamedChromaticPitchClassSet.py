@@ -8,7 +8,8 @@ class NamedChromaticPitchClassSet(PitchClassSet):
 
     ::
 
-        >>> named_chromatic_pitch_class_set = pitchtools.NamedChromaticPitchClassSet(
+        >>> named_chromatic_pitch_class_set = \
+        ...     pitchtools.NamedChromaticPitchClassSet(
         ...     ['gs', 'g', 'as', 'c', 'cs'])
 
     ::
@@ -24,7 +25,12 @@ class NamedChromaticPitchClassSet(PitchClassSet):
     Named chromatic pitch-class sets are immutable.
     '''
 
+    ### CLASS VARIABLES ###
+
     __slots__ = ()
+
+
+    ### CONSTRUCTOR ###
 
     def __new__(self, expr):
         from abjad.tools import pitchtools
@@ -86,9 +92,15 @@ class NamedChromaticPitchClassSet(PitchClassSet):
     def _sort_self(self):
         def helper(x, y):
             if x._diatonic_pitch_class_name == y._diatonic_pitch_class_name:
-                return cmp(abs(x.numbered_chromatic_pitch_class), abs(y.numbered_chromatic_pitch_class))
+                return cmp(
+                    abs(x.numbered_chromatic_pitch_class), 
+                    abs(y.numbered_chromatic_pitch_class),
+                    )
             else:
-                return cmp(x._diatonic_pitch_class_name, y._diatonic_pitch_class_name)
+                return cmp(
+                    x._diatonic_pitch_class_name, 
+                    y._diatonic_pitch_class_name,
+                    )
         result = list(self)
         result.sort(helper)
         return result
@@ -99,7 +111,8 @@ class NamedChromaticPitchClassSet(PitchClassSet):
     def inversion_equivalent_diatonic_interval_class_vector(self):
         from abjad.tools import pitchtools
         pitches = [pitchtools.NamedChromaticPitch(x, 4) for x in self]
-        return pitchtools.InversionEquivalentDiatonicIntervalClassVector(pitches)
+        return pitchtools.InversionEquivalentDiatonicIntervalClassVector(
+            pitches)
 
     @property
     def named_chromatic_pitch_classes(self):
@@ -107,7 +120,8 @@ class NamedChromaticPitchClassSet(PitchClassSet):
 
         ::
 
-            >>> named_chromatic_pitch_class_set = pitchtools.NamedChromaticPitchClassSet(
+            >>> named_chromatic_pitch_class_set = \
+            ...     pitchtools.NamedChromaticPitchClassSet(
             ...     ['gs', 'g', 'as', 'c', 'cs'])
             >>> for x in named_chromatic_pitch_class_set.named_chromatic_pitch_classes: x
             ...
@@ -134,8 +148,10 @@ class NamedChromaticPitchClassSet(PitchClassSet):
         from abjad.tools import sequencetools
         if not len(self) == len(npc_seg):
             raise ValueError('set and segment must be of equal length.')
-        for npcs in sequencetools.yield_all_permutations_of_sequence(self.named_chromatic_pitch_classes):
-            candidate_npc_seg = pitchtools.NamedChromaticPitchClassSegment(npcs)
+        for npcs in sequencetools.yield_all_permutations_of_sequence(
+            self.named_chromatic_pitch_classes):
+            candidate_npc_seg = \
+                pitchtools.NamedChromaticPitchClassSegment(npcs)
             if candidate_npc_seg.is_equivalent_under_transposition(npc_seg):
                 return candidate_npc_seg
         message = 'named pitch-class set %s can not order by '

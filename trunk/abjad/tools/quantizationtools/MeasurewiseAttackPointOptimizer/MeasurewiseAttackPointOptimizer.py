@@ -7,8 +7,8 @@ from abjad.tools.quantizationtools.AttackPointOptimizer \
 
 class MeasurewiseAttackPointOptimizer(AttackPointOptimizer):
     '''Concrete ``AttackPointOptimizer`` instance which attempts to optimize
-    attack points in an expression with regard to the effective time signature
-    of that expression.
+    attack points in an expression with regard to the effective time 
+    signature of that expression.
 
     Only acts on Measure instances.
 
@@ -19,7 +19,7 @@ class MeasurewiseAttackPointOptimizer(AttackPointOptimizer):
 
     def __call__(self, expr):
         from abjad.tools import quantizationtools
-
         assert isinstance(expr, measuretools.Measure)
         metrical_hierarchy = timesignaturetools.MetricalHierarchy(expr)
-        timesignaturetools.establish_metrical_hierarchy(expr[:], metrical_hierarchy)
+        timesignaturetools.establish_metrical_hierarchy(
+            expr[:], metrical_hierarchy)

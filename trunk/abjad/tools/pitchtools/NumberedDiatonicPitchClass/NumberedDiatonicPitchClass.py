@@ -17,10 +17,16 @@ class NumberedDiatonicPitchClass(NumberedPitchClass, DiatonicPitchClass):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_comparison_attribute', '_diatonic_pitch_class_number', '_format_string',
-        '_number')
+    __slots__ = (
+        '_comparison_attribute', 
+        '_diatonic_pitch_class_number', 
+        '_format_string',
+        '_number',
+        )
 
-    _default_positional_input_arguments = (0, )
+    _default_positional_input_arguments = (
+        0,
+        )
 
     ### INITIALIZER ###
 
@@ -36,10 +42,14 @@ class NumberedDiatonicPitchClass(NumberedPitchClass, DiatonicPitchClass):
             diatonic_pitch_class_number = int(arg) % 7
         else:
             raise TypeError
-        object.__setattr__(self, '_diatonic_pitch_class_number', diatonic_pitch_class_number)
-        object.__setattr__(self, '_number', diatonic_pitch_class_number)
-        object.__setattr__(self, '_comparison_attribute', diatonic_pitch_class_number)
-        object.__setattr__(self, '_format_string', diatonic_pitch_class_number)
+        object.__setattr__(
+            self, '_diatonic_pitch_class_number', diatonic_pitch_class_number)
+        object.__setattr__(
+            self, '_number', diatonic_pitch_class_number)
+        object.__setattr__(
+            self, '_comparison_attribute', diatonic_pitch_class_number)
+        object.__setattr__(
+            self, '_format_string', diatonic_pitch_class_number)
 
     ### SPECIAL METHODS ###
 
@@ -51,11 +61,13 @@ class NumberedDiatonicPitchClass(NumberedPitchClass, DiatonicPitchClass):
 
     @property
     def named_diatonic_pitch_class(self):
-        '''Read-only named diatonic pitch-class from numbered diatonic pitch-class:
+        '''Read-only named diatonic pitch-class from numbered 
+        diatonic pitch-class:
 
         ::
 
-            >>> numbered_diatonic_pitch_class = pitchtools.NumberedDiatonicPitchClass(0)
+            >>> numbered_diatonic_pitch_class = \
+            ...     pitchtools.NumberedDiatonicPitchClass(0)
             >>> numbered_diatonic_pitch_class.named_diatonic_pitch_class
             NamedDiatonicPitchClass('c')
 

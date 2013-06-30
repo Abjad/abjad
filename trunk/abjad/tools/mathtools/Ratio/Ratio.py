@@ -37,7 +37,8 @@ class Ratio(NonreducedRatio):
             args = args[0]
         assert args, repr(args)
         assert all(x != 0 for x in args), repr(args)
-        args = sequencetools.divide_sequence_elements_by_greatest_common_divisor(
+        args = \
+            sequencetools.divide_sequence_elements_by_greatest_common_divisor(
             args)
         self = NonreducedRatio.__new__(cls, args)
         return self

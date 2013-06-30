@@ -242,7 +242,7 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
     def __truediv__(self, *args):
         return type(self)(fractions.Fraction.__truediv__(self, *args))
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _keyword_argument_names(self):
@@ -300,7 +300,7 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
 
         return rational
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def dot_count(self):
@@ -313,9 +313,11 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
             >>> for n in range(1, 16 + 1):
             ...     try:
             ...         duration = Duration(n, 16)
-            ...         print '{}\t{}'.format(duration.with_denominator(16), duration.dot_count)
+            ...         print '{}\t{}'.format(
+            ...             duration.with_denominator(16), duration.dot_count)
             ...     except AssignabilityError:
-            ...         print '{}\t{}'.format(duration.with_denominator(16), '--')
+            ...         print '{}\t{}'.format(
+            ...             duration.with_denominator(16), '--')
             ...
             1/16    0
             2/16    0
@@ -355,7 +357,8 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
             >>> for numerator in range(1, 16 + 1):
             ...     duration = Duration(numerator, 16)
             ...     result = duration.equal_or_greater_assignable
-            ...     print '{}\t{}'.format(duration.with_denominator(16), result)
+            ...     print '{}\t{}'.format(
+            ...         duration.with_denominator(16), result)
             ...
             1/16    1/16
             2/16    1/8
@@ -394,7 +397,8 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
             >>> for numerator in range(1, 16 + 1):
             ...     duration = Duration(numerator, 16)
             ...     result = duration.equal_or_greater_power_of_two
-            ...     print '{}\t{}'.format(duration.with_denominator(16), result)
+            ...     print '{}\t{}'.format(
+            ...         duration.with_denominator(16), result)
             ...
             1/16    1/16
             2/16    1/8
@@ -427,7 +431,8 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
             >>> for numerator in range(1, 16 + 1):
             ...     duration = Duration(numerator, 16)
             ...     result = duration.equal_or_lesser_assignable
-            ...     print '{}\t{}'.format(duration.with_denominator(16), result)
+            ...     print '{}\t{}'.format(
+            ...         duration.with_denominator(16), result)
             ...
             1/16    1/16
             2/16    1/8
@@ -466,7 +471,8 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
             >>> for numerator in range(1, 16 + 1):
             ...     duration = Duration(numerator, 16)
             ...     result = duration.equal_or_lesser_power_of_two
-            ...     print '{}\t{}'.format(duration.with_denominator(16), result)
+            ...     print '{}\t{}'.format(
+            ...         duration.with_denominator(16), result)
             ...
             1/16    1/16
             2/16    1/8
@@ -500,7 +506,8 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
 
             >>> for n in range(1, 16 + 1):
             ...     duration = Duration(n, 64)
-            ...     print '{}\t{}'.format(duration.with_denominator(64), duration.flag_count)
+            ...     print '{}\t{}'.format(
+            ...         duration.with_denominator(64), duration.flag_count)
             ...
             1/64    4
             2/64    3

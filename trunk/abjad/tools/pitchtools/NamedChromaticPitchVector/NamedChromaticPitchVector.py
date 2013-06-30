@@ -8,7 +8,8 @@ class NamedChromaticPitchVector(Vector):
 
     ::
 
-        >>> named_chromatic_pitch_vector = pitchtools.NamedChromaticPitchVector(
+        >>> named_chromatic_pitch_vector = \
+        ...     pitchtools.NamedChromaticPitchVector(
         ...     ["c''", "c''", "cs''", "cs''", "cs''"])
 
     ::
@@ -26,7 +27,9 @@ class NamedChromaticPitchVector(Vector):
 
     ### CLASS VARIABLES ###
 
-    _default_positional_input_arguments = (["c''", "c''", "cs''", "cs''", "cs''"], )
+    _default_positional_input_arguments = (
+        ["c''", "c''", "cs''", "cs''", "cs''"],
+        )
 
     ### INITIALIZER ###
 
@@ -73,6 +76,7 @@ class NamedChromaticPitchVector(Vector):
     @property
     def named_chromatic_pitches(self):
         from abjad.tools import pitchtools
-        pitches = [pitchtools.NamedChromaticPitch(key) for key, value in self.items()]
+        pitches = [pitchtools.NamedChromaticPitch(key) 
+            for key, value in self.items()]
         pitches.sort()
         return pitches

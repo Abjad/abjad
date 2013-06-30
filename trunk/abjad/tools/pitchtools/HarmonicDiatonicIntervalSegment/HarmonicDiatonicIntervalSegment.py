@@ -14,6 +14,8 @@ class HarmonicDiatonicIntervalSegment(IntervalSegment):
     Harmonic diatonic interval segments are immutable.
     '''
 
+    ### CONSTRUCTOR ###
+
     def __new__(self, arg):
         from abjad.tools import pitchtools
         if isinstance(arg, str):
@@ -32,7 +34,8 @@ class HarmonicDiatonicIntervalSegment(IntervalSegment):
         return type(self)(self.intervals)
 
     def __repr__(self):
-        return "%s('%s')" % (type(self).__name__, ' '.join([str(x) for x in self]))
+        return "%s('%s')" % (
+            self._class_name, ' '.join([str(x) for x in self]))
 
     ### PUBLIC PROPERTIES ###
 

@@ -18,7 +18,10 @@ class LilyPondDimension(abctools.AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_unit', '_value')
+    __slots__ = (
+        '_unit', 
+        '_value',
+        )
 
     ### INITIALIZER ###
 
@@ -34,7 +37,7 @@ class LilyPondDimension(abctools.AbjadObject):
     def _format_pieces(self):
         return [r'{}\{}'.format(self.value, self.unit)]
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def lilypond_format(self):

@@ -18,13 +18,13 @@ class ReSTHorizontalRule(TreeNode):
     Return `ReSTHorizontalRule` instance.
     '''
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _rest_format_contributions(self):
         return ['--------']
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def rest_format(self):

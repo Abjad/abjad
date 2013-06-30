@@ -16,8 +16,13 @@ class Accidental(AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_alphabetic_accidental_abbreviation', '_is_adjusted', '_name',
-        '_semitones', '_symbolic_accidental_string')
+    __slots__ = (
+        '_alphabetic_accidental_abbreviation', 
+        '_is_adjusted', 
+        '_name',
+        '_semitones', 
+        '_symbolic_accidental_string',
+        )
 
     ### INITIALIZER ##
 
@@ -30,27 +35,40 @@ class Accidental(AbjadObject):
             _alphabetic_accidental_abbreviation = \
             pitchtools.symbolic_accidental_string_to_alphabetic_accidental_abbreviation(arg)
         elif arg in self._all_accidental_names:
-            _alphabetic_accidental_abbreviation = self._name_to_alphabetic_accidental_abbreviation[arg]
+            _alphabetic_accidental_abbreviation = \
+                self._name_to_alphabetic_accidental_abbreviation[arg]
         elif arg in self._all_accidental_semitone_values:
-            _alphabetic_accidental_abbreviation = self._semitones_to_alphabetic_accidental_abbreviation[arg]
+            _alphabetic_accidental_abbreviation = \
+                self._semitones_to_alphabetic_accidental_abbreviation[arg]
         elif isinstance(arg, type(self)):
-            _alphabetic_accidental_abbreviation = arg.alphabetic_accidental_abbreviation
+            _alphabetic_accidental_abbreviation = \
+                arg.alphabetic_accidental_abbreviation
         elif isinstance(arg, type(None)):
             _alphabetic_accidental_abbreviation = ''
         else:
             raise ValueError('can not initialize accidental from value: %s' % arg)
-        object.__setattr__(self, '_alphabetic_accidental_abbreviation', _alphabetic_accidental_abbreviation)
+        object.__setattr__(
+            self, 
+            '_alphabetic_accidental_abbreviation', 
+            _alphabetic_accidental_abbreviation,
+            )
         # initialize derived attributes
-        _semitones = self._alphabetic_accidental_abbreviation_to_semitones[self.alphabetic_accidental_abbreviation]
+        _semitones = self._alphabetic_accidental_abbreviation_to_semitones[
+            self.alphabetic_accidental_abbreviation]
         object.__setattr__(self, '_semitones', _semitones)
-        _name = self._alphabetic_accidental_abbreviation_to_name[self.alphabetic_accidental_abbreviation]
+        _name = self._alphabetic_accidental_abbreviation_to_name[
+            self.alphabetic_accidental_abbreviation]
         object.__setattr__(self, '_name', _name)
         _is_adjusted = not self.semitones == 0
         object.__setattr__(self, '_is_adjusted', _is_adjusted)
         _symbolic_accidental_string = \
             pitchtools.alphabetic_accidental_abbreviation_to_symbolic_accidental_string(
             self.alphabetic_accidental_abbreviation)
-        object.__setattr__(self, '_symbolic_accidental_string', _symbolic_accidental_string)
+        object.__setattr__(
+            self, 
+            '_symbolic_accidental_string', 
+            _symbolic_accidental_string,
+            )
 
     ### SPECIAL METHODS ###
 
@@ -62,7 +80,8 @@ class Accidental(AbjadObject):
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):
-            if self.alphabetic_accidental_abbreviation == arg.alphabetic_accidental_abbreviation:
+            if self.alphabetic_accidental_abbreviation == \
+                arg.alphabetic_accidental_abbreviation:
                 return True
         return False
 
@@ -91,7 +110,8 @@ class Accidental(AbjadObject):
         return True
 
     def __repr__(self):
-        return "%s('%s')" % (type(self).__name__, self.alphabetic_accidental_abbreviation)
+        return "%s('%s')" % (
+            self._class_name, self.alphabetic_accidental_abbreviation)
 
     def __str__(self):
         return self.alphabetic_accidental_abbreviation
@@ -185,7 +205,8 @@ class Accidental(AbjadObject):
 
     @property
     def is_adjusted(self):
-        '''True for all accidentals equal to a nonzero number of semitones. False otherwise:
+        '''True for all accidentals equal to a nonzero number of semitones.
+        False otherwise:
 
         ::
 

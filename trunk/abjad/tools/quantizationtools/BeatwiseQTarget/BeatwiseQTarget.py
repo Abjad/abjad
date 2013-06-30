@@ -28,7 +28,8 @@ class BeatwiseQTarget(QTarget):
 
     ### PRIVATE METHODS ###
 
-    def _notate(self, grace_handler, attack_point_optimizer, attach_tempo_marks):
+    def _notate(self, 
+        grace_handler, attack_point_optimizer, attach_tempo_marks):
         voice = voicetools.Voice()
 
         # generate the first
@@ -42,7 +43,8 @@ class BeatwiseQTarget(QTarget):
         voice.extend(components)
 
         # generate the rest pairwise, comparing tempi
-        for beat_one, beat_two in sequencetools.iterate_sequence_pairwise_strict(self.items):
+        for beat_one, beat_two in \
+            sequencetools.iterate_sequence_pairwise_strict(self.items):
             components = beat_two.q_grid(beat_two.beatspan)
             if (beat_two.tempo != beat_one.tempo) and attach_tempo_marks:
                 attachment_target = components[0]

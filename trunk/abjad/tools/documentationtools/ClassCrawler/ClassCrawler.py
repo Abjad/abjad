@@ -8,13 +8,22 @@ class ClassCrawler(abctools.AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_code_root', '_include_private_objects', '_module_crawler',
-        '_root_package_name')
+    __slots__ = (
+        '_code_root', 
+        '_include_private_objects', 
+        '_module_crawler',
+        '_root_package_name',
+        )
 
     ### INITIALIZER ###
 
-    def __init__(self, code_root, include_private_objects=False, root_package_name=None):
-        self._module_crawler = ModuleCrawler(code_root, root_package_name=root_package_name)
+    def __init__(self, 
+        code_root, 
+        include_private_objects=False, 
+        root_package_name=None,
+        ):
+        self._module_crawler = ModuleCrawler(
+            code_root, root_package_name=root_package_name)
         self._code_root = code_root
         self._include_private_objects = include_private_objects
         if root_package_name is None:

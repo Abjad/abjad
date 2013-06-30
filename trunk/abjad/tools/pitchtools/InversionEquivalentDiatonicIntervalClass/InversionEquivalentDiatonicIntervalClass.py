@@ -15,16 +15,23 @@ class InversionEquivalentDiatonicIntervalClass(DiatonicIntervalClass):
     Inversion-equivalent diatonic interval-classes are immutable.
     '''
 
+    ### INITIALIZER ###
+
     def __init__(self, *args):
-        from abjad.tools.pitchtools.is_melodic_diatonic_interval_abbreviation import melodic_diatonic_interval_abbreviation_regex
+        from abjad.tools.pitchtools.is_melodic_diatonic_interval_abbreviation \
+            import melodic_diatonic_interval_abbreviation_regex
         if len(args) == 1 and isinstance(args[0], type(self)):
             self._init_by_self_reference(args[0])
         elif len(args) == 1 and isinstance(args[0], str):
             match = melodic_diatonic_interval_abbreviation_regex.match(args[0])
             if match is None:
-                raise ValueError('"%s" does not have the form of a hdi abbreviation.' % args[0])
-            direction_string, quality_abbreviation, number_string = match.groups()
-            quality_string = self._quality_abbreviation_to_quality_string[quality_abbreviation]
+                raise ValueError(
+                    '"%s" does not have the form of a hdi abbreviation.' % 
+                    args[0])
+            direction_string, quality_abbreviation, number_string = \
+                match.groups()
+            quality_string = self._quality_abbreviation_to_quality_string[
+                quality_abbreviation]
             number = int(number_string)
             self._init_by_quality_string_and_number(quality_string, number)
         elif len(args) == 1 and isinstance(args[0], tuple):
@@ -74,8 +81,13 @@ class InversionEquivalentDiatonicIntervalClass(DiatonicIntervalClass):
         self._init_by_quality_string_and_number(quality_string, number)
 
     def _invert_quality_string(self, quality_string):
-        inversions = {'major': 'minor', 'minor': 'major', 'perfect': 'perfect',
-            'augmented': 'diminished', 'diminished': 'augmented'}
+        inversions = {
+            'major': 'minor', 
+            'minor': 'major', 
+            'perfect': 'perfect',
+            'augmented': 'diminished', 
+            'diminished': 'augmented',
+            }
         return inversions[quality_string]
 
     def _is_representative_number(self, arg):

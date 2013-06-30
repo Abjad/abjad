@@ -23,20 +23,17 @@ class QGridLeaf(RhythmTreeNode):
     Return ``QGridLeaf`` instance.
     '''
 
-    ### CLASS VARIABLES ###
-
-    #__slots__ = ('_duration', '_is_divisible', '_offset', '_offsets_are_current',
-    #    '_parent', '_q_event_proxies')
-
     ### INITIALIZER ###
 
-    def __init__(self, preprolated_duration=1, q_event_proxies=None, is_divisible=True):
+    def __init__(self, 
+        preprolated_duration=1, q_event_proxies=None, is_divisible=True):
         from abjad.tools import quantizationtools
         RhythmTreeNode.__init__(self, preprolated_duration)
         if q_event_proxies is None:
             self._q_event_proxies = []
         else:
-            assert all(isinstance(x, quantizationtools.QEventProxy) for x in q_event_proxies)
+            assert all(isinstance(x, quantizationtools.QEventProxy) 
+                for x in q_event_proxies)
             self._q_event_proxies = list(q_event_proxies)
         self._is_divisible = bool(is_divisible)
 
@@ -59,7 +56,11 @@ class QGridLeaf(RhythmTreeNode):
         return False
 
     def __getnewargs__(self):
-       return (self.preprolated_duration, tuple(self.q_event_proxies), self.is_divisible)
+       return (
+        self.preprolated_duration, 
+        tuple(self.q_event_proxies), 
+        self.is_divisible,
+        )
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 
@@ -83,7 +84,8 @@ class QGridLeaf(RhythmTreeNode):
 
     @property
     def preceding_q_event_proxies(self):
-        return [x for x in self._q_event_proxies if x.offset < self.start_offset]
+        return [x for x in self._q_event_proxies 
+            if x.offset < self.start_offset]
 
     @property
     def q_event_proxies(self):
@@ -95,14 +97,16 @@ class QGridLeaf(RhythmTreeNode):
 
     @property
     def succeeding_q_event_proxies(self):
-        return [x for x in self._q_event_proxies if self.start_offset <= x.offset]
+        return [x for x in self._q_event_proxies 
+            if self.start_offset <= x.offset]
 
     ### READ/WRITE PUBLIC PROPERTIES ###
 
     @apply
     def is_divisible():
         def fget(self):
-            '''Flag for whether the node may be further divided under some search tree.
+            '''Flag for whether the node may be further divided 
+            under some search tree.
             '''
             return self._is_divisible
         def fset(self, arg):

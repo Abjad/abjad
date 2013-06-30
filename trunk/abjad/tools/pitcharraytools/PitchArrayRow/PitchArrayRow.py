@@ -1,8 +1,8 @@
+import copy
 from abjad.tools.abctools import AbjadObject
 from abjad.tools.pitcharraytools.PitchArrayCell.PitchArrayCell \
 	import PitchArrayCell
 from abjad.tools.pitchtools.PitchRange.PitchRange import PitchRange
-import copy
 
 
 class PitchArrayRow(AbjadObject):
@@ -43,7 +43,9 @@ class PitchArrayRow(AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    _default_positional_input_arguments = ([], )
+    _default_positional_input_arguments = (
+        [],
+        )
 
     ### INITIALIZER ###
 
@@ -128,7 +130,6 @@ class PitchArrayRow(AbjadObject):
         return not self == arg
 
     def __repr__(self):
-        #return '%s(%s)' % (type(self).__name__, self._format_contents_string)
         return '%s(%s)' % (type(self).__name__, self._compact_summary)
 
     def __str__(self):
@@ -144,7 +145,8 @@ class PitchArrayRow(AbjadObject):
         if not len_self:
             return ' '
         elif 0 < len_self <= 8:
-            result = [cell._format_row_column_repr_string for cell in self.cells]
+            result = [
+                cell._format_row_column_repr_string for cell in self.cells]
             return ', '.join(result)
         else:
             left = ', '.join(
@@ -258,7 +260,8 @@ class PitchArrayRow(AbjadObject):
         new_cells = []
         for cell in cells:
             if not cell in new_cells:
-                trim = [x for x in cell.column_indices if x not in column_indices]
+                trim = [
+                    x for x in cell.column_indices if x not in column_indices]
                 new_width = cell.width - len(trim)
                 new_cell = copy.copy(cell)
                 new_cell._width = new_width

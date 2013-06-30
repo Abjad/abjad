@@ -11,7 +11,7 @@ class GraphvizNode(TreeNode, GraphvizObject):
         GraphvizObject.__init__(self, attributes=attributes)
         self._edges = set([])
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _graphviz_format_contributions(self):
@@ -23,7 +23,7 @@ class GraphvizNode(TreeNode, GraphvizObject):
             return result
         return [node_def + ';']
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def canonical_name(self):

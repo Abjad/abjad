@@ -11,7 +11,10 @@ class SyntaxNode(AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('type', 'value')
+    __slots__ = (
+        'type', 
+        'value',
+        )
 
     ### INTIAILIZER ###
 

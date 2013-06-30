@@ -8,7 +8,8 @@ class Digraph(AbjadObject):
 
     ::
 
-        >>> edges = [('a', 'b'), ('a', 'c'), ('a', 'f'), ('c', 'd'), ('d', 'e'), ('e', 'c')]
+        >>> edges = [('a', 'b'), ('a', 'c'), ('a', 'f'), 
+        ...     ('c', 'd'), ('d', 'e'), ('e', 'c')]
         >>> digraph = datastructuretools.Digraph(edges)
         >>> digraph
         Digraph(edges=[('a', 'c'), ('a', 'b'), ('a', 'f'), ('c', 'd'), ('d', 'e'), ('e', 'c')])
@@ -29,7 +30,13 @@ class Digraph(AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_child_graph', '_cyclic_nodes', '_parent_graph', '_root_nodes', '_terminal_nodes')
+    __slots__ = (
+        '_child_graph', 
+        '_cyclic_nodes', 
+        '_parent_graph', 
+        '_root_nodes', 
+        '_terminal_nodes',
+        )
 
     ### INITIALIZER ###
 
@@ -83,7 +90,8 @@ class Digraph(AbjadObject):
     @property
     def child_graph(self):
         '''A dictionary representation of the digraph where the keys are
-        child nodes, and where each value is the set of that child's parents.'''
+        child nodes, and where each value is the set of that child's parents.
+        '''
         return self._child_graph
 
     @property
@@ -119,7 +127,9 @@ class Digraph(AbjadObject):
     @property
     def parent_graph(self):
         '''A dictionary representation of the digraph where the keys are
-        parent nodes, and where each value is the set of that parent's children.'''
+        parent nodes, and where each value is the set of that 
+        parent's children.
+        '''
         return self._parent_graph
 
     @property
@@ -147,7 +157,8 @@ class Digraph(AbjadObject):
             child_graph[k] = copy.copy(v)
 
         roots = [child for child in child_graph if not child_graph[child]]
-        terminals = [parent for parent in parent_graph if not parent_graph[parent]]
+        terminals = [
+            parent for parent in parent_graph if not parent_graph[parent]]
 
         while roots or terminals:
             for terminal in terminals:
@@ -167,7 +178,8 @@ class Digraph(AbjadObject):
                 del(child_graph[root])
 
             roots = [child for child in child_graph if not child_graph[child]]
-            terminals = [parent for parent in parent_graph if not parent_graph[parent]]
+            terminals = [
+                parent for parent in parent_graph if not parent_graph[parent]]
 
             if not roots and not terminals and parent_graph:
                 return tuple(sorted(parent_graph.keys()))
@@ -179,11 +191,13 @@ class Digraph(AbjadObject):
     ### PUBLIC METHODS ###
 
     def partition(self):
-        '''Partition the digraph into a list of digraphs according to connectivity:
+        '''Partition the digraph into a list of digraphs according 
+        to connectivity:
 
         ::
 
-            >>> edges = [('a', 'b'), ('a', 'c'), ('b', 'c'), ('b', 'd'), ('d', 'e')]
+            >>> edges = [('a', 'b'), ('a', 'c'), 
+            ...     ('b', 'c'), ('b', 'd'), ('d', 'e')]
             >>> edges.extend([('f', 'h'), ('g', 'h')])
             >>> edges.append(('i', 'j'))
             >>> digraph = datastructuretools.Digraph(edges)

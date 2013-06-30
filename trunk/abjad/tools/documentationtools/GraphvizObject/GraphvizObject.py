@@ -46,7 +46,8 @@ class GraphvizObject(AbjadObject):
                 return '"{}"'.format(value)
             return value
         elif isinstance(value, (list, tuple)):
-            return '"{}"'.format(', '.join(self._format_value(x) for x in value))
+            return '"{}"'.format(', '.join(
+                self._format_value(x) for x in value))
         raise ValueError
 
     def _verify_attributes(self, attributes, destination):
@@ -57,7 +58,7 @@ class GraphvizObject(AbjadObject):
             attributes = copy.copy(attributes)
         setattr(self, destination, attributes)
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def attributes(self):
