@@ -49,7 +49,7 @@ class TwoStaffPianoScoreTemplate(ScoreTemplate):
 
     context_name_abbreviations = collections.OrderedDict({
         'rh': 'RH Voice',
-        'lh': 'LH Voice'
+        'lh': 'LH Voice',
         })
 
     ### INITIALIZER ###
@@ -63,20 +63,28 @@ class TwoStaffPianoScoreTemplate(ScoreTemplate):
 
         # make RH voice and staff
         rh_voice = voicetools.Voice(name='RH Voice')
-        rh_staff = stafftools.Staff([rh_voice], name='RH Staff')
+        rh_staff = stafftools.Staff(
+            [rh_voice], 
+            name='RH Staff')
         contexttools.ClefMark('treble')(rh_staff)
 
         # make LH voice and staff
         lh_voice = voicetools.Voice(name='LH Voice')
-        lh_staff = stafftools.Staff([lh_voice], name='LH Staff')
+        lh_staff = stafftools.Staff(
+            [lh_voice], 
+            name='LH Staff')
         contexttools.ClefMark('bass')(lh_staff)
 
         # make piano staff
-        piano_staff = scoretools.PianoStaff([rh_staff, lh_staff], name='Piano Staff')
+        piano_staff = scoretools.PianoStaff(
+            [rh_staff, lh_staff], 
+            name='Piano Staff')
         instrumenttools.Piano()(piano_staff)
 
         # make two-staf piano score
-        two_staff_piano_score = scoretools.Score([piano_staff], name='Two-Staff Piano Score')
+        two_staff_piano_score = scoretools.Score(
+            [piano_staff], 
+            name='Two-Staff Piano Score')
 
         # return two-staff piano score
         return two_staff_piano_score

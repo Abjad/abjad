@@ -7,7 +7,10 @@ class Sieve(_BaseResidueClass):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_logical_operator', '_rcs')
+    __slots__ = (
+        '_logical_operator', 
+        '_rcs',
+        )
 
     logical_operator_dictionary = {
         'and': '&',
@@ -32,9 +35,11 @@ class Sieve(_BaseResidueClass):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        logical_operator = self.logical_operator_dictionary[self.logical_operator]
+        logical_operator = \
+            self.logical_operator_dictionary[self.logical_operator]
         logical_operator = ' {} '.format(logical_operator)
-        result = logical_operator.join([str(residue_class) for residue_class in self.rcs])
+        result = logical_operator.join(
+            [str(residue_class) for residue_class in self.rcs])
         return '{%s}' % result
 
     ### PRIVATE METHODS ###
@@ -52,7 +57,8 @@ class Sieve(_BaseResidueClass):
         else:
             result = set([])
         for rc in self.rcs:
-            logical_operator(result, set(rc.get_congruent_bases(minimum, maximum)))
+            logical_operator(
+                result, set(rc.get_congruent_bases(minimum, maximum)))
         return sorted(result)
 
     def _sort_rcs(self):
@@ -128,7 +134,8 @@ class Sieve(_BaseResidueClass):
 
         Return list.
         '''
-        from abjad.tools.sievetools._process_min_max_attribute import _process_min_max_attribute
+        from abjad.tools.sievetools._process_min_max_attribute \
+            import _process_min_max_attribute
 
         minimum, maximum = _process_min_max_attribute(*min_max)
         result = []
@@ -159,7 +166,8 @@ class Sieve(_BaseResidueClass):
 
         Return list.
         '''
-        from abjad.tools.sievetools._process_min_max_attribute import _process_min_max_attribute
+        from abjad.tools.sievetools._process_min_max_attribute \
+            import _process_min_max_attribute
 
         minimum, maximum = _process_min_max_attribute(*min_max)
         if self.logical_operator == 'or':

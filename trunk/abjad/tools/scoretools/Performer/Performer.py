@@ -127,13 +127,13 @@ class Performer(AbjadObject):
             >>> flutist = scoretools.Performer(name='flutist')
             >>> for likely_instrument in \
             ...     flutist.likely_instruments_based_on_performer_name:
-            ...     likely_instrument
+            ...     likely_instrument.__name__
             ...
-            <class 'abjad.tools.instrumenttools.AltoFlute.AltoFlute.AltoFlute'>
-            <class 'abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute'>
-            <class 'abjad.tools.instrumenttools.ContrabassFlute.ContrabassFlute.ContrabassFlute'>
-            <class 'abjad.tools.instrumenttools.Flute.Flute.Flute'>
-            <class 'abjad.tools.instrumenttools.Piccolo.Piccolo.Piccolo'>
+            'AltoFlute'
+            'BassFlute'
+            'ContrabassFlute'
+            'Flute'
+            'Piccolo'
 
         Return list.
         '''

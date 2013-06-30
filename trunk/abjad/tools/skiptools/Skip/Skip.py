@@ -15,23 +15,22 @@ class Skip(Leaf):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
-    _default_positional_input_arguments = (repr('s4'), )
+    _default_positional_input_arguments = (
+        repr('s4'),
+        )
 
     ### INITIALIZER ###
 
     def __init__(self, *args, **kwargs):
         from abjad.tools import lilypondparsertools
-
         if len(args) == 1 and isinstance(args[0], str):
             input = '{{ {} }}'.format(args[0])
             parsed = lilypondparsertools.LilyPondParser()(input)
             assert len(parsed) == 1 and isinstance(parsed[0], Leaf)
             args = [parsed[0]]
-            #written_duration = args[0].strip('s')
-            #lilypond_multiplier = None
-
         if len(args) == 1 and isinstance(args[0], Leaf):
             leaf = args[0]
             written_duration = leaf.written_duration
@@ -44,7 +43,6 @@ class Skip(Leaf):
             written_duration, lilypond_multiplier = args
         else:
             raise ValueError('can not initialize rest from "%s".' % str(args))
-
         Leaf.__init__(self, written_duration, lilypond_multiplier)
         self._initialize_keyword_values(**kwargs)
 

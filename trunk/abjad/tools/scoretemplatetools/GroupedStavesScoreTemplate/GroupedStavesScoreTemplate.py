@@ -14,7 +14,8 @@ class GroupedStavesScoreTemplate(ScoreTemplate):
 
     ::
 
-        >>> template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=4)
+        >>> template = scoretemplatetools.GroupedStavesScoreTemplate(
+        ...     staff_count=4)
         >>> score = template()
 
     ::
@@ -65,11 +66,10 @@ class GroupedStavesScoreTemplate(ScoreTemplate):
             staff = stafftools.Staff([voice], name='Staff {}'.format(number))
             staves.append(staff)
             self.context_name_abbreviations['v{}'.format(number)] = voice.name
-
         grouped_rhythmic_staves_staff_group = scoretools.StaffGroup(
             staves, name='Grouped Staves Staff Group')
-
         grouped_rhythmic_staves_score = scoretools.Score(
-            [grouped_rhythmic_staves_staff_group], name='Grouped Staves Score')
-
+            [grouped_rhythmic_staves_staff_group], 
+            name='Grouped Staves Score',
+            )
         return grouped_rhythmic_staves_score

@@ -214,7 +214,8 @@ class CyclicTree(Tree):
 
         ::
 
-            >>> generator = cyclic_tree.iterate_forever_depth_first(reverse=True)
+            >>> generator = cyclic_tree.iterate_forever_depth_first(
+            ...     reverse=True)
             >>> for i in range(20):
             ...     generator.next()
             CyclicTree([[0, 1], [2, 3], [4, 5], [6, 7]])

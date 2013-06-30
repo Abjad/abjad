@@ -11,14 +11,16 @@ class SchemeVector(Scheme):
         >>> schemetools.SchemeVector(True, True, False)
         SchemeVector((True, True, False))
 
-    Scheme vectors and Scheme vector constants differ in only their LilyPond input format.
+    Scheme vectors and Scheme vector constants differ in only 
+    their LilyPond input format.
 
     Scheme vectors are immutable.
     '''
 
     ### CLASS VARIABLES ##
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### INITIALIZER ###
 

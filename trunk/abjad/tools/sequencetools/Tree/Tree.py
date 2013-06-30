@@ -101,7 +101,8 @@ class Tree(AbjadObject):
 
     Only leaf nodes carry payload. Internal nodes carry no payload.
 
-    Negative levels are available to work with trees bottom-up instead of top-down.
+    Negative levels are available to work with trees bottom-up 
+    instead of top-down.
 
     Trees do not yet implement append or extend methods.
     '''
@@ -186,7 +187,8 @@ class Tree(AbjadObject):
             if self.payload is not None or expr.payload is not None:
                 return self.payload == expr.payload
             if len(self) == len(expr):
-                for x, y in zip(self._noncyclic_children, expr._noncyclic_children):
+                for x, y in zip(
+                    self._noncyclic_children, expr._noncyclic_children):
                     if not x == y:
                         return False
                 else:
@@ -267,7 +269,8 @@ class Tree(AbjadObject):
         Return string.
         '''
         if self.payload is None:
-            return '[%s]' % ', '.join([str(x) for x in self._noncyclic_children])
+            return '[%s]' % ', '.join(
+                [str(x) for x in self._noncyclic_children])
         else:
             return repr(self.payload)
 
@@ -631,7 +634,8 @@ class Tree(AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    def _get_next_n_nodes_at_level_helper(self, n, level, nodes_must_be_complete=False):
+    def _get_next_n_nodes_at_level_helper(self, 
+        n, level, nodes_must_be_complete=False):
         result = []
         self_is_found = False
         first_node_returned_is_trimmed = False
@@ -654,7 +658,8 @@ class Tree(AbjadObject):
             if node is self:
                 self_is_found = True
                 # test whether node to return is higher in tree than self;
-                # or-clause allows for test of either nonnegative or negative level
+                # or-clause allows for test of either nonnegative 
+                # or negative level
                 if ((0 <= level) and level < self.level) or \
                    ((level < 0) and level < self.negative_level):
                     first_node_returned_is_trimmed = True
@@ -667,9 +672,12 @@ class Tree(AbjadObject):
                     else:
                         while subtree_to_trim.negative_level < level:
                             subtree_to_trim = subtree_to_trim.parent
-                    position_of_descendant = subtree_to_trim.get_position_of_descendant(node)
+                    position_of_descendant = \
+                        subtree_to_trim.get_position_of_descendant(node)
                     first_subtree = copy.deepcopy(subtree_to_trim)
-                    reference_node = first_subtree.get_node_at_position(position_of_descendant)
+                    reference_node = \
+                        first_subtree.get_node_at_position(
+                            position_of_descendant)
                     reference_node.remove_to_root(reverse=reverse)
                     result.append(first_subtree)
             if self_is_found:
@@ -844,7 +852,8 @@ class Tree(AbjadObject):
 
         Return list of nodes.
         '''
-        return self._get_next_n_nodes_at_level_helper(n, level, nodes_must_be_complete=True)
+        return self._get_next_n_nodes_at_level_helper(
+            n, level, nodes_must_be_complete=True)
 
     def get_next_n_nodes_at_level(self, n, level):
         r'''Get next `n` nodes at `level` from node.
@@ -928,7 +937,8 @@ class Tree(AbjadObject):
 
         Return list of nodes.
         '''
-        return self._get_next_n_nodes_at_level_helper(n, level, nodes_must_be_complete=False)
+        return self._get_next_n_nodes_at_level_helper(
+            n, level, nodes_must_be_complete=False)
 
     def get_node_at_position(self, position):
         '''Get node at `position`:
@@ -951,7 +961,8 @@ class Tree(AbjadObject):
         return result
 
     def get_position_of_descendant(self, descendant):
-        r'''Get position of `descendent` relative to node rather than relative to root:
+        r'''Get position of `descendent` relative to node 
+        rather than relative to root:
 
         ::
 
@@ -1020,7 +1031,8 @@ class Tree(AbjadObject):
 
         Return boolean.
         '''
-        if (0 <= level and self.level == level) or self.negative_level == level:
+        if (0 <= level and self.level == level) or \
+            self.negative_level == level:
             return True
         else:
             return False

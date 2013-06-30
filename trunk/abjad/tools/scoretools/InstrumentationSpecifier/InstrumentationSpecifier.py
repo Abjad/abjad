@@ -20,7 +20,8 @@ class InstrumentationSpecifier(AbjadObject):
 
     ::
 
-        >>> instrumentation_specifier = scoretools.InstrumentationSpecifier([flute, guitar])
+        >>> instrumentation_specifier = \
+        ...     scoretools.InstrumentationSpecifier([flute, guitar])
 
     ::
 
@@ -54,14 +55,9 @@ class InstrumentationSpecifier(AbjadObject):
 
     def __eq__(self, expr):
         if isinstance(expr, type(self)):
-            # TODO: implement perform sort
-            #if sorted(self.performers) == sorted(expr.performers):
             if self.performers == expr.performers:
                 return True
         return False
-
-    def __ne__(self, expr):
-        return not self == expr
 
     ### PUBLIC PROPERTIES ###
 
@@ -119,7 +115,8 @@ class InstrumentationSpecifier(AbjadObject):
         Return string.
         '''
         if self.performers:
-            return ', '.join([performer.name for performer in self.performers])
+            return ', '.join([performer.name 
+                for performer in self.performers])
         else:
             return ''
 
@@ -156,6 +153,7 @@ class InstrumentationSpecifier(AbjadObject):
             if performers is None:
                 self._performers[:] = []
             else:
-                assert all(isinstance(x, scoretools.Performer) for x in performers)
+                assert all(isinstance(x, scoretools.Performer) 
+                    for x in performers)
                 self._performers[:] = list(performers[:])
         return property(**locals())

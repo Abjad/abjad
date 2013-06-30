@@ -10,14 +10,16 @@ class SchemeMoment(Scheme):
         >>> schemetools.SchemeMoment(1, 68)
         SchemeMoment((1, 68))
 
-    Initialize scheme moments with a single fraction, two integers or another scheme moment.
+    Initialize scheme moments with a single fraction, 
+    two integers or another scheme moment.
 
     Scheme moments are immutable.
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### INITIALIZER ###
 
@@ -26,10 +28,12 @@ class SchemeMoment(Scheme):
             args = durationtools.Duration(args[0])
         elif len(args) == 1 and isinstance(args[0], type(self)):
             args = args[0].duration
-        elif len(args) == 2 and isinstance(args[0], int) and isinstance(args[1], int):
+        elif len(args) == 2 and \
+            isinstance(args[0], int) and isinstance(args[1], int):
             args = durationtools.Duration(args)
         else:
-            raise TypeError('can not intialize scheme moment from "{}".'.format(args))
+            message = 'can not intialize scheme moment from "{}".'
+            raise TypeError(message.format(args))
         Scheme.__init__(self, args, **kwargs)
 
     ### SPECIAL METHODS ###
@@ -72,9 +76,12 @@ class SchemeMoment(Scheme):
 
     def __repr__(self):
         return '{}(({}, {}))'.format(
-            type(self).__name__, self._value.numerator, self._value.denominator)
+            self._class_name, 
+            self._value.numerator, 
+            self._value.denominator,
+            )
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _formatted_value(self):

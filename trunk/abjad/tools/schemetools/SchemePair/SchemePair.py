@@ -9,14 +9,16 @@ class SchemePair(Scheme):
         >>> schemetools.SchemePair('spacing', 4)
         SchemePair(('spacing', 4))
 
-    Initialize Scheme pairs with a tuple, two separate values or another Scheme pair.
+    Initialize Scheme pairs with a tuple, two separate values 
+    or another Scheme pair.
 
     Scheme pairs are immutable.
     '''
 
     ### CLASS VARIABLES ##
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### INITIALIZER ##
 
@@ -28,7 +30,8 @@ class SchemePair(Scheme):
         elif len(args) == 2:
             args = args
         else:
-            raise TypeError('can not initialize Scheme pair from "%s".' % str(args))
+            message = 'can not initialize Scheme pair from "%s".'
+            raise TypeError(message % str(args))
         Scheme.__init__(self, *args, **kwargs)
 
     ### PRIVATE PROPERTIES ###
@@ -37,10 +40,11 @@ class SchemePair(Scheme):
     def _formatted_value(self):
         from abjad.tools import schemetools
         assert len(self._value) == 2
-        #return '(%s . %s)' % tuple([schemetools.format_scheme_value(x) for x in self._value])
         lhs = schemetools.format_scheme_value(self._value[0])
-        # need to force quotes around pairs like \override #'(font-name . "Times")
-        rhs = schemetools.format_scheme_value(self._value[-1], force_quotes=True)
+        # need to force quotes around pairs like 
+        # \override #'(font-name . "Times")
+        rhs = schemetools.format_scheme_value(
+            self._value[-1], force_quotes=True)
         return '({} . {})'.format(lhs, rhs)
 
     ### PUBLIC PROPERTIES ###

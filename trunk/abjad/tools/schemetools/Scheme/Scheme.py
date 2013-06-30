@@ -14,7 +14,8 @@ class Scheme(AbjadObject):
 
     ::
 
-        >>> s = schemetools.Scheme(('left', (1, 2, False)), ('right', (1, 2, 3.3)))
+        >>> s = schemetools.Scheme(
+        ...     ('left', (1, 2, False)), ('right', (1, 2, 3.3)))
         >>> s.lilypond_format
         '#((left (1 2 #f)) (right (1 2 3.3)))'
 
@@ -27,9 +28,9 @@ class Scheme(AbjadObject):
         >>> s.lilypond_format == q.lilypond_format
         True
 
-    schemetools.Scheme also takes an optional `quoting` keyword, by which Scheme's
-    various quote, unquote, unquote-splicing characters can be prepended to the
-    formatted result:
+    schemetools.Scheme also takes an optional `quoting` keyword, 
+    by which Scheme's various quote, unquote, unquote-splicing characters 
+    can be prepended to the formatted result:
 
     ::
 
@@ -37,7 +38,7 @@ class Scheme(AbjadObject):
         >>> s.lilypond_format
         "#'#(1 2 3)"
 
-    schemetools.Scheme can also force quotes around strings which contain no whitespace:
+    Scheme can also force quotes around strings which contain no whitespace:
 
     ::
 
@@ -45,7 +46,8 @@ class Scheme(AbjadObject):
         >>> f(s)
         #"nospaces"
 
-    The above is useful in certain \override situations, as LilyPond's Scheme interpreter
+    The above is useful in certain \override situations, 
+    as LilyPond's Scheme interpreter
     will treat unquoted strings as symbols rather than strings.
 
     Scheme is immutable.
@@ -53,7 +55,11 @@ class Scheme(AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_force_quotes', '_quoting', '_value',)
+    __slots__ = (
+        '_force_quotes', 
+        '_quoting', 
+        '_value',
+        )
 
     ### INITIALIZER ###
 
@@ -96,7 +102,8 @@ class Scheme(AbjadObject):
     @property
     def _formatted_value(self):
         from abjad.tools import schemetools
-        return schemetools.format_scheme_value(self._value, force_quotes=self.force_quotes)
+        return schemetools.format_scheme_value(
+            self._value, force_quotes=self.force_quotes)
 
     ### PUBLIC PROPERTIES ###
 

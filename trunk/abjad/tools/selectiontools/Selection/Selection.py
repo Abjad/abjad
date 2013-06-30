@@ -14,7 +14,8 @@ class Selection(AbjadObject):
         >>> selection
         Selection(Note("c'4"), Note("d'4"))
 
-    Selection objects will eventually pervade the system and model all user selections.
+    Selection objects will eventually pervade the system and 
+    model all user selections.
 
     This means that selection objects will eventually serve as input
     to most functions in the API. Selection objects will also
@@ -25,9 +26,13 @@ class Selection(AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_music',)
+    __slots__ = (
+        '_music',
+        )
 
-    _default_positional_input_arguments = ([], )
+    _default_positional_input_arguments = (
+        [],
+        )
 
     ### INITIALIZER ###
 
@@ -49,7 +54,8 @@ class Selection(AbjadObject):
         if isinstance(expr, type(self)):
             music = self.music + expr.music
             return type(self)(music)
-        # eventually remove this permissive branch and force the use of selections only
+        # eventually remove this permissive branch 
+        # and force the use of selections only
         elif isinstance(expr, (tuple, list)):
             music = self.music + tuple(expr)
         return type(self)(music)
@@ -78,7 +84,8 @@ class Selection(AbjadObject):
         if isinstance(expr, type(self)):
             music = expr.music + self.music
             return type(self)(music)
-        # eventually remove this permissive branch and force the use of selections only
+        # eventually remove this permissive branch 
+        # and force the use of selections only
         elif isinstance(expr, (tuple, list)):
             music = tuple(expr) + self.music
         return type(self)(music)

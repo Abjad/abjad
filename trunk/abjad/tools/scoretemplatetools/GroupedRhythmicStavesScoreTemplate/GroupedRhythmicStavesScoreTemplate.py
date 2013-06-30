@@ -10,11 +10,13 @@ from abjad.tools.scoretemplatetools.ScoreTemplate import ScoreTemplate
 class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
     r'''.. versionadded:: 2.9
 
-    Example 1. Grouped rhythmic staves score template with one voice per staff:
+    Example 1. Grouped rhythmic staves score template with 
+    one voice per staff:
 
     ::
 
-        >>> template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
+        >>> template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
+        ...     staff_count=4)
         >>> score = template()
 
     ::
@@ -46,11 +48,13 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
             >>
         >>
 
-    Example 2. Grouped rhythmic staves score template with more than one voice per staff:
+    Example 2. Grouped rhythmic staves score template with more than 
+    one voice per staff:
 
     ::
 
-        >>> template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=[2, 1, 2])
+        >>> template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
+        ...     staff_count=[2, 1, 2])
         >>> score = template()
 
     ::
@@ -95,35 +99,40 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
             for index in range(self.staff_count):
                 number = index + 1
                 voice = voicetools.Voice(name='Voice {}'.format(number))
-                staff = stafftools.RhythmicStaff([voice], name='Staff {}'.format(number))
+                staff = stafftools.RhythmicStaff(
+                    [voice], name='Staff {}'.format(number))
                 staves.append(staff)
-                self.context_name_abbreviations['v{}'.format(number)] = voice.name
+                self.context_name_abbreviations['v{}'.format(number)] = \
+                    voice.name
         elif isinstance(self.staff_count, list):
             for staff_index, voice_count in enumerate(self.staff_count):
                 staff_number = staff_index + 1
-                staff = stafftools.RhythmicStaff([], name='Staff {}'.format(staff_number))
+                staff = stafftools.RhythmicStaff(
+                    [], name='Staff {}'.format(staff_number))
                 assert 1 <= voice_count
                 for voice_index in range(voice_count):
                     voice_number = voice_index + 1
                     if voice_count == 1:
                         voice_identifier = str(staff_number)
                     else:
-                        voice_identifier = '{}-{}'.format(staff_number, voice_number)
+                        voice_identifier = '{}-{}'.format(
+                            staff_number, voice_number)
                         staff.is_parallel = True
-                    voice = voicetools.Voice(name='Voice {}'.format(voice_identifier))
+                    voice = voicetools.Voice(
+                        name='Voice {}'.format(voice_identifier))
                     staff.append(voice)
-                    self.context_name_abbreviations['v{}'.format(voice_identifier)] = voice.name
+                    self.context_name_abbreviations[
+                        'v{}'.format(voice_identifier)] = voice.name
                 staves.append(staff)
-
         grouped_rhythmic_staves_staff_group = scoretools.StaffGroup(
             staves, name='Grouped Rhythmic Staves Staff Group')
-
         grouped_rhythmic_staves_score = scoretools.Score(
-            [grouped_rhythmic_staves_staff_group], name='Grouped Rhythmic Staves Score')
-
+            [grouped_rhythmic_staves_staff_group], 
+            name='Grouped Rhythmic Staves Score',
+            )
         return grouped_rhythmic_staves_score
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def staff_count(self):

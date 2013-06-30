@@ -10,7 +10,8 @@ class Matrix(AbjadObject):
 
     ::
 
-        >>> matrix = sequencetools.Matrix([[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
+        >>> matrix = sequencetools.Matrix(
+        ...     [[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
 
     ::
 
@@ -66,6 +67,8 @@ class Matrix(AbjadObject):
     Standard transforms of linear algebra remain to be implemented.
     '''
 
+    ### INITIALIZER ###
+
     def __init__(self, *args, **kwargs):
         if len(args) == 1:
             assert not kwargs
@@ -86,7 +89,7 @@ class Matrix(AbjadObject):
         return self.rows[expr]
 
     def __repr__(self):
-        return '%s(%sx%s)' % (type(self).__name__, self._n_rows, self._n_columns)
+        return '%s(%sx%s)' % (self._class_name, self._n_rows, self._n_columns)
 
     ### PRIVATE METHODS ###
 
@@ -118,7 +121,8 @@ class Matrix(AbjadObject):
 
         ::
 
-            >>> matrix = sequencetools.Matrix([[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
+            >>> matrix = sequencetools.Matrix(
+            ...     [[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
 
         ::
 
@@ -135,7 +139,8 @@ class Matrix(AbjadObject):
 
         ::
 
-            >>> matrix = sequencetools.Matrix([[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
+            >>> matrix = sequencetools.Matrix(
+            ...     [[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
 
         ::
 

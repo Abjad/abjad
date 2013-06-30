@@ -31,21 +31,24 @@ class ResidueClass(_BaseResidueClass):
     ::
 
         >>> y.get_congruent_bases(40)
-            [0, 1, 3, 4, 6, 8, 10, 11, 12, 13, 14, 16, 17, 19, 20, 22, 23, 25, 27,
-            28, 29, 31, 33, 35, 36, 37, 38, 40]
+            [0, 1, 3, 4, 6, 8, 10, 11, 12, 13, 14, 16, 17, 19, 20, 22, 
+            23, 25, 27, 28, 29, 31, 33, 35, 36, 37, 38, 40]
 
     ::
 
         >>> y.get_boolean_train(40)
-            [1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0,
-            1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0]
+            [1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 
+            1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0]
 
     Return residue class.
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_modulo', '_residue')
+    __slots__ = (
+        '_modulo', 
+        '_residue',
+        )
 
     ### INITIALIZER ##
 
@@ -61,7 +64,8 @@ class ResidueClass(_BaseResidueClass):
 
     def __eq__(self, exp):
         if isinstance(exp, ResidueClass):
-            return (self.modulo == exp.modulo) and (self.residue == exp.residue)
+            return (self.modulo == exp.modulo) and \
+                (self.residue == exp.residue)
         else:
             return False
 
@@ -97,7 +101,7 @@ class ResidueClass(_BaseResidueClass):
         return not self == expr
 
     def __repr__(self):
-        return '%s(%i, %i)' % (type(self).__name__, self.modulo, self.residue)
+        return '%s(%i, %i)' % (self._class_name, self.modulo, self.residue)
 
     ### PRIVATE METHODS ###
 
@@ -106,16 +110,12 @@ class ResidueClass(_BaseResidueClass):
             raise ValueError('modulo must be positive.')
         if not 0 <= residue < modulo:
             raise ValueError('abs(residue) must be < modulo')
-        #self.modulo = modulo # period
-        #self.residue = residue # phase
         object.__setattr__(self, '_modulo', modulo) # period
         object.__setattr__(self, '_residue', residue) # phase
 
     def _init_by_rc_instance(self, rc):
         if not isinstance(rc, ResidueClass):
             raise TypeError('must be rc instance.')
-        #self.modulo = rc.modulo # period
-        #self.residue = rc.residue # phase
         object.__setattr__(self, '_modulo', rc.modulo) # period
         object.__setattr__(self, '_residue', rc.residue) # phase
 
@@ -154,7 +154,8 @@ class ResidueClass(_BaseResidueClass):
 
         Return list.
         '''
-        from abjad.tools.sievetools._process_min_max_attribute import _process_min_max_attribute
+        from abjad.tools.sievetools._process_min_max_attribute \
+            import _process_min_max_attribute
 
         min, max = _process_min_max_attribute(*min_max)
         result = []
@@ -184,7 +185,8 @@ class ResidueClass(_BaseResidueClass):
 
         Return list.
         '''
-        from abjad.tools.sievetools._process_min_max_attribute import _process_min_max_attribute
+        from abjad.tools.sievetools._process_min_max_attribute \
+            import _process_min_max_attribute
 
         min, max = _process_min_max_attribute(*min_max)
         result = []

@@ -36,9 +36,15 @@ class GrandStaff(StaffGroup):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### INITIALIZER ###
 
     def __init__(self, music, context_name='GrandStaff', name=None):
-        StaffGroup.__init__(self, music=music, context_name=context_name, name=name)
+        StaffGroup.__init__(
+            self, 
+            music=music, 
+            context_name=context_name, 
+            name=name,
+            )
