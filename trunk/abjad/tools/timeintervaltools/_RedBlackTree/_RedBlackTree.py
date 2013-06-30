@@ -21,7 +21,7 @@ class _RedBlackTree(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        return '%s()' % (type(self).__name__)
+        return '%s()' % (self._class_name)
 
     def __str__(self):
         if self._root == self._sentinel: return '<empty tree>'

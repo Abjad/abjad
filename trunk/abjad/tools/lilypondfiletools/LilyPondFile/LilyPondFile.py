@@ -99,7 +99,7 @@ class LilyPondFile(list):
         if hasattr(self, 'score_block') and 1 <= len(self.score_block):
             return '%s(%s)' % (self._class_name, self.score_block[0])
         else:
-            return '%s()' % type(self).__name__
+            return '%s()' % self._class_name
 
     ### PRIVATE PROPERTIES ###
 

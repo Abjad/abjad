@@ -101,7 +101,7 @@ class NoteRhythmMaker(DivisionIncisedNoteRhythmMaker):
 
         Return string.
         '''
-        return '%s()' % type(self).__name__
+        return '%s()' % self._class_name
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

@@ -131,7 +131,7 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
             intervals = [repr(interval) for interval in self._inorder]
             return '%s([\n\t%s\n])' % (self._class_name, ',\n\t'.join(intervals))
         else:
-            return '%s([])' % type(self).__name__
+            return '%s([])' % self._class_name
 
     ### PRIVATE PROPERTIES ###
 

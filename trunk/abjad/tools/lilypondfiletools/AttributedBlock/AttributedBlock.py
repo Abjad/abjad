@@ -22,7 +22,7 @@ class AttributedBlock(list, AbjadObject):
 
     def __repr__(self):
         if not len(self._user_attributes):
-            return '%s()' % type(self).__name__
+            return '%s()' % self._class_name
         else:
             return '%s(%s)' % (self._class_name, len(self._user_attributes))
 

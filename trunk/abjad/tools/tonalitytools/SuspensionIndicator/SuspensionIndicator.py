@@ -47,7 +47,7 @@ class SuspensionIndicator(AbjadObject):
         if self.start is not None and self.stop is not None:
             return '%s(%s, %s)' % (self._class_name, self.start, self.stop)
         else:
-            return '%s()' % type(self).__name__
+            return '%s()' % self._class_name
 
     def __str__(self):
         if self.start is not None and self.stop is not None:
