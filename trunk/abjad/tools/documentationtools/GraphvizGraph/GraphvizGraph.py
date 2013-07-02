@@ -132,7 +132,8 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
         >>> graph[0][-1].append(documentationtools.GraphvizNode())
         >>> graph.append(documentationtools.GraphvizNode())
         >>> edge = documentationtools.GraphvizEdge()(graph[0][1], graph[1])
-        >>> edge = documentationtools.GraphvizEdge()(graph[0][0], graph[0][-1][0])
+        >>> edge = documentationtools.GraphvizEdge()(
+        ...     graph[0][0], graph[0][-1][0])
 
     ::
 
@@ -224,11 +225,13 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
                 contributions[0] = 'graph {}'.format(contributions[0])
                 result.extend(indent_two + x for x in contributions)
             if len(node.node_attributes):
-                contributions = self._format_attribute_list(node.node_attributes)
+                contributions = \
+                    self._format_attribute_list(node.node_attributes)
                 contributions[0] = 'node {}'.format(contributions[0])
                 result.extend(indent_two + x for x in contributions)
             if len(node.edge_attributes):
-                contributions = self._format_attribute_list(node.edge_attributes)
+                contributions = \
+                    self._format_attribute_list(node.edge_attributes)
                 contributions[0] = 'edge {}'.format(contributions[0])
                 result.extend(indent_two + x for x in contributions)
             for child in node:
@@ -240,7 +243,8 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
             if node in edge_parents:
                 edge_contributions = []
                 for edge in sorted(edge_parents[node],
-                    key=lambda x: (x.tail.canonical_name, x.head.canonical_name)):
+                    key=lambda x: (
+                    x.tail.canonical_name, x.head.canonical_name)):
                     edge_contributions.extend(indent_two + x \
                         for x in edge._graphviz_format_contributions)
                 result.extend(edge_contributions)
@@ -266,7 +270,8 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
     @property
     def unflattened_graphviz_format(self):
         from abjad.tools import iotools
-        assert iotools.which('unflatten'), 'Cannot find `unflatten` command-line tool.'
+        assert iotools.which(
+            'unflatten'), 'Cannot find `unflatten` command-line tool.'
         graphviz_format = self.graphviz_format
         process = subprocess.Popen('unflatten -l 4'.split(),
             shell=False,

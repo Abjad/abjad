@@ -1,7 +1,7 @@
-from abjad.tools import documentationtools
-from abjad.tools.developerscripttools.DeveloperScript import DeveloperScript
 import argparse
 import os
+from abjad.tools import documentationtools
+from abjad.tools.developerscripttools.DeveloperScript import DeveloperScript
 
 
 class AbjDevScript(DeveloperScript):
@@ -15,7 +15,7 @@ class AbjDevScript(DeveloperScript):
         bash$ abj-dev
         usage: abj-dev [-h] [--version]
 
-                       {help,list,api,book,clean,count,doctest,grep,new,rename,replace,svn}
+                       {help, list, api, book, clean, count, doctest, grep, new, rename, replace, svn}
                        ...
 
         Entry-point to Abjad developer scripts catalog.

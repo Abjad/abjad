@@ -46,8 +46,6 @@ class TimeSignatureMark(ContextMark):
     .. note:: add example of `suppress` keyword.
 
     .. note:: turn `suppress` into managed attribute.
-
-    Return time signature object.
     '''
 
     ### CLASS VARIABLES ###

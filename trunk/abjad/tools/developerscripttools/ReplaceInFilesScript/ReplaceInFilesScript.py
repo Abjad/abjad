@@ -1,7 +1,7 @@
-from abjad.tools.developerscripttools.DirectoryScript import DirectoryScript
 import fnmatch
 import os
 import re
+from abjad.tools.developerscripttools.DirectoryScript import DirectoryScript
 
 
 class ReplaceInFilesScript(DirectoryScript):

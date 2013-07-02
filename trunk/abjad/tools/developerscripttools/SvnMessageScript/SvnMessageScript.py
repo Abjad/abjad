@@ -1,7 +1,7 @@
+import os
 from abjad.tools import configurationtools
 from abjad.tools import iotools
 from abjad.tools.developerscripttools.DeveloperScript import DeveloperScript
-import os
 
 
 class SvnMessageScript(DeveloperScript):

@@ -6,14 +6,14 @@ from abjad.tools.abctools.AttributeEqualityAbjadObject \
 class SortableAttributeEqualityAbjadObject(AttributeEqualityAbjadObject):
     '''.. versionadded:: 2.0
 
+    .. note:: deprecated.
+
     Abstact base class to confer sortable attribute-equality 
     to any custom class.
 
     Sortable attribute-equality comparators implement ``__eq__``, ``__ne__``,
     ``__gt__``, ``__ge__``, ``__lt__``, ``__le__`` against a single comparison
     attribute.
-
-    .. note:: deprecated.
     '''
 
     ### CLASS VARIABLES ###

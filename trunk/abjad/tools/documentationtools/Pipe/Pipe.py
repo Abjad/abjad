@@ -1,7 +1,7 @@
-from abjad.tools import abctools
 import select
 import subprocess
 import time
+from abjad.tools import abctools
 
 
 class Pipe(abctools.AbjadObject, subprocess.Popen):

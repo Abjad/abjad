@@ -1,7 +1,7 @@
+import os
 from abjad.tools import iotools
 from abjad.tools.documentationtools import AbjadAPIGenerator
 from abjad.tools.developerscripttools.DeveloperScript import DeveloperScript
-import os
 
 
 class BuildApiScript(DeveloperScript):
@@ -59,7 +59,9 @@ class BuildApiScript(DeveloperScript):
 
             @property
             def docs_api_index_path(self):
-                return os.path.join(abjad_configuration.abjad_experimental_directory_path, 'docs', 'source', 'index.rst')
+                return os.path.join(
+                    abjad_configuration.abjad_experimental_directory_path,
+                    'docs', 'source', 'index.rst')
 
             @property
             def path_definitions(self):

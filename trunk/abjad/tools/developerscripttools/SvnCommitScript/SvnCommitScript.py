@@ -1,8 +1,8 @@
+import os
 from abjad.tools import configurationtools
 from abjad.tools import iotools
 from abjad.tools.developerscripttools.DirectoryScript import DirectoryScript
 from abjad.tools.developerscripttools.SvnMessageScript import SvnMessageScript
-import os
 
 
 class SvnCommitScript(DirectoryScript):
@@ -72,7 +72,8 @@ class SvnCommitScript(DirectoryScript):
                 for line in lines:
                     print '~ {}'.format(line)
             print
-            result = raw_input('Accept [Y], Reject [n], Abort [a]: ').strip().lower()
+            result = raw_input(
+                'Accept [Y], Reject [n], Abort [a]: ').strip().lower()
             if result in ('', 'y', 'yes'):
                 iotools.spawn_subprocess(commit_command)
                 return

@@ -1,8 +1,8 @@
-from abjad.tools import documentationtools
-from abjad.tools.developerscripttools.DirectoryScript import DirectoryScript
 import argparse
 import importlib
 import os
+from abjad.tools import documentationtools
+from abjad.tools.developerscripttools.DirectoryScript import DirectoryScript
 
 
 class CountToolsScript(DirectoryScript):

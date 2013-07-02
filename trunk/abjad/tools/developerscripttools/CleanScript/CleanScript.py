@@ -1,7 +1,7 @@
-from abjad.tools.developerscripttools.DirectoryScript import DirectoryScript
 import argparse
 import os
 import shutil
+from abjad.tools.developerscripttools.DirectoryScript import DirectoryScript
 
 
 class CleanScript(DirectoryScript):

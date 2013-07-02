@@ -1,7 +1,7 @@
+import os
 from abjad.tools.developerscripttools.DirectoryScript import DirectoryScript
 from abjad.tools.developerscripttools.ReplaceInFilesScript \
 	import ReplaceInFilesScript
-import os
 
 
 class ReplacePromptsScript(DirectoryScript):

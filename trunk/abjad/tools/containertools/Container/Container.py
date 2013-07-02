@@ -300,8 +300,8 @@ class Container(Component):
         from abjad.tools import gracetools
         from abjad.tools import iterationtools
         from abjad.tools import spannertools
-        from abjad.tools.spannertools._withdraw_components_in_expr_from_crossing_spanners import \
-            _withdraw_components_in_expr_from_crossing_spanners
+        from abjad.tools.spannertools._withdraw_components_in_expr_from_crossing_spanners \
+            import _withdraw_components_in_expr_from_crossing_spanners
         # remember context marks attached to expr
         expr_context_marks = []
         for component in iterationtools.iterate_components_in_expr(expr):

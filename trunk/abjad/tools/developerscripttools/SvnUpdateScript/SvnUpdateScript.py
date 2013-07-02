@@ -1,8 +1,8 @@
+import argparse
+import os
 from abjad.tools import iotools
 from abjad.tools.developerscripttools.DirectoryScript import DirectoryScript
 from abjad.tools.developerscripttools.CleanScript import CleanScript
-import argparse
-import os
 
 
 class SvnUpdateScript(DirectoryScript):

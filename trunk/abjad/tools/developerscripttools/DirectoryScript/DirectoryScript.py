@@ -1,6 +1,6 @@
-from abjad.tools.developerscripttools.DeveloperScript import DeveloperScript
 import argparse
 import os
+from abjad.tools.developerscripttools.DeveloperScript import DeveloperScript
 
 
 class DirectoryScript(DeveloperScript):

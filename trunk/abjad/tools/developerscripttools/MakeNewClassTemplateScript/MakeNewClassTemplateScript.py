@@ -1,6 +1,6 @@
+import os
 from abjad.tools import documentationtools
 from abjad.tools.developerscripttools.DeveloperScript import DeveloperScript
-import os
 
 
 class MakeNewClassTemplateScript(DeveloperScript):

@@ -1,5 +1,5 @@
-from abjad.tools.developerscripttools.DeveloperScript import DeveloperScript
 import os
+from abjad.tools.developerscripttools.DeveloperScript import DeveloperScript
 
 
 class MakeNewFunctionTemplateScript(DeveloperScript):

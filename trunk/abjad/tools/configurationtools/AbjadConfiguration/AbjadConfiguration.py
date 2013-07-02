@@ -47,7 +47,7 @@ class AbjadConfiguration(Configuration):
             '',
             'Abjad configuration file created by Abjad on {}.'.format(
                 self._current_time),
-            'This file is interpreted by ConfigObj and should follow ini syntax.',
+            'File is interpreted by ConfigObj and should follow ini syntax.',
         ]
 
     @property
@@ -57,8 +57,8 @@ class AbjadConfiguration(Configuration):
             'abjad_output': {
                 'comment': [
                     '',
-                    'Set to the one directory where you wish all Abjad-generated files',
-                    '(such as PDFs, LilyPond, MIDI or log files) to be saved.',
+                    'Set to the directory where all Abjad-generated files',
+                    '(such as PDFs and LilyPond files) should be saved.',
                     'Defaults to $home/.abjad/output/'
                 ],
                 'spec': 'string(default={!r})'.format(
@@ -75,8 +75,8 @@ class AbjadConfiguration(Configuration):
             'lilypond_includes': {
                 'comment': [
                     '',
-                    'Comma-separated list of LilyPond files that Abjad will "\include"',
-                    'in all generated *.ly files',
+                    'Comma-separated list of LilyPond files that ',
+                    'Abjad will "\include" in all generated *.ly files',
                 ],
                 'spec': 'list(min=0, default=list())'
             },
@@ -97,24 +97,24 @@ class AbjadConfiguration(Configuration):
             'midi_player': {
                 'comment': [
                     '',
-                    'MIDI player to play MIDI files with, via play().',
-                    'When unset, your environment should know how to open MIDIs.',
+                    'MIDI player to open MIDI files.',
+                    'When unset your OS should know how to open MIDI files.',
                 ],
                 'spec': "string(default='')"
             },
             'pdf_viewer': {
                 'comment': [
                     '',
-                    'PDF viewer to view generated PDF files.',
-                    'When unset, your environment should know how to open PDFs.',
+                    'PDF viewer to open PDF files.',
+                    'When unset your OS should know how to open PDFs.',
                 ],
                 'spec': "string(default='')"
             },
             'text_editor': {
                 'comment': [
                     '',
-                    'Text editor for viewing text files with (i.e. *.ly).',
-                    'When unset, your environment should know how to open text files.'
+                    'Text editor to edit text files.',
+                    'When unset your OS should know how to open text files.'
                 ],
                 'spec': "string(default='')"
             },

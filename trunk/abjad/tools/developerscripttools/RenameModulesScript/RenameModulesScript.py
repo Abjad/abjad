@@ -1,10 +1,10 @@
 import abc
+import os
 from abjad.tools import documentationtools
 from abjad.tools import iotools
 from abjad.tools.developerscripttools.DeveloperScript import DeveloperScript
 from abjad.tools.developerscripttools.ReplaceInFilesScript \
 	import ReplaceInFilesScript
-import os
 
 
 class RenameModulesScript(DeveloperScript):
