@@ -9,7 +9,15 @@ class TimeInterval(TimeIntervalMixin, collections.MutableMapping):
     '''A start / stop pair, carrying some metadata.
     '''
 
-    __slots__ = ('_data', '_start', '_stop')
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_data',
+        '_start',
+        '_stop',
+        )
+
+    ### INITIALIZER ###
 
     def __init__(self, *args):
         if len(args) == 1 and isinstance(args[0], type(self)):
@@ -59,7 +67,8 @@ class TimeInterval(TimeIntervalMixin, collections.MutableMapping):
         return not self.__eq__(expr)
 
     def __repr__(self):
-        return '%s(%r, %r, %r)' % (self._class_name, self.start, self.stop, self._data)
+        return '%s(%r, %r, %r)' % (
+            self._class_name, self.start, self.stop, self._data)
 
     def __setitem__(self, item, value):
         self._data.__setitem__(item, value)
@@ -135,8 +144,10 @@ class TimeInterval(TimeIntervalMixin, collections.MutableMapping):
     def quantize_to_rational(self, rational):
         rational = durationtools.Duration(rational)
         assert 0 < rational
-        start = durationtools.Offset(int(round(interval.start / rational))) * rational
-        stop = durationtools.Offset(int(round(interval.stop / rational))) * rational
+        start = durationtools.Offset(
+            int(round(interval.start / rational))) * rational
+        stop = durationtools.Offset(
+            int(round(interval.stop / rational))) * rational
         if start == stop:
             stop = start + rational
         return type(self)(start, stop, self)
@@ -161,7 +172,8 @@ class TimeInterval(TimeIntervalMixin, collections.MutableMapping):
     def shift_by_rational(self, rational):
         rational = durationtools.Duration(rational)
         if rational != 0:
-            return type(self)(self.start + rational, self.stop + rational, self)
+            return type(self)(
+                self.start + rational, self.stop + rational, self)
         else:
             return self
 
@@ -182,8 +194,10 @@ class TimeInterval(TimeIntervalMixin, collections.MutableMapping):
         for rational in sorted(rationals):
             for interval in intervals:
                 if interval.start < rational < interval.stop:
-                    new_intervals.append(type(self)(interval.start, rational, self))
-                    new_intervals.append(type(self)(rational, interval.stop, self))
+                    new_intervals.append(
+                        type(self)(interval.start, rational, self))
+                    new_intervals.append(
+                        type(self)(rational, interval.stop, self))
                 else:
                     new_intervals.append(type(self)(interval))
             intervals = new_intervals

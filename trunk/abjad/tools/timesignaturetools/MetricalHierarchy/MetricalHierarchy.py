@@ -15,12 +15,15 @@ class MetricalHierarchy(AbjadObject):
     The structure of the tree corresponds to the monotonically increasing
     sequence of factors of the time signature's numerator.
 
-    Each deeper level of the tree divides the previous by the next factor in sequence.
+    Each deeper level of the tree divides the previous by the next 
+    factor in sequence.
 
-    Prime divisions greater than ``3`` are converted to sequences of ``2`` and ``3``
-    summing to that prime. Hence ``5`` becomes ``3+2`` and ``7`` becomes ``3+2+2``.
+    Prime divisions greater than ``3`` are converted to sequences of 
+    ``2`` and ``3`` summing to that prime. 
+    Hence ``5`` becomes ``3+2`` and ``7`` becomes ``3+2+2``.
 
-    The metrical hierarchy models many parts of the common practice understanding of meter:
+    The metrical hierarchy models many parts of the common practice 
+    understanding of meter:
 
     ::
 
@@ -112,25 +115,39 @@ class MetricalHierarchy(AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_decrease_durations_monotonically', '_denominator', '_numerator', '_root_node',)
+    __slots__ = (
+        '_decrease_durations_monotonically',
+        '_denominator',
+        '_numerator',
+        '_root_node',
+        )
 
     ### INITIALIZER ###
 
     def __init__(self, arg, decrease_durations_monotonically=True):
 
-        def recurse(node, factors, denominator, decrease_durations_monotonically):
+        def recurse(
+            node, factors, denominator, decrease_durations_monotonically):
             if factors:
                 factor, factors = factors[0], factors[1:]
                 preprolated_duration = node.preprolated_duration / factor
                 if factor in (2, 3, 4):
                     if factors:
                         for _ in range(factor):
-                            child = rhythmtreetools.RhythmTreeContainer(preprolated_duration=preprolated_duration)
+                            child = rhythmtreetools.RhythmTreeContainer(
+                                preprolated_duration=preprolated_duration)
                             node.append(child)
-                            recurse(child, factors, denominator, decrease_durations_monotonically)
+                            recurse(
+                                child,
+                                factors,
+                                denominator,
+                                decrease_durations_monotonically,
+                                )
                     else:
                         for _ in range(factor):
-                            node.append(rhythmtreetools.RhythmTreeLeaf(preprolated_duration=(1, denominator)))
+                            node.append(
+                                rhythmtreetools.RhythmTreeLeaf(
+                                    preprolated_duration=(1, denominator)))
                 else:
                     parts = [3]
                     total = 3
@@ -141,26 +158,38 @@ class MetricalHierarchy(AbjadObject):
                             parts.insert(0, 2)
                         total += 2
                     for part in parts:
-                        grouping = rhythmtreetools.RhythmTreeContainer(preprolated_duration=part * preprolated_duration)
+                        grouping = rhythmtreetools.RhythmTreeContainer(
+                            preprolated_duration=part * preprolated_duration)
                         if factors:
                             for _ in range(part):
-                                child = rhythmtreetools.RhythmTreeContainer(preprolated_duration=preprolated_duration)
+                                child = rhythmtreetools.RhythmTreeContainer(
+                                    preprolated_duration=preprolated_duration)
                                 grouping.append(child)
-                                recurse(child, factors, denominator, decrease_durations_monotonically)
+                                recurse(
+                                    child,
+                                    factors,
+                                    denominator,
+                                    decrease_durations_monotonically,
+                                    )
                         else:
                             for _ in range(part):
-                                grouping.append(rhythmtreetools.RhythmTreeLeaf(preprolated_duration=(1, denominator)))
+                                grouping.append(
+                                    rhythmtreetools.RhythmTreeLeaf(
+                                        preprolated_duration=(1, denominator)))
                         node.append(grouping)
             else:
-                node.extend([rhythmtreetools.RhythmTreeLeaf(preprolated_duration=(1, denominator))
+                node.extend([rhythmtreetools.RhythmTreeLeaf(
+                    preprolated_duration=(1, denominator))
                     for _ in range(node.preprolated_duration.numerator)])
 
-        decrease_durations_monotonically = bool(decrease_durations_monotonically)
+        decrease_durations_monotonically = \
+            bool(decrease_durations_monotonically)
 
         if isinstance(arg, type(self)):
             root = arg.root_node
             numerator, denominator = arg.numerator, arg.denominator
-            decrease_durations_monotonically = arg.decrease_durations_monotonically
+            decrease_durations_monotonically = \
+                arg.decrease_durations_monotonically
 
         elif isinstance(arg, (str, rhythmtreetools.RhythmTreeContainer)):
             if isinstance(arg, str):
@@ -171,7 +200,8 @@ class MetricalHierarchy(AbjadObject):
                 root = arg
             for node in root.nodes:
                 assert node.prolation == 1
-            numerator, denominator = root.preprolated_duration.numerator, root.preprolated_duration.denominator
+            numerator = root.preprolated_duration.numerator
+            denominator = root.preprolated_duration.denominator
 
         elif isinstance(arg, (tuple, measuretools.Measure)) or \
             (hasattr(arg, 'numerator') and hasattr(arg, 'denominator')):
@@ -182,22 +212,31 @@ class MetricalHierarchy(AbjadObject):
                 fraction = mathtools.NonreducedFraction(
                     time_signature.numerator, time_signature.denominator)
             else:
-                fraction = mathtools.NonreducedFraction(arg.numerator, arg.denominator)
+                fraction = mathtools.NonreducedFraction(
+                    arg.numerator, arg.denominator)
             numerator, denominator = fraction.numerator, fraction.denominator
             factors = mathtools.factors(numerator)[1:]
             # group two nested levels of 2s into a 4
             if 1 < len(factors) and factors[0] == factors[1] == 2:
                 factors[0:2] = [4]
-            root = rhythmtreetools.RhythmTreeContainer(preprolated_duration=fraction)
-            recurse(root, factors, denominator, decrease_durations_monotonically)
+            root = rhythmtreetools.RhythmTreeContainer(
+                preprolated_duration=fraction)
+            recurse(
+                root,
+                factors,
+                denominator,
+                decrease_durations_monotonically,
+                )
 
         else:
-            raise ValueError("Can't initialize {} from {!r}.".format(self._class_name, arg))
+            message = "Can't initialize {} from {!r}."
+            raise ValueError(message.format(self._class_name, arg))
 
         self._root_node = root
         self._numerator = numerator
         self._denominator = denominator
-        self._decrease_durations_monotonically = decrease_durations_monotonically
+        self._decrease_durations_monotonically = \
+            decrease_durations_monotonically
 
     ### SPECIAL METHODS ###
 
@@ -250,7 +289,7 @@ class MetricalHierarchy(AbjadObject):
     def __repr__(self):
         return '{}({!r})'.format(self._class_name, self.rtm_format)
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _keyword_argument_names(self):
@@ -260,18 +299,20 @@ class MetricalHierarchy(AbjadObject):
     def _positional_argument_values(self):
         return (self.rtm_format,)
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def decrease_durations_monotonically(self):
-        '''True if the metrical hierarchy divides large primes into collections of
-        ``2`` and ``3`` that decrease monotonically.
+        '''True if the metrical hierarchy divides large primes into 
+        collections of ``2`` and ``3`` that decrease monotonically.
 
-        Example 1. Metrical hiearchy with durations that increase monotonically:
+        Example 1. Metrical hiearchy with durations that increase 
+        monotonically:
 
         ::
 
-            >>> metrical_hierarchy = timesignaturetools.MetricalHierarchy((5, 4),
+            >>> metrical_hierarchy = \
+            ...     timesignaturetools.MetricalHierarchy((5, 4),
             ...     decrease_durations_monotonically=False)
 
         ::
@@ -291,11 +332,13 @@ class MetricalHierarchy(AbjadObject):
                     1/4
                     1/4))))
 
-        Example 2. Metrical hierarchy with durations that decrease monotonically:
+        Example 2. Metrical hierarchy with durations that 
+        decrease monotonically:
 
         ::
 
-            >>> metrical_hierarchy = timesignaturetools.MetricalHierarchy((5, 4),
+            >>> metrical_hierarchy = \
+            ...     timesignaturetools.MetricalHierarchy((5, 4),
             ...     decrease_durations_monotonically=True)
 
         ::
@@ -338,7 +381,8 @@ class MetricalHierarchy(AbjadObject):
 
         ::
 
-            >>> for depth, offsets in enumerate(metrical_hierarchy.depthwise_offset_inventory):
+            >>> for depth, offsets in enumerate(
+            ...     metrical_hierarchy.depthwise_offset_inventory):
             ...     print depth, offsets
             0 (Offset(0, 1), Offset(5, 4))
             1 (Offset(0, 1), Offset(3, 4), Offset(5, 4))
@@ -347,11 +391,13 @@ class MetricalHierarchy(AbjadObject):
         Return dictionary.
         '''
         inventory = []
-        for depth, nodes in sorted(self.root_node.depthwise_inventory.items()):
+        for depth, nodes in sorted(
+            self.root_node.depthwise_inventory.items()):
             offsets = []
             for node in nodes:
                 offsets.append(durationtools.Offset(node.start_offset))
-            offsets.append(durationtools.Offset(self.numerator, self.denominator))
+            offsets.append(
+                durationtools.Offset(self.numerator, self.denominator))
             inventory.append(tuple(offsets))
         return tuple(inventory)
 
@@ -407,7 +453,8 @@ class MetricalHierarchy(AbjadObject):
 
         Return TimeSignatureMark object.
         '''
-        return contexttools.TimeSignatureMark(self.root_node.preprolated_duration)
+        return contexttools.TimeSignatureMark(
+            self.root_node.preprolated_duration)
 
     @property
     def numerator(self):
@@ -539,15 +586,18 @@ class MetricalHierarchy(AbjadObject):
 
     ### PUBLIC METHODS ###
 
-    def generate_offset_kernel_to_denominator(self, denominator, normalize=True):
+    def generate_offset_kernel_to_denominator(
+        self, denominator, normalize=True):
         r'''Generate a dictionary of all offsets in a metrical hierarchy up
         to `denominator`, where the keys are the offsets and the values
         are the normalized weights of those offsets:
 
         ::
 
-            >>> metrical_hierarchy = timesignaturetools.MetricalHierarchy((4, 4))
-            >>> kernel = metrical_hierarchy.generate_offset_kernel_to_denominator(8)
+            >>> metrical_hierarchy = \
+            ...     timesignaturetools.MetricalHierarchy((4, 4))
+            >>> kernel = \
+            ...     metrical_hierarchy.generate_offset_kernel_to_denominator(8)
             >>> for offset, weight in sorted(kernel.kernel.iteritems()):
             ...     print '{}\t{}'.format(offset, weight)
             ...
@@ -577,7 +627,8 @@ class MetricalHierarchy(AbjadObject):
         for _ in range(extra_depth):
             old_offsets = inventory[-1]
             new_offsets = []
-            for first, second in sequencetools.iterate_sequence_pairwise_strict(old_offsets):
+            for first, second in \
+                sequencetools.iterate_sequence_pairwise_strict(old_offsets):
                 new_offsets.append(first)
                 new_offsets.append((first + second) / 2)
             new_offsets.append(old_offsets[-1])

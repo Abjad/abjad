@@ -13,7 +13,10 @@ class Scale(NamedChromaticPitchClassSegment):
 
     ### CLASS VARIABLES ###
 
-    _default_positional_input_arguments = (repr('c'), repr('major'))
+    _default_positional_input_arguments = (
+        repr('c'),
+        repr('major',)
+        )
 
     ### INITIALIZER ###
 

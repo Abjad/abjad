@@ -13,9 +13,14 @@ class Mode(AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_melodic_diatonic_interval_segment', '_mode_name')
+    __slots__ = (
+        '_melodic_diatonic_interval_segment',
+        '_mode_name',
+        )
 
-    _default_positional_input_arguments = (repr('dorian'), )
+    _default_positional_input_arguments = (
+        repr('dorian'),
+        )
 
     ### INITIALIZER ###
 
@@ -27,7 +32,8 @@ class Mode(AbjadObject):
         else:
             raise TypeError('%s must be mode instance or mode name.' % arg)
         mdi_segment = self._init_with_mode_name(mode_name)
-        object.__setattr__(self, '_melodic_diatonic_interval_segment', mdi_segment)
+        object.__setattr__(
+            self, '_melodic_diatonic_interval_segment', mdi_segment)
         object.__setattr__(self, '_mode_name', mode_name)
 
     ### SPECIAL METHODS ###
@@ -52,7 +58,6 @@ class Mode(AbjadObject):
     ### PRIVATE METHODS ###
 
     def _init_with_mode_name(self, mode_name):
-        #mdi_segment = pitchtools.MelodicDiatonicIntervalSegment([])
         mdi_segment = []
         m2 = pitchtools.MelodicDiatonicInterval('minor', 2)
         M2 = pitchtools.MelodicDiatonicInterval('major', 2)
@@ -78,8 +83,6 @@ class Mode(AbjadObject):
             mdi_segment.extend([M2, m2, M2, M2, m2, A2, m2])
         else:
             raise ValueError("unknown mode name '%s'." % mode_name)
-        #self._mode_name = mode_name
-        #self._melodic_diatonic_interval_segment = pitchtools.MelodicDiatonicIntervalSegment(mdi_segment)
         return pitchtools.MelodicDiatonicIntervalSegment(mdi_segment)
 
     ### PUBLIC PROPERTIES ###

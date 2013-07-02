@@ -6,7 +6,8 @@ from abjad.tools.timeintervaltools.TimeIntervalAggregateMixin \
 	import TimeIntervalAggregateMixin
 
 
-class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary):
+class TimeIntervalTreeDictionary(
+    TimeIntervalAggregateMixin, ImmutableDictionary):
     '''A dictionary of `TimeIntervalTrees`:
 
     ::
@@ -24,7 +25,8 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
         >>> b = TimeIntervalTree([TimeInterval(1, 2, {'name': 'b'})])
         >>> c = TimeIntervalTree([TimeInterval(0, 3, {'name': 'c'})])
         >>> d = TimeIntervalTree([TimeInterval(2, 3, {'name': 'd'})])
-        >>> treedict = TimeIntervalTreeDictionary({'a': a, 'b': b, 'c': c, 'd': d})
+        >>> treedict = TimeIntervalTreeDictionary(
+        ...     {'a': a, 'b': b, 'c': c, 'd': d})
         >>> treedict
         TimeIntervalTreeDictionary({
             'a': TimeIntervalTree([
@@ -60,7 +62,11 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_composite_tree', '_start', '_stop')
+    __slots__ = (
+        '_composite_tree',
+        '_start',
+        '_stop',
+        )
 
     #### INITIALIZER ###
 
@@ -81,11 +87,15 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
             for arg in args:
                 for key, tree in arg.iteritems():
                     if key in result:
-                        result[key] = timeintervaltools.TimeIntervalTree([result[key], tree])
+                        result[key] = timeintervaltools.TimeIntervalTree(
+                            [result[key], tree])
                     else:
                         result[key] = tree
             dict.update(self, result)
-            object.__setattr__(self, '_composite_tree', timeintervaltools.TimeIntervalTree(self.values()))
+            object.__setattr__(
+                self, 
+                '_composite_tree',
+                timeintervaltools.TimeIntervalTree(self.values()))
             object.__setattr__(self, '_start', self.composite_tree.start)
             object.__setattr__(self, '_stop', self.composite_tree.stop)
 
@@ -107,7 +117,10 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
                 object.__setattr__(self, '_start', None)
                 object.__setattr__(self, '_stop', None)
 
-            object.__setattr__(self, '_composite_tree', timeintervaltools.TimeIntervalTree(self.values()))
+            object.__setattr__(
+                self,
+                '_composite_tree',
+                timeintervaltools.TimeIntervalTree(self.values()))
             object.__setattr__(self, '_start', self.composite_tree.start)
             object.__setattr__(self, '_stop', self.composite_tree.stop)
 
@@ -133,8 +146,8 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
 
     @property
     def composite_tree(self):
-        '''The `TimeIntervalTree` composed of all the intervals in all trees in
-        self:
+        '''The `TimeIntervalTree` composed of all the intervals in all 
+        trees in self:
 
         ::
 
@@ -142,7 +155,8 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
             >>> b = TimeIntervalTree([TimeInterval(1, 2, {'name': 'b'})])
             >>> c = TimeIntervalTree([TimeInterval(0, 3, {'name': 'c'})])
             >>> d = TimeIntervalTree([TimeInterval(2, 3, {'name': 'd'})])
-            >>> treedict = TimeIntervalTreeDictionary({'a': a, 'b': b, 'c': c, 'd': d})
+            >>> treedict = TimeIntervalTreeDictionary(
+            ...     {'a': a, 'b': b, 'c': c, 'd': d})
 
         ::
 
@@ -168,7 +182,8 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
             >>> b = TimeIntervalTree([TimeInterval(1, 2, {'name': 'b'})])
             >>> c = TimeIntervalTree([TimeInterval(0, 3, {'name': 'c'})])
             >>> d = TimeIntervalTree([TimeInterval(2, 3, {'name': 'd'})])
-            >>> treedict = TimeIntervalTreeDictionary({'a': a, 'b': b, 'c': c, 'd': d})
+            >>> treedict = TimeIntervalTreeDictionary(
+            ...     {'a': a, 'b': b, 'c': c, 'd': d})
 
         ::
 
@@ -189,7 +204,8 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
             >>> b = TimeIntervalTree([TimeInterval(1, 2, {'name': 'b'})])
             >>> c = TimeIntervalTree([TimeInterval(0, 3, {'name': 'c'})])
             >>> d = TimeIntervalTree([TimeInterval(2, 3, {'name': 'd'})])
-            >>> treedict = TimeIntervalTreeDictionary({'a': a, 'b': b, 'c': c, 'd': d})
+            >>> treedict = TimeIntervalTreeDictionary(
+            ...     {'a': a, 'b': b, 'c': c, 'd': d})
 
         ::
 
@@ -214,7 +230,8 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
             >>> b = TimeIntervalTree([TimeInterval(1, 2, {'name': 'b'})])
             >>> c = TimeIntervalTree([TimeInterval(0, 3, {'name': 'c'})])
             >>> d = TimeIntervalTree([TimeInterval(2, 3, {'name': 'd'})])
-            >>> treedict = TimeIntervalTreeDictionary({'a': a, 'b': b, 'c': c, 'd': d})
+            >>> treedict = TimeIntervalTreeDictionary(
+            ...     {'a': a, 'b': b, 'c': c, 'd': d})
 
         ::
 
@@ -235,7 +252,8 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
             >>> b = TimeIntervalTree([TimeInterval(1, 2, {'name': 'b'})])
             >>> c = TimeIntervalTree([TimeInterval(0, 3, {'name': 'c'})])
             >>> d = TimeIntervalTree([TimeInterval(2, 3, {'name': 'd'})])
-            >>> treedict = TimeIntervalTreeDictionary({'a': a, 'b': b, 'c': c, 'd': d})
+            >>> treedict = TimeIntervalTreeDictionary(
+            ...     {'a': a, 'b': b, 'c': c, 'd': d})
 
         ::
 
@@ -250,7 +268,8 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
 
     def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
         if not len(self):
-            return ['{}({{}})'.format(self._tools_package_qualified_class_name)]
+            return ['{}({{}})'.format(
+                self._tools_package_qualified_class_name)]
 
         pieces = []
         pieces.append('{}({{'.format(self._tools_package_qualified_class_name))
@@ -289,8 +308,8 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
     ### PUBLIC METHODS ###
 
     def find_intervals_intersecting_or_tangent_to_interval(self, *args):
-        '''Find all intervals in dictionary intersecting or tangent to the interval
-        defined in `args`:
+        '''Find all intervals in dictionary intersecting or tangent 
+        to the interval defined in `args`:
 
         ::
 
@@ -298,7 +317,8 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
             >>> b = TimeIntervalTree([TimeInterval(1, 2, {'name': 'b'})])
             >>> c = TimeIntervalTree([TimeInterval(0, 3, {'name': 'c'})])
             >>> d = TimeIntervalTree([TimeInterval(2, 3, {'name': 'd'})])
-            >>> treedict = TimeIntervalTreeDictionary({'a': a, 'b': b, 'c': c, 'd': d})
+            >>> treedict = TimeIntervalTreeDictionary(
+            ...     {'a': a, 'b': b, 'c': c, 'd': d})
             >>> treedict
             TimeIntervalTreeDictionary({
                 'a': TimeIntervalTree([
@@ -318,7 +338,8 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
         ::
 
             >>> interval = TimeInterval(0, 1)
-            >>> treedict.find_intervals_intersecting_or_tangent_to_interval(interval)
+            >>> treedict.find_intervals_intersecting_or_tangent_to_interval(
+            ...     interval)
             TimeIntervalTreeDictionary({
                 'a': TimeIntervalTree([
                     TimeInterval(Offset(0, 1), Offset(1, 1), {'name': 'a'}),
@@ -334,7 +355,8 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
         ::
 
             >>> interval = TimeInterval(3, 4)
-            >>> treedict.find_intervals_intersecting_or_tangent_to_interval(interval)
+            >>> treedict.find_intervals_intersecting_or_tangent_to_interval(
+            ...     interval)
             TimeIntervalTreeDictionary({
                 'c': TimeIntervalTree([
                     TimeInterval(Offset(0, 1), Offset(3, 1), {'name': 'c'}),
@@ -349,13 +371,15 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
 
         result = {}
         for key, tree in self.iteritems():
-            found = tree.find_intervals_intersecting_or_tangent_to_interval(*args)
+            found = tree.find_intervals_intersecting_or_tangent_to_interval(
+                *args)
             if len(found):
                 result[key] = found
         return type(self)(result)
 
     def find_intervals_intersecting_or_tangent_to_offset(self, offset):
-        '''Find all intervals in dictionary intersecting or tangent to `offset`:
+        '''Find all intervals in dictionary intersecting or tangent 
+        to `offset`:
 
         ::
 
@@ -363,7 +387,8 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
             >>> b = TimeIntervalTree([TimeInterval(1, 2, {'name': 'b'})])
             >>> c = TimeIntervalTree([TimeInterval(0, 3, {'name': 'c'})])
             >>> d = TimeIntervalTree([TimeInterval(2, 3, {'name': 'd'})])
-            >>> treedict = TimeIntervalTreeDictionary({'a': a, 'b': b, 'c': c, 'd': d})
+            >>> treedict = TimeIntervalTreeDictionary(
+            ...     {'a': a, 'b': b, 'c': c, 'd': d})
             >>> treedict
             TimeIntervalTreeDictionary({
                 'a': TimeIntervalTree([
@@ -383,7 +408,8 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
         ::
 
             >>> offset = 1
-            >>> treedict.find_intervals_intersecting_or_tangent_to_offset(offset)
+            >>> treedict.find_intervals_intersecting_or_tangent_to_offset(
+            ...     offset)
             TimeIntervalTreeDictionary({
                 'a': TimeIntervalTree([
                     TimeInterval(Offset(0, 1), Offset(1, 1), {'name': 'a'}),
@@ -399,7 +425,8 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
         ::
 
             >>> offset = 3
-            >>> treedict.find_intervals_intersecting_or_tangent_to_offset(offset)
+            >>> treedict.find_intervals_intersecting_or_tangent_to_offset(
+            ...     offset)
             TimeIntervalTreeDictionary({
                 'c': TimeIntervalTree([
                     TimeInterval(Offset(0, 1), Offset(3, 1), {'name': 'c'}),
@@ -414,7 +441,8 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
 
         result = {}
         for key, tree in self.iteritems():
-            found = tree.find_intervals_intersecting_or_tangent_to_offset(offset)
+            found = tree.find_intervals_intersecting_or_tangent_to_offset(
+                offset)
             if len(found):
                 result[key] = found
         return type(self)(result)
@@ -428,7 +456,8 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
             >>> b = TimeIntervalTree([TimeInterval(1, 2, {'name': 'b'})])
             >>> c = TimeIntervalTree([TimeInterval(0, 3, {'name': 'c'})])
             >>> d = TimeIntervalTree([TimeInterval(2, 3, {'name': 'd'})])
-            >>> treedict = TimeIntervalTreeDictionary({'a': a, 'b': b, 'c': c, 'd': d})
+            >>> treedict = TimeIntervalTreeDictionary(
+            ...     {'a': a, 'b': b, 'c': c, 'd': d})
             >>> treedict
             TimeIntervalTreeDictionary({
                 'a': TimeIntervalTree([
@@ -479,8 +508,8 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
         return type(self)(result)
 
     def find_intervals_starting_and_stopping_within_interval(self, *args):
-        '''Find all intervals in dictionary starting and stopping within the interval
-        defined by `args`:
+        '''Find all intervals in dictionary starting and stopping within 
+        the interval defined by `args`:
 
         ::
 
@@ -488,7 +517,8 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
             >>> b = TimeIntervalTree([TimeInterval(1, 2, {'name': 'b'})])
             >>> c = TimeIntervalTree([TimeInterval(0, 3, {'name': 'c'})])
             >>> d = TimeIntervalTree([TimeInterval(2, 3, {'name': 'd'})])
-            >>> treedict = TimeIntervalTreeDictionary({'a': a, 'b': b, 'c': c, 'd': d})
+            >>> treedict = TimeIntervalTreeDictionary(
+            ...     {'a': a, 'b': b, 'c': c, 'd': d})
             >>> treedict
             TimeIntervalTreeDictionary({
                 'a': TimeIntervalTree([
@@ -508,7 +538,8 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
         ::
 
             >>> interval = TimeInterval(1, 3)
-            >>> treedict.find_intervals_starting_and_stopping_within_interval(interval)
+            >>> treedict.find_intervals_starting_and_stopping_within_interval(
+            ...     interval)
             TimeIntervalTreeDictionary({
                 'b': TimeIntervalTree([
                     TimeInterval(Offset(1, 1), Offset(2, 1), {'name': 'b'}),
@@ -521,7 +552,8 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
         ::
 
             >>> interval = TimeInterval(-1, 2)
-            >>> treedict.find_intervals_starting_and_stopping_within_interval(interval)
+            >>> treedict.find_intervals_starting_and_stopping_within_interval(
+            ...     interval)
             TimeIntervalTreeDictionary({
                 'a': TimeIntervalTree([
                     TimeInterval(Offset(0, 1), Offset(1, 1), {'name': 'a'}),
@@ -536,7 +568,8 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
 
         result = {}
         for key, tree in self.iteritems():
-            found = tree.find_intervals_starting_and_stopping_within_interval(*args)
+            found = tree.find_intervals_starting_and_stopping_within_interval(
+                *args)
             if len(found):
                 result[key] = found
         return type(self)(result)
@@ -550,7 +583,8 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
             >>> b = TimeIntervalTree([TimeInterval(1, 2, {'name': 'b'})])
             >>> c = TimeIntervalTree([TimeInterval(0, 3, {'name': 'c'})])
             >>> d = TimeIntervalTree([TimeInterval(2, 3, {'name': 'd'})])
-            >>> treedict = TimeIntervalTreeDictionary({'a': a, 'b': b, 'c': c, 'd': d})
+            >>> treedict = TimeIntervalTreeDictionary(
+            ...     {'a': a, 'b': b, 'c': c, 'd': d})
             >>> treedict
             TimeIntervalTreeDictionary({
                 'a': TimeIntervalTree([
@@ -609,7 +643,8 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
             >>> b = TimeIntervalTree([TimeInterval(1, 2, {'name': 'b'})])
             >>> c = TimeIntervalTree([TimeInterval(0, 3, {'name': 'c'})])
             >>> d = TimeIntervalTree([TimeInterval(2, 3, {'name': 'd'})])
-            >>> treedict = TimeIntervalTreeDictionary({'a': a, 'b': b, 'c': c, 'd': d})
+            >>> treedict = TimeIntervalTreeDictionary(
+            ...     {'a': a, 'b': b, 'c': c, 'd': d})
             >>> treedict
             TimeIntervalTreeDictionary({
                 'a': TimeIntervalTree([
@@ -674,7 +709,8 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
             >>> b = TimeIntervalTree([TimeInterval(1, 2, {'name': 'b'})])
             >>> c = TimeIntervalTree([TimeInterval(0, 3, {'name': 'c'})])
             >>> d = TimeIntervalTree([TimeInterval(2, 3, {'name': 'd'})])
-            >>> treedict = TimeIntervalTreeDictionary({'a': a, 'b': b, 'c': c, 'd': d})
+            >>> treedict = TimeIntervalTreeDictionary(
+            ...     {'a': a, 'b': b, 'c': c, 'd': d})
             >>> treedict
             TimeIntervalTreeDictionary({
                 'a': TimeIntervalTree([
@@ -728,8 +764,8 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
         return type(self)(result)
 
     def find_intervals_starting_within_interval(self, *args):
-        '''Find all intervals in dictionary starting within the interval defined by
-        `args`:
+        '''Find all intervals in dictionary starting within the interval 
+        defined by `args`:
 
         ::
 
@@ -737,7 +773,8 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
             >>> b = TimeIntervalTree([TimeInterval(1, 2, {'name': 'b'})])
             >>> c = TimeIntervalTree([TimeInterval(0, 3, {'name': 'c'})])
             >>> d = TimeIntervalTree([TimeInterval(2, 3, {'name': 'd'})])
-            >>> treedict = TimeIntervalTreeDictionary({'a': a, 'b': b, 'c': c, 'd': d})
+            >>> treedict = TimeIntervalTreeDictionary(
+            ...     {'a': a, 'b': b, 'c': c, 'd': d})
             >>> treedict
             TimeIntervalTreeDictionary({
                 'a': TimeIntervalTree([
@@ -799,7 +836,8 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
             >>> b = TimeIntervalTree([TimeInterval(1, 2, {'name': 'b'})])
             >>> c = TimeIntervalTree([TimeInterval(0, 3, {'name': 'c'})])
             >>> d = TimeIntervalTree([TimeInterval(2, 3, {'name': 'd'})])
-            >>> treedict = TimeIntervalTreeDictionary({'a': a, 'b': b, 'c': c, 'd': d})
+            >>> treedict = TimeIntervalTreeDictionary(
+            ...     {'a': a, 'b': b, 'c': c, 'd': d})
             >>> treedict
             TimeIntervalTreeDictionary({
                 'a': TimeIntervalTree([
@@ -864,7 +902,8 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
             >>> b = TimeIntervalTree([TimeInterval(1, 2, {'name': 'b'})])
             >>> c = TimeIntervalTree([TimeInterval(0, 3, {'name': 'c'})])
             >>> d = TimeIntervalTree([TimeInterval(2, 3, {'name': 'd'})])
-            >>> treedict = TimeIntervalTreeDictionary({'a': a, 'b': b, 'c': c, 'd': d})
+            >>> treedict = TimeIntervalTreeDictionary(
+            ...     {'a': a, 'b': b, 'c': c, 'd': d})
             >>> treedict
             TimeIntervalTreeDictionary({
                 'a': TimeIntervalTree([
@@ -923,7 +962,8 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
             >>> b = TimeIntervalTree([TimeInterval(1, 2, {'name': 'b'})])
             >>> c = TimeIntervalTree([TimeInterval(0, 3, {'name': 'c'})])
             >>> d = TimeIntervalTree([TimeInterval(2, 3, {'name': 'd'})])
-            >>> treedict = TimeIntervalTreeDictionary({'a': a, 'b': b, 'c': c, 'd': d})
+            >>> treedict = TimeIntervalTreeDictionary(
+            ...     {'a': a, 'b': b, 'c': c, 'd': d})
             >>> treedict
             TimeIntervalTreeDictionary({
                 'a': TimeIntervalTree([
@@ -992,7 +1032,8 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
             >>> b = TimeIntervalTree([TimeInterval(1, 2, {'name': 'b'})])
             >>> c = TimeIntervalTree([TimeInterval(0, 3, {'name': 'c'})])
             >>> d = TimeIntervalTree([TimeInterval(2, 3, {'name': 'd'})])
-            >>> treedict = TimeIntervalTreeDictionary({'a': a, 'b': b, 'c': c, 'd': d})
+            >>> treedict = TimeIntervalTreeDictionary(
+            ...     {'a': a, 'b': b, 'c': c, 'd': d})
             >>> treedict
             TimeIntervalTreeDictionary({
                 'a': TimeIntervalTree([
@@ -1034,7 +1075,6 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
 
         Return `TimeIntervalTreeDictionary` instance.
         '''
-
         result = {}
         for key, tree in self.iteritems():
             found = tree.find_intervals_stopping_within_interval(*args)
@@ -1048,11 +1088,16 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
 
         ::
 
-            >>> a = TimeIntervalTree([TimeInterval((1, 16), (1, 8), {'name': 'a'})])
-            >>> b = TimeIntervalTree([TimeInterval((2, 7), (13, 7), {'name': 'b'})])
-            >>> c = TimeIntervalTree([TimeInterval((3, 5), (8, 5), {'name': 'c'})])
-            >>> d = TimeIntervalTree([TimeInterval((2, 3), (5, 3), {'name': 'd'})])
-            >>> treedict = TimeIntervalTreeDictionary({'a': a, 'b': b, 'c': c, 'd': d})
+            >>> a = TimeIntervalTree(
+            ...     [TimeInterval((1, 16), (1, 8), {'name': 'a'})])
+            >>> b = TimeIntervalTree(
+            ...     [TimeInterval((2, 7), (13, 7), {'name': 'b'})])
+            >>> c = TimeIntervalTree(
+            ...     [TimeInterval((3, 5), (8, 5), {'name': 'c'})])
+            >>> d = TimeIntervalTree(
+            ...     [TimeInterval((2, 3), (5, 3), {'name': 'd'})])
+            >>> treedict = TimeIntervalTreeDictionary(
+            ...     {'a': a, 'b': b, 'c': c, 'd': d})
             >>> treedict
             TimeIntervalTreeDictionary({
                 'a': TimeIntervalTree([
@@ -1109,7 +1154,6 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
 
         Return `TimeIntervalTreeDictionary` instance.
         '''
-
         rational = durationtools.Duration(rational)
         result = {}
         for key, tree in self.iteritems():
@@ -1121,9 +1165,12 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
 
         ::
 
-            >>> one = TimeIntervalTree([TimeInterval(0, 1, {'name': 'one'})])
-            >>> two = TimeIntervalTree([TimeInterval((1, 2), (5, 2), {'name': 'two'})])
-            >>> three = TimeIntervalTree([TimeInterval(2, 4, {'name': 'three'})])
+            >>> one = TimeIntervalTree(
+            ...     [TimeInterval(0, 1, {'name': 'one'})])
+            >>> two = TimeIntervalTree(
+            ...     [TimeInterval((1, 2), (5, 2), {'name': 'two'})])
+            >>> three = TimeIntervalTree(
+            ...     [TimeInterval(2, 4, {'name': 'three'})])
             >>> treedict = TimeIntervalTreeDictionary(
             ...     {'one': one, 'two': two, 'three': three})
             >>> treedict
@@ -1160,7 +1207,8 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
 
         ::
 
-            >>> zero = TimeIntervalTree([TimeInterval(-4, 0, {'name': 'zero'})])
+            >>> zero = TimeIntervalTree(
+            ...     [TimeInterval(-4, 0, {'name': 'zero'})])
             >>> treedict = TimeIntervalTreeDictionary(
             ...     {'zero': zero, 'one': one, 'two': two, 'three': three})
             >>> treedict
@@ -1207,12 +1255,13 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
 
         Return `TimeIntervalTreeDictionary` instance.
         '''
-
         rational = durationtools.Duration(rational)
         result = {}
         for key, tree in self.iteritems():
             offset = (tree.start - self.start) * rational
-            result[key] = tree.scale_by_rational(rational).shift_to_rational(self.start + offset)
+            result[key] = \
+                tree.scale_by_rational(rational).shift_to_rational(
+                self.start + offset)
         return type(self)(result)
 
     def scale_to_rational(self, rational):
@@ -1220,10 +1269,14 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
 
         ::
 
-            >>> one = TimeIntervalTree([TimeInterval(0, 1, {'name': 'one'})])
-            >>> two = TimeIntervalTree([TimeInterval((1, 2), (5, 2), {'name': 'two'})])
-            >>> three = TimeIntervalTree([TimeInterval(2, 4, {'name': 'three'})])
-            >>> treedict = TimeIntervalTreeDictionary({'one': one, 'two': two, 'three': three})
+            >>> one = TimeIntervalTree(
+            ...     [TimeInterval(0, 1, {'name': 'one'})])
+            >>> two = TimeIntervalTree(
+            ...     [TimeInterval((1, 2), (5, 2), {'name': 'two'})])
+            >>> three = TimeIntervalTree(
+            ...     [TimeInterval(2, 4, {'name': 'three'})])
+            >>> treedict = TimeIntervalTreeDictionary(
+            ...     {'one': one, 'two': two, 'three': three})
             >>> treedict
             TimeIntervalTreeDictionary({
                 'one': TimeIntervalTree([
@@ -1268,11 +1321,13 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
                 ]),
             })
 
-        Scaling works regardless of the starting offset of the `TimeIntervalTreeDictionary`:
+        Scaling works regardless of the starting offset of 
+        the `TimeIntervalTreeDictionary`:
 
         ::
 
-            >>> zero = TimeIntervalTree([TimeInterval(-4, 0, {'name': 'zero'})])
+            >>> zero = TimeIntervalTree(
+            ...     [TimeInterval(-4, 0, {'name': 'zero'})])
             >>> treedict = TimeIntervalTreeDictionary(
             ...     {'zero': zero, 'one': one, 'two': two, 'three': three})
 
@@ -1302,7 +1357,8 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
         for key, tree in self.iteritems():
             offset = (((tree.start - self.start) / self.duration) * rational) + self.start
             duration = (tree.duration / self.duration) * rational
-            result[key] = tree.scale_to_rational(duration).shift_to_rational(offset)
+            result[key] = \
+                tree.scale_to_rational(duration).shift_to_rational(offset)
         return type(self)(result)
 
     def shift_by_rational(self, rational):
@@ -1310,10 +1366,14 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
 
         ::
 
-            >>> one = TimeIntervalTree([TimeInterval(0, 1, {'name': 'one'})])
-            >>> two = TimeIntervalTree([TimeInterval((1, 2), (5, 2), {'name': 'two'})])
-            >>> three = TimeIntervalTree([TimeInterval(2, 4, {'name': 'three'})])
-            >>> treedict = TimeIntervalTreeDictionary({'one': one, 'two': two, 'three': three})
+            >>> one = TimeIntervalTree(
+            ...     [TimeInterval(0, 1, {'name': 'one'})])
+            >>> two = TimeIntervalTree(
+            ...     [TimeInterval((1, 2), (5, 2), {'name': 'two'})])
+            >>> three = TimeIntervalTree(
+            ...     [TimeInterval(2, 4, {'name': 'three'})])
+            >>> treedict = TimeIntervalTreeDictionary(
+            ...     {'one': one, 'two': two, 'three': three})
             >>> treedict
             TimeIntervalTreeDictionary({
                 'one': TimeIntervalTree([
@@ -1360,7 +1420,6 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
 
         Return `TimeIntervalTreeDictionary` instance.
         '''
-
         rational = durationtools.Offset(rational)
         result = {}
         for key, tree in self.iteritems():
@@ -1372,10 +1431,14 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
 
         ::
 
-            >>> one = TimeIntervalTree([TimeInterval(0, 1, {'name': 'one'})])
-            >>> two = TimeIntervalTree([TimeInterval((1, 2), (5, 2), {'name': 'two'})])
-            >>> three = TimeIntervalTree([TimeInterval(2, 4, {'name': 'three'})])
-            >>> treedict = TimeIntervalTreeDictionary({'one': one, 'two': two, 'three': three})
+            >>> one = TimeIntervalTree(
+            ...     [TimeInterval(0, 1, {'name': 'one'})])
+            >>> two = TimeIntervalTree(
+            ...     [TimeInterval((1, 2), (5, 2), {'name': 'two'})])
+            >>> three = TimeIntervalTree(
+            ...     [TimeInterval(2, 4, {'name': 'three'})])
+            >>> treedict = TimeIntervalTreeDictionary(
+            ...     {'one': one, 'two': two, 'three': three})
             >>> treedict
             TimeIntervalTreeDictionary({
                 'one': TimeIntervalTree([
@@ -1407,7 +1470,6 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
 
         Return `TimeIntervalTreeDictionary` instance.
         '''
-
         rational = durationtools.Offset(rational)
         result = {}
         for key, tree in self.iteritems():
@@ -1420,10 +1482,14 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
 
         ::
 
-            >>> one = TimeIntervalTree([TimeInterval(0, 1, {'name': 'one'})])
-            >>> two = TimeIntervalTree([TimeInterval((1, 2), (5, 2), {'name': 'two'})])
-            >>> three = TimeIntervalTree([TimeInterval(2, 4, {'name': 'three'})])
-            >>> treedict = TimeIntervalTreeDictionary({'one': one, 'two': two, 'three': three})
+            >>> one = TimeIntervalTree(
+            ...     [TimeInterval(0, 1, {'name': 'one'})])
+            >>> two = TimeIntervalTree(
+            ...     [TimeInterval((1, 2), (5, 2), {'name': 'two'})])
+            >>> three = TimeIntervalTree(
+            ...     [TimeInterval(2, 4, {'name': 'three'})])
+            >>> treedict = TimeIntervalTreeDictionary(
+            ...     {'one': one, 'two': two, 'three': three})
             >>> treedict
             TimeIntervalTreeDictionary({
                 'one': TimeIntervalTree([
@@ -1487,7 +1553,6 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
 
         Return tuple of `TimeIntervalTreeDictionary` instances.
         '''
-
         assert 0 < len(rationals)
         rationals = sorted([durationtools.Offset(x) for x in rationals])
         rationals = [x for x in rationals if self.start < x < self.stop]

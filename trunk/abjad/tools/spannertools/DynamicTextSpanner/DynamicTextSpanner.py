@@ -49,7 +49,7 @@ class DynamicTextSpanner(Spanner):
             result.append(r'\%s' % self.mark)
         return result
 
-    ### READ / WRITE PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @apply
     def mark():
@@ -59,7 +59,8 @@ class DynamicTextSpanner(Spanner):
             ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> dynamic_text_spanner = spannertools.DynamicTextSpanner(staff[:], 'f')
+                >>> dynamic_text_spanner = \
+                ...     spannertools.DynamicTextSpanner(staff[:], 'f')
                 >>> dynamic_text_spanner.mark
                 'f'
 
@@ -68,7 +69,8 @@ class DynamicTextSpanner(Spanner):
             ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> dynamic_text_spanner = spannertools.DynamicTextSpanner(staff[:], 'f')
+                >>> dynamic_text_spanner = \
+                ...     spannertools.DynamicTextSpanner(staff[:], 'f')
                 >>> dynamic_text_spanner.mark = 'p'
                 >>> dynamic_text_spanner.mark
                 'p'

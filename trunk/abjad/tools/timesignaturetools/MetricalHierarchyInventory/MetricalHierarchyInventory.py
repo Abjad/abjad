@@ -6,7 +6,8 @@ class MetricalHierarchyInventory(ObjectInventory):
 
     ::
 
-        >>> inventory = timesignaturetools.MetricalHierarchyInventory([(4, 4), (3, 4), (6, 8)])
+        >>> inventory = timesignaturetools.MetricalHierarchyInventory(
+        ...     [(4, 4), (3, 4), (6, 8)])
 
     ::
 
@@ -23,10 +24,11 @@ class MetricalHierarchyInventory(ObjectInventory):
                 )
             ])
 
-    MetricalHierarchy inventories implement the list interface and are mutable.
+    MetricalHierarchy inventories implement the list interface and 
+    are mutable.
     '''
 
-    ### READ-ONLY PRIVATE PROPERTIES ##
+    ### PRIVATE PROPERTIES ##
 
     @property
     def _item_callable(self):

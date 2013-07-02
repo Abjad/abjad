@@ -60,10 +60,14 @@ class BracketSpanner(TextSpanner):
 
     def __init__(self, components=None):
         TextSpanner.__init__(self, components)
-        markup = markuptools.Markup(markuptools.MarkupCommand('draw-line', schemetools.SchemePair(0, -1)))
+        markup = markuptools.Markup(
+            markuptools.MarkupCommand(
+                'draw-line', schemetools.SchemePair(0, -1)))
         self.override.text_spanner.bound_details__left__text = markup
         self.override.text_spanner.bound_details__left_broken__text = False
-        markup = markuptools.Markup(markuptools.MarkupCommand('draw-line', schemetools.SchemePair(0, -1)))
+        markup = markuptools.Markup(
+            markuptools.MarkupCommand(
+                'draw-line', schemetools.SchemePair(0, -1)))
         self.override.text_spanner.bound_details__right__text = markup
         self.override.text_spanner.bound_details__right_broken__text = False
         self.override.text_spanner.color = 'red'

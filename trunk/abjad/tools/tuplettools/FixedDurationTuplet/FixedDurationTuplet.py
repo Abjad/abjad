@@ -7,7 +7,8 @@ class FixedDurationTuplet(Tuplet):
 
     ::
 
-        >>> tuplet = tuplettools.FixedDurationTuplet(Fraction(2, 8), "c'8 d'8 e'8")
+        >>> tuplet = tuplettools.FixedDurationTuplet(
+        ...     Fraction(2, 8), "c'8 d'8 e'8")
 
     ::
 
@@ -47,7 +48,9 @@ class FixedDurationTuplet(Tuplet):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_target_duration', )
+    __slots__ = (
+        '_target_duration',
+        )
 
     _default_positional_input_arguments = (
         (1, 4),
@@ -69,13 +72,23 @@ class FixedDurationTuplet(Tuplet):
         return (self.target_duration, )
 
     def __repr__(self):
-        return '%s(%s, [%s])' % (self._class_name, self.target_duration, self._summary)
+        return '%s(%s, [%s])' % (
+            self._class_name, self.target_duration, self._summary)
 
     def __str__(self):
         if 0 < len(self):
-            return '{%s %s %s %s}' % (self._signifier, self.ratio_string, self._summary, self._signifier)
+            return '{%s %s %s %s}' % (
+                self._signifier,
+                self.ratio_string,
+                self._summary,
+                self._signifier,
+                )
         else:
-            return '{%s %s %s}' % (self._signifier, self.target_duration, self._signifier)
+            return '{%s %s %s}' % (
+                self._signifier,
+                self.target_duration,
+                self._signifier,
+                )
 
     ### PUBLIC PROPERTIES ###
 
@@ -100,14 +113,16 @@ class FixedDurationTuplet(Tuplet):
 
             ::
 
-                >>> tuplet = tuplettools.FixedDurationTuplet((1, 4), "c'8 d'8 e'8")
+                >>> tuplet = tuplettools.FixedDurationTuplet(
+                ...     (1, 4), "c'8 d'8 e'8")
                 >>> tuplet.multiplier
                 Multiplier(2, 3)
 
             Return multiplier.
             '''
             if 0 < len(self):
-                return durationtools.Multiplier(self.target_duration / self.contents_duration)
+                return durationtools.Multiplier(
+                    self.target_duration / self.contents_duration)
             else:
                 return None
         def fset(self, expr):
@@ -121,7 +136,8 @@ class FixedDurationTuplet(Tuplet):
 
             ::
 
-                >>> tuplet = tuplettools.FixedDurationTuplet((1, 4), "c'8 d'8 e'8")
+                >>> tuplet = tuplettools.FixedDurationTuplet(
+                ...     (1, 4), "c'8 d'8 e'8")
                 >>> tuplet.target_duration
                 Duration(1, 4)
 
@@ -149,14 +165,6 @@ class FixedDurationTuplet(Tuplet):
             '''
             return self._target_duration
         def fset(self, expr):
-#            if isinstance(expr, (int, long)):
-#                rational = durationtools.Duration(expr)
-#            elif isinstance(expr, tuple):
-#                rational = durationtools.Duration(*expr)
-#            elif hasattr(expr, 'numerator') and hasattr(expr, 'denominator'):
-#                rational = durationtools.Duration(expr)
-#            else:
-#                raise ValueError('Can not set tuplet rational from %s.' % str(expr))
             target_duration = durationtools.Duration(expr)
             assert 0 < target_duration
             self._target_duration = target_duration
@@ -165,9 +173,12 @@ class FixedDurationTuplet(Tuplet):
     ### PUBLIC METHODS ###
 
     def trim(self, start, stop='unused'):
-        '''Trim fixed-duration tuplet elements from `start` to `stop`::
+        '''Trim fixed-duration tuplet elements from `start` to `stop`:
 
-            >>> tuplet = tuplettools.FixedDurationTuplet(Fraction(2, 8), "c'8 d'8 e'8")
+        ::
+
+            >>> tuplet = tuplettools.FixedDurationTuplet(
+            ...     Fraction(2, 8), "c'8 d'8 e'8")
             >>> tuplet
             FixedDurationTuplet(1/4, [c'8, d'8, e'8])
 

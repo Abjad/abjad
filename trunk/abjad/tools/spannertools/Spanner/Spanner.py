@@ -114,7 +114,7 @@ class Spanner(AbjadObject):
     def __repr__(self):
         return '%s(%s)' % (self._class_name, self._compact_summary)
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _compact_summary(self):
@@ -152,7 +152,8 @@ class Spanner(AbjadObject):
 
     def _copy(self, components):
         '''Return copy of spanner with components.
-        Components must be an iterable of components already contained in spanner.
+        Components must be an iterable of components already 
+        contained in spanner.
         '''
         my_components = self._components[:]
         self._components = []
@@ -210,13 +211,15 @@ class Spanner(AbjadObject):
     def _get_my_first_leaf(self):
         from abjad.tools import leaftools
         from abjad.tools import spannertools
-        for leaf in spannertools.iterate_components_in_spanner(self, klass=leaftools.Leaf):
+        for leaf in spannertools.iterate_components_in_spanner(
+            self, klass=leaftools.Leaf):
             return leaf
 
     def _get_my_last_leaf(self):
         from abjad.tools import leaftools
         from abjad.tools import spannertools
-        for leaf in spannertools.iterate_components_in_spanner(self, klass=leaftools.Leaf, reverse=True):
+        for leaf in spannertools.iterate_components_in_spanner(
+            self, klass=leaftools.Leaf, reverse=True):
             return leaf
 
     def _initialize_components(self, components):
@@ -256,7 +259,8 @@ class Spanner(AbjadObject):
 
     def _is_my_first(self, leaf, klass):
         from abjad.tools import spannertools
-        for component in spannertools.iterate_components_in_spanner(self, klass=klass):
+        for component in spannertools.iterate_components_in_spanner(
+            self, klass=klass):
             if component is leaf:
                 return True
             else:
@@ -272,7 +276,8 @@ class Spanner(AbjadObject):
 
     def _is_my_last(self, leaf, klass):
         from abjad.tools import spannertools
-        components = spannertools.iterate_components_in_spanner(self, klass=klass, reverse=True)
+        components = spannertools.iterate_components_in_spanner(
+            self, klass=klass, reverse=True)
         for component in components:
             if component is leaf:
                 return True
@@ -289,7 +294,8 @@ class Spanner(AbjadObject):
 
     def _is_my_only(self, leaf, klass):
         from abjad.tools import spannertools
-        i, components = None, spannertools.iterate_components_in_spanner(self, klass=klass)
+        i, components = None, spannertools.iterate_components_in_spanner(
+            self, klass=klass)
         for i, component in enumerate(components):
             if 0 < i:
                 return False
@@ -313,7 +319,8 @@ class Spanner(AbjadObject):
                 self._components.pop(i)
                 break
         else:
-            raise ValueError('component "{}" not in spanner components list.'.format(component))
+            message = 'component "{}" not in spanner components list.'
+            raise ValueError(message.format(component))
 
     def _reverse_components(self):
         r'''Reverse order of spanner components.
@@ -321,11 +328,12 @@ class Spanner(AbjadObject):
         Not composer-safe because reversing the order of spanner components
         could scramble components of some other spanner.
 
-        Call method only as part of a full component- and spanner-reversal routine.
+        Call method only as part of a full component- and spanner-reversal 
+        routine.
 
         Spanner subclasses with mapping variables (like the 'durations' list
-        attaching to durated complex beam spanners) should override this method
-        to reverse mapping elements.
+        attaching to durated complex beam spanners) should override this 
+        method to reverse mapping elements.
         '''
         self._components.reverse()
 
@@ -401,8 +409,9 @@ class Spanner(AbjadObject):
         from abjad.tools import iterationtools
         result = []
         for component in self._components:
-            # EXPERIMENTAL: expand to allow staff-level spanner eventually #
-            for node in iterationtools.iterate_components_depth_first(component):
+            # EXPERIMENTAL: expand to allow staff-level spanner eventually
+            for node in \
+                iterationtools.iterate_components_depth_first(component):
                 if isinstance(node, leaftools.Leaf):
                     result.append(node)
         result = tuple(result)
@@ -413,7 +422,8 @@ class Spanner(AbjadObject):
         '''LilyPond grob override component plug-in.
         '''
         if not hasattr(self, '_override'):
-            self._override = lilypondproxytools.LilyPondGrobOverrideComponentPlugIn()
+            self._override = \
+                lilypondproxytools.LilyPondGrobOverrideComponentPlugIn()
         return self._override
 
     @property
@@ -427,7 +437,8 @@ class Spanner(AbjadObject):
         '''LilyPond context setting component plug-in.
         '''
         if not hasattr(self, '_set'):
-            self._set = lilypondproxytools.LilyPondContextSettingComponentPlugIn()
+            self._set = \
+                lilypondproxytools.LilyPondContextSettingComponentPlugIn()
         return self._set
 
     @property
@@ -442,7 +453,8 @@ class Spanner(AbjadObject):
             stop_offset = self[-1].timespan.stop_offset
         else:
             stop_offset = Duration(0)
-        return timespantools.Timespan(start_offset=start_offset, stop_offset=stop_offset)
+        return timespantools.Timespan(
+            start_offset=start_offset, stop_offset=stop_offset)
 
     @property
     def written_duration(self):
@@ -472,7 +484,8 @@ class Spanner(AbjadObject):
         '''
         if self._contiguity_constraint == 'thread':
             components = self[-1:] + [component]
-            assert componenttools.all_are_thread_contiguous_components(components), repr(components)
+            assert componenttools.all_are_thread_contiguous_components(
+                components), repr(components)
         component._spanners.add(self)
         self._components.append(component)
 
@@ -540,7 +553,8 @@ class Spanner(AbjadObject):
         component_input = self[-1:]
         component_input.extend(components)
         if self._contiguity_constraint == 'thread':
-            assert componenttools.all_are_thread_contiguous_components(component_input)
+            assert componenttools.all_are_thread_contiguous_components(
+                component_input)
         for component in components:
             self.append(component)
 
@@ -563,7 +577,8 @@ class Spanner(AbjadObject):
         Return none.
         '''
         component_input = components + self[:1]
-        assert componenttools.all_are_thread_contiguous_components(component_input)
+        assert componenttools.all_are_thread_contiguous_components(
+            component_input)
         for component in reversed(components):
             self.append_left(component)
 
@@ -595,8 +610,12 @@ class Spanner(AbjadObject):
 
         ::
 
-            >>> beam.fracture(1, direction=Left)
-            (BeamSpanner(c'8, d'8, e'8, f'8), BeamSpanner(c'8), BeamSpanner(d'8, e'8, f'8))
+            >>> result = beam.fracture(1, direction=Left)
+            >>> for x in result:
+            ...     x 
+            BeamSpanner(c'8, d'8, e'8, f'8)
+            BeamSpanner(c'8)
+            BeamSpanner(d'8, e'8, f'8)
 
         ::
 
@@ -629,7 +648,8 @@ class Spanner(AbjadObject):
             self._block_all_components()
             return self, left, center, right
         else:
-            raise ValueError('direction {!r} must be Left, Right or None.'.format(direction))
+            message = 'direction {!r} must be Left, Right or None.'
+            raise ValueError(message.format(direction))
 
     def fuse(self, spanner):
         r'''Fuse contiguous spanners.
@@ -652,8 +672,12 @@ class Spanner(AbjadObject):
 
         ::
 
-            >>> left_beam.fuse(right_beam)
-            [(BeamSpanner(c'8, d'8), BeamSpanner(e'8, f'8), BeamSpanner(c'8, d'8, e'8, f'8))]
+            >>> result = left_beam.fuse(right_beam)
+            >>> for x in result[0]:
+            ...     x
+            BeamSpanner(c'8, d'8)
+            BeamSpanner(e'8, f'8)
+            BeamSpanner(c'8, d'8, e'8, f'8)
 
         ::
 

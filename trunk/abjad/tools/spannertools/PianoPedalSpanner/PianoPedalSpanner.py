@@ -33,11 +33,17 @@ class PianoPedalSpanner(Spanner):
 
     ### CLASS VARIABLES ###
 
-    _kinds = {'sustain': (r'\sustainOn', r'\sustainOff'),
-            'sostenuto':(r'\sostenutoOn', r'\sostenutoOff'),
-            'corda': (r'\unaCorda', r'\treCorde')}
+    _kinds = {
+        'sustain': (r'\sustainOn', r'\sustainOff'),
+        'sostenuto':(r'\sostenutoOn', r'\sostenutoOff'),
+        'corda': (r'\unaCorda', r'\treCorde'),
+        }
 
-    _styles = ['text', 'bracket', 'mixed']
+    _styles = [
+        'text',
+        'bracket',
+        'mixed',
+        ]
 
     ### INITIALIZER ###
 
@@ -66,7 +72,7 @@ class PianoPedalSpanner(Spanner):
             result.append(self._kinds[self.kind][1])
         return result
 
-    ### READ / WRITE PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @apply
     def kind():

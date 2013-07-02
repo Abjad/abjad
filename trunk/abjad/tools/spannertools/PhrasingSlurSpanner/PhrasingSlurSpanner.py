@@ -46,7 +46,9 @@ class PhrasingSlurSpanner(DirectedSpanner):
         result = []
         if self._is_my_first_leaf(leaf):
             if self.direction is not None:
-                result.append(r'{} \('.format(stringtools.arg_to_tridirectional_lilypond_symbol(self.direction)))
+                result.append(r'{} \('.format(
+                    stringtools.arg_to_tridirectional_lilypond_symbol(
+                        self.direction)))
             else:
                 result.append(r'\(')
         if self._is_my_last_leaf(leaf):

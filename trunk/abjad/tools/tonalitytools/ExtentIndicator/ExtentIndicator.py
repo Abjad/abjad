@@ -12,16 +12,21 @@ class ExtentIndicator(AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_number', )
+    __slots__ = (
+        '_number',
+        )
 
-    _default_positional_input_arguments = (7, )
+    _default_positional_input_arguments = (
+        7,
+        )
 
     ### INITIALIZER ###
 
     def __init__(self, arg):
         if isinstance(arg, (int, long)):
             if arg not in self._acceptable_number:
-                raise ValueError('can not initialize extent indicator: %s' % arg)
+                message = 'can not initialize extent indicator: %s'
+                raise ValueError(message % arg)
             number = arg
         elif isinstance(arg, type(self)):
             number = arg.number
@@ -43,9 +48,17 @@ class ExtentIndicator(AbjadObject):
 
     ### PRIVATE PROPERTIES ###
 
-    _acceptable_number = (5, 7, 9)
+    _acceptable_number = (
+        5,
+        7,
+        9,
+        )
 
-    _extent_number_to_extent_name = {5: 'triad', 7: 'seventh', 9: 'ninth', }
+    _extent_number_to_extent_name = {
+        5: 'triad', 
+        7: 'seventh', 
+        9: 'ninth',
+        }
 
     ### PUBLIC PROPERTIES ###
 

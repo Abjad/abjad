@@ -11,7 +11,8 @@ class TimeRelation(AbjadObject):
 
         >>> timespan_1 = timespantools.Timespan(0, 10)
         >>> timespan_2 = timespantools.Timespan(5, 15)
-        >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1(
+        >>> time_relation = \
+        ...     timerelationtools.timespan_2_starts_during_timespan_1(
         ...     timespan_1=timespan_1, timespan_2=timespan_2, hold=True)
 
 
@@ -46,7 +47,8 @@ class TimeRelation(AbjadObject):
 
     def __init__(self, inequality):
         from abjad.tools import timerelationtools
-        assert isinstance(inequality, timerelationtools.CompoundInequality), repr(inequality)
+        assert isinstance(
+            inequality, timerelationtools.CompoundInequality), repr(inequality)
         self._inequality = inequality
 
     ### SPECIAL METHODS ###
@@ -144,8 +146,10 @@ class TimeRelation(AbjadObject):
 
         ::
 
-            >>> time_relation = timerelationtools.timespan_2_stops_when_timespan_1_starts()
-            >>> new_time_relation = time_relation.new(timespan_1=timespantools.Timespan(0, 5))
+            >>> time_relation = \
+            ...     timerelationtools.timespan_2_stops_when_timespan_1_starts()
+            >>> new_time_relation = \
+            ...     time_relation.new(timespan_1=timespantools.Timespan(0, 5))
 
         ::
 

@@ -12,9 +12,13 @@ class QualityIndicator(AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_quality_string')
+    __slots__ = (
+        '_quality_string',
+        )
 
-    _default_positional_input_arguments = (repr('dominant'), )
+    _default_positional_input_arguments = (
+        repr('dominant'),
+        )
 
     ### INITIALIZER ###
 
@@ -44,7 +48,11 @@ class QualityIndicator(AbjadObject):
         'dominant', 'half diminished',
     )
 
-    _uppercase_quality_strings = ('major', 'augmented', 'dominant')
+    _uppercase_quality_strings = (
+        'major',
+        'augmented',
+        'dominant',
+        )
 
     ### PUBLIC PROPERTIES ###
 

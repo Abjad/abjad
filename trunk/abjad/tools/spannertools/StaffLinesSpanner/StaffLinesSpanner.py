@@ -69,10 +69,12 @@ class StaffLinesSpanner(Spanner):
         if self._is_my_first_leaf(leaf):
             result.append(r'\stopStaff')
             if isinstance(self.lines, int):
-                result.append(r"\override Staff.StaffSymbol #'line-count = #%s" % \
+                result.append(
+                    r"\override Staff.StaffSymbol #'line-count = #%s" % \
                     self.lines)
             else:
-                result.append(r"\override Staff.StaffSymbol #'line-positions = %s" % \
+                result.append(
+                    r"\override Staff.StaffSymbol #'line-positions = %s" % \
                     schemetools.SchemeVector(*self.lines).lilypond_format)
             result.append(r'\startStaff')
         return result

@@ -73,8 +73,10 @@ class OffsetTimespanTimeRelation(TimeRelation):
         ::
 
             >>> offset = Offset(5)
-            >>> time_relation_1 = timerelationtools.offset_happens_during_timespan()
-            >>> time_relation_2 = timerelationtools.offset_happens_during_timespan(
+            >>> time_relation_1 = \
+            ...     timerelationtools.offset_happens_during_timespan()
+            >>> time_relation_2 = \
+            ...     timerelationtools.offset_happens_during_timespan(
             ...     offset=offset)
 
         ::
@@ -95,7 +97,7 @@ class OffsetTimespanTimeRelation(TimeRelation):
                         return True
         return False
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def is_fully_loaded(self):

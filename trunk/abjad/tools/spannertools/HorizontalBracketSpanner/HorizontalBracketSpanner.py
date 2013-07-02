@@ -13,7 +13,8 @@ class HorizontalBracketSpanner(Spanner):
 
     ::
 
-        >>> horizontal_bracket_spanner = spannertools.HorizontalBracketSpanner(voice[:])
+        >>> horizontal_bracket_spanner = \
+        ...     spannertools.HorizontalBracketSpanner(voice[:])
 
     ::
 

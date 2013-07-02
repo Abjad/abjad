@@ -45,7 +45,9 @@ class CompoundInequality(ObjectInventory):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_logical_operator', '_name',
+    __slots__ = (
+        '_logical_operator',
+        '_name',
         )
 
     logical_operator_dictionary = {
@@ -60,7 +62,7 @@ class CompoundInequality(ObjectInventory):
         ObjectInventory.__init__(self, tokens=tokens, name=name)
         self._logical_operator = logical_operator
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _item_callable(self):
@@ -76,7 +78,7 @@ class CompoundInequality(ObjectInventory):
                 raise TypeError(expr)
         return to_inequality
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def logical_operator(self):
@@ -112,12 +114,14 @@ class CompoundInequality(ObjectInventory):
             raise ValueError(self.logical_operator)
         return truth_value
 
-    def evaluate_offset_inequality(self, timespan_start, timespan_stop, offset):
+    def evaluate_offset_inequality(
+        self, timespan_start, timespan_stop, offset):
         from abjad.tools import timerelationtools
         truth_values = []
         for inequality in self:
             if isinstance(inequality, timerelationtools.SimpleInequality):
-                truth_value = inequality.evaluate_offset_inequality(timespan_start, timespan_stop, offset)
+                truth_value = inequality.evaluate_offset_inequality(
+                    timespan_start, timespan_stop, offset)
                 truth_values.append(truth_value)
             elif isinstance(inequality, type(self)):
                 truth_value = inequality.evaluate_offset_inequality(
@@ -136,7 +140,8 @@ class CompoundInequality(ObjectInventory):
             raise ValueError(self.logical_operator)
         return truth_value
 
-    def get_offset_indices(self, timespan_1, timespan_2_start_offsets, timespan_2_stop_offsets):
+    def get_offset_indices(
+        self, timespan_1, timespan_2_start_offsets, timespan_2_stop_offsets):
         from abjad.tools import timerelationtools
         from abjad.tools import timespantools
         timespans = timespantools.TimespanInventory()
@@ -144,11 +149,15 @@ class CompoundInequality(ObjectInventory):
             # TODO: compress the following two branches
             if isinstance(element, type(self)):
                 result = element.get_offset_indices(
-                    timespan_1, timespan_2_start_offsets, timespan_2_stop_offsets)
+                    timespan_1,
+                    timespan_2_start_offsets,
+                    timespan_2_stop_offsets)
                 timespans.extend(result)
             elif isinstance(element, timerelationtools.SimpleInequality):
                 offset_indices = element.get_offset_indices(
-                    timespan_1, timespan_2_start_offsets, timespan_2_stop_offsets)
+                    timespan_1,
+                    timespan_2_start_offsets,
+                    timespan_2_stop_offsets)
                 timespan = timespantools.Timespan(*offset_indices)
                 timespans.append(timespan)
             else:

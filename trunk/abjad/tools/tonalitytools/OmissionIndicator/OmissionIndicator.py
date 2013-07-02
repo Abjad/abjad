@@ -9,7 +9,11 @@ class OmissionIndicator(AbjadObject):
     Value object that can not be chnaged after instantiation.
     '''
 
+    ### CLASS VARIABLES ###
+
     __slots__ = ()
+
+    ### INITIALIZER ###
 
     def __init__(self):
         pass

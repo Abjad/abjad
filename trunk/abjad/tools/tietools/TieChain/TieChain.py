@@ -24,6 +24,8 @@ class TieChain(Selection):
     Tie chains are immutable score selections.
     '''
 
+    ### INITIALIZER ###
+
     def __init__(self, music):
         if isinstance(music, Selection):
             Selection.__init__(self, music.music)
@@ -38,7 +40,8 @@ class TieChain(Selection):
 
         Return boolean.
         '''
-        return sequencetools.all_are_equal([leaf.parent for leaf in self.leaves])
+        return sequencetools.all_are_equal(
+            [leaf.parent for leaf in self.leaves])
 
     @property
     def duration_in_seconds(self):
@@ -77,7 +80,9 @@ class TieChain(Selection):
         '''
         from abjad.tools import tietools
         try:
-            tie_spanner = spannertools.get_the_only_spanner_attached_to_component(self[0], tietools.TieSpanner)
+            tie_spanner = \
+                spannertools.get_the_only_spanner_attached_to_component(
+                    self[0], tietools.TieSpanner)
             return tie_spanner.leaves
         except MissingSpannerError:
             assert self.is_trivial
@@ -85,7 +90,8 @@ class TieChain(Selection):
 
     @property
     def leaves_grouped_by_immediate_parents(self):
-        '''Read-only list of leaves in tie chain grouped by immediate parents of leaves.
+        '''Read-only list of leaves in tie chain grouped 
+        by immediate parents of leaves.
 
         Return list of lists.
         '''

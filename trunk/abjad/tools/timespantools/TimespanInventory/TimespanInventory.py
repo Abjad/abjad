@@ -181,7 +181,7 @@ class TimespanInventory(ObjectInventory):
         start_offset, stop_offset = self._get_offsets(expr)
         return timespantools.Timespan(start_offset, stop_offset)
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def all_are_contiguous(self):
@@ -291,7 +291,8 @@ class TimespanInventory(ObjectInventory):
 
         Return duration.
         '''
-        if self.stop_offset is not Infinity and self.start_offset is not NegativeInfinity:
+        if self.stop_offset is not Infinity and \
+            self.start_offset is not NegativeInfinity:
             return self.stop_offset - self.start_offset
         else:
             return durationtools.Duration(0)
@@ -330,7 +331,8 @@ class TimespanInventory(ObjectInventory):
         '''
         if len(self) < 2:
             return True
-        for left_timespan, right_timespan in sequencetools.iterate_sequence_pairwise_strict(self):
+        for left_timespan, right_timespan in \
+            sequencetools.iterate_sequence_pairwise_strict(self):
             if right_timespan.start_offset < left_timespan.start_offset:
                 return False
             if left_timespan.start_offset == right_timespan.start_offset:
@@ -362,7 +364,8 @@ class TimespanInventory(ObjectInventory):
         Return offset or none.
         '''
         if self:
-            return min([self._get_timespan(expr).start_offset for expr in self])
+            return min([self._get_timespan(expr).start_offset 
+                for expr in self])
         else:
             return NegativeInfinity
 
@@ -793,7 +796,8 @@ class TimespanInventory(ObjectInventory):
                         result = timespan_1_fragment - timespan_2
                         revised_timespan_1_fragments.extend(result)
                     else:
-                        revised_timespan_1_fragments.append(timespan_1_fragment)
+                        revised_timespan_1_fragments.append(
+                            timespan_1_fragment)
                 timespan_1_fragments = revised_timespan_1_fragments
             all_fragments.extend(timespan_1_fragments)
         self[:] = all_fragments
@@ -811,7 +815,8 @@ class TimespanInventory(ObjectInventory):
 
         ::
 
-            >>> timespan_inventory_1.get_timespan_that_satisfies_time_relation(time_relation)
+            >>> timespan_inventory_1.get_timespan_that_satisfies_time_relation(
+            ...     time_relation)
             Timespan(start_offset=Offset(3, 1), stop_offset=Offset(6, 1))
 
         Return timespan when timespan inventory contains exactly one timespan
@@ -823,7 +828,8 @@ class TimespanInventory(ObjectInventory):
         Raise exception when timespan inventory contains more than one timespan
         that satisfies `time_relation`.
         '''
-        timespans = self.get_timespans_that_satisfy_time_relation(time_relation)
+        timespans = self.get_timespans_that_satisfy_time_relation(
+            time_relation)
         if len(timespans) == 1:
             return timespans[0]
         elif 1 < len(timespans):
@@ -864,10 +870,14 @@ class TimespanInventory(ObjectInventory):
         from abjad.tools import timerelationtools
         result = []
         for timespan in self:
-            if isinstance(time_relation, timerelationtools.TimespanTimespanTimeRelation):
+            if isinstance(
+                time_relation,
+                timerelationtools.TimespanTimespanTimeRelation):
                 if time_relation(timespan_2=timespan):
                     result.append(timespan)
-            elif isinstance(time_relation, timerelationtools.OffsetTimespanTimeRelation):
+            elif isinstance(
+                time_relation,
+                timerelationtools.OffsetTimespanTimeRelation):
                 if time_relation(timespan=timespan):
                     result.append(timespan)
             else:
@@ -875,7 +885,8 @@ class TimespanInventory(ObjectInventory):
         return type(self)(result)
 
     def has_timespan_that_satisfies_time_relation(self, time_relation):
-        r'''True when timespan inventory has timespan that satisfies `time_relation`:
+        r'''True when timespan inventory has timespan that 
+        satisfies `time_relation`:
 
         ::
 
@@ -885,7 +896,8 @@ class TimespanInventory(ObjectInventory):
 
         ::
 
-            >>> timespan_inventory_1.has_timespan_that_satisfies_time_relation(time_relation)
+            >>> timespan_inventory_1.has_timespan_that_satisfies_time_relation(
+            ...     time_relation)
             True
 
         Otherwise false:
@@ -898,12 +910,14 @@ class TimespanInventory(ObjectInventory):
 
         ::
 
-            >>> timespan_inventory_1.has_timespan_that_satisfies_time_relation(time_relation)
+            >>> timespan_inventory_1.has_timespan_that_satisfies_time_relation(
+            ...     time_relation)
             False
 
         Return boolean.
         '''
-        return bool(self.get_timespans_that_satisfy_time_relation(time_relation))
+        return bool(
+            self.get_timespans_that_satisfy_time_relation(time_relation))
 
     def reflect(self, axis=None):
         '''Reflect timespans.
@@ -1240,7 +1254,8 @@ class TimespanInventory(ObjectInventory):
     def stretch(self, multiplier, anchor=None):
         '''Stretch timespans by `multiplier` relative to `anchor`.
 
-        Example 1: Stretch timespans relative to timespan inventory start offset:
+        Example 1: Stretch timespans relative to timespan inventory 
+        start offset:
 
         ::
 
@@ -1352,7 +1367,11 @@ class TimespanInventory(ObjectInventory):
         '''
         return self.translate_offsets(translation, translation)
 
-    def translate_offsets(self, start_offset_translation=None, stop_offset_translation=None):
+    def translate_offsets(
+        self,
+        start_offset_translation=None,
+        stop_offset_translation=None,
+        ):
         '''Translate timespans by `start_offset_translation`
         and `stop_offset_translation`.
 
@@ -1398,7 +1417,8 @@ class TimespanInventory(ObjectInventory):
 
         ::
 
-            >>> result = timespan_inventory.translate_offsets(stop_offset_translation=20)
+            >>> result = timespan_inventory.translate_offsets(
+            ...     stop_offset_translation=20)
 
         ::
 
@@ -1422,7 +1442,10 @@ class TimespanInventory(ObjectInventory):
         '''
         timespans = []
         for timespan in self:
-            timespan = timespan.translate_offsets(start_offset_translation, stop_offset_translation)
+            timespan = timespan.translate_offsets(
+                start_offset_translation,
+                stop_offset_translation,
+                )
             timespans.append(timespan)
         self[:] = timespans
         return self

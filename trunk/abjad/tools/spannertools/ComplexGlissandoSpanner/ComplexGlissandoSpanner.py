@@ -39,8 +39,8 @@ class ComplexGlissandoSpanner(Spanner):
 
         >>> show(staff) # doctest: +SKIP
 
-    Should be used with beamtools.BeamSpanner for best effect, along with
-    an override of Stem #'stemlet-length, in order to generate stemlets over
+    Should be used with BeamSpanner for best effect, along with
+    an override of stemlet-length, in order to generate stemlets over
     each invisible rest.
 
     Format nonlast leaves in spanner with LilyPond glissando command.
@@ -73,6 +73,7 @@ class ComplexGlissandoSpanner(Spanner):
         '''Spanner contribution to right of leaf.
         '''
         result = []
-        if not self._is_my_last_leaf(leaf) and isinstance(leaf, (chordtools.Chord, notetools.Note)):
+        if not self._is_my_last_leaf(leaf) and \
+            isinstance(leaf, (chordtools.Chord, notetools.Note)):
             result.append(r'\glissando')
         return result

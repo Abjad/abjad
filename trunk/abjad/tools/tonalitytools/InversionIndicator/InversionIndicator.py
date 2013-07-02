@@ -13,7 +13,9 @@ class InversionIndicator(AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_number')
+    __slots__ = (
+        '_number',
+        )
 
     ### INITIALIZER ###
 
@@ -43,21 +45,33 @@ class InversionIndicator(AbjadObject):
     ### PRIVATE PROPERTIES ###
 
     _inversion_name_to_inversion_number = {
-        'root': 0, 'root position': 0,
-        'first': 1, 'second': 2, 'third': 3, 'fourth': 4,
+        'root': 0, 
+        'root position': 0,
+        'first': 1, 
+        'second': 2, 
+        'third': 3, 
+        'fourth': 4,
     }
 
     _inversion_number_to_inversion_name = {
         0: 'root position',
-        1: 'first', 2: 'second', 3: 'third', 4: 'fourth',
+        1: 'first', 
+        2: 'second', 
+        3: 'third', 
+        4: 'fourth',
     }
 
     _seventh_chord_inversion_to_figured_bass_string = {
-        0: '7', 1: '6/5', 2: '4/3', 3: '4/2',
+        0: '7', 
+        1: '6/5', 
+        2: '4/3', 
+        3: '4/2',
     }
 
     _triadic_inversion_to_figured_bass_string = {
-        0: '', 1: '6', 2: '6/4',
+        0: '', 
+        1: '6', 
+        2: '6/4',
     }
 
     ### PUBLIC PROPERTIES ###

@@ -4,9 +4,11 @@ from abjad.tools.spannertools.Spanner import Spanner
 
 
 class DirectedSpanner(Spanner):
-    '''Abstract Spanner subclass for spanners which may take an "up" or "down"
-    indication.
+    '''Abstract Spanner subclass for spanners which may take an 
+    "up" or "down" indication.
     '''
+
+    ### INITIALIZER ###
 
     @abc.abstractmethod
     def __init__(self, components=[], direction=None):
@@ -20,7 +22,8 @@ class DirectedSpanner(Spanner):
         def fget(self):
             return self._direction
         def fset(self, arg):
-            self._direction = stringtools.arg_to_tridirectional_lilypond_symbol(arg)
+            self._direction = \
+                stringtools.arg_to_tridirectional_lilypond_symbol(arg)
         return property(**locals())
 
     ### PRIVATE METHODS ###

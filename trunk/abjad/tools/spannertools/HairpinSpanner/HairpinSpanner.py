@@ -14,7 +14,8 @@ class HairpinSpanner(DirectedSpanner):
     ::
 
         >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
-        >>> spannertools.HairpinSpanner(staff[:], 'p < f', include_rests=False)
+        >>> spannertools.HairpinSpanner(
+        ...     staff[:], 'p < f', include_rests=False)
         HairpinSpanner(r4, c'8, d'8, e'8, f'8, r4)
 
     ::
@@ -38,7 +39,8 @@ class HairpinSpanner(DirectedSpanner):
     ::
 
         >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
-        >>> spannertools.HairpinSpanner(staff[:], 'p < f', include_rests=True)
+        >>> spannertools.HairpinSpanner(
+        ...     staff[:], 'p < f', include_rests=True)
         HairpinSpanner(r4, c'8, d'8, e'8, f'8, r4)
 
     ::
@@ -62,14 +64,28 @@ class HairpinSpanner(DirectedSpanner):
 
     ### CLASS VARIABLES ###
 
-    _hairpin_shape_strings = ('<', '>')
+    _hairpin_shape_strings = (
+        '<',
+        '>',
+        )
 
     ### INITIALIZER ###
 
-    def __init__(self, components=None, descriptor='<', include_rests=True, direction=None):
-        DirectedSpanner.__init__(self, components=components, direction=direction)
+    def __init__(
+        self,
+        components=None,
+        descriptor='<',
+        include_rests=True,
+        direction=None,
+        ):
+        DirectedSpanner.__init__(
+            self,
+            components=components,
+            direction=direction,
+            )
         self.include_rests = include_rests
-        start_dynamic_string, shape_string, stop_dynamic_string = self._parse_descriptor(descriptor)
+        start_dynamic_string, shape_string, stop_dynamic_string = \
+            self._parse_descriptor(descriptor)
         self.shape_string = shape_string
         self.start_dynamic_string = start_dynamic_string
         self.stop_dynamic_string = stop_dynamic_string
@@ -87,18 +103,23 @@ class HairpinSpanner(DirectedSpanner):
         result = []
         direction_string = ''
         if self.direction is not None:
-            direction_string = stringtools.arg_to_tridirectional_lilypond_symbol(self.direction)
+            direction_string = \
+                stringtools.arg_to_tridirectional_lilypond_symbol(
+                    self.direction)
             direction_string = '{} '.format(direction_string)
         if self.include_rests:
             if self._is_my_first_leaf(leaf):
                 result.append('%s\\%s' % (direction_string, self.shape_string))
                 if self.start_dynamic_string:
-                    result.append('%s\\%s' % (direction_string, self.start_dynamic_string))
+                    result.append('%s\\%s' % (
+                        direction_string, self.start_dynamic_string))
             if self._is_my_last_leaf(leaf):
                 if self.stop_dynamic_string:
-                    result.append('%s\\%s' % (direction_string, self.stop_dynamic_string))
+                    result.append('%s\\%s' % (
+                        direction_string, self.stop_dynamic_string))
                 else:
-                    effective_dynamic = contexttools.get_effective_dynamic(leaf)
+                    effective_dynamic = \
+                        contexttools.get_effective_dynamic(leaf)
                     if effective_dynamic is None or \
                         effective_dynamic not in \
                         leaf._start_marks:
@@ -107,21 +128,28 @@ class HairpinSpanner(DirectedSpanner):
             if self._is_my_first(leaf, (chordtools.Chord, notetools.Note)):
                 result.append('%s\\%s' % (direction_string, self.shape_string))
                 if self.start_dynamic_string:
-                    result.append('%s\\%s' % (direction_string, self.start_dynamic_string))
+                    result.append('%s\\%s' % (
+                        direction_string, self.start_dynamic_string))
             if self._is_my_last(leaf, (chordtools.Chord, notetools.Note)):
                 if self.stop_dynamic_string:
-                    result.append('%s\\%s' % (direction_string, self.stop_dynamic_string))
+                    result.append('%s\\%s' % (
+                        direction_string, self.stop_dynamic_string))
                 else:
-                    effective_dynamic = contexttools.get_effective_dynamic(leaf)
+                    effective_dynamic = \
+                        contexttools.get_effective_dynamic(leaf)
                     if effective_dynamic is None:
                         result.append('\\!')
         return result
 
     def _parse_descriptor(self, descriptor):
         '''Example descriptors:
+
+        ::
+
             '<'
             'p <'
             'p < f'
+
         '''
         assert isinstance(descriptor, str)
         parts = descriptor.split()
@@ -146,7 +174,7 @@ class HairpinSpanner(DirectedSpanner):
         assert shape in ('<', '>')
         return start, shape, stop
 
-    ### READ / WRITE PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @apply
     def include_rests():
@@ -156,7 +184,8 @@ class HairpinSpanner(DirectedSpanner):
             ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> hairpin = spannertools.HairpinSpanner(staff[:], 'p < f', include_rests=True)
+                >>> hairpin = spannertools.HairpinSpanner(
+                ...     staff[:], 'p < f', include_rests=True)
                 >>> hairpin.include_rests
                 True
 
@@ -165,7 +194,8 @@ class HairpinSpanner(DirectedSpanner):
             ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> hairpin = spannertools.HairpinSpanner(staff[:], 'p < f', include_rests=True)
+                >>> hairpin = spannertools.HairpinSpanner(
+                ...     staff[:], 'p < f', include_rests=True)
                 >>> hairpin.include_rests = False
                 >>> hairpin.include_rests
                 False
@@ -296,14 +326,17 @@ class HairpinSpanner(DirectedSpanner):
 
         Return boolean.
         '''
+        DynamicMark = contexttools.DynamicMark
         if isinstance(arg, tuple) and \
             len(arg) == 3 and \
             (not arg[0] or contexttools.DynamicMark.is_dynamic_name(arg[0])) and \
             HairpinSpanner.is_hairpin_shape_string(arg[1]) and \
             (not arg[2] or contexttools.DynamicMark.is_dynamic_name(arg[2])):
             if arg[0] and arg[2]:
-                start_ordinal = contexttools.DynamicMark.dynamic_name_to_dynamic_ordinal(arg[0])
-                stop_ordinal = contexttools.DynamicMark.dynamic_name_to_dynamic_ordinal(arg[2])
+                start_ordinal = \
+                    DynamicMark.dynamic_name_to_dynamic_ordinal(arg[0])
+                stop_ordinal = \
+                    DynamicMark.dynamic_name_to_dynamic_ordinal(arg[2])
                 if arg[1] == '<':
                     return start_ordinal < stop_ordinal
                 else:

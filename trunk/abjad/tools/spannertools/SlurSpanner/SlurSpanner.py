@@ -47,7 +47,9 @@ class SlurSpanner(DirectedSpanner):
         if self._is_my_first_leaf(leaf):
             direction = self.direction
             if direction is not None:
-                result.append('{} ('.format(stringtools.arg_to_tridirectional_lilypond_symbol(direction)))
+                result.append('{} ('.format(
+                    stringtools.arg_to_tridirectional_lilypond_symbol(
+                        direction)))
             else:
                 result.append('(')
         if self._is_my_last_leaf(leaf):

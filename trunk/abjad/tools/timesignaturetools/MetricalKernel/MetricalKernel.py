@@ -32,7 +32,10 @@ class MetricalKernel(AbjadObject):
     '''
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_kernel', '_offsets')
+    __slots__ = (
+        '_kernel',
+        '_offsets',
+        )
 
     ### INITIALIZER ###
 
@@ -65,8 +68,10 @@ class MetricalKernel(AbjadObject):
         result = ['{}({{'.format(self._class_name)]
         offsets = sorted(self._kernel)
         for offset in offsets[:-1]:
-            result.append('\t{!r}: {!r},'.format(offset, self._kernel[offset]))
-        result.append('\t{!r}: {!r}'.format(offsets[-1], self._kernel[offsets[-1]]))
+            result.append('\t{!r}: {!r},'.format(
+                offset, self._kernel[offset]))
+        result.append('\t{!r}: {!r}'.format(
+            offsets[-1], self._kernel[offsets[-1]]))
         result.append('})')
         return '\n'.join(result)
 

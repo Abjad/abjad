@@ -15,10 +15,13 @@ class TextSpanner(Spanner):
 
         >>> markup = markuptools.Markup(markuptools.MarkupCommand(
         ...     'bold', markuptools.MarkupCommand('italic', 'foo')))
-        >>> text_spanner.override.text_spanner.bound_details__left__text = markup
+        >>> text_spanner.override.text_spanner.bound_details__left__text = \
+        ...     markup
         >>> markup = markuptools.Markup(
-        ...     markuptools.MarkupCommand('draw-line', schemetools.SchemePair(0, -1)))
-        >>> text_spanner.override.text_spanner.bound_details__right__text = markup
+        ...     markuptools.MarkupCommand(
+        ...     'draw-line', schemetools.SchemePair(0, -1)))
+        >>> text_spanner.override.text_spanner.bound_details__right__text = \
+        ...     markup
         >>> text_spanner.override.text_spanner.dash_fraction = 1
 
     ::

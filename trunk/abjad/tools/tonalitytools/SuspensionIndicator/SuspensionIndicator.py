@@ -11,7 +11,11 @@ class SuspensionIndicator(AbjadObject):
     Value object that can not be changed after instantiation.
     '''
 
+    ### CLASS VARIABLES ###
+
     __slots__ = ('_start', '_stop')
+
+    ### INITIALIZER ###
 
     def __init__(self, *args):
         if len(args) == 0:
@@ -73,8 +77,6 @@ class SuspensionIndicator(AbjadObject):
         from abjad.tools import tonalitytools
         start = tonalitytools.ScaleDegree(start)
         stop = tonalitytools.ScaleDegree(stop)
-        #self._start = start
-        #self._stop = stop
         return start, stop
 
     def _init_by_symbolic_string(self, symbolic_string):
@@ -82,14 +84,10 @@ class SuspensionIndicator(AbjadObject):
         groups = self._symbolic_string_regex.match(symbolic_string).groups()
         start, stop = groups
         start = tonalitytools.ScaleDegree(start)
-        #self._start = start
         stop = tonalitytools.ScaleDegree(stop)
-        #self._stop = stop
         return start, stop
 
     def _init_empty(self):
-        #self._start = None
-        #self._stop = None
         return None, None
 
     ### PUBLIC PROPERTIES ###

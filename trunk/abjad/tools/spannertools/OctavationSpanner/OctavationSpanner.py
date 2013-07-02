@@ -33,7 +33,7 @@ class OctavationSpanner(Spanner):
 
     ### INITIALIZER ###
 
-    # TODO: Set start to 1 (and stop to 0) by default. #
+    # TODO: Set start to 1 (and stop to 0) by default.
     def __init__(self, components=None, start=0, stop=0):
         Spanner.__init__(self, components)
         self.start = start
@@ -59,7 +59,7 @@ class OctavationSpanner(Spanner):
             result.append(r'\ottava #%s' % self.start)
         return result
 
-    ### READ / WRITE PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @apply
     def start():
@@ -69,7 +69,8 @@ class OctavationSpanner(Spanner):
             ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> octavation = spannertools.OctavationSpanner(staff[:], start=1)
+                >>> octavation = spannertools.OctavationSpanner(
+                ...     staff[:], start=1)
                 >>> octavation.start
                 1
 
@@ -78,7 +79,8 @@ class OctavationSpanner(Spanner):
             ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> octavation = spannertools.OctavationSpanner(staff[:], start=1)
+                >>> octavation = spannertools.OctavationSpanner(
+                ...     staff[:], start=1)
                 >>> octavation.start
                 1
 
@@ -98,7 +100,8 @@ class OctavationSpanner(Spanner):
             ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> octavation = spannertools.OctavationSpanner(staff[:], start=2, stop=1)
+                >>> octavation = spannertools.OctavationSpanner(
+                ...     staff[:], start=2, stop=1)
                 >>> octavation.stop
                 1
 
@@ -107,7 +110,8 @@ class OctavationSpanner(Spanner):
             ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> octavation = spannertools.OctavationSpanner(staff[:], start=2, stop=1)
+                >>> octavation = spannertools.OctavationSpanner(
+                ...     staff[:], start=2, stop=1)
                 >>> octavation.stop = 0
                 >>> octavation.stop
                 0

@@ -18,6 +18,7 @@ class TimeIntervalMixin(AbjadObject):
     ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
+
     __slots__ = ()
 
     ### SPECIAL METHODS ###

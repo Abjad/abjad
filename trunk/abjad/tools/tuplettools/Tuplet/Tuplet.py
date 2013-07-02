@@ -57,7 +57,8 @@ class Tuplet(Container):
 
     ::
 
-        >>> third_tuplet = Tuplet((4, 5), "e''32 [ ef''32 d''32 cs''32 cqs''32 ]")
+        >>> third_tuplet = Tuplet(
+        ...     (4, 5), "e''32 [ ef''32 d''32 cs''32 cqs''32 ]")
         >>> second_tuplet.insert(1, third_tuplet)
 
     ::
@@ -89,8 +90,13 @@ class Tuplet(Container):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_force_fraction', '_is_invisible', '_multiplier', '_preferred_denominator',
-        '_signifier', )
+    __slots__ = (
+        '_force_fraction',
+        '_is_invisible',
+        '_multiplier',
+        '_preferred_denominator',
+        '_signifier',
+        )
 
     ### INITIALIZER ###
 
@@ -117,15 +123,28 @@ class Tuplet(Container):
         return (self.multiplier, )
 
     def __repr__(self):
-        return '%s(%s, [%s])' % (self._class_name, self.multiplier, self._summary)
+        return '%s(%s, [%s])' % (
+            self._class_name,
+            self.multiplier,
+            self._summary,
+            )
 
     def __str__(self):
         if 0 < len(self):
-            return '{%s %s %s %s}' % (self._signifier, self.ratio_string, self._summary, self._signifier)
+            return '{%s %s %s %s}' % (
+                self._signifier,
+                self.ratio_string,
+                self._summary,
+                self._signifier,
+                )
         else:
-            return '{%s %s %s}' % (self._signifier, self.multiplier, self._signifier)
+            return '{%s %s %s}' % (
+                self._signifier,
+                self.multiplier,
+                self._signifier,
+                )
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     # TODO: make public
     @property
@@ -137,8 +156,10 @@ class Tuplet(Container):
         if self.preferred_denominator is not None:
             inverse_multiplier = durationtools.Multiplier(
                 self.multiplier.denominator, self.multiplier.numerator)
-            nonreduced_fraction = mathtools.NonreducedFraction(inverse_multiplier)
-            nonreduced_fraction = nonreduced_fraction.with_denominator(self.preferred_denominator)
+            nonreduced_fraction = \
+                mathtools.NonreducedFraction(inverse_multiplier)
+            nonreduced_fraction = nonreduced_fraction.with_denominator(
+                self.preferred_denominator)
             d, n = nonreduced_fraction.pair
         else:
             n, d = self.multiplier.numerator, self.multiplier.denominator
@@ -154,25 +175,33 @@ class Tuplet(Container):
     ### PRIVATE METHODS ###
 
     def _format_after_slot(self, format_contributions):
-        '''Read-only tuple of format contributions to appear immediately after self closing.
+        '''Read-only tuple of format contributions to appear 
+        immediately after self closing.
         '''
         result = []
-        result.append(('grob reverts', format_contributions.get('grob reverts', [])))
+        result.append(('grob reverts', 
+            format_contributions.get('grob reverts', [])))
         result.append(('lilypond command marks',
-            format_contributions.get('after', {}).get('lilypond command marks', [])))
-        result.append(('comments', format_contributions.get('after', {}).get('comments', [])))
+            format_contributions.get(
+                'after', {}).get('lilypond command marks', [])))
+        result.append(('comments', 
+            format_contributions.get('after', {}).get('comments', [])))
         return tuple(result)
 
     def _format_before_slot(self, format_contributions):
         result = []
-        result.append(('comments', format_contributions.get('before', {}).get('comments', [])))
+        result.append(('comments', 
+            format_contributions.get('before', {}).get('comments', [])))
         result.append(('lilypond command marks',
-            format_contributions.get('before', {}).get('lilypond command marks', [])))
-        result.append(('grob overrides', format_contributions.get('grob overrides', [])))
+            format_contributions.get(
+                'before', {}).get('lilypond command marks', [])))
+        result.append(('grob overrides', 
+            format_contributions.get('grob overrides', [])))
         return tuple(result)
 
     def _format_close_brackets_slot(self, format_contributions):
-        '''Read-only tuple of format contributions used to generate self closing.
+        '''Read-only tuple of format contributions used to 
+        generate self closing.
         '''
         result = []
         if self.multiplier:
@@ -180,18 +209,22 @@ class Tuplet(Container):
         return tuple(result)
 
     def _format_closing_slot(self, format_contributions):
-        '''Read-only tuple of format contributions to appear immediately before self closing.
+        '''Read-only tuple of format contributions to appear 
+        immediately before self closing.
         '''
         result = []
         result.append(('lilypond command marks',
-            format_contributions.get('closing', {}).get('lilypond command marks', [])))
-        result.append(('comments', format_contributions.get('closing', {}).get('comments', [])))
+            format_contributions.get(
+                'closing', {}).get('lilypond command marks', [])))
+        result.append(('comments', 
+            format_contributions.get('closing', {}).get('comments', [])))
         return self._format_slot_contributions_with_indent(result)
 
     def _format_lilypond_fraction_command_string(self):
         if self._is_visible:
-            if self.is_augmentation or self.has_non_power_of_two_denominator or self.force_fraction:
-                #return r''
+            if self.is_augmentation or \
+                self.has_non_power_of_two_denominator or \
+                self.force_fraction:
                 return r"\tweak #'text #tuplet-number::calc-fraction-text"
         return ''
 
@@ -208,7 +241,8 @@ class Tuplet(Container):
                 contributor = ('self_brackets', 'open')
                 if self.multiplier != 1:
                     contributions = []
-                    fraction_command_string = self._format_lilypond_fraction_command_string()
+                    fraction_command_string = \
+                        self._format_lilypond_fraction_command_string()
                     if fraction_command_string:
                         contributions.append(fraction_command_string)
                     contributions.append(r'\times {} {{'.format(
@@ -220,19 +254,23 @@ class Tuplet(Container):
         return tuple(result)
 
     def _format_opening_slot(self, format_contributions):
-        '''Read-only tuple of format contributions to appear immediately after self opening.
+        '''Read-only tuple of format contributions to appear 
+        immediately after self opening.
         '''
         result = []
-        result.append(('comments', format_contributions.get('opening', {}).get('comments', [])))
+        result.append(('comments', 
+            format_contributions.get('opening', {}).get('comments', [])))
         result.append(('lilypond command marks',
-            format_contributions.get('opening', {}).get('lilypond command marks', [])))
+            format_contributions.get(
+                'opening', {}).get('lilypond command marks', [])))
         return self._format_slot_contributions_with_indent(result)
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def has_non_power_of_two_denominator(self):
-        '''Read-only boolean true when multiplier numerator is not power of two. Otherwise false:
+        '''Read-only boolean true when multiplier numerator is not 
+        power of two. Otherwise false:
 
         ::
 
@@ -246,7 +284,8 @@ class Tuplet(Container):
 
     @property
     def has_power_of_two_denominator(self):
-        '''Read-only boolean true when multiplier numerator is power of two. Otherwise false:
+        '''Read-only boolean true when multiplier numerator is 
+        power of two. Otherwise false:
 
         ::
 
@@ -257,7 +296,8 @@ class Tuplet(Container):
         Return boolean.
         '''
         if self.multiplier:
-            return mathtools.is_nonnegative_integer_power_of_two(self.multiplier.numerator)
+            return mathtools.is_nonnegative_integer_power_of_two(
+                self.multiplier.numerator)
         else:
             return True
 
@@ -278,7 +318,8 @@ class Tuplet(Container):
 
         ::
 
-            >>> t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
+            >>> t = tuplettools.FixedDurationTuplet(
+            ...     Duration(2, 8), "c'8 d'8 e'8")
             >>> t.is_augmentation
             False
 
@@ -295,7 +336,8 @@ class Tuplet(Container):
 
         ::
 
-            >>> t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
+            >>> t = tuplettools.FixedDurationTuplet(
+            ...     Duration(2, 8), "c'8 d'8 e'8")
             >>> t.is_diminution
             True
 
@@ -345,7 +387,8 @@ class Tuplet(Container):
 
         ::
 
-            >>> t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
+            >>> t = tuplettools.FixedDurationTuplet(
+            ...     Duration(2, 8), "c'8 d'8 e'8")
             >>> t.preprolated_duration
             Duration(1, 4)
 
@@ -376,7 +419,8 @@ class Tuplet(Container):
     @apply
     def force_fraction():
         def fget(self):
-            r'''Read / write boolean to force ``n:m`` fraction in LilyPond format:
+            r'''Read / write boolean to force ``n:m`` fraction in 
+            LilyPond format:
 
             ::
 
@@ -418,7 +462,8 @@ class Tuplet(Container):
             if isinstance(arg, (bool, type(None))):
                 self._force_fraction = arg
             else:
-                raise TypeError('bad type for tuplet force fraction: "%s".' % arg)
+                message = 'bad type for tuplet force fraction: "%s".'
+                raise TypeError(message % arg)
         return property(**locals())
 
     @apply
@@ -454,8 +499,8 @@ class Tuplet(Container):
                 }
 
             This has the effect of rendering no
-            no tuplet bracket and no tuplet number while preserving the rhythmic
-            value of the tuplet and the contents of the tuplet.
+            no tuplet bracket and no tuplet number while preserving the 
+            rhythmic value of the tuplet and the contents of the tuplet.
 
             Return boolean or none.
             '''
@@ -485,11 +530,13 @@ class Tuplet(Container):
             elif isinstance(expr, tuple):
                 rational = durationtools.Multiplier(expr)
             else:
-                raise ValueError('can not set tuplet multiplier: {!r}.'.format(expr))
+                message = 'can not set tuplet multiplier: {!r}.'
+                raise ValueError(message.format(expr))
             if 0 < rational:
                 self._multiplier = rational
             else:
-                raise ValueError('tuplet multiplier must be positive: {!r}.'.format(expr))
+                message = 'tuplet multiplier must be positive: {!r}.'
+                raise ValueError(message.format(expr))
         return property(**locals())
 
     @apply
@@ -497,7 +544,8 @@ class Tuplet(Container):
         def fget(self):
             r'''.. versionadded:: 2.0
 
-            Integer denominator in terms of which tuplet fraction should format:
+            Integer denominator in terms of which tuplet fraction 
+            should format:
 
             ::
 
@@ -519,8 +567,10 @@ class Tuplet(Container):
         def fset(self, arg):
             if isinstance(arg, (int, long)):
                 if not 0 < arg:
-                    raise ValueError('tuplet preferred denominator must be positive: "%s".' % arg)
+                    message = 'tuplet preferred denominator must be positive: "%s".'
+                    raise ValueError(message % arg)
             elif not isinstance(arg, type(None)):
-                raise TypeError('bad tuplet preferred denominator type: "%s".' % arg)
+                message = 'bad tuplet preferred denominator type: "%s".'
+                raise TypeError(message % arg)
             self._preferred_denominator = arg
         return property(**locals())

@@ -12,9 +12,14 @@ class ScaleDegree(AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_accidental', '_number')
+    __slots__ = (
+        '_accidental',
+        '_number',
+        )
 
-    _default_positional_input_arguments = (3, )
+    _default_positional_input_arguments = (
+        3,
+        )
 
     ### INITIALIZER ###
 
@@ -31,7 +36,8 @@ class ScaleDegree(AbjadObject):
             accidental, number = self._init_by_accidental_and_number(*args)
         else:
             arg_string = ', '.join([str(x) for x in args])
-            raise ValueError('can not initialize scale degree: %s.' % arg_string)
+            message = 'can not initialize scale degree: %s.'
+            raise ValueError(message % arg_string)
         object.__setattr__(self, '_accidental', accidental)
         object.__setattr__(self, '_number', number)
 
@@ -61,7 +67,8 @@ class ScaleDegree(AbjadObject):
 
     @property
     def _compact_format_string(self):
-        return '%s%s' % (self.accidental.symbolic_accidental_string, self.number)
+        return '%s%s' % (
+            self.accidental.symbolic_accidental_string, self.number)
 
     @property
     def _format_string(self):
@@ -74,24 +81,51 @@ class ScaleDegree(AbjadObject):
     ### PRIVATE PROPERTIES ###
 
     _numeral_to_number_name = {
-        1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five', 6: 'six',
-        7: 'seven', 8: 'eight', 9: 'nine', 10: 'ten', 11: 'eleven',
-        12: 'twelve', 13: 'thirteen', 14: 'fourteen', 15: 'fifteen',
+        1: 'one', 
+        2: 'two', 
+        3: 'three', 
+        4: 'four', 
+        5: 'five', 
+        6: 'six',
+        7: 'seven', 
+        8: 'eight', 
+        9: 'nine', 
+        10: 'ten', 
+        11: 'eleven',
+        12: 'twelve', 
+        13: 'thirteen', 
+        14: 'fourteen', 
+        15: 'fifteen',
     }
 
     _roman_numeral_string_to_scale_degree_number = {
-        'I': 1,  'II': 2, 'III': 3,
-        'IV': 4, 'V': 5,  'VI': 6, 'VII': 7,
+        'I': 1,  
+        'II': 2, 
+        'III': 3,
+        'IV': 4, 
+        'V': 5,  
+        'VI': 6, 
+        'VII': 7,
     }
 
     _scale_degree_number_to_roman_numeral_string = {
-        1: 'I',  2: 'II', 3: 'III',
-        4: 'IV', 5: 'V',  6: 'VI', 7: 'VII',
+        1: 'I',  
+        2: 'II', 
+        3: 'III',
+        4: 'IV', 
+        5: 'V',  
+        6: 'VI', 
+        7: 'VII',
     }
 
     _scale_degree_number_to_scale_degree_name = {
-        1: 'tonic', 2: 'superdominant', 3: 'mediant',
-        4: 'subdominant', 5: 'dominant', 6: 'submediant', 7: 'leading tone',
+        1: 'tonic', 
+        2: 'superdominant', 
+        3: 'mediant',
+        4: 'subdominant', 
+        5: 'dominant', 
+        6: 'submediant', 
+        7: 'leading tone',
     }
 
     _symbolic_string_regex = re.compile(r'([#|b]*)([i|I|v|V|\d]+)')
@@ -101,13 +135,9 @@ class ScaleDegree(AbjadObject):
 
     def _init_by_accidental_and_number(self, accidental, number):
         accidental = pitchtools.Accidental(accidental)
-        #self._accidental = accidental
-        #self._number = number
         return accidental, number
 
     def _init_by_number(self, number):
-        #self._number = number
-        #self._accidental = Accidental(None)
         accidental = pitchtools.Accidental(None)
         return accidental, number
 
@@ -124,13 +154,12 @@ class ScaleDegree(AbjadObject):
         groups = self._symbolic_string_regex.match(symbolic_string).groups()
         accidental, roman_numeral = groups
         accidental = pitchtools.Accidental(accidental)
-        #self._accidental = accidental
         roman_numeral = roman_numeral.upper()
         try:
-            number = self._roman_numeral_string_to_scale_degree_number[roman_numeral]
+            number = self._roman_numeral_string_to_scale_degree_number[
+                roman_numeral]
         except KeyError:
             number = int(roman_numeral)
-        #self._number = number
         return accidental, number
 
     ### PUBLIC PROPERTIES ###
