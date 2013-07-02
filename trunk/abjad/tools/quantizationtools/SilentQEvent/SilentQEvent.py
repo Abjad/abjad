@@ -42,7 +42,7 @@ class SilentQEvent(QEvent):
             return True
         return False
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def attachments(self):

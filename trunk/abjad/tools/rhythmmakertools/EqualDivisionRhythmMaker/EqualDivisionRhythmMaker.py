@@ -86,7 +86,7 @@ class EqualDivisionRhythmMaker(RhythmMaker):
             )
         return tuplet
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def is_diminution(self):

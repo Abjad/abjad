@@ -45,7 +45,7 @@ class DivisionIncisedRestRhythmMaker(DivisionIncisedRhythmMaker):
         else:
             return ()
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def storage_format(self):

@@ -109,7 +109,7 @@ class QTarget(AbjadObject):
         return self._notate(
             grace_handler, attack_point_optimizer, attach_tempo_marks)
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @abc.abstractproperty
     def beats(self):

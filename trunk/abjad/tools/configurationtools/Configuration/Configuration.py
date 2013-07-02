@@ -105,7 +105,7 @@ class Configuration(collections.MutableMapping, abctools.AbjadObject):
         specs = [(key, options[key]['spec']) for key in options]
         return dict(specs)
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @abc.abstractproperty
     def configuration_directory_path(self):

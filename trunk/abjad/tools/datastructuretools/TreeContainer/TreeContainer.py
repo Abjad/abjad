@@ -288,7 +288,7 @@ class TreeContainer(TreeNode):
     def _node_klass(self):
         return TreeNode
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def children(self):

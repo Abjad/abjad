@@ -15,7 +15,7 @@ class BeatwiseQTarget(QTarget):
     Return ``BeatwiseQTarget`` instance.
     '''
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def beats(self):

@@ -53,7 +53,7 @@ class RhythmTreeNode(TreeNode):
         if not self._get_node_state_flags()['_offsets_are_current']:
             self._update_offsets_of_entire_tree()
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @abc.abstractproperty
     def _pretty_rtm_format_pieces(self):
@@ -63,7 +63,8 @@ class RhythmTreeNode(TreeNode):
     def _state_flag_names(self):
         return ('_offsets_are_current',)
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
+
 
     @property
     def duration(self):
@@ -159,6 +160,35 @@ class RhythmTreeNode(TreeNode):
         result.append(node.preprolated_duration)
         return tuple(reversed(result))
 
+    @apply
+    def preprolated_duration():
+        def fget(self):
+            '''The node's preprolated_duration in pulses:
+
+            ::
+
+                >>> node = rhythmtreetools.RhythmTreeLeaf(
+                ...     preprolated_duration=1)
+                >>> node.preprolated_duration
+                Duration(1, 1)
+
+            ::
+
+                >>> node.preprolated_duration = 2
+                >>> node.preprolated_duration
+                Duration(2, 1)
+
+            Return int.
+            '''
+            return self._duration
+        def fset(self, arg):
+            if not isinstance(arg, fractions.Fraction):
+                arg = durationtools.Duration(arg)
+            assert 0 < arg
+            self._duration = arg
+            self._mark_entire_tree_for_later_update()
+        return property(**locals())
+
     @property
     def pretty_rtm_format(self):
         '''The node's pretty-printed RTM format:
@@ -241,33 +271,3 @@ class RhythmTreeNode(TreeNode):
         '''The stopping offset of a node in a rhythm-tree relative the root.
         '''
         return self.start_offset + self.duration
-
-    ### READ/WRITE PUBLIC PROPERTIES ###
-
-    @apply
-    def preprolated_duration():
-        def fget(self):
-            '''The node's preprolated_duration in pulses:
-
-            ::
-
-                >>> node = rhythmtreetools.RhythmTreeLeaf(preprolated_duration=1)
-                >>> node.preprolated_duration
-                Duration(1, 1)
-
-            ::
-
-                >>> node.preprolated_duration = 2
-                >>> node.preprolated_duration
-                Duration(2, 1)
-
-            Return int.
-            '''
-            return self._duration
-        def fset(self, arg):
-            if not isinstance(arg, fractions.Fraction):
-                arg = durationtools.Duration(arg)
-            assert 0 < arg
-            self._duration = arg
-            self._mark_entire_tree_for_later_update()
-        return property(**locals())

@@ -76,7 +76,7 @@ class  NumberedChromaticPitchClassSet(PitchClassSet):
     def __str__(self):
         return '{%s}' % self._format_string
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _format_string(self):
@@ -84,7 +84,7 @@ class  NumberedChromaticPitchClassSet(PitchClassSet):
         result.sort(lambda x, y: cmp(abs(x), abs(y)))
         return ', '.join([str(x) for x in result])
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def inversion_equivalent_chromatic_interval_class_set(self):

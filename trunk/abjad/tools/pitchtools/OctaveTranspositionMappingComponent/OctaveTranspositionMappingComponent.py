@@ -107,7 +107,7 @@ class OctaveTranspositionMappingComponent(AbjadObject):
         result.append(self.target_octave_start_pitch)
         return tuple(result)
 
-    ### READ / WRITE PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @apply
     def source_pitch_range():

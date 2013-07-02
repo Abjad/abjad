@@ -94,13 +94,13 @@ class MarkupCommand(AbjadObject):
     def __str__(self):
         return self.lilypond_format
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _format_pieces(self):
         return self._get_format_pieces(is_indented=False)
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def args(self):

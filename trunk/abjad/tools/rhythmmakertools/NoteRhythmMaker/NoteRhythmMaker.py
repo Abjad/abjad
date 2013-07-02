@@ -120,7 +120,7 @@ class NoteRhythmMaker(DivisionIncisedNoteRhythmMaker):
         '''
         return '%s()' % self._class_name
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def storage_format(self):

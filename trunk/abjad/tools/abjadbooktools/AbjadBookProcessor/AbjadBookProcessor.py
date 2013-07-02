@@ -70,7 +70,7 @@ class AbjadBookProcessor(AbjadObject):
 
         return result
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def directory(self):
@@ -106,7 +106,8 @@ class AbjadBookProcessor(AbjadObject):
             os.mkdir(image_directory)
         # remove old images
         #for x in os.listdir(image_directory):
-        #    if x.startswith('{}-'.format(image_prefix)) and x.endswith(image_format):
+        #    if x.startswith('{}-'.format(image_prefix)) and \
+        #        x.endswith(image_format):
         #        # this should handle both 'index-1.png' and 'index-1-page3.png'
         #        name = os.path.splitext(x)[0]
         #        number = int(name.split('-')[1])
@@ -181,7 +182,8 @@ class AbjadBookProcessor(AbjadObject):
                 starting_line_number = stopping_line_number = i
                 hide = 'hide=true' in line
                 strip_prompt = 'strip_prompt=true' in line
-                code_address = line.partition('<abjadextract ')[-1].partition(' \>')[0]
+                code_address = line.partition(
+                    '<abjadextract ')[-1].partition(' \>')[0]
                 module_name, dot, attr_name = code_address.rpartition('.')
                 module = importlib.import_module(module_name)
                 attr = getattr(module, attr_name)
@@ -209,7 +211,13 @@ class AbjadBookProcessor(AbjadObject):
                     file_names.append(result['file_name'])
         return file_names
 
-    def _interleave_source_with_code_blocks(self, tmp_directory, lines, code_blocks, output_format):
+    def _interleave_source_with_code_blocks(
+        self,
+        tmp_directory,
+        lines,
+        code_blocks,
+        output_format,
+        ):
 
         #print 'INTERLEAVE SOURCE WITH CODE BLOCKS'
         image_file_names = [x for x in os.listdir(tmp_directory)
@@ -230,23 +238,40 @@ class AbjadBookProcessor(AbjadObject):
             image_dict[index][page] = image_filename
 
         interleaved = []
-        interleaved.append('\n'.join(lines[:code_blocks[0].starting_line_number]))
-        for pair in sequencetools.iterate_sequence_pairwise_strict(code_blocks):
+        interleaved.append(
+            '\n'.join(lines[:code_blocks[0].starting_line_number]))
+        for pair in sequencetools.iterate_sequence_pairwise_strict(
+            code_blocks):
             first_block, second_block = pair
             interleaved.extend(output_format(first_block, image_dict))
             interleaved.append('\n'.join(lines[
-                first_block.ending_line_number + 1:second_block.starting_line_number]))
+                first_block.ending_line_number+1:
+                second_block.starting_line_number]))
 
         interleaved.extend(output_format(code_blocks[-1], image_dict))
-        interleaved.append('\n'.join(lines[code_blocks[-1].ending_line_number + 1:]))
+        interleaved.append('\n'.join(
+            lines[code_blocks[-1].ending_line_number+1:]))
         return '\n'.join(interleaved)
 
-    def _process_code_blocks(self, pipe, code_blocks, directory, image_prefix):
+    def _process_code_blocks(
+        self,
+        pipe,
+        code_blocks,
+        directory,
+        image_prefix,
+        ):
         #print 'PROCESS CODE BLOCKS'
         image_count = 0
         for i, code_block in enumerate(code_blocks):
             #print '\tCODE BLOCK', i
-            image_count = code_block(self, pipe, image_count, directory, image_prefix, verbose=self.verbose)
+            image_count = code_block(
+                self,
+                pipe,
+                image_count,
+                directory,
+                image_prefix,
+                verbose=self.verbose,
+                )
         return image_count
 
     def _render_ly_files(self, file_names, output_format, verbose):
@@ -260,19 +285,23 @@ class AbjadBookProcessor(AbjadObject):
                     if self.verbose:
                         print '\t\t{}'.format(command)
                     self._run_command(command, verbose)
-                    command = 'pdfcrop {}.pdf {}.pdf'.format(file_name, file_name)
+                    command = 'pdfcrop {}.pdf {}.pdf'.format(
+                        file_name, file_name)
                     if self.verbose:
                         print '\t\t{}'.format(command)
                     self._run_command(command, verbose)
                 elif output_format.image_format == 'png':
-                    command = 'lilypond --png -dresolution=300 {}.ly'.format(file_name)
+                    command = 'lilypond --png -dresolution=300 {}.ly'.format(
+                        file_name)
                     if self.verbose:
                         print '\t\t{}'.format(command)
                     assert os.path.exists('{}.ly'.format(file_name))
                     self._run_command(command, verbose)
                     for file in os.listdir('.'):
                         if file.startswith(file_name) and file.endswith('.png'):
-                            command = 'convert {} -trim -resample 40%% {}'.format(file, file)
+                            command = '\
+                                convert {} -trim -resample 40%% {}'.format(
+                                    file, file)
                             if self.verbose:
                                 print '\t\t{}'.format(command)
                             self._run_command(command, verbose)
@@ -283,7 +312,12 @@ class AbjadBookProcessor(AbjadObject):
         if verbose:
             subprocess.call(command, shell=True)
         else:
-            subprocess.call(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            subprocess.call(
+                command,
+                shell=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                )
 
     def _setup_pipe(self):
         #print 'SETUP PIPE'

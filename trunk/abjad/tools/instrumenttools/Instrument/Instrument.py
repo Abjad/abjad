@@ -53,6 +53,14 @@ class Instrument(contexttools.InstrumentMark):
         return property(**locals())
 
     @property
+    def default_pitch_range(self):
+        r'''Read-only traditional pitch range.
+
+        Return pitch range.
+        '''
+        return self._traditional_pitch_range
+
+    @property
     def interval_of_transposition(self):
         r'''Read-only interval of transposition.
 
@@ -118,14 +126,6 @@ class Instrument(contexttools.InstrumentMark):
         def fget(self):
             return self._sounding_pitch_of_fingered_middle_c
         return property(**locals())
-
-    @property
-    def default_pitch_range(self):
-        r'''Read-only traditional pitch range.
-
-        Return pitch range.
-        '''
-        return self._traditional_pitch_range
 
     ### PUBLIC METHODS ###
 

@@ -13,7 +13,7 @@ class MeasurewiseQTarget(QTarget):
     Used internally by ``Quantizer``.
     '''
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def beats(self):

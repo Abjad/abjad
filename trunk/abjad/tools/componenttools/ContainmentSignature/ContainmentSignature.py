@@ -69,7 +69,7 @@ class ContainmentSignature(AbjadObject):
             result.append('%10s: %s' % (name, value))
         return '\n'.join(result)
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _parts(self):

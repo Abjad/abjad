@@ -63,7 +63,7 @@ class Piano(KeyboardInstrument):
         self._copy_primary_clefs_to_all_clefs()
         self._traditional_pitch_range = pitchtools.PitchRange(-39, 48)
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     # TODO: extend class definition to allow for custom target context in repr
     @property

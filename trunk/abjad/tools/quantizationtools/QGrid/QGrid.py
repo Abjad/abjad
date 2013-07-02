@@ -151,7 +151,7 @@ class QGrid(AbjadObject):
         self._next_downbeat = state['_next_downbeat']
         self._root_node = state['_root_node']
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def distance(self):

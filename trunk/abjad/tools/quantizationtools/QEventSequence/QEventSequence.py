@@ -88,7 +88,7 @@ class QEventSequence(tuple, ImmutableAbjadObject):
     def __repr__(self):
         return '{}({})'.format(self._class_name, tuple.__repr__(self))
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def duration_in_ms(self):

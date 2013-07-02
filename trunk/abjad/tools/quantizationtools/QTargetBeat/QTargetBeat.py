@@ -111,7 +111,7 @@ class QTargetBeat(AbjadObject):
     def __repr__(self):
         return self._tools_package_qualified_indented_repr
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def beatspan(self):

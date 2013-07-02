@@ -49,7 +49,7 @@ class OutputIncisedRestRhythmMaker(OutputIncisedRhythmMaker):
         else:
             return ()
 
-    ### READ-ONLY PUBLIC PROPERTES ###
+    ### PUBLIC PROPERTES ###
 
     @property
     def storage_format(self):

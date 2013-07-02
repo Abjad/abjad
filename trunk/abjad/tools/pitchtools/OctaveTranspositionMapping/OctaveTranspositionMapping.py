@@ -69,7 +69,7 @@ class OctaveTranspositionMapping(ObjectInventory):
                         pitch.chromatic_pitch_class_number:
                         return candidate_pitch
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _item_callable(self):
@@ -91,7 +91,7 @@ class OctaveTranspositionMapping(ObjectInventory):
             result.append(mapping_component._input_argument_token)
         return ', '.join(result)
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def storage_format(self):

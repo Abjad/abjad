@@ -18,7 +18,7 @@ class SchemeParser(abctools.Parser):
     Returns `SchemeParser` instance.
     '''
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def lexer_rules_object(self):

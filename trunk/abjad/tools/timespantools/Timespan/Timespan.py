@@ -639,7 +639,7 @@ class Timespan(BoundedObject):
         else:
             return durationtools.Offset(offset)
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def axis(self):

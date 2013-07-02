@@ -376,7 +376,7 @@ class NonreducedFraction(ImmutableAbjadObject, fractions.Fraction):
         fraction = self.reduce() - expr
         return self._fraction_with_denominator(fraction, max(denominators))
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _positional_argument_values(self):

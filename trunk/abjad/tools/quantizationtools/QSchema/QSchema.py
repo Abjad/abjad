@@ -125,7 +125,7 @@ class QSchema(AbjadObject):
         result.append('\t)')
         return '\n'.join(result)
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @abc.abstractproperty
     def _keyword_argument_names(self):
@@ -135,7 +135,7 @@ class QSchema(AbjadObject):
     def _positional_argument_names(self):
         return ('items',)
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @abc.abstractproperty
     def item_klass(self):

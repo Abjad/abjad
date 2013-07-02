@@ -72,7 +72,8 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
             preprolated_duration=Duration(1, 1)
             )
 
-    Call `RhythmTreeContainer` with a preprolated_duration to generate a tuplet structure:
+    Call `RhythmTreeContainer` with a preprolated_duration to generate 
+    a tuplet structure:
 
     ::
 
@@ -96,23 +97,28 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
     ### INITIALIZER ###
 
     def __init__(self, children=None, preprolated_duration=1, name=None):
-        RhythmTreeNode.__init__(self, preprolated_duration=preprolated_duration, name=name)
+        RhythmTreeNode.__init__(
+            self,
+            preprolated_duration=preprolated_duration,
+            name=name,
+            )
         self._children = []
         if isinstance(children, type(None)):
             pass
         elif isinstance(children, (list, str, tuple)):
             self.extend(children)
         else:
-            raise ValueError('Cannot instantiate {} with {!r}.'.format(type(self), children))
+            message = 'cannot instantiate {} with {!r}.'
+            raise ValueError(message.format(type(self), children))
 
     ### SPECIAL METHODS ###
 
     def __add__(self, expr):
         '''Concatenate containers self and expr. The operation c = a + b
         returns a new RhythmTreeContainer c with the content of both a and b,
-        and a preprolated_duration equal to the sum of the durations of a and b. The
-        operation is non-commutative: the content of the first operand will be
-        placed before the content of the second operand:
+        and a preprolated_duration equal to the sum of the durations 
+        of a and b. The operation is non-commutative: the content of the 
+        first operand will be placed before the content of the second operand:
 
         ::
 
@@ -159,12 +165,15 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
 
         Return new RhythmTreeContainer.
         '''
-        from abjad.tools.rhythmtreetools.RhythmTreeParser import RhythmTreeParser
+        from abjad.tools.rhythmtreetools.RhythmTreeParser \
+            import RhythmTreeParser
         if isinstance(expr, str):
             expr = RhythmTreeParser()(expr)
             assert 1 == len(expr) and isinstance(expr[0], type(self))
             expr = expr[0]
-        container = type(self)(preprolated_duration=self.preprolated_duration + expr.preprolated_duration)
+        container = type(self)(
+            preprolated_duration=self.preprolated_duration + 
+            expr.preprolated_duration)
         container.extend(self[:])
         container.extend(expr[:])
         return container
@@ -188,11 +197,14 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
         assert 0 < pulse_duration
         def recurse(node, tuplet_duration):
             basic_prolated_duration = tuplet_duration / node.contents_duration
-            basic_written_duration = basic_prolated_duration.equal_or_greater_power_of_two
+            basic_written_duration = \
+                basic_prolated_duration.equal_or_greater_power_of_two
             tuplet = tuplettools.FixedDurationTuplet(tuplet_duration, [])
             for child in node.children:
                 if isinstance(child, type(self)):
-                    tuplet.extend(recurse(child, child.preprolated_duration * basic_written_duration))
+                    tuplet.extend(recurse(
+                        child,
+                        child.preprolated_duration * basic_written_duration))
                 else:
                     leaves = child(basic_written_duration)
                     tuplet.extend(leaves)
@@ -206,7 +218,8 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
         return result
 
     def __eq__(self, expr):
-        '''True if type, preprolated_duration and children are equivalent, otherwise False.
+        '''True if type, preprolated_duration and children are equivalent.
+        Otherwise False.
 
         Return boolean.
         '''
@@ -217,9 +230,11 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
         return False
 
     def __setitem__(self, i, expr):
-        '''Set `expr` in self at nonnegative integer index `i`, or set `expr` in self at slice i.
+        '''Set `expr` in self at nonnegative integer index `i`, 
+        or set `expr` in self at slice i.
         Replace contents of `self[i]` with `expr`.
-        Attach parentage to contents of `expr`, and detach parentage of any replaced nodes.
+        Attach parentage to contents of `expr`, 
+        and detach parentage of any replaced nodes.
 
         ::
 
@@ -259,7 +274,8 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
 
         Return `None`.
         '''
-        from abjad.tools.rhythmtreetools.RhythmTreeParser import RhythmTreeParser
+        from abjad.tools.rhythmtreetools.RhythmTreeParser \
+            import RhythmTreeParser
 
         proper_parentage = self.proper_parentage
 
@@ -278,7 +294,8 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
         else:
             if isinstance(expr, str):
                 expr = RhythmTreeParser()(expr)
-            elif isinstance(expr, list) and len(expr) == 1 and isinstance(expr[0], str):
+            elif isinstance(expr, list) and len(expr) == 1 and \
+                isinstance(expr[0], str):
                 expr = RhythmTreeParser()(expr[0])
             else:
                 assert all(isinstance(x, self._node_klass) for x in expr)
@@ -297,7 +314,7 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
             self._children.__setitem__(slice(start, start), expr)
         self._mark_entire_tree_for_later_update()
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _leaf_klass(self):
@@ -317,11 +334,12 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
         result[-1] = result[-1] + '))'
         return result
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def contents_duration(self):
-        '''The total preprolated_duration of the children of a `RhythmTreeContainer` instance:
+        '''The total preprolated_duration of the children 
+        of a `RhythmTreeContainer` instance:
 
         ::
 

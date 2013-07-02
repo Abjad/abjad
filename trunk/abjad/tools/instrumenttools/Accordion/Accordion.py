@@ -125,6 +125,19 @@ class Accordion(KeyboardInstrument, ReedInstrument):
         return self._default_performer_names
 
     @property
+    def default_pitch_range(self):
+        '''Primary clefs:
+
+        ::
+
+            >>> accordion.default_pitch_range
+            PitchRange('[E1, C8]')
+
+        Return pitch range.
+        '''
+        return self._traditional_pitch_range
+
+    @property
     def default_short_instrument_name(self):
         '''Default short instrument name:
 
@@ -163,16 +176,3 @@ class Accordion(KeyboardInstrument, ReedInstrument):
 #        Return list.
 #        '''
 #        return self._primary_clefs
-
-    @property
-    def default_pitch_range(self):
-        '''Primary clefs:
-
-        ::
-
-            >>> accordion.default_pitch_range
-            PitchRange('[E1, C8]')
-
-        Return pitch range.
-        '''
-        return self._traditional_pitch_range

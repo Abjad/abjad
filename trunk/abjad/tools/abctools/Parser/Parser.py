@@ -82,7 +82,7 @@ class Parser(AbjadObject):
 
         return result
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def debug(self):

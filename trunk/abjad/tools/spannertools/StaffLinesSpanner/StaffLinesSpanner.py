@@ -79,7 +79,7 @@ class StaffLinesSpanner(Spanner):
             result.append(r'\startStaff')
         return result
 
-    ### READ / WRITE PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @apply
     def lines():

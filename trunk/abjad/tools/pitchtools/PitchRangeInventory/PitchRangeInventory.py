@@ -15,7 +15,7 @@ class PitchRangeInventory(ObjectInventory):
     Pitch range inventories implement list interface and are mutable.
     '''
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _item_callable(self):

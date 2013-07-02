@@ -62,7 +62,7 @@ class ConcatenatingGraceHandler(GraceHandler):
 
         return pitches, grace_container
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def grace_duration(self):

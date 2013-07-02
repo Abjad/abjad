@@ -67,13 +67,13 @@ class RhythmTreeLeaf(RhythmTreeNode):
                     return True
         return False
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _pretty_rtm_format_pieces(self):
         return [str(self.preprolated_duration)]
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def graphviz_graph(self):
@@ -104,7 +104,7 @@ class RhythmTreeLeaf(RhythmTreeNode):
             return '{}'.format(self.preprolated_duration)
         return '-{}'.format(self.preprolated_duration)
 
-    ### READ/WRITE PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @apply
     def is_pitched():

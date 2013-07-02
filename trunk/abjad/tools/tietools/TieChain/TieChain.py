@@ -32,7 +32,7 @@ class TieChain(Selection):
         else:
             Selection.__init__(self, music)
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def all_leaves_are_in_same_parent(self):

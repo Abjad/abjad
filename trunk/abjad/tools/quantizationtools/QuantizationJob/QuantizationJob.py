@@ -112,7 +112,7 @@ class QuantizationJob(AbjadObject):
         for key, value in state.iteritems():
             setattr(self, key, value)
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def job_id(self):

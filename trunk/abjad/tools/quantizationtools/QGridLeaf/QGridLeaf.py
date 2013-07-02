@@ -62,13 +62,13 @@ class QGridLeaf(RhythmTreeNode):
         self.is_divisible,
         )
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _pretty_rtm_format_pieces(self):
         return [str(self.preprolated_duration)]
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def graphviz_graph(self):
@@ -81,6 +81,17 @@ class QGridLeaf(RhythmTreeNode):
             )
         graph.append(node)
         return graph
+
+    @apply
+    def is_divisible():
+        def fget(self):
+            '''Flag for whether the node may be further divided 
+            under some search tree.
+            '''
+            return self._is_divisible
+        def fset(self, arg):
+            self._is_divisible = bool(arg)
+        return property(**locals())
 
     @property
     def preceding_q_event_proxies(self):
@@ -99,16 +110,3 @@ class QGridLeaf(RhythmTreeNode):
     def succeeding_q_event_proxies(self):
         return [x for x in self._q_event_proxies 
             if self.start_offset <= x.offset]
-
-    ### READ/WRITE PUBLIC PROPERTIES ###
-
-    @apply
-    def is_divisible():
-        def fget(self):
-            '''Flag for whether the node may be further divided 
-            under some search tree.
-            '''
-            return self._is_divisible
-        def fset(self, arg):
-            self._is_divisible = bool(arg)
-        return property(**locals())

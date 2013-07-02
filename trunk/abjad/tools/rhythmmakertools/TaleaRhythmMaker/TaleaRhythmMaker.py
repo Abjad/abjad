@@ -94,7 +94,7 @@ class TaleaRhythmMaker(DivisionBurnishedTaleaRhythmMaker):
             tie_split_notes=tie_split_notes,
             )
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def storage_format(self):

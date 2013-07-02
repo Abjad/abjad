@@ -38,7 +38,7 @@ class AbjadConfiguration(Configuration):
         if not os.path.exists(self.abjad_output_directory_path):
             os.mkdir(self.abjad_output_directory_path)
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _initial_comment(self):

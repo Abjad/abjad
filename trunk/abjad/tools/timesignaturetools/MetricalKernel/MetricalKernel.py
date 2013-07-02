@@ -75,7 +75,7 @@ class MetricalKernel(AbjadObject):
         result.append('})')
         return '\n'.join(result)
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def kernel(self):

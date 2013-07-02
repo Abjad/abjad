@@ -88,7 +88,7 @@ class SchemeMoment(Scheme):
         numerator, denominator = self._value.numerator, self._value.denominator
         return '(ly:make-moment %s %s)' % (numerator, denominator)
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def duration(self):

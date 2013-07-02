@@ -60,7 +60,7 @@ class SkipRhythmMaker(RhythmMaker):
             result.append(skip)
         return result
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def storage_format(self):

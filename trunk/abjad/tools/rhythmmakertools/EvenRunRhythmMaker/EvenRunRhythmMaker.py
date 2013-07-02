@@ -117,7 +117,7 @@ class EvenRunRhythmMaker(RhythmMaker):
             beam_spanner(container)
         return container
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def denominator_multiplier_exponent(self):

@@ -166,13 +166,13 @@ class TreeNode(AbjadObject):
 
         self._mark_entire_tree_for_later_update()
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _state_flag_names(self):
         return ()
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def depth(self):

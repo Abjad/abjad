@@ -160,7 +160,7 @@ class LilyPondParser(abctools.Parser):
         return result
 
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def available_languages(self):
@@ -197,7 +197,7 @@ class LilyPondParser(abctools.Parser):
     def parser_rules_object(self):
         return self._syndef
 
-    ### READ/WRITE PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @apply
     def default_language():

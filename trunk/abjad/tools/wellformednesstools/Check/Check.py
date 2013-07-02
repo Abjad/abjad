@@ -1,7 +1,6 @@
 import abc
-import abc
-from abjad.tools.abctools import AbjadObject
 import re
+from abjad.tools.abctools import AbjadObject
 
 
 class Check(AbjadObject):
@@ -15,7 +14,7 @@ class Check(AbjadObject):
     def __init__(self):
         pass
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _message(self):

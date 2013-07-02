@@ -75,7 +75,7 @@ class TimeRelation(AbjadObject):
         '''
         pass
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def inequality(self):

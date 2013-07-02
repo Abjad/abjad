@@ -200,7 +200,7 @@ class ComplexBeamSpanner(BeamSpanner):
             raise ValueError("'lone' must be left, right, both.")
         return left, right
 
-    ### READ / WRITE PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @apply
     def lone():

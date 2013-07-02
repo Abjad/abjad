@@ -205,7 +205,7 @@ class NamedChromaticPitch(Pitch):
             return pitchtools.transpose_pitch_carrier_by_melodic_interval(
                 self, -interval)
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _accidental(self):
@@ -324,7 +324,7 @@ class NamedChromaticPitch(Pitch):
         object.__setattr__(
             self, '_chromatic_pitch_name', chromatic_pitch_name)
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def accidental_spelling(self):

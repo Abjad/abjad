@@ -7,7 +7,7 @@ from abjad.tools.developerscripttools.DeveloperScript import DeveloperScript
 
 class AbjadBookScript(DeveloperScript):
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def alias(self):

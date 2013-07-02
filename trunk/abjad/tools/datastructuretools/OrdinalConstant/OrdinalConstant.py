@@ -114,7 +114,7 @@ class OrdinalConstant(ImmutableAbjadObject):
     def __repr__(self):
         return self._representation
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _positional_argument_values(self):

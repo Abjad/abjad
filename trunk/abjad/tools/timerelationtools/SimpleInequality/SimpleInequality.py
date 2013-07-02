@@ -117,7 +117,7 @@ class SimpleInequality(AbjadObject):
             return i
         raise ValueError
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def storage_format(self):

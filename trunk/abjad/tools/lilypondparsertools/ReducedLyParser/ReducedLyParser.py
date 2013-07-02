@@ -497,7 +497,7 @@ class ReducedLyParser(abctools.Parser):
         else:
             print("Syntax error at EOF")
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def lexer_rules_object(self):

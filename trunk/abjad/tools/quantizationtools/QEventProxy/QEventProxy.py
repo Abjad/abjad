@@ -85,13 +85,13 @@ class QEventProxy(AbjadObject):
         for key, value in state.iteritems():
             setattr(self, key, value)
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _positional_argument_names(self):
         return ('q_event', 'offset')
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def index(self):

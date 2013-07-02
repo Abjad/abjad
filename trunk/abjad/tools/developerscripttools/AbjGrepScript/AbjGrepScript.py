@@ -34,7 +34,7 @@ class AbjGrepScript(DirectoryScript):
     Return `AbjGrepScript` instance.
     '''
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def alias(self):

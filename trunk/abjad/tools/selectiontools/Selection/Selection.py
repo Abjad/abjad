@@ -93,7 +93,7 @@ class Selection(AbjadObject):
     def __repr__(self):
         return '{}{!r}'.format(self._class_name, self.music)
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def music(self):

@@ -49,7 +49,7 @@ class BarLine(LilyPondCommandMark):
     def __copy__(self, *args):
         return type(self)(self.bar_line_string, format_slot=self.format_slot)
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _contents_repr_string(self):

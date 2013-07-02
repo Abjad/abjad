@@ -185,7 +185,7 @@ class BreakPointFunction(AbjadObject):
         '''
         return self._operate(expr, operator.sub)
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def bpf(self):

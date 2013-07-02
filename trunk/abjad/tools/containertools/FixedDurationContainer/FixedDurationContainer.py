@@ -96,8 +96,6 @@ class FixedDurationContainer(Container):
         self._check_duration()
         return self._format_component()
 
-    ### READ / WRITE PUBLIC PROPERTIES ###
-
     @apply
     def target_duration():
         def fget(self):

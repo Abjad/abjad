@@ -124,7 +124,7 @@ class Measure(FixedDurationContainer):
         else:
             return '| |'
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _compact_representation(self):
@@ -213,7 +213,65 @@ class Measure(FixedDurationContainer):
             format_contributions.get('opening', {}).get('context marks', [])))
         return self._format_slot_contributions_with_indent(result)
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
+
+    @apply
+    def always_format_time_signature():
+        def fget(self):
+            '''.. versionadded:: 2.9
+
+            Read / write flag to indicate whether time signature
+            should appear in LilyPond format even when not expected.
+
+            Set to true when necessary to print the same signature repeatedly.
+
+            Default to false.
+
+            Return boolean.
+            '''
+            return self._always_format_time_signature
+        def fset(self, expr):
+            assert isinstance(expr, bool)
+            self._always_format_time_signature = expr
+        return property(**locals())
+
+    @apply
+    def automatically_adjust_time_signature():
+        def fget(self):
+            '''.. versionadded:: 2.9
+
+            Read / write flag to indicate whether time signature
+            should update automatically following contents-changing 
+            operations:
+
+            ::
+
+                >>> measure = Measure((3, 4), "c' d' e'")
+
+            ::
+
+                >>> measure
+                Measure(3/4, [c'4, d'4, e'4])
+
+            ::
+
+                >>> measure.automatically_adjust_time_signature = True
+                >>> measure.append('r')
+
+            ::
+
+                >>> measure
+                Measure(4/4, [c'4, d'4, e'4, r4])
+
+            Default to false.
+
+            Return boolean.
+            '''
+            return self._automatically_adjust_time_signature
+        def fset(self, expr):
+            assert isinstance(expr, bool)
+            self._automatically_adjust_time_signature = expr
+        return property(**locals())
 
     @property
     def has_non_power_of_two_denominator(self):
@@ -448,66 +506,6 @@ class Measure(FixedDurationContainer):
         from abjad.tools import contexttools
         time_signature = contexttools.get_effective_time_signature(self)
         return time_signature.implied_prolation * self.contents_duration
-
-    ### READ / WRITE PUBLIC PROPERTIES ###
-
-    @apply
-    def always_format_time_signature():
-        def fget(self):
-            '''.. versionadded:: 2.9
-
-            Read / write flag to indicate whether time signature
-            should appear in LilyPond format even when not expected.
-
-            Set to true when necessary to print the same signature repeatedly.
-
-            Default to false.
-
-            Return boolean.
-            '''
-            return self._always_format_time_signature
-        def fset(self, expr):
-            assert isinstance(expr, bool)
-            self._always_format_time_signature = expr
-        return property(**locals())
-
-    @apply
-    def automatically_adjust_time_signature():
-        def fget(self):
-            '''.. versionadded:: 2.9
-
-            Read / write flag to indicate whether time signature
-            should update automatically following contents-changing 
-            operations:
-
-            ::
-
-                >>> measure = Measure((3, 4), "c' d' e'")
-
-            ::
-
-                >>> measure
-                Measure(3/4, [c'4, d'4, e'4])
-
-            ::
-
-                >>> measure.automatically_adjust_time_signature = True
-                >>> measure.append('r')
-
-            ::
-
-                >>> measure
-                Measure(4/4, [c'4, d'4, e'4, r4])
-
-            Default to false.
-
-            Return boolean.
-            '''
-            return self._automatically_adjust_time_signature
-        def fset(self, expr):
-            assert isinstance(expr, bool)
-            self._automatically_adjust_time_signature = expr
-        return property(**locals())
 
     @property
     def target_duration(self):

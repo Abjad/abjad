@@ -46,7 +46,7 @@ class GraphvizEdge(GraphvizObject):
         self._tail = None
         self._head = None
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _graphviz_format_contributions(self):
@@ -63,17 +63,11 @@ class GraphvizEdge(GraphvizObject):
             return result
         return [edge_def + ';']
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def head(self):
         return self._head
-
-    @property
-    def tail(self):
-        return self._tail
-
-    ### READ/WRITE PUBLIC PROPERTIES ###
 
     @apply
     def is_directed():
@@ -82,3 +76,7 @@ class GraphvizEdge(GraphvizObject):
         def fset(self, arg):
             self._is_directed = bool(arg)
         return property(**locals())
+
+    @property
+    def tail(self):
+        return self._tail
