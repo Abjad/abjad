@@ -21,9 +21,11 @@ class Expression(AbjadObject):
         '''
         if not isinstance(expr, type(self)):
             return False
-        if not self._positional_argument_values == expr._positional_argument_values:
+        if not self._positional_argument_values == \
+            expr._positional_argument_values:
             return False
-        if not self._keyword_argument_values == expr._keyword_argument_values:
+        if not self._keyword_argument_values == \
+            expr._keyword_argument_values:
             return False
         return True
 
@@ -39,7 +41,8 @@ class Expression(AbjadObject):
     def _get_tools_package_qualified_keyword_argument_repr_pieces(
         self, is_indented=True):
         filtered_result = []
-        result = AbjadObject._get_tools_package_qualified_keyword_argument_repr_pieces(
+        result = \
+            AbjadObject._get_tools_package_qualified_keyword_argument_repr_pieces(
             self, is_indented=is_indented)
         for string in result:
             if not 'callbacks=musicexpressiontools.CallbackInventory([])' \
@@ -81,7 +84,9 @@ class Expression(AbjadObject):
                 raise KeyError(key)
         positional_argument_values = []
         for positional_argument_name in self._positional_argument_names:
-            positional_argument_value = positional_argument_dictionary[positional_argument_name]
+            positional_argument_value = \
+                positional_argument_dictionary[positional_argument_name]
             positional_argument_values.append(positional_argument_value)
-        result = type(self)(*positional_argument_values, **keyword_argument_dictionary)
+        result = type(
+            self)(*positional_argument_values, **keyword_argument_dictionary)
         return result

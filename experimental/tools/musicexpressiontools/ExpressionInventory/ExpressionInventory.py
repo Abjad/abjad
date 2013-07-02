@@ -10,6 +10,7 @@ class ExpressionInventory(ObjectInventory, IterablePayloadExpression):
 
     ### SPECIAL METHODS ###
 
+    # TODO: remove?
     def __deepcopy__(self, memo):
         tokens = [copy.deepcopy(x) for x in self]
         result = type(self)(tokens=tokens, name=self.name)

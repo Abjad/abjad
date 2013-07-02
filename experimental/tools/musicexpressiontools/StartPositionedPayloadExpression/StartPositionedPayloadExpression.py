@@ -30,7 +30,8 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
     ### SPECIAL METHODS ###
 
     def __and__(self, timespan):
-        '''Keep intersection of start-positioned payload expression and `timespan`.
+        '''Keep intersection of start-positioned payload expression 
+        and `timespan`.
 
         Operate in place and return timespan inventory.
         '''
@@ -59,9 +60,13 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
             middle_payload = result[1]
             middle_timespan = timespantools.Timespan(*timespan.offsets)
             middle_payload_expression = type(self)(
-                payload=[], start_offset=middle_timespan.start_offset, voice_name=self.voice_name)
+                payload=[],
+                start_offset=middle_timespan.start_offset,
+                voice_name=self.voice_name,
+                )
             middle_payload_expression._payload = middle_payload
-            result = timespantools.TimespanInventory([middle_payload_expression])
+            result = timespantools.TimespanInventory(
+                [middle_payload_expression])
         else:
             result = timespantools.TimespanInventory()
         return result
@@ -119,7 +124,11 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
         '''
         assert self._can_fuse(expr)
         payload = self.payload + expr.payload
-        result = type(self)([], start_offset=self.timespan.start_offset, voice_name=self.voice_name)
+        result = type(self)(
+            [],
+            start_offset=self.timespan.start_offset,
+            voice_name=self.voice_name,
+            )
         result._payload = payload
         return timespantools.TimespanInventory([result])
 
@@ -157,13 +166,20 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
             right_payload = result[-1]
             left_timespan = timespantools.Timespan(self.start_offset)
             left_payload_expression = type(self)(
-                payload=[], start_offset=left_timespan.start_offset, voice_name=self.voice_name)
+                payload=[],
+                start_offset=left_timespan.start_offset,
+                voice_name=self.voice_name,
+                )
             left_payload_expression._payload = left_payload
             right_timespan = timespantools.Timespan(timespan.stop_offset)
             right_payload_expression = type(self)(
-                payload=[], start_offset=right_timespan.start_offset, voice_name=self.voice_name)
+                payload=[],
+                start_offset=right_timespan.start_offset,
+                voice_name=self.voice_name,
+                )
             right_payload_expression._payload = right_payload
-            payload_expressions = [left_payload_expression, right_payload_expression]
+            payload_expressions = \
+                [left_payload_expression, right_payload_expression]
             result = timespantools.TimespanInventory(payload_expressions)
         else:
             result = timespantools.TimespanInventory([self])
@@ -220,7 +236,8 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
 
     @property
     def elements_are_time_contiguous(self):
-        '''True when start-positioned payload expression elements are time-contiguous.
+        '''True when start-positioned payload expression elements 
+        are time-contiguous.
         Otherwise false.
 
         Return boolean.
@@ -228,7 +245,8 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
         if len(self.elements):
             last_element = self.elements[0]
             for current_element in self.elements[1:]:
-                if not last_element.timespan.stop_offset == current_element.timespan.start_offset:
+                if not last_element.timespan.stop_offset == \
+                    current_element.timespan.start_offset:
                     return False
                 last_element = current_element
         return True
@@ -308,38 +326,57 @@ class StartPositionedPayloadExpression(IterablePayloadExpression):
         Operate in place and return newly constructed inventory.
         '''
         from experimental.tools import musicexpressiontools
-        parts = sequencetools.partition_sequence_by_ratio_of_lengths(self.elements, ratio)
+        parts = sequencetools.partition_sequence_by_ratio_of_lengths(
+            self.elements, ratio)
         durations = [self._get_duration_of_list(part) for part in parts]
         payload_parts = self._split_payload_at_offsets(durations)
         start_offsets = mathtools.cumulative_sums_zero(durations)[:-1]
-        start_offsets = [self.start_offset + start_offset for start_offset in start_offsets]
-        payload_expressions = musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory()
+        start_offsets = [
+            self.start_offset + start_offset 
+            for start_offset in start_offsets]
+        payload_expressions = \
+            musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory()
         for payload_part, start_offset in zip(payload_parts, start_offsets):
             timespan = timespantools.Timespan(start_offset)
-            payload_expression = type(self)([], start_offset=timespan.start_offset, voice_name=self.voice_name)
+            payload_expression = type(self)(
+                [],
+                start_offset=timespan.start_offset,
+                voice_name=self.voice_name,
+                )
             payload_expression._payload = payload_part
             payload_expressions.append(payload_expression)
         return payload_expressions
 
     def partition_by_ratio_of_durations(self, ratio):
-        '''Partition start-positioned payload expression by ratio of durations.
+        '''Partition start-positioned payload expression 
+        by ratio of durations.
 
         Operate in place and return newly constructed inventory.
         '''
         from experimental.tools import musicexpressiontools
-        element_durations = [self._get_duration_of_expr(leaf) for leaf in self.elements]
+        element_durations = [
+            self._get_duration_of_expr(leaf) for leaf in self.elements]
         integers = durationtools.durations_to_integers(element_durations)
-        parts = sequencetools.partition_sequence_by_ratio_of_weights(integers, ratio)
+        parts = sequencetools.partition_sequence_by_ratio_of_weights(
+            integers, ratio)
         part_lengths = [len(part) for part in parts]
-        parts = sequencetools.partition_sequence_by_counts(self.elements, part_lengths)
+        parts = sequencetools.partition_sequence_by_counts(
+            self.elements, part_lengths)
         durations = [self._get_duration_of_list(part) for part in parts]
         payload_parts = self._split_payload_at_offsets(durations)
         start_offsets = mathtools.cumulative_sums_zero(durations)[:-1]
-        start_offsets = [self.start_offset + start_offset for start_offset in start_offsets]
-        payload_expressions = musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory()
+        start_offsets = [
+            self.start_offset + start_offset 
+            for start_offset in start_offsets]
+        payload_expressions = \
+            musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory()
         for payload_part, start_offset in zip(payload_parts, start_offsets):
             timespan = timespantools.Timespan(start_offset)
-            payload_expression = type(self)([], start_offset=timespan.start_offset, voice_name=self.voice_name)
+            payload_expression = type(self)(
+                [],
+                start_offset=timespan.start_offset,
+                voice_name=self.voice_name,
+                )
             payload_expression._payload = payload_part
             payload_expressions.append(payload_expression)
         return payload_expressions

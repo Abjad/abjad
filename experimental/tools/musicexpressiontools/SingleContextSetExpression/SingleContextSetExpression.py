@@ -14,18 +14,24 @@ class SingleContextSetExpression(TimeContiguousAnchoredSetExpression):
 
     ::
 
-        >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
-        >>> score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
+        >>> score_template = \
+        ...     scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
+        ...     staff_count=4)
+        >>> score_specification = \
+        ...     musicexpressiontools.ScoreSpecificationInterface(
+        ...     score_template)
         >>> red_segment = score_specification.append_segment(name='red')
 
     ::
 
-        >>> multiple_context_set_expression = red_segment.set_time_signatures([(4, 8), (3, 8)])
+        >>> multiple_context_set_expression = \
+        ...     red_segment.set_time_signatures([(4, 8), (3, 8)])
 
     ::
 
         >>> contexts = ['Voice 1', 'Voice 3']
-        >>> multiple_context_set_expression = red_segment.set_divisions([(3, 16)], contexts=contexts)
+        >>> multiple_context_set_expression = \
+        ...     red_segment.set_divisions([(3, 16)], contexts=contexts)
 
     ::
 
@@ -61,12 +67,24 @@ class SingleContextSetExpression(TimeContiguousAnchoredSetExpression):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self,
-        attribute=None, source_expression=None, target_timespan=None, target_context_name=None,
-        fresh=True, persist=True, truncate=None):
-        TimeContiguousAnchoredSetExpression.__init__(self,
-            attribute=attribute, source_expression=source_expression,
-            target_timespan=target_timespan, persist=persist, truncate=truncate)
+    def __init__(
+        self,
+        attribute=None,
+        source_expression=None,
+        target_timespan=None,
+        target_context_name=None,
+        fresh=True,
+        persist=True,
+        truncate=None,
+        ):
+        TimeContiguousAnchoredSetExpression.__init__(
+            self,
+            attribute=attribute,
+            source_expression=source_expression,
+            target_timespan=target_timespan,
+            persist=persist,
+            truncate=truncate,
+            )
         assert isinstance(target_context_name, (str, type(None)))
         self._fresh = fresh
         self._target_context_name = target_context_name
@@ -92,7 +110,8 @@ class SingleContextSetExpression(TimeContiguousAnchoredSetExpression):
 
     @property
     def fresh(self):
-        '''True when single-context set expression results from explicit composer input.
+        '''True when single-context set expression results 
+        from explicit composer input.
         Otherwise false.
 
         Return boolean.
@@ -118,12 +137,17 @@ class SingleContextSetExpression(TimeContiguousAnchoredSetExpression):
         pass
 
     def store_in_root_specification_by_context_and_attribute(self):
-        '''Store single-context set expression in root specification by context and attribute.
+        '''Store single-context set expression in root specification 
+        by context and attribute.
         '''
-        target_context_name = self.target_context_name or self.score_specification.score_name
+        target_context_name = self.target_context_name or \
+            self.score_specification.score_name
         target_context_proxy = \
-            self.root_specification.single_context_set_expressions_by_context[target_context_name]
-        expressions = target_context_proxy.single_context_set_expressions_by_attribute[self.attribute]
+            self.root_specification.single_context_set_expressions_by_context[
+                target_context_name]
+        expressions = \
+            target_context_proxy.single_context_set_expressions_by_attribute[
+                self.attribute]
         for expression in expressions[:]:
             if expression.target_timespan == self.target_timespan:
                 expressions.remove(expression)

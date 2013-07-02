@@ -12,8 +12,12 @@ class DivisionSelectExpression(SelectExpression):
 
     ::
 
-        >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
-        >>> score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template=score_template)
+        >>> score_template = \
+        ...     scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
+        ...     staff_count=4)
+        >>> score_specification = \
+        ...     musicexpressiontools.ScoreSpecificationInterface(
+        ...     score_template=score_template)
         >>> red_segment = score_specification.append_segment(name='red')
 
     Example 1. Select voice ``1`` divisions that start during score:
@@ -59,20 +63,26 @@ class DivisionSelectExpression(SelectExpression):
         from experimental.tools import musicexpressiontools
         anchor_timespan = self._evaluate_anchor_timespan()
         time_relation = self._get_time_relation(anchor_timespan)
-        voice_proxy = self.score_specification.voice_data_structures_by_voice[self.voice_name]
-        division_payload_expressions = voice_proxy.payload_expressions_by_attribute['divisions']
+        voice_proxy = \
+            self.score_specification.voice_data_structures_by_voice[
+                self.voice_name]
+        division_payload_expressions = \
+            voice_proxy.payload_expressions_by_attribute['divisions']
         if division_payload_expressions is None:
             return
         existing_voice_divisions = []
         for division_payload_expression in division_payload_expressions:
-            existing_voice_divisions.extend(division_payload_expression.payload.divisions)
+            existing_voice_divisions.extend(
+                division_payload_expression.payload.divisions)
         if not existing_voice_divisions:
             return
         start_offset = existing_voice_divisions[0].start_offset
-        expression = musicexpressiontools.StartPositionedDivisionPayloadExpression(
+        expression = \
+            musicexpressiontools.StartPositionedDivisionPayloadExpression(
             existing_voice_divisions, start_offset=start_offset)
         callback_cache = self.score_specification.interpreter.callback_cache
-        expression = expression.get_elements_that_satisfy_time_relation(time_relation, callback_cache)
+        expression = expression.get_elements_that_satisfy_time_relation(
+            time_relation, callback_cache)
         if time_relation is None:
             inventory = expression & anchor_timespan
             expression = inventory[0]

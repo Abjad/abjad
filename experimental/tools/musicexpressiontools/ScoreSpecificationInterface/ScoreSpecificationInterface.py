@@ -9,8 +9,12 @@ class ScoreSpecificationInterface(SpecificationInterface):
 
     ::
 
-        >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
-        >>> score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template=score_template)
+        >>> score_template = \
+        ...     scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
+        ...     staff_count=4)
+        >>> score_specification = \
+        ...     musicexpressiontools.ScoreSpecificationInterface(
+        ...     score_template=score_template)
 
     ::
 
@@ -26,7 +30,8 @@ class ScoreSpecificationInterface(SpecificationInterface):
     def __init__(self, score_template):
         from experimental.tools import musicexpressiontools
         self._score_template = score_template
-        score_specification = musicexpressiontools.ScoreSpecification(score_template)
+        score_specification = \
+            musicexpressiontools.ScoreSpecification(score_template)
         score_specification._interface = self
         self._score_specification = score_specification
 
@@ -133,7 +138,8 @@ class ScoreSpecificationInterface(SpecificationInterface):
 
         ::
 
-            >>> offset_expression = score_specification.get_offset(Offset(3, 8))
+            >>> offset_expression = \
+            ...     score_specification.get_offset(Offset(3, 8))
 
         ::
 
@@ -172,7 +178,8 @@ class ScoreSpecificationInterface(SpecificationInterface):
 
         ::
 
-            >>> select_expression = score_specification.select_segments('Voice 1')
+            >>> select_expression = \
+            ...     score_specification.select_segments('Voice 1')
 
         ::
 
@@ -184,6 +191,7 @@ class ScoreSpecificationInterface(SpecificationInterface):
         Return segment select expression.
         '''
         from experimental.tools import musicexpressiontools
-        select_expression = musicexpressiontools.SegmentSelectExpression(voice_name=voice_name)
+        select_expression = musicexpressiontools.SegmentSelectExpression(
+            voice_name=voice_name)
         select_expression._score_specification = self.score_specification
         return select_expression

@@ -11,8 +11,11 @@ class ScoreSpecification(Specification):
 
     ::
 
-        >>> template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
-        >>> score_specification = musicexpressiontools.ScoreSpecificationInterface(template)
+        >>> template = \
+        ...     scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
+        ...     staff_count=2)
+        >>> score_specification = \
+        ...     musicexpressiontools.ScoreSpecificationInterface(template)
 
     ::
 
@@ -22,9 +25,12 @@ class ScoreSpecification(Specification):
 
     ::
 
-        >>> set_expression = red_segment.set_time_signatures([(2, 8), (3, 8), (4, 8)])
-        >>> set_expression = orange_segment.set_time_signatures([(4, 16), (4, 16)])
-        >>> set_expression = yellow_segment.set_time_signatures([(5, 16), (5, 16)])
+        >>> set_expression = red_segment.set_time_signatures(
+        ...     [(2, 8), (3, 8), (4, 8)])
+        >>> set_expression = orange_segment.set_time_signatures(
+        ...     [(4, 16), (4, 16)])
+        >>> set_expression = yellow_segment.set_time_signatures(
+        ...     [(5, 16), (5, 16)])
         >>> set_expression = red_segment.set_rhythm(library.sixteenths)
 
     ::
@@ -43,14 +49,21 @@ class ScoreSpecification(Specification):
     def __init__(self, score_template):
         from experimental.tools import musicexpressiontools
         Specification.__init__(self, score_template)
-        self._postrhythm_set_expressions = musicexpressiontools.ExpressionInventory()
-        self._multiple_context_set_expressions = timespantools.TimespanInventory()
+        self._postrhythm_set_expressions = \
+            musicexpressiontools.ExpressionInventory()
+        self._multiple_context_set_expressions = \
+            timespantools.TimespanInventory()
         self._next_lexical_rank = 0
-        self._region_expressions_by_attribute = musicexpressiontools.AttributeDictionary()
-        self._segment_specifications = musicexpressiontools.SegmentSpecificationInventory()
-        self._segment_specification_class = musicexpressiontools.SegmentSpecification
-        self._single_context_time_signature_set_expressions = timespantools.TimespanInventory()
-        self._voice_data_structures_by_voice = musicexpressiontools.VoiceDictionary(score_template())
+        self._region_expressions_by_attribute = \
+            musicexpressiontools.AttributeDictionary()
+        self._segment_specifications = \
+            musicexpressiontools.SegmentSpecificationInventory()
+        self._segment_specification_class = \
+            musicexpressiontools.SegmentSpecification
+        self._single_context_time_signature_set_expressions = \
+            timespantools.TimespanInventory()
+        self._voice_data_structures_by_voice = \
+            musicexpressiontools.VoiceDictionary(score_template())
 
     ### SPECIAL METHODS ###
 
@@ -64,13 +77,16 @@ class ScoreSpecification(Specification):
 
         Return string.
         '''
-        segment_specification_names = [repr(x.specification_name) for x in self.segment_specifications]
-        return '{}({})'.format(self._class_name, ', '.join(segment_specification_names))
+        segment_specification_names = [
+            repr(x.specification_name) for x in self.segment_specifications]
+        return '{}({})'.format(
+            self._class_name, ', '.join(segment_specification_names))
 
     ### PRIVATE METHODS ###
 
     def _compare_expressions(self, x, y):
-        result = self.compare_context_names(x.target_context_name, y.target_context_name)
+        result = self.compare_context_names(
+            x.target_context_name, y.target_context_name)
         if result in (-1, 1):
             return result
         else:
@@ -80,7 +96,8 @@ class ScoreSpecification(Specification):
         candidate_segment_number = 1
         while True:
             for segment_specification in self.segment_specifications:
-                if segment_specification.segment_name == str(candidate_segment_number):
+                if segment_specification.segment_name == \
+                    str(candidate_segment_number):
                     candidate_segment_number += 1
                     break
             else:
@@ -207,7 +224,8 @@ class ScoreSpecification(Specification):
 
         ::
 
-            >>> for timespan_inventory in score_specification.region_expressions_by_attribute.itervalues():
+            >>> for timespan_inventory in \
+            ...     score_specification.region_expressions_by_attribute.itervalues():
             ...     if timespan_inventory:
             ...         z(timespan_inventory)
             timespantools.TimespanInventory([
@@ -329,7 +347,8 @@ class ScoreSpecification(Specification):
 
         Return list.
         '''
-        return [segment_specification.segment_name for segment_specification in self.segment_specifications]
+        return [segment_specification.segment_name 
+            for segment_specification in self.segment_specifications]
 
     @property
     def segment_specification_class(self):
@@ -350,7 +369,8 @@ class ScoreSpecification(Specification):
 
         ::
 
-            >>> for segment_specification in score_specification.segment_specifications:
+            >>> for segment_specification in \
+            ...     score_specification.segment_specifications:
             ...     segment_specification
             ...
             SegmentSpecification('red')
@@ -367,7 +387,8 @@ class ScoreSpecification(Specification):
 
         ::
 
-            >>> for key in score_specification.single_context_set_expressions_by_context:
+            >>> for key in \
+            ...     score_specification.single_context_set_expressions_by_context:
             ...     key
             ...
             'Grouped Rhythmic Staves Score'
@@ -494,8 +515,10 @@ class ScoreSpecification(Specification):
 
         ::
 
-            >>> for voice_proxy in score_specification.voice_data_structures_by_voice.itervalues():
-            ...     for timespan_inventory in voice_proxy.payload_expressions_by_attribute.itervalues():
+            >>> for voice_proxy in \
+            ...     score_specification.voice_data_structures_by_voice.itervalues():
+            ...     for timespan_inventory in \
+            ...         voice_proxy.payload_expressions_by_attribute.itervalues():
             ...         if timespan_inventory:
             ...             z(timespan_inventory)
             timespantools.TimespanInventory([
@@ -572,10 +595,12 @@ class ScoreSpecification(Specification):
         from experimental.tools import musicexpressiontools
         name = name or str(self._find_first_unused_segment_number())
         assert name not in self.segment_names, repr(name)
-        segment_specification = self.segment_specification_class(self.score_template, name)
+        segment_specification = \
+            self.segment_specification_class(self.score_template, name)
         segment_specification._score_specification = self
         self.segment_specifications.append(segment_specification)
-        segment_specification_interface = musicexpressiontools.SegmentSpecificationInterface(self, name)
+        segment_specification_interface = \
+            musicexpressiontools.SegmentSpecificationInterface(self, name)
         segment_specification_interface._specification = segment_specification
         return segment_specification_interface
 
@@ -598,7 +623,8 @@ class ScoreSpecification(Specification):
 
         ::
 
-            >>> expression = musicexpressiontools.SegmentIdentifierExpression("'red' + 2")
+            >>> expression = musicexpressiontools.SegmentIdentifierExpression(
+            ...     "'red' + 2")
             >>> score_specification.get_segment_specification(expression)
             SegmentSpecification('yellow')
 
@@ -607,14 +633,19 @@ class ScoreSpecification(Specification):
         if isinstance(expr, (str, int)):
             return self.segment_specifications[expr]
         else:
-            quoted_string_pattern = re.compile(r"""(['"]{1}[a-zA-Z1-9 _]+['"]{1})""")
+            quoted_string_pattern = re.compile(
+                r"""(['"]{1}[a-zA-Z1-9 _]+['"]{1})""")
             quoted_segment_names = quoted_string_pattern.findall(expr.string)
             modified_string = str(expr.string)
             for quoted_segment_name in quoted_segment_names:
                 segment_name = quoted_segment_name[1:-1]
-                segment_specification = self.segment_specifications[segment_name]
-                segment_index = self.segment_specifications.index(segment_specification)
-                modified_string = modified_string.replace(quoted_segment_name, str(segment_index))
+                segment_specification = \
+                    self.segment_specifications[segment_name]
+                segment_index = \
+                    self.segment_specifications.index(segment_specification)
+                modified_string = \
+                    modified_string.replace(
+                        quoted_segment_name, str(segment_index))
             segment_index = eval(modified_string)
             return self.segment_specifications[segment_index]
 
@@ -632,7 +663,10 @@ class ScoreSpecification(Specification):
         assert self.time_signatures
         weights = [timespan.start_offset, timespan.duration]
         shards = sequencetools.split_sequence_by_weights(
-            self.time_signatures, weights, cyclic=False, overhang=False)
+            self.time_signatures,
+            weights,
+            cyclic=False,
+            overhang=False)
         result = shards[1]
         result = [x.pair for x in result]
         return result
@@ -647,7 +681,8 @@ class ScoreSpecification(Specification):
         self.interpreter = interpreter
         return interpreter(self)
 
-    def make_default_timespan_scoped_single_context_division_set_expression(self, target_timespan, voice_name):
+    def make_default_timespan_scoped_single_context_division_set_expression(
+        self, target_timespan, voice_name):
         from experimental.tools import musicexpressiontools
         divisions = self.get_time_signature_slice(target_timespan)
         return musicexpressiontools.TimespanScopedSingleContextDivisionSetExpression(
@@ -655,20 +690,22 @@ class ScoreSpecification(Specification):
             target_timespan=target_timespan,
             target_context_name=voice_name,
             fresh=True,
-            truncate=True
+            truncate=True,
             )
 
-    def make_default_timespan_scoped_single_context_rhythm_set_expression(self, target_timespan, voice_name):
+    def make_default_timespan_scoped_single_context_rhythm_set_expression(
+        self, target_timespan, voice_name):
         from experimental import library
         from experimental.tools import musicexpressiontools
         return musicexpressiontools.TimespanScopedSingleContextRhythmSetExpression(
             source_expression=musicexpressiontools.RhythmMakerExpression(library.skip_tokens),
             target_timespan=target_timespan,
             target_context_name=voice_name,
-            fresh=True
+            fresh=True,
             )
 
-    def make_default_timespan_scoped_single_context_set_expression(self, attribute, target_timespan, voice_name):
+    def make_default_timespan_scoped_single_context_set_expression(
+        self, attribute, target_timespan, voice_name):
         if attribute == 'divisions':
             return self.make_default_timespan_scoped_single_context_division_set_expression(
                 target_timespan, voice_name)
@@ -680,7 +717,8 @@ class ScoreSpecification(Specification):
 
     def make_timespan_scoped_single_context_set_expressions_for_voice(self, attribute, voice_name):
         from experimental.tools import musicexpressiontools
-        timespan_scoped_set_expressions = musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory()
+        timespan_scoped_set_expressions = \
+            musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory()
         for specification in (self, ) + tuple(self.segment_specifications):
             single_context_set_expressions = \
                 specification.get_single_context_set_expressions_rooted_to_specification_that_govern_context_name(
@@ -690,9 +728,11 @@ class ScoreSpecification(Specification):
             #    self._debug_values(single_context_set_expressions, 'SSS')
             for single_context_set_expression in single_context_set_expressions:
                 timespan_scoped_set_expression = single_context_set_expression.evaluate()
-                # make sure set expression was set expression for timespan that exists in current segment
+                # make sure set expression was set expression for 
+                # timespan that exists in current segment
                 if timespan_scoped_set_expression.target_timespan.is_well_formed:
-                    timespan_scoped_set_expressions.append(timespan_scoped_set_expression)
+                    timespan_scoped_set_expressions.append(
+                        timespan_scoped_set_expression)
         #self._debug_values(timespan_scoped_set_expressions, 'TTT')
         timespan_scoped_set_expressions.sort(self._compare_expressions)
         assert timespan_scoped_set_expressions.all_are_well_formed
@@ -704,7 +744,8 @@ class ScoreSpecification(Specification):
             for context_proxy_name, context_proxy in \
                 segment_specification.single_context_set_expressions_by_context.items():
                 printed_context_proxy_name = False
-                for key, value in context_proxy.single_context_set_expressions_by_attribute.items():
+                for key, value in \
+                    context_proxy.single_context_set_expressions_by_attribute.items():
                     if value:
                         if not printed_context_proxy_name:
                             print context_proxy_name
@@ -713,9 +754,11 @@ class ScoreSpecification(Specification):
             print ''
         print '### SCORE ###'
         print self
-        for context_proxy_name, context_proxy in self.single_context_set_expressions_by_context.items():
+        for context_proxy_name, context_proxy in \
+            self.single_context_set_expressions_by_context.items():
             printed_context_proxy_name = False
-            for key, value in context_proxy.single_context_set_expressions_by_attribute.items():
+            for key, value in \
+                context_proxy.single_context_set_expressions_by_attribute.items():
                 if value:
                     if not printed_context_proxy_name:
                         print context_proxy_name
@@ -726,7 +769,8 @@ class ScoreSpecification(Specification):
         for context_proxy_name, context_proxy in \
             self.single_context_set_expressions_by_context.items():
             printed_context_proxy_name = False
-            for key, value in context_proxy.single_context_set_expressions_by_attribute.items():
+            for key, value in \
+                context_proxy.single_context_set_expressions_by_attribute.items():
                 if value:
                     if not printed_context_proxy_name:
                         print context_proxy_name

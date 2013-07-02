@@ -38,8 +38,9 @@ class CounttimeComponentSelectExpressionSetMethodMixin(AbjadObject):
         '''
         from experimental.tools import handlertools
         from experimental.tools import musicexpressiontools
-        assert isinstance(source_expression, handlertools.DynamicHandler), repr(source_expression)
-        source_expression = musicexpressiontools.PayloadExpression(payload=source_expression)
+        assert isinstance(source_expression, handlertools.DynamicHandler)
+        source_expression = \
+            musicexpressiontools.PayloadExpression(payload=source_expression)
         attribute = 'dynamic_handler'
         return self._store_counttime_component_select_expression_set_expression(
             'dynamic_handler', source_expression)
@@ -50,8 +51,9 @@ class CounttimeComponentSelectExpressionSetMethodMixin(AbjadObject):
         Return spanner set expression.
         '''
         from experimental.tools import musicexpressiontools
-        assert isinstance(source_expression, spannertools.Spanner), repr(source_expression)
+        assert isinstance(source_expression, spannertools.Spanner)
         assert not len(source_expression)
-        source_expression = musicexpressiontools.PayloadExpression(payload=source_expression)
+        source_expression = \
+            musicexpressiontools.PayloadExpression(payload=source_expression)
         return self._store_counttime_component_select_expression_set_expression(
             'spanner', source_expression)

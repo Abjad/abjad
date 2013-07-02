@@ -21,6 +21,8 @@ class RotationIndicator(abctools.AbjadObject):
     Rotation indicators are immutable.
     '''
 
+    ### INITIALIZER ###
+
     def __init__(self, index=None, level=None, fracture_spanners=None):
         from abjad.tools import durationtools
         assert isinstance(index, (int, durationtools.Duration))

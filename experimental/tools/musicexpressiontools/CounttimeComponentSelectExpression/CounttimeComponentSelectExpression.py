@@ -26,8 +26,12 @@ class CounttimeComponentSelectExpression(
 
     ::
 
-        >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
-        >>> score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template=score_template)
+        >>> score_template = \
+        ...     scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
+        ...     staff_count=4)
+        >>> score_specification = \
+        ...     musicexpressiontools.ScoreSpecificationInterface(
+        ...     score_template=score_template)
         >>> red_segment = score_specification.append_segment(name='red')
 
     Example 1. Select voice ``1`` leaves that start during score:
@@ -79,11 +83,13 @@ class CounttimeComponentSelectExpression(
         from experimental.tools import musicexpressiontools
         assert classes is None or \
             self._is_counttime_component_class_expr(classes), repr(classes)
-        SelectExpression.__init__(self,
+        SelectExpression.__init__(
+            self,
             anchor=anchor,
             voice_name=voice_name,
             time_relation=time_relation,
-            callbacks=callbacks)
+            callbacks=callbacks,
+            )
         CounttimeComponentSelectExpressionSetMethodMixin.__init__(self)
         if isinstance(classes, tuple):
             classes = musicexpressiontools.ClassInventory(classes)
@@ -93,22 +99,28 @@ class CounttimeComponentSelectExpression(
 
     def __add__(self, select_expression):
         from experimental.tools import musicexpressiontools
-        assert isinstance(select_expression, type(self)), repr(select_expression)
-        assert self.score_specification is select_expression.score_specification
-        select_expression_inventory = musicexpressiontools.SelectExpressionInventory()
-        select_expression_inventory.extend([copy.deepcopy(self), copy.deepcopy(select_expression)])
-        select_expression_inventory._score_specification = self.score_specification
+        assert isinstance(select_expression, type(self))
+        assert self.score_specification is \
+            select_expression.score_specification
+        select_expression_inventory = \
+            musicexpressiontools.SelectExpressionInventory()
+        select_expression_inventory.extend(
+            [copy.deepcopy(self), copy.deepcopy(select_expression)])
+        select_expression_inventory._score_specification = \
+            self.score_specification
         return select_expression_inventory
 
     ### PRIVATE METHODS ###
 
     def _is_counttime_component_class_expr(self, expr):
         from experimental.tools import musicexpressiontools
-        if isinstance(expr, tuple) and all(self._is_counttime_component_class_expr(x) for x in expr):
+        if isinstance(expr, tuple) and all(
+            self._is_counttime_component_class_expr(x) for x in expr):
             return True
         elif isinstance(expr, musicexpressiontools.ClassInventory):
             return True
-        elif issubclass(expr, (measuretools.Measure, tuplettools.Tuplet, leaftools.Leaf)):
+        elif issubclass(expr, (
+            measuretools.Measure, tuplettools.Tuplet, leaftools.Leaf)):
             return True
         elif expr == containertools.Container:
             return True
@@ -136,26 +148,35 @@ class CounttimeComponentSelectExpression(
         '''
         from experimental.tools import musicexpressiontools
         anchor_timespan = self._evaluate_anchor_timespan()
-        voice_proxy = self.score_specification.voice_data_structures_by_voice[self.voice_name]
-        rhythm_payload_expressions = voice_proxy.payload_expressions_by_attribute['rhythm']
+        voice_proxy = \
+            self.score_specification.voice_data_structures_by_voice[
+                self.voice_name]
+        rhythm_payload_expressions = \
+            voice_proxy.payload_expressions_by_attribute['rhythm']
         # TODO: will this have to be optimized with bisect?
-        rhythm_payload_expressions = rhythm_payload_expressions.get_timespans_that_satisfy_time_relation(
-            timerelationtools.timespan_2_intersects_timespan_1(timespan_1=anchor_timespan))
+        rhythm_payload_expressions = \
+            rhythm_payload_expressions.get_timespans_that_satisfy_time_relation(
+            timerelationtools.timespan_2_intersects_timespan_1(
+            timespan_1=anchor_timespan))
         if not rhythm_payload_expressions:
             return
-        rhythm_payload_expressions = copy.deepcopy(rhythm_payload_expressions)
-        rhythm_payload_expressions = timespantools.TimespanInventory(rhythm_payload_expressions)
+        rhythm_payload_expressions = \
+            copy.deepcopy(rhythm_payload_expressions)
+        rhythm_payload_expressions = \
+            timespantools.TimespanInventory(rhythm_payload_expressions)
         rhythm_payload_expressions.sort()
         assert anchor_timespan.is_well_formed, repr(anchor_timespan)
         rhythm_payload_expressions &= anchor_timespan
-        expression = musicexpressiontools.StartPositionedRhythmPayloadExpression(
+        expression = \
+            musicexpressiontools.StartPositionedRhythmPayloadExpression(
             start_offset=anchor_timespan.start_offset)
         for rhythm_payload_expression in rhythm_payload_expressions:
             expression.payload.extend(rhythm_payload_expression.payload)
         assert wellformednesstools.is_well_formed_component(expression.payload)
         # TODO: eventually make this be able to work
         #callback_cache = self.score_specification.interpreter.callback_cache
-        #expression = expression.get_elements_that_satisfy_time_relation(time_relation, callback_cache)
+        #expression = expression.get_elements_that_satisfy_time_relation(
+        #    time_relation, callback_cache)
         expression = self._apply_callbacks(expression)
         expression._voice_name = self.voice_name
         return expression
@@ -179,13 +200,16 @@ class CounttimeComponentSelectExpression(
         anchor_timespans = anchor_timespan
         for anchor_timespan in anchor_timespans:
             time_relation = self._get_time_relation(anchor_timespan)
-            voice_proxy = self.score_specification.voice_data_structures_by_voice[self.voice_name]
+            voice_proxy = \
+                self.score_specification.voice_data_structures_by_voice[
+                    self.voice_name]
             start, stop = time_relation.get_offset_indices(
                 voice_proxy.leaf_start_offsets, voice_proxy.leaf_stop_offsets)
             components = voice_proxy.leaves[start:stop]
             if not components:
                 continue
-            expression = musicexpressiontools.IterablePayloadExpression(components)
+            expression = \
+                musicexpressiontools.IterablePayloadExpression(components)
             expression = self._apply_callbacks(expression)
             result.append(expression)
         if is_map_to_each:

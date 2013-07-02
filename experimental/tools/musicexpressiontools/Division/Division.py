@@ -83,6 +83,7 @@ class Division(NonreducedFraction, BoundedObject):
             is_left_open=self.is_left_open, is_right_open=self.is_right_open,
             start_offset=self.start_offset)
 
+    # TODO: remove?
     __deepcopy__ = __copy__
 
     def __repr__(self):

@@ -11,7 +11,8 @@ class AnchoredExpression(Expression):
 
     def __init__(self, anchor=None):
         from experimental.tools import musicexpressiontools
-        assert isinstance(anchor, (musicexpressiontools.AnchoredExpression, str, type(None))), repr(anchor)
+        assert isinstance(anchor, 
+            (musicexpressiontools.AnchoredExpression, str, type(None)))
         self._anchor = anchor
         self._score_specification = None
 
@@ -30,7 +31,8 @@ class AnchoredExpression(Expression):
 
     @property
     def _expression_abbreviation(self):
-        '''Form of anchored expression suitable for inclusion in storage format.
+        '''Form of anchored expression suitable for inclusion in 
+        storage format.
         '''
         return self
 
@@ -84,9 +86,11 @@ class AnchoredExpression(Expression):
 
         Return none when anchored expression anchors to the entire score.
 
-        Return string name of segment when anchored expression anchors to a single segment.
+        Return string name of segment when anchored expression anchors 
+        to a single segment.
 
-        Return expression when anchored expression anchors to another expression.
+        Return expression when anchored expression anchors 
+        to another expression.
         '''
         return self._anchor
 
@@ -115,7 +119,8 @@ class AnchoredExpression(Expression):
         Return specification.
         '''
         if self.is_segment_rooted:
-            return self.score_specification.segment_specifications[self.root_specification_identifier]
+            return self.score_specification.segment_specifications[
+                self.root_specification_identifier]
         else:
             return self.score_specification
 
@@ -147,7 +152,8 @@ class AnchoredExpression(Expression):
         Return offset expression.
         '''
         from experimental.tools import musicexpressiontools
-        result = musicexpressiontools.OffsetExpression(anchor=self._expression_abbreviation)
+        result = musicexpressiontools.OffsetExpression(
+            anchor=self._expression_abbreviation)
         result._score_specification = self.score_specification
         return result
 
@@ -158,6 +164,7 @@ class AnchoredExpression(Expression):
         Return offset expression.
         '''
         from experimental.tools import musicexpressiontools
-        result = musicexpressiontools.OffsetExpression(anchor=self._expression_abbreviation, edge=Right)
+        result = musicexpressiontools.OffsetExpression(
+            anchor=self._expression_abbreviation, edge=Right)
         result._score_specification = self.score_specification
         return result

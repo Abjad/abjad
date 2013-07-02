@@ -12,7 +12,8 @@ class StartPositionedDivisionPayloadExpression(
     ::
 
         >>> payload = [(6, 8), (6, 8), (3, 4)]
-        >>> expression = musicexpressiontools.StartPositionedDivisionPayloadExpression(
+        >>> expression = \
+        ...     musicexpressiontools.StartPositionedDivisionPayloadExpression(
         ...     payload, Offset(0))
 
     ::
@@ -173,7 +174,11 @@ class StartPositionedDivisionPayloadExpression(
             start_offset = divisions[0].start_offset
         else:
             start_offset = durationtools.Offset(0)
-        result = type(self)(payload=divisions, voice_name=self.voice_name, start_offset=start_offset)
+        result = type(self)(
+            payload=divisions,
+            voice_name=self.voice_name,
+            start_offset=start_offset,
+            )
         return result
 
     def __or__(self, expr):
@@ -217,7 +222,8 @@ class StartPositionedDivisionPayloadExpression(
         return StartPositionedPayloadExpression.__or__(self, expr)
 
     def __sub__(self, timespan):
-        '''Subtract `timespan` from start-positioned division payload expression.
+        '''Subtract `timespan` from start-positioned division 
+        payload expression.
 
         Example 1. Subtract from left:
 
@@ -502,7 +508,8 @@ class StartPositionedDivisionPayloadExpression(
         return StartPositionedPayloadExpression.partition_by_ratio(self, ratio)
 
     def partition_by_ratio_of_durations(self, ratio):
-        '''Partition start-positioned division payload expression by `ratio` of durations.
+        '''Partition start-positioned division payload expression by 
+        `ratio` of durations.
 
         ::
 
@@ -699,5 +706,9 @@ class StartPositionedDivisionPayloadExpression(
         Operate in place and return division payload expression.
         '''
         new_start_offset = self.start_offset + translation
-        result = type(self)(self.payload.divisions, voice_name=self.voice_name, start_offset=new_start_offset)
+        result = type(self)(
+            self.payload.divisions,
+            voice_name=self.voice_name,
+            start_offset=new_start_offset,
+            )
         return result

@@ -19,13 +19,17 @@ class TimespanScopedSingleContextSetExpressionInventory(TimespanInventory):
             set_expressions_to_remove, set_expressions_to_curtail = [], []
             set_expressions_to_delay, set_expressions_to_split = [], []
             for cooked_set_expression in cooked_set_expressions:
-                if raw_set_expression.target_timespan.contains_timespan_improperly(cooked_set_expression):
+                if raw_set_expression.target_timespan.contains_timespan_improperly(
+                    cooked_set_expression):
                     set_expressions_to_remove.append(cooked_set_expression)
-                elif raw_set_expression.target_timespan.delays_timespan(cooked_set_expression):
+                elif raw_set_expression.target_timespan.delays_timespan(
+                    cooked_set_expression):
                     set_expressions_to_delay.append(cooked_set_expression)
-                elif raw_set_expression.target_timespan.curtails_timespan(cooked_set_expression):
+                elif raw_set_expression.target_timespan.curtails_timespan(
+                    cooked_set_expression):
                     set_expressions_to_curtail.append(cooked_set_expression)
-                elif raw_set_expression.target_timespan.trisects_timespan(cooked_set_expression):
+                elif raw_set_expression.target_timespan.trisects_timespan(
+                    cooked_set_expression):
                     set_expressions_to_split.append(cooked_set_expression)
             for set_expression_to_remove in set_expressions_to_remove:
                 cooked_set_expressions.remove(set_expression_to_remove)
@@ -40,8 +44,10 @@ class TimespanScopedSingleContextSetExpressionInventory(TimespanInventory):
                     set_expression_to_delay.target_timespan.stop_offset)
                 set_expression_to_delay._target_timespan = timespan
                 set_expression_was_delayed = True
-            # TODO: branch inside and implement a method to split while treating cyclic payload smartly.
-            # or, alternatively, special-case for set_expressions that cover the entire duration of score.
+            # TODO: branch inside and implement a method to split 
+            # while treating cyclic payload smartly.
+            # or, alternatively, special-case for set_expressions 
+            # that cover the entire duration of score.
             for set_expression_to_split in set_expressions_to_split:
                 left_set_expression = set_expression_to_split
                 middle_set_expression = raw_set_expression
@@ -78,7 +84,8 @@ class TimespanScopedSingleContextSetExpressionInventory(TimespanInventory):
             return self
         elif not self and score_specification.time_signatures:
             timespan = score_specification.timespan
-            set_expression = score_specification.make_default_timespan_scoped_single_context_set_expression(
+            set_expression = \
+                score_specification.make_default_timespan_scoped_single_context_set_expression(
                 attribute, timespan, voice_name)
             self[:] = [set_expression]
             return self

@@ -88,7 +88,8 @@ class TimespanScopedSingleContextSetExpression(SetExpression):
         '''
         from experimental.tools import musicexpressiontools
         timespans = self.target_timespan - timespan
-        result = musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory()
+        result = \
+            musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory()
         for timespan in timespans:
             region_expression = self.new(target_timespan=timespan)
             result.append(region_expression)

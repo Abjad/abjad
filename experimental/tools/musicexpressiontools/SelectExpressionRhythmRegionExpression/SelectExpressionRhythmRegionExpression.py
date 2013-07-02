@@ -23,17 +23,18 @@ class SelectExpressionRhythmRegionExpression(RhythmRegionExpression):
         if expression is None:
             return
         assert isinstance(expression,
-            musicexpressiontools.StartPositionedRhythmPayloadExpression), repr(expression)
+            musicexpressiontools.StartPositionedRhythmPayloadExpression)
         expression._start_offset = self.start_offset
-        start_offset, stop_offset = self.start_offset, self.start_offset + self.total_duration
+        start_offset, stop_offset = \
+            self.start_offset, self.start_offset + self.total_duration
         keep_timespan = timespantools.Timespan(start_offset, stop_offset)
         timespan = expression.timespan
-        assert not keep_timespan.starts_before_timespan_starts(timespan), repr((timespan, keep_timespan))
-        assert timespan.start_offset == keep_timespan.start_offset, repr((timespan, keep_timespan))
+        assert not keep_timespan.starts_before_timespan_starts(timespan)
+        assert timespan.start_offset == keep_timespan.start_offset
         inventory = expression & keep_timespan
         assert len(inventory) == 1
         expression = inventory[0]
         assert isinstance(expression,
-            musicexpressiontools.StartPositionedRhythmPayloadExpression), repr(expression)
+            musicexpressiontools.StartPositionedRhythmPayloadExpression)
         expression.repeat_to_stop_offset(stop_offset)
         return expression

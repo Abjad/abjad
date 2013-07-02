@@ -27,7 +27,8 @@ class CounttimeComponentSelectExpressionSetExpression(Expression):
 
     @property
     def source_expression(self):
-        '''Counttime component select expression set expression source expression.
+        '''Counttime component select expression set expression 
+        source expression.
 
         Return expression.
         '''
@@ -45,4 +46,5 @@ class CounttimeComponentSelectExpressionSetExpression(Expression):
     ### PUBLIC METHODS ###
 
     def evaluate(self):
-        raise NotImplementedError('eventually remove me and implement on child classes.')
+        message = 'eventually remove me and implement on child classes.'
+        raise NotImplementedError(message)

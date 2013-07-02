@@ -25,6 +25,7 @@ class MaterialManager(AbjadObject):
             return musicexpressiontools.IterablePayloadExpression(material)
         elif isinstance(material, (str)):
             component = iotools.p(material)
-            return musicexpressiontools.StartPositionedRhythmPayloadExpression([component], start_offset=0)
+            return musicexpressiontools.StartPositionedRhythmPayloadExpression(
+                [component], start_offset=0)
         else:
             raise TypeError(material)

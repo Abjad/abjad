@@ -19,7 +19,10 @@ class StatalServer(AbjadObject):
         '''
         from experimental.tools import musicexpressiontools
         cursor = musicexpressiontools.StatalServerCursor(
-            statal_server=self, position=position, reverse=reverse)
+            statal_server=self,
+            position=position,
+            reverse=reverse,
+            )
         return cursor
 
     def __eq__(self, expr):

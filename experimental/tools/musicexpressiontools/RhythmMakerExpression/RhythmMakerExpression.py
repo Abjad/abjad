@@ -10,7 +10,7 @@ class RhythmMakerExpression(PayloadExpression):
     ### INTIAILIZER ###
 
     def __init__(self, payload=None):
-        assert isinstance(payload, rhythmmakertools.RhythmMaker), repr(payload)
+        assert isinstance(payload, rhythmmakertools.RhythmMaker)
         PayloadExpression.__init__(self, payload=payload)
 
     ### PUBLIC METHODS ###
@@ -21,7 +21,8 @@ class RhythmMakerExpression(PayloadExpression):
         ::
 
             >>> rhythm_maker = library.dotted_sixteenths
-            >>> payload_expression = musicexpressiontools.RhythmMakerExpression(rhythm_maker)
+            >>> payload_expression = \
+            ...     musicexpressiontools.RhythmMakerExpression(rhythm_maker)
             >>> z(payload_expression)
             musicexpressiontools.RhythmMakerExpression(
                 payload=rhythmmakertools.TaleaRhythmMaker(

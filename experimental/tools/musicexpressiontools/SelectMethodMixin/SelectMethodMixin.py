@@ -11,8 +11,12 @@ class SelectMethodMixin(AbjadObject):
 
     ::
 
-        >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
-        >>> score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template=score_template)
+        >>> score_template = \
+        ...     scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
+        ...     staff_count=4)
+        >>> score_specification = \
+        ...     musicexpressiontools.ScoreSpecificationInterface(
+        ...     score_template=score_template)
         >>> red_segment = score_specification.append_segment(name='red')
 
     Add to classes that implement the select method interface.
@@ -60,10 +64,11 @@ class SelectMethodMixin(AbjadObject):
         Return division select expression.
         '''
         from experimental.tools import musicexpressiontools
-        select_expression = musicexpressiontools.DivisionSelectExpression(
+        select_expression = \
+            musicexpressiontools.DivisionSelectExpression(
             anchor=self._expression_abbreviation,
             voice_name=voice_name,
-            time_relation=time_relation
+            time_relation=time_relation,
             )
         select_expression._score_specification = self.score_specification
         return select_expression
@@ -87,11 +92,12 @@ class SelectMethodMixin(AbjadObject):
         Return counttime component select expression.
         '''
         from experimental.tools import musicexpressiontools
-        select_expression = musicexpressiontools.CounttimeComponentSelectExpression(
+        select_expression = \
+            musicexpressiontools.CounttimeComponentSelectExpression(
             anchor=self._expression_abbreviation,
             time_relation=time_relation,
             classes=(leaftools.Leaf, ),
-            voice_name=voice_name
+            voice_name=voice_name,
             )
         select_expression._score_specification = self.score_specification
         return select_expression
@@ -113,10 +119,11 @@ class SelectMethodMixin(AbjadObject):
         Return measure select expression.
         '''
         from experimental.tools import musicexpressiontools
-        select_expression = musicexpressiontools.MeasureSelectExpression(
+        select_expression = \
+            musicexpressiontools.MeasureSelectExpression(
             anchor=self._expression_abbreviation,
             voice_name=voice_name,
-            time_relation=time_relation
+            time_relation=time_relation,
             )
         select_expression._score_specification = self.score_specification
         return select_expression
@@ -141,11 +148,12 @@ class SelectMethodMixin(AbjadObject):
         Return counttime component select expression.
         '''
         from experimental.tools import musicexpressiontools
-        select_expression = musicexpressiontools.CounttimeComponentSelectExpression(
+        select_expression = \
+            musicexpressiontools.CounttimeComponentSelectExpression(
             anchor=self._expression_abbreviation,
             time_relation=time_relation,
             classes=(notetools.Note, chordtools.Chord),
-            voice_name=voice_name
+            voice_name=voice_name,
             )
         select_expression._score_specification = self.score_specification
         return select_expression
@@ -187,10 +195,11 @@ class SelectMethodMixin(AbjadObject):
         Return time signature select expression.
         '''
         from experimental.tools import musicexpressiontools
-        select_expression = musicexpressiontools.TimeSignatureSelectExpression(
+        select_expression = \
+            musicexpressiontools.TimeSignatureSelectExpression(
             anchor=self._expression_abbreviation,
             time_relation=time_relation,
-            voice_name=voice_name
+            voice_name=voice_name,
             )
         select_expression._score_specification = self.score_specification
         return select_expression

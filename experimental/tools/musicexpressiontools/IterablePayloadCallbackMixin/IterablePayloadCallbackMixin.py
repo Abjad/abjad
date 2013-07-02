@@ -18,7 +18,8 @@ class IterablePayloadCallbackMixin(CallbackMixin):
         Return copy of expression with callback.
         '''
         assert isinstance(timespan, timespantools.Timespan), repr(timespan)
-        callback = 'result = self._and__(payload_expression, {!r})'.format(timespan)
+        callback = 'result = self._and__(payload_expression, {!r})'
+        callback = callback.format(timespan)
         return self._copy_and_append_callback(callback)
 
     def __getitem__(self, payload_expression):
@@ -36,14 +37,15 @@ class IterablePayloadCallbackMixin(CallbackMixin):
         from experimental.tools import musicexpressiontools
         assert hasattr(payload_expression, '__and__')
         result = payload_expression & timespan
-        assert isinstance(result, timespantools.TimespanInventory), repr(result)
+        assert isinstance(result, timespantools.TimespanInventory)
         assert len(result) == 1, repr(result)
         result = result[0]
         return result
 
     def _apply_callbacks(self, payload_expression):
         from experimental.tools import musicexpressiontools
-        assert isinstance(payload_expression, musicexpressiontools.PayloadExpression), repr(payload_expression)
+        assert isinstance(
+            payload_expression, musicexpressiontools.PayloadExpression)
         callback_cache = self.score_specification.interpreter.callback_cache
         evaluation_context = {
             'Duration': durationtools.Duration,
@@ -75,7 +77,8 @@ class IterablePayloadCallbackMixin(CallbackMixin):
         result = [element for element in payload_expression]
         return result
 
-    def _partition_by_ratio(self, payload_expression, ratio, part, callback_cache):
+    def _partition_by_ratio(
+        self, payload_expression, ratio, part, callback_cache):
         assert hasattr(payload_expression, 'partition_by_ratio')
         key = (repr(payload_expression), repr(ratio))
         if key not in callback_cache:
@@ -85,15 +88,17 @@ class IterablePayloadCallbackMixin(CallbackMixin):
         selected_part = parts[part]
         return selected_part
 
-    def _partition_by_ratio_of_durations(self, payload_expression, ratio, part):
+    def _partition_by_ratio_of_durations(
+        self, payload_expression, ratio, part):
         assert hasattr(payload_expression, 'partition_by_ratio_of_durations')
         parts = payload_expression.partition_by_ratio_of_durations(ratio)
         selected_part = parts[part]
         return selected_part
 
     def _reflect(self, payload_expression):
-        assert hasattr(payload_expression, 'reflect'), repr(payload_expression)
-        payload_expression = payload_expression.reflect() or payload_expression
+        assert hasattr(payload_expression, 'reflect')
+        payload_expression = \
+            payload_expression.reflect() or payload_expression
         return payload_expression
 
     def _repeat_to_duration(self, payload_expression, duration):
@@ -107,7 +112,8 @@ class IterablePayloadCallbackMixin(CallbackMixin):
         return result
 
     def _rotate(self, payload_expression, n):
-        payload_expression = payload_expression.rotate(n) or payload_expression
+        payload_expression = \
+            payload_expression.rotate(n) or payload_expression
         return payload_expression
 
     ### PUBLIC METHODS ###
@@ -162,7 +168,8 @@ class IterablePayloadCallbackMixin(CallbackMixin):
         Return copy of expression with callback.
         '''
         duration = durationtools.Duration(duration)
-        callback = 'result = self._repeat_to_duration(payload_expression, {!r})'.format(duration)
+        callback = 'result = self._repeat_to_duration(payload_expression, {!r})'
+        callback = callback.format(duration)
         return self._copy_and_append_callback(callback)
 
     def repeat_to_length(self, length):
@@ -171,7 +178,8 @@ class IterablePayloadCallbackMixin(CallbackMixin):
         Return copy of expression with callback.
         '''
         assert mathtools.is_nonnegative_integer(length)
-        callback = 'result = self._repeat_to_length(payload_expression, {!r})'.format(length)
+        callback = 'result = self._repeat_to_length(payload_expression, {!r})'
+        callback = callback.format(length)
         return self._copy_and_append_callback(callback)
 
     def rotate(self, index):
@@ -180,6 +188,8 @@ class IterablePayloadCallbackMixin(CallbackMixin):
         Return copy of expression with callback.
         '''
         from experimental.tools import musicexpressiontools
-        assert isinstance(index, (int, durationtools.Duration, musicexpressiontools.RotationIndicator))
-        callback = 'result = self._rotate(payload_expression, {!r})'.format(index)
+        assert isinstance(index, (int, 
+            durationtools.Duration, musicexpressiontools.RotationIndicator))
+        callback = 'result = self._rotate(payload_expression, {!r})'
+        callback = callback.format(index)
         return self._copy_and_append_callback(callback)

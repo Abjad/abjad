@@ -24,11 +24,13 @@ class RhythmMakerRhythmRegionExpression(RhythmRegionExpression):
         from experimental.tools import musicexpressiontools
         assert isinstance(source_expression, rhythmmakertools.RhythmMaker)
         assert isinstance(division_list, musicexpressiontools.DivisionList)
-        RhythmRegionExpression.__init__(self, 
+        RhythmRegionExpression.__init__(
+            self, 
             source_expression=source_expression, 
             start_offset=start_offset,
             total_duration=division_list.duration, 
-            voice_name=voice_name)
+            voice_name=voice_name,
+            )
         self._division_list = division_list
 
     ### PRIVATE METHODS ###

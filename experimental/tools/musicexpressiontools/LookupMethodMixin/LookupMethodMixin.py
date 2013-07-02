@@ -8,8 +8,12 @@ class LookupMethodMixin(AbjadObject):
 
     ::
 
-        >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
-        >>> score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template=score_template)
+        >>> score_template = \
+        ...     scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
+        ...     staff_count=4)
+        >>> score_specification = \
+        ...     musicexpressiontools.ScoreSpecificationInterface(
+        ...     score_template=score_template)
         >>> red_segment = score_specification.append_segment(name='red')
 
     Add to classes that should implement the lookup interface.
@@ -23,7 +27,9 @@ class LookupMethodMixin(AbjadObject):
 
         ::
 
-            >>> lookup = red_segment.timespan.start_offset.look_up_division_set_expression('Voice 1')
+            >>> lookup = \
+            ...     red_segment.timespan.start_offset.look_up_division_set_expression(
+            ...     'Voice 1')
 
         ::
 
@@ -40,7 +46,9 @@ class LookupMethodMixin(AbjadObject):
         Return lookup expression.
         '''
         from experimental.tools import musicexpressiontools
-        lookup = musicexpressiontools.DivisionSetExpressionLookupExpression(offset=self, voice_name=voice)
+        lookup = \
+            musicexpressiontools.DivisionSetExpressionLookupExpression(
+            offset=self, voice_name=voice)
         lookup._score_specification = self.score_specification
         return lookup
 
@@ -50,7 +58,9 @@ class LookupMethodMixin(AbjadObject):
 
         ::
 
-            >>> lookup = red_segment.timespan.start_offset.look_up_rhythm_set_expression('Voice 1')
+            >>> lookup = \
+            ...     red_segment.timespan.start_offset.look_up_rhythm_set_expression(
+            ...     'Voice 1')
 
         ::
 
@@ -67,7 +77,8 @@ class LookupMethodMixin(AbjadObject):
         Return lookup expression.
         '''
         from experimental.tools import musicexpressiontools
-        lookup = musicexpressiontools.RhythmSetExpressionLookupExpression(offset=self, voice_name=voice)
+        lookup = musicexpressiontools.RhythmSetExpressionLookupExpression(
+            offset=self, voice_name=voice)
         lookup._score_specification = self.score_specification
         return lookup
 
@@ -77,7 +88,9 @@ class LookupMethodMixin(AbjadObject):
 
         ::
 
-            >>> lookup = red_segment.timespan.start_offset.look_up_time_signature_set_expression('Voice 1')
+            >>> lookup = \
+            ...     red_segment.timespan.start_offset.look_up_time_signature_set_expression(
+            ...     'Voice 1')
 
         ::
 
@@ -94,6 +107,8 @@ class LookupMethodMixin(AbjadObject):
         Return lookup expression.
         '''
         from experimental.tools import musicexpressiontools
-        lookup = musicexpressiontools.TimeSignatureSetExpressionLookupExpression(offset=self, voice_name=voice)
+        lookup = \
+            musicexpressiontools.TimeSignatureSetExpressionLookupExpression(
+            offset=self, voice_name=voice)
         lookup._score_specification = self.score_specification
         return lookup

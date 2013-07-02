@@ -46,17 +46,31 @@ class LookupExpressionRhythmRegionExpression(RhythmRegionExpression):
             return
         if isinstance(expression, musicexpressiontools.RhythmMakerExpression):
             rhythm_maker = expression.payload
-            region_expression = musicexpressiontools.RhythmMakerRhythmRegionExpression(
-                rhythm_maker, self.division_list, self.start_offset, self.voice_name)
+            region_expression = \
+                musicexpressiontools.RhythmMakerRhythmRegionExpression(
+                rhythm_maker,
+                self.division_list,
+                self.start_offset,
+                self.voice_name,
+                )
             result = region_expression.evaluate()
-        elif isinstance(expression, musicexpressiontools.StartPositionedRhythmPayloadExpression):
+        elif isinstance(
+            expression,
+            musicexpressiontools.StartPositionedRhythmPayloadExpression):
             wrapped_component = copy.deepcopy(expression.payload)
-            region_expression = musicexpressiontools.LiteralRhythmRegionExpression(
-                wrapped_component, self.start_offset, self.total_duration, self.voice_name)
+            region_expression = \
+                musicexpressiontools.LiteralRhythmRegionExpression(
+                wrapped_component,
+                self.start_offset,
+                self.total_duration,
+                self.voice_name,
+                )
             result = region_expression.evaluate()
         else:
             raise TypeError(expression)
-        assert isinstance(result, musicexpressiontools.StartPositionedRhythmPayloadExpression), repr(result)
+        assert isinstance(
+            result,
+            musicexpressiontools.StartPositionedRhythmPayloadExpression)
         return result
 
     ### PUBLIC PROPERTIES ###

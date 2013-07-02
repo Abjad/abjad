@@ -1,7 +1,7 @@
 import copy
 from abjad.tools import spannertools
-from experimental.tools.musicexpressiontools.CounttimeComponentSelectExpressionSetExpression import \
-    CounttimeComponentSelectExpressionSetExpression
+from experimental.tools.musicexpressiontools.CounttimeComponentSelectExpressionSetExpression \
+    import CounttimeComponentSelectExpressionSetExpression
 
 
 class SpannerSetExpression(CounttimeComponentSelectExpressionSetExpression):

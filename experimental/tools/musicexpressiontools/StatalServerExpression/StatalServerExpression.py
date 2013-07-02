@@ -10,7 +10,7 @@ class StatalServerExpression(Expression, IterablePayloadCallbackMixin):
     ### INITIALIZER ###
 
     def __init__(self, statal_server=None, callbacks=None):
-        assert isinstance(statal_server, musicexpressiontools.StatalServer), repr(statal_server)
+        assert isinstance(statal_server, musicexpressiontools.StatalServer)
         Expression.__init__(self)
         IterablePayloadCallbackMixin.__init__(self, callbacks=callbacks)
         self._statal_server = statal_server

@@ -1,7 +1,7 @@
 import copy
 from abjad.tools import sequencetools
-from experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpression import \
-    TimespanScopedSingleContextSetExpression
+from experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpression \
+    import TimespanScopedSingleContextSetExpression
 
 
 class TimespanScopedSingleContextDivisionSetExpression(

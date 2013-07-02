@@ -10,5 +10,5 @@ class StatalServerCursorExpression(PayloadExpression):
 
     def __init__(self, payload):
         from experimental.tools import musicexpressiontools
-        assert isinstance(payload, musicexpressiontools.StatalServerCursor), repr(payload)
+        assert isinstance(payload, musicexpressiontools.StatalServerCursor)
         PayloadExpression.__init__(self, payload)

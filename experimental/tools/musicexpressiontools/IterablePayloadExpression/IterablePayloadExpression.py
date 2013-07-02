@@ -13,7 +13,9 @@ class IterablePayloadExpression(PayloadExpression):
 
     ::
 
-        >>> payload_expression = musicexpressiontools.IterablePayloadExpression([(4, 16), (2, 16)])
+        >>> payload_expression = \
+        ...     musicexpressiontools.IterablePayloadExpression(
+        ...     [(4, 16), (2, 16)])
 
     ::
 
@@ -34,10 +36,11 @@ class IterablePayloadExpression(PayloadExpression):
 
     def __init__(self, payload=None):
         from experimental.tools import musicexpressiontools
-        assert not isinstance(payload, rhythmmakertools.RhythmMaker), repr(payload)
-        assert not isinstance(payload, musicexpressiontools.StatalServerCursor), repr(payload)
-        assert isinstance(payload, (str, tuple, list, selectiontools.Selection,
-            musicexpressiontools.DivisionList, containertools.Container)), repr(payload)
+        assert not isinstance(payload, rhythmmakertools.RhythmMaker)
+        assert not isinstance(payload, musicexpressiontools.StatalServerCursor)
+        assert isinstance(payload, 
+            (str, tuple, list, selectiontools.Selection,
+            musicexpressiontools.DivisionList, containertools.Container))
         if isinstance(payload, list):
             payload = tuple(payload)
         PayloadExpression.__init__(self, payload)
@@ -69,7 +72,8 @@ class IterablePayloadExpression(PayloadExpression):
             payload = [mathtools.NonreducedFraction(x) for x in self.payload]
         else:
             payload = self.payload
-        division_payload_expression = musicexpressiontools.StartPositionedDivisionPayloadExpression(
+        division_payload_expression = \
+            musicexpressiontools.StartPositionedDivisionPayloadExpression(
             payload=payload, start_offset=0, voice_name='dummy voice name')
         result = division_payload_expression & timespan
         assert len(result) in (0, 1)
@@ -186,7 +190,8 @@ class IterablePayloadExpression(PayloadExpression):
 
         Return list of newly constructed payload expressions.
         '''
-        parts = sequencetools.partition_sequence_by_ratio_of_lengths(self.payload, ratio)
+        parts = sequencetools.partition_sequence_by_ratio_of_lengths(
+            self.payload, ratio)
         result = []
         for part in parts:
             part = self.new(payload=part)
@@ -198,7 +203,8 @@ class IterablePayloadExpression(PayloadExpression):
 
         ::
 
-            >>> result = payload_expression.partition_by_ratio_of_durations((1, 1))
+            >>> result = \
+            ...     payload_expression.partition_by_ratio_of_durations((1, 1))
 
         ::
 
@@ -215,10 +221,13 @@ class IterablePayloadExpression(PayloadExpression):
         '''
         element_durations = [self._duration_helper(x) for x in self.payload]
         element_tokens = durationtools.durations_to_integers(element_durations)
-        token_parts = sequencetools.partition_sequence_by_ratio_of_weights(element_tokens, ratio)
+        token_parts = sequencetools.partition_sequence_by_ratio_of_weights(
+                element_tokens, ratio)
         part_lengths = [len(x) for x in token_parts]
-        duration_parts = sequencetools.partition_sequence_by_counts(element_durations, part_lengths)
-        element_parts = sequencetools.partition_sequence_by_counts(self.payload, part_lengths)
+        duration_parts = sequencetools.partition_sequence_by_counts(
+            element_durations, part_lengths)
+        element_parts = sequencetools.partition_sequence_by_counts(
+            self.payload, part_lengths)
         result = []
         for part in element_parts:
             part = self.new(payload=part)
@@ -251,7 +260,8 @@ class IterablePayloadExpression(PayloadExpression):
 
         ::
 
-            >>> result = payload_expression.repeat_to_duration(Duration(13, 16))
+            >>> result = \
+            ...     payload_expression.repeat_to_duration(Duration(13, 16))
 
         ::
 
@@ -270,7 +280,8 @@ class IterablePayloadExpression(PayloadExpression):
             payload = [mathtools.NonreducedFraction(x) for x in self.payload]
         else:
             payload = self.payload
-        payload = sequencetools.repeat_sequence_to_weight_exactly(payload, duration)
+        payload = sequencetools.repeat_sequence_to_weight_exactly(
+            payload, duration)
         result = self.new(payload=payload)
         return result
 
@@ -290,7 +301,8 @@ class IterablePayloadExpression(PayloadExpression):
 
         Return newly constructed payload expression.
         '''
-        payload = sequencetools.repeat_sequence_to_length(self.payload, length)
+        payload = sequencetools.repeat_sequence_to_length(
+            self.payload, length)
         result = self.new(payload=payload)
         return result
 

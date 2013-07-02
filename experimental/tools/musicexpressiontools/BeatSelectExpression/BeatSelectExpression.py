@@ -14,8 +14,12 @@ class BeatSelectExpression(SelectExpression):
 
     ::
 
-        >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
-        >>> score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template=score_template)
+        >>> score_template = \
+        ...     scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
+        ...     staff_count=4)
+        >>> score_specification = \
+        ...     musicexpressiontools.ScoreSpecificationInterface(
+        ...     score_template=score_template)
         >>> red_segment = score_specification.append_segment(name='red')
 
     Example 1. Select voice ``1`` beats that start during score:
@@ -54,7 +58,8 @@ class BeatSelectExpression(SelectExpression):
         naive_beats = []
         for time_signature in time_signatures:
             numerator, denominator = time_signature.pair
-            naive_beats.extend(numerator * [mathtools.NonreducedFraction(1, denominator)])
+            naive_beats.extend(
+                numerator * [mathtools.NonreducedFraction(1, denominator)])
         return naive_beats
 
     ### PUBLIC METHODS ###
@@ -64,7 +69,8 @@ class BeatSelectExpression(SelectExpression):
 
         Return none when nonevaluable.
 
-        Return start-positioned division payload expression when evaluable.
+        Return start-positioned division payload expression 
+        when evaluable.
         '''
         from experimental.tools import musicexpressiontools
         anchor_timespan = self._evaluate_anchor_timespan()
@@ -72,10 +78,12 @@ class BeatSelectExpression(SelectExpression):
         time_signatures = self.root_specification.time_signatures[:]
         beats = self._time_signatures_to_naive_beats(time_signatures)
         start_offset = self.root_specification.timespan.start_offset
-        expression = musicexpressiontools.StartPositionedDivisionPayloadExpression(
+        expression = \
+            musicexpressiontools.StartPositionedDivisionPayloadExpression(
             payload=beats, start_offset=start_offset)
         callback_cache = self.score_specification.interpreter.callback_cache
-        expression = expression.get_elements_that_satisfy_time_relation(time_relation, callback_cache)
+        expression = expression.get_elements_that_satisfy_time_relation(
+            time_relation, callback_cache)
         expression = self._apply_callbacks(expression)
         expression._voice_name = self.voice_name
         return expression

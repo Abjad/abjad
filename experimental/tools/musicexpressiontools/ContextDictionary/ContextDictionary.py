@@ -30,8 +30,8 @@ class ContextDictionary(AbjadObject, collections.OrderedDict):
 
     def __setitem__(self, key, value):
         from experimental.tools import musicexpressiontools
-        assert isinstance(key, str), repr(key)
-        assert isinstance(value, musicexpressiontools.ContextProxy), repr(value)
+        assert isinstance(key, str)
+        assert isinstance(value, musicexpressiontools.ContextProxy)
         collections.OrderedDict.__setitem__(self, key, value)
 
     ### PRIVATE METHODS ###
@@ -40,7 +40,8 @@ class ContextDictionary(AbjadObject, collections.OrderedDict):
         from experimental.tools import musicexpressiontools
         context_names = []
         if self.score is not None:
-            for context in iterationtools.iterate_contexts_in_expr(self.score):
+            for context in \
+                iterationtools.iterate_contexts_in_expr(self.score):
                 assert context.context_name is not None, context.name_name
                 context_names.append(context.name)
         for context_name in sorted(context_names):

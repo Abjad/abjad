@@ -40,7 +40,8 @@ class SpecificationInterface(SelectMethodMixin, TimeContiguousSetMethodMixin):
 
     @property
     def score_specification(self):
-        '''Read-only reference to score against which segment specification is defined.
+        '''Read-only reference to score against which segment 
+        specification is defined.
 
         Return score specification.
         '''

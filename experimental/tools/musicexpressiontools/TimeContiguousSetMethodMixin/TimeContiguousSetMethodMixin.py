@@ -11,8 +11,12 @@ class TimeContiguousSetMethodMixin(SetMethodMixin):
 
     ::
 
-        >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
-        >>> score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template=score_template)
+        >>> score_template = \
+        ...     scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
+        ...     staff_count=4)
+        >>> score_specification = \
+        ...     musicexpressiontools.ScoreSpecificationInterface(
+        ...     score_template=score_template)
         >>> red_segment = score_specification.append_segment(name='red')
 
     Add to classes that implement the set method interface.
@@ -20,8 +24,14 @@ class TimeContiguousSetMethodMixin(SetMethodMixin):
 
     ### PRIVATE METHODS ###
 
-    def _store_multiple_context_set_expression(self, attribute, source_expression,
-        contexts=None, persist=True, truncate=None):
+    def _store_multiple_context_set_expression(
+        self,
+        attribute,
+        source_expression,
+        contexts=None,
+        persist=True,
+        truncate=None,
+        ):
         from experimental.tools import musicexpressiontools
         source_expression = self._expr_to_expression(source_expression)
         assert self.score_specification is not None
@@ -32,25 +42,36 @@ class TimeContiguousSetMethodMixin(SetMethodMixin):
             target_timespan=self._expression_abbreviation,
             target_context_names=target_context_names,
             persist=persist,
-            truncate=truncate
+            truncate=truncate,
             )
-        multiple_context_set_expression._score_specification = self.score_specification
-        multiple_context_set_expression._lexical_rank = self.score_specification._next_lexical_rank
+        multiple_context_set_expression._score_specification = \
+            self.score_specification
+        multiple_context_set_expression._lexical_rank = \
+            self.score_specification._next_lexical_rank
         self.score_specification._next_lexical_rank += 1
-        self.score_specification.multiple_context_set_expressions.append(multiple_context_set_expression)
+        self.score_specification.multiple_context_set_expressions.append(
+            multiple_context_set_expression)
         return multiple_context_set_expression
 
     ### PUBLIC METHODS ###
 
-    def set_divisions(self, source_expression, contexts=None, persist=True, truncate=None):
-        r'''Set divisions to `source_expression` for target timespan over all `contexts`:
+    def set_divisions(
+        self,
+        source_expression,
+        contexts=None,
+        persist=True,
+        truncate=None,
+        ):
+        r'''Set divisions to `source_expression` for target timespan over 
+        all `contexts`:
 
-        Example. Set divisions to ``3/16`` for red segment timespan over contexts
-        ``'Voice 1'`` and ``'Voice 3'``:
+        Example. Set divisions to ``3/16`` for red segment timespan over 
+        contexts ``'Voice 1'`` and ``'Voice 3'``:
 
         ::
 
-            >>> set_expression = red_segment.set_divisions([(3, 16)], contexts=['Voice 1', 'Voice 3'])
+            >>> set_expression = red_segment.set_divisions(
+            ...     [(3, 16)], contexts=['Voice 1', 'Voice 3'])
 
         ::
 
@@ -68,11 +89,22 @@ class TimeContiguousSetMethodMixin(SetMethodMixin):
         Return multiple-context set expression.
         '''
         attribute = 'divisions'
-        return self._store_multiple_context_set_expression(attribute, source_expression,
-            contexts=contexts, truncate=truncate, persist=persist)
+        return self._store_multiple_context_set_expression(
+            attribute,
+            source_expression,
+            contexts=contexts,
+            truncate=truncate,
+            persist=persist,
+            )
 
-    def set_rhythm(self, source_expression, contexts=None, persist=True):
-        r'''Set rhythm to `source_expression` for target timespan over all `contexts`.
+    def set_rhythm(
+        self,
+        source_expression,
+        contexts=None,
+        persist=True,
+        ):
+        r'''Set rhythm to `source_expression` for target timespan 
+        over all `contexts`.
 
         Example. Set rhythm to sixteenths for red segment target timespan
         over all contexts:
@@ -105,17 +137,28 @@ class TimeContiguousSetMethodMixin(SetMethodMixin):
         '''
         attribute = 'rhythm'
         return self._store_multiple_context_set_expression(
-            attribute, source_expression, contexts=contexts, persist=persist)
+            attribute,
+            source_expression,
+            contexts=contexts,
+            persist=persist,
+            )
 
-    def set_time_signatures(self, source_expression, contexts=None, persist=True):
-        r'''Set time signatures to `source_expression` for target timespan over all `contexts`.
+    def set_time_signatures(
+        self,
+        source_expression,
+        contexts=None,
+        persist=True,
+        ):
+        r'''Set time signatures to `source_expression` for target timespan 
+        over all `contexts`.
 
-        Example. Set time signatures to ``3/8``, ``4/8`` for red segment timespan
-        over all contexts:
+        Example. Set time signatures to ``3/8``, ``4/8`` for red 
+        segment timespan over all contexts:
 
         ::
 
-            >>> set_expression = red_segment.set_time_signatures([(3, 8), (4, 8)])
+            >>> set_expression = red_segment.set_time_signatures(
+            ...     [(3, 8), (4, 8)])
 
         ::
 
@@ -133,4 +176,8 @@ class TimeContiguousSetMethodMixin(SetMethodMixin):
         '''
         attribute = 'time_signatures'
         return self._store_multiple_context_set_expression(
-            attribute, source_expression, contexts=contexts, persist=persist)
+            attribute,
+            source_expression,
+            contexts=contexts,
+            persist=persist,
+            )

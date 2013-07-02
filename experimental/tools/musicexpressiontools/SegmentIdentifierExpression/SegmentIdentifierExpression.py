@@ -6,7 +6,8 @@ class SegmentIdentifierExpression(AbjadObject):
 
     ::
 
-        >>> segment_identifier_expression = musicexpressiontools.SegmentIdentifierExpression("'red' + 3")
+        >>> segment_identifier_expression = \
+        ...     musicexpressiontools.SegmentIdentifierExpression("'red' + 3")
 
     ::
 
@@ -34,7 +35,8 @@ class SegmentIdentifierExpression(AbjadObject):
         '''
         if not isinstance(expr, type(self)):
             return False
-        if not self._positional_argument_values == expr._positional_argument_values:
+        if not self._positional_argument_values == \
+            expr._positional_argument_values:
             return False
         return self._keyword_argument_values == expr._keyword_argument_values
 
@@ -42,7 +44,9 @@ class SegmentIdentifierExpression(AbjadObject):
 
     # do not indent storage format
     def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
-        return [''.join(AbjadObject._get_tools_package_qualified_repr_pieces(self, is_indented=False))]
+        return [''.join(
+            AbjadObject._get_tools_package_qualified_repr_pieces(
+            self, is_indented=False))]
 
     ### PUBLIC PROPERTIES ###
 

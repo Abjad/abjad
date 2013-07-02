@@ -11,9 +11,12 @@ class DivisionSetExpressionLookupExpression(SetExpressionLookupExpression):
 
     ::
 
-        >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
+        >>> score_template = \
+        ...     scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
         ...     staff_count=1)
-        >>> score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
+        >>> score_specification = \
+        ...     musicexpressiontools.ScoreSpecificationInterface(
+        ...     score_template)
         >>> red_segment = score_specification.append_segment(name='red')
 
     Example. Look up division set expression active at start of measure 4 in ``'Voice 1'``:
@@ -21,7 +24,9 @@ class DivisionSetExpressionLookupExpression(SetExpressionLookupExpression):
     ::
 
         >>> measure = red_segment.select_measures('Voice 1')[4:5]
-        >>> set_expression = measure.start_offset.look_up_division_set_expression('Voice 1')
+        >>> set_expression = \
+        ...     measure.start_offset.look_up_division_set_expression(
+        ...     'Voice 1')
 
     ::
 
@@ -58,14 +63,21 @@ class DivisionSetExpressionLookupExpression(SetExpressionLookupExpression):
         from experimental.tools import musicexpressiontools
         expression = self.offset.evaluate()
         offset = expression.payload[0]
-        timespan_inventory = self._get_timespan_scoped_single_context_set_expressions(self.attribute)
-        time_relation = timerelationtools.offset_happens_during_timespan(offset=offset)
-        candidate_set_expressions = timespan_inventory.get_timespans_that_satisfy_time_relation(time_relation)
+        timespan_inventory = \
+            self._get_timespan_scoped_single_context_set_expressions(
+                self.attribute)
+        time_relation = timerelationtools.offset_happens_during_timespan(
+            offset=offset)
+        candidate_set_expressions = \
+            timespan_inventory.get_timespans_that_satisfy_time_relation(
+                time_relation)
         root_specification = self.root_specification
-        source_expression_set_expression = root_specification._get_first_expression_that_governs_context_name(
-            candidate_set_expressions, self.voice_name)
+        source_expression_set_expression = \
+            root_specification._get_first_expression_that_governs_context_name(
+                candidate_set_expressions, self.voice_name)
         assert source_expression_set_expression is not None
         expression = source_expression_set_expression.source_expression
-        assert isinstance(expression, musicexpressiontools.IterablePayloadExpression), repr(expression)
+        assert isinstance(
+            expression, musicexpressiontools.IterablePayloadExpression)
         expression = self._apply_callbacks(expression)
         return expression

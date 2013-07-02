@@ -17,7 +17,8 @@ class SetMethodMixin(AbjadObject):
     def _target_select_expression_inventory(self):
         from experimental.tools import musicexpressiontools
         if isinstance(self, musicexpressiontools.SelectExpression):
-            target_select_expression_inventory = musicexpressiontools.SelectExpressionInventory([self])
+            target_select_expression_inventory = \
+                musicexpressiontools.SelectExpressionInventory([self])
         elif isinstance(self, musicexpressiontools.SelectExpressionInventory):
             target_select_expression_inventory = self
         else:
@@ -29,7 +30,9 @@ class SetMethodMixin(AbjadObject):
     def _all_are_expressions(self, expr):
         from experimental.tools import musicexpressiontools
         if isinstance(expr, (tuple, list)):
-            if all(isinstance(x, musicexpressiontools.Expression) for x in expr):
+            if all(
+                isinstance(x, musicexpressiontools.Expression) 
+                for x in expr):
                 return True
         return False
 
@@ -61,23 +64,28 @@ class SetMethodMixin(AbjadObject):
             return musicexpressiontools.IterablePayloadExpression(expr)
         elif isinstance(expr, (str)):
             component = iotools.p(expr)
-            return musicexpressiontools.StartPositionedRhythmPayloadExpression([component], start_offset=0)
+            return musicexpressiontools.StartPositionedRhythmPayloadExpression(
+                [component], start_offset=0)
         elif isinstance(expr, rhythmmakertools.RhythmMaker):
             return musicexpressiontools.RhythmMakerExpression(expr)
         else:
-            raise TypeError('do not know how to change {!r} to expression.'.format(expr))
+            message = 'do not know how to change {!r} to expression.'
+            raise TypeError(message.format(expr))
 
     def _finalize_leaf_set_expression(self, leaf_set_expression):
         assert self.score_specification is not None
         leaf_set_expression._score_specification = self.score_specification
-        leaf_set_expression._lexical_rank = self.score_specification._next_lexical_rank
+        leaf_set_expression._lexical_rank = \
+            self.score_specification._next_lexical_rank
         self.score_specification._next_lexical_rank += 1
-        self.score_specification.postrhythm_set_expressions.append(leaf_set_expression)
+        self.score_specification.postrhythm_set_expressions.append(
+            leaf_set_expression)
         return leaf_set_expression
 
     def _store_leaf_set_expression(self, attribute, source_expression):
         from experimental.tools import musicexpressiontools
-        set_expression_class = self._attribute_to_set_expression_class(attribute)
+        set_expression_class = \
+            self._attribute_to_set_expression_class(attribute)
         source_expression = self._expr_to_expression(source_expression)
         leaf_set_expression = set_expression_class(
             source_expression=source_expression,
@@ -94,7 +102,8 @@ class SetMethodMixin(AbjadObject):
         '''
         from experimental.tools import musicexpressiontools
         assert isinstance(source_expression, list), repr(source_expression)
-        source_expression = musicexpressiontools.PayloadExpression(payload=source_expression)
+        source_expression = \
+            musicexpressiontools.PayloadExpression(payload=source_expression)
         attribute = 'aggregate'
         return self._store_leaf_set_expression(attribute, source_expression)
 
@@ -110,8 +119,10 @@ class SetMethodMixin(AbjadObject):
             articulation = marktools.Articulation(source_expression)
             articulation_list = [articulation]
         elif isinstance(source_expression, list):
-            articulation_list = [marktools.Articulation(x) for x in source_expression]
-        source_expression = musicexpressiontools.PayloadExpression(payload=articulation_list)
+            articulation_list = [
+                marktools.Articulation(x) for x in source_expression]
+        source_expression = \
+            musicexpressiontools.PayloadExpression(payload=articulation_list)
         attribute = 'articulation'
         return self._store_leaf_set_expression(attribute, source_expression)
 
@@ -122,7 +133,8 @@ class SetMethodMixin(AbjadObject):
         '''
         from experimental.tools import musicexpressiontools
         dynamic_mark = contexttools.DynamicMark(source_expression)
-        source_expression = musicexpressiontools.PayloadExpression(payload=dynamic_mark)
+        source_expression = \
+            musicexpressiontools.PayloadExpression(payload=dynamic_mark)
         attribute = 'dynamic'
         return self._store_leaf_set_expression(attribute, source_expression)
 
@@ -133,7 +145,8 @@ class SetMethodMixin(AbjadObject):
         '''
         from experimental.tools import musicexpressiontools
         assert isinstance(source_expression, str), repr(source_expression)
-        source_expression = musicexpressiontools.PayloadExpression(payload=source_expression)
+        source_expression = \
+            musicexpressiontools.PayloadExpression(payload=source_expression)
         attribute = 'leaf_color'
         return self._store_leaf_set_expression(attribute, source_expression)
 
@@ -143,8 +156,9 @@ class SetMethodMixin(AbjadObject):
         Return mark set expression.
         '''
         from experimental.tools import musicexpressiontools
-        assert isinstance(source_expression, marktools.Mark), repr(source_expression)
-        source_expression = musicexpressiontools.PayloadExpression(payload=source_expression)
+        assert isinstance(source_expression, marktools.Mark)
+        source_expression = \
+            musicexpressiontools.PayloadExpression(payload=source_expression)
         attribute = 'mark'
         return self._store_leaf_set_expression(attribute, source_expression)
 
@@ -154,24 +168,31 @@ class SetMethodMixin(AbjadObject):
         Return markup set expression.
         '''
         from experimental.tools import musicexpressiontools
-        source_expression = musicexpressiontools.PayloadExpression(payload=source_expression)
+        source_expression = \
+            musicexpressiontools.PayloadExpression(payload=source_expression)
         attribute = 'markup'
         return self._store_leaf_set_expression(attribute, source_expression)
 
-    def set_pitch(self, source_expression, node_count=None, level=None, trope=None):
+    def set_pitch(self, source_expression, 
+        node_count=None, level=None, trope=None):
         r'''Set pitches to `source_expression`.
 
         Return pitch set expression.
         '''
         from experimental.tools import musicexpressiontools
-        assert isinstance(source_expression, musicexpressiontools.StatalServerCursor), repr(source_expression)
-        source_expression = musicexpressiontools.StatalServerCursorExpression(source_expression)
+        assert isinstance(
+            source_expression,
+            musicexpressiontools.StatalServerCursor)
+        source_expression = \
+            musicexpressiontools.StatalServerCursorExpression(
+                source_expression)
         pitch_set_expression = musicexpressiontools.PitchSetExpression(
             source_expression=source_expression,
             target_select_expression_inventory=self._target_select_expression_inventory,
             node_count=node_count,
             level=level,
-            trope=trope)
+            trope=trope,
+            )
         return self._finalize_leaf_set_expression(pitch_set_expression)
 
     def set_pitch_class_transform(self, source_expression):
@@ -180,8 +201,12 @@ class SetMethodMixin(AbjadObject):
         Return pitch-class transform set expression.
         '''
         from experimental.tools import musicexpressiontools
-        pitch_class_transform_expression = musicexpressiontools.PitchClassTransformExpression(source_expression)
-        source_expression = musicexpressiontools.PayloadExpression(payload=pitch_class_transform_expression)
+        pitch_class_transform_expression = \
+            musicexpressiontools.PitchClassTransformExpression(
+                source_expression)
+        source_expression = \
+            musicexpressiontools.PayloadExpression(
+                payload=pitch_class_transform_expression)
         attribute = 'pitch_class_transform'
         return self._store_leaf_set_expression(attribute, source_expression)
 
@@ -191,8 +216,11 @@ class SetMethodMixin(AbjadObject):
         Return register set expression.
         '''
         from experimental.tools import musicexpressiontools
-        assert isinstance(source_expression, pitchtools.OctaveTranspositionMapping), repr(source_expression)
-        source_expression = musicexpressiontools.PayloadExpression(payload=source_expression)
+        assert isinstance(
+            source_expression,
+            pitchtools.OctaveTranspositionMapping)
+        source_expression = \
+            musicexpressiontools.PayloadExpression(payload=source_expression)
         attribute = 'reigster'
         return self._store_leaf_set_expression(attribute, source_expression)
 
@@ -203,6 +231,7 @@ class SetMethodMixin(AbjadObject):
         '''
         from experimental.tools import musicexpressiontools
         source_expression = contexttools.TempoMark(source_expression)
-        source_expression = musicexpressiontools.PayloadExpression(payload=source_expression)
+        source_expression = \
+            musicexpressiontools.PayloadExpression(payload=source_expression)
         attribute = 'tempo'
         return self._store_leaf_set_expression(attribute, source_expression)

@@ -11,13 +11,18 @@ class MultipleContextSetExpression(TimeContiguousAnchoredSetExpression):
 
     ::
 
-        >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
-        >>> score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
+        >>> score_template = \
+        ...     scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
+        ...     staff_count=4)
+        >>> score_specification = \
+        ...     musicexpressiontools.ScoreSpecificationInterface(
+        ...     score_template)
         >>> red_segment = score_specification.append_segment(name='red')
 
     ::
 
-        >>> multiple_context_set_expression = red_segment.set_time_signatures([(4, 8), (3, 8)])
+        >>> multiple_context_set_expression = \
+        ...     red_segment.set_time_signatures([(4, 8), (3, 8)])
 
     ::
 
@@ -36,13 +41,24 @@ class MultipleContextSetExpression(TimeContiguousAnchoredSetExpression):
 
     ### INITIAILIZER ###
 
-    def __init__(self,
-            attribute=None, source_expression=None, target_timespan=None, target_context_names=None,
-            persist=True, truncate=None):
-        TimeContiguousAnchoredSetExpression.__init__(self, attribute=attribute,
+    def __init__(
+            self,
+            attribute=None,
+            source_expression=None,
+            target_timespan=None,
+            target_context_names=None,
+            persist=True,
+            truncate=None,
+            ):
+        TimeContiguousAnchoredSetExpression.__init__(
+            self,
+            attribute=attribute,
             source_expression=source_expression,
-            target_timespan=target_timespan, persist=persist, truncate=truncate)
-        assert isinstance(target_context_names, (list, type(None))), repr(target_context_names)
+            target_timespan=target_timespan,
+            persist=persist,
+            truncate=truncate,
+            )
+        assert isinstance(target_context_names, (list, type(None)))
         self._target_context_names = target_context_names
 
     ### PRIVATE METHODS ###
@@ -74,28 +90,35 @@ class MultipleContextSetExpression(TimeContiguousAnchoredSetExpression):
         '''
         single_context_set_expressions = []
         single_context_set_expression_class = \
-            self._attribute_to_single_context_set_expression_class(self.attribute)
+            self._attribute_to_single_context_set_expression_class(
+                self.attribute)
         if self.target_context_names is None:
             target_context_names = [None]
         else:
             target_context_names = self.target_context_names
         for target_context_name in target_context_names:
             target_timespan = copy.deepcopy(self.target_timespan)
-            single_context_set_expression = single_context_set_expression_class(
+            single_context_set_expression = \
+                single_context_set_expression_class(
                 source_expression=self.source_expression,
                 target_timespan=target_timespan,
                 target_context_name=target_context_name,
                 persist=self.persist)
-            single_context_set_expression._score_specification = self.score_specification
-            single_context_set_expression._lexical_rank = self._lexical_rank
-            single_context_set_expressions.append(single_context_set_expression)
+            single_context_set_expression._score_specification = \
+                self.score_specification
+            single_context_set_expression._lexical_rank = \
+                self._lexical_rank
+            single_context_set_expressions.append(
+                single_context_set_expression)
         if self.attribute == 'divisions':
-            for single_context_set_expression in single_context_set_expressions:
+            for single_context_set_expression in \
+                single_context_set_expressions:
                 single_context_set_expression._truncate = self.truncate
         return single_context_set_expressions
 
     def evaluate_and_store_in_root_specification(self):
-        '''Evaluate multiple-context set expression and store in root specification.
+        '''Evaluate multiple-context set expression 
+        and store in root specification.
 
         Return none.
         '''

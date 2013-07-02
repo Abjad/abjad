@@ -14,8 +14,10 @@ class ContextProxy(AbjadObject):
             musicexpressiontools.AttributeDictionary()
         self._timespan_scoped_single_context_set_expressions_by_attribute = \
             musicexpressiontools.AttributeDictionary()
-        for attribute in self._timespan_scoped_single_context_set_expressions_by_attribute:
-            self._timespan_scoped_single_context_set_expressions_by_attribute[attribute] = \
+        for attribute in \
+            self._timespan_scoped_single_context_set_expressions_by_attribute:
+            self._timespan_scoped_single_context_set_expressions_by_attribute[
+                attribute] = \
                 musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory()
 
     ### PUBLIC PROPERTIES ###

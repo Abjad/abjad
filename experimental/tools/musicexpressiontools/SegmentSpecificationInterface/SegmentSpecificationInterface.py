@@ -7,8 +7,12 @@ class SegmentSpecificationInterface(SpecificationInterface):
 
     ::
 
-        >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
-        >>> score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template=score_template)
+        >>> score_template = \
+        ...     scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
+        ...     staff_count=4)
+        >>> score_specification = \
+        ...     musicexpressiontools.ScoreSpecificationInterface(
+        ...     score_template=score_template)
 
     ::
 
@@ -131,6 +135,7 @@ class SegmentSpecificationInterface(SpecificationInterface):
         Return timespan expression.
         '''
         from experimental.tools import musicexpressiontools
-        timespan = musicexpressiontools.TimespanExpression(anchor=self.specification_name)
+        timespan = musicexpressiontools.TimespanExpression(
+            anchor=self.specification_name)
         timespan._score_specification = self.score_specification
         return timespan

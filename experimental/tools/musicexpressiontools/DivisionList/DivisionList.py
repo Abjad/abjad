@@ -10,14 +10,20 @@ class DivisionList(BoundedObject):
 
     ::
 
-        >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-        >>> score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template)
+        >>> score_template = \
+        ...     scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
+        ...     staff_count=1)
+        >>> score_specification = \
+        ...     musicexpressiontools.ScoreSpecificationInterface(
+        ...     score_template)
         >>> red_segment = score_specification.append_segment(name='red')
 
     ::
 
-        >>> set_expression = red_segment.set_time_signatures([(4, 8), (3, 8)])
-        >>> set_expression = red_segment.set_divisions([(3, 16)], contexts=['Voice 1'])
+        >>> set_expression = red_segment.set_time_signatures(
+        ...     [(4, 8), (3, 8)])
+        >>> set_expression = red_segment.set_divisions(
+        ...     [(3, 16)], contexts=['Voice 1'])
         >>> set_expression = red_segment.set_rhythm(library.thirty_seconds)
 
     ::
@@ -34,13 +40,17 @@ class DivisionList(BoundedObject):
 
     ::
 
-        >>> voice_proxy = score_specification.specification.voice_data_structures_by_voice['Voice 1']
+        >>> voice_proxy = \
+        ...     score_specification.specification.voice_data_structures_by_voice[
+        ...     'Voice 1']
         >>> len(voice_proxy.payload_expressions_by_attribute['divisions'])
         1
 
     ::
 
-        >>> division_list = voice_proxy.payload_expressions_by_attribute['divisions'][0].payload
+        >>> division_list = \
+        ...     voice_proxy.payload_expressions_by_attribute[
+        ...     'divisions'][0].payload
 
     ::
 
@@ -78,11 +88,12 @@ class DivisionList(BoundedObject):
         total_duration = start_offset or durationtools.Duration(0)
         for division in divisions:
             division_start_offset = durationtools.Offset(total_duration)
-            positioned_division = musicexpressiontools.Division(division, start_offset=division_start_offset)
+            positioned_division = musicexpressiontools.Division(
+                division, start_offset=division_start_offset)
             positioned_divisions.append(positioned_division)
             total_duration += positioned_division.duration
         divisions = positioned_divisions
-        assert all(x.start_offset is not None for x in divisions), repr(divisions)
+        assert all(x.start_offset is not None for x in divisions)
         self._divisions = divisions
         self._voice_name = voice_name
         assert self.is_well_formed
@@ -334,9 +345,11 @@ class DivisionList(BoundedObject):
                 raise KeyError(key)
         positional_argument_values = []
         for positional_argument_name in self._positional_argument_names:
-            positional_argument_value = positional_argument_dictionary[positional_argument_name]
+            positional_argument_value = \
+                positional_argument_dictionary[positional_argument_name]
             positional_argument_values.append(positional_argument_value)
-        result = type(self)(*positional_argument_values, **keyword_argument_dictionary)
+        result = type(
+            self)(*positional_argument_values, **keyword_argument_dictionary)
         return result
 
     def reflect(self):
@@ -345,7 +358,8 @@ class DivisionList(BoundedObject):
         ::
 
             >>> divisions = [(3, 16), (4, 16), (3, 16), (4, 16)]
-            >>> division_list = musicexpressiontools.DivisionList(divisions, Offset(5), 'Voice 1')
+            >>> division_list = musicexpressiontools.DivisionList(
+            ...     divisions, Offset(5), 'Voice 1')
 
         ::
 
@@ -373,7 +387,8 @@ class DivisionList(BoundedObject):
         ::
 
             >>> divisions = [(3, 16), (4, 16), (3, 16), (4, 16)]
-            >>> division_list = musicexpressiontools.DivisionList(divisions, Offset(5), 'Voice 1')
+            >>> division_list = musicexpressiontools.DivisionList(
+            ...     divisions, Offset(5), 'Voice 1')
 
         ::
 

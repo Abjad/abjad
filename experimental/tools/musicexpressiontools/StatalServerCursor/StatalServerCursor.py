@@ -7,9 +7,14 @@ class StatalServerCursor(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, statal_server=None, position=None, reverse=False):
+    def __init__(
+        self,
+        statal_server=None,
+        position=None,
+        reverse=False,
+        ):
         from experimental.tools import musicexpressiontools
-        assert isinstance(statal_server, musicexpressiontools.StatalServer), repr(statal_server)
+        assert isinstance(statal_server, musicexpressiontools.StatalServer)
         assert isinstance(position, (tuple, type(None))), repr(position)
         assert isinstance(reverse, type(True)), repr(reverse)
         position = position or ()
@@ -24,23 +29,26 @@ class StatalServerCursor(AbjadObject):
 
         Return list of arbitrary values.
         '''
-        return self._get_manifest_payload_of_next_n_nodes_at_level(n, level=level)
+        return self._get_manifest_payload_of_next_n_nodes_at_level(
+            n, level=level)
 
     def __eq__(self, expr):
-        '''True `expr` is a statal server cursor and keyword argument values are equal.
-        Otherwise false.
+        '''True `expr` is a statal server cursor and keyword 
+        argument values are equal. Otherwise false.
 
         Return boolean.
         '''
         if isinstance(expr, type(self)):
-            return self._keyword_argument_values == expr._keyword_argument_values
+            return self._keyword_argument_values == \
+                expr._keyword_argument_values
         return False
 
     ### PRIVATE METHODS ###
 
     def _get_manifest_payload_of_next_n_nodes_at_level(self, n=1, level=-1):
         result = []
-        current_node = self.statal_server.cyclic_tree.get_node_at_position(self.position)
+        current_node = self.statal_server.cyclic_tree.get_node_at_position(
+            self.position)
         if self.reverse:
             n *= -1
         nodes = current_node.get_next_n_nodes_at_level(n, level)

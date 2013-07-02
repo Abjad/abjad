@@ -13,9 +13,11 @@ class VoiceProxy(AbjadObject):
         self._leaf_start_offsets = []
         self._leaf_stop_offsets = []
         self._leaves = []
-        self._payload_expressions_by_attribute = musicexpressiontools.AttributeDictionary()
+        self._payload_expressions_by_attribute = \
+            musicexpressiontools.AttributeDictionary()
         for attribute in self._payload_expressions_by_attribute:
-            self._payload_expressions_by_attribute[attribute] = timespantools.TimespanInventory()
+            self._payload_expressions_by_attribute[attribute] = \
+                timespantools.TimespanInventory()
         self._voice_division_list = None
 
     ### PUBLIC PROPERTIES ###

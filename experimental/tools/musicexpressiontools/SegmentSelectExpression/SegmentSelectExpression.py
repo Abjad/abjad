@@ -10,8 +10,12 @@ class SegmentSelectExpression(SelectExpression):
 
     ::
 
-        >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
-        >>> score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template=score_template)
+        >>> score_template = \
+        ...     scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
+        ...     staff_count=4)
+        >>> score_specification = \
+        ...     musicexpressiontools.ScoreSpecificationInterface(
+        ...     score_template=score_template)
         >>> red_segment = score_specification.append_segment(name='red')
         >>> blue_segment = score_specification.append_segment(name='blue')
         >>> green_segment = score_specification.append_segment(name='green')
@@ -33,7 +37,8 @@ class SegmentSelectExpression(SelectExpression):
 
     ::
 
-        >>> select_expression = score_specification.select_segments('Voice 1')[:2]
+        >>> select_expression = \
+        ...     score_specification.select_segments('Voice 1')[:2]
 
     ::
 
@@ -49,7 +54,8 @@ class SegmentSelectExpression(SelectExpression):
 
     ::
 
-        >>> select_expression = score_specification.select_segments('Voice 1')[:'green']
+        >>> select_expression = \
+        ...     score_specification.select_segments('Voice 1')[:'green']
 
     ::
 
@@ -65,7 +71,8 @@ class SegmentSelectExpression(SelectExpression):
 
     ::
 
-        >>> select_expression = score_specification.select_segments('Voice 1')[:('green', 1)]
+        >>> select_expression = \
+        ...     score_specification.select_segments('Voice 1')[:('green', 1)]
 
     ::
 
@@ -81,7 +88,9 @@ class SegmentSelectExpression(SelectExpression):
 
     ::
 
-        >>> select_expression = score_specification.select_segments('Voice 1')['red':('red', 1)]
+        >>> select_expression = \
+        ...     score_specification.select_segments(
+        ...     'Voice 1')['red':('red', 1)]
 
     ::
 
@@ -102,9 +111,11 @@ class SegmentSelectExpression(SelectExpression):
         assert isinstance(segment_name, str)
         assert isinstance(addendum, int)
         if 0 < addendum:
-            return musicexpressiontools.SegmentIdentifierExpression('{!r} + {!r}'.format(segment_name, addendum))
+            return musicexpressiontools.SegmentIdentifierExpression(
+                '{!r} + {!r}'.format(segment_name, addendum))
         else:
-            return musicexpressiontools.SegmentIdentifierExpression('{!r} - {!r}'.format(segment_name, addendum))
+            return musicexpressiontools.SegmentIdentifierExpression(
+                '{!r} - {!r}'.format(segment_name, addendum))
 
     ### PUBLIC METHODS ###
 
@@ -118,6 +129,7 @@ class SegmentSelectExpression(SelectExpression):
         from experimental.tools import musicexpressiontools
         segments = self.score_specification.segment_specifications[:]
         start_offset = durationtools.Offset(0)
-        expression = musicexpressiontools.StartPositionedPayloadExpression(segments, start_offset=start_offset)
+        expression = musicexpressiontools.StartPositionedPayloadExpression(
+            segments, start_offset=start_offset)
         expression = self._apply_callbacks(expression)
         return expression

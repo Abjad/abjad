@@ -31,9 +31,11 @@ class SelectExpression(
         time_relation=None, 
         callbacks=None,
         ):
-        assert isinstance(voice_name, (str, type(None))), repr(voice_name)
-        assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
-        assert time_relation is None or time_relation.is_fully_unloaded, repr(time_relation)
+        assert isinstance(voice_name, (str, type(None)))
+        assert isinstance(
+            time_relation,
+            (timerelationtools.TimeRelation, type(None)))
+        assert time_relation is None or time_relation.is_fully_unloaded
         AnchoredExpression.__init__(self, anchor=anchor)
         IterablePayloadCallbackMixin.__init__(self, callbacks=callbacks)
         SelectMethodMixin.__init__(self)
@@ -46,7 +48,9 @@ class SelectExpression(
 
     def _get_time_relation(self, anchor_timespan):
         if self.time_relation is None:
-            time_relation = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=anchor_timespan)
+            time_relation = \
+                timerelationtools.timespan_2_starts_during_timespan_1(
+                    timespan_1=anchor_timespan)
         else:
             time_relation = self.time_relation.new(timespan_1=anchor_timespan)
         return time_relation

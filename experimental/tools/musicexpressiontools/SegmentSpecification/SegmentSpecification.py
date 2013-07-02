@@ -8,8 +8,12 @@ class SegmentSpecification(Specification):
 
     ::
 
-        >>> template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
-        >>> score_specification = musicexpressiontools.ScoreSpecificationInterface(template)
+        >>> template = \
+        ...     scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
+        ...     staff_count=2)
+        >>> score_specification = \
+        ...     musicexpressiontools.ScoreSpecificationInterface(
+        ...     template)
 
     ::
 
@@ -19,16 +23,22 @@ class SegmentSpecification(Specification):
 
     ::
 
-        >>> set_expression = red_segment.set_time_signatures([(2, 8), (3, 8), (4, 8)])
-        >>> set_expression = orange_segment.set_time_signatures([(4, 16), (4, 16)])
-        >>> set_expression = yellow_segment.set_time_signatures([(5, 16), (5, 16)])
+        >>> set_expression = \
+        ...     red_segment.set_time_signatures([(2, 8), (3, 8), (4, 8)])
+        >>> set_expression = \
+        ...     orange_segment.set_time_signatures([(4, 16), (4, 16)])
+        >>> set_expression = \
+        ...     yellow_segment.set_time_signatures([(5, 16), (5, 16)])
         >>> set_expression = red_segment.set_rhythm(library.sixteenths)
 
     ::
 
-        >>> red_segment = score_specification.specification.segment_specifications['red']
-        >>> orange_segment = score_specification.specification.segment_specifications['orange']
-        >>> yellow_segment = score_specification.specification.segment_specifications['yellow']
+        >>> red_segment = \
+        ...     score_specification.specification.segment_specifications['red']
+        >>> orange_segment = \
+        ...     score_specification.specification.segment_specifications['orange']
+        >>> yellow_segment = \
+        ...     score_specification.specification.segment_specifications['yellow']
 
     ::
 
@@ -177,7 +187,8 @@ class SegmentSpecification(Specification):
 
         ::
 
-            >>> for key in red_segment.single_context_set_expressions_by_context:
+            >>> for key in \
+            ...     red_segment.single_context_set_expressions_by_context:
             ...     key
             ...
             'Grouped Rhythmic Staves Score'
@@ -189,7 +200,8 @@ class SegmentSpecification(Specification):
 
         Return context proxy dictionary.
         '''
-        return Specification.single_context_set_expressions_by_context.fget(self)
+        return Specification.single_context_set_expressions_by_context.fget(
+            self)
 
     @property
     def specification_name(self):

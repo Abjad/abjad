@@ -20,10 +20,13 @@ class PitchSetExpression(LeafSetExpression):
         level=None, 
         trope=None,
         ):
-        LeafSetExpression.__init__(self, source_expression=source_expression,
-            target_select_expression_inventory=target_select_expression_inventory)
-        assert isinstance(node_count, (int, type(None))), repr(node_count)
-        assert isinstance(level, (int, type(None))), repr(level)
+        LeafSetExpression.__init__(
+            self,
+            source_expression=source_expression,
+            target_select_expression_inventory=target_select_expression_inventory,
+            )
+        assert isinstance(node_count, (int, type(None)))
+        assert isinstance(level, (int, type(None)))
         self._node_count = node_count
         self._level = level
         self._trope = trope
@@ -59,7 +62,8 @@ class PitchSetExpression(LeafSetExpression):
         '''
         statal_server_cursor = self.source_expression.payload
         leaves = list(self._iterate_selected_leaves_in_score(score))
-        assert all(isinstance(leaf, (notetools.Note, chordtools.Chord)) for leaf in leaves), repr(leaves)
+        assert all(isinstance(leaf, (notetools.Note, chordtools.Chord)) 
+            for leaf in leaves)
         if self.level is None:
             level = -1
         else:
@@ -68,7 +72,9 @@ class PitchSetExpression(LeafSetExpression):
             node_count = len(leaves)
         else:
             node_count = self.node_count
-        chromatic_pitch_numbers = statal_server_cursor(n=node_count, level=level)
-        chromatic_pitch_numbers = sequencetools.CyclicTuple(chromatic_pitch_numbers)
+        chromatic_pitch_numbers = \
+            statal_server_cursor(n=node_count, level=level)
+        chromatic_pitch_numbers = \
+            sequencetools.CyclicTuple(chromatic_pitch_numbers)
         for i, leaf in enumerate(leaves):
             leaf.sounding_pitch = chromatic_pitch_numbers[i]

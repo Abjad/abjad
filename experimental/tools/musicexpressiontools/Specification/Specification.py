@@ -24,7 +24,8 @@ class Specification(AbjadObject):
         from experimental.tools import musicexpressiontools
         self._context_name_abbreviations = []
         self._context_names = []
-        self._fresh_single_context_set_expressions = timespantools.TimespanInventory()
+        self._fresh_single_context_set_expressions = \
+            timespantools.TimespanInventory()
         self._score_template = score_template
         self._score_model = score_template()
         self._single_context_set_expressions_by_context = \
@@ -34,8 +35,11 @@ class Specification(AbjadObject):
     ### PRIVATE PROPERTIES ###
 
     def _context_name_to_improper_parentage_names(self, context_name):
-        context = componenttools.get_first_component_in_expr_with_name(self.score_model, context_name)
-        parentage = componenttools.get_improper_parentage_of_component(context)
+        context = \
+            componenttools.get_first_component_in_expr_with_name(
+            self.score_model, context_name)
+        parentage = \
+            componenttools.get_improper_parentage_of_component(context)
         parentage_names = [parent.name for parent in parentage]
         return parentage_names
 
@@ -78,8 +82,10 @@ class Specification(AbjadObject):
         return context_names
 
     def _initialize_context_name_abbreviations(self):
-        context_name_abbreviations = getattr(self.score_template, 'context_name_abbreviations', {})
-        for context_name_abbreviation, context_name in context_name_abbreviations.iteritems():
+        context_name_abbreviations = getattr(
+            self.score_template, 'context_name_abbreviations', {})
+        for context_name_abbreviation, context_name in \
+            context_name_abbreviations.iteritems():
             setattr(self, context_name_abbreviation, context_name)
             self._context_name_abbreviations.append(context_name)
         score = self.score_template()
@@ -162,8 +168,11 @@ class Specification(AbjadObject):
 
         Root context sorts first and voice contexts sort last.
 
-            >>> template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
-            >>> score_specification = musicexpressiontools.ScoreSpecificationInterface(template)
+            >>> template = \
+            ...     scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
+            ...     staff_count=2)
+            >>> score_specification = \
+            ...     musicexpressiontools.ScoreSpecificationInterface(template)
             >>> score_specification = score_specification.specification
 
         ::
@@ -193,8 +202,12 @@ class Specification(AbjadObject):
         Score context evaluates to ``0``.
         Nonscore contexts evaluate to greater than ``0``.
 
-            >>> template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
-            >>> score_specification = musicexpressiontools.ScoreSpecificationInterface(template)
+            >>> template = \
+            ...     scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
+            ...     staff_count=2)
+            >>> score_specification = \
+            ...     musicexpressiontools.ScoreSpecificationInterface(
+            ...     template)
             >>> score_specification = score_specification.specification
 
         ::
@@ -204,12 +217,14 @@ class Specification(AbjadObject):
 
         ::
 
-            >>> score_specification.context_name_to_depth('Grouped Rhythmic Staves Score')
+            >>> score_specification.context_name_to_depth(
+            ...     'Grouped Rhythmic Staves Score')
             0
 
         ::
 
-            >>> score_specification.context_name_to_depth('Grouped Rhythmic Staves Staff Group')
+            >>> score_specification.context_name_to_depth(
+            ...     'Grouped Rhythmic Staves Staff Group')
             1
 
         ::
@@ -224,7 +239,7 @@ class Specification(AbjadObject):
 
         Return nonzero integer.
         '''
-        assert isinstance(context_name, (str, type(None))), repr(context_name)
+        assert isinstance(context_name, (str, type(None)))
         if context_name is None:
             return 0
         elif context_name == self.score_model.name:
@@ -235,16 +250,22 @@ class Specification(AbjadObject):
 
     def get_single_context_set_expressions_rooted_to_specification_that_govern_context_name(
         self, attribute, context_name):
-        '''Get single-context set expressions rooted to specification that govern `context_name`.
+        '''Get single-context set expressions rooted to specification 
+        that govern `context_name`.
 
-        Return list such that highest level (most general) context set expressions appear first.
+        Return list such that highest level (most general) context 
+        set expressions appear first.
 
         Lowest level (most specific) context set expressions appear last.
         '''
         result = []
-        context_names = self._context_name_to_improper_parentage_names(context_name)
+        context_names = \
+            self._context_name_to_improper_parentage_names(context_name)
         for context_name in reversed(context_names):
-            context_proxy = self.single_context_set_expressions_by_context[context_name]
-            expressions = context_proxy.single_context_set_expressions_by_attribute.get(attribute, [])
+            context_proxy = \
+                self.single_context_set_expressions_by_context[context_name]
+            expressions = \
+                context_proxy.single_context_set_expressions_by_attribute.get(
+                    attribute, [])
             result.extend(expressions)
         return result

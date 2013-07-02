@@ -10,8 +10,12 @@ class MixedSourceTimespanExpression(TimespanExpression):
 
     ::
 
-        >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
-        >>> score_specification = musicexpressiontools.ScoreSpecificationInterface(score_template=score_template)
+        >>> score_template = \
+        ...     scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
+        ...     staff_count=4)
+        >>> score_specification = \
+        ...     musicexpressiontools.ScoreSpecificationInterface(
+        ...     score_template=score_template)
         >>> red_segment = score_specification.append_segment(name='red')
         >>> blue_segment = score_specification.append_segment(name='blue')
 
@@ -32,7 +36,9 @@ class MixedSourceTimespanExpression(TimespanExpression):
 
     ::
 
-        >>> timespan = musicexpressiontools.MixedSourceTimespanExpression(start_offset, stop_offset)
+        >>> timespan = \
+        ...     musicexpressiontools.MixedSourceTimespanExpression(
+        ...     start_offset, stop_offset)
 
     ::
 
@@ -66,8 +72,12 @@ class MixedSourceTimespanExpression(TimespanExpression):
 
     def __init__(self, start_offset=None, stop_offset=None, callbacks=None):
         from experimental.tools import musicexpressiontools
-        assert isinstance(start_offset, (musicexpressiontools.OffsetExpression, type(None))), repr(start_offset)
-        assert isinstance(stop_offset, (musicexpressiontools.OffsetExpression, type(None))), repr(stop_offset)
+        assert isinstance(
+            start_offset, 
+            (musicexpressiontools.OffsetExpression, type(None)))
+        assert isinstance(
+            stop_offset, 
+            (musicexpressiontools.OffsetExpression, type(None)))
         TimespanExpression.__init__(self, callbacks=callbacks)
         self._start_offset = start_offset
         self._stop_offset = stop_offset

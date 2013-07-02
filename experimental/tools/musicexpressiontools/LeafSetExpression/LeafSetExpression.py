@@ -13,19 +13,22 @@ class LeafSetExpression(Expression):
         target_select_expression_inventory=None,
         ):
         from experimental.tools import musicexpressiontools
-        assert isinstance(source_expression, musicexpressiontools.Expression), repr(source_expression)
+        assert isinstance(source_expression, musicexpressiontools.Expression)
         assert isinstance(target_select_expression_inventory,
-            musicexpressiontools.SelectExpressionInventory), repr(target_select_expression_inventory)
+            musicexpressiontools.SelectExpressionInventory)
         self._source_expression = source_expression
-        self._target_select_expression_inventory = target_select_expression_inventory
+        self._target_select_expression_inventory = \
+            target_select_expression_inventory
         self._lexical_rank = None
 
     ### PRIVATE METHODS ###
 
     def _iterate_selected_leaves_in_score(self, score):
         leaves = []
-        for target_select_expression in self.target_select_expression_inventory:
-            iterable_payload_expression = target_select_expression.evaluate_against_score(score)
+        for target_select_expression in \
+            self.target_select_expression_inventory:
+            iterable_payload_expression = \
+                target_select_expression.evaluate_against_score(score)
             leaves.extend(iterable_payload_expression.payload)
         return leaves
 
@@ -50,4 +53,5 @@ class LeafSetExpression(Expression):
     ### PUBLIC METHODS ###
 
     def evaluate(self):
-        raise NotImplementedError('eventually remove me and implement on child classes.')
+        message = 'eventually remove me and implement on child classes.'
+        raise NotImplementedError(message)

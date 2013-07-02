@@ -30,12 +30,17 @@ class RhythmSetExpressionLookupExpression(SetExpressionLookupExpression):
         if expression is None:
             return
         offset = expression.payload[0]
-        timespan_inventory = self._get_timespan_scoped_single_context_set_expressions(self.attribute)
-        time_relation = timerelationtools.offset_happens_during_timespan(offset=offset)
-        candidate_set_expressions = timespan_inventory.get_timespans_that_satisfy_time_relation(time_relation)
+        timespan_inventory = \
+            self._get_timespan_scoped_single_context_set_expressions(
+                self.attribute)
+        time_relation = timerelationtools.offset_happens_during_timespan(
+            offset=offset)
+        candidate_set_expressions = \
+            timespan_inventory.get_timespans_that_satisfy_time_relation(
+                time_relation)
         source_expression_set_expression = \
             self.root_specification._get_first_expression_that_governs_context_name(
-            candidate_set_expressions, self.voice_name)
+                candidate_set_expressions, self.voice_name)
         assert source_expression_set_expression is not None
         assert isinstance(source_expression_set_expression,
             musicexpressiontools.TimespanScopedSingleContextSetExpression)
@@ -43,7 +48,9 @@ class RhythmSetExpressionLookupExpression(SetExpressionLookupExpression):
         if isinstance(expression, musicexpressiontools.RhythmMakerExpression):
             expression = self._apply_callbacks(expression)
             return expression
-        elif isinstance(expression, musicexpressiontools.StartPositionedRhythmPayloadExpression):
+        elif isinstance(
+            expression,
+            musicexpressiontools.StartPositionedRhythmPayloadExpression):
             # clone to prevent callbacks from inadvertantly changing source_expression expression
             expression = expression._clone()
             expression = self._apply_callbacks(expression)
