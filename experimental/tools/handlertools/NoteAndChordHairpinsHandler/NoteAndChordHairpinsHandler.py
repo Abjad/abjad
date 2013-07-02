@@ -42,5 +42,6 @@ class NoteAndChordHairpinsHandler(DynamicHandler):
                 marktools.LilyPondCommandMark(start_dynamic, 'right')(group[0])
             else:
                 descriptor = ' '.join([x for x in hairpin_token if x])
-                spannertools.HairpinSpanner(group, descriptor, include_rests = False)
+                spannertools.HairpinSpanner(
+                    group, descriptor, include_rests=False)
         return expr

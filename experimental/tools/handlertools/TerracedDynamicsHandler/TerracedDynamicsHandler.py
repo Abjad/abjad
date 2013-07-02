@@ -19,11 +19,13 @@ class TerracedDynamicsHandler(DynamicHandler):
 
     def __call__(self, expr, offset=0):
         dynamics = sequencetools.CyclicList(self.dynamics)
-        for i, note_or_chord in enumerate(iterationtools.iterate_notes_and_chords_in_expr(expr)):
+        for i, note_or_chord in enumerate(
+            iterationtools.iterate_notes_and_chords_in_expr(expr)):
             dynamic_name = dynamics[offset+i]
             if self.minimum_duration <= note_or_chord.duration:
                 #contexttools.DynamicMark(dynamic_name)(note_or_chord)
-                marktools.LilyPondCommandMark(dynamic_name, 'right')(note_or_chord)
+                marktools.LilyPondCommandMark(dynamic_name, 'right')(
+                    note_or_chord)
         return expr
 
     ###  PUBLIC PROPERTIES ###
@@ -35,7 +37,8 @@ class TerracedDynamicsHandler(DynamicHandler):
         def fset(self, dynamics):
             if dynamics is None:
                 self._dynamics = dynamics
-            elif all(contexttools.DynamicMark.is_dynamic_name(x) for x in dynamics):
+            elif all(
+                contexttools.DynamicMark.is_dynamic_name(x) for x in dynamics):
                 self._dynamics = dynamics
             else:
                 raise TypeError(dynamics)

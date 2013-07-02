@@ -15,8 +15,9 @@ class Domain(AbjadObject):
 
         >>> domain = Domain([(1, 2, 3), (4, 5, 6), (7, 8, 9)])
 
-    May also be instantiated from one non-empty sequence and an integer greater
-    than zero, indicating how many "columns" to create from the first sequence:
+    May also be instantiated from one non-empty sequence and an integer 
+    greater than zero, indicating how many "columns" to create from the 
+    first sequence:
 
     ::
 
@@ -27,7 +28,11 @@ class Domain(AbjadObject):
     Returns ``Domain`` instance.
     '''
 
+    ### CLASS VARIABLES ###
+
     __slots__ = ('_domain')
+
+    ### INITIALIZER ###
 
     def __init__(self, *args):
         if 1 == len(args):
@@ -40,7 +45,8 @@ class Domain(AbjadObject):
             assert 0 < int(args[1])
             domain = tuple([tuple(args[0]) for _ in range(args[1])])
         else:
-            raise Exception("Cannot instantiate %s from %s." % (type(self).__name__, args))
+            message = "cannot instantiate %s from %s."
+            raise Exception(message % (type(self).__name__, args))
         object.__setattr__(self, '_domain', domain)
 
     ### SPECIAL METHODS ###

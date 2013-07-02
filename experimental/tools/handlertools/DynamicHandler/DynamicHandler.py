@@ -31,6 +31,6 @@ class DynamicHandler(Handler):
             if minimum_duration is None:
                 self._minimum_duration = minimum_duration
             else:
-                duration = durationtools.duration_token_to_duration_pair(minimum_duration)
-                #self._minimum_duration = durationtools.Duration(*duration)
+                duration = durationtools.duration_token_to_duration_pair(
+                    minimum_duration)
                 self._minimum_duration = durationtools.Duration(duration)

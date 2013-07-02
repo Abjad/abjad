@@ -22,9 +22,12 @@ class FixedLengthStreamSolver(_Solver):
     ::
 
         >>> domain = Domain([1, 2, 3, 4], 4)
-        >>> all_unique = GlobalCountsConstraint(lambda x: all(y == 1 for y in x.values()))
-        >>> max_interval = RelativeIndexConstraint([0, 1], lambda x, y: abs(x - y) < 3)
-        >>> solver = FixedLengthStreamSolver(domain, [all_unique, max_interval])
+        >>> all_unique = GlobalCountsConstraint(
+        ...     lambda x: all(y == 1 for y in x.values()))
+        >>> max_interval = RelativeIndexConstraint(
+        ...     [0, 1], lambda x, y: abs(x - y) < 3)
+        >>> solver = FixedLengthStreamSolver(
+        ...     domain, [all_unique, max_interval])
 
     Generate solutions by iterating over the ``FixedLengthStreamSolver``.
 
@@ -59,20 +62,32 @@ class FixedLengthStreamSolver(_Solver):
 
     ::
 
-        >>> random_solver = FixedLengthStreamSolver(domain, [all_unique, max_interval], randomized=True)
+        >>> random_solver = FixedLengthStreamSolver(
+        ...     domain, [all_unique, max_interval], randomized=True)
 
     ``FixedLengthStreamSolvers`` are immutable.
 
     Returns ``FixedLengthStreamSolver`` instance.
     '''
+    
+    ### CLASS VARIABLES ###
 
-    __slots__ = ('_constraints', '_domain', '_randomized')
+    __slots__ = (
+        '_constraints',
+        '_domain',
+        '_randomized',
+        )
+
+    ### INITIALIZER ###
 
     def __init__(self, domain, constraints, randomized=False):
         assert isinstance(domain, Domain)
         assert all(isinstance(x, _Constraint) for x in constraints)
         object.__setattr__(self, '_domain', domain)
-        object.__setattr__(self, '_constraints', tuple(sorted(constraints, key=lambda x: x._sort_tuple)))
+        object.__setattr__(
+            self,
+            '_constraints',
+            tuple(sorted(constraints, key=lambda x: x._sort_tuple)))
         object.__setattr__(self, '_randomized', bool(randomized))
 
     ### SPECIAL METHODS ###
@@ -96,11 +111,16 @@ class FixedLengthStreamSolver(_Solver):
                     return solution, node
                 else:
                     if node.children is None:
-                        node.children = [_SolutionNode(x, parent=node) for x in domain[depth]]
+                        node.children = [_SolutionNode(x, parent=node) 
+                            for x in domain[depth]]
                     elif node.children == []:
                         return node
                     else:
-                        result = random_recurse(random.choice(node.children), solution, depth)
+                        result = random_recurse(
+                            random.choice(node.children),
+                            solution,
+                            depth,
+                            )
                         if isinstance(result, list):
                             return result
                         if isinstance(result, tuple):

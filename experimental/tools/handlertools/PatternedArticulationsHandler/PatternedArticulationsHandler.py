@@ -8,17 +8,21 @@ from experimental.tools.handlertools.ArticulationHandler \
 
 class PatternedArticulationsHandler(ArticulationHandler):
 
-    def __init__(self,
+    def __init__(
+        self,
         articulation_lists=None,
         minimum_duration=None,
         maximum_duration=None,
         minimum_written_pitch=None,
-        maximum_written_pitch=None):
-        ArticulationHandler.__init__(self,
+        maximum_written_pitch=None,
+        ):
+        ArticulationHandler.__init__(
+            self,
             minimum_duration=minimum_duration,
             maximum_duration=maximum_duration,
             minimum_written_pitch=minimum_written_pitch,
-            maximum_written_pitch=maximum_written_pitch)
+            maximum_written_pitch=maximum_written_pitch,
+            )
         if articulation_lists is None:
             articulation_lists = []
         self.articulation_lists = articulation_lists
@@ -27,7 +31,8 @@ class PatternedArticulationsHandler(ArticulationHandler):
 
     def __call__(self, expr, offset=0, skip_first=0, skip_last=0):
         articulation_lists = sequencetools.CyclicList(self.articulation_lists)
-        notes_and_chords = list(iterationtools.iterate_notes_and_chords_in_expr(expr))
+        notes_and_chords = \
+            list(iterationtools.iterate_notes_and_chords_in_expr(expr))
         notes_and_chords = notes_and_chords[skip_first:]
         if skip_last:
             notes_and_chords = notes_and_chords[:-skip_last]
@@ -53,7 +58,8 @@ class PatternedArticulationsHandler(ArticulationHandler):
                     maximum_written_pitch = note_or_chord.pitches[-1]
                 if self.maximum_written_pitch < maximum_written_pitch:
                     continue
-            marktools.attach_articulations_to_notes_and_chords_in_expr(note_or_chord, articulation_list)
+            marktools.attach_articulations_to_notes_and_chords_in_expr(
+                note_or_chord, articulation_list)
         return expr
 
     ### PUBLIC PROPERTIES ###

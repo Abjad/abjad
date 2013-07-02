@@ -9,12 +9,13 @@ class GlobalConstraint(_GlobalConstraint):
 
         >>> from experimental.tools.constrainttools import GlobalConstraint
 
-    Instantiated from a function which takes a single argument, representing an
-    entire solution.
+    Instantiated from a function which takes a single argument, 
+    representing an entire solution.
 
     ::
 
-        >>> max_total_range = GlobalConstraint(lambda seq: (max(seq) - min(seq)) < 5)
+        >>> max_total_range = GlobalConstraint(
+        ...     lambda seq: (max(seq) - min(seq)) < 5)
 
     ::
 

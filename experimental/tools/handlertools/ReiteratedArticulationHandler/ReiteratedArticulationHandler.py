@@ -8,17 +8,21 @@ from experimental.tools.handlertools.ArticulationHandler \
 
 class ReiteratedArticulationHandler(ArticulationHandler):
 
-    def __init__(self,
+    def __init__(
+        self,
         articulation_list=None,
         minimum_duration=None,
         maximum_duration=None,
         minimum_written_pitch=None,
-        maximum_written_pitch=None):
-        ArticulationHandler.__init__(self,
+        maximum_written_pitch=None,
+        ):
+        ArticulationHandler.__init__(
+            self,
             minimum_duration=minimum_duration,
             maximum_duration=maximum_duration,
             minimum_written_pitch=minimum_written_pitch,
-            maximum_written_pitch=maximum_written_pitch)
+            maximum_written_pitch=maximum_written_pitch,
+            )
         if articulation_list is None:
             articulation_list = []
         if isinstance(articulation_list, str):
@@ -29,7 +33,8 @@ class ReiteratedArticulationHandler(ArticulationHandler):
 
     def __call__(self, expr, offset=0, skip_first=0, skip_last=0):
         articulation_list = sequencetools.CyclicList(self.articulation_list)
-        notes_and_chords = list(iterationtools.iterate_notes_and_chords_in_expr(expr))
+        notes_and_chords = \
+            list(iterationtools.iterate_notes_and_chords_in_expr(expr))
         notes_and_chords = notes_and_chords[skip_first:]
         if skip_last:
             notes_and_chords = notes_and_chords[:-skip_last]

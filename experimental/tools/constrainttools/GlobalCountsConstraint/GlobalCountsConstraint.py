@@ -10,13 +10,15 @@ class GlobalCountsConstraint(_GlobalConstraint):
 
         >>> from experimental.tools.constrainttools import GlobalCountsConstraint
 
-    Instantiated from a lambda or function which takes a dictionary as its one
-    and only argument:
+    Instantiated from a lambda or function which takes a dictionary as 
+    its one and only argument:
 
     ::
 
-        >>> all_unique = GlobalCountsConstraint(lambda x: all(y == 1 for y in x.values()))
-        >>> one_climax = GlobalCountsConstraint(lambda x: x[max(x.keys())] == 1)
+        >>> all_unique = GlobalCountsConstraint(
+        ...     lambda x: all(y == 1 for y in x.values()))
+        >>> one_climax = GlobalCountsConstraint(
+        ...     lambda x: x[max(x.keys())] == 1)
 
     ::
 

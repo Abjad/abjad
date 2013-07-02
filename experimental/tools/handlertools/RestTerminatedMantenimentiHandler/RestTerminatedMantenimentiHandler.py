@@ -23,18 +23,24 @@ class RestTerminatedMantenimentiHandler(DynamicHandler):
     def __call__(self, expr):
         assert self.dynamics_talea, repr(self.dynamics_talea)
         groups = []
-        for i, group in enumerate(leaftools.yield_groups_of_mixed_notes_and_chords_in_sequence(expr)):
+        for i, group in enumerate(
+            leaftools.yield_groups_of_mixed_notes_and_chords_in_sequence(
+            expr)):
             spanner = spannertools.TextSpanner(group)
             spanner.override.text_spanner.dash_fraction = 1
             dynamic_string = self.dynamics_talea[i]
             dynamic_markup = markuptools.Markup([
                 markuptools.MarkupCommand('dynamic', dynamic_string),
                 markuptools.MarkupCommand('hspace', 0.75)])
-            spanner.override.text_spanner.bound_details__left__text = dynamic_markup
+            spanner.override.text_spanner.bound_details__left__text = \
+                dynamic_markup
             nib_markup = markuptools.Markup(
-                markuptools.MarkupCommand('draw-line', schemetools.SchemePair(0, 1)))
-            spanner.override.text_spanner.bound_details__right__text = nib_markup
-            spanner.override.text_spanner.bound_details__right__padding = -0.2
+                markuptools.MarkupCommand(
+                'draw-line', schemetools.SchemePair(0, 1)))
+            spanner.override.text_spanner.bound_details__right__text = \
+                nib_markup
+            spanner.override.text_spanner.bound_details__right__padding = \
+                -0.2
             spanner.override.text_spanner.bound_details__left__stencil_align_dir_y = 0
         return groups
 
@@ -45,6 +51,7 @@ class RestTerminatedMantenimentiHandler(DynamicHandler):
         def fget(self):
             return self._dynamics_talea
         def fset(self, dynamics_talea):
-            assert isinstance(dynamics_talea, (list, tuple)), repr(dynamics_talea)
+            assert isinstance(dynamics_talea, (list, tuple)), repr(
+                dynamics_talea)
             self._dynamics_talea = sequencetools.CyclicTuple(dynamics_talea)
         return property(**locals())

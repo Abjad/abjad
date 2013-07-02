@@ -16,7 +16,8 @@ class AbsoluteIndexConstraint(_AbsoluteConstraint):
     ::
 
         >>> first_is_zero = AbsoluteIndexConstraint(0, lambda x: x == 0)
-        >>> third_greater_than_second = AbsoluteIndexConstraint([1, 2], lambda x, y: x < y)
+        >>> third_greater_than_second = AbsoluteIndexConstraint(
+        ...     [1, 2], lambda x, y: x < y)
 
     ::
 

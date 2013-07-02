@@ -18,7 +18,8 @@ class RelativeIndexConstraint(_RelativeConstraint):
 
     ::
 
-        >>> max_interval = RelativeIndexConstraint(2, lambda x, y: abs(x - y) < 3)
+        >>> max_interval = RelativeIndexConstraint(
+        ...     2, lambda x, y: abs(x - y) < 3)
 
     The above constraint will only be applied against the last two items of
     any solution.
