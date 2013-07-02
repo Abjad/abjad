@@ -20,9 +20,12 @@ class SkipRhythmMaker(RhythmMaker):
         >>> divisions = [(1, 4), (3, 16), (5, 8)]
         >>> leaf_lists = maker(divisions)
         >>> music = sequencetools.flatten_sequence(leaf_lists)
-        >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(divisions)
+        >>> measures = \
+        ...     measuretools.make_measures_with_full_measure_spacer_skips(
+        ...     divisions)
         >>> staff = stafftools.RhythmicStaff(measures)
-        >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, music)
+        >>> measures = measuretools.replace_contents_of_measures_in_expr(
+        ...     staff, music)
 
     ::
 
@@ -33,7 +36,8 @@ class SkipRhythmMaker(RhythmMaker):
 
     ### CLASS VARIABLES ###
 
-    _default_positional_input_arguments = ()
+    _default_positional_input_arguments = (
+        )
 
     ### INITIALIZER ###
 
@@ -51,7 +55,8 @@ class SkipRhythmMaker(RhythmMaker):
         for division in divisions:
             written_duration = durationtools.Duration(1)
             multiplied_duration = division
-            skip = skiptools.make_skips_with_multiplied_durations(written_duration, [multiplied_duration])
+            skip = skiptools.make_skips_with_multiplied_durations(
+                written_duration, [multiplied_duration])
             result.append(skip)
         return result
 
@@ -89,9 +94,12 @@ class SkipRhythmMaker(RhythmMaker):
             >>> divisions = [(1, 4), (3, 16), (5, 8)]
             >>> leaf_lists = new_maker(divisions)
             >>> music = sequencetools.flatten_sequence(leaf_lists)
-            >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(divisions)
+            >>> measures = \
+            ...     measuretools.make_measures_with_full_measure_spacer_skips(
+            ...     divisions)
             >>> staff = stafftools.RhythmicStaff(measures)
-            >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, music)
+            >>> measures = measuretools.replace_contents_of_measures_in_expr(
+            ...     staff, music)
 
         ::
 
@@ -118,9 +126,12 @@ class SkipRhythmMaker(RhythmMaker):
             >>> divisions = [(1, 4), (3, 16), (5, 8)]
             >>> leaf_lists = reversed_maker(divisions)
             >>> music = sequencetools.flatten_sequence(leaf_lists)
-            >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(divisions)
+            >>> measures = \
+            ...     measuretools.make_measures_with_full_measure_spacer_skips(
+            ...     divisions)
             >>> staff = stafftools.RhythmicStaff(measures)
-            >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, music)
+            >>> measures = measuretools.replace_contents_of_measures_in_expr(
+            ...     staff, music)
 
         ::
 

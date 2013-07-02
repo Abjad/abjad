@@ -30,9 +30,12 @@ class OutputBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
         >>> divisions = [(3, 8), (4, 8)]
         >>> music = maker(divisions)
         >>> music = sequencetools.flatten_sequence(music)
-        >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(divisions)
+        >>> measures = \
+        ...     measuretools.make_measures_with_full_measure_spacer_skips(
+        ...     divisions)
         >>> staff = stafftools.RhythmicStaff(measures)
-        >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, music)
+        >>> measures = measuretools.replace_contents_of_measures_in_expr(
+        ...     staff, music)
 
     ::
 
@@ -61,7 +64,10 @@ class OutputBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
             right = right[:right_length]
             left_part, middle_part, right_part = \
                 sequencetools.partition_sequence_by_counts(
-                divisions[0], [left_length, middle_length, right_length], cyclic=False, overhang=False)
+                divisions[0],
+                [left_length, middle_length, right_length], 
+                cyclic=False,
+                overhang=False)
             left_part = self._burnish_division_part(left_part, left)
             middle_part = self._burnish_division_part(middle_part, middle)
             right_part = self._burnish_division_part(right_part, right)
@@ -76,7 +82,10 @@ class OutputBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
             middle = middle_length * [middles[0]]
             left_part, middle_part = \
                 sequencetools.partition_sequence_by_counts(
-                divisions[0], [left_length, middle_length], cyclic=False, overhang=False)
+                divisions[0], 
+                [left_length, middle_length],
+                cyclic=False,
+                overhang=False)
             left_part = self._burnish_division_part(left_part, left)
             middle_part = self._burnish_division_part(middle_part, middle)
             burnished_division = left_part + middle_part
@@ -96,7 +105,10 @@ class OutputBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
             middle = middle_length * [middles[0]]
             middle_part, right_part = \
                 sequencetools.partition_sequence_by_counts(
-                divisions[-1], [middle_length, right_length], cyclic=False, overhang=False)
+                divisions[-1], 
+                [middle_length, right_length], 
+                cyclic=False,
+                overhang=False)
             middle_part = self._burnish_division_part(middle_part, middle)
             right_part = self._burnish_division_part(right_part, right)
             burnished_division = middle_part + right_part
@@ -106,7 +118,7 @@ class OutputBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
         assert burnished_weights == unburnished_weights
         return burnished_divisions
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def storage_format(self):
@@ -170,9 +182,12 @@ class OutputBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
             >>> divisions = [(3, 8), (4, 8)]
             >>> music = new_maker(divisions)
             >>> music = sequencetools.flatten_sequence(music)
-            >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(divisions)
+            >>> measures = \
+            ...     measuretools.make_measures_with_full_measure_spacer_skips(
+            ...     divisions)
             >>> staff = stafftools.RhythmicStaff(measures)
-            >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, music)
+            >>> measures = measuretools.replace_contents_of_measures_in_expr(
+            ...     staff, music)
 
         ::
 
@@ -214,9 +229,12 @@ class OutputBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
             >>> divisions = [(3, 8), (4, 8)]
             >>> music = reversed_maker(divisions)
             >>> music = sequencetools.flatten_sequence(music)
-            >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(divisions)
+            >>> measures = \
+            ...     measuretools.make_measures_with_full_measure_spacer_skips(
+            ...     divisions)
             >>> staff = stafftools.RhythmicStaff(measures)
-            >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, music)
+            >>> measures = measuretools.replace_contents_of_measures_in_expr(
+            ...     staff, music)
 
         ::
 

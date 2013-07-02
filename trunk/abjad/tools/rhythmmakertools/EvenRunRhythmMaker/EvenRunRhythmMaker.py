@@ -24,9 +24,12 @@ class EvenRunRhythmMaker(RhythmMaker):
         >>> divisions = [(4, 8), (3, 4), (2, 4)]
         >>> lists = maker(divisions)
         >>> music = sequencetools.flatten_sequence(lists)
-        >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(divisions)
+        >>> measures = \
+        ...     measuretools.make_measures_with_full_measure_spacer_skips(
+        ...     divisions)
         >>> staff = stafftools.RhythmicStaff(measures)
-        >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, music)
+        >>> measures = measuretools.replace_contents_of_measures_in_expr(
+        ...     staff, music)
 
     ::
 
@@ -45,9 +48,12 @@ class EvenRunRhythmMaker(RhythmMaker):
         >>> divisions = [(4, 8), (3, 4), (2, 4)]
         >>> lists = maker(divisions)
         >>> music = sequencetools.flatten_sequence(lists)
-        >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(divisions)
+        >>> measures = \
+        ...     measuretools.make_measures_with_full_measure_spacer_skips(
+        ...     divisions)
         >>> staff = stafftools.RhythmicStaff(measures)
-        >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, music)
+        >>> measures = measuretools.replace_contents_of_measures_in_expr(
+        ...     staff, music)
 
     ::
 
@@ -66,13 +72,20 @@ class EvenRunRhythmMaker(RhythmMaker):
 
     ### INITIALIZER ###
 
-    def __init__(self, denominator_multiplier_exponent=0, beam_each_cell=True, beam_cells_together=False):
-        assert mathtools.is_nonnegative_integer(denominator_multiplier_exponent)
+    def __init__(
+        self,
+        denominator_multiplier_exponent=0,
+        beam_each_cell=True,
+        beam_cells_together=False,
+        ):
+        assert mathtools.is_nonnegative_integer(
+            denominator_multiplier_exponent)
         RhythmMaker.__init__(self,
             beam_each_cell=beam_each_cell,
             beam_cells_together=beam_cells_together
             )
-        self._denominator_multiplier_exponent = denominator_multiplier_exponent
+        self._denominator_multiplier_exponent = \
+            denominator_multiplier_exponent
 
     ### SPECIAL METHODS ###
 
@@ -159,9 +172,12 @@ class EvenRunRhythmMaker(RhythmMaker):
             >>> divisions = [(4, 8), (3, 4), (2, 4)]
             >>> lists = new_maker(divisions)
             >>> music = sequencetools.flatten_sequence(lists)
-            >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(divisions)
+            >>> measures = \
+            ...     measuretools.make_measures_with_full_measure_spacer_skips(
+            ...     divisions)
             >>> staff = stafftools.RhythmicStaff(measures)
-            >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, music)
+            >>> measures = measuretools.replace_contents_of_measures_in_expr(
+            ...     staff, music)
 
         ::
 
@@ -192,9 +208,12 @@ class EvenRunRhythmMaker(RhythmMaker):
             >>> divisions = [(4, 8), (3, 4), (2, 4)]
             >>> lists = reversed_maker(divisions)
             >>> music = sequencetools.flatten_sequence(lists)
-            >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(divisions)
+            >>> measures = \
+            ...     measuretools.make_measures_with_full_measure_spacer_skips(
+            ...     divisions)
             >>> staff = stafftools.RhythmicStaff(measures)
-            >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, music)
+            >>> measures = measuretools.replace_contents_of_measures_in_expr(
+            ...     staff, music)
 
         ::
 

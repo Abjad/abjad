@@ -24,9 +24,12 @@ class DivisionIncisedNoteRhythmMaker(DivisionIncisedRhythmMaker):
         >>> divisions = 4 * [(5, 16)]
         >>> leaf_lists = maker(divisions)
         >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-        >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(divisions)
+        >>> measures = \
+        ...     measuretools.make_measures_with_full_measure_spacer_skips(
+        ...     divisions)
         >>> staff = stafftools.RhythmicStaff(measures)
-        >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, leaves)
+        >>> measures = measuretools.replace_contents_of_measures_in_expr(
+        ...     staff, leaves)
 
     ::
 
@@ -74,9 +77,12 @@ class DivisionIncisedNoteRhythmMaker(DivisionIncisedRhythmMaker):
         >>> divisions = 4 * [(5, 16)]
         >>> leaf_lists = maker(divisions)
         >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-        >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(divisions)
+        >>> measures = \
+        ...     measuretools.make_measures_with_full_measure_spacer_skips(
+        ...     divisions)
         >>> staff = stafftools.RhythmicStaff(measures)
-        >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, leaves)
+        >>> measures = measuretools.replace_contents_of_measures_in_expr(
+        ...     staff, leaves)
 
     ::
 
@@ -119,7 +125,8 @@ class DivisionIncisedNoteRhythmMaker(DivisionIncisedRhythmMaker):
     def _make_middle_of_numeric_map_part(self, middle):
         if 0 < middle:
             if self.body_ratio is not None:
-                shards = mathtools.divide_number_by_ratio(middle, self.body_ratio)
+                shards = mathtools.divide_number_by_ratio(
+                    middle, self.body_ratio)
                 return tuple(shards)
             else:
                 return (middle, )
@@ -176,9 +183,12 @@ class DivisionIncisedNoteRhythmMaker(DivisionIncisedRhythmMaker):
             >>> divisions = [(5, 16), (5, 16), (5, 16), (5, 16)]
             >>> leaf_lists = new_maker(divisions)
             >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-            >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(divisions)
+            >>> measures = \
+            ...     measuretools.make_measures_with_full_measure_spacer_skips(
+            ...     divisions)
             >>> staff = stafftools.RhythmicStaff(measures)
-            >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, leaves)
+            >>> measures = measuretools.replace_contents_of_measures_in_expr(
+            ...     staff, leaves)
 
         ::
 
@@ -214,9 +224,12 @@ class DivisionIncisedNoteRhythmMaker(DivisionIncisedRhythmMaker):
             >>> divisions = [(5, 16), (5, 16), (5, 16), (5, 16)]
             >>> leaf_lists = maker(divisions)
             >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-            >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(divisions)
+            >>> measures = \
+            ...     measuretools.make_measures_with_full_measure_spacer_skips(
+            ...     divisions)
             >>> staff = stafftools.RhythmicStaff(measures)
-            >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, leaves)
+            >>> measures = measuretools.replace_contents_of_measures_in_expr(
+            ...     staff, leaves)
 
         ::
 
@@ -251,9 +264,12 @@ class DivisionIncisedNoteRhythmMaker(DivisionIncisedRhythmMaker):
             >>> divisions = [(5, 16), (5, 16), (5, 16), (5, 16)]
             >>> leaf_lists = reversed_maker(divisions)
             >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-            >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(divisions)
+            >>> measures = \
+            ...     measuretools.make_measures_with_full_measure_spacer_skips(
+            ...     divisions)
             >>> staff = stafftools.RhythmicStaff(measures)
-            >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, leaves)
+            >>> measures = measuretools.replace_contents_of_measures_in_expr(
+            ...     staff, leaves)
 
         ::
 

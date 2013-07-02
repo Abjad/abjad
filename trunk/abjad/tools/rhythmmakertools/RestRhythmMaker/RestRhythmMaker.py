@@ -20,9 +20,12 @@ class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
         >>> divisions = [(5, 16), (3, 8)]
         >>> leaf_lists = maker(divisions)
         >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-        >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(divisions)
+        >>> measures = \
+        ...     measuretools.make_measures_with_full_measure_spacer_skips(
+        ...     divisions)
         >>> staff = stafftools.RhythmicStaff(measures)
-        >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, leaves)
+        >>> measures = measuretools.replace_contents_of_measures_in_expr(
+        ...     staff, leaves)
 
     ::
 
@@ -47,16 +50,20 @@ class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
 
     ::
 
-        >>> maker = rhythmmakertools.RestRhythmMaker(forbidden_written_duration=Duration(1, 4))
+        >>> maker = rhythmmakertools.RestRhythmMaker(
+        ...     forbidden_written_duration=Duration(1, 4))
 
     ::
 
         >>> divisions = [(5, 16), (3, 8)]
         >>> leaf_lists = maker(divisions)
         >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-        >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(divisions)
+        >>> measures = \
+        ...     measuretools.make_measures_with_full_measure_spacer_skips(
+        ...     divisions)
         >>> staff = stafftools.RhythmicStaff(measures)
-        >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, leaves)
+        >>> measures = measuretools.replace_contents_of_measures_in_expr(
+        ...     staff, leaves)
 
     ::
 
@@ -85,19 +92,24 @@ class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
 
     ### CLASS VARIABLES ###
 
-    _default_positional_input_arguments = ()
+    _default_positional_input_arguments = (
+        )
 
     ### INITIALIZER ###
 
     def __init__(self, forbidden_written_duration=None):
         DivisionIncisedRestRhythmMaker.__init__(
-            self, [], [0], [], [0], 1,
+            self, [],
+            [0],
+            [],
+            [0],
+            1,
             decrease_durations_monotonically=True,
             forbidden_written_duration=forbidden_written_duration,
-            tie_rests=False
+            tie_rests=False,
             )
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def storage_format(self):
@@ -135,9 +147,12 @@ class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
             >>> divisions = [(5, 16), (3, 8)]
             >>> leaf_lists = new_maker(divisions)
             >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-            >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(divisions)
+            >>> measures = \
+            ...     measuretools.make_measures_with_full_measure_spacer_skips(
+            ...     divisions)
             >>> staff = stafftools.RhythmicStaff(measures)
-            >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, leaves)
+            >>> measures = measuretools.replace_contents_of_measures_in_expr(
+            ...     staff, leaves)
 
         ::
 
@@ -166,9 +181,12 @@ class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
             >>> divisions = [(5, 16), (3, 8)]
             >>> leaf_lists = reversed_maker(divisions)
             >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-            >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(divisions)
+            >>> measures = \
+            ...     measuretools.make_measures_with_full_measure_spacer_skips(
+            ...     divisions)
             >>> staff = stafftools.RhythmicStaff(measures)
-            >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, leaves)
+            >>> measures = measuretools.replace_contents_of_measures_in_expr(
+            ...     staff, leaves)
 
         ::
 

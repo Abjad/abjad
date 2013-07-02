@@ -21,9 +21,12 @@ class TaleaRhythmMaker(DivisionBurnishedTaleaRhythmMaker):
         >>> divisions = [(2, 8), (5, 8)]
         >>> music = maker(divisions)
         >>> music = sequencetools.flatten_sequence(music)
-        >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(divisions)
+        >>> measures = \
+        ...     measuretools.make_measures_with_full_measure_spacer_skips(
+        ...     divisions)
         >>> staff = Staff(measures)
-        >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, music)
+        >>> measures = measuretools.replace_contents_of_measures_in_expr(
+        ...     staff, music)
 
     ::
 
@@ -41,9 +44,12 @@ class TaleaRhythmMaker(DivisionBurnishedTaleaRhythmMaker):
         >>> divisions = [(2, 8), (2, 8), (2, 8), (2, 8)]
         >>> music = maker(divisions)
         >>> music = sequencetools.flatten_sequence(music)
-        >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(divisions)
+        >>> measures = \
+        ...     measuretools.make_measures_with_full_measure_spacer_skips(
+        ...     divisions)
         >>> staff = Staff(measures)
-        >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, music)
+        >>> measures = measuretools.replace_contents_of_measures_in_expr(
+        ...     staff, music)
 
     ::
 
@@ -54,17 +60,39 @@ class TaleaRhythmMaker(DivisionBurnishedTaleaRhythmMaker):
 
     ### INITIALIZER ###
 
-    def __init__(self, talea=None, talea_denominator=None, prolation_addenda=None, secondary_divisions=None,
-        talea_helper=None, prolation_addenda_helper=None, secondary_divisions_helper=None,
-        beam_each_cell=False, beam_cells_together=False, tie_split_notes=False):
+    def __init__(
+        self,
+        talea=None,
+        talea_denominator=None,
+        prolation_addenda=None,
+        secondary_divisions=None,
+        talea_helper=None,
+        prolation_addenda_helper=None,
+        secondary_divisions_helper=None,
+        beam_each_cell=False,
+        beam_cells_together=False,
+        tie_split_notes=False,
+        ):
         lefts, middles, rights = [0], [0], [0]
         left_lengths, right_lengths = [0], [0]
-        DivisionBurnishedTaleaRhythmMaker.__init__(self, talea, talea_denominator, prolation_addenda,
-            lefts, middles, rights, left_lengths, right_lengths, secondary_divisions,
-            talea_helper=talea_helper, prolation_addenda_helper=prolation_addenda_helper,
+        DivisionBurnishedTaleaRhythmMaker.__init__(
+            self,
+            talea,
+            talea_denominator,
+            prolation_addenda,
+            lefts,
+            middles,
+            rights,
+            left_lengths,
+            right_lengths,
+            secondary_divisions,
+            talea_helper=talea_helper,
+            prolation_addenda_helper=prolation_addenda_helper,
             secondary_divisions_helper=secondary_divisions_helper,
-            beam_each_cell=beam_each_cell, beam_cells_together=beam_cells_together,
-            tie_split_notes=tie_split_notes)
+            beam_each_cell=beam_each_cell,
+            beam_cells_together=beam_cells_together,
+            tie_split_notes=tie_split_notes,
+            )
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -116,9 +144,12 @@ class TaleaRhythmMaker(DivisionBurnishedTaleaRhythmMaker):
             >>> divisions = [(2, 8), (5, 8)]
             >>> music = new_maker(divisions)
             >>> music = sequencetools.flatten_sequence(music)
-            >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(divisions)
+            >>> measures = \
+            ...     measuretools.make_measures_with_full_measure_spacer_skips(
+            ...     divisions)
             >>> staff = Staff(measures)
-            >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, music)
+            >>> measures = measuretools.replace_contents_of_measures_in_expr(
+            ...     staff, music)
 
         ::
 
@@ -153,9 +184,12 @@ class TaleaRhythmMaker(DivisionBurnishedTaleaRhythmMaker):
             >>> divisions = [(2, 8), (5, 8)]
             >>> music = reversed_maker(divisions)
             >>> music = sequencetools.flatten_sequence(music)
-            >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(divisions)
+            >>> measures = \
+            ...     measuretools.make_measures_with_full_measure_spacer_skips(
+            ...     divisions)
             >>> staff = Staff(measures)
-            >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, music)
+            >>> measures = measuretools.replace_contents_of_measures_in_expr(
+            ...     staff, music)
 
         ::
 

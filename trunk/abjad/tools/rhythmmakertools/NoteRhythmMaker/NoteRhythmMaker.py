@@ -18,9 +18,12 @@ class NoteRhythmMaker(DivisionIncisedNoteRhythmMaker):
         >>> divisions = [(5, 8), (3, 8)]
         >>> leaf_lists = maker(divisions)
         >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-        >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(divisions)
+        >>> measures = \
+        ...     measuretools.make_measures_with_full_measure_spacer_skips(
+        ...     divisions)
         >>> staff = Staff(measures)
-        >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, leaves)
+        >>> measures = measuretools.replace_contents_of_measures_in_expr(
+        ...     staff, leaves)
 
     ::
 
@@ -45,16 +48,20 @@ class NoteRhythmMaker(DivisionIncisedNoteRhythmMaker):
 
     ::
 
-        >>> maker = rhythmmakertools.NoteRhythmMaker(forbidden_written_duration=Duration(1, 2))
+        >>> maker = rhythmmakertools.NoteRhythmMaker(
+        ...     forbidden_written_duration=Duration(1, 2))
 
     ::
 
         >>> divisions = [(5, 8), (3, 8)]
         >>> leaf_lists = maker(divisions)
         >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-        >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(divisions)
+        >>> measures = \
+        ...     measuretools.make_measures_with_full_measure_spacer_skips(
+        ...     divisions)
         >>> staff = Staff(measures)
-        >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, leaves)
+        >>> measures = measuretools.replace_contents_of_measures_in_expr(
+        ...     staff, leaves)
 
     ::
 
@@ -81,17 +88,27 @@ class NoteRhythmMaker(DivisionIncisedNoteRhythmMaker):
 
     ### CLASS VARIABLES ###
 
-    _default_positional_input_arguments = ()
+    _default_positional_input_arguments = (
+        )
 
     ### INITIALIZER ###
 
-    def __init__(self, decrease_durations_monotonically=True,
-        forbidden_written_duration=None, tie_rests=False):
+    def __init__(
+        self,
+        decrease_durations_monotonically=True,
+        forbidden_written_duration=None,
+        tie_rests=False,
+        ):
         DivisionIncisedNoteRhythmMaker.__init__(
-            self, [], [0], [], [0], 1,
+            self,
+            [],
+            [0],
+            [],
+            [0],
+            1,
             decrease_durations_monotonically=decrease_durations_monotonically,
             forbidden_written_duration=forbidden_written_duration,
-            tie_rests=tie_rests
+            tie_rests=tie_rests,
             )
 
     ### SPECIAL METHODS ###
@@ -144,9 +161,12 @@ class NoteRhythmMaker(DivisionIncisedNoteRhythmMaker):
             >>> divisions = [(5, 8), (3, 8)]
             >>> leaf_lists = new_maker(divisions)
             >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-            >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(divisions)
+            >>> measures = \
+            ...     measuretools.make_measures_with_full_measure_spacer_skips(
+            ...     divisions)
             >>> staff = Staff(measures)
-            >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, leaves)
+            >>> measures = measuretools.replace_contents_of_measures_in_expr(
+            ...     staff, leaves)
 
         ::
 
@@ -177,9 +197,12 @@ class NoteRhythmMaker(DivisionIncisedNoteRhythmMaker):
             >>> divisions = [(5, 8), (3, 8)]
             >>> leaf_lists = reversed_maker(divisions)
             >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-            >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(divisions)
+            >>> measures = \
+            ...     measuretools.make_measures_with_full_measure_spacer_skips(
+            ...     divisions)
             >>> staff = Staff(measures)
-            >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, leaves)
+            >>> measures = measuretools.replace_contents_of_measures_in_expr(
+            ...     staff, leaves)
 
         ::
 

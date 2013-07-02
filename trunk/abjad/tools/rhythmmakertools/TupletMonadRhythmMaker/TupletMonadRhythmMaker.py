@@ -59,16 +59,18 @@ class TupletMonadRhythmMaker(RhythmMaker):
 
     def _make_monad(self, division):
         numerator, talea_denominator = division
-        power_of_two_denominator = mathtools.greatest_power_of_two_less_equal(talea_denominator)
+        power_of_two_denominator = \
+            mathtools.greatest_power_of_two_less_equal(talea_denominator)
         duration = fractions.Fraction(abs(numerator), talea_denominator)
-        power_of_two_duration = fractions.Fraction(abs(numerator), power_of_two_denominator)
+        power_of_two_duration = \
+            fractions.Fraction(abs(numerator), power_of_two_denominator)
         power_of_two_division = (numerator, power_of_two_denominator)
         tuplet_multiplier = duration / power_of_two_duration
         leaves = leaftools.make_leaves([0], [power_of_two_division])
         tuplet = tuplettools.Tuplet(tuplet_multiplier, leaves)
         return tuplet
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def storage_format(self):

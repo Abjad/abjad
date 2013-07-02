@@ -27,9 +27,12 @@ class OutputIncisedRestRhythmMaker(OutputIncisedRhythmMaker):
         >>> divisions = [(5, 8), (5, 8), (5, 8)]
         >>> leaf_lists = maker(divisions)
         >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-        >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(divisions)
+        >>> measures = \
+        ...     measuretools.make_measures_with_full_measure_spacer_skips(
+        ...     divisions)
         >>> staff = stafftools.RhythmicStaff(measures)
-        >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, leaves)
+        >>> measures = measuretools.replace_contents_of_measures_in_expr(
+        ...     staff, leaves)
 
     ::
 
@@ -104,9 +107,12 @@ class OutputIncisedRestRhythmMaker(OutputIncisedRhythmMaker):
             >>> divisions = [(5, 8), (5, 8), (5, 8)]
             >>> leaf_lists = new_maker(divisions)
             >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-            >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(divisions)
+            >>> measures = \
+            ...     measuretools.make_measures_with_full_measure_spacer_skips(
+            ...     divisions)
             >>> staff = stafftools.RhythmicStaff(measures)
-            >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, leaves)
+            >>> measures = measuretools.replace_contents_of_measures_in_expr(
+            ...     staff, leaves)
 
         ::
 
@@ -145,9 +151,12 @@ class OutputIncisedRestRhythmMaker(OutputIncisedRhythmMaker):
             >>> divisions = [(5, 8), (5, 8), (5, 8)]
             >>> leaf_lists = reversed_maker(divisions)
             >>> leaves = sequencetools.flatten_sequence(leaf_lists)
-            >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(divisions)
+            >>> measures = \
+            ...     measuretools.make_measures_with_full_measure_spacer_skips(
+            ...     divisions)
             >>> staff = stafftools.RhythmicStaff(measures)
-            >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, leaves)
+            >>> measures = measuretools.replace_contents_of_measures_in_expr(
+            ...     staff, leaves)
 
         ::
 

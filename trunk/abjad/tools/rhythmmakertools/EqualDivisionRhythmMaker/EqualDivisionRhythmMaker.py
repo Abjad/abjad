@@ -23,9 +23,12 @@ class EqualDivisionRhythmMaker(RhythmMaker):
         >>> divisions = [(1, 2), (3, 8), (5, 16)]
         >>> tuplet_lists = maker(divisions)
         >>> music = sequencetools.flatten_sequence(tuplet_lists)
-        >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(divisions)
+        >>> measures = \
+        ...     measuretools.make_measures_with_full_measure_spacer_skips(
+        ...     divisions)
         >>> staff = stafftools.RhythmicStaff(measures)
-        >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, music)
+        >>> measures = measuretools.replace_contents_of_measures_in_expr(
+        ...     staff, music)
 
     ::
 
@@ -40,7 +43,13 @@ class EqualDivisionRhythmMaker(RhythmMaker):
 
     ### INITIALIZER ###
 
-    def __init__(self, leaf_count=None, is_diminution=True, beam_each_cell=True, beam_cells_together=False):
+    def __init__(
+        self,
+        leaf_count=None,
+        is_diminution=True,
+        beam_each_cell=True,
+        beam_cells_together=False,
+        ):
         assert mathtools.is_integer_equivalent_expr(leaf_count)
         RhythmMaker.__init__(self,
             beam_each_cell=beam_each_cell,
@@ -70,7 +79,11 @@ class EqualDivisionRhythmMaker(RhythmMaker):
         division_duration = durationtools.Duration(division)
         ratio = self.leaf_count * [1]
         tuplet = tuplettools.make_tuplet_from_duration_and_ratio(
-            division_duration, ratio, avoid_dots=True, is_diminution=self.is_diminution)
+            division_duration,
+            ratio,
+            avoid_dots=True,
+            is_diminution=self.is_diminution,
+            )
         return tuplet
 
     ### READ-ONLY PUBLIC PROPERTIES ###
@@ -145,9 +158,12 @@ class EqualDivisionRhythmMaker(RhythmMaker):
             >>> divisions = [(1, 2), (3, 8), (5, 16)]
             >>> tuplet_lists = new_maker(divisions)
             >>> music = sequencetools.flatten_sequence(tuplet_lists)
-            >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(divisions)
+            >>> measures = \
+            ...     measuretools.make_measures_with_full_measure_spacer_skips(
+            ...     divisions)
             >>> staff = stafftools.RhythmicStaff(measures)
-            >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, music)
+            >>> measures = measuretools.replace_contents_of_measures_in_expr(
+            ...     staff, music)
 
         ::
 
@@ -179,9 +195,12 @@ class EqualDivisionRhythmMaker(RhythmMaker):
             >>> divisions = [(1, 2), (3, 8), (5, 16)]
             >>> tuplet_lists = reversed_maker(divisions)
             >>> music = sequencetools.flatten_sequence(tuplet_lists)
-            >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(divisions)
+            >>> measures = \
+            ...     measuretools.make_measures_with_full_measure_spacer_skips(
+            ...     divisions)
             >>> staff = stafftools.RhythmicStaff(measures)
-            >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, music)
+            >>> measures = measuretools.replace_contents_of_measures_in_expr(
+            ...     staff, music)
 
         ::
 
