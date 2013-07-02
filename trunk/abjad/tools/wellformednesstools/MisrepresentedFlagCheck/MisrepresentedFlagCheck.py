@@ -14,11 +14,13 @@ class MisrepresentedFlagCheck(Check):
             left = getattr(leaf.set, 'stem_left_beam_count', None)
             right = getattr(leaf.set, 'stem_right_beam_count', None)
             if left is not None:
-                if flags < left or (left < flags and right not in (flags, None)):
+                if flags < left or \
+                    (left < flags and right not in (flags, None)):
                     if leaf not in violators:
                         violators.append(leaf)
             if right is not None:
-                if flags < right or (right < flags and left not in (flags, None)):
+                if flags < right or \
+                    (right < flags and left not in (flags, None)):
                     if leaf not in violators:
                         violators.append(leaf)
         return violators, total

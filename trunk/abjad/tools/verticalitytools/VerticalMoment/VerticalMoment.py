@@ -57,7 +57,11 @@ class VerticalMoment(Selection):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ('_components', '_governors', '_offset')
+    __slots__ = (
+        '_components',
+        '_governors',
+        '_offset',
+        )
 
     ### INITIALIZER ###
 
@@ -68,7 +72,7 @@ class VerticalMoment(Selection):
         object.__setattr__(self, '_offset', offset)
         object.__setattr__(self, '_governors', tuple(governors))
         components = list(components)
-        components.sort(lambda x, y: cmp(x.parentage.score_index, y.parentage.score_index))
+        components.sort(key=lambda x: x.parentage.score_index)
         object.__setattr__(self, '_components', tuple(components))
 
     ### SPECIAL METHODS ###
@@ -97,7 +101,11 @@ class VerticalMoment(Selection):
         return not self == expr
 
     def __repr__(self):
-        return '%s(%s, <<%s>>)' % (self._class_name, self.offset, len(self.leaves))
+        return '%s(%s, <<%s>>)' % (
+            self._class_name,
+            self.offset,
+            len(self.leaves),
+            )
 
     ### PRIVATE PROPERTIES ###
 
@@ -123,19 +131,22 @@ class VerticalMoment(Selection):
         happening at vertical moment.
 
         It is always the case that ``self.components =
-        self.overlap_components + self.start_components``.'''
+        self.overlap_components + self.start_components``.
+        '''
         return self._components
 
     @property
     def governors(self):
         '''Read-only tuple of one or more containers
-        in which vertical moment is evaluated.'''
+        in which vertical moment is evaluated.
+        '''
         return self._governors
 
     @property
     def leaves(self):
         '''Read-only tuple of zero or more leaves
-        at vertical moment.'''
+        at vertical moment.
+        '''
         result = []
         for component in self.components:
             if isinstance(component, leaftools.Leaf):
@@ -146,7 +157,8 @@ class VerticalMoment(Selection):
     @property
     def measures(self):
         '''Read-only tuplet of zero or more measures
-        at vertical moment.'''
+        at vertical moment.
+        '''
         result = []
         for component in self.components:
             if isinstance(component, measuretools.Measure):
@@ -163,8 +175,11 @@ class VerticalMoment(Selection):
         for leaf in self.leaves[1:]:
             if leaf.stop < candidate_shortest_leaf.stop:
                 candidate_shortest_leaf = leaf
-        next_leaf = componenttools.get_nth_namesake_from_component(candidate_shortest_leaf, 1)
-        next_vertical_moment = verticalitytools.get_vertical_moment_starting_with_component(next_leaf)
+        next_leaf = componenttools.get_nth_namesake_from_component(
+            candidate_shortest_leaf, 1)
+        next_vertical_moment = \
+            verticalitytools.get_vertical_moment_starting_with_component(
+                next_leaf)
         return next_vertical_moment
 
     @property
@@ -174,17 +189,21 @@ class VerticalMoment(Selection):
         from abjad.tools import verticalitytools
         candidate_shortest_leaf = self.leaves[0]
         for leaf in self.leaves[1:]:
-            if leaf.timespan.stop_offset < candidate_shortest_leaf.timespan.stop_offset:
+            if leaf.timespan.stop_offset < \
+                candidate_shortest_leaf.timespan.stop_offset:
                 candidate_shortest_leaf = leaf
-        next_leaf = componenttools.get_nth_namesake_from_component(candidate_shortest_leaf, 1)
-        next_vertical_moment = verticalitytools.get_vertical_moment_starting_with_component(
+        next_leaf = componenttools.get_nth_namesake_from_component(
+            candidate_shortest_leaf, 1)
+        next_vertical_moment = \
+            verticalitytools.get_vertical_moment_starting_with_component(
             next_leaf)
         return next_vertical_moment
 
     @property
     def notes(self):
         '''Read-only tuple of zero or more notes
-        at vertical moment.'''
+        at vertical moment.
+        '''
         result = []
         for component in self.components:
             if isinstance(component, notetools.Note):
@@ -195,13 +214,15 @@ class VerticalMoment(Selection):
     @property
     def offset(self):
         '''Read-only rational-valued score offset
-        at which vertical moment is evaluated.'''
+        at which vertical moment is evaluated.
+        '''
         return self._offset
 
     @property
     def overlap_components(self):
         '''Read-only tuple of components in vertical moment
-        starting before vertical moment, ordered by score index.'''
+        starting before vertical moment, ordered by score index.
+        '''
         result = []
         for component in self.components:
             if component.start < self.offset:
@@ -212,24 +233,30 @@ class VerticalMoment(Selection):
     @property
     def overlap_leaves(self):
         '''Read-only tuple of leaves in vertical moment
-        starting before vertical moment, ordered by score index.'''
-        result = [x for x in self.overlap_components if isinstance(x, leaftools.Leaf)]
+        starting before vertical moment, ordered by score index.
+        '''
+        result = [x for x in self.overlap_components 
+            if isinstance(x, leaftools.Leaf)]
         result = tuple(result)
         return result
 
     @property
     def overlap_measures(self):
         '''Read-only tuple of measures in vertical moment
-        starting before vertical moment, ordered by score index.'''
-        result = [x for x in self.overlap_components if isinstance(x, measuretools.Measure)]
+        starting before vertical moment, ordered by score index.
+        '''
+        result = [x for x in self.overlap_components 
+            if isinstance(x, measuretools.Measure)]
         result = tuple(result)
         return result
 
     @property
     def overlap_notes(self):
         '''Read-only tuple of notes in vertical moment
-        starting before vertical moment, ordered by score index.'''
-        result = [x for x in self.overlap_components if isinstance(x, notetools.Note)]
+        starting before vertical moment, ordered by score index.
+        '''
+        result = [x for x in self.overlap_components 
+            if isinstance(x, notetools.Note)]
         result = tuple(result)
         return result
 
@@ -254,7 +281,9 @@ class VerticalMoment(Selection):
             else:
                 #print 'found leaf starting on this moment ...'
                 try:
-                    previous_leaf = componenttools.get_nth_namesake_from_component(leaf, -1)
+                    previous_leaf = \
+                        componenttools.get_nth_namesake_from_component(
+                            leaf, -1)
                     start = previous_leaf.timespan.start_offset
                     #print previous_leaf, start
                     if most_recent_start_offset <= start:
@@ -266,14 +295,16 @@ class VerticalMoment(Selection):
         if token_leaf is None:
             token_leaf = leaf
             #print 'token_leaf is %s ...' % token_leaf
-        previous_vertical_moment = verticalitytools.get_vertical_moment_starting_with_component(
+        previous_vertical_moment = \
+            verticalitytools.get_vertical_moment_starting_with_component(
             token_leaf)
         return previous_vertical_moment
 
     @property
     def start_components(self):
         '''Read-only tuple of components in vertical moment
-        starting with at vertical moment, ordered by score index.'''
+        starting with at vertical moment, ordered by score index.
+        '''
         result = []
         for component in self.components:
             if component.timespan.start_offset == self.offset:
@@ -284,15 +315,19 @@ class VerticalMoment(Selection):
     @property
     def start_leaves(self):
         '''Read-only tuple of leaves in vertical moment
-        starting with vertical moment, ordered by score index.'''
-        result = [x for x in self.start_components if isinstance(x, leaftools.Leaf)]
+        starting with vertical moment, ordered by score index.
+        '''
+        result = [x for x in self.start_components 
+            if isinstance(x, leaftools.Leaf)]
         result = tuple(result)
         return result
 
     @property
     def start_notes(self):
         '''Read-only tuple of notes in vertical moment
-        starting with vertical moment, ordered by score index.'''
-        result = [x for x in self.start_components if isinstance(x, notetools.Note)]
+        starting with vertical moment, ordered by score index.
+        '''
+        result = [x for x in self.start_components 
+            if isinstance(x, notetools.Note)]
         result = tuple(result)
         return result

@@ -4,7 +4,8 @@ from abjad.tools.wellformednesstools.Check import Check
 
 
 class MisduratedMeasureCheck(Check):
-    '''Does the (pre)prolated duration of the measure match its time signature?
+    '''Does the (pre)prolated duration of the measure match its 
+    time signature?
     '''
 
     def _run(self, expr):
@@ -12,7 +13,9 @@ class MisduratedMeasureCheck(Check):
         total, bad = 0, 0
         for measure in iterationtools.iterate_measures_in_expr(expr):
             if contexttools.get_effective_time_signature(measure) is not None:
-                if measure.preprolated_duration != contexttools.get_effective_time_signature(measure).duration:
+                if measure.preprolated_duration != \
+                    contexttools.get_effective_time_signature(
+                    measure).duration:
                     violators.append(measure)
                     bad += 1
             total += 1

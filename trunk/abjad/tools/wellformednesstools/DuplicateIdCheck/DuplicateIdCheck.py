@@ -13,5 +13,6 @@ class DuplicateIdCheck(Check):
         if len(unique_ids) < len(total_ids):
             for current_id in unique_ids:
                 if 1 < total_ids.count(current_id):
-                    violators.extend([x for x in components if id(x) == current_id])
+                    violators.extend([x for x in components 
+                        if id(x) == current_id])
         return violators, len(total_ids)
