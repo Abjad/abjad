@@ -15,7 +15,8 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
 
     ::
 
-        >>> template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
+        >>> template = \
+        ...     scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
         ...     staff_count=4)
         >>> score = template()
 
@@ -53,7 +54,8 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
 
     ::
 
-        >>> template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
+        >>> template = \
+        ...     scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
         ...     staff_count=[2, 1, 2])
         >>> score = template()
 

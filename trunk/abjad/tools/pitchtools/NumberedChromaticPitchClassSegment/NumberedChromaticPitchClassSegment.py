@@ -9,8 +9,9 @@ class NumberedChromaticPitchClassSegment(PitchClassSegment):
 
     ::
 
-        >>> pitchtools.NumberedChromaticPitchClassSegment(
+        >>> segment = pitchtools.NumberedChromaticPitchClassSegment(
         ...     [-2, -1.5, 6, 7, -1.5, 7])
+        >>> segment
         NumberedChromaticPitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
 
     Numbered chromatic pitch-class segments are immutable.
@@ -56,11 +57,6 @@ class NumberedChromaticPitchClassSegment(PitchClassSegment):
     @property
     def inversion_equivalent_chromatic_interval_class_segment(self):
         '''Read-only inversion-equivalent chromatic interval-class segment:
-
-        ::
-
-            >>> segment = pitchtools.NumberedChromaticPitchClassSegment(
-            ...     [10, 10.5, 6, 7, 10.5, 7])
 
         ::
 

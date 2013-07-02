@@ -810,7 +810,8 @@ class TimespanInventory(ObjectInventory):
         ::
 
             >>> timespan_1 = timespantools.Timespan(2, 5)
-            >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1(
+            >>> time_relation = \
+            ...     timerelationtools.timespan_2_starts_during_timespan_1(
             ...     timespan_1=timespan_1)
 
         ::
@@ -819,14 +820,14 @@ class TimespanInventory(ObjectInventory):
             ...     time_relation)
             Timespan(start_offset=Offset(3, 1), stop_offset=Offset(6, 1))
 
-        Return timespan when timespan inventory contains exactly one timespan
-        that satisfies `time_relation`.
+        Return timespan when timespan inventory contains exactly one 
+        timespan that satisfies `time_relation`.
 
         Raise exception when timespan inventory contains no timespan
         that satisfies `time_relation`.
 
-        Raise exception when timespan inventory contains more than one timespan
-        that satisfies `time_relation`.
+        Raise exception when timespan inventory contains more than one 
+        timespan that satisfies `time_relation`.
         '''
         timespans = self.get_timespans_that_satisfy_time_relation(
             time_relation)
@@ -843,12 +844,14 @@ class TimespanInventory(ObjectInventory):
         ::
 
             >>> timespan_1 = timespantools.Timespan(2, 8)
-            >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1(
+            >>> time_relation = \
+            ...     timerelationtools.timespan_2_starts_during_timespan_1(
             ...     timespan_1=timespan_1)
 
         ::
 
-            >>> result = timespan_inventory_1.get_timespans_that_satisfy_time_relation(
+            >>> result = \
+            ...     timespan_inventory_1.get_timespans_that_satisfy_time_relation(
             ...     time_relation)
 
         ::
@@ -891,7 +894,8 @@ class TimespanInventory(ObjectInventory):
         ::
 
             >>> timespan_1 = timespantools.Timespan(2, 8)
-            >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1(
+            >>> time_relation = \
+            ...     timerelationtools.timespan_2_starts_during_timespan_1(
             ...     timespan_1=timespan_1)
 
         ::
@@ -905,7 +909,8 @@ class TimespanInventory(ObjectInventory):
         ::
 
             >>> timespan_1 = timespantools.Timespan(10, 20)
-            >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1(
+            >>> time_relation = \
+            ...     timerelationtools.timespan_2_starts_during_timespan_1(
             ...     timespan_1=timespan_1)
 
         ::

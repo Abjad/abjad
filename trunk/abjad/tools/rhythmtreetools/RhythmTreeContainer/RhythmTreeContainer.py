@@ -12,15 +12,16 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
 
     ::
 
-        >>> container = rhythmtreetools.RhythmTreeContainer(preprolated_duration=1, children=[])
+        >>> container = rhythmtreetools.RhythmTreeContainer(
+        ...     preprolated_duration=1, children=[])
         >>> container
         RhythmTreeContainer(
             preprolated_duration=Duration(1, 1)
             )
 
-    Similar to Abjad containers, `RhythmTreeContainer` supports a list interface,
-    and can be appended, extended, indexed and so forth by other `RhythmTreeNode`
-    subclasses:
+    Similar to Abjad containers, `RhythmTreeContainer` supports a list 
+    interface, and can be appended, extended, indexed and so forth 
+    by other `RhythmTreeNode` subclasses:
 
     ::
 
@@ -44,8 +45,10 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
 
     ::
 
-        >>> another_container = rhythmtreetools.RhythmTreeContainer(preprolated_duration=2)
-        >>> another_container.append(rhythmtreetools.RhythmTreeLeaf(preprolated_duration=3))
+        >>> another_container = rhythmtreetools.RhythmTreeContainer(
+        ...     preprolated_duration=2)
+        >>> another_container.append(
+        ...     rhythmtreetools.RhythmTreeLeaf(preprolated_duration=3))
         >>> another_container.append(container[1])
         >>> container.append(another_container)
         >>> container

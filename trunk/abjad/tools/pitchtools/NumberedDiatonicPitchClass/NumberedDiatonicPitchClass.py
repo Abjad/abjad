@@ -9,7 +9,8 @@ class NumberedDiatonicPitchClass(NumberedPitchClass, DiatonicPitchClass):
 
     ::
 
-        >>> pitchtools.NumberedDiatonicPitchClass(0)
+        >>> pc = pitchtools.NumberedDiatonicPitchClass(0)
+        >>> pc
         NumberedDiatonicPitchClass(0)
 
     Numbered diatonic pitch-classes are immutable.
@@ -66,9 +67,7 @@ class NumberedDiatonicPitchClass(NumberedPitchClass, DiatonicPitchClass):
 
         ::
 
-            >>> numbered_diatonic_pitch_class = \
-            ...     pitchtools.NumberedDiatonicPitchClass(0)
-            >>> numbered_diatonic_pitch_class.named_diatonic_pitch_class
+            >>> pc.named_diatonic_pitch_class
             NamedDiatonicPitchClass('c')
 
         Return named diatonic pitch-class.

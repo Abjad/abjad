@@ -13,7 +13,8 @@ class Quantizer(AbjadObject):
 
         >>> durations = [1000] * 8
         >>> pitches = range(8)
-        >>> q_event_sequence = quantizationtools.QEventSequence.from_millisecond_pitch_pairs(
+        >>> q_event_sequence = \
+        ...     quantizationtools.QEventSequence.from_millisecond_pitch_pairs(
         ...     zip(durations, pitches))
 
     Quantization defaults to outputting into a 4/4, quarter=60 musical
@@ -122,10 +123,10 @@ class Quantizer(AbjadObject):
 
         >>> show(score) # doctest: +SKIP
 
-    Here we quantize using settings specified by a ``BeatwiseQSchema``, which
-    keeps the output of the quantizer "flattened", without measures or explicit
-    time signatures.  The default beat-wise settings of quarter=60 persists 
-    until the third "beatspan":
+    Here we quantize using settings specified by a ``BeatwiseQSchema``, 
+    which keeps the output of the quantizer "flattened", without measures or 
+    explicit time signatures.  The default beat-wise settings of quarter=60 
+    persists until the third "beatspan":
 
     ::
 
@@ -190,8 +191,9 @@ class Quantizer(AbjadObject):
           the ``DistanceHeuristic`` class.
 
         * ``job_handler``: a ``JobHandler`` instance controls whether or not
-          parallel processing is used during the quantization process.  Options
-          include the ``SerialJobHandler`` and ``ParallelJobHandler`` classes.
+          parallel processing is used during the quantization process.  
+          Options include the ``SerialJobHandler`` and ``ParallelJobHandler`` 
+          classes.
 
         * ``attack_point_optimizer``: an ``AttackPointOptimizer`` instance 
           controls whether and how tie chains are re-notated.  

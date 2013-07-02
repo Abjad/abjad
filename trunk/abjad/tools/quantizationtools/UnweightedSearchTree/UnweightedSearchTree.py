@@ -61,8 +61,9 @@ class UnweightedSearchTree(SearchTree):
         (1 (1 1 1 1 1 1 1 1 1 1 1))
         (1 (1 1 1 1 1 1 1 1 1 1 1 1 1))
 
-    A custom ``UnweightedSearchTree`` may be defined by passing in a dictionary,
-    as described above.  The following search tree only permits divisions of 
+    A custom ``UnweightedSearchTree`` may be defined by passing in a 
+    dictionary, as described above.
+    The following search tree only permits divisions of 
     the root node into ``2s`` and ``3s``, and if divided into ``2``, 
     a node may be divided once more into ``2`` parts:
 

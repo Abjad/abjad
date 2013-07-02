@@ -10,7 +10,8 @@ class RhythmTreeLeaf(RhythmTreeNode):
 
     ::
 
-        >>> leaf = rhythmtreetools.RhythmTreeLeaf(preprolated_duration=5, is_pitched=True)
+        >>> leaf = rhythmtreetools.RhythmTreeLeaf(
+        ...     preprolated_duration=5, is_pitched=True)
         >>> leaf
         RhythmTreeLeaf(
             preprolated_duration=Duration(5, 1),
@@ -29,7 +30,8 @@ class RhythmTreeLeaf(RhythmTreeNode):
 
     ::
 
-        >>> rhythmtreetools.RhythmTreeLeaf(preprolated_duration=7, is_pitched=False)((1, 16))
+        >>> rhythmtreetools.RhythmTreeLeaf(
+        ...     preprolated_duration=7, is_pitched=False)((1, 16))
         [Rest('r4..')]
 
     Return `RhythmTreeLeaf`.
@@ -37,8 +39,17 @@ class RhythmTreeLeaf(RhythmTreeNode):
 
     ### INITIALIZER ###
 
-    def __init__(self, preprolated_duration=1, is_pitched=True, name=None):
-        RhythmTreeNode.__init__(self, preprolated_duration=preprolated_duration, name=name)
+    def __init__(
+        self,
+        preprolated_duration=1,
+        is_pitched=True,
+        name=None,
+        ):
+        RhythmTreeNode.__init__(
+            self,
+            preprolated_duration=preprolated_duration,
+            name=name,
+            )
         self.is_pitched = is_pitched
 
     ### SPECIAL METHODS ###

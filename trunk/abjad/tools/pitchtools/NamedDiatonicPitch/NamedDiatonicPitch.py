@@ -8,16 +8,16 @@ class NamedDiatonicPitch(DiatonicPitch):
 
     ::
 
-        >>> named_diatonic_pitch = pitchtools.NamedDiatonicPitch("c''")
+        >>> pitch = pitchtools.NamedDiatonicPitch("c''")
 
     ::
 
-        >>> named_diatonic_pitch
+        >>> pitch
         NamedDiatonicPitch("c''")
 
     ::
 
-        >>> print named_diatonic_pitch
+        >>> print pitch
         c''
 
     Named diatonic pitches are immutable.
@@ -82,7 +82,7 @@ class NamedDiatonicPitch(DiatonicPitch):
 
         ::
 
-            >>> pitchtools.NamedDiatonicPitch("c''").chromatic_pitch_class_name
+            >>> pitch.chromatic_pitch_class_name
             'c'
 
         Return string.
@@ -97,7 +97,7 @@ class NamedDiatonicPitch(DiatonicPitch):
 
         ::
 
-            >>> pitchtools.NamedDiatonicPitch("c''").chromatic_pitch_class_number
+            >>> pitch.chromatic_pitch_class_number
             0
 
         Return integer.
@@ -112,7 +112,7 @@ class NamedDiatonicPitch(DiatonicPitch):
 
         ::
 
-            >>> pitchtools.NamedDiatonicPitch("c''").chromatic_pitch_name
+            >>> pitch.chromatic_pitch_name
             "c''"
 
         Return string.
@@ -127,7 +127,7 @@ class NamedDiatonicPitch(DiatonicPitch):
 
         ::
 
-            >>> pitchtools.NamedDiatonicPitch("c''").chromatic_pitch_number
+            >>> pitch.chromatic_pitch_number
             12
 
         Return integer.
@@ -142,7 +142,7 @@ class NamedDiatonicPitch(DiatonicPitch):
 
         ::
 
-            >>> pitchtools.NamedDiatonicPitch("c''").diatonic_pitch_class_name
+            >>> pitch.diatonic_pitch_class_name
             'c'
 
         Return string.
@@ -157,7 +157,7 @@ class NamedDiatonicPitch(DiatonicPitch):
 
         ::
 
-            >>> pitchtools.NamedDiatonicPitch("c''").diatonic_pitch_class_number
+            >>> pitch.diatonic_pitch_class_number
             0
 
         Return integer.
@@ -172,7 +172,7 @@ class NamedDiatonicPitch(DiatonicPitch):
 
         ::
 
-            >>> pitchtools.NamedDiatonicPitch("c''").diatonic_pitch_name
+            >>> pitch.diatonic_pitch_name
             "c''"
 
         Return string.
@@ -185,7 +185,7 @@ class NamedDiatonicPitch(DiatonicPitch):
 
         ::
 
-            >>> pitchtools.NamedDiatonicPitch("c''").diatonic_pitch_number
+            >>> pitch.diatonic_pitch_number
             7
 
         Return integer.
@@ -200,7 +200,7 @@ class NamedDiatonicPitch(DiatonicPitch):
 
         ::
 
-            >>> pitchtools.NamedDiatonicPitch("c''").lilypond_format
+            >>> pitch.lilypond_format
             "c''"
 
         Return string.
@@ -213,7 +213,7 @@ class NamedDiatonicPitch(DiatonicPitch):
 
         ::
 
-            >>> pitchtools.NamedDiatonicPitch("c''").named_chromatic_pitch
+            >>> pitch.named_chromatic_pitch
             NamedChromaticPitch("c''")
 
         Return named chromatic pitch.
@@ -227,7 +227,7 @@ class NamedDiatonicPitch(DiatonicPitch):
 
         ::
 
-            >>> pitchtools.NamedDiatonicPitch("c''").named_chromatic_pitch_class
+            >>> pitch.named_chromatic_pitch_class
             NamedChromaticPitchClass('c')
 
         Return named chromatic pitch-class.
@@ -242,7 +242,7 @@ class NamedDiatonicPitch(DiatonicPitch):
 
         ::
 
-            >>> pitchtools.NamedDiatonicPitch("c''").named_diatonic_pitch_class
+            >>> pitch.named_diatonic_pitch_class
             NamedDiatonicPitchClass('c')
 
         Return named diatonic pitch-class.
@@ -258,7 +258,7 @@ class NamedDiatonicPitch(DiatonicPitch):
 
         ::
 
-            >>> pitchtools.NamedDiatonicPitch("c''").numbered_chromatic_pitch
+            >>> pitch.numbered_chromatic_pitch
             NumberedChromaticPitch(12)
 
         Return numbered chromatic pitch.
@@ -272,7 +272,7 @@ class NamedDiatonicPitch(DiatonicPitch):
 
         ::
 
-            >>> pitchtools.NamedDiatonicPitch("c''").numbered_chromatic_pitch_class
+            >>> pitch.numbered_chromatic_pitch_class
             NumberedChromaticPitchClass(0)
 
         Return numbered chromatic pitch-class.
@@ -287,7 +287,7 @@ class NamedDiatonicPitch(DiatonicPitch):
 
         ::
 
-            >>> pitchtools.NamedDiatonicPitch("c''").numbered_diatonic_pitch
+            >>> pitch.numbered_diatonic_pitch
             NumberedDiatonicPitch(7)
 
         Return numbered diatonic pitch.
@@ -302,7 +302,7 @@ class NamedDiatonicPitch(DiatonicPitch):
 
         ::
 
-            >>> pitchtools.NamedDiatonicPitch("c''").numbered_diatonic_pitch_class
+            >>> pitch.numbered_diatonic_pitch_class
             NumberedDiatonicPitchClass(0)
 
         Return numbered diatonic pitch-class.

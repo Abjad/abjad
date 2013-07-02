@@ -117,8 +117,9 @@ class SearchTree(AbjadObject):
                 leaf_two.preceding_q_event_proxies) and \
                 leaf_one.is_divisible:
                 if len(leaf_one.q_event_proxies) == 1 and \
-                    leaf_one.q_event_proxies[0].offset == leaf_one.start_offset:
-                    pass # a perfect match, don't bother to continue subdivision
+                    leaf_one.q_event_proxies[0].offset == \
+                        leaf_one.start_offset:
+                    pass # perfect match, don't bother to continue subdivision
                 else:
                     parentage_ratios = leaf_one.parentage_ratios
                     leaf_subdivisions = \

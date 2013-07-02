@@ -107,9 +107,10 @@ class RhythmTreeNode(TreeNode):
         '''A sequence describing the relative durations of the nodes in a
         node's improper parentage.
 
-        The first item in the sequence is the preprolated_duration of the root node, and
-        subsequent items are pairs of the preprolated_duration of the next node in the
-        parentage chain and the total preprolated_duration of that node and its siblings:
+        The first item in the sequence is the preprolated_duration of 
+        the root node, and subsequent items are pairs of the 
+        preprolated duration of the next node in the parentage chain and 
+        the total preprolated_duration of that node and its siblings:
 
 
         ::
@@ -155,7 +156,8 @@ class RhythmTreeNode(TreeNode):
         result = []
         node = self
         while node.parent is not None:
-            result.append((node.preprolated_duration, node.parent.contents_duration))
+            result.append(
+                (node.preprolated_duration, node.parent.contents_duration))
             node = node.parent
         result.append(node.preprolated_duration)
         return tuple(reversed(result))
@@ -218,8 +220,10 @@ class RhythmTreeNode(TreeNode):
     def prolations(self):
         prolations = [durationtools.Multiplier(1)]
         improper_parentage = self.improper_parentage
-        for child, parent in sequencetools.iterate_sequence_pairwise_strict(improper_parentage):
-            prolations.append(durationtools.Multiplier(parent.preprolated_duration, parent.contents_duration))
+        for child, parent in \
+            sequencetools.iterate_sequence_pairwise_strict(improper_parentage):
+            prolations.append(durationtools.Multiplier(
+                parent.preprolated_duration, parent.contents_duration))
         return tuple(prolations)
 
     @abc.abstractproperty

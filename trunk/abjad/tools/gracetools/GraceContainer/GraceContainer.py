@@ -45,7 +45,8 @@ class GraceContainer(Container):
     ::
 
         >>> after_grace_notes = [Note("e'16"), Note("f'16")]
-        >>> gracetools.GraceContainer(after_grace_notes, kind='after')(voice[1])
+        >>> gracetools.GraceContainer(
+        ...     after_grace_notes, kind='after')(voice[1])
         Note("d'8")
 
     ::
@@ -72,8 +73,7 @@ class GraceContainer(Container):
 
     Grace containers override the special ``__call__`` method.
 
-    Use ``GraceContainer()`` to attach grace containers to nongrace 
-    notes, rests and chords.
+    Attach grace containers to nongrace notes, rests and chords.
     '''
 
     ### CLASS VARIABLES ###
@@ -139,7 +139,8 @@ class GraceContainer(Container):
             ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> gracetools.GraceContainer([Note("cs'16")], kind = 'grace')(staff[1])
+                >>> gracetools.GraceContainer(
+                ...     [Note("cs'16")], kind = 'grace')(staff[1])
                 Note("d'8")
                 >>> grace_container = staff[1].grace
                 >>> grace_container.kind
@@ -152,7 +153,8 @@ class GraceContainer(Container):
             ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> gracetools.GraceContainer([Note("cs'16")], kind = 'grace')(staff[1])
+                >>> gracetools.GraceContainer(
+                ...     [Note("cs'16")], kind = 'grace')(staff[1])
                 Note("d'8")
                 >>> grace_container = staff[1].grace
                 >>> grace_container.kind = 'acciaccatura'
@@ -166,7 +168,12 @@ class GraceContainer(Container):
             '''
             return self._kind
         def fset(self, arg):
-            assert arg in ('after', 'grace', 'acciaccatura', 'appoggiatura')
+            assert arg in (
+                'after',
+                'grace',
+                'acciaccatura',
+                'appoggiatura',
+                )
             self._kind = arg
         return property(**locals())
 

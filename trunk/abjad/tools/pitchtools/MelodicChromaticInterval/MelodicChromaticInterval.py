@@ -10,7 +10,8 @@ class MelodicChromaticInterval(ChromaticInterval, MelodicInterval):
 
     ::
 
-        >>> pitchtools.MelodicChromaticInterval(-14)
+        >>> mci = pitchtools.MelodicChromaticInterval(-14)
+        >>> mci
         MelodicChromaticInterval(-14)
 
     Melodic chromatic intervals are immutable.
@@ -91,7 +92,7 @@ class MelodicChromaticInterval(ChromaticInterval, MelodicInterval):
 
         ::
 
-            >>> pitchtools.MelodicChromaticInterval(-14).chromatic_interval_number
+            >>> mci.chromatic_interval_number
             -14
 
         Return integer or float.
@@ -104,7 +105,7 @@ class MelodicChromaticInterval(ChromaticInterval, MelodicInterval):
 
         ::
 
-            >>> pitchtools.MelodicChromaticInterval(-14).direction_number
+            >>> mci.direction_number
             -1
 
         Return integer.
@@ -117,7 +118,7 @@ class MelodicChromaticInterval(ChromaticInterval, MelodicInterval):
 
         ::
 
-            >>> pitchtools.MelodicChromaticInterval(-14).harmonic_chromatic_interval
+            >>> mci.harmonic_chromatic_interval
             HarmonicChromaticInterval(14)
 
         Return harmonic chromatic interval.
@@ -132,7 +133,7 @@ class MelodicChromaticInterval(ChromaticInterval, MelodicInterval):
 
         ::
 
-            >>> pitchtools.MelodicChromaticInterval(-14).melodic_chromatic_interval_class
+            >>> mci.melodic_chromatic_interval_class
             MelodicChromaticIntervalClass(-2)
 
         Return melodic chromatic interval-class.

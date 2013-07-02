@@ -25,10 +25,14 @@ class HarmonicDiatonicIntervalClass(
                 quality_string = args[0]._quality_string
                 number = args[0].number
             elif isinstance(args[0], str):
-                match = melodic_diatonic_interval_abbreviation_regex.match(args[0])
+                match = \
+                    melodic_diatonic_interval_abbreviation_regex.match(args[0])
                 if match is None:
-                    raise ValueError('"%s" does not have the form of an hdic abbreviation.' % args[0])
-                direction_string, quality_abbreviation, number_string = match.groups()
+                    message = '"%s" does not have the form'
+                    message += ' of an hdic abbreviation.'
+                    raise ValueError(message % args[0])
+                direction_string, quality_abbreviation, number_string = \
+                    match.groups()
                 quality_string = \
                     DiatonicIntervalClass._quality_abbreviation_to_quality_string[
                         quality_abbreviation]

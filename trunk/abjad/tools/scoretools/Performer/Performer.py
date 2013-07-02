@@ -124,9 +124,8 @@ class Performer(AbjadObject):
 
         ::
 
-            >>> flutist = scoretools.Performer(name='flutist')
             >>> for likely_instrument in \
-            ...     flutist.likely_instruments_based_on_performer_name:
+            ...     performer.likely_instruments_based_on_performer_name:
             ...     likely_instrument.__name__
             ...
             'AltoFlute'
@@ -152,8 +151,7 @@ class Performer(AbjadObject):
 
         ::
 
-            >>> flutist = scoretools.Performer(name='flutist')
-            >>> flutist.most_likely_instrument_based_on_performer_name
+            >>> performer.most_likely_instrument_based_on_performer_name
             <class 'abjad.tools.instrumenttools.Flute.Flute.Flute'>
 
         Return instrument class.
@@ -168,10 +166,6 @@ class Performer(AbjadObject):
     def name():
         def fget(self):
             r'''Score name of performer:
-
-            ::
-
-                >>> performer = scoretools.Performer('flutist')
 
             ::
 

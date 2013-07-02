@@ -32,7 +32,6 @@ class Measure(FixedDurationContainer):
             f'8
         }
 
-    Return measure object.
     '''
 
     ### CLASS VARIABLES ###

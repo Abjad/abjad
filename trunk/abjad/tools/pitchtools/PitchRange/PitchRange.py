@@ -10,8 +10,16 @@ class PitchRange(AbjadObject):
 
     ::
 
-        >>> pitchtools.PitchRange(-12, 36)
-        PitchRange('[C3, C7]')
+        >>> pitch_range = pitchtools.PitchRange(-12, 36,
+        ...     pitch_range_name='four-octave range')
+        >>> z(pitch_range)
+        pitchtools.PitchRange(
+            '[C3, C7]',
+            pitch_range_name='four-octave range',
+            pitch_range_name_markup=markuptools.Markup((
+                'four-octave range',
+                ))
+            )
 
     Initalize from pitch numbers, pitch names, pitch instances, 
     one-line reprs or other pitch range objects.
@@ -284,7 +292,6 @@ class PitchRange(AbjadObject):
 
         ::
 
-            >>> pitch_range = pitchtools.PitchRange(-12, 36)
             >>> pitch_range.one_line_named_chromatic_pitch_repr
             '[C3, C7]'
 
@@ -303,11 +310,11 @@ class PitchRange(AbjadObject):
 
     @property
     def one_line_numbered_chromatic_pitch_repr(self):
-        r'''Read-only one-line numbered chromatic pitch repr of pitch of range:
+        r'''Read-only one-line numbered chromatic pitch repr 
+        of pitch of range:
 
         ::
 
-            >>> pitch_range = pitchtools.PitchRange(-12, 36)
             >>> pitch_range.one_line_numbered_chromatic_pitch_repr
             '[-12, 36]'
 
@@ -330,8 +337,6 @@ class PitchRange(AbjadObject):
 
         ::
 
-            >>> pitch_range = pitchtools.PitchRange(
-            ...     -12, 36, pitch_range_name='four-octave range')
             >>> pitch_range.pitch_range_name
             'four-octave range'
 
@@ -347,9 +352,6 @@ class PitchRange(AbjadObject):
 
         ::
 
-            >>> pitch_range = pitchtools.PitchRange(
-            ...     -12, 36, pitch_range_name_markup=markuptools.Markup(
-            ...     'four-octave range'))
             >>> pitch_range.pitch_range_name_markup
             Markup(('four-octave range',))
 
@@ -370,7 +372,6 @@ class PitchRange(AbjadObject):
 
         ::
 
-            >>> pitch_range = pitchtools.PitchRange(-12, 36)
             >>> pitch_range.start_pitch
             NamedChromaticPitch('c')
 
@@ -387,7 +388,6 @@ class PitchRange(AbjadObject):
 
         ::
 
-            >>> pitch_range = pitchtools.PitchRange(-12, 36)
             >>> pitch_range.start_pitch_is_included_in_range
             True
 
@@ -403,7 +403,6 @@ class PitchRange(AbjadObject):
 
         ::
 
-            >>> pitch_range = pitchtools.PitchRange(-12, 36)
             >>> pitch_range.stop_pitch
             NamedChromaticPitch("c''''")
 
@@ -420,7 +419,6 @@ class PitchRange(AbjadObject):
 
         ::
 
-            >>> pitch_range = pitchtools.PitchRange(-12, 36)
             >>> pitch_range.stop_pitch_is_included_in_range
             True
 

@@ -13,7 +13,8 @@ class Piano(KeyboardInstrument):
 
     ::
 
-        >>> piano_staff = scoretools.PianoStaff([Staff("c'8 d'8 e'8 f'8"), Staff("c'4 b4")])
+        >>> piano_staff = scoretools.PianoStaff(
+        ...     [Staff("c'8 d'8 e'8 f'8"), Staff("c'4 b4")])
 
     ::
 

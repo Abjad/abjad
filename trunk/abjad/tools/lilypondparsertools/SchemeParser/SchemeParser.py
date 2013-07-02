@@ -232,7 +232,8 @@ class SchemeParser(abctools.Parser):
         self.cursor += len(t.value)
         t.cursor_end = self.cursor
         if self.debug:
-            print("SchemeParser-{}: Illegal character {!r}".format(id(self), t.value[0]))
+            print("SchemeParser-{}: Illegal character {!r}".format(
+                id(self), t.value[0]))
         #t.lexer.skip(1)
 
     t_quote_error = t_error
@@ -619,7 +620,8 @@ class SchemeParser(abctools.Parser):
     def p_error(self, p):
         if p:
             if self.debug:
-                print("SchemeParser-{}: Syntax error at {!r}".format(id(self), p.value))
+                print("SchemeParser-{}: Syntax error at {!r}".format(
+                    id(self), p.value))
             yacc.errok()
         else:
             if self.debug:

@@ -498,27 +498,32 @@ class NonreducedFraction(ImmutableAbjadObject, fractions.Fraction):
 
         ::
 
-            >>> mathtools.NonreducedFraction(4, 8).multiply_with_cross_cancelation((2, 3))
+            >>> fraction = mathtools.NonreducedFraction(4, 8)
+
+        ::
+
+            >>> fraction.multiply_with_cross_cancelation((2, 3))
             NonreducedFraction(4, 12)
 
         ::
 
-            >>> mathtools.NonreducedFraction(4, 8).multiply_with_cross_cancelation((4, 1))
+            >>> fraction.multiply_with_cross_cancelation((4, 1))
             NonreducedFraction(4, 2)
 
         ::
 
-            >>> mathtools.NonreducedFraction(4, 8).multiply_with_cross_cancelation((3, 5))
+            >>> fraction.multiply_with_cross_cancelation((3, 5))
             NonreducedFraction(12, 40)
 
         ::
 
-            >>> mathtools.NonreducedFraction(4, 8).multiply_with_cross_cancelation((6, 5))
+            >>> fraction.multiply_with_cross_cancelation((6, 5))
             NonreducedFraction(12, 20)
 
         ::
 
-            >>> mathtools.NonreducedFraction(5, 6).multiply_with_cross_cancelation((6, 5))
+            >>> fraction = mathtools.NonreducedFraction(5, 6)
+            >>> fraction.multiply_with_cross_cancelation((6, 5))
             NonreducedFraction(1, 1)
 
         Return nonreduced fraction.
@@ -564,22 +569,30 @@ class NonreducedFraction(ImmutableAbjadObject, fractions.Fraction):
 
         ::
 
-            >>> mathtools.NonreducedFraction(9, 16).multiply_with_numerator_preservation((2, 3))
+            >>> fraction = mathtools.NonreducedFraction(9, 16)
+
+        ::
+
+            >>> fraction.multiply_with_numerator_preservation((2, 3))
             NonreducedFraction(9, 24)
 
         ::
 
-            >>> mathtools.NonreducedFraction(9, 16).multiply_with_numerator_preservation((1, 2))
+            >>> fraction.multiply_with_numerator_preservation((1, 2))
             NonreducedFraction(9, 32)
 
         ::
 
-            >>> mathtools.NonreducedFraction(9, 16).multiply_with_numerator_preservation((5, 6))
+            >>> fraction.multiply_with_numerator_preservation((5, 6))
             NonreducedFraction(45, 96)
 
         ::
 
-            >>> mathtools.NonreducedFraction(3, 8).multiply_with_numerator_preservation((2, 3))
+            >>> fraction = mathtools.NonreducedFraction(3, 8)
+
+        ::
+
+            >>> fraction.multiply_with_numerator_preservation((2, 3))
             NonreducedFraction(3, 12)
 
         Return nonreduced fraction.
@@ -604,17 +617,25 @@ class NonreducedFraction(ImmutableAbjadObject, fractions.Fraction):
 
         ::
 
-            >>> mathtools.NonreducedFraction(3, 8).multiply_without_reducing((3, 3))
+            >>> fraction = mathtools.NonreducedFraction(3, 8)
+
+        ::
+
+            >>> fraction.multiply_without_reducing((3, 3))
             NonreducedFraction(9, 24)
 
         ::
 
-            >>> mathtools.NonreducedFraction(4, 8).multiply_without_reducing((4, 5))
+            >>> fraction = mathtools.NonreducedFraction(4, 8)
+
+        ::
+
+            >>> fraction.multiply_without_reducing((4, 5))
             NonreducedFraction(16, 40)
 
         ::
 
-            >>> mathtools.NonreducedFraction(4, 8).multiply_without_reducing((3, 4))
+            >>> fraction.multiply_without_reducing((3, 4))
             NonreducedFraction(12, 32)
 
         Return nonreduced fraction.
@@ -668,7 +689,11 @@ class NonreducedFraction(ImmutableAbjadObject, fractions.Fraction):
 
         ::
 
-            >>> mathtools.NonreducedFraction(3, 6).with_multiple_of_denominator(5)
+            >>> fraction = mathtools.NonreducedFraction(3, 6)
+
+        ::
+
+            >>> fraction.with_multiple_of_denominator(5)
             NonreducedFraction(5, 10)
 
         Return nonreduced fraction.

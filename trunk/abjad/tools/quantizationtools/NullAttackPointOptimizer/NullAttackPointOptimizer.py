@@ -1,6 +1,7 @@
 from abjad.tools.quantizationtools.AttackPointOptimizer \
 	import AttackPointOptimizer
 
+
 class NullAttackPointOptimizer(AttackPointOptimizer):
     '''Concrete ``AttackPointOptimizer`` subclass which performs
     no attack point optimization.

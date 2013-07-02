@@ -17,7 +17,6 @@ class PitchedQEvent(QEvent):
             attachments=()
             )
 
-    Return ``PitchedQEvent`` instance.
     '''
 
     ### CLASS VARIABLES ###

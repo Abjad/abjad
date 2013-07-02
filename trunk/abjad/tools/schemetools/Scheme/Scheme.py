@@ -6,26 +6,26 @@ class Scheme(AbjadObject):
 
     ::
 
-        >>> s = schemetools.Scheme(True)
-        >>> s.lilypond_format
+        >>> scheme = schemetools.Scheme(True)
+        >>> scheme.lilypond_format
         '##t'
 
     schemetools.Scheme can represent nested structures:
 
     ::
 
-        >>> s = schemetools.Scheme(
+        >>> scheme = schemetools.Scheme(
         ...     ('left', (1, 2, False)), ('right', (1, 2, 3.3)))
-        >>> s.lilypond_format
+        >>> scheme.lilypond_format
         '#((left (1 2 #f)) (right (1 2 3.3)))'
 
     schemetools.Scheme wraps variable-length arguments into a tuple:
 
     ::
 
-        >>> s = schemetools.Scheme(1, 2, 3)
-        >>> q = schemetools.Scheme((1, 2, 3))
-        >>> s.lilypond_format == q.lilypond_format
+        >>> scheme_1 = schemetools.Scheme(1, 2, 3)
+        >>> scheme_2 = schemetools.Scheme((1, 2, 3))
+        >>> scheme_1.lilypond_format == scheme_2.lilypond_format
         True
 
     schemetools.Scheme also takes an optional `quoting` keyword, 
@@ -34,16 +34,16 @@ class Scheme(AbjadObject):
 
     ::
 
-        >>> s = schemetools.Scheme((1, 2, 3), quoting="'#")
-        >>> s.lilypond_format
+        >>> scheme = schemetools.Scheme((1, 2, 3), quoting="'#")
+        >>> scheme.lilypond_format
         "#'#(1 2 3)"
 
     Scheme can also force quotes around strings which contain no whitespace:
 
     ::
 
-        >>> s = schemetools.Scheme('nospaces', force_quotes=True)
-        >>> f(s)
+        >>> scheme = schemetools.Scheme('nospaces', force_quotes=True)
+        >>> f(scheme)
         #"nospaces"
 
     The above is useful in certain \override situations, 
@@ -117,7 +117,8 @@ class Scheme(AbjadObject):
 
         ::
 
-            >>> schemetools.Scheme(True).lilypond_format
+            >>> scheme = schemetools.Scheme(True)
+            >>> scheme.lilypond_format
             '##t'
 
         Returns string.

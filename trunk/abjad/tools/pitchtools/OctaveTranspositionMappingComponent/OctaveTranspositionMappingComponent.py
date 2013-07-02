@@ -12,7 +12,8 @@ class OctaveTranspositionMappingComponent(AbjadObject):
 
     ::
 
-        >>> pitchtools.OctaveTranspositionMappingComponent('[A0, C8]', 15)
+        >>> mc = pitchtools.OctaveTranspositionMappingComponent('[A0, C8]', 15)
+        >>> mc
         OctaveTranspositionMappingComponent('[A0, C8]', 15)
 
     Initialize from input parameters separately, from a pair, from
@@ -116,10 +117,7 @@ class OctaveTranspositionMappingComponent(AbjadObject):
 
             ::
 
-                >>> mapping_component = \
-                ...     pitchtools.OctaveTranspositionMappingComponent(
-                ...     '[A0, C8]', 15)
-                >>> mapping_component.source_pitch_range
+                >>> mc.source_pitch_range
                 PitchRange('[A0, C8]')
 
             Return pitch range or none.
@@ -136,10 +134,7 @@ class OctaveTranspositionMappingComponent(AbjadObject):
 
             ::
 
-                >>> mapping_component = \
-                ...     pitchtools.OctaveTranspositionMappingComponent(
-                ...     '[A0, C8]', 15)
-                >>> mapping_component.target_octave_start_pitch
+                >>> mc.target_octave_start_pitch
                 NumberedChromaticPitch(15)
 
             Return numbered chromatic pitch or none.

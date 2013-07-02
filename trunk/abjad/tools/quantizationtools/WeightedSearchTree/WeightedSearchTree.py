@@ -14,7 +14,10 @@ class WeightedSearchTree(SearchTree):
 
         >>> search_tree
         WeightedSearchTree(
-            definition={   'divisors': (2, 3, 5, 7), 'max_depth': 3, 'max_divisions': 2}
+            definition={
+                'divisors': (2, 3, 5, 7), 
+                'max_depth': 3, 
+                'max_divisions': 2}
             )
 
     In ``WeightedSearchTree``'s definition:

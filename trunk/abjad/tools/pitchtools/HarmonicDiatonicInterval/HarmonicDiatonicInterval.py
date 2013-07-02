@@ -25,9 +25,11 @@ class HarmonicDiatonicInterval(DiatonicInterval, HarmonicInterval):
             _quality_string = args[0].quality_string
             _number = abs(args[0].number)
         elif len(args) == 1 and isinstance(args[0], str):
-            match = harmonic_diatonic_interval_abbreviation_regex.match(args[0])
+            match = \
+                harmonic_diatonic_interval_abbreviation_regex.match(args[0])
             if match is None:
-                raise ValueError('"%s" does not have the form of an hdi abbreviation.' % args[0])
+                message = '"%s" does not have the form of an hdi abbreviation.'
+                raise ValueError(message % args[0])
             quality_abbreviation, number_string = match.groups()
             _quality_string = \
                 DiatonicInterval._quality_abbreviation_to_quality_string[

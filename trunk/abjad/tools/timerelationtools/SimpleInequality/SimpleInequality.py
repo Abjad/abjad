@@ -390,7 +390,8 @@ class SimpleInequality(AbjadObject):
             'timespan_2.stop_offset <= timespan_1.stop_offset':
             try:
                 leftmost_index = 0
-                rightmost_index = self._find_index_gt(timespan_2_stop_offsets, timespan_1.stop_offset)
+                rightmost_index = self._find_index_gt(
+                    timespan_2_stop_offsets, timespan_1.stop_offset)
             except ValueError:
                 pass
         else:

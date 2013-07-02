@@ -22,7 +22,8 @@ class ContextBlock(AttributedBlock):
         >>> context_block.override.bar_number.transparent = True
         >>> scheme = schemetools.Scheme('end-of-line-invisible')
         >>> context_block.override.time_signature.break_visibility = scheme
-        >>> context_block.set.proportionalNotationDuration = schemetools.SchemeMoment((1, 45))
+        >>> context_block.set.proportionalNotationDuration = \
+        ...     schemetools.SchemeMoment((1, 45))
 
     ::
 

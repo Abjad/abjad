@@ -65,7 +65,9 @@ class WoodwindFingering(AbjadObject):
 
     ::
 
-        >>> instrument_names = ['piccolo', 'flute', 'oboe', 'clarinet', 'bass-clarinet', 'saxophone', 'bassoon', 'contrabassoon' ]
+        >>> instrument_names = [
+        ...     'piccolo', 'flute', 'oboe', 'clarinet', 'bass-clarinet', 
+        ...     'saxophone', 'bassoon', 'contrabassoon' ]
         >>> for name in instrument_names:
         ...    instrumenttools.WoodwindFingering(name)
         ...
@@ -83,10 +85,17 @@ class WoodwindFingering(AbjadObject):
     ::
 
         >>> chord = Chord("e' as' gqf''", (1,1))
-        >>> fingering = instrumenttools.WoodwindFingering('clarinet', center_column=['one', 'two', 'three', 'four'], left_hand=['R','cis'], right_hand=['fis'])
+        >>> fingering = instrumenttools.WoodwindFingering(
+        ...     'clarinet', 
+        ...     center_column=['one', 'two', 'three', 'four'], 
+        ...     left_hand=['R','cis'], 
+        ...     right_hand=['fis'])
         >>> diagram = fingering()
-        >>> not_graphical = markuptools.MarkupCommand('override', schemetools.SchemePair('graphical', False))
-        >>> markup = markuptools.Markup([not_graphical, diagram], direction=Down)
+        >>> not_graphical = markuptools.MarkupCommand(
+        ...     'override', 
+        ...     schemetools.SchemePair('graphical', False))
+        >>> markup = markuptools.Markup(
+        ...     [not_graphical, diagram], direction=Down)
         >>> markup.attach(chord)
         Markup((MarkupCommand('override', SchemePair(('graphical', False))), MarkupCommand('woodwind-diagram', Scheme('clarinet'), Scheme([SchemePair(('cc', ('one', 'two', 'three', 'four'))), SchemePair(('lh', ('R', 'cis'))), SchemePair(('rh', ('fis',)))]))), direction=Down)(<e' as' gqf''>1)
 
@@ -111,12 +120,21 @@ class WoodwindFingering(AbjadObject):
     ::
 
         >>> chord = Chord("e' as' gqf''", (1,1))
-        >>> fingering = instrumenttools.WoodwindFingering('clarinet', center_column=['one', 'two', 'three', 'four'], left_hand=['R','cis'], right_hand=['fis'])
+        >>> fingering = instrumenttools.WoodwindFingering(
+        ...     'clarinet', 
+        ...     center_column=['one', 'two', 'three', 'four'], 
+        ...     left_hand=['R','cis'], 
+        ...     right_hand=['fis'])
         >>> diagram = fingering()
-        >>> not_graphical = markuptools.MarkupCommand('override', schemetools.SchemePair('graphical', False))
-        >>> size = markuptools.MarkupCommand('override', schemetools.SchemePair('size', .5))
-        >>> thickness = markuptools.MarkupCommand('override', schemetools.SchemePair('thickness', .4))
-        >>> markup = markuptools.Markup([not_graphical, size, thickness, diagram], direction=Down)
+        >>> not_graphical = markuptools.MarkupCommand(
+        ...     'override', 
+        ...     schemetools.SchemePair('graphical', False))
+        >>> size = markuptools.MarkupCommand(
+        ...     'override', schemetools.SchemePair('size', .5))
+        >>> thickness = markuptools.MarkupCommand(
+        ...     'override', schemetools.SchemePair('thickness', .4))
+        >>> markup = markuptools.Markup(
+        ...     [not_graphical, size, thickness, diagram], direction=Down)
         >>> markup.attach(chord)
         Markup((MarkupCommand('override', SchemePair(('graphical', False))), MarkupCommand('override', SchemePair(('size', 0.5))), MarkupCommand('override', SchemePair(('thickness', 0.4))), MarkupCommand('woodwind-diagram', Scheme('clarinet'), Scheme([SchemePair(('cc', ('one', 'two', 'three', 'four'))), SchemePair(('lh', ('R', 'cis'))), SchemePair(('rh', ('fis',)))]))), direction=Down)(<e' as' gqf''>1)
 

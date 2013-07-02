@@ -20,8 +20,8 @@ class LilyPondGrobOverrideComponentPlugIn(LilyPondComponentPlugIn):
             try:
                 return vars(self)[name]
             except KeyError:
-                raise AttributeError('"%s" object has no attribute: "%s".' % (
-                    self.__class__.__name__, name))
+                message = '"%s" object has no attribute: "%s".'
+                raise AttributeError(message % (self.__class__.__name__, name))
         else:
             camel_name = stringtools.snake_case_to_upper_camel_case(name)
             if camel_name in ly.contexts:

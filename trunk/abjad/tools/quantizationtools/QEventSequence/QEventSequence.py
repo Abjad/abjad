@@ -27,7 +27,8 @@ class QEventSequence(tuple, ImmutableAbjadObject):
 
     ::
 
-        >>> sequence = quantizationtools.QEventSequence.from_millisecond_durations(
+        >>> sequence = \
+        ...     quantizationtools.QEventSequence.from_millisecond_durations(
         ...     durations)
 
     ::
@@ -166,7 +167,8 @@ class QEventSequence(tuple, ImmutableAbjadObject):
 
         ::
 
-            >>> sequence = quantizationtools.QEventSequence.from_millisecond_offsets(
+            >>> sequence = \
+            ...     quantizationtools.QEventSequence.from_millisecond_offsets(
             ...     offsets)
 
         ::
@@ -222,7 +224,8 @@ class QEventSequence(tuple, ImmutableAbjadObject):
 
         ::
 
-            >>> sequence = quantizationtools.QEventSequence.from_millisecond_pitch_pairs(
+            >>> sequence = \
+            ...     quantizationtools.QEventSequence.from_millisecond_pitch_pairs(
             ...     pairs)
 
         ::
@@ -275,7 +278,8 @@ class QEventSequence(tuple, ImmutableAbjadObject):
 
         ::
 
-            >>> sequence = quantizationtools.QEventSequence.from_tempo_scaled_durations(
+            >>> sequence = \
+            ...     quantizationtools.QEventSequence.from_tempo_scaled_durations(
             ...     durations, tempo=tempo)
 
         ::
@@ -323,7 +327,8 @@ class QEventSequence(tuple, ImmutableAbjadObject):
 
         ::
 
-            >>> sequence = quantizationtools.QEventSequence.from_tempo_scaled_leaves(
+            >>> sequence = \
+            ...     quantizationtools.QEventSequence.from_tempo_scaled_leaves(
             ...     staff.leaves, tempo=tempo)
 
         ::

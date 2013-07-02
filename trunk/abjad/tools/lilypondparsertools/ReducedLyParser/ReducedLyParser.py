@@ -35,8 +35,8 @@ class ReducedLyParser(abctools.Parser):
             <b d' fs'>16
         }
 
-    Also parses bare duration as notes on middle-C, and negative bare durations
-    as rests:
+    Also parses bare duration as notes on middle-C, and negative bare 
+    durations as rests:
 
     ::
 
@@ -351,7 +351,6 @@ class ReducedLyParser(abctools.Parser):
         '''
         duration_log = p[1]
         dots = '.' * p[2]
-        #duration = durationtools.Duration('{}{}'.format(abs(duration_log), dots))
         duration = durationtools.Duration.from_lilypond_duration_string(
             '{}{}'.format(abs(duration_log), dots))
         self._default_duration = duration
@@ -402,7 +401,6 @@ class ReducedLyParser(abctools.Parser):
         '''
         duration_log = p[1]
         dots = '.' * p[2]
-        #duration = durationtools.Duration('{}{}'.format(abs(duration_log), dots))
         duration = durationtools.Duration.from_lilypond_duration_string(
             '{}{}'.format(abs(duration_log), dots))
         self._default_duration = duration
@@ -517,7 +515,8 @@ class ReducedLyParser(abctools.Parser):
         }
 
         first_leaf = leaves[0]
-        for leaf, next_leaf in sequencetools.iterate_sequence_pairwise_wrapped(leaves):
+        for leaf, next_leaf in \
+            sequencetools.iterate_sequence_pairwise_wrapped(leaves):
 
             span_events = self._get_span_events(leaf)
             for klass, directions in span_events.iteritems():
@@ -529,11 +528,14 @@ class ReducedLyParser(abctools.Parser):
                     else:
                         stopping.append(Right)
 
-                # apply undirected events immediately, and do not maintain a reference to them
+                # apply undirected events immediately, 
+                # and do not maintain a reference to them
                 if klass is tietools.TieSpanner:
                     if next_leaf is first_leaf:
-                        raise Exception('Unterminated %s at %s.' % (klass.__name__, leaf))
-                    previous_tie = [x for x in leaf.spanners if isinstance(x, tietools.TieSpanner)]
+                        message = 'unterminated %s at %s.'
+                        raise Exception(message % (klass.__name__, leaf))
+                    previous_tie = [x for x in leaf.spanners 
+                        if isinstance(x, tietools.TieSpanner)]
                     if previous_tie:
                         previous_tie[0].append(next_leaf)
                     else:
@@ -562,12 +564,14 @@ class ReducedLyParser(abctools.Parser):
                             spanner_references[klass].append(leaf)
                             spanner_references[klass] = None
                         else:
-                            raise Exception('Cannot end %s.' % klass.__name__)
+                            message = 'cannot end %s.'
+                            raise Exception(message % klass.__name__)
                     for _ in starting:
                         if spanner_references[klass] is None:
                             spanner_references[klass] = klass()
                         else:
-                            raise Exception('Already have %s.' % klass.__name__)
+                            message = 'already have %s.'
+                            raise Exception(message % klass.__name__)
 
             # append leaf to all tracked spanners,
             for klass, instance in spanner_references.iteritems():
@@ -594,7 +598,8 @@ class ReducedLyParser(abctools.Parser):
         return parsed[0]
 
     def _get_span_events(self, leaf):
-        annotations = [x for x in marktools.detach_annotations_attached_to_component(leaf)
+        annotations = [
+            x for x in marktools.detach_annotations_attached_to_component(leaf)
             if x.name == 'post events']
         if annotations:
             return annotations[0].value

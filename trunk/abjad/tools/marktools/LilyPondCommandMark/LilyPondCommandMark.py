@@ -1,5 +1,5 @@
-from abjad.tools.marktools.Mark import Mark
 import copy
+from abjad.tools.marktools.Mark import Mark
 
 
 # TODO: extend LilyPond command marks to attach to spanners.
@@ -15,7 +15,9 @@ class LilyPondCommandMark(Mark):
 
     ::
 
-        >>> lilypond_command = marktools.LilyPondCommandMark('slurDotted')(staff[0])
+        >>> lilypond_command = marktools.LilyPondCommandMark('slurDotted')
+        >>> lilypond_command.attach(staff[0])
+        LilyPondCommandMark('slurDotted')(c'8)
 
     ::
 

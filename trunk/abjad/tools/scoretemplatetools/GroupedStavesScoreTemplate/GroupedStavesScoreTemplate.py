@@ -14,7 +14,8 @@ class GroupedStavesScoreTemplate(ScoreTemplate):
 
     ::
 
-        >>> template = scoretemplatetools.GroupedStavesScoreTemplate(
+        >>> template = \
+        ...     scoretemplatetools.GroupedStavesScoreTemplate(
         ...     staff_count=4)
         >>> score = template()
 

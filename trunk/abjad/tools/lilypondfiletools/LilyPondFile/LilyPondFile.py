@@ -1,3 +1,4 @@
+import os
 from abjad.tools.lilypondfiletools.AbjadRevisionToken \
 	import AbjadRevisionToken
 from abjad.tools.lilypondfiletools.DateTimeToken import DateTimeToken
@@ -5,7 +6,6 @@ from abjad.tools.lilypondfiletools.LilyPondLanguageToken \
 	import LilyPondLanguageToken
 from abjad.tools.lilypondfiletools.LilyPondVersionToken \
 	import LilyPondVersionToken
-import os
 
 
 class LilyPondFile(list):

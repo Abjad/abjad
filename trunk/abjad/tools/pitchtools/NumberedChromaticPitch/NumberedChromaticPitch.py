@@ -9,7 +9,8 @@ class NumberedChromaticPitch(ChromaticPitch, NumberedPitch):
 
     ::
 
-        >>> pitchtools.NumberedChromaticPitch(13)
+        >>> pitch = pitchtools.NumberedChromaticPitch(13)
+        >>> pitch
         NumberedChromaticPitch(13)
 
     Numbered chromatic pitches are immutable.
@@ -97,7 +98,7 @@ class NumberedChromaticPitch(ChromaticPitch, NumberedPitch):
 
         ::
 
-            >>> pitchtools.NumberedChromaticPitch(13).chromatic_pitch_number
+            >>> pitch.chromatic_pitch_number
             13
 
         Return integer or float.
@@ -110,7 +111,7 @@ class NumberedChromaticPitch(ChromaticPitch, NumberedPitch):
 
         ::
 
-            >>> pitchtools.NumberedChromaticPitch(13).diatonic_pitch_class_number
+            >>> pitch.diatonic_pitch_class_number
             0
 
         Return integer.
@@ -125,7 +126,7 @@ class NumberedChromaticPitch(ChromaticPitch, NumberedPitch):
 
         ::
 
-            >>> pitchtools.NumberedChromaticPitch(13).diatonic_pitch_number
+            >>> pitch.diatonic_pitch_number
             7
 
         Return integer.
@@ -139,7 +140,7 @@ class NumberedChromaticPitch(ChromaticPitch, NumberedPitch):
     def apply_accidental(self, accidental=None):
         '''Apply `accidental`::
 
-            >>> pitchtools.NumberedChromaticPitch(13).apply_accidental('flat')
+            >>> pitch.apply_accidental('flat')
             NumberedChromaticPitch(12)
 
         Return numbered chromatic pitch.
@@ -154,7 +155,7 @@ class NumberedChromaticPitch(ChromaticPitch, NumberedPitch):
 
         ::
 
-            >>> pitchtools.NumberedChromaticPitch(13).transpose(1)
+            >>> pitch.transpose(1)
             NumberedChromaticPitch(14)
 
         Return numbered chromatic pitch.

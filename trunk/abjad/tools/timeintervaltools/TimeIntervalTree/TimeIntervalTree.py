@@ -29,7 +29,8 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
         >>> interval_one = TimeInterval(0, 10)
         >>> interval_two = TimeInterval(1, 8)
         >>> interval_three = TimeInterval(3, 13)
-        >>> tree = TimeIntervalTree([interval_one, interval_two, interval_three])
+        >>> tree = TimeIntervalTree(
+        ...     [interval_one, interval_two, interval_three])
 
     ::
 
@@ -974,7 +975,8 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
             if start == stop:
                 stop = start + rational
             intervals.append(
-                interval.shift_to_rational(start).scale_to_rational(stop - start))
+                interval.shift_to_rational(start).scale_to_rational(
+                    stop - start))
         return type(self)(intervals)
 
     def scale_by_rational(self, rational):
@@ -1041,7 +1043,7 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
         rational = durationtools.Duration(rational)
         return type(self)([
             x.shift_to_rational(
-                ((x.start - self.start) * rational) + self.start).scale_by_rational(rational)\
+                ((x.start - self.start) * rational) + self.start).scale_by_rational(rational)
                 for x in self
         ])
 
@@ -1111,7 +1113,7 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
         ratio = rational / self.duration
         return type(self)([
             x.shift_to_rational(
-                ((x.start - self.start) * ratio) + self.start).scale_by_rational(ratio) \
+                ((x.start - self.start) * ratio) + self.start).scale_by_rational(ratio)
                 for x in self])
 
     def shift_by_rational(self, rational):

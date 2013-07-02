@@ -46,7 +46,8 @@ class Accidental(AbjadObject):
         elif isinstance(arg, type(None)):
             _alphabetic_accidental_abbreviation = ''
         else:
-            raise ValueError('can not initialize accidental from value: %s' % arg)
+            message = 'can not initialize accidental from value: %s'
+            raise ValueError(message % arg)
         object.__setattr__(
             self, 
             '_alphabetic_accidental_abbreviation', 

@@ -10,7 +10,8 @@ class SchemeAssociativeList(Scheme):
 
         >>> schemetools.SchemeAssociativeList(
         ...     ('space', 2), ('padding', 0.5))
-        SchemeAssociativeList((SchemePair(('space', 2)), SchemePair(('padding', 0.5))))
+        SchemeAssociativeList((SchemePair(('space', 2)), 
+            SchemePair(('padding', 0.5))))
 
     Scheme associative lists are immutable.
     '''

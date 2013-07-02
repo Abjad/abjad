@@ -53,15 +53,15 @@ class DiatonicIntervalClass(IntervalClass, DiatonicObject):
         return '%s%s' % (self._quality_abbreviation, self.number)
 
     _interval_number_to_interval_string = {
-            1: 'unison', 
-            2: 'second',
-            3: 'third', 
-            4: 'fourth', 
-            5: 'fifth', 
-            6: 'sixth',
-            7: 'seventh', 
-            8: 'octave',
-            }
+        1: 'unison', 
+        2: 'second',
+        3: 'third', 
+        4: 'fourth', 
+        5: 'fifth', 
+        6: 'sixth',
+        7: 'seventh', 
+        8: 'octave',
+        }
 
     _quality_abbreviation_to_quality_string = {
         'M': 'major', 

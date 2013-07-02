@@ -1,8 +1,8 @@
 from abjad.tools.pitchtools.Vector import Vector
-from abjad.tools.pitchtools.inventory_inversion_equivalent_diatonic_interval_classes import \
-    inventory_inversion_equivalent_diatonic_interval_classes
-from abjad.tools.pitchtools.list_harmonic_diatonic_intervals_in_expr import \
-    list_harmonic_diatonic_intervals_in_expr
+from abjad.tools.pitchtools.inventory_inversion_equivalent_diatonic_interval_classes \
+    import inventory_inversion_equivalent_diatonic_interval_classes
+from abjad.tools.pitchtools.list_harmonic_diatonic_intervals_in_expr \
+    import list_harmonic_diatonic_intervals_in_expr
 
 
 class InversionEquivalentDiatonicIntervalClassVector(Vector):

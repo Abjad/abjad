@@ -45,7 +45,8 @@ class MetricalHierarchy(AbjadObject):
 
     ::
 
-        >>> print timesignaturetools.MetricalHierarchy((3, 4)).pretty_rtm_format
+        >>> metrical_hierarchy = timesignaturetools.MetricalHierarchy((3, 4))
+        >>> print metrical_hierarchy.pretty_rtm_format
         (3/4 (
             1/4
             1/4
@@ -53,7 +54,8 @@ class MetricalHierarchy(AbjadObject):
 
     ::
 
-        >>> print timesignaturetools.MetricalHierarchy((6, 8)).pretty_rtm_format
+        >>> metrical_hierarchy = timesignaturetools.MetricalHierarchy((6, 8))
+        >>> print metrical_hierarchy.pretty_rtm_format
         (6/8 (
             (3/8 (
                 1/8
@@ -66,7 +68,8 @@ class MetricalHierarchy(AbjadObject):
 
     ::
 
-        >>> print timesignaturetools.MetricalHierarchy((5, 4)).pretty_rtm_format
+        >>> metrical_hierarchy = timesignaturetools.MetricalHierarchy((5, 4))
+        >>> print metrical_hierarchy.pretty_rtm_format
         (5/4 (
             (3/4 (
                 1/4
@@ -78,8 +81,9 @@ class MetricalHierarchy(AbjadObject):
 
     ::
 
-        >>> print timesignaturetools.MetricalHierarchy((5, 4),
-        ...     decrease_durations_monotonically=False).pretty_rtm_format
+        >>> metrical_hierarchy = timesignaturetools.MetricalHierarchy(
+        ...     (5, 4), decrease_durations_monotonically=False)
+        >>> print metrical_hierarchy.pretty_rtm_format
         (5/4 (
             (2/4 (
                 1/4
@@ -91,7 +95,8 @@ class MetricalHierarchy(AbjadObject):
 
     ::
 
-        >>> print timesignaturetools.MetricalHierarchy((12, 8)).pretty_rtm_format
+        >>> metrical_hierarchy = timesignaturetools.MetricalHierarchy((12, 8))
+        >>> print metrical_hierarchy.pretty_rtm_format
         (12/8 (
             (3/8 (
                 1/8
@@ -251,7 +256,8 @@ class MetricalHierarchy(AbjadObject):
 
         ::
 
-            >>> metrical_hierarchy = timesignaturetools.MetricalHierarchy((5, 4))
+            >>> metrical_hierarchy = \
+            ...     timesignaturetools.MetricalHierarchy((5, 4))
 
         ::
 

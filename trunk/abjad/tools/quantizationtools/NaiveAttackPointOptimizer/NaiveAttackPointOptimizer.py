@@ -21,10 +21,8 @@ class NaiveAttackPointOptimizer(AttackPointOptimizer):
     def __call__(self, expr):
         for tie_chain in tietools.iterate_tie_chains_in_expr(
             expr, reverse=True):
-
             sub_chains = []
             current_sub_chain = []
-
             for leaf in tie_chain:
                 tempo_marks = \
                     contexttools.get_tempo_marks_attached_to_component(leaf)
@@ -38,7 +36,6 @@ class NaiveAttackPointOptimizer(AttackPointOptimizer):
             if current_sub_chain:
                 current_sub_chain = tietools.TieChain(current_sub_chain)
                 sub_chains.append(current_sub_chain)
-
             for sub_chain in sub_chains:
                 leaftools.fuse_leaves_in_tie_chain_by_immediate_parent(
                     sub_chain)

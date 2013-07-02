@@ -244,8 +244,12 @@ class GuileProxy(AbjadObject):
                 pitch.chromatic_pitch_class_name, reference.octave_number)
             up_octave, down_octave = \
                 up_pitch.octave_number, down_pitch.octave_number
-        if abs(float(up_pitch.named_diatonic_pitch) - float(reference.named_diatonic_pitch)) \
-            < abs(float(down_pitch.named_diatonic_pitch) - float(reference.named_diatonic_pitch)):
+        if abs(
+                float(up_pitch.named_diatonic_pitch) - 
+                float(reference.named_diatonic_pitch)) < \
+            abs(
+                float(down_pitch.named_diatonic_pitch) - 
+                float(reference.named_diatonic_pitch)):
             pitch = pitchtools.NamedChromaticPitch(
                 up_pitch.named_chromatic_pitch_class, 
                 up_octave + pitch.octave_number - 3)
