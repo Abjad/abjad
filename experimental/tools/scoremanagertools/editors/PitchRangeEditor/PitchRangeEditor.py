@@ -12,5 +12,6 @@ class PitchRangeEditor(InteractiveEditor):
 
     target_manifest = TargetManifest(
         pitchtools.PitchRange,
-        ('one_line_named_chromatic_pitch_repr', 'rp', getters.get_symbolic_pitch_range_string),
+        ('one_line_named_chromatic_pitch_repr', 'rp', 
+            getters.get_symbolic_pitch_range_string),
         )

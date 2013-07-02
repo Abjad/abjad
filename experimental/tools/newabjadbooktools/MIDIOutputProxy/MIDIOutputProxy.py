@@ -33,7 +33,8 @@ class MIDIOutputProxy(AssetOutputProxy):
             lilypond_version_token = lilypondfiletools.LilyPondVersionToken(
                 configurationtools.get_lilypond_minimum_version_string(),
                 )
-            lilypond_file.file_initial_system_includes[0] = lilypond_version_token
+            lilypond_file.file_initial_system_includes[0] = \
+                lilypond_version_token
             lilypond_file.score_block.append(lilypondfiletools.MIDIBlock())
             lilypond_format = lilypond_file.lilypond_format
             self._payload = lilypond_format

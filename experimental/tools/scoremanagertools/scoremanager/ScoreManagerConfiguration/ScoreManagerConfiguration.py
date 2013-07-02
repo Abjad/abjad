@@ -7,7 +7,8 @@ from abjad.tools.configurationtools.AbjadConfiguration \
 class ScoreManagerConfiguration(Configuration):
     '''Score manager configuration.
 
-        >>> configuration = scoremanagertools.scoremanager.ScoreManagerConfiguration()
+        >>> configuration = \
+        ...     scoremanagertools.scoremanager.ScoreManagerConfiguration()
         >>> configuration
         ScoreManagerConfiguration()
 
@@ -88,11 +89,13 @@ class ScoreManagerConfiguration(Configuration):
             self.user_asset_library_directory_path,
             'editors',
             )
-        self.user_asset_library_material_package_makers_directory_path = os.path.join(
+        self.user_asset_library_material_package_makers_directory_path = \
+            os.path.join(
             self.user_asset_library_directory_path,
             'material_package_makers',
             )
-        self.user_asset_library_material_packages_directory_path = os.path.join(
+        self.user_asset_library_material_packages_directory_path = \
+            os.path.join(
             self.user_asset_library_directory_path,
             'material_packages',
             )
@@ -112,7 +115,8 @@ class ScoreManagerConfiguration(Configuration):
             self.user_asset_library_package_path,
             'editors',
             ])
-        self.user_asset_library_material_package_makers_package_path = '.'.join([
+        self.user_asset_library_material_package_makers_package_path = \
+            '.'.join([
             self.user_asset_library_package_path,
             'material_package_makers',
             ])
@@ -158,7 +162,8 @@ class ScoreManagerConfiguration(Configuration):
             self.user_asset_library_editors_directory_path,
             self.user_asset_library_material_package_makers_directory_path,
             self.user_asset_library_material_packages_directory_path,
-            self.user_asset_library_specifiers_directory_path):
+            self.user_asset_library_specifiers_directory_path,
+            ):
             if not os.path.exists(directory_path):
                 os.makedirs(directory_path)
                 file_path = os.path.join(directory_path, '__init__.py')
@@ -168,7 +173,8 @@ class ScoreManagerConfiguration(Configuration):
 
         if not os.path.exists(self.user_score_packages_directory_path):
             os.makedirs(self.user_score_packages_directory_path)
-        if not os.path.exists(self.user_asset_library_stylesheets_directory_path):
+        if not os.path.exists(
+            self.user_asset_library_stylesheets_directory_path):
             os.makedirs(self.user_asset_library_stylesheets_directory_path)
         if not os.path.exists(self.transcripts_directory_path):
             os.makedirs(self.transcripts_directory_path)
@@ -195,7 +201,9 @@ class ScoreManagerConfiguration(Configuration):
                     'Defaults to $HOME/score_manager_asset_library/.',
                 ],
                 'spec': 'string(default={!r})'.format(
-                    os.path.join(self.home_directory_path, 'score_manager_asset_library')),
+                    os.path.join(
+                        self.home_directory_path,
+                        'score_manager_asset_library')),
             },
             'user_score_packages_directory_path': {
                 'comment': [
@@ -232,35 +240,52 @@ class ScoreManagerConfiguration(Configuration):
         filesystem_path = os.path.normpath(filesystem_path)
         if filesystem_path.endswith('.py'):
             filesystem_path = filesystem_path[:-3]
-        if filesystem_path.startswith(self.built_in_score_packages_directory_path):
-            prefix_length = len(self.abjad_configuration.abjad_root_directory_path) + 1
-        elif filesystem_path.startswith(self.user_asset_library_material_packages_directory_path):
-            prefix_length = len(self.user_asset_library_material_packages_directory_path) + 1
+        if filesystem_path.startswith(
+            self.built_in_score_packages_directory_path):
+            prefix_length = \
+                len(self.abjad_configuration.abjad_root_directory_path) + 1
+        elif filesystem_path.startswith(
+            self.user_asset_library_material_packages_directory_path):
+            prefix_length = \
+                len(self.user_asset_library_material_packages_directory_path) + 1
             remainder = filesystem_path[prefix_length:]
             if remainder:
                 remainder = remainder.replace(os.path.sep, '.')
-                result = '{}.{}'.format(self.user_asset_library_material_packages_package_path, remainder)
+                result = '{}.{}'.format(
+                    self.user_asset_library_material_packages_package_path, 
+                    remainder)
             else:
                 result = self.user_asset_library_material_packages_package_path
             return result
-        elif filesystem_path.startswith(self.user_asset_library_material_package_makers_directory_path):
+        elif filesystem_path.startswith(
+            self.user_asset_library_material_package_makers_directory_path):
             return '.'.join([
                 self.user_asset_library_material_package_makers_package_path,
                 os.path.basename(filesystem_path)])
-        elif filesystem_path.startswith(self.built_in_material_package_makers_directory_path):
-            prefix_length = len(self.abjad_configuration.abjad_root_directory_path) + 1
-        elif filesystem_path.startswith(self.built_in_material_packages_directory_path):
-            prefix_length = len(self.abjad_configuration.abjad_root_directory_path) + 1
-        elif filesystem_path.startswith(self.score_manager_tools_directory_path):
+        elif filesystem_path.startswith(
+            self.built_in_material_package_makers_directory_path):
+            prefix_length = \
+                len(self.abjad_configuration.abjad_root_directory_path) + 1
+        elif filesystem_path.startswith(
+            self.built_in_material_packages_directory_path):
+            prefix_length = \
+                len(self.abjad_configuration.abjad_root_directory_path) + 1
+        elif filesystem_path.startswith(
+            self.score_manager_tools_directory_path):
             prefix_length = \
                 len(os.path.dirname(self.score_manager_tools_directory_path)) + 1
-        elif filesystem_path.startswith(self.user_score_packages_directory_path):
+        elif filesystem_path.startswith(
+            self.user_score_packages_directory_path):
             prefix_length = len(self.user_score_packages_directory_path) + 1
-        elif filesystem_path.startswith(self.user_asset_library_stylesheets_directory_path):
-            prefix_length = len(os.path.dirname(self.user_asset_library_stylesheets_directory_path)) + 1
+        elif filesystem_path.startswith(
+            self.user_asset_library_stylesheets_directory_path):
+            prefix_length = \
+                len(os.path.dirname(
+                self.user_asset_library_stylesheets_directory_path)) + 1
         else:
-            raise Exception('can not change filesystem path {!r} to packagesystem path.'.format(
-                filesystem_path))
+            message = 'can not change filesystem path {!r}'
+            message += ' to packagesystem path.'
+            raise Exception(message.format(filesystem_path))
         package_path = filesystem_path[prefix_length:]
         package_path = package_path.replace(os.path.sep, '.')
         return package_path
@@ -273,7 +298,8 @@ class ScoreManagerConfiguration(Configuration):
 
         ::
 
-            >>> for x in configuration.list_score_directory_paths(built_in=True):
+            >>> for x in configuration.list_score_directory_paths(
+            ...     built_in=True):
             ...     x
             '.../tools/scoremanagertools/scorepackages/blue_example_score'
             '.../tools/scoremanagertools/scorepackages/green_example_score'
@@ -283,22 +309,28 @@ class ScoreManagerConfiguration(Configuration):
         '''
         result = []
         if built_in:
-            for directory_entry in os.listdir(self.built_in_score_packages_directory_path):
+            for directory_entry in \
+                os.listdir(self.built_in_score_packages_directory_path):
                 if directory_entry[0].isalpha():
                     package_path = '.'.join([
-                        self.built_in_score_packages_package_path, directory_entry])
+                        self.built_in_score_packages_package_path,
+                        directory_entry])
                     if head is None or package_path.startswith(head):
                         filesystem_path = os.path.join(
-                            self.built_in_score_packages_directory_path, directory_entry)
+                            self.built_in_score_packages_directory_path,
+                            directory_entry)
                         result.append(filesystem_path)
         if user:
-            for directory_entry in os.listdir(self.user_score_packages_directory_path):
+            for directory_entry in \
+                os.listdir(self.user_score_packages_directory_path):
                 if directory_entry[0].isalpha():
                     package_path = '.'.join([
-                        self.user_score_packages_package_path, directory_entry])
+                        self.user_score_packages_package_path,
+                        directory_entry])
                     if head is None or package_path.startswith(head):
                         filesystem_path = os.path.join(
-                            self.user_score_packages_directory_path, directory_entry)
+                            self.user_score_packages_directory_path,
+                            directory_entry)
                         result.append(filesystem_path)
         return result
 
@@ -307,8 +339,9 @@ class ScoreManagerConfiguration(Configuration):
 
         Return boolean.
         '''
-        assert os.path.sep not in packagesystem_path, repr(packagesystem_path)
-        filesystem_path = self.packagesystem_path_to_filesystem_path(packagesystem_path)
+        assert os.path.sep not in packagesystem_path
+        filesystem_path = \
+            self.packagesystem_path_to_filesystem_path(packagesystem_path)
         return os.path.exists(filesystem_path)
 
     def packagesystem_path_to_filesystem_path(
@@ -324,7 +357,8 @@ class ScoreManagerConfiguration(Configuration):
         if package_path_parts[0] == 'scoremanagertools':
             directory_parts = [self.score_manager_tools_directory_path] + \
                 package_path_parts[1:]
-        elif package_path_parts[:3] == ['experimental', 'tools', 'scoremanagertools']:
+        elif package_path_parts[:3] == \
+            ['experimental', 'tools', 'scoremanagertools']:
             directory_parts = [self.score_manager_tools_directory_path] + \
                 package_path_parts[3:]
         elif package_path_parts[0] == \
@@ -339,7 +373,9 @@ class ScoreManagerConfiguration(Configuration):
             directory_parts.append(self.user_asset_library_directory_path)
             directory_parts.extend(trimmed_package_path.split('.'))
         else:
-            directory_parts = [self.user_score_packages_directory_path] + package_path_parts[:]
+            directory_parts = \
+                [self.user_score_packages_directory_path] + \
+                package_path_parts[:]
         directory_path = os.path.join(*directory_parts)
         directory_path = os.path.normpath(directory_path)
         if is_module:

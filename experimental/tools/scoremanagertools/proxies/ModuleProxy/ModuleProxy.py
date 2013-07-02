@@ -9,16 +9,23 @@ class ModuleProxy(FileProxy):
     ### INITIALIZER ###
 
     def __init__(self, packagesystem_path=None, session=None):
-        assert packagesystem_path is None or os.path.sep not in packagesystem_path, repr(packagesystem_path)
+        assert packagesystem_path is None or \
+            os.path.sep not in packagesystem_path, repr(packagesystem_path)
         self._packagesystem_path = packagesystem_path
-        filesystem_path = self.configuration.packagesystem_path_to_filesystem_path(
+        filesystem_path = \
+            self.configuration.packagesystem_path_to_filesystem_path(
             self.packagesystem_path, is_module=True)
-        FileProxy.__init__(self, filesystem_path=filesystem_path, session=session)
+        FileProxy.__init__(
+            self,
+            filesystem_path=filesystem_path,
+            session=session)
 
     ### CLASS VARIABLES ###
 
     extension = '.py'
+
     _generic_class_name = 'module'
+
     _temporary_asset_name = 'temporary_module.py'
 
     ### PRIVATE PROPERTIES ###
@@ -26,8 +33,10 @@ class ModuleProxy(FileProxy):
     @property
     def _space_delimited_lowercase_name(self):
         if self.filesystem_basename:
-            name_without_extension = self.filesystem_basename.strip(self.extension)
-            return stringtools.string_to_space_delimited_lowercase(name_without_extension)
+            name_without_extension = \
+                self.filesystem_basename.strip(self.extension)
+            return stringtools.string_to_space_delimited_lowercase(
+                name_without_extension)
 
     ### PRIVATE METHODS ###
 
@@ -88,11 +97,13 @@ class ModuleProxy(FileProxy):
 
     def run_abjad(self, prompt=True):
         os.system('abjad {}'.format(self.filesystem_path))
-        self.session.io_manager.proceed('file executed', is_interactive=prompt)
+        self.session.io_manager.proceed(
+            'file executed', is_interactive=prompt)
 
     def run_python(self, prompt=True):
         os.system('python {}'.format(self.filesystem_path))
-        self.session.io_manager.proceed('file executed.', is_interactive=prompt)
+        self.session.io_manager.proceed(
+            'file executed.', is_interactive=prompt)
 
     # TODO: remove entirely
     def unimport(self):

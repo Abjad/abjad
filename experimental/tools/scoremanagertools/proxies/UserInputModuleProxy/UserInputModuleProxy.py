@@ -11,7 +11,10 @@ class UserInputModuleProxy(ModuleProxy, ParseableModuleMixin):
     ### INITIALIZER ###
 
     def __init__(self, packagesystem_path=None, session=None):
-        ModuleProxy.__init__(self, packagesystem_path=packagesystem_path, session=session)
+        ModuleProxy.__init__(
+            self,
+            packagesystem_path=packagesystem_path,
+            session=session)
         ParseableModuleMixin.__init__(self)
         self.user_input_wrapper_lines = []
         self.parse()
@@ -84,11 +87,15 @@ class UserInputModuleProxy(ModuleProxy, ParseableModuleMixin):
                 exec(file_contents_string)
                 return locals().get('user_input_wrapper', None)
             except:
-                self.session.io_manager.display('Error reading user input module {!r}.'.format(self.filesystem_path))
+                message = 'error reading user input module {!r}.'
+                self.session.io_manager.display(
+                    message.format(self.filesystem_path))
 
     def write_user_input_wrapper_to_disk(self, user_input_wrapper_in_memory):
-        self.setup_statements[:] = stringtools.add_terminal_newlines(
+        self.setup_statements[:] = \
+            stringtools.add_terminal_newlines(
             user_input_wrapper_in_memory.user_input_module_import_statements)[:]
-        self.user_input_wrapper_lines[:] = stringtools.add_terminal_newlines(
+        self.user_input_wrapper_lines[:] = \
+            stringtools.add_terminal_newlines(
             user_input_wrapper_in_memory.formatted_lines)
         ParseableModuleMixin.write_to_disk(self)

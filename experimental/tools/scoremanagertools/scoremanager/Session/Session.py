@@ -276,10 +276,12 @@ class Session(abctools.AbjadObject):
 
         Return score package proxy or none.
         '''
-        from experimental.tools.scoremanagertools.proxies.ScorePackageProxy import ScorePackageProxy
+        from experimental.tools.scoremanagertools.proxies.ScorePackageProxy \
+            import ScorePackageProxy
         if self.is_in_score:
             return ScorePackageProxy(
-                packagesystem_path=self.current_score_package_path, session=self)
+                packagesystem_path=self.current_score_package_path,
+                session=self)
 
     @property
     def current_segments_directory_path(self):
@@ -414,7 +416,8 @@ class Session(abctools.AbjadObject):
             return self._is_backtracking_to_score_manager
         def fset(self, is_backtracking_to_score_manager):
             assert isinstance(is_backtracking_to_score_manager, bool)
-            self._is_backtracking_to_score_manager = is_backtracking_to_score_manager
+            self._is_backtracking_to_score_manager = \
+                is_backtracking_to_score_manager
         return property(**locals())
 
     @property
@@ -508,7 +511,8 @@ class Session(abctools.AbjadObject):
             return self._nonnumbered_menu_sections_are_hidden
         def fset(self, nonnumbered_menu_sections_are_hidden):
             assert isinstance(nonnumbered_menu_sections_are_hidden, bool)
-            self._nonnumbered_menu_sections_are_hidden = nonnumbered_menu_sections_are_hidden
+            self._nonnumbered_menu_sections_are_hidden = \
+                nonnumbered_menu_sections_are_hidden
         return property(**locals())
 
     @property
@@ -543,7 +547,8 @@ class Session(abctools.AbjadObject):
             return self._snake_case_current_score_name
         def fset(self, snake_case_current_score_name):
             assert isinstance(snake_case_current_score_name, (str, type(None)))
-            self._snake_case_current_score_name = snake_case_current_score_name
+            self._snake_case_current_score_name = \
+                snake_case_current_score_name
         return property(**locals())
 
     @property
@@ -678,7 +683,8 @@ class Session(abctools.AbjadObject):
         if not self._breadcrumb_stack:
             return ''
         result_lines = [self._breadcrumb_stack[0]]
-        hanging_indent_width = len(stringtools.strip_diacritics_from_binary_string(
+        hanging_indent_width = len(
+            stringtools.strip_diacritics_from_binary_string(
             self._breadcrumb_stack[0]))
         hanging_indent_width += len(' - ')
         for breadcrumb in self._breadcrumb_stack[1:]:

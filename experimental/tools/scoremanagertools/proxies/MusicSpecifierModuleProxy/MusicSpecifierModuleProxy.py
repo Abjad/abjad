@@ -13,9 +13,14 @@ class MusicSpecifierModuleProxy(ModuleProxy):
     ### INITIALIZER ###
 
     def __init__(self, packagesystem_path=None, session=None):
-        ModuleProxy.__init__(self, packagesystem_path=packagesystem_path, session=session)
+        ModuleProxy.__init__(
+            self,
+            packagesystem_path=packagesystem_path,
+            session=session)
         self.load_target_into_memory()
-        self._editor = self.editor_class(target=self.target_in_memory, session=self.session)
+        self._editor = self.editor_class(
+            target=self.target_in_memory,
+            session=self.session)
         self.target_lines = []
 
     ### CLASS ATTRIUBTES ###
@@ -52,7 +57,8 @@ class MusicSpecifierModuleProxy(ModuleProxy):
         self.write_target_to_disk(self.target_in_memory)
 
     def load_target_into_memory(self):
-        self._target_in_memory = self.read_target_from_disk() or self.target_class()
+        self._target_in_memory = self.read_target_from_disk() or \
+            self.target_class()
 
     def parse(self):
         is_parsable = True
@@ -117,5 +123,6 @@ class MusicSpecifierModuleProxy(ModuleProxy):
             self.target_in_memory.storage_module_import_statements)[:]
         self.target_lines[:] = stringtools.add_terminal_newlines(
             self.prepend_target_name(
-                self.target_in_memory._get_tools_package_qualified_repr_pieces(is_indented=True)))
+                self.target_in_memory._get_tools_package_qualified_repr_pieces(
+                    is_indented=True)))
         ModuleProxy.write_to_disk(self)

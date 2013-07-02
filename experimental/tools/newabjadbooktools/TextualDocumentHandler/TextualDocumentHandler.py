@@ -33,7 +33,8 @@ class TextualDocumentHandler(DocumentHandler):
         ...     document_file_name='foo.rst',
         ...     output_directory_path='.',
         ...     )
-        >>> source_to_code_block_mapping = document_handler.extract_code_blocks() 
+        >>> source_to_code_block_mapping = \
+        ...     document_handler.extract_code_blocks() 
         >>> for location, code_block in source_to_code_block_mapping.items():
         ...     print location, code_block.displayed_lines
         ...
@@ -65,7 +66,8 @@ class TextualDocumentHandler(DocumentHandler):
         ...     document_file_name='baz.rst',
         ...     output_directory_path='.',
         ...     )
-        >>> source_to_code_block_mapping = document_handler.extract_code_blocks()
+        >>> source_to_code_block_mapping = \
+        ...     document_handler.extract_code_blocks()
         >>> for code_block in source_to_code_block_mapping.values():
         ...     print code_block.hide
         ...
@@ -193,7 +195,8 @@ class TextualDocumentHandler(DocumentHandler):
             ...     document_file_name='foo.rst',
             ...     output_directory_path='.',
             ...     )
-            >>> source_to_code_block_mapping = document_handler.extract_code_blocks() 
+            >>> source_to_code_block_mapping = \
+            ...     document_handler.extract_code_blocks() 
 
         ::
 
@@ -249,7 +252,8 @@ class TextualDocumentHandler(DocumentHandler):
                 
                 elif line.startswith('<abjadextract '):
                     starting_line_number = stopping_line_number = i
-                    code_address = line.partition('<abjadextract ')[-1].partition(' \>')[0]
+                    code_address = line.partition(
+                        '<abjadextract ')[-1].partition(' \>')[0]
                     module_name, sep, attr_name = code_address.rpartition('.')
                     module = importlib.import_module(module_name)
                     attr = getattr(module, attr_name)
@@ -300,17 +304,20 @@ class TextualDocumentHandler(DocumentHandler):
         def format_output_proxies(output_proxies):
             result = []
             for i, output_proxy in enumerate(output_proxies):
-                result.extend(output_proxy.generate_document_representation(self))
+                result.extend(
+                    output_proxy.generate_document_representation(self))
                 if i < (len(output_proxies) - 1):
                     result.append('')
             return result
 
         previous_last_line_number = 0
-        for line_range, code_block in sorted(self.source_to_code_block_mapping.items()):
+        for line_range, code_block in sorted(
+            self.source_to_code_block_mapping.items()):
 
             first_line_number = line_range[0]
             last_line_number = line_range[1] + 1
-            new_lines.extend(old_lines[previous_last_line_number:first_line_number])
+            new_lines.extend(
+                old_lines[previous_last_line_number:first_line_number])
             previous_last_line_number = last_line_number
             new_lines.extend(format_output_proxies(code_block.output_proxies))
             if last_line_number < len(old_lines):
@@ -319,7 +326,8 @@ class TextualDocumentHandler(DocumentHandler):
                     new_lines.append('')
 
         if previous_last_line_number < len(old_lines):
-            new_lines.extend(old_lines[previous_last_line_number:len(old_lines)])
+            new_lines.extend(
+                old_lines[previous_last_line_number:len(old_lines)])
 
         return new_lines
     

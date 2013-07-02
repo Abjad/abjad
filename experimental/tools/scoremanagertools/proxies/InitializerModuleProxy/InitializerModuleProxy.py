@@ -10,9 +10,13 @@ class InitializerModuleProxy(ModuleProxy):
 
     def __init__(self, filesystem_path=None, session=None):
         assert '__init__' in filesystem_path, repr(filesystem_path)
-        packagesystem_path = self.configuration.filesystem_path_to_packagesystem_path(
+        packagesystem_path = \
+            self.configuration.filesystem_path_to_packagesystem_path(
             filesystem_path)
-        ModuleProxy.__init__(self, packagesystem_path=packagesystem_path, session=session)
+        ModuleProxy.__init__(
+            self,
+            packagesystem_path=packagesystem_path,
+            session=session)
 
     ### CLASS VARIABLES ###
 

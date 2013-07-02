@@ -18,10 +18,21 @@ class MusicSpecifier(Specifier, ObjectInventory):
 
     ### INITIALIZER ###
 
-    def __init__(self, contributions=None, description=None, name=None, source=None):
+    def __init__(
+        self,
+        contributions=None,
+        description=None,
+        name=None,
+        source=None,
+        ):
         contributions = contributions or []
         ObjectInventory.__init__(self, contributions)
-        Specifier.__init__(self, description=description, name=name, source=source)
+        Specifier.__init__(
+            self,
+            description=description,
+            name=name,
+            source=source,
+            )
 
     ### PRIVATE PROPERTIES ###
 

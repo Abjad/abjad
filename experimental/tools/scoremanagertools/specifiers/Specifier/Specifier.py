@@ -22,8 +22,10 @@ class Specifier(AbjadObject):
         if self is expr:
             return True
         if isinstance(expr, type(self)):
-            if self._positional_argument_values == expr._positional_argument_values:
-                if self._keyword_argument_name_value_strings == expr._keyword_argument_name_value_strings:
+            if self._positional_argument_values == \
+                expr._positional_argument_values:
+                if self._keyword_argument_name_value_strings == \
+                    expr._keyword_argument_name_value_strings:
                     return True
         return False
 

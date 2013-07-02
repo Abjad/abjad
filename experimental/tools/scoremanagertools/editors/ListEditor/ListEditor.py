@@ -79,7 +79,8 @@ class ListEditor(InteractiveEditor):
     def target_summary_lines(self):
         result = []
         for item in self.items:
-            result.append(self.session.io_manager.get_one_line_menuing_summary(item))
+            result.append(
+                self.session.io_manager.get_one_line_menuing_summary(item))
         return result
 
     ### PUBLIC METHODS ###
@@ -110,7 +111,8 @@ class ListEditor(InteractiveEditor):
             result = result or item_creator.target
         elif self.item_getter_configuration_method:
             getter = self.session.io_manager.make_getter(where=self._where)
-            self.item_getter_configuration_method(getter, self.item_identifier)
+            self.item_getter_configuration_method(
+                getter, self.item_identifier)
             with self.backtracking:
                 item_initialization_token = getter._run()
             if self.session.backtrack():

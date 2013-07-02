@@ -7,7 +7,12 @@ class InstrumentCreationWizard(Wizard):
 
     ### INITIALIZER ###
 
-    def __init__(self, is_ranged=False, session=None, target=None):
+    def __init__(
+        self,
+        is_ranged=False,
+        session=None,
+        target=None,
+        ):
         Wizard.__init__(self, session=session, target=target)
         self.is_ranged = is_ranged
 
@@ -19,8 +24,15 @@ class InstrumentCreationWizard(Wizard):
 
     ### PRIVATE METHODS ###
 
-    def _run(self, cache=False, clear=True, head=None, pending_user_input=None):
-        self.session.io_manager.assign_user_input(pending_user_input=pending_user_input)
+    def _run(
+        self,
+        cache=False,
+        clear=True,
+        head=None,
+        pending_user_input=None,
+        ):
+        self.session.io_manager.assign_user_input(
+            pending_user_input=pending_user_input)
         self.session.cache_breadcrumbs(cache=cache)
         self.session.push_breadcrumb(self._breadcrumb)
         kwargs = {'session': self.session, 'is_ranged': self.is_ranged}
@@ -37,7 +49,8 @@ class InstrumentCreationWizard(Wizard):
             instrument_names = [result]
         instruments = []
         for instrument_name in instrument_names:
-            instrument = self.change_instrument_name_to_instrument(instrument_name)
+            instrument = \
+                self.change_instrument_name_to_instrument(instrument_name)
             self.name_untuned_percussion(instrument)
             instruments.append(instrument)
         if self.is_ranged:
@@ -60,7 +73,9 @@ class InstrumentCreationWizard(Wizard):
 
     def name_untuned_percussion(self, instrument):
         if isinstance(instrument, instrumenttools.UntunedPercussion):
-            selector = selectors.InstrumentToolsUntunedPercussionNameSelector(session=self.session)
+            selector = \
+                selectors.InstrumentToolsUntunedPercussionNameSelector(
+                    session=self.session)
             with self.backtracking:
                 instrument_name = selector._run()
             if self.session.backtrack():

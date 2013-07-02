@@ -7,9 +7,20 @@ from experimental.tools.scoremanagertools.specifiers.ArticulationSpecifier \
 
 class MusicContributionSpecifier(Specifier, ObjectInventory):
 
-    def __init__(self, parameter_specifiers, description=None, name=None, source=None):
+    def __init__(
+        self,
+        parameter_specifiers,
+        description=None,
+        name=None,
+        source=None,
+        ):
         ObjectInventory.__init__(self, parameter_specifiers)
-        Specifier.__init__(self, description=description, name=name, source=source)
+        Specifier.__init__(
+            self,
+            description=description,
+            name=name,
+            source=source,
+            )
         self._articulations = ArticulationSpecifier
 
     ### PRIVATE PROPERTIES ###

@@ -37,7 +37,8 @@ class PackageProxy(DirectoryProxy):
         return result
 
     def _run(self, cache=False, clear=True, pending_user_input=None):
-        self.session.io_manager.assign_user_input(pending_user_input=pending_user_input)
+        self.session.io_manager.assign_user_input(
+            pending_user_input=pending_user_input)
         self.session.cache_breadcrumbs(cache=cache)
         while True:
             self.session.push_breadcrumb(self._breadcrumb)
@@ -253,7 +254,8 @@ class PackageProxy(DirectoryProxy):
         if self.has_initializer:
             os.remove(self.initializer_file_name)
             line = 'initializer deleted.'
-            self.session.io_manager.proceed(line, is_interactive=is_interactive)
+            self.session.io_manager.proceed(
+                line, is_interactive=is_interactive)
 
     def remove_tag(self, tag_name):
         tags = self.get_tags()

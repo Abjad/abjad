@@ -38,8 +38,10 @@ class HTMLDocumentHandler(TextualDocumentHandler):
 
     ::
 
-        >>> document_handler = newabjadbooktools.HTMLDocumentHandler(document)
-        >>> source_to_code_block_mapping = document_handler.extract_code_blocks()
+        >>> document_handler = \
+        ...     newabjadbooktools.HTMLDocumentHandler(document)
+        >>> source_to_code_block_mapping = \
+        ...     document_handler.extract_code_blocks()
         >>> document_handler.execute_code_blocks()
         >>> rebuilt_document = document_handler.rebuild_document()
         >>> for line in rebuilt_document:

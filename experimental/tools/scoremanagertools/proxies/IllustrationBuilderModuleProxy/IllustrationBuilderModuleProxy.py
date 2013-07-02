@@ -26,11 +26,16 @@ class IllustrationBuilderModuleProxy(ModuleProxy):
         self.unimport()
         # TODO: port unimport
         #self.unimport_output_material_module()
-        illustration = self._safe_import(locals(), self.packagesystem_basename, 'illustration',
-            source_parent_package_path=self.parent_directory_packagesystem_path)
+        illustration = self._safe_import(
+            locals(),
+            self.packagesystem_basename,
+            'illustration',
+            source_parent_package_path=self.parent_directory_packagesystem_path,
+            )
         material_package_name = self.packagesystem_path.split('.')[-2]
         material_package_name = material_package_name.replace('_', ' ')
-        illustration.header_block.title = markuptools.Markup(material_package_name)
+        illustration.header_block.title = \
+            markuptools.Markup(material_package_name)
         return illustration
 
     def write_stub_to_disk(
@@ -44,7 +49,8 @@ class IllustrationBuilderModuleProxy(ModuleProxy):
         lines.append('\n')
         line = 'score, treble_staff, bass_staff = scoretools.make_piano_score_from_leaves({})\n'
         line = line.format(material_package_name)
-        lines.append('illustration = lilypondfiletools.make_basic_lilypond_file(score)\n')
+        lines.append(
+            'illustration = lilypondfiletools.make_basic_lilypond_file(score)\n')
         file_pointer = file(self.filesystem_path, 'w')
         file_pointer.write(''.join(lines))
         file_pointer.close()

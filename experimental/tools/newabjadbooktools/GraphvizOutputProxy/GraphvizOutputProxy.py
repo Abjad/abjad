@@ -29,7 +29,8 @@ class GraphvizOutputProxy(ImageOutputProxy):
 
     ::
 
-        >>> output_proxy = newabjadbooktools.GraphvizOutputProxy(metrical_hierarchy)
+        >>> output_proxy = \
+        ...     newabjadbooktools.GraphvizOutputProxy(metrical_hierarchy)
 
     Return output proxy.
     '''

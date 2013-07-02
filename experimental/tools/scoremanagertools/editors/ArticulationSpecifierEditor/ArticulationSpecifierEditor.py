@@ -12,9 +12,12 @@ class ArticulationSpecifierEditor(ParameterSpecifierEditor):
 
     ### CLASS VARIABLES ###
 
-    target_manifest = TargetManifest(ArticulationSpecifier,
-        #('name', 'nm', getters.get_string),
-        #('description', 'ds', getters.get_string),
-        #(),
-        ('articulation_handler_name', 'articulation handler', 'ah', selectors.ArticulationHandlerSelector),
+    target_manifest = TargetManifest(
+        ArticulationSpecifier,
+        (
+            'articulation_handler_name', 
+            'articulation handler',
+            'ah',
+            selectors.ArticulationHandlerSelector,
+            ),
         )

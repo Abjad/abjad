@@ -58,8 +58,9 @@ class CodeBlock(AbjadObject):
             'hello, world!',
             ))]
 
-    Code blocks intercept certain Abjad function calls and pull the output_proxies
-    out as output proxies, to be dealt with by other processes.
+    Code blocks intercept certain Abjad function calls and pull the 
+    output_proxies out as output proxies, to be dealt with by other 
+    processes.
 
     .. note:: We can push commands to the console directly, like the following
               import, in order to pull references into the console's local

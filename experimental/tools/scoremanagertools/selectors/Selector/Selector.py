@@ -43,8 +43,13 @@ class Selector(ScoreManagerObject):
         return main_menu
 
     def _run(self, 
-        cache=False, clear=True, head=None, pending_user_input=None):
-        self.session.io_manager.assign_user_input(pending_user_input=pending_user_input)
+        cache=False,
+        clear=True,
+        head=None,
+        pending_user_input=None,
+        ):
+        self.session.io_manager.assign_user_input(
+            pending_user_input=pending_user_input)
         self.session.cache_breadcrumbs(cache=cache)
         while True:
             self.session.push_breadcrumb(self._breadcrumb)
@@ -77,7 +82,12 @@ class Selector(ScoreManagerObject):
     ### PUBLIC METHODS ###
 
     def change_expr_to_menu_entry(self, expr):
-        return (self.session.io_manager.get_one_line_menuing_summary(expr), None, None, expr)
+        return (
+            self.session.io_manager.get_one_line_menuing_summary(expr),
+            None,
+            None,
+            expr,
+            )
 
     def get_tag_from_directory_path(self, directory_path, tag_name):
         tags_file_name = os.path.join(directory_path, 'tags.py')

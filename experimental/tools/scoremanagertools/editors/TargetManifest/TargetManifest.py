@@ -18,7 +18,8 @@ class TargetManifest(AbjadObject):
 
     def __repr__(self):
         parts = ', '.join([str(x) for x in self.attribute_details])
-        return '{}({}, {})'.format(type(self).__name__, self.target_class.__name__, parts)
+        return '{}({}, {})'.format(
+            type(self).__name__, self.target_class.__name__, parts)
 
     ### PUBLIC PROPERTIES ###
 
@@ -43,7 +44,8 @@ class TargetManifest(AbjadObject):
     @property
     def format_pieces(self):
         result = []
-        result.append('{}({},'.format(type(self).__name__, self.target_class.__name__))
+        result.append('{}({},'.format(
+            type(self).__name__, self.target_class.__name__))
         for attribute_detail in self.attribute_details:
             result.append('\t{!r},'.format(attribute_detail))
         result.append('\t)')
@@ -91,13 +93,15 @@ class TargetManifest(AbjadObject):
 
     ### PUBLIC METHODS ###
 
-    def change_initializer_argument_name_to_retrievable_attribute_name(self, initializer_argument_name):
+    def change_initializer_argument_name_to_retrievable_attribute_name(
+        self, initializer_argument_name):
         for attribute_detail in self.attribute_details:
             if attribute_detail.name == initializer_argument_name:
                 return attribute_detail.retrievable_name
         raise ValueError
 
-    def change_retrievable_attribute_name_to_initializer_argument_name(self, retrievable_attribute_name):
+    def change_retrievable_attribute_name_to_initializer_argument_name(
+        self, retrievable_attribute_name):
         for attribute_detail in self.attribute_details:
             if attribute_detail.retrievable_name == retrievable_attribute_name:
                 return attribute_detail.name

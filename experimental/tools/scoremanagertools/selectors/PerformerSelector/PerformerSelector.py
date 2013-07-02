@@ -13,7 +13,8 @@ class PerformerSelector(Selector):
         result = []
         current_score_package_proxy = self.session.current_score_package_proxy
         try:
-            result.extend(current_score_package_proxy.instrumentation.performers)
+            result.extend(
+                current_score_package_proxy.instrumentation.performers)
         except AttributeError:
             pass
         return result

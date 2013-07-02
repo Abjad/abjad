@@ -110,7 +110,9 @@ class Menu(ScoreManagerObject):
         directive = self._change_user_input_to_directive(user_input)
         directive = self._strip_default_indicators_from_strings(directive)
         self.session.hide_next_redraw = False
-        directive = self.session.io_manager.handle_hidden_menu_section_return_value(directive)
+        directive = \
+            self.session.io_manager.handle_hidden_menu_section_return_value(
+                directive)
         if directive is None:
             return
         elif directive == 'hidden':
@@ -194,7 +196,8 @@ class Menu(ScoreManagerObject):
             clear=True, 
             predetermined_user_input=None, 
             pending_user_input=None):
-        self.session.io_manager.assign_user_input(pending_user_input=pending_user_input)
+        self.session.io_manager.assign_user_input(
+            pending_user_input=pending_user_input)
         clear, hide_current_run = clear, False
         while True:
             self.should_clear_terminal = clear
@@ -354,7 +357,8 @@ class Menu(ScoreManagerObject):
             line = '{}   line: {}'.format(self._make_tab(1), self.where[2])
             lines.append(line)
             lines.append('')
-            self.session.io_manager.display(lines, capitalize_first_character=False)
+            self.session.io_manager.display(
+                lines, capitalize_first_character=False)
             self.session.hide_next_redraw = True
         else:
             self.session.enable_where = True
@@ -370,7 +374,8 @@ class Menu(ScoreManagerObject):
                     menu_line += '{} ({})'.format(display_string, key)
                     menu_lines.append(menu_line)
                 menu_lines.append('')
-        self.session.io_manager.display(menu_lines, capitalize_first_character=False)
+        self.session.io_manager.display(
+            menu_lines, capitalize_first_character=False)
         self.session.hide_next_redraw = True
 
     def interactively_edit_calling_code(self):

@@ -9,10 +9,15 @@ class MaterialPackageMaker(MaterialPackageProxy):
     ### CLASS VARIABLES ###
 
     generic_output_name = None
+
     illustration_maker = None
+
     output_material_checker = None
+    
     output_material_editor = None
+
     output_material_maker = None
+
     output_material_module_import_statements = []
 
     ### INITIALIZER ###

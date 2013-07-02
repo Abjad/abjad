@@ -18,9 +18,12 @@ class PitchClassSpecifierEditor(ParameterSpecifierEditor):
         ('name', 'nm', getters.get_string),
         ('description', 'ds', getters.get_string),
         (),
-        ('pitch_class_reservoir', 'pc', selectors.PitchClassReservoirSelector),
-        ('pitch_class_transform', 'tr', wizards.PitchClassTransformCreationWizard),
-        ('reservoir_start_helper', 'hp', wizards.ReservoirStartHelperCreationWizard),
+        ('pitch_class_reservoir', 'pc', 
+            selectors.PitchClassReservoirSelector),
+        ('pitch_class_transform', 'tr', 
+            wizards.PitchClassTransformCreationWizard),
+        ('reservoir_start_helper', 'hp', 
+            wizards.ReservoirStartHelperCreationWizard),
         )
 
     ### PUBLIC PROPERTIES ###

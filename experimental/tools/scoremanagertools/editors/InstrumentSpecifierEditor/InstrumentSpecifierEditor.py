@@ -9,9 +9,17 @@ from experimental.tools.scoremanagertools.editors.TargetManifest \
 
 class InstrumentSpecifierEditor(ParameterSpecifierEditor):
 
-    def __init__(self, instruments=None, session=None, target=None):
+    def __init__(
+        self,
+        instruments=None,
+        session=None,
+        target=None,
+        ):
         ParameterSpecifierEditor.__init__(
-            self, session=session, target=target)
+            self, 
+            session=session,
+            target=target,
+            )
 
     ### CLASS VARIABLES ###
 

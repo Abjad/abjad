@@ -14,7 +14,8 @@ class PackageContentSelector(DirectoryContentSelector):
     ### PUBLIC METHODS ###
 
     def list_items(self):
-        from experimental.tools.scoremanagertools.proxies.PackageProxy import PackageProxy
+        from experimental.tools.scoremanagertools.proxies.PackageProxy \
+            import PackageProxy
         result = []
         for package_path in self.storehouse_package_paths:
             package_proxy = PackageProxy(

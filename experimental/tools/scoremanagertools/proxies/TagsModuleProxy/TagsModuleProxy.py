@@ -12,9 +12,13 @@ class TagsModuleProxy(ModuleProxy, ParseableModuleMixin):
 
     def __init__(self, filesystem_path=None, session=None):
         assert 'tags' in filesystem_path, repr(filesystem_path)
-        packagesystem_path = self.configuration.filesystem_path_to_packagesystem_path(
+        packagesystem_path = \
+            self.configuration.filesystem_path_to_packagesystem_path(
             filesystem_path)
-        ModuleProxy.__init__(self, packagesystem_path=packagesystem_path, session=session)
+        ModuleProxy.__init__(
+            self,
+            packagesystem_path=packagesystem_path,
+            session=session)
         ParseableModuleMixin.__init__(self)
         self.tag_lines = []
         self.parse()
@@ -62,7 +66,8 @@ class TagsModuleProxy(ModuleProxy, ParseableModuleMixin):
                 return
             should_have_illustration = 'yes'.startswith(result.lower())
         else:
-            material_package_maker_wrangler = scoremanagertools.wranglers.MaterialPackageMakerWrangler(
+            material_package_maker_wrangler = \
+                scoremanagertools.wranglers.MaterialPackageMakerWrangler(
                 session=self.session)
             with self.backtracking:
                 material_package_maker_class_name = \
@@ -73,9 +78,11 @@ class TagsModuleProxy(ModuleProxy, ParseableModuleMixin):
             should_have_illustration = True
         tags = collections.OrderedDict([])
         tags['should_have_illustration'] = should_have_illustration
-        tags['material_package_maker_class_name'] = material_package_maker_class_name
+        tags['material_package_maker_class_name'] = \
+            material_package_maker_class_name
         self.write_stub_to_disk()
-        self.session.io_manager.proceed('initializer restored.', is_interactive=prompt)
+        self.session.io_manager.proceed(
+            'initializer restored.', is_interactive=prompt)
 
     def make_tag_lines(self, tags):
         if tags:
@@ -83,11 +90,13 @@ class TagsModuleProxy(ModuleProxy, ParseableModuleMixin):
             for key, value in sorted(tags.iteritems()):
                 key = repr(key)
                 if hasattr(value, '_get_multiline_repr'):
-                    repr_lines = value._get_multiline_repr(include_tools_package=True)
+                    repr_lines = \
+                        value._get_multiline_repr(include_tools_package=True)
                     value = '\n    '.join(repr_lines)
                     lines.append('({}, {})'.format(key, value))
                 else:
-                    value = getattr(value, '_tools_package_qualified_repr', repr(value))
+                    value = getattr(
+                        value, '_tools_package_qualified_repr', repr(value))
                     lines.append('({}, {})'.format(key, value))
             lines = ',\n    '.join(lines)
             result = 'tags = collections.OrderedDict([\n    {}])'.format(lines)

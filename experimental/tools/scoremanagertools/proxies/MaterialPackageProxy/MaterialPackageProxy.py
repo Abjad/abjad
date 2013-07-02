@@ -400,7 +400,8 @@ class MaterialPackageProxy(PackageProxy):
     def material_definition(self):
         if self.has_material_definition_module:
             if self.material_definition_module_proxy.read_file():
-                pair = self.output_material_module_import_statements_and_material_definition
+                pair = \
+                    self.output_material_module_import_statements_and_material_definition
                 material_definition = pair[1]
                 return material_definition
 
@@ -414,7 +415,8 @@ class MaterialPackageProxy(PackageProxy):
         from experimental.tools import scoremanagertools
         if self.should_have_material_definition_module:
             return scoremanagertools.proxies.MaterialDefinitionModuleProxy(
-                self.material_definition_packagesystem_path, session=self.session)
+                self.material_definition_packagesystem_path,
+                session=self.session)
 
     @property
     def material_definition_packagesystem_path(self):
@@ -472,7 +474,8 @@ class MaterialPackageProxy(PackageProxy):
     @property
     def output_material_module_import_statements_and_output_material_module_body_lines(self):
         if self.should_have_material_definition_module:
-            pair = self.output_material_module_import_statements_and_material_definition
+            pair = \
+                self.output_material_module_import_statements_and_material_definition
             output_material_module_import_statements, output_material = pair
         elif self.has_material_package_maker:
             output_material_module_import_statements = \
@@ -723,11 +726,13 @@ class MaterialPackageProxy(PackageProxy):
             scoremanagertools.wranglers.StylesheetFileWrangler(
             session=self.session)
         with self.backtracking:
-            stylesheet_file_name = stylesheet_file_wrangler.interactively_select_asset_filesystem_path()
+            stylesheet_file_name = \
+                stylesheet_file_wrangler.interactively_select_asset_filesystem_path()
         if self.session.backtrack():
             return
         self.stylesheet_file_name_in_memory = stylesheet_file_name
-        self.session.io_manager.proceed('stylesheet selected.', is_interactive=prompt)
+        self.session.io_manager.proceed(
+            'stylesheet selected.', is_interactive=prompt)
 
     def interactively_view_illustration_ly(self):
         self.illustration_ly_file_proxy.interactively_view()

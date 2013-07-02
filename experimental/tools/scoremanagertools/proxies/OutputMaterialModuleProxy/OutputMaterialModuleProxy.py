@@ -21,7 +21,10 @@ class OutputMaterialModuleProxy(ModuleProxy, ParseableModuleMixin):
     ### INITIALIZER ###
 
     def __init__(self, packagesystem_path=None, session=None):
-        ModuleProxy.__init__(self, packagesystem_path=packagesystem_path, session=session)
+        ModuleProxy.__init__(
+            self,
+            packagesystem_path=packagesystem_path,
+            session=session)
         ParseableModuleMixin.__init__(self)
 
     ### PUBLIC PROPERTIES ###

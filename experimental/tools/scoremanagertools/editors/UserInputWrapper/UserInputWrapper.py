@@ -30,14 +30,18 @@ class UserInputWrapper(collections.OrderedDict):
         result = []
         items = self.list_items()
         if not items:
-            result.append('user_input_wrapper = {}([])'.format(type(self).__name__))
+            result.append(
+                'user_input_wrapper = {}([])'.format(type(self).__name__))
         else:
-            result.append('user_input_wrapper = {}(['.format(type(self).__name__))
+            result.append(
+                'user_input_wrapper = {}(['.format(type(self).__name__))
             for name, value in items[:-1]:
-                line = '\t({!r}, {}),'.format(name, self.get_tools_package_qualified_repr(value))
+                line = '\t({!r}, {}),'.format(
+                    name, self.get_tools_package_qualified_repr(value))
                 result.append(line)
             result.append('\t({!r}, {})])'.format(
-                items[-1][0], self.get_tools_package_qualified_repr(items[-1][1])))
+                items[-1][0], self.get_tools_package_qualified_repr(
+                    items[-1][1])))
         return result
 
     @property
@@ -54,7 +58,8 @@ class UserInputWrapper(collections.OrderedDict):
 
     @property
     def user_input_module_import_statements(self):
-        result = ['from experimental.tools.scoremanagertools.editors import UserInputWrapper']
+        result = [
+            'from experimental.tools.scoremanagertools.editors import UserInputWrapper']
         result.extend(self._user_input_module_import_statements)
         result.sort()
         return result

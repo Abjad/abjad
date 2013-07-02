@@ -13,6 +13,7 @@ class ScoreInstrumentSelector(Selector):
     def list_items(self):
         result = []
         if self.session.is_in_score:
-            result.extend(self.session.current_score_package_proxy.instrumentation.instruments)
+            result.extend(
+                self.session.current_score_package_proxy.instrumentation.instruments)
             result.append('other')
         return result

@@ -10,7 +10,9 @@ class FileProxy(FilesystemAssetProxy):
     ### CLASS VARIABLES ###
 
     _generic_class_name = 'file'
+
     _temporary_asset_name = 'temporary_file.txt'
+
     extension = ''
 
     ### PUBLIC METHODS ###

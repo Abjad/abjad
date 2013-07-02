@@ -15,7 +15,8 @@ class PitchRangeInventoryEditor(ObjectInventoryEditor):
 
     ### CLASS VARIABLES ###
 
-    item_getter_configuration_method = UserInputGetter.append_symbolic_pitch_range_string
+    item_getter_configuration_method = \
+        UserInputGetter.append_symbolic_pitch_range_string
 
     item_class = pitchtools.PitchRange
 

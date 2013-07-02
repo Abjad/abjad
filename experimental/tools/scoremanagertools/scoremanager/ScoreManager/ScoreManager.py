@@ -141,7 +141,8 @@ class ScoreManager(ScoreManagerObject):
         is_test=False, 
         dump_transcript=False):
         type(self).__init__(self)
-        self.session.io_manager.assign_user_input(pending_user_input=pending_user_input)
+        self.session.io_manager.assign_user_input(
+            pending_user_input=pending_user_input)
         self.session.cache_breadcrumbs(cache=cache)
         self.session.push_breadcrumb(self._breadcrumb)
         if is_test:
@@ -323,7 +324,8 @@ class ScoreManager(ScoreManagerObject):
         proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
         lines = [line.strip() for line in proc.stdout.readlines()]
         if lines:
-            self.session.io_manager.display(lines, capitalize_first_character=False)
+            self.session.io_manager.display(
+                lines, capitalize_first_character=False)
         line = 'tests complete.'
         self.session.io_manager.proceed(line, is_interactive=prompt)
 
@@ -351,5 +353,5 @@ class ScoreManager(ScoreManagerObject):
         'py.test':  run_py_test_on_all_user_scores,
         'svn':      manage_svn,
         'y':        manage_stylesheets,
-        'wc':       write_cache
+        'wc':       write_cache,
         }

@@ -106,7 +106,8 @@ class DocumentHandler(AbjadObject):
             console.push('from experimental import *')
         except ImportError:
             pass
-        for source_location, code_block in self.source_to_code_block_mapping.iteritems():
+        for source_location, code_block in \
+            self.source_to_code_block_mapping.iteritems():
             output_proxies = code_block.execute(console)
 
     @abc.abstractmethod

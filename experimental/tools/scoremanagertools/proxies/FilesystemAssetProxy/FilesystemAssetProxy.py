@@ -14,9 +14,12 @@ class FilesystemAssetProxy(ScoreManagerObject):
     ### CLASS VARIABLES ###
 
     __metaclass__ = abc.ABCMeta
+
     _generic_class_name = 'filesystem asset'
+
     boilerplate_directory_path = os.path.join(
-        ScoreManagerObject.configuration.score_manager_tools_directory_path, 'boilerplate')
+        ScoreManagerObject.configuration.score_manager_tools_directory_path,
+        'boilerplate')
 
     ### INITIALIZER ###
 
@@ -49,7 +52,8 @@ class FilesystemAssetProxy(ScoreManagerObject):
 
     @property
     def _breadcrumb(self):
-        return self.filesystem_basename or self._space_delimited_lowercase_class_name
+        return self.filesystem_basename or \
+            self._space_delimited_lowercase_class_name
 
     @property
     def _plural_generic_class_name(self):
@@ -72,8 +76,12 @@ class FilesystemAssetProxy(ScoreManagerObject):
         return getter
 
     @staticmethod
-    def _safe_import(target_namespace, source_module_name, source_attribute_name,
-        source_parent_package_path=None):
+    def _safe_import(
+        target_namespace,
+        source_module_name,
+        source_attribute_name,
+        source_parent_package_path=None,
+        ):
 
         #print repr(target_namespace.keys())
         #print repr(source_module_name)
@@ -100,16 +108,19 @@ class FilesystemAssetProxy(ScoreManagerObject):
             return
 
         try:
-            source_attribute_value = source_module.__dict__[source_attribute_name]
+            source_attribute_value = source_module.__dict__[
+                source_attribute_name]
         except:
-            message = 'Can not import {!r} from {!r}.'.format(source_attribute_name, source_module_path)
+            message = 'Can not import {!r} from {!r}.'.format(
+                source_attribute_name, source_module_path)
             print message
             return
 
         target_namespace[source_attribute_name] = source_attribute_value
         return source_attribute_value
 
-    def _space_delimited_lowercase_name_to_asset_name(self, space_delimited_lowercase_name):
+    def _space_delimited_lowercase_name_to_asset_name(
+        self, space_delimited_lowercase_name):
         space_delimited_lowercase_name = space_delimited_lowercase_name.lower()
         asset_name = space_delimited_lowercase_name.replace(' ', '_')
         return asset_name
@@ -141,13 +152,16 @@ class FilesystemAssetProxy(ScoreManagerObject):
         return False
 
     def interactively_copy(self, pending_user_input=None):
-        self.session.io_manager.assign_user_input(pending_user_input=pending_user_input)
+        self.session.io_manager.assign_user_input(
+            pending_user_input=pending_user_input)
         getter = self._initialize_file_name_getter()
         result = getter._run()
         if self.session.backtrack():
             return
-        new_asset_name = self._space_delimited_lowercase_name_to_asset_name(result)
-        new_path = os.path.join(self.parent_directory_filesystem_path, new_asset_name)
+        new_asset_name = \
+            self._space_delimited_lowercase_name_to_asset_name(result)
+        new_path = \
+            os.path.join(self.parent_directory_filesystem_path, new_asset_name)
         self.session.io_manager.display('new path will be {}'.format(new_path))
         if not self.session.io_manager.confirm():
             return
@@ -155,8 +169,10 @@ class FilesystemAssetProxy(ScoreManagerObject):
         self.session.io_manager.proceed('asset copied.')
 
     def interactively_remove(self, pending_user_input=None):
-        self.session.io_manager.assign_user_input(pending_user_input=pending_user_input)
-        self.session.io_manager.display(['{} will be removed.'.format(self.filesystem_path), ''])
+        self.session.io_manager.assign_user_input(
+            pending_user_input=pending_user_input)
+        self.session.io_manager.display(
+            ['{} will be removed.'.format(self.filesystem_path), ''])
         getter = self.session.io_manager.make_getter(where=self._where)
         getter.append_string("type 'remove' to proceed")
         result = getter._run()
@@ -165,28 +181,32 @@ class FilesystemAssetProxy(ScoreManagerObject):
         if not result == 'remove':
             return
         if self.remove():
-            self.session.io_manager.proceed('{} removed.'.format(self.filesystem_path))
+            self.session.io_manager.proceed(
+                '{} removed.'.format(self.filesystem_path))
 
     def interactively_remove_and_backtrack_locally(self):
         self.interactively_remove()
         self.session.is_backtracking_locally = True
 
     def interactively_rename(self, pending_user_input=None):
-        self.session.io_manager.assign_user_input(pending_user_input=pending_user_input)
+        self.session.io_manager.assign_user_input(
+            pending_user_input=pending_user_input)
         getter = self._initialize_file_name_getter()
         getter.include_newlines = False
         result = getter._run()
         if self.session.backtrack():
             return
         new_path = os.path.join(self.parent_directory_filesystem_path, result)
-        self.session.io_manager.display(['new path name will be: "{}"'.format(new_path), ''])
+        self.session.io_manager.display(
+            ['new path name will be: "{}"'.format(new_path), ''])
         if not self.session.io_manager.confirm():
             return
         if self.rename(new_path):
             self.session.io_manager.proceed('asset renamed.')
 
     def interactively_write_boilerplate(self, pending_user_input=None):
-        self.session.io_manager.assign_user_input(pending_user_input=pending_user_input)
+        self.session.io_manager.assign_user_input(
+            pending_user_input=pending_user_input)
         getter = self.session.io_manager.make_getter(where=self._where)
         getter.append_snake_case_file_name('name of boilerplate asset')
         with self.backtracking:
@@ -196,7 +216,8 @@ class FilesystemAssetProxy(ScoreManagerObject):
         if self.write_boilerplate(boilerplate_filebuilt_in_asset_name):
             self.session.io_manager.proceed('boilerplate asset copied.')
         else:
-            self.session.io_manager.proceed('boilerplate asset {!r} does not exist.'.format(
+            self.session.io_manager.proceed(
+                'boilerplate asset {!r} does not exist.'.format(
                 boilerplate_filebuilt_in_asset_name))
 
     def is_versioned(self):
@@ -205,7 +226,12 @@ class FilesystemAssetProxy(ScoreManagerObject):
         if not os.path.exists(self.filesystem_path):
             return False
         command = 'svn st {}'.format(self.filesystem_path)
-        proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        proc = subprocess.Popen(
+            command,
+            shell=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            )
         first_line = proc.stdout.readline()
         if first_line.startswith(('?', 'svn: warning:')):
             return False
@@ -219,31 +245,54 @@ class FilesystemAssetProxy(ScoreManagerObject):
     def remove(self):
         if self.is_versioned():
             command = 'svn --force rm {}'.format(self.filesystem_path)
-            proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
+            proc = subprocess.Popen(
+                command,
+                shell=True,
+                stdout=subprocess.PIPE,
+                )
             proc.stdout.readline()
             return True
         else:
             command = 'rm -rf {}'.format(self.filesystem_path)
-            proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+            proc = subprocess.Popen(
+                command,
+                shell=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                )
             proc.stdout.readline()
             return True
 
     def rename(self, new_path):
         if self.is_versioned():
-            command = 'svn --force mv {} {}'.format(self.filesystem_path, new_path)
-            proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
+            command = 'svn --force mv {} {}'.format(
+                self.filesystem_path, new_path)
+            proc = subprocess.Popen(
+                command,
+                shell=True,
+                stdout=subprocess.PIPE,
+                )
             proc.stdout.readline()
             self._filesystem_path = new_path
         else:
-            command = 'mv {} {}'.format(self.filesystem_path, new_path)
-            proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
+            command = 'mv {} {}'.format(
+                self.filesystem_path, new_path)
+            proc = subprocess.Popen(
+                command,
+                shell=True,
+                stdout=subprocess.PIPE,
+                )
             proc.stdout.readline()
             self._filesystem_path = new_path
 
     def svn_add(self, is_interactive=False):
         if is_interactive:
             self.session.io_manager.display(self.filesystem_path)
-        proc = subprocess.Popen(self._svn_add_command, shell=True, stdout=subprocess.PIPE)
+        proc = subprocess.Popen(
+            self._svn_add_command,
+            shell=True,
+            stdout=subprocess.PIPE,
+            )
         lines = [line.strip() for line in proc.stdout.readlines()]
         lines.append('')
         if is_interactive:
@@ -263,8 +312,13 @@ class FilesystemAssetProxy(ScoreManagerObject):
                 return
         lines = []
         lines.append(self.filesystem_path)
-        command = 'svn commit -m "{}" {}'.format(commit_message, self.filesystem_path)
-        proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
+        command = 'svn commit -m "{}" {}'.format(
+            commit_message, self.filesystem_path)
+        proc = subprocess.Popen(
+            command,
+            shell=True,
+            stdout=subprocess.PIPE,
+            )
         lines.extend([line.strip() for line in proc.stdout.readlines()])
         lines.append('')
         self.session.io_manager.display(lines)
@@ -274,7 +328,11 @@ class FilesystemAssetProxy(ScoreManagerObject):
         if is_interactive:
             self.session.io_manager.display(self.filesystem_path)
         command = 'svn st -u {}'.format(self.filesystem_path)
-        proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
+        proc = subprocess.Popen(
+            command,
+            shell=True,
+            stdout=subprocess.PIPE,
+            )
         lines = [line.strip() for line in proc.stdout.readlines()]
         lines.append('')
         self.session.io_manager.display(lines)
@@ -284,7 +342,11 @@ class FilesystemAssetProxy(ScoreManagerObject):
         if is_interactive:
             self.session.io_manager.display(self.filesystem_path)
         command = 'svn up {}'.format(self.filesystem_path)
-        proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
+        proc = subprocess.Popen(
+            command,
+            shell=True,
+            stdout=subprocess.PIPE,
+            )
         lines = [line.strip() for line in proc.stdout.readlines()]
         lines.append('')
         self.session.io_manager.display(lines)
@@ -293,9 +355,12 @@ class FilesystemAssetProxy(ScoreManagerObject):
     def write_boilerplate(self, boilerplate_filebuilt_in_asset_name):
         if not os.path.exists(boilerplate_filebuilt_in_asset_name):
             boilerplate_filebuilt_in_asset_name = os.path.join(
-                self.boilerplate_directory_path, boilerplate_filebuilt_in_asset_name)
+                self.boilerplate_directory_path,
+                boilerplate_filebuilt_in_asset_name)
         if os.path.exists(boilerplate_filebuilt_in_asset_name):
-            shutil.copyfile(boilerplate_filebuilt_in_asset_name, self.filesystem_path)
+            shutil.copyfile(
+                boilerplate_filebuilt_in_asset_name,
+                self.filesystem_path)
             return True
 
     ### UI MANIFEST ###

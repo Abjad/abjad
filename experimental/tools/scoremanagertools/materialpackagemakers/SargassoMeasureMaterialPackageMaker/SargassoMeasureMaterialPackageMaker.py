@@ -140,10 +140,13 @@ class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
         if measures_are_scaled:
 
             meter_multipliers = []
-            for measure_index, multiplied_measure_numerator in enumerate(multiplied_measure_numerators):
-                possible_multipliers = SargassoMeasureMaterialPackageMaker.get_possible_meter_multipliers(
+            for measure_index, multiplied_measure_numerator in \
+                enumerate(multiplied_measure_numerators):
+                possible_multipliers = \
+                    SargassoMeasureMaterialPackageMaker.get_possible_meter_multipliers(
                     multiplied_measure_numerator)
-                meter_multiplier = SargassoMeasureMaterialPackageMaker.select_meter_multiplier(
+                meter_multiplier = \
+                    SargassoMeasureMaterialPackageMaker.select_meter_multiplier(
                     possible_multipliers, measure_index)
                 meter_multipliers.append(meter_multiplier)
             #print meter_multipliers
@@ -151,18 +154,25 @@ class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
             prolated_measure_numerators = []
             for meter_multiplier, multiplied_measure_numerator in zip(
                 meter_multipliers, multiplied_measure_numerators):
-                prolated_measure_numerator = multiplied_measure_numerator / meter_multiplier
-                assert mathtools.is_integer_equivalent_number(prolated_measure_numerator)
+                prolated_measure_numerator = \
+                    multiplied_measure_numerator / meter_multiplier
+                assert mathtools.is_integer_equivalent_number(
+                    prolated_measure_numerator)
                 prolated_measure_numerator = int(prolated_measure_numerator)
                 prolated_measure_numerators.append(prolated_measure_numerator)
             #print prolated_measure_numerators
 
-            measure_divisions = sequencetools.repeat_sequence_to_weight_exactly(
+            measure_divisions = \
+                sequencetools.repeat_sequence_to_weight_exactly(
                 measure_division_talea, sum(prolated_measure_numerators))
             #print measure_divisions
 
-            measure_divisions_by_measure = sequencetools.split_sequence_by_weights(
-                measure_divisions, prolated_measure_numerators, cyclic=True, overhang=True)
+            measure_divisions_by_measure = \
+                sequencetools.split_sequence_by_weights(
+                measure_divisions,
+                prolated_measure_numerators,
+                cyclic=True,
+                overhang=True)
             #print measure_divisions_by_measure
 
         measure_tokens = zip(meter_multipliers, measure_divisions_by_measure)
@@ -175,14 +185,18 @@ class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
 
         divided_measure_tokens = []
         for meter_multiplier, measure_divisions in measure_tokens:
-            division_lists = sequencetools.partition_sequence_by_ratio_of_lengths(measure_divisions, ratio)
+            division_lists = \
+                sequencetools.partition_sequence_by_ratio_of_lengths(
+                    measure_divisions, ratio)
             for division_list in division_lists:
                 if division_list:
-                    divided_measure_tokens.append((meter_multiplier, division_list))
+                    divided_measure_tokens.append(
+                        (meter_multiplier, division_list))
         #for x in divided_measure_tokens: print x
 
         if measures_are_shuffled:
-            divided_measure_tokens = SargassoMeasureMaterialPackageMaker.permute_divided_measure_tokens(
+            divided_measure_tokens = \
+                SargassoMeasureMaterialPackageMaker.permute_divided_measure_tokens(
                 divided_measure_tokens)
 
         meter_tokens = []
@@ -192,7 +206,8 @@ class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
             meter_base_unit = meter_multiplier * fractions.Fraction(
                 min(measure_divisions), measure_division_denominator)
             meter_denominator = meter_base_unit.denominator
-            meter_token = mathtools.NonreducedFraction(measure_duration).with_multiple_of_denominator(
+            meter_token = \
+                mathtools.NonreducedFraction(measure_duration).with_multiple_of_denominator(
                 meter_denominator)
             meter_tokens.append(meter_token)
         #print meter_tokens
@@ -204,7 +219,8 @@ class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
 
         measures = []
         for meter_token, division_token in zip(meter_tokens, division_tokens):
-            leaves = leaftools.make_leaves_from_talea(division_token, measure_division_denominator)
+            leaves = leaftools.make_leaves_from_talea(
+                division_token, measure_division_denominator)
             measure = measuretools.Measure(meter_token, leaves)
             measures.append(measure)
         #print measures
@@ -216,12 +232,15 @@ class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
         modulus_of_permutation = 5
         len_divided_measure_tokens = len(divided_measure_tokens)
         assert mathtools.are_relatively_prime([modulus_of_permutation, len_divided_measure_tokens])
-        permutation = [(5 * x) % len_divided_measure_tokens for x in range(len_divided_measure_tokens)]
-        divided_measure_tokens = sequencetools.permute_sequence(divided_measure_tokens, permutation)
+        permutation = [(5 * x) % len_divided_measure_tokens 
+            for x in range(len_divided_measure_tokens)]
+        divided_measure_tokens = \
+            sequencetools.permute_sequence(divided_measure_tokens, permutation)
         return divided_measure_tokens
 
     @staticmethod
     def select_meter_multiplier(possible_meter_multipliers, measure_index):
-        possible_meter_multipliers = sequencetools.CyclicTuple(possible_meter_multipliers)
+        possible_meter_multipliers = \
+            sequencetools.CyclicTuple(possible_meter_multipliers)
         meter_multiplier = possible_meter_multipliers[5 * measure_index]
         return meter_multiplier
