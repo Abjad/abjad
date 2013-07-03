@@ -45,7 +45,7 @@ def get_nth_leaf_in_expr(expr, n=0):
         Note("a'8")
 
     .. note:: Because this function returns as soon as it finds instance
-        `n` of `klasses`, it is more efficient to call
+        `n` of `classes`, it is more efficient to call
         ``leaftools.get_nth_leaf_in_expr(expr, 0)`` than ``expr.leaves[0]``.
         It is likewise more efficient to call
         ``leaftools.get_nth_leaf_in_expr(expr, -1)`` than ``expr.leaves[-1]``.

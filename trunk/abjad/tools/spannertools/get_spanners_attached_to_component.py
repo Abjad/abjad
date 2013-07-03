@@ -40,8 +40,8 @@ def get_spanners_attached_to_component(component, klass=None):
 
     Get spanners of any `klass` attached to `component`::
 
-        >>> klasses = (beamtools.BeamSpanner, spannertools.SlurSpanner)
-        >>> result = spannertools.get_spanners_attached_to_component(staff.leaves[0], klasses)
+        >>> classes = (beamtools.BeamSpanner, spannertools.SlurSpanner)
+        >>> result = spannertools.get_spanners_attached_to_component(staff.leaves[0], classes)
         >>> for x in sorted(result):
         ...     x
         ...

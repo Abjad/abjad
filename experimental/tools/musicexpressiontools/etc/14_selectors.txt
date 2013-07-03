@@ -15,11 +15,11 @@ as a ContainerIndicatorList.
 Select the first depth-0 tuplet in the last measure starting during segment 'red':
 
     select_expression = ComponentSelectExpression(
-        timespan=Timespan(klass=Division, name='red'),
+        timespan=Timespan(class_=Division, name='red'),
         comparator=specificationtools.starts_during_timespan(),
         containment=[
-            ContainmentIndicator(klass=Measure, index=-1),
-            ContainmentIndicator(klass=Tuplet, index=0, depth=0)]
+            ContainmentIndicator(class_=Measure, index=-1),
+            ContainmentIndicator(class_=Tuplet, index=0, depth=0)]
 
 
 *SliceSelectExpression.* Select zero or more container elements in sequence. Input parameters?
@@ -56,26 +56,26 @@ Better to start again with more examples.
 * Select voice 1 notes m-n.
 * Select voice 1 rests m-n.
 * Select voice 1 notes or chords m-n.
-[ Select voice 1 klasses m-n.]
+[ Select voice 1 classes m-n.]
 
 * Select voice 1 notes that start during during timespan.
 * Select voice 1 notes that stop during during timespan.
 * Select voice 1 notes that happen during during timespan.
-[ Select voice 1 klasses that satisfy arbitrary timespan inequality t.]
+[ Select voice 1 classes that satisfy arbitrary timespan inequality t.]
 
 
 J
 * Select voice 1 notes m-n; then filter by those that start during timespan.
 * Select voice 1 notes m-n; then filter by those that stop during timespan.
 * Select voice 1 notes m-n; then filter by those that happen during timespan.
-[ Select voice 1 klasses m-n; then filter by arbitrary timespan inequality t.]
+[ Select voice 1 classes m-n; then filter by arbitrary timespan inequality t.]
 
 
 K
 * Select voice 1 notes that start during timespan; then select m-n of that.
 * Select voice 1 notes that stop during timespan; then select m-n of that.
 * Select voice 1 notes that happen during timespan; then select m-n of that.
-[ Select voice 1 klasses that satisfy arbitrary timespan t; then slice the result.]
+[ Select voice 1 classes that satisfy arbitrary timespan t; then slice the result.]
 
 
 L
@@ -155,7 +155,7 @@ And second that every selection may be changed into a timespan (which may, in tu
 be used as the starting point for yet another selection made in succession).
 
     * voice 1 top-level components satisfying timespan
-    * voice 1 klasses satisfying timespan
+    * voice 1 classes satisfying timespan
 
 I think this also points to a useful limitation on the selection of the component at (x, y, z)
 in voice 1. I think if you want to pick out component at (x, y, z) then you have to do that

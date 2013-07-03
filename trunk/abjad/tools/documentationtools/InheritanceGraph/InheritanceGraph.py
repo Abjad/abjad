@@ -6,7 +6,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 class InheritanceGraph(AbjadObject):
     '''Generates a graph of a class or collection of
-    klasses as a dictionary of parent-children relationships:
+    classes as a dictionary of parent-children relationships:
 
     ::
 
@@ -28,11 +28,11 @@ class InheritanceGraph(AbjadObject):
         >>> graph = documentationtools.InheritanceGraph(addresses=(F, E))
 
     ``InheritanceGraph`` may be instantiated from one or more instances, 
-    klasses or modules. If instantiated from a module, all public klasses 
+    classes or modules. If instantiated from a module, all public classes 
     in that module will be taken into the graph.
 
     A `root_class` keyword may be defined at instantiation, which filters out
-    all klasses from the graph which do not inherit from that `root_class`
+    all classes from the graph which do not inherit from that `root_class`
     (or are not already the `root_class`):
 
     ::
@@ -170,7 +170,7 @@ class InheritanceGraph(AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    def _build_basic_mappings(self, klasses):
+    def _build_basic_mappings(self, classes):
         child_parents_mapping = {}
         parent_children_mapping = {}
         invalid_klasses = set([])
@@ -191,7 +191,7 @@ class InheritanceGraph(AbjadObject):
             for parent in parents:
                 parent_children_mapping[parent].add(klass)
             return True
-        for klass in klasses:
+        for klass in classes:
             recurse(klass)
         return child_parents_mapping, parent_children_mapping
 

@@ -1,10 +1,10 @@
 from abjad.tools import componenttools
 
 
-def is_component_with_context_mark_attached(expr, klasses=None):
+def is_component_with_context_mark_attached(expr, classes=None):
     r'''.. versionadded:: 2.0
 
-    True when `expr` is a component with context mark of `klasses` attached:
+    True when `expr` is a component with context mark of `classes` attached:
 
     ::
 
@@ -33,11 +33,11 @@ def is_component_with_context_mark_attached(expr, klasses=None):
     '''
     from abjad.tools import contexttools
 
-    if klasses is None:
-        klasses = (contexttools.ContextMark,)
+    if classes is None:
+        classes = (contexttools.ContextMark,)
 
     if isinstance(expr, componenttools.Component):
-        if len(contexttools.get_context_marks_attached_to_component(expr, klasses=klasses)) == 1:
+        if len(contexttools.get_context_marks_attached_to_component(expr, classes=classes)) == 1:
             return True
 
     return False

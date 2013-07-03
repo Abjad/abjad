@@ -72,8 +72,8 @@ Let's rewrite our example to prevent that from happening:
 
    >>> staff = Staff(string)
    >>> leaves = iterationtools.iterate_leaves_in_expr(staff)
-   >>> klasses = (Note, Chord)
-   >>> for group in componenttools.yield_groups_of_mixed_classes_in_sequence(leaves, klasses):
+   >>> classes = (Note, Chord)
+   >>> for group in componenttools.yield_groups_of_mixed_classes_in_sequence(leaves, classes):
    ...     if 1 < len(group):
    ...         spannertools.SlurSpanner(group)
    ... 

@@ -2,7 +2,7 @@ import types
 from abjad.tools import selectiontools
 
 
-def all_are_thread_contiguous_components(expr, klasses=None, allow_orphans=True):
+def all_are_thread_contiguous_components(expr, classes=None, allow_orphans=True):
     r'''.. versionadded:: 1.1
 
     True when elements in `expr` are all thread-contiguous components:
@@ -44,14 +44,14 @@ def all_are_thread_contiguous_components(expr, klasses=None, allow_orphans=True)
     if not isinstance(expr, (list, tuple, types.GeneratorType, selectiontools.Selection)):
         return False
 
-    if klasses is None:
-        klasses = componenttools.Component
+    if classes is None:
+        classes = componenttools.Component
 
     if len(expr) == 0:
         return True
 
     first = expr[0]
-    if not isinstance(first, klasses):
+    if not isinstance(first, classes):
         return False
 
     orphan_components = True
@@ -64,7 +64,7 @@ def all_are_thread_contiguous_components(expr, klasses=None, allow_orphans=True)
     first_thread = first.parentage.containment_signature
     prev = first
     for cur in expr[1:]:
-        if not isinstance(cur, klasses):
+        if not isinstance(cur, classes):
             return False
         if not cur.parentage.is_orphan:
             orphan_components = False
@@ -81,7 +81,7 @@ def all_are_thread_contiguous_components(expr, klasses=None, allow_orphans=True)
     return True
 
 
-def _are_thread_proper(component_1, component_2, klasses=None):
+def _are_thread_proper(component_1, component_2, classes=None):
     '''True when
 
         1. component_1 and component_2 are both Abjad components,
@@ -96,12 +96,12 @@ def _are_thread_proper(component_1, component_2, klasses=None):
     from abjad.tools import componenttools
     from abjad.tools import iterationtools
 
-    if klasses is None:
-        klasses = (componenttools.Component,)
+    if classes is None:
+        classes = (componenttools.Component,)
 
     # if either input parameter are not Abjad tokens
-    if not isinstance(component_1, klasses) or \
-        not isinstance(component_2, klasses):
+    if not isinstance(component_1, classes) or \
+        not isinstance(component_2, classes):
         return False
 
     # if component_1 and component_2 do not share a thread

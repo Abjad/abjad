@@ -35,4 +35,4 @@ def all_are_staves(expr):
     '''
     from abjad.tools import stafftools
 
-    return componenttools.all_are_components(expr, klasses=(stafftools.Staff,))
+    return componenttools.all_are_components(expr, classes=(stafftools.Staff,))

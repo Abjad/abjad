@@ -46,4 +46,4 @@ def is_component_with_staff_change_mark_attached(expr):
     '''
     from abjad.tools import contexttools
 
-    return contexttools.is_component_with_context_mark_attached(expr, klasses=(contexttools.StaffChangeMark,))
+    return contexttools.is_component_with_context_mark_attached(expr, classes=(contexttools.StaffChangeMark,))

@@ -28,4 +28,4 @@ def get_time_signature_mark_attached_to_component(component):
     from abjad.tools import contexttools
 
     return contexttools.get_context_mark_attached_to_component(
-        component, klasses=(contexttools.TimeSignatureMark,))
+        component, classes=(contexttools.TimeSignatureMark,))

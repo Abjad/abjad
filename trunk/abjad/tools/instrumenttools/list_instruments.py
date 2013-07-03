@@ -1,7 +1,7 @@
 import inspect
 
 
-def list_instruments(klasses=None):
+def list_instruments(classes=None):
     r'''.. versionadded:: 2.5
 
     List instruments in ``instrumenttools`` module:
@@ -21,13 +21,13 @@ def list_instruments(klasses=None):
     '''
     from abjad.tools import instrumenttools
 
-    if klasses is None:
-        klasses = (instrumenttools.Instrument, )
+    if classes is None:
+        classes = (instrumenttools.Instrument, )
 
     instruments = []
     for value in instrumenttools.__dict__.itervalues():
         try:
-            if issubclass(value, klasses) and not inspect.isabstract(value):
+            if issubclass(value, classes) and not inspect.isabstract(value):
                 instruments.append(value)
         except TypeError:
             pass

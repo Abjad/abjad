@@ -1,7 +1,7 @@
-def get_nth_component_in_expr(expr, klasses, n=0):
+def get_nth_component_in_expr(expr, classes, n=0):
     r'''.. versionadded:: 1.1
 
-    Get component `n` in the `klasses` of `expr`::
+    Get component `n` in the `classes` of `expr`::
 
         >>> staff = Staff([])
         >>> durations = [Duration(n, 16) for n in range(1, 5)]
@@ -67,10 +67,10 @@ def get_nth_component_in_expr(expr, klasses, n=0):
         raise ValueError
 
     if 0 <= n:
-        for i, x in enumerate(iterationtools.iterate_components_in_expr(expr, klasses)):
+        for i, x in enumerate(iterationtools.iterate_components_in_expr(expr, classes)):
             if i == n:
                 return x
     else:
-        for i, x in enumerate(iterationtools.iterate_components_in_expr(expr, klasses, reverse=True)):
+        for i, x in enumerate(iterationtools.iterate_components_in_expr(expr, classes, reverse=True)):
             if i == abs(n) - 1:
                 return x

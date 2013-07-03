@@ -77,7 +77,7 @@ def fuse_measures(measures):
         import _give_spanners_that_dominate_donor_components_to_recipient_components
 
     assert componenttools.all_are_contiguous_components_in_same_parent(measures,
-        klasses=(measuretools.Measure, ))
+        classes=(measuretools.Measure, ))
 
     if len(measures) == 0:
         return None

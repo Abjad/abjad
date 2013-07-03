@@ -39,4 +39,4 @@ def get_staff_change_mark_attached_to_component(component):
     '''
     from abjad.tools import contexttools
 
-    return contexttools.get_context_mark_attached_to_component(component, klasses=(contexttools.StaffChangeMark,))
+    return contexttools.get_context_mark_attached_to_component(component, classes=(contexttools.StaffChangeMark,))

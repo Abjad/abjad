@@ -35,4 +35,4 @@ def all_are_leaves(expr):
     '''
     from abjad.tools import leaftools
 
-    return componenttools.all_are_components(expr, klasses=(leaftools.Leaf,))
+    return componenttools.all_are_components(expr, classes=(leaftools.Leaf,))

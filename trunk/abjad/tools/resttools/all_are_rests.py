@@ -35,4 +35,4 @@ def all_are_rests(expr):
     '''
     from abjad.tools import resttools
 
-    return componenttools.all_are_components(expr, klasses=(resttools.Rest,))
+    return componenttools.all_are_components(expr, classes=(resttools.Rest,))

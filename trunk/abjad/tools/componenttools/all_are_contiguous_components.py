@@ -2,7 +2,7 @@ import types
 from abjad.tools import selectiontools
 
 
-def all_are_contiguous_components(expr, klasses=None, allow_orphans=True):
+def all_are_contiguous_components(expr, classes=None, allow_orphans=True):
     '''.. versionadded:: 1.1
 
     True when elements in `expr` are all contiguous components. Otherwise false:
@@ -13,12 +13,12 @@ def all_are_contiguous_components(expr, klasses=None, allow_orphans=True):
         >>> componenttools.all_are_contiguous_components(staff.leaves)
         True
 
-    True when elements in `expr` are all contiguous `klasses`. Otherwise false:
+    True when elements in `expr` are all contiguous `classes`. Otherwise false:
 
     ::
 
         >>> staff = Staff("c'8 d'8 e'8")
-        >>> componenttools.all_are_contiguous_components(staff.leaves, klasses=Note)
+        >>> componenttools.all_are_contiguous_components(staff.leaves, classes=Note)
         True
 
     Return boolean.
@@ -29,14 +29,14 @@ def all_are_contiguous_components(expr, klasses=None, allow_orphans=True):
         #raise TypeError('Must be list of Abjad components.')
         return False
 
-    if klasses is None:
-        klasses = componenttools.Component
+    if classes is None:
+        classes = componenttools.Component
 
     if len(expr) == 0:
         return True
 
     first = expr[0]
-    if not isinstance(first, klasses):
+    if not isinstance(first, classes):
         return False
 
     orphan_components = True
@@ -47,7 +47,7 @@ def all_are_contiguous_components(expr, klasses=None, allow_orphans=True):
 
     prev = first
     for cur in expr[1:]:
-        if not isinstance(cur, klasses):
+        if not isinstance(cur, classes):
             return False
         if not cur.parentage.is_orphan:
             orphan_components = False

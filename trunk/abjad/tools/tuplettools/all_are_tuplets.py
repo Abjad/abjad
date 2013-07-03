@@ -35,4 +35,4 @@ def all_are_tuplets(expr):
     '''
     from abjad.tools import tuplettools
 
-    return componenttools.all_are_components(expr, klasses=(tuplettools.Tuplet,))
+    return componenttools.all_are_components(expr, classes=(tuplettools.Tuplet,))

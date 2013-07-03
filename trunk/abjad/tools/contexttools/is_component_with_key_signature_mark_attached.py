@@ -36,4 +36,4 @@ def is_component_with_key_signature_mark_attached(expr):
     '''
     from abjad.tools import contexttools
 
-    return contexttools.is_component_with_context_mark_attached(expr, klasses=(contexttools.KeySignatureMark,))
+    return contexttools.is_component_with_context_mark_attached(expr, classes=(contexttools.KeySignatureMark,))

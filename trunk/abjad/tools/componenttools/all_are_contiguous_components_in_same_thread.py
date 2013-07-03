@@ -2,7 +2,7 @@ import types
 from abjad.tools import selectiontools
 
 
-def all_are_contiguous_components_in_same_thread(expr, klasses=None, allow_orphans=True):
+def all_are_contiguous_components_in_same_thread(expr, classes=None, allow_orphans=True):
     '''.. versionadded:: 1.1
 
     True when elements in `expr` are all contiguous components in same thread.
@@ -14,13 +14,13 @@ def all_are_contiguous_components_in_same_thread(expr, klasses=None, allow_orpha
         >>> componenttools.all_are_contiguous_components_in_same_thread(staff.leaves)
         True
 
-    True when elements in `expr` are all contiguous `klasses` in same thread.
+    True when elements in `expr` are all contiguous `classes` in same thread.
     Otherwise false:
 
     ::
 
         >>> staff = Staff("c'8 d'8 e'8")
-        >>> componenttools.all_are_contiguous_components_in_same_thread(staff.leaves, klasses=Note)
+        >>> componenttools.all_are_contiguous_components_in_same_thread(staff.leaves, classes=Note)
         True
 
     Return boolean.
@@ -30,14 +30,14 @@ def all_are_contiguous_components_in_same_thread(expr, klasses=None, allow_orpha
     if not isinstance(expr, (list, tuple, types.GeneratorType, selectiontools.Selection)):
         return False
 
-    if klasses is None:
-        klasses = componenttools.Component
+    if classes is None:
+        classes = componenttools.Component
 
     if len(expr) == 0:
         return True
 
     first = expr[0]
-    if not isinstance(first, klasses):
+    if not isinstance(first, classes):
         return False
 
     orphan_components = True
@@ -50,7 +50,7 @@ def all_are_contiguous_components_in_same_thread(expr, klasses=None, allow_orpha
     first_signature = first.parentage.containment_signature
     prev = first
     for cur in expr[1:]:
-        if not isinstance(cur, klasses):
+        if not isinstance(cur, classes):
             return False
         if not cur.parentage.is_orphan:
             orphan_components = False

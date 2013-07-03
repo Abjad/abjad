@@ -36,4 +36,4 @@ def all_are_voices(expr):
 
     from abjad.tools import voicetools
 
-    return componenttools.all_are_components(expr, klasses=(voicetools.Voice,))
+    return componenttools.all_are_components(expr, classes=(voicetools.Voice,))

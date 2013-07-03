@@ -40,4 +40,4 @@ def all_are_scores(expr):
     '''
     from abjad.tools import scoretools
 
-    return componenttools.all_are_components(expr, klasses=(scoretools.Score,))
+    return componenttools.all_are_components(expr, classes=(scoretools.Score,))

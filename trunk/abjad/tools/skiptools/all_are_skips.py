@@ -40,4 +40,4 @@ def all_are_skips(expr):
     '''
     from abjad.tools import skiptools
 
-    return componenttools.all_are_components(expr, klasses=(skiptools.Skip,))
+    return componenttools.all_are_components(expr, classes=(skiptools.Skip,))

@@ -16,9 +16,9 @@ def get_developer_script_classes():
     ]
     script_classes = []
     for tools_package_path in tools_package_paths:
-        klasses = documentationtools.ClassCrawler(tools_package_path,
+        classes = documentationtools.ClassCrawler(tools_package_path,
             root_package_name='abjad')()
-        for klass in klasses:
+        for klass in classes:
             if developerscripttools.DeveloperScript in inspect.getmro(klass) and \
                 not inspect.isabstract(klass):
                 script_classes.append(klass)

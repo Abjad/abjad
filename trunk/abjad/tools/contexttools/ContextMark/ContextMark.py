@@ -159,9 +159,9 @@ class ContextMark(Mark):
         to score component that starts with start component.
         '''
         from abjad.tools import contexttools
-        klasses = (type(self), )
+        classes = (type(self), )
         effective_context_mark = contexttools.get_effective_context_mark(
-            start_component, klasses)
+            start_component, classes)
         if effective_context_mark is not None:
             if effective_context_mark.start_component.timespan.start_offset == \
                 start_component.timespan.start_offset:

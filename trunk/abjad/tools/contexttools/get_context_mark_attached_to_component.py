@@ -1,4 +1,4 @@
-def get_context_mark_attached_to_component(component, klasses=None):
+def get_context_mark_attached_to_component(component, classes=None):
     r'''.. versionadded:: 2.3
 
     Get context mark attached to `component`::
@@ -29,10 +29,10 @@ def get_context_mark_attached_to_component(component, klasses=None):
     '''
     from abjad.tools import contexttools
 
-    if klasses is None:
-        klasses = (contexttools.ContextMark,)
+    if classes is None:
+        classes = (contexttools.ContextMark,)
 
-    context_marks = contexttools.get_context_marks_attached_to_component(component, klasses=klasses)
+    context_marks = contexttools.get_context_marks_attached_to_component(component, classes=classes)
 
     if len(context_marks) == 0:
         raise MissingMarkError

@@ -44,4 +44,4 @@ def all_are_measures(expr):
     '''
     from abjad.tools import measuretools
 
-    return componenttools.all_are_components(expr, klasses=(measuretools.Measure,))
+    return componenttools.all_are_components(expr, classes=(measuretools.Measure,))

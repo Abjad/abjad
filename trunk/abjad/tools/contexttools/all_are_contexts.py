@@ -35,4 +35,4 @@ def all_are_contexts(expr):
     '''
     from abjad.tools import contexttools
 
-    return componenttools.all_are_components(expr, klasses=(contexttools.Context,))
+    return componenttools.all_are_components(expr, classes=(contexttools.Context,))

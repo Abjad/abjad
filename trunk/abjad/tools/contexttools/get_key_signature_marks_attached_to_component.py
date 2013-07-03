@@ -28,4 +28,4 @@ def get_key_signature_marks_attached_to_component(component):
     from abjad.tools import contexttools
 
     return contexttools.get_context_marks_attached_to_component(
-        component, klasses=(contexttools.KeySignatureMark,))
+        component, classes=(contexttools.KeySignatureMark,))

@@ -35,4 +35,4 @@ def all_are_containers(expr):
     '''
     from abjad.tools import containertools
 
-    return componenttools.all_are_components(expr, klasses=(containertools.Container,))
+    return componenttools.all_are_components(expr, classes=(containertools.Container,))

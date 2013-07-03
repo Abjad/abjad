@@ -133,9 +133,9 @@ class AbjDevScript(DeveloperScript):
     def developer_script_classes(self):
         from abjad.tools.developerscripttools.get_developer_script_classes \
             import get_developer_script_classes
-        klasses = get_developer_script_classes()
-        klasses.remove(self.__class__)
-        return klasses
+        classes = get_developer_script_classes()
+        classes.remove(self.__class__)
+        return classes
 
     @property
     def developer_script_program_names(self):

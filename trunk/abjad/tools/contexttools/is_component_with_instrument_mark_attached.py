@@ -38,4 +38,4 @@ def is_component_with_instrument_mark_attached(expr):
     '''
     from abjad.tools import contexttools
 
-    return contexttools.is_component_with_context_mark_attached(expr, klasses=(contexttools.InstrumentMark,))
+    return contexttools.is_component_with_context_mark_attached(expr, classes=(contexttools.InstrumentMark,))

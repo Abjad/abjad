@@ -35,4 +35,4 @@ def all_are_notes(expr):
     '''
     from abjad.tools import notetools
 
-    return componenttools.all_are_components(expr, klasses=(notetools.Note,))
+    return componenttools.all_are_components(expr, classes=(notetools.Note,))

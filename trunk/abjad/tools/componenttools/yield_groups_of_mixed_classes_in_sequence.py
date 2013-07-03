@@ -1,4 +1,4 @@
-def yield_groups_of_mixed_classes_in_sequence(sequence, klasses):
+def yield_groups_of_mixed_classes_in_sequence(sequence, classes):
     r'''.. versionadded:: 2.0
 
     Example 1. Yield groups of notes and chords at only the top level of score:
@@ -59,7 +59,7 @@ def yield_groups_of_mixed_classes_in_sequence(sequence, klasses):
 
     current_group = ()
     for group in componenttools.yield_topmost_components_grouped_by_type(sequence):
-        if type(group[0]) in klasses:
+        if type(group[0]) in classes:
             current_group = current_group + group
         elif current_group:
             yield current_group

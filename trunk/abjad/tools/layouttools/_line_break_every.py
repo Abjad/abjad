@@ -7,7 +7,7 @@ from abjad.tools import measuretools
 # TODO: make public and possibly improve function name
 def _line_break_every(expr, line_duration, klass=None,
     kind='prolated', adjust_eol=False, add_empty_bars=False):
-    '''Iterate klasses in `expr` and accumulate `kind` duration.
+    '''Iterate classes in `expr` and accumulate `kind` duration.
 
     Add line break after every total less than or equal to duration.
 

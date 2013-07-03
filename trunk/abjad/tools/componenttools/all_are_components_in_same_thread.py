@@ -2,7 +2,7 @@ import types
 from abjad.tools import selectiontools
 
 
-def all_are_components_in_same_thread(expr, klasses=None, allow_orphans=True):
+def all_are_components_in_same_thread(expr, classes=None, allow_orphans=True):
     '''.. versionadded:: 1.1
 
     True when elements in `expr` are all components in same thread. Otherwise false:
@@ -13,12 +13,12 @@ def all_are_components_in_same_thread(expr, klasses=None, allow_orphans=True):
         >>> componenttools.all_are_components_in_same_thread(voice.leaves)
         True
 
-    True when elements in `expr` are all `klasses` in same thread. Otherwise false:
+    True when elements in `expr` are all `classes` in same thread. Otherwise false:
 
     ::
 
         >>> voice = Voice("c'8 d'8 e'8")
-        >>> componenttools.all_are_components_in_same_thread(voice.leaves, klasses=Note)
+        >>> componenttools.all_are_components_in_same_thread(voice.leaves, classes=Note)
         True
 
     Return boolean.
@@ -29,14 +29,14 @@ def all_are_components_in_same_thread(expr, klasses=None, allow_orphans=True):
         #raise TypeError('Must be list of Abjad components.')
         return False
 
-    if klasses is None:
-        klasses = componenttools.Component
+    if classes is None:
+        classes = componenttools.Component
 
     if len(expr) == 0:
         return True
 
     first = expr[0]
-    if not isinstance(first, klasses):
+    if not isinstance(first, classes):
         return False
 
     orphan_components = True
