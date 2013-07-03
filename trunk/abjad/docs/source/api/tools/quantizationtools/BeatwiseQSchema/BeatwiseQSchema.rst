@@ -20,7 +20,7 @@ Read-only properties
 .. autoattribute:: abjad.tools.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema.beatspan
    :noindex:
 
-.. autoattribute:: abjad.tools.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema.item_klass
+.. autoattribute:: abjad.tools.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema.item_class
    :noindex:
 
 .. autoattribute:: abjad.tools.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema.items
@@ -32,10 +32,10 @@ Read-only properties
 .. autoattribute:: abjad.tools.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema.storage_format
    :noindex:
 
-.. autoattribute:: abjad.tools.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema.target_item_klass
+.. autoattribute:: abjad.tools.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema.target_class
    :noindex:
 
-.. autoattribute:: abjad.tools.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema.target_klass
+.. autoattribute:: abjad.tools.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema.target_item_class
    :noindex:
 
 .. autoattribute:: abjad.tools.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema.tempo

@@ -42,7 +42,7 @@ Read-only properties
 .. autoattribute:: abjad.tools.documentationtools.ReSTTOCDirective.ReSTTOCDirective.ReSTTOCDirective.leaves
    :noindex:
 
-.. autoattribute:: abjad.tools.documentationtools.ReSTTOCDirective.ReSTTOCDirective.ReSTTOCDirective.node_klass
+.. autoattribute:: abjad.tools.documentationtools.ReSTTOCDirective.ReSTTOCDirective.ReSTTOCDirective.node_class
    :noindex:
 
 .. autoattribute:: abjad.tools.documentationtools.ReSTTOCDirective.ReSTTOCDirective.ReSTTOCDirective.nodes

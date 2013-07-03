@@ -33,7 +33,7 @@ class GraphvizSubgraph(GraphvizGraph):
         return result
 
     @property
-    def _node_klass(self):
+    def _node_class(self):
         from abjad.tools import documentationtools
         return (
             documentationtools.GraphvizSubgraph, 

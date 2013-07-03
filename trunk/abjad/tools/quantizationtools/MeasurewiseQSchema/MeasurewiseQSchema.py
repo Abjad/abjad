@@ -262,19 +262,19 @@ class MeasurewiseQSchema(QSchema):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def item_klass(self):
+    def item_class(self):
         '''The schema's item class.
         '''
         from abjad.tools import quantizationtools
         return quantizationtools.MeasurewiseQSchemaItem
 
     @property
-    def target_item_klass(self):
+    def target_item_class(self):
         from abjad.tools import quantizationtools
         return quantizationtools.QTargetMeasure
 
     @property
-    def target_klass(self):
+    def target_class(self):
         from abjad.tools import quantizationtools
         return quantizationtools.MeasurewiseQTarget
 

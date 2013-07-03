@@ -21,7 +21,7 @@ Read-only properties
 .. autoattribute:: abjad.tools.quantizationtools.QTarget.QTarget.QTarget.duration_in_ms
    :noindex:
 
-.. autoattribute:: abjad.tools.quantizationtools.QTarget.QTarget.QTarget.item_klass
+.. autoattribute:: abjad.tools.quantizationtools.QTarget.QTarget.QTarget.item_class
    :noindex:
 
 .. autoattribute:: abjad.tools.quantizationtools.QTarget.QTarget.QTarget.items

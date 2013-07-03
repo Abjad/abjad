@@ -255,14 +255,14 @@ class TreeContainer(TreeNode):
         proper_parentage = self.proper_parentage
 
         if isinstance(i, int):
-            assert isinstance(expr, self._node_klass)
+            assert isinstance(expr, self._node_class)
             old = self[i]
             assert expr not in proper_parentage
             old._switch_parent(None)
             expr._switch_parent(self)
             self._children.insert(i, expr)
         else:
-            assert all(isinstance(x, self._node_klass) for x in expr)
+            assert all(isinstance(x, self._node_class) for x in expr)
             if i.start == i.stop and i.start is not None \
                 and i.stop is not None and i.start <= -len(self):
                 start, stop = 0, 0
@@ -281,11 +281,11 @@ class TreeContainer(TreeNode):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _leaf_klass(self):
+    def _leaf_class(self):
         return TreeNode
 
     @property
-    def _node_klass(self):
+    def _node_class(self):
         return TreeNode
 
     ### PUBLIC PROPERTIES ###
@@ -358,10 +358,10 @@ class TreeContainer(TreeNode):
             result = []
             for child in node:
                 if not hasattr(child, 'children'):
-                    if isinstance(child, self._leaf_klass):
+                    if isinstance(child, self._leaf_class):
                         result.append(child)
                 elif not child.children:
-                    if isinstance(child, self._leaf_klass):
+                    if isinstance(child, self._leaf_class):
                         result.append(child)
                 else:
                     result.extend(recurse(child))

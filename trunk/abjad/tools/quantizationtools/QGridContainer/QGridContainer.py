@@ -23,11 +23,11 @@ class QGridContainer(RhythmTreeContainer):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _leaf_klass(self):
+    def _leaf_class(self):
         from abjad.tools import quantizationtools
         return quantizationtools.QGridLeaf
 
     @property
-    def _node_klass(self):
+    def _node_class(self):
         from abjad.tools import quantizationtools
         return (type(self), quantizationtools.QGridLeaf)

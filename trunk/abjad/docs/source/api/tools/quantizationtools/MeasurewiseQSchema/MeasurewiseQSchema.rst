@@ -17,7 +17,7 @@ Bases
 Read-only properties
 --------------------
 
-.. autoattribute:: abjad.tools.quantizationtools.MeasurewiseQSchema.MeasurewiseQSchema.MeasurewiseQSchema.item_klass
+.. autoattribute:: abjad.tools.quantizationtools.MeasurewiseQSchema.MeasurewiseQSchema.MeasurewiseQSchema.item_class
    :noindex:
 
 .. autoattribute:: abjad.tools.quantizationtools.MeasurewiseQSchema.MeasurewiseQSchema.MeasurewiseQSchema.items
@@ -29,10 +29,10 @@ Read-only properties
 .. autoattribute:: abjad.tools.quantizationtools.MeasurewiseQSchema.MeasurewiseQSchema.MeasurewiseQSchema.storage_format
    :noindex:
 
-.. autoattribute:: abjad.tools.quantizationtools.MeasurewiseQSchema.MeasurewiseQSchema.MeasurewiseQSchema.target_item_klass
+.. autoattribute:: abjad.tools.quantizationtools.MeasurewiseQSchema.MeasurewiseQSchema.MeasurewiseQSchema.target_class
    :noindex:
 
-.. autoattribute:: abjad.tools.quantizationtools.MeasurewiseQSchema.MeasurewiseQSchema.MeasurewiseQSchema.target_klass
+.. autoattribute:: abjad.tools.quantizationtools.MeasurewiseQSchema.MeasurewiseQSchema.MeasurewiseQSchema.target_item_class
    :noindex:
 
 .. autoattribute:: abjad.tools.quantizationtools.MeasurewiseQSchema.MeasurewiseQSchema.MeasurewiseQSchema.tempo

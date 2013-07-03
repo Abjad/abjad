@@ -56,7 +56,7 @@ class ReSTDirective(TreeContainer):
         raise NotImplemented
 
     @property
-    def node_klass(self):
+    def node_class(self):
         from abjad.tools import documentationtools
         return (
             documentationtools.ReSTDirective,

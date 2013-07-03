@@ -79,7 +79,7 @@ class ReSTTOCDirective(ReSTDirective):
         return 'toctree'
 
     @property
-    def node_klass(self):
+    def node_class(self):
         from abjad.tools import documentationtools
         return (
             documentationtools.ReSTTOCItem,

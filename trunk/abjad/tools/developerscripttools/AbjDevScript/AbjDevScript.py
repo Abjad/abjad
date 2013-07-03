@@ -232,7 +232,7 @@ class AbjDevScript(DeveloperScript):
             if not isinstance(aliasdict[key], dict):
                 klass = aliasdict[key]
                 instance = klass()
-                klass_subparser = subparsers.add_parser(key,
+                class_subparser = subparsers.add_parser(key,
                     add_help=False,
                     help=instance.short_description,
                     )

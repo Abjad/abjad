@@ -314,7 +314,7 @@ class InheritanceGraph(AbjadObject):
     def graphviz_graph(self):
         from abjad.tools import documentationtools
 
-        def get_klass_name_pieces(klass):
+        def get_class_name_pieces(klass):
             parts = (klass.__module__ + '.' + klass.__name__).split('.')
             name = [parts[0]]
             for part in parts[1:]:
@@ -324,7 +324,7 @@ class InheritanceGraph(AbjadObject):
                 return name[2:]
             return name
 
-        klass_nodes = {}
+        class_nodes = {}
 
         graph = documentationtools.GraphvizGraph(
             name='InheritanceGraph',
@@ -351,7 +351,7 @@ class InheritanceGraph(AbjadObject):
 
         for klass in sorted(self.parent_children_mapping,
             key=lambda x: (x.__module__, x.__name__)):
-            pieces = get_klass_name_pieces(klass)
+            pieces = get_class_name_pieces(klass)
 
             try:
                 cluster = graph[pieces[0]]
@@ -385,22 +385,22 @@ class InheritanceGraph(AbjadObject):
 
             if self.lineage_prune_distance is None:
                 cluster.append(node)
-                klass_nodes[klass] = node
+                class_nodes[klass] = node
             elif klass not in self.lineage_distance_mapping:
                 cluster.append(node)
-                klass_nodes[klass] = node
+                class_nodes[klass] = node
             else:
                 ok_distance = self.lineage_prune_distance + 1
                 distance = self.lineage_distance_mapping[klass]
                 if distance < ok_distance:
                     cluster.append(node)
-                    klass_nodes[klass] = node
+                    class_nodes[klass] = node
                 elif distance == ok_distance:
                     node.attributes['shape'] = 'invis'
                     node.attributes['style'] = 'transparent'
                     node.attributes['label'] = ' '
                     cluster.append(node)
-                    klass_nodes[klass] = node
+                    class_nodes[klass] = node
                 elif ok_distance < distance:
                     pass
 
@@ -426,8 +426,8 @@ class InheritanceGraph(AbjadObject):
                     distances[parent] <= ok_distance:
                     ok_to_join = True
                 if ok_to_join:
-                    parent_node = klass_nodes[parent]
-                    child_node = klass_nodes[child]
+                    parent_node = class_nodes[parent]
+                    child_node = class_nodes[child]
                     documentationtools.GraphvizEdge()(parent_node, child_node)
 
         for i, cluster in enumerate(

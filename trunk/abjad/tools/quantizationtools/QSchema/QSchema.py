@@ -43,24 +43,24 @@ class QSchema(AbjadObject):
         elif 1 == len(args) and isinstance(args[0], dict):
             items = args[0].items()
             if sequencetools.all_are_pairs_of_types(items, int, dict):
-                items = [(x, self.item_klass(**y)) for x, y in items]
+                items = [(x, self.item_class(**y)) for x, y in items]
             assert sequencetools.all_are_pairs_of_types(
-                items, int, self.item_klass)
+                items, int, self.item_class)
             items = dict(items)
 
-        elif sequencetools.all_are_pairs_of_types(args, int, self.item_klass):
+        elif sequencetools.all_are_pairs_of_types(args, int, self.item_class):
             items = dict(args)
 
         elif sequencetools.all_are_pairs_of_types(args, int, dict):
-            items = [(x, self.item_klass(**y)) for x, y in args]
+            items = [(x, self.item_class(**y)) for x, y in args]
             items = dict(items)
 
-        elif all(isinstance(x, self.item_klass) for x in args):
+        elif all(isinstance(x, self.item_class) for x in args):
             items = [(i, x) for i, x in enumerate(args)]
             items = dict(items)
 
         elif all(isinstance(x, dict) for x in args):
-            items = [(i, self.item_klass(**x)) for i, x in enumerate(args)]
+            items = [(i, self.item_class(**x)) for i, x in enumerate(args)]
             items = dict(items)
 
         else:
@@ -81,11 +81,11 @@ class QSchema(AbjadObject):
         while current_offset < duration:
             lookup = self[idx]
             lookup['offset_in_ms'] = current_offset
-            target_item = self.target_item_klass(**lookup)
+            target_item = self.target_item_class(**lookup)
             target_items.append(target_item)
             current_offset += target_item.duration_in_ms
             idx += 1
-        return self.target_klass(target_items)
+        return self.target_class(target_items)
 
     def __getitem__(self, i):
         assert isinstance(i, int) and 0 <= i
@@ -138,7 +138,7 @@ class QSchema(AbjadObject):
     ### PUBLIC PROPERTIES ###
 
     @abc.abstractproperty
-    def item_klass(self):
+    def item_class(self):
         '''The schema's item class.
         '''
         raise NotImplemented
@@ -156,13 +156,13 @@ class QSchema(AbjadObject):
         return self._search_tree
 
     @abc.abstractproperty
-    def target_item_klass(self):
+    def target_item_class(self):
         '''The schema's target class' item class.
         '''
         raise NotImplemented
 
     @abc.abstractproperty
-    def target_klass(self):
+    def target_class(self):
         '''The schema's target class.
         '''
         raise NotImplemented
@@ -177,7 +177,7 @@ class QSchema(AbjadObject):
 
     def _create_lookups(self):
         lookups = {}
-        fields = self.item_klass._fields
+        fields = self.item_class._fields
         for field in fields:
             lookups[field] = {0: getattr(self, field)}
             for position, item in self.items.iteritems():

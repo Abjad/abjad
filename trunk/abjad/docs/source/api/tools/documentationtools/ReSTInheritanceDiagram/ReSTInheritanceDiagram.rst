@@ -42,7 +42,7 @@ Read-only properties
 .. autoattribute:: abjad.tools.documentationtools.ReSTInheritanceDiagram.ReSTInheritanceDiagram.ReSTInheritanceDiagram.leaves
    :noindex:
 
-.. autoattribute:: abjad.tools.documentationtools.ReSTInheritanceDiagram.ReSTInheritanceDiagram.ReSTInheritanceDiagram.node_klass
+.. autoattribute:: abjad.tools.documentationtools.ReSTInheritanceDiagram.ReSTInheritanceDiagram.ReSTInheritanceDiagram.node_class
    :noindex:
 
 .. autoattribute:: abjad.tools.documentationtools.ReSTInheritanceDiagram.ReSTInheritanceDiagram.ReSTInheritanceDiagram.nodes

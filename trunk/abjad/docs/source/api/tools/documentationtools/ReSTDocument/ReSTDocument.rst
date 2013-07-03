@@ -37,7 +37,7 @@ Read-only properties
 .. autoattribute:: abjad.tools.documentationtools.ReSTDocument.ReSTDocument.ReSTDocument.leaves
    :noindex:
 
-.. autoattribute:: abjad.tools.documentationtools.ReSTDocument.ReSTDocument.ReSTDocument.node_klass
+.. autoattribute:: abjad.tools.documentationtools.ReSTDocument.ReSTDocument.ReSTDocument.node_class
    :noindex:
 
 .. autoattribute:: abjad.tools.documentationtools.ReSTDocument.ReSTDocument.ReSTDocument.nodes

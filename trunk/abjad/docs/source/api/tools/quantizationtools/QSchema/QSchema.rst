@@ -15,7 +15,7 @@ Bases
 Read-only properties
 --------------------
 
-.. autoattribute:: abjad.tools.quantizationtools.QSchema.QSchema.QSchema.item_klass
+.. autoattribute:: abjad.tools.quantizationtools.QSchema.QSchema.QSchema.item_class
    :noindex:
 
 .. autoattribute:: abjad.tools.quantizationtools.QSchema.QSchema.QSchema.items
@@ -27,10 +27,10 @@ Read-only properties
 .. autoattribute:: abjad.tools.quantizationtools.QSchema.QSchema.QSchema.storage_format
    :noindex:
 
-.. autoattribute:: abjad.tools.quantizationtools.QSchema.QSchema.QSchema.target_item_klass
+.. autoattribute:: abjad.tools.quantizationtools.QSchema.QSchema.QSchema.target_class
    :noindex:
 
-.. autoattribute:: abjad.tools.quantizationtools.QSchema.QSchema.QSchema.target_klass
+.. autoattribute:: abjad.tools.quantizationtools.QSchema.QSchema.QSchema.target_item_class
    :noindex:
 
 .. autoattribute:: abjad.tools.quantizationtools.QSchema.QSchema.QSchema.tempo

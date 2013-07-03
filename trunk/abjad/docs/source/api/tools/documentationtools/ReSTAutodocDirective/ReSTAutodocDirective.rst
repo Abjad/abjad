@@ -39,7 +39,7 @@ Read-only properties
 .. autoattribute:: abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective.leaves
    :noindex:
 
-.. autoattribute:: abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective.node_klass
+.. autoattribute:: abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective.node_class
    :noindex:
 
 .. autoattribute:: abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective.nodes

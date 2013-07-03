@@ -20,7 +20,7 @@ class MeasurewiseQTarget(QTarget):
         return tuple([beat for item in self.items for beat in item.beats])
 
     @property
-    def item_klass(self):
+    def item_class(self):
         from abjad.tools import quantizationtools
         return quantizationtools.QTargetMeasure
 

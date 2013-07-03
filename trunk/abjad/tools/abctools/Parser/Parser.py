@@ -118,8 +118,8 @@ class Parser(AbjadObject):
     def output_path(self):
         '''The output path for files associated with the parser.
         '''
-        klass_path = inspect.getfile(self.__class__)
-        return klass_path.rpartition(os.path.sep)[0]
+        class_path = inspect.getfile(self.__class__)
+        return class_path.rpartition(os.path.sep)[0]
 
     @property
     def parser(self):

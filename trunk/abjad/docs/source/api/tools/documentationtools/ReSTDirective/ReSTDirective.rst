@@ -40,7 +40,7 @@ Read-only properties
 .. autoattribute:: abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective.leaves
    :noindex:
 
-.. autoattribute:: abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective.node_klass
+.. autoattribute:: abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective.node_class
    :noindex:
 
 .. autoattribute:: abjad.tools.documentationtools.ReSTDirective.ReSTDirective.ReSTDirective.nodes

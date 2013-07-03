@@ -119,7 +119,7 @@ def pad_measures_in_expr_with_skips(expr, front, back, splice=False):
     '''
     from abjad.tools.layouttools._insert_measure_padding import _insert_measure_padding
 
-    klass_token = skiptools.Skip((1, 4))
-    result = _insert_measure_padding(expr, front, back, klass_token, splice=splice)
+    class_token = skiptools.Skip((1, 4))
+    result = _insert_measure_padding(expr, front, back, class_token, splice=splice)
 
     return result

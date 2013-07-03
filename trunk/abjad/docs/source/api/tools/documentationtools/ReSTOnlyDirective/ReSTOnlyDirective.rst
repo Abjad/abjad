@@ -42,7 +42,7 @@ Read-only properties
 .. autoattribute:: abjad.tools.documentationtools.ReSTOnlyDirective.ReSTOnlyDirective.ReSTOnlyDirective.leaves
    :noindex:
 
-.. autoattribute:: abjad.tools.documentationtools.ReSTOnlyDirective.ReSTOnlyDirective.ReSTOnlyDirective.node_klass
+.. autoattribute:: abjad.tools.documentationtools.ReSTOnlyDirective.ReSTOnlyDirective.ReSTOnlyDirective.node_class
    :noindex:
 
 .. autoattribute:: abjad.tools.documentationtools.ReSTOnlyDirective.ReSTOnlyDirective.ReSTOnlyDirective.nodes

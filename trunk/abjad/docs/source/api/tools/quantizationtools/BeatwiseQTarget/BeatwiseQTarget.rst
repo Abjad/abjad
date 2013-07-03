@@ -23,7 +23,7 @@ Read-only properties
 .. autoattribute:: abjad.tools.quantizationtools.BeatwiseQTarget.BeatwiseQTarget.BeatwiseQTarget.duration_in_ms
    :noindex:
 
-.. autoattribute:: abjad.tools.quantizationtools.BeatwiseQTarget.BeatwiseQTarget.BeatwiseQTarget.item_klass
+.. autoattribute:: abjad.tools.quantizationtools.BeatwiseQTarget.BeatwiseQTarget.BeatwiseQTarget.item_class
    :noindex:
 
 .. autoattribute:: abjad.tools.quantizationtools.BeatwiseQTarget.BeatwiseQTarget.BeatwiseQTarget.items

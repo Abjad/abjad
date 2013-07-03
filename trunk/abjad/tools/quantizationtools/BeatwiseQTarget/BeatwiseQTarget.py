@@ -22,7 +22,7 @@ class BeatwiseQTarget(QTarget):
         return tuple(self.items)
 
     @property
-    def item_klass(self):
+    def item_class(self):
         from abjad.tools import quantizationtools
         return quantizationtools.QTargetBeat
 
