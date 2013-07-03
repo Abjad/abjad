@@ -42,9 +42,9 @@ def get_spanners_attached_to_any_improper_child_of_component(component, klass=No
 
     Get all spanners of any `klass` attached to any proper children of `component`::
 
-        >>> spanner_klasses = (spannertools.SlurSpanner, beamtools.BeamSpanner)
+        >>> spanner_classes = (spannertools.SlurSpanner, beamtools.BeamSpanner)
         >>> result = spannertools.get_spanners_attached_to_any_proper_child_of_component(
-        ... staff, spanner_klasses)
+        ... staff, spanner_classes)
 
     ::
 

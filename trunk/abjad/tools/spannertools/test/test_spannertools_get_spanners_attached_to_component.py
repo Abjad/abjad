@@ -25,8 +25,8 @@ def test_spannertools_get_spanners_attached_to_component_01():
     spanners = spannertools.get_spanners_attached_to_component(leaf, beamtools.BeamSpanner)
     assert spanners == set([beam])
 
-    spanner_klasses = (beamtools.BeamSpanner, spannertools.SlurSpanner)
-    spanners = spannertools.get_spanners_attached_to_component(leaf, spanner_klasses)
+    spanner_classes = (beamtools.BeamSpanner, spannertools.SlurSpanner)
+    spanners = spannertools.get_spanners_attached_to_component(leaf, spanner_classes)
     assert spanners == set([beam, first_slur])
 
     spanners = spannertools.get_spanners_attached_to_component(leaf, tietools.TieSpanner)

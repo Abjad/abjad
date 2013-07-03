@@ -89,15 +89,15 @@ class InheritanceGraph(AbjadObject):
     __slots__ = (
         '_addresses',
         '_child_parents_mapping',
-        '_immediate_klasses',
+        '_immediate_classes',
         '_lineage_addresses',
-        '_lineage_klasses',
+        '_lineage_classes',
         '_lineage_distance_mapping',
         '_lineage_prune_distance',
         '_parent_children_mapping',
         '_recurse_into_submodules',
         '_root_addresses',
-        '_root_klasses',
+        '_root_classes',
         '_use_clusters',
         '_use_groups',
         )
@@ -131,39 +131,39 @@ class InheritanceGraph(AbjadObject):
         for i, x in enumerate(addresses):
             if isinstance(x, unicode):
                 addresses[i] = str(x)
-        all_main_klasses, main_immediate_klasses, main_cached_addresses = \
-            self._collect_klasses(addresses, self.recurse_into_submodules)
+        all_main_classes, main_immediate_classes, main_cached_addresses = \
+            self._collect_classes(addresses, self.recurse_into_submodules)
         self._addresses = main_cached_addresses
 
         # lineage addresses
         if lineage_addresses is not None:
-            all_lineage_klasses, lineage_immediate_klasses, lineage_cached_addresses = \
-                self._collect_klasses(lineage_addresses, False)
+            all_lineage_classes, lineage_immediate_classes, lineage_cached_addresses = \
+                self._collect_classes(lineage_addresses, False)
             self._lineage_addresses = lineage_cached_addresses
-            self._lineage_klasses = frozenset(all_lineage_klasses)
+            self._lineage_classes = frozenset(all_lineage_classes)
         else:
             self._lineage_addresses = None
-            self._lineage_klasses = frozenset([])
+            self._lineage_classes = frozenset([])
 
         # root addresses
         if root_addresses is not None:
-            all_root_klasses, root_immediate_klasses, root_cached_addresses = \
-                self._collect_klasses(root_addresses, False)
+            all_root_classes, root_immediate_classes, root_cached_addresses = \
+                self._collect_classes(root_addresses, False)
             self._root_addresses = root_cached_addresses
-            self._root_klasses = frozenset(all_root_klasses)
+            self._root_classes = frozenset(all_root_classes)
         else:
             self._root_addresses = None
-            self._root_klasses = frozenset([object])
+            self._root_classes = frozenset([object])
 
         child_parents_mapping, parent_children_mapping = \
-            self._build_basic_mappings(all_main_klasses)
-        self._strip_nonlineage_klasses(
+            self._build_basic_mappings(all_main_classes)
+        self._strip_nonlineage_classes(
             child_parents_mapping, parent_children_mapping)
 
         self._child_parents_mapping = child_parents_mapping
         self._parent_children_mapping = parent_children_mapping
 
-        self._immediate_klasses = main_immediate_klasses.intersection(
+        self._immediate_classes = main_immediate_classes.intersection(
             self._parent_children_mapping.viewkeys())
 
         self._lineage_distance_mapping = self._find_lineage_distances()
@@ -173,17 +173,17 @@ class InheritanceGraph(AbjadObject):
     def _build_basic_mappings(self, classes):
         child_parents_mapping = {}
         parent_children_mapping = {}
-        invalid_klasses = set([])
+        invalid_classes = set([])
         def recurse(klass):
             if klass in child_parents_mapping:
                 return True
-            elif klass in invalid_klasses:
+            elif klass in invalid_classes:
                 return False
             mro = list(inspect.getmro(klass))
-            while len(mro) and mro[-1] not in self.root_klasses:
+            while len(mro) and mro[-1] not in self.root_classes:
                 mro.pop()
             if not mro:
-                invalid_klasses.add(klass)
+                invalid_classes.add(klass)
                 return False
             parents = [x for x in klass.__bases__ if recurse(x)]
             child_parents_mapping[klass] = set(parents)
@@ -195,10 +195,10 @@ class InheritanceGraph(AbjadObject):
             recurse(klass)
         return child_parents_mapping, parent_children_mapping
 
-    def _collect_klasses(self, addresses, recurse_into_submodules):
-        all_klasses = set([])
+    def _collect_classes(self, addresses, recurse_into_submodules):
+        all_classes = set([])
         cached_addresses = []
-        immediate_klasses = set([])
+        immediate_classes = set([])
         visited_modules = set([])
         assert 0 < len(addresses)
         for x in addresses:
@@ -212,8 +212,8 @@ class InheritanceGraph(AbjadObject):
                     module_name, class_name = x
                     module = importlib.import_module(module_name)
                     klass = getattr(module, class_name)
-                all_klasses.add(klass)
-                immediate_klasses.add(klass)
+                all_classes.add(klass)
+                immediate_classes.add(klass)
                 address = (klass.__module__, klass.__name__)
             elif isinstance(x, (str, types.ModuleType)):
                 if isinstance(x, types.ModuleType):
@@ -222,18 +222,18 @@ class InheritanceGraph(AbjadObject):
                     module = importlib.import_module(x)
                 for y in module.__dict__.itervalues():
                     if isinstance(y, types.TypeType):
-                        all_klasses.add(y)
-                        immediate_klasses.add(y)
+                        all_classes.add(y)
+                        immediate_classes.add(y)
                     elif isinstance(y, types.ModuleType) and \
                         recurse_into_submodules:
-                        all_klasses.update(
+                        all_classes.update(
                             self._submodule_recurse(y, visited_modules))
                 address = module.__name__
             cached_addresses.append(address)
-        return all_klasses, immediate_klasses, tuple(cached_addresses)
+        return all_classes, immediate_classes, tuple(cached_addresses)
 
     def _find_lineage_distances(self):
-        if not self.lineage_klasses:
+        if not self.lineage_classes:
             return None
         if not self.lineage_prune_distance:
             return None
@@ -248,36 +248,36 @@ class InheritanceGraph(AbjadObject):
                 elif (distance + 1) < distance_mapping[child]:
                     distance_mapping[child] = distance + 1
                     recurse_downward(child, distance + 1)
-        for klass in self.lineage_klasses:
+        for klass in self.lineage_classes:
             recurse_downward(klass)
         return distance_mapping
 
-    def _strip_nonlineage_klasses(self, 
+    def _strip_nonlineage_classes(self, 
         child_parents_mapping, parent_children_mapping):
-        if not self.lineage_klasses:
+        if not self.lineage_classes:
             return
-        def recurse_upward(klass, invalid_klasses):
+        def recurse_upward(klass, invalid_classes):
             if klass not in child_parents_mapping:
                 return
             for parent in child_parents_mapping[klass]:
-                if parent in invalid_klasses:
-                    invalid_klasses.remove(parent)
-                    recurse_upward(parent, invalid_klasses)
-        def recurse_downward(klass, invalid_klasses):
+                if parent in invalid_classes:
+                    invalid_classes.remove(parent)
+                    recurse_upward(parent, invalid_classes)
+        def recurse_downward(klass, invalid_classes):
             if klass not in parent_children_mapping:
                 return
             for child in parent_children_mapping[klass]:
-                if child in invalid_klasses:
-                    invalid_klasses.remove(child)
-                    recurse_downward(child, invalid_klasses)
-        invalid_klasses = set(
+                if child in invalid_classes:
+                    invalid_classes.remove(child)
+                    recurse_downward(child, invalid_classes)
+        invalid_classes = set(
             child_parents_mapping.keys() + parent_children_mapping.keys())
-        for klass in self.lineage_klasses:
-            if klass in invalid_klasses:
-                invalid_klasses.remove(klass)
-            recurse_upward(klass, invalid_klasses)
-            recurse_downward(klass, invalid_klasses)
-        for klass in invalid_klasses:
+        for klass in self.lineage_classes:
+            if klass in invalid_classes:
+                invalid_classes.remove(klass)
+            recurse_upward(klass, invalid_classes)
+            recurse_downward(klass, invalid_classes)
+        for klass in invalid_classes:
             for child in parent_children_mapping[klass]:
                 child_parents_mapping[child].remove(klass)
             for parent in child_parents_mapping[klass]:
@@ -369,16 +369,16 @@ class InheritanceGraph(AbjadObject):
                 )
             node.attributes['label'] = '\\n'.join(pieces)
 
-            if klass in self.immediate_klasses:
+            if klass in self.immediate_classes:
                 pass
-            if klass in self.root_klasses:
+            if klass in self.root_classes:
                 pass
             if inspect.isabstract(klass):
                 node.attributes['shape'] = 'oval'
                 node.attributes['style'] = 'bold'
             else:
                 node.attributes['shape'] = 'box'
-            if klass in self.lineage_klasses:
+            if klass in self.lineage_classes:
                 node.attributes['color'] = 'black'
                 node.attributes['fontcolor'] = 'white'
                 node.attributes['style'] = ('filled', 'rounded')
@@ -448,8 +448,8 @@ class InheritanceGraph(AbjadObject):
         return graph
 
     @property
-    def immediate_klasses(self):
-        return self._immediate_klasses
+    def immediate_classes(self):
+        return self._immediate_classes
 
     @property
     def lineage_addresses(self):
@@ -460,8 +460,8 @@ class InheritanceGraph(AbjadObject):
         return self._lineage_distance_mapping
 
     @property
-    def lineage_klasses(self):
-        return self._lineage_klasses
+    def lineage_classes(self):
+        return self._lineage_classes
 
     @property
     def lineage_prune_distance(self):
@@ -480,8 +480,8 @@ class InheritanceGraph(AbjadObject):
         return self._root_addresses
 
     @property
-    def root_klasses(self):
-        return self._root_klasses
+    def root_classes(self):
+        return self._root_classes
 
     @property
     def use_clusters(self):
