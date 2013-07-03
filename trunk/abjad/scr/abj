@@ -1,5 +1,0 @@
-#! /usr/bin/env python
-
-if __name__ == '__main__':
-    from abjad.tools.iotools._run_abjad import _run_abjad
-    _run_abjad()
