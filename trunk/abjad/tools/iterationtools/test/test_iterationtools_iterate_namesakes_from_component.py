@@ -96,13 +96,13 @@ def test_iterationtools_iterate_namesakes_from_component_02():
     Note(e', 8)
     '''
 
-    assert componenttools.get_first_instance_of_klass_in_improper_parentage_of_component(
+    assert componenttools.get_first_instance_of_class_in_improper_parentage_of_component(
         notes[0], Staff).name == 'staff 2'
-    assert componenttools.get_first_instance_of_klass_in_improper_parentage_of_component(
+    assert componenttools.get_first_instance_of_class_in_improper_parentage_of_component(
         notes[1], Staff).name == 'staff 2'
-    assert componenttools.get_first_instance_of_klass_in_improper_parentage_of_component(
+    assert componenttools.get_first_instance_of_class_in_improper_parentage_of_component(
         notes[2], Staff).name == 'staff 2'
-    assert componenttools.get_first_instance_of_klass_in_improper_parentage_of_component(
+    assert componenttools.get_first_instance_of_class_in_improper_parentage_of_component(
         notes[3], Staff).name == 'staff 2'
 
 
@@ -255,13 +255,13 @@ def test_iterationtools_iterate_namesakes_from_component_06():
     notes = iterationtools.iterate_namesakes_from_component(score.leaves[0])
     notes = list(notes)
 
-    assert componenttools.get_first_instance_of_klass_in_improper_parentage_of_component(
+    assert componenttools.get_first_instance_of_class_in_improper_parentage_of_component(
         notes[0], Staff).name == 'staff 1'
-    assert componenttools.get_first_instance_of_klass_in_improper_parentage_of_component(
+    assert componenttools.get_first_instance_of_class_in_improper_parentage_of_component(
         notes[1], Staff).name == 'staff 1'
-    assert componenttools.get_first_instance_of_klass_in_improper_parentage_of_component(
+    assert componenttools.get_first_instance_of_class_in_improper_parentage_of_component(
         notes[2], Staff).name == 'staff 1'
-    assert componenttools.get_first_instance_of_klass_in_improper_parentage_of_component(
+    assert componenttools.get_first_instance_of_class_in_improper_parentage_of_component(
         notes[3], Staff).name == 'staff 1'
 
 

@@ -159,8 +159,8 @@ Core composition packages
       tools/componenttools/get_first_component_in_expr_with_name
       tools/componenttools/get_first_component_with_name_in_improper_parentage_of_component
       tools/componenttools/get_first_component_with_name_in_proper_parentage_of_component
-      tools/componenttools/get_first_instance_of_klass_in_improper_parentage_of_component
-      tools/componenttools/get_first_instance_of_klass_in_proper_parentage_of_component
+      tools/componenttools/get_first_instance_of_class_in_improper_parentage_of_component
+      tools/componenttools/get_first_instance_of_class_in_proper_parentage_of_component
       tools/componenttools/get_improper_contents_of_component
       tools/componenttools/get_improper_descendents_of_component
       tools/componenttools/get_improper_descendents_of_component_that_cross_offset
@@ -196,9 +196,9 @@ Core composition packages
       tools/componenttools/sum_duration_of_components
       tools/componenttools/yield_components_grouped_by_duration
       tools/componenttools/yield_components_grouped_by_preprolated_duration
-      tools/componenttools/yield_groups_of_mixed_klasses_in_sequence
+      tools/componenttools/yield_groups_of_mixed_classes_in_sequence
       tools/componenttools/yield_topmost_components_grouped_by_type
-      tools/componenttools/yield_topmost_components_of_klass_grouped_by_type
+      tools/componenttools/yield_topmost_components_of_class_grouped_by_type
 
 .. only:: latex
 
@@ -244,8 +244,8 @@ Core composition packages
       tools/componenttools/get_first_component_in_expr_with_name
       tools/componenttools/get_first_component_with_name_in_improper_parentage_of_component
       tools/componenttools/get_first_component_with_name_in_proper_parentage_of_component
-      tools/componenttools/get_first_instance_of_klass_in_improper_parentage_of_component
-      tools/componenttools/get_first_instance_of_klass_in_proper_parentage_of_component
+      tools/componenttools/get_first_instance_of_class_in_improper_parentage_of_component
+      tools/componenttools/get_first_instance_of_class_in_proper_parentage_of_component
       tools/componenttools/get_improper_contents_of_component
       tools/componenttools/get_improper_descendents_of_component
       tools/componenttools/get_improper_descendents_of_component_that_cross_offset
@@ -281,9 +281,9 @@ Core composition packages
       tools/componenttools/sum_duration_of_components
       tools/componenttools/yield_components_grouped_by_duration
       tools/componenttools/yield_components_grouped_by_preprolated_duration
-      tools/componenttools/yield_groups_of_mixed_klasses_in_sequence
+      tools/componenttools/yield_groups_of_mixed_classes_in_sequence
       tools/componenttools/yield_topmost_components_grouped_by_type
-      tools/componenttools/yield_topmost_components_of_klass_grouped_by_type
+      tools/componenttools/yield_topmost_components_of_class_grouped_by_type
 
 :py:mod:`containertools <abjad.tools.containertools>`
 =====================================================
@@ -4822,8 +4822,8 @@ Abjad internal packages
    .. toctree::
       :maxdepth: 1
 
+      tools/introspectiontools/class_to_tools_package_qualified_class_name
       tools/introspectiontools/get_current_function_name
-      tools/introspectiontools/klass_to_tools_package_qualified_klass_name
 
 .. only:: latex
 
@@ -4832,8 +4832,8 @@ Abjad internal packages
 
    .. toctree::
 
+      tools/introspectiontools/class_to_tools_package_qualified_class_name
       tools/introspectiontools/get_current_function_name
-      tools/introspectiontools/klass_to_tools_package_qualified_klass_name
 
 :py:mod:`lilypondparsertools <abjad.tools.lilypondparsertools>`
 ===============================================================

@@ -118,7 +118,7 @@ class AbjadObject(object):
     def _keyword_argument_name_value_strings(self):
         from abjad.tools import introspectiontools
         result = []
-        tmp = introspectiontools.klass_to_tools_package_qualified_klass_name
+        tmp = introspectiontools.class_to_tools_package_qualified_class_name
         for name in self._keyword_argument_names:
             value = getattr(self, name)
             if value is not None:
@@ -263,7 +263,7 @@ class AbjadObject(object):
             prefix, suffix = '\t', ','
         else:
             prefix, suffix = '', ', '
-        tmp = introspectiontools.klass_to_tools_package_qualified_klass_name
+        tmp = introspectiontools.class_to_tools_package_qualified_class_name
         for name in self._keyword_argument_names:
             if self._has_default_attribute_values:
                 private_keyword_argument_name = '_{}'.format(name)
@@ -314,7 +314,7 @@ class AbjadObject(object):
             prefix, suffix = '\t', ','
         else:
             prefix, suffix = '', ', '
-        tmp = introspectiontools.klass_to_tools_package_qualified_klass_name
+        tmp = introspectiontools.class_to_tools_package_qualified_class_name
         for value in self._positional_argument_values:
             # if value is a (noninstantiated) class
             if type(value) is abc.ABCMeta:

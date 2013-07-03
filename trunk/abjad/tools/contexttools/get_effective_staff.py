@@ -38,5 +38,5 @@ def get_effective_staff(component):
     if staff_change_mark is not None:
         return staff_change_mark.staff
 
-    return componenttools.get_first_instance_of_klass_in_improper_parentage_of_component(
+    return componenttools.get_first_instance_of_class_in_improper_parentage_of_component(
         component, stafftools.Staff)

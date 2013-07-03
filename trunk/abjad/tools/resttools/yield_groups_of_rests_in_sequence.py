@@ -38,4 +38,4 @@ def yield_groups_of_rests_in_sequence(sequence):
     '''
     from abjad.tools import resttools
 
-    return componenttools.yield_topmost_components_of_klass_grouped_by_type(sequence, resttools.Rest)
+    return componenttools.yield_topmost_components_of_class_grouped_by_type(sequence, resttools.Rest)

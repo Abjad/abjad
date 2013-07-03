@@ -43,5 +43,5 @@ def yield_groups_of_chords_in_sequence(sequence):
     '''
     from abjad.tools import chordtools
 
-    return componenttools.yield_topmost_components_of_klass_grouped_by_type(
+    return componenttools.yield_topmost_components_of_class_grouped_by_type(
         sequence, chordtools.Chord)

@@ -30,5 +30,5 @@ def get_first_voice_in_proper_parentage_of_component(component):
     '''
     from abjad.tools import voicetools
 
-    return componenttools.get_first_instance_of_klass_in_proper_parentage_of_component(
+    return componenttools.get_first_instance_of_class_in_proper_parentage_of_component(
         component, voicetools.Voice)

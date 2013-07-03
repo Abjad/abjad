@@ -38,4 +38,4 @@ def yield_groups_of_skips_in_sequence(sequence):
     '''
     from abjad.tools import skiptools
 
-    return componenttools.yield_topmost_components_of_klass_grouped_by_type(sequence, skiptools.Skip)
+    return componenttools.yield_topmost_components_of_class_grouped_by_type(sequence, skiptools.Skip)

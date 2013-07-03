@@ -31,11 +31,6 @@ def get_beam_spanner_attached_to_component(component):
         >>> spanner
         BeamSpanner(c'8, d'8, e'8, f'8)
 
-    ::
-
-        >>> spanner is beam
-        True
-
     Return beam spanner.
 
     Raise missing spanner error when no beam spanner attached to `component`.

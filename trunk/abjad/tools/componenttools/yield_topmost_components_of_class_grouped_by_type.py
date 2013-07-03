@@ -1,4 +1,4 @@
-def yield_topmost_components_of_klass_grouped_by_type(expr, klass):
+def yield_topmost_components_of_class_grouped_by_type(expr, klass):
     r'''.. versionadded:: 2.0
 
     Example 1. Yield runs of topmost notes in `expr`::
@@ -30,7 +30,7 @@ def yield_topmost_components_of_klass_grouped_by_type(expr, klass):
 
     ::
 
-        >>> for group in componenttools.yield_topmost_components_of_klass_grouped_by_type(
+        >>> for group in componenttools.yield_topmost_components_of_class_grouped_by_type(
         ...     staff, Note):
         ...     group
         (Note("g'8"), Note("a'8"))
@@ -41,7 +41,7 @@ def yield_topmost_components_of_klass_grouped_by_type(expr, klass):
 
     ::
 
-        >>> for group in componenttools.yield_topmost_components_of_klass_grouped_by_type(
+        >>> for group in componenttools.yield_topmost_components_of_class_grouped_by_type(
         ...     leaves, Note):
         ...     group
         (Note("c'8"), Note("d'8"))

@@ -40,4 +40,4 @@ def yield_groups_of_mixed_notes_and_chords_in_sequence(sequence):
     from abjad.tools import chordtools
     from abjad.tools import notetools
 
-    return componenttools.yield_groups_of_mixed_klasses_in_sequence(sequence, (notetools.Note, chordtools.Chord))
+    return componenttools.yield_groups_of_mixed_classes_in_sequence(sequence, (notetools.Note, chordtools.Chord))
