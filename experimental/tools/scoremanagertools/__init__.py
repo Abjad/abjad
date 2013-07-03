@@ -73,6 +73,9 @@ You're ready to use the score manager when everything passes.
 '''
 from abjad.tools import importtools
 
-importtools.import_structured_package(__path__[0], globals(), package_root_name='experimental')
+importtools.import_structured_package(
+	__path__[0],
+	globals(),
+	package_root_name='experimental')
 
 _documentation_section = 'unstable'

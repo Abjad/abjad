@@ -16,11 +16,15 @@
     ``contexttools`` to import the component packages freely at top-level.      
 
     The ``measuretools`` package must not import ``timesignaturetools`` at top
-    level in order to handle ``timesignaturetools`` in parallel to ``contexttools``.
+    level in order to handle ``timesignaturetools`` in parallel to 
+    ``contexttools``.
 
 '''
 from abjad.tools import importtools
 
-importtools.import_structured_package(__path__[0], globals(), package_root_name='abjad')
+importtools.import_structured_package(
+	__path__[0],
+	globals(),
+	package_root_name='abjad')
 
 _documentation_section = 'core'
