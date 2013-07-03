@@ -44,7 +44,8 @@ def yield_all_subchords_of_chord(chord):
 
     len_chord = len(chord)
     for i in range(2 ** len_chord):
-        new_chord = componenttools.copy_components_and_remove_spanners([chord])[0]
+        new_chord = \
+            componenttools.copy_components_and_remove_spanners([chord])[0]
         binary_string = mathtools.integer_to_binary_string(i)
         binary_string = binary_string.zfill(len_chord)
         note_heads_to_remove = []
@@ -53,5 +54,6 @@ def yield_all_subchords_of_chord(chord):
                 note_heads_to_remove.append(new_chord[j])
         for note_head in note_heads_to_remove:
                 new_chord.remove(note_head)
-        new_chord = chordtools.change_defective_chord_to_note_or_rest(new_chord)
+        new_chord = \
+            chordtools.change_defective_chord_to_note_or_rest(new_chord)
         yield new_chord

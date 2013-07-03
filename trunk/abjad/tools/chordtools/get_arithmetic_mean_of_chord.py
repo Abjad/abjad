@@ -6,7 +6,9 @@ from abjad.tools.chordtools.Chord import Chord
 def get_arithmetic_mean_of_chord(chord):
     '''.. versionadded:: 2.0
 
-    Get arithmetic mean of chromatic pitch number of pitches in `chord`::
+    Get arithmetic mean of chromatic pitch number of pitches in `chord`:
+
+    ::
 
         >>> chord = Chord("<g' c'' e''>4")
 

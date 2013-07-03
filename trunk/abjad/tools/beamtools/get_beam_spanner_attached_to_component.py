@@ -8,8 +8,7 @@ def get_beam_spanner_attached_to_component(component):
 
     ::
 
-        >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> beam = beamtools.BeamSpanner(staff.leaves)
+        >>> staff = Staff("c'8 [ d'8 e'8 f'8 ]")
 
     ::
 
@@ -27,7 +26,8 @@ def get_beam_spanner_attached_to_component(component):
 
     ::
 
-        >>> spanner = beamtools.get_beam_spanner_attached_to_component(staff[0])
+        >>> spanner = \
+        ...     beamtools.get_beam_spanner_attached_to_component(staff[0])
         >>> spanner
         BeamSpanner(c'8, d'8, e'8, f'8)
 
@@ -40,8 +40,10 @@ def get_beam_spanner_attached_to_component(component):
 
     Raise missing spanner error when no beam spanner attached to `component`.
 
-    Raise extra spanner error when more than one beam spanner attached to `component`.
+    Raise extra spanner error when more than one beam spanner 
+    attached to `component`.
     '''
     from abjad.tools import beamtools
 
-    return spannertools.get_the_only_spanner_attached_to_component(component, beamtools.BeamSpanner)
+    return spannertools.get_the_only_spanner_attached_to_component(
+        component, beamtools.BeamSpanner)

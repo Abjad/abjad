@@ -7,7 +7,9 @@ from abjad.tools.chordtools.Chord import Chord
 def get_note_head_from_chord_by_pitch(chord, pitch):
     '''.. versionadded:: 2.0
 
-    Get note head from `chord` by `pitch`::
+    Get note head from `chord` by `pitch`:
+
+    ::
 
         >>> chord = Chord("<c'' d'' b''>4")
 
@@ -22,7 +24,6 @@ def get_note_head_from_chord_by_pitch(chord, pitch):
     Raise extra note head error when `chord` contains more than
     one note head with pitch equal to `pitch`.
     '''
-
     result = []
 
     if isinstance(pitch, pitchtools.NamedChromaticPitch):
@@ -31,7 +32,8 @@ def get_note_head_from_chord_by_pitch(chord, pitch):
                 result.append(note_head)
     else:
         for note_head in chord.note_heads:
-            if note_head.written_pitch.numbered_chromatic_pitch._chromatic_pitch_number == pitch:
+            ncp = note_head.written_pitch.numbered_chromatic_pitch
+            if ncp._chromatic_pitch_number == pitch:
                 result.append(note_head)
 
     count = len(result)

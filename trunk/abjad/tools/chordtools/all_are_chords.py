@@ -37,4 +37,5 @@ def all_are_chords(expr):
     '''
     from abjad.tools import chordtools
 
-    return componenttools.all_are_components(expr, klasses=(chordtools.Chord,))
+    return componenttools.all_are_components(
+        expr, klasses=(chordtools.Chord,))

@@ -9,8 +9,7 @@ def is_component_with_beam_spanner_attached(expr):
 
     ::
 
-        >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> beam = beamtools.BeamSpanner(staff.leaves)
+        >>> staff = Staff("c'8 [ d'8 e'8 f'8 ]")
 
     ::
 
@@ -35,4 +34,5 @@ def is_component_with_beam_spanner_attached(expr):
     if not isinstance(expr, componenttools.Component):
         return False
 
-    return bool(spannertools.get_spanners_attached_to_component(expr, beamtools.BeamSpanner))
+    return bool(spannertools.get_spanners_attached_to_component(
+        expr, beamtools.BeamSpanner))

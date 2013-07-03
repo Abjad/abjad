@@ -21,22 +21,22 @@ def all_are_components(expr, klasses=None):
 
     True when elements in `expr` are all `klasses`::
 
-        >>> componenttools.all_are_components(3 * Note("c'4"), klasses = Note)
+        >>> componenttools.all_are_components(3 * Note("c'4"), klasses=Note)
         True
 
     Otherwise false:
 
     ::
 
-        >>> componenttools.all_are_components(['foo', 'bar'], klasses = Note)
+        >>> componenttools.all_are_components(['foo', 'bar'], klasses=Note)
         False
 
     Return boolean.
     '''
     from abjad.tools import componenttools
 
-    #if not isinstance(expr, (list, tuple, types.GeneratorType)):
-    if not isinstance(expr, (list, tuple, types.GeneratorType, selectiontools.Selection)):
+    allowable = (list, tuple, types.GeneratorType, selectiontools.Selection)
+    if not isinstance(expr, allowable):
         return False
 
     if klasses is None:

@@ -10,7 +10,7 @@ def is_beamable_component(expr):
 
     ::
 
-        >>> beamtools.is_beamable_component(Note(13, (1, 16)))
+        >>> beamtools.is_beamable_component(Note("cs''16"))
         True
 
     Return boolean.

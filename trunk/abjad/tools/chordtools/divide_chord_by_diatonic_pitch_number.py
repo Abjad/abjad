@@ -4,7 +4,7 @@ from abjad.tools.chordtools.Chord import Chord
 
 
 @decoratortools.requires(Chord, pitchtools.NamedChromaticPitch)
-def divide_chord_by_diatonic_pitch_number(chord, pitch=pitchtools.NamedChromaticPitch('b', 3)):
+def divide_chord_by_diatonic_pitch_number(chord, pitch=None):
     r'''.. versionadded:: 1.1
 
     Divide `chord` by diatonic `pitch` number:
@@ -12,6 +12,7 @@ def divide_chord_by_diatonic_pitch_number(chord, pitch=pitchtools.NamedChromatic
     ::
 
         >>> chord = Chord(range(12), Duration(1, 4))
+        >>> pitch = pitchtools.NamedChromaticPitch("fs'")
 
     ::
 
@@ -20,8 +21,15 @@ def divide_chord_by_diatonic_pitch_number(chord, pitch=pitchtools.NamedChromatic
 
     ::
 
-        >>> chordtools.divide_chord_by_diatonic_pitch_number(chord, pitchtools.NamedChromaticPitch(6))
+        >>> pitch
+        NamedChromaticPitch("fs'")
+
+    ::
+
+        >>> chordtools.divide_chord_by_diatonic_pitch_number(chord, pitch)
         (Chord("<f' fs' g' af' a' bf' b'>4"), Chord("<c' cs' d' ef' e'>4"))
+
+    Function interprets none-valued `pitch` as ``B3``.
 
     Input `chord` may be a note, rest or chord but not a skip.
 
@@ -32,6 +40,9 @@ def divide_chord_by_diatonic_pitch_number(chord, pitch=pitchtools.NamedChromatic
     '''
     from abjad.tools.chordtools._divide_chord import _divide_chord
 
-    treble_chord, bass_chord = _divide_chord(chord, pitch=pitch, attr='numbered_diatonic_pitch')
+    pitch = pitch or pitchtools.NamedChromaticPitch('b', 3)
+
+    treble_chord, bass_chord = _divide_chord(
+        chord, pitch=pitch, attr='numbered_diatonic_pitch')
 
     return treble_chord, bass_chord
