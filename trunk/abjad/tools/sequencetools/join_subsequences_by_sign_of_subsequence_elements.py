@@ -28,7 +28,7 @@ def join_subsequences_by_sign_of_subsequence_elements(sequence):
     if not all(isinstance(x, list) for x in sequence):
         raise TypeError
 
-    if any([get_shared_numeric_sign(x) is None for x in sequence]):
+    if any(get_shared_numeric_sign(x) is None for x in sequence):
         raise ValueError
 
     result = []

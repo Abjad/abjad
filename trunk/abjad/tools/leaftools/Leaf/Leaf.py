@@ -206,7 +206,7 @@ class Leaf(Component):
         result =  []
         chord = leaf
         note_heads = chord.note_heads
-        if any(['\n' in x.lilypond_format for x in note_heads]):
+        if any('\n' in x.lilypond_format for x in note_heads):
             for note_head in note_heads:
                 format = note_head.lilypond_format
                 format_list = format.split('\n')

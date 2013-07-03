@@ -269,7 +269,7 @@ class PitchArray(AbjadObject):
 
     def has_spanning_cell_over_index(self, index):
         rows = self.rows
-        return any([row.has_spanning_cell_over_index(index) for row in rows])
+        return any(row.has_spanning_cell_over_index(index) for row in rows)
 
     def pad_to_depth(self, depth):
         self_depth = self.depth

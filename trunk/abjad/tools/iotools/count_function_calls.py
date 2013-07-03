@@ -1,4 +1,9 @@
-def count_function_calls(expr, global_context=None, local_context=None, fixed_point=True):
+def count_function_calls(
+    expr,
+    global_context=None,
+    local_context=None,
+    fixed_point=True,
+    ):
     '''.. versionadded:: 2.12
 
     Count function calls returned by ``iotools.profile_expr(expr)``.
@@ -8,7 +13,7 @@ def count_function_calls(expr, global_context=None, local_context=None, fixed_po
     ::
 
         >>> iotools.count_function_calls("Note('c4')", globals())
-        11268
+        11270
 
     Example 2. Function calls required to initialize note from integers:
 
@@ -30,14 +35,20 @@ def count_function_calls(expr, global_context=None, local_context=None, fixed_po
         last_result, current_result = 'foo', 'bar'
         while current_result != last_result:
             last_result = current_result
-            current_result = iotools.profile_expr(expr, print_to_terminal=False,
+            current_result = iotools.profile_expr(
+                expr,
+                print_to_terminal=False,
                 global_context=global_context,
-                local_context=local_context)
+                local_context=local_context,
+                )
             current_result = extract_count(current_result)
         return current_result
 
-    result = iotools.profile_expr(expr, print_to_terminal=False,
+    result = iotools.profile_expr(
+        expr,
+        print_to_terminal=False,
         global_context=global_context,
-        local_context=local_context)
+        local_context=local_context,
+        )
     result = extract_count(result)
     return result

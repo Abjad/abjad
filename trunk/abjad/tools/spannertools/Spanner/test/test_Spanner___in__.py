@@ -57,4 +57,4 @@ def test_Spanner___in___02():
     '''
 
     assert all(x in p for x in (t[0], t[1], t[2]))
-    assert not any([x in p for x in t.leaves])
+    assert not any(x in p for x in t.leaves)

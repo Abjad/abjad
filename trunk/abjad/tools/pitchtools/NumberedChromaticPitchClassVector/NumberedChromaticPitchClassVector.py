@@ -78,7 +78,7 @@ class NumberedChromaticPitchClassVector(Vector):
 
     @property
     def _has_quartertones(self):
-        return any([0 < item[1] for item in self._quartertone_items])
+        return any(0 < item[1] for item in self._quartertone_items)
 
     @property
     def _quartertone_format_string(self):
