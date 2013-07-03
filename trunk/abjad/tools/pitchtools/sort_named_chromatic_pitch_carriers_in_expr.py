@@ -20,8 +20,7 @@ def sort_named_chromatic_pitch_carriers_in_expr(pitch_carriers):
     from abjad.tools import pitchtools
 
     result = list(pitch_carriers[:])
-    result.sort(lambda x, y: cmp(
-            abs(pitchtools.list_named_chromatic_pitches_in_expr(x)[0].numbered_chromatic_pitch_class),
-            abs(pitchtools.list_named_chromatic_pitches_in_expr(y)[0].numbered_chromatic_pitch_class)))
+    tmp = pitchtools.list_named_chromatic_pitches_in_expr
+    result.sort(key=lambda x: abs(tmp(x)[0].numbered_chromatic_pitch_class))
 
     return result

@@ -81,7 +81,7 @@ class  NumberedChromaticPitchClassSet(PitchClassSet):
     @property
     def _format_string(self):
         result = list(self)
-        result.sort(lambda x, y: cmp(abs(x), abs(y)))
+        result.sort(key=lambda x: abs(x))
         return ', '.join([str(x) for x in result])
 
     ### PUBLIC PROPERTIES ###
@@ -148,7 +148,7 @@ class  NumberedChromaticPitchClassSet(PitchClassSet):
         Return tuple.
         '''
         result = list(self)
-        result.sort(lambda x, y: cmp(abs(x), abs(y)))
+        result.sort(key=lambda x: abs(x))
         return tuple(result)
 
     @property

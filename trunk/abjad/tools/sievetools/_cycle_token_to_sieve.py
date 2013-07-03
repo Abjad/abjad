@@ -40,7 +40,7 @@ def _cycle_token_to_sieve(cycle_token):
         residue_class = sievetools.ResidueClass(modulo, adjusted_residue)
         residue_classes.append(residue_class)
 
-    residue_classes.sort(lambda x, y: cmp(x.residue, y.residue))
+    residue_classes.sort(key=lambda x: x.residue)
 
     # return sieve as residue class combination
     sieve = sievetools.Sieve(residue_classes, logical_operator='or')

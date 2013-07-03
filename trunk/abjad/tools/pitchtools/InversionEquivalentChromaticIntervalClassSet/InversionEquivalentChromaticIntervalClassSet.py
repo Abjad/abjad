@@ -49,5 +49,5 @@ class InversionEquivalentChromaticIntervalClassSet(IntervalClassSet):
     @property
     def inversion_equivalent_chromatic_interval_classes(self):
         interval_classes = list(self)
-        interval_classes.sort(lambda x, y: cmp(x.number, y.number))
+        interval_classes.sort(key=lambda x: x.number)
         return interval_classes

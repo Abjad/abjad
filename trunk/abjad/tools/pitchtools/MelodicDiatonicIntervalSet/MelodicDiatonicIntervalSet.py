@@ -42,7 +42,7 @@ class MelodicDiatonicIntervalSet(IntervalSet):
     @property
     def _format_string(self):
         intervals = list(self.melodic_diatonic_intervals)
-        intervals.sort(lambda x, y: cmp(x.number, y.number))
+        intervals.sort(key=lambda x: x.number)
         return ' '.join([str(x) for x in intervals])
 
     ### PUBLIC PROPERTIES ###
