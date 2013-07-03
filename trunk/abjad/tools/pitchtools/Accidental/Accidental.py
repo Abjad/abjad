@@ -192,7 +192,7 @@ class Accidental(AbjadObject):
 
     @property
     def alphabetic_accidental_abbreviation(self):
-        '''Read-only alphabetic string:
+        '''Alphabetic string:
 
         ::
 
@@ -221,7 +221,7 @@ class Accidental(AbjadObject):
 
     @property
     def lilypond_format(self):
-        '''Read-only LilyPond input format of accidental:
+        '''LilyPond input format of accidental:
 
         ::
 
@@ -235,7 +235,7 @@ class Accidental(AbjadObject):
 
     @property
     def name(self):
-        '''Read-only name of accidental:
+        '''Name of accidental:
 
         ::
 
@@ -249,7 +249,7 @@ class Accidental(AbjadObject):
 
     @property
     def semitones(self):
-        '''Read-only semitones of accidental:
+        '''Semitones of accidental:
 
         ::
 
@@ -263,7 +263,7 @@ class Accidental(AbjadObject):
 
     @property
     def symbolic_accidental_string(self):
-        '''Read-only symbolic string of accidental:
+        '''Symbolic string of accidental:
 
         ::
 

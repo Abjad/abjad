@@ -63,7 +63,7 @@ class InstrumentationSpecifier(AbjadObject):
 
     @property
     def instrument_count(self):
-        r'''Read-only number of instruments in score:
+        r'''Number of instruments in score:
 
         ::
 
@@ -76,7 +76,7 @@ class InstrumentationSpecifier(AbjadObject):
 
     @property
     def instruments(self):
-        r'''Read-only list of instruments derived from performers:
+        r'''List of instruments derived from performers:
 
         ::
 
@@ -92,7 +92,7 @@ class InstrumentationSpecifier(AbjadObject):
 
     @property
     def performer_count(self):
-        r'''Read-only number of performers in score:
+        r'''Number of performers in score:
 
         ::
 
@@ -105,7 +105,7 @@ class InstrumentationSpecifier(AbjadObject):
 
     @property
     def performer_name_string(self):
-        r'''Read-only string of performer names:
+        r'''String of performer names:
 
         ::
 

@@ -118,7 +118,7 @@ class Mark(AbjadObject):
 
     @property
     def start_component(self):
-        '''Read-only reference to mark start component:
+        '''Reference to mark start component:
 
         ::
 

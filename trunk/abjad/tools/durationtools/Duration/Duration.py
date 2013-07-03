@@ -685,7 +685,7 @@ class Duration(ImmutableAbjadObject, fractions.Fraction):
     def pair(self):
         '''.. versionadded:: 2.9
 
-        Read-only pair of duration numerator and denominator:
+        Pair of duration numerator and denominator:
 
         ::
 

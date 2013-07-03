@@ -469,7 +469,7 @@ class Container(Component):
 
     @property
     def leaves(self):
-        '''Read-only tuple of leaves in container:
+        '''Tuple of leaves in container:
 
         ::
 
@@ -487,7 +487,7 @@ class Container(Component):
 
     @property
     def music(self):
-        '''Read-only tuple of components in container:
+        '''Tuple of components in container:
 
         ::
 

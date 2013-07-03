@@ -116,7 +116,7 @@ class NamedChromaticPitchClassSet(PitchClassSet):
 
     @property
     def named_chromatic_pitch_classes(self):
-        '''Read-only named chromatic pitch-classes:
+        '''Named chromatic pitch-classes:
 
         ::
 

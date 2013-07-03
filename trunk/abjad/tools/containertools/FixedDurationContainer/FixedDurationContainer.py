@@ -91,7 +91,7 @@ class FixedDurationContainer(Container):
 
     @property
     def lilypond_format(self):
-        '''Read-only LilyPond format of fixed-duration container.
+        '''LilyPond format of fixed-duration container.
         '''
         self._check_duration()
         return self._format_component()

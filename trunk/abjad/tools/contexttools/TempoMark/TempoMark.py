@@ -283,7 +283,7 @@ class TempoMark(ContextMark):
 
     @property
     def lilypond_format(self):
-        r'''Read-only LilyPond format of tempo mark:
+        r'''LilyPond format of tempo mark:
 
         ::
 
@@ -324,7 +324,7 @@ class TempoMark(ContextMark):
 
     @property
     def quarters_per_minute(self):
-        r'''Read-only quarters per minute of tempo mark:
+        r'''Quarters per minute of tempo mark:
 
         ::
 

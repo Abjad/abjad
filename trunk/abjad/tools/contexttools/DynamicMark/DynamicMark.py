@@ -196,7 +196,7 @@ class DynamicMark(ContextMark):
 
     @property
     def lilypond_format(self):
-        '''Read-only LilyPond input format of dynamic mark:
+        '''LilyPond input format of dynamic mark:
 
         ::
 

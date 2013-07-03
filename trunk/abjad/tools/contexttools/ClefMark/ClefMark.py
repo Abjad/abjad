@@ -136,7 +136,7 @@ class ClefMark(ContextMark):
 
     @property
     def lilypond_format(self):
-        r'''Read-only LilyPond format of clef:
+        r'''LilyPond format of clef:
 
         ::
 
@@ -150,7 +150,7 @@ class ClefMark(ContextMark):
 
     @property
     def middle_c_position(self):
-        '''Read-only middle-C position of clef:
+        '''Middle-C position of clef:
 
         ::
 

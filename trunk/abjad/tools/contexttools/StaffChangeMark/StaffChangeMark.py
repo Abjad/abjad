@@ -99,7 +99,7 @@ class StaffChangeMark(ContextMark):
 
     @property
     def lilypond_format(self):
-        r'''Read-only LilyPond format of staff change mark:
+        r'''LilyPond format of staff change mark:
 
         ::
 

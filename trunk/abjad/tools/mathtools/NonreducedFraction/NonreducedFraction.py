@@ -401,7 +401,7 @@ class NonreducedFraction(ImmutableAbjadObject, fractions.Fraction):
 
     @property
     def denominator(self):
-        '''Read-only denominator of nonreduced fraction:
+        '''Denominator of nonreduced fraction:
 
         ::
 
@@ -431,7 +431,7 @@ class NonreducedFraction(ImmutableAbjadObject, fractions.Fraction):
 
     @property
     def numerator(self):
-        '''Read-only numerator of nonreduced fraction:
+        '''Numerator of nonreduced fraction:
 
         ::
 

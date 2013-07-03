@@ -94,7 +94,7 @@ class Component(AbjadObject):
 
     @property
     def descendants(self):
-        '''Read-only reference to component descendants score selection.
+        '''Reference to component descendants score selection.
         '''
         from abjad.tools import componenttools
         return componenttools.Descendants(self)
@@ -114,14 +114,14 @@ class Component(AbjadObject):
 
     @property
     def lineage(self):
-        '''Read-only reference to component lineage score selection.
+        '''Reference to component lineage score selection.
         '''
         from abjad.tools import componenttools
         return componenttools.Lineage(self)
 
     @property
     def override(self):
-        '''Read-only reference to LilyPond grob override component plug-in.
+        '''Reference to LilyPond grob override component plug-in.
         '''
         if not hasattr(self, '_override'):
             self._override = \
@@ -134,7 +134,7 @@ class Component(AbjadObject):
 
     @property
     def parentage(self):
-        '''Read-only reference to component parentage score selection.
+        '''Reference to component parentage score selection.
         '''
         from abjad.tools import componenttools
         return componenttools.Parentage(self)
@@ -147,7 +147,7 @@ class Component(AbjadObject):
 
     @property
     def set(self):
-        '''Read-only reference LilyPond context setting component plug-in.
+        '''Reference LilyPond context setting component plug-in.
         '''
         if not hasattr(self, '_set'):
             self._set = \
@@ -156,21 +156,21 @@ class Component(AbjadObject):
 
     @property
     def spanners(self):
-        '''Read-only reference to unordered set of spanners attached 
+        '''Reference to unordered set of spanners attached 
         to component.
         '''
         return set(self._spanners)
 
     @property
     def timespan(self):
-        '''Read-only timespan of component.
+        '''Timespan of component.
         '''
         self._update_prolated_offset_values_of_entire_score_tree_if_necessary()
         return self._timespan
 
     @property
     def timespan_in_seconds(self):
-        '''Read-only timespan of component in seconds.
+        '''Timespan of component in seconds.
         '''
         self._update_offset_values_in_seconds_of_entire_score_tree_if_necessary()
         if self._start_offset_in_seconds is None:

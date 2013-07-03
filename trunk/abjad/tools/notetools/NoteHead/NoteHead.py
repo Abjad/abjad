@@ -132,7 +132,7 @@ class NoteHead(SortableAttributeEqualityAbjadObject):
 
     @property
     def lilypond_format(self):
-        '''Read-only LilyPond input format of note head:
+        '''LilyPond input format of note head:
 
         ::
 
@@ -147,7 +147,7 @@ class NoteHead(SortableAttributeEqualityAbjadObject):
 
     @property
     def named_chromatic_pitch(self):
-        '''Read-only named chromatic pitch equal to note head:
+        '''Named chromatic pitch equal to note head:
 
         ::
 
@@ -161,7 +161,7 @@ class NoteHead(SortableAttributeEqualityAbjadObject):
 
     @property
     def tweak(self):
-        '''Read-only LilyPond tweak reservoir:
+        '''LilyPond tweak reservoir:
 
         ::
 

@@ -175,7 +175,7 @@ class Tuplet(Container):
     ### PRIVATE METHODS ###
 
     def _format_after_slot(self, format_contributions):
-        '''Read-only tuple of format contributions to appear 
+        '''Tuple of format contributions to appear 
         immediately after self closing.
         '''
         result = []
@@ -200,7 +200,7 @@ class Tuplet(Container):
         return tuple(result)
 
     def _format_close_brackets_slot(self, format_contributions):
-        '''Read-only tuple of format contributions used to 
+        '''Tuple of format contributions used to 
         generate self closing.
         '''
         result = []
@@ -209,7 +209,7 @@ class Tuplet(Container):
         return tuple(result)
 
     def _format_closing_slot(self, format_contributions):
-        '''Read-only tuple of format contributions to appear 
+        '''Tuple of format contributions to appear 
         immediately before self closing.
         '''
         result = []
@@ -254,7 +254,7 @@ class Tuplet(Container):
         return tuple(result)
 
     def _format_opening_slot(self, format_contributions):
-        '''Read-only tuple of format contributions to appear 
+        '''Tuple of format contributions to appear 
         immediately after self opening.
         '''
         result = []
@@ -319,7 +319,7 @@ class Tuplet(Container):
 
     @property
     def has_non_power_of_two_denominator(self):
-        '''Read-only boolean true when multiplier numerator is not 
+        '''Boolean true when multiplier numerator is not 
         power of two. Otherwise false:
 
         ::
@@ -334,7 +334,7 @@ class Tuplet(Container):
 
     @property
     def has_power_of_two_denominator(self):
-        '''Read-only boolean true when multiplier numerator is 
+        '''Boolean true when multiplier numerator is 
         power of two. Otherwise false:
 
         ::
@@ -463,7 +463,7 @@ class Tuplet(Container):
 
     @property
     def multiplied_duration(self):
-        '''Read-only multiplied duration of tuplet:
+        '''Multiplied duration of tuplet:
 
         ::
 
@@ -557,7 +557,7 @@ class Tuplet(Container):
 
     @property
     def ratio_string(self):
-        '''Read-only tuplet multiplier formatted with colon as ratio:
+        '''Tuplet multiplier formatted with colon as ratio:
 
         ::
 

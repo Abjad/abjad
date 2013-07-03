@@ -288,7 +288,7 @@ class PitchRange(AbjadObject):
 
     @property
     def one_line_named_chromatic_pitch_repr(self):
-        r'''Read-only one-line named chromatic pitch repr of pitch of range:
+        r'''One-line named chromatic pitch repr of pitch of range:
 
         ::
 
@@ -310,7 +310,7 @@ class PitchRange(AbjadObject):
 
     @property
     def one_line_numbered_chromatic_pitch_repr(self):
-        r'''Read-only one-line numbered chromatic pitch repr 
+        r'''One-line numbered chromatic pitch repr 
         of pitch of range:
 
         ::
@@ -333,7 +333,7 @@ class PitchRange(AbjadObject):
     def pitch_range_name(self):
         r'''.. versionadded:: 2.7
 
-        Read-only name of pitch range:
+        Name of pitch range:
 
         ::
 
@@ -348,7 +348,7 @@ class PitchRange(AbjadObject):
     def pitch_range_name_markup(self):
         r'''.. versionadded:: 2.7
 
-        Read-only markup of pitch range name:
+        Markup of pitch range name:
 
         ::
 
@@ -368,7 +368,7 @@ class PitchRange(AbjadObject):
 
     @property
     def start_pitch(self):
-        r'''Read-only start pitch of range:
+        r'''Start pitch of range:
 
         ::
 
@@ -383,7 +383,7 @@ class PitchRange(AbjadObject):
 
     @property
     def start_pitch_is_included_in_range(self):
-        '''Read-only boolean true when start pitch is included in range. 
+        '''Boolean true when start pitch is included in range. 
         Otherwise false:
 
         ::
@@ -399,7 +399,7 @@ class PitchRange(AbjadObject):
 
     @property
     def stop_pitch(self):
-        r"""Read-only stop pitch of range:
+        r"""Stop pitch of range:
 
         ::
 
@@ -414,7 +414,7 @@ class PitchRange(AbjadObject):
 
     @property
     def stop_pitch_is_included_in_range(self):
-        '''Read-only boolean true when stop pitch is included in range. 
+        '''Boolean true when stop pitch is included in range. 
         Otherwise false:
 
         ::

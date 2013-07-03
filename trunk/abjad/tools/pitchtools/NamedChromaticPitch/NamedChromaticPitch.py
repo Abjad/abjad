@@ -329,7 +329,7 @@ class NamedChromaticPitch(Pitch):
 
     @property
     def accidental_spelling(self):
-        '''Read-only accidental spelling:
+        '''Accidental spelling:
 
         ::
 
@@ -343,7 +343,7 @@ class NamedChromaticPitch(Pitch):
 
     @property
     def chromatic_pitch_class_name(self):
-        '''Read-only chromatic pitch-class name:
+        '''Chromatic pitch-class name:
 
         ::
 
@@ -356,7 +356,7 @@ class NamedChromaticPitch(Pitch):
 
     @property
     def chromatic_pitch_class_number(self):
-        '''Read-only chromatic pitch-class number:
+        '''Chromatic pitch-class number:
 
         ::
 
@@ -369,7 +369,7 @@ class NamedChromaticPitch(Pitch):
 
     @property
     def chromatic_pitch_name(self):
-        '''Read-only chromatic pitch name:
+        '''Chromatic pitch name:
 
         ::
 
@@ -382,7 +382,7 @@ class NamedChromaticPitch(Pitch):
 
     @property
     def chromatic_pitch_number(self):
-        '''Read-only chromatic pitch-class number:
+        '''Chromatic pitch-class number:
 
         ::
 
@@ -395,7 +395,7 @@ class NamedChromaticPitch(Pitch):
 
     @property
     def deviation_in_cents(self):
-        '''Read-only deviation of named chromatic pitch in cents:
+        '''Deviation of named chromatic pitch in cents:
 
         ::
 
@@ -408,7 +408,7 @@ class NamedChromaticPitch(Pitch):
 
     @property
     def diatonic_pitch_class_name(self):
-        '''Read-only diatonic pitch-class name:
+        '''Diatonic pitch-class name:
 
         ::
 
@@ -421,7 +421,7 @@ class NamedChromaticPitch(Pitch):
 
     @property
     def diatonic_pitch_class_number(self):
-        '''Read-only diatonic pitch-class number:
+        '''Diatonic pitch-class number:
 
         ::
 
@@ -434,7 +434,7 @@ class NamedChromaticPitch(Pitch):
 
     @property
     def diatonic_pitch_name(self):
-        '''Read-only diatonic pitch name:
+        '''Diatonic pitch name:
 
         ::
 
@@ -447,7 +447,7 @@ class NamedChromaticPitch(Pitch):
 
     @property
     def diatonic_pitch_number(self):
-        '''Read-only diatonic pitch number:
+        '''Diatonic pitch number:
 
         ::
 
@@ -460,7 +460,7 @@ class NamedChromaticPitch(Pitch):
 
     @property
     def lilypond_format(self):
-        '''Read-only LilyPond input format of named chromatic pitch:
+        '''LilyPond input format of named chromatic pitch:
 
         ::
 
@@ -473,7 +473,7 @@ class NamedChromaticPitch(Pitch):
 
     @property
     def named_chromatic_pitch_class(self):
-        '''Read-only named pitch-class:
+        '''Named pitch-class:
 
         ::
 
@@ -487,7 +487,7 @@ class NamedChromaticPitch(Pitch):
 
     @property
     def named_diatonic_pitch(self):
-        '''Read-only named diatonic pitch:
+        '''Named diatonic pitch:
 
         ::
 
@@ -503,7 +503,7 @@ class NamedChromaticPitch(Pitch):
 
     @property
     def named_diatonic_pitch_class(self):
-        '''Read-only named diatonic pitch-class:
+        '''Named diatonic pitch-class:
 
         ::
 
@@ -517,7 +517,7 @@ class NamedChromaticPitch(Pitch):
 
     @property
     def numbered_chromatic_pitch(self):
-        '''Read-only numbered chromatic pitch from named chromatic pitch:
+        '''Numbered chromatic pitch from named chromatic pitch:
 
         ::
 
@@ -531,7 +531,7 @@ class NamedChromaticPitch(Pitch):
 
     @property
     def numbered_chromatic_pitch_class(self):
-        '''Read-only numbered pitch-class:
+        '''Numbered pitch-class:
 
         ::
 
@@ -545,7 +545,7 @@ class NamedChromaticPitch(Pitch):
 
     @property
     def numbered_diatonic_pitch(self):
-        '''Read-only numbered diatonic pitch:
+        '''Numbered diatonic pitch:
 
         ::
 
@@ -559,7 +559,7 @@ class NamedChromaticPitch(Pitch):
 
     @property
     def numbered_diatonic_pitch_class(self):
-        '''Read-only numbered diatonic pitch:
+        '''Numbered diatonic pitch:
 
         ::
 
@@ -573,7 +573,7 @@ class NamedChromaticPitch(Pitch):
 
     @property
     def octave_number(self):
-        '''Read-only integer octave number:
+        '''Integer octave number:
 
         ::
 
@@ -594,7 +594,7 @@ class NamedChromaticPitch(Pitch):
 
     @property
     def pitch_class_octave_label(self):
-        '''Read-only pitch-class / octave label:
+        '''Pitch-class / octave label:
 
         ::
 

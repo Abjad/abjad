@@ -210,7 +210,7 @@ class LilyPondFile(list):
     @apply
     def file_initial_system_comments():
         def fget(self):
-            '''Read-only list of file-initial system comments.
+            '''List of file-initial system comments.
             '''
             return self._file_initial_system_comments
         def fset(self, arg):
@@ -236,7 +236,7 @@ class LilyPondFile(list):
     @apply
     def file_initial_user_comments():
         def fget(self):
-            '''Read-only list of file-initial user comments.
+            '''List of file-initial user comments.
             '''
             return self._file_initial_user_comments
         def fset(self, arg):

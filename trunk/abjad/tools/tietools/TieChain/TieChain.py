@@ -45,7 +45,7 @@ class TieChain(Selection):
 
     @property
     def duration_in_seconds(self):
-        '''Read-only duration in seconds of components in tie chain.
+        '''Duration in seconds of components in tie chain.
 
         Return duration.
         '''
@@ -53,7 +53,7 @@ class TieChain(Selection):
 
     @property
     def head(self):
-        '''Read-only reference to element ``0`` in tie chain.
+        '''Reference to element ``0`` in tie chain.
         '''
         if self.music:
             return self.music[0]
@@ -76,7 +76,7 @@ class TieChain(Selection):
 
     @property
     def leaves(self):
-        '''Read-only tuple of leaves in tie spanner.
+        '''Tuple of leaves in tie spanner.
         '''
         from abjad.tools import tietools
         try:
@@ -90,7 +90,7 @@ class TieChain(Selection):
 
     @property
     def leaves_grouped_by_immediate_parents(self):
-        '''Read-only list of leaves in tie chain grouped 
+        '''List of leaves in tie chain grouped 
         by immediate parents of leaves.
 
         Return list of lists.

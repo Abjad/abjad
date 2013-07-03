@@ -69,7 +69,7 @@ class Performer(AbjadObject):
 
     @property
     def instrument_count(self):
-        r'''Read-only number of instruments to be played by performer:
+        r'''Number of instruments to be played by performer:
 
             >>> performer.instrument_count
             2

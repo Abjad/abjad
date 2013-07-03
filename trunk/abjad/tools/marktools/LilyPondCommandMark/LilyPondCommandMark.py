@@ -156,7 +156,7 @@ class LilyPondCommandMark(Mark):
 
     @property
     def lilypond_format(self):
-        '''Read-only LilyPond input format of LilyPond command mark:
+        '''LilyPond input format of LilyPond command mark:
 
         ::
 

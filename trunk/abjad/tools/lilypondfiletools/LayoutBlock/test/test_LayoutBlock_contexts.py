@@ -3,7 +3,7 @@ from abjad.tools.lilypondfiletools.LayoutBlock import LayoutBlock
 
 
 def test_LayoutBlock_contexts_01():
-    '''Read-only layout block contexts list accepts line-literal iterables.
+    '''Layout block contexts list accepts line-literal iterables.
     '''
 
     layout_block = LayoutBlock()

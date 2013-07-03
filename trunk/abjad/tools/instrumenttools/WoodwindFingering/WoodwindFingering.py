@@ -220,7 +220,7 @@ class WoodwindFingering(AbjadObject):
 
     @property
     def center_column(self):
-        r'''Read-only tuple of contents of key strings in center 
+        r'''Tuple of contents of key strings in center 
         column key group:
 
     ::
@@ -234,7 +234,7 @@ class WoodwindFingering(AbjadObject):
 
     @property
     def instrument_name(self):
-        r'''Read-only string of valid woodwind instrument name:
+        r'''String of valid woodwind instrument name:
 
     ::
 
@@ -247,7 +247,7 @@ class WoodwindFingering(AbjadObject):
 
     @property
     def left_hand(self):
-        r'''Read-only tuple of contents of key strings in left 
+        r'''Tuple of contents of key strings in left 
         hand key group:
 
     ::
@@ -261,7 +261,7 @@ class WoodwindFingering(AbjadObject):
 
     @property
     def right_hand(self):
-        r'''Read-only tuple of contents of key strings in right 
+        r'''Tuple of contents of key strings in right 
         hand key group:
 
     ::

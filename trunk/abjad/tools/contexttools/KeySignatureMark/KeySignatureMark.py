@@ -82,7 +82,7 @@ class KeySignatureMark(ContextMark):
 
     @property
     def lilypond_format(self):
-        r'''Read-only LilyPond format of key signature mark:
+        r'''LilyPond format of key signature mark:
 
         ::
 
@@ -124,7 +124,7 @@ class KeySignatureMark(ContextMark):
 
     @property
     def name(self):
-        r'''Read-only name of key signature:
+        r'''Name of key signature:
 
         ::
 

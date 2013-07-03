@@ -54,7 +54,7 @@ class Instrument(contexttools.InstrumentMark):
 
     @property
     def default_pitch_range(self):
-        r'''Read-only traditional pitch range.
+        r'''Traditional pitch range.
 
         Return pitch range.
         '''
@@ -62,7 +62,7 @@ class Instrument(contexttools.InstrumentMark):
 
     @property
     def interval_of_transposition(self):
-        r'''Read-only interval of transposition.
+        r'''Interval of transposition.
 
         Return melodic diatonic interval.
         '''

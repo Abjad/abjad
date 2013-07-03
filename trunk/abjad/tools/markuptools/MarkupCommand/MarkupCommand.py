@@ -104,19 +104,19 @@ class MarkupCommand(AbjadObject):
 
     @property
     def args(self):
-        r'''Read-only tuple of markup command arguments.
+        r'''Tuple of markup command arguments.
         '''
         return self._args
 
     @property
     def command(self):
-        r'''Read-only string of markup command command-name.
+        r'''String of markup command command-name.
         '''
         return self._command
 
     @property
     def lilypond_format(self):
-        r'''Read-only format of markup command:
+        r'''Format of markup command:
 
         ::
 

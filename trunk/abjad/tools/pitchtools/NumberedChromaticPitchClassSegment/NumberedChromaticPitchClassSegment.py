@@ -56,7 +56,7 @@ class NumberedChromaticPitchClassSegment(PitchClassSegment):
 
     @property
     def inversion_equivalent_chromatic_interval_class_segment(self):
-        '''Read-only inversion-equivalent chromatic interval-class segment:
+        '''Inversion-equivalent chromatic interval-class segment:
 
         ::
 
@@ -73,7 +73,7 @@ class NumberedChromaticPitchClassSegment(PitchClassSegment):
 
     @property
     def numbered_chromatic_pitch_class_set(self):
-        '''Read-only numbered chromatic pitch-class set from numbered 
+        '''Numbered chromatic pitch-class set from numbered 
         chromatic pitch-class segment:
 
         ::

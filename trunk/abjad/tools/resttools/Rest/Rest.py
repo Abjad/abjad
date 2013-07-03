@@ -67,7 +67,7 @@ class Rest(Leaf):
 
     @property
     def _body(self):
-        '''Read-only body of rest.
+        '''Body of rest.
         '''
         result = ''
         vertical_positioning_pitch = getattr(

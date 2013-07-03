@@ -94,7 +94,7 @@ class BendAfter(Mark):
 
     @property
     def lilypond_format(self):
-        r'''Read-only LilyPond format string:
+        r'''LilyPond format string:
 
         ::
 

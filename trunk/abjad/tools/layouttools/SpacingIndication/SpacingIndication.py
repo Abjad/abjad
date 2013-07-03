@@ -97,7 +97,7 @@ class SpacingIndication(AbjadObject):
 
     @property
     def normalized_spacing_duration(self):
-        '''Read-only proportional notation duration at 60 MM.
+        '''Proportional notation duration at 60 MM.
         '''
         indication = self.tempo_indication
         duration = self.proportional_notation_duration

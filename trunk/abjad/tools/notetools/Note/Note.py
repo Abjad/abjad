@@ -122,7 +122,7 @@ class Note(Leaf):
 
     @property
     def fingered_pitch(self):
-        r'''Read-only fingered pitch of note:
+        r'''Fingered pitch of note:
 
         ::
 

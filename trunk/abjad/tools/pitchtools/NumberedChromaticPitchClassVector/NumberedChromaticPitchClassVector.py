@@ -126,7 +126,7 @@ class NumberedChromaticPitchClassVector(Vector):
 
     @property
     def chromatic_pitch_class_numbers(self):
-        '''Read-only chromatic pitch-class numbers from numbered chromatic
+        '''Chromatic pitch-class numbers from numbered chromatic
         pitch-class vector:
 
         ::
@@ -143,7 +143,7 @@ class NumberedChromaticPitchClassVector(Vector):
 
     @property
     def numbered_chromatic_pitch_classes(self):
-        '''Read-only numbered chromatic pitch-classes from numbered 
+        '''Numbered chromatic pitch-classes from numbered 
         chromatic pitch-class vector:
 
         ::

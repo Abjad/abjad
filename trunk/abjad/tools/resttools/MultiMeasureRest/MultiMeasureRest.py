@@ -33,7 +33,7 @@ class MultiMeasureRest(Rest):
 
     @property
     def _body(self):
-        '''Read-only list of string representation of body of rest.
+        '''List of string representation of body of rest.
         Picked up as format contribution at format-time.
         '''
         result = 'R' + str(self._formatted_duration)

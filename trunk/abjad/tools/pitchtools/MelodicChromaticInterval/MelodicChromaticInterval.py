@@ -88,7 +88,7 @@ class MelodicChromaticInterval(ChromaticInterval, MelodicInterval):
 
     @property
     def chromatic_interval_number(self):
-        '''Read-only chromatic interval number:
+        '''Chromatic interval number:
 
         ::
 
@@ -101,7 +101,7 @@ class MelodicChromaticInterval(ChromaticInterval, MelodicInterval):
 
     @property
     def direction_number(self):
-        '''Read-only numeric sign:
+        '''Numeric sign:
 
         ::
 
@@ -114,7 +114,7 @@ class MelodicChromaticInterval(ChromaticInterval, MelodicInterval):
 
     @property
     def harmonic_chromatic_interval(self):
-        '''Read-only harmonic chromatic interval:
+        '''Harmonic chromatic interval:
 
         ::
 
@@ -129,7 +129,7 @@ class MelodicChromaticInterval(ChromaticInterval, MelodicInterval):
 
     @property
     def melodic_chromatic_interval_class(self):
-        '''Read-only melodic chromatic interval-class:
+        '''Melodic chromatic interval-class:
 
         ::
 

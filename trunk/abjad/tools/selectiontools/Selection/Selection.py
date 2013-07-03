@@ -97,13 +97,13 @@ class Selection(AbjadObject):
 
     @property
     def music(self):
-        '''Read-only tuple of components in selection.
+        '''Tuple of components in selection.
         '''
         return self._music
 
     @property
     def timespan(self):
-        '''Read-only timespan of selection.
+        '''Timespan of selection.
         '''
         from abjad.tools import timespantools
         start_offset = min(x.timespan.start_offset for x in self)

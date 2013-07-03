@@ -62,7 +62,7 @@ class LayoutBlock(AttributedBlock):
 
     @property
     def context_blocks(self):
-        r'''Read-only list of context blocks:
+        r'''List of context blocks:
 
         ::
 

@@ -48,7 +48,7 @@ class HarmonicChromaticInterval(ChromaticInterval, HarmonicInterval):
 
     @property
     def harmonic_chromatic_interval_class(self):
-        '''Read-only harmonic chromatic interval-class:
+        '''Harmonic chromatic interval-class:
 
         ::
 

@@ -88,7 +88,7 @@ class  NumberedChromaticPitchClassSet(PitchClassSet):
 
     @property
     def inversion_equivalent_chromatic_interval_class_set(self):
-        '''Read-only inversion-equivalent chromatic interval-class set:
+        '''Inversion-equivalent chromatic interval-class set:
 
         ::
 
@@ -110,7 +110,7 @@ class  NumberedChromaticPitchClassSet(PitchClassSet):
 
     @property
     def inversion_equivalent_chromatic_interval_class_vector(self):
-        '''Read-only inversion-equivalent chromatic interval-class vector:
+        '''Inversion-equivalent chromatic interval-class vector:
 
         ::
 
@@ -130,7 +130,7 @@ class  NumberedChromaticPitchClassSet(PitchClassSet):
 
     @property
     def numbered_chromatic_pitch_classes(self):
-        '''Read-only numbered chromatic pitch-classes:
+        '''Numbered chromatic pitch-classes:
 
         ::
 

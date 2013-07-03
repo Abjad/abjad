@@ -126,7 +126,7 @@ class CyclicMatrix(Matrix):
 
     @property
     def columns(self):
-        '''Read-only columns:
+        '''Columns:
 
         ::
 
@@ -144,7 +144,7 @@ class CyclicMatrix(Matrix):
 
     @property
     def rows(self):
-        '''Read-only rows:
+        '''Rows:
 
         ::
 

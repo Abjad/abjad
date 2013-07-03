@@ -117,7 +117,7 @@ class Matrix(AbjadObject):
 
     @property
     def columns(self):
-        '''Read-only columns:
+        '''Columns:
 
         ::
 
@@ -135,7 +135,7 @@ class Matrix(AbjadObject):
 
     @property
     def rows(self):
-        '''Read-only rows:
+        '''Rows:
 
         ::
 

@@ -166,13 +166,13 @@ class ScaleDegree(AbjadObject):
 
     @property
     def accidental(self):
-        '''Read-only accidental applied to scale degree.
+        '''Accidental applied to scale degree.
         '''
         return self._accidental
 
     @property
     def name(self):
-        '''Read-only name of scale degree.
+        '''Name of scale degree.
         '''
         if not self.accidental.is_adjusted:
             return self._scale_degree_number_to_scale_degree_name[self.number]
@@ -181,7 +181,7 @@ class ScaleDegree(AbjadObject):
 
     @property
     def number(self):
-        '''Read-only number of diatonic scale degree from 1 to 7, inclusive.
+        '''Number of diatonic scale degree from 1 to 7, inclusive.
         '''
         return self._number
 

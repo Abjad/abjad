@@ -94,7 +94,7 @@ class FixedDurationTuplet(Tuplet):
 
     @property
     def multiplied_duration(self):
-        '''Read-only multiplied duration of tuplet:
+        '''Multiplied duration of tuplet:
 
         ::
 
@@ -109,7 +109,7 @@ class FixedDurationTuplet(Tuplet):
     @apply
     def multiplier():
         def fget(self):
-            '''Read-only multiplier of tuplet:
+            '''Multiplier of tuplet:
 
             ::
 

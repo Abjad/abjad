@@ -94,7 +94,7 @@ class NumberedChromaticPitch(ChromaticPitch, NumberedPitch):
 
     @property
     def chromatic_pitch_number(self):
-        '''Read-only chromatic pitch-class number:
+        '''Chromatic pitch-class number:
 
         ::
 
@@ -107,7 +107,7 @@ class NumberedChromaticPitch(ChromaticPitch, NumberedPitch):
 
     @property
     def diatonic_pitch_class_number(self):
-        '''Read-only diatonic pitch-class number:
+        '''Diatonic pitch-class number:
 
         ::
 
@@ -122,7 +122,7 @@ class NumberedChromaticPitch(ChromaticPitch, NumberedPitch):
 
     @property
     def diatonic_pitch_number(self):
-        '''Read-only diatonic pitch-class number:
+        '''Diatonic pitch-class number:
 
         ::
 

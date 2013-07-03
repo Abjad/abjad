@@ -165,7 +165,7 @@ class Markup(DirectedMark):
 
     @property
     def contents(self):
-        r'''Read-only tuple of contents of markup:
+        r'''Tuple of contents of markup:
 
         ::
 
@@ -180,7 +180,7 @@ class Markup(DirectedMark):
 
     @property
     def indented_lilypond_format(self):
-        r'''Read-only indented LilyPond format of markup:
+        r'''Indented LilyPond format of markup:
 
         ::
 
@@ -199,7 +199,7 @@ class Markup(DirectedMark):
 
     @property
     def lilypond_format(self):
-        r'''Read-only LilyPond format of markup:
+        r'''LilyPond format of markup:
 
         ::
 
@@ -214,7 +214,7 @@ class Markup(DirectedMark):
 
     @property
     def markup_name(self):
-        r'''Read-only name of markup:
+        r'''Name of markup:
 
         ::
 

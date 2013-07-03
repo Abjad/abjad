@@ -144,7 +144,7 @@ class LilyPondComment(Mark):
 
     @property
     def lilypond_format(self):
-        '''Read-only LilyPond input format of comment:
+        '''LilyPond input format of comment:
 
         ::
 

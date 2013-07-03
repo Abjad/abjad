@@ -127,7 +127,7 @@ class VerticalMoment(Selection):
 
     @property
     def components(self):
-        '''Read-only tuple of zero or more components
+        '''Tuple of zero or more components
         happening at vertical moment.
 
         It is always the case that ``self.components =
@@ -137,14 +137,14 @@ class VerticalMoment(Selection):
 
     @property
     def governors(self):
-        '''Read-only tuple of one or more containers
+        '''Tuple of one or more containers
         in which vertical moment is evaluated.
         '''
         return self._governors
 
     @property
     def leaves(self):
-        '''Read-only tuple of zero or more leaves
+        '''Tuple of zero or more leaves
         at vertical moment.
         '''
         result = []
@@ -156,7 +156,7 @@ class VerticalMoment(Selection):
 
     @property
     def measures(self):
-        '''Read-only tuplet of zero or more measures
+        '''Tuplet of zero or more measures
         at vertical moment.
         '''
         result = []
@@ -168,7 +168,7 @@ class VerticalMoment(Selection):
 
     @property
     def next_vertical_moment(self):
-        '''Read-only reference to next vertical moment forward in time.
+        '''Reference to next vertical moment forward in time.
         '''
         from abjad.tools import verticalitytools
         candidate_shortest_leaf = self.leaves[0]
@@ -184,7 +184,7 @@ class VerticalMoment(Selection):
 
     @property
     def next_vertical_moment(self):
-        '''Read-only reference to next vertical moment forward in time.
+        '''Reference to next vertical moment forward in time.
         '''
         from abjad.tools import verticalitytools
         candidate_shortest_leaf = self.leaves[0]
@@ -201,7 +201,7 @@ class VerticalMoment(Selection):
 
     @property
     def notes(self):
-        '''Read-only tuple of zero or more notes
+        '''Tuple of zero or more notes
         at vertical moment.
         '''
         result = []
@@ -213,14 +213,14 @@ class VerticalMoment(Selection):
 
     @property
     def offset(self):
-        '''Read-only rational-valued score offset
+        '''Rational-valued score offset
         at which vertical moment is evaluated.
         '''
         return self._offset
 
     @property
     def overlap_components(self):
-        '''Read-only tuple of components in vertical moment
+        '''Tuple of components in vertical moment
         starting before vertical moment, ordered by score index.
         '''
         result = []
@@ -232,7 +232,7 @@ class VerticalMoment(Selection):
 
     @property
     def overlap_leaves(self):
-        '''Read-only tuple of leaves in vertical moment
+        '''Tuple of leaves in vertical moment
         starting before vertical moment, ordered by score index.
         '''
         result = [x for x in self.overlap_components 
@@ -242,7 +242,7 @@ class VerticalMoment(Selection):
 
     @property
     def overlap_measures(self):
-        '''Read-only tuple of measures in vertical moment
+        '''Tuple of measures in vertical moment
         starting before vertical moment, ordered by score index.
         '''
         result = [x for x in self.overlap_components 
@@ -252,7 +252,7 @@ class VerticalMoment(Selection):
 
     @property
     def overlap_notes(self):
-        '''Read-only tuple of notes in vertical moment
+        '''Tuple of notes in vertical moment
         starting before vertical moment, ordered by score index.
         '''
         result = [x for x in self.overlap_components 
@@ -262,7 +262,7 @@ class VerticalMoment(Selection):
 
     @property
     def previous_vertical_moment(self):
-        '''Read-only reference to prev vertical moment backward in time.
+        '''Reference to prev vertical moment backward in time.
         '''
         from abjad.tools import verticalitytools
         if self.offset == 0:
@@ -302,7 +302,7 @@ class VerticalMoment(Selection):
 
     @property
     def start_components(self):
-        '''Read-only tuple of components in vertical moment
+        '''Tuple of components in vertical moment
         starting with at vertical moment, ordered by score index.
         '''
         result = []
@@ -314,7 +314,7 @@ class VerticalMoment(Selection):
 
     @property
     def start_leaves(self):
-        '''Read-only tuple of leaves in vertical moment
+        '''Tuple of leaves in vertical moment
         starting with vertical moment, ordered by score index.
         '''
         result = [x for x in self.start_components 
@@ -324,7 +324,7 @@ class VerticalMoment(Selection):
 
     @property
     def start_notes(self):
-        '''Read-only tuple of notes in vertical moment
+        '''Tuple of notes in vertical moment
         starting with vertical moment, ordered by score index.
         '''
         result = [x for x in self.start_components 

@@ -116,7 +116,7 @@ class ContextMark(Mark):
 
     @property
     def effective_context(self):
-        '''Read-only reference to effective context of context mark:
+        '''Reference to effective context of context mark:
 
         ::
 
@@ -136,7 +136,7 @@ class ContextMark(Mark):
 
     @property
     def target_context(self):
-        '''Read-only reference to target context of context mark:
+        '''Reference to target context of context mark:
 
         ::
 

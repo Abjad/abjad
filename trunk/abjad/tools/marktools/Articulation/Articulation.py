@@ -203,7 +203,7 @@ class Articulation(DirectedMark):
 
     @property
     def lilypond_format(self):
-        '''Read-only LilyPond format string of articulation:
+        '''LilyPond format string of articulation:
 
         ::
 

@@ -510,7 +510,7 @@ class Measure(FixedDurationContainer):
     def target_duration(self):
         r'''.. versionadded:: 2.9
 
-        Read-only target duration of measure always equal to duration 
+        Target duration of measure always equal to duration 
         of effective time signature.
 
         Return duration.

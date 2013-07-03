@@ -117,7 +117,7 @@ class Chord(Leaf):
 
     @property
     def _summary(self):
-        '''Read-only string summary of noteh eads in chord.
+        '''String summary of noteh eads in chord.
         '''
         return ' '.join([str(x) for x in self.note_heads])
 
@@ -135,7 +135,7 @@ class Chord(Leaf):
 
     @property
     def fingered_pitches(self):
-        r"""Read-only fingered pitches:
+        r"""Fingered pitches:
 
         ::
 
@@ -209,7 +209,7 @@ class Chord(Leaf):
 
     @property
     def sounding_pitches(self):
-        r"""Read-only sounding pitches:
+        r"""Sounding pitches:
 
         ::
 

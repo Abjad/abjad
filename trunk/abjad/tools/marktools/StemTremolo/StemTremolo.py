@@ -126,7 +126,7 @@ class StemTremolo(Mark):
 
     @property
     def lilypond_format(self):
-        '''Read-only LilyPond format string:
+        '''LilyPond format string:
 
         ::
 

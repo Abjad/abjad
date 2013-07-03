@@ -443,7 +443,7 @@ class Spanner(AbjadObject):
 
     @property
     def timespan(self):
-        '''Read-only timespan of spanner.
+        '''Timespan of spanner.
         '''
         if len(self):
             start_offset = self[0].timespan.start_offset
