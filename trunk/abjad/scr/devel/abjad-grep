@@ -9,7 +9,7 @@ iotools.clear_terminal()
 start_time = time.time()
 command = r'ack --ignore-dir=docs {!r} *'
 command = command.format(sys.argv[1])
-print 'abj-grp is running this command:'
+print 'abjad-grep is running this command:'
 print
 print '    ' + command
 print
@@ -19,5 +19,5 @@ stop_time = time.time()
 total_time = stop_time - start_time
 
 print
-print 'abj-grp total time: {} second(s).'.format(int(total_time))
+print 'abjad-grep total time: {} second(s).'.format(int(total_time))
 print
