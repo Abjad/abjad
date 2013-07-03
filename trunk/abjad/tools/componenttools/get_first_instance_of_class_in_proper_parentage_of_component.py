@@ -1,7 +1,11 @@
-def get_first_instance_of_class_in_proper_parentage_of_component(component, klass):
+def get_first_instance_of_class_in_proper_parentage_of_component(
+    component, parentage_class):
     '''.. versionadded:: 1.1
 
-    Get first instance of `klass` in proper parentage of `component`::
+    Get first instance of `parentage_class` in 
+    proper parentage of `component`:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> componenttools.get_first_instance_of_class_in_proper_parentage_of_component(
@@ -13,5 +17,5 @@ def get_first_instance_of_class_in_proper_parentage_of_component(component, klas
     from abjad.tools import componenttools
 
     for parent in componenttools.get_proper_parentage_of_component(component):
-        if isinstance(parent, klass):
+        if isinstance(parent, parentage_class):
             return parent
