@@ -53,7 +53,9 @@ class MaterialPackageMakerWrangler(PackageWrangler):
     def _initialize_asset_proxy(self, package_path):
         from experimental.tools import scoremanagertools
         if os.path.sep in package_path:
-            package_path = self.configuration.filesystem_path_to_packagesystem_path(package_path)
+            package_path = \
+                self.configuration.filesystem_path_to_packagesystem_path(
+                    package_path)
         material_package_proxy = \
             scoremanagertools.proxies.MaterialPackageProxy(
             package_path, session=self.session)
@@ -61,7 +63,8 @@ class MaterialPackageMakerWrangler(PackageWrangler):
             material_package_proxy.material_package_maker_class_name
         if material_package_maker_class_name is not None:
             material_package_maker_class = None
-            command = 'from experimental.tools.scoremanagertools.materialpackagemakers '
+            command = 'from experimental.tools.scoremanagertools'
+            command += '.materialpackagemakers '
             command += 'import {} as material_package_maker_class'
             command = command.format(material_package_maker_class_name)
             try:

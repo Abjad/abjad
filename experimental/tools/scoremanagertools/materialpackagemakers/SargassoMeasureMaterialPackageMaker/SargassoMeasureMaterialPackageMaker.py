@@ -231,11 +231,13 @@ class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
     def permute_divided_measure_tokens(divided_measure_tokens):
         modulus_of_permutation = 5
         len_divided_measure_tokens = len(divided_measure_tokens)
-        assert mathtools.are_relatively_prime([modulus_of_permutation, len_divided_measure_tokens])
+        assert mathtools.are_relatively_prime(
+            [modulus_of_permutation, len_divided_measure_tokens])
         permutation = [(5 * x) % len_divided_measure_tokens 
             for x in range(len_divided_measure_tokens)]
         divided_measure_tokens = \
-            sequencetools.permute_sequence(divided_measure_tokens, permutation)
+            sequencetools.permute_sequence(
+                divided_measure_tokens, permutation)
         return divided_measure_tokens
 
     @staticmethod

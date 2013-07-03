@@ -12,11 +12,19 @@ class ParameterSpecifierCreationWizard(Wizard):
 
     ### PRIVATE METHODS ###
 
-    def _run(self, cache=False, clear=True, head=None, pending_user_input=None):
-        self.session.io_manager.assign_user_input(pending_user_input=pending_user_input)
+    def _run(
+        self,
+        cache=False,
+        clear=True,
+        head=None,
+        pending_user_input=None,
+        ):
+        self.session.io_manager.assign_user_input(
+            pending_user_input=pending_user_input)
         self.session.cache_breadcrumbs(cache=cache)
         self.session.push_breadcrumb(self._breadcrumb)
-        selector = selectors.ParameterSpecifierClassNameSelector(session=self.session)
+        selector = selectors.ParameterSpecifierClassNameSelector(
+            session=self.session)
         with self.backtracking:
             target_class_name = selector._run()
         if self.session.backtrack():
@@ -39,8 +47,12 @@ class ParameterSpecifierCreationWizard(Wizard):
 
     # TODO: maybe abstract up to Wizard?
     def get_target_editor(self, target_class_name, target=None):
-        target_editor_class_name = target_class_name + self.target_editor_class_name_suffix
-        command = 'from experimental.tools.scoremanagertools.editors import {} as target_editor_class'.format(target_editor_class_name)
+        target_editor_class_name = \
+            target_class_name + self.target_editor_class_name_suffix
+        command = 'from experimental.tools.scoremanagertools.editors'
+        command += ' import {} as target_editor_class'
+        command = command.format(target_editor_class_name)
         exec(command)
-        target_editor = target_editor_class(session=self.session, target=target)
+        target_editor = target_editor_class(
+            session=self.session, target=target)
         return target_editor

@@ -12,13 +12,21 @@ class ReservoirStartHelperCreationWizard(Wizard):
 
     ### PRIVATE METHODS ###
 
-    def _run(self, cache=False, clear=True, head=None, pending_user_input=None):
-        self.session.io_manager.assign_user_input(pending_user_input=pending_user_input)
+    def _run(
+        self,
+        cache=False,
+        clear=True,
+        head=None,
+        pending_user_input=None,
+        ):
+        self.session.io_manager.assign_user_input(
+            pending_user_input=pending_user_input)
         self.session.cache_breadcrumbs(cache=cache)
         while True:
             function_application_pairs = []
             self.session.push_breadcrumb(self._breadcrumb)
-            selector = selectors.ReservoirStartHelperSelector(session=self.session)
+            selector = selectors.ReservoirStartHelperSelector(
+                session=self.session)
             with self.backtracking:
                 function_name = selector._run(clear=clear)
             if self.session.backtrack():
@@ -32,7 +40,8 @@ class ReservoirStartHelperCreationWizard(Wizard):
             elif function_arguments is None:
                 self.session.pop_breadcrumb()
                 continue
-            function_application_pairs.append((function_name, function_arguments))
+            function_application_pairs.append(
+                (function_name, function_arguments))
             break
         self.session.pop_breadcrumb()
         self.session.restore_breadcrumbs(cache=cache)

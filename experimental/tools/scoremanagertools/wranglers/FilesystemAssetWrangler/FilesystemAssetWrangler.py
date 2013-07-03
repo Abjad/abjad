@@ -151,7 +151,8 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         rollback=None, 
         pending_user_input=None,
         ):
-        self.session.io_manager.assign_user_input(pending_user_input=pending_user_input)
+        self.session.io_manager.assign_user_input(
+            pending_user_input=pending_user_input)
         breadcrumb = self.session.pop_breadcrumb(rollback=rollback)
         self.session.cache_breadcrumbs(cache=cache)
         while True:
@@ -348,10 +349,12 @@ class FilesystemAssetWrangler(ScoreManagerObject):
         result = []
         if in_built_in_asset_library and \
             self.asset_storehouse_filesystem_path_in_built_in_asset_library is not None:
-            result.append(self.asset_storehouse_filesystem_path_in_built_in_asset_library)
+            result.append(
+                self.asset_storehouse_filesystem_path_in_built_in_asset_library)
         if in_user_asset_library and \
             self.asset_storehouse_filesystem_path_in_user_asset_library is not None:
-            result.append(self.asset_storehouse_filesystem_path_in_user_asset_library)
+            result.append(
+                self.asset_storehouse_filesystem_path_in_user_asset_library)
         if in_built_in_score_packages and \
             self.score_package_asset_storehouse_path_infix_parts is not None:
             for score_directory_path in \
@@ -364,7 +367,8 @@ class FilesystemAssetWrangler(ScoreManagerObject):
                 result.append(storehouse_filesystem_path)
         if in_user_score_packages and \
             self.score_package_asset_storehouse_path_infix_parts is not None:
-            for directory_path in self.configuration.list_score_directory_paths(user=True):
+            for directory_path in \
+                self.configuration.list_score_directory_paths(user=True):
                 parts = [directory_path]
                 if self.score_package_asset_storehouse_path_infix_parts:
                     parts.extend(

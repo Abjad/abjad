@@ -78,10 +78,17 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
         asset_proxy.interactively_rename()
 
     def interactively_select_asset_packagesystem_path(
-        self, clear=True, cache=False, head=None, infinitival_phrase=None, pending_user_input=None):
+        self,
+        clear=True,
+        cache=False,
+        head=None,
+        infinitival_phrase=None,
+        pending_user_input=None,
+        ):
         self.session.cache_breadcrumbs(cache=cache)
         while True:
-            self.session.push_breadcrumb(self._make_asset_selection_breadcrumb(
+            self.session.push_breadcrumb(
+                self._make_asset_selection_breadcrumb(
                 infinitival_phrase=infinitival_phrase))
             menu = self._make_asset_selection_menu(head=head)
             result = menu._run(clear=clear)
@@ -109,7 +116,9 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
             in_built_in_score_packages=in_built_in_score_packages,
             in_user_score_packages=in_user_score_packages,
             head=head):
-            packagesystem_path = self.configuration.filesystem_path_to_packagesystem_path(filesystem_path)
+            packagesystem_path = \
+                self.configuration.filesystem_path_to_packagesystem_path(
+                    filesystem_path)
             result.append(packagesystem_path)
         return result
 
@@ -137,12 +146,14 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
         in_user_score_packages=True):
         result = []
         superclass = super(PackagesystemAssetWrangler, self)
-        for filesystem_path in superclass.list_asset_storehouse_filesystem_paths(
+        for filesystem_path in \
+            superclass.list_asset_storehouse_filesystem_paths(
             in_built_in_asset_library=True,
             in_user_asset_library=True,
             in_built_in_score_packages=True,
             in_user_score_packages=True):
-            packagesystem_path = self.configuration.filesystem_path_to_packagesystem_path(
+            packagesystem_path = \
+                self.configuration.filesystem_path_to_packagesystem_path(
                 filesystem_path)
             result.append(packagesystem_path)
         return result
@@ -169,16 +180,19 @@ class PackagesystemAssetWrangler(FilesystemAssetWrangler):
             in_built_in_score_packages=True,
             in_user_score_packages=True):
             self.make_empty_package(package_path)
-        self.session.io_manager.proceed('missing packages created.', is_interactive=is_interactive)
+        self.session.io_manager.proceed(
+            'missing packages created.', is_interactive=is_interactive)
 
     def make_empty_package(self, package_path):
         if package_path is None:
             return
-        directory_path = self.configuration.packagesystem_path_to_filesystem_path(
+        directory_path = \
+            self.configuration.packagesystem_path_to_filesystem_path(
             package_path)
         if not os.path.exists(directory_path):
             os.mkdir(directory_path)
-            initializer_file_name = os.path.join(directory_path, '__init__.py')
+            initializer_file_name = os.path.join(
+                directory_path, '__init__.py')
             file_reference = file(initializer_file_name, 'w')
             file_reference.write('')
             file_reference.close()

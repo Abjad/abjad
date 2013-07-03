@@ -8,7 +8,8 @@ class ModuleWrangler(PackagesystemAssetWrangler):
     ### PRIVATE METHODS ###
 
     def _is_valid_directory_entry(self, directory_entry):
-        if super(ModuleWrangler, self)._is_valid_directory_entry(directory_entry):
+        if super(ModuleWrangler, self)._is_valid_directory_entry(
+            directory_entry):
             if directory_entry.endswith('.py'):
                 return True
         return False

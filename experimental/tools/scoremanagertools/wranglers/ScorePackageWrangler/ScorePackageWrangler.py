@@ -18,7 +18,8 @@ class ScorePackageWrangler(PackageWrangler):
 
         >>> wrangler_in_built_in_score = \
         ...     scoremanagertools.wranglers.ScorePackageWrangler()
-        >>> wrangler_in_built_in_score.session._snake_case_current_score_name = 'red_example_score'
+        >>> session = wrangler_in_built_in_score.session
+        >>> session._snake_case_current_score_name = 'red_example_score'
         >>> wrangler_in_built_in_score
         ScorePackageWrangler()
 
