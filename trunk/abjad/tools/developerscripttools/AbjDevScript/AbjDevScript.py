@@ -77,8 +77,8 @@ class AbjDevScript(DeveloperScript):
     def developer_script_aliases(self):
         scripting_groups = []
         aliases = {}
-        for klass in self.developer_script_classes:
-            instance = klass()
+        for developer_script_class in self.developer_script_classes:
+            instance = developer_script_class()
 
             if instance.alias is not None:
 
@@ -94,8 +94,9 @@ class AbjDevScript(DeveloperScript):
                     if entry in aliases:
                         message = 'Alias conflict between {} and {}'
                         raise Exception(message.format(
-                            aliases[entry].__name__ and klass.__name__))
-                    aliases[entry] = klass
+                            aliases[entry].__name__ and \
+                                developer_script_class.__name__))
+                    aliases[entry] = developer_script_class
 
                 else:
                     entry = (instance.alias,)
@@ -103,19 +104,20 @@ class AbjDevScript(DeveloperScript):
                         message = 'Alias conflict between {}'
                         message += ' and scripting group {!r}'
                         raise Exception(message.format(
-                            klass.__name__, instance.alias))
+                            developer_script_class.__name__, instance.alias))
                     if entry in aliases:
                         raise Exception('Alias conflict be {} and {}'.format(
-                            klass.__name__, aliases[entry]))
-                    aliases[(instance.alias,)] = klass
+                            developer_script_class.__name__, aliases[entry]))
+                    aliases[(instance.alias,)] = developer_script_class
 
             else:
                 if instance.program_name in scripting_groups:
                     message = 'Alias conflict between {}'
                     message += ' and scripting group {!r}'
                     raise Exception(message.format(
-                        klass.__name__, instance.program_name))
-                aliases[(instance.program_name,)] = klass
+                        developer_script_class.__name__, 
+                        instance.program_name))
+                aliases[(instance.program_name,)] = developer_script_class
 
         aliasdict = {}
 
@@ -140,9 +142,9 @@ class AbjDevScript(DeveloperScript):
     @property
     def developer_script_program_names(self):
         program_names = {}
-        for klass in self.developer_script_classes:
-            instance = klass()
-            program_names[instance.program_name] = klass
+        for developer_script_class in self.developer_script_classes:
+            instance = developer_script_class()
+            program_names[instance.program_name] = developer_script_class
         return program_names
 
     @property
@@ -165,29 +167,30 @@ class AbjDevScript(DeveloperScript):
         if args.subparser_name == 'help':
             aliases = self.developer_script_aliases
             program_names = self.developer_script_program_names
-            klass = None
+            developer_script_class = None
             if len(unknown_args) == 2 and \
                 unknown_args[0] in aliases and \
                 unknown_args[1] in aliases[unknown_args[0]]:
-                klass = aliases[unknown_args[0]][unknown_args[1]]
+                developer_script_class = \
+                    aliases[unknown_args[0]][unknown_args[1]]
             elif len(unknown_args) == 1 and \
                 unknown_args[0] in aliases and \
                 not isinstance(aliases[unknown_args[0]], dict):
-                klass = aliases[unknown_args[0]]
+                developer_script_class = aliases[unknown_args[0]]
             elif len(unknown_args) == 1 and \
                 unknown_args[0] in program_names:
-                klass = program_names[unknown_args[0]]
+                developer_script_class = program_names[unknown_args[0]]
 
-            if klass:
-                instance = klass()
+            if developer_script_class:
+                instance = developer_script_class()
                 print instance.formatted_help
             else:
                 print 'Cannot resolve {} to subcommand.'.format(unknown_args)
 
         elif args.subparser_name == 'list':
             entries = []
-            for klass in self.developer_script_classes:
-                instance = klass()
+            for developer_script_class in self.developer_script_classes:
+                instance = developer_script_class()
                 alias = ''
                 if instance.alias is not None:
                     if instance.scripting_group is not None:
@@ -203,11 +206,12 @@ class AbjDevScript(DeveloperScript):
 
         else:
             if hasattr(args, 'subsubparser_name'):
-                klass = self.developer_script_aliases[
+                developer_script_class = self.developer_script_aliases[
                     args.subparser_name][args.subsubparser_name]
             else:
-                klass = self.developer_script_aliases[args.subparser_name]
-            instance = klass()
+                developer_script_class = \
+                    self.developer_script_aliases[args.subparser_name]
+            instance = developer_script_class()
             instance(unknown_args)
 
     def setup_argument_parser(self, parser):
@@ -230,8 +234,8 @@ class AbjDevScript(DeveloperScript):
         aliasdict = self.developer_script_aliases
         for key in sorted(aliasdict):
             if not isinstance(aliasdict[key], dict):
-                klass = aliasdict[key]
-                instance = klass()
+                developer_script_class = aliasdict[key]
+                instance = developer_script_class()
                 class_subparser = subparsers.add_parser(key,
                     add_help=False,
                     help=instance.short_description,
@@ -245,8 +249,8 @@ class AbjDevScript(DeveloperScript):
                     title='{} subcommands'.format(key),
                     )
                 for subkey in sorted(aliasdict[key]):
-                    klass = aliasdict[key][subkey]
-                    instance = klass()
+                    developer_script_class = aliasdict[key][subkey]
+                    instance = developer_script_class()
                     group_subparsers.add_parser(subkey,
                         add_help=False,
                         help=instance.short_description
