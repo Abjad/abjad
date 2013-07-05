@@ -9,6 +9,15 @@ from sphinx import addnodes
 
 def doctree_read(app, doctree):
 
+    def get_unique_parts(parts):
+        unique_parts = [parts[0]]
+        for part in parts[1:]:
+            if part != unique_parts[-1]:
+                unique_parts.append(part)
+            else:
+                break
+        return unique_parts
+
     for desc_node in doctree.traverse(addnodes.desc):
         if desc_node.get('domain') != 'py':
             continue
@@ -17,31 +26,35 @@ def doctree_read(app, doctree):
         module_name = signature_node.get('module')
         object_name = signature_node.get('fullname')
         object_type = desc_node.get('objtype')
+        module = importlib.import_module(module_name)
 
-        if object_type == 'class':
-            module = importlib.import_module(module_name)
-            cls = getattr(module, object_name, None)
-            if cls is None:
-                continue
+        # Strip 'abjad.tools.' or 'experimental.tools.' from signature.
+        # Also strip duplicate class names.
+        if object_type in ('function', 'class'):
             addname_node = signature_node.traverse(addnodes.desc_addname)[0]
             text = addname_node[0].astext()
             parts = [x for x in text.split('.') if x]
+            parts = get_unique_parts(parts)
             if parts[0] in ('abjad', 'experimental'):
-                parts = parts[2:-2]
+                parts = parts[2:-1]
             text = '{}.'.format('.'.join(parts))
             addname_node[0] = nodes.Text(text)
+
+        if object_type == 'class':
+            cls = getattr(module, object_name, None)
+            if cls is None:
+                continue
             if inspect.isabstract(cls):
                 labelnode = addnodes.only(expr='html')
                 labelnode.append(nodes.literal(
                     '',
-                    'abstract',
+                    'abstract ',
                     classes=['attribute', 'abstract'],
                     ))
                 signature_node.insert(0, labelnode)
 
         elif object_type in ('method', 'attribute', 'staticmethod', 'classmethod'):
             object_parts = object_name.split('.')
-            module = importlib.import_module(module_name)                
             cls_name, attr_name = object_name.split('.') 
             cls = getattr(module, cls_name, None)
             if cls is None:
@@ -51,7 +64,7 @@ def doctree_read(app, doctree):
             if getattr(attr, '__isabstractmethod__', False):
                 label_node.append(nodes.literal(
                     '',
-                    'abstract',
+                    'abstract ',
                     classes=['attribute', 'abstract'],
                     ))
             if isinstance(attr, types.FunctionType):
@@ -59,22 +72,17 @@ def doctree_read(app, doctree):
                 signature_node.pop(0)
                 label_node.append(nodes.literal(
                     '',
-                    'staticmethod',
+                    'staticmethod ',
                     classes=['attribute', 'staticmethod'],
                     ))
             elif hasattr(attr, 'im_self') and attr.im_self is not None:
                 signature_node.pop(0)
                 label_node.append(nodes.literal(
                     '',
-                    'classmethod',
+                    'classmethod ',
                     classes=['attribute', 'classmethod'],
                     ))
             signature_node.insert(0, label_node)
-
-        #else:
-        #    print
-        #    print object_name, object_type
-        
 
 def setup(app):
     app.connect('doctree-read', doctree_read)
