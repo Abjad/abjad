@@ -4,7 +4,9 @@ from abjad.tools import voicetools
 def iterate_voices_in_expr(expr, reverse=False, start=0, stop=None):
     r'''.. versionadded:: 2.0
 
-    Iterate voices forward in `expr`::
+    Iterate voices forward in `expr`:
+
+    ::
 
         >>> voice_1 = Voice("c'8 d'8 e'8 f'8")
         >>> voice_2 = Voice("c'4 b4")
@@ -30,7 +32,7 @@ def iterate_voices_in_expr(expr, reverse=False, start=0, stop=None):
     ::
 
         >>> for voice in iterationtools.iterate_voices_in_expr(staff):
-        ...   voice
+        ...     voice
         Voice{4}
         Voice{2}
 
@@ -38,8 +40,9 @@ def iterate_voices_in_expr(expr, reverse=False, start=0, stop=None):
 
     ::
 
-        >>> for voice in iterationtools.iterate_voices_in_expr(staff, reverse=True):
-        ...   voice
+        >>> for voice in iterationtools.iterate_voices_in_expr(
+        ...     staff, reverse=True):
+        ...     voice
         Voice{2}
         Voice{4}
 
@@ -48,4 +51,9 @@ def iterate_voices_in_expr(expr, reverse=False, start=0, stop=None):
     from abjad.tools import iterationtools
 
     return iterationtools.iterate_components_in_expr(
-        expr, klass=voicetools.Voice, reverse=reverse, start=start, stop=stop)
+        expr,
+        component_class=voicetools.Voice,
+        reverse=reverse,
+        start=start,
+        stop=stop,
+        )

@@ -113,4 +113,9 @@ def iterate_leaves_in_expr(expr, reverse=False, start=0, stop=None):
     from abjad.tools import iterationtools
 
     return iterationtools.iterate_components_in_expr(
-        expr, klass=leaftools.Leaf, reverse=reverse, start=start, stop=stop)
+        expr,
+        component_class=leaftools.Leaf,
+        reverse=reverse,
+        start=start,
+        stop=stop,
+        )

@@ -4,7 +4,9 @@ from abjad.tools import notetools
 def iterate_notes_in_expr(expr, reverse=False, start=0, stop=None):
     r'''.. versionadded:: 2.10
 
-    Yield left-to-right notes in `expr`::
+    Yield left-to-right notes in `expr`:
+
+    ::
 
         >>> staff = Staff()
         >>> staff.append(Measure((2, 8), "c'8 d'8"))
@@ -56,7 +58,8 @@ def iterate_notes_in_expr(expr, reverse=False, start=0, stop=None):
 
     ::
 
-        >>> for note in iterationtools.iterate_notes_in_expr(staff, start=0, stop=3):
+        >>> for note in iterationtools.iterate_notes_in_expr(
+        ...     staff, start=0, stop=3):
         ...     note
         ...
         Note("c'8")
@@ -65,13 +68,16 @@ def iterate_notes_in_expr(expr, reverse=False, start=0, stop=None):
 
     ::
 
-        >>> for note in iterationtools.iterate_notes_in_expr(staff, start=2, stop=4):
+        >>> for note in iterationtools.iterate_notes_in_expr(
+        ...     staff, start=2, stop=4):
         ...     note
         ...
         Note("e'8")
         Note("f'8")
 
-    Yield right-to-left notes in `expr`::
+    Yield right-to-left notes in `expr`:
+
+    ::
 
         >>> staff = Staff()
         >>> staff.append(Measure((2, 8), "c'8 d'8"))
@@ -99,7 +105,8 @@ def iterate_notes_in_expr(expr, reverse=False, start=0, stop=None):
 
     ::
 
-        >>> for note in iterationtools.iterate_notes_in_expr(staff, reverse=True):
+        >>> for note in iterationtools.iterate_notes_in_expr(
+        ...     staff, reverse=True):
         ...     note
         ...
         Note("a'8")
@@ -114,7 +121,8 @@ def iterate_notes_in_expr(expr, reverse=False, start=0, stop=None):
 
     ::
 
-        >>> for note in iterationtools.iterate_notes_in_expr(staff, reverse=True, start=3):
+        >>> for note in iterationtools.iterate_notes_in_expr(
+        ...     staff, reverse=True, start=3):
         ...     note
         ...
         Note("e'8")
@@ -123,7 +131,8 @@ def iterate_notes_in_expr(expr, reverse=False, start=0, stop=None):
 
     ::
 
-        >>> for note in iterationtools.iterate_notes_in_expr(staff, reverse=True, start=0, stop=3):
+        >>> for note in iterationtools.iterate_notes_in_expr(
+        ...     staff, reverse=True, start=0, stop=3):
         ...     note
         ...
         Note("a'8")
@@ -132,7 +141,8 @@ def iterate_notes_in_expr(expr, reverse=False, start=0, stop=None):
 
     ::
 
-        >>> for note in iterationtools.iterate_notes_in_expr(staff, reverse=True, start=2, stop=4):
+        >>> for note in iterationtools.iterate_notes_in_expr(
+        ...     staff, reverse=True, start=2, stop=4):
         ...     note
         ...
         Note("f'8")
@@ -146,4 +156,9 @@ def iterate_notes_in_expr(expr, reverse=False, start=0, stop=None):
     from abjad.tools import iterationtools
 
     return iterationtools.iterate_components_in_expr(
-        expr, klass=notetools.Note, reverse=reverse, start=start, stop=stop)
+        expr,
+        component_class=notetools.Note,
+        reverse=reverse,
+        start=start,
+        stop=stop,
+        )

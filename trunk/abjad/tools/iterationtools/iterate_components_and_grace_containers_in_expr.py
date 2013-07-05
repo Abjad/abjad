@@ -1,5 +1,5 @@
-def iterate_components_and_grace_containers_in_expr(expr, klass):
-    r'''Iterate components of `klass` forward in `expr`::
+def iterate_components_and_grace_containers_in_expr(expr, component_class):
+    r'''Iterate components of `component_class` forward in `expr`::
 
         >>> voice = Voice("c'8 d'8 e'8 f'8")
         >>> beamtools.BeamSpanner(voice[:])
@@ -57,21 +57,21 @@ def iterate_components_and_grace_containers_in_expr(expr, klass):
     '''
     if hasattr(expr, '_grace'):
         for m in expr.grace:
-            for x in iterate_components_and_grace_containers_in_expr(m, klass):
+            for x in iterate_components_and_grace_containers_in_expr(m, component_class):
                 yield x
-        if isinstance(expr, klass):
+        if isinstance(expr, component_class):
             yield expr
     if hasattr(expr, '_after_grace'):
         for m in expr.after_grace:
-            for x in iterate_components_and_grace_containers_in_expr(m, klass):
+            for x in iterate_components_and_grace_containers_in_expr(m, component_class):
                 yield x
-    elif isinstance(expr, klass):
+    elif isinstance(expr, component_class):
         yield expr
     if isinstance(expr, (list, tuple)):
         for m in expr:
-            for x in iterate_components_and_grace_containers_in_expr(m, klass):
+            for x in iterate_components_and_grace_containers_in_expr(m, component_class):
                 yield x
     if hasattr(expr, '_music'):
         for m in expr._music:
-            for x in iterate_components_and_grace_containers_in_expr(m, klass):
+            for x in iterate_components_and_grace_containers_in_expr(m, component_class):
                 yield x

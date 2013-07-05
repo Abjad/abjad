@@ -2,7 +2,7 @@ from abjad.tools import componenttools
 from abjad.tools import leaftools
 
 
-def iterate_timeline_from_component(expr, klass=None, reverse=False):
+def iterate_timeline_from_component(expr, component_class=None, reverse=False):
     r'''.. versionadded:: 2.10
 
     Iterate timeline forward from `component`::
@@ -32,7 +32,8 @@ def iterate_timeline_from_component(expr, klass=None, reverse=False):
 
     ::
 
-        >>> for leaf in iterationtools.iterate_timeline_from_component(score[1][2]):
+        >>> for leaf in iterationtools.iterate_timeline_from_component(
+        ...     score[1][2]):
         ...     leaf
         ...
         Note("b'8")
@@ -44,7 +45,8 @@ def iterate_timeline_from_component(expr, klass=None, reverse=False):
 
     ::
 
-        >>> for leaf in iterationtools.iterate_timeline_from_component(score[1][2], reverse=True):
+        >>> for leaf in iterationtools.iterate_timeline_from_component(
+        ...     score[1][2], reverse=True):
         ...     leaf
         ...
         Note("b'8")
@@ -52,19 +54,20 @@ def iterate_timeline_from_component(expr, klass=None, reverse=False):
         Note("a'8")
         Note("g'8")
 
-    Yield components sorted backward by score offset stop time when `reverse` is True.
+    Yield components sorted backward by score offset stop time 
+    when `reverse` is True.
 
-    Iterate leaves when `klass` is none.
+    Iterate leaves when `component_class` is none.
 
     .. todo:: optimize to avoid behind-the-scenes full-score traversal.
     '''
     from abjad.tools import iterationtools
 
-    if klass is None:
-        klass = leaftools.Leaf
+    if component_class is None:
+        component_class = leaftools.Leaf
 
     component_generator = iterationtools.iterate_timeline_in_expr(
-        expr.parentage.root, klass=klass, reverse=reverse)
+        expr.parentage.root, component_class=component_class, reverse=reverse)
 
     yielded_expr = False
     for component in component_generator:

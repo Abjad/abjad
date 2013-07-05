@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_iterationtools_iterate_timeline_from_component_01():
-    '''Yield klass instances in score of expr,
+    '''Yield component class instances in score of expr,
     sorted backward by score offset stop time,
     and starting from expr.
     '''
@@ -39,7 +39,7 @@ def test_iterationtools_iterate_timeline_from_component_01():
 
 
 def test_iterationtools_iterate_timeline_from_component_02():
-    '''Yield klass instances in score of expr,
+    '''Yield component class instances in score of expr,
     sorted backward by score offset stop time,
     and starting from expr.
     '''
@@ -78,7 +78,7 @@ def test_iterationtools_iterate_timeline_from_component_02():
 
 
 def test_iterationtools_iterate_timeline_from_component_03():
-    '''Yield klass instances in score of expr,
+    '''Yield component class instances in score of expr,
     sorted by score offset and score index,
     and starting from expr.
     '''
@@ -115,7 +115,7 @@ def test_iterationtools_iterate_timeline_from_component_03():
 
 
 def test_iterationtools_iterate_timeline_from_component_04():
-    '''Yield klass instances in score of expr,
+    '''Yield component class instances in score of expr,
     sorted by score offset and score index,
     and starting from expr.
     '''

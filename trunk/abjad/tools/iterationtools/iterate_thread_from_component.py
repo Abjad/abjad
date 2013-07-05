@@ -1,10 +1,10 @@
 from abjad.tools import componenttools
 
 
-def iterate_thread_from_component(component, klass=None, reverse=False):
+def iterate_thread_from_component(component, component_class=None, reverse=False):
     r'''.. versionadded:: 2.10
 
-    Itearte thread forward from `component` and yield instances of `klass`::
+    Itearte thread forward from `component` and yield instances of `component_class`::
 
         >>> container = Container(Voice(notetools.make_repeated_notes(2)) * 2)
         >>> container.is_parallel = True
@@ -73,7 +73,7 @@ def iterate_thread_from_component(component, klass=None, reverse=False):
         Note("g'8")
         Note("a'8")
 
-    Iterate thread backward from `component` and yield instances of `klass`,
+    Iterate thread backward from `component` and yield instances of `component_class`,
     starting from the last leaf in score. ::
 
         >>> for x in iterationtools.iterate_thread_from_component(
@@ -103,8 +103,8 @@ def iterate_thread_from_component(component, klass=None, reverse=False):
     from abjad.tools import iterationtools
 
     # set default class
-    if klass is None:
-        klass = componenttools.Component
+    if component_class is None:
+        component_class = componenttools.Component
 
     # save thread signature of input component
     component_thread_signature = component.parentage.containment_signature
@@ -112,11 +112,11 @@ def iterate_thread_from_component(component, klass=None, reverse=False):
     # iterate component depth-first allowing to crawl UP into score
     if not reverse:
         for x in iterationtools.iterate_components_depth_first(component, capped=False):
-            if isinstance(x, klass):
+            if isinstance(x, component_class):
                 if x.parentage.containment_signature == component_thread_signature:
                     yield x
     else:
         for x in iterationtools.iterate_components_depth_first(component, capped=False, direction=Right):
-            if isinstance(x, klass):
+            if isinstance(x, component_class):
                 if x.parentage.containment_signature == component_thread_signature:
                     yield x

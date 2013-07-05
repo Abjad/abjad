@@ -2,10 +2,12 @@ from abjad.tools import componenttools
 from abjad.tools import leaftools
 
 
-def iterate_timeline_in_expr(expr, klass=None, reverse=False):
+def iterate_timeline_in_expr(expr, component_class=None, reverse=False):
     r'''.. versionadded:: 2.10
 
-    Iterate timeline forward in `expr`::
+    Iterate timeline forward in `expr`:
+
+    ::
 
         >>> score = Score([])
         >>> score.append(Staff(notetools.make_repeated_notes(4, Duration(1, 4))))
@@ -48,7 +50,8 @@ def iterate_timeline_in_expr(expr, klass=None, reverse=False):
 
     ::
 
-        >>> for leaf in iterationtools.iterate_timeline_in_expr(score, reverse=True):
+        >>> for leaf in iterationtools.iterate_timeline_in_expr(
+        ...     score, reverse=True):
         ...     leaf
         ...
         Note("f'4")
@@ -60,7 +63,7 @@ def iterate_timeline_in_expr(expr, klass=None, reverse=False):
         Note("a'8")
         Note("g'8")
 
-    Iterate leaves when `klass` is none.
+    Iterate leaves when `component_class` is none.
 
     .. todo:: optimize to avoid behind-the-scenes full-score traversal.
     '''
@@ -68,25 +71,34 @@ def iterate_timeline_in_expr(expr, klass=None, reverse=False):
     from abjad.tools import iterationtools
     from abjad.tools import leaftools
 
-    if klass is None:
-        klass = leaftools.Leaf
+    if component_class is None:
+        component_class = leaftools.Leaf
 
-    component_generator = iterationtools.iterate_components_in_expr(expr, klass=klass)
+    component_generator = iterationtools.iterate_components_in_expr(
+        expr, component_class=component_class)
     components = list(component_generator)
 
     def _backward_sort_helper(component_1, component_2):
-        result = cmp(component_1.timespan.stop_offset, component_2.timespan.stop_offset)
+        result = cmp(
+            component_1.timespan.stop_offset,
+            component_2.timespan.stop_offset)
         if result == 0:
-            return cmp(component_1.parentage.score_index, component_2.parentage.score_index)
+            return cmp(
+                component_1.parentage.score_index,
+                component_2.parentage.score_index)
         else:
             # note negative result of cmp() is returned
             # for backward time sort
             return -result
 
     def _forward_sort_helper(component_1, component_2):
-        result = cmp(component_1.timespan.start_offset, component_2.timespan.start_offset)
+        result = cmp(
+            component_1.timespan.start_offset,
+            component_2.timespan.start_offset)
         if result == 0:
-            return cmp(component_1.parentage.score_index, component_2.parentage.score_index)
+            return cmp(
+                component_1.parentage.score_index,
+                component_2.parentage.score_index)
         else:
             return result
 

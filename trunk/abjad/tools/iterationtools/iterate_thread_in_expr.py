@@ -1,10 +1,11 @@
 from abjad.tools import componenttools
 
 
-def iterate_thread_in_expr(expr, klass, containment_signature, reverse=False):
+def iterate_thread_in_expr(expr, component_class, containment_signature, reverse=False):
     r'''.. versionadded:: 2.10
 
-    Yield left-to-right instances of `klass` in `expr` with `containment_signature`::
+    Yield left-to-right instances of `component_class` in `expr` 
+    with `containment_signature`::
 
         >>> container = Container(Voice(notetools.make_repeated_notes(2)) * 2)
         >>> container.is_parallel = True
@@ -42,7 +43,8 @@ def iterate_thread_in_expr(expr, klass, containment_signature, reverse=False):
     ::
 
         >>> signature = staff.leaves[0].parentage.containment_signature
-        >>> for x in iterationtools.iterate_thread_in_expr(staff, Note, signature):
+        >>> for x in iterationtools.iterate_thread_in_expr(
+        ...     staff, Note, signature):
         ...     x
         ...
         Note("c'8")
@@ -54,28 +56,29 @@ def iterate_thread_in_expr(expr, klass, containment_signature, reverse=False):
     '''
     from abjad.tools import iterationtools
 
-    if isinstance(expr, klass) and expr.parentage.containment_signature == containment_signature:
+    if isinstance(expr, component_class) and \
+        expr.parentage.containment_signature == containment_signature:
         yield expr
 
     if not reverse:
         if isinstance(expr, (list, tuple)):
             for m in expr:
                 for x in iterationtools.iterate_thread_in_expr(
-                    m, klass, containment_signature):
+                    m, component_class, containment_signature):
                     yield x
         if hasattr(expr, '_music'):
             for m in expr._music:
                 for x in iterationtools.iterate_thread_in_expr(
-                    m, klass, containment_signature):
+                    m, component_class, containment_signature):
                     yield x
     else:
         if isinstance(expr, (list, tuple)):
             for m in reversed(expr):
                 for x in iterationtools.iterate_thread_in_expr(
-                    m, klass, containment_signature, reverse=True):
+                    m, component_class, containment_signature, reverse=True):
                     yield x
         if hasattr(expr, '_music'):
             for m in reversed(expr._music):
                 for x in iterationtools.iterate_thread_in_expr(
-                    m, klass, containment_signature, reverse=True):
+                    m, component_class, containment_signature, reverse=True):
                     yield x
