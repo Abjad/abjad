@@ -204,7 +204,7 @@ def split_leaf_at_offsets(leaf, offsets, cyclic=False,
 
     flattened_result = sequencetools.flatten_sequence(result)
     if spannertools.get_spanners_attached_to_any_improper_parent_of_component(
-        leaf, klass=tietools.TieSpanner):
+        leaf, spanner_classes=(tietools.TieSpanner,)):
         tietools.remove_tie_spanners_from_components_in_expr(flattened_result)
     componenttools.move_parentage_and_spanners_from_components_to_components([leaf], flattened_result)
 

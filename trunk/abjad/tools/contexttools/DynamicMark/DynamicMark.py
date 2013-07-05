@@ -76,7 +76,7 @@ class DynamicMark(ContextMark):
         if len(args) == 1:
             dynamic_spanners = \
                 spannertools.get_spanners_attached_to_any_improper_parent_of_component(
-                args[0], klass=(
+                args[0], spanner_classes=(
                     spannertools.DynamicTextSpanner, 
                     spannertools.HairpinSpanner))
             for dynamic_spanner in dynamic_spanners:
