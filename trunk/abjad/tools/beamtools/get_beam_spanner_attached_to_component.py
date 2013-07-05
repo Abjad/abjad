@@ -8,17 +8,8 @@ def get_beam_spanner_attached_to_component(component):
 
     ::
 
-        >>> staff = Staff("c'8 [ d'8 e'8 f'8 ]")
-
-    ::
-
-        >>> f(staff)
-        \new Staff {
-            c'8 [
-            d'8
-            e'8
-            f'8 ]
-        }
+        >>> staff = Staff(r"r32 a'32 ( [ gs'32 fs''32 \staccato f''8 ) ]")
+        >>> staff.extend(r"r8 e''8 ( ef'2 )")
 
     ::
 
@@ -26,10 +17,9 @@ def get_beam_spanner_attached_to_component(component):
 
     ::
 
-        >>> spanner = \
-        ...     beamtools.get_beam_spanner_attached_to_component(staff[0])
-        >>> spanner
-        BeamSpanner(c'8, d'8, e'8, f'8)
+        >>> note = staff[1]
+        >>> beamtools.get_beam_spanner_attached_to_component(note)
+        BeamSpanner(a'32, gs'32, fs''32, f''8)
 
     Return beam spanner.
 

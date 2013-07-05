@@ -10,8 +10,27 @@ def is_beamable_component(expr):
 
     ::
 
-        >>> beamtools.is_beamable_component(Note("cs''16"))
-        True
+        >>> staff = Staff(r"r32 a'32 ( [ gs'32 fs''32 \staccato f''8 ) ]")
+        >>> staff.extend(r"r8 e''8 ( ef'2 )")
+
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
+    ::
+
+        >>> for leaf in staff.leaves:
+        ...     result = beamtools.is_beamable_component(leaf)
+        ...     print '{:<8}{}'.format(leaf, result)
+        ...
+        r32     False
+        a'32    True
+        gs'32   True
+        fs''32  True
+        f''8    True
+        r8      False
+        e''8    True
+        ef'2    False
 
     Return boolean.
     '''
