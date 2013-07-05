@@ -5,7 +5,11 @@ def test_leaftools_fuse_leaves_in_container_once_by_counts_01():
 
     t = Voice(notetools.make_repeated_notes(5, Duration(1, 16)))
     spannertools.SlurSpanner(t[:])
-    leaftools.fuse_leaves_in_container_once_by_counts(t, [1, 2, 2], klass=Note, decrease_durations_monotonically=True)
+    leaftools.fuse_leaves_in_container_once_by_counts(
+        t,
+        [1, 2, 2],
+        leaf_class=Note,
+        decrease_durations_monotonically=True)
 
     r'''
     \new Voice {
@@ -22,7 +26,11 @@ def test_leaftools_fuse_leaves_in_container_once_by_counts_02():
 
     t = Voice(notetools.make_repeated_notes(5))
     spannertools.SlurSpanner(t[:])
-    leaftools.fuse_leaves_in_container_once_by_counts(t, [5], klass=Note, decrease_durations_monotonically=True)
+    leaftools.fuse_leaves_in_container_once_by_counts(
+        t, 
+        [5], 
+        leaf_class=Note,
+        decrease_durations_monotonically=True)
 
     r'''
     \new Voice {
@@ -37,7 +45,11 @@ def test_leaftools_fuse_leaves_in_container_once_by_counts_02():
 def test_leaftools_fuse_leaves_in_container_once_by_counts_03():
 
     t = Voice(notetools.make_repeated_notes(5))
-    leaftools.fuse_leaves_in_container_once_by_counts(t, [1, 2, 2], klass=Rest, decrease_durations_monotonically=True)
+    leaftools.fuse_leaves_in_container_once_by_counts(
+        t, 
+        [1, 2, 2], 
+        leaf_class=Rest, 
+        decrease_durations_monotonically=True)
 
     r'''
     \new Voice {
@@ -54,7 +66,11 @@ def test_leaftools_fuse_leaves_in_container_once_by_counts_04():
 
     t = Voice(notetools.make_repeated_notes(5))
     spannertools.SlurSpanner(t)
-    leaftools.fuse_leaves_in_container_once_by_counts(t, [5], klass=Note, decrease_durations_monotonically=False)
+    leaftools.fuse_leaves_in_container_once_by_counts(
+        t, 
+        [5], 
+        leaf_class=Note, 
+        decrease_durations_monotonically=False)
 
     r'''
     \new Voice {

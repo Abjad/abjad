@@ -3,7 +3,8 @@ from abjad.tools import layouttools
 
 
 def test_layouttools_set_line_breaks_cyclically_by_line_duration_in_seconds_ge_01():
-    '''Iterate klass instances in expr and accumulate duration in seconds.
+    '''Iterate line-break class instances in expr and 
+    accumulate duration in seconds.
     Add line break after every total less than or equal to line_duration.
     '''
 

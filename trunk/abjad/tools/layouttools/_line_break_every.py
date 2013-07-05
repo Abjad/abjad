@@ -5,21 +5,29 @@ from abjad.tools import measuretools
 
 
 # TODO: make public and possibly improve function name
-def _line_break_every(expr, line_duration, klass=None,
-    kind='prolated', adjust_eol=False, add_empty_bars=False):
-    '''Iterate classes in `expr` and accumulate `kind` duration.
+def _line_break_every(
+    expr,
+    line_duration,
+    line_break_class=None,
+    kind='prolated',
+    adjust_eol=False,
+    add_empty_bars=False,
+    ):
+    '''Iterate `line_break_class` instances in `expr` 
+    and accumulate `kind` duration.
 
-    Add line break after every total less than or equal to duration.
+    Add line break after every total less than or equal to `line_duration`.
 
-    When ``klass=None`` set `klass` to measure.
+    Set `line_break_class` to measure when `line_break_class` is none.
     '''
 
-    if klass is None:
-        klass = measuretools.Measure
+    if line_break_class is None:
+        line_break_class = measuretools.Measure
 
     prev = None
     cum_duration = durationtools.Duration(0)
-    for cur in iterationtools.iterate_components_in_expr(expr, klass):
+    for cur in iterationtools.iterate_components_in_expr(
+        expr, line_break_class):
         # compress these 4 lines to only the 4th line after duration migration
         if kind == 'seconds':
             current_duration = cur.duration_in_seconds
@@ -35,7 +43,8 @@ def _line_break_every(expr, line_duration, klass=None,
         elif candidate_duration == line_duration:
             marktools.LilyPondCommandMark('break', 'closing')(cur)
             if adjust_eol:
-                marktools.LilyPondCommandMark('adjustEOLTimeSignatureBarlineExtraOffset',
+                marktools.LilyPondCommandMark(
+                    'adjustEOLTimeSignatureBarlineExtraOffset',
                     'closing')(cur)
             if add_empty_bars:
                 if cur.bar_line.kind is None:
@@ -45,7 +54,8 @@ def _line_break_every(expr, line_duration, klass=None,
             if prev is not None:
                 marktools.LilyPondCommandMark('break', 'closing')(prev)
                 if adjust_eol:
-                    marktools.LilyPondCommandMark('adjustEOLTimeSignatureBarlineExtraOffset',
+                    marktools.LilyPondCommandMark(
+                        'adjustEOLTimeSignatureBarlineExtraOffset',
                         'closing')(prev)
                 if add_empty_bars:
                     if cur.bar_line.kind is None:
