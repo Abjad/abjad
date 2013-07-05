@@ -9,15 +9,15 @@ from abjad.tools.documentationtools import ClassCrawler
 from abjad.tools.documentationtools import InheritanceGraph
 
 
-def _shorten_class_name(klass):
-    parts = klass.__module__.split('.')[2:]
+def _shorten_class_name(abjad_class):
+    parts = abjad_class.__module__.split('.')[2:]
     return '%s.%s' % (parts[0], parts[1])
 
 
 def _find_inconsistencies():
     tools_path = os.path.abspath('.')
-    classes = ClassCrawler(tools_path)()
-    graph = InheritanceGraph(addresses=classes, root_addresses=[AbjadObject])
+    abjad_classes = ClassCrawler(tools_path)()
+    graph = InheritanceGraph(addresses=abjad_classes, root_addresses=[AbjadObject])
     bad_arcs = []
     for parent, children in graph.parent_children_mapping.iteritems():
         parent_attrs = inspect.classify_class_attrs(parent)

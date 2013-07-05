@@ -9,13 +9,16 @@ from abjad import abjad_configuration
 total = 0
 root = os.path.join(abjad_configuration.abjad_directory_path, 'tools')
 crawler = documentationtools.ClassCrawler(root)
-for klass in crawler():
-    if not inspect.isabstract(klass):
-        if 'exception' in klass.__module__:
-            qualified_class_name = '.'.join(klass.__module__.split('.')[-2:])
+for abjad_class in crawler():
+    if not inspect.isabstract(abjad_class):
+        if 'exception' in abjad_class.__module__:
+            qualified_class_name = '.'.\
+                join(abjad_class.__module__.split('.')[-2:])
         else:
-            qualified_class_name = '.'.join(klass.__module__.split('.')[-3:-1])
-        args = getattr(klass, '_default_mandatory_input_arguments', [])
+            qualified_class_name = '.'.\
+                join(abjad_class.__module__.split('.')[-3:-1])
+        args = getattr(
+            abjad_class, '_default_mandatory_input_arguments', [])
         args = [str(arg) for arg in args]
         if args:
             args = ', '.join(args)

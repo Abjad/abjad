@@ -174,25 +174,25 @@ class InheritanceGraph(AbjadObject):
         child_parents_mapping = {}
         parent_children_mapping = {}
         invalid_classes = set([])
-        def recurse(klass):
-            if klass in child_parents_mapping:
+        def recurse(current_class):
+            if current_class in child_parents_mapping:
                 return True
-            elif klass in invalid_classes:
+            elif current_class in invalid_classes:
                 return False
-            mro = list(inspect.getmro(klass))
+            mro = list(inspect.getmro(current_class))
             while len(mro) and mro[-1] not in self.root_classes:
                 mro.pop()
             if not mro:
-                invalid_classes.add(klass)
+                invalid_classes.add(current_class)
                 return False
-            parents = [x for x in klass.__bases__ if recurse(x)]
-            child_parents_mapping[klass] = set(parents)
-            parent_children_mapping[klass] = set([])
+            parents = [x for x in current_class.__bases__ if recurse(x)]
+            child_parents_mapping[current_class] = set(parents)
+            parent_children_mapping[current_class] = set([])
             for parent in parents:
-                parent_children_mapping[parent].add(klass)
+                parent_children_mapping[parent].add(current_class)
             return True
-        for klass in classes:
-            recurse(klass)
+        for current_class in classes:
+            recurse(current_class)
         return child_parents_mapping, parent_children_mapping
 
     def _collect_classes(self, addresses, recurse_into_submodules):
@@ -205,16 +205,16 @@ class InheritanceGraph(AbjadObject):
             if isinstance(x, (types.TypeType, types.InstanceType)) or \
                 (isinstance(x, tuple) and len(x) == 2):
                 if isinstance(x, types.TypeType):
-                    klass = x
+                    current_class = x
                 elif isinstance(x, types.InstanceType):
-                    klass = x.__class__
+                    current_class = x.__class__
                 else:
                     module_name, class_name = x
                     module = importlib.import_module(module_name)
-                    klass = getattr(module, class_name)
-                all_classes.add(klass)
-                immediate_classes.add(klass)
-                address = (klass.__module__, klass.__name__)
+                    current_class = getattr(module, class_name)
+                all_classes.add(current_class)
+                immediate_classes.add(current_class)
+                address = (current_class.__module__, current_class.__name__)
             elif isinstance(x, (str, types.ModuleType)):
                 if isinstance(x, types.ModuleType):
                     module = x
@@ -238,52 +238,52 @@ class InheritanceGraph(AbjadObject):
         if not self.lineage_prune_distance:
             return None
         distance_mapping = {}
-        def recurse_downward(klass, distance=0):
-            if klass not in self.parent_children_mapping:
+        def recurse_downward(current_class, distance=0):
+            if current_class not in self.parent_children_mapping:
                 return
-            for child in self.parent_children_mapping[klass]:
+            for child in self.parent_children_mapping[current_class]:
                 if child not in distance_mapping:
                     distance_mapping[child] = distance + 1
                     recurse_downward(child, distance + 1)
                 elif (distance + 1) < distance_mapping[child]:
                     distance_mapping[child] = distance + 1
                     recurse_downward(child, distance + 1)
-        for klass in self.lineage_classes:
-            recurse_downward(klass)
+        for current_class in self.lineage_classes:
+            recurse_downward(current_class)
         return distance_mapping
 
     def _strip_nonlineage_classes(self, 
         child_parents_mapping, parent_children_mapping):
         if not self.lineage_classes:
             return
-        def recurse_upward(klass, invalid_classes):
-            if klass not in child_parents_mapping:
+        def recurse_upward(current_class, invalid_classes):
+            if current_class not in child_parents_mapping:
                 return
-            for parent in child_parents_mapping[klass]:
+            for parent in child_parents_mapping[current_class]:
                 if parent in invalid_classes:
                     invalid_classes.remove(parent)
                     recurse_upward(parent, invalid_classes)
-        def recurse_downward(klass, invalid_classes):
-            if klass not in parent_children_mapping:
+        def recurse_downward(current_class, invalid_classes):
+            if current_class not in parent_children_mapping:
                 return
-            for child in parent_children_mapping[klass]:
+            for child in parent_children_mapping[current_class]:
                 if child in invalid_classes:
                     invalid_classes.remove(child)
                     recurse_downward(child, invalid_classes)
         invalid_classes = set(
             child_parents_mapping.keys() + parent_children_mapping.keys())
-        for klass in self.lineage_classes:
-            if klass in invalid_classes:
-                invalid_classes.remove(klass)
-            recurse_upward(klass, invalid_classes)
-            recurse_downward(klass, invalid_classes)
-        for klass in invalid_classes:
-            for child in parent_children_mapping[klass]:
-                child_parents_mapping[child].remove(klass)
-            for parent in child_parents_mapping[klass]:
-                parent_children_mapping[parent].remove(klass)
-            del(parent_children_mapping[klass])
-            del(child_parents_mapping[klass])
+        for current_class in self.lineage_classes:
+            if current_class in invalid_classes:
+                invalid_classes.remove(current_class)
+            recurse_upward(current_class, invalid_classes)
+            recurse_downward(current_class, invalid_classes)
+        for current_class in invalid_classes:
+            for child in parent_children_mapping[current_class]:
+                child_parents_mapping[child].remove(current_class)
+            for parent in child_parents_mapping[current_class]:
+                parent_children_mapping[parent].remove(current_class)
+            del(parent_children_mapping[current_class])
+            del(child_parents_mapping[current_class])
 
     def _submodule_recurse(self, module, visited_modules):
         result = []
@@ -314,8 +314,8 @@ class InheritanceGraph(AbjadObject):
     def graphviz_graph(self):
         from abjad.tools import documentationtools
 
-        def get_class_name_pieces(klass):
-            parts = (klass.__module__ + '.' + klass.__name__).split('.')
+        def get_class_name_pieces(current_class):
+            parts = (current_class.__module__ + '.' + current_class.__name__).split('.')
             name = [parts[0]]
             for part in parts[1:]:
                 if part != name[-1]:
@@ -349,9 +349,9 @@ class InheritanceGraph(AbjadObject):
             },
             )
 
-        for klass in sorted(self.parent_children_mapping,
+        for current_class in sorted(self.parent_children_mapping,
             key=lambda x: (x.__module__, x.__name__)):
-            pieces = get_class_name_pieces(klass)
+            pieces = get_class_name_pieces(current_class)
 
             try:
                 cluster = graph[pieces[0]]
@@ -369,38 +369,38 @@ class InheritanceGraph(AbjadObject):
                 )
             node.attributes['label'] = '\\n'.join(pieces)
 
-            if klass in self.immediate_classes:
+            if current_class in self.immediate_classes:
                 pass
-            if klass in self.root_classes:
+            if current_class in self.root_classes:
                 pass
-            if inspect.isabstract(klass):
+            if inspect.isabstract(current_class):
                 node.attributes['shape'] = 'oval'
                 node.attributes['style'] = 'bold'
             else:
                 node.attributes['shape'] = 'box'
-            if klass in self.lineage_classes:
+            if current_class in self.lineage_classes:
                 node.attributes['color'] = 'black'
                 node.attributes['fontcolor'] = 'white'
                 node.attributes['style'] = ('filled', 'rounded')
 
             if self.lineage_prune_distance is None:
                 cluster.append(node)
-                class_nodes[klass] = node
-            elif klass not in self.lineage_distance_mapping:
+                class_nodes[current_class] = node
+            elif current_class not in self.lineage_distance_mapping:
                 cluster.append(node)
-                class_nodes[klass] = node
+                class_nodes[current_class] = node
             else:
                 ok_distance = self.lineage_prune_distance + 1
-                distance = self.lineage_distance_mapping[klass]
+                distance = self.lineage_distance_mapping[current_class]
                 if distance < ok_distance:
                     cluster.append(node)
-                    class_nodes[klass] = node
+                    class_nodes[current_class] = node
                 elif distance == ok_distance:
                     node.attributes['shape'] = 'invis'
                     node.attributes['style'] = 'transparent'
                     node.attributes['label'] = ' '
                     cluster.append(node)
-                    class_nodes[klass] = node
+                    class_nodes[current_class] = node
                 elif ok_distance < distance:
                     pass
 
