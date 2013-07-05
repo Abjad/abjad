@@ -2,19 +2,22 @@ import types
 from abjad.tools import selectiontools
 
 
-def all_are_thread_contiguous_components(expr, classes=None, allow_orphans=True):
+def all_are_thread_contiguous_components(
+    expr, component_classes=None, allow_orphans=True):
     r'''.. versionadded:: 1.1
 
     True when elements in `expr` are all thread-contiguous components:
 
     ::
 
-        t = Voice(notetools.make_repeated_notes(4))
-        t.insert(2, Voice(notetools.make_repeated_notes(2)))
-        Container(t[:2])
-        Container(t[-2:])
-        pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+        >>> container_1 = Container("c'8 d'8")
+        >>> inner_voice = Voice("e'8 f'8")
+        >>> container_2 = Container("g'8 a'8")
+        >>> outer_voice = Voice([container_1, inner_voice, container_2])
 
+    ::
+
+        >>> f(outer_voice)
         \new Voice {
             {
                 c'8
@@ -30,28 +33,58 @@ def all_are_thread_contiguous_components(expr, classes=None, allow_orphans=True)
             }
         }
 
-        assert _are_thread_contiguous_components(t[0:1] + t[-1:])
-        assert _are_thread_contiguous_components(t[0][:] + t[-1:])
-        assert _are_thread_contiguous_components(t[0:1] + t[-1][:])
-        assert _are_thread_contiguous_components(t[0][:] + t[-1][:])
+    ::
+
+        >>> show(outer_voice) # doctest: +SKIP
+
+    ::
+
+        >>> components = [container_1, container_2]
+        >>> componenttools.all_are_thread_contiguous_components(components)
+        True
+
+    ::
+
+        >>> components = container_1.leaves + container_2.leaves
+        >>> componenttools.all_are_thread_contiguous_components(components)
+        True
+
+    ::
+
+        >>> components = (container_1, ) + container_2.leaves
+        >>> componenttools.all_are_thread_contiguous_components(components)
+        True
+
+    ::
+
+        >>> components = [container_1, inner_voice]
+        >>> componenttools.all_are_thread_contiguous_components(components)
+        False
 
     Return boolean.
-
-    Thread-contiguous components are, by definition, spannable.
     '''
     from abjad.tools import componenttools
 
-    if not isinstance(expr, (list, tuple, types.GeneratorType, selectiontools.Selection)):
+    allowable_types = (
+        list,
+        tuple,
+        types.GeneratorType,
+        selectiontools.Selection,
+        )
+
+    if not isinstance(expr, allowable_types):
         return False
 
-    if classes is None:
-        classes = componenttools.Component
+    component_classes = component_classes or (componenttools.Component, )
+    if not isinstance(component_classes, tuple):
+        component_classes = (component_classes, )
+    assert isinstance(component_classes, tuple)
 
     if len(expr) == 0:
         return True
 
     first = expr[0]
-    if not isinstance(first, classes):
+    if not isinstance(first, component_classes):
         return False
 
     orphan_components = True
@@ -64,16 +97,18 @@ def all_are_thread_contiguous_components(expr, classes=None, allow_orphans=True)
     first_thread = first.parentage.containment_signature
     prev = first
     for cur in expr[1:]:
-        if not isinstance(cur, classes):
+        if not isinstance(cur, component_classes):
             return False
         if not cur.parentage.is_orphan:
             orphan_components = False
         if not cur.parentage.containment_signature == first_thread:
             same_thread = False
-        if not componenttools.is_immediate_temporal_successor_of_component(prev, cur):
+        if not componenttools.is_immediate_temporal_successor_of_component(
+            prev, cur):
             if not _are_thread_proper(prev, cur):
                 thread_proper = False
-        if (not allow_orphans or (allow_orphans and not orphan_components)) and \
+        if (not allow_orphans or 
+            (allow_orphans and not orphan_components)) and \
             (not same_thread or not thread_proper):
             return False
         prev = cur
@@ -81,7 +116,7 @@ def all_are_thread_contiguous_components(expr, classes=None, allow_orphans=True)
     return True
 
 
-def _are_thread_proper(component_1, component_2, classes=None):
+def _are_thread_proper(component_1, component_2, component_classes=None):
     '''True when
 
         1. component_1 and component_2 are both Abjad components,
@@ -96,18 +131,17 @@ def _are_thread_proper(component_1, component_2, classes=None):
     from abjad.tools import componenttools
     from abjad.tools import iterationtools
 
-    if classes is None:
-        classes = (componenttools.Component,)
+    if component_classes is None:
+        component_classes = (componenttools.Component,)
 
     # if either input parameter are not Abjad tokens
-    if not isinstance(component_1, classes) or \
-        not isinstance(component_2, classes):
+    if not isinstance(component_1, component_classes) or \
+        not isinstance(component_2, component_classes):
         return False
 
     # if component_1 and component_2 do not share a thread
     first_thread = component_1.parentage.containment_signature
     if not first_thread == component_2.parentage.containment_signature:
-        #print 'not same thread!'
         return False
 
     # find component_1 offset end time and component_2 offset begin
@@ -116,11 +150,11 @@ def _are_thread_proper(component_1, component_2, classes=None):
 
     # if component_1 does not preced component_2
     if not first_end <= second_begin:
-        #print 'not temporally ordered!'
         return False
 
     # if there exists an intervening component of the same thread
-    dfs = iterationtools.iterate_components_depth_first(component_1, capped=False)
+    dfs = iterationtools.iterate_components_depth_first(
+        component_1, capped=False)
     for node in dfs:
         if node is component_2:
             break
@@ -128,8 +162,9 @@ def _are_thread_proper(component_1, component_2, classes=None):
         if node_thread == first_thread:
             node_begin = node.timespan.start_offset
             if first_end <= node_begin < second_begin:
-                print 'Component %s intervenes between %s and %s.' % \
-                    (node, component_1, component_2)
+                message = 'component %s intervenes between %s and %s.'
+                message %= (node, component_1, component_2)
+                print message
                 return False
 
     # otherwise, return True

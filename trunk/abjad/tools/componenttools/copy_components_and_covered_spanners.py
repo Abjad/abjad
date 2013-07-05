@@ -15,88 +15,65 @@ def copy_components_and_covered_spanners(components, n=1):
     Preserve spanners that `components` cover.
     Deep copy `components`.
     Reapply crossing spanners to source `components`.
-    Return copied components with covered spanners. ::
-
-        >>> voice = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
-        >>> beam = beamtools.BeamSpanner(voice.leaves[:4])
-        >>> f(voice)
-        \new Voice {
-            {
-                \time 2/8
-                c'8 [
-                d'8
-            }
-            {
-                e'8
-                f'8 ]
-            }
-            {
-                g'8
-                a'8
-            }
-        }
+    Return copied components with covered spanners.
 
     ::
 
-        >>> result = componenttools.copy_components_and_covered_spanners(voice.leaves)
-        >>> result
-        (Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8"), Note("g'8"), Note("a'8"))
+        >>> staff = Staff(r"abj: | 2/8 c'8 ( d'8 || 2/8 e'8 f'8 ) |")
+        >>> staff.append(r"abj: | 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
 
     ::
 
-        >>> new_voice = Voice(result)
-        >>> f(new_voice)
-        \new Voice {
-            c'8 [
-            d'8
-            e'8
-            f'8 ]
-            g'8
-            a'8
-        }
+        >>> show(staff) # doctest: +SKIP
 
     ::
 
-        >>> voice.leaves[0] is new_voice.leaves[0]
+        >>> result = componenttools.copy_components_and_covered_spanners(
+        ...     staff.leaves)
+        >>> new_staff = Staff(result)
+
+    ::
+
+        >>> staff.leaves[0] is new_staff.leaves[0]
         False
 
-    Copy `components` a total of `n` times. ::
+    ::
 
-        >>> result = componenttools.copy_components_and_covered_spanners(voice.leaves[:2], n=3)
-        >>> result
-        (Note("c'8"), Note("d'8"), Note("c'8"), Note("d'8"), Note("c'8"), Note("d'8"))
+        >>> show(new_staff) # doctest: +SKIP
+
+    Copy `components` a total of `n` times:
+    
+    ::
+
+        >>> result = componenttools.copy_components_and_covered_spanners(
+        ...     staff.leaves[:2], n=4)
+        >>> new_staff = Staff(result)
 
     ::
 
-        >>> new_voice = Voice(result)
-        >>> f(new_voice)
-        \new Voice {
-            c'8
-            d'8
-            c'8
-            d'8
-            c'8
-            d'8
-        }
+        >>> show(new_staff) # doctest: +SKIP
 
     Return new components.
     '''
     from abjad.tools import componenttools
     from abjad.tools import iterationtools
     from abjad.tools import spannertools
-    from abjad.tools.componenttools._ignore_parentage_of_components import _ignore_parentage_of_components
-    from abjad.tools.componenttools._restore_parentage_to_components_by_receipt import \
-        _restore_parentage_to_components_by_receipt
+    from abjad.tools.componenttools._ignore_parentage_of_components \
+        import _ignore_parentage_of_components
+    from abjad.tools.componenttools._restore_parentage_to_components_by_receipt \
+        import _restore_parentage_to_components_by_receipt
 
+    # check input
+    assert componenttools.all_are_thread_contiguous_components(components)
+
+    # return empty list when nothing to copy
     if n < 1:
         return []
 
-    assert componenttools.all_are_thread_contiguous_components(components)
-
     # copy components without spanners
     new_components = [
-        component._copy_with_children_and_marks_but_without_spanners() for component in components]
+        component._copy_with_children_and_marks_but_without_spanners() 
+        for component in components]
     new_components = type(components)(new_components)
 
     # make schema of spanners covered by components

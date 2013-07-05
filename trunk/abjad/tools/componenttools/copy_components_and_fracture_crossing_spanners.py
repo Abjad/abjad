@@ -12,68 +12,45 @@ def copy_components_and_fracture_crossing_spanners(components, n=1):
     Deep copy `components`.
     Deep copy spanners that attach to any component in `components`.
     Fracture spanners that attach to components not in `components`.
-    Return Python list of copied components. ::
-
-        >>> voice = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
-        >>> beam = beamtools.BeamSpanner(voice.leaves[:4])
-        >>> f(voice)
-        \new Voice {
-            {
-                \time 2/8
-                c'8 [
-                d'8
-            }
-            {
-                e'8
-                f'8 ]
-            }
-            {
-                g'8
-                a'8
-            }
-        }
+    Return Python list of copied components.
 
     ::
 
-        >>> result = componenttools.copy_components_and_fracture_crossing_spanners(
+        >>> voice = Voice(r"abj: | 2/8 c'8 [ d'8 || 2/8 e'8 f'8 ] |")
+        >>> voice.append(r"abj: | 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
+
+    ::
+
+        >>> show(voice) # doctest: +SKIP
+
+    ::
+
+        >>> result = \
+        ...     componenttools.copy_components_and_fracture_crossing_spanners(
         ...     voice.leaves[2:4])
-        >>> result
-        (Note("e'8"), Note("f'8"))
-
-    ::
-
         >>> new_voice = Voice(result)
-        >>> f(new_voice)
-        \new Voice {
-            e'8 [
-            f'8 ]
-        }
 
     ::
 
         >>> voice.leaves[2] is new_voice.leaves[0]
         False
 
-    Copy `components` a total of `n` times. ::
+    ::
 
-        >>> result = componenttools.copy_components_and_fracture_crossing_spanners(
-        ...     voice.leaves[2:4], n=3)
-        >>> result
-        (Note("e'8"), Note("f'8"), Note("e'8"), Note("f'8"), Note("e'8"), Note("f'8"))
+        >>> show(new_voice) # doctest: +SKIP
+
+    Copy `components` a total of `n` times:
+    
+    ::
+
+        >>> result = \
+        ...     componenttools.copy_components_and_fracture_crossing_spanners(
+        ...     voice.leaves[2:4], n=4)
+        >>> new_voice = Voice(result)
 
     ::
 
-        >>> new_voice = Voice(result)
-        >>> f(new_voice)
-        \new Voice {
-            e'8 [
-            f'8 ]
-            e'8 [
-            f'8 ]
-            e'8 [
-            f'8 ]
-        }
+        >>> show(new_voice) # doctest: +SKIP
 
     Return new components.
     '''
@@ -81,13 +58,17 @@ def copy_components_and_fracture_crossing_spanners(components, n=1):
     from abjad.tools import componenttools
     from abjad.tools import iterationtools
 
+
+    # check input
+    assert componenttools.all_are_thread_contiguous_components(components)
+
+    # return empty list when nothing to copy
     if n < 1:
         return []
 
-    assert componenttools.all_are_thread_contiguous_components(components)
-
     new_components = [
-        component._copy_with_children_and_marks_but_without_spanners() for component in components]
+        component._copy_with_children_and_marks_but_without_spanners() 
+        for component in components]
     new_components = type(components)(new_components)
 
     # make schema of spanners contained by components
@@ -120,7 +101,8 @@ def copy_components_and_fracture_crossing_spanners(components, n=1):
 
     # repeat as specified by input
     for i in range(n - 1):
-        new_components += copy_components_and_fracture_crossing_spanners(components)
+        new_components += copy_components_and_fracture_crossing_spanners(
+            components)
 
     # return new components
     return new_components

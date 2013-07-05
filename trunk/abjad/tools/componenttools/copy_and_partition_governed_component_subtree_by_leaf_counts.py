@@ -4,16 +4,16 @@ from abjad.tools import sequencetools
 
 # TODO: Implement in-place containertools.partition_components_by_counts()
 #       that doesn't climb to governor.
-def copy_and_partition_governed_component_subtree_by_leaf_counts(container, leaf_counts):
+def copy_and_partition_governed_component_subtree_by_leaf_counts(
+    container, leaf_counts):
     r'''.. versionadded:: 1.1
 
-    Copy `container` and partition copy according to `leaf_counts`::
+    Copy `container` and partition copy according to `leaf_counts`:
 
-        >>> voice = Voice(r"\times 2/3 { c'8 d'8 e'8 } \times 2/3 { f'8 g'8 a'8 }")
-        >>> beamtools.BeamSpanner(voice[0].leaves)
-        BeamSpanner(c'8, d'8, e'8)
-        >>> beamtools.BeamSpanner(voice[1].leaves)
-        BeamSpanner(f'8, g'8, a'8)
+    ::
+
+        >>> voice = Voice(r"\times 2/3 { c'8 [ d'8 e'8 ] }")
+        >>> voice.append(r"\times 2/3 { f'8 [ g'8 a'8 ] }")
 
     ::
 
@@ -33,8 +33,12 @@ def copy_and_partition_governed_component_subtree_by_leaf_counts(container, leaf
 
     ::
 
+        >>> show(voice) # doctest: +SKIP
+
+    ::
+
         >>> result = componenttools.copy_and_partition_governed_component_subtree_by_leaf_counts(
-        ... voice, [1, 2, 3])
+        ...     voice, [1, 2, 3])
 
     ::
 
@@ -51,6 +55,10 @@ def copy_and_partition_governed_component_subtree_by_leaf_counts(container, leaf
 
     ::
 
+        >>> show(first) # doctest: +SKIP
+
+    ::
+
         >>> f(second) # doctest: +SKIP
         \new Voice {
             \times 2/3 {
@@ -58,6 +66,10 @@ def copy_and_partition_governed_component_subtree_by_leaf_counts(container, leaf
                 e'8 ]
             }
         }
+
+    ::
+
+        >>> show(second) # doctest: +SKIP
 
     ::
 
@@ -69,6 +81,10 @@ def copy_and_partition_governed_component_subtree_by_leaf_counts(container, leaf
                 a'8 ]
             }
         }
+
+    ::
+
+        >>> show(third) # doctest: +SKIP
 
     Set `leaf_counts` to an iterable of zero or more positive integers.
 
@@ -83,5 +99,7 @@ def copy_and_partition_governed_component_subtree_by_leaf_counts(container, leaf
     result = []
     sums = mathtools.cumulative_sums_zero(leaf_counts)
     for start, stop in sequencetools.iterate_sequence_pairwise_strict(sums):
-        result.append(componenttools.copy_governed_component_subtree_by_leaf_range(container, start, stop))
+        result.append(
+            componenttools.copy_governed_component_subtree_by_leaf_range(
+                container, start, stop))
     return result

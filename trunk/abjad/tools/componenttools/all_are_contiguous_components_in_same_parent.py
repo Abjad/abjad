@@ -2,7 +2,8 @@ import types
 from abjad.tools import selectiontools
 
 
-def all_are_contiguous_components_in_same_parent(expr, classes=None, allow_orphans=True):
+def all_are_contiguous_components_in_same_parent(
+    expr, component_classes=None, allow_orphans=True):
     '''.. versionadded:: 1.1
 
     True when elements in `expr` are all contiguous components in same parent.
@@ -11,33 +12,44 @@ def all_are_contiguous_components_in_same_parent(expr, classes=None, allow_orpha
     ::
 
         >>> staff = Staff("c'8 d'8 e'8")
-        >>> componenttools.all_are_contiguous_components_in_same_parent(staff.leaves)
+        >>> componenttools.all_are_contiguous_components_in_same_parent(
+        ...     staff.leaves)
         True
 
-    True when elements in `expr` are all contiguous `classes` in same parent.
-    Otherwise false:
+    True when elements in `expr` are all contiguous instances
+    of `component_classes` in same parent. Otherwise false:
 
     ::
 
         >>> staff = Staff("c'8 d'8 e'8")
-        >>> componenttools.all_are_contiguous_components_in_same_parent(staff.leaves, classes=Note)
+        >>> componenttools.all_are_contiguous_components_in_same_parent(
+        ...     staff.leaves, component_classes=(Note,))
         True
 
     Return boolean.
     '''
     from abjad.tools import componenttools
 
-    if not isinstance(expr, (list, tuple, types.GeneratorType, selectiontools.Selection)):
+    allowable_types = (
+        list,
+        tuple,
+        types.GeneratorType,
+        selectiontools.Selection,
+        )
+
+    if not isinstance(expr, allowable_types):
         return False
 
-    if classes is None:
-        classes = componenttools.Component
+    component_classes = component_classes or (componenttools.Component, )
+    if not isinstance(component_classes, tuple):
+        component_classes = (component_classes, )
+    assert isinstance(component_classes, tuple)
 
     if len(expr) == 0:
         return True
 
     first = expr[0]
-    if not isinstance(first, classes):
+    if not isinstance(first, component_classes):
         return False
 
     first_parent = first._parent
@@ -50,19 +62,21 @@ def all_are_contiguous_components_in_same_parent(expr, classes=None, allow_orpha
     same_parent = True
     strictly_contiguous = True
 
-    prev = first
-    for cur in expr[1:]:
-        if not isinstance(cur, classes):
+    previous = first
+    for current in expr[1:]:
+        if not isinstance(current, component_classes):
             return False
-        if not cur.parentage.is_orphan:
+        if not current.parentage.is_orphan:
             orphan_components = False
-        if not cur._parent is first_parent:
+        if not current._parent is first_parent:
             same_parent = False
-        if not componenttools.is_immediate_temporal_successor_of_component(prev, cur):
+        if not componenttools.is_immediate_temporal_successor_of_component(
+            previous, current):
             strictly_contiguous = False
-        if (not allow_orphans or (allow_orphans and not orphan_components)) and \
+        if (not allow_orphans or 
+            (allow_orphans and not orphan_components)) and \
             (not same_parent or not strictly_contiguous):
             return False
-        prev = cur
+        previous = current
 
     return True
