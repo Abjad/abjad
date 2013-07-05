@@ -11,9 +11,10 @@ class IntermarkedHairpinCheck(Check):
     def _run(self, expr):
         violators = []
         total, bad = 0, 0
+        spanner_classes = (spannertools.HairpinSpanner, )
         hairpins = \
             spannertools.get_spanners_attached_to_any_improper_child_of_component(
-            expr, spannertools.HairpinSpanner)
+            expr, spanner_classes=spanner_classes)
         for hairpin in hairpins:
             if 2 < len(hairpin.leaves):
                 for leaf in hairpin.leaves[1:-1]:

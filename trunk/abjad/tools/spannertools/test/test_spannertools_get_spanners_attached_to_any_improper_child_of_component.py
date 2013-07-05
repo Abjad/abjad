@@ -18,17 +18,25 @@ def test_spannertools_get_spanners_attached_to_any_improper_child_of_component_0
     }
     '''
 
-    spanners = spannertools.get_spanners_attached_to_any_improper_child_of_component(staff)
+    spanners = \
+        spannertools.get_spanners_attached_to_any_improper_child_of_component(
+            staff)
     assert spanners == set([beam, first_slur, second_slur, trill])
 
-    spanners = spannertools.get_spanners_attached_to_any_improper_child_of_component(
-        staff, spannertools.SlurSpanner)
+    spanner_classes = (spannertools.SlurSpanner, )
+    spanners = \
+        spannertools.get_spanners_attached_to_any_improper_child_of_component(
+        staff, spanner_classes=spanner_classes)
     assert spanners == set([first_slur, second_slur])
 
-    spanners = spannertools.get_spanners_attached_to_any_improper_child_of_component(
-        staff, (beamtools.BeamSpanner, spannertools.SlurSpanner))
+    spanner_classes = (beamtools.BeamSpanner, spannertools.SlurSpanner)
+    spanners = \
+        spannertools.get_spanners_attached_to_any_improper_child_of_component(
+        staff, spanner_classes=spanner_classes)
     assert spanners == set([beam, first_slur, second_slur])
 
-    spanners = spannertools.get_spanners_attached_to_any_improper_child_of_component(
-        staff, spannertools.TrillSpanner)
+    spanner_classes = (spannertools.TrillSpanner, )
+    spanners = \
+        spannertools.get_spanners_attached_to_any_improper_child_of_component(
+        staff, spanner_classes=spanner_classes)
     assert spanners == set([trill])

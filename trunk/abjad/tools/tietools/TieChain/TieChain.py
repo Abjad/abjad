@@ -79,10 +79,11 @@ class TieChain(Selection):
         '''Tuple of leaves in tie spanner.
         '''
         from abjad.tools import tietools
+        spanner_classes = (tietools.TieSpanner, )
         try:
             tie_spanner = \
                 spannertools.get_the_only_spanner_attached_to_component(
-                    self[0], tietools.TieSpanner)
+                    self[0], spanner_classes=spanner_classes)
             return tie_spanner.leaves
         except MissingSpannerError:
             assert self.is_trivial

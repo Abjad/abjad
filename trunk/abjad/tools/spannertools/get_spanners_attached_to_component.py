@@ -1,7 +1,9 @@
-def get_spanners_attached_to_component(component, klass=None):
+def get_spanners_attached_to_component(component, spanner_classes=None):
     r'''.. versionadded:: 2.0
 
-    Get all spanners attached to `component`::
+    Get all spanners attached to `component`:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> beam = beamtools.BeamSpanner(staff.leaves)
@@ -21,7 +23,8 @@ def get_spanners_attached_to_component(component, klass=None):
 
     ::
 
-        >>> result = spannertools.get_spanners_attached_to_component(staff.leaves[0])
+        >>> result = spannertools.get_spanners_attached_to_component(
+        ...     staff.leaves[0])
         >>> for x in sorted(result):
         ...     x
         ...
@@ -29,19 +32,25 @@ def get_spanners_attached_to_component(component, klass=None):
         CrescendoSpanner(c'8, d'8, e'8, f'8)
         SlurSpanner(c'8, d'8)
 
-    Get spanners of `klass` attached to `component`::
+    Get spanners of `spanner_classes` attached to `component`:
 
-        >>> klass = beamtools.BeamSpanner
-        >>> result = spannertools.get_spanners_attached_to_component(staff.leaves[0], klass)
+    ::
+
+        >>> spanner_classes = (beamtools.BeamSpanner, )
+        >>> result = spannertools.get_spanners_attached_to_component(
+        ...     staff.leaves[0], spanner_classes=spanner_classes)
         >>> for x in sorted(result):
         ...     x
         ...
         BeamSpanner(c'8, d'8, e'8, f'8)
 
-    Get spanners of any `klass` attached to `component`::
+    Get spanners of `spanner_classes` attached to `component`:
 
-        >>> classes = (beamtools.BeamSpanner, spannertools.SlurSpanner)
-        >>> result = spannertools.get_spanners_attached_to_component(staff.leaves[0], classes)
+    ::
+
+        >>> spanner_classes = (beamtools.BeamSpanner, spannertools.SlurSpanner)
+        >>> result = spannertools.get_spanners_attached_to_component(
+        ...     staff.leaves[0], spanner_classes=spanner_classes)
         >>> for x in sorted(result):
         ...     x
         ...
@@ -50,8 +59,19 @@ def get_spanners_attached_to_component(component, klass=None):
 
     Return unordered set of zero or more spanners.
     '''
+    from abjad.tools import spannertools
 
-    if klass is None:
-        return component.spanners
-    else:
-        return set([x for x in component.spanners if isinstance(x, klass)])
+    # check input
+    spanner_classes = spanner_classes or (spannertools.Spanner, )
+    if not isinstance(spanner_classes, tuple):
+        spanner_classes = (spanner_classes, )
+    assert isinstance(spanner_classes, tuple)
+
+    # iterate spanners
+    result = set()
+    for spanner in component.spanners:
+        if isinstance(spanner, spanner_classes):
+            result.add(spanner)
+
+    # return result
+    return result

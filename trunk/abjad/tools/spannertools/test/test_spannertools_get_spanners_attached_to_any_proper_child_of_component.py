@@ -22,14 +22,17 @@ def test_spannertools_get_spanners_attached_to_any_proper_child_of_component_01(
     assert spanners == set([beam, first_slur, second_slur])
     assert trill not in spanners
 
+    spanner_classes = (spannertools.SlurSpanner, )
     spanners = spannertools.get_spanners_attached_to_any_proper_child_of_component(
-        staff, spannertools.SlurSpanner)
+        staff, spanner_classes=spanner_classes)
     assert spanners == set([first_slur, second_slur])
 
+    spanner_classes = (beamtools.BeamSpanner, spannertools.SlurSpanner)
     spanners = spannertools.get_spanners_attached_to_any_proper_child_of_component(
-        staff, (beamtools.BeamSpanner, spannertools.SlurSpanner))
+        staff, spanner_classes=spanner_classes)
     assert spanners == set([beam, first_slur, second_slur])
 
+    spanner_classes = (spannertools.TrillSpanner, )
     spanners = spannertools.get_spanners_attached_to_any_proper_child_of_component(
-        staff, spannertools.TrillSpanner)
+        staff, spanner_classes=spanner_classes)
     assert spanners == set([])

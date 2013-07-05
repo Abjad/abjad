@@ -27,7 +27,9 @@ def get_tie_chain(component):
     from abjad.tools import tietools
 
 
-    tie_spanners = spannertools.get_spanners_attached_to_component(component, tietools.TieSpanner)
+    spanner_classes = (tietools.TieSpanner, )
+    tie_spanners = spannertools.get_spanners_attached_to_component(
+        component, spanner_classes=spanner_classes)
     count = len(tie_spanners)
 
     if count == 0:

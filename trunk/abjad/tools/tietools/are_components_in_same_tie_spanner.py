@@ -36,15 +36,18 @@ def are_components_in_same_tie_spanner(components):
     from abjad.tools import tietools
 
     assert componenttools.all_are_components(components)
-
+    spanner_classes = (tietools.TieSpanner, )
+    
     try:
         first = components[0]
         try:
-            first_tie_spanner = spannertools.get_the_only_spanner_attached_to_component(
-                first, tietools.TieSpanner)
+            first_tie_spanner = \
+                spannertools.get_the_only_spanner_attached_to_component(
+                first, spanner_classes=spanner_classes)
             for component in components[1:]:
-                component_tie_spanner = spannertools.get_the_only_spanner_attached_to_component(
-                    component, tietools.TieSpanner)
+                component_tie_spanner = \
+                    spannertools.get_the_only_spanner_attached_to_component(
+                    component, spanner_classes=spanner_classes)
                 if component_tie_spanner is not first_tie_spanner:
                     return False
         except MissingSpannerError:

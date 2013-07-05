@@ -4,9 +4,12 @@ from abjad.tools import spannertools
 def iterate_pitched_tie_chains_in_expr(expr, reverse=False):
     r'''.. versionadded:: 2.10
 
-    Iterate pitched tie chains forward in `expr`::
+    Iterate pitched tie chains forward in `expr`:
 
-        >>> staff = Staff(r"c'4 ~ \times 2/3 { c'16 d'8 } e'8 r8 f'8 ~ f'16 r8.")
+    ::
+
+        >>> staff = Staff(r"c'4 ~ \times 2/3 { c'16 d'8 }")
+        >>> staff.extend(r"e'8 r8 f'8 ~ f'16 r8.")
 
     ::
 
@@ -34,11 +37,12 @@ def iterate_pitched_tie_chains_in_expr(expr, reverse=False):
         TieChain(Note("e'8"),)
         TieChain(Note("f'8"), Note("f'16"))
 
-    Iterate pitched tie chains backward in `expr`::
+    Iterate pitched tie chains backward in `expr`:
 
     ::
 
-        >>> for x in tietools.iterate_pitched_tie_chains_in_expr(staff, reverse=True):
+        >>> for x in tietools.iterate_pitched_tie_chains_in_expr(
+        ...     staff, reverse=True):
         ...     x
         ...
         TieChain(Note("f'8"), Note("f'16"))
@@ -55,13 +59,19 @@ def iterate_pitched_tie_chains_in_expr(expr, reverse=False):
     from abjad.tools import iterationtools
     from abjad.tools import tietools
 
+    spanner_classes = (tietools.TieSpanner, )
     if not reverse:
         for leaf in iterationtools.iterate_notes_and_chords_in_expr(expr):
-            tie_spanners = spannertools.get_spanners_attached_to_component(leaf, tietools.TieSpanner)
-            if not tie_spanners or tuple(tie_spanners)[0]._is_my_last_leaf(leaf):
+            tie_spanners = spannertools.get_spanners_attached_to_component(
+                leaf, spanner_classes=spanner_classes)
+            if not tie_spanners or \
+                tuple(tie_spanners)[0]._is_my_last_leaf(leaf):
                 yield tietools.get_tie_chain(leaf)
     else:
-        for leaf in iterationtools.iterate_notes_and_chords_in_expr(expr, reverse=True):
-            tie_spanners = spannertools.get_spanners_attached_to_component(leaf, tietools.TieSpanner)
-            if not tie_spanners or tuple(tie_spanners)[0]._is_my_first_leaf(leaf):
+        for leaf in iterationtools.iterate_notes_and_chords_in_expr(
+            expr, reverse=True):
+            tie_spanners = spannertools.get_spanners_attached_to_component(
+                leaf, spanner_classes=spanner_classes)
+            if not tie_spanners or \
+                tuple(tie_spanners)[0]._is_my_first_leaf(leaf):
                 yield tietools.get_tie_chain(leaf)

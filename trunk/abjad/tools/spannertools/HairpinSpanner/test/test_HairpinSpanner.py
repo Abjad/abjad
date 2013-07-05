@@ -154,8 +154,9 @@ def test_HairpinSpanner_07():
     componenttools.move_parentage_and_spanners_from_components_to_components(t[-1:], [rest])
     spannertools.HairpinSpanner(t.leaves, 'p < f', include_rests = False)
 
+    spanner_classes = (spannertools.HairpinSpanner, )
     spanner = spannertools.get_the_only_spanner_attached_to_component(
-        t[0], spannertools.HairpinSpanner)
+        t[0], spanner_classes=spanner_classes)
     assert len(spanner.components) == len(t)
     assert t.lilypond_format == "\\new Staff {\n\tr8\n\tcs'8 \\< \\p\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8 \\f\n\tr8\n}"
     checker = IntermarkedHairpinCheck()

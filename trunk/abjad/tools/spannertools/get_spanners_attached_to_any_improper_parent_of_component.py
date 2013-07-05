@@ -42,7 +42,7 @@ def get_spanners_attached_to_any_improper_parent_of_component(
 
     # check input
     spanner_classes = spanner_classes or (spannertools.Spanner, )
-    if isinstance(spanner_classes, spannertools.Spanner):
+    if not isinstance(spanner_classes, tuple):
         spanner_classes = (spanner_classes, )
     assert isinstance(spanner_classes, tuple)
 

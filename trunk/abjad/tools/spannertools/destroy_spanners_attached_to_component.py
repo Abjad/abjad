@@ -41,6 +41,7 @@ def destroy_spanners_attached_to_component(component, klass=None):
     from abjad.tools import spannertools
 
     result = []
+    # TODO: pass spanner_classes into spannertools.get_spanners_attached_to_component()
     for spanner in spannertools.get_spanners_attached_to_component(component):
         if klass is None or isinstance(spanner, klass):
             spanner.clear()

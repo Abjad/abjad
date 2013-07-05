@@ -20,8 +20,8 @@ def get_the_only_spanner_attached_to_any_improper_parent_of_component(
 
     ::
 
-        >>> print \
-        ...     spannertools.get_the_only_spanner_attached_to_component(staff)
+        >>> print spannertools.get_the_only_spanner_attached_to_any_improper_parent_of_component(
+        ...     staff)
         TrillSpanner({c'8, d'8, e'8, f'8})
 
     Raise missing spanner error when no spanner attached to `component`.
@@ -38,7 +38,7 @@ def get_the_only_spanner_attached_to_any_improper_parent_of_component(
     # get spanners and count spanners
     spanners = \
         spannertools.get_spanners_attached_to_any_improper_parent_of_component(
-            component, spanner_classes)
+            component, spanner_classes=spanner_classes)
     count = len(spanners)
 
     # raise or return

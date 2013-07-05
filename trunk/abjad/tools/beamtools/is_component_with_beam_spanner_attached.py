@@ -34,5 +34,6 @@ def is_component_with_beam_spanner_attached(expr):
     if not isinstance(expr, componenttools.Component):
         return False
 
+    spanner_classes = (beamtools.BeamSpanner, )
     return bool(spannertools.get_spanners_attached_to_component(
-        expr, beamtools.BeamSpanner))
+        expr, spanner_classes=spanner_classes))

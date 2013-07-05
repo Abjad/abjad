@@ -907,9 +907,10 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
                 tie_split_notes=False,
                 )
             left_half, right_half = result[0], result[-1]
+            spanner_classes = (beamtools.DuratedComplexBeamSpanner, )
             for spanner in \
                 spannertools.get_spanners_attached_to_any_improper_child_of_component(
-                self.payload, klass=beamtools.DuratedComplexBeamSpanner):
+                self.payload, spanner_classes=spanner_classes):
                 if left_half[-1] in spanner and right_half[0] in spanner:
                     leaf_right_of_split = right_half[0]
                     split_offset_in_beam = spanner._duration_offset_in_me(

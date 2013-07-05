@@ -40,4 +40,6 @@ def is_component_with_tie_spanner_attached(expr):
     if not isinstance(expr, componenttools.Component):
         return False
 
-    return bool(spannertools.get_spanners_attached_to_component(expr, tietools.TieSpanner))
+    spanner_classes = (tietools.TieSpanner, )
+    return bool(spannertools.get_spanners_attached_to_component(
+        expr, spanner_classes=spanner_classes))
