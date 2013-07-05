@@ -1,7 +1,10 @@
-def fracture_spanners_attached_to_component(component, direction=None, klass=None):
+def fracture_spanners_attached_to_component(
+    component, direction=None, spanner_classes=None):
     r'''.. versionadded:: 1.1
 
-    Fracture all spanners attached to `component` according to `direction`::
+    Fracture all spanners attached to `component` according to `direction`:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> beam = beamtools.BeamSpanner(staff.leaves)
@@ -17,7 +20,8 @@ def fracture_spanners_attached_to_component(component, direction=None, klass=Non
 
     ::
 
-        >>> parts = spannertools.fracture_spanners_attached_to_component(staff[1], Right)
+        >>> parts = spannertools.fracture_spanners_attached_to_component(
+        ...     staff[1], direction=Right)
 
     ::
 
@@ -30,13 +34,18 @@ def fracture_spanners_attached_to_component(component, direction=None, klass=Non
         }
 
     Set `direction` to ``Left``, ``Right`` or ``None``.
-    '''
 
+    Return unordered set of fractured spanners.
+    '''
+    from abjad.tools import spannertools
+
+    # initialize result set
     result = []
-    for spanner in component.spanners:
-        if klass is None:
-            result.append(spanner.fracture(spanner.index(component), direction))
-        elif isinstance(spanner, klass):
-            result.append(spanner.fracture(spanner.index(component), direction))
-    result.sort()
+
+    # iterate spanners
+    for spanner in spannertools.get_spanners_attached_to_component(
+        component, spanner_classes=spanner_classes):
+        result.append(spanner.fracture(spanner.index(component), direction))
+
+    # return result
     return result

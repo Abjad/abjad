@@ -1,7 +1,8 @@
 from abjad.tools import componenttools
 
 
-def iterate_components_in_spanner(spanner, klass=None, reverse=False):
+def iterate_components_in_spanner(
+    spanner, component_classes=None, reverse=False):
     '''.. versionadded:: 2.10
 
     Yield components in `spanner` one at a time from left to right:
@@ -13,7 +14,8 @@ def iterate_components_in_spanner(spanner, klass=None, reverse=False):
 
     ::
 
-        >>> notes = spannertools.iterate_components_in_spanner(p, klass=Note)
+        >>> notes = spannertools.iterate_components_in_spanner(
+        ...     p, component_classes=(Note, ))
 
     ::
 
@@ -26,7 +28,8 @@ def iterate_components_in_spanner(spanner, klass=None, reverse=False):
 
     ::
 
-        >>> notes = spannertools.iterate_components_in_spanner(p, klass=Note, reverse=True)
+        >>> notes = spannertools.iterate_components_in_spanner(
+        ...     p, component_classes=(Note, ), reverse=True)
 
     ::
 
@@ -43,17 +46,20 @@ def iterate_components_in_spanner(spanner, klass=None, reverse=False):
     if not isinstance(spanner, spannertools.Spanner):
         raise TypeError
 
-    klass = klass or componenttools.Component
+    component_classes = component_classes or (componenttools.Component, )
+    if not isinstance(component_classes, tuple):
+        component_classes = (component_classes, )
 
     if not reverse:
         for component in spanner._components:
             dfs = iterationtools.iterate_components_depth_first(component)
             for node in dfs:
-                if isinstance(node, klass):
+                if isinstance(node, component_classes):
                     yield node
     else:
         for component in reversed(spanner._components):
-            dfs = iterationtools.iterate_components_depth_first(component, direction=Right)
+            dfs = iterationtools.iterate_components_depth_first(
+                component, direction=Right)
             for node in dfs:
-                if isinstance(node, klass):
+                if isinstance(node, component_classes):
                     yield node

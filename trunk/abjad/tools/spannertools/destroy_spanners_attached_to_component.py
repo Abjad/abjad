@@ -1,7 +1,9 @@
-def destroy_spanners_attached_to_component(component, klass=None):
+def destroy_spanners_attached_to_component(component, spanner_classes=None):
     r'''.. versionadded:: 1.1
 
-    Destroy spanners of `klass` attached to `component`::
+    Destroy spanners of `spanner_classes` attached to `component`:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> beam = beamtools.BeamSpanner(staff.leaves)
@@ -20,7 +22,8 @@ def destroy_spanners_attached_to_component(component, klass=None):
 
     ::
 
-        >>> spanners = spannertools.destroy_spanners_attached_to_component(staff[0])
+        >>> spanners = spannertools.destroy_spanners_attached_to_component(
+        ...     staff[0])
 
     ::
 
@@ -32,19 +35,25 @@ def destroy_spanners_attached_to_component(component, klass=None):
             f'8 \stopTrillSpan
         }
 
-    Destroy all spanners when `klass` is none.
+    Destroy all spanners when `spanner_classes` is none.
 
-    Return tuple of zero or more empty spanners.
-
-    Order of spanners in return value can not be predicted.
+    Return unordered set of zero or more empty spanners.
     '''
     from abjad.tools import spannertools
 
-    result = []
-    # TODO: pass spanner_classes into spannertools.get_spanners_attached_to_component()
-    for spanner in spannertools.get_spanners_attached_to_component(component):
-        if klass is None or isinstance(spanner, klass):
-            spanner.clear()
-            result.append(spanner)
+    # check input
+    spanner_classes = spanner_classes or (spannertools.Spanner, )
+    if not isinstance(spanner_classes, tuple):
+        spanner_classes = (spanner_classes, )
 
-    return tuple(result)
+    # initialize result set
+    result = set()
+
+    # iterate spanners
+    for spanner in spannertools.get_spanners_attached_to_component(
+        component, spanner_classes=spanner_classes):
+            spanner.clear()
+            result.add(spanner)
+
+    # return result
+    return result

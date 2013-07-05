@@ -35,7 +35,7 @@ def test_spannertools_destroy_spanners_attached_to_component_01():
 
 
 def test_spannertools_destroy_spanners_attached_to_component_02():
-    '''Destroy all spanners of klass attached to component.
+    '''Destroy all spanners of class attached to component.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
@@ -52,7 +52,9 @@ def test_spannertools_destroy_spanners_attached_to_component_02():
     }
     '''
 
-    spannertools.destroy_spanners_attached_to_component(staff[0], beamtools.BeamSpanner)
+    spanner_classes = (beamtools.BeamSpanner, )
+    spannertools.destroy_spanners_attached_to_component(
+        staff[0], spanner_classes=spanner_classes)
 
     r'''
     \new Staff {

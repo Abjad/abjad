@@ -212,14 +212,14 @@ class Spanner(AbjadObject):
         from abjad.tools import leaftools
         from abjad.tools import spannertools
         for leaf in spannertools.iterate_components_in_spanner(
-            self, klass=leaftools.Leaf):
+            self, component_classes=(leaftools.Leaf,)):
             return leaf
 
     def _get_my_last_leaf(self):
         from abjad.tools import leaftools
         from abjad.tools import spannertools
         for leaf in spannertools.iterate_components_in_spanner(
-            self, klass=leaftools.Leaf, reverse=True):
+            self, component_classes=(leaftools.Leaf,), reverse=True):
             return leaf
 
     def _initialize_components(self, components):
@@ -257,10 +257,10 @@ class Spanner(AbjadObject):
         else:
             return False
 
-    def _is_my_first(self, leaf, klass):
+    def _is_my_first(self, leaf, component_classes):
         from abjad.tools import spannertools
         for component in spannertools.iterate_components_in_spanner(
-            self, klass=klass):
+            self, component_classes=component_classes):
             if component is leaf:
                 return True
             else:
@@ -274,10 +274,10 @@ class Spanner(AbjadObject):
         except IndexError:
             return False
 
-    def _is_my_last(self, leaf, klass):
+    def _is_my_last(self, leaf, component_classes):
         from abjad.tools import spannertools
         components = spannertools.iterate_components_in_spanner(
-            self, klass=klass, reverse=True)
+            self, component_classes=component_classes, reverse=True)
         for component in components:
             if component is leaf:
                 return True
@@ -292,10 +292,10 @@ class Spanner(AbjadObject):
         except IndexError:
             return False
 
-    def _is_my_only(self, leaf, klass):
+    def _is_my_only(self, leaf, component_classes):
         from abjad.tools import spannertools
         i, components = None, spannertools.iterate_components_in_spanner(
-            self, klass=klass)
+            self, component_classes=component_class)
         for i, component in enumerate(components):
             if 0 < i:
                 return False

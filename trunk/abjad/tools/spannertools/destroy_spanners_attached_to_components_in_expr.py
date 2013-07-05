@@ -1,7 +1,10 @@
-def destroy_spanners_attached_to_components_in_expr(expr, klass=None):
+def destroy_spanners_attached_to_components_in_expr(
+    expr, spanner_classes=None):
     r'''.. versionadded:: 2.9
 
-    Destroy spanners of `klass` attached to components in `expr`::
+    Destroy spanners of `spanner_classes` attached to components in `expr`:
+
+    ::
 
         >>> staff = Staff("c'4 [ ( d' e' f' ) ]")
 
@@ -17,7 +20,9 @@ def destroy_spanners_attached_to_components_in_expr(expr, klass=None):
 
     ::
 
-        >>> spanners = spannertools.destroy_spanners_attached_to_components_in_expr(staff)
+        >>> spanners = \
+        ...     spannertools.destroy_spanners_attached_to_components_in_expr(
+        ...     staff)
 
     ::
 
@@ -29,15 +34,24 @@ def destroy_spanners_attached_to_components_in_expr(expr, klass=None):
             f'4
         }
 
-    Return tuple of zero or more empty spanners.
-
-    Order of spanners in return value can not be predicted.
+    Return unordered set of zero or more empty spanners.
     '''
     from abjad.tools import iterationtools
     from abjad.tools import spannertools
 
-    result = []
-    for component in iterationtools.iterate_components_in_expr(expr):
-        result.extend(spannertools.destroy_spanners_attached_to_component(component, klass=klass))
+    # check input
+    spanner_classes = spanner_classes or (spannertools.Spanner, )
+    if not isinstance(spanner_classes, tuple):
+        spanner_classes = (spanner_classes, )
+    assert isinstance(spanner_classes, tuple)
 
-    return tuple(result)
+    # initialize result set
+    result = set()
+
+    # iterate components
+    for component in iterationtools.iterate_components_in_expr(expr):
+        result.update(spannertools.destroy_spanners_attached_to_component(
+            component, spanner_classes=spanner_classes))
+
+    # return result
+    return result

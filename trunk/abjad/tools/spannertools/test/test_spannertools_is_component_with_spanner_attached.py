@@ -23,7 +23,7 @@ def test_spannertools_is_component_with_spanner_attached_01():
 
 
 def test_spannertools_is_component_with_spanner_attached_02():
-    '''True when expr is a component with spanner of klass attached.
+    '''True when expr is a component with spanner of class attached.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
@@ -38,5 +38,9 @@ def test_spannertools_is_component_with_spanner_attached_02():
         f'8 ]
     }
     '''
-    assert spannertools.is_component_with_spanner_attached(staff[0], beamtools.BeamSpanner)
-    assert not spannertools.is_component_with_spanner_attached(staff[0], spannertools.SlurSpanner)
+
+    assert spannertools.is_component_with_spanner_attached(
+        staff[0], spanner_classes=(beamtools.BeamSpanner,))
+        
+    assert not spannertools.is_component_with_spanner_attached(
+        staff[0], spanner_classes=(spannertools.SlurSpanner,))

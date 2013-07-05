@@ -32,7 +32,7 @@ def get_spanners_attached_to_any_improper_child_of_component(
         ...     staff))
         4
 
-    Get all spanners of `klass` attached to any proper children 
+    Get all spanners of `spanner_classes` attached to any proper children 
     of `component`:
 
     ::
@@ -47,7 +47,7 @@ def get_spanners_attached_to_any_improper_child_of_component(
         >>> list(sorted(result))
         [SlurSpanner(c'8, d'8), SlurSpanner(e'8, f'8)]
 
-    Get all spanners of any `klass` attached to any proper children 
+    Get all spanners of `spanner_classes` attached to any proper children 
     of `component`:
 
     ::

@@ -2,8 +2,6 @@ from abjad import *
 
 
 def test_spannertools_fracture_spanners_attached_to_component_01():
-    '''Without klass keyword.
-    '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
     beam = beamtools.BeamSpanner(staff.leaves)
@@ -35,7 +33,7 @@ def test_spannertools_fracture_spanners_attached_to_component_01():
 
 
 def test_spannertools_fracture_spanners_attached_to_component_02():
-    '''With klass keyword.
+    '''With spanner classes filter.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
@@ -52,7 +50,9 @@ def test_spannertools_fracture_spanners_attached_to_component_02():
     }
     '''
 
-    spannertools.fracture_spanners_attached_to_component(staff[1], direction=Right, klass=beamtools.BeamSpanner)
+    spanner_classes = (beamtools.BeamSpanner, )
+    spannertools.fracture_spanners_attached_to_component(
+        staff[1], direction=Right, spanner_classes=spanner_classes)
 
     r'''
     \new Staff {
