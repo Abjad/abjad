@@ -61,9 +61,9 @@ class SearchTree(AbjadObject):
 
     def __getstate__(self):
         state = {}
-        for klass in inspect.getmro(self.__class__):
-            if hasattr(klass, '__slots__'):
-                for slot in klass.__slots__:
+        for current_class in inspect.getmro(self.__class__):
+            if hasattr(current_class, '__slots__'):
+                for slot in current_class.__slots__:
                     if slot not in state:
                         state[slot] = getattr(self, slot)
         return state

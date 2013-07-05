@@ -519,7 +519,7 @@ class ReducedLyParser(abctools.Parser):
             sequencetools.iterate_sequence_pairwise_wrapped(leaves):
 
             span_events = self._get_span_events(leaf)
-            for klass, directions in span_events.iteritems():
+            for current_class, directions in span_events.iteritems():
 
                 starting, stopping = [], []
                 for direction in directions:
@@ -530,10 +530,10 @@ class ReducedLyParser(abctools.Parser):
 
                 # apply undirected events immediately, 
                 # and do not maintain a reference to them
-                if klass is tietools.TieSpanner:
+                if current_class is tietools.TieSpanner:
                     if next_leaf is first_leaf:
                         message = 'unterminated %s at %s.'
-                        raise Exception(message % (klass.__name__, leaf))
+                        raise Exception(message % (current_class.__name__, leaf))
                     previous_tie = [x for x in leaf.spanners 
                         if isinstance(x, tietools.TieSpanner)]
                     if previous_tie:
@@ -541,47 +541,47 @@ class ReducedLyParser(abctools.Parser):
                     else:
                         tietools.TieSpanner((leaf, next_leaf))
 
-                elif klass is beamtools.BeamSpanner:
+                elif current_class is beamtools.BeamSpanner:
                     # A beam may begin and end on the same leaf
                     # but only one beam spanner may cover any given leaf,
                     # and starting events are processed before ending ones
                     for _ in starting:
-                        if spanner_references[klass] is not None:
+                        if spanner_references[current_class] is not None:
                             raise Exception('Already have beam.')
                         else:
-                            spanner_references[klass] = klass()
+                            spanner_references[current_class] = current_class()
                     for _ in stopping:
-                        if spanner_references[klass] is not None:
-                            spanner_references[klass].append(leaf)
-                            spanner_references[klass] = None
+                        if spanner_references[current_class] is not None:
+                            spanner_references[current_class].append(leaf)
+                            spanner_references[current_class] = None
 
-                elif klass is spannertools.SlurSpanner:
+                elif current_class is spannertools.SlurSpanner:
                     # Slurs process stop events before start events,
                     # they must contain more than one leaf,
                     # but they can stop on a leaf and start on the same leaf.
                     for _ in stopping:
-                        if spanner_references[klass] is not None:
-                            spanner_references[klass].append(leaf)
-                            spanner_references[klass] = None
+                        if spanner_references[current_class] is not None:
+                            spanner_references[current_class].append(leaf)
+                            spanner_references[current_class] = None
                         else:
                             message = 'cannot end %s.'
-                            raise Exception(message % klass.__name__)
+                            raise Exception(message % current_class.__name__)
                     for _ in starting:
-                        if spanner_references[klass] is None:
-                            spanner_references[klass] = klass()
+                        if spanner_references[current_class] is None:
+                            spanner_references[current_class] = current_class()
                         else:
                             message = 'already have %s.'
-                            raise Exception(message % klass.__name__)
+                            raise Exception(message % current_class.__name__)
 
             # append leaf to all tracked spanners,
-            for klass, instance in spanner_references.iteritems():
+            for current_class, instance in spanner_references.iteritems():
                 if instance is not None:
                     instance.append(leaf)
 
         # check for unterminated spanners
-        for klass, instance in spanner_references.iteritems():
+        for current_class, instance in spanner_references.iteritems():
             if instance is not None:
-                raise Exception('Unterminated %s.' % klass.__name__)
+                raise Exception('Unterminated %s.' % current_class.__name__)
 
     def _cleanup(self, parsed):
         container = containertools.Container()
