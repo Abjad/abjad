@@ -23,7 +23,8 @@ def remove_component_subtree_from_score_and_spanners(components):
 
     ::
 
-        >>> componenttools.remove_component_subtree_from_score_and_spanners(voice.leaves[1:2])
+        >>> componenttools.remove_component_subtree_from_score_and_spanners(
+        ...     voice.leaves[1:2])
         (Note("d'8"),)
 
     ::
@@ -59,7 +60,8 @@ def remove_component_subtree_from_score_and_spanners(components):
 
     ::
 
-        >>> componenttools.remove_component_subtree_from_score_and_spanners(voice.leaves[:2])
+        >>> componenttools.remove_component_subtree_from_score_and_spanners(
+        ...     voice.leaves[:2])
         (Note("c'8"), Note("d'8"))
 
     ::
@@ -129,7 +131,8 @@ def remove_component_subtree_from_score_and_spanners(components):
 
     ::
 
-        >>> componenttools.remove_component_subtree_from_score_and_spanners(voice[1:2])
+        >>> componenttools.remove_component_subtree_from_score_and_spanners(
+        ...     voice[1:2])
         Selection({d'8, e'8},)
 
     ::
@@ -147,12 +150,12 @@ def remove_component_subtree_from_score_and_spanners(components):
     .. todo:: regularize return value of function.
     '''
     from abjad.tools import componenttools
-    from abjad.tools.spannertools._withdraw_components_in_expr_from_attached_spanners import \
-        _withdraw_components_in_expr_from_attached_spanners
+    from abjad.tools.spannertools._withdraw_components_in_expr_from_attached_spanners \
+        import _withdraw_components_in_expr_from_attached_spanners
 
     assert componenttools.all_are_components(components)
 
     for component in components:
-        component._cut()
+        component._remove_from_parent()
         _withdraw_components_in_expr_from_attached_spanners([component])
     return components

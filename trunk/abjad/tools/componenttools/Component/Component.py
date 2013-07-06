@@ -197,16 +197,6 @@ class Component(AbjadObject):
             new_mark.attach(new)
         return new
 
-    def _cut(self):
-        '''Component loses reference to parent.
-        Parent loses reference to component.
-        Not composer-safe.
-        '''
-        if self.parent is not None:
-            index = self.parent.index(self)
-            self.parent._music.pop(index)
-        self._set_parent_to_none()
-
     def _format_after_slot(self, format_contributions):
         pass
 
@@ -270,8 +260,6 @@ class Component(AbjadObject):
         return result
 
     def _set_parent_to_none(self):
-        '''Not composer-safe.
-        '''
         self._mark_entire_score_tree_for_later_update('prolated')
         parent = self._parent
         self._parent = None
@@ -303,6 +291,12 @@ class Component(AbjadObject):
                         named_children[name].remove(component)
                     if not named_children[name]:
                         del named_children[name]
+
+    def _remove_from_parent(self):
+        if self.parent is not None:
+            index = self.parent.index(self)
+            self.parent._music.pop(index)
+        self._set_parent_to_none()
 
     def _restore_named_children_to_parentage(self, name_dictionary):
         from abjad.tools import componenttools
@@ -352,7 +346,7 @@ class Component(AbjadObject):
             message = message.format(plug_in_name)
             raise ValueError(message)
 
-    # TODO: rename to something self-documenting
+    # TODO: rename to something explicit
     def _switch(self, new_parent):
         '''Component loses reference to parent;
         parent loses reference to component.
@@ -360,73 +354,12 @@ class Component(AbjadObject):
         '''
         name_dictionary = self._make_name_dictionary()
         self._remove_named_children_from_parentage(name_dictionary)
-        self._cut()
+        self._remove_from_parent()
         self._parent = new_parent
         self._restore_named_children_to_parentage(name_dictionary)
         self._mark_entire_score_tree_for_later_update('prolated')
 
-    ### MANGLED METHODS ###
-
-    def _update_leaf_indices_and_measure_numbers_in_score_tree(self):
-        '''Called only when updating prolated offset of score components.
-        No separate state flags for leaf indices or measure numbers.
-        '''
-        from abjad.tools import componenttools
-        from abjad.tools import contexttools
-        from abjad.tools import iterationtools
-        from abjad.tools import leaftools
-        from abjad.tools import measuretools
-        score_root = self.parentage.root
-        if isinstance(score_root, contexttools.Context):
-            for context in \
-                iterationtools.iterate_contexts_in_expr(score_root):
-                for leaf_index, leaf in enumerate(
-                    iterationtools.iterate_leaves_in_expr(context)):
-                    leaf._leaf_index = leaf_index
-                for measure_index, measure in enumerate(
-                    iterationtools.iterate_measures_in_expr(context)):
-                    measure_number = measure_index + 1
-                    measure._measure_number = measure_number
-        else:
-            for leaf_index, leaf in enumerate(
-                iterationtools.iterate_leaves_in_expr(score_root)):
-                leaf._leaf_index = leaf_index
-            for measure_index, measure in enumerate(
-                iterationtools.iterate_measures_in_expr(score_root)):
-                measure_number = measure_index + 1
-                measure._measure_number = measure_number
-
-    def _update_marks_of_entire_score_tree(self):
-        '''Updating marks does not cause prolated offset values to update.
-        On the other hand, getting effective mark causes prolated offset values
-        to update when at least one mark of appropriate type attaches to score.
-        '''
-        components = self._iterate_score_components_depth_first()
-        for component in components:
-            for mark in component._start_marks:
-                if hasattr(mark, '_update_effective_context'):
-                    mark._update_effective_context()
-            component._marks_are_current = True
-
-    def _update_offset_values_in_seconds_of_entire_score_tree(self):
-        from abjad.tools import offsettools
-        components = self._iterate_score_components_depth_first()
-        for component in components:
-            offsettools.update_offset_values_of_component_in_seconds(component)
-            component._offset_values_in_seconds_are_current = True
-
-    def _update_prolated_offset_values_of_entire_score_tree(self):
-        '''Updating prolated offset values does NOT update marks.
-        Updating prolated offset values does NOT update offset values 
-        in seconds.
-        '''
-        from abjad.tools import offsettools
-        components = self._iterate_score_components_depth_first()
-        for component in components:
-            offsettools.update_offset_values_of_component(component)
-            component._prolated_offset_values_are_current = True
-
-    ### PRIVATE UPDATE METHODS ###
+    ### UPDATE METHODS ###
 
     def _allow_component_update(self):
         self._is_forbidden_to_update = False
@@ -481,6 +414,47 @@ class Component(AbjadObject):
             if hasattr(component, '_time_signature_is_current'):
                 component._time_signature_is_current = False
 
+    def _update_leaf_indices_and_measure_numbers_in_score_tree(self):
+        '''Called only when updating prolated offset of score components.
+        No separate state flags for leaf indices or measure numbers.
+        '''
+        from abjad.tools import componenttools
+        from abjad.tools import contexttools
+        from abjad.tools import iterationtools
+        from abjad.tools import leaftools
+        from abjad.tools import measuretools
+        score_root = self.parentage.root
+        if isinstance(score_root, contexttools.Context):
+            for context in \
+                iterationtools.iterate_contexts_in_expr(score_root):
+                for leaf_index, leaf in enumerate(
+                    iterationtools.iterate_leaves_in_expr(context)):
+                    leaf._leaf_index = leaf_index
+                for measure_index, measure in enumerate(
+                    iterationtools.iterate_measures_in_expr(context)):
+                    measure_number = measure_index + 1
+                    measure._measure_number = measure_number
+        else:
+            for leaf_index, leaf in enumerate(
+                iterationtools.iterate_leaves_in_expr(score_root)):
+                leaf._leaf_index = leaf_index
+            for measure_index, measure in enumerate(
+                iterationtools.iterate_measures_in_expr(score_root)):
+                measure_number = measure_index + 1
+                measure._measure_number = measure_number
+
+    def _update_marks_of_entire_score_tree(self):
+        '''Updating marks does not cause prolated offset values to update.
+        On the other hand, getting effective mark causes prolated offset values
+        to update when at least one mark of appropriate type attaches to score.
+        '''
+        components = self._iterate_score_components_depth_first()
+        for component in components:
+            for mark in component._start_marks:
+                if hasattr(mark, '_update_effective_context'):
+                    mark._update_effective_context()
+            component._marks_are_current = True
+
     def _update_marks_of_entire_score_tree_if_necessary(self):
         '''Call immediately before reading effective mark.
         '''
@@ -492,6 +466,13 @@ class Component(AbjadObject):
             self._update_marks_of_entire_score_tree()
             self._update_offset_values_in_seconds_of_entire_score_tree()
 
+    def _update_offset_values_in_seconds_of_entire_score_tree(self):
+        from abjad.tools import offsettools
+        components = self._iterate_score_components_depth_first()
+        for component in components:
+            offsettools.update_offset_values_of_component_in_seconds(component)
+            component._offset_values_in_seconds_are_current = True
+
     def _update_offset_values_in_seconds_of_entire_score_tree_if_necessary(
         self):
         if self._is_forbidden_to_update:
@@ -500,6 +481,17 @@ class Component(AbjadObject):
         offset_values_in_seconds_are_current = state_flags[2]
         if not offset_values_in_seconds_are_current:
             self._update_offset_values_in_seconds_of_entire_score_tree()
+
+    def _update_prolated_offset_values_of_entire_score_tree(self):
+        '''Updating prolated offset values does NOT update marks.
+        Updating prolated offset values does NOT update offset values 
+        in seconds.
+        '''
+        from abjad.tools import offsettools
+        components = self._iterate_score_components_depth_first()
+        for component in components:
+            offsettools.update_offset_values_of_component(component)
+            component._prolated_offset_values_are_current = True
 
     def _update_prolated_offset_values_of_entire_score_tree_if_necessary(self):
         if self._is_forbidden_to_update:
