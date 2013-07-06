@@ -198,8 +198,9 @@ class Component(AbjadObject):
         return new
 
     def _cut(self):
-        '''Component loses pointer to parent and parent loses pointer 
-        to component. Not composer-safe.
+        '''Component loses reference to parent.
+        Parent loses reference to component.
+        Not composer-safe.
         '''
         if self.parent is not None:
             index = self.parent.index(self)
@@ -270,8 +271,9 @@ class Component(AbjadObject):
 
     # TODO: change name to something self-documenting
     def _ignore(self):
-        '''Component loses pointer to parent but parent preserves 
-        pointer to component. Not composer-safe.
+        '''Component loses reference to parent.
+        But parent preserves reference to component.
+        Not composer-safe.
         '''
         self._mark_entire_score_tree_for_later_update('prolated')
         self._parent = None
@@ -279,6 +281,41 @@ class Component(AbjadObject):
     def _initialize_keyword_values(self, **kwargs):
         for key, value in kwargs.iteritems():
             self._set_keyword_value(key, value)
+
+    def _make_name_dictionary(self):
+        name_dictionary = {}
+        if hasattr(self, '_named_children'):
+            for name, children in self._named_children.iteritems():
+                name_dictionary[name] = copy.copy(children)
+        if hasattr(self, 'name') and self.name is not None:
+            if self.name not in name_dictionary:
+                name_dictionary[self.name] = []
+            name_dictionary[self.name].append(self)
+        return name_dictionary
+
+    def _remove_named_children_from_parentage(self, name_dictionary):
+        from abjad.tools import componenttools
+        if self._parent is not None and name_dictionary:
+            parentage = componenttools.get_proper_parentage_of_component(self)
+            for parent in parentage:
+                named_children = parent._named_children
+                for name in name_dictionary:
+                    for component in name_dictionary[name]:
+                        named_children[name].remove(component)
+                    if not named_children[name]:
+                        del named_children[name]
+
+    def _restore_named_children_to_parentage(self, name_dictionary):
+        from abjad.tools import componenttools
+        if self._parent is not None and name_dictionary:
+            parentage = componenttools.get_proper_parentage_of_component(self)
+            for parent in parentage:
+                named_children = parent._named_children
+                for name in name_dictionary:
+                    if name in named_children:
+                        named_children[name].extend(name_dictionary[name])
+                    else:
+                        named_children[name] = copy.copy(name_dictionary[name])
 
     def _set_keyword_value(self, key, value):
         attribute_chain = key.split('__')
@@ -318,43 +355,15 @@ class Component(AbjadObject):
 
     # TODO: rename to something self-documenting
     def _switch(self, new_parent):
-        '''Component loses pointer to parent and parent loses 
-        pointer to component. Then assign component to new parent.
+        '''Component loses reference to parent;
+        parent loses reference to component.
+        Then assign component to new parent.
         '''
-        from abjad.tools import componenttools
-
-        name_dictionary = {}
-        if hasattr(self, '_named_children'):
-            for name, children in self._named_children.iteritems():
-                name_dictionary[name] = copy.copy(children)
-        if hasattr(self, 'name') and self.name is not None:
-            if self.name not in name_dictionary:
-                name_dictionary[self.name] = []
-            name_dictionary[self.name].append(self)
-
-        if self._parent is not None and name_dictionary:
-            parentage = componenttools.get_proper_parentage_of_component(self)
-            for parent in parentage:
-                named_children = parent._named_children
-                for name in name_dictionary:
-                    for component in name_dictionary[name]:
-                        named_children[name].remove(component)
-                    if not named_children[name]:
-                        del named_children[name]
-
+        name_dictionary = self._make_name_dictionary()
+        self._remove_named_children_from_parentage(name_dictionary)
         self._cut()
         self._parent = new_parent
-
-        if new_parent is not None and name_dictionary:
-            parentage = componenttools.get_proper_parentage_of_component(self)
-            for parent in parentage:
-                named_children = parent._named_children
-                for name in name_dictionary:
-                    if name in named_children:
-                        named_children[name].extend(name_dictionary[name])
-                    else:
-                        named_children[name] = copy.copy(name_dictionary[name])
-
+        self._restore_named_children_to_parentage(name_dictionary)
         self._mark_entire_score_tree_for_later_update('prolated')
 
     ### MANGLED METHODS ###
