@@ -4,7 +4,7 @@ def _set_component_parents_to_none(components):
     Use to temporarily 'lift' parent references.
     Return receipt of unordered set of (component, parent) pairs.
     Then do some other operation, probably copy.
-    Then call _componenttools._restore_parentage_to_components_by_receipt().
+    Then call _componenttools._restore_component_parents().
     '''
     from abjad.tools import componenttools
 

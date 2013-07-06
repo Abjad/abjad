@@ -60,8 +60,8 @@ def copy_components_and_covered_spanners(components, n=1):
     from abjad.tools import spannertools
     from abjad.tools.componenttools._set_component_parents_to_none \
         import _set_component_parents_to_none
-    from abjad.tools.componenttools._restore_parentage_to_components_by_receipt \
-        import _restore_parentage_to_components_by_receipt
+    from abjad.tools.componenttools._restore_component_parents \
+        import _restore_component_parents
 
     # check input
     assert componenttools.all_are_thread_contiguous_components(components)
