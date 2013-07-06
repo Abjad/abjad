@@ -205,7 +205,7 @@ class Component(AbjadObject):
         if self.parent is not None:
             index = self.parent.index(self)
             self.parent._music.pop(index)
-        self._ignore()
+        self._set_parent_to_none()
 
     def _format_after_slot(self, format_contributions):
         pass
@@ -269,14 +269,13 @@ class Component(AbjadObject):
             result.extend(contributions)
         return result
 
-    # TODO: change name to something self-documenting
-    def _ignore(self):
-        '''Component loses reference to parent.
-        But parent preserves reference to component.
-        Not composer-safe.
+    def _set_parent_to_none(self):
+        '''Not composer-safe.
         '''
         self._mark_entire_score_tree_for_later_update('prolated')
+        parent = self._parent
         self._parent = None
+        return self, parent
 
     def _initialize_keyword_values(self, **kwargs):
         for key, value in kwargs.iteritems():

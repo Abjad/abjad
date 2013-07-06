@@ -1,7 +1,7 @@
 def _restore_parentage_to_components_by_receipt(receipt):
     '''Restore parentage to components by receipt.
 
-    Use after call to _ignore_parentage_of_components(components).
+    Use after call to _set_component_parents_to_none(components).
 
     Return none.
     '''

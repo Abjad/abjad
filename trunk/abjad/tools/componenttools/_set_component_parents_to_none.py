@@ -1,10 +1,10 @@
-def _ignore_parentage_of_components(components):
+# TODO: eventually implement as private method bound to selection
+def _set_component_parents_to_none(components):
     '''No contiguity requirements.
     Use to temporarily 'lift' parent references.
     Return receipt of unordered set of (component, parent) pairs.
     Then do some other operation, probably copy.
-    Then reapply parent references.
-    Call _componenttools.restore(receipt).
+    Then call _componenttools._restore_parentage_to_components_by_receipt().
     '''
     from abjad.tools import componenttools
 
@@ -12,8 +12,6 @@ def _ignore_parentage_of_components(components):
 
     receipt = set([])
     for component in components:
-        parent = component._parent
-        component._ignore()
-        receipt.add((component, parent))
+        receipt.add(component._set_parent_to_none())
 
     return receipt
