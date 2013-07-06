@@ -1,4 +1,4 @@
-def _give_donor_components_position_in_parent_to_recipient_components(donors, recipients):
+def _give_position_in_parent_from_donor_components_to_recipient_components(donors, recipients):
     '''When 'donors' has a parent, find parent.
     Then insert all components in 'recipients'
     in parent immediately before 'donors'.

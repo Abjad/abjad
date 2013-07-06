@@ -1,9 +1,9 @@
 from abjad import *
-from abjad.tools.componenttools._give_donor_components_position_in_parent_to_recipient_components \
-	import _give_donor_components_position_in_parent_to_recipient_components
+from abjad.tools.componenttools._give_position_in_parent_from_donor_components_to_recipient_components \
+	import _give_position_in_parent_from_donor_components_to_recipient_components
 
 
-def test_componenttools__give_donor_components_position_in_parent_to_recipient_components_01():
+def test_componenttools__give_position_in_parent_from_donor_components_to_recipient_components_01():
     '''Not composer-safe.
     '''
 
@@ -11,7 +11,7 @@ def test_componenttools__give_donor_components_position_in_parent_to_recipient_c
     beamtools.BeamSpanner(t[:])
     notes = [Note("c'16"), Note("d'16")]
 
-    _give_donor_components_position_in_parent_to_recipient_components(t[0:1], notes)
+    _give_position_in_parent_from_donor_components_to_recipient_components(t[0:1], notes)
 
     "Container t is now ..."
 
