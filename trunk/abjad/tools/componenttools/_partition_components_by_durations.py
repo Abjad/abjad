@@ -1,18 +1,27 @@
 from abjad.tools import durationtools
 
 
-# TODO: change signature to _partition_components_by_durations(components, durations, ...)
-def _partition_components_by_durations(duration_type, components, durations,
-    fill='exact', cyclic=False, overhang=False):
+# TODO: change signature to 
+# _partition_components_by_durations(components, durations, ...)
+def _partition_components_by_durations(
+    duration_type,
+    components,
+    durations,
+    fill='exact',
+    cyclic=False,
+    overhang=False,
+    ):
     '''Partition `components` according to `durations`.
 
     Set `duration_type` to ``'prolated'`` or ``'seconds'``.
 
     When `fill` is ``'exact'`` then parts must equal `durations` exactly.
 
-    When `fill` is ``'less'`` then parts must be less than or equal to `durations`.
+    When `fill` is ``'less'`` then parts must be 
+    less than or equal to `durations`.
 
-    When `fill` is ``'greater'`` then parts must be greater or equal to `durations`.
+    When `fill` is ``'greater'`` then parts must be 
+    greater or equal to `durations`.
 
     Read `durations` cyclically when `cyclic` is true.
 
@@ -29,7 +38,8 @@ def _partition_components_by_durations(duration_type, components, durations,
             except TypeError:
                 raise AssertionError
     durations = _durations
-    assert all(isinstance(x, (int, float, durationtools.Duration)) for x in durations)
+    assert all(isinstance(x, (int, float, durationtools.Duration)) 
+        for x in durations)
 
     result = []
     part = []
@@ -44,16 +54,10 @@ def _partition_components_by_durations(duration_type, components, durations,
             component = components_copy.pop(0)
         except IndexError:
             break
-        # collapse these 4 lines to only the 4th line after duration migration
         if duration_type == 'seconds':
             component_duration = component.duration_in_seconds
         elif duration_type == 'prolated':
             component_duration = component.duration
-#        elif duration_type == 'preprolated':
-#            component_duration = component.preprolated_duration
-        else:
-            #print 'debug %s' % duration_type
-            component_duration = getattr(component.duration, duration_type)
         candidate_duration = cum_duration + component_duration
         if candidate_duration < target_duration:
             #print 'not there yet'
@@ -65,7 +69,8 @@ def _partition_components_by_durations(duration_type, components, durations,
             part = []
             cum_duration = durationtools.Duration(0)
             current_duration_idx += 1
-            target_duration = _get_next(durations, current_duration_idx, cyclic)
+            target_duration = _get_next(
+                durations, current_duration_idx, cyclic)
         elif target_duration < candidate_duration:
             #print 'greater!'
             if fill == 'exact':
@@ -73,29 +78,28 @@ def _partition_components_by_durations(duration_type, components, durations,
             elif fill == 'less':
                 result.append(part)
                 part = [component]
-                # collapse to 4th line after duration migration
                 if duration_type == 'seconds':
                     cum_duration = sum([x.duration_in_seconds for x in part])
-#                elif duration_type == 'preprolated':
-#                    cum_duration = sum([x.preprolated_duration for x in part])
                 elif duration_type == 'prolated':
                     cum_duration = sum([x.duration for x in part])
-                else:
-                    cum_duration = sum([getattr(x.duration, duration_type) for x in part])
                 current_duration_idx += 1
-                target_duration = _get_next(durations, current_duration_idx, cyclic)
+                target_duration = _get_next(
+                    durations, current_duration_idx, cyclic)
                 if target_duration is None:
                     break
                 if target_duration < cum_duration:
-                    raise PartitionError('target duration "%s" is less than cumulative duration "%s"' %
-                        (target_duration, cum_duration))
+                    message = 'target duration {}'
+                    message += ' is less than cumulative duration {}.'
+                    message = message.format(target_duration, cum_duration)
+                    raise PartitionError(message)
             elif fill == 'greater':
                 part.append(component)
                 result.append(part)
                 part = []
                 cum_duration = durationtools.Duration(0)
                 current_duration_idx += 1
-                target_duration = _get_next(durations, current_duration_idx, cyclic)
+                target_duration = _get_next(
+                    durations, current_duration_idx, cyclic)
         if target_duration is None:
             break
 

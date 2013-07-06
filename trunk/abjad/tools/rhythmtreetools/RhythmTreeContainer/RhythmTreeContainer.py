@@ -291,8 +291,8 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
                 assert isinstance(expr, self._node_class)
             old = self[i]
             assert expr not in proper_parentage
-            old._switch_parent(None)
-            expr._switch_parent(self)
+            old._set_parent(None)
+            expr._set_parent(self)
             self._children.insert(i, expr)
         else:
             if isinstance(expr, str):
@@ -311,9 +311,9 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
             for node in expr:
                 assert node not in proper_parentage
             for node in old:
-                node._switch_parent(None)
+                node._set_parent(None)
             for node in expr:
-                node._switch_parent(self)
+                node._set_parent(self)
             self._children.__setitem__(slice(start, start), expr)
         self._mark_entire_tree_for_later_update()
 

@@ -4,9 +4,10 @@ import py.test
 
 def test_Container_insert_01():
     '''Insert component into container at index i.
-        Fracture spanners to the left of index i.
-        Fracture spanners to the right of index i.
-        Return Python list of fractured spanners.'''
+    Fracture spanners to the left of index i.
+    Fracture spanners to the right of index i.
+    Return Python list of fractured spanners.
+    '''
 
     "Insert works just before a spanner."
 
@@ -141,7 +142,8 @@ def test_Container_insert_06():
 
 def test_Container_insert_07():
     '''Inserting a note from one container into another container
-        switches note parent from first container to second.'''
+    changes note parent from first container to second.
+    '''
 
     v = Voice("c'8 d'8 e'8 f'8")
     t = Staff(notetools.make_repeated_notes(8))

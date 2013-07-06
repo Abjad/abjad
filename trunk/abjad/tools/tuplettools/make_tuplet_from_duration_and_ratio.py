@@ -6,14 +6,19 @@ from abjad.tools import resttools
 from abjad.tools import sequencetools
 
 
-def make_tuplet_from_duration_and_ratio(duration, proportions,
-    avoid_dots=True, decrease_durations_monotonically=True, is_diminution=True):
+def make_tuplet_from_duration_and_ratio(
+    duration,
+    proportions,
+    avoid_dots=True,
+    decrease_durations_monotonically=True,
+    is_diminution=True,
+    ):
     r'''.. versionadded:: 2.10
 
     Make tuplet from `duration` and `proportions`.
 
-    Example set 1. Make augmented tuplet from `duration` and `proportions` and
-    avoid dots.
+    Example set 1. Make augmented tuplet from `duration` and `proportions` 
+    and avoid dots.
 
     Return tupletted leaves strictly without dots when all `proportions` equal
     ``1``::
@@ -40,8 +45,8 @@ def make_tuplet_from_duration_and_ratio(duration, proportions,
         ...     is_diminution=False)
         {@ 11:12 c'64, c'16, r64, c'64, c'16 @}
 
-    Example set 2. Make augmented tuplet from `duration` and `proportions` and
-    encourage dots:
+    Example set 2. Make augmented tuplet from `duration` and `proportions` 
+    and encourage dots:
 
     ::
 
@@ -87,8 +92,8 @@ def make_tuplet_from_duration_and_ratio(duration, proportions,
         ...     is_diminution=True)
         {@ 11:6 c'32, c'8, r32, c'32, c'8 @}
 
-    Example set 4. Make diminished tuplet from `duration` and `proportions` and
-    encourage dots:
+    Example set 4. Make diminished tuplet from `duration` and `proportions` 
+    and encourage dots:
 
     ::
 
@@ -118,30 +123,41 @@ def make_tuplet_from_duration_and_ratio(duration, proportions,
     proportions = mathtools.Ratio(proportions)
 
     # reduce proportions relative to each other
-    proportions = sequencetools.divide_sequence_elements_by_greatest_common_divisor(proportions)
+    proportions = \
+        sequencetools.divide_sequence_elements_by_greatest_common_divisor(
+            proportions)
 
     # find basic prolated duration of note in tuplet
     basic_prolated_duration = duration / mathtools.weight(proportions)
 
     # find basic written duration of note in tuplet
     if avoid_dots:
-        basic_written_duration = basic_prolated_duration.equal_or_greater_power_of_two
+        basic_written_duration = \
+            basic_prolated_duration.equal_or_greater_power_of_two
     else:
-        basic_written_duration = basic_prolated_duration.equal_or_greater_assignable
+        basic_written_duration = \
+            basic_prolated_duration.equal_or_greater_assignable
 
     # find written duration of each note in tuplet
     written_durations = [x * basic_written_duration for x in proportions]
 
     # make tuplet leaves
     try:
-        notes = [notetools.Note(0, x) if 0 < x else resttools.Rest(abs(x)) for x in written_durations]
+        notes = [notetools.Note(0, x) 
+            if 0 < x else resttools.Rest(abs(x)) for x in written_durations]
     except AssignabilityError:
         denominator = duration._denominator
-        note_durations = [durationtools.Duration(x, denominator) for x in proportions]
-        pitches = [None if note_duration < 0 else 0 for note_duration in note_durations]
-        leaf_durations = [abs(note_duration) for note_duration in note_durations]
-        notes = leaftools.make_leaves(pitches, leaf_durations,
-            decrease_durations_monotonically=decrease_durations_monotonically)
+        note_durations = [durationtools.Duration(x, denominator) 
+            for x in proportions]
+        pitches = [None if note_duration < 0 else 0 
+            for note_duration in note_durations]
+        leaf_durations = [abs(note_duration) 
+            for note_duration in note_durations]
+        notes = leaftools.make_leaves(
+            pitches,
+            leaf_durations,
+            decrease_durations_monotonically=decrease_durations_monotonically,
+            )
 
     # make tuplet
     tuplet = tuplettools.FixedDurationTuplet(duration, notes)
@@ -149,15 +165,16 @@ def make_tuplet_from_duration_and_ratio(duration, proportions,
     # fix tuplet contents if necessary
     tuplettools.fix_contents_of_tuplets_in_expr(tuplet)
 
-    # switch prolation if necessary
+    # change prolation if necessary
     if not tuplet.multiplier == 1:
-        #if prolation == 'diminution':
         if is_diminution:
             if not tuplet.is_diminution:
-                tuplettools.change_augmented_tuplets_in_expr_to_diminished(tuplet)
+                tuplettools.change_augmented_tuplets_in_expr_to_diminished(
+                    tuplet)
         else:
             if tuplet.is_diminution:
-                tuplettools.change_diminished_tuplets_in_expr_to_augmented(tuplet)
+                tuplettools.change_diminished_tuplets_in_expr_to_augmented(
+                    tuplet)
 
     # return tuplet
     return tuplet

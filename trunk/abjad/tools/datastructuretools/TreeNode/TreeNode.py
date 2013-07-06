@@ -130,7 +130,7 @@ class TreeNode(AbjadObject):
             for name in self._state_flag_names:
                 setattr(node, name, False)
 
-    def _switch_parent(self, new_parent):
+    def _set_parent(self, new_parent):
 
         name_dictionary = {}
         if hasattr(self, '_named_children'):

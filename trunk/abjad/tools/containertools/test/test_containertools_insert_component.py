@@ -160,7 +160,7 @@ def test_containertools_insert_component_07():
 
 def test_containertools_insert_component_08():
     '''Inserting a note from one container into another container
-    switches note parent from first container to second.
+    changes note parent from first container to second.
     '''
 
     v = Voice("c'8 d'8 e'8 f'8")
