@@ -348,12 +348,6 @@ class Component(AbjadObject):
         self._restore_named_children_to_parentage(named_children)
         self._mark_entire_score_tree_for_later_update('prolated')
 
-    def _sever_parent(self):
-        self._mark_entire_score_tree_for_later_update('prolated')
-        parent = self._parent
-        self._parent = None
-        return self, parent
-
     ### UPDATE METHODS ###
 
     def _allow_component_update(self):
