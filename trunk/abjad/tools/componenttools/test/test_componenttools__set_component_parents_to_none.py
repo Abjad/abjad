@@ -1,9 +1,9 @@
 from abjad import *
-from abjad.tools.componenttools._set_component_parents_to_none \
-	import _set_component_parents_to_none
+from abjad.tools.componenttools._sever_component_parents \
+	import _sever_component_parents
 
 
-def test_componenttools__set_component_parents_to_none_01():
+def test_componenttools__sever_component_parents_01():
 
     t = Voice("c'8 d'8 e'8 f'8")
     beamtools.BeamSpanner(t[:])
@@ -17,7 +17,7 @@ def test_componenttools__set_component_parents_to_none_01():
     }
     '''
 
-    receipt = _set_component_parents_to_none(t[:])
+    receipt = _sever_component_parents(t[:])
 
     assert not wellformednesstools.is_well_formed_component(t)
 

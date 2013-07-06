@@ -1,6 +1,6 @@
 from abjad import *
-from abjad.tools.componenttools._set_component_parents_to_none \
-	import _set_component_parents_to_none
+from abjad.tools.componenttools._sever_component_parents \
+	import _sever_component_parents
 from abjad.tools.componenttools._restore_component_parents \
 	import _restore_component_parents
 
@@ -19,7 +19,7 @@ def test_componenttools__restore_component_parents_01():
     }
     '''
 
-    receipt = _set_component_parents_to_none(t[:])
+    receipt = _sever_component_parents(t[:])
 
     assert not wellformednesstools.is_well_formed_component(t)
 

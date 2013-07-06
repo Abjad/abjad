@@ -1,6 +1,6 @@
 def _restore_component_parents(receipt):
     '''Restore component parents.
-    Use after componenttools._set_component_parents_to_none(components).
+    Use after componenttools._sever_component_parents(components).
     Not composer-safe.
     Return none.
     '''

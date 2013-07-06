@@ -336,7 +336,7 @@ class Component(AbjadObject):
             else:
                 raise ValueError
         else:
-            message = 'Unknown keyword argument plug-in name: "%s".'
+            message = 'Unknown keyword argument plug-in name: {!r}.'
             message = message.format(plug_in_name)
             raise ValueError(message)
 
@@ -348,7 +348,7 @@ class Component(AbjadObject):
         self._restore_named_children_to_parentage(named_children)
         self._mark_entire_score_tree_for_later_update('prolated')
 
-    def _set_parent_to_none(self):
+    def _sever_parent(self):
         self._mark_entire_score_tree_for_later_update('prolated')
         parent = self._parent
         self._parent = None

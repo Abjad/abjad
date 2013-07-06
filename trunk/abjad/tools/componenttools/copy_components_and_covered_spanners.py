@@ -58,8 +58,8 @@ def copy_components_and_covered_spanners(components, n=1):
     from abjad.tools import componenttools
     from abjad.tools import iterationtools
     from abjad.tools import spannertools
-    from abjad.tools.componenttools._set_component_parents_to_none \
-        import _set_component_parents_to_none
+    from abjad.tools.componenttools._sever_component_parents \
+        import _sever_component_parents
     from abjad.tools.componenttools._restore_component_parents \
         import _restore_component_parents
 
