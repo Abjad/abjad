@@ -182,6 +182,17 @@ class Component(AbjadObject):
 
     ### PRIVATE METHODS ###
 
+    def _cache_named_children(self):
+        name_dictionary = {}
+        if hasattr(self, '_named_children'):
+            for name, children in self._named_children.iteritems():
+                name_dictionary[name] = copy.copy(children)
+        if hasattr(self, 'name') and self.name is not None:
+            if self.name not in name_dictionary:
+                name_dictionary[self.name] = []
+            name_dictionary[self.name].append(self)
+        return name_dictionary
+
     def _copy_with_children_and_marks_but_without_spanners(self):
         return self._copy_with_marks_but_without_children_or_spanners()
 
@@ -263,16 +274,11 @@ class Component(AbjadObject):
         for key, value in kwargs.iteritems():
             self._set_keyword_value(key, value)
 
-    def _make_name_dictionary(self):
-        name_dictionary = {}
-        if hasattr(self, '_named_children'):
-            for name, children in self._named_children.iteritems():
-                name_dictionary[name] = copy.copy(children)
-        if hasattr(self, 'name') and self.name is not None:
-            if self.name not in name_dictionary:
-                name_dictionary[self.name] = []
-            name_dictionary[self.name].append(self)
-        return name_dictionary
+    def _remove_from_parent(self):
+        self._mark_entire_score_tree_for_later_update('prolated')
+        if self.parent is not None:
+            self.parent._music.remove(self)
+        self._parent = None
 
     def _remove_named_children_from_parentage(self, name_dictionary):
         from abjad.tools import componenttools
@@ -285,12 +291,6 @@ class Component(AbjadObject):
                         named_children[name].remove(component)
                     if not named_children[name]:
                         del named_children[name]
-
-    def _remove_from_parent(self):
-        if self.parent is not None:
-            index = self.parent.index(self)
-            self.parent._music.pop(index)
-        self._set_parent_to_none()
 
     def _restore_named_children_to_parentage(self, name_dictionary):
         from abjad.tools import componenttools
@@ -341,15 +341,11 @@ class Component(AbjadObject):
             raise ValueError(message)
 
     def _set_parent(self, new_parent):
-        '''Component loses reference to parent;
-        parent loses reference to component.
-        Then assign component to new parent.
-        '''
-        name_dictionary = self._make_name_dictionary()
-        self._remove_named_children_from_parentage(name_dictionary)
+        named_children = self._cache_named_children()
+        self._remove_named_children_from_parentage(named_children)
         self._remove_from_parent()
         self._parent = new_parent
-        self._restore_named_children_to_parentage(name_dictionary)
+        self._restore_named_children_to_parentage(named_children)
         self._mark_entire_score_tree_for_later_update('prolated')
 
     def _set_parent_to_none(self):
