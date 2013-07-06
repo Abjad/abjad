@@ -72,12 +72,13 @@ def fuse_measures(measures):
     from abjad.tools import contexttools
     from abjad.tools import measuretools
     from abjad.tools import timesignaturetools
-    from abjad.tools.componenttools._switch_components_to_parent import _switch_components_to_parent
+    from abjad.tools.componenttools._switch_components_to_parent \
+        import _switch_components_to_parent
     from abjad.tools.spannertools._give_spanners_that_dominate_donor_components_to_recipient_components \
         import _give_spanners_that_dominate_donor_components_to_recipient_components
 
-    assert componenttools.all_are_contiguous_components_in_same_parent(measures,
-        classes=(measuretools.Measure, ))
+    assert componenttools.all_are_contiguous_components_in_same_parent(
+        measures, component_classes=(measuretools.Measure, ))
 
     if len(measures) == 0:
         return None
@@ -87,7 +88,9 @@ def fuse_measures(measures):
     if len(measures) == 1:
         return measures[0]
 
-    parent, start, stop = componenttools.get_parent_and_start_stop_indices_of_components(measures)
+    parent, start, stop = \
+        componenttools.get_parent_and_start_stop_indices_of_components(
+            measures)
 
     old_denominators = []
     new_duration = durationtools.Duration(0)
@@ -102,9 +105,13 @@ def fuse_measures(measures):
     music = []
     for measure in measures:
         # scale before reassignment to prevent tie chain scale drama
-        multiplier = \
-            contexttools.get_effective_time_signature(measure).implied_prolation / \
-            new_time_signature.implied_prolation
+#        multiplier = \
+#            contexttools.get_effective_time_signature(measure).implied_prolation / \
+#            new_time_signature.implied_prolation
+        signature = contexttools.get_effective_time_signature(measure)
+        prolation = signature.implied_prolation
+        multiplier = prolation / new_time_signature.implied_prolation
+
         containertools.scale_contents_of_container(measure, multiplier)
         measure_music = measure[:]
         _switch_components_to_parent(measure_music, None)
@@ -113,7 +120,8 @@ def fuse_measures(measures):
     new_measure = measuretools.Measure(new_time_signature, music)
 
     if parent is not None:
-        _give_spanners_that_dominate_donor_components_to_recipient_components(measures, [new_measure])
+        _give_spanners_that_dominate_donor_components_to_recipient_components(
+            measures, [new_measure])
 
     _switch_components_to_parent(measures, None)
     if parent is not None:

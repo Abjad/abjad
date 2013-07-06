@@ -60,7 +60,8 @@ def fuse_tuplets(tuplets):
     '''
     from abjad.tools import tuplettools
 
-    assert componenttools.all_are_contiguous_components_in_same_parent(tuplets, classes=(tuplettools.Tuplet))
+    assert componenttools.all_are_contiguous_components_in_same_parent(
+        tuplets, component_classes=(tuplettools.Tuplet))
 
     if len(tuplets) == 0:
         return None
