@@ -1,14 +1,15 @@
-def report_spanner_format_contributions(spanner, screen=True):
+def report_spanner_format_contributions(spanner):
     r'''.. versionadded:: 2.9
 
-    Report spanner format contributions for every leaf to which spanner attaches.
+    Report spanner format contributions for every leaf 
+    to which spanner attaches:
 
         >>> staff = Staff("c8 d e f")
         >>> spanner = beamtools.BeamSpanner(staff[:])
 
     ::
 
-        >>> formattools.report_spanner_format_contributions(spanner)
+        >>> print formattools.report_spanner_format_contributions(spanner)
         c8  before: []
              after: []
              right: ['[']
@@ -36,7 +37,4 @@ def report_spanner_format_contributions(spanner, screen=True):
         result += '\n'
     if result[-1] == '\n':
         result = result[:-1]
-    if screen:
-        print result
-    else:
-        return result
+    return result
