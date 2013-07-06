@@ -12,7 +12,7 @@ def _give_music_from_donor_components_to_recipient_components(donors, recipient)
 
     Helper is not composer-safe and may cause discontiguous spanners.
     '''
-    from abjad.tools.componenttools._switch_components_to_parent import _switch_components_to_parent
+    from abjad.tools.componenttools._set_component_parents import _set_component_parents
     from abjad.tools import componenttools
     from abjad.tools import containertools
     from abjad.tools import leaftools
@@ -37,7 +37,7 @@ def _give_music_from_donor_components_to_recipient_components(donors, recipient)
 
     # give music from donor components to recipient component
     recipient._music.extend(donor_music)
-    _switch_components_to_parent(recipient[:], recipient)
+    _set_component_parents(recipient[:], recipient)
 
     # return donor components
     return donors

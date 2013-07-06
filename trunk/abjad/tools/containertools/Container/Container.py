@@ -81,15 +81,15 @@ class Container(Component):
         Withdraw component(s) from crossing spanners.
         Preserve spanners that component(s) cover(s).
         '''
-        from abjad.tools.componenttools._switch_components_to_parent import \
-            _switch_components_to_parent
+        from abjad.tools.componenttools._set_component_parents import \
+            _set_component_parents
         from abjad.tools.spannertools._withdraw_components_in_expr_from_crossing_spanners import \
             _withdraw_components_in_expr_from_crossing_spanners
         components = self[i]
         if not isinstance(components, selectiontools.Selection):
             components = selectiontools.Selection([components])
         _withdraw_components_in_expr_from_crossing_spanners(components)
-        _switch_components_to_parent(components, None)
+        _set_component_parents(components, None)
 
     def __getitem__(self, i):
         '''Return component at index i in container.
@@ -325,7 +325,7 @@ class Container(Component):
             # otherwise begin / end assessments don't work!
             if withdraw_components_in_expr_from_crossing_spanners:
                 _withdraw_components_in_expr_from_crossing_spanners([expr])
-            expr._switch(self)
+            expr._set_parent(self)
             self._music.insert(i, expr)
             componenttools.remove_component_subtree_from_score_and_spanners(
                 [old])
@@ -363,7 +363,7 @@ class Container(Component):
             #self._music[start:start] = expr
             self._music.__setitem__(slice(start, start), expr)
             for component in expr:
-                component._switch(self)
+                component._set_parent(self)
             for spanner, index in spanners_receipt:
                 for component in reversed(expr):
                     spanner._insert(index, component)
@@ -510,8 +510,8 @@ class Container(Component):
 
     def _initialize_music(self, music):
         from abjad.tools import componenttools
-        from abjad.tools.componenttools._switch_components_to_parent \
-            import _switch_components_to_parent
+        from abjad.tools.componenttools._set_component_parents \
+            import _set_component_parents
         if music is None:
             music = []
         if componenttools.all_are_contiguous_components_in_same_thread(music):
@@ -519,10 +519,10 @@ class Container(Component):
                 componenttools.get_parent_and_start_stop_indices_of_components(
                 music)
             self._music = list(music)
-            _switch_components_to_parent(self._music, self)
+            _set_component_parents(self._music, self)
             if parent is not None:
                 parent._music.insert(index, self)
-                self._switch(parent)
+                self._set_parent(parent)
         elif isinstance(music, str):
             parsed = self._parse_string(music)
             self._music = []

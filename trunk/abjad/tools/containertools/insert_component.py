@@ -26,7 +26,8 @@ def insert_component(container, i, component, fracture_spanners=False):
 
     ::
 
-        >>> containertools.insert_component(staff, 1, Note("cs'8"), fracture_spanners=False)
+        >>> containertools.insert_component(
+        ...     staff, 1, Note("cs'8"), fracture_spanners=False)
         Staff{5}
 
     ::
@@ -57,7 +58,8 @@ def insert_component(container, i, component, fracture_spanners=False):
 
     ::
 
-        >>> parts = containertools.insert_component(staff, 1, Rest('r8'), fracture_spanners=True)
+        >>> parts = containertools.insert_component(
+        ...     staff, 1, Rest('r8'), fracture_spanners=True)
 
     ::
 
@@ -91,15 +93,19 @@ def insert_component(container, i, component, fracture_spanners=False):
         return container
 
     result = []
-    component._switch(container)
+    component._set_parent(container)
     container._music.insert(i, component)
 
     previous_leaf = leaftools.get_nth_leaf_in_thread_from_leaf(component, -1)
     if previous_leaf:
-        result.extend(spannertools.fracture_spanners_attached_to_component(previous_leaf, direction=Right))
+        result.extend(
+            spannertools.fracture_spanners_attached_to_component(
+                previous_leaf, direction=Right))
 
     next_leaf = leaftools.get_nth_leaf_in_thread_from_leaf(component, 1)
     if next_leaf:
-        result.extend(spannertools.fracture_spanners_attached_to_component(next_leaf, direction=Left))
+        result.extend(
+            spannertools.fracture_spanners_attached_to_component(
+                next_leaf, direction=Left))
 
     return result

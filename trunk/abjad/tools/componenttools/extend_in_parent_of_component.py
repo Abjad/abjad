@@ -1,4 +1,5 @@
-def extend_in_parent_of_component(component, new_components, left=False, grow_spanners=True):
+def extend_in_parent_of_component(
+    component, new_components, left=False, grow_spanners=True):
     r'''.. versionadded:: 2.10
 
     Extend `new_components` in parent of `component`.
@@ -165,7 +166,7 @@ def extend_in_parent_of_component(component, new_components, left=False, grow_sp
         if parent is not None:
             if grow_spanners:
                 for new_component in reversed(new_components):
-                    new_component._switch(parent)
+                    new_component._set_parent(parent)
                     parent._music.insert(start + 1, new_component)
             else:
                 after = stop + 1
@@ -193,7 +194,7 @@ def extend_in_parent_of_component(component, new_components, left=False, grow_sp
         if parent is not None:
             if grow_spanners:
                 for new_component in reversed(new_components):
-                    new_component._switch(parent)
+                    new_component._set_parent(parent)
                     parent._music.insert(start, new_component)
             else:
                 # to avoid slice assignment pychecker errors

@@ -190,10 +190,10 @@ def split_container_at_index(component, i, fracture_spanners=False):
         #parent._music[start:stop+1] = nonempty_halves
         parent._music.__setitem__(slice(start, stop + 1), nonempty_halves)
         for part in nonempty_halves:
-            part._switch(parent)
+            part._set_parent(parent)
     else:
-        left._switch(None)
-        right._switch(None)
+        left._set_parent(None)
+        right._set_parent(None)
 
     # fracture spanners, if requested
     if fracture_spanners:

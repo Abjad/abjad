@@ -259,12 +259,6 @@ class Component(AbjadObject):
             result.extend(contributions)
         return result
 
-    def _set_parent_to_none(self):
-        self._mark_entire_score_tree_for_later_update('prolated')
-        parent = self._parent
-        self._parent = None
-        return self, parent
-
     def _initialize_keyword_values(self, **kwargs):
         for key, value in kwargs.iteritems():
             self._set_keyword_value(key, value)
@@ -346,8 +340,7 @@ class Component(AbjadObject):
             message = message.format(plug_in_name)
             raise ValueError(message)
 
-    # TODO: rename to something explicit
-    def _switch(self, new_parent):
+    def _set_parent(self, new_parent):
         '''Component loses reference to parent;
         parent loses reference to component.
         Then assign component to new parent.
@@ -358,6 +351,12 @@ class Component(AbjadObject):
         self._parent = new_parent
         self._restore_named_children_to_parentage(name_dictionary)
         self._mark_entire_score_tree_for_later_update('prolated')
+
+    def _set_parent_to_none(self):
+        self._mark_entire_score_tree_for_later_update('prolated')
+        parent = self._parent
+        self._parent = None
+        return self, parent
 
     ### UPDATE METHODS ###
 

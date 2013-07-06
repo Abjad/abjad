@@ -72,8 +72,8 @@ def fuse_measures(measures):
     from abjad.tools import contexttools
     from abjad.tools import measuretools
     from abjad.tools import timesignaturetools
-    from abjad.tools.componenttools._switch_components_to_parent \
-        import _switch_components_to_parent
+    from abjad.tools.componenttools._set_component_parents \
+        import _set_component_parents
     from abjad.tools.spannertools._give_spanners_that_dominate_donor_components_to_recipient_components \
         import _give_spanners_that_dominate_donor_components_to_recipient_components
 
@@ -114,7 +114,7 @@ def fuse_measures(measures):
 
         containertools.scale_contents_of_container(measure, multiplier)
         measure_music = measure[:]
-        _switch_components_to_parent(measure_music, None)
+        _set_component_parents(measure_music, None)
         music += measure_music
 
     new_measure = measuretools.Measure(new_time_signature, music)
@@ -123,7 +123,7 @@ def fuse_measures(measures):
         _give_spanners_that_dominate_donor_components_to_recipient_components(
             measures, [new_measure])
 
-    _switch_components_to_parent(measures, None)
+    _set_component_parents(measures, None)
     if parent is not None:
         parent.insert(start, new_measure)
 
