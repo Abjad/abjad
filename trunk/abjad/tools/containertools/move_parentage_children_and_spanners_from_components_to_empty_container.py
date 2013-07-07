@@ -77,3 +77,4 @@ def move_parentage_children_and_spanners_from_components_to_empty_container(
         components, [container])
     _give_position_in_parent_from_donor_components_to_container(
         components, container)
+    #components._give_position_in_parent_to_container(container)
