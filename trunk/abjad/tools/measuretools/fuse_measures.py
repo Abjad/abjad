@@ -6,7 +6,7 @@ from abjad.tools import durationtools
 def fuse_measures(measures):
     r'''.. versionadded:: 1.1
 
-    Fuse `measures`:
+    Fuse selection of `measures`:
 
     ::
 
@@ -57,8 +57,6 @@ def fuse_measures(measures):
 
     Allow parent-contiguous `measures`.
 
-    Allow outside-of-score `measures`.
-
     Do not define measure fusion across intervening container boundaries.
 
     Calculate best new time signature.
@@ -72,17 +70,17 @@ def fuse_measures(measures):
     Give `measures` parentage to new measure.
 
     Leave `measures` empty, unspanned and outside-of-score.
+
+    Note that `measures` must be a selection.
     '''
     from abjad.tools import contexttools
     from abjad.tools import measuretools
     from abjad.tools import selectiontools
     from abjad.tools import timesignaturetools
-    from abjad.tools.componenttools._set_component_parents \
-        import _set_component_parents
     from abjad.tools.spannertools._give_spanners_that_dominate_donor_components_to_recipient_components \
         import _give_spanners_that_dominate_donor_components_to_recipient_components
 
-    #assert isinstance(measures, selectiontools.Selection), repr(measures)
+    assert isinstance(measures, selectiontools.Selection), repr(measures)
     assert componenttools.all_are_contiguous_components_in_same_parent(
         measures, component_classes=(measuretools.Measure, ))
 
@@ -101,11 +99,13 @@ def fuse_measures(measures):
     old_denominators = []
     new_duration = durationtools.Duration(0)
     for measure in measures:
-        effective_time_signature = contexttools.get_effective_time_signature(measure)
+        effective_time_signature = \
+            contexttools.get_effective_time_signature(measure)
         old_denominators.append(effective_time_signature.denominator)
         new_duration += effective_time_signature.duration
 
-    new_time_signature = timesignaturetools.duration_and_possible_denominators_to_time_signature(
+    new_time_signature = \
+        timesignaturetools.duration_and_possible_denominators_to_time_signature(
         new_duration, old_denominators)
 
     music = []
@@ -116,7 +116,6 @@ def fuse_measures(measures):
         multiplier = prolation / new_time_signature.implied_prolation
         containertools.scale_contents_of_container(measure, multiplier)
         measure_music = measure[:]
-        #_set_component_parents(measure_music, None)
         measure_music._set_component_parents(None)
         music += measure_music
 
@@ -126,8 +125,7 @@ def fuse_measures(measures):
         _give_spanners_that_dominate_donor_components_to_recipient_components(
             measures, [new_measure])
 
-    _set_component_parents(measures, None)
-    #measures._set_component_parents(None)
+    measures._set_component_parents(None)
     if parent is not None:
         parent.insert(start, new_measure)
 
