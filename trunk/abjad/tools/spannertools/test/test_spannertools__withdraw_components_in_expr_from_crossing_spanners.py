@@ -1,6 +1,6 @@
 from abjad import *
 from abjad.tools.spannertools._withdraw_components_in_expr_from_crossing_spanners \
-	import _withdraw_components_in_expr_from_crossing_spanners
+    import _withdraw_components_in_expr_from_crossing_spanners
 import py.test
 
 
@@ -33,7 +33,8 @@ def test_spannertools__withdraw_components_in_expr_from_crossing_spanners_01():
     assert slur in spanners
     assert trill in spanners
 
-    _withdraw_components_in_expr_from_crossing_spanners([t])
+    voice_selection = selectiontools.Selection([t])
+    voice_selection._withdraw_from_crossing_spanners()
     assert len(spanners) == 3
     assert beam in spanners
     assert slur in spanners
@@ -68,7 +69,7 @@ def test_spannertools__withdraw_components_in_expr_from_crossing_spanners_02():
     assert beam in spanners
     assert trill in spanners
 
-    _withdraw_components_in_expr_from_crossing_spanners(t[0:1])
+    t[:1]._withdraw_from_crossing_spanners()
 
     r'''
     \new Voice {
@@ -119,6 +120,7 @@ def test_spannertools__withdraw_components_in_expr_from_crossing_spanners_03():
     assert trill in spanners
 
     _withdraw_components_in_expr_from_crossing_spanners(t.leaves[2:3])
+    #t.leaves[2:3]._withdraw_from_crossing_spanners()
 
     spanners = spannertools.get_spanners_contained_by_components(t.leaves[2:3])
     assert spanners == set([])

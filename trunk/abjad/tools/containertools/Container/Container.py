@@ -81,12 +81,10 @@ class Container(Component):
         Withdraw component(s) from crossing spanners.
         Preserve spanners that component(s) cover(s).
         '''
-        from abjad.tools.spannertools._withdraw_components_in_expr_from_crossing_spanners \
-            import _withdraw_components_in_expr_from_crossing_spanners
         components = self[i]
         if not isinstance(components, selectiontools.Selection):
             components = selectiontools.Selection([components])
-        _withdraw_components_in_expr_from_crossing_spanners(components)
+        components._withdraw_from_crossing_spanners()
         components._set_parents(None)
 
     def __getitem__(self, i):
@@ -297,10 +295,9 @@ class Container(Component):
         from abjad.tools import contexttools
         from abjad.tools import gracetools
         from abjad.tools import iterationtools
+        from abjad.tools import selectiontools
         from abjad.tools import spannertools
-        from abjad.tools.spannertools._withdraw_components_in_expr_from_crossing_spanners \
-            import _withdraw_components_in_expr_from_crossing_spanners
-        # remember context marks attached to expr
+        # cache context marks attached to expr
         expr_context_marks = []
         for component in iterationtools.iterate_components_in_expr(expr):
             context_marks = \
@@ -322,7 +319,8 @@ class Container(Component):
             # must withdraw from spanners before parentage!
             # otherwise begin / end assessments don't work!
             if withdraw_components_in_expr_from_crossing_spanners:
-                _withdraw_components_in_expr_from_crossing_spanners([expr])
+                selection = selectiontools.Selection([expr])
+                selection._withdraw_from_crossing_spanners()
             expr._set_parent(self)
             self._music.insert(i, expr)
             componenttools.remove_component_subtree_from_score_and_spanners(
@@ -356,9 +354,8 @@ class Container(Component):
             # must withdraw before setting in self!
             # otherwise circular withdraw ensues!
             if withdraw_components_in_expr_from_crossing_spanners:
-                _withdraw_components_in_expr_from_crossing_spanners(expr)
-            # to make pychecker happy
-            #self._music[start:start] = expr
+                selection = selectiontools.Selection(expr)
+                selection._withdraw_from_crossing_spanners()
             self._music.__setitem__(slice(start, start), expr)
             for component in expr:
                 component._set_parent(self)
