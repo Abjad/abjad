@@ -72,6 +72,10 @@ class Selection(AbjadObject):
             return self.music == tuple(expr)
 
     def __getitem__(self, expr):
+        #if isinstance(expr, int):
+        #    return self.music.__getitem__(expr)
+        #else:
+        #    return type(self)(self.music.__getitem__(expr))
         return self.music.__getitem__(expr)
 
     def __len__(self):

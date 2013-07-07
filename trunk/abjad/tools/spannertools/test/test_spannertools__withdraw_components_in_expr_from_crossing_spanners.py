@@ -1,7 +1,7 @@
 from abjad import *
+import py.test
 from abjad.tools.spannertools._withdraw_components_in_expr_from_crossing_spanners \
     import _withdraw_components_in_expr_from_crossing_spanners
-import py.test
 
 
 def test_spannertools__withdraw_components_in_expr_from_crossing_spanners_01():
@@ -119,8 +119,8 @@ def test_spannertools__withdraw_components_in_expr_from_crossing_spanners_03():
     assert slur in spanners
     assert trill in spanners
 
-    _withdraw_components_in_expr_from_crossing_spanners(t.leaves[2:3])
     #t.leaves[2:3]._withdraw_from_crossing_spanners()
+    _withdraw_components_in_expr_from_crossing_spanners(t.leaves[2:3])
 
     spanners = spannertools.get_spanners_contained_by_components(t.leaves[2:3])
     assert spanners == set([])

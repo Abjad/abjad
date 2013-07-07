@@ -473,12 +473,14 @@ class Container(Component):
         ::
 
             >>> container.leaves
-            (Note("c'8"), Note("d'8"), Note("e'8"))
+            Selection(Note("c'8"), Note("d'8"), Note("e'8"))
 
-        Return tuple of zero or more leaves.
+        Return selection of zero or more leaves.
         '''
         from abjad.tools import iterationtools
-        return tuple(iterationtools.iterate_leaves_in_expr(self))
+        from abjad.tools import selectiontools
+        generator = iterationtools.iterate_leaves_in_expr(self)
+        return selectiontools.Selection(generator)
 
     @property
     def music(self):
