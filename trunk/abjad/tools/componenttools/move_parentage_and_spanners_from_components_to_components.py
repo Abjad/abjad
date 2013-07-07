@@ -1,35 +1,42 @@
-def move_parentage_and_spanners_from_components_to_components(donors, recipients):
+def move_parentage_and_spanners_from_components_to_components(
+    donors, recipients):
     '''.. versionadded:: 1.1
 
     Move parentage and spanners from `donors` to `recipients`.
 
     Give everything from donors to recipients.
+
     Almost exactly the same as container setitem logic.
-    This helper works with orphan donors.
+
+    This function works with orphan donors.
+
     Container setitem logic can not work with orphan donors.
 
-    Return donors.
+    Return none.
     '''
     from abjad.tools import componenttools
-    from abjad.tools.spannertools._give_spanners_that_dominate_donor_components_to_recipient_components import \
-        _give_spanners_that_dominate_donor_components_to_recipient_components
+    from abjad.tools import selectiontools
     from abjad.tools.spannertools._withdraw_components_in_expr_from_crossing_spanners import \
         _withdraw_components_in_expr_from_crossing_spanners
 
-    assert componenttools.all_are_contiguous_components_in_same_parent(donors)
-    assert componenttools.all_are_contiguous_components_in_same_parent(recipients)
+    # check input
+    assert componenttools.all_are_contiguous_components_in_same_parent(
+        donors)
+    assert componenttools.all_are_contiguous_components_in_same_parent(
+        recipients)
 
+    # coerce input
+    if not isinstance(donors, selectiontools.Selection):
+        donors = selectiontools.Selection(donors)
+
+    # return donors unaltered when donors are empty
     if len(donors) == 0:
         return donors
 
-    parent, start, stop = componenttools.get_parent_and_start_stop_indices_of_components(donors)
+    # give parentage and spanners to recipients
+    parent, start, stop = donors.get_parent_and_start_stop_indices()
     if parent:
-        # to avoid slice assignment pychecker errors
-        #parent[start:stop+1] = recipients
         parent.__setitem__(slice(start, stop + 1), recipients)
-        return donors
     else:
-        _give_spanners_that_dominate_donor_components_to_recipient_components(donors, recipients)
+        donors._give_dominant_spanners_to_components(recipients)
         _withdraw_components_in_expr_from_crossing_spanners(donors)
-
-    return donors

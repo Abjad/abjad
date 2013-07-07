@@ -56,8 +56,6 @@ def move_parentage_children_and_spanners_from_components_to_empty_container(
     '''
     from abjad.tools import containertools
     from abjad.tools import selectiontools
-    from abjad.tools.spannertools._give_spanners_that_dominate_donor_components_to_recipient_components \
-        import _give_spanners_that_dominate_donor_components_to_recipient_components
 
     # check input
     assert componenttools.all_are_contiguous_components_in_same_parent(
@@ -71,6 +69,5 @@ def move_parentage_children_and_spanners_from_components_to_empty_container(
 
     # give parentage, children and spanners to container
     components._give_music_to_empty_container(container)
-    _give_spanners_that_dominate_donor_components_to_recipient_components(
-        components, [container])
+    components._give_dominant_spanners_to_components([container])
     components._give_position_in_parent_to_container(container)

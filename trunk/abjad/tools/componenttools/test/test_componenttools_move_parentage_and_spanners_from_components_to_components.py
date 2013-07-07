@@ -217,11 +217,11 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
     }
     '''
 
-    old_components = componenttools.move_parentage_and_spanners_from_components_to_components(t[0:1], t[0][:])
-    voice = old_components[0]
-
-    #voice = t[0]
-    #t[:1] = t[0][:]
+    voice_selection = t[:1]
+    voice = voice_selection[0]
+    old_components = \
+        componenttools.move_parentage_and_spanners_from_components_to_components(
+        voice_selection, t[0][:])
 
     "Equivalent to t[:1] = t[0][:]."
 

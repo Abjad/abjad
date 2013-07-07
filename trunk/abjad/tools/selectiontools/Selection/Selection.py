@@ -98,6 +98,26 @@ class Selection(AbjadObject):
 
     # TODO: eventually migrate method to SliceSelection;
     #       then remove explicit contiguity check.
+    def _give_dominant_spanners_to_components(self, recipients):
+        '''Find all spanners dominating music.
+        Insert each component in recipients into each dominant spanner.
+        Remove music from each dominating spanner.
+        Return none.
+        Not composer-safe.
+        '''
+        from abjad.tools import componenttools
+        from abjad.tools import spannertools
+        assert componenttools.all_are_thread_contiguous_components(self)
+        assert componenttools.all_are_thread_contiguous_components(recipients)
+        receipt = spannertools.get_spanners_that_dominate_components(self)
+        for spanner, index in receipt:
+            for recipient in reversed(recipients):
+                spanner._insert(index, recipient)
+            for component in self:
+                spanner._remove(component)
+
+    # TODO: eventually migrate method to SliceSelection;
+    #       then remove explicit contiguity check.
     def _give_music_to_empty_container(self, container):
         '''Not composer-safe.
         '''
