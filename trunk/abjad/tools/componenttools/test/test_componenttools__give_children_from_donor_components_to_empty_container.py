@@ -1,10 +1,10 @@
 from abjad import *
-from abjad.tools.componenttools._give_music_from_donor_components_to_recipient_components \
-	import _give_music_from_donor_components_to_recipient_components
+from abjad.tools.componenttools._give_children_from_donor_components_to_empty_container \
+	import _give_children_from_donor_components_to_empty_container
 import py.test
 
 
-def test_componenttools__give_music_from_donor_components_to_recipient_components_01():
+def test_componenttools__give_children_from_donor_components_to_empty_container_01():
     '''Give spanned music from donor to recipient.
     Helper is not composer-safe and results here in bad spanners.
     '''
@@ -28,7 +28,7 @@ def test_componenttools__give_music_from_donor_components_to_recipient_component
 
     donor = t[0]
     recipient = Voice([])
-    _give_music_from_donor_components_to_recipient_components([donor], recipient)
+    _give_children_from_donor_components_to_empty_container([donor], recipient)
 
     "Container t is now ..."
 
@@ -63,14 +63,14 @@ def test_componenttools__give_music_from_donor_components_to_recipient_component
     assert recipient.lilypond_format == "\\new Voice {\n\tc'8 [\n\td'8\n}"
 
 
-def test_componenttools__give_music_from_donor_components_to_recipient_components_02():
+def test_componenttools__give_children_from_donor_components_to_empty_container_02():
     '''When donor is leaf do nothing.
     '''
 
     donor = Note(0, (1, 8))
     recipient = Voice([])
 
-    _give_music_from_donor_components_to_recipient_components([donor], recipient)
+    _give_children_from_donor_components_to_empty_container([donor], recipient)
 
     assert wellformednesstools.is_well_formed_component(donor)
     assert donor.lilypond_format == "c'8"
@@ -79,12 +79,13 @@ def test_componenttools__give_music_from_donor_components_to_recipient_component
     assert recipient.lilypond_format == '\\new Voice {\n}'
 
 
-def test_componenttools__give_music_from_donor_components_to_recipient_components_03():
-    '''When recipient is unable to accept donated music raise music contents error.
+def test_componenttools__give_children_from_donor_components_to_empty_container_03():
+    '''When recipient is unable to accept donated music raise exception.
     '''
 
     donor = Voice("c'8 d'8 e'8 f'8")
     recipient = Voice("c'8 d'8 e'8 f'8")
 
     assert py.test.raises(
-        MusicContentsError, '_give_music_from_donor_components_to_recipient_components([donor], recipient)')
+        Exception,
+        '_give_children_from_donor_components_to_empty_container([donor], recipient)')

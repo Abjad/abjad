@@ -1,4 +1,4 @@
-def _give_music_from_donor_components_to_recipient_components(
+def _give_children_from_donor_components_to_empty_container(
     donors, recipient):
     '''Give any music belong to donor components 'donors'
     to recipient component 'recipient'.
@@ -19,15 +19,8 @@ def _give_music_from_donor_components_to_recipient_components(
 
     assert componenttools.all_are_contiguous_components_in_same_parent(donors)
 
-    # if recipient is leaf or nonempty container,
-    # make sure there's no music in donor components to hand over
-    if isinstance(recipient, leaftools.Leaf) or \
-        (isinstance(recipient, containertools.Container) and len(recipient)):
-        if all(len(x.music) == 0 for x in donors):
-            return donors
-        else:
-            message = 'can not give music to leaf: {!r}.'
-            raise MusicContentsError(message.format(recipient))
+    assert isinstance(recipient, containertools.Container), repr(recipient)
+    assert len(recipient) == 0
 
     # otherwise recipient is empty container,
     # so proceed to collect music from all donor components
