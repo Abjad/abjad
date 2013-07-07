@@ -81,15 +81,13 @@ class Container(Component):
         Withdraw component(s) from crossing spanners.
         Preserve spanners that component(s) cover(s).
         '''
-        from abjad.tools.componenttools._set_component_parents import \
-            _set_component_parents
-        from abjad.tools.spannertools._withdraw_components_in_expr_from_crossing_spanners import \
-            _withdraw_components_in_expr_from_crossing_spanners
+        from abjad.tools.spannertools._withdraw_components_in_expr_from_crossing_spanners \
+            import _withdraw_components_in_expr_from_crossing_spanners
         components = self[i]
         if not isinstance(components, selectiontools.Selection):
             components = selectiontools.Selection([components])
         _withdraw_components_in_expr_from_crossing_spanners(components)
-        _set_component_parents(components, None)
+        components._set_component_parents(None)
 
     def __getitem__(self, i):
         '''Return component at index i in container.
@@ -510,8 +508,6 @@ class Container(Component):
 
     def _initialize_music(self, music):
         from abjad.tools import componenttools
-        from abjad.tools.componenttools._set_component_parents \
-            import _set_component_parents
         if music is None:
             music = []
         if componenttools.all_are_contiguous_components_in_same_thread(music):
@@ -519,7 +515,7 @@ class Container(Component):
                 componenttools.get_parent_and_start_stop_indices_of_components(
                 music)
             self._music = list(music)
-            _set_component_parents(self._music, self)
+            self[:]._set_component_parents(self)
             if parent is not None:
                 parent._music.insert(index, self)
                 self._set_parent(parent)
