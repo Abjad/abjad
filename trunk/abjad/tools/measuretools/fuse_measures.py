@@ -6,11 +6,15 @@ from abjad.tools import durationtools
 def fuse_measures(measures):
     r'''.. versionadded:: 1.1
 
-    Fuse `measures`::
+    Fuse `measures`:
 
-        >>> staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(
+    ::
+
+        >>> staff = \
+        ...     Staff(measuretools.make_measures_with_full_measure_spacer_skips(
         ...     [(1, 8), (2, 16)]))
-        >>> measuretools.fill_measures_in_expr_with_repeated_notes(staff, Duration(1, 16))
+        >>> measuretools.fill_measures_in_expr_with_repeated_notes(
+        ...     staff, Duration(1, 16))
         >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
         >>> beamtools.BeamSpanner(staff.leaves)
         BeamSpanner(c'16, d'16, e'16, f'16)
@@ -71,6 +75,7 @@ def fuse_measures(measures):
     '''
     from abjad.tools import contexttools
     from abjad.tools import measuretools
+    from abjad.tools import selectiontools
     from abjad.tools import timesignaturetools
     from abjad.tools.componenttools._set_component_parents \
         import _set_component_parents
@@ -80,10 +85,12 @@ def fuse_measures(measures):
     assert componenttools.all_are_contiguous_components_in_same_parent(
         measures, component_classes=(measuretools.Measure, ))
 
+    #assert isinstance(measures, selectiontools.Selection), repr(measures)
+
     if len(measures) == 0:
         return None
 
-    # TODO: Instantiate a new measure, even length is 1 #
+    # TODO: instantiate a new measure, even length is 1 #
 
     if len(measures) == 1:
         return measures[0]
@@ -105,13 +112,9 @@ def fuse_measures(measures):
     music = []
     for measure in measures:
         # scale before reassignment to prevent tie chain scale drama
-#        multiplier = \
-#            contexttools.get_effective_time_signature(measure).implied_prolation / \
-#            new_time_signature.implied_prolation
         signature = contexttools.get_effective_time_signature(measure)
         prolation = signature.implied_prolation
         multiplier = prolation / new_time_signature.implied_prolation
-
         containertools.scale_contents_of_container(measure, multiplier)
         measure_music = measure[:]
         _set_component_parents(measure_music, None)

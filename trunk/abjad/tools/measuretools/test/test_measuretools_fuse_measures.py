@@ -6,37 +6,39 @@ def test_measuretools_fuse_measures_01():
     '''Fuse unicorporated measures carrying
     time signatures with power-of-two denominators.
     '''
-
+    
     t1 = Measure((1, 8), "c'16 d'16")
     beamtools.BeamSpanner(t1[:])
     t2 = Measure((2, 16), "c'16 d'16")
     spannertools.SlurSpanner(t2[:])
+    staff = Staff([t1, t2])
 
     r'''
-    {
-        \time 1/8
-        c'16 [
-        d'16 ]
+    \new Staff {
+        {
+            \time 1/8
+            c'16 [
+            d'16 ]
+        }
+        {
+            \time 2/16
+            c'16 (
+            d'16 )
+        }
     }
     '''
 
-    r'''
-    {
-        \time 2/16
-        c'16 (
-        d'16 )
-    }
-    '''
-
-    new = measuretools.fuse_measures([t1, t2])
+    new = measuretools.fuse_measures(staff[:])
 
     r'''
-    {
-        \time 2/8
-        c'16 [
-        d'16 ]
-        c'16 (
-        d'16 )
+    \new Staff {
+        {
+            \time 2/8
+            c'16 [
+            d'16 ]
+            c'16 (
+            d'16 )
+        }
     }
     '''
 
@@ -182,21 +184,23 @@ def test_measuretools_fuse_measures_04():
 
 
 def test_measuretools_fuse_measures_05():
-    '''Fusing empty list raises no excpetion but returns None.
+    '''Fusing empty selection returns none.
     '''
 
-    result = measuretools.fuse_measures([])
+    staff = Staff()
+    result = measuretools.fuse_measures(staff[:])
     assert result is None
 
 
 def test_measuretools_fuse_measures_06():
-    '''Fusing list of only one measure returns measure unaltered.
+    '''Fusing selection of only one measure returns measure unaltered.
     '''
 
-    t = Measure((3, 8), "c'8 d'8 e'8")
-    new = measuretools.fuse_measures([t])
+    measure = Measure((3, 8), "c'8 d'8 e'8")
+    staff = Staff([measure])
+    new = measuretools.fuse_measures(staff[:])
 
-    assert new is t
+    assert new is measure
 
 
 def test_measuretools_fuse_measures_07():

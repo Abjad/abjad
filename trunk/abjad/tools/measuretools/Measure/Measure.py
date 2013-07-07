@@ -59,11 +59,14 @@ class Measure(FixedDurationContainer):
 
     def __add__(self, arg):
         '''Add two measures together in-score or outside-of-score.
-        Wrapper around measuretools.fuse_measures.
+
+        Wrapper around ``measuretools.fuse_measures()``.
         '''
         assert isinstance(arg, type(self))
         from abjad.tools import measuretools
-        new = measuretools.fuse_measures([self, arg])
+        from abjad.tools import selectiontools
+        measures = selectiontools.Selection([self, arg])
+        new = measuretools.fuse_measures(measures)
         return new
 
     def __delitem__(self, i):

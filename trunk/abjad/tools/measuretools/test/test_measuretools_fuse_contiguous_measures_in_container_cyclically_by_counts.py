@@ -107,7 +107,8 @@ def test_measuretools_fuse_contiguous_measures_in_container_cyclically_by_counts
     '''
 
     part_counts = (3, )
-    measuretools.fuse_contiguous_measures_in_container_cyclically_by_counts(t, part_counts)
+    measuretools.fuse_contiguous_measures_in_container_cyclically_by_counts(
+        t, part_counts)
 
     r'''
     \new Staff {

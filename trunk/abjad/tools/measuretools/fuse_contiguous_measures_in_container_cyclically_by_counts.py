@@ -1,10 +1,13 @@
 from abjad.tools import containertools
 
 
-def fuse_contiguous_measures_in_container_cyclically_by_counts(container, counts, mark=False):
+def fuse_contiguous_measures_in_container_cyclically_by_counts(
+    container, counts, mark=False):
     r'''.. versionadded:: 1.1
 
-    Fuse contiguous measures in `container` cyclically by `counts`::
+    Fuse contiguous measures in `container` cyclically by `counts`:
+
+    ::
 
         >>> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 5)
         >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
@@ -39,7 +42,8 @@ def fuse_contiguous_measures_in_container_cyclically_by_counts(container, counts
     ::
 
         >>> counts = (2, 1)
-        >>> measuretools.fuse_contiguous_measures_in_container_cyclically_by_counts(staff, counts)
+        >>> measuretools.fuse_contiguous_measures_in_container_cyclically_by_counts(
+        ...     staff, counts)
 
     ::
 
@@ -73,6 +77,7 @@ def fuse_contiguous_measures_in_container_cyclically_by_counts(container, counts
     from abjad.tools import contexttools
     from abjad.tools import markuptools
     from abjad.tools import measuretools
+    from abjad.tools import selectiontools
 
     assert isinstance(container, containertools.Container)
     assert isinstance(counts, (tuple, list))
@@ -82,7 +87,8 @@ def fuse_contiguous_measures_in_container_cyclically_by_counts(container, counts
         container._forbid_component_update()
         len_parts = len(counts)
         part_index = 0
-        current_measure = measuretools.get_next_measure_from_component(container)
+        current_measure = \
+            measuretools.get_next_measure_from_component(container)
         while True:
             part_count = counts[part_index % len_parts]
             if 1 < part_count:
@@ -90,17 +96,23 @@ def fuse_contiguous_measures_in_container_cyclically_by_counts(container, counts
                 measure_to_fuse = current_measure
                 for x in range(part_count):
                     measures_to_fuse.append(measure_to_fuse)
-                    measure_to_fuse = measuretools.get_next_measure_from_component(measure_to_fuse)
+                    measure_to_fuse = \
+                        measuretools.get_next_measure_from_component(
+                            measure_to_fuse)
                     if measure_to_fuse is None:
                         break
                 time_signature_sum_str = ' + '.join([
-                    str(contexttools.get_effective_time_signature(x)) for x in measures_to_fuse])
+                    str(contexttools.get_effective_time_signature(x)) 
+                        for x in measures_to_fuse])
                 time_signature_sum_str = '"%s"' % time_signature_sum_str
+                measures_to_fuse = selectiontools.Selection(measures_to_fuse)
                 new = measuretools.fuse_measures(measures_to_fuse)
                 if mark:
-                    markuptools.Markup(time_signature_sum_str, Up)(new.leaves[0])
+                    new_mark = markuptools.Markup(time_signature_sum_str, Up)
+                    new_mark.attach(new.leaves[0])
                 current_measure = new
-            current_measure = measuretools.get_next_measure_from_component(current_measure)
+            current_measure = \
+                measuretools.get_next_measure_from_component(current_measure)
             if current_measure is None:
                 break
             part_index += 1
