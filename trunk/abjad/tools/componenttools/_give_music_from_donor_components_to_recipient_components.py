@@ -1,4 +1,5 @@
-def _give_music_from_donor_components_to_recipient_components(donors, recipient):
+def _give_music_from_donor_components_to_recipient_components(
+    donors, recipient):
     '''Give any music belong to donor components 'donors'
     to recipient component 'recipient'.
     Works great when 'recipient' is an empty container.
@@ -10,9 +11,8 @@ def _give_music_from_donor_components_to_recipient_components(donors, recipient)
 
     Return donor components 'donors'.
 
-    Helper is not composer-safe and may cause discontiguous spanners.
+    Not composer-safe.
     '''
-    from abjad.tools.componenttools._set_component_parents import _set_component_parents
     from abjad.tools import componenttools
     from abjad.tools import containertools
     from abjad.tools import leaftools
@@ -26,18 +26,18 @@ def _give_music_from_donor_components_to_recipient_components(donors, recipient)
         if all(len(x.music) == 0 for x in donors):
             return donors
         else:
-            raise MusicContentsError('can not give music to leaf: "%s".' % recipient)
+            message = 'can not give music to leaf: {!r}.'
+            raise MusicContentsError(message.format(recipient))
 
-    # otherwise recipient is empty container, so proceed
-    # collect music from all donor components
+    # otherwise recipient is empty container,
+    # so proceed to collect music from all donor components
     donor_music = []
     for donor in donors:
-        #donor_music.extend(donor.music)
         donor_music.extend(getattr(donor, 'music', ()))
 
     # give music from donor components to recipient component
     recipient._music.extend(donor_music)
-    _set_component_parents(recipient[:], recipient)
+    recipient[:]._set_component_parents(recipient)
 
     # return donor components
     return donors
