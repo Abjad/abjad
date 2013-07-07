@@ -55,8 +55,8 @@ def move_parentage_children_and_spanners_from_components_to_empty_container(
     Return none.
     '''
     from abjad.tools import containertools
-    from abjad.tools.componenttools._give_position_in_parent_from_donor_components_to_recipient_components \
-        import _give_position_in_parent_from_donor_components_to_recipient_components
+    from abjad.tools.componenttools._give_position_in_parent_from_donor_components_to_container \
+        import _give_position_in_parent_from_donor_components_to_container
     from abjad.tools.componenttools._give_children_from_donor_components_to_empty_container \
         import _give_children_from_donor_components_to_empty_container
     from abjad.tools.spannertools._give_spanners_that_dominate_donor_components_to_recipient_components \
@@ -70,4 +70,4 @@ def move_parentage_children_and_spanners_from_components_to_empty_container(
     # move parentage, children and spanners
     _give_children_from_donor_components_to_empty_container(components, container)
     _give_spanners_that_dominate_donor_components_to_recipient_components(components, [container])
-    _give_position_in_parent_from_donor_components_to_recipient_components(components, [container])
+    _give_position_in_parent_from_donor_components_to_container(components, container)
