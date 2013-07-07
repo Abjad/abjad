@@ -1,13 +1,13 @@
 from abjad import *
 
 
-def test_Selection__set_component_parents_01():
+def test_Selection__set_parents_01():
 
     t = Voice([])
     u = Voice("c'8 d'8 e'8 f'8")
 
     selection = u[:]
-    selection._set_component_parents(t)
+    selection._set_parents(t)
 
     assert wellformednesstools.is_well_formed_component(u)
     assert len(u) == 0

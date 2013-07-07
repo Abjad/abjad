@@ -111,7 +111,7 @@ class Selection(AbjadObject):
         for component in self:
             music.extend(getattr(component, 'music', ()))
         container._music.extend(music)
-        container[:]._set_component_parents(container)
+        container[:]._set_parents(container)
 
     # TODO: eventually migrate method to SliceSelection;
     #       then remove explicit contiguity check.
@@ -129,10 +129,10 @@ class Selection(AbjadObject):
         if parent is not None:
             parent._music.__setitem__(slice(start, start), [container])
             container._set_parent(parent)
-            self._set_component_parents(None)
+            self._set_parents(None)
 
     # TODO: change name to _set_parents()
-    def _set_component_parents(self, new_parent):
+    def _set_parents(self, new_parent):
         '''Not composer-safe.
         '''
         for component in self.music:

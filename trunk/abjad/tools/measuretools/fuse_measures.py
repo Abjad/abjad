@@ -116,7 +116,7 @@ def fuse_measures(measures):
         multiplier = prolation / new_time_signature.implied_prolation
         containertools.scale_contents_of_container(measure, multiplier)
         measure_music = measure[:]
-        measure_music._set_component_parents(None)
+        measure_music._set_parents(None)
         music += measure_music
 
     new_measure = measuretools.Measure(new_time_signature, music)
@@ -125,7 +125,7 @@ def fuse_measures(measures):
         _give_spanners_that_dominate_donor_components_to_recipient_components(
             measures, [new_measure])
 
-    measures._set_component_parents(None)
+    measures._set_parents(None)
     if parent is not None:
         parent.insert(start, new_measure)
 

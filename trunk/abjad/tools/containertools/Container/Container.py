@@ -87,7 +87,7 @@ class Container(Component):
         if not isinstance(components, selectiontools.Selection):
             components = selectiontools.Selection([components])
         _withdraw_components_in_expr_from_crossing_spanners(components)
-        components._set_component_parents(None)
+        components._set_parents(None)
 
     def __getitem__(self, i):
         '''Return component at index i in container.
@@ -515,7 +515,7 @@ class Container(Component):
                 componenttools.get_parent_and_start_stop_indices_of_components(
                 music)
             self._music = list(music)
-            self[:]._set_component_parents(self)
+            self[:]._set_parents(self)
             if parent is not None:
                 parent._music.insert(index, self)
                 self._set_parent(parent)
