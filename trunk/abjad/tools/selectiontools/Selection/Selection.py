@@ -66,7 +66,8 @@ class Selection(AbjadObject):
     def __eq__(self, expr):
         if isinstance(expr, type(self)):
             return self.music == expr.music
-        # eventually remove this second, more permissive branch altogether
+        # eventually remove this permissive branch
+        # and force the use of selections only
         elif isinstance(expr, (list, tuple)):
             return self.music == tuple(expr)
 
@@ -92,6 +93,12 @@ class Selection(AbjadObject):
 
     def __repr__(self):
         return '{}{!r}'.format(self._class_name, self.music)
+
+    ### PRIVATE METHODS ###
+
+    def _set_component_parents(self, new_parent):
+        for component in self.music:
+            component._set_parent(new_parent)
 
     ### PUBLIC PROPERTIES ###
 

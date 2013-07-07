@@ -82,16 +82,15 @@ def fuse_measures(measures):
     from abjad.tools.spannertools._give_spanners_that_dominate_donor_components_to_recipient_components \
         import _give_spanners_that_dominate_donor_components_to_recipient_components
 
+    #assert isinstance(measures, selectiontools.Selection), repr(measures)
     assert componenttools.all_are_contiguous_components_in_same_parent(
         measures, component_classes=(measuretools.Measure, ))
-
-    #assert isinstance(measures, selectiontools.Selection), repr(measures)
 
     if len(measures) == 0:
         return None
 
-    # TODO: instantiate a new measure, even length is 1 #
-
+    # TODO: instantiate a new measure
+    #       instead of returning a reference to existing measure
     if len(measures) == 1:
         return measures[0]
 
@@ -117,7 +116,8 @@ def fuse_measures(measures):
         multiplier = prolation / new_time_signature.implied_prolation
         containertools.scale_contents_of_container(measure, multiplier)
         measure_music = measure[:]
-        _set_component_parents(measure_music, None)
+        #_set_component_parents(measure_music, None)
+        measure_music._set_component_parents(None)
         music += measure_music
 
     new_measure = measuretools.Measure(new_time_signature, music)
@@ -127,6 +127,7 @@ def fuse_measures(measures):
             measures, [new_measure])
 
     _set_component_parents(measures, None)
+    #measures._set_component_parents(None)
     if parent is not None:
         parent.insert(start, new_measure)
 
