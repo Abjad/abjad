@@ -36,7 +36,7 @@ class Selection(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, music):
+    def __init__(self, music=None):
         if music is None:
             music = ()
         elif isinstance(music, (tuple, list, type(self))):
@@ -72,11 +72,12 @@ class Selection(AbjadObject):
             return self.music == tuple(expr)
 
     def __getitem__(self, expr):
-        #if isinstance(expr, int):
-        #    return self.music.__getitem__(expr)
-        #else:
-        #    return type(self)(self.music.__getitem__(expr))
-        return self.music.__getitem__(expr)
+        result = self.music.__getitem__(expr)
+        if isinstance(result, tuple):
+            selection = type(self)()
+            selection._music = result[:]
+            result = selection
+        return result
 
     def __len__(self):
         return len(self.music)

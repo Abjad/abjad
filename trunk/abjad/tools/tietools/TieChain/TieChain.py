@@ -26,7 +26,7 @@ class TieChain(Selection):
 
     ### INITIALIZER ###
 
-    def __init__(self, music):
+    def __init__(self, music=None):
         if isinstance(music, Selection):
             Selection.__init__(self, music.music)
         else:

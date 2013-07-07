@@ -25,7 +25,7 @@ def remove_component_subtree_from_score_and_spanners(components):
 
         >>> componenttools.remove_component_subtree_from_score_and_spanners(
         ...     voice.leaves[1:2])
-        (Note("d'8"),)
+        Selection(Note("d'8"),)
 
     ::
 
@@ -62,7 +62,7 @@ def remove_component_subtree_from_score_and_spanners(components):
 
         >>> componenttools.remove_component_subtree_from_score_and_spanners(
         ...     voice.leaves[:2])
-        (Note("c'8"), Note("d'8"))
+        Selection(Note("c'8"), Note("d'8"))
 
     ::
 

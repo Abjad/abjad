@@ -390,7 +390,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         ::
 
             >>> expression.elements
-            (Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8"))
+            Selection(Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8"))
 
         Return tuple.
         '''
