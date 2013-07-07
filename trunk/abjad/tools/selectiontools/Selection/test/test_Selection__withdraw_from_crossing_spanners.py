@@ -1,10 +1,8 @@
 from abjad import *
 import py.test
-#from abjad.tools.spannertools._withdraw_components_in_expr_from_crossing_spanners \
-#    import _withdraw_components_in_expr_from_crossing_spanners
 
 
-def test_spannertools__withdraw_components_in_expr_from_crossing_spanners_01():
+def test_Selection__withdraw_from_crossing_spanners_01():
     '''Withdraw thread-contiguous components from crossing spanners.
     '''
 
@@ -41,7 +39,7 @@ def test_spannertools__withdraw_components_in_expr_from_crossing_spanners_01():
     assert trill in spanners
 
 
-def test_spannertools__withdraw_components_in_expr_from_crossing_spanners_02():
+def test_Selection__withdraw_from_crossing_spanners_02():
     '''Withdraw thread-contiguous components from crossing spanners.
     '''
 
@@ -91,7 +89,7 @@ def test_spannertools__withdraw_components_in_expr_from_crossing_spanners_02():
     assert t.lilypond_format == "\\new Voice {\n\t{\n\t\tc'8 [\n\t\td'8 ]\n\t}\n\t{\n\t\te'8 ( \\startTrillSpan\n\t\tf'8 ) \\stopTrillSpan\n\t}\n}"
 
 
-def test_spannertools__withdraw_components_in_expr_from_crossing_spanners_03():
+def test_Selection__withdraw_from_crossing_spanners_03():
     '''Withdraw thread-contiguous components from crossing spanners.
     '''
 
@@ -120,7 +118,6 @@ def test_spannertools__withdraw_components_in_expr_from_crossing_spanners_03():
     assert trill in spanners
 
     t.leaves[2:3]._withdraw_from_crossing_spanners()
-    #_withdraw_components_in_expr_from_crossing_spanners(t.leaves[2:3])
 
     spanners = spannertools.get_spanners_contained_by_components(t.leaves[2:3])
     assert spanners == set([])
