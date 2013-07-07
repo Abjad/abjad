@@ -59,6 +59,9 @@ Methods
 .. automethod:: abjad.tools.componenttools.Parentage.Parentage.Parentage.get_offset_lists
    :noindex:
 
+.. automethod:: abjad.tools.componenttools.Parentage.Parentage.Parentage.get_parent_and_start_stop_indices
+   :noindex:
+
 Special methods
 ---------------
 

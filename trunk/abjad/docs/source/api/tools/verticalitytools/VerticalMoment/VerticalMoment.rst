@@ -80,6 +80,9 @@ Methods
 .. automethod:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment.get_offset_lists
    :noindex:
 
+.. automethod:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment.get_parent_and_start_stop_indices
+   :noindex:
+
 Special methods
 ---------------
 

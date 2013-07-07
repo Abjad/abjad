@@ -62,6 +62,9 @@ Methods
 .. automethod:: abjad.tools.tietools.TieChain.TieChain.TieChain.get_offset_lists
    :noindex:
 
+.. automethod:: abjad.tools.tietools.TieChain.TieChain.TieChain.get_parent_and_start_stop_indices
+   :noindex:
+
 Special methods
 ---------------
 

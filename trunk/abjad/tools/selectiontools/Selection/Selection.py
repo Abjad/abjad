@@ -123,15 +123,12 @@ class Selection(AbjadObject):
         assert componenttools.all_are_contiguous_components_in_same_parent(
             self)
         assert isinstance(container, containertools.Container)
-        parent, start, stop = \
-            componenttools.get_parent_and_start_stop_indices_of_components(
-                self)
+        parent, start, stop = self.get_parent_and_start_stop_indices()
         if parent is not None:
             parent._music.__setitem__(slice(start, start), [container])
             container._set_parent(parent)
             self._set_parents(None)
 
-    # TODO: change name to _set_parents()
     def _set_parents(self, new_parent):
         '''Not composer-safe.
         '''
@@ -178,3 +175,9 @@ class Selection(AbjadObject):
             start_offsets.append(component.timespan.start_offset)
             stop_offsets.append(component.timespan.stop_offset)
         return start_offsets, stop_offsets
+
+    def get_parent_and_start_stop_indices(self):
+        from abjad.tools import componenttools
+        return componenttools.get_parent_and_start_stop_indices_of_components(
+            self)
+
