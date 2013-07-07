@@ -96,6 +96,31 @@ class Selection(AbjadObject):
 
     ### PRIVATE METHODS ###
 
+    def _give_children_from_donor_components_to_empty_container(self,
+        container):
+        '''Give any selection children to `container`.
+        Not composer-safe.
+        Return none.
+        '''
+        from abjad.tools import componenttools
+        from abjad.tools import containertools
+        from abjad.tools import leaftools
+
+        # check input
+        assert componenttools.all_are_contiguous_components_in_same_parent(
+            self)
+        assert isinstance(container, containertools.Container)
+        assert not container
+
+        # collect selection children
+        donor_music = []
+        for component in self:
+            donor_music.extend(getattr(component, 'music', ()))
+
+        # give selection music to container
+        container._music.extend(donor_music)
+        container[:]._set_component_parents(container)
+
     def _set_component_parents(self, new_parent):
         for component in self.music:
             component._set_parent(new_parent)

@@ -8,8 +8,7 @@ def _give_children_from_donor_components_to_empty_container(
     Raises music contents error when donors *do* have music
     to music but when recipient is unable to accept music
     (because recipient is nonempty container or leaf).
-
-    Return donor components 'donors'.
+    Return none.
 
     Not composer-safe.
     '''
@@ -17,8 +16,8 @@ def _give_children_from_donor_components_to_empty_container(
     from abjad.tools import containertools
     from abjad.tools import leaftools
 
+    # check input
     assert componenttools.all_are_contiguous_components_in_same_parent(donors)
-
     assert isinstance(recipient, containertools.Container), repr(recipient)
     assert len(recipient) == 0
 
@@ -31,6 +30,3 @@ def _give_children_from_donor_components_to_empty_container(
     # give music from donor components to recipient component
     recipient._music.extend(donor_music)
     recipient[:]._set_component_parents(recipient)
-
-    # return donor components
-    return donors

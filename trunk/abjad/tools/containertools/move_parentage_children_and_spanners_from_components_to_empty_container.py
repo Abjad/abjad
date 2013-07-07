@@ -55,6 +55,7 @@ def move_parentage_children_and_spanners_from_components_to_empty_container(
     Return none.
     '''
     from abjad.tools import containertools
+    from abjad.tools import selectiontools
     from abjad.tools.componenttools._give_position_in_parent_from_donor_components_to_container \
         import _give_position_in_parent_from_donor_components_to_container
     from abjad.tools.componenttools._give_children_from_donor_components_to_empty_container \
@@ -63,11 +64,20 @@ def move_parentage_children_and_spanners_from_components_to_empty_container(
         import _give_spanners_that_dominate_donor_components_to_recipient_components
 
     # check input
-    assert componenttools.all_are_contiguous_components_in_same_parent(components)
+    assert componenttools.all_are_contiguous_components_in_same_parent(
+        components)
     assert isinstance(container, containertools.Container), repr(container)
     assert not container, repr(container)
 
+    if not isinstance(components, selectiontools.Selection):
+        components = selectiontools.Selection(components)
+
     # move parentage, children and spanners
-    _give_children_from_donor_components_to_empty_container(components, container)
-    _give_spanners_that_dominate_donor_components_to_recipient_components(components, [container])
-    _give_position_in_parent_from_donor_components_to_container(components, container)
+    _give_children_from_donor_components_to_empty_container(
+        components, container)
+    #components._give_children_from_donor_components_to_empty_container(
+    #    container)
+    _give_spanners_that_dominate_donor_components_to_recipient_components(
+        components, [container])
+    _give_position_in_parent_from_donor_components_to_container(
+        components, container)
