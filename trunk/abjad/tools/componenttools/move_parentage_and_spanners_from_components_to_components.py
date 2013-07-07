@@ -16,8 +16,6 @@ def move_parentage_and_spanners_from_components_to_components(
     '''
     from abjad.tools import componenttools
     from abjad.tools import selectiontools
-    from abjad.tools.spannertools._withdraw_components_in_expr_from_crossing_spanners import \
-        _withdraw_components_in_expr_from_crossing_spanners
 
     # check input
     assert componenttools.all_are_contiguous_components_in_same_parent(
@@ -39,4 +37,4 @@ def move_parentage_and_spanners_from_components_to_components(
         parent.__setitem__(slice(start, stop + 1), recipients)
     else:
         donors._give_dominant_spanners_to_components(recipients)
-        _withdraw_components_in_expr_from_crossing_spanners(donors)
+        donors._withdraw_from_crossing_spanners()

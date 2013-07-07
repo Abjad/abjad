@@ -155,6 +155,26 @@ class Selection(AbjadObject):
         for component in self.music:
             component._set_parent(new_parent)
 
+    # TODO: eventually migrate method to SliceSelection;
+    #       then remove explicit contiguity check.
+    def _withdraw_from_crossing_spanners(self):
+        '''Not composer-safe.
+        '''
+        from abjad.tools import componenttools
+        from abjad.tools import iterationtools
+        from abjad.tools import spannertools
+        assert componenttools.all_are_thread_contiguous_components(self)
+        crossing_spanners = \
+            spannertools.get_spanners_that_cross_components(self)
+        components_including_children = \
+            list(iterationtools.iterate_components_in_expr(self))
+        for crossing_spanner in list(crossing_spanners):
+            spanner_components = crossing_spanner._components[:]
+            for component in components_including_children:
+                if component in spanner_components:
+                    crossing_spanner._components.remove(component)
+                    component._spanners.discard(crossing_spanner)
+
     ### PUBLIC PROPERTIES ###
 
     @property

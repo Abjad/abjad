@@ -16,10 +16,12 @@ def _withdraw_components_in_expr_from_crossing_spanners(components):
 
     assert componenttools.all_are_thread_contiguous_components(components)
 
-    crossing_spanners = spannertools.get_spanners_that_cross_components(components)
+    crossing_spanners = \
+        spannertools.get_spanners_that_cross_components(components)
 
     components_including_children = list(
-        iterationtools.iterate_components_in_expr(components, componenttools.Component))
+        iterationtools.iterate_components_in_expr(
+            components, componenttools.Component))
 
     for crossing_spanner in list(crossing_spanners):
         spanner_components = crossing_spanner._components[:]
