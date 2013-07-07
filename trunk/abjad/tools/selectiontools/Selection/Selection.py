@@ -116,31 +116,20 @@ class Selection(AbjadObject):
     # TODO: eventually migrate method to SliceSelection;
     #       then remove explicit contiguity check.
     def _give_position_in_parent_to_container(self, container):
-        '''Do nothing when music has no parent.
-        Otherwise find music parent;
-        insert `container` contents in parent immediately before music;
-        remove music from parent.
-        Return none.
-        Not composer-safe.
+        '''Not composer-safe.
         '''
         from abjad.tools import componenttools
         from abjad.tools import containertools
-        from abjad.tools import selectiontools
-        # check input
-        assert isinstance(container, containertools.Container)
         assert componenttools.all_are_contiguous_components_in_same_parent(
             self)
-        # coerce input
-        container_selection = selectiontools.Selection([container])
-        # get donors' position in parent
+        assert isinstance(container, containertools.Container)
         parent, start, stop = \
             componenttools.get_parent_and_start_stop_indices_of_components(
                 self)
-        if parent is None:
-            return
-        parent._music.__setitem__(slice(start, start), container_selection)
-        container_selection._set_component_parents(parent)
-        self._set_component_parents(None)
+        if parent is not None:
+            parent._music.__setitem__(slice(start, start), [container])
+            container._set_parent(parent)
+            self._set_component_parents(None)
 
     # TODO: change name to _set_parents()
     def _set_component_parents(self, new_parent):
