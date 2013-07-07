@@ -2,19 +2,15 @@ from abjad.tools import durationtools
 from abjad.tools import sequencetools
 
 
-# TODO: change signature to 
-# _partition_components_by_durations(components, durations, ...)
 def _partition_components_by_durations(
-    duration_type,
     components,
     durations,
     fill='exact',
     cyclic=False,
+    in_seconds=False,
     overhang=False,
     ):
     '''Partition `components` according to `durations`.
-
-    Set `duration_type` to ``'prolated'`` or ``'seconds'``.
 
     When `fill` is ``'exact'`` then parts must equal `durations` exactly.
 
@@ -25,6 +21,8 @@ def _partition_components_by_durations(
     greater or equal to `durations`.
 
     Read `durations` cyclically when `cyclic` is true.
+
+    Read component durations in seconds when `in_seconds` is true.
 
     Return remaining components at end in final part when `overhang` is true.
     '''
@@ -48,10 +46,9 @@ def _partition_components_by_durations(
             component = components_copy.pop(0)
         except IndexError:
             break
-        if duration_type == 'seconds':
+        component_duration = component.duration
+        if in_seconds:
             component_duration = component.duration_in_seconds
-        elif duration_type == 'prolated':
-            component_duration = component.duration
         candidate_duration = cumulative_duration + component_duration
         if candidate_duration < target_duration:
             part.append(component)
@@ -72,10 +69,10 @@ def _partition_components_by_durations(
             elif fill == 'less':
                 result.append(part)
                 part = [component]
-                if duration_type == 'seconds':
+                if in_seconds:
                     cumulative_duration = \
                         sum([x.duration_in_seconds for x in part])
-                elif duration_type == 'prolated':
+                else:
                     cumulative_duration = sum([x.duration for x in part])
                 current_duration_index += 1
                 try:
