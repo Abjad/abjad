@@ -2,11 +2,11 @@ from abjad.tools import durationtools
 from abjad.tools import sequencetools
 
 
-def _partition_components_by_durations(
+def partition_components_by_durations(
     components,
     durations,
-    fill='exact',
     cyclic=False,
+    fill='exact',
     in_seconds=False,
     overhang=False,
     ):

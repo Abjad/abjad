@@ -185,6 +185,7 @@ Core composition packages
       tools/componenttools/is_immediate_temporal_successor_of_component
       tools/componenttools/move_component_subtree_to_right_in_immediate_parent_of_component
       tools/componenttools/move_parentage_and_spanners_from_components_to_components
+      tools/componenttools/partition_components_by_durations
       tools/componenttools/partition_components_by_durations_exactly
       tools/componenttools/partition_components_by_durations_not_greater_than
       tools/componenttools/partition_components_by_durations_not_less_than
@@ -270,6 +271,7 @@ Core composition packages
       tools/componenttools/is_immediate_temporal_successor_of_component
       tools/componenttools/move_component_subtree_to_right_in_immediate_parent_of_component
       tools/componenttools/move_parentage_and_spanners_from_components_to_components
+      tools/componenttools/partition_components_by_durations
       tools/componenttools/partition_components_by_durations_exactly
       tools/componenttools/partition_components_by_durations_not_greater_than
       tools/componenttools/partition_components_by_durations_not_less_than

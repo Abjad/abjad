@@ -7,14 +7,13 @@ def partition_components_by_durations_not_greater_than(
     ):
     r'''.. versionadded:: 1.1
     '''
-    from abjad.tools.componenttools._partition_components_by_durations \
-        import _partition_components_by_durations
+    from abjad.tools import componenttools
 
-    return _partition_components_by_durations(
+    return componenttools.partition_components_by_durations(
         components,
         durations,
-        fill='less',
         cyclic=cyclic,
+        fill='less',
         in_seconds=in_seconds,
         overhang=overhang,
         )

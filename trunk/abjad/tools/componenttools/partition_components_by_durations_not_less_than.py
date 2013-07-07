@@ -14,8 +14,8 @@ def partition_components_by_durations_not_less_than(
 
     ::
 
-        >>> string = "abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 || 2/8 b'8 c''8 |"
-        >>> staff = Staff(string)
+        >>> staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+        >>> staff.extend("abj: | 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
 
     ::
 
@@ -59,18 +59,14 @@ def partition_components_by_durations_not_less_than(
         [Note("b'8"), Note("c''8")]
 
     Return list of lists.
-
-    Function works not just on components but on any durated objects 
-    including spanners.
     '''
-    from abjad.tools.componenttools._partition_components_by_durations \
-        import _partition_components_by_durations
+    from abjad.tools import componenttools
 
-    return _partition_components_by_durations(
+    return componenttools.partition_components_by_durations(
         components,
         durations,
-        fill='greater',
         cyclic=cyclic,
+        fill='greater',
         in_seconds=in_seconds,
         overhang=overhang,
         )
