@@ -1,16 +1,25 @@
-def transpose_pitch_carrier_by_melodic_interval(pitch_carrier, melodic_interval):
+import numbers
+
+
+def transpose_pitch_carrier_by_melodic_interval(
+    pitch_carrier, melodic_interval):
     '''.. versionadded:: 2.0
 
-    Transpose `pitch_carrier` by diatonic `melodic_interval`::
+    Transpose `pitch_carrier` by diatonic `melodic_interval`:
+
+    ::
 
         >>> chord = Chord("<c' e' g'>4")
 
     ::
 
-        >>> pitchtools.transpose_pitch_carrier_by_melodic_interval(chord, '+m2')
+        >>> pitchtools.transpose_pitch_carrier_by_melodic_interval(
+        ...     chord, '+m2')
         Chord("<df' f' af'>4")
 
-    Transpose `pitch_carrier` by chromatic `melodic_interval`::
+    Transpose `pitch_carrier` by chromatic `melodic_interval`:
+
+    ::
 
         >>> chord = Chord("<c' e' g'>4")
 
@@ -32,15 +41,87 @@ def transpose_pitch_carrier_by_melodic_interval(pitch_carrier, melodic_interval)
 
     Return `pitch_carrier`.
     '''
+    from abjad.tools import chordtools
+    from abjad.tools import componenttools
+    from abjad.tools import notetools
     from abjad.tools import pitchtools
-    from abjad.tools.pitchtools._transpose_pitch_carrier_by_melodic_chromatic_interval import \
-        _transpose_pitch_carrier_by_melodic_chromatic_interval
-    from abjad.tools.pitchtools._transpose_pitch_carrier_by_melodic_diatonic_interval import \
-        _transpose_pitch_carrier_by_melodic_diatonic_interval
 
-    if isinstance(melodic_interval, (pitchtools.MelodicDiatonicInterval, str)):
-        melodic_interval = pitchtools.MelodicDiatonicInterval(melodic_interval)
-        return _transpose_pitch_carrier_by_melodic_diatonic_interval(pitch_carrier, melodic_interval)
+    def _transpose_pitch_by_melodic_diatonic_interval(pitch, mdi):
+        chromatic_pitch_number = pitch.chromatic_pitch_number + mdi.semitones
+        diatonic_pitch_class_number = \
+            (pitch.diatonic_pitch_class_number + mdi.staff_spaces) % 7
+        diatonic_pitch_class_name = \
+            pitchtools.diatonic_pitch_class_number_to_diatonic_pitch_class_name(
+            diatonic_pitch_class_number)
+        named_chromatic_pitch = pitchtools.NamedChromaticPitch(
+            chromatic_pitch_number, diatonic_pitch_class_name)
+        return type(pitch)(named_chromatic_pitch)
+
+    def _transpose_pitch_carrier_by_melodic_diatonic_interval(
+        pitch_carrier, melodic_diatonic_interval):
+        mdi = pitchtools.MelodicDiatonicInterval(melodic_diatonic_interval)
+        if isinstance(pitch_carrier, pitchtools.Pitch):
+            return _transpose_pitch_by_melodic_diatonic_interval(
+                pitch_carrier, mdi)
+        elif isinstance(pitch_carrier, notetools.Note):
+            new_note = componenttools.copy_components_and_remove_spanners(
+                [pitch_carrier])[0]
+            new_pitch = _transpose_pitch_by_melodic_diatonic_interval(
+                pitch_carrier.written_pitch, mdi)
+            new_note.written_pitch = new_pitch
+            return new_note
+        elif isinstance(pitch_carrier, chordtools.Chord):
+            new_chord = componenttools.copy_components_and_remove_spanners(
+                [pitch_carrier])[0]
+            for new_nh, old_nh in \
+                zip(new_chord.note_heads, pitch_carrier.note_heads):
+                new_pitch = _transpose_pitch_by_melodic_diatonic_interval(
+                    old_nh.written_pitch, mdi)
+                new_nh.written_pitch = new_pitch
+            return new_chord
+        else:
+            return pitch_carrier
+
+    def _transpose_pitch_carrier_by_melodic_chromatic_interval(
+        pitch_carrier, melodic_chromatic_interval):
+        mci = pitchtools.MelodicChromaticInterval(melodic_chromatic_interval)
+        if isinstance(pitch_carrier, pitchtools.Pitch):
+            number = pitch_carrier.chromatic_pitch_number + mci.semitones
+            return type(pitch_carrier)(number)
+        elif isinstance(pitch_carrier, numbers.Number):
+            pitch_carrier = pitchtools.NumberedChromaticPitch(pitch_carrier)
+            result = _transpose_pitch_carrier_by_melodic_chromatic_interval(
+                pitch_carrier, mci)
+            return result.chromatic_pitch_number
+        elif isinstance(pitch_carrier, notetools.Note):
+            new_note = componenttools.copy_components_and_remove_spanners(
+                [pitch_carrier])[0]
+            number = abs(pitch_carrier.written_pitch.numbered_chromatic_pitch)
+            number += mci.number
+            new_pitch = pitchtools.NamedChromaticPitch(number)
+            new_note.written_pitch = new_pitch
+            return new_note
+        elif isinstance(pitch_carrier, chordtools.Chord):
+            new_chord = componenttools.copy_components_and_remove_spanners(
+                [pitch_carrier])[0]
+            for new_nh, old_nh in \
+                zip(new_chord.note_heads, pitch_carrier.note_heads):
+                number = abs(old_nh.written_pitch.numbered_chromatic_pitch)
+                number += mci.number
+                new_pitch = pitchtools.NamedChromaticPitch(number)
+                new_nh.written_pitch = new_pitch
+            return new_chord
+        else:
+            return pitch_carrier
+
+    diatonic_types = (pitchtools.MelodicDiatonicInterval, str)
+    if isinstance(melodic_interval, diatonic_types):
+        melodic_interval = \
+            pitchtools.MelodicDiatonicInterval(melodic_interval)
+        return _transpose_pitch_carrier_by_melodic_diatonic_interval(
+            pitch_carrier, melodic_interval)
     else:
-        melodic_interval = pitchtools.MelodicChromaticInterval(melodic_interval)
-        return _transpose_pitch_carrier_by_melodic_chromatic_interval(pitch_carrier, melodic_interval)
+        melodic_interval = \
+            pitchtools.MelodicChromaticInterval(melodic_interval)
+        return _transpose_pitch_carrier_by_melodic_chromatic_interval(
+            pitch_carrier, melodic_interval)
