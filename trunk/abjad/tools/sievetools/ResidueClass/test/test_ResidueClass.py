@@ -77,8 +77,8 @@ def test_ResidueClass_08():
 
     t = RC(1, 0)
 
-    py.test.raises(AttributeError, 't = t. get_congruent_bases()')
-    py.test.raises(AttributeError, 't = t. get_boolean_train()')
+    py.test.raises(Exception, 't = t. get_congruent_bases()')
+    py.test.raises(Exception, 't = t. get_boolean_train()')
 
     assert isinstance(t.get_congruent_bases(12), list)
     assert isinstance(t.get_boolean_train(12), list)

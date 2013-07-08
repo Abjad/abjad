@@ -134,10 +134,7 @@ class Sieve(_BaseResidueClass):
 
         Return list.
         '''
-        from abjad.tools.sievetools._process_min_max_attribute \
-            import _process_min_max_attribute
-
-        minimum, maximum = _process_min_max_attribute(*min_max)
+        minimum, maximum = self._process_min_max_attribute(*min_max)
         result = []
         cb = self.get_congruent_bases(minimum, maximum)
         for i in range(minimum, maximum ):
@@ -166,10 +163,7 @@ class Sieve(_BaseResidueClass):
 
         Return list.
         '''
-        from abjad.tools.sievetools._process_min_max_attribute \
-            import _process_min_max_attribute
-
-        minimum, maximum = _process_min_max_attribute(*min_max)
+        minimum, maximum = self._process_min_max_attribute(*min_max)
         if self.logical_operator == 'or':
             return self._get_congruent_bases(minimum, maximum, operator.ior)
         elif self.logical_operator == 'xor':
@@ -178,7 +172,7 @@ class Sieve(_BaseResidueClass):
             return self._get_congruent_bases(minimum, maximum, operator.iand)
 
     # TB: the +1 adjustment is necessary here because of
-    # _process_min_max_attribute() demands min strictly less than max;
+    # self._process_min_max_attribute() demands min strictly less than max;
     # that is, self.get_congruent_bases(0, 0) raises an exception;
     # so we work around this with self.get_congruent_bases(-1, 1) instead.
     def is_congruent_base(self, integer):

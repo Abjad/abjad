@@ -110,14 +110,14 @@ class ResidueClass(_BaseResidueClass):
             raise ValueError('modulo must be positive.')
         if not 0 <= residue < modulo:
             raise ValueError('abs(residue) must be < modulo')
-        object.__setattr__(self, '_modulo', modulo) # period
-        object.__setattr__(self, '_residue', residue) # phase
+        object.__setattr__(self, '_modulo', modulo)
+        object.__setattr__(self, '_residue', residue)
 
     def _init_by_rc_instance(self, rc):
         if not isinstance(rc, ResidueClass):
             raise TypeError('must be rc instance.')
-        object.__setattr__(self, '_modulo', rc.modulo) # period
-        object.__setattr__(self, '_residue', rc.residue) # phase
+        object.__setattr__(self, '_modulo', rc.modulo)
+        object.__setattr__(self, '_residue', rc.residue)
 
     ### PUBLIC PROPERTIES ###
 
@@ -154,12 +154,9 @@ class ResidueClass(_BaseResidueClass):
 
         Return list.
         '''
-        from abjad.tools.sievetools._process_min_max_attribute \
-            import _process_min_max_attribute
-
-        min, max = _process_min_max_attribute(*min_max)
+        minimum, maximum = self._process_min_max_attribute(*min_max)
         result = []
-        for i in range(min, max):
+        for i in range(minimum, maximum):
             if i % self.modulo == self.residue:
                 result.append(1)
             else:
@@ -185,12 +182,9 @@ class ResidueClass(_BaseResidueClass):
 
         Return list.
         '''
-        from abjad.tools.sievetools._process_min_max_attribute \
-            import _process_min_max_attribute
-
-        min, max = _process_min_max_attribute(*min_max)
+        minimum, maximum = self._process_min_max_attribute(*min_max)
         result = []
-        for i in range(min, max + 1):
+        for i in range(minimum, maximum + 1):
             if i % self.modulo == self.residue:
                 result.append(i)
         return result

@@ -6,7 +6,10 @@ class _BaseResidueClass(AbjadObject):
     '''Abstract base class for ResidueClass and Sieve.
     '''
 
+    ### CLASS VARIABLES ###
+
     __metaclass__ = abc.ABCMeta
+    
     __slots__ = ()
 
     ### SPECIAL METHODS ###
@@ -38,3 +41,24 @@ class _BaseResidueClass(AbjadObject):
         else:
             argB = [arg]
         return Sieve(argA + argB, op)
+
+    @staticmethod
+    def _process_min_max_attribute(*min_max):
+        '''Process minimum and maximum attributes.
+        The function expects at least one and at most two attributes.
+        Lone argument taken as range maximum.
+        '''
+        if len(min_max) == 0 or 2 < len(min_max):
+            raise ValueError(min_max)
+        elif len(min_max) == 1:
+            minimum = 0
+            maximum = min_max[0]
+        else:
+            minimum = min_max[0]
+            maximum = min_max[1]
+        if not (minimum < maximum and
+            isinstance(minimum, int) and
+            isinstance(maximum, int)):
+            message = 'arguments must be integers and min < max.'
+            raise ValueError(message)
+        return minimum, maximum
