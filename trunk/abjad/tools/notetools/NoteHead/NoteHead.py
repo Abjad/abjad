@@ -142,8 +142,31 @@ class NoteHead(SortableAttributeEqualityAbjadObject):
 
         Return string.
         '''
-        from abjad.tools.notetools._format_note_head import _format_note_head
-        return _format_note_head(self)
+        from abjad.tools.lilypondfiletools._format_lilypond_attribute \
+            import _format_lilypond_attribute
+        from abjad.tools.lilypondfiletools._format_lilypond_value \
+            import _format_lilypond_value
+        from abjad.tools import chordtools
+        # make sure note head has pitch
+        assert self.written_pitch
+        result = []
+        # format chord note head with optional tweaks
+        if isinstance(self._client, chordtools.Chord):
+            for key, value in vars(self.tweak).iteritems():
+                if not key.startswith('_'):
+                    result.append(r'\tweak %s %s' % (
+                        _format_lilypond_attribute(key),
+                        _format_lilypond_value(value)))
+        # format note head pitch
+        kernel = self.written_pitch.lilypond_format
+        if self.is_forced:
+            kernel += '!'
+        if self.is_cautionary:
+            kernel += '?'
+        result.append(kernel)
+        result = '\n'.join(result)
+        # return formatted note head
+        return result
 
     @property
     def named_chromatic_pitch(self):
