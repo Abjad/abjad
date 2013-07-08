@@ -1,11 +1,10 @@
+from abjad import *
 from abjad.tools.timeintervaltools import *
-from abjad.tools.timeintervaltools._make_test_intervals \
-	import _make_test_intervals
 import py.test
 
 
 def test_timeintervaltools_compute_logical_or_of_intervals_01():
-    tree = TimeIntervalTree(_make_test_intervals())
+    tree = TimeIntervalTree(timeintervaltools.make_test_intervals())
     logical_or = compute_logical_or_of_intervals(tree)
     target_signatures = [(0, 3), (5, 6), (6, 8), (8, 9), (9, 10),
         (10, 13), (15, 16), (16, 17), (17, 19),

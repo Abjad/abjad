@@ -1,6 +1,5 @@
+from abjad import *
 from abjad.tools.timeintervaltools import *
-from abjad.tools.timeintervaltools._make_test_intervals \
-	import _make_test_intervals
 
 
 def test_timeintervaltools_all_are_intervals_or_trees_or_empty_01():
@@ -46,5 +45,5 @@ def test_timeintervaltools_all_are_intervals_or_trees_or_empty_07():
 
 
 def test_timeintervaltools_all_are_intervals_or_trees_or_empty_08():
-    intervals = _make_test_intervals()
+    intervals = timeintervaltools.make_test_intervals()
     assert all_are_intervals_or_trees_or_empty(intervals)

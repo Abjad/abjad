@@ -1,11 +1,9 @@
 from abjad import *
 from abjad.tools.timeintervaltools import *
-from abjad.tools.timeintervaltools._make_test_intervals \
-	import _make_test_intervals
 
 
 def test_timeintervaltools_calculate_depth_centroid_of_intervals_01():
-    tree = TimeIntervalTree(_make_test_intervals())
+    tree = TimeIntervalTree(timeintervaltools.make_test_intervals())
     result = calculate_depth_centroid_of_intervals(tree)
     assert result == Fraction(137, 8)
 

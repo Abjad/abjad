@@ -1,11 +1,10 @@
+from abjad import *
 from abjad.tools.timeintervaltools import *
-from abjad.tools.timeintervaltools._make_test_intervals \
-	import _make_test_intervals
 import py.test
 
 
 def test_timeintervaltools_group_overlapping_intervals_and_yield_groups_01():
-    tree = TimeIntervalTree(_make_test_intervals())
+    tree = TimeIntervalTree(timeintervaltools.make_test_intervals())
 
     target_signatures = [
         [(0, 3)],

@@ -1,13 +1,11 @@
 from abjad import *
 from abjad.tools.timeintervaltools import *
-from abjad.tools.timeintervaltools._make_test_intervals \
-	import _make_test_intervals
 import py.test
 
 
 def test_timeintervaltools_shift_aggregate_offset_to_rational_01():
     rational = 0
-    tree = TimeIntervalTree(_make_test_intervals())
+    tree = TimeIntervalTree(timeintervaltools.make_test_intervals())
 
     shifted = shift_aggregate_offset_by_rational(tree, rational)
 
@@ -17,7 +15,7 @@ def test_timeintervaltools_shift_aggregate_offset_to_rational_01():
 
 def test_timeintervaltools_shift_aggregate_offset_to_rational_02():
     rational = Fraction(1, 2)
-    tree = TimeIntervalTree(_make_test_intervals())
+    tree = TimeIntervalTree(timeintervaltools.make_test_intervals())
 
     shifted = shift_aggregate_offset_by_rational(tree, rational)
 
@@ -27,7 +25,7 @@ def test_timeintervaltools_shift_aggregate_offset_to_rational_02():
 
 def test_timeintervaltools_shift_aggregate_offset_to_rational_03():
     rational = Fraction(-1, 2)
-    tree = TimeIntervalTree(_make_test_intervals())
+    tree = TimeIntervalTree(timeintervaltools.make_test_intervals())
 
     shifted = shift_aggregate_offset_by_rational(tree, rational)
 
@@ -37,7 +35,7 @@ def test_timeintervaltools_shift_aggregate_offset_to_rational_03():
 
 def test_timeintervaltools_shift_aggregate_offset_to_rational_04():
     rational = Fraction(-1, 2)
-    tree = TimeIntervalTree(_make_test_intervals())
+    tree = TimeIntervalTree(timeintervaltools.make_test_intervals())
 
     shifted = shift_aggregate_offset_by_rational(tree, rational)
     shifted = shift_aggregate_offset_by_rational(shifted, -1 * rational)

@@ -1,4 +1,4 @@
-def _make_test_intervals():
+def make_test_intervals():
     from abjad.tools import timeintervaltools
 
     return [

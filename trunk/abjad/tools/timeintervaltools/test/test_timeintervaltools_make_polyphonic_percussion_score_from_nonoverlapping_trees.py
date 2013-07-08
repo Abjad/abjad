@@ -1,6 +1,4 @@
 from abjad.tools.timeintervaltools import *
-from abjad.tools.timeintervaltools._make_test_intervals \
-	import _make_test_intervals
 
 
 def test_timeintervaltools_make_polyphonic_percussion_score_from_nonoverlapping_trees_01():

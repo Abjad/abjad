@@ -1,12 +1,10 @@
-from abjad.tools.timeintervaltools import compute_depth_of_intervals
+from abjad import *
 from abjad.tools.timeintervaltools.TimeIntervalTree import TimeIntervalTree
-from abjad.tools.timeintervaltools._make_test_intervals \
-	import _make_test_intervals
 
 
 def test_timeintervaltools_compute_depth_of_intervals_01():
-    tree = TimeIntervalTree(_make_test_intervals())
-    depths = compute_depth_of_intervals(tree)
+    tree = TimeIntervalTree(timeintervaltools.make_test_intervals())
+    depths = timeintervaltools.compute_depth_of_intervals(tree)
     target = [
         ((0, 3), 1),
         ((3, 5), 0),
