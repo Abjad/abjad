@@ -1,5 +1,8 @@
-from abjad.tools.importtools._import_functions_in_package_to_namespace import _import_functions_in_package_to_namespace
+from abjad.tools import importtools
 
-_import_functions_in_package_to_namespace(__path__[0], globals())
+importtools.import_structured_package(
+	__path__[0],
+	globals(),
+	package_root_name='abjad')
 
 _documentation_section = 'core'
