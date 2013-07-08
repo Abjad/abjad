@@ -33,13 +33,13 @@ class TwelveToneRow(NumberedChromaticPitchClassSegment):
 
     def __new__(cls, pitch_classes):
         from abjad.tools import pitchtools
-        from abjad.tools.pitchtools.TwelveToneRow._validate_pitch_classes \
-            import _validate_pitch_classes
-        pitch_classes = [pitchtools.NumberedChromaticPitchClass(pc) 
+        pitch_classes = [
+            pitchtools.NumberedChromaticPitchClass(pc) 
             for pc in pitch_classes]
-        _validate_pitch_classes(pitch_classes)
-        return pitchtools.NumberedChromaticPitchClassSegment.__new__(
+        self = pitchtools.NumberedChromaticPitchClassSegment.__new__(
             cls, pitch_classes)
+        self._validate_pitch_classes(pitch_classes)
+        return self
 
     ### SPECIAL METHODS ###
 
@@ -69,3 +69,12 @@ class TwelveToneRow(NumberedChromaticPitchClassSegment):
     @property
     def _contents_string(self):
         return ', '.join([str(abs(pc)) for pc in self])
+
+    ### PRIVATE METHODS ###
+
+    @staticmethod
+    def _validate_pitch_classes(pitch_classes):
+        numbers = [abs(pc) for pc in pitch_classes]
+        numbers.sort()
+        if not numbers == range(12):
+            raise ValueError('must contain all twelve pitch-classes.')
