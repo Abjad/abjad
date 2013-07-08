@@ -8,8 +8,6 @@ def fill_measures_in_expr_with_full_measure_spacer_skips(expr, iterctrl=None):
     '''
     from abjad.tools import contexttools
     from abjad.tools import iterationtools
-    from abjad.tools.spannertools._withdraw_component_from_attached_spanners import \
-        _withdraw_component_from_attached_spanners
 
     if iterctrl is None:
         iterctrl = lambda measure, i: True
@@ -19,7 +17,8 @@ def fill_measures_in_expr_with_full_measure_spacer_skips(expr, iterctrl=None):
             skip = skiptools.Skip(1)
             # allow zero-update iteration
             time_siganture = contexttools.get_effective_time_signature(measure)
-            #skip.duration_multiplier = time_siganture.duration / time_siganture.multiplier
-            skip.duration_multiplier = time_siganture.duration / time_siganture.implied_prolation
+            skip.duration_multiplier = \
+                time_siganture.duration / time_siganture.implied_prolation
             measure[:] = [skip]
-            _withdraw_component_from_attached_spanners(measure)
+            for spanner in measure.spanners:
+                spanner._remove(component)
