@@ -150,12 +150,17 @@ def remove_component_subtree_from_score_and_spanners(components):
     .. todo:: regularize return value of function.
     '''
     from abjad.tools import componenttools
-    from abjad.tools.spannertools._withdraw_components_in_expr_from_attached_spanners \
-        import _withdraw_components_in_expr_from_attached_spanners
+    from abjad.tools import iterationtools
 
+    # check input
     assert componenttools.all_are_components(components)
 
+    # remove from score and spanners
     for component in components:
         component._remove_from_parent()
-        _withdraw_components_in_expr_from_attached_spanners([component])
+        for child in iterationtools.iterate_components_in_expr([component]):
+            for spanner in child.spanners:
+                spanner._remove(child)
+
+    # return components
     return components
