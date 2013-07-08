@@ -1772,10 +1772,8 @@ Core composition packages
       tools/pitcharraytools/all_are_pitch_arrays
       tools/pitcharraytools/concatenate_pitch_arrays
       tools/pitcharraytools/list_nonspanning_subarrays_of_pitch_array
-      tools/pitcharraytools/make_empty_pitch_array_from_list_of_pitch_lists
       tools/pitcharraytools/make_pitch_array_from_leaf_iterables
       tools/pitcharraytools/make_pitch_array_score_from_pitch_arrays
-      tools/pitcharraytools/make_populated_pitch_array_from_list_of_pitch_lists
       tools/pitcharraytools/pitch_array_row_to_measure
       tools/pitcharraytools/pitch_array_to_measures
 
@@ -1799,10 +1797,8 @@ Core composition packages
       tools/pitcharraytools/all_are_pitch_arrays
       tools/pitcharraytools/concatenate_pitch_arrays
       tools/pitcharraytools/list_nonspanning_subarrays_of_pitch_array
-      tools/pitcharraytools/make_empty_pitch_array_from_list_of_pitch_lists
       tools/pitcharraytools/make_pitch_array_from_leaf_iterables
       tools/pitcharraytools/make_pitch_array_score_from_pitch_arrays
-      tools/pitcharraytools/make_populated_pitch_array_from_list_of_pitch_lists
       tools/pitcharraytools/pitch_array_row_to_measure
       tools/pitcharraytools/pitch_array_to_measures
 

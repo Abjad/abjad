@@ -1,5 +1,4 @@
 from abjad import *
-from abjad.tools import pitcharraytools
 
 
 def test_pitcharraytools_make_empty_pitch_array_from_list_of_pitch_lists_01():
@@ -35,7 +34,8 @@ def test_pitcharraytools_make_empty_pitch_array_from_list_of_pitch_lists_01():
     >>
     '''
 
-    pitch_array = pitcharraytools.make_empty_pitch_array_from_list_of_pitch_lists(score)
+    pitch_array = pitcharraytools.make_pitch_array_from_leaf_iterables(
+        score, populate=False)
 
     '''
     [] [] [] [] [] []
@@ -82,7 +82,8 @@ def test_pitcharraytools_make_empty_pitch_array_from_list_of_pitch_lists_02():
     >>
     '''
 
-    pitch_array = pitcharraytools.make_empty_pitch_array_from_list_of_pitch_lists(score)
+    pitch_array = pitcharraytools.make_pitch_array_from_leaf_iterables(
+        score, populate=False)
 
     '''
     [      ] [      ] [      ] [      ]
