@@ -2,7 +2,7 @@ import os
 
 
 # TODO: change name to '_get_public_function_names_in_module'
-def _get_public_names_in_module(module_file):
+def get_public_function_names_in_module(module_file):
     '''Collects and returns all public functions defined in module_file.'''
     result = []
     module_file = module_file.replace(os.sep, '.')

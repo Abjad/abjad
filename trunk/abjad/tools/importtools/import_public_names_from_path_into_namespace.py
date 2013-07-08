@@ -1,9 +1,9 @@
-from abjad.tools.importtools._get_public_names_in_module import _get_public_names_in_module
-from abjad.tools.importtools._import_contents_of_public_packages_in_path_into_namespace import _import_contents_of_public_packages_in_path_into_namespace
+from abjad.tools.importtools.get_public_function_names_in_module import get_public_function_names_in_module
+from abjad.tools.importtools.import_contents_of_public_packages_in_path_into_namespace import import_contents_of_public_packages_in_path_into_namespace
 import os
 
 
-def _import_public_names_from_path_into_namespace(path, namespace, package_root_name='abjad'):
+def import_public_names_from_path_into_namespace(path, namespace, package_root_name='abjad'):
     r'''Inspect the top level of path.
 
     Find .py modules in path and import public functions from .py modules into namespace.
@@ -24,7 +24,7 @@ def _import_public_names_from_path_into_namespace(path, namespace, package_root_
             if not element.startswith('_') and element.endswith('.py'):
                 # import function inside module
                 submod = os.path.join(module, element[:-3])
-                functions = _get_public_names_in_module(submod)
+                functions = get_public_function_names_in_module(submod)
                 for f in functions:
                     #namespace[f.__name__] = f
                     # handle public function decorated with @require
@@ -42,9 +42,9 @@ def _import_public_names_from_path_into_namespace(path, namespace, package_root_
         else:
             raise ImportError('Not a dir, not a file, what is %s?' % element)
 
-    _import_contents_of_public_packages_in_path_into_namespace(path, namespace, package_root_name)
+    import_contents_of_public_packages_in_path_into_namespace(path, namespace, package_root_name)
 
     try:
-        del(namespace['_import_public_names_from_path_into_namespace'])
+        del(namespace['import_public_names_from_path_into_namespace'])
     except KeyError:
         pass

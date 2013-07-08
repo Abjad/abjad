@@ -1,8 +1,8 @@
-from abjad.tools.importtools._get_public_names_in_module import _get_public_names_in_module
+from abjad.tools.importtools.get_public_function_names_in_module import get_public_function_names_in_module
 import os
 
 
-def _import_contents_of_public_packages_in_path_into_namespace(
+def import_contents_of_public_packages_in_path_into_namespace(
     path, namespace, package_root_name = 'abjad'):
     r'''Inspect the top level of path.
 
@@ -22,11 +22,11 @@ def _import_contents_of_public_packages_in_path_into_namespace(
                 os.path.exists(os.path.join(fullname, '%s.py' % name)):
                 class_package = '.'.join([parent_package, name])
                 class_module = '.'.join([class_package, name])
-                public_names = _get_public_names_in_module(class_module)
+                public_names = get_public_function_names_in_module(class_module)
                 for public_name in public_names:
                     namespace[public_name.__name__] = public_name
 
     try:
-        del(namespace['_import_contents_of_public_packages_in_path_into_namespace'])
+        del(namespace['import_contents_of_public_packages_in_path_into_namespace'])
     except KeyError:
         pass
