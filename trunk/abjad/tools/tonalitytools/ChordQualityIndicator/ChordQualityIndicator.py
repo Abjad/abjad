@@ -1,5 +1,7 @@
 from abjad.tools import pitchtools
+from abjad.tools import sequencetools
 from abjad.tools.pitchtools import HarmonicDiatonicIntervalSegment
+from abjad.tools.pitchtools import HarmonicDiatonicInterval
 
 
 class ChordQualityIndicator(HarmonicDiatonicIntervalSegment):
@@ -17,23 +19,16 @@ class ChordQualityIndicator(HarmonicDiatonicIntervalSegment):
     ### INITIALIZER ###
 
     def __new__(self, quality_string, extent='triad', inversion='root'):
-        from abjad.tools.tonalitytools.ChordQualityIndicator._invert_quality_indicator \
-            import _invert_quality_indicator
         if extent in ('triad', 5):
-            from abjad.tools.tonalitytools.ChordQualityIndicator._init_triad \
-                import _init_triad
-            intervals = _init_triad(quality_string)
+            intervals = self._init_triad(quality_string)
         elif extent in ('seventh', 7):
-            from abjad.tools.tonalitytools.ChordQualityIndicator._init_seventh \
-                import _init_seventh
-            intervals = _init_seventh(quality_string)
+            intervals = self._init_seventh(quality_string)
         elif extent in ('ninth', 9):
-            from abjad.tools.tonalitytools.ChordQualityIndicator._init_ninth \
-                import _init_ninth
-            intervals = _init_ninth(quality_string)
+            intervals = self._init_ninth(quality_string)
         else:
             raise ValueError('unknown chord quality indicator arguments.')
-        intervals, rotation = _invert_quality_indicator(intervals, inversion)
+        intervals, rotation = self._invert_quality_indicator(
+            intervals, inversion)
         new = tuple.__new__(self, intervals)
         tuple.__setattr__(new, '_rotation', rotation)
         tuple.__setattr__(new, '_quality_string', quality_string)
@@ -48,16 +43,28 @@ class ChordQualityIndicator(HarmonicDiatonicIntervalSegment):
 
     @property
     def _acceptable_ninth_qualities(self):
-        return ('dominant', )
+        return (
+            'dominant',
+            )
 
     @property
     def _acceptable_seventh_qualities(self):
-        return ('dominant', 'major', 'minor',
-            'fully diminshed', 'half diminished')
+        return (
+            'dominant',
+            'major',
+            'minor',
+            'fully diminshed',
+            'half diminished',
+            )
 
     @property
     def _acceptable_triad_qualities(self):
-        return ('major', 'minor', 'diminished', 'augmented')
+        return (
+            'major',
+            'minor',
+            'diminished',
+            'augmented',
+            )
 
     @property
     def _chord_position_string(self):
@@ -70,89 +77,107 @@ class ChordQualityIndicator(HarmonicDiatonicIntervalSegment):
 
     ### PRIVATE METHODS ###
 
-#   def _init_ninth(self, quality_string):
-#      if quality_string == 'dominant':
-#         intervals = [HarmonicDiatonicInterval('major', 3),
-#            HarmonicDiatonicInterval('perfect', 5),
-#            HarmonicDiatonicInterval('minor', 7),
-#            HarmonicDiatonicInterval('major', 9)]
-#      else:
-#         raise ValueError("ninth quality string '%s' must be in %s." % (
-#            quality_string, self._acceptable_ninth_qualities))
-#      intervals.insert(0, HarmonicDiatonicInterval('perfect', 1))
-#      self.extend(intervals)
-#      self._quality_string = quality_string
+    @staticmethod
+    def _init_ninth(quality_string):
+        if quality_string == 'dominant':
+            intervals = [
+                HarmonicDiatonicInterval('major', 3),
+                HarmonicDiatonicInterval('perfect', 5),
+                HarmonicDiatonicInterval('minor', 7),
+                HarmonicDiatonicInterval('major', 9),
+                ]
+        else:
+            raise ValueError('unacceptable quality string.')
+        intervals.insert(0, HarmonicDiatonicInterval('perfect', 1))
+        return intervals
 
-#   def _init_seventh(quality_string):
-#      if quality_string == 'dominant':
-#         intervals = [HarmonicDiatonicInterval('major', 3),
-#            HarmonicDiatonicInterval('perfect', 5),
-#            HarmonicDiatonicInterval('minor', 7)]
-#      elif quality_string == 'major':
-#         intervals = [HarmonicDiatonicInterval('major', 3),
-#            HarmonicDiatonicInterval('perfect', 5),
-#            HarmonicDiatonicInterval('major', 7)]
-#      elif quality_string == 'minor':
-#         intervals = [HarmonicDiatonicInterval('minor', 3),
-#            HarmonicDiatonicInterval('perfect', 5),
-#            HarmonicDiatonicInterval('minor', 7)]
-#      elif quality_string in ('diminished', 'fully diminished'):
-#         intervals = [HarmonicDiatonicInterval('minor', 3),
-#            HarmonicDiatonicInterval('diminished', 5),
-#            HarmonicDiatonicInterval('diminished', 7)]
-#      elif quality_string == 'half diminished':
-#         intervals = [HarmonicDiatonicInterval('minor', 3),
-#            HarmonicDiatonicInterval('perfect', 5),
-#            HarmonicDiatonicInterval('diminished', 7)]
-#      else:
-#         raise ValueError("seventh quality string '%s' must be in %s." % (
-#            quality_string, self._acceptable_seventh_qualities))
-#      intervals.insert(0, HarmonicDiatonicInterval('perfect', 1))
-#      #self.extend(intervals)
-#      #self._quality_string = quality_string
-#      return intervals
+    @staticmethod
+    def _init_seventh(quality_string):
+        if quality_string == 'dominant':
+            intervals = [
+                HarmonicDiatonicInterval('major', 3),
+                HarmonicDiatonicInterval('perfect', 5),
+                HarmonicDiatonicInterval('minor', 7),
+                ]
+        elif quality_string == 'major':
+            intervals = [
+                HarmonicDiatonicInterval('major', 3),
+                HarmonicDiatonicInterval('perfect', 5),
+                HarmonicDiatonicInterval('major', 7),
+                ]
+        elif quality_string == 'minor':
+            intervals = [
+                HarmonicDiatonicInterval('minor', 3),
+                HarmonicDiatonicInterval('perfect', 5),
+                HarmonicDiatonicInterval('minor', 7),
+                ]
+        elif quality_string in ('diminished', 'fully diminished'):
+            intervals = [
+                HarmonicDiatonicInterval('minor', 3),
+                HarmonicDiatonicInterval('diminished', 5),
+                HarmonicDiatonicInterval('diminished', 7),
+                ]
+        elif quality_string == 'half diminished':
+            intervals = [
+                HarmonicDiatonicInterval('minor', 3),
+                HarmonicDiatonicInterval('perfect', 5),
+                HarmonicDiatonicInterval('diminished', 7),
+                ]
+        else:
+           raise ValueError('unaccpetable quality string.')
+        intervals.insert(0, HarmonicDiatonicInterval('perfect', 1))
+        return intervals
 
-#   def _init_triad(self, quality_string):
-#      if quality_string == 'major':
-#         intervals = [HarmonicDiatonicInterval('major', 3),
-#            HarmonicDiatonicInterval('perfect', 5)]
-#      elif quality_string == 'minor':
-#         intervals = [HarmonicDiatonicInterval('minor', 3),
-#            HarmonicDiatonicInterval('perfect', 5)]
-#      elif quality_string == 'diminished':
-#         intervals = [HarmonicDiatonicInterval('minor', 3),
-#            HarmonicDiatonicInterval('diminished', 5)]
-#      elif quality_string == 'augmented':
-#         intervals = [HarmonicDiatonicInterval('major', 3),
-#            HarmonicDiatonicInterval('augmented', 5)]
-#      else:
-#         raise ValueError("triad quality string '%s' must be in %s." % (
-#            quality_string, self._acceptable_triad_qualities))
-#      intervals.insert(0, HarmonicDiatonicInterval('perfect', 1))
-#      #self.extend(intervals)
-#      #self._quality_string = quality_string
-#      return intervals, quality_string
+    @staticmethod
+    def _init_triad(quality_string):
+        if quality_string == 'major':
+            intervals = [
+                HarmonicDiatonicInterval('major', 3),
+                HarmonicDiatonicInterval('perfect', 5),
+                ]
+        elif quality_string == 'minor':
+            intervals = [
+                HarmonicDiatonicInterval('minor', 3),
+                HarmonicDiatonicInterval('perfect', 5),
+                ]
+        elif quality_string == 'diminished':
+            intervals = [
+                HarmonicDiatonicInterval('minor', 3),
+                HarmonicDiatonicInterval('diminished', 5),
+                ]
+        elif quality_string == 'augmented':
+            intervals = [
+                HarmonicDiatonicInterval('major', 3),
+                HarmonicDiatonicInterval('augmented', 5),
+                ]
+        else:
+            raise ValueError('unacceptable quality string.')
+        intervals.insert(0, HarmonicDiatonicInterval('perfect', 1))
+        return intervals
 
-#   def _invert_quality_indicator(self, inversion):
-#      if isinstance(inversion, int):
-#         self.rotate(-inversion)
-#         self._rotation = -inversion
-#      elif inversion == 'root':
-#         self._rotation = 0
-#      elif inversion == 'first':
-#         self.rotate(-1)
-#         self._rotation = -1
-#      elif inversion == 'second':
-#         self.rotate(-2)
-#         self._rotation = -2
-#      elif inversion == 'third':
-#         self.rotate(-3)
-#         self._rotation = -3
-#      elif inversion == 'fourth':
-#         self.rotate(-4)
-#         self._rotation = -4
-#      else:
-#         raise ValueError('unknown inversion indicator: %s' % inversion)
+    @staticmethod
+    def _invert_quality_indicator(intervals, inversion):
+        if isinstance(inversion, int):
+            intervals = sequencetools.rotate_sequence(intervals, -inversion)
+            rotation = -inversion
+        elif inversion == 'root':
+            rotation = 0
+        elif inversion == 'first':
+            intervals = sequencetools.rotate_sequence(intervals, -1)
+            rotation = -1
+        elif inversion == 'second':
+            intervals = sequencetools.rotate_sequence(intervals, -2)
+            rotation = -2
+        elif inversion == 'third':
+            intervals = sequencetools.rotate_sequence(intervals, -3)
+            rotation = -3
+        elif inversion == 'fourth':
+            intervals = sequencetools.rotate_sequence(intervals, -4)
+            rotation = -4
+        else:
+            message = 'unknown inversion indicator: {!r}.'
+            raise ValueError(message.format(inversion))
+        return intervals, rotation
 
     ### PUBLIC PROPERTIES ###
 
