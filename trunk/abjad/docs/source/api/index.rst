@@ -2330,6 +2330,7 @@ Core composition packages
    .. toctree::
       :maxdepth: 1
 
+      tools/quantizationtools/make_test_time_segments
       tools/quantizationtools/millisecond_pitch_pairs_to_q_events
       tools/quantizationtools/milliseconds_to_q_events
       tools/quantizationtools/tempo_scaled_duration_to_milliseconds
@@ -2394,6 +2395,7 @@ Core composition packages
 
    .. toctree::
 
+      tools/quantizationtools/make_test_time_segments
       tools/quantizationtools/millisecond_pitch_pairs_to_q_events
       tools/quantizationtools/milliseconds_to_q_events
       tools/quantizationtools/tempo_scaled_duration_to_milliseconds

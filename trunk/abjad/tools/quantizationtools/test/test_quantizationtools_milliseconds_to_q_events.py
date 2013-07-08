@@ -2,14 +2,14 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import pitchtools
 from abjad.tools import quantizationtools
-from abjad.tools.quantizationtools._time_segments import _time_segments
 
 
 def test_quantizationtools_milliseconds_to_q_events_01():
     '''Test basic functionality.
     '''
 
-    durations = mathtools.difference_series([x[0] for x in _time_segments])
+    durations = mathtools.difference_series(
+        [x[0] for x in quantizationtools.make_test_time_segments()])
     q_events = quantizationtools.milliseconds_to_q_events(durations)
 
     assert q_events == [
