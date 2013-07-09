@@ -341,6 +341,8 @@ class Component(AbjadObject):
             raise ValueError(message)
 
     def _set_parent(self, new_parent):
+        '''Not composer-safe.
+        '''
         named_children = self._cache_named_children()
         self._remove_named_children_from_parentage(named_children)
         self._remove_from_parent()
