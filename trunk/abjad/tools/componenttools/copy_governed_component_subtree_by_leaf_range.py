@@ -1,49 +1,74 @@
-def copy_governed_component_subtree_by_leaf_range(component, start=0, stop=None):
+# TODO: bind to GovernorSelection?
+#       it might make sense to force the composer to select
+#       from `component` up to the governor of component;
+#       that operation would return a GovernorSelection;
+#       this method could be bound to GovernorSelection.
+def copy_governed_component_subtree_by_leaf_range(
+    component, start=0, stop=None):
     r'''.. versionadded:: 1.1
 
     Copy governed `component` subtree by leaf range.
 
     Governed subtree means `component` together with children of `component`.
 
-    Leaf range refers to the sequential parentage of `component` from `start` leaf index
-    to `stop` leaf index:
+    Leaf range refers to the sequential parentage of `component` 
+    from `start` leaf index to `stop` leaf index:
 
     ::
 
-        >>> voice = Voice(r"\times 2/3 { c'8 d'8 e'8 } \times 2/3 { f'8 g'8 a'8 }")
-        >>> t = Staff([voice])
+        >>> voice = Voice(r"\times 2/3 { c'4 d'4 e'4 }")
+        >>> voice.append(r"\times 2/3 { f'4 g'4 a'4 }")
+        >>> staff = Staff([voice])
 
     ::
 
-        >>> f(t)
+        >>> show(staff) # doctest: +SKIP
+
+    ::
+
+        >>> f(staff)
         \new Staff {
             \new Voice {
                 \times 2/3 {
-                    c'8
-                    d'8
-                    e'8
+                    c'4
+                    d'4
+                    e'4
                 }
                 \times 2/3 {
-                    f'8
-                    g'8
-                    a'8
+                    f'4
+                    g'4
+                    a'4
                 }
             }
         }
 
     ::
 
-        >>> u = componenttools.copy_governed_component_subtree_by_leaf_range(t, 1, 5)
-        >>> f(u)
+        >>> result = \
+        ...     componenttools.copy_governed_component_subtree_by_leaf_range(
+        ...     staff, 1, 5)
+
+    ::
+
+        >>> result
+        Staff{1}
+
+    ::
+
+        >>> show(result) # doctest: +SKIP
+
+    ::
+
+        >>> f(result)
         \new Staff {
             \new Voice {
                 \times 2/3 {
-                    d'8
-                    e'8
+                    d'4
+                    e'4
                 }
                 \times 2/3 {
-                    f'8
-                    g'8
+                    f'4
+                    g'4
                 }
             }
         }
@@ -53,7 +78,7 @@ def copy_governed_component_subtree_by_leaf_range(component, start=0, stop=None)
 
     Trim and shrink copied containers as necessary.
 
-    When `stop` is none copy all leaves from `start` forward.
+    Copy all leaves from `start` forward when `stop` is none.
 
     Return new components.
     '''
@@ -63,11 +88,14 @@ def copy_governed_component_subtree_by_leaf_range(component, start=0, stop=None)
 
     # trivial leaf lcopy
     if isinstance(component, leaftools.Leaf):
-        return componenttools.copy_components_and_fracture_crossing_spanners([component])[0]
+        result = \
+            componenttools.copy_components_and_fracture_crossing_spanners(
+                [component])
+        result = result[0]
 
-    # copy leaves from sequential containers only.
+    # copy leaves from sequential containers only
     if component.is_parallel:
-        raise ContiguityError('can not lcopy leaves from parallel container.')
+        raise Exception('can not copy from parallel container.')
 
     # assert valid start and stop
     leaves = component.leaves
@@ -84,10 +112,8 @@ def copy_governed_component_subtree_by_leaf_range(component, start=0, stop=None)
     governor = componenttools.get_most_distant_sequential_container_in_improper_parentage_of_component(
         leaves[start])
 
-    # new: find start and stop leaves in governor
+    # find start and stop leaves in governor
     governor_leaves = list(governor.leaves)
-    #start_index_in_governor = governor_leaves.index(start_leaf_in_component)
-    #stop_index_in_governor = governor_leaves.index(stop_leaf_in_component)
     for i, x in enumerate(governor_leaves):
         if x is start_leaf_in_component:
             start_index_in_governor = i
@@ -96,10 +122,12 @@ def copy_governed_component_subtree_by_leaf_range(component, start=0, stop=None)
             stop_index_in_governor = i
 
     # copy governor
-    governor_copy = componenttools.copy_components_and_fracture_crossing_spanners([governor])[0]
+    governor_copy = \
+        componenttools.copy_components_and_fracture_crossing_spanners(
+            [governor])[0]
     copy_leaves = governor_copy.leaves
 
-    # new: find start and stop leaves in copy of governor
+    # find start and stop leaves in copy of governor
     start_leaf = copy_leaves[start_index_in_governor]
     stop_leaf = copy_leaves[stop_index_in_governor]
 
@@ -108,20 +136,18 @@ def copy_governed_component_subtree_by_leaf_range(component, start=0, stop=None)
 
     while not _found_start_leaf:
         leaf = iterationtools.iterate_leaves_in_expr(governor_copy).next()
-        #if leaf == start_leaf:
         if leaf is start_leaf:
             _found_start_leaf = True
         else:
             leaftools.remove_leaf_and_shrink_durated_parent_containers(leaf)
 
-    #print 'moved on to trimming backwards ...'
-
     # trim governor copy backwards from last leaf
     _found_stop_leaf = False
 
     while not _found_stop_leaf:
-        leaf = iterationtools.iterate_leaves_in_expr(governor_copy, reverse=True).next()
-        #if leaf == stop_leaf:
+        reverse_iterator = iterationtools.iterate_leaves_in_expr(
+            governor_copy, reverse=True)
+        leaf = reverse_iterator.next()
         if leaf is stop_leaf:
             _found_stop_leaf = True
         else:

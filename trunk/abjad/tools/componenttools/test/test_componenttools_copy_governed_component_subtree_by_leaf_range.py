@@ -98,8 +98,9 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_03():
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
     t.is_parallel = True
 
-    assert py.test.raises(ContiguityError,
-        'componenttools.copy_governed_component_subtree_by_leaf_range(t, 1, 5)')
+    statement = 'componenttools.copy_governed_component_subtree_'
+    statement += 'by_leaf_range(t, 1, 5)'
+    assert py.test.raises(Exception, statement)
 
 
 def test_componenttools_copy_governed_component_subtree_by_leaf_range_04():
