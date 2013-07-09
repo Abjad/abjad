@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import multiprocessing
 import pickle
 from abjad.tools.abctools import AbjadObject

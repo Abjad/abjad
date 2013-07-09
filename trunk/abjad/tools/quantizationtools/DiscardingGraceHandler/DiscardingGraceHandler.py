@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from abjad.tools.quantizationtools.GraceHandler import GraceHandler
 
 

@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import abc
 import inspect
 from abjad.tools import durationtools

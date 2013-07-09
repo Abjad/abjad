@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import pprint
 from abjad.tools import mathtools
 from abjad.tools.quantizationtools.SearchTree import SearchTree

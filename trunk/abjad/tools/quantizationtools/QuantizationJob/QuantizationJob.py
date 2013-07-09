@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import inspect
 from abjad.tools.abctools import AbjadObject
 
