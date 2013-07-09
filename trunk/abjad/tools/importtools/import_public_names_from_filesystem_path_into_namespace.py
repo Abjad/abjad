@@ -5,7 +5,7 @@ from abjad.tools.importtools.import_contents_of_public_packages_in_path_into_nam
 import os
 
 
-def import_public_names_from_path_into_namespace(
+def import_public_names_from_filesystem_path_into_namespace(
     path, namespace, package_root_name='abjad'):
     r'''Inspect the top level of `path`.
 
@@ -48,6 +48,6 @@ def import_public_names_from_path_into_namespace(
         path, namespace, package_root_name)
 
     try:
-        del(namespace['import_public_names_from_path_into_namespace'])
+        del(namespace['import_public_names_from_filesystem_path_into_namespace'])
     except KeyError:
         pass
