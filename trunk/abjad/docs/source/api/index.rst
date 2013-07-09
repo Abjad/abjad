@@ -4820,6 +4820,7 @@ Abjad internal packages
       tools/importtools/get_public_function_names_in_module
       tools/importtools/import_contents_of_public_packages_in_path_into_namespace
       tools/importtools/import_public_names_from_filesystem_path_into_namespace
+      tools/importtools/import_public_names_from_packagesystem_path_into_namespace
       tools/importtools/import_structured_package
       tools/importtools/remove_modules_from_namespace
 
@@ -4833,6 +4834,7 @@ Abjad internal packages
       tools/importtools/get_public_function_names_in_module
       tools/importtools/import_contents_of_public_packages_in_path_into_namespace
       tools/importtools/import_public_names_from_filesystem_path_into_namespace
+      tools/importtools/import_public_names_from_packagesystem_path_into_namespace
       tools/importtools/import_structured_package
       tools/importtools/remove_modules_from_namespace
 
