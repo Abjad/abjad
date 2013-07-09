@@ -5,8 +5,11 @@ def label_leaves_in_expr_with_leaf_duration(expr, markup_direction=Down):
 
     ::
 
-        >>> tuplet = tuplettools.FixedDurationTuplet(Duration(1, 4), "c'8 d'8 e'8")
+        >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
         >>> labeltools.label_leaves_in_expr_with_leaf_duration(tuplet)
+
+    ::
+
         >>> f(tuplet)
         \times 2/3 {
             c'8 _ \markup { \small 1/12 }
@@ -20,8 +23,11 @@ def label_leaves_in_expr_with_leaf_duration(expr, markup_direction=Down):
 
     Return none.
     '''
-    from abjad.tools.labeltools._label_leaves_in_expr_with_leaf_durations import \
-        _label_leaves_in_expr_with_leaf_durations
+    from abjad.tools import labeltools
 
-    show = ['prolated']
-    return _label_leaves_in_expr_with_leaf_durations(expr, markup_direction=markup_direction, show=show)
+    return labeltools.label_leaves_in_expr_with_leaf_durations(
+        expr,
+        label_durations=True,
+        label_written_durations=False,
+        markup_direction=markup_direction,
+        )
