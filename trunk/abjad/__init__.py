@@ -20,8 +20,8 @@ from abjad.tools.configurationtools import AbjadConfiguration
 abjad_configuration = AbjadConfiguration()
 del AbjadConfiguration
 
-from abjad.tools.importtools._import_functions_in_package_to_namespace \
-    import _import_functions_in_package_to_namespace
+from abjad.tools.importtools.import_public_names_from_packagesystem_path_into_namespace \
+    import import_public_names_from_packagesystem_path_into_namespace
 from abjad.tools import *
 from abjad.tools.chordtools import Chord
 from abjad.tools.containertools import Container
@@ -45,7 +45,7 @@ import os
 
 # import Abjad exceptions in __builtins__ namespace
 _exceptions_path = os.path.join(__path__[0], 'tools', 'exceptiontools')
-_import_functions_in_package_to_namespace(_exceptions_path, __builtins__)
+import_public_names_from_packagesystem_path_into_namespace(_exceptions_path, __builtins__)
 
 del os
 del platform

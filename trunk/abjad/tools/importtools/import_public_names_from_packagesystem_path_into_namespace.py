@@ -5,7 +5,7 @@ from abjad.tools.importtools.remove_modules_from_namespace \
 import os
 
 
-def _import_functions_in_package_to_namespace(
+def import_public_names_from_packagesystem_path_into_namespace(
     package, namespace, skip_dirs=['test', '.svn']):
     '''Import all the functions defined in the modules of the package given
         as a string path into the given namespace.
@@ -48,7 +48,7 @@ def _import_functions_in_package_to_namespace(
 
     # remove myself
     try:
-        del(namespace['_import_functions_in_package_to_namespace'])
+        del(namespace['import_public_names_from_packagesystem_path_into_namespace'])
     # if we were importing into __builtins__, myself will raise KeyError
     except KeyError:
         pass
