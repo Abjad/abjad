@@ -1,6 +1,7 @@
 from abjad.tools import skiptools
 
 
+# TODO: remove in favor of measuretools.pad_measures_in_expr()
 def pad_measures_in_expr_with_skips(expr, front, back, splice=False):
     r'''.. versionadded:: 2.0
 
@@ -117,9 +118,10 @@ def pad_measures_in_expr_with_skips(expr, front, back, splice=False):
 
     Raise value error when `back` is neither a positive rational nor none.
     '''
-    from abjad.tools.layouttools._insert_measure_padding import _insert_measure_padding
+    from abjad.tools import measuretools
 
     class_token = skiptools.Skip((1, 4))
-    result = _insert_measure_padding(expr, front, back, class_token, splice=splice)
+    result = measuretools.pad_measures_in_expr(
+        expr, front, back, class_token, splice=splice)
 
     return result

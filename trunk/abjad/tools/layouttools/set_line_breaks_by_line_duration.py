@@ -5,7 +5,7 @@ from abjad.tools import measuretools
 
 
 # TODO: make public and possibly improve function name
-def _line_break_every(
+def set_line_breaks_by_line_duration(
     expr,
     line_duration,
     line_break_class=None,

@@ -1,20 +1,18 @@
 from abjad.tools import durationtools
 from abjad.tools import componenttools
 from abjad.tools import contexttools
-from abjad.tools import iterationtools
-from abjad.tools import leaftools
 from abjad.tools import mathtools
-from abjad.tools import resttools
-from abjad.tools import skiptools
 
 
-# TODO: make public and possibly improve function name
-def _insert_measure_padding(expr, front, back, pad_class, splice=False):
+def pad_measures_in_expr(expr, front, back, pad_class, splice=False):
     r'''.. versionadded:: 2.0
 
-    Generalizes measuretools.pad_measures_in_expr_with_rests() and
-    measuretools.pad_measures_in_expr_with_skips().
+    Pad measures in `expr`.
     '''
+    from abjad.tools import iterationtools
+    from abjad.tools import leaftools
+    from abjad.tools import resttools
+    from abjad.tools import skiptools
 
     if not isinstance(front, (durationtools.Duration, type(None))):
         raise ValueError

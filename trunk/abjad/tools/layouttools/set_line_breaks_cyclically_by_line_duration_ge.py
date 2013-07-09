@@ -1,6 +1,7 @@
 from abjad.tools import measuretools
 
 
+# TODO: remove in favor of layouttools.set_line_breaks_by_line_duration()
 def set_line_breaks_cyclically_by_line_duration_ge(
     expr,
     line_duration,
@@ -73,12 +74,12 @@ def set_line_breaks_cyclically_by_line_duration_ge(
     to move end-of-line LilyPond TimeSignature and BarLine grobs to
     the right.
     '''
-    from abjad.tools.layouttools._line_break_every import _line_break_every
+    from abjad.tools.layouttools.set_line_breaks_by_line_duration import set_line_breaks_by_line_duration
 
     if line_break_class is None:
         line_break_class = measuretools.Measure
 
-    _line_break_every(
+    set_line_breaks_by_line_duration(
         expr,
         line_duration,
         line_break_class,

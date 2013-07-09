@@ -1031,6 +1031,7 @@ Core composition packages
       :maxdepth: 1
 
       tools/layouttools/make_spacing_vector
+      tools/layouttools/set_line_breaks_by_line_duration
       tools/layouttools/set_line_breaks_cyclically_by_line_duration_ge
       tools/layouttools/set_line_breaks_cyclically_by_line_duration_in_seconds_ge
 
@@ -1049,6 +1050,7 @@ Core composition packages
    .. toctree::
 
       tools/layouttools/make_spacing_vector
+      tools/layouttools/set_line_breaks_by_line_duration
       tools/layouttools/set_line_breaks_cyclically_by_line_duration_ge
       tools/layouttools/set_line_breaks_cyclically_by_line_duration_in_seconds_ge
 
@@ -1628,6 +1630,7 @@ Core composition packages
       tools/measuretools/move_measure_prolation_to_full_measure_tuplet
       tools/measuretools/multiply_and_scale_contents_of_measures_in_expr
       tools/measuretools/multiply_contents_of_measures_in_expr
+      tools/measuretools/pad_measures_in_expr
       tools/measuretools/pad_measures_in_expr_with_rests
       tools/measuretools/pad_measures_in_expr_with_skips
       tools/measuretools/replace_contents_of_measures_in_expr
@@ -1680,6 +1683,7 @@ Core composition packages
       tools/measuretools/move_measure_prolation_to_full_measure_tuplet
       tools/measuretools/multiply_and_scale_contents_of_measures_in_expr
       tools/measuretools/multiply_contents_of_measures_in_expr
+      tools/measuretools/pad_measures_in_expr
       tools/measuretools/pad_measures_in_expr_with_rests
       tools/measuretools/pad_measures_in_expr_with_skips
       tools/measuretools/replace_contents_of_measures_in_expr
