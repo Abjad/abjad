@@ -3,6 +3,7 @@ from abjad.tools import pitchtools
 from abjad.tools.chordtools.Chord import Chord
 
 
+# TODO: remove in favor of chordtools.divide_chord()
 @decoratortools.requires(Chord, pitchtools.NamedChromaticPitch)
 def divide_chord_by_diatonic_pitch_number(chord, pitch=None):
     r'''.. versionadded:: 1.1
@@ -38,11 +39,11 @@ def divide_chord_by_diatonic_pitch_number(chord, pitch=None):
 
     Return pair of newly constructed leaves.
     '''
-    from abjad.tools.chordtools._divide_chord import _divide_chord
+    from abjad.tools import chordtools
 
     pitch = pitch or pitchtools.NamedChromaticPitch('b', 3)
 
-    treble_chord, bass_chord = _divide_chord(
+    treble_chord, bass_chord = chordtools.divide_chord(
         chord, pitch=pitch, attr='numbered_diatonic_pitch')
 
     return treble_chord, bass_chord

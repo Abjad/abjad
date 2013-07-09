@@ -81,6 +81,7 @@ Core composition packages
       tools/chordtools/all_are_chords
       tools/chordtools/arpeggiate_chord
       tools/chordtools/change_defective_chord_to_note_or_rest
+      tools/chordtools/divide_chord
       tools/chordtools/divide_chord_by_chromatic_pitch_number
       tools/chordtools/divide_chord_by_diatonic_pitch_number
       tools/chordtools/get_arithmetic_mean_of_chord
@@ -106,6 +107,7 @@ Core composition packages
       tools/chordtools/all_are_chords
       tools/chordtools/arpeggiate_chord
       tools/chordtools/change_defective_chord_to_note_or_rest
+      tools/chordtools/divide_chord
       tools/chordtools/divide_chord_by_chromatic_pitch_number
       tools/chordtools/divide_chord_by_diatonic_pitch_number
       tools/chordtools/get_arithmetic_mean_of_chord
