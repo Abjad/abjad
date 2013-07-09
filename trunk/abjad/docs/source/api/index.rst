@@ -4483,6 +4483,8 @@ Abjad internal packages
       :maxdepth: 1
 
       tools/developerscripttools/get_developer_script_classes
+      tools/developerscripttools/run_abjadbook
+      tools/developerscripttools/run_abjdev
 
 .. only:: latex
 
@@ -4525,6 +4527,8 @@ Abjad internal packages
    .. toctree::
 
       tools/developerscripttools/get_developer_script_classes
+      tools/developerscripttools/run_abjadbook
+      tools/developerscripttools/run_abjdev
 
 :py:mod:`documentationtools <abjad.tools.documentationtools>`
 =============================================================

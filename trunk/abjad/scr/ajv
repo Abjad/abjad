@@ -2,6 +2,6 @@
 
 
 if __name__ == '__main__':
-    from abjad.tools.developerscripttools._run_abjdev import _run_abjdev 
-    _run_abjdev()
+    from abjad.tools import developerscripttools
 
+    developerscripttools.run_abjdev()
