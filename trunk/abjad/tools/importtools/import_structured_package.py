@@ -16,3 +16,6 @@ def import_structured_package(path, namespace, package_root_name='abjad'):
         import_public_names_from_filesystem_path_into_namespace
 
     import_public_names_from_filesystem_path_into_namespace(path, namespace, package_root_name)
+
+    if 'importtools' in namespace:
+        del(namespace['importtools'])
