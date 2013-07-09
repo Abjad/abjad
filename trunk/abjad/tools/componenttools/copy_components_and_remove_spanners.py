@@ -16,45 +16,57 @@ def copy_components_and_remove_spanners(components, n=1):
 
     * Reapply spanners to `components`.
 
-    * Return unspanned copy.
+    * Return copied components.
 
-    Example:
+    Example 1. Copy components one time:
 
     ::
 
-        >>> voice = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
-        >>> beam = beamtools.BeamSpanner(voice.leaves[:4])
+        >>> voice = Voice("abj: | 2/4 c'4 ( d' || 2/4 e' f' ) |")
+
+    ::
+
         >>> f(voice)
         \new Voice {
             {
-                \time 2/8
-                c'8 [
-                d'8
+                \time 2/4
+                c'4 (
+                d'4
             }
             {
-                e'8
-                f'8 ]
-            }
-            {
-                g'8
-                a'8
+                e'4
+                f'4 )
             }
         }
 
     ::
 
-        >>> result = componenttools.copy_components_and_remove_spanners(voice.leaves[2:4])
+        >>> show(voice) # doctest: +SKIP
+
+    ::
+
+        >>> result = componenttools.copy_components_and_remove_spanners(
+        ...     voice.leaves[1:3])
+
+    ::
+
         >>> result
-        Selection(Note("e'8"), Note("f'8"))
+        Selection(Note("d'4"), Note("e'4"))
 
     ::
 
         >>> new_voice = Voice(result)
+
+    ::
+
+        >>> show(new_voice) # doctest: +SKIP
+
+    ::
+
         >>> f(new_voice)
         \new Voice {
-            e'8
-            f'8
+            d'4
+            e'4
         }
 
     ::
@@ -62,40 +74,55 @@ def copy_components_and_remove_spanners(components, n=1):
         >>> voice.leaves[2] is new_voice.leaves[0]
         False
 
-    Copy `components` a total of `n` times:
+    Example 2. Copy components multiple times:
 
     ::
 
-        >>> result = componenttools.copy_components_and_remove_spanners(voice.leaves[2:4], n=3)
-        >>> result
-        Selection(Note("e'8"), Note("f'8"), Note("e'8"), Note("f'8"), Note("e'8"), Note("f'8"))
+        >>> result = componenttools.copy_components_and_remove_spanners(
+        ...     voice.leaves[1:3], n=2)
 
     ::
 
         >>> new_voice = Voice(result)
+
+    ::
+
+        >>> show(new_voice) # doctest: +SKIP
+
+    ::
+
         >>> f(new_voice)
         \new Voice {
-            e'8
-            f'8
-            e'8
-            f'8
-            e'8
-            f'8
+            d'4
+            e'4
+            d'4
+            e'4
         }
 
-    Return type equal to input type.
+    Return selection.
     '''
     from abjad.tools import componenttools
+    from abjad.tools import selectiontools
 
-    if n < 1:
-        return []
-
+    # check input
     assert componenttools.all_are_thread_contiguous_components(components)
 
-    result = [component._copy_with_children_and_marks_but_without_spanners() for component in components]
-    result = type(components)(result)
+    # return empty selection when nothing to copy
+    if n < 1:
+        return selectiontools.Selection()
 
+    # copy components without spanners
+    result = []
+    for component in components:
+        new = component._copy_with_children_and_marks_but_without_spanners()
+        result.append(new)
+
+    # repeat as necessary
     for i in range(n - 1):
         result += copy_components_and_remove_spanners(components)
 
+    # set result type
+    result = type(components)(result)
+
+    # return result
     return result

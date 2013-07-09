@@ -59,13 +59,12 @@ def copy_components_and_immediate_parent_of_first_component(components):
         >>> componenttools.copy_components_and_immediate_parent_of_first_component(leaves)
         Tuplet(2/3, [c'8, d'8, e'8, f'8, g'8])
 
-    .. note:: this function copies only the *immediate parent* of
-        the first element in `components`. This function ignores any further
-        parentage of `components` above the immediate parent of `components`.
+    Note that  this function copies only the *immediate parent* of
+    the first element in `components`. This function ignores any further
+    parentage of `components` above the immediate parent of `components`.
 
-    .. todo:: this function should (but does not) copy marks that attach 
-        to `components` and to the immediate parent of the first component; 
-        extend function to do so.
+    Note that this function should (but does not) copy marks that attach 
+    to `components` and to the immediate parent of the first component.
 
     Return new components.
     '''

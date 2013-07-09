@@ -48,7 +48,10 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
         >>> beamtools.BeamSpanner(staff.leaves)
         BeamSpanner(c'8, d'8, e'8, f'8)
         >>> leaftools.set_preprolated_leaf_duration(staff[1], Duration(1, 12))
-        [Note("d'8")]
+        Selection(Note("d'8"),)
+
+    ::
+
         >>> f(staff)
         \new Staff {
             c'8 [
