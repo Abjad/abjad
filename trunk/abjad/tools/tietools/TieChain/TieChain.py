@@ -18,7 +18,7 @@ class TieChain(Selection):
 
     ::
 
-        >>> tietools.get_tie_chain(staff[2])
+        >>> staff[2].get_tie_chain()
         TieChain(Note("e'4"), Note("e'4"))
 
     Tie chains are immutable score selections.
@@ -159,7 +159,7 @@ class TieChain(Selection):
 
         ::
 
-            >>> tie_chain = tietools.get_tie_chain(staff[0])
+            >>> tie_chain = staff[0].get_tie_chain()
             >>> tie_chain.to_tuplet([2, 1, 1, 1], is_diminution=True)
             FixedDurationTuplet(3/16, [c'8, c'16, c'16, c'16])
 
@@ -213,7 +213,7 @@ class TieChain(Selection):
 
         ::
 
-            >>> tie_chain = tietools.get_tie_chain(staff[0])
+            >>> tie_chain = staff[0].get_tie_chain()
             >>> tie_chain.to_tuplet([2, 1, 1, 1], is_diminution=False)
             FixedDurationTuplet(3/16, [c'16, c'32, c'32, c'32])
 

@@ -18,7 +18,7 @@ def test_tietools_get_tie_chain_01():
     }
     '''
 
-    assert tietools.get_tie_chain(t[0]) == tietools.TieChain(t[0])
-    assert tietools.get_tie_chain(t[1]) == tietools.TieChain(t[1])
-    assert tietools.get_tie_chain(t[2]) == tietools.TieChain((t[2], t[3]))
-    assert tietools.get_tie_chain(t[3]) == tietools.TieChain((t[2], t[3]))
+    assert t[0].get_tie_chain() == tietools.TieChain(t[0])
+    assert t[1].get_tie_chain() == tietools.TieChain(t[1])
+    assert t[2].get_tie_chain() == tietools.TieChain((t[2], t[3]))
+    assert t[3].get_tie_chain() == tietools.TieChain((t[2], t[3]))

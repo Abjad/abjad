@@ -6,8 +6,9 @@ def test_tietools_add_or_remove_tie_chain_notes_to_achieve_scaled_written_durati
     '''
 
     staff = Staff("c'8 [ ]")
-    tie_chain = tietools.get_tie_chain(staff[0])
-    tietools.add_or_remove_tie_chain_notes_to_achieve_scaled_written_duration(tie_chain, Fraction(5, 4))
+    tie_chain = staff[0].get_tie_chain()
+    tietools.add_or_remove_tie_chain_notes_to_achieve_scaled_written_duration(
+        tie_chain, Fraction(5, 4))
 
     r'''
     \new Staff {
@@ -25,8 +26,9 @@ def test_tietools_add_or_remove_tie_chain_notes_to_achieve_scaled_written_durati
     '''
 
     staff = Staff("c'8 [ ~ c'32 ]")
-    tie_chain = tietools.get_tie_chain(staff[0])
-    tietools.add_or_remove_tie_chain_notes_to_achieve_scaled_written_duration(tie_chain, Fraction(4, 5))
+    tie_chain = staff[0].get_tie_chain()
+    tietools.add_or_remove_tie_chain_notes_to_achieve_scaled_written_duration(
+        tie_chain, Fraction(4, 5))
 
     r'''
     \new Staff {

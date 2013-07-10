@@ -6,8 +6,9 @@ def test_tietools_add_or_remove_tie_chain_notes_to_achieve_written_duration_01()
     '''
 
     staff = Staff("c'8 [ ]")
-    tie_chain = tietools.get_tie_chain(staff[0])
-    tietools.add_or_remove_tie_chain_notes_to_achieve_written_duration(tie_chain, Duration(5, 32))
+    tie_chain = staff[0].get_tie_chain()
+    tietools.add_or_remove_tie_chain_notes_to_achieve_written_duration(
+        tie_chain, Duration(5, 32))
 
     r'''
     \new Staff {
@@ -25,8 +26,9 @@ def test_tietools_add_or_remove_tie_chain_notes_to_achieve_written_duration_02()
     '''
 
     staff = Staff("c'8 [ ~ c'32 ]")
-    tie_chain = tietools.get_tie_chain(staff[0])
-    tietools.add_or_remove_tie_chain_notes_to_achieve_written_duration(tie_chain, Duration(1, 8))
+    tie_chain = staff[0].get_tie_chain()
+    tietools.add_or_remove_tie_chain_notes_to_achieve_written_duration(
+        tie_chain, Duration(1, 8))
 
     r'''
     \new Staff {

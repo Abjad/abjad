@@ -47,7 +47,8 @@ def tempo_scaled_leaves_to_q_events(leaves, tempo=None):
     '''
     from abjad.tools import quantizationtools
 
-    assert componenttools.all_are_contiguous_components_in_same_thread(leaves) and len(leaves)
+    assert componenttools.all_are_contiguous_components_in_same_thread(
+        leaves) and len(leaves)
     if tempo is None:
         assert contexttools.get_effective_tempo(leaves[0]) is not None
     else:
@@ -61,7 +62,8 @@ def tempo_scaled_leaves_to_q_events(leaves, tempo=None):
         if rvalue:
             groups.append(list(rgroup))
         else:
-            for tvalue, tgroup in itertools.groupby(rgroup, lambda x: tietools.get_tie_chain(x)):
+            for tvalue, tgroup in itertools.groupby(
+                rgroup, lambda x: x.get_tie_chain()):
                 groups.append(list(tgroup))
 
     # calculate lists of pitches and durations
@@ -71,12 +73,15 @@ def tempo_scaled_leaves_to_q_events(leaves, tempo=None):
 
         # get millisecond cumulative duration
         if tempo is not None:
-            duration = sum([quantizationtools.tempo_scaled_duration_to_milliseconds(
-                x.duration, tempo)
+            duration = sum(
+                [quantizationtools.tempo_scaled_duration_to_milliseconds(
+                    x.duration, tempo)
                 for x in group])
         else:
-            duration = sum([quantizationtools.tempo_scaled_duration_to_milliseconds(x.duration,
-                contexttools.get_effective_tempo(x)) for x in group])
+            duration = sum(
+                [quantizationtools.tempo_scaled_duration_to_milliseconds(
+                    x.duration, contexttools.get_effective_tempo(x)) 
+                    for x in group])
         durations.append(duration)
 
         # get pitch of first leaf in group
@@ -85,8 +90,10 @@ def tempo_scaled_leaves_to_q_events(leaves, tempo=None):
         elif isinstance(group[0], notetools.Note):
             pitch = group[0].written_pitch.chromatic_pitch_number
         else: # chord
-            pitch = [x.written_pitch.chromatic_pitch_number for x in group[0].note_heads]
+            pitch = [x.written_pitch.chromatic_pitch_number 
+                for x in group[0].note_heads]
         pitches.append(pitch)
 
     # convert durations and pitches to QEvents and return
-    return quantizationtools.millisecond_pitch_pairs_to_q_events(zip(durations, pitches))
+    return quantizationtools.millisecond_pitch_pairs_to_q_events(
+        zip(durations, pitches))

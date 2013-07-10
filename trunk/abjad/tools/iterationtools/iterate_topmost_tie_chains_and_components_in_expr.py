@@ -52,8 +52,9 @@ def iterate_topmost_tie_chains_and_components_in_expr(expr):
 
     spanner_classes = (tietools.TieSpanner, )
     if isinstance(expr, leaftools.Leaf):
-        if len(tietools.get_tie_chain(expr)) == 1:
-            yield tietools.get_tie_chain(expr)
+        tie_chain = expr.get_tie_chain()
+        if len(tie_chain) == 1:
+            yield tie_chain
         else:
             raise TieChainError('can not have only one leaf in tie chain.')
     elif isinstance(
@@ -64,7 +65,7 @@ def iterate_topmost_tie_chains_and_components_in_expr(expr):
                     component, spanner_classes=spanner_classes)
                 if not tie_spanners or \
                     tuple(tie_spanners)[0]._is_my_last_leaf(component):
-                    yield tietools.get_tie_chain(component)
+                    yield component.get_tie_chain()
             elif isinstance(component, containertools.Container):
                 yield component
     else:

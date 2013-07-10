@@ -25,7 +25,7 @@ def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_01():
     '''
 
     result = leaftools.fuse_leaves_in_tie_chain_by_immediate_parent(
-      tietools.get_tie_chain(t.leaves[1]))
+        t.leaves[1].get_tie_chain())
 
     r'''
     \new Staff {
@@ -62,7 +62,7 @@ def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_02():
     '''
 
     result = leaftools.fuse_leaves_in_tie_chain_by_immediate_parent(
-      tietools.get_tie_chain(t.leaves[1]))
+        t.leaves[1].get_tie_chain())
 
     assert wellformednesstools.is_well_formed_component(t)
     assert len(result) == 1
@@ -75,6 +75,6 @@ def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_03():
 
     t = Note("c'4")
     result = leaftools.fuse_leaves_in_tie_chain_by_immediate_parent(
-      tietools.get_tie_chain(t))
+        t.get_tie_chain())
     assert len(result) == 1
     assert wellformednesstools.is_well_formed_component(t)

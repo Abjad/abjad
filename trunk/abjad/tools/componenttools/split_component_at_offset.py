@@ -2,8 +2,13 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 
 
-def split_component_at_offset(component, offset,
-    fracture_spanners=False, tie_split_notes=True, tie_split_rests=False):
+def split_component_at_offset(
+    component,
+    offset,
+    fracture_spanners=False,
+    tie_split_notes=True,
+    tie_split_rests=False,
+    ):
     r'''.. versionadded:: 1.1
 
     Split `component` at `offset`.
@@ -153,31 +158,37 @@ def split_component_at_offset(component, offset,
     global_split_point = component.timespan.start_offset + offset
 
     # get any duration-crossing descendents
-    contents = componenttools.get_improper_descendents_of_component_that_cross_offset(
+    contents = \
+        componenttools.get_improper_descendents_of_component_that_cross_offset(
         component, offset)
 
     # get any duration-crossing measure descendents
     measures = [x for x in contents if isinstance(x, measuretools.Measure)]
 
     # if we must split a power-of-two measure at a non-power-of-two split point
-    # go ahead and transform the power-of-two measure to non-power-of-two equivalent now;
-    # code that crawls and splits later on will be happier
+    # go ahead and transform the power-of-two measure to non-power-of-two 
+    # equivalent now; code that crawls and splits later on will be happier
     if len(measures) == 1:
         measure = measures[0]
         split_point_in_measure = global_split_point - measure.timespan.start_offset
         if measure.has_non_power_of_two_denominator:
-            if not measure.implied_prolation == split_point_in_measure.implied_prolation:
+            if not measure.implied_prolation ==\
+                split_point_in_measure.implied_prolation:
                 raise NotImplementedError
-        elif not mathtools.is_nonnegative_integer_power_of_two(split_point_in_measure.denominator):
-            non_power_of_two_factors = mathtools.remove_powers_of_two(split_point_in_measure.denominator)
-            non_power_of_two_factors = mathtools.factors(non_power_of_two_factors)
+        elif not mathtools.is_nonnegative_integer_power_of_two(
+            split_point_in_measure.denominator):
+            non_power_of_two_factors = mathtools.remove_powers_of_two(
+                split_point_in_measure.denominator)
+            non_power_of_two_factors = mathtools.factors(
+                non_power_of_two_factors)
             non_power_of_two_product = 1
             for non_power_of_two_factor in non_power_of_two_factors:
                 non_power_of_two_product *= non_power_of_two_factor
             measuretools.scale_measure_denominator_and_adjust_measure_contents(
                 measure, non_power_of_two_product)
             # rederive duration crosses with possibly new measure contents
-            contents = componenttools.get_improper_descendents_of_component_that_cross_offset(
+            contents = \
+                componenttools.get_improper_descendents_of_component_that_cross_offset(
                 component, offset)
     elif 1 < len(measures):
         raise ContainmentError('measures can not nest.')
@@ -192,9 +203,13 @@ def split_component_at_offset(component, offset,
         assert isinstance(bottom, leaftools.Leaf)
         did_split_leaf = True
         split_point_in_bottom = global_split_point - bottom.timespan.start_offset
-        left_list, right_list = leaftools.split_leaf_at_offset(bottom,
-            split_point_in_bottom, fracture_spanners=fracture_spanners,
-            tie_split_notes=tie_split_notes, tie_split_rests=tie_split_rests)
+        left_list, right_list = leaftools.split_leaf_at_offset(
+            bottom,
+            split_point_in_bottom,
+            fracture_spanners=fracture_spanners,
+            tie_split_notes=tie_split_notes,
+            tie_split_rests=tie_split_rests,
+            )
         right = right_list[0]
         leaf_right_of_split = right
         leaf_left_of_split = left_list[-1]
@@ -209,43 +224,54 @@ def split_component_at_offset(component, offset,
         for leaf in iterationtools.iterate_leaves_in_expr(bottom):
             if leaf.timespan.start_offset == global_split_point:
                 leaf_right_of_split = leaf
-                leaf_left_of_split = leaftools.get_nth_leaf_in_thread_from_leaf(leaf_right_of_split, -1)
+                leaf_left_of_split = \
+                    leaftools.get_nth_leaf_in_thread_from_leaf(
+                    leaf_right_of_split, -1)
                 break
         else:
-            raise ContainmentError('can not split empty container {!r}.'.format(bottom))
+            message = 'can not split empty container {!r}.'
+            raise ContainmentError(message.format(bottom))
 
-    # find component to right of split that is also immediate child of last duration-crossing container
-    for component in componenttools.get_improper_parentage_of_component(leaf_right_of_split):
+    # find component to right of split that is also immediate child of 
+    # last duration-crossing container
+    for component in componenttools.get_improper_parentage_of_component(
+        leaf_right_of_split):
         if component.parent is duration_crossing_containers[-1]:
             highest_level_component_right_of_split = component
             break
     else:
         raise ValueError('should we be able to get here?')
 
-    # crawl back up through duration-crossing containers and fracture spanners if requested
+    # crawl back up through duration-crossing containers and 
+    # fracture spanners if requested
     if fracture_spanners:
         for x in componenttools.get_improper_parentage_of_component_that_start_with_component(
             leaf_right_of_split):
-            spannertools.fracture_spanners_attached_to_component(x, direction=Left)
+            spannertools.fracture_spanners_attached_to_component(
+                x, direction=Left)
             if x is component:
                 break
 
     # crawl back up through duration-crossing containers and split each
     prev = highest_level_component_right_of_split
     for duration_crossing_container in reversed(duration_crossing_containers):
-        assert isinstance(duration_crossing_container, containertools.Container)
+        assert isinstance(
+            duration_crossing_container, containertools.Container)
         i = duration_crossing_container.index(prev)
         left, right = containertools.split_container_at_index(
-            duration_crossing_container, i, fracture_spanners=fracture_spanners)
+            duration_crossing_container,
+            i,
+            fracture_spanners=fracture_spanners,
+            )
         prev = right
 
     # NOTE: If tie chain here is convenience, then fusing is good.
     #       If tie chain here is user-given, then fusing is less good.
     #       Maybe later model difference between user tie chains and not.
     leaftools.fuse_leaves_in_tie_chain_by_immediate_parent(
-        tietools.get_tie_chain(leaf_left_of_split))
+        leaf_left_of_split.get_tie_chain())
     leaftools.fuse_leaves_in_tie_chain_by_immediate_parent(
-        tietools.get_tie_chain(leaf_right_of_split))
+        leaf_right_of_split.get_tie_chain())
 
     # reapply tie here if crawl above killed tie applied to leaves
     if did_split_leaf:

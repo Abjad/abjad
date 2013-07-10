@@ -1,4 +1,5 @@
-def add_or_remove_tie_chain_notes_to_achieve_scaled_written_duration(tie_chain, multiplier):
+def add_or_remove_tie_chain_notes_to_achieve_scaled_written_duration(
+    tie_chain, multiplier):
     r'''Add or remove `tie_chain` notes to achieve scaled written duration:
 
     ::
@@ -14,7 +15,7 @@ def add_or_remove_tie_chain_notes_to_achieve_scaled_written_duration(tie_chain, 
 
     ::
 
-        >>> tie_chain = tietools.get_tie_chain(staff[0])
+        >>> tie_chain = staff[0].get_tie_chain()
         >>> tietools.add_or_remove_tie_chain_notes_to_achieve_scaled_written_duration(
         ...    tie_chain, Fraction(5, 4))
         TieChain(Note("c'8"), Note("c'32"))
@@ -35,4 +36,5 @@ def add_or_remove_tie_chain_notes_to_achieve_scaled_written_duration(tie_chain, 
     new_written_duration = multiplier * tie_chain.written_duration
 
     # adjust tie chain and return tie chain
-    return tietools.add_or_remove_tie_chain_notes_to_achieve_written_duration(tie_chain, new_written_duration)
+    return tietools.add_or_remove_tie_chain_notes_to_achieve_written_duration(
+        tie_chain, new_written_duration)

@@ -23,7 +23,7 @@ def add_or_remove_tie_chain_notes_to_achieve_written_duration(
 
     ::
 
-        >>> tie_chain = tietools.get_tie_chain(staff[0])
+        >>> tie_chain = staff[0].get_tie_chain()
         >>> tietools.add_or_remove_tie_chain_notes_to_achieve_written_duration(
         ...     tie_chain, Duration(5, 32))
         TieChain(Note("c'8"), Note("c'32"))
@@ -82,10 +82,10 @@ def add_or_remove_tie_chain_notes_to_achieve_written_duration(
         assert isinstance(durations[0], tuplettools.Tuplet)
         fmtuplet = durations[0]
         new_chain_written = \
-            tietools.get_tie_chain(fmtuplet[0]).preprolated_duration
+            fmtuplet[0].get_tie_chain().preprolated_duration
         add_or_remove_tie_chain_notes_to_achieve_written_duration(
             tie_chain, new_chain_written)
         multiplier = fmtuplet.multiplier
         tuplettools.Tuplet(multiplier, tie_chain.leaves)
 
-    return tietools.get_tie_chain(tie_chain[0])
+    return tie_chain[0].get_tie_chain()
