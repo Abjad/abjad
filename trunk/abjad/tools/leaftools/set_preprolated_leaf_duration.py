@@ -118,7 +118,7 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
         components = notetools.make_notes(0, new_preprolated_duration)
         if isinstance(components[0], leaftools.Leaf):
             num_tied_leaves = len(components) - 1
-            tied_leaves = componenttools.copy_components_and_remove_spanners(
+            tied_leaves = componenttools.copy_components_and_detach_spanners(
                 [leaf], num_tied_leaves)
             all_leaves = [leaf] + tied_leaves
             for x, component in zip(all_leaves, components):
@@ -131,7 +131,7 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
             fmtuplet = components[0]
             components = fmtuplet[:]
             num_tied_leaves = len(components) - 1
-            tied_leaves = componenttools.copy_components_and_remove_spanners(
+            tied_leaves = componenttools.copy_components_and_detach_spanners(
                 [leaf], num_tied_leaves)
             all_leaves = [leaf] + tied_leaves
             for x, component in zip(all_leaves, components):

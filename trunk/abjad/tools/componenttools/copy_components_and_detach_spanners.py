@@ -1,7 +1,7 @@
 import copy
 
 
-def copy_components_and_remove_spanners(components, n=1):
+def copy_components_and_detach_spanners(components, n=1):
     r'''.. versionadded:: 1.1
 
     Copy `components` and remove spanners.
@@ -45,7 +45,7 @@ def copy_components_and_remove_spanners(components, n=1):
 
     ::
 
-        >>> result = componenttools.copy_components_and_remove_spanners(
+        >>> result = componenttools.copy_components_and_detach_spanners(
         ...     voice.leaves[1:3])
 
     ::
@@ -78,7 +78,7 @@ def copy_components_and_remove_spanners(components, n=1):
 
     ::
 
-        >>> result = componenttools.copy_components_and_remove_spanners(
+        >>> result = componenttools.copy_components_and_detach_spanners(
         ...     voice.leaves[1:3], n=2)
 
     ::
@@ -119,7 +119,7 @@ def copy_components_and_remove_spanners(components, n=1):
 
     # repeat as necessary
     for i in range(n - 1):
-        result += copy_components_and_remove_spanners(components)
+        result += copy_components_and_detach_spanners(components)
 
     # set result type
     result = type(components)(result)

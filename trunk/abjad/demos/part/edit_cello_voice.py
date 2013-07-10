@@ -16,7 +16,7 @@ def edit_cello_voice(score, durated_reservoir):
         index = parent.index(leaf)
         parent[index] = chordtools.Chord(['e,', 'a,'], leaf.written_duration)
 
-    unison_descent = componenttools.copy_components_and_remove_spanners(voice[-len(descents[-1]):])
+    unison_descent = componenttools.copy_components_and_detach_spanners(voice[-len(descents[-1]):])
     voice.extend(unison_descent)
     for chord in unison_descent:
         index = chord.parent.index(chord)

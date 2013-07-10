@@ -422,7 +422,7 @@ The edits
        voice = score['First Violin Voice']
        descents = durated_reservoir['First Violin']
    
-       copied_descent = componenttools.copy_components_and_remove_spanners(descents[-1])
+       copied_descent = componenttools.copy_components_and_detach_spanners(descents[-1])
        voice.extend(copied_descent)
    
        final_sustain_rhythm = [(6, 4)] * 43 + [(1, 2)]
@@ -439,7 +439,7 @@ The edits
        voice = score['Second Violin Voice']
        descents = durated_reservoir['Second Violin']
    
-       copied_descent = list(componenttools.copy_components_and_remove_spanners(descents[-1]))
+       copied_descent = list(componenttools.copy_components_and_detach_spanners(descents[-1]))
        copied_descent[-1].written_duration = durationtools.Duration(1, 1)
        copied_descent.append(notetools.Note('a2'))
        for leaf in copied_descent:
@@ -469,7 +469,7 @@ The edits
        for leaf in descents[-1]:
            marktools.Articulation('accent')(leaf)
            marktools.Articulation('tenuto')(leaf)
-       copied_descent = componenttools.copy_components_and_remove_spanners(descents[-1])
+       copied_descent = componenttools.copy_components_and_detach_spanners(descents[-1])
        for leaf in copied_descent:
            if leaf.written_duration == durationtools.Duration(4, 4):
                leaf.written_duration = durationtools.Duration(8, 4)
@@ -504,7 +504,7 @@ The edits
            index = parent.index(leaf)
            parent[index] = chordtools.Chord(['e,', 'a,'], leaf.written_duration)
    
-       unison_descent = componenttools.copy_components_and_remove_spanners(voice[-len(descents[-1]):])
+       unison_descent = componenttools.copy_components_and_detach_spanners(voice[-len(descents[-1]):])
        voice.extend(unison_descent)
        for chord in unison_descent:
            index = chord.parent.index(chord)

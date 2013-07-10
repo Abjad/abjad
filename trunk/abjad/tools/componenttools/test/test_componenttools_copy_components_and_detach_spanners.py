@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_componenttools_copy_components_and_remove_spanners_01():
+def test_componenttools_copy_components_and_detach_spanners_01():
     '''Withdraw components from spanners.
         Deepcopy unspanned components.
         Reapply spanners to components.
@@ -38,7 +38,7 @@ def test_componenttools_copy_components_and_remove_spanners_01():
     }
     '''
 
-    result = componenttools.copy_components_and_remove_spanners([t])
+    result = componenttools.copy_components_and_detach_spanners([t])
     voice = result[0]
     measuretools.set_always_format_time_signature_of_measures_in_expr(voice)
 
@@ -72,7 +72,7 @@ def test_componenttools_copy_components_and_remove_spanners_01():
     assert voice.lilypond_format == "\\new Voice {\n\t{\n\t\t\\time 2/8\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\tg'8\n\t\ta'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\tb'8\n\t\tc''8\n\t}\n}"
 
 
-def test_componenttools_copy_components_and_remove_spanners_02():
+def test_componenttools_copy_components_and_detach_spanners_02():
     '''Withdraw components from spanners.
         Deepcopy unspanned components.
         Reapply spanners to components.
@@ -109,7 +109,7 @@ def test_componenttools_copy_components_and_remove_spanners_02():
     }
     '''
 
-    result = componenttools.copy_components_and_remove_spanners(t[1:])
+    result = componenttools.copy_components_and_detach_spanners(t[1:])
     new = Voice(result)
     measuretools.set_always_format_time_signature_of_measures_in_expr(new)
 
@@ -138,7 +138,7 @@ def test_componenttools_copy_components_and_remove_spanners_02():
     assert new.lilypond_format == "\\new Voice {\n\t{\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\tg'8\n\t\ta'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\tb'8\n\t\tc''8\n\t}\n}"
 
 
-def test_componenttools_copy_components_and_remove_spanners_03():
+def test_componenttools_copy_components_and_detach_spanners_03():
     '''Withdraw components from spanners.
     Deepcopy unspanned components.
     Reapply spanners to components.
@@ -176,7 +176,7 @@ def test_componenttools_copy_components_and_remove_spanners_03():
     }
     '''
 
-    result = componenttools.copy_components_and_remove_spanners(t.leaves[:6])
+    result = componenttools.copy_components_and_detach_spanners(t.leaves[:6])
     new = Voice(result)
     measuretools.set_always_format_time_signature_of_measures_in_expr(new)
 
@@ -196,7 +196,7 @@ def test_componenttools_copy_components_and_remove_spanners_03():
     assert new.lilypond_format == "\\new Voice {\n\tc'8\n\td'8\n\te'8\n\tf'8\n\tg'8\n\ta'8\n}"
 
 
-def test_componenttools_copy_components_and_remove_spanners_04():
+def test_componenttools_copy_components_and_detach_spanners_04():
     '''Withdraw components from spanners.
     Deepcopy unspanned components.
     Reapply spanners to components.
@@ -234,7 +234,7 @@ def test_componenttools_copy_components_and_remove_spanners_04():
     }
     '''
 
-    result = componenttools.copy_components_and_remove_spanners(t[-2:])
+    result = componenttools.copy_components_and_detach_spanners(t[-2:])
     new = Voice(result)
     measuretools.set_always_format_time_signature_of_measures_in_expr(new)
 
@@ -258,7 +258,7 @@ def test_componenttools_copy_components_and_remove_spanners_04():
     assert new.lilypond_format == "\\new Voice {\n\t{\n\t\t\\time 2/8\n\t\tg'8\n\t\ta'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\tb'8\n\t\tc''8\n\t}\n}"
 
 
-def test_componenttools_copy_components_and_remove_spanners_05():
+def test_componenttools_copy_components_and_detach_spanners_05():
     '''Withdraw components from spanners.
     Deepcopy unspanned components.
     Reapply spanners to components.
@@ -297,7 +297,7 @@ def test_componenttools_copy_components_and_remove_spanners_05():
     }
     '''
 
-    result = componenttools.copy_components_and_remove_spanners(t[-2:], 3)
+    result = componenttools.copy_components_and_detach_spanners(t[-2:], 3)
     new = Voice(result)
     measuretools.set_always_format_time_signature_of_measures_in_expr(new)
 

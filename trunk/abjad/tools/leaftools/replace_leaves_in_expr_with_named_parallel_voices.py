@@ -125,8 +125,8 @@ def replace_leaves_in_expr_with_named_parallel_voices(expr, upper_name, lower_na
 
         container = containertools.Container()
         container.is_parallel = True
-        upper_voice = voicetools.Voice(componenttools.copy_components_and_remove_spanners(grouped_leaves))
-        lower_voice = voicetools.Voice(componenttools.copy_components_and_remove_spanners(grouped_leaves))
+        upper_voice = voicetools.Voice(componenttools.copy_components_and_detach_spanners(grouped_leaves))
+        lower_voice = voicetools.Voice(componenttools.copy_components_and_detach_spanners(grouped_leaves))
         upper_voice.name = upper_name
         lower_voice.name = lower_name
         container.extend([upper_voice, lower_voice])

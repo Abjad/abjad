@@ -150,9 +150,9 @@ Core composition packages
       tools/componenttools/all_are_thread_contiguous_components
       tools/componenttools/copy_and_partition_governed_component_subtree_by_leaf_counts
       tools/componenttools/copy_components_and_covered_spanners
+      tools/componenttools/copy_components_and_detach_spanners
       tools/componenttools/copy_components_and_fracture_crossing_spanners
       tools/componenttools/copy_components_and_immediate_parent_of_first_component
-      tools/componenttools/copy_components_and_remove_spanners
       tools/componenttools/copy_governed_component_subtree_by_leaf_range
       tools/componenttools/copy_governed_component_subtree_from_offset_to
       tools/componenttools/extend_in_parent_of_component
@@ -236,9 +236,9 @@ Core composition packages
       tools/componenttools/all_are_thread_contiguous_components
       tools/componenttools/copy_and_partition_governed_component_subtree_by_leaf_counts
       tools/componenttools/copy_components_and_covered_spanners
+      tools/componenttools/copy_components_and_detach_spanners
       tools/componenttools/copy_components_and_fracture_crossing_spanners
       tools/componenttools/copy_components_and_immediate_parent_of_first_component
-      tools/componenttools/copy_components_and_remove_spanners
       tools/componenttools/copy_governed_component_subtree_by_leaf_range
       tools/componenttools/copy_governed_component_subtree_from_offset_to
       tools/componenttools/extend_in_parent_of_component

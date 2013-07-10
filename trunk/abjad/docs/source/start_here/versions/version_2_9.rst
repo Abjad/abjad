@@ -724,7 +724,7 @@ Changes to end-user functionality:
 
   ::
 
-    componenttools.copy_components_and_remove_spanners()
+    componenttools.copy_components_and_detach_spanners()
 
 - Changed::
 
