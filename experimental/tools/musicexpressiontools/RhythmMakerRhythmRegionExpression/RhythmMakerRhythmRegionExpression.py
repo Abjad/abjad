@@ -41,13 +41,13 @@ class RhythmMakerRhythmRegionExpression(RhythmRegionExpression):
         beam_each_cell = getattr(
             self.source_expression, 'beam_each_cell', False)
         if beam_cells_together:
-            spannertools.destroy_spanners_attached_to_components_in_expr(
+            spannertools.detach_spanners_attached_to_components_in_expr(
                 rhythm_containers)
             durations = [x.duration for x in rhythm_containers]
             beamtools.DuratedComplexBeamSpanner(
                 rhythm_containers, durations=durations, span=1)
         elif beam_each_cell:
-            spannertools.destroy_spanners_attached_to_components_in_expr(
+            spannertools.detach_spanners_attached_to_components_in_expr(
                 rhythm_containers)
             for rhythm_container in rhythm_containers:
                 beamtools.DuratedComplexBeamSpanner(

@@ -1,4 +1,4 @@
-def destroy_spanners_attached_to_component(component, spanner_classes=None):
+def detach_spanners_attached_to_component(component, spanner_classes=None):
     r'''.. versionadded:: 1.1
 
     Destroy spanners of `spanner_classes` attached to `component`:
@@ -22,7 +22,7 @@ def destroy_spanners_attached_to_component(component, spanner_classes=None):
 
     ::
 
-        >>> spanners = spannertools.destroy_spanners_attached_to_component(
+        >>> spanners = spannertools.detach_spanners_attached_to_component(
         ...     staff[0])
 
     ::

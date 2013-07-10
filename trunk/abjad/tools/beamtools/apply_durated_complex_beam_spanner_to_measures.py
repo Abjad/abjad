@@ -69,7 +69,7 @@ def apply_durated_complex_beam_spanner_to_measures(measures):
     # collect measures
     durations = []
     for measure in measures:
-        spannertools.destroy_spanners_attached_to_component(
+        spannertools.detach_spanners_attached_to_component(
             measure,
             spanner_classes=(beamtools.BeamSpanner,)
             )

@@ -1,4 +1,4 @@
-def destroy_spanners_attached_to_components_in_expr(
+def detach_spanners_attached_to_components_in_expr(
     expr, spanner_classes=None):
     r'''.. versionadded:: 2.9
 
@@ -21,7 +21,7 @@ def destroy_spanners_attached_to_components_in_expr(
     ::
 
         >>> spanners = \
-        ...     spannertools.destroy_spanners_attached_to_components_in_expr(
+        ...     spannertools.detach_spanners_attached_to_components_in_expr(
         ...     staff)
 
     ::
@@ -50,7 +50,7 @@ def destroy_spanners_attached_to_components_in_expr(
 
     # iterate components
     for component in iterationtools.iterate_components_in_expr(expr):
-        result.update(spannertools.destroy_spanners_attached_to_component(
+        result.update(spannertools.detach_spanners_attached_to_component(
             component, spanner_classes=spanner_classes))
 
     # return result

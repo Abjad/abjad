@@ -4875,8 +4875,8 @@ description	experimental/tools/scoremanagertools/materialpackages/black_music_sp
 description	experimental/tools/scoremanagertools/materialpackages/black_music_specifier/material_definition.py	/^        description='midrange cello pizzicati',$/;"	v
 description	experimental/tools/scoremanagertools/materialpackages/green_music_specifier/material_definition.py	/^        description='upper register violin pizzicati'$/;"	v
 description	trunk/setup.py	/^    description = 'Abjad is a Python API for Formalized Score Control.',$/;"	v
-destroy_spanners_attached_to_component	trunk/abjad/tools/spannertools/destroy_spanners_attached_to_component.py	/^def destroy_spanners_attached_to_component(component, klass=None):$/;"	f
-destroy_spanners_attached_to_components_in_expr	trunk/abjad/tools/spannertools/destroy_spanners_attached_to_components_in_expr.py	/^def destroy_spanners_attached_to_components_in_expr(expr, klass=None):$/;"	f
+detach_spanners_attached_to_component	trunk/abjad/tools/spannertools/detach_spanners_attached_to_component.py	/^def detach_spanners_attached_to_component(component, klass=None):$/;"	f
+detach_spanners_attached_to_components_in_expr	trunk/abjad/tools/spannertools/detach_spanners_attached_to_components_in_expr.py	/^def detach_spanners_attached_to_components_in_expr(expr, klass=None):$/;"	f
 detach	trunk/abjad/tools/contexttools/ContextMark/ContextMark.py	/^    def detach(self):$/;"	m	class:ContextMark
 detach	trunk/abjad/tools/contexttools/TimeSignatureMark/TimeSignatureMark.py	/^    def detach(self):$/;"	m	class:TimeSignatureMark
 detach	trunk/abjad/tools/gracetools/GraceContainer/GraceContainer.py	/^    def detach(self):$/;"	m	class:GraceContainer
@@ -14842,9 +14842,9 @@ test_spannertools__withdraw_components_in_expr_from_crossing_spanners_02	trunk/a
 test_spannertools__withdraw_components_in_expr_from_crossing_spanners_03	trunk/abjad/tools/spannertools/test/test_spannertools__withdraw_components_in_expr_from_crossing_spanners.py	/^def test_spannertools__withdraw_components_in_expr_from_crossing_spanners_03():$/;"	f
 test_spannertools_apply_octavation_spanner_to_pitched_components_01	trunk/abjad/tools/spannertools/test/test_spannertools_apply_octavation_spanner_to_pitched_components.py	/^def test_spannertools_apply_octavation_spanner_to_pitched_components_01():$/;"	f
 test_spannertools_apply_octavation_spanner_to_pitched_components_02	trunk/abjad/tools/spannertools/test/test_spannertools_apply_octavation_spanner_to_pitched_components.py	/^def test_spannertools_apply_octavation_spanner_to_pitched_components_02():$/;"	f
-test_spannertools_destroy_spanners_attached_to_component_01	trunk/abjad/tools/spannertools/test/test_spannertools_destroy_spanners_attached_to_component.py	/^def test_spannertools_destroy_spanners_attached_to_component_01():$/;"	f
-test_spannertools_destroy_spanners_attached_to_component_02	trunk/abjad/tools/spannertools/test/test_spannertools_destroy_spanners_attached_to_component.py	/^def test_spannertools_destroy_spanners_attached_to_component_02():$/;"	f
-test_spannertools_destroy_spanners_attached_to_components_in_expr_01	trunk/abjad/tools/spannertools/test/test_spannertools_destroy_spanners_attached_to_components_in_expr.py	/^def test_spannertools_destroy_spanners_attached_to_components_in_expr_01():$/;"	f
+test_spannertools_detach_spanners_attached_to_component_01	trunk/abjad/tools/spannertools/test/test_spannertools_destroy_spanners_attached_to_component.py	/^def test_spannertools_detach_spanners_attached_to_component_01():$/;"	f
+test_spannertools_detach_spanners_attached_to_component_02	trunk/abjad/tools/spannertools/test/test_spannertools_destroy_spanners_attached_to_component.py	/^def test_spannertools_detach_spanners_attached_to_component_02():$/;"	f
+test_spannertools_detach_spanners_attached_to_components_in_expr_01	trunk/abjad/tools/spannertools/test/test_spannertools_destroy_spanners_attached_to_components_in_expr.py	/^def test_spannertools_detach_spanners_attached_to_components_in_expr_01():$/;"	f
 test_spannertools_find_index_of_spanner_component_at_score_offset_01	trunk/abjad/tools/spannertools/test/test_spannertools_find_index_of_spanner_component_at_score_offset.py	/^def test_spannertools_find_index_of_spanner_component_at_score_offset_01():$/;"	f
 test_spannertools_find_spanner_component_starting_at_exactly_score_offset_01	trunk/abjad/tools/spannertools/test/test_spannertools_find_spanner_component_starting_at_exactly_score_offset.py	/^def test_spannertools_find_spanner_component_starting_at_exactly_score_offset_01():$/;"	f
 test_spannertools_fracture_spanners_attached_to_component_01	trunk/abjad/tools/spannertools/test/test_spannertools_fracture_spanners_attached_to_component.py	/^def test_spannertools_fracture_spanners_attached_to_component_01():$/;"	f
@@ -14949,14 +14949,14 @@ test_tietools_get_nontrivial_tie_chains_masked_by_components_07	trunk/abjad/tool
 test_tietools_get_nontrivial_tie_chains_masked_by_components_08	trunk/abjad/tools/tietools/test/test_tietools_get_nontrivial_tie_chains_masked_by_components.py	/^def test_tietools_get_nontrivial_tie_chains_masked_by_components_08():$/;"	f
 test_tietools_get_tie_chain_01	trunk/abjad/tools/tietools/test/test_tietools_get_tie_chain.py	/^def test_tietools_get_tie_chain_01():$/;"	f
 test_tietools_is_component_with_tie_spanner_attached_01	trunk/abjad/tools/tietools/test/test_tietools_is_component_with_tie_spanner_attached.py	/^def test_tietools_is_component_with_tie_spanner_attached_01():$/;"	f
-test_tietools_iterate_nontrivial_tie_chains_in_expr_01	trunk/abjad/tools/tietools/test/test_tietools_iterate_nontrivial_tie_chains_in_expr.py	/^def test_tietools_iterate_nontrivial_tie_chains_in_expr_01():$/;"	f
-test_tietools_iterate_nontrivial_tie_chains_in_expr_02	trunk/abjad/tools/tietools/test/test_tietools_iterate_nontrivial_tie_chains_in_expr.py	/^def test_tietools_iterate_nontrivial_tie_chains_in_expr_02():$/;"	f
-test_tietools_iterate_pitched_tie_chains_in_expr_01	trunk/abjad/tools/tietools/test/test_tietools_iterate_pitched_tie_chains_in_expr.py	/^def test_tietools_iterate_pitched_tie_chains_in_expr_01():$/;"	f
-test_tietools_iterate_pitched_tie_chains_in_expr_02	trunk/abjad/tools/tietools/test/test_tietools_iterate_pitched_tie_chains_in_expr.py	/^def test_tietools_iterate_pitched_tie_chains_in_expr_02():$/;"	f
-test_tietools_iterate_tie_chains_in_expr_01	trunk/abjad/tools/tietools/test/test_tietools_iterate_tie_chains_in_expr.py	/^def test_tietools_iterate_tie_chains_in_expr_01():$/;"	f
-test_tietools_iterate_tie_chains_in_expr_02	trunk/abjad/tools/tietools/test/test_tietools_iterate_tie_chains_in_expr.py	/^def test_tietools_iterate_tie_chains_in_expr_02():$/;"	f
-test_tietools_iterate_tie_chains_in_expr_03	trunk/abjad/tools/tietools/test/test_tietools_iterate_tie_chains_in_expr.py	/^def test_tietools_iterate_tie_chains_in_expr_03():$/;"	f
-test_tietools_iterate_tie_chains_in_expr_04	trunk/abjad/tools/tietools/test/test_tietools_iterate_tie_chains_in_expr.py	/^def test_tietools_iterate_tie_chains_in_expr_04():$/;"	f
+test_iterationtools_iterate_nontrivial_tie_chains_in_expr_01	trunk/abjad/tools/tietools/test/test_tietools_iterate_nontrivial_tie_chains_in_expr.py	/^def test_iterationtools_iterate_nontrivial_tie_chains_in_expr_01():$/;"	f
+test_iterationtools_iterate_nontrivial_tie_chains_in_expr_02	trunk/abjad/tools/tietools/test/test_tietools_iterate_nontrivial_tie_chains_in_expr.py	/^def test_iterationtools_iterate_nontrivial_tie_chains_in_expr_02():$/;"	f
+test_iterationtools_iterate_pitched_tie_chains_in_expr_01	trunk/abjad/tools/tietools/test/test_tietools_iterate_pitched_tie_chains_in_expr.py	/^def test_iterationtools_iterate_pitched_tie_chains_in_expr_01():$/;"	f
+test_iterationtools_iterate_pitched_tie_chains_in_expr_02	trunk/abjad/tools/tietools/test/test_tietools_iterate_pitched_tie_chains_in_expr.py	/^def test_iterationtools_iterate_pitched_tie_chains_in_expr_02():$/;"	f
+test_iterationtools_iterate_tie_chains_in_expr_01	trunk/abjad/tools/tietools/test/test_tietools_iterate_tie_chains_in_expr.py	/^def test_iterationtools_iterate_tie_chains_in_expr_01():$/;"	f
+test_iterationtools_iterate_tie_chains_in_expr_02	trunk/abjad/tools/tietools/test/test_tietools_iterate_tie_chains_in_expr.py	/^def test_iterationtools_iterate_tie_chains_in_expr_02():$/;"	f
+test_iterationtools_iterate_tie_chains_in_expr_03	trunk/abjad/tools/tietools/test/test_tietools_iterate_tie_chains_in_expr.py	/^def test_iterationtools_iterate_tie_chains_in_expr_03():$/;"	f
+test_iterationtools_iterate_tie_chains_in_expr_04	trunk/abjad/tools/tietools/test/test_tietools_iterate_tie_chains_in_expr.py	/^def test_iterationtools_iterate_tie_chains_in_expr_04():$/;"	f
 test_tietools_iterate_topmost_tie_chains_and_components_in_expr_01	trunk/abjad/tools/tietools/test/test_tietools_iterate_topmost_tie_chains_and_components_in_expr.py	/^def test_tietools_iterate_topmost_tie_chains_and_components_in_expr_01():$/;"	f
 test_tietools_remove_nonfirst_leaves_in_tie_chain_01	trunk/abjad/tools/tietools/test/test_tietools_remove_nonfirst_leaves_in_tie_chain.py	/^def test_tietools_remove_nonfirst_leaves_in_tie_chain_01():$/;"	f
 test_tietools_remove_nonfirst_leaves_in_tie_chain_02	trunk/abjad/tools/tietools/test/test_tietools_remove_nonfirst_leaves_in_tie_chain.py	/^def test_tietools_remove_nonfirst_leaves_in_tie_chain_02():$/;"	f

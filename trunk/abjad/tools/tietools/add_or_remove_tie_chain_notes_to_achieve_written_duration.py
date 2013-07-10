@@ -49,7 +49,7 @@ def add_or_remove_tie_chain_notes_to_achieve_written_duration(
             componenttools.remove_component_subtree_from_score_and_spanners(
                 [leaf])
         first = tie_chain[0]
-        spannertools.destroy_spanners_attached_to_component(
+        spannertools.detach_spanners_attached_to_component(
             first, tietools.TieSpanner)
     elif new_written_duration.has_power_of_two_denominator:
         durations = notetools.make_notes(0, [new_written_duration])
@@ -62,7 +62,7 @@ def add_or_remove_tie_chain_notes_to_achieve_written_duration(
                 componenttools.remove_component_subtree_from_score_and_spanners(
                     [leaf])
         elif len(tie_chain) < len(durations):
-            spannertools.destroy_spanners_attached_to_component(
+            spannertools.detach_spanners_attached_to_component(
                 tie_chain[0], tietools.TieSpanner)
             difference = len(durations) - len(tie_chain)
             extra_leaves = tie_chain[0] * difference

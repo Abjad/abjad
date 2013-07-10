@@ -304,5 +304,5 @@ class Selection(AbjadObject):
         '''
         from abjad.tools import spannertools
         for component in self._iterate_components(recurse=recurse):
-            spannertools.destroy_spanners_attached_to_component(
+            spannertools.detach_spanners_attached_to_component(
                 component, spanner_classes=spanner_classes)

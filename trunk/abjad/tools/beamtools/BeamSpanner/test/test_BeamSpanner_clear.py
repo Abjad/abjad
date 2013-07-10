@@ -21,7 +21,7 @@ def test_BeamSpanner_clear_01():
     }
     '''
 
-    spannertools.destroy_spanners_attached_to_component(
+    spannertools.detach_spanners_attached_to_component(
         staff[0], beamtools.BeamSpanner)
 
     r'''
@@ -62,7 +62,7 @@ def test_BeamSpanner_clear_02():
     }
     '''
 
-    spannertools.destroy_spanners_attached_to_component(
+    spannertools.detach_spanners_attached_to_component(
         staff[0], beamtools.BeamSpanner)
 
     assert wellformednesstools.is_well_formed_component(staff)

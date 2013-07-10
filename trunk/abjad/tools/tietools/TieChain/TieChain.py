@@ -293,7 +293,7 @@ class TieChain(Selection):
             list(self), [tuplet])
 
         # untie tuplet
-        spannertools.destroy_spanners_attached_to_component(
+        spannertools.detach_spanners_attached_to_component(
             tuplet, tietools.TieSpanner)
 
         # return tuplet

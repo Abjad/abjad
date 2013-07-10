@@ -37,6 +37,6 @@ def remove_tie_spanners_from_components_in_expr(expr):
     from abjad.tools import tietools
 
     for component in iterationtools.iterate_components_in_expr(expr):
-        spannertools.destroy_spanners_attached_to_component(component, tietools.TieSpanner)
+        spannertools.detach_spanners_attached_to_component(component, tietools.TieSpanner)
 
     return expr

@@ -3141,8 +3141,8 @@ Core composition packages
 
       tools/spannertools/all_are_spanners
       tools/spannertools/apply_octavation_spanner_to_pitched_components
-      tools/spannertools/destroy_spanners_attached_to_component
-      tools/spannertools/destroy_spanners_attached_to_components_in_expr
+      tools/spannertools/detach_spanners_attached_to_component
+      tools/spannertools/detach_spanners_attached_to_components_in_expr
       tools/spannertools/find_index_of_spanner_component_at_score_offset
       tools/spannertools/find_spanner_component_starting_at_exactly_score_offset
       tools/spannertools/fracture_spanners_attached_to_component
@@ -3212,8 +3212,8 @@ Core composition packages
 
       tools/spannertools/all_are_spanners
       tools/spannertools/apply_octavation_spanner_to_pitched_components
-      tools/spannertools/destroy_spanners_attached_to_component
-      tools/spannertools/destroy_spanners_attached_to_components_in_expr
+      tools/spannertools/detach_spanners_attached_to_component
+      tools/spannertools/detach_spanners_attached_to_components_in_expr
       tools/spannertools/find_index_of_spanner_component_at_score_offset
       tools/spannertools/find_spanner_component_starting_at_exactly_score_offset
       tools/spannertools/fracture_spanners_attached_to_component
