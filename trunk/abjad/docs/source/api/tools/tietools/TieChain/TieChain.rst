@@ -65,6 +65,9 @@ Methods
 .. automethod:: abjad.tools.tietools.TieChain.TieChain.TieChain.get_parent_and_start_stop_indices
    :noindex:
 
+.. automethod:: abjad.tools.tietools.TieChain.TieChain.TieChain.to_tuplet
+   :noindex:
+
 Special methods
 ---------------
 

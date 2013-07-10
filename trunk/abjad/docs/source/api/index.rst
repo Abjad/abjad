@@ -3405,7 +3405,6 @@ Core composition packages
       tools/tietools/iterate_topmost_tie_chains_and_components_in_expr
       tools/tietools/remove_nonfirst_leaves_in_tie_chain
       tools/tietools/remove_tie_spanners_from_components_in_expr
-      tools/tietools/tie_chain_to_tuplet_with_ratio
 
 .. only:: latex
 
@@ -3439,7 +3438,6 @@ Core composition packages
       tools/tietools/iterate_topmost_tie_chains_and_components_in_expr
       tools/tietools/remove_nonfirst_leaves_in_tie_chain
       tools/tietools/remove_tie_spanners_from_components_in_expr
-      tools/tietools/tie_chain_to_tuplet_with_ratio
 
 :py:mod:`timeintervaltools <abjad.tools.timeintervaltools>`
 ===========================================================
