@@ -3398,9 +3398,7 @@ Core composition packages
       tools/tietools/add_or_remove_tie_chain_notes_to_achieve_written_duration
       tools/tietools/apply_tie_spanner_to_leaf_pair
       tools/tietools/are_components_in_same_tie_spanner
-      tools/tietools/get_nontrivial_tie_chains_masked_by_components
       tools/tietools/get_tie_chain
-      tools/tietools/get_tie_chains_masked_by_components
       tools/tietools/get_tie_spanner_attached_to_component
       tools/tietools/is_component_with_tie_spanner_attached
 
@@ -3423,9 +3421,7 @@ Core composition packages
       tools/tietools/add_or_remove_tie_chain_notes_to_achieve_written_duration
       tools/tietools/apply_tie_spanner_to_leaf_pair
       tools/tietools/are_components_in_same_tie_spanner
-      tools/tietools/get_nontrivial_tie_chains_masked_by_components
       tools/tietools/get_tie_chain
-      tools/tietools/get_tie_chains_masked_by_components
       tools/tietools/get_tie_spanner_attached_to_component
       tools/tietools/is_component_with_tie_spanner_attached
 
