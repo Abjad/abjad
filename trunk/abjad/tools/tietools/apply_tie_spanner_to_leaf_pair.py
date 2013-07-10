@@ -47,7 +47,7 @@ def apply_tie_spanner_to_leaf_pair(left, right):
     spanner_classes = (tietools.TieSpanner, )
 
     # do nothing if leaves are already tied
-    if tietools.are_components_in_same_tie_spanner([left, right]):
+    if left.get_tie_chain() == right.get_tie_chain():
         return
 
     # do nothing if leaves are already effectively tied 
