@@ -208,6 +208,12 @@ class Component(AbjadObject):
             new_mark.attach(new)
         return new
 
+    def _detach_spanners(self, spanner_classes=None):
+        spanners = self._get_spanners(spanner_classes=spanner_classes)
+        for spanner in spanners:
+            spanner.clear()
+        return spanners
+
     def _format_after_slot(self, format_contributions):
         pass
 
@@ -269,6 +275,17 @@ class Component(AbjadObject):
         for source, contributions in attr(format_contributions):
             result.extend(contributions)
         return result
+
+    def _get_spanners(self, spanner_classes=None):
+        from abjad.tools import spannertools
+        spanner_classes = spanner_classes or (spannertools.Spanner, )
+        if not isinstance(spanner_classes, tuple):
+            spanner_classes = (spanner_classes, )
+        spanners = set()
+        for spanner in self.spanners:
+            if isinstance(spanner, spanner_classes):
+                spanners.add(spanner)
+        return spanners
 
     def _initialize_keyword_values(self, **kwargs):
         for key, value in kwargs.iteritems():
