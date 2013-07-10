@@ -85,6 +85,12 @@ Read/write properties
 .. autoattribute:: abjad.tools.resttools.Rest.Rest.Rest.written_pitch_indication_is_nonsemantic
    :noindex:
 
+Methods
+-------
+
+.. automethod:: abjad.tools.resttools.Rest.Rest.Rest.get_tie_chain
+   :noindex:
+
 Special methods
 ---------------
 

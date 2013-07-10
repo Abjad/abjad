@@ -104,6 +104,12 @@ Read/write properties
 .. autoattribute:: abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.written_pitch_indication_is_nonsemantic
    :noindex:
 
+Methods
+-------
+
+.. automethod:: abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.get_tie_chain
+   :noindex:
+
 Special methods
 ---------------
 

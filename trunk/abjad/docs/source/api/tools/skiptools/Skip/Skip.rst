@@ -85,6 +85,12 @@ Read/write properties
 .. autoattribute:: abjad.tools.skiptools.Skip.Skip.Skip.written_pitch_indication_is_nonsemantic
    :noindex:
 
+Methods
+-------
+
+.. automethod:: abjad.tools.skiptools.Skip.Skip.Skip.get_tie_chain
+   :noindex:
+
 Special methods
 ---------------
 

@@ -374,3 +374,20 @@ class Leaf(Component):
         def fget(self):
             return self._written_pitch_indication_is_nonsemantic
         return property(**locals())
+
+    ### PUBLIC METHODS ###
+
+    def get_tie_chain(self):
+        '''Get tie chain containing leaf.
+        '''
+        from abjad.tools import tietools
+        spanner_classes = (tietools.TieSpanner,)
+        tie_spanners = self.get_spanners(spanner_classes=spanner_classes)
+        count = len(tie_spanners)
+        if count == 0:
+            return tietools.TieChain(music=self)
+        elif count == 1:
+            tie_spanner = tie_spanners.pop()
+            return tietools.TieChain(music=tie_spanner.leaves)
+        else:
+            raise ExtraSpannerError

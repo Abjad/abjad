@@ -97,6 +97,12 @@ Read/write properties
 .. autoattribute:: abjad.tools.notetools.Note.Note.Note.written_pitch_indication_is_nonsemantic
    :noindex:
 
+Methods
+-------
+
+.. automethod:: abjad.tools.notetools.Note.Note.Note.get_tie_chain
+   :noindex:
+
 Special methods
 ---------------
 
