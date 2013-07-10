@@ -3405,7 +3405,6 @@ Core composition packages
       tools/tietools/is_component_with_tie_spanner_attached
       tools/tietools/iterate_topmost_masked_tie_chains_and_containers_in_expr
       tools/tietools/iterate_topmost_tie_chains_and_components_in_expr
-      tools/tietools/remove_tie_spanners_from_components_in_expr
 
 .. only:: latex
 
@@ -3433,7 +3432,6 @@ Core composition packages
       tools/tietools/is_component_with_tie_spanner_attached
       tools/tietools/iterate_topmost_masked_tie_chains_and_containers_in_expr
       tools/tietools/iterate_topmost_tie_chains_and_components_in_expr
-      tools/tietools/remove_tie_spanners_from_components_in_expr
 
 :py:mod:`timeintervaltools <abjad.tools.timeintervaltools>`
 ===========================================================

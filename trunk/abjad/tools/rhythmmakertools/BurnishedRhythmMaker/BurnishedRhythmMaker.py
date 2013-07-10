@@ -181,6 +181,7 @@ class BurnishedRhythmMaker(RhythmMaker):
     ### PRIVATE METHODS ###
 
     def _add_ties(self, result):
+        from abjad.tools import selectiontools
         leaves = list(iterationtools.iterate_leaves_in_expr(result))
         written_durations = \
             leaftools.list_written_durations_of_leaves_in_expr(leaves)
@@ -190,11 +191,13 @@ class BurnishedRhythmMaker(RhythmMaker):
             written_durations, weights=weights, cyclic=True, overhang=True)
         counts = [len(part) for part in parts]
         parts = sequencetools.partition_sequence_by_counts(leaves, counts)
+        spanner_classes = (tietools.TieSpanner,)
         for part in parts:
+            part = selectiontools.Selection(part)
             tie_spanner = tietools.TieSpanner()
             # this is voodoo to temporarily neuter the contiguity constraint
             tie_spanner._contiguity_constraint = None
-            tietools.remove_tie_spanners_from_components_in_expr(part)
+            part.detach_spanners(spanner_classes=spanner_classes)
             tie_spanner.extend(part)
 
     def _burnish_division_part(self, division_part, indicator):
