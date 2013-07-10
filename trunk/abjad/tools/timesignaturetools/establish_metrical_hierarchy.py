@@ -1,18 +1,24 @@
 from abjad.tools import componenttools
+from abjad.tools import containertools
 from abjad.tools import leaftools
 from abjad.tools import sequencetools
 from abjad.tools import tietools
 
 
-def establish_metrical_hierarchy(components, metrical_hierarchy,
-    boundary_depth=None, maximum_dot_count=None):
+
+def establish_metrical_hierarchy(
+    components,
+    metrical_hierarchy,
+    boundary_depth=None,
+    maximum_dot_count=None,
+    ):
     r'''.. versionadded:: 2.11
 
     Rewrite the contents of tie chains in an expression to match a metrical
     hierarchy.
 
-    Example 1. Rewrite the contents of a measure in a staff using the default metrical
-    hierarchy for that measure's time signature:
+    Example 1. Rewrite the contents of a measure in a staff using the 
+    default metrical hierarchy for that measure's time signature:
 
     ::
 
@@ -340,9 +346,9 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
         >>> show(measure) # doctest: +SKIP
 
     With a `boundary_depth` of `1`, tie chains which cross any offsets created
-    by nodes with a depth of `1` in this MetricalHierarchy's rhythm tree - i.e.
-    `0/8`, `3/8`, `6/8` and `9/8` - which do not also begin and end at any of those
-    offsets, will be split:
+    by nodes with a depth of `1` in this MetricalHierarchy's rhythm tree - 
+    i.e.  `0/8`, `3/8`, `6/8` and `9/8` - which do not also begin and end 
+    at any of those offsets, will be split:
 
     ::
 
@@ -366,8 +372,9 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
 
         >>> show(measure) # doctest: +SKIP
 
-    For this `9/8` hierarchy, and this input notation, A `boundary_depth` of `2`
-    causes no change, as all tie chains already align to multiples of `1/8`:
+    For this `9/8` hierarchy, and this input notation, A `boundary_depth` 
+    of `2` causes no change, as all tie chains already align to multiples 
+    of `1/8`:
 
     ::
 
@@ -480,7 +487,8 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
 
         >>> show(score) # doctest: +SKIP
 
-    Here we establish a metrical hierarchy without specifying and boundary depth:
+    Here we establish a metrical hierarchy without specifying and boundary 
+    depth:
 
     ::
 
@@ -680,8 +688,9 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
     When establishing a metrical hierarchy on a selection of components which
     contain containers, like `Tuplets` or `Containers`,
     `timesignaturetools.establish_metrical_hierarchy()` will recurse into
-    those containers, treating them as measures whose time signature is derived
-    from the preprolated preprolated_duration of the container's contents:
+    those containers, treating them as measures whose time signature is 
+    derived from the preprolated preprolated_duration of the container's 
+    contents:
 
     ::
 
@@ -716,7 +725,6 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
 
     Operate in place and return none.
     '''
-
     from abjad.tools import timesignaturetools
 
     def get_offsets_at_depth(depth):
@@ -725,7 +733,8 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
         while len(offset_inventory) <= depth:
             new_offsets = []
             old_offsets = offset_inventory[-1]
-            for first, second in sequencetools.iterate_sequence_pairwise_strict(old_offsets):
+            for first, second in \
+                sequencetools.iterate_sequence_pairwise_strict(old_offsets):
                 new_offsets.append(first)
                 new_offsets.append((first + second) / 2)
             new_offsets.append(old_offsets[-1])
@@ -745,11 +754,13 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
             return False
         return True
 
-    def is_boundary_crossing_tie_chain(tie_chain_start_offset, tie_chain_stop_offset):
+    def is_boundary_crossing_tie_chain(
+        tie_chain_start_offset, tie_chain_stop_offset):
         #print '\tTESTING BOUNDARY CROSSINGS'
         if boundary_depth is None:
             return False
-        if not any(tie_chain_start_offset < x < tie_chain_stop_offset for x in boundary_offsets):
+        if not any(tie_chain_start_offset < x < tie_chain_stop_offset 
+            for x in boundary_offsets):
             return False
         if tie_chain_start_offset in boundary_offsets and \
             tie_chain_stop_offset in boundary_offsets:
@@ -791,7 +802,8 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
                 #print '\tREL:', split_offset
                 #print ''
                 tie_chains = [tietools.TieChain(shard) for shard in
-                    componenttools.split_components_at_offsets(tie_chain[:], [split_offset])]
+                    componenttools.split_components_at_offsets(
+                        tie_chain[:], [split_offset])]
                 for tie_chain in tie_chains:
                     recurse(tie_chain, depth=depth)
             else:
@@ -817,7 +829,8 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
             #print '\tREL:', split_offset
             #print ''
             tie_chains = [tietools.TieChain(shard) for shard in
-                componenttools.split_components_at_offsets(tie_chain[:], [split_offset])]
+                componenttools.split_components_at_offsets(
+                    tie_chain[:], [split_offset])]
             for tie_chain in tie_chains:
                 recurse(tie_chain, depth=depth)
 
@@ -829,7 +842,8 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
 
     # Validate arguments.
     assert componenttools.all_are_thread_contiguous_components(components)
-    metrical_hierarchy = timesignaturetools.MetricalHierarchy(metrical_hierarchy)
+    metrical_hierarchy = \
+        timesignaturetools.MetricalHierarchy(metrical_hierarchy)
     assert sum([x.preprolated_duration for x in components]) == \
         metrical_hierarchy.preprolated_duration
     if boundary_depth is not None:
@@ -851,7 +865,7 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
         boundary_offsets = offset_inventory[boundary_depth]
 
     # Cache results of iterator, as we'll be mutating the underlying collection.
-    items = tuple(tietools.iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr(components))
+    items = tuple(_iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr(components))
     for item in items:
         if isinstance(item, tietools.TieChain):
             #print 'RECURSING:', item
@@ -869,3 +883,141 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
                 boundary_depth=sub_boundary_depth,
                 maximum_dot_count=maximum_dot_count,
                 )
+
+
+def _iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr(
+    expr):
+    r'''Iterate topmost masked tie chains, rest groups and containers in
+    `expr`, masked by `expr`:
+
+    ::
+
+        >>> input = "abj: | 2/4 c'4 d'4 ~ |"
+        >>> input += "| 4/4 d'8. r16 r8. e'16 ~ 2/3 { e'8 ~ e'8 f'8 ~ } f'4 ~ |"
+        >>> input += "| 4/4 f'8 g'8 ~ g'4 a'4 ~ a'8 b'8 ~ |"
+        >>> input += "| 2/4 b'4 c''4 |"
+        >>> staff = Staff(input)
+
+    ::
+
+        >>> f(staff)
+        \new Staff {
+            {
+                \time 2/4
+                c'4
+                d'4 ~
+            }
+            {
+                \time 4/4
+                d'8.
+                r16
+                r8.
+                e'16 ~
+                \times 2/3 {
+                    e'8 ~
+                    e'8
+                    f'8 ~
+                }
+                f'4 ~
+            }
+            {
+                f'8
+                g'8 ~
+                g'4
+                a'4 ~
+                a'8
+                b'8 ~
+            }
+            {
+                \time 2/4
+                b'4
+                c''4
+            }
+        }
+
+    ::
+
+        >>> from abjad.tools.timesignaturetools.establish_metrical_hierarchy \
+        ...     import _iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr
+
+    ::
+
+        >>> for x in _iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr(
+        ...     staff[0]): x
+        ...
+        TieChain(Note("c'4"),)
+        TieChain(Note("d'4"),)
+
+    ::
+
+        >>> for x in _iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr(
+        ...     staff[1]): x
+        ...
+        TieChain(Note("d'8."),)
+        TieChain(Rest('r16'), Rest('r8.'))
+        TieChain(Note("e'16"),)
+        Tuplet(2/3, [e'8, e'8, f'8])
+        TieChain(Note("f'4"),)
+
+    ::
+
+        >>> for x in _iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr(
+        ...     staff[2]): x
+        ...
+        TieChain(Note("f'8"),)
+        TieChain(Note("g'8"), Note("g'4"))
+        TieChain(Note("a'4"), Note("a'8"))
+        TieChain(Note("b'8"),)
+
+    ::
+
+        >>> for x in _iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr(
+        ...     staff[3]): x
+        ...
+        TieChain(Note("b'4"),)
+        TieChain(Note("c''4"),)
+
+    Return generator.
+    '''
+    from abjad.tools import chordtools
+    from abjad.tools import notetools
+    from abjad.tools import resttools
+    from abjad.tools import skiptools
+    from abjad.tools import tietools
+
+    last_tie_chain = None
+    current_leaf_group = None
+    current_leaf_group_is_silent = False
+
+    for x in expr:
+        if isinstance(x, (notetools.Note, chordtools.Chord)):
+            this_tie_chain = tietools.get_tie_chain(x)
+            if current_leaf_group is None:
+                current_leaf_group = []
+            elif current_leaf_group_is_silent or \
+                last_tie_chain != this_tie_chain:
+                yield tietools.TieChain(current_leaf_group)
+                current_leaf_group = []
+            current_leaf_group_is_silent = False
+            current_leaf_group.append(x)
+            last_tie_chain = this_tie_chain
+        elif isinstance(x, (resttools.Rest, skiptools.Skip)):
+            if current_leaf_group is None:
+                current_leaf_group = []
+            elif not current_leaf_group_is_silent:
+                yield tietools.TieChain(current_leaf_group)
+                current_leaf_group = []
+            current_leaf_group_is_silent = True
+            current_leaf_group.append(x)
+            last_tie_chain = None
+        elif isinstance(x, containertools.Container):
+            if current_leaf_group is not None:
+                yield tietools.TieChain(current_leaf_group)
+                current_leaf_group = None
+                last_tie_chain = None
+            yield x
+
+        else:
+            raise Exception('unhandled component found {!r}', x)
+    if current_leaf_group is not None:
+        yield tietools.TieChain(current_leaf_group)
