@@ -214,37 +214,10 @@ class Selection(AbjadObject):
 
     ### PUBLIC METHODS ###
 
-    def get_offset_lists(self):
-        '''Get offset lists of components in selection:
+    def detach_spanners(self, spanner_classes=None, recurse=True):
+        r'''Detach `spanner_classes` from components in selection.
 
-        ::
-
-            >>> start_offsets, stop_offsets = selection.get_offset_lists()
-            >>> start_offsets
-            [Offset(0, 1), Offset(1, 4)]
-
-        ::
-
-            >>> stop_offsets
-            [Offset(1, 4), Offset(1, 2)]
-
-        Return list of start offsets together with list of stop offsets.
-        '''
-        start_offsets, stop_offsets = [], []
-        for component in self:
-            start_offsets.append(component.timespan.start_offset)
-            stop_offsets.append(component.timespan.stop_offset)
-        return start_offsets, stop_offsets
-
-    def get_parent_and_start_stop_indices(self):
-        from abjad.tools import componenttools
-        return componenttools.get_parent_and_start_stop_indices_of_components(
-            self)
-
-    def remove_spanners(self, spanner_classes=None, recurse=True):
-        r'''Remove `spanner_classes` from components in selection.
-
-        Example 1. Remove tie spanners from components in selection:
+        Example 1. Detach tie spanners from components in selection:
 
         ::
 
@@ -271,7 +244,7 @@ class Selection(AbjadObject):
         ::
 
             >>> selection = staff[:]
-            >>> selection.remove_spanners(
+            >>> selection.detach_spanners(
             ...     spanner_classes=(tietools.TieSpanner,))
 
         ::
@@ -289,20 +262,50 @@ class Selection(AbjadObject):
 
             >>> show(staff) # doctest: +SKIP
 
-        Remove spanners from components at all levels
+        Detach spanners from components at all levels
         of selection when `recurse` is true.
 
-        Remove spanners at only top level of selection
+        Detach spanners at only top level of selection
         when `recurse` is false.
 
-        Remove all spanners when `spanner_classes` is none.
+        Detach all spanners when `spanner_classes` is none.
 
-        Remove spanners of only `spanner_classes` when
+        Detach spanners of only `spanner_classes` when
         `spanners_classes` is not none.
 
         Return none.
         '''
-        from abjad.tools import spannertools
         for component in self._iterate_components(recurse=recurse):
-            spannertools.detach_spanners_attached_to_component(
-                component, spanner_classes=spanner_classes)
+            component._detach_spanners(spanner_classes=spanner_classes)
+
+    def get_offset_lists(self):
+        '''Get offset lists of components in selection:
+
+            >>> staff = Staff("c'4 d'4 e'4 f'4")
+            >>> selection = staff[:2]
+            >>> selection
+            Selection(Note("c'4"), Note("d'4"))
+
+        ::
+
+            >>> start_offsets, stop_offsets = selection.get_offset_lists()
+            >>> start_offsets
+            [Offset(0, 1), Offset(1, 4)]
+
+        ::
+
+            >>> stop_offsets
+            [Offset(1, 4), Offset(1, 2)]
+
+        Return list of start offsets together with list of stop offsets.
+        '''
+        start_offsets, stop_offsets = [], []
+        for component in self:
+            start_offsets.append(component.timespan.start_offset)
+            stop_offsets.append(component.timespan.stop_offset)
+        return start_offsets, stop_offsets
+
+    def get_parent_and_start_stop_indices(self):
+        from abjad.tools import componenttools
+        return componenttools.get_parent_and_start_stop_indices_of_components(
+            self)

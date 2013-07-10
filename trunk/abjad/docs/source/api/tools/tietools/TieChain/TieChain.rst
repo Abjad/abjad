@@ -59,13 +59,13 @@ Read-only properties
 Methods
 -------
 
+.. automethod:: abjad.tools.tietools.TieChain.TieChain.TieChain.detach_spanners
+   :noindex:
+
 .. automethod:: abjad.tools.tietools.TieChain.TieChain.TieChain.get_offset_lists
    :noindex:
 
 .. automethod:: abjad.tools.tietools.TieChain.TieChain.TieChain.get_parent_and_start_stop_indices
-   :noindex:
-
-.. automethod:: abjad.tools.tietools.TieChain.TieChain.TieChain.remove_spanners
    :noindex:
 
 .. automethod:: abjad.tools.tietools.TieChain.TieChain.TieChain.to_tuplet

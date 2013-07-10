@@ -32,13 +32,13 @@ Read-only properties
 Methods
 -------
 
+.. automethod:: abjad.tools.componenttools.Lineage.Lineage.Lineage.detach_spanners
+   :noindex:
+
 .. automethod:: abjad.tools.componenttools.Lineage.Lineage.Lineage.get_offset_lists
    :noindex:
 
 .. automethod:: abjad.tools.componenttools.Lineage.Lineage.Lineage.get_parent_and_start_stop_indices
-   :noindex:
-
-.. automethod:: abjad.tools.componenttools.Lineage.Lineage.Lineage.remove_spanners
    :noindex:
 
 Special methods

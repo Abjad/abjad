@@ -77,13 +77,13 @@ Read-only properties
 Methods
 -------
 
+.. automethod:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment.detach_spanners
+   :noindex:
+
 .. automethod:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment.get_offset_lists
    :noindex:
 
 .. automethod:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment.get_parent_and_start_stop_indices
-   :noindex:
-
-.. automethod:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment.remove_spanners
    :noindex:
 
 Special methods
