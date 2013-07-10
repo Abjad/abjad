@@ -9,7 +9,7 @@ from abjad.tools import tuplettools
 def tie_chain_to_tuplet_with_ratio(
     tie_chain,
     proportions,
-    dotted=True,
+    dotted=False,
     is_diminution=True,
     ):
     r'''.. versionadded:: 2.9
@@ -48,7 +48,6 @@ def tie_chain_to_tuplet_with_ratio(
         >>> tietools.tie_chain_to_tuplet_with_ratio(
         ...     tie_chain, 
         ...     [2, 1, 1, 1], 
-        ...     dotted=False,
         ...     is_diminution=True,
         ...     )
         FixedDurationTuplet(3/16, [c'8, c'16, c'16, c'16])
@@ -108,7 +107,6 @@ def tie_chain_to_tuplet_with_ratio(
         >>> tietools.tie_chain_to_tuplet_with_ratio(
         ...     tie_chain, 
         ...     [2, 1, 1, 1], 
-        ...     dotted=False,
         ...     is_diminution=False, 
         ...     )
         FixedDurationTuplet(3/16, [c'16, c'32, c'32, c'32])
