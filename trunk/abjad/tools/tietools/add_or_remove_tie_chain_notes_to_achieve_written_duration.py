@@ -45,7 +45,12 @@ def add_or_remove_tie_chain_notes_to_achieve_written_duration(
 
     if new_written_duration.is_assignable:
         tie_chain[0].written_duration = new_written_duration
-        tietools.remove_nonfirst_leaves_in_tie_chain(tie_chain)
+        for leaf in tie_chain[1:]:
+            componenttools.remove_component_subtree_from_score_and_spanners(
+                [leaf])
+        first = tie_chain[0]
+        spannertools.destroy_spanners_attached_to_component(
+            first, tietools.TieSpanner)
     elif new_written_duration.has_power_of_two_denominator:
         durations = notetools.make_notes(0, [new_written_duration])
         for leaf, token in zip(tie_chain, durations):

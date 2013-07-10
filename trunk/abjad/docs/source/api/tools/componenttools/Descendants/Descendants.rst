@@ -38,6 +38,9 @@ Methods
 .. automethod:: abjad.tools.componenttools.Descendants.Descendants.Descendants.get_parent_and_start_stop_indices
    :noindex:
 
+.. automethod:: abjad.tools.componenttools.Descendants.Descendants.Descendants.remove_spanners
+   :noindex:
+
 Special methods
 ---------------
 

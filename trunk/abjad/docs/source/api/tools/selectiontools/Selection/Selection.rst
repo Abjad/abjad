@@ -33,6 +33,9 @@ Methods
 .. automethod:: abjad.tools.selectiontools.Selection.Selection.Selection.get_parent_and_start_stop_indices
    :noindex:
 
+.. automethod:: abjad.tools.selectiontools.Selection.Selection.Selection.remove_spanners
+   :noindex:
+
 Special methods
 ---------------
 

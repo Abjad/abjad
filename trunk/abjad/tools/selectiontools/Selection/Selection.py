@@ -154,6 +154,21 @@ class Selection(AbjadObject):
             container._set_parent(parent)
             self._set_parents(None)
 
+    def _iterate_components(self, recurse=True):
+        from abjad.tools import iterationtools
+        if recurse:
+            return iterationtools.iterate_components_in_expr(self)
+        else:
+            return self._iterate_top_level_components()
+
+    def _iterate_top_level_components(self, reverse=False):
+        if reversed:
+            for component in reversed(self):
+                yield component
+        else:
+            for component in self:
+                yield component
+
     def _set_parents(self, new_parent):
         '''Not composer-safe.
         '''
@@ -226,3 +241,68 @@ class Selection(AbjadObject):
         return componenttools.get_parent_and_start_stop_indices_of_components(
             self)
 
+    def remove_spanners(self, spanner_classes=None, recurse=True):
+        r'''Remove `spanner_classes` from components in selection.
+
+        Example 1. Remove tie spanners from components in selection:
+
+        ::
+
+            >>> staff = Staff("e'4 ( ~ e'16 fs'8 ~ fs'16 )")
+            >>> time_signature = contexttools.TimeSignatureMark((2, 4))
+            >>> time_signature.attach(staff)
+            TimeSignatureMark((2, 4))(Staff{4})
+
+        ::
+
+            >>> f(staff)
+            \new Staff {
+                \time 2/4
+                e'4 ( ~
+                e'16
+                fs'8 ~
+                fs'16 )
+            }
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
+
+        ::
+
+            >>> selection = staff[:]
+            >>> selection.remove_spanners(
+            ...     spanner_classes=(tietools.TieSpanner,))
+
+        ::
+
+            >>> f(staff)
+            \new Staff {
+                \time 2/4
+                e'4 (
+                e'16
+                fs'8
+                fs'16 )
+            }
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
+
+        Remove spanners from components at all levels
+        of selection when `recurse` is true.
+
+        Remove spanners at only top level of selection
+        when `recurse` is false.
+
+        Remove all spanners when `spanner_classes` is none.
+
+        Remove spanners of only `spanner_classes` when
+        `spanners_classes` is not none.
+
+        Return none.
+        '''
+        from abjad.tools import spannertools
+        for component in self._iterate_components(recurse=recurse):
+            spannertools.destroy_spanners_attached_to_component(
+                component, spanner_classes=spanner_classes)

@@ -62,6 +62,9 @@ Methods
 .. automethod:: abjad.tools.componenttools.Parentage.Parentage.Parentage.get_parent_and_start_stop_indices
    :noindex:
 
+.. automethod:: abjad.tools.componenttools.Parentage.Parentage.Parentage.remove_spanners
+   :noindex:
+
 Special methods
 ---------------
 
