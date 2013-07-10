@@ -913,9 +913,9 @@ Changes to the ``tietools`` package:
 
   ::
 
-    tietools.iterate_nontrivial_tie_chains_in_expr(reverse=[True, False])
-    tietools.iterate_pitched_tie_chains_in_expr(reverse=[True, False])
-    tietools.iterate_tie_chains_in_expr(reverse=[True, False])
+    iterationtools.iterate_nontrivial_tie_chains_in_expr(reverse=[True, False])
+    iterationtools.iterate_pitched_tie_chains_in_expr(reverse=[True, False])
+    iterationtools.iterate_tie_chains_in_expr(reverse=[True, False])
 
 Changes to the ``tuplettools`` package:
 

@@ -29,7 +29,7 @@ def iterate_pitched_tie_chains_in_expr(expr, reverse=False):
 
     ::
 
-        >>> for x in tietools.iterate_pitched_tie_chains_in_expr(staff):
+        >>> for x in iterationtools.iterate_pitched_tie_chains_in_expr(staff):
         ...     x
         ...
         TieChain(Note("c'4"), Note("c'16"))
@@ -41,7 +41,7 @@ def iterate_pitched_tie_chains_in_expr(expr, reverse=False):
 
     ::
 
-        >>> for x in tietools.iterate_pitched_tie_chains_in_expr(
+        >>> for x in iterationtools.iterate_pitched_tie_chains_in_expr(
         ...     staff, reverse=True):
         ...     x
         ...

@@ -20,7 +20,7 @@ class NaiveAttackPointOptimizer(AttackPointOptimizer):
     ### SPECIAL METHODS ###
 
     def __call__(self, expr):
-        for tie_chain in tietools.iterate_tie_chains_in_expr(
+        for tie_chain in iterationtools.iterate_tie_chains_in_expr(
             expr, reverse=True):
             sub_chains = []
             current_sub_chain = []

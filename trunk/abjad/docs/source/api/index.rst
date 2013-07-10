@@ -885,8 +885,10 @@ Core composition packages
       tools/iterationtools/iterate_leaves_in_expr
       tools/iterationtools/iterate_measures_in_expr
       tools/iterationtools/iterate_namesakes_from_component
+      tools/iterationtools/iterate_nontrivial_tie_chains_in_expr
       tools/iterationtools/iterate_notes_and_chords_in_expr
       tools/iterationtools/iterate_notes_in_expr
+      tools/iterationtools/iterate_pitched_tie_chains_in_expr
       tools/iterationtools/iterate_rests_in_expr
       tools/iterationtools/iterate_scores_in_expr
       tools/iterationtools/iterate_semantic_voices_in_expr
@@ -894,6 +896,7 @@ Core composition packages
       tools/iterationtools/iterate_staves_in_expr
       tools/iterationtools/iterate_thread_from_component
       tools/iterationtools/iterate_thread_in_expr
+      tools/iterationtools/iterate_tie_chains_in_expr
       tools/iterationtools/iterate_timeline_from_component
       tools/iterationtools/iterate_timeline_in_expr
       tools/iterationtools/iterate_tuplets_in_expr
@@ -916,8 +919,10 @@ Core composition packages
       tools/iterationtools/iterate_leaves_in_expr
       tools/iterationtools/iterate_measures_in_expr
       tools/iterationtools/iterate_namesakes_from_component
+      tools/iterationtools/iterate_nontrivial_tie_chains_in_expr
       tools/iterationtools/iterate_notes_and_chords_in_expr
       tools/iterationtools/iterate_notes_in_expr
+      tools/iterationtools/iterate_pitched_tie_chains_in_expr
       tools/iterationtools/iterate_rests_in_expr
       tools/iterationtools/iterate_scores_in_expr
       tools/iterationtools/iterate_semantic_voices_in_expr
@@ -925,6 +930,7 @@ Core composition packages
       tools/iterationtools/iterate_staves_in_expr
       tools/iterationtools/iterate_thread_from_component
       tools/iterationtools/iterate_thread_in_expr
+      tools/iterationtools/iterate_tie_chains_in_expr
       tools/iterationtools/iterate_timeline_from_component
       tools/iterationtools/iterate_timeline_in_expr
       tools/iterationtools/iterate_tuplets_in_expr
@@ -3397,9 +3403,6 @@ Core composition packages
       tools/tietools/get_tie_chains_masked_by_components
       tools/tietools/get_tie_spanner_attached_to_component
       tools/tietools/is_component_with_tie_spanner_attached
-      tools/tietools/iterate_nontrivial_tie_chains_in_expr
-      tools/tietools/iterate_pitched_tie_chains_in_expr
-      tools/tietools/iterate_tie_chains_in_expr
       tools/tietools/iterate_topmost_masked_tie_chains_and_containers_in_expr
       tools/tietools/iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr
       tools/tietools/iterate_topmost_tie_chains_and_components_in_expr
@@ -3430,9 +3433,6 @@ Core composition packages
       tools/tietools/get_tie_chains_masked_by_components
       tools/tietools/get_tie_spanner_attached_to_component
       tools/tietools/is_component_with_tie_spanner_attached
-      tools/tietools/iterate_nontrivial_tie_chains_in_expr
-      tools/tietools/iterate_pitched_tie_chains_in_expr
-      tools/tietools/iterate_tie_chains_in_expr
       tools/tietools/iterate_topmost_masked_tie_chains_and_containers_in_expr
       tools/tietools/iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr
       tools/tietools/iterate_topmost_tie_chains_and_components_in_expr
