@@ -6,7 +6,9 @@ from abjad.tools import sequencetools
 def get_likely_multiplier_of_components(components):
     r'''.. versionadded:: 2.0
 
-    Get likely multiplier of `components`::
+    Get likely multiplier of `components`:
+
+    ::
 
         >>> staff = Staff("c'8.. d'8.. e'8.. f'8..")
 
@@ -50,7 +52,8 @@ def get_likely_multiplier_of_components(components):
 
     ::
 
-        >>> staff = Staff(notetools.make_notes([0, 2, 4, 5], [(3, 16), (7, 32)]))
+        >>> staff = Staff(
+        ...     notetools.make_notes([0, 2, 4, 5], [(3, 16), (7, 32)]))
 
     ::
 
@@ -76,12 +79,15 @@ def get_likely_multiplier_of_components(components):
     assert componenttools.all_are_components(components)
 
     chain_duration_numerators = []
-    for expr in tietools.iterate_topmost_tie_chains_and_components_in_expr(components):
+    for expr in \
+        iterationtools.iterate_topmost_tie_chains_and_components_in_expr(
+        components):
         if isinstance(expr, tietools.TieChain):
             chain_duration = expr.preprolated_duration
             chain_duration_numerators.append(chain_duration.numerator)
 
-    if len(sequencetools.truncate_runs_in_sequence(chain_duration_numerators)) == 1:
+    if len(sequencetools.truncate_runs_in_sequence(
+        chain_duration_numerators)) == 1:
         numerator = chain_duration_numerators[0]
         denominator = mathtools.greatest_power_of_two_less_equal(numerator)
         likely_multiplier = durationtools.Multiplier(numerator, denominator)

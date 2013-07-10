@@ -34,7 +34,7 @@ def iterate_topmost_tie_chains_and_components_in_expr(expr):
     ::
 
         >>> for x in \
-        ...     tietools.iterate_topmost_tie_chains_and_components_in_expr(
+        ...     iterationtools.iterate_topmost_tie_chains_and_components_in_expr(
         ...     staff):
         ...     x
         ...

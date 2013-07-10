@@ -1,7 +1,9 @@
 def scale_contents_of_container(container, multiplier):
     r'''.. versionadded:: 1.1
 
-    Scale contents of `container` by dot `multiplier`::
+    Scale contents of `container` by dot `multiplier`:
+
+    ::
 
         >>> staff = Staff("c'8 d'8")
         >>> beamtools.BeamSpanner(staff.leaves)
@@ -17,7 +19,7 @@ def scale_contents_of_container(container, multiplier):
 
     ::
 
-        >>> containertools.scale_contents_of_container(staff, Duration(3, 2))
+        >>> containertools.scale_contents_of_container(staff, Multiplier(3, 2))
         Staff{2}
 
     ::
@@ -28,7 +30,9 @@ def scale_contents_of_container(container, multiplier):
             d'8. ]
         }
 
-    Scale contents of `container` by tie `multiplier`::
+    Scale contents of `container` by tie `multiplier`:
+
+    ::
 
         >>> staff = Staff("c'8 d'8")
         >>> beamtools.BeamSpanner(staff.leaves)
@@ -44,7 +48,7 @@ def scale_contents_of_container(container, multiplier):
 
     ::
 
-        >>> containertools.scale_contents_of_container(staff, Duration(5, 4))
+        >>> containertools.scale_contents_of_container(staff, Multiplier(5, 4))
         Staff{4}
 
     ::
@@ -57,7 +61,8 @@ def scale_contents_of_container(container, multiplier):
             d'32 ]
         }
 
-    Scale contents of `container` by `multiplier` without power-of-two denominator:
+    Scale contents of `container` by `multiplier` without 
+    power-of-two denominator:
 
     ::
 
@@ -75,7 +80,7 @@ def scale_contents_of_container(container, multiplier):
 
     ::
 
-        >>> containertools.scale_contents_of_container(staff, Duration(4, 3))
+        >>> containertools.scale_contents_of_container(staff, Multiplier(4, 3))
         Staff{2}
 
     ::
@@ -97,14 +102,17 @@ def scale_contents_of_container(container, multiplier):
     from abjad.tools import tietools
     from abjad.tools import tuplettools
 
-    for expr in tietools.iterate_topmost_tie_chains_and_components_in_expr(container[:]):
+    for expr in iterationtools.iterate_topmost_tie_chains_and_components_in_expr(
+        container[:]):
         if isinstance(expr, tietools.TieChain):
-            tietools.add_or_remove_tie_chain_notes_to_achieve_scaled_written_duration(expr, multiplier)
+            tietools.add_or_remove_tie_chain_notes_to_achieve_scaled_written_duration(
+                expr, multiplier)
         elif isinstance(expr, tuplettools.FixedDurationTuplet):
-            tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(expr, multiplier)
+            tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(
+                expr, multiplier)
         elif isinstance(expr, measuretools.Measure):
             measuretools.scale_contents_of_measures_in_expr(expr, multiplier)
         else:
-            raise Exception(NotImplemented)
+            raise NotImplementedError
 
     return container
