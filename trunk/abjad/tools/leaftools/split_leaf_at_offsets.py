@@ -263,7 +263,8 @@ def split_leaf_at_offsets(
         #       to tietools.apply_tie_spanner_to_leaves().
         for leaf_pair in sequencetools.iterate_sequence_pairwise_strict(
             flattened_result_leaves):
-            tietools.attach_tie_spanner_to_leaf_pair(*leaf_pair)
+            selection = selectiontools.Selection(leaf_pair)
+            selection._attach_tie_spanner_to_leaf_pair()
 
     # return result
     return result

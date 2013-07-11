@@ -48,17 +48,13 @@ def attach_tie_spanner_to_leaf_pair(left_leaf, right_leaf):
     if left_tie_chain == right_tie_chain:
         return
 
-    # TODO: use the following two lines
-    #left_tie_spanner = left_tie_chain.tie_spanner
-    #right_tie_spanner = right_tie_chain.tie_spanner
-
-    # TODO: remove in favor of TieChain.tie_spanner property
+    # get left tie spanner
     try:
         left_tie_spanner = left_leaf._get_spanner((tietools.TieSpanner,))
     except MissingSpannerError:
         left_tie_spanner = None
 
-    # TODO: remove in favor of TieChain.tie_spanner property
+    # get right tie spanner
     try:
         right_tie_spanner = right_leaf._get_spanner((tietools.TieSpanner,))
     except MissingSpannerError:

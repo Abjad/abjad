@@ -128,6 +128,7 @@ def split_leaf_at_offset(leaf, offset, fracture_spanners=False,
     from abjad.tools import gracetools
     from abjad.tools import leaftools
     from abjad.tools import marktools
+    from abjad.tools import selectiontools
     from abjad.tools import spannertools
     from abjad.tools import tietools
 
@@ -164,6 +165,7 @@ def split_leaf_at_offset(leaf, offset, fracture_spanners=False,
 
     leaf_left_of_split = left_leaf_list[-1]
     leaf_right_of_split = right_leaf_list[0]
+    leaves_around_split = (leaf_left_of_split, leaf_right_of_split)
 
     if fracture_spanners:
         spannertools.fracture_spanners_attached_to_component(leaf_left_of_split,
@@ -172,7 +174,8 @@ def split_leaf_at_offset(leaf, offset, fracture_spanners=False,
     # tie split notes, rests and chords as specified
     if  (pitchtools.is_pitch_carrier(leaf) and tie_split_notes) or \
         (not pitchtools.is_pitch_carrier(leaf) and tie_split_rests):
-        tietools.attach_tie_spanner_to_leaf_pair(leaf_left_of_split, leaf_right_of_split)
+        selection = selectiontools.Selection(leaves_around_split)
+        selection._attach_tie_spanner_to_leaf_pair()
 
     return left_leaf_list, right_leaf_list
 

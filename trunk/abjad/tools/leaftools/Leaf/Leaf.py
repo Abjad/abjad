@@ -382,13 +382,12 @@ class Leaf(Component):
         '''
         from abjad.tools import tietools
         spanner_classes = (tietools.TieSpanner,)
-        tie_spanners = self.parentage._get_spanners(
-            spanner_classes=spanner_classes)
-        count = len(tie_spanners)
-        if count == 0:
-            return tietools.TieChain(music=self)
-        elif count == 1:
-            tie_spanner = tie_spanners.pop()
-            return tietools.TieChain(music=tie_spanner.leaves)
+        for component in self.parentage:
+            tie_spanners = component._get_spanners(spanner_classes)
+            if len(tie_spanners) == 1:
+                tie_spanner = tie_spanners.pop()
+                return tietools.TieChain(music=tie_spanner.leaves)
+            elif 1 < len(tie_spanners):
+                raise ExtraSpannerError
         else:
-            raise ExtraSpannerError
+            return tietools.TieChain(music=self)

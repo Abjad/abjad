@@ -142,6 +142,7 @@ def split_component_at_offset(
     from abjad.tools import measuretools
     from abjad.tools import notetools
     from abjad.tools import resttools
+    from abjad.tools import selectiontools
     from abjad.tools import spannertools
     from abjad.tools import tietools
 
@@ -268,17 +269,19 @@ def split_component_at_offset(
     # NOTE: If tie chain here is convenience, then fusing is good.
     #       If tie chain here is user-given, then fusing is less good.
     #       Maybe later model difference between user tie chains and not.
-    leaftools.fuse_leaves_in_tie_chain_by_immediate_parent(
-        leaf_left_of_split.get_tie_chain())
-    leaftools.fuse_leaves_in_tie_chain_by_immediate_parent(
-        leaf_right_of_split.get_tie_chain())
+    left_tie_chain = leaf_left_of_split.get_tie_chain()
+    right_tie_chain = leaf_right_of_split.get_tie_chain()
+    leaftools.fuse_leaves_in_tie_chain_by_immediate_parent(left_tie_chain)
+    leaftools.fuse_leaves_in_tie_chain_by_immediate_parent(right_tie_chain)
 
     # reapply tie here if crawl above killed tie applied to leaves
     if did_split_leaf:
         if  (tie_split_notes and isinstance(leaf_left_of_split, notetools.Note)) or \
             (tie_split_rests and isinstance(leaf_left_of_split, resttools.Rest)):
             if leaf_left_of_split.parentage.root is leaf_right_of_split.parentage.root:
-                tietools.attach_tie_spanner_to_leaf_pair(leaf_left_of_split, leaf_right_of_split)
+                leaves_around_split = (leaf_left_of_split, leaf_right_of_split)
+                selection = selectiontools.Selection(leaves_around_split)
+                selection._attach_tie_spanner_to_leaf_pair()
 
     # return pair of left and right list-wrapped halves of container
     return ([left], [right])

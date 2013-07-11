@@ -121,7 +121,12 @@ class TieChain(Selection):
         from abjad.tools import tietools
         if 1 < len(self):
             spanner_classes = (tietools.TieSpanner,)
-            tie_spanner = self[0].parentage._get_spanner(spanner_classes)
+            for component in self[0].parentage:
+                try:
+                    tie_spanner = component._get_spanner(spanner_classes)
+                    break
+                except MissingSpannerError:
+                    pass
             return tie_spanner
 
     @property
