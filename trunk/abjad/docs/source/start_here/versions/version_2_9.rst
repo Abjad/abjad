@@ -428,10 +428,10 @@ Added a new ``beamtools`` package.
 
     beamtools.is_beamable_component
     beamtools.apply_beam_spanner_to_measure
-    beamtools.apply_beam_spanners_to_measures_in_expr
+    beamtools.attach_beam_spanners_to_measures_in_expr
     beamtools.apply_complex_beam_spanner_to_measure
-    beamtools.apply_complex_beam_spanners_to_measures_in_expr
-    beamtools.apply_durated_complex_beam_spanner_to_measures
+    beamtools.attach_complex_beam_spanners_to_measures_in_expr
+    beamtools.attach_durated_complex_beam_spanner_to_measures
     beamtools.beam_bottommost_tuplets_in_expr
     beamtools.get_beam_spanner_attached_to_component
     beamtools.is_beamable_component
@@ -444,8 +444,8 @@ Added a new ``beamtools`` package.
 
   Use these two functions instead::
     
-    beamtools.apply_beam_spanners_to_measures_in_expr()
-    beamtools.apply_complex_beam_spanners_to_measures_in_expr()
+    beamtools.attach_beam_spanners_to_measures_in_expr()
+    beamtools.attach_complex_beam_spanners_to_measures_in_expr()
 
 
 New ``constrainttools`` functionality is now available.

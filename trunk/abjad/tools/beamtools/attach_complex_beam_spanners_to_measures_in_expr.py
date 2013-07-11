@@ -1,7 +1,7 @@
 from abjad.tools import iterationtools
 
 
-def apply_complex_beam_spanners_to_measures_in_expr(expr):
+def attach_complex_beam_spanners_to_measures_in_expr(expr):
     r'''.. versionadded:: 2.0
 
     Apply complex beam spanners to measures in `expr`:
@@ -31,7 +31,7 @@ def apply_complex_beam_spanners_to_measures_in_expr(expr):
 
     ::
 
-        >>> beamtools.apply_complex_beam_spanners_to_measures_in_expr(staff)
+        >>> beamtools.attach_complex_beam_spanners_to_measures_in_expr(staff)
         [ComplexBeamSpanner(|2/8(2)|), ComplexBeamSpanner(|2/8(2)|)]
 
     ::

@@ -17,7 +17,7 @@ def split_leaf_at_offset(leaf, offset, fracture_spanners=False,
     ::
 
         >>> staff = Staff(r"abj: | 2/8 c'8 ( d'8 || 2/8 e'8 f'8 ) |")
-        >>> beamtools.apply_beam_spanners_to_measures_in_expr(staff)
+        >>> beamtools.attach_beam_spanners_to_measures_in_expr(staff)
         [BeamSpanner(|2/8(2)|), BeamSpanner(|2/8(2)|)]
         >>> contexttools.DynamicMark('f')(staff.leaves[0])
         DynamicMark('f')(c'8)
@@ -64,7 +64,7 @@ def split_leaf_at_offset(leaf, offset, fracture_spanners=False,
     Example 2. Handle grace and after grace containers correctly.
 
         >>> staff = Staff(r"abj: | 2/8 c'8 ( d'8 || 2/8 e'8 f'8 ) |")
-        >>> beamtools.apply_beam_spanners_to_measures_in_expr(staff)
+        >>> beamtools.attach_beam_spanners_to_measures_in_expr(staff)
         [BeamSpanner(|2/8(2)|), BeamSpanner(|2/8(2)|)]
         >>> gracetools.GraceContainer("cs'16")(staff.leaves[0])
         Note("c'8")
@@ -172,7 +172,7 @@ def split_leaf_at_offset(leaf, offset, fracture_spanners=False,
     # tie split notes, rests and chords as specified
     if  (pitchtools.is_pitch_carrier(leaf) and tie_split_notes) or \
         (not pitchtools.is_pitch_carrier(leaf) and tie_split_rests):
-        tietools.apply_tie_spanner_to_leaf_pair(leaf_left_of_split, leaf_right_of_split)
+        tietools.attach_tie_spanner_to_leaf_pair(leaf_left_of_split, leaf_right_of_split)
 
     return left_leaf_list, right_leaf_list
 

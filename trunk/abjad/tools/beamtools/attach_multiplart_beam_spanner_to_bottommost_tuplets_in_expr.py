@@ -2,7 +2,7 @@ from abjad.tools import iterationtools
 from abjad.tools import tuplettools
 
 
-def apply_multipart_beam_spanner_to_bottommost_tuplets_in_expr(expr):
+def attach_multiplart_beam_spanner_to_bottommost_tuplets_in_expr(expr):
     r'''Apply multiplart beam spanner to bottommost tuplets in `expr`:
 
     ::
@@ -74,7 +74,7 @@ def apply_multipart_beam_spanner_to_bottommost_tuplets_in_expr(expr):
 
     ::
 
-        >>> beamtools.apply_multipart_beam_spanner_to_bottommost_tuplets_in_expr(
+        >>> beamtools.attach_multiplart_beam_spanner_to_bottommost_tuplets_in_expr(
         ...     measure)
 
     ::

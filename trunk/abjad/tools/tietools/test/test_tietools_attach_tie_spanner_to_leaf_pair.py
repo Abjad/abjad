@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_tietools_apply_tie_spanner_to_leaf_pair_01():
+def test_tietools_attach_tie_spanner_to_leaf_pair_01():
     '''Span left leaf with spanner and right leaf without spanner.
     '''
 
@@ -17,7 +17,7 @@ def test_tietools_apply_tie_spanner_to_leaf_pair_01():
     }
     '''
 
-    tietools.apply_tie_spanner_to_leaf_pair(t[1], t[2])
+    tietools.attach_tie_spanner_to_leaf_pair(t[1], t[2])
 
     r'''
     \new Voice {
@@ -32,7 +32,7 @@ def test_tietools_apply_tie_spanner_to_leaf_pair_01():
     assert t.lilypond_format == "\\new Voice {\n\tc'8 ~\n\tc'8 ~\n\tc'8\n\tc'8\n}"
 
 
-def test_tietools_apply_tie_spanner_to_leaf_pair_02():
+def test_tietools_attach_tie_spanner_to_leaf_pair_02():
     '''Span left leaf with spanner and right leaf with spanner.
     '''
 
@@ -49,7 +49,7 @@ def test_tietools_apply_tie_spanner_to_leaf_pair_02():
     }
     '''
 
-    tietools.apply_tie_spanner_to_leaf_pair(t[1], t[2])
+    tietools.attach_tie_spanner_to_leaf_pair(t[1], t[2])
 
     r'''
     \new Voice {
@@ -64,7 +64,7 @@ def test_tietools_apply_tie_spanner_to_leaf_pair_02():
     assert t.lilypond_format == "\\new Voice {\n\tc'8 ~\n\tc'8 ~\n\tc'8 ~\n\tc'8\n}"
 
 
-def test_tietools_apply_tie_spanner_to_leaf_pair_03():
+def test_tietools_attach_tie_spanner_to_leaf_pair_03():
     '''Span left leaves with no spanner.
     '''
 
@@ -79,7 +79,7 @@ def test_tietools_apply_tie_spanner_to_leaf_pair_03():
     }
     '''
 
-    tietools.apply_tie_spanner_to_leaf_pair(t[1], t[2])
+    tietools.attach_tie_spanner_to_leaf_pair(t[1], t[2])
 
     r'''
     \new Voice {

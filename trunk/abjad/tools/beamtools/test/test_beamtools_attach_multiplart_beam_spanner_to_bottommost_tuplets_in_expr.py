@@ -1,13 +1,13 @@
 from abjad import *
 
 
-def test_beamtools_apply_multipart_beam_spanner_to_bottommost_tuplets_in_expr_01():
+def test_beamtools_attach_multiplart_beam_spanner_to_bottommost_tuplets_in_expr_01():
     '''Beam nonnested tuplets.
     '''
 
     t = Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beamtools.apply_multipart_beam_spanner_to_bottommost_tuplets_in_expr(t)
+    beamtools.attach_multiplart_beam_spanner_to_bottommost_tuplets_in_expr(t)
 
     r'''
     \new Voice {
@@ -28,7 +28,7 @@ def test_beamtools_apply_multipart_beam_spanner_to_bottommost_tuplets_in_expr_01
     assert t.lilypond_format == "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8 [\n\t\td'8\n\t\te'8 ]\n\t}\n\t\\times 2/3 {\n\t\tf'8 [\n\t\tg'8\n\t\ta'8 ]\n\t}\n}"
 
 
-def test_beamtools_apply_multipart_beam_spanner_to_bottommost_tuplets_in_expr_02():
+def test_beamtools_attach_multiplart_beam_spanner_to_bottommost_tuplets_in_expr_02():
     '''Beam bottommost nested tuplets.
     '''
 
@@ -69,7 +69,7 @@ def test_beamtools_apply_multipart_beam_spanner_to_bottommost_tuplets_in_expr_02
     }
     '''
 
-    beamtools.apply_multipart_beam_spanner_to_bottommost_tuplets_in_expr(t)
+    beamtools.attach_multiplart_beam_spanner_to_bottommost_tuplets_in_expr(t)
 
     r'''
     \new Voice {

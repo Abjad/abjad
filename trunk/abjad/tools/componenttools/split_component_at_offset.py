@@ -278,7 +278,7 @@ def split_component_at_offset(
         if  (tie_split_notes and isinstance(leaf_left_of_split, notetools.Note)) or \
             (tie_split_rests and isinstance(leaf_left_of_split, resttools.Rest)):
             if leaf_left_of_split.parentage.root is leaf_right_of_split.parentage.root:
-                tietools.apply_tie_spanner_to_leaf_pair(leaf_left_of_split, leaf_right_of_split)
+                tietools.attach_tie_spanner_to_leaf_pair(leaf_left_of_split, leaf_right_of_split)
 
     # return pair of left and right list-wrapped halves of container
     return ([left], [right])

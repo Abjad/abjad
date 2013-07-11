@@ -29,10 +29,10 @@ Core composition packages
    .. toctree::
       :maxdepth: 1
 
-      tools/beamtools/apply_beam_spanners_to_measures_in_expr
-      tools/beamtools/apply_complex_beam_spanners_to_measures_in_expr
-      tools/beamtools/apply_durated_complex_beam_spanner_to_measures
-      tools/beamtools/apply_multipart_beam_spanner_to_bottommost_tuplets_in_expr
+      tools/beamtools/attach_beam_spanners_to_measures_in_expr
+      tools/beamtools/attach_complex_beam_spanners_to_measures_in_expr
+      tools/beamtools/attach_durated_complex_beam_spanner_to_measures
+      tools/beamtools/attach_multiplart_beam_spanner_to_bottommost_tuplets_in_expr
       tools/beamtools/get_beam_spanner_attached_to_component
       tools/beamtools/is_beamable_component
       tools/beamtools/is_component_with_beam_spanner_attached
@@ -55,10 +55,10 @@ Core composition packages
 
    .. toctree::
 
-      tools/beamtools/apply_beam_spanners_to_measures_in_expr
-      tools/beamtools/apply_complex_beam_spanners_to_measures_in_expr
-      tools/beamtools/apply_durated_complex_beam_spanner_to_measures
-      tools/beamtools/apply_multipart_beam_spanner_to_bottommost_tuplets_in_expr
+      tools/beamtools/attach_beam_spanners_to_measures_in_expr
+      tools/beamtools/attach_complex_beam_spanners_to_measures_in_expr
+      tools/beamtools/attach_durated_complex_beam_spanner_to_measures
+      tools/beamtools/attach_multiplart_beam_spanner_to_bottommost_tuplets_in_expr
       tools/beamtools/get_beam_spanner_attached_to_component
       tools/beamtools/is_beamable_component
       tools/beamtools/is_component_with_beam_spanner_attached
@@ -3396,7 +3396,7 @@ Core composition packages
 
       tools/tietools/add_or_remove_tie_chain_notes_to_achieve_scaled_written_duration
       tools/tietools/add_or_remove_tie_chain_notes_to_achieve_written_duration
-      tools/tietools/apply_tie_spanner_to_leaf_pair
+      tools/tietools/attach_tie_spanner_to_leaf_pair
       tools/tietools/get_tie_chain
 
 .. only:: latex
@@ -3416,7 +3416,7 @@ Core composition packages
 
       tools/tietools/add_or_remove_tie_chain_notes_to_achieve_scaled_written_duration
       tools/tietools/add_or_remove_tie_chain_notes_to_achieve_written_duration
-      tools/tietools/apply_tie_spanner_to_leaf_pair
+      tools/tietools/attach_tie_spanner_to_leaf_pair
       tools/tietools/get_tie_chain
 
 :py:mod:`timeintervaltools <abjad.tools.timeintervaltools>`

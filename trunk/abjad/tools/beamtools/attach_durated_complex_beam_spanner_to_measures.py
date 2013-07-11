@@ -1,7 +1,7 @@
 from abjad.tools import spannertools
 
 
-def apply_durated_complex_beam_spanner_to_measures(measures):
+def attach_durated_complex_beam_spanner_to_measures(measures):
     r'''.. versionadded:: 1.1
 
     Apply durated complex beam spanner to `measures`::
@@ -30,7 +30,7 @@ def apply_durated_complex_beam_spanner_to_measures(measures):
     ::
 
         >>> measures = staff[:]
-        >>> beamtools.apply_durated_complex_beam_spanner_to_measures(measures)
+        >>> beamtools.attach_durated_complex_beam_spanner_to_measures(measures)
         DuratedComplexBeamSpanner(|2/8(2)|, |2/8(2)|)
 
     ::

@@ -2,7 +2,7 @@ from abjad.tools import leaftools
 from abjad.tools import spannertools
 
 
-def apply_tie_spanner_to_leaf_pair(left, right):
+def attach_tie_spanner_to_leaf_pair(left, right):
     r'''Apply tie spanner to `left` leaf and `right` leaf:
 
     ::
@@ -21,7 +21,7 @@ def apply_tie_spanner_to_leaf_pair(left, right):
 
     ::
 
-        >>> tietools.apply_tie_spanner_to_leaf_pair(staff[1], staff[2])
+        >>> tietools.attach_tie_spanner_to_leaf_pair(staff[1], staff[2])
 
     ::
 

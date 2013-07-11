@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_beamtools_apply_beam_spanners_to_measures_in_expr_01():
+def test_beamtools_attach_beam_spanners_to_measures_in_expr_01():
     '''Beam all measures in expr with plain old Beam spanner.
     '''
 
@@ -24,7 +24,7 @@ def test_beamtools_apply_beam_spanners_to_measures_in_expr_01():
     }
     '''
 
-    beamtools.apply_beam_spanners_to_measures_in_expr(staff)
+    beamtools.attach_beam_spanners_to_measures_in_expr(staff)
 
 
     r'''

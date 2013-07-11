@@ -1,4 +1,4 @@
-def apply_beam_spanners_to_measures_in_expr(expr):
+def attach_beam_spanners_to_measures_in_expr(expr):
     r'''.. versionadded:: 1.1
 
     Apply beam spanners to measures in `expr`::
@@ -26,7 +26,7 @@ def apply_beam_spanners_to_measures_in_expr(expr):
 
     ::
 
-        >>> beamtools.apply_beam_spanners_to_measures_in_expr(staff)
+        >>> beamtools.attach_beam_spanners_to_measures_in_expr(staff)
         [BeamSpanner(|2/8(2)|), BeamSpanner(|2/8(2)|)]
 
     ::

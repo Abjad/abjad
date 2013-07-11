@@ -15,7 +15,7 @@ and a slur spanner applied to all the notes in the score:
 ::
 
    >>> staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-   >>> beamtools.apply_beam_spanners_to_measures_in_expr(staff)
+   >>> beamtools.attach_beam_spanners_to_measures_in_expr(staff)
    [BeamSpanner(|2/8(2)|), BeamSpanner(|2/8(2)|)]
    >>> spannertools.SlurSpanner(staff.leaves)
    SlurSpanner(c'8, d'8, e'8, f'8)
