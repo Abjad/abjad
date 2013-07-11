@@ -259,8 +259,7 @@ def split_leaf_at_offsets(
         (not pitchtools.is_pitch_carrier(leaf) and tie_split_rests):
         flattened_result_leaves = iterationtools.iterate_leaves_in_expr(
             flattened_result)
-        # TODO: maybe generalize tietools.attach_tie_spanner_to_leaf_pair()
-        #       to tietools.apply_tie_spanner_to_leaves().
+        # TODO: implement Selection._attach_tie_spanner_to_leaves()
         for leaf_pair in sequencetools.iterate_sequence_pairwise_strict(
             flattened_result_leaves):
             selection = selectiontools.Selection(leaf_pair)

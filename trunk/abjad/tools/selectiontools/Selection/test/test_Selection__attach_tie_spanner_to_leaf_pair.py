@@ -17,7 +17,7 @@ def test_tietools_attach_tie_spanner_to_leaf_pair_01():
     }
     '''
 
-    tietools.attach_tie_spanner_to_leaf_pair(t[1], t[2])
+    t[1:3]._attach_tie_spanner_to_leaf_pair()
 
     r'''
     \new Voice {
@@ -49,7 +49,7 @@ def test_tietools_attach_tie_spanner_to_leaf_pair_02():
     }
     '''
 
-    tietools.attach_tie_spanner_to_leaf_pair(t[1], t[2])
+    t[1:3]._attach_tie_spanner_to_leaf_pair()
 
     r'''
     \new Voice {
@@ -79,7 +79,7 @@ def test_tietools_attach_tie_spanner_to_leaf_pair_03():
     }
     '''
 
-    tietools.attach_tie_spanner_to_leaf_pair(t[1], t[2])
+    t[1:3]._attach_tie_spanner_to_leaf_pair()
 
     r'''
     \new Voice {
