@@ -62,6 +62,9 @@ Methods
 .. automethod:: abjad.tools.spannertools.StaffLinesSpanner.StaffLinesSpanner.StaffLinesSpanner.append_left
    :noindex:
 
+.. automethod:: abjad.tools.spannertools.StaffLinesSpanner.StaffLinesSpanner.StaffLinesSpanner.attach
+   :noindex:
+
 .. automethod:: abjad.tools.spannertools.StaffLinesSpanner.StaffLinesSpanner.StaffLinesSpanner.clear
    :noindex:
 

@@ -54,6 +54,9 @@ Methods
 .. automethod:: abjad.tools.spannertools.Spanner.Spanner.Spanner.append_left
    :noindex:
 
+.. automethod:: abjad.tools.spannertools.Spanner.Spanner.Spanner.attach
+   :noindex:
+
 .. automethod:: abjad.tools.spannertools.Spanner.Spanner.Spanner.clear
    :noindex:
 

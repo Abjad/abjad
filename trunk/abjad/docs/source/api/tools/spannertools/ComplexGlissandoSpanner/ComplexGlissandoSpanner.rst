@@ -56,6 +56,9 @@ Methods
 .. automethod:: abjad.tools.spannertools.ComplexGlissandoSpanner.ComplexGlissandoSpanner.ComplexGlissandoSpanner.append_left
    :noindex:
 
+.. automethod:: abjad.tools.spannertools.ComplexGlissandoSpanner.ComplexGlissandoSpanner.ComplexGlissandoSpanner.attach
+   :noindex:
+
 .. automethod:: abjad.tools.spannertools.ComplexGlissandoSpanner.ComplexGlissandoSpanner.ComplexGlissandoSpanner.clear
    :noindex:
 

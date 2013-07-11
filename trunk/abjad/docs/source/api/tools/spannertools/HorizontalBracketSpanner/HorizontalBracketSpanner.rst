@@ -56,6 +56,9 @@ Methods
 .. automethod:: abjad.tools.spannertools.HorizontalBracketSpanner.HorizontalBracketSpanner.HorizontalBracketSpanner.append_left
    :noindex:
 
+.. automethod:: abjad.tools.spannertools.HorizontalBracketSpanner.HorizontalBracketSpanner.HorizontalBracketSpanner.attach
+   :noindex:
+
 .. automethod:: abjad.tools.spannertools.HorizontalBracketSpanner.HorizontalBracketSpanner.HorizontalBracketSpanner.clear
    :noindex:
 

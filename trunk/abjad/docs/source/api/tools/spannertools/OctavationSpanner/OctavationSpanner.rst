@@ -65,6 +65,9 @@ Methods
 .. automethod:: abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.append_left
    :noindex:
 
+.. automethod:: abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.attach
+   :noindex:
+
 .. automethod:: abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.clear
    :noindex:
 

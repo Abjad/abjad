@@ -65,6 +65,9 @@ Methods
 .. automethod:: abjad.tools.spannertools.PianoPedalSpanner.PianoPedalSpanner.PianoPedalSpanner.append_left
    :noindex:
 
+.. automethod:: abjad.tools.spannertools.PianoPedalSpanner.PianoPedalSpanner.PianoPedalSpanner.attach
+   :noindex:
+
 .. automethod:: abjad.tools.spannertools.PianoPedalSpanner.PianoPedalSpanner.PianoPedalSpanner.clear
    :noindex:
 

@@ -56,6 +56,9 @@ Methods
 .. automethod:: abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner.append_left
    :noindex:
 
+.. automethod:: abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner.attach
+   :noindex:
+
 .. automethod:: abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner.clear
    :noindex:
 

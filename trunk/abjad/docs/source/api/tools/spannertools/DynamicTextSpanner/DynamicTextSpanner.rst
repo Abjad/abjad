@@ -62,6 +62,9 @@ Methods
 .. automethod:: abjad.tools.spannertools.DynamicTextSpanner.DynamicTextSpanner.DynamicTextSpanner.append_left
    :noindex:
 
+.. automethod:: abjad.tools.spannertools.DynamicTextSpanner.DynamicTextSpanner.DynamicTextSpanner.attach
+   :noindex:
+
 .. automethod:: abjad.tools.spannertools.DynamicTextSpanner.DynamicTextSpanner.DynamicTextSpanner.clear
    :noindex:
 

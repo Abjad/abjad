@@ -512,6 +512,16 @@ class Spanner(AbjadObject):
         component._spanners.add(self)
         self._components.insert(0, component)
 
+    def attach(self, components):
+        '''Attach spanner to `components`.
+
+        Spanner must be empty.
+
+        Return none.
+        '''
+        assert not self, repr(self)
+        self.extend(components)
+
     def clear(self):
         r'''Remove all components from spanner:
 

@@ -62,6 +62,9 @@ Methods
 .. automethod:: abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner.append_left
    :noindex:
 
+.. automethod:: abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner.attach
+   :noindex:
+
 .. automethod:: abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner.clear
    :noindex:
 

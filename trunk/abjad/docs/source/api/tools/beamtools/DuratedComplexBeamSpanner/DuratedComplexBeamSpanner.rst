@@ -77,6 +77,9 @@ Methods
 .. automethod:: abjad.tools.beamtools.DuratedComplexBeamSpanner.DuratedComplexBeamSpanner.DuratedComplexBeamSpanner.append_left
    :noindex:
 
+.. automethod:: abjad.tools.beamtools.DuratedComplexBeamSpanner.DuratedComplexBeamSpanner.DuratedComplexBeamSpanner.attach
+   :noindex:
+
 .. automethod:: abjad.tools.beamtools.DuratedComplexBeamSpanner.DuratedComplexBeamSpanner.DuratedComplexBeamSpanner.clear
    :noindex:
 

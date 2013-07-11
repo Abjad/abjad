@@ -58,6 +58,9 @@ Methods
 .. automethod:: abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner.append_left
    :noindex:
 
+.. automethod:: abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner.attach
+   :noindex:
+
 .. automethod:: abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner.clear
    :noindex:
 

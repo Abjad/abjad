@@ -56,6 +56,9 @@ Methods
 .. automethod:: abjad.tools.spannertools.HiddenStaffSpanner.HiddenStaffSpanner.HiddenStaffSpanner.append_left
    :noindex:
 
+.. automethod:: abjad.tools.spannertools.HiddenStaffSpanner.HiddenStaffSpanner.HiddenStaffSpanner.attach
+   :noindex:
+
 .. automethod:: abjad.tools.spannertools.HiddenStaffSpanner.HiddenStaffSpanner.HiddenStaffSpanner.clear
    :noindex:
 

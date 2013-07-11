@@ -66,6 +66,9 @@ Methods
 .. automethod:: abjad.tools.beamtools.MultipartBeamSpanner.MultipartBeamSpanner.MultipartBeamSpanner.append_left
    :noindex:
 
+.. automethod:: abjad.tools.beamtools.MultipartBeamSpanner.MultipartBeamSpanner.MultipartBeamSpanner.attach
+   :noindex:
+
 .. automethod:: abjad.tools.beamtools.MultipartBeamSpanner.MultipartBeamSpanner.MultipartBeamSpanner.clear
    :noindex:
 
