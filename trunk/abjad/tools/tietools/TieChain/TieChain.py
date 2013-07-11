@@ -1,6 +1,7 @@
 import itertools
 from abjad.tools import chordtools
 from abjad.tools import componenttools
+from abjad.tools import durationtools
 from abjad.tools import notetools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
@@ -31,6 +32,59 @@ class TieChain(Selection):
             Selection.__init__(self, music.music)
         else:
             Selection.__init__(self, music)
+
+    ### PRIVATE METHODS ###
+
+    def _add_or_remove_notes_to_achieve_written_duration(
+        self, new_written_duration):
+        from abjad.tools import tietools
+        from abjad.tools import tuplettools
+        new_written_duration = durationtools.Duration(new_written_duration)
+        if new_written_duration.is_assignable:
+            self[0].written_duration = new_written_duration
+            for leaf in self[1:]:
+                componenttools.remove_component_subtree_from_score_and_spanners(
+                    [leaf])
+            first = self[0]
+            spannertools.detach_spanners_attached_to_component(
+                first, tietools.TieSpanner)
+        elif new_written_duration.has_power_of_two_denominator:
+            durations = notetools.make_notes(0, [new_written_duration])
+            for leaf, token in zip(self, durations):
+                leaf.written_duration = token.written_duration
+            if len(self) == len(durations):
+                pass
+            elif len(durations) < len(self):
+                for leaf in self[len(durations):]:
+                    componenttools.remove_component_subtree_from_score_and_spanners(
+                        [leaf])
+            elif len(self) < len(durations):
+                spannertools.detach_spanners_attached_to_component(
+                    self[0], tietools.TieSpanner)
+                difference = len(durations) - len(self)
+                extra_leaves = self[0] * difference
+                for extra_leaf in extra_leaves:
+                    for spanner in extra_leaf.spanners:
+                        spanner._remove(extra_leaf)
+                extra_tokens = durations[len(self):]
+                for leaf, token in zip(extra_leaves, extra_tokens):
+                    leaf.written_duration = token.written_duration
+                if not spannertools.is_component_with_spanner_attached(
+                    self[-1], tietools.TieSpanner):
+                    tietools.TieSpanner(list(self))
+                componenttools.extend_in_parent_of_component(
+                    self[-1], extra_leaves, grow_spanners=True)
+        else:
+            durations = notetools.make_notes(0, new_written_duration)
+            assert isinstance(durations[0], tuplettools.Tuplet)
+            fmtuplet = durations[0]
+            new_chain_written = \
+                fmtuplet[0].get_tie_chain().preprolated_duration
+            self._add_or_remove_notes_to_achieve_written_duration(
+                new_chain_written)
+            multiplier = fmtuplet.multiplier
+            tuplettools.Tuplet(multiplier, self.leaves)
+        return self[0].get_tie_chain()
 
     ### PUBLIC PROPERTIES ###
 

@@ -106,8 +106,8 @@ def scale_contents_of_container(container, multiplier):
         container[:]):
         if isinstance(expr, tietools.TieChain):
             new_written_duration = multiplier * expr.written_duration
-            tietools.add_or_remove_tie_chain_notes_to_achieve_written_duration(
-                expr, new_written_duration)
+            expr._add_or_remove_notes_to_achieve_written_duration(
+                new_written_duration)
         elif isinstance(expr, tuplettools.FixedDurationTuplet):
             tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(
                 expr, multiplier)

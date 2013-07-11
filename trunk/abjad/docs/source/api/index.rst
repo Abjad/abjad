@@ -3394,7 +3394,6 @@ Core composition packages
    .. toctree::
       :maxdepth: 1
 
-      tools/tietools/add_or_remove_tie_chain_notes_to_achieve_written_duration
       tools/tietools/get_tie_chain
 
 .. only:: latex
@@ -3412,7 +3411,6 @@ Core composition packages
 
    .. toctree::
 
-      tools/tietools/add_or_remove_tie_chain_notes_to_achieve_written_duration
       tools/tietools/get_tie_chain
 
 :py:mod:`timeintervaltools <abjad.tools.timeintervaltools>`
