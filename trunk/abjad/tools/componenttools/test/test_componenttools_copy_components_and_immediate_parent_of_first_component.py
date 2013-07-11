@@ -116,6 +116,6 @@ def test_componenttools_copy_components_and_immediate_parent_of_first_component_
     u = componenttools.copy_components_and_immediate_parent_of_first_component(t[0:4])
 
     assert beamtools.get_beam_spanner_attached_to_component(u[0])._is_my_first_leaf(u[0])
-    assert beamtools.is_component_with_beam_spanner_attached(u[1])
-    assert beamtools.is_component_with_beam_spanner_attached(u[2])
+    assert u[1]._has_spanner(beamtools.BeamSpanner)
+    assert u[2]._has_spanner(beamtools.BeamSpanner)
     assert beamtools.get_beam_spanner_attached_to_component(u[3])._is_my_last_leaf(u[3])

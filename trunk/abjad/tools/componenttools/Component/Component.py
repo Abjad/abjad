@@ -296,6 +296,10 @@ class Component(AbjadObject):
                 spanners.add(spanner)
         return spanners
 
+    def _has_spanner(self, spanner_classes=None):
+        spanners = self._get_spanners(spanner_classes=spanner_classes)
+        return bool(spanners)
+
     def _initialize_keyword_values(self, **kwargs):
         for key, value in kwargs.iteritems():
             self._set_keyword_value(key, value)

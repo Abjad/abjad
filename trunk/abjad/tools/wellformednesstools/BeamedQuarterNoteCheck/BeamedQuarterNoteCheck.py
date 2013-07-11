@@ -1,7 +1,6 @@
 from abjad.tools import beamtools
 from abjad.tools import durationtools
 from abjad.tools import iterationtools
-from abjad.tools import spannertools
 from abjad.tools.wellformednesstools.Check import Check
 
 
@@ -12,7 +11,7 @@ class BeamedQuarterNoteCheck(Check):
         total = 0
         for leaf in iterationtools.iterate_leaves_in_expr(expr):
             total += 1
-            if beamtools.is_component_with_beam_spanner_attached(leaf):
+            if leaf._has_spanner(beamtools.BeamSpanner):
                 beam = beamtools.get_beam_spanner_attached_to_component(leaf)
                 if not isinstance(beam, beamtools.DuratedComplexBeamSpanner):
                     flag_count = leaf.written_duration.flag_count
