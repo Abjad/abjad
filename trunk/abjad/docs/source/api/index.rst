@@ -3389,13 +3389,6 @@ Core composition packages
       tools/tietools/TieChain/TieChain
       tools/tietools/TieSpanner/TieSpanner
 
-   --------
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/tietools/get_tie_chain
-
 .. only:: latex
 
    Concrete Classes
@@ -3405,13 +3398,6 @@ Core composition packages
 
       tools/tietools/TieChain/TieChain
       tools/tietools/TieSpanner/TieSpanner
-
-   Functions
-   ---------
-
-   .. toctree::
-
-      tools/tietools/get_tie_chain
 
 :py:mod:`timeintervaltools <abjad.tools.timeintervaltools>`
 ===========================================================
