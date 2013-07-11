@@ -522,26 +522,6 @@ class Spanner(AbjadObject):
         assert not self, repr(self)
         self.extend(components)
 
-    def clear(self):
-        r'''Remove all components from spanner:
-
-        ::
-
-            >>> voice = Voice("c'8 d'8 e'8 f'8")
-            >>> spanner = beamtools.BeamSpanner(voice[:])
-            >>> spanner
-            BeamSpanner(c'8, d'8, e'8, f'8)
-
-        ::
-
-            >>> spanner.clear()
-            >>> spanner
-            BeamSpanner()
-
-        Return none.
-        '''
-        self._sever_all_components()
-
     def detach(self):
         r'''Detach spanner from all components in spanner:
 
