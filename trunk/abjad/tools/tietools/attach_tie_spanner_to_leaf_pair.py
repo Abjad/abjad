@@ -48,14 +48,6 @@ def attach_tie_spanner_to_leaf_pair(left_leaf, right_leaf):
     if left_leaf.get_tie_chain() == right_leaf.get_tie_chain():
         return
 
-    # do nothing if leaves are already effectively tied 
-    # because of parents somewhere in score tree
-    left_parent_ties = left_leaf.parentage._get_spanners(spanner_classes)
-    right_parent_ties = right_leaf.parentage._get_spanners(spanner_classes)
-    shared_parent_ties = set(left_parent_ties) & set(right_parent_ties)
-    if shared_parent_ties:
-        return
-
     # get any left tie spanner
     try:
         left_tie_spanner = \
