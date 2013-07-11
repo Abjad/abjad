@@ -3398,7 +3398,6 @@ Core composition packages
       tools/tietools/add_or_remove_tie_chain_notes_to_achieve_written_duration
       tools/tietools/apply_tie_spanner_to_leaf_pair
       tools/tietools/get_tie_chain
-      tools/tietools/is_component_with_tie_spanner_attached
 
 .. only:: latex
 
@@ -3419,7 +3418,6 @@ Core composition packages
       tools/tietools/add_or_remove_tie_chain_notes_to_achieve_written_duration
       tools/tietools/apply_tie_spanner_to_leaf_pair
       tools/tietools/get_tie_chain
-      tools/tietools/is_component_with_tie_spanner_attached
 
 :py:mod:`timeintervaltools <abjad.tools.timeintervaltools>`
 ===========================================================
