@@ -35,10 +35,9 @@ setuptools.setup(name = 'Abjad',
     # include all file types under abjad
     include_package_data = True,
     entry_points = {'console_scripts':[
-        'abj = abjad.tools.iotools._run_abjad:_run_abjad',
         'abjad = abjad.tools.iotools._run_abjad:_run_abjad',
         'abjad-book = abjad.tools.abjadbooktools._run_abjad_book:_run_abjad_book',
-        'abj-dev = abjad.tools.developerscripttools._run_abjdev:_run_abjdev',
-        'ajv = abjad.tools.developerscripttools._run_abjdev:_run_abjdev',
+        'abj-dev = abjad.tools.developerscripttools.run_abjdev:run_abjdev',
+        'ajv = abjad.tools.developerscripttools.run_abjdev:run_abjdev',
         ]},
     )
