@@ -80,7 +80,7 @@ class MeasuredComplexBeamSpanner(ComplexBeamSpanner):
         result = []
         left, right = None, None
         #if leaf.beam.beamable:
-        if beamtools.is_beamable_component(leaf):
+        if self.is_beamable_component(leaf):
             if self._is_exterior_leaf(leaf):
                 left, right = self._get_left_right_for_exterior_leaf(leaf)
             elif componenttools.get_first_instance_of_class_in_proper_parentage_of_component(

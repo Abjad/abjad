@@ -88,7 +88,7 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
         from abjad.tools import beamtools
         result = []
         #if leaf.beam.beamable:
-        if beamtools.is_beamable_component(leaf):
+        if self.is_beamable_component(leaf):
             if self._is_exterior_leaf(leaf):
                 left, right = self._get_left_right_for_exterior_leaf(leaf)
             # just right of span gap

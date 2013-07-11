@@ -101,6 +101,12 @@ Methods
 .. automethod:: abjad.tools.beamtools.DuratedComplexBeamSpanner.DuratedComplexBeamSpanner.DuratedComplexBeamSpanner.pop_left
    :noindex:
 
+Static methods
+--------------
+
+.. automethod:: abjad.tools.beamtools.DuratedComplexBeamSpanner.DuratedComplexBeamSpanner.DuratedComplexBeamSpanner.is_beamable_component
+   :noindex:
+
 Special methods
 ---------------
 

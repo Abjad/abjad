@@ -90,6 +90,12 @@ Methods
 .. automethod:: abjad.tools.beamtools.MultipartBeamSpanner.MultipartBeamSpanner.MultipartBeamSpanner.pop_left
    :noindex:
 
+Static methods
+--------------
+
+.. automethod:: abjad.tools.beamtools.MultipartBeamSpanner.MultipartBeamSpanner.MultipartBeamSpanner.is_beamable_component
+   :noindex:
+
 Special methods
 ---------------
 

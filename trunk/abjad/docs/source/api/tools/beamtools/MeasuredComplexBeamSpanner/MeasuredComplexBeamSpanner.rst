@@ -98,6 +98,12 @@ Methods
 .. automethod:: abjad.tools.beamtools.MeasuredComplexBeamSpanner.MeasuredComplexBeamSpanner.MeasuredComplexBeamSpanner.pop_left
    :noindex:
 
+Static methods
+--------------
+
+.. automethod:: abjad.tools.beamtools.MeasuredComplexBeamSpanner.MeasuredComplexBeamSpanner.MeasuredComplexBeamSpanner.is_beamable_component
+   :noindex:
+
 Special methods
 ---------------
 

@@ -71,7 +71,7 @@ class ComplexBeamSpanner(BeamSpanner):
         from abjad.tools import beamtools
         result = []
         result.extend(BeamSpanner._format_before_leaf(self, leaf))
-        if beamtools.is_beamable_component(leaf):
+        if self.is_beamable_component(leaf):
             if self._is_my_only_leaf(leaf):
                 left, right = self._get_left_right_for_lone_leaf(leaf)
             elif self._is_exterior_leaf(leaf):
@@ -91,7 +91,7 @@ class ComplexBeamSpanner(BeamSpanner):
         from abjad.tools import leaftools
         result = []
         #if leaf.beam.beamable:
-        if beamtools.is_beamable_component(leaf):
+        if self.is_beamable_component(leaf):
             previous_leaf = \
                 leaftools.get_nth_leaf_in_thread_from_leaf(leaf, -1)
             next_leaf = leaftools.get_nth_leaf_in_thread_from_leaf(leaf, 1)
@@ -104,7 +104,7 @@ class ComplexBeamSpanner(BeamSpanner):
                         result.append('[')
             # otherwise
             elif self._is_my_first_leaf(leaf) or not previous_leaf or \
-                not beamtools.is_beamable_component(previous_leaf):
+                not self.is_beamable_component(previous_leaf):
                 if self.direction is not None:
                     result.append('%s [' % self.direction)
                 else:
@@ -115,7 +115,7 @@ class ComplexBeamSpanner(BeamSpanner):
                     result.append(']')
             # otherwise
             elif self._is_my_last_leaf(leaf) or not next_leaf or \
-                not beamtools.is_beamable_component(next_leaf):
+                not self.is_beamable_component(next_leaf):
                 result.append(']')
         return result
 
@@ -157,18 +157,18 @@ class ComplexBeamSpanner(BeamSpanner):
         current_flag_count = current_written.flag_count
         next_flag_count = next_written.flag_count
         # [unbeamable leaf beamable]
-        if not beamtools.is_beamable_component(previous_leaf) and \
-            beamtools.is_beamable_component(next_leaf):
+        if not self.is_beamable_component(previous_leaf) and \
+            self.is_beamable_component(next_leaf):
             left = current_flag_count
             right = min(current_flag_count, next_flag_count)
         # [beamable leaf unbeamable]
-        if beamtools.is_beamable_component(previous_leaf) and \
-            not beamtools.is_beamable_component(next_leaf):
+        if self.is_beamable_component(previous_leaf) and \
+            not self.is_beamable_component(next_leaf):
             left = min(current_flag_count, previous_flag_count)
             right = current_flag_count
         # [unbeamable leaf unbeamable]
-        elif not beamtools.is_beamable_component(previous_leaf) and \
-            not beamtools.is_beamable_component(next_leaf):
+        elif not self.is_beamable_component(previous_leaf) and \
+            not self.is_beamable_component(next_leaf):
             left = current_flag_count
             right = current_flag_count
         # [beamable leaf beamable]

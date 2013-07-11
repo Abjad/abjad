@@ -88,6 +88,12 @@ Methods
 .. automethod:: abjad.tools.beamtools.BeamSpanner.BeamSpanner.BeamSpanner.pop_left
    :noindex:
 
+Static methods
+--------------
+
+.. automethod:: abjad.tools.beamtools.BeamSpanner.BeamSpanner.BeamSpanner.is_beamable_component
+   :noindex:
+
 Special methods
 ---------------
 
