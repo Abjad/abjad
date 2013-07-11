@@ -1,3 +1,4 @@
+import copy
 import types
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
@@ -183,15 +184,15 @@ class Selection(AbjadObject):
             container._set_parent(parent)
             self._set_parents(None)
 
-    def _iterate_components(self, recurse=True):
+    def _iterate_components(self, recurse=True, reverse=False):
         from abjad.tools import iterationtools
         if recurse:
             return iterationtools.iterate_components_in_expr(self)
         else:
-            return self._iterate_top_level_components()
+            return self._iterate_top_level_components(reverse=reverse)
 
     def _iterate_top_level_components(self, reverse=False):
-        if reversed:
+        if reverse:
             for component in reversed(self):
                 yield component
         else:
@@ -242,6 +243,24 @@ class Selection(AbjadObject):
         return timespantools.Timespan(start_offset, stop_offset)
 
     ### PUBLIC METHODS ###
+
+    def attach_spanners(self, spanner, recurse=False):
+        '''Attach shallow copy of `spanner` 
+        to each component in selection.
+
+        Return list of spanners created.
+        '''
+        from abjad.tools import spannertools
+        if issubclass(spanner, spannertools.Spanner):
+            spanner = spanner()
+        assert isinstance(spanner, spannertools.Spanner)
+        spanners = []
+        for component in self._iterate_components(recurse=recurse):
+            copied_spanner = copy.copy(spanner)
+            #copied_spanner.attach(component)
+            copied_spanner(component)
+            spanners.append(spanner)
+        return spanners
 
     def detach_spanners(self, spanner_classes=None, recurse=True):
         r'''Detach `spanner_classes` from components in selection.

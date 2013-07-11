@@ -77,6 +77,9 @@ Read-only properties
 Methods
 -------
 
+.. automethod:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment.attach_spanners
+   :noindex:
+
 .. automethod:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment.detach_spanners
    :noindex:
 

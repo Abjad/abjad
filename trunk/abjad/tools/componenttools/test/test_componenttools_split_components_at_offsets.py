@@ -7,6 +7,7 @@ def test_componenttools_split_components_at_offsets_01():
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     beamtools.attach_beam_spanners_to_measures_in_expr(staff)
+    #staff[:].attach_spanners(beamtools.BeamSpanner)
     spannertools.SlurSpanner(staff.leaves)
 
     r'''

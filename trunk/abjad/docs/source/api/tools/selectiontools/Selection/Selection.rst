@@ -27,6 +27,9 @@ Read-only properties
 Methods
 -------
 
+.. automethod:: abjad.tools.selectiontools.Selection.Selection.Selection.attach_spanners
+   :noindex:
+
 .. automethod:: abjad.tools.selectiontools.Selection.Selection.Selection.detach_spanners
    :noindex:
 

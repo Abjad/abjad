@@ -32,6 +32,9 @@ Read-only properties
 Methods
 -------
 
+.. automethod:: abjad.tools.componenttools.Lineage.Lineage.Lineage.attach_spanners
+   :noindex:
+
 .. automethod:: abjad.tools.componenttools.Lineage.Lineage.Lineage.detach_spanners
    :noindex:
 
