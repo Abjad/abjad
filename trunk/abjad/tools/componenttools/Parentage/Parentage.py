@@ -70,6 +70,15 @@ class Parentage(Selection):
 
     ### PRIVATE METHODS ###
 
+    def _get_spanner(self, spanner_classes=None):
+        spanners = self._get_spanners(spanner_classes=spanner_classes)
+        if not spanners:
+            raise MissingSpannerError
+        elif len(spanners) == 1:
+            return spanners.pop()
+        else:
+            raise ExtraSpannerError
+
     def _get_spanners(self, spanner_classes=None):
         spanners = set()
         for component in self:

@@ -115,6 +115,16 @@ class TieChain(Selection):
         return sum([x.prolated_duration for x in self])
 
     @property
+    def tie_spanner(self):
+        '''Tie spanner governing tie chain.
+        '''
+        from abjad.tools import tietools
+        if 1 < len(self):
+            spanner_classes = (tietools.TieSpanner,)
+            tie_spanner = self[0].parentage._get_spanner(spanner_classes)
+            return tie_spanner
+
+    @property
     def written_duration(self):
         '''Sum of written duration of all components in tie chain.
         '''

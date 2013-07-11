@@ -50,6 +50,9 @@ Read-only properties
 .. autoattribute:: abjad.tools.tietools.TieChain.TieChain.TieChain.storage_format
    :noindex:
 
+.. autoattribute:: abjad.tools.tietools.TieChain.TieChain.TieChain.tie_spanner
+   :noindex:
+
 .. autoattribute:: abjad.tools.tietools.TieChain.TieChain.TieChain.timespan
    :noindex:
 

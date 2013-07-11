@@ -34,33 +34,33 @@ def attach_tie_spanner_to_leaf_pair(left_leaf, right_leaf):
     Return none.
     '''
     from abjad.tools import leaftools
-    from abjad.tools import spannertools
     from abjad.tools import tietools
 
     # check input
     assert isinstance(left_leaf, leaftools.Leaf)
     assert isinstance(right_leaf, leaftools.Leaf)
     
-    # make spanner classes filter
-    spanner_classes = (tietools.TieSpanner, )
+    # get tie chains
+    left_tie_chain = left_leaf.get_tie_chain()
+    right_tie_chain = right_leaf.get_tie_chain()
 
     # do nothing if leaves are already tied
-    if left_leaf.get_tie_chain() == right_leaf.get_tie_chain():
+    if left_tie_chain == right_tie_chain:
         return
 
-    # get any left tie spanner
+    # TODO: use the following two lines
+    #left_tie_spanner = left_tie_chain.tie_spanner
+    #right_tie_spanner = right_tie_chain.tie_spanner
+
+    # TODO: remove in favor of TieChain.tie_spanner property
     try:
-        left_tie_spanner = \
-            spannertools.get_the_only_spanner_attached_to_component(
-            left_leaf, spanner_classes=spanner_classes)
+        left_tie_spanner = left_leaf._get_spanner((tietools.TieSpanner,))
     except MissingSpannerError:
         left_tie_spanner = None
 
-    # get any right tie spanner
+    # TODO: remove in favor of TieChain.tie_spanner property
     try:
-        right_tie_spanner = \
-            spannertools.get_the_only_spanner_attached_to_component(
-            right_leaf, spanner_classes=spanner_classes)
+        right_tie_spanner = right_leaf._get_spanner((tietools.TieSpanner,))
     except MissingSpannerError:
         right_tie_spanner = None
 
