@@ -68,6 +68,14 @@ class Parentage(Selection):
         Selection.__init__(self, music)
         self._component = component
 
+    ### PRIVATE METHODS ###
+
+    def _get_spanners(self, spanner_classes=None):
+        spanners = set()
+        for component in self:
+            spanners.update(component._get_spanners(spanner_classes))
+        return spanners
+
     ### PUBLIC PROPERTIES ###
 
     @property

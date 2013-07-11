@@ -278,7 +278,7 @@ class Component(AbjadObject):
 
     def _get_spanners(self, spanner_classes=None):
         from abjad.tools import spannertools
-        spanner_classes = spanner_classes or (spannertools.Spanner, )
+        spanner_classes = spanner_classes or (spannertools.Spanner,)
         if not isinstance(spanner_classes, tuple):
             spanner_classes = (spanner_classes, )
         spanners = set()

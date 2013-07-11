@@ -1,9 +1,5 @@
-from abjad.tools import leaftools
-from abjad.tools import spannertools
-
-
-def attach_tie_spanner_to_leaf_pair(left, right):
-    r'''Apply tie spanner to `left` leaf and `right` leaf:
+def attach_tie_spanner_to_leaf_pair(left_leaf, right_leaf):
+    r'''Attach tie spanner to `left_leaf` and `right_leaf`:
 
     ::
 
@@ -37,27 +33,25 @@ def attach_tie_spanner_to_leaf_pair(left, right):
 
     Return none.
     '''
+    from abjad.tools import leaftools
+    from abjad.tools import spannertools
     from abjad.tools import tietools
 
     # check input
-    assert isinstance(left, leaftools.Leaf)
-    assert isinstance(right, leaftools.Leaf)
+    assert isinstance(left_leaf, leaftools.Leaf)
+    assert isinstance(right_leaf, leaftools.Leaf)
     
     # make spanner classes filter
     spanner_classes = (tietools.TieSpanner, )
 
     # do nothing if leaves are already tied
-    if left.get_tie_chain() == right.get_tie_chain():
+    if left_leaf.get_tie_chain() == right_leaf.get_tie_chain():
         return
 
     # do nothing if leaves are already effectively tied 
     # because of parents somewhere in score tree
-    left_parent_ties = \
-        spannertools.get_spanners_attached_to_any_proper_parent_of_component(
-        left, spanner_classes=spanner_classes)
-    right_parent_ties = \
-        spannertools.get_spanners_attached_to_any_proper_parent_of_component(
-        right, spanner_classes=spanner_classes)
+    left_parent_ties = left_leaf.parentage._get_spanners(spanner_classes)
+    right_parent_ties = right_leaf.parentage._get_spanners(spanner_classes)
     shared_parent_ties = set(left_parent_ties) & set(right_parent_ties)
     if shared_parent_ties:
         return
@@ -66,7 +60,7 @@ def attach_tie_spanner_to_leaf_pair(left, right):
     try:
         left_tie_spanner = \
             spannertools.get_the_only_spanner_attached_to_component(
-            left, spanner_classes=spanner_classes)
+            left_leaf, spanner_classes=spanner_classes)
     except MissingSpannerError:
         left_tie_spanner = None
 
@@ -74,7 +68,7 @@ def attach_tie_spanner_to_leaf_pair(left, right):
     try:
         right_tie_spanner = \
             spannertools.get_the_only_spanner_attached_to_component(
-            right, spanner_classes=spanner_classes)
+            right_leaf, spanner_classes=spanner_classes)
     except MissingSpannerError:
         right_tie_spanner = None
 
@@ -82,8 +76,8 @@ def attach_tie_spanner_to_leaf_pair(left, right):
     if left_tie_spanner is not None and right_tie_spanner is not None:
         left_tie_spanner.fuse(right_tie_spanner)
     elif left_tie_spanner is not None and right_tie_spanner is None:
-        left_tie_spanner.append(right)
+        left_tie_spanner.append(right_leaf)
     elif left_tie_spanner is None and right_tie_spanner is not None:
-        right_tie_spanner.append_left(left)
+        right_tie_spanner.append_left(left_leaf)
     elif left_tie_spanner is None and right_tie_spanner is None:
-        tietools.TieSpanner([left, right])
+        tietools.TieSpanner([left_leaf, right_leaf])
