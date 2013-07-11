@@ -106,6 +106,9 @@ Methods
 .. automethod:: abjad.tools.notetools.Note.Note.Note.select
    :noindex:
 
+.. automethod:: abjad.tools.notetools.Note.Note.Note.select_components
+   :noindex:
+
 Special methods
 ---------------
 

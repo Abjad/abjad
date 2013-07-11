@@ -63,6 +63,9 @@ Methods
 .. automethod:: abjad.tools.componenttools.Component.Component.Component.select
    :noindex:
 
+.. automethod:: abjad.tools.componenttools.Component.Component.Component.select_components
+   :noindex:
+
 Special methods
 ---------------
 

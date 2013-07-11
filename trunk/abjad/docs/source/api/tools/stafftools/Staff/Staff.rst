@@ -123,6 +123,9 @@ Methods
 .. automethod:: abjad.tools.stafftools.Staff.Staff.Staff.select
    :noindex:
 
+.. automethod:: abjad.tools.stafftools.Staff.Staff.Staff.select_components
+   :noindex:
+
 Special methods
 ---------------
 

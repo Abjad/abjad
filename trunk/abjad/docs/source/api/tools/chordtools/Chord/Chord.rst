@@ -118,6 +118,9 @@ Methods
 .. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.select
    :noindex:
 
+.. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.select_components
+   :noindex:
+
 Special methods
 ---------------
 

@@ -103,6 +103,9 @@ Methods
 .. automethod:: abjad.tools.containertools.Cluster.Cluster.Cluster.select
    :noindex:
 
+.. automethod:: abjad.tools.containertools.Cluster.Cluster.Cluster.select_components
+   :noindex:
+
 Special methods
 ---------------
 

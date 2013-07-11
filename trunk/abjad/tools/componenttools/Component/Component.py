@@ -532,3 +532,17 @@ class Component(AbjadObject):
         '''
         from abjad.tools import selectiontools
         return selectiontools.Selection(music=self)
+
+    def select_components(self, component_classes=None, include_self=True):
+        '''Select `component_classes` in component.
+
+        Return selection.
+        '''
+        from abjad.tools import iterationtools
+        from abjad.tools import selectiontools
+        expr = self
+        if include_self:
+            expr = [self]
+        components = iterationtools.iterate_components_in_expr(
+            expr, component_class=component_classes)
+        return selectiontools.Selection(components)

@@ -123,6 +123,9 @@ Methods
 .. automethod:: abjad.tools.scoretools.Score.Score.Score.select
    :noindex:
 
+.. automethod:: abjad.tools.scoretools.Score.Score.Score.select_components
+   :noindex:
+
 Special methods
 ---------------
 

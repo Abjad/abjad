@@ -94,6 +94,9 @@ Methods
 .. automethod:: abjad.tools.resttools.Rest.Rest.Rest.select
    :noindex:
 
+.. automethod:: abjad.tools.resttools.Rest.Rest.Rest.select_components
+   :noindex:
+
 Special methods
 ---------------
 

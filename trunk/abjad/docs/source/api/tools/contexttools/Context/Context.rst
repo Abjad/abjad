@@ -121,6 +121,9 @@ Methods
 .. automethod:: abjad.tools.contexttools.Context.Context.Context.select
    :noindex:
 
+.. automethod:: abjad.tools.contexttools.Context.Context.Context.select_components
+   :noindex:
+
 Special methods
 ---------------
 

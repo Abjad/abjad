@@ -101,6 +101,9 @@ Methods
 .. automethod:: abjad.tools.containertools.Container.Container.Container.select
    :noindex:
 
+.. automethod:: abjad.tools.containertools.Container.Container.Container.select_components
+   :noindex:
+
 Special methods
 ---------------
 

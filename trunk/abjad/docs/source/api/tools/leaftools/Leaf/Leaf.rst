@@ -92,6 +92,9 @@ Methods
 .. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.select
    :noindex:
 
+.. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.select_components
+   :noindex:
+
 Special methods
 ---------------
 

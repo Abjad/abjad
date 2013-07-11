@@ -94,6 +94,9 @@ Methods
 .. automethod:: abjad.tools.skiptools.Skip.Skip.Skip.select
    :noindex:
 
+.. automethod:: abjad.tools.skiptools.Skip.Skip.Skip.select_components
+   :noindex:
+
 Special methods
 ---------------
 
