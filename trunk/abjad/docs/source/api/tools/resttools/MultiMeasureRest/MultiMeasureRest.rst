@@ -93,6 +93,9 @@ Methods
 .. automethod:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.get_tie_chain
    :noindex:
 
+.. automethod:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.select
+   :noindex:
+
 Special methods
 ---------------
 

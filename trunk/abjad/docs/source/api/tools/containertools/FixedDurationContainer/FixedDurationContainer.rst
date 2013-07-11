@@ -115,6 +115,9 @@ Methods
 .. automethod:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.remove
    :noindex:
 
+.. automethod:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.select
+   :noindex:
+
 Special methods
 ---------------
 

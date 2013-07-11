@@ -120,6 +120,9 @@ Methods
 .. automethod:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.remove
    :noindex:
 
+.. automethod:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.select
+   :noindex:
+
 Special methods
 ---------------
 

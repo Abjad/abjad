@@ -110,6 +110,9 @@ Methods
 .. automethod:: abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.get_tie_chain
    :noindex:
 
+.. automethod:: abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.select
+   :noindex:
+
 Special methods
 ---------------
 

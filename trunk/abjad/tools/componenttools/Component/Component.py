@@ -522,3 +522,13 @@ class Component(AbjadObject):
         if not prolated_offset_values_are_current:
             self._update_prolated_offset_values_of_entire_score_tree()
             self._update_leaf_indices_and_measure_numbers_in_score_tree()
+
+    ### PUBLIC METHODS ###
+
+    def select(self):
+        '''Select component.
+
+        Return selection.
+        '''
+        from abjad.tools import selectiontools
+        return selectiontools.Selection(music=self)

@@ -89,6 +89,9 @@ Methods
 .. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.get_tie_chain
    :noindex:
 
+.. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.select
+   :noindex:
+
 Special methods
 ---------------
 

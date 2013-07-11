@@ -120,6 +120,9 @@ Methods
 .. automethod:: abjad.tools.scoretools.Score.Score.Score.remove
    :noindex:
 
+.. automethod:: abjad.tools.scoretools.Score.Score.Score.select
+   :noindex:
+
 Special methods
 ---------------
 

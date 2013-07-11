@@ -106,6 +106,9 @@ Methods
 .. automethod:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.remove
    :noindex:
 
+.. automethod:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.select
+   :noindex:
+
 Special methods
 ---------------
 

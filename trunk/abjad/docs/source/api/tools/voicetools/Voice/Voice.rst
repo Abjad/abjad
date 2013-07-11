@@ -120,6 +120,9 @@ Methods
 .. automethod:: abjad.tools.voicetools.Voice.Voice.Voice.remove
    :noindex:
 
+.. automethod:: abjad.tools.voicetools.Voice.Voice.Voice.select
+   :noindex:
+
 Special methods
 ---------------
 

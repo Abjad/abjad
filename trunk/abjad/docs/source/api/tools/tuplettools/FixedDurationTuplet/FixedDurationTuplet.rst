@@ -141,6 +141,9 @@ Methods
 .. automethod:: abjad.tools.tuplettools.FixedDurationTuplet.FixedDurationTuplet.FixedDurationTuplet.remove
    :noindex:
 
+.. automethod:: abjad.tools.tuplettools.FixedDurationTuplet.FixedDurationTuplet.FixedDurationTuplet.select
+   :noindex:
+
 .. automethod:: abjad.tools.tuplettools.FixedDurationTuplet.FixedDurationTuplet.FixedDurationTuplet.trim
    :noindex:
 

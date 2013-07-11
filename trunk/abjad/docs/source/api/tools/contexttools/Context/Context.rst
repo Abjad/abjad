@@ -118,6 +118,9 @@ Methods
 .. automethod:: abjad.tools.contexttools.Context.Context.Context.remove
    :noindex:
 
+.. automethod:: abjad.tools.contexttools.Context.Context.Context.select
+   :noindex:
+
 Special methods
 ---------------
 

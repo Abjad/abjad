@@ -33,7 +33,6 @@ Core composition packages
       tools/beamtools/attach_complex_beam_spanners_to_measures_in_expr
       tools/beamtools/attach_durated_complex_beam_spanner_to_measures
       tools/beamtools/attach_multiplart_beam_spanner_to_bottommost_tuplets_in_expr
-      tools/beamtools/get_beam_spanner_attached_to_component
 
 .. only:: latex
 
@@ -57,7 +56,6 @@ Core composition packages
       tools/beamtools/attach_complex_beam_spanners_to_measures_in_expr
       tools/beamtools/attach_durated_complex_beam_spanner_to_measures
       tools/beamtools/attach_multiplart_beam_spanner_to_bottommost_tuplets_in_expr
-      tools/beamtools/get_beam_spanner_attached_to_component
 
 :py:mod:`chordtools <abjad.tools.chordtools>`
 =============================================

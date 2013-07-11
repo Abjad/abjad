@@ -122,6 +122,9 @@ Methods
 .. automethod:: abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.remove
    :noindex:
 
+.. automethod:: abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.select
+   :noindex:
+
 Special methods
 ---------------
 

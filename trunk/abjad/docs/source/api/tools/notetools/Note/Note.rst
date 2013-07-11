@@ -103,6 +103,9 @@ Methods
 .. automethod:: abjad.tools.notetools.Note.Note.Note.get_tie_chain
    :noindex:
 
+.. automethod:: abjad.tools.notetools.Note.Note.Note.select
+   :noindex:
+
 Special methods
 ---------------
 

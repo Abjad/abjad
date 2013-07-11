@@ -136,6 +136,9 @@ Methods
 .. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.remove
    :noindex:
 
+.. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.select
+   :noindex:
+
 Special methods
 ---------------
 

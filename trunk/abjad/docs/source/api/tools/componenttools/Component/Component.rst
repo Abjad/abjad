@@ -57,6 +57,12 @@ Read-only properties
 .. autoattribute:: abjad.tools.componenttools.Component.Component.Component.timespan_in_seconds
    :noindex:
 
+Methods
+-------
+
+.. automethod:: abjad.tools.componenttools.Component.Component.Component.select
+   :noindex:
+
 Special methods
 ---------------
 

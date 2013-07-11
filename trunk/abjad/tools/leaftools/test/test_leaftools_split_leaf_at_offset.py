@@ -327,12 +327,13 @@ def test_leaftools_split_leaf_at_offset_13():
     t = Staff(notetools.make_repeated_notes(4))
     b = beamtools.BeamSpanner(t.leaves)
 
-    halves = leaftools.split_leaf_at_offset(t[0], (1, 16), tie_split_notes=False)
+    halves = leaftools.split_leaf_at_offset(
+        t[0], (1, 16), tie_split_notes=False)
 
     assert len(t) == 5
     for l in t.leaves:
         assert l.spanners == set([b])
-        assert beamtools.get_beam_spanner_attached_to_component(l) is b
+        assert l._get_spanner(beamtools.BeamSpanner) is b
     assert wellformednesstools.is_well_formed_component(t)
 
 

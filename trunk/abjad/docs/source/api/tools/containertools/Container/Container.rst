@@ -98,6 +98,9 @@ Methods
 .. automethod:: abjad.tools.containertools.Container.Container.Container.remove
    :noindex:
 
+.. automethod:: abjad.tools.containertools.Container.Container.Container.select
+   :noindex:
+
 Special methods
 ---------------
 

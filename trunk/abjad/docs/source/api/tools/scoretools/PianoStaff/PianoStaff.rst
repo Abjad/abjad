@@ -122,6 +122,9 @@ Methods
 .. automethod:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.remove
    :noindex:
 
+.. automethod:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.select
+   :noindex:
+
 Special methods
 ---------------
 

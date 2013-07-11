@@ -109,14 +109,14 @@ def test_BeamSpanner_fracture_05():
     }
     '''
 
-    assert len(beamtools.get_beam_spanner_attached_to_component(staff[0])) == 2
-    assert len(beamtools.get_beam_spanner_attached_to_component(staff[2])) == 1
-    assert len(beamtools.get_beam_spanner_attached_to_component(staff[3])) == 2
+    assert len(staff[0]._get_spanner(beamtools.BeamSpanner)) == 2
+    assert len(staff[2]._get_spanner(beamtools.BeamSpanner)) == 1
+    assert len(staff[3]._get_spanner(beamtools.BeamSpanner)) == 2
 
-    assert beamtools.get_beam_spanner_attached_to_component(staff[0]) != \
-        beamtools.get_beam_spanner_attached_to_component(staff[2])
-    assert beamtools.get_beam_spanner_attached_to_component(staff[2]) != \
-        beamtools.get_beam_spanner_attached_to_component(staff[3])
+    assert staff[0]._get_spanner(beamtools.BeamSpanner) != \
+        staff[2]._get_spanner(beamtools.BeamSpanner)
+    assert staff[2]._get_spanner(beamtools.BeamSpanner) != \
+        staff[3]._get_spanner(beamtools.BeamSpanner)
 
     wellformednesstools.is_well_formed_component(staff)
     assert staff.lilypond_format == "\\new Staff {\n\tc'8 [\n\tcs'8 ]\n\td'8 [ ]\n\tef'8 [\n\te'8 ]\n\tf'8\n\tfs'8\n\tg'8\n}"
@@ -151,10 +151,10 @@ def test_BeamSpanner_fracture_06():
         spannertools.get_spanners_attached_to_any_improper_child_of_component(
         staff)) == 2
 
-    assert len(beamtools.get_beam_spanner_attached_to_component(staff[0])) == 1
-    assert len(beamtools.get_beam_spanner_attached_to_component(staff[1])) == 4
-    assert beamtools.get_beam_spanner_attached_to_component(staff[0]) != \
-        beamtools.get_beam_spanner_attached_to_component(staff[1])
+    assert len(staff[0]._get_spanner(beamtools.BeamSpanner)) == 1
+    assert len(staff[1]._get_spanner(beamtools.BeamSpanner)) == 4
+    assert staff[0]._get_spanner(beamtools.BeamSpanner) != \
+        staff[1]._get_spanner(beamtools.BeamSpanner)
 
     wellformednesstools.is_well_formed_component(staff)
     assert staff.lilypond_format == "\\new Staff {\n\tc'8 [ ]\n\tcs'8 [\n\td'8\n\tef'8\n\te'8 ]\n\tf'8\n\tfs'8\n\tg'8\n}"
@@ -188,10 +188,10 @@ def test_BeamSpanner_fracture_07():
     assert len(
         spannertools.get_spanners_attached_to_any_improper_child_of_component(
         staff)) == 2
-    assert len(beamtools.get_beam_spanner_attached_to_component(staff[0])) == 4
-    assert len(beamtools.get_beam_spanner_attached_to_component(staff[4])) == 1
-    assert beamtools.get_beam_spanner_attached_to_component(staff[0]) != \
-        beamtools.get_beam_spanner_attached_to_component(staff[4])
+    assert len(staff[0]._get_spanner(beamtools.BeamSpanner)) == 4
+    assert len(staff[4]._get_spanner(beamtools.BeamSpanner)) == 1
+    assert staff[0]._get_spanner(beamtools.BeamSpanner) != \
+        staff[4]._get_spanner(beamtools.BeamSpanner)
 
     wellformednesstools.is_well_formed_component(staff)
     assert staff.lilypond_format == "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n\te'8 [ ]\n\tf'8\n\tfs'8\n\tg'8\n}"
@@ -225,10 +225,10 @@ def test_BeamSpanner_fracture_08():
     assert len(
         spannertools.get_spanners_attached_to_any_improper_child_of_component(
         staff)) == 2
-    assert len(beamtools.get_beam_spanner_attached_to_component(staff[0])) == 4
-    assert len(beamtools.get_beam_spanner_attached_to_component(staff[4])) == 1
-    assert beamtools.get_beam_spanner_attached_to_component(staff[0]) != \
-        beamtools.get_beam_spanner_attached_to_component(staff[4])
+    assert len(staff[0]._get_spanner(beamtools.BeamSpanner)) == 4
+    assert len(staff[4]._get_spanner(beamtools.BeamSpanner)) == 1
+    assert staff[0]._get_spanner(beamtools.BeamSpanner) != \
+        staff[4]._get_spanner(beamtools.BeamSpanner)
 
     wellformednesstools.is_well_formed_component(staff)
     assert staff.lilypond_format == "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n\te'8 [ ]\n\tf'8\n\tfs'8\n\tg'8\n}"

@@ -91,6 +91,9 @@ Methods
 .. automethod:: abjad.tools.skiptools.Skip.Skip.Skip.get_tie_chain
    :noindex:
 
+.. automethod:: abjad.tools.skiptools.Skip.Skip.Skip.select
+   :noindex:
+
 Special methods
 ---------------
 

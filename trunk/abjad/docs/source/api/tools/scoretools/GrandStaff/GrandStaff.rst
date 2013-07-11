@@ -122,6 +122,9 @@ Methods
 .. automethod:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.remove
    :noindex:
 
+.. automethod:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.select
+   :noindex:
+
 Special methods
 ---------------
 

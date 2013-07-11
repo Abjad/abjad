@@ -100,6 +100,9 @@ Methods
 .. automethod:: abjad.tools.containertools.Cluster.Cluster.Cluster.remove
    :noindex:
 
+.. automethod:: abjad.tools.containertools.Cluster.Cluster.Cluster.select
+   :noindex:
+
 Special methods
 ---------------
 

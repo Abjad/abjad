@@ -135,6 +135,9 @@ Methods
 .. automethod:: abjad.tools.measuretools.Measure.Measure.Measure.remove
    :noindex:
 
+.. automethod:: abjad.tools.measuretools.Measure.Measure.Measure.select
+   :noindex:
+
 Special methods
 ---------------
 
