@@ -2,7 +2,6 @@ from abjad.tools import componenttools
 from abjad.tools import chordtools
 from abjad.tools import marktools
 from abjad.tools import notetools
-from abjad.tools import tietools
 
 
 def edit_cello_voice(score, durated_reservoir):

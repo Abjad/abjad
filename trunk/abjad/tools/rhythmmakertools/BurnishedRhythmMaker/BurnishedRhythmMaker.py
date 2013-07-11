@@ -7,7 +7,7 @@ from abjad.tools import iterationtools
 from abjad.tools import leaftools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
-from abjad.tools import tietools
+from abjad.tools import spannertools
 from abjad.tools import tuplettools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 
@@ -191,10 +191,10 @@ class BurnishedRhythmMaker(RhythmMaker):
             written_durations, weights=weights, cyclic=True, overhang=True)
         counts = [len(part) for part in parts]
         parts = sequencetools.partition_sequence_by_counts(leaves, counts)
-        spanner_classes = (tietools.TieSpanner,)
+        spanner_classes = (spannertools.TieSpanner,)
         for part in parts:
             part = selectiontools.Selection(part)
-            tie_spanner = tietools.TieSpanner()
+            tie_spanner = spannertools.TieSpanner()
             # this is voodoo to temporarily neuter the contiguity constraint
             tie_spanner._contiguity_constraint = None
             part.detach_spanners(spanner_classes=spanner_classes)

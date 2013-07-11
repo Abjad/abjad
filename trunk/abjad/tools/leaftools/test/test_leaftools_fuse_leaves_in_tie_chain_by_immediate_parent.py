@@ -6,7 +6,7 @@ def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_01():
     '''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    tietools.TieSpanner(t.leaves)
+    spannertools.TieSpanner(t.leaves)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
@@ -50,7 +50,7 @@ def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_02():
     '''
 
     t = Staff(notetools.make_repeated_notes(4))
-    tietools.TieSpanner(t.leaves)
+    spannertools.TieSpanner(t.leaves)
 
     r'''
     \new Staff {

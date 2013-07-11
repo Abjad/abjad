@@ -5,8 +5,8 @@ def test_labeltools_label_tie_chains_in_expr_with_tie_chain_durations_01():
 
     staff = Staff(notetools.make_repeated_notes(4))
     tuplettools.FixedDurationTuplet(Duration(2, 8), staff[:3])
-    tietools.TieSpanner(staff.leaves[:2])
-    tietools.TieSpanner(staff.leaves[2:])
+    spannertools.TieSpanner(staff.leaves[:2])
+    spannertools.TieSpanner(staff.leaves[2:])
     labeltools.label_tie_chains_in_expr_with_tie_chain_durations(staff)
 
     r'''

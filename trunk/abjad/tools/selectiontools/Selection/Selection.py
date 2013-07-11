@@ -103,14 +103,14 @@ class Selection(AbjadObject):
 
     def _attach_tie_spanner_to_leaf_pair(self):
         from abjad.tools import leaftools
-        from abjad.tools import tietools
+        from abjad.tools import spannertools
         assert len(self) == 2
         left_leaf, right_leaf = self
         assert isinstance(left_leaf, leaftools.Leaf)
         assert isinstance(right_leaf, leaftools.Leaf)
         left_tie_chain = left_leaf.get_tie_chain()
         right_tie_chain = right_leaf.get_tie_chain()
-        spanner_classes = (tietools.TieSpanner,)
+        spanner_classes = (spannertools.TieSpanner,)
         if left_tie_chain == right_tie_chain:
             return
         try:
@@ -128,7 +128,7 @@ class Selection(AbjadObject):
         elif left_tie_spanner is None and right_tie_spanner is not None:
             right_tie_spanner.append_left(left_leaf)
         elif left_tie_spanner is None and right_tie_spanner is None:
-            tietools.TieSpanner([left_leaf, right_leaf])
+            spannertools.TieSpanner([left_leaf, right_leaf])
 
     # TODO: eventually migrate method to SliceSelection;
     #       then remove explicit contiguity check.
@@ -274,7 +274,7 @@ class Selection(AbjadObject):
 
             >>> selection = staff[:]
             >>> selection.detach_spanners(
-            ...     spanner_classes=(tietools.TieSpanner,))
+            ...     spanner_classes=(spannertools.TieSpanner,))
 
         ::
 

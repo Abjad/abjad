@@ -50,7 +50,7 @@ def iterate_topmost_tie_chains_and_components_in_expr(expr):
     '''
     from abjad.tools import tietools
 
-    spanner_classes = (tietools.TieSpanner, )
+    spanner_classes = (spannertools.TieSpanner, )
     if isinstance(expr, leaftools.Leaf):
         tie_chain = expr.get_tie_chain()
         if len(tie_chain) == 1:

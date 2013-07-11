@@ -16,7 +16,7 @@ def test_Selection_detach_spanners_01():
     }
     '''
 
-    spanner_classes = (tietools.TieSpanner,)
+    spanner_classes = (spannertools.TieSpanner,)
     staff[:].detach_spanners(spanner_classes=spanner_classes)
 
     r'''

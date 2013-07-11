@@ -6,7 +6,7 @@ def test_Selection__attach_tie_spanner_to_leaf_pair_01():
     '''
 
     t = Voice(notetools.make_repeated_notes(4))
-    tietools.TieSpanner(t[:2])
+    spannertools.TieSpanner(t[:2])
 
     r'''
     \new Voice {
@@ -37,8 +37,8 @@ def test_Selection__attach_tie_spanner_to_leaf_pair_02():
     '''
 
     t = Voice(notetools.make_repeated_notes(4))
-    tietools.TieSpanner(t[:2])
-    tietools.TieSpanner(t[2:])
+    spannertools.TieSpanner(t[:2])
+    spannertools.TieSpanner(t[2:])
 
     r'''
     \new Voice {

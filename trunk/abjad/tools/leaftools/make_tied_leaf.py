@@ -105,21 +105,28 @@ def make_tied_leaf(kind, duration, decrease_durations_monotonically=True,
 
     Return list of leaves.
     '''
-    from abjad.tools import tietools
+    from abjad.tools import spannertools
 
     # check input
     duration = durationtools.Duration(duration)
     if forbidden_written_duration is not None:
-        forbidden_written_duration = durationtools.Duration(forbidden_written_duration)
+        forbidden_written_duration = \
+            durationtools.Duration(forbidden_written_duration)
         assert forbidden_written_duration.is_assignable
         assert forbidden_written_duration.numerator == 1
 
     # find preferred numerator of written durations if necessary
-    if forbidden_written_duration is not None and forbidden_written_duration <= duration:
-        denominators = [2 * forbidden_written_duration.denominator, duration.denominator]
+    if forbidden_written_duration is not None and \
+        forbidden_written_duration <= duration:
+        denominators = [
+            2 * forbidden_written_duration.denominator, 
+            duration.denominator,
+            ]
         denominator = mathtools.least_common_multiple(*denominators)
-        forbidden_written_duration = mathtools.NonreducedFraction(forbidden_written_duration)
-        forbidden_written_duration = forbidden_written_duration.with_denominator(denominator)
+        forbidden_written_duration = \
+            mathtools.NonreducedFraction(forbidden_written_duration)
+        forbidden_written_duration = \
+            forbidden_written_duration.with_denominator(denominator)
         duration = mathtools.NonreducedFraction(duration).with_denominator(denominator)
         forbidden_numerator = forbidden_written_duration.numerator
         assert forbidden_numerator % 2 == 0
@@ -128,7 +135,8 @@ def make_tied_leaf(kind, duration, decrease_durations_monotonically=True,
     # make written duration numerators
     numerators = []
     parts = mathtools.partition_integer_into_canonic_parts(duration.numerator)
-    if forbidden_written_duration is not None and forbidden_written_duration <= duration:
+    if forbidden_written_duration is not None and \
+        forbidden_written_duration <= duration:
         for part in parts:
             if forbidden_numerator <= part:
                 better_parts = mathtools.partition_integer_into_parts_less_than_double(
@@ -146,7 +154,8 @@ def make_tied_leaf(kind, duration, decrease_durations_monotonically=True,
     # make one leaf per written duration
     result = []
     for numerator in numerators:
-        written_duration = durationtools.Duration(numerator, duration.denominator)
+        written_duration = \
+            durationtools.Duration(numerator, duration.denominator)
         if not pitches is None:
             args = (pitches, written_duration)
         else:
@@ -155,7 +164,7 @@ def make_tied_leaf(kind, duration, decrease_durations_monotonically=True,
 
     # apply tie spanner if required
     if tie_parts and 1 < len(result):
-        tietools.TieSpanner(result)
+        spannertools.TieSpanner(result)
 
     # return result
     return result

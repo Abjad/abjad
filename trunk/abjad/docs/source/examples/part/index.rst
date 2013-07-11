@@ -428,7 +428,7 @@ The edits
        final_sustain_rhythm = [(6, 4)] * 43 + [(1, 2)]
        final_sustain_notes = notetools.make_notes(["c'"], final_sustain_rhythm)
        voice.extend(final_sustain_notes)
-       tietools.TieSpanner(final_sustain_notes)
+       spannertools.TieSpanner(final_sustain_notes)
        voice.extend('r4 r2.')
 
 
@@ -455,7 +455,7 @@ The edits
        marktools.Articulation('tenuto')(final_sustain[0])
    
        voice.extend(final_sustain)
-       tietools.TieSpanner(final_sustain)
+       spannertools.TieSpanner(final_sustain)
        voice.extend('r4 r2.')
 
 
@@ -487,7 +487,7 @@ The edits
        marktools.Articulation('accent')(final_sustain_notes[0])
        marktools.Articulation('tenuto')(final_sustain_notes[0])
        voice.extend(final_sustain_notes)
-       tietools.TieSpanner(final_sustain_notes)
+       spannertools.TieSpanner(final_sustain_notes)
        voice.extend('r4 r2.')
 
 

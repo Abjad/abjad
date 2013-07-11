@@ -687,7 +687,7 @@ class LilyPondParser(abctools.Parser):
             'PhrasingSlurEvent': spannertools.PhrasingSlurSpanner,
             'SlurEvent': spannertools.SlurSpanner,
             'TextSpanEvent': spannertools.TextSpanner,
-            'TieEvent': tietools.TieSpanner,
+            'TieEvent': spannertools.TieSpanner,
             'TrillSpanEvent': spannertools.TrillSpanner,
         }
         if name in spanners:

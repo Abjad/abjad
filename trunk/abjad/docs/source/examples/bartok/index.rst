@@ -315,9 +315,9 @@ And ties connecting the last two notes in each staff:
 
 ::
 
-   >>> tietools.TieSpanner(upper_staff[-2:])
+   >>> spannertools.TieSpanner(upper_staff[-2:])
    TieSpanner(|2/4(1)|, |2/4(1)|)
-   >>> tietools.TieSpanner([appendix_voice_m4[0], appendix_voice_m5[0]])
+   >>> spannertools.TieSpanner([appendix_voice_m4[0], appendix_voice_m5[0]])
    TieSpanner(b2, b2)
 
 

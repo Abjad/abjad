@@ -19,9 +19,9 @@ def test_quantizationtools_tempo_scaled_leaves_to_q_events_01():
     staff.append(Note(3, (1, 8)))
     staff.append(Chord([0, 1, 4], (1, 4)))
 
-    tietools.TieSpanner(staff[3:5])
-    tietools.TieSpanner(staff[5:7])
-    tietools.TieSpanner(staff[7:11])
+    spannertools.TieSpanner(staff[3:5])
+    spannertools.TieSpanner(staff[5:7])
+    spannertools.TieSpanner(staff[7:11])
 
     tempo = contexttools.TempoMark((1, 4), 55)
 
@@ -85,9 +85,9 @@ def test_quantizationtools_tempo_scaled_leaves_to_q_events_02():
     staff.append(Note(3, (1, 8)))
     staff.append(Chord([0, 1, 4], (1, 4)))
 
-    tietools.TieSpanner(staff[3:5])
-    tietools.TieSpanner(staff[5:7])
-    tietools.TieSpanner(staff[7:11])
+    spannertools.TieSpanner(staff[3:5])
+    spannertools.TieSpanner(staff[5:7])
+    spannertools.TieSpanner(staff[7:11])
 
     contexttools.TempoMark((1, 4), 58, target_context=Staff)(staff[0])
     contexttools.TempoMark((1, 4), 77, target_context=Staff)(staff[9])

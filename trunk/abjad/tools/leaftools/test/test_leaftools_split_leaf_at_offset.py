@@ -309,14 +309,14 @@ def test_leaftools_split_leaf_at_offset_12():
     '''
 
     t = Staff([Note("c'4")])
-    s = tietools.TieSpanner(t.leaves)
+    s = spannertools.TieSpanner(t.leaves)
     halves = leaftools.split_leaf_at_offset(t[0], Duration(1, 8))
 
     assert len(t) == 2
     for leaf in t.leaves:
         assert leaf.spanners == set([s])
         assert spannertools.get_the_only_spanner_attached_to_component(
-            leaf, tietools.TieSpanner) is s
+            leaf, spannertools.TieSpanner) is s
     assert wellformednesstools.is_well_formed_component(t)
 
 
@@ -342,7 +342,7 @@ def test_leaftools_split_leaf_at_offset_14():
     '''
 
     t = Staff([Note("c'4")])
-    s = tietools.TieSpanner(t.leaves)
+    s = spannertools.TieSpanner(t.leaves)
     halves = leaftools.split_leaf_at_offset(t[0], Duration(5, 32))
 
     assert len(halves) == 2
@@ -351,7 +351,7 @@ def test_leaftools_split_leaf_at_offset_14():
     for l in t.leaves:
         assert l.spanners == set([s])
         assert spannertools.get_the_only_spanner_attached_to_component(
-            l, tietools.TieSpanner) is s
+            l, spannertools.TieSpanner) is s
     assert wellformednesstools.is_well_formed_component(t)
 
 
@@ -360,10 +360,10 @@ def test_leaftools_split_leaf_at_offset_15():
     '''
 
     t = Staff(notetools.make_repeated_notes(4))
-    s = tietools.TieSpanner(t)
+    s = spannertools.TieSpanner(t)
     halves = leaftools.split_leaf_at_offset(t[0], Duration(5, 64))
 
-    assert spannertools.get_the_only_spanner_attached_to_component(t, tietools.TieSpanner) is s
+    assert spannertools.get_the_only_spanner_attached_to_component(t, spannertools.TieSpanner) is s
     assert s.components == (t, )
     for l in t.leaves:
         assert not l.spanners
@@ -375,7 +375,7 @@ def test_leaftools_split_leaf_at_offset_16():
     '''
 
     t = Staff(Container(notetools.make_repeated_notes(4)) * 2)
-    s = tietools.TieSpanner(t[:])
+    s = spannertools.TieSpanner(t[:])
     halves = leaftools.split_leaf_at_offset(t[0][0], Duration(5, 64))
 
     assert s.components == tuple(t[:])

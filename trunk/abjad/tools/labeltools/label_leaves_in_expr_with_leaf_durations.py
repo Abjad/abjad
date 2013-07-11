@@ -109,7 +109,7 @@ def label_leaves_in_expr_with_leaf_durations(
     Return none.
     '''
 
-    spanner_classes = (tietools.TieSpanner, )
+    spanner_classes = (spannertools.TieSpanner, )
     for leaf in iterationtools.iterate_leaves_in_expr(expr):
         tie_spanners = spannertools.get_spanners_attached_to_component(
             leaf, spanner_classes=spanner_classes)

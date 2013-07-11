@@ -4422,21 +4422,21 @@ apply_accidental_to_named_chromatic_pitch	trunk/abjad/tools/pitchtools/apply_acc
 apply_additional_layout	trunk/abjad/tools/testtools/apply_additional_layout.py	/^def apply_additional_layout(lilypond_file):$/;"	f
 apply_beam_spanner_to_non_rest_beat	experimental/demos/windungen/_windungen.py	/^def apply_beam_spanner_to_non_rest_beat(beat):$/;"	f
 apply_beam_spanner_to_non_rest_beats	experimental/demos/windungen/_windungen.py	/^def apply_beam_spanner_to_non_rest_beats(beats):$/;"	f
-apply_beam_spanners_to_measures_in_expr	trunk/abjad/tools/beamtools/apply_beam_spanners_to_measures_in_expr.py	/^def apply_beam_spanners_to_measures_in_expr(expr):$/;"	f
+attach_beam_spanners_to_measures_in_expr	trunk/abjad/tools/beamtools/attach_beam_spanners_to_measures_in_expr.py	/^def attach_beam_spanners_to_measures_in_expr(expr):$/;"	f
 apply_bowing_marks	trunk/abjad/demos/part/apply_bowing_marks.py	/^def apply_bowing_marks(score):$/;"	f
-apply_complex_beam_spanners_to_measures_in_expr	trunk/abjad/tools/beamtools/apply_complex_beam_spanners_to_measures_in_expr.py	/^def apply_complex_beam_spanners_to_measures_in_expr(expr):$/;"	f
-apply_durated_complex_beam_spanner_to_measures	trunk/abjad/tools/beamtools/apply_durated_complex_beam_spanner_to_measures.py	/^def apply_durated_complex_beam_spanner_to_measures(measures):$/;"	f
+attach_complex_beam_spanners_to_measures_in_expr	trunk/abjad/tools/beamtools/attach_complex_beam_spanners_to_measures_in_expr.py	/^def attach_complex_beam_spanners_to_measures_in_expr(expr):$/;"	f
+attach_durated_complex_beam_spanner_to_measures	trunk/abjad/tools/beamtools/attach_durated_complex_beam_spanner_to_measures.py	/^def attach_durated_complex_beam_spanner_to_measures(measures):$/;"	f
 apply_dynamic_marks	trunk/abjad/demos/part/apply_dynamic_marks.py	/^def apply_dynamic_marks(score):$/;"	f
 apply_expressive_marks	trunk/abjad/demos/part/apply_expressive_marks.py	/^def apply_expressive_marks(score):$/;"	f
 apply_final_bar_lines	trunk/abjad/demos/part/apply_final_bar_lines.py	/^def apply_final_bar_lines(score):$/;"	f
 apply_full_measure_tuplets_to_contents_of_measures_in_expr	trunk/abjad/tools/measuretools/apply_full_measure_tuplets_to_contents_of_measures_in_expr.py	/^def apply_full_measure_tuplets_to_contents_of_measures_in_expr(expr, supplement=None):$/;"	f
-apply_multipart_beam_spanner_to_bottommost_tuplets_in_expr	trunk/abjad/tools/beamtools/apply_multipart_beam_spanner_to_bottommost_tuplets_in_expr.py	/^def apply_multipart_beam_spanner_to_bottommost_tuplets_in_expr(expr):$/;"	f
+attach_multiplart_beam_spanner_to_bottommost_tuplets_in_expr	trunk/abjad/tools/beamtools/attach_multiplart_beam_spanner_to_bottommost_tuplets_in_expr.py	/^def attach_multiplart_beam_spanner_to_bottommost_tuplets_in_expr(expr):$/;"	f
 apply_octavation_spanner_to_pitched_components	trunk/abjad/tools/spannertools/apply_octavation_spanner_to_pitched_components.py	/^def apply_octavation_spanner_to_pitched_components(expr,$/;"	f
 apply_page_breaks	trunk/abjad/demos/part/apply_page_breaks.py	/^def apply_page_breaks(score):$/;"	f
 apply_pitches	trunk/abjad/tools/pitcharraytools/PitchArrayRow/PitchArrayRow.py	/^    def apply_pitches(self, pitch_tokens):$/;"	m	class:PitchArrayRow
 apply_pitches_by_row	trunk/abjad/tools/pitcharraytools/PitchArray/PitchArray.py	/^    def apply_pitches_by_row(self, pitch_lists):$/;"	m	class:PitchArray
 apply_rehearsal_marks	trunk/abjad/demos/part/apply_rehearsal_marks.py	/^def apply_rehearsal_marks(score):$/;"	f
-apply_tie_spanner_to_leaf_pair	trunk/abjad/tools/tietools/apply_tie_spanner_to_leaf_pair.py	/^def apply_tie_spanner_to_leaf_pair(left, right):$/;"	f
+attach_tie_spanner_to_leaf_pair	trunk/abjad/tools/tietools/attach_tie_spanner_to_leaf_pair.py	/^def attach_tie_spanner_to_leaf_pair(left, right):$/;"	f
 appoggiatura	trunk/abjad/tools/lilypondparsertools/GuileProxy/GuileProxy.py	/^    def appoggiatura(self, music):$/;"	m	class:GuileProxy
 are_articulation_tokens	experimental/tools/scoremanagertools/predicates/predicates.py	/^def are_articulation_tokens(expr):$/;"	f
 are_components_in_same_tie_spanner	trunk/abjad/tools/tietools/are_components_in_same_tie_spanner.py	/^def are_components_in_same_tie_spanner(components):$/;"	f
@@ -12740,11 +12740,11 @@ test_arg_to_bidirectional_lilypond_symbol_01	trunk/abjad/tools/stringtools/test/
 test_arg_to_tridirectional_direction_string_01	trunk/abjad/tools/stringtools/test/test_arg_to_tridirectional_direction_string.py	/^def test_arg_to_tridirectional_direction_string_01():$/;"	f
 test_arg_to_tridirectional_lilypond_symbol_01	trunk/abjad/tools/stringtools/test/test_arg_to_tridirectional_lilypond_symbol.py	/^def test_arg_to_tridirectional_lilypond_symbol_01():$/;"	f
 test_arg_to_tridirectional_ordinal_constant_01	trunk/abjad/tools/stringtools/test/test_arg_to_tridirectional_ordinal_constant.py	/^def test_arg_to_tridirectional_ordinal_constant_01():$/;"	f
-test_beamtools_apply_beam_spanners_to_measures_in_expr_01	trunk/abjad/tools/beamtools/test/test_beamtools_apply_beam_spanners_to_measures_in_expr.py	/^def test_beamtools_apply_beam_spanners_to_measures_in_expr_01():$/;"	f
-test_beamtools_apply_complex_beam_spanners_to_measures_in_expr_01	trunk/abjad/tools/beamtools/test/test_beamtools_apply_complex_beam_spanners_to_measures_in_expr.py	/^def test_beamtools_apply_complex_beam_spanners_to_measures_in_expr_01():$/;"	f
-test_beamtools_apply_durated_complex_beam_spanner_to_measures_01	trunk/abjad/tools/beamtools/test/test_beamtools_apply_durated_complex_beam_spanner_to_measures.py	/^def test_beamtools_apply_durated_complex_beam_spanner_to_measures_01():$/;"	f
-test_beamtools_apply_multipart_beam_spanner_to_bottommost_tuplets_in_expr_01	trunk/abjad/tools/beamtools/test/test_beamtools_apply_multipart_beam_spanner_to_bottommost_tuplets_in_expr.py	/^def test_beamtools_apply_multipart_beam_spanner_to_bottommost_tuplets_in_expr_01():$/;"	f
-test_beamtools_apply_multipart_beam_spanner_to_bottommost_tuplets_in_expr_02	trunk/abjad/tools/beamtools/test/test_beamtools_apply_multipart_beam_spanner_to_bottommost_tuplets_in_expr.py	/^def test_beamtools_apply_multipart_beam_spanner_to_bottommost_tuplets_in_expr_02():$/;"	f
+test_beamtools_attach_beam_spanners_to_measures_in_expr_01	trunk/abjad/tools/beamtools/test/test_beamtools_apply_beam_spanners_to_measures_in_expr.py	/^def test_beamtools_attach_beam_spanners_to_measures_in_expr_01():$/;"	f
+test_beamtools_attach_complex_beam_spanners_to_measures_in_expr_01	trunk/abjad/tools/beamtools/test/test_beamtools_apply_complex_beam_spanners_to_measures_in_expr.py	/^def test_beamtools_attach_complex_beam_spanners_to_measures_in_expr_01():$/;"	f
+test_beamtools_attach_durated_complex_beam_spanner_to_measures_01	trunk/abjad/tools/beamtools/test/test_beamtools_apply_durated_complex_beam_spanner_to_measures.py	/^def test_beamtools_attach_durated_complex_beam_spanner_to_measures_01():$/;"	f
+test_beamtools_attach_multiplart_beam_spanner_to_bottommost_tuplets_in_expr_01	trunk/abjad/tools/beamtools/test/test_beamtools_apply_multipart_beam_spanner_to_bottommost_tuplets_in_expr.py	/^def test_beamtools_attach_multiplart_beam_spanner_to_bottommost_tuplets_in_expr_01():$/;"	f
+test_beamtools_attach_multiplart_beam_spanner_to_bottommost_tuplets_in_expr_02	trunk/abjad/tools/beamtools/test/test_beamtools_apply_multipart_beam_spanner_to_bottommost_tuplets_in_expr.py	/^def test_beamtools_attach_multiplart_beam_spanner_to_bottommost_tuplets_in_expr_02():$/;"	f
 test_beamtools_get_beam_spanner_attached_to_component_01	trunk/abjad/tools/beamtools/test/test_beamtools_get_beam_spanner_attached_to_component.py	/^def test_beamtools_get_beam_spanner_attached_to_component_01():$/;"	f
 test_beamtools_get_beam_spanner_attached_to_component_02	trunk/abjad/tools/beamtools/test/test_beamtools_get_beam_spanner_attached_to_component.py	/^def test_beamtools_get_beam_spanner_attached_to_component_02():$/;"	f
 test_beamtools_get_beam_spanner_attached_to_component_03	trunk/abjad/tools/beamtools/test/test_beamtools_get_beam_spanner_attached_to_component.py	/^def test_beamtools_get_beam_spanner_attached_to_component_03():$/;"	f
@@ -14935,9 +14935,9 @@ test_tietools_add_or_remove_tie_chain_notes_to_achieve_scaled_written_duration_0
 test_tietools_add_or_remove_tie_chain_notes_to_achieve_scaled_written_duration_02	trunk/abjad/tools/tietools/test/test_tietools_add_or_remove_tie_chain_notes_to_achieve_scaled_written_duration.py	/^def test_tietools_add_or_remove_tie_chain_notes_to_achieve_scaled_written_duration_02():$/;"	f
 test_tietools_add_or_remove_tie_chain_notes_to_achieve_written_duration_01	trunk/abjad/tools/tietools/test/test_tietools_add_or_remove_tie_chain_notes_to_achieve_written_duration.py	/^def test_tietools_add_or_remove_tie_chain_notes_to_achieve_written_duration_01():$/;"	f
 test_tietools_add_or_remove_tie_chain_notes_to_achieve_written_duration_02	trunk/abjad/tools/tietools/test/test_tietools_add_or_remove_tie_chain_notes_to_achieve_written_duration.py	/^def test_tietools_add_or_remove_tie_chain_notes_to_achieve_written_duration_02():$/;"	f
-test_tietools_apply_tie_spanner_to_leaf_pair_01	trunk/abjad/tools/tietools/test/test_tietools_apply_tie_spanner_to_leaf_pair.py	/^def test_tietools_apply_tie_spanner_to_leaf_pair_01():$/;"	f
-test_tietools_apply_tie_spanner_to_leaf_pair_02	trunk/abjad/tools/tietools/test/test_tietools_apply_tie_spanner_to_leaf_pair.py	/^def test_tietools_apply_tie_spanner_to_leaf_pair_02():$/;"	f
-test_tietools_apply_tie_spanner_to_leaf_pair_03	trunk/abjad/tools/tietools/test/test_tietools_apply_tie_spanner_to_leaf_pair.py	/^def test_tietools_apply_tie_spanner_to_leaf_pair_03():$/;"	f
+test_tietools_attach_tie_spanner_to_leaf_pair_01	trunk/abjad/tools/tietools/test/test_tietools_apply_tie_spanner_to_leaf_pair.py	/^def test_tietools_attach_tie_spanner_to_leaf_pair_01():$/;"	f
+test_tietools_attach_tie_spanner_to_leaf_pair_02	trunk/abjad/tools/tietools/test/test_tietools_apply_tie_spanner_to_leaf_pair.py	/^def test_tietools_attach_tie_spanner_to_leaf_pair_02():$/;"	f
+test_tietools_attach_tie_spanner_to_leaf_pair_03	trunk/abjad/tools/tietools/test/test_tietools_apply_tie_spanner_to_leaf_pair.py	/^def test_tietools_attach_tie_spanner_to_leaf_pair_03():$/;"	f
 test_tietools_are_components_in_same_tie_spanner_01	trunk/abjad/tools/tietools/test/test_tietools_are_components_in_same_tie_spanner.py	/^def test_tietools_are_components_in_same_tie_spanner_01():$/;"	f
 test_tietools_get_nontrivial_tie_chains_masked_by_components_01	trunk/abjad/tools/tietools/test/test_tietools_get_nontrivial_tie_chains_masked_by_components.py	/^def test_tietools_get_nontrivial_tie_chains_masked_by_components_01():$/;"	f
 test_tietools_get_nontrivial_tie_chains_masked_by_components_02	trunk/abjad/tools/tietools/test/test_tietools_get_nontrivial_tie_chains_masked_by_components.py	/^def test_tietools_get_nontrivial_tie_chains_masked_by_components_02():$/;"	f

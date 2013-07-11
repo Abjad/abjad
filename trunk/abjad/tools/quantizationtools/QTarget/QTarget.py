@@ -162,7 +162,7 @@ class QTarget(AbjadObject):
             leaf_one = self._notate_one_leaf(leaf_one, grace_handler)
             leaves[i] = leaf_one
             if not marktools.get_annotations_attached_to_component(leaf_two):
-                spanner_classes = (tietools.TieSpanner, )
+                spanner_classes = (spannertools.TieSpanner, )
                 spanner = tuple(
                     spannertools.get_spanners_attached_to_component(
                         leaf_one, spanner_classes=spanner_classes))[0]
@@ -193,7 +193,7 @@ class QTarget(AbjadObject):
             leaf.parent[leaf.parent.index(leaf)] = new_leaf
             if tempo_marks:
                 tempo_marks[0](new_leaf)
-            tietools.TieSpanner(new_leaf)
+            spannertools.TieSpanner(new_leaf)
             return new_leaf
         return leaf
 

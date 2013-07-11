@@ -83,7 +83,7 @@ beamtools.BeamSpanner(upper_measures[1][1:])
 beamtools.BeamSpanner(upper_measures[2][0:3])
 beamtools.BeamSpanner(upper_measures[2][3:])
 
-tietools.TieSpanner(upper_staff[-2:])
+spannertools.TieSpanner(upper_staff[-2:])
 spannertools.SlurSpanner(upper_staff.leaves[0:5])
 spannertools.SlurSpanner(upper_staff.leaves[5:])
 CrescendoSpanner(upper_staff.leaves[-7:-2])
@@ -95,7 +95,7 @@ tx.bound_details__left__text = markuptools.Markup('ritard.')
 
 lower_staff.clef.forced = stafftools.Clef('bass')
 
-tietools.TieSpanner([v1a[0], v1b[0]])
+spannertools.TieSpanner([v1a[0], v1b[0]])
 
 beamtools.BeamSpanner(lower_staff.leaves[1:5])
 beamtools.BeamSpanner(lower_staff.leaves[6:10])

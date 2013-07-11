@@ -1,6 +1,6 @@
 from abjad.tools import componenttools
 from abjad.tools import notetools
-from abjad.tools import tietools
+from abjad.tools import spannertools
 
 
 def edit_first_violin_voice(score, durated_reservoir):
@@ -14,5 +14,5 @@ def edit_first_violin_voice(score, durated_reservoir):
     final_sustain_rhythm = [(6, 4)] * 43 + [(1, 2)]
     final_sustain_notes = notetools.make_notes(["c'"], final_sustain_rhythm)
     voice.extend(final_sustain_notes)
-    tietools.TieSpanner(final_sustain_notes)
+    spannertools.TieSpanner(final_sustain_notes)
     voice.extend('r4 r2.')

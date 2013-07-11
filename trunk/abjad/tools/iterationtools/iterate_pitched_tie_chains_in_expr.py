@@ -59,7 +59,7 @@ def iterate_pitched_tie_chains_in_expr(expr, reverse=False):
     from abjad.tools import iterationtools
     from abjad.tools import tietools
 
-    spanner_classes = (tietools.TieSpanner, )
+    spanner_classes = (spannertools.TieSpanner, )
     if not reverse:
         for leaf in iterationtools.iterate_notes_and_chords_in_expr(expr):
             tie_spanners = spannertools.get_spanners_attached_to_component(

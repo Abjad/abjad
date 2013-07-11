@@ -4,7 +4,7 @@ from abjad import *
 def test_TieChain_leaves_group_by_immediate_parents_01():
 
     staff = Staff(2 * Measure((2, 8), "c'8 c'8"))
-    tietools.TieSpanner(staff.leaves)
+    spannertools.TieSpanner(staff.leaves)
 
     r'''
     \new Staff {

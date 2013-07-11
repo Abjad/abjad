@@ -37,9 +37,9 @@ def test_leaftools_fuse_leaves_04():
     assert fused[1].written_duration == Duration(1, 16)
     #assert fused[0].tie.spanner is fused[1].tie.spanner
     assert spannertools.get_the_only_spanner_attached_to_component(
-      fused[0], tietools.TieSpanner) is \
+      fused[0], spannertools.TieSpanner) is \
       spannertools.get_the_only_spanner_attached_to_component(
-      fused[1], tietools.TieSpanner)
+      fused[1], spannertools.TieSpanner)
     assert t[0] is fused[0]
     assert t[1] is fused[1]
     assert t[0].written_pitch.numbered_chromatic_pitch == t[1].written_pitch.numbered_chromatic_pitch

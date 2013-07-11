@@ -7,7 +7,7 @@ def fuse_leaves_in_tie_chain_by_immediate_parent(tie_chain):
     ::
 
         >>> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-        >>> tietools.TieSpanner(staff.leaves)
+        >>> spannertools.TieSpanner(staff.leaves)
         TieSpanner(c'8, c'8, c'8, c'8)
         >>> f(staff)
         \new Staff {

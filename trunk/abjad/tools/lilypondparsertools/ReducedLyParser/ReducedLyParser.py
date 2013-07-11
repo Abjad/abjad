@@ -482,7 +482,7 @@ class ReducedLyParser(abctools.Parser):
     def p_tie__TILDE(self, p):
         '''tie : TILDE
         '''
-        p[0] = (tietools.TieSpanner, Left)
+        p[0] = (spannertools.TieSpanner, Left)
 
     def p_tuplet__FRACTION__container(self, p):
         '''tuplet : FRACTION container
@@ -530,16 +530,16 @@ class ReducedLyParser(abctools.Parser):
 
                 # apply undirected events immediately, 
                 # and do not maintain a reference to them
-                if current_class is tietools.TieSpanner:
+                if current_class is spannertools.TieSpanner:
                     if next_leaf is first_leaf:
                         message = 'unterminated %s at %s.'
                         raise Exception(message % (current_class.__name__, leaf))
                     previous_tie = [x for x in leaf.spanners 
-                        if isinstance(x, tietools.TieSpanner)]
+                        if isinstance(x, spannertools.TieSpanner)]
                     if previous_tie:
                         previous_tie[0].append(next_leaf)
                     else:
-                        tietools.TieSpanner((leaf, next_leaf))
+                        spannertools.TieSpanner((leaf, next_leaf))
 
                 elif current_class is beamtools.BeamSpanner:
                     # A beam may begin and end on the same leaf

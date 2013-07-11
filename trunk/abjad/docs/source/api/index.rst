@@ -3132,6 +3132,7 @@ Core composition packages
       tools/spannertools/StaffLinesSpanner/StaffLinesSpanner
       tools/spannertools/TextScriptSpanner/TextScriptSpanner
       tools/spannertools/TextSpanner/TextSpanner
+      tools/spannertools/TieSpanner/TieSpanner
       tools/spannertools/TrillSpanner/TrillSpanner
 
    --------
@@ -3203,6 +3204,7 @@ Core composition packages
       tools/spannertools/StaffLinesSpanner/StaffLinesSpanner
       tools/spannertools/TextScriptSpanner/TextScriptSpanner
       tools/spannertools/TextSpanner/TextSpanner
+      tools/spannertools/TieSpanner/TieSpanner
       tools/spannertools/TrillSpanner/TrillSpanner
 
    Functions
@@ -3387,7 +3389,6 @@ Core composition packages
       :maxdepth: 1
 
       tools/tietools/TieChain/TieChain
-      tools/tietools/TieSpanner/TieSpanner
 
 .. only:: latex
 
@@ -3397,7 +3398,6 @@ Core composition packages
    .. toctree::
 
       tools/tietools/TieChain/TieChain
-      tools/tietools/TieSpanner/TieSpanner
 
 :py:mod:`timeintervaltools <abjad.tools.timeintervaltools>`
 ===========================================================

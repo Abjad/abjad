@@ -6,8 +6,8 @@ def test_iterationtools_iterate_tie_chains_in_expr_01():
     '''
 
     t = Staff(notetools.make_repeated_notes(4))
-    tietools.TieSpanner(t[:2])
-    tietools.TieSpanner(t[2:])
+    spannertools.TieSpanner(t[:2])
+    spannertools.TieSpanner(t[2:])
 
     r'''
     \new Staff {
@@ -52,8 +52,8 @@ def test_iterationtools_iterate_tie_chains_in_expr_03():
     '''
 
     t = Staff(notetools.make_repeated_notes(4))
-    tietools.TieSpanner(t[:2])
-    tietools.TieSpanner(t[2:])
+    spannertools.TieSpanner(t[:2])
+    spannertools.TieSpanner(t[2:])
 
     r'''
     \new Staff {

@@ -47,7 +47,7 @@ class TieChain(Selection):
                     [leaf])
             first = self[0]
             spannertools.detach_spanners_attached_to_component(
-                first, tietools.TieSpanner)
+                first, spannertools.TieSpanner)
         elif new_written_duration.has_power_of_two_denominator:
             durations = notetools.make_notes(0, [new_written_duration])
             for leaf, token in zip(self, durations):
@@ -60,7 +60,7 @@ class TieChain(Selection):
                         [leaf])
             elif len(self) < len(durations):
                 spannertools.detach_spanners_attached_to_component(
-                    self[0], tietools.TieSpanner)
+                    self[0], spannertools.TieSpanner)
                 difference = len(durations) - len(self)
                 extra_leaves = self[0] * difference
                 for extra_leaf in extra_leaves:
@@ -70,8 +70,8 @@ class TieChain(Selection):
                 for leaf, token in zip(extra_leaves, extra_tokens):
                     leaf.written_duration = token.written_duration
                 if not spannertools.is_component_with_spanner_attached(
-                    self[-1], tietools.TieSpanner):
-                    tietools.TieSpanner(list(self))
+                    self[-1], spannertools.TieSpanner):
+                    spannertools.TieSpanner(list(self))
                 componenttools.extend_in_parent_of_component(
                     self[-1], extra_leaves, grow_spanners=True)
         else:
@@ -145,7 +145,7 @@ class TieChain(Selection):
         Return tuple.
         '''
         from abjad.tools import tietools
-        spanner_classes = (tietools.TieSpanner, )
+        spanner_classes = (spannertools.TieSpanner, )
         try:
             tie_spanner = \
                 spannertools.get_the_only_spanner_attached_to_component(
@@ -183,7 +183,7 @@ class TieChain(Selection):
         '''
         from abjad.tools import tietools
         if 1 < len(self):
-            spanner_classes = (tietools.TieSpanner,)
+            spanner_classes = (spannertools.TieSpanner,)
             for component in self[0].parentage:
                 try:
                     tie_spanner = component._get_spanner(spanner_classes)
@@ -374,7 +374,7 @@ class TieChain(Selection):
 
         # untie tuplet
         spannertools.detach_spanners_attached_to_component(
-            tuplet, tietools.TieSpanner)
+            tuplet, spannertools.TieSpanner)
 
         # return tuplet
         return tuplet

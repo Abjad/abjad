@@ -2,7 +2,7 @@ from abjad.tools import componenttools
 from abjad.tools import durationtools
 from abjad.tools import marktools
 from abjad.tools import notetools
-from abjad.tools import tietools
+from abjad.tools import spannertools
 
 
 def edit_second_violin_voice(score, durated_reservoir):
@@ -26,5 +26,5 @@ def edit_second_violin_voice(score, durated_reservoir):
     marktools.Articulation('tenuto')(final_sustain[0])
 
     voice.extend(final_sustain)
-    tietools.TieSpanner(final_sustain)
+    spannertools.TieSpanner(final_sustain)
     voice.extend('r4 r2.')

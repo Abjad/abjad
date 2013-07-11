@@ -180,9 +180,9 @@ durations:
 <abjad>
 m1 = Measure((1, 4), [Note("c'4")])
 m2 = Measure((1, 4), 2 * Note(0, (1, 8)))
-tietools.TieSpanner(m2)
+spannertools.TieSpanner(m2)
 m3 = Measure((1, 4), [Note(0, (1, 8))] + 2 * Note(0, (1, 16)))
-tietools.TieSpanner(m3)
+spannertools.TieSpanner(m3)
 r = stafftools.RhythmicStaff([m1, m2, m3])
 </abjad>
 

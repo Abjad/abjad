@@ -39,7 +39,7 @@ def test_leaftools_set_preprolated_leaf_duration_02():
     '''
 
     t = Voice(notetools.make_repeated_notes(4))
-    tietools.TieSpanner(t[:2])
+    spannertools.TieSpanner(t[:2])
     beamtools.BeamSpanner(t[:2])
 
     r'''

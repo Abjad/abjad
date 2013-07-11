@@ -87,6 +87,12 @@ Read/write properties
 .. autoattribute:: experimental.tools.lyrictools.LyricHyphen.LyricHyphen.LyricHyphen.written_pitch_indication_is_nonsemantic
    :noindex:
 
+Methods
+-------
+
+.. automethod:: experimental.tools.lyrictools.LyricHyphen.LyricHyphen.LyricHyphen.get_tie_chain
+   :noindex:
+
 Special methods
 ---------------
 

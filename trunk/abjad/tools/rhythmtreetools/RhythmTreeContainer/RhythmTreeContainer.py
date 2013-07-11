@@ -212,7 +212,7 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
                     leaves = child(basic_written_duration)
                     tuplet.extend(leaves)
                     if 1 < len(leaves):
-                        tietools.TieSpanner(leaves)
+                        spannertools.TieSpanner(leaves)
             if tuplet.multiplier == 1:
                 return tuplet[:]
             return [tuplet]
