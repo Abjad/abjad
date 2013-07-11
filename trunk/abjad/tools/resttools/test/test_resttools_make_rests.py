@@ -2,20 +2,19 @@ from abjad import *
 
 
 def test_resttools_make_rests_01():
-    '''Works on pairs.
+    '''Make rest.
     '''
 
-    t = resttools.make_rests((1,4))
+    t = resttools.make_rests((1, 4))
     assert isinstance(t, list)
     assert len(t) == 1
     assert isinstance(t[0], Rest)
     assert t[0].written_duration == Duration(1, 4)
-    assert not tietools.is_component_with_tie_spanner_attached(t[0])
+    assert len(t[0].get_tie_chain()) == 1
 
 
 def test_resttools_make_rests_02():
-    '''Tied durations result in more than one tied rest.
-    Rests are not tied by default.
+    '''Do not tie rests.
     '''
 
     t = resttools.make_rests((5, 8))
@@ -24,27 +23,22 @@ def test_resttools_make_rests_02():
     assert isinstance(t[1], Rest)
     assert t[0].written_duration == Duration(4, 8)
     assert t[1].written_duration == Duration(1, 8)
-    assert not tietools.is_component_with_tie_spanner_attached(t[0])
-    assert not tietools.is_component_with_tie_spanner_attached(t[1])
+    assert all(len(x.get_tie_chain()) == 1 for x in t)
 
 
 def test_resttools_make_rests_03():
-    '''Tie rest parts.
+    '''Do tie rests.
     '''
 
     t = resttools.make_rests((5, 8), tie_parts=True)
-    assert spannertools.get_the_only_spanner_attached_to_component(
-        t[0], tietools.TieSpanner) is \
-        spannertools.get_the_only_spanner_attached_to_component(
-        t[1], tietools.TieSpanner)
+    assert all(len(x.get_tie_chain()) == 2 for x in t)
 
 
 def test_resttools_make_rests_04():
-    '''Coerce list input.
+    '''Make rests.
     '''
 
     t = resttools.make_rests([(1, 4), Duration(1, 8)])
     assert t[0].written_duration == Duration(1, 4)
     assert t[1].written_duration == Duration(1, 8)
-    assert not tietools.is_component_with_tie_spanner_attached(t[0])
-    assert not tietools.is_component_with_tie_spanner_attached(t[1])
+    assert all(len(x.get_tie_chain()) == 1 for x in t)

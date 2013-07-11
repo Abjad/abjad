@@ -1,5 +1,6 @@
 from abjad import *
 
+
 def test_notetools_make_percussion_note_01():
     '''tied total_duration < max_note_duration.
     '''
@@ -7,13 +8,12 @@ def test_notetools_make_percussion_note_01():
     t = notetools.make_percussion_note(1, (5, 64), (1, 1))
 
     assert len(t) == 2
-    assert t[0].written_pitch.numbered_chromatic_pitch._chromatic_pitch_number == 1
+    assert t[0].written_pitch.numbered_chromatic_pitch == 1
     assert isinstance(t[0], Note)
     assert isinstance(t[1], Rest)
     assert t[0].written_duration == Duration(1, 16)
     assert t[1].written_duration == Duration(1, 64)
-    assert not tietools.is_component_with_tie_spanner_attached(t[0])
-    assert not tietools.is_component_with_tie_spanner_attached(t[1])
+    assert all(len(x.get_tie_chain()) == 1 for x in t)
 
 
 def test_notetools_make_percussion_note_02():
@@ -27,8 +27,7 @@ def test_notetools_make_percussion_note_02():
     assert isinstance(t[1], Rest)
     assert t[0].written_duration == Duration(1, 64)
     assert t[1].written_duration == Duration(1, 16)
-    assert not tietools.is_component_with_tie_spanner_attached(t[0])
-    assert not tietools.is_component_with_tie_spanner_attached(t[1])
+    assert all(len(x.get_tie_chain()) == 1 for x in t)
 
 
 def test_notetools_make_percussion_note_03():
@@ -53,5 +52,4 @@ def test_notetools_make_percussion_note_04():
     assert isinstance(t[1], Rest)
     assert t[0].written_duration == Duration(1, 64)
     assert t[1].written_duration == Duration(1, 32)
-    assert not tietools.is_component_with_tie_spanner_attached(t[0])
-    assert not tietools.is_component_with_tie_spanner_attached(t[1])
+    assert all(len(x.get_tie_chain()) == 1 for x in t)

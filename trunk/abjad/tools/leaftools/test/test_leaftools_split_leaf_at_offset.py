@@ -18,7 +18,10 @@ def test_leaftools_split_leaf_at_offset_01():
     '''
 
     halves = leaftools.split_leaf_at_offset(
-        staff.leaves[1], (1, 32), fracture_spanners=False, tie_split_notes=False)
+        staff.leaves[1],
+        (1, 32), fracture_spanners=False,
+        tie_split_notes=False,
+        )
 
     r'''
     \new Staff {
@@ -49,7 +52,11 @@ def test_leaftools_split_leaf_at_offset_02():
     '''
 
     halves = leaftools.split_leaf_at_offset(
-        staff.leaves[1], (1, 32), fracture_spanners=True, tie_split_notes=False)
+        staff.leaves[1],
+        (1, 32),
+        fracture_spanners=True,
+        tie_split_notes=False,
+        )
 
     r'''
     \new Staff {
@@ -80,7 +87,10 @@ def test_leaftools_split_leaf_at_offset_03():
     '''
 
     halves = leaftools.split_leaf_at_offset(
-        staff.leaves[1], (1, 32), fracture_spanners=False, tie_split_notes=True)
+        staff.leaves[1],
+        (1, 32), fracture_spanners=False,
+        tie_split_notes=True,
+        )
 
     r'''
     \new Staff {
@@ -248,8 +258,8 @@ def test_leaftools_split_leaf_at_offset_09():
     assert isinstance(halves[1][0], Note)
     assert halves[0][0].written_duration == Duration(1, 8)
     assert halves[1][0].written_duration == Duration(1, 8)
-    assert not tietools.is_component_with_tie_spanner_attached(halves[0][0])
-    assert not tietools.is_component_with_tie_spanner_attached(halves[1][0])
+    assert len(halves[0][0].get_tie_chain()) == 1
+    assert len(halves[1][0].get_tie_chain()) == 1
 
 
 def test_leaftools_split_leaf_at_offset_10():
@@ -289,13 +299,9 @@ def test_leaftools_split_leaf_at_offset_11():
     assert halves[0][0].written_duration == Duration(4, 32)
     assert halves[0][1].written_duration == Duration(1, 32)
     assert halves[1][0].written_duration == Duration(3, 32)
-    assert tietools.is_component_with_tie_spanner_attached(halves[0][0])
-    assert tietools.is_component_with_tie_spanner_attached(halves[0][1])
-    assert spannertools.get_the_only_spanner_attached_to_component(
-        halves[0][0], tietools.TieSpanner) is \
-        spannertools.get_the_only_spanner_attached_to_component(
-        halves[0][1], tietools.TieSpanner)
-    assert not tietools.is_component_with_tie_spanner_attached(halves[1][0])
+    assert len(halves[0][0].get_tie_chain()) == 2
+    assert len(halves[0][1].get_tie_chain()) == 2
+    assert len(halves[1][0].get_tie_chain()) == 1
 
 
 def test_leaftools_split_leaf_at_offset_12():

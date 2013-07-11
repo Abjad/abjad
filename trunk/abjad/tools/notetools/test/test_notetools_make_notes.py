@@ -10,7 +10,7 @@ def test_notetools_make_notes_01():
     assert len(t) == 1
     assert isinstance(t[0], Note)
     assert t[0].written_duration == Duration(1, 4)
-    assert not tietools.is_component_with_tie_spanner_attached(t[0])
+    assert all(len(x.get_tie_chain()) == 1 for x in t)
 
 
 def test_notetools_make_notes_02():
@@ -23,8 +23,8 @@ def test_notetools_make_notes_02():
     assert isinstance(t[1], Note)
     assert t[0].written_duration == Duration(4, 8)
     assert t[1].written_duration == Duration(1, 8)
-    assert tietools.is_component_with_tie_spanner_attached(t[0])
-    assert tietools.is_component_with_tie_spanner_attached(t[1])
+    assert all(len(x.get_tie_chain()) == 2 for x in t)
+
 
 def test_notetools_make_notes_03():
     '''May take a list of pitches and a single duration.
@@ -32,8 +32,9 @@ def test_notetools_make_notes_03():
 
     t = notetools.make_notes([1, 2], (1, 4))
     assert len(t) == 2
-    assert t[0].written_pitch.numbered_chromatic_pitch._chromatic_pitch_number == 1
-    assert t[1].written_pitch.numbered_chromatic_pitch._chromatic_pitch_number == 2
+    assert t[0].written_pitch.numbered_chromatic_pitch == 1
+    assert t[1].written_pitch.numbered_chromatic_pitch == 2
+
 
 def test_notetools_make_notes_04():
     '''May take a single pitch and a list of duration.
@@ -41,10 +42,11 @@ def test_notetools_make_notes_04():
 
     t = notetools.make_notes(1, [(1, 8), (1, 4)])
     assert len(t) == 2
-    assert t[0].written_pitch.numbered_chromatic_pitch._chromatic_pitch_number == 1
-    assert t[1].written_pitch.numbered_chromatic_pitch._chromatic_pitch_number == 1
+    assert t[0].written_pitch.numbered_chromatic_pitch == 1
+    assert t[1].written_pitch.numbered_chromatic_pitch == 1
     assert t[0].written_duration == Duration(1, 8)
     assert t[1].written_duration == Duration(1, 4)
+
 
 def test_notetools_make_notes_05():
     '''May take a list of pitches and list of durations.
@@ -52,8 +54,8 @@ def test_notetools_make_notes_05():
 
     t = notetools.make_notes([0, 1], [(1, 8), (1, 4)])
     assert len(t) == 2
-    assert t[0].written_pitch.numbered_chromatic_pitch._chromatic_pitch_number == 0
-    assert t[1].written_pitch.numbered_chromatic_pitch._chromatic_pitch_number == 1
+    assert t[0].written_pitch.numbered_chromatic_pitch == 0
+    assert t[1].written_pitch.numbered_chromatic_pitch == 1
     assert t[0].written_duration == Duration(1, 8)
     assert t[1].written_duration == Duration(1, 4)
 
@@ -66,6 +68,7 @@ def test_notetools_make_notes_06():
     assert len(t) == 1
     assert t[0].written_duration == Duration(1, 4)
 
+
 def test_notetools_make_notes_07():
     '''Durations can be a list of durations.
     '''
@@ -74,27 +77,31 @@ def test_notetools_make_notes_07():
     assert len(t) == 1
     assert t[0].written_duration == Duration(1, 4)
 
+
 def test_notetools_make_notes_08():
-    '''Keyword decrease_durations_monotonically is default.
+    '''Decrease durations monotonically.
     '''
 
-    t = notetools.make_notes(1, (5, 16), decrease_durations_monotonically=True)
+    t = notetools.make_notes(1, (5, 16), 
+        decrease_durations_monotonically=True)
     assert len(t) == 2
     assert t[0].written_duration == Duration(4, 16)
     assert t[1].written_duration == Duration(1, 16)
 
+
 def test_notetools_make_notes_09():
-    '''With decrease_durations_monotonically set to false.
+    '''Increase durations monotonically.
     '''
 
-    t = notetools.make_notes(1, (5, 16), decrease_durations_monotonically=False)
+    t = notetools.make_notes(1, (5, 16), 
+        decrease_durations_monotonically=False)
     assert len(t) == 2
     assert t[0].written_duration == Duration(1, 16)
     assert t[1].written_duration == Duration(4, 16)
 
 
 def test_notetools_make_notes_10():
-    '''Can take prolated parameters.
+    '''Make non-power-of-two duration.
     '''
 
     t = notetools.make_notes(1, (1, 36))
@@ -107,10 +114,19 @@ def test_notetools_make_notes_10():
 
 
 def test_notetools_make_notes_11():
-    '''Single pitch and list of prolated durations.
+    '''Make multiple non-power-or-two durations.
     '''
 
     t = notetools.make_notes(1, [(1, 12), (1, 6), (1, 8)])
+
+    r'''
+    \times 2/3 {
+        cs'8
+        cs'4
+    }
+    cs'8
+    '''
+
     assert len(t) == 2
     assert isinstance(t[0], Tuplet)
     assert isinstance(t[1], Note)
@@ -121,18 +137,12 @@ def test_notetools_make_notes_11():
     assert t[0][0].written_duration == Duration(1, 8)
     assert t[0][1].written_duration == Duration(1, 4)
     assert t[1].written_duration == Duration(1, 8)
-    r'''
-    \times 2/3 {
-        cs'8
-        cs'4
-    }
-    cs'8
-    '''
 
 
 def test_notetools_make_notes_12():
 
-    t = notetools.make_notes(1, [(5, 12), (1, 6), (1, 8)], decrease_durations_monotonically=False)
+    t = notetools.make_notes(1, [(5, 12), (1, 6), (1, 8)], 
+        decrease_durations_monotonically=False)
     assert len(t) == 2
     assert isinstance(t[0], Tuplet)
     assert isinstance(t[1], Note)
