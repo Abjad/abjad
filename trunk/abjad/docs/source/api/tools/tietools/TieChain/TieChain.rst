@@ -20,6 +20,9 @@ Read-only properties
 .. autoattribute:: abjad.tools.tietools.TieChain.TieChain.TieChain.all_leaves_are_in_same_parent
    :noindex:
 
+.. autoattribute:: abjad.tools.tietools.TieChain.TieChain.TieChain.duration
+   :noindex:
+
 .. autoattribute:: abjad.tools.tietools.TieChain.TieChain.TieChain.duration_in_seconds
    :noindex:
 
@@ -42,9 +45,6 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: abjad.tools.tietools.TieChain.TieChain.TieChain.preprolated_duration
-   :noindex:
-
-.. autoattribute:: abjad.tools.tietools.TieChain.TieChain.TieChain.prolated_duration
    :noindex:
 
 .. autoattribute:: abjad.tools.tietools.TieChain.TieChain.TieChain.storage_format

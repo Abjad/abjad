@@ -44,8 +44,16 @@ class TieChain(Selection):
             [leaf.parent for leaf in self.leaves])
 
     @property
+    def duration(self):
+        '''Sum of durations of all components in tie chain.
+
+        Return duration.
+        '''
+        return sum([x.duration for x in self])
+
+    @property
     def duration_in_seconds(self):
-        '''Duration in seconds of components in tie chain.
+        '''Sum of duration in seconds of components in tie chain.
 
         Return duration.
         '''
@@ -54,6 +62,8 @@ class TieChain(Selection):
     @property
     def head(self):
         '''Reference to element ``0`` in tie chain.
+
+        Return component.
         '''
         if self.music:
             return self.music[0]
@@ -76,7 +86,9 @@ class TieChain(Selection):
 
     @property
     def leaves(self):
-        '''Tuple of leaves in tie spanner.
+        '''Leaves in tie chain.
+
+        Return tuple.
         '''
         from abjad.tools import tietools
         spanner_classes = (tietools.TieSpanner, )
@@ -91,8 +103,7 @@ class TieChain(Selection):
 
     @property
     def leaves_grouped_by_immediate_parents(self):
-        '''List of leaves in tie chain grouped 
-        by immediate parents of leaves.
+        '''Leaves in tie chain grouped by immediate parents of leaves.
 
         Return list of lists.
         '''
@@ -105,18 +116,16 @@ class TieChain(Selection):
     @property
     def preprolated_duration(self):
         '''Sum of preprolated durations of all components in tie chain.
+
+        Return duration.
         '''
         return sum([x.preprolated_duration for x in self])
 
     @property
-    def prolated_duration(self):
-        '''Sum of prolated durations of all components in tie chain.
-        '''
-        return sum([x.prolated_duration for x in self])
-
-    @property
     def tie_spanner(self):
         '''Tie spanner governing tie chain.
+
+        Return tie spanner.
         '''
         from abjad.tools import tietools
         if 1 < len(self):
@@ -132,6 +141,8 @@ class TieChain(Selection):
     @property
     def written_duration(self):
         '''Sum of written duration of all components in tie chain.
+
+        Return duration.
         '''
         return sum([x.written_duration for x in self])
 
