@@ -7,7 +7,6 @@ from abjad.tools import marktools
 from abjad.tools import measuretools
 from abjad.tools import notetools
 from abjad.tools import resttools
-from abjad.tools import tietools
 
 from abjad.demos.part.create_pitch_contour_reservoir import create_pitch_contour_reservoir
 from abjad.demos.part.durate_pitch_contour_reservoir import durate_pitch_contour_reservoir

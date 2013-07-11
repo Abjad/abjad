@@ -144,7 +144,6 @@ def split_component_at_offset(
     from abjad.tools import resttools
     from abjad.tools import selectiontools
     from abjad.tools import spannertools
-    from abjad.tools import tietools
 
     # check input
     assert isinstance(component, componenttools.Component)

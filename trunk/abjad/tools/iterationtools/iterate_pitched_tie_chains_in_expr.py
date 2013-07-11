@@ -57,7 +57,7 @@ def iterate_pitched_tie_chains_in_expr(expr, reverse=False):
     Return generator.
     '''
     from abjad.tools import iterationtools
-    from abjad.tools import tietools
+    from abjad.tools import spannertools
 
     spanner_classes = (spannertools.TieSpanner, )
     if not reverse:

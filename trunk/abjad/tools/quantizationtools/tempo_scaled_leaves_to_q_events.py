@@ -5,7 +5,6 @@ from abjad.tools import durationtools
 from abjad.tools import notetools
 from abjad.tools import resttools
 from abjad.tools import skiptools
-from abjad.tools import tietools
 
 
 def tempo_scaled_leaves_to_q_events(leaves, tempo=None):

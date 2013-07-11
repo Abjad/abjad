@@ -130,7 +130,6 @@ def split_leaf_at_offset(leaf, offset, fracture_spanners=False,
     from abjad.tools import marktools
     from abjad.tools import selectiontools
     from abjad.tools import spannertools
-    from abjad.tools import tietools
 
     # check input
     assert isinstance(leaf, leaftools.Leaf)

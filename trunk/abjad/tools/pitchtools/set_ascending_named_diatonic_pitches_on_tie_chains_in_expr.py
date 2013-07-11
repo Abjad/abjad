@@ -31,7 +31,6 @@ def set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(expr, key_signatu
     from abjad.tools import iterationtools
     from abjad.tools import notetools
     from abjad.tools import pitchtools
-    from abjad.tools import tietools
     from abjad.tools import tonalitytools
 
     if key_signature is None:

@@ -2,7 +2,6 @@
 from abjad.tools import contexttools
 from abjad.tools import leaftools
 from abjad.tools import iterationtools
-from abjad.tools import tietools
 from abjad.tools.quantizationtools.AttackPointOptimizer \
 	import AttackPointOptimizer
 

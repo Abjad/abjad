@@ -36,7 +36,6 @@ class TieChain(Selection):
         from abjad.tools import componenttools
         from abjad.tools import notetools
         from abjad.tools import spannertools
-        from abjad.tools import tietools
         from abjad.tools import tuplettools
         new_written_duration = durationtools.Duration(new_written_duration)
         if new_written_duration.is_assignable:
@@ -325,7 +324,6 @@ class TieChain(Selection):
         from abjad.tools import mathtools
         from abjad.tools import notetools
         from abjad.tools import spannertools
-        from abjad.tools import tietools
         from abjad.tools import tuplettools
 
         # coerce input

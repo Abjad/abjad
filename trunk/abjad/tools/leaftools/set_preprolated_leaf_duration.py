@@ -98,7 +98,6 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
     from abjad.tools import leaftools
     from abjad.tools import notetools
     from abjad.tools import spannertools
-    from abjad.tools import tietools
     from abjad.tools import tuplettools
 
     assert isinstance(leaf, leaftools.Leaf)

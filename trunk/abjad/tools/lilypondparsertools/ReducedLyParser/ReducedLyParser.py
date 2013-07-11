@@ -13,7 +13,6 @@ from abjad.tools import pitchtools
 from abjad.tools import resttools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
-from abjad.tools import tietools
 from abjad.tools import tuplettools
 
 

@@ -2,7 +2,6 @@ from abjad.tools import iterationtools
 from abjad.tools import leaftools
 from abjad.tools import notetools
 from abjad.tools import spannertools
-from abjad.tools import tietools
 from abjad.tools.wellformednesstools.Check import Check
 
 

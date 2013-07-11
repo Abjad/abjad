@@ -48,7 +48,7 @@ def iterate_topmost_tie_chains_and_components_in_expr(expr):
 
     Return generator.
     '''
-    from abjad.tools import tietools
+    from abjad.tools import spannertools
 
     spanner_classes = (spannertools.TieSpanner, )
     if isinstance(expr, leaftools.Leaf):

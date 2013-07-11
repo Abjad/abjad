@@ -8,7 +8,6 @@ from abjad.tools import notetools
 from abjad.tools import resttools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
-from abjad.tools import tietools
 from abjad.tools.abctools import AbjadObject
 
 

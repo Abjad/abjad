@@ -2,7 +2,6 @@ from abjad.tools import componenttools
 from abjad.tools import containertools
 from abjad.tools import leaftools
 from abjad.tools import sequencetools
-from abjad.tools import tietools
 
 
 
@@ -983,7 +982,6 @@ def _iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr(
     from abjad.tools import notetools
     from abjad.tools import resttools
     from abjad.tools import skiptools
-    from abjad.tools import tietools
 
     last_tie_chain = None
     current_leaf_group = None

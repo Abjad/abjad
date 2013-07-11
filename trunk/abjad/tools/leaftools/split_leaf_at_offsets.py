@@ -183,7 +183,6 @@ def split_leaf_at_offsets(
     from abjad.tools import marktools
     from abjad.tools import selectiontools
     from abjad.tools import spannertools
-    from abjad.tools import tietools
 
     assert isinstance(leaf, leaftools.Leaf)
     offsets = [durationtools.Offset(offset) for offset in offsets]
