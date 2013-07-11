@@ -367,7 +367,7 @@ New functionality is available for working with ties.
     tietools.iterate_nontrivial_tie_chains_forward_in_expr()
     tietools.iterate_nontrivial_tie_chains_backward_in_expr()
 
-  Removed ``tietools.is_tie_chain(expr)``.  Use ``isinstance(expr, tietools.TieChain)`` instead.
+  Removed ``tietools.is_tie_chain(expr)``.  Use ``isinstance(expr, leaftools.TieChain)`` instead.
 
   Removed ``tietools.get_leaves_in_tie_chain()``. Use ``TieChain.leaves`` instead.
 

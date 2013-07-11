@@ -1073,6 +1073,7 @@ Core composition packages
       :maxdepth: 1
 
       tools/leaftools/Leaf/Leaf
+      tools/leaftools/TieChain/TieChain
 
    --------
 
@@ -1125,6 +1126,7 @@ Core composition packages
    .. toctree::
 
       tools/leaftools/Leaf/Leaf
+      tools/leaftools/TieChain/TieChain
 
    Functions
    ---------
@@ -3379,25 +3381,6 @@ Core composition packages
       tools/tempotools/report_integer_tempo_rewrite_pairs
       tools/tempotools/rewrite_duration_under_new_tempo
       tools/tempotools/rewrite_integer_tempo
-
-:py:mod:`tietools <abjad.tools.tietools>`
-=========================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/tietools/TieChain/TieChain
-
-.. only:: latex
-
-   Concrete Classes
-   ----------------
-
-   .. toctree::
-
-      tools/tietools/TieChain/TieChain
 
 :py:mod:`timeintervaltools <abjad.tools.timeintervaltools>`
 ===========================================================

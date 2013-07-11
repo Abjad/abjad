@@ -1,10 +1,6 @@
 import itertools
-from abjad.tools import chordtools
-from abjad.tools import componenttools
 from abjad.tools import durationtools
-from abjad.tools import notetools
 from abjad.tools import sequencetools
-from abjad.tools import spannertools
 from abjad.tools.selectiontools.Selection import Selection
 
 
@@ -37,6 +33,9 @@ class TieChain(Selection):
 
     def _add_or_remove_notes_to_achieve_written_duration(
         self, new_written_duration):
+        from abjad.tools import componenttools
+        from abjad.tools import notetools
+        from abjad.tools import spannertools
         from abjad.tools import tietools
         from abjad.tools import tuplettools
         new_written_duration = durationtools.Duration(new_written_duration)
@@ -128,6 +127,8 @@ class TieChain(Selection):
 
         Return boolean.
         '''
+        from abjad.tools import chordtools
+        from abjad.tools import notetools
         return isinstance(self.head, (notetools.Note, chordtools.Chord))
 
     @property
@@ -144,7 +145,7 @@ class TieChain(Selection):
 
         Return tuple.
         '''
-        from abjad.tools import tietools
+        from abjad.tools import spannertools
         spanner_classes = (spannertools.TieSpanner, )
         try:
             tie_spanner = \
@@ -181,7 +182,7 @@ class TieChain(Selection):
 
         Return tie spanner.
         '''
-        from abjad.tools import tietools
+        from abjad.tools import spannertools
         if 1 < len(self):
             spanner_classes = (spannertools.TieSpanner,)
             for component in self[0].parentage:
@@ -321,7 +322,6 @@ class TieChain(Selection):
         Return tuplet.
         '''
         from abjad.tools import componenttools
-        from abjad.tools import durationtools
         from abjad.tools import mathtools
         from abjad.tools import notetools
         from abjad.tools import spannertools

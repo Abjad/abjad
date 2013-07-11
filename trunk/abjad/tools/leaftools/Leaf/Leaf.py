@@ -380,15 +380,15 @@ class Leaf(Component):
     def get_tie_chain(self):
         '''Get tie chain containing leaf.
         '''
+        from abjad.tools import leaftools
         from abjad.tools import spannertools
-        from abjad.tools import tietools
         spanner_classes = (spannertools.TieSpanner,)
         for component in self.parentage:
             tie_spanners = component._get_spanners(spanner_classes)
             if len(tie_spanners) == 1:
                 tie_spanner = tie_spanners.pop()
-                return tietools.TieChain(music=tie_spanner.leaves)
+                return leaftools.TieChain(music=tie_spanner.leaves)
             elif 1 < len(tie_spanners):
                 raise ExtraSpannerError
         else:
-            return tietools.TieChain(music=self)
+            return leaftools.TieChain(music=self)

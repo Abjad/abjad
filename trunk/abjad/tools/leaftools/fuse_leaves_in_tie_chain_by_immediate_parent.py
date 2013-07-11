@@ -47,7 +47,7 @@ def fuse_leaves_in_tie_chain_by_immediate_parent(tie_chain):
     from abjad.tools import tietools
 
     # check input
-    if not isinstance(tie_chain, tietools.TieChain):
+    if not isinstance(tie_chain, leaftools.TieChain):
         raise TypeError('must be tie chain: {!r}.'.format(tie_chain))
 
     # init result

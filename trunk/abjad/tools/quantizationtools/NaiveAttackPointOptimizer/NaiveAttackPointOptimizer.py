@@ -31,12 +31,12 @@ class NaiveAttackPointOptimizer(AttackPointOptimizer):
                 if tempo_marks:
                     if current_sub_chain:
                         current_sub_chain = \
-                            tietools.TieChain(current_sub_chain)
+                            leaftools.TieChain(current_sub_chain)
                         sub_chains.append(current_sub_chain)
                     current_sub_chain = []
                 current_sub_chain.append(leaf)
             if current_sub_chain:
-                current_sub_chain = tietools.TieChain(current_sub_chain)
+                current_sub_chain = leaftools.TieChain(current_sub_chain)
                 sub_chains.append(current_sub_chain)
             for sub_chain in sub_chains:
                 leaftools.fuse_leaves_in_tie_chain_by_immediate_parent(

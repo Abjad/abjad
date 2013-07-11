@@ -98,13 +98,13 @@ def scale_contents_of_container(container, multiplier):
     Return `container`.
     '''
     from abjad.tools import iterationtools
+    from abjad.tools import leaftools
     from abjad.tools import measuretools
-    from abjad.tools import tietools
     from abjad.tools import tuplettools
 
     for expr in iterationtools.iterate_topmost_tie_chains_and_components_in_expr(
         container[:]):
-        if isinstance(expr, tietools.TieChain):
+        if isinstance(expr, leaftools.TieChain):
             new_written_duration = multiplier * expr.written_duration
             expr._add_or_remove_notes_to_achieve_written_duration(
                 new_written_duration)

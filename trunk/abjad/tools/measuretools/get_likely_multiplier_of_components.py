@@ -74,7 +74,7 @@ def get_likely_multiplier_of_components(components):
     '''
     from abjad.tools import componenttools
     from abjad.tools import iterationtools
-    from abjad.tools import tietools
+    from abjad.tools import leaftools
 
     assert componenttools.all_are_components(components)
 
@@ -82,7 +82,7 @@ def get_likely_multiplier_of_components(components):
     for expr in \
         iterationtools.iterate_topmost_tie_chains_and_components_in_expr(
         components):
-        if isinstance(expr, tietools.TieChain):
+        if isinstance(expr, leaftools.TieChain):
             chain_duration = expr.preprolated_duration
             chain_duration_numerators.append(chain_duration.numerator)
 
