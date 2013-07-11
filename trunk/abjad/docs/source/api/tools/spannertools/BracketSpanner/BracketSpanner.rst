@@ -61,7 +61,7 @@ Methods
 .. automethod:: abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner.attach
    :noindex:
 
-.. automethod:: abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner.clear
+.. automethod:: abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner.detach
    :noindex:
 
 .. automethod:: abjad.tools.spannertools.BracketSpanner.BracketSpanner.BracketSpanner.extend

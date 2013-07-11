@@ -211,7 +211,7 @@ class Component(AbjadObject):
     def _detach_spanners(self, spanner_classes=None):
         spanners = self._get_spanners(spanner_classes=spanner_classes)
         for spanner in spanners:
-            spanner.clear()
+            spanner.detach()
         return spanners
 
     def _format_after_slot(self, format_contributions):

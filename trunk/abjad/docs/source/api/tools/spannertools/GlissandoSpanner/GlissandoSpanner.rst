@@ -59,7 +59,7 @@ Methods
 .. automethod:: abjad.tools.spannertools.GlissandoSpanner.GlissandoSpanner.GlissandoSpanner.attach
    :noindex:
 
-.. automethod:: abjad.tools.spannertools.GlissandoSpanner.GlissandoSpanner.GlissandoSpanner.clear
+.. automethod:: abjad.tools.spannertools.GlissandoSpanner.GlissandoSpanner.GlissandoSpanner.detach
    :noindex:
 
 .. automethod:: abjad.tools.spannertools.GlissandoSpanner.GlissandoSpanner.GlissandoSpanner.extend

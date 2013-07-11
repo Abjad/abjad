@@ -59,7 +59,7 @@ Methods
 .. automethod:: abjad.tools.spannertools.TextSpanner.TextSpanner.TextSpanner.attach
    :noindex:
 
-.. automethod:: abjad.tools.spannertools.TextSpanner.TextSpanner.TextSpanner.clear
+.. automethod:: abjad.tools.spannertools.TextSpanner.TextSpanner.TextSpanner.detach
    :noindex:
 
 .. automethod:: abjad.tools.spannertools.TextSpanner.TextSpanner.TextSpanner.extend

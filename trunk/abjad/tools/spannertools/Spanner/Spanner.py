@@ -542,6 +542,26 @@ class Spanner(AbjadObject):
         '''
         self._sever_all_components()
 
+    def detach(self):
+        r'''Detach spanner from all components in spanner:
+
+        ::
+
+            >>> voice = Voice("c'8 d'8 e'8 f'8")
+            >>> spanner = beamtools.BeamSpanner(voice[:])
+            >>> spanner
+            BeamSpanner(c'8, d'8, e'8, f'8)
+
+        ::
+
+            >>> spanner.detach()
+            >>> spanner
+            BeamSpanner()
+
+        Return none.
+        '''
+        self._sever_all_components()
+
     def extend(self, components):
         '''Add iterable `components` to right of spanner:
 

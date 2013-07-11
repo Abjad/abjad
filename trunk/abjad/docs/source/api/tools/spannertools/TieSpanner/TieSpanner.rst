@@ -67,7 +67,7 @@ Methods
 .. automethod:: abjad.tools.spannertools.TieSpanner.TieSpanner.TieSpanner.attach
    :noindex:
 
-.. automethod:: abjad.tools.spannertools.TieSpanner.TieSpanner.TieSpanner.clear
+.. automethod:: abjad.tools.spannertools.TieSpanner.TieSpanner.TieSpanner.detach
    :noindex:
 
 .. automethod:: abjad.tools.spannertools.TieSpanner.TieSpanner.TieSpanner.extend

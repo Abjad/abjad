@@ -67,7 +67,7 @@ Methods
 .. automethod:: abjad.tools.spannertools.SlurSpanner.SlurSpanner.SlurSpanner.attach
    :noindex:
 
-.. automethod:: abjad.tools.spannertools.SlurSpanner.SlurSpanner.SlurSpanner.clear
+.. automethod:: abjad.tools.spannertools.SlurSpanner.SlurSpanner.SlurSpanner.detach
    :noindex:
 
 .. automethod:: abjad.tools.spannertools.SlurSpanner.SlurSpanner.SlurSpanner.extend

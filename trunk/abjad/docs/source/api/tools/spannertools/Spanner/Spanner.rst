@@ -57,7 +57,7 @@ Methods
 .. automethod:: abjad.tools.spannertools.Spanner.Spanner.Spanner.attach
    :noindex:
 
-.. automethod:: abjad.tools.spannertools.Spanner.Spanner.Spanner.clear
+.. automethod:: abjad.tools.spannertools.Spanner.Spanner.Spanner.detach
    :noindex:
 
 .. automethod:: abjad.tools.spannertools.Spanner.Spanner.Spanner.extend

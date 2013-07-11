@@ -284,22 +284,22 @@ def test_BeamSpanner_span_anonymous_10():
     }
     '''
 
-    p.clear()
+    p.detach()
     p = beamtools.BeamSpanner([t[0], t[1]])
     assert len(p.components) == 2
     assert len(p.leaves) == 8
 
-    p.clear()
+    p.detach()
     p = beamtools.BeamSpanner([t[0][0], t[1][0]])
     assert len(p.components) == 2
     assert len(p.leaves) == 8
 
-    p.clear()
+    p.detach()
     p = beamtools.BeamSpanner([t[0], t[1][0]])
     assert len(p.components) == 2
     assert len(p.leaves) == 8
 
-    p.clear()
+    p.detach()
     p = beamtools.BeamSpanner([t[0][0], t[1]])
     assert len(p.components) == 2
     assert len(p.leaves) == 8
@@ -339,22 +339,22 @@ def test_BeamSpanner_span_anonymous_11():
     p = beamtools.BeamSpanner(t)
     assert len(p.components) == 1
     assert len(p.leaves) == 8
-    p.clear()
+    p.detach()
 
     p = beamtools.BeamSpanner([t[0], t[1]])
     assert len(p.components) == 2
     assert len(p.leaves) == 8
-    p.clear()
+    p.detach()
 
     p = beamtools.BeamSpanner([t[0][0], t[1]])
     assert len(p.components) == 2
     assert len(p.leaves) == 8
-    p.clear()
+    p.detach()
 
     p = beamtools.BeamSpanner([t[0][0][0], t[1]])
     assert len(p.components) == 2
     assert len(p.leaves) == 8
-    p.clear()
+    p.detach()
 
 
 def test_BeamSpanner_span_anonymous_12():
@@ -382,12 +382,12 @@ def test_BeamSpanner_span_anonymous_12():
     p = beamtools.BeamSpanner(v)
     assert len(p.components) == 1
     assert len(p.leaves) == 5
-    p.clear()
+    p.detach()
 
     p = beamtools.BeamSpanner(v[:])
     assert len(p.components) == 3
     assert len(p.leaves) == 5
-    p.clear()
+    p.detach()
 
 
 def test_BeamSpanner_span_anonymous_13():
@@ -417,12 +417,12 @@ def test_BeamSpanner_span_anonymous_13():
     p = beamtools.BeamSpanner(v)
     assert len(p.components) == 1
     assert len(p.leaves) == 7
-    p.clear()
+    p.detach()
 
     p = beamtools.BeamSpanner(v[:])
     assert len(p.components) == 3
     assert len(p.leaves) == 7
-    p.clear()
+    p.detach()
 
 
 def test_BeamSpanner_span_anonymous_14():
@@ -447,7 +447,7 @@ def test_BeamSpanner_span_anonymous_14():
     p = beamtools.BeamSpanner(t)
     assert len(p.components) == 1
     assert len(p.leaves) == 5
-    p.clear()
+    p.detach()
 
     p = beamtools.BeamSpanner(t[:])
     assert len(p.components) == 3

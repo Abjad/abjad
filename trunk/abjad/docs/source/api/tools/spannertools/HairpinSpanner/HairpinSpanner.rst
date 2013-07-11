@@ -79,7 +79,7 @@ Methods
 .. automethod:: abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.attach
    :noindex:
 
-.. automethod:: abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.clear
+.. automethod:: abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.detach
    :noindex:
 
 .. automethod:: abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.extend

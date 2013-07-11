@@ -68,7 +68,7 @@ Methods
 .. automethod:: abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.attach
    :noindex:
 
-.. automethod:: abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.clear
+.. automethod:: abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.detach
    :noindex:
 
 .. automethod:: abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.extend

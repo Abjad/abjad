@@ -67,7 +67,7 @@ Methods
 .. automethod:: abjad.tools.beamtools.BeamSpanner.BeamSpanner.BeamSpanner.attach
    :noindex:
 
-.. automethod:: abjad.tools.beamtools.BeamSpanner.BeamSpanner.BeamSpanner.clear
+.. automethod:: abjad.tools.beamtools.BeamSpanner.BeamSpanner.BeamSpanner.detach
    :noindex:
 
 .. automethod:: abjad.tools.beamtools.BeamSpanner.BeamSpanner.BeamSpanner.extend
