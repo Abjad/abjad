@@ -24,13 +24,6 @@ Core composition packages
       tools/beamtools/MeasuredComplexBeamSpanner/MeasuredComplexBeamSpanner
       tools/beamtools/MultipartBeamSpanner/MultipartBeamSpanner
 
-   --------
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/beamtools/attach_multipart_beam_spanner_to_bottommost_tuplets_in_expr
-
 .. only:: latex
 
    Concrete Classes
@@ -43,13 +36,6 @@ Core composition packages
       tools/beamtools/DuratedComplexBeamSpanner/DuratedComplexBeamSpanner
       tools/beamtools/MeasuredComplexBeamSpanner/MeasuredComplexBeamSpanner
       tools/beamtools/MultipartBeamSpanner/MultipartBeamSpanner
-
-   Functions
-   ---------
-
-   .. toctree::
-
-      tools/beamtools/attach_multipart_beam_spanner_to_bottommost_tuplets_in_expr
 
 :py:mod:`chordtools <abjad.tools.chordtools>`
 =============================================
