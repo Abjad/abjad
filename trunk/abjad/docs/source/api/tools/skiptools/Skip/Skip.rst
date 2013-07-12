@@ -31,9 +31,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.skiptools.Skip.Skip.Skip.lilypond_format
    :noindex:
 
-.. autoattribute:: abjad.tools.skiptools.Skip.Skip.Skip.lineage
-   :noindex:
-
 .. autoattribute:: abjad.tools.skiptools.Skip.Skip.Skip.multiplied_duration
    :noindex:
 
@@ -92,6 +89,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.skiptools.Skip.Skip.Skip.select_descendants
+   :noindex:
+
+.. automethod:: abjad.tools.skiptools.Skip.Skip.Skip.select_lineage
    :noindex:
 
 .. automethod:: abjad.tools.skiptools.Skip.Skip.Skip.select_tie_chain

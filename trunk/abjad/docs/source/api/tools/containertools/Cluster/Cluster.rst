@@ -34,9 +34,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.containertools.Cluster.Cluster.Cluster.lilypond_format
    :noindex:
 
-.. autoattribute:: abjad.tools.containertools.Cluster.Cluster.Cluster.lineage
-   :noindex:
-
 .. autoattribute:: abjad.tools.containertools.Cluster.Cluster.Cluster.music
    :noindex:
 
@@ -104,6 +101,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.containertools.Cluster.Cluster.Cluster.select_descendants
+   :noindex:
+
+.. automethod:: abjad.tools.containertools.Cluster.Cluster.Cluster.select_lineage
    :noindex:
 
 Special methods

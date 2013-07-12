@@ -52,9 +52,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.lilypond_format
    :noindex:
 
-.. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.lineage
-   :noindex:
-
 .. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.multiplied_duration
    :noindex:
 
@@ -140,6 +137,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.select_descendants
+   :noindex:
+
+.. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.select_lineage
    :noindex:
 
 Special methods

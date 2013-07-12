@@ -43,9 +43,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.contexttools.Context.Context.Context.lilypond_format
    :noindex:
 
-.. autoattribute:: abjad.tools.contexttools.Context.Context.Context.lineage
-   :noindex:
-
 .. autoattribute:: abjad.tools.contexttools.Context.Context.Context.music
    :noindex:
 
@@ -122,6 +119,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.contexttools.Context.Context.Context.select_descendants
+   :noindex:
+
+.. automethod:: abjad.tools.contexttools.Context.Context.Context.select_lineage
    :noindex:
 
 Special methods

@@ -24,9 +24,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.componenttools.Component.Component.Component.lilypond_format
    :noindex:
 
-.. autoattribute:: abjad.tools.componenttools.Component.Component.Component.lineage
-   :noindex:
-
 .. autoattribute:: abjad.tools.componenttools.Component.Component.Component.override
    :noindex:
 
@@ -64,6 +61,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.componenttools.Component.Component.Component.select_descendants
+   :noindex:
+
+.. automethod:: abjad.tools.componenttools.Component.Component.Component.select_lineage
    :noindex:
 
 Special methods

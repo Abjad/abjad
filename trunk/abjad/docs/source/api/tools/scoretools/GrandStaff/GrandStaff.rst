@@ -47,9 +47,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.lilypond_format
    :noindex:
 
-.. autoattribute:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.lineage
-   :noindex:
-
 .. autoattribute:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.music
    :noindex:
 
@@ -126,6 +123,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.select_descendants
+   :noindex:
+
+.. automethod:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.select_lineage
    :noindex:
 
 Special methods

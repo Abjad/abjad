@@ -106,13 +106,6 @@ class Component(AbjadObject):
         return self._format_component()
 
     @property
-    def lineage(self):
-        '''Reference to component lineage score selection.
-        '''
-        from abjad.tools import componenttools
-        return componenttools.Lineage(self)
-
-    @property
     def override(self):
         '''Reference to LilyPond grob override component plug-in.
         '''
@@ -545,3 +538,9 @@ class Component(AbjadObject):
         '''
         from abjad.tools import componenttools
         return componenttools.Descendants(self)
+
+    def select_lineage(self):
+        '''Select lineage.
+        '''
+        from abjad.tools import componenttools
+        return componenttools.Lineage(self)

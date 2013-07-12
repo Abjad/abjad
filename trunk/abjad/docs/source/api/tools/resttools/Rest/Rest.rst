@@ -31,9 +31,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.resttools.Rest.Rest.Rest.lilypond_format
    :noindex:
 
-.. autoattribute:: abjad.tools.resttools.Rest.Rest.Rest.lineage
-   :noindex:
-
 .. autoattribute:: abjad.tools.resttools.Rest.Rest.Rest.multiplied_duration
    :noindex:
 
@@ -92,6 +89,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.resttools.Rest.Rest.Rest.select_descendants
+   :noindex:
+
+.. automethod:: abjad.tools.resttools.Rest.Rest.Rest.select_lineage
    :noindex:
 
 .. automethod:: abjad.tools.resttools.Rest.Rest.Rest.select_tie_chain

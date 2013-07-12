@@ -57,9 +57,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.lilypond_format
    :noindex:
 
-.. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.lineage
-   :noindex:
-
 .. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.measure_number
    :noindex:
 
@@ -139,6 +136,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.measuretools.Measure.Measure.Measure.select_descendants
+   :noindex:
+
+.. automethod:: abjad.tools.measuretools.Measure.Measure.Measure.select_lineage
    :noindex:
 
 Special methods

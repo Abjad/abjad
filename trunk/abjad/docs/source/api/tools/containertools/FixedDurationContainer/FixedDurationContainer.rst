@@ -46,9 +46,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.lilypond_format
    :noindex:
 
-.. autoattribute:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.lineage
-   :noindex:
-
 .. autoattribute:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.music
    :noindex:
 
@@ -119,6 +116,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.select_descendants
+   :noindex:
+
+.. automethod:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.select_lineage
    :noindex:
 
 Special methods

@@ -45,9 +45,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.scoretools.Score.Score.Score.lilypond_format
    :noindex:
 
-.. autoattribute:: abjad.tools.scoretools.Score.Score.Score.lineage
-   :noindex:
-
 .. autoattribute:: abjad.tools.scoretools.Score.Score.Score.music
    :noindex:
 
@@ -124,6 +121,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.scoretools.Score.Score.Score.select_descendants
+   :noindex:
+
+.. automethod:: abjad.tools.scoretools.Score.Score.Score.select_lineage
    :noindex:
 
 Special methods

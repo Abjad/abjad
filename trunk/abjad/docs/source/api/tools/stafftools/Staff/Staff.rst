@@ -45,9 +45,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.stafftools.Staff.Staff.Staff.lilypond_format
    :noindex:
 
-.. autoattribute:: abjad.tools.stafftools.Staff.Staff.Staff.lineage
-   :noindex:
-
 .. autoattribute:: abjad.tools.stafftools.Staff.Staff.Staff.music
    :noindex:
 
@@ -124,6 +121,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.stafftools.Staff.Staff.Staff.select_descendants
+   :noindex:
+
+.. automethod:: abjad.tools.stafftools.Staff.Staff.Staff.select_lineage
    :noindex:
 
 Special methods

@@ -54,9 +54,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.tuplettools.FixedDurationTuplet.FixedDurationTuplet.FixedDurationTuplet.lilypond_format
    :noindex:
 
-.. autoattribute:: abjad.tools.tuplettools.FixedDurationTuplet.FixedDurationTuplet.FixedDurationTuplet.lineage
-   :noindex:
-
 .. autoattribute:: abjad.tools.tuplettools.FixedDurationTuplet.FixedDurationTuplet.FixedDurationTuplet.multiplied_duration
    :noindex:
 
@@ -145,6 +142,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.tuplettools.FixedDurationTuplet.FixedDurationTuplet.FixedDurationTuplet.select_descendants
+   :noindex:
+
+.. automethod:: abjad.tools.tuplettools.FixedDurationTuplet.FixedDurationTuplet.FixedDurationTuplet.select_lineage
    :noindex:
 
 .. automethod:: abjad.tools.tuplettools.FixedDurationTuplet.FixedDurationTuplet.FixedDurationTuplet.trim

@@ -34,9 +34,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.notetools.Note.Note.Note.lilypond_format
    :noindex:
 
-.. autoattribute:: abjad.tools.notetools.Note.Note.Note.lineage
-   :noindex:
-
 .. autoattribute:: abjad.tools.notetools.Note.Note.Note.multiplied_duration
    :noindex:
 
@@ -104,6 +101,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.notetools.Note.Note.Note.select_descendants
+   :noindex:
+
+.. automethod:: abjad.tools.notetools.Note.Note.Note.select_lineage
    :noindex:
 
 .. automethod:: abjad.tools.notetools.Note.Note.Note.select_tie_chain

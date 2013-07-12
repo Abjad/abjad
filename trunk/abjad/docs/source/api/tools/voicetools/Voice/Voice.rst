@@ -45,9 +45,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.voicetools.Voice.Voice.Voice.lilypond_format
    :noindex:
 
-.. autoattribute:: abjad.tools.voicetools.Voice.Voice.Voice.lineage
-   :noindex:
-
 .. autoattribute:: abjad.tools.voicetools.Voice.Voice.Voice.music
    :noindex:
 
@@ -124,6 +121,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.voicetools.Voice.Voice.Voice.select_descendants
+   :noindex:
+
+.. automethod:: abjad.tools.voicetools.Voice.Voice.Voice.select_lineage
    :noindex:
 
 Special methods

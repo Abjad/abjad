@@ -33,9 +33,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.lilypond_format
    :noindex:
 
-.. autoattribute:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.lineage
-   :noindex:
-
 .. autoattribute:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.multiplied_duration
    :noindex:
 
@@ -94,6 +91,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.select_descendants
+   :noindex:
+
+.. automethod:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.select_lineage
    :noindex:
 
 .. automethod:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.select_tie_chain

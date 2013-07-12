@@ -38,9 +38,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.lilypond_format
    :noindex:
 
-.. autoattribute:: abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.lineage
-   :noindex:
-
 .. autoattribute:: abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.multiplied_duration
    :noindex:
 
@@ -111,6 +108,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.select_descendants
+   :noindex:
+
+.. automethod:: abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.select_lineage
    :noindex:
 
 .. automethod:: abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.select_tie_chain

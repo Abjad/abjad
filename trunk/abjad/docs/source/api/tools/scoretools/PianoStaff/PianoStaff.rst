@@ -47,9 +47,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.lilypond_format
    :noindex:
 
-.. autoattribute:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.lineage
-   :noindex:
-
 .. autoattribute:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.music
    :noindex:
 
@@ -126,6 +123,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.select_descendants
+   :noindex:
+
+.. automethod:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.select_lineage
    :noindex:
 
 Special methods

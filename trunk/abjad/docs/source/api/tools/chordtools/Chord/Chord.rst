@@ -34,9 +34,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.chordtools.Chord.Chord.Chord.lilypond_format
    :noindex:
 
-.. autoattribute:: abjad.tools.chordtools.Chord.Chord.Chord.lineage
-   :noindex:
-
 .. autoattribute:: abjad.tools.chordtools.Chord.Chord.Chord.multiplied_duration
    :noindex:
 
@@ -116,6 +113,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.select_descendants
+   :noindex:
+
+.. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.select_lineage
    :noindex:
 
 .. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.select_tie_chain

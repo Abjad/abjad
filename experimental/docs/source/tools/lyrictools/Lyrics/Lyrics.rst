@@ -45,9 +45,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.lyrictools.Lyrics.Lyrics.Lyrics.lilypond_format
    :noindex:
 
-.. autoattribute:: experimental.tools.lyrictools.Lyrics.Lyrics.Lyrics.lineage
-   :noindex:
-
 .. autoattribute:: experimental.tools.lyrictools.Lyrics.Lyrics.Lyrics.music
    :noindex:
 
@@ -124,6 +121,9 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.lyrictools.Lyrics.Lyrics.Lyrics.select_descendants
+   :noindex:
+
+.. automethod:: experimental.tools.lyrictools.Lyrics.Lyrics.Lyrics.select_lineage
    :noindex:
 
 Special methods

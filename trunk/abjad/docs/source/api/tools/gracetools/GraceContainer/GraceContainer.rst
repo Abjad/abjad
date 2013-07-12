@@ -34,9 +34,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.lilypond_format
    :noindex:
 
-.. autoattribute:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.lineage
-   :noindex:
-
 .. autoattribute:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.music
    :noindex:
 
@@ -110,6 +107,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.select_descendants
+   :noindex:
+
+.. automethod:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.select_lineage
    :noindex:
 
 Special methods

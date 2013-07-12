@@ -32,9 +32,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.containertools.Container.Container.Container.lilypond_format
    :noindex:
 
-.. autoattribute:: abjad.tools.containertools.Container.Container.Container.lineage
-   :noindex:
-
 .. autoattribute:: abjad.tools.containertools.Container.Container.Container.music
    :noindex:
 
@@ -102,6 +99,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.containertools.Container.Container.Container.select_descendants
+   :noindex:
+
+.. automethod:: abjad.tools.containertools.Container.Container.Container.select_lineage
    :noindex:
 
 Special methods

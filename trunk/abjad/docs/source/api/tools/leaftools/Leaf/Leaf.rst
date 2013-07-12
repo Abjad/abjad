@@ -29,9 +29,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.leaftools.Leaf.Leaf.Leaf.lilypond_format
    :noindex:
 
-.. autoattribute:: abjad.tools.leaftools.Leaf.Leaf.Leaf.lineage
-   :noindex:
-
 .. autoattribute:: abjad.tools.leaftools.Leaf.Leaf.Leaf.multiplied_duration
    :noindex:
 
@@ -90,6 +87,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.select_descendants
+   :noindex:
+
+.. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.select_lineage
    :noindex:
 
 .. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.select_tie_chain

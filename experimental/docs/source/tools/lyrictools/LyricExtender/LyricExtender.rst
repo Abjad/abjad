@@ -33,9 +33,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.lyrictools.LyricExtender.LyricExtender.LyricExtender.lilypond_format
    :noindex:
 
-.. autoattribute:: experimental.tools.lyrictools.LyricExtender.LyricExtender.LyricExtender.lineage
-   :noindex:
-
 .. autoattribute:: experimental.tools.lyrictools.LyricExtender.LyricExtender.LyricExtender.multiplied_duration
    :noindex:
 
@@ -94,6 +91,9 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.lyrictools.LyricExtender.LyricExtender.LyricExtender.select_descendants
+   :noindex:
+
+.. automethod:: experimental.tools.lyrictools.LyricExtender.LyricExtender.LyricExtender.select_lineage
    :noindex:
 
 .. automethod:: experimental.tools.lyrictools.LyricExtender.LyricExtender.LyricExtender.select_tie_chain
