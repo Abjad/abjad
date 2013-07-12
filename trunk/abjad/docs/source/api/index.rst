@@ -29,7 +29,7 @@ Core composition packages
    .. toctree::
       :maxdepth: 1
 
-      tools/beamtools/attach_multiplart_beam_spanner_to_bottommost_tuplets_in_expr
+      tools/beamtools/attach_multipart_beam_spanner_to_bottommost_tuplets_in_expr
 
 .. only:: latex
 
@@ -49,7 +49,7 @@ Core composition packages
 
    .. toctree::
 
-      tools/beamtools/attach_multiplart_beam_spanner_to_bottommost_tuplets_in_expr
+      tools/beamtools/attach_multipart_beam_spanner_to_bottommost_tuplets_in_expr
 
 :py:mod:`chordtools <abjad.tools.chordtools>`
 =============================================
