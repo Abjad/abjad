@@ -1,4 +1,3 @@
-from abjad.tools import beamtools
 from abjad.tools import iterationtools
 from abjad.tools import spannertools
 from abjad.tools.wellformednesstools.Check import Check

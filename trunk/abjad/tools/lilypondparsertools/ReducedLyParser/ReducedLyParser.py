@@ -1,7 +1,6 @@
 import copy
 import fractions
 from abjad.tools import abctools
-from abjad.tools import beamtools
 from abjad.tools import chordtools
 from abjad.tools import containertools
 from abjad.tools import durationtools

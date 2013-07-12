@@ -1,6 +1,5 @@
 import copy
 import math
-from abjad.tools import beamtools
 from abjad.tools import componenttools
 from abjad.tools import containertools
 from abjad.tools import durationtools

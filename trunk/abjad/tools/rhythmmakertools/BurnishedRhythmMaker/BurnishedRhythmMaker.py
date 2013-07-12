@@ -1,7 +1,6 @@
 import abc
 import copy
 import types
-from abjad.tools import beamtools
 from abjad.tools import durationtools
 from abjad.tools import iterationtools
 from abjad.tools import leaftools

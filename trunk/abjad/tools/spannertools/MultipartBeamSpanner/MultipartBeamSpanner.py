@@ -50,7 +50,6 @@ class MultipartBeamSpanner(BeamSpanner):
     ### PRIVATE METHODS ###
 
     def _format_right_of_leaf(self, leaf):
-        from abjad.tools import beamtools
         from abjad.tools import leaftools
         result = []
         direction_string = ''

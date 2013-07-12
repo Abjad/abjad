@@ -85,7 +85,6 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
         new.span = self.span
 
     def _format_before_leaf(self, leaf):
-        from abjad.tools import beamtools
         result = []
         #if leaf.beam.beamable:
         if self.is_beamable_component(leaf):

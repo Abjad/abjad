@@ -2,7 +2,6 @@
 import itertools
 import ply
 from abjad.tools import abctools
-from abjad.tools import beamtools
 from abjad.tools import chordtools
 from abjad.tools import componenttools
 from abjad.tools import containertools

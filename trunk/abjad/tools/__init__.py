@@ -11,7 +11,6 @@ __builtins__['NegativeInfinity'] = mathtools.NegativeInfinity()
 
 from abjad.tools import abctools
 from abjad.tools import abjadbooktools
-from abjad.tools import beamtools
 from abjad.tools import chordtools
 from abjad.tools import componenttools
 from abjad.tools import configurationtools

@@ -68,7 +68,6 @@ class ComplexBeamSpanner(BeamSpanner):
     def _format_before_leaf(self, leaf):
         '''Spanner format contribution to output before leaf.
         '''
-        from abjad.tools import beamtools
         result = []
         result.extend(BeamSpanner._format_before_leaf(self, leaf))
         if self.is_beamable_component(leaf):
@@ -87,7 +86,6 @@ class ComplexBeamSpanner(BeamSpanner):
     def _format_right_of_leaf(self, leaf):
         '''Spanner format contribution to output right of leaf.
         '''
-        from abjad.tools import beamtools
         from abjad.tools import leaftools
         result = []
         #if leaf.beam.beamable:
@@ -146,7 +144,6 @@ class ComplexBeamSpanner(BeamSpanner):
         Interior leaves may be surrounded by unbeamable leaves.
         Four cases total for beamability of surrounding leaves.
         '''
-        from abjad.tools import beamtools
         from abjad.tools import leaftools
         previous_leaf = leaftools.get_nth_leaf_in_thread_from_leaf(leaf, -1)
         previous_written = previous_leaf.written_duration
