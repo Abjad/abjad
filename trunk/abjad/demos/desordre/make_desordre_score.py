@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
-
-from abjad import *
+from abjad.tools import contexttools
+from abjad.tools import scoretools
 from abjad.demos.desordre.make_desordre_staff import make_desordre_staff
 
 
@@ -20,6 +20,6 @@ def make_desordre_score(pitches):
     contexttools.KeySignatureMark('b', 'major')(piano_staff[1])
 
     # wrap the piano staff in a score, and return
-    score = Score([piano_staff])
+    score = scoretools.Score([piano_staff])
 
     return score
