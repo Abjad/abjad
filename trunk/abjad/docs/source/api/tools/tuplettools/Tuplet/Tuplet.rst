@@ -22,9 +22,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.contents_duration
    :noindex:
 
-.. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.descendants
-   :noindex:
-
 .. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.duration
    :noindex:
 
@@ -140,6 +137,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.select_components
+   :noindex:
+
+.. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.select_descendants
    :noindex:
 
 Special methods

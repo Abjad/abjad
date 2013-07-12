@@ -21,9 +21,6 @@ Bases
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.lyrictools.LyricExtender.LyricExtender.LyricExtender.descendants
-   :noindex:
-
 .. autoattribute:: experimental.tools.lyrictools.LyricExtender.LyricExtender.LyricExtender.duration
    :noindex:
 
@@ -94,6 +91,9 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.lyrictools.LyricExtender.LyricExtender.LyricExtender.select_components
+   :noindex:
+
+.. automethod:: experimental.tools.lyrictools.LyricExtender.LyricExtender.LyricExtender.select_descendants
    :noindex:
 
 .. automethod:: experimental.tools.lyrictools.LyricExtender.LyricExtender.LyricExtender.select_tie_chain

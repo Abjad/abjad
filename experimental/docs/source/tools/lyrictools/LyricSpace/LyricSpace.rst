@@ -21,9 +21,6 @@ Bases
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.lyrictools.LyricSpace.LyricSpace.LyricSpace.descendants
-   :noindex:
-
 .. autoattribute:: experimental.tools.lyrictools.LyricSpace.LyricSpace.LyricSpace.duration
    :noindex:
 
@@ -94,6 +91,9 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.lyrictools.LyricSpace.LyricSpace.LyricSpace.select_components
+   :noindex:
+
+.. automethod:: experimental.tools.lyrictools.LyricSpace.LyricSpace.LyricSpace.select_descendants
    :noindex:
 
 .. automethod:: experimental.tools.lyrictools.LyricSpace.LyricSpace.LyricSpace.select_tie_chain

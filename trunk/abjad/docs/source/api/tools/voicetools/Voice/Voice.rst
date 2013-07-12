@@ -24,9 +24,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.voicetools.Voice.Voice.Voice.contents_duration
    :noindex:
 
-.. autoattribute:: abjad.tools.voicetools.Voice.Voice.Voice.descendants
-   :noindex:
-
 .. autoattribute:: abjad.tools.voicetools.Voice.Voice.Voice.duration
    :noindex:
 
@@ -124,6 +121,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.voicetools.Voice.Voice.Voice.select_components
+   :noindex:
+
+.. automethod:: abjad.tools.voicetools.Voice.Voice.Voice.select_descendants
    :noindex:
 
 Special methods

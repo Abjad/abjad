@@ -22,9 +22,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.contents_duration
    :noindex:
 
-.. autoattribute:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.descendants
-   :noindex:
-
 .. autoattribute:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.duration
    :noindex:
 
@@ -119,6 +116,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.select_components
+   :noindex:
+
+.. automethod:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.select_descendants
    :noindex:
 
 Special methods

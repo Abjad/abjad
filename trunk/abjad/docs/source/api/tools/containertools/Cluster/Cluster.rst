@@ -22,9 +22,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.containertools.Cluster.Cluster.Cluster.contents_duration
    :noindex:
 
-.. autoattribute:: abjad.tools.containertools.Cluster.Cluster.Cluster.descendants
-   :noindex:
-
 .. autoattribute:: abjad.tools.containertools.Cluster.Cluster.Cluster.duration
    :noindex:
 
@@ -104,6 +101,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.containertools.Cluster.Cluster.Cluster.select_components
+   :noindex:
+
+.. automethod:: abjad.tools.containertools.Cluster.Cluster.Cluster.select_descendants
    :noindex:
 
 Special methods

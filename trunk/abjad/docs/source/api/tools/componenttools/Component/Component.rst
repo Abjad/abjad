@@ -15,9 +15,6 @@ Bases
 Read-only properties
 --------------------
 
-.. autoattribute:: abjad.tools.componenttools.Component.Component.Component.descendants
-   :noindex:
-
 .. autoattribute:: abjad.tools.componenttools.Component.Component.Component.duration
    :noindex:
 
@@ -64,6 +61,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.componenttools.Component.Component.Component.select_components
+   :noindex:
+
+.. automethod:: abjad.tools.componenttools.Component.Component.Component.select_descendants
    :noindex:
 
 Special methods

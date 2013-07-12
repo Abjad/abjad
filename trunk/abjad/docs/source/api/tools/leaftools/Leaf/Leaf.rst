@@ -17,9 +17,6 @@ Bases
 Read-only properties
 --------------------
 
-.. autoattribute:: abjad.tools.leaftools.Leaf.Leaf.Leaf.descendants
-   :noindex:
-
 .. autoattribute:: abjad.tools.leaftools.Leaf.Leaf.Leaf.duration
    :noindex:
 
@@ -90,6 +87,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.select_components
+   :noindex:
+
+.. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.select_descendants
    :noindex:
 
 .. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.select_tie_chain

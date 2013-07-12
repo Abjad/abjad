@@ -24,9 +24,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.contents_duration
    :noindex:
 
-.. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.descendants
-   :noindex:
-
 .. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.duration
    :noindex:
 
@@ -139,6 +136,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.measuretools.Measure.Measure.Measure.select_components
+   :noindex:
+
+.. automethod:: abjad.tools.measuretools.Measure.Measure.Measure.select_descendants
    :noindex:
 
 Special methods

@@ -21,9 +21,6 @@ Bases
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.lyrictools.LyricHyphen.LyricHyphen.LyricHyphen.descendants
-   :noindex:
-
 .. autoattribute:: experimental.tools.lyrictools.LyricHyphen.LyricHyphen.LyricHyphen.duration
    :noindex:
 
@@ -94,6 +91,9 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.lyrictools.LyricHyphen.LyricHyphen.LyricHyphen.select_components
+   :noindex:
+
+.. automethod:: experimental.tools.lyrictools.LyricHyphen.LyricHyphen.LyricHyphen.select_descendants
    :noindex:
 
 .. automethod:: experimental.tools.lyrictools.LyricHyphen.LyricHyphen.LyricHyphen.select_tie_chain

@@ -21,9 +21,6 @@ Bases
 Read-only properties
 --------------------
 
-.. autoattribute:: experimental.tools.lyrictools.LyricText.LyricText.LyricText.descendants
-   :noindex:
-
 .. autoattribute:: experimental.tools.lyrictools.LyricText.LyricText.LyricText.duration
    :noindex:
 
@@ -94,6 +91,9 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.lyrictools.LyricText.LyricText.LyricText.select_components
+   :noindex:
+
+.. automethod:: experimental.tools.lyrictools.LyricText.LyricText.LyricText.select_descendants
    :noindex:
 
 .. automethod:: experimental.tools.lyrictools.LyricText.LyricText.LyricText.select_tie_chain

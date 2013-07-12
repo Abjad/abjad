@@ -24,9 +24,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.scoretools.Score.Score.Score.contents_duration
    :noindex:
 
-.. autoattribute:: abjad.tools.scoretools.Score.Score.Score.descendants
-   :noindex:
-
 .. autoattribute:: abjad.tools.scoretools.Score.Score.Score.duration
    :noindex:
 
@@ -124,6 +121,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.scoretools.Score.Score.Score.select_components
+   :noindex:
+
+.. automethod:: abjad.tools.scoretools.Score.Score.Score.select_descendants
    :noindex:
 
 Special methods

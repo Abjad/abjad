@@ -19,9 +19,6 @@ Bases
 Read-only properties
 --------------------
 
-.. autoattribute:: abjad.tools.skiptools.Skip.Skip.Skip.descendants
-   :noindex:
-
 .. autoattribute:: abjad.tools.skiptools.Skip.Skip.Skip.duration
    :noindex:
 
@@ -92,6 +89,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.skiptools.Skip.Skip.Skip.select_components
+   :noindex:
+
+.. automethod:: abjad.tools.skiptools.Skip.Skip.Skip.select_descendants
    :noindex:
 
 .. automethod:: abjad.tools.skiptools.Skip.Skip.Skip.select_tie_chain

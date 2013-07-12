@@ -19,9 +19,6 @@ Bases
 Read-only properties
 --------------------
 
-.. autoattribute:: abjad.tools.chordtools.Chord.Chord.Chord.descendants
-   :noindex:
-
 .. autoattribute:: abjad.tools.chordtools.Chord.Chord.Chord.duration
    :noindex:
 
@@ -116,6 +113,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.select_components
+   :noindex:
+
+.. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.select_descendants
    :noindex:
 
 .. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.select_tie_chain

@@ -22,9 +22,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.lyrictools.AddLyrics.AddLyrics.AddLyrics.contents_duration
    :noindex:
 
-.. autoattribute:: experimental.tools.lyrictools.AddLyrics.AddLyrics.AddLyrics.descendants
-   :noindex:
-
 .. autoattribute:: experimental.tools.lyrictools.AddLyrics.AddLyrics.AddLyrics.duration
    :noindex:
 
@@ -104,6 +101,9 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.lyrictools.AddLyrics.AddLyrics.AddLyrics.select_components
+   :noindex:
+
+.. automethod:: experimental.tools.lyrictools.AddLyrics.AddLyrics.AddLyrics.select_descendants
    :noindex:
 
 Special methods

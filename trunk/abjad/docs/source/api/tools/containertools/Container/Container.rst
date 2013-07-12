@@ -20,9 +20,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.containertools.Container.Container.Container.contents_duration
    :noindex:
 
-.. autoattribute:: abjad.tools.containertools.Container.Container.Container.descendants
-   :noindex:
-
 .. autoattribute:: abjad.tools.containertools.Container.Container.Container.duration
    :noindex:
 
@@ -102,6 +99,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.containertools.Container.Container.Container.select_components
+   :noindex:
+
+.. automethod:: abjad.tools.containertools.Container.Container.Container.select_descendants
    :noindex:
 
 Special methods

@@ -93,13 +93,6 @@ class Component(AbjadObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def descendants(self):
-        '''Reference to component descendants score selection.
-        '''
-        from abjad.tools import componenttools
-        return componenttools.Descendants(self)
-
-    @property
     def duration(self):
         return self.prolation * self.preprolated_duration
 
@@ -546,3 +539,9 @@ class Component(AbjadObject):
         components = iterationtools.iterate_components_in_expr(
             expr, component_class=component_classes)
         return selectiontools.Selection(components)
+
+    def select_descendants(self):
+        '''Select descendants.
+        '''
+        from abjad.tools import componenttools
+        return componenttools.Descendants(self)

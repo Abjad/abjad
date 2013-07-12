@@ -22,9 +22,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.contexttools.Context.Context.Context.contents_duration
    :noindex:
 
-.. autoattribute:: abjad.tools.contexttools.Context.Context.Context.descendants
-   :noindex:
-
 .. autoattribute:: abjad.tools.contexttools.Context.Context.Context.duration
    :noindex:
 
@@ -122,6 +119,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.contexttools.Context.Context.Context.select_components
+   :noindex:
+
+.. automethod:: abjad.tools.contexttools.Context.Context.Context.select_descendants
    :noindex:
 
 Special methods

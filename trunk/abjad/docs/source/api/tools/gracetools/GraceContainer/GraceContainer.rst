@@ -22,9 +22,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.contents_duration
    :noindex:
 
-.. autoattribute:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.descendants
-   :noindex:
-
 .. autoattribute:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.duration
    :noindex:
 
@@ -110,6 +107,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.select_components
+   :noindex:
+
+.. automethod:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.select_descendants
    :noindex:
 
 Special methods

@@ -26,9 +26,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.contents_duration
    :noindex:
 
-.. autoattribute:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.descendants
-   :noindex:
-
 .. autoattribute:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.duration
    :noindex:
 
@@ -126,6 +123,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.select_components
+   :noindex:
+
+.. automethod:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.select_descendants
    :noindex:
 
 Special methods

@@ -19,9 +19,6 @@ Bases
 Read-only properties
 --------------------
 
-.. autoattribute:: abjad.tools.resttools.Rest.Rest.Rest.descendants
-   :noindex:
-
 .. autoattribute:: abjad.tools.resttools.Rest.Rest.Rest.duration
    :noindex:
 
@@ -92,6 +89,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.resttools.Rest.Rest.Rest.select_components
+   :noindex:
+
+.. automethod:: abjad.tools.resttools.Rest.Rest.Rest.select_descendants
    :noindex:
 
 .. automethod:: abjad.tools.resttools.Rest.Rest.Rest.select_tie_chain

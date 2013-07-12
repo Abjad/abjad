@@ -19,9 +19,6 @@ Bases
 Read-only properties
 --------------------
 
-.. autoattribute:: abjad.tools.notetools.Note.Note.Note.descendants
-   :noindex:
-
 .. autoattribute:: abjad.tools.notetools.Note.Note.Note.duration
    :noindex:
 
@@ -104,6 +101,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.notetools.Note.Note.Note.select_components
+   :noindex:
+
+.. automethod:: abjad.tools.notetools.Note.Note.Note.select_descendants
    :noindex:
 
 .. automethod:: abjad.tools.notetools.Note.Note.Note.select_tie_chain

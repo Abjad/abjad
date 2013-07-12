@@ -26,9 +26,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.contents_duration
    :noindex:
 
-.. autoattribute:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.descendants
-   :noindex:
-
 .. autoattribute:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.duration
    :noindex:
 
@@ -126,6 +123,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.select_components
+   :noindex:
+
+.. automethod:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.select_descendants
    :noindex:
 
 Special methods

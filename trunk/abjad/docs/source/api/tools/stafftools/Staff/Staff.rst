@@ -24,9 +24,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.stafftools.Staff.Staff.Staff.contents_duration
    :noindex:
 
-.. autoattribute:: abjad.tools.stafftools.Staff.Staff.Staff.descendants
-   :noindex:
-
 .. autoattribute:: abjad.tools.stafftools.Staff.Staff.Staff.duration
    :noindex:
 
@@ -124,6 +121,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.stafftools.Staff.Staff.Staff.select_components
+   :noindex:
+
+.. automethod:: abjad.tools.stafftools.Staff.Staff.Staff.select_descendants
    :noindex:
 
 Special methods
