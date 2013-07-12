@@ -90,13 +90,13 @@ Read/write properties
 Methods
 -------
 
-.. automethod:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.get_tie_chain
-   :noindex:
-
 .. automethod:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.select
    :noindex:
 
 .. automethod:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.select_components
+   :noindex:
+
+.. automethod:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.select_tie_chain
    :noindex:
 
 Special methods

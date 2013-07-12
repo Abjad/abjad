@@ -86,13 +86,13 @@ Read/write properties
 Methods
 -------
 
-.. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.get_tie_chain
-   :noindex:
-
 .. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.select
    :noindex:
 
 .. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.select_components
+   :noindex:
+
+.. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.select_tie_chain
    :noindex:
 
 Special methods

@@ -7,7 +7,7 @@ def test_TieChain_all_leaves_are_in_same_parent_01():
     staff = notetools.make_repeated_notes(4)
     spannertools.TieSpanner(staff[:])
 
-    assert staff[0].get_tie_chain().all_leaves_are_in_same_parent
+    assert staff[0].select_tie_chain().all_leaves_are_in_same_parent
 
 
 def test_TieChain_all_leaves_are_in_same_parent_02():
@@ -26,10 +26,10 @@ def test_TieChain_all_leaves_are_in_same_parent_02():
     }
     '''
 
-    assert staff.leaves[0].get_tie_chain().all_leaves_are_in_same_parent
-    assert not staff.leaves[1].get_tie_chain().all_leaves_are_in_same_parent
-    assert not staff.leaves[2].get_tie_chain().all_leaves_are_in_same_parent
-    assert staff.leaves[3].get_tie_chain().all_leaves_are_in_same_parent
+    assert staff.leaves[0].select_tie_chain().all_leaves_are_in_same_parent
+    assert not staff.leaves[1].select_tie_chain().all_leaves_are_in_same_parent
+    assert not staff.leaves[2].select_tie_chain().all_leaves_are_in_same_parent
+    assert staff.leaves[3].select_tie_chain().all_leaves_are_in_same_parent
 
 
 def test_TieChain_all_leaves_are_in_same_parent_03():
@@ -51,9 +51,9 @@ def test_TieChain_all_leaves_are_in_same_parent_03():
     }
     '''
 
-    assert staff.leaves[0].get_tie_chain().all_leaves_are_in_same_parent
-    assert staff.leaves[1].get_tie_chain().all_leaves_are_in_same_parent
-    assert not staff.leaves[2].get_tie_chain().all_leaves_are_in_same_parent
-    assert not staff.leaves[3].get_tie_chain().all_leaves_are_in_same_parent
-    assert staff.leaves[4].get_tie_chain().all_leaves_are_in_same_parent
-    assert staff.leaves[5].get_tie_chain().all_leaves_are_in_same_parent
+    assert staff.leaves[0].select_tie_chain().all_leaves_are_in_same_parent
+    assert staff.leaves[1].select_tie_chain().all_leaves_are_in_same_parent
+    assert not staff.leaves[2].select_tie_chain().all_leaves_are_in_same_parent
+    assert not staff.leaves[3].select_tie_chain().all_leaves_are_in_same_parent
+    assert staff.leaves[4].select_tie_chain().all_leaves_are_in_same_parent
+    assert staff.leaves[5].select_tie_chain().all_leaves_are_in_same_parent

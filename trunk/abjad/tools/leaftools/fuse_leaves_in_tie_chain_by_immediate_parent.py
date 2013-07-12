@@ -24,7 +24,7 @@ def fuse_leaves_in_tie_chain_by_immediate_parent(tie_chain):
 
     ::
 
-        >>> tie_chain = staff.leaves[0].get_tie_chain()
+        >>> tie_chain = staff.leaves[0].select_tie_chain()
         >>> leaftools.fuse_leaves_in_tie_chain_by_immediate_parent(tie_chain)
         [[Note("c'4")], [Note("c'4")]]
 

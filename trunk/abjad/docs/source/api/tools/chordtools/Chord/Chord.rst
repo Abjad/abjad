@@ -106,9 +106,6 @@ Methods
 .. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.extend
    :noindex:
 
-.. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.get_tie_chain
-   :noindex:
-
 .. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.pop
    :noindex:
 
@@ -119,6 +116,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.select_components
+   :noindex:
+
+.. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.select_tie_chain
    :noindex:
 
 Special methods

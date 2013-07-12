@@ -339,7 +339,7 @@ New functionality is available for working with ties.
 
   ::
 
-    >>> tietools.get_tie_chain(staff[2])
+    >>> tietools.select_tie_chain(staff[2])
     TieChain((Note("e'4"), Note("e'4")))
 
 
@@ -348,7 +348,7 @@ New functionality is available for working with ties.
 
     tietools.get_preprolated_tie_chain_duration()
     tietools.get_prolated_tie_chain_duration()
-    tietools.get_tie_chain_duration_in_seconds()
+    tietools.select_tie_chain_duration_in_seconds()
     tietools.get_written_tie_chain_duration()
 
   Use these read-only properties instead::
@@ -792,7 +792,7 @@ Changes to end-user functionality:
 
 - Changed::
 
-    tietools.get_tie_chains_in_expr()
+    tietools.select_tie_chains_in_expr()
 
   ::
 

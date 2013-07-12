@@ -53,7 +53,7 @@ def iterate_nontrivial_tie_chains_in_expr(expr, reverse=False):
                 leaf, spanner_classes=spanner_classes)
             if not tie_spanners or \
                 tuple(tie_spanners)[0]._is_my_last_leaf(leaf):
-                tie_chain = leaf.get_tie_chain()
+                tie_chain = leaf.select_tie_chain()
                 if not tie_chain.is_trivial:
                     yield tie_chain
     else:
@@ -62,6 +62,6 @@ def iterate_nontrivial_tie_chains_in_expr(expr, reverse=False):
                 leaf, spanner_classes=spanner_classes)
             if not(tie_spanners) or \
                 tuple(tie_spanners)[0]._is_my_first_leaf(leaf):
-                tie_chain = leaf.get_tie_chain()
+                tie_chain = leaf.select_tie_chain()
                 if not tie_chain.is_trivial:
                     yield tie_chain

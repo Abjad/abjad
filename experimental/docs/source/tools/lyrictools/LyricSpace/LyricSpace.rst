@@ -90,13 +90,13 @@ Read/write properties
 Methods
 -------
 
-.. automethod:: experimental.tools.lyrictools.LyricSpace.LyricSpace.LyricSpace.get_tie_chain
-   :noindex:
-
 .. automethod:: experimental.tools.lyrictools.LyricSpace.LyricSpace.LyricSpace.select
    :noindex:
 
 .. automethod:: experimental.tools.lyrictools.LyricSpace.LyricSpace.LyricSpace.select_components
+   :noindex:
+
+.. automethod:: experimental.tools.lyrictools.LyricSpace.LyricSpace.LyricSpace.select_tie_chain
    :noindex:
 
 Special methods

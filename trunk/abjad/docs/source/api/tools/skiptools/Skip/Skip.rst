@@ -88,13 +88,13 @@ Read/write properties
 Methods
 -------
 
-.. automethod:: abjad.tools.skiptools.Skip.Skip.Skip.get_tie_chain
-   :noindex:
-
 .. automethod:: abjad.tools.skiptools.Skip.Skip.Skip.select
    :noindex:
 
 .. automethod:: abjad.tools.skiptools.Skip.Skip.Skip.select_components
+   :noindex:
+
+.. automethod:: abjad.tools.skiptools.Skip.Skip.Skip.select_tie_chain
    :noindex:
 
 Special methods

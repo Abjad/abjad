@@ -62,7 +62,7 @@ def tempo_scaled_leaves_to_q_events(leaves, tempo=None):
             groups.append(list(rgroup))
         else:
             for tvalue, tgroup in itertools.groupby(
-                rgroup, lambda x: x.get_tie_chain()):
+                rgroup, lambda x: x.select_tie_chain()):
                 groups.append(list(tgroup))
 
     # calculate lists of pitches and durations

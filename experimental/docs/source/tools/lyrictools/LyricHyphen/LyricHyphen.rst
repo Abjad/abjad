@@ -90,13 +90,13 @@ Read/write properties
 Methods
 -------
 
-.. automethod:: experimental.tools.lyrictools.LyricHyphen.LyricHyphen.LyricHyphen.get_tie_chain
-   :noindex:
-
 .. automethod:: experimental.tools.lyrictools.LyricHyphen.LyricHyphen.LyricHyphen.select
    :noindex:
 
 .. automethod:: experimental.tools.lyrictools.LyricHyphen.LyricHyphen.LyricHyphen.select_components
+   :noindex:
+
+.. automethod:: experimental.tools.lyrictools.LyricHyphen.LyricHyphen.LyricHyphen.select_tie_chain
    :noindex:
 
 Special methods

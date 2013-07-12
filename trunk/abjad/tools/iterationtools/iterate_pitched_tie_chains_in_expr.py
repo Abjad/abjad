@@ -66,7 +66,7 @@ def iterate_pitched_tie_chains_in_expr(expr, reverse=False):
                 leaf, spanner_classes=spanner_classes)
             if not tie_spanners or \
                 tuple(tie_spanners)[0]._is_my_last_leaf(leaf):
-                yield leaf.get_tie_chain()
+                yield leaf.select_tie_chain()
     else:
         for leaf in iterationtools.iterate_notes_and_chords_in_expr(
             expr, reverse=True):
@@ -74,4 +74,4 @@ def iterate_pitched_tie_chains_in_expr(expr, reverse=False):
                 leaf, spanner_classes=spanner_classes)
             if not tie_spanners or \
                 tuple(tie_spanners)[0]._is_my_first_leaf(leaf):
-                yield leaf.get_tie_chain()
+                yield leaf.select_tie_chain()

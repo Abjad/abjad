@@ -989,7 +989,7 @@ def _iterate_topmost_masked_tie_chains_rest_groups_and_containers_in_expr(
 
     for x in expr:
         if isinstance(x, (notetools.Note, chordtools.Chord)):
-            this_tie_chain = x.get_tie_chain()
+            this_tie_chain = x.select_tie_chain()
             if current_leaf_group is None:
                 current_leaf_group = []
             elif current_leaf_group_is_silent or \

@@ -100,13 +100,13 @@ Read/write properties
 Methods
 -------
 
-.. automethod:: abjad.tools.notetools.Note.Note.Note.get_tie_chain
-   :noindex:
-
 .. automethod:: abjad.tools.notetools.Note.Note.Note.select
    :noindex:
 
 .. automethod:: abjad.tools.notetools.Note.Note.Note.select_components
+   :noindex:
+
+.. automethod:: abjad.tools.notetools.Note.Note.Note.select_tie_chain
    :noindex:
 
 Special methods

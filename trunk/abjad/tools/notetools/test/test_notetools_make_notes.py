@@ -10,7 +10,7 @@ def test_notetools_make_notes_01():
     assert len(t) == 1
     assert isinstance(t[0], Note)
     assert t[0].written_duration == Duration(1, 4)
-    assert all(len(x.get_tie_chain()) == 1 for x in t)
+    assert all(len(x.select_tie_chain()) == 1 for x in t)
 
 
 def test_notetools_make_notes_02():
@@ -23,7 +23,7 @@ def test_notetools_make_notes_02():
     assert isinstance(t[1], Note)
     assert t[0].written_duration == Duration(4, 8)
     assert t[1].written_duration == Duration(1, 8)
-    assert all(len(x.get_tie_chain()) == 2 for x in t)
+    assert all(len(x.select_tie_chain()) == 2 for x in t)
 
 
 def test_notetools_make_notes_03():

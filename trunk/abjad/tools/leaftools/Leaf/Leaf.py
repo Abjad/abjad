@@ -377,7 +377,7 @@ class Leaf(Component):
 
     ### PUBLIC METHODS ###
 
-    def get_tie_chain(self):
+    def select_tie_chain(self):
         '''Get tie chain containing leaf.
         '''
         from abjad.tools import leaftools

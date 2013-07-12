@@ -10,7 +10,7 @@ def test_resttools_make_rests_01():
     assert len(t) == 1
     assert isinstance(t[0], Rest)
     assert t[0].written_duration == Duration(1, 4)
-    assert len(t[0].get_tie_chain()) == 1
+    assert len(t[0].select_tie_chain()) == 1
 
 
 def test_resttools_make_rests_02():
@@ -23,7 +23,7 @@ def test_resttools_make_rests_02():
     assert isinstance(t[1], Rest)
     assert t[0].written_duration == Duration(4, 8)
     assert t[1].written_duration == Duration(1, 8)
-    assert all(len(x.get_tie_chain()) == 1 for x in t)
+    assert all(len(x.select_tie_chain()) == 1 for x in t)
 
 
 def test_resttools_make_rests_03():
@@ -31,7 +31,7 @@ def test_resttools_make_rests_03():
     '''
 
     t = resttools.make_rests((5, 8), tie_parts=True)
-    assert all(len(x.get_tie_chain()) == 2 for x in t)
+    assert all(len(x.select_tie_chain()) == 2 for x in t)
 
 
 def test_resttools_make_rests_04():
@@ -41,4 +41,4 @@ def test_resttools_make_rests_04():
     t = resttools.make_rests([(1, 4), Duration(1, 8)])
     assert t[0].written_duration == Duration(1, 4)
     assert t[1].written_duration == Duration(1, 8)
-    assert all(len(x.get_tie_chain()) == 1 for x in t)
+    assert all(len(x.select_tie_chain()) == 1 for x in t)

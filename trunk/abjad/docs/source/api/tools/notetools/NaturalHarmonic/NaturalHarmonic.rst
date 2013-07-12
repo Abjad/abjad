@@ -107,13 +107,13 @@ Read/write properties
 Methods
 -------
 
-.. automethod:: abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.get_tie_chain
-   :noindex:
-
 .. automethod:: abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.select
    :noindex:
 
 .. automethod:: abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.select_components
+   :noindex:
+
+.. automethod:: abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.select_tie_chain
    :noindex:
 
 Special methods
