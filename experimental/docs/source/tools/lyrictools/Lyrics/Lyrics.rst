@@ -120,6 +120,12 @@ Methods
 .. automethod:: experimental.tools.lyrictools.Lyrics.Lyrics.Lyrics.remove
    :noindex:
 
+.. automethod:: experimental.tools.lyrictools.Lyrics.Lyrics.Lyrics.select
+   :noindex:
+
+.. automethod:: experimental.tools.lyrictools.Lyrics.Lyrics.Lyrics.select_components
+   :noindex:
+
 Special methods
 ---------------
 

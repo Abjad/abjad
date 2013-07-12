@@ -257,8 +257,8 @@ class Selection(AbjadObject):
         spanners = []
         for component in self._iterate_components(recurse=recurse):
             copied_spanner = copy.copy(spanner)
-            copied_spanner.attach(component)
-            spanners.append(spanner)
+            copied_spanner.attach([component])
+            spanners.append(copied_spanner)
         return spanners
 
     def detach_spanners(self, spanner_classes=None, recurse=True):

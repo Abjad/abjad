@@ -481,8 +481,7 @@ def test_componenttools_split_components_at_offsets_10():
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-    #staff[:].attach_spanners(beamtools.BeamSpanner)
-    beamtools.attach_beam_spanners_to_measures_in_expr(staff)
+    staff[:].attach_spanners(beamtools.BeamSpanner)
     spannertools.SlurSpanner(staff.leaves)
 
     r'''
@@ -500,7 +499,11 @@ def test_componenttools_split_components_at_offsets_10():
     '''
 
     parts = componenttools.split_components_at_offsets(
-        staff[0][1:2], [(3, 64)], cyclic=True, fracture_spanners=True)
+        staff[0][1:2], 
+        [(3, 64)], 
+        cyclic=True,
+        fracture_spanners=True,
+        )
 
     r'''
     \new Staff {
@@ -529,8 +532,7 @@ def test_componenttools_split_components_at_offsets_11():
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-    #staff[:].attach_spanners(beamtools.BeamSpanner)
-    beamtools.attach_beam_spanners_to_measures_in_expr(staff)
+    staff[:].attach_spanners(beamtools.BeamSpanner)
     spannertools.SlurSpanner(staff.leaves)
 
     r'''
@@ -773,8 +775,7 @@ def test_componenttools_split_components_at_offsets_16():
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-    beamtools.attach_beam_spanners_to_measures_in_expr(staff)
-    #staff[:].attach_spanners(beamtools.BeamSpanner)
+    staff[:].attach_spanners(beamtools.BeamSpanner)
     spannertools.SlurSpanner(staff.leaves)
 
     r'''
@@ -821,8 +822,7 @@ def test_componenttools_split_components_at_offsets_17():
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-    #staff[:].attach_spanners(beamtools.BeamSpanner)
-    beamtools.attach_beam_spanners_to_measures_in_expr(staff)
+    staff[:].attach_spanners(beamtools.BeamSpanner)
     spannertools.SlurSpanner(staff.leaves)
 
     r'''

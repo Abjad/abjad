@@ -29,7 +29,6 @@ Core composition packages
    .. toctree::
       :maxdepth: 1
 
-      tools/beamtools/attach_beam_spanners_to_measures_in_expr
       tools/beamtools/attach_complex_beam_spanners_to_measures_in_expr
       tools/beamtools/attach_durated_complex_beam_spanner_to_measures
       tools/beamtools/attach_multiplart_beam_spanner_to_bottommost_tuplets_in_expr
@@ -52,7 +51,6 @@ Core composition packages
 
    .. toctree::
 
-      tools/beamtools/attach_beam_spanners_to_measures_in_expr
       tools/beamtools/attach_complex_beam_spanners_to_measures_in_expr
       tools/beamtools/attach_durated_complex_beam_spanner_to_measures
       tools/beamtools/attach_multiplart_beam_spanner_to_bottommost_tuplets_in_expr
