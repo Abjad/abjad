@@ -224,7 +224,7 @@ class BenchmarkScoreMaker(AbjadObject):
         voice = voicetools.Voice(200 * notetools.Note("c'16"))
         for part in sequencetools.partition_sequence_by_counts(
             voice[:], [4], cyclic=True):
-            beamtools.DuratedComplexBeamSpanner(part)
+            spannertools.DuratedComplexBeamSpanner(part)
         return voice
 
     def make_spanner_score_02(self):
@@ -243,7 +243,7 @@ class BenchmarkScoreMaker(AbjadObject):
         voice = voicetools.Voice(200 * notetools.Note("c'16"))
         for part in sequencetools.partition_sequence_by_counts(
             voice[:], [20], cyclic=True):
-            beamtools.DuratedComplexBeamSpanner(part)
+            spannertools.DuratedComplexBeamSpanner(part)
         return voice
 
     def make_spanner_score_03(self):
@@ -262,7 +262,7 @@ class BenchmarkScoreMaker(AbjadObject):
         voice = voicetools.Voice(200 * notetools.Note("c'16"))
         for part in sequencetools.partition_sequence_by_counts(
             voice[:], [100], cyclic=True):
-            beamtools.DuratedComplexBeamSpanner(part)
+            spannertools.DuratedComplexBeamSpanner(part)
         return voice
 
     def make_spanner_score_04(self):

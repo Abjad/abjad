@@ -907,7 +907,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
                 tie_split_notes=False,
                 )
             left_half, right_half = result[0], result[-1]
-            spanner_classes = (beamtools.DuratedComplexBeamSpanner, )
+            spanner_classes = (spannertools.DuratedComplexBeamSpanner, )
             for spanner in \
                 spannertools.get_spanners_attached_to_any_improper_child_of_component(
                 self.payload, spanner_classes=spanner_classes):

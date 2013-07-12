@@ -10,31 +10,6 @@ Core composition packages
    :maxdepth: 1
 
 
-:py:mod:`beamtools <abjad.tools.beamtools>`
-===========================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/beamtools/ComplexBeamSpanner/ComplexBeamSpanner
-      tools/beamtools/DuratedComplexBeamSpanner/DuratedComplexBeamSpanner
-      tools/beamtools/MeasuredComplexBeamSpanner/MeasuredComplexBeamSpanner
-      tools/beamtools/MultipartBeamSpanner/MultipartBeamSpanner
-
-.. only:: latex
-
-   Concrete Classes
-   ----------------
-
-   .. toctree::
-
-      tools/beamtools/ComplexBeamSpanner/ComplexBeamSpanner
-      tools/beamtools/DuratedComplexBeamSpanner/DuratedComplexBeamSpanner
-      tools/beamtools/MeasuredComplexBeamSpanner/MeasuredComplexBeamSpanner
-      tools/beamtools/MultipartBeamSpanner/MultipartBeamSpanner
-
 :py:mod:`chordtools <abjad.tools.chordtools>`
 =============================================
 
@@ -3092,14 +3067,18 @@ Core composition packages
 
       tools/spannertools/BeamSpanner/BeamSpanner
       tools/spannertools/BracketSpanner/BracketSpanner
+      tools/spannertools/ComplexBeamSpanner/ComplexBeamSpanner
       tools/spannertools/ComplexGlissandoSpanner/ComplexGlissandoSpanner
       tools/spannertools/CrescendoSpanner/CrescendoSpanner
       tools/spannertools/DecrescendoSpanner/DecrescendoSpanner
+      tools/spannertools/DuratedComplexBeamSpanner/DuratedComplexBeamSpanner
       tools/spannertools/DynamicTextSpanner/DynamicTextSpanner
       tools/spannertools/GlissandoSpanner/GlissandoSpanner
       tools/spannertools/HairpinSpanner/HairpinSpanner
       tools/spannertools/HiddenStaffSpanner/HiddenStaffSpanner
       tools/spannertools/HorizontalBracketSpanner/HorizontalBracketSpanner
+      tools/spannertools/MeasuredComplexBeamSpanner/MeasuredComplexBeamSpanner
+      tools/spannertools/MultipartBeamSpanner/MultipartBeamSpanner
       tools/spannertools/OctavationSpanner/OctavationSpanner
       tools/spannertools/PhrasingSlurSpanner/PhrasingSlurSpanner
       tools/spannertools/PianoPedalSpanner/PianoPedalSpanner
@@ -3165,14 +3144,18 @@ Core composition packages
 
       tools/spannertools/BeamSpanner/BeamSpanner
       tools/spannertools/BracketSpanner/BracketSpanner
+      tools/spannertools/ComplexBeamSpanner/ComplexBeamSpanner
       tools/spannertools/ComplexGlissandoSpanner/ComplexGlissandoSpanner
       tools/spannertools/CrescendoSpanner/CrescendoSpanner
       tools/spannertools/DecrescendoSpanner/DecrescendoSpanner
+      tools/spannertools/DuratedComplexBeamSpanner/DuratedComplexBeamSpanner
       tools/spannertools/DynamicTextSpanner/DynamicTextSpanner
       tools/spannertools/GlissandoSpanner/GlissandoSpanner
       tools/spannertools/HairpinSpanner/HairpinSpanner
       tools/spannertools/HiddenStaffSpanner/HiddenStaffSpanner
       tools/spannertools/HorizontalBracketSpanner/HorizontalBracketSpanner
+      tools/spannertools/MeasuredComplexBeamSpanner/MeasuredComplexBeamSpanner
+      tools/spannertools/MultipartBeamSpanner/MultipartBeamSpanner
       tools/spannertools/OctavationSpanner/OctavationSpanner
       tools/spannertools/PhrasingSlurSpanner/PhrasingSlurSpanner
       tools/spannertools/PianoPedalSpanner/PianoPedalSpanner

@@ -420,9 +420,9 @@ Added a new ``beamtools`` package.
 - This release of the ``beamtools`` package contains the following classes and functions::
 
     spannertools.BeamSpanner
-    beamtools.ComplexBeamSpanner
-    beamtools.DuratedComplexBeamSpanner
-    beamtools.MultipartBeamSpanner
+    spannertools.ComplexBeamSpanner
+    spannertools.DuratedComplexBeamSpanner
+    spannertools.MultipartBeamSpanner
 
   ::
 

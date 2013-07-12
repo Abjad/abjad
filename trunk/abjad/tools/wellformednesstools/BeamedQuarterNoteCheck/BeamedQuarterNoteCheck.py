@@ -14,7 +14,7 @@ class BeamedQuarterNoteCheck(Check):
             total += 1
             if leaf._has_spanner(spannertools.BeamSpanner):
                 beam = leaf._get_spanner(spannertools.BeamSpanner)
-                if not isinstance(beam, beamtools.DuratedComplexBeamSpanner):
+                if not isinstance(beam, spannertools.DuratedComplexBeamSpanner):
                     flag_count = leaf.written_duration.flag_count
                     if flag_count < 1:
                         violators.append(leaf)

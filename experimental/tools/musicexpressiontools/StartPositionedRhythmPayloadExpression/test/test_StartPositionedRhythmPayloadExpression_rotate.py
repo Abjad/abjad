@@ -6,7 +6,7 @@ def test_StartPositionedRhythmPayloadExpression_rotate_01():
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
     expr = musicexpressiontools.StartPositionedRhythmPayloadExpression(music, Offset(0))
     durations = [x.duration for x in expr.payload[:]]
-    beamtools.DuratedComplexBeamSpanner(expr.payload[:], durations=durations, span=1)
+    spannertools.DuratedComplexBeamSpanner(expr.payload[:], durations=durations, span=1)
 
     expr.rotate(-1)
 
@@ -18,7 +18,7 @@ def test_StartPositionedRhythmPayloadExpression_rotate_02():
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
     expr = musicexpressiontools.StartPositionedRhythmPayloadExpression(music, Offset(0))
     durations = [x.duration for x in expr.payload[:]]
-    beamtools.DuratedComplexBeamSpanner(expr.payload[:], durations=durations, span=1)
+    spannertools.DuratedComplexBeamSpanner(expr.payload[:], durations=durations, span=1)
 
     expr.rotate(-2)
 
@@ -30,7 +30,7 @@ def test_StartPositionedRhythmPayloadExpression_rotate_03():
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
     expr = musicexpressiontools.StartPositionedRhythmPayloadExpression(music, Offset(0))
     durations = [x.duration for x in expr.payload[:]]
-    beamtools.DuratedComplexBeamSpanner(expr.payload[:], durations=durations, span=1)
+    spannertools.DuratedComplexBeamSpanner(expr.payload[:], durations=durations, span=1)
 
     expr.rotate(-3)
 
@@ -44,7 +44,7 @@ def test_StartPositionedRhythmPayloadExpression_rotate_04():
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
     expr = musicexpressiontools.StartPositionedRhythmPayloadExpression(music, Offset(0))
     durations = [x.duration for x in expr.payload[:]]
-    beamtools.DuratedComplexBeamSpanner(expr.payload[:], durations=durations, span=1)
+    spannertools.DuratedComplexBeamSpanner(expr.payload[:], durations=durations, span=1)
 
     expr.rotate(-1, fracture_spanners=False)
 
@@ -58,7 +58,7 @@ def test_StartPositionedRhythmPayloadExpression_rotate_05():
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
     expr = musicexpressiontools.StartPositionedRhythmPayloadExpression(music, Offset(0))
     durations = [x.duration for x in expr.payload[:]]
-    beamtools.DuratedComplexBeamSpanner(expr.payload[:], durations=durations, span=1)
+    spannertools.DuratedComplexBeamSpanner(expr.payload[:], durations=durations, span=1)
 
     expr.rotate(-2, fracture_spanners=False)
 
@@ -72,7 +72,7 @@ def test_StartPositionedRhythmPayloadExpression_rotate_06():
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
     expr = musicexpressiontools.StartPositionedRhythmPayloadExpression(music, Offset(0))
     durations = [x.duration for x in expr.payload[:]]
-    beamtools.DuratedComplexBeamSpanner(expr.payload[:], durations=durations, span=1)
+    spannertools.DuratedComplexBeamSpanner(expr.payload[:], durations=durations, span=1)
 
     expr.rotate(-3, fracture_spanners=False)
 
@@ -86,7 +86,7 @@ def test_StartPositionedRhythmPayloadExpression_rotate_07():
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
     expr = musicexpressiontools.StartPositionedRhythmPayloadExpression(music, Offset(0))
     durations = [x.duration for x in expr.payload[:]]
-    beamtools.DuratedComplexBeamSpanner(expr.payload[:], durations=durations, span=1)
+    spannertools.DuratedComplexBeamSpanner(expr.payload[:], durations=durations, span=1)
 
     expr.rotate(-8, fracture_spanners=False)
 
@@ -100,7 +100,7 @@ def test_StartPositionedRhythmPayloadExpression_rotate_08():
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
     expr = musicexpressiontools.StartPositionedRhythmPayloadExpression(music, Offset(0))
     durations = [x.duration for x in expr.payload[:]]
-    beamtools.DuratedComplexBeamSpanner(expr.payload[:], durations=durations, span=1)
+    spannertools.DuratedComplexBeamSpanner(expr.payload[:], durations=durations, span=1)
 
     expr.rotate(-9)
 
@@ -114,7 +114,7 @@ def test_StartPositionedRhythmPayloadExpression_rotate_09():
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
     expr = musicexpressiontools.StartPositionedRhythmPayloadExpression(music, Offset(0))
     durations = [x.duration for x in expr.payload[:]]
-    beamtools.DuratedComplexBeamSpanner(expr.payload[:], durations=durations, span=1)
+    spannertools.DuratedComplexBeamSpanner(expr.payload[:], durations=durations, span=1)
 
     expr.rotate(0)
 
@@ -128,7 +128,7 @@ def test_StartPositionedRhythmPayloadExpression_rotate_10():
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
     expr = musicexpressiontools.StartPositionedRhythmPayloadExpression(music, Offset(0))
     durations = [x.duration for x in expr.payload[:]]
-    beamtools.DuratedComplexBeamSpanner(expr.payload[:], durations=durations, span=1)
+    spannertools.DuratedComplexBeamSpanner(expr.payload[:], durations=durations, span=1)
 
     indicator = musicexpressiontools.RotationIndicator(0, 1)
     expr.rotate(indicator)
@@ -143,7 +143,7 @@ def test_StartPositionedRhythmPayloadExpression_rotate_11():
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
     expr = musicexpressiontools.StartPositionedRhythmPayloadExpression(music, Offset(0))
     durations = [x.duration for x in expr.payload[:]]
-    beamtools.DuratedComplexBeamSpanner(expr.payload[:], durations=durations, span=1)
+    spannertools.DuratedComplexBeamSpanner(expr.payload[:], durations=durations, span=1)
 
     indicator = musicexpressiontools.RotationIndicator(-1, 1)
     expr.rotate(indicator)
@@ -158,7 +158,7 @@ def test_StartPositionedRhythmPayloadExpression_rotate_12():
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
     expr = musicexpressiontools.StartPositionedRhythmPayloadExpression(music, Offset(0))
     durations = [x.duration for x in expr.payload[:]]
-    beamtools.DuratedComplexBeamSpanner(expr.payload[:], durations=durations, span=1)
+    spannertools.DuratedComplexBeamSpanner(expr.payload[:], durations=durations, span=1)
 
     indicator = musicexpressiontools.RotationIndicator(-2, 1)
     expr.rotate(indicator)
@@ -173,7 +173,7 @@ def test_StartPositionedRhythmPayloadExpression_rotate_13():
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
     expr = musicexpressiontools.StartPositionedRhythmPayloadExpression(music, Offset(0))
     durations = [x.duration for x in expr.payload[:]]
-    beamtools.DuratedComplexBeamSpanner(expr.payload[:], durations=durations, span=1)
+    spannertools.DuratedComplexBeamSpanner(expr.payload[:], durations=durations, span=1)
 
     indicator = musicexpressiontools.RotationIndicator(1, 1)
     expr.rotate(indicator)
@@ -188,7 +188,7 @@ def test_StartPositionedRhythmPayloadExpression_rotate_14():
     music = p("{c'16 d'16} {e'16 f'16} {g'16 a'16} {b'16 c''16}")
     expr = musicexpressiontools.StartPositionedRhythmPayloadExpression(music, Offset(0))
     durations = [x.duration for x in expr.payload[:]]
-    beamtools.DuratedComplexBeamSpanner(expr.payload[:], durations=durations, span=1)
+    spannertools.DuratedComplexBeamSpanner(expr.payload[:], durations=durations, span=1)
 
     indicator = musicexpressiontools.RotationIndicator(2, 1)
     expr.rotate(indicator)
