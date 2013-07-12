@@ -47,6 +47,12 @@ Methods
 .. automethod:: abjad.tools.sievetools.Sieve.Sieve.Sieve.is_congruent_base
    :noindex:
 
+Static methods
+--------------
+
+.. automethod:: abjad.tools.sievetools.Sieve.Sieve.Sieve.from_cycle_tokens
+   :noindex:
+
 Special methods
 ---------------
 

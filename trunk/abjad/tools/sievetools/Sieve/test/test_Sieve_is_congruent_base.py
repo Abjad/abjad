@@ -6,7 +6,8 @@ def test_Sieve_is_congruent_base_01():
     '''Works with negative integers.
     '''
 
-    sieve = sievetools.cycle_tokens_to_sieve((5, [0, 1]), (6, [0]))
+    sieve = sievetools.Sieve.from_cycle_tokens((5, [0, 1]), (6, [0]))
+
 
     "{RC(5, 0) | RC(5, 1) | RC(6, 0)}"
 
@@ -25,7 +26,7 @@ def test_Sieve_is_congruent_base_02():
     '''Works with zero.
     '''
 
-    sieve = sievetools.cycle_tokens_to_sieve((5, [0, 1]), (6, [0]))
+    sieve = sievetools.Sieve.from_cycle_tokens((5, [0, 1]), (6, [0]))
 
     "{RC(5, 0) | RC(5, 1) | RC(6, 0)}"
 
@@ -36,7 +37,7 @@ def test_Sieve_is_congruent_base_03():
     '''Works with positive integers.
     '''
 
-    sieve = sievetools.cycle_tokens_to_sieve((5, [0, 1]), (6, [0]))
+    sieve = sievetools.Sieve.from_cycle_tokens((5, [0, 1]), (6, [0]))
 
     "{RC(5, 0) | RC(5, 1) | RC(6, 0)}"
 

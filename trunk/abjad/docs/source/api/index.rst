@@ -2993,7 +2993,6 @@ Core composition packages
       :maxdepth: 1
 
       tools/sievetools/all_are_residue_class_expressions
-      tools/sievetools/cycle_tokens_to_sieve
 
 .. only:: latex
 
@@ -3018,7 +3017,6 @@ Core composition packages
    .. toctree::
 
       tools/sievetools/all_are_residue_class_expressions
-      tools/sievetools/cycle_tokens_to_sieve
 
 :py:mod:`skiptools <abjad.tools.skiptools>`
 ===========================================
