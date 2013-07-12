@@ -2,7 +2,7 @@ import abc
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class _BaseResidueClass(AbjadObject):
+class BaseResidueClass(AbjadObject):
     '''Abstract base class for ResidueClass and Sieve.
     '''
 
@@ -17,15 +17,15 @@ class _BaseResidueClass(AbjadObject):
     # TODO: implement __neg__() #
 
     def __and__(self, arg):
-        assert isinstance(arg, _BaseResidueClass)
+        assert isinstance(arg, BaseResidueClass)
         return self._operate(arg, 'and')
 
     def __or__(self, arg):
-        assert isinstance(arg, _BaseResidueClass)
+        assert isinstance(arg, BaseResidueClass)
         return self._operate(arg, 'or')
 
     def __xor__(self, arg):
-        assert isinstance(arg, _BaseResidueClass)
+        assert isinstance(arg, BaseResidueClass)
         return self._operate(arg, 'xor')
 
     ### PRIVATE METHODS ###

@@ -1,7 +1,7 @@
-from abjad.tools.sievetools._BaseResidueClass import _BaseResidueClass
+from abjad.tools.sievetools.BaseResidueClass import BaseResidueClass
 
 
-class ResidueClass(_BaseResidueClass):
+class ResidueClass(BaseResidueClass):
     '''Residue class (or congruence class).
 
     Residue classes form the basis of Xenakis sieves. They can be used to

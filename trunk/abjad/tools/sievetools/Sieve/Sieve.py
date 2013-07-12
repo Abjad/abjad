@@ -1,9 +1,9 @@
 import operator
 from abjad.tools import mathtools
-from abjad.tools.sievetools._BaseResidueClass import _BaseResidueClass
+from abjad.tools.sievetools.BaseResidueClass import BaseResidueClass
 
 
-class Sieve(_BaseResidueClass):
+class Sieve(BaseResidueClass):
 
     ### CLASS VARIABLES ###
 

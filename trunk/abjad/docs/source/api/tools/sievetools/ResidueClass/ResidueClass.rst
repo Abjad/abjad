@@ -8,7 +8,7 @@ sievetools.ResidueClass
 Bases
 -----
 
-- :class:`sievetools._BaseResidueClass <abjad.tools.sievetools._BaseResidueClass._BaseResidueClass._BaseResidueClass>`
+- :class:`sievetools.BaseResidueClass <abjad.tools.sievetools.BaseResidueClass.BaseResidueClass.BaseResidueClass>`
 
 - :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 

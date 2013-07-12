@@ -2977,6 +2977,13 @@ Core composition packages
    .. toctree::
       :maxdepth: 1
 
+      tools/sievetools/BaseResidueClass/BaseResidueClass
+
+   --------
+
+   .. toctree::
+      :maxdepth: 1
+
       tools/sievetools/ResidueClass/ResidueClass
       tools/sievetools/Sieve/Sieve
 
@@ -2989,6 +2996,13 @@ Core composition packages
       tools/sievetools/cycle_tokens_to_sieve
 
 .. only:: latex
+
+   Abstract Classes
+   ----------------
+
+   .. toctree::
+
+      tools/sievetools/BaseResidueClass/BaseResidueClass
 
    Concrete Classes
    ----------------
