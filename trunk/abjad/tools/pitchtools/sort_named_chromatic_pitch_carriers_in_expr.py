@@ -1,12 +1,12 @@
 def sort_named_chromatic_pitch_carriers_in_expr(pitch_carriers):
     '''.. versionadded:: 2.0
 
-    List named chromatic pitch carriers in `expr` sorted by numbered chromatic pitch-class:
+    List named chromatic pitch carriers in `expr` sorted by 
+    numbered chromatic pitch-class:
 
     ::
 
-        >>> chord = Chord([9, 11, 12, 14, 16], (1, 4))
-        >>> notes = chordtools.arpeggiate_chord(chord)
+        >>> notes = notetools.make_notes([9, 11, 12, 14, 16], (1, 4))
 
     ::
 
