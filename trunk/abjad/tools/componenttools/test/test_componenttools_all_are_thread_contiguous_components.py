@@ -137,7 +137,7 @@ def test_componenttools_all_are_thread_contiguous_components_09():
     '''
 
     t = Voice("c'8 d'8 e'8 f'8 g'8 a'8")
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
 
     r'''
     \new Voice {
@@ -159,7 +159,7 @@ def test_componenttools_all_are_thread_contiguous_components_10():
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beamtools.BeamSpanner(t.leaves)
+    spannertools.BeamSpanner(t.leaves)
 
     r'''
     \new Voice {

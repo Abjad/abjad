@@ -8,7 +8,7 @@ def test_BeamSpanner_span_parallel_container_01():
 
     t = Container([])
     t.is_parallel = True
-    p = beamtools.BeamSpanner(t)
+    p = spannertools.BeamSpanner(t)
 
     assert len(p.components) == 1
     assert p.components[0] is t
@@ -24,7 +24,7 @@ def test_BeamSpanner_span_parallel_container_02():
     t.is_parallel = True
     pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
 
-    assert py.test.raises(AssertionError, 'p = beamtools.BeamSpanner(t)')
+    assert py.test.raises(AssertionError, 'p = spannertools.BeamSpanner(t)')
 
 #   assert len(p.components) == 1
 #   assert p.components[0] is t
@@ -54,7 +54,7 @@ def test_BeamSpanner_span_parallel_container_03():
     t = Container(Voice(notetools.make_repeated_notes(4)) * 2)
     t.is_parallel = True
     pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
-    p = beamtools.BeamSpanner(t[0])
+    p = spannertools.BeamSpanner(t[0])
 
     assert len(p.components) == 1
     assert isinstance(p.components[0], Container)
@@ -87,7 +87,7 @@ def test_BeamSpanner_span_parallel_container_04():
     t.insert(2, new)
     pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
 
-    assert py.test.raises(AssertionError, 'p = beamtools.BeamSpanner(t)')
+    assert py.test.raises(AssertionError, 'p = spannertools.BeamSpanner(t)')
 
 
 def test_BeamSpanner_span_parallel_container_05():
@@ -99,7 +99,7 @@ def test_BeamSpanner_span_parallel_container_05():
     new.is_parallel = True
     t.insert(2, new)
     pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
-    p = beamtools.BeamSpanner(t)
+    p = spannertools.BeamSpanner(t)
 
     assert len(p.components) == 1
     assert len(p.leaves) == 4
@@ -129,7 +129,7 @@ def test_BeamSpanner_span_parallel_container_06():
     t[1][0].name = 'foo'
     t[1][1].name = 'bar'
     pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
-    p = beamtools.BeamSpanner([t[0], t[1][0], t[2]])
+    p = spannertools.BeamSpanner([t[0], t[1][0], t[2]])
 
     assert len(p.components) == 3
     assert p.components[0] is t[0]

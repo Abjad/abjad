@@ -10,7 +10,7 @@ Bases
 
 - :class:`beamtools.ComplexBeamSpanner <abjad.tools.beamtools.ComplexBeamSpanner.ComplexBeamSpanner.ComplexBeamSpanner>`
 
-- :class:`beamtools.BeamSpanner <abjad.tools.beamtools.BeamSpanner.BeamSpanner.BeamSpanner>`
+- :class:`spannertools.BeamSpanner <abjad.tools.spannertools.BeamSpanner.BeamSpanner.BeamSpanner>`
 
 - :class:`spannertools.DirectedSpanner <abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner>`
 

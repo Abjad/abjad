@@ -22,7 +22,7 @@ Durated classes include notes, rests, chords, skips, tuplets and measures.
 ::
 
    >>> tuplet = tuplettools.Tuplet((2, 3), "c'8 c'8 c'8")
-   >>> beamtools.BeamSpanner(tuplet)
+   >>> spannertools.BeamSpanner(tuplet)
    BeamSpanner({c'8, c'8, c'8})
    >>> staff = stafftools.RhythmicStaff([tuplet])
 
@@ -42,7 +42,7 @@ Abjad allows arbitrary positive durations like ``5/8`` for tuplets and measures.
 ::
 
    >>> tuplet = tuplettools.Tuplet((5, 4), "c'8 c'8 c'8 c'8")
-   >>> beamtools.BeamSpanner(tuplet)
+   >>> spannertools.BeamSpanner(tuplet)
    BeamSpanner({c'8, c'8, c'8, c'8})
    >>> staff = stafftools.RhythmicStaff([tuplet])
 

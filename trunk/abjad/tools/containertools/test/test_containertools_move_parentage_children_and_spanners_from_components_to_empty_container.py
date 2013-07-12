@@ -9,7 +9,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beamtools.BeamSpanner(t.leaves)
+    spannertools.BeamSpanner(t.leaves)
 
     r'''
     \new Voice {
@@ -59,7 +59,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
     t.name = 'foo'
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
     spannertools.GlissandoSpanner(t[:])
-    beamtools.BeamSpanner(t.leaves)
+    spannertools.BeamSpanner(t.leaves)
 
     r'''
     \context Voice = "foo" {
@@ -110,7 +110,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
     spannertools.GlissandoSpanner(t[:])
-    beamtools.BeamSpanner(t.leaves)
+    spannertools.BeamSpanner(t.leaves)
 
     r'''
     \new Voice {
@@ -161,7 +161,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
     '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
 
     assert py.test.raises(
@@ -175,7 +175,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
     '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
 
     tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
@@ -191,7 +191,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beamtools.BeamSpanner(t.leaves)
+    spannertools.BeamSpanner(t.leaves)
 
     r'''
     \new Voice {

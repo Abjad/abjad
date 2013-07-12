@@ -22,9 +22,9 @@ def split_component_at_offset(
 
     ::
 
-        >>> beamtools.BeamSpanner(staff[0])
+        >>> spannertools.BeamSpanner(staff[0])
         BeamSpanner(|2/8(2)|)
-        >>> beamtools.BeamSpanner(staff[1])
+        >>> spannertools.BeamSpanner(staff[1])
         BeamSpanner(|2/8(2)|)
         >>> spannertools.SlurSpanner(staff.leaves)
         SlurSpanner(c'8, d'8, e'8, f'8)
@@ -82,9 +82,9 @@ def split_component_at_offset(
 
     ::
 
-        >>> beamtools.BeamSpanner(staff[0])
+        >>> spannertools.BeamSpanner(staff[0])
         BeamSpanner(|2/8(2)|)
-        >>> beamtools.BeamSpanner(staff[1])
+        >>> spannertools.BeamSpanner(staff[1])
         BeamSpanner(|2/8(2)|)
         >>> spannertools.SlurSpanner(staff.leaves)
         SlurSpanner(c'8, d'8, e'8, f'8)

@@ -8,7 +8,7 @@ def test_Selection__withdraw_from_crossing_spanners_01():
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beam = beamtools.BeamSpanner(t[0][:])
+    beam = spannertools.BeamSpanner(t[0][:])
     slur = spannertools.SlurSpanner(t[1][:])
     trill = spannertools.TrillSpanner(t.leaves)
 
@@ -45,7 +45,7 @@ def test_Selection__withdraw_from_crossing_spanners_02():
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beam = beamtools.BeamSpanner(t[0][:])
+    beam = spannertools.BeamSpanner(t[0][:])
     slur = spannertools.SlurSpanner(t[1][:])
     trill = spannertools.TrillSpanner(t.leaves)
 
@@ -95,7 +95,7 @@ def test_Selection__withdraw_from_crossing_spanners_03():
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beam = beamtools.BeamSpanner(t[0][:])
+    beam = spannertools.BeamSpanner(t[0][:])
     slur = spannertools.SlurSpanner(t[1][:])
     trill = spannertools.TrillSpanner(t.leaves)
 

@@ -18,7 +18,7 @@ def split_leaf_at_offset(leaf, offset, fracture_spanners=False,
     ::
 
         >>> staff = Staff(r"abj: | 2/8 c'8 ( d'8 || 2/8 e'8 f'8 ) |")
-        >>> staff[:].attach_spanners(beamtools.BeamSpanner)
+        >>> staff[:].attach_spanners(spannertools.BeamSpanner)
         [BeamSpanner(|2/8(2)|), BeamSpanner(|2/8(2)|)]
         >>> contexttools.DynamicMark('f')(staff.leaves[0])
         DynamicMark('f')(c'8)
@@ -65,7 +65,7 @@ def split_leaf_at_offset(leaf, offset, fracture_spanners=False,
     Example 2. Handle grace and after grace containers correctly.
 
         >>> staff = Staff(r"abj: | 2/8 c'8 ( d'8 || 2/8 e'8 f'8 ) |")
-        >>> staff[:].attach_spanners(beamtools.BeamSpanner)
+        >>> staff[:].attach_spanners(spannertools.BeamSpanner)
         [BeamSpanner(|2/8(2)|), BeamSpanner(|2/8(2)|)]
         >>> gracetools.GraceContainer("cs'16")(staff.leaves[0])
         Note("c'8")

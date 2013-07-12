@@ -7,7 +7,7 @@ def get_the_only_spanner_attached_to_any_improper_parent_of_component(
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> beam = beamtools.BeamSpanner(staff.leaves)
+        >>> beam = spannertools.BeamSpanner(staff.leaves)
         >>> slur = spannertools.SlurSpanner(staff.leaves)
         >>> trill = spannertools.TrillSpanner(staff)
         >>> f(staff)

@@ -7,7 +7,7 @@ def get_spanners_attached_to_any_proper_child_of_component(
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> beam = beamtools.BeamSpanner(staff.leaves)
+        >>> beam = spannertools.BeamSpanner(staff.leaves)
         >>> first_slur = spannertools.SlurSpanner(staff.leaves[:2])
         >>> second_slur = spannertools.SlurSpanner(staff.leaves[2:])
         >>> trill = spannertools.TrillSpanner(staff)
@@ -48,7 +48,7 @@ def get_spanners_attached_to_any_proper_child_of_component(
 
     ::
 
-        >>> spanner_classes = (spannertools.SlurSpanner, beamtools.BeamSpanner)
+        >>> spanner_classes = (spannertools.SlurSpanner, spannertools.BeamSpanner)
         >>> result = \
         ...     spannertools.get_spanners_attached_to_any_proper_child_of_component(
         ...     staff, spanner_classes=spanner_classes)

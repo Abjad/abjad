@@ -6,7 +6,7 @@ def test_leaftools_divide_leaves_in_expr_meiotically_01():
     '''
 
     t = Voice("c'8 d'8 e'8")
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
     leaftools.divide_leaves_in_expr_meiotically(t)
 
     r'''
@@ -29,7 +29,7 @@ def test_leaftools_divide_leaves_in_expr_meiotically_02():
     '''
 
     t = Voice("c'8 d'8 e'8")
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
     leaftools.divide_leaves_in_expr_meiotically(t[0], 4)
 
     r'''

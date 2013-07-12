@@ -6,7 +6,7 @@ def test_spannertools_is_component_with_spanner_attached_01():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    beam = beamtools.BeamSpanner(staff.leaves)
+    beam = spannertools.BeamSpanner(staff.leaves)
     f(staff)
 
     r'''
@@ -27,7 +27,7 @@ def test_spannertools_is_component_with_spanner_attached_02():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    beam = beamtools.BeamSpanner(staff.leaves)
+    beam = spannertools.BeamSpanner(staff.leaves)
     f(staff)
 
     r'''
@@ -40,7 +40,7 @@ def test_spannertools_is_component_with_spanner_attached_02():
     '''
 
     assert spannertools.is_component_with_spanner_attached(
-        staff[0], spanner_classes=(beamtools.BeamSpanner,))
+        staff[0], spanner_classes=(spannertools.BeamSpanner,))
         
     assert not spannertools.is_component_with_spanner_attached(
         staff[0], spanner_classes=(spannertools.SlurSpanner,))

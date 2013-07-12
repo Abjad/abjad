@@ -18,7 +18,6 @@ Core composition packages
    .. toctree::
       :maxdepth: 1
 
-      tools/beamtools/BeamSpanner/BeamSpanner
       tools/beamtools/ComplexBeamSpanner/ComplexBeamSpanner
       tools/beamtools/DuratedComplexBeamSpanner/DuratedComplexBeamSpanner
       tools/beamtools/MeasuredComplexBeamSpanner/MeasuredComplexBeamSpanner
@@ -31,7 +30,6 @@ Core composition packages
 
    .. toctree::
 
-      tools/beamtools/BeamSpanner/BeamSpanner
       tools/beamtools/ComplexBeamSpanner/ComplexBeamSpanner
       tools/beamtools/DuratedComplexBeamSpanner/DuratedComplexBeamSpanner
       tools/beamtools/MeasuredComplexBeamSpanner/MeasuredComplexBeamSpanner
@@ -3092,6 +3090,7 @@ Core composition packages
    .. toctree::
       :maxdepth: 1
 
+      tools/spannertools/BeamSpanner/BeamSpanner
       tools/spannertools/BracketSpanner/BracketSpanner
       tools/spannertools/ComplexGlissandoSpanner/ComplexGlissandoSpanner
       tools/spannertools/CrescendoSpanner/CrescendoSpanner
@@ -3164,6 +3163,7 @@ Core composition packages
 
    .. toctree::
 
+      tools/spannertools/BeamSpanner/BeamSpanner
       tools/spannertools/BracketSpanner/BracketSpanner
       tools/spannertools/ComplexGlissandoSpanner/ComplexGlissandoSpanner
       tools/spannertools/CrescendoSpanner/CrescendoSpanner

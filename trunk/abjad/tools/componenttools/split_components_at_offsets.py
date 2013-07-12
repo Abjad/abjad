@@ -15,9 +15,9 @@ def split_components_at_offsets(components, offsets,
 
     ::
 
-        >>> beamtools.BeamSpanner(staff[0])
+        >>> spannertools.BeamSpanner(staff[0])
         BeamSpanner(|2/8(2)|)
-        >>> beamtools.BeamSpanner(staff[1])
+        >>> spannertools.BeamSpanner(staff[1])
         BeamSpanner(|2/8(2)|)
         >>> spannertools.SlurSpanner(staff.leaves)
         SlurSpanner(c'8, d'8, e'8, f'8)
@@ -79,9 +79,9 @@ def split_components_at_offsets(components, offsets,
 
     ::
 
-        >>> beamtools.BeamSpanner(staff[0])
+        >>> spannertools.BeamSpanner(staff[0])
         BeamSpanner(|2/8(2)|)
-        >>> beamtools.BeamSpanner(staff[1])
+        >>> spannertools.BeamSpanner(staff[1])
         BeamSpanner(|2/8(2)|)
         >>> spannertools.SlurSpanner(staff.leaves)
         SlurSpanner(c'8, d'8, e'8, f'8)
@@ -147,9 +147,9 @@ def split_components_at_offsets(components, offsets,
 
     ::
 
-        >>> beamtools.BeamSpanner(staff[0])
+        >>> spannertools.BeamSpanner(staff[0])
         BeamSpanner(|2/8(2)|)
-        >>> beamtools.BeamSpanner(staff[1])
+        >>> spannertools.BeamSpanner(staff[1])
         BeamSpanner(|2/8(2)|)
         >>> spannertools.SlurSpanner(staff.leaves)
         SlurSpanner(c'8, d'8, e'8, f'8)
@@ -217,9 +217,9 @@ def split_components_at_offsets(components, offsets,
 
     ::
 
-        >>> beamtools.BeamSpanner(staff[0])
+        >>> spannertools.BeamSpanner(staff[0])
         BeamSpanner(|2/8(2)|)
-        >>> beamtools.BeamSpanner(staff[1])
+        >>> spannertools.BeamSpanner(staff[1])
         BeamSpanner(|2/8(2)|)
         >>> spannertools.SlurSpanner(staff.leaves)
         SlurSpanner(c'8, d'8, e'8, f'8)
@@ -284,9 +284,9 @@ def split_components_at_offsets(components, offsets,
 
     ::
 
-        >>> beamtools.BeamSpanner(staff[0])
+        >>> spannertools.BeamSpanner(staff[0])
         BeamSpanner({c'8, d'8, e'8})
-        >>> beamtools.BeamSpanner(staff[1])
+        >>> spannertools.BeamSpanner(staff[1])
         BeamSpanner({f'8, g'8, a'8})
         >>> spannertools.SlurSpanner(staff.leaves)
         SlurSpanner(c'8, d'8, e'8, f'8, g'8, a'8)

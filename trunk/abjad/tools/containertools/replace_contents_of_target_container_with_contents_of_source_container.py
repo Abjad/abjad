@@ -6,7 +6,7 @@ def replace_contents_of_target_container_with_contents_of_source_container(targe
         >>> staff = Staff(Tuplet(Fraction(2, 3), "c'8 d'8 e'8") * 3)
         >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
         ...     staff)
-        >>> beamtools.BeamSpanner(staff.leaves)
+        >>> spannertools.BeamSpanner(staff.leaves)
         BeamSpanner(c'8, d'8, ... [5] ..., c''8, d''8)
 
     ::

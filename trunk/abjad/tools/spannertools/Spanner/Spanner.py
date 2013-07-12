@@ -57,7 +57,7 @@ class Spanner(AbjadObject):
 
         ::
 
-            >>> beam = beamtools.BeamSpanner()
+            >>> beam = spannertools.BeamSpanner()
             >>> beam(staff[:])
             BeamSpanner(c'8, d'8, e'8, f'8)
 
@@ -370,7 +370,7 @@ class Spanner(AbjadObject):
         ::
 
             >>> voice = Voice("c'8 d'8 e'8 f'8")
-            >>> spanner = beamtools.BeamSpanner(voice[:2])
+            >>> spanner = spannertools.BeamSpanner(voice[:2])
             >>> spanner.components
             (Note("c'8"), Note("d'8"))
 
@@ -400,7 +400,7 @@ class Spanner(AbjadObject):
         ::
 
             >>> voice = Voice("c'8 d'8 e'8 f'8")
-            >>> spanner = beamtools.BeamSpanner(voice[:2])
+            >>> spanner = spannertools.BeamSpanner(voice[:2])
             >>> spanner.leaves
             (Note("c'8"), Note("d'8"))
 
@@ -470,7 +470,7 @@ class Spanner(AbjadObject):
         ::
 
             >>> voice = Voice("c'8 d'8 e'8 f'8")
-            >>> spanner = beamtools.BeamSpanner(voice[:2])
+            >>> spanner = spannertools.BeamSpanner(voice[:2])
             >>> spanner
             BeamSpanner(c'8, d'8)
 
@@ -495,7 +495,7 @@ class Spanner(AbjadObject):
         ::
 
             >>> voice = Voice("c'8 d'8 e'8 f'8")
-            >>> spanner = beamtools.BeamSpanner(voice[2:])
+            >>> spanner = spannertools.BeamSpanner(voice[2:])
             >>> spanner
             BeamSpanner(e'8, f'8)
 
@@ -528,7 +528,7 @@ class Spanner(AbjadObject):
         ::
 
             >>> voice = Voice("c'8 d'8 e'8 f'8")
-            >>> spanner = beamtools.BeamSpanner(voice[:])
+            >>> spanner = spannertools.BeamSpanner(voice[:])
             >>> spanner
             BeamSpanner(c'8, d'8, e'8, f'8)
 
@@ -548,7 +548,7 @@ class Spanner(AbjadObject):
         ::
 
             >>> voice = Voice("c'8 d'8 e'8 f'8")
-            >>> spanner = beamtools.BeamSpanner(voice[:2])
+            >>> spanner = spannertools.BeamSpanner(voice[:2])
             >>> spanner
             BeamSpanner(c'8, d'8)
 
@@ -574,7 +574,7 @@ class Spanner(AbjadObject):
         ::
 
             >>> voice = Voice("c'8 d'8 e'8 f'8")
-            >>> spanner = beamtools.BeamSpanner(voice[2:])
+            >>> spanner = spannertools.BeamSpanner(voice[2:])
             >>> spanner
             BeamSpanner(e'8, f'8)
 
@@ -600,7 +600,7 @@ class Spanner(AbjadObject):
         Return original, left and right spanners. ::
 
             >>> voice = Voice("c'8 d'8 e'8 f'8")
-            >>> beam = beamtools.BeamSpanner(voice[:])
+            >>> beam = spannertools.BeamSpanner(voice[:])
             >>> beam
             BeamSpanner(c'8, d'8, e'8, f'8)
 
@@ -667,8 +667,8 @@ class Spanner(AbjadObject):
         Return new spanner. ::
 
             >>> voice = Voice("c'8 d'8 e'8 f'8")
-            >>> left_beam = beamtools.BeamSpanner(voice[:2])
-            >>> right_beam = beamtools.BeamSpanner(voice[2:])
+            >>> left_beam = spannertools.BeamSpanner(voice[:2])
+            >>> right_beam = spannertools.BeamSpanner(voice[2:])
 
         ::
 
@@ -709,7 +709,7 @@ class Spanner(AbjadObject):
         ::
 
             >>> voice = Voice("c'8 d'8 e'8 f'8")
-            >>> spanner = beamtools.BeamSpanner(voice[2:])
+            >>> spanner = spannertools.BeamSpanner(voice[2:])
             >>> spanner
             BeamSpanner(e'8, f'8)
 

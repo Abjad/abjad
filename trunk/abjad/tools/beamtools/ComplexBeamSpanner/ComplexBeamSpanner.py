@@ -1,5 +1,5 @@
 from abjad.tools import durationtools
-from abjad.tools.beamtools.BeamSpanner.BeamSpanner import BeamSpanner
+from abjad.tools.spannertools.BeamSpanner.BeamSpanner import BeamSpanner
 
 
 class ComplexBeamSpanner(BeamSpanner):

@@ -6,7 +6,7 @@ def test_spannertools_get_spanners_that_dominate_container_components_from_to_01
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    beam = beamtools.BeamSpanner(t[:2])
+    beam = spannertools.BeamSpanner(t[:2])
     glissando = spannertools.GlissandoSpanner(t[:])
 
     r'''
@@ -29,7 +29,7 @@ def test_spannertools_get_spanners_that_dominate_container_components_from_to_02
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    beam = beamtools.BeamSpanner(t[:2])
+    beam = spannertools.BeamSpanner(t[:2])
     glissando = spannertools.GlissandoSpanner(t[:])
 
     r'''
@@ -53,7 +53,7 @@ def test_spannertools_get_spanners_that_dominate_container_components_from_to_03
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    beam = beamtools.BeamSpanner(t[:2])
+    beam = spannertools.BeamSpanner(t[:2])
     glissando = spannertools.GlissandoSpanner(t[:])
 
     r'''

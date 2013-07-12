@@ -4,7 +4,7 @@ from abjad import *
 def test_componenttools_extend_in_parent_of_component_01():
 
     t = Voice("c'8 d'8 e'8")
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
     result = componenttools.extend_in_parent_of_component(
         t[-1], [Note("c'8"), Note("d'8"), Note("e'8")], grow_spanners=True)
 
@@ -29,7 +29,7 @@ def test_componenttools_extend_in_parent_of_component_02():
     '''
 
     t = Voice("c'8 d'8 e'8")
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
     result = componenttools.extend_in_parent_of_component(
         t[1], [Note(2.5, (1, 8))], grow_spanners=True)
 
@@ -52,7 +52,7 @@ def test_componenttools_extend_in_parent_of_component_03():
     '''
 
     t = Voice([tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")])
-    beamtools.BeamSpanner(t[0])
+    spannertools.BeamSpanner(t[0])
     result = componenttools.extend_in_parent_of_component(
         t[-1], [tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")], grow_spanners=True)
 
@@ -81,7 +81,7 @@ def test_componenttools_extend_in_parent_of_component_04():
     '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
-    beamtools.BeamSpanner(t.leaves)
+    spannertools.BeamSpanner(t.leaves)
     result = componenttools.extend_in_parent_of_component(
         t[0], [Note(2.5, (1, 8))], grow_spanners=True)
 
@@ -109,7 +109,7 @@ def test_componenttools_extend_in_parent_of_component_05():
     '''
 
     t = Voice("c'8 d'8 e'8")
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
     result = componenttools.extend_in_parent_of_component(
         t[-1], [Note("c'8"), Note("d'8"), Note("e'8")], grow_spanners=False)
 
@@ -134,7 +134,7 @@ def test_componenttools_extend_in_parent_of_component_06():
     '''
 
     t = Voice("c'8 d'8 e'8")
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
     result = componenttools.extend_in_parent_of_component(
         t[1], [Note(2.5, (1, 8))], grow_spanners=False)
 
@@ -159,7 +159,7 @@ def test_componenttools_extend_in_parent_of_component_07():
     '''
 
     t = Voice("c'8 d'8 e'8")
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
     notes = [Note("c'16"), Note("d'16"), Note("e'16")]
     result = componenttools.extend_in_parent_of_component(t[0], notes, left=True, grow_spanners=True)
 
@@ -184,7 +184,7 @@ def test_componenttools_extend_in_parent_of_component_08():
     '''
 
     t = Voice("c'8 d'8 e'8")
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
     result = componenttools.extend_in_parent_of_component(
         t[1], [Note(1.5, (1, 8))], left=True, grow_spanners=True)
 
@@ -207,7 +207,7 @@ def test_componenttools_extend_in_parent_of_component_09():
     '''
 
     t = Voice([tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")])
-    beamtools.BeamSpanner(t[0])
+    spannertools.BeamSpanner(t[0])
     result = componenttools.extend_in_parent_of_component(
         t[0], [tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")], left=True, grow_spanners=True)
 
@@ -237,7 +237,7 @@ def test_componenttools_extend_in_parent_of_component_10():
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beamtools.BeamSpanner(t.leaves)
+    spannertools.BeamSpanner(t.leaves)
     result = componenttools.extend_in_parent_of_component(
         t[1], [Note(2.5, (1, 8))], left=True, grow_spanners=True)
 
@@ -265,7 +265,7 @@ def test_componenttools_extend_in_parent_of_component_11():
     '''
 
     t = Voice("c'8 d'8 e'8")
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
     notes = [Note("c'16"), Note("d'16"), Note("e'16")]
     result = componenttools.extend_in_parent_of_component(t[0], notes, left=True, grow_spanners=False)
 
@@ -290,7 +290,7 @@ def test_componenttools_extend_in_parent_of_component_12():
     '''
 
     t = Voice("c'8 d'8 e'8")
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
     result = componenttools.extend_in_parent_of_component(
         t[1], [Note(1.5, (1, 8))], left=True, grow_spanners=False)
 

@@ -9,7 +9,7 @@ def multiply_contents_of_measures_in_expr(expr, n):
     Multiply contents ``n - 1`` times and adjust time signature of every measure in `expr`::
 
         >>> measure = Measure((3, 8), "c'8 d'8 e'8")
-        >>> beamtools.BeamSpanner(measure.leaves)
+        >>> spannertools.BeamSpanner(measure.leaves)
         BeamSpanner(c'8, d'8, e'8)
 
     ::

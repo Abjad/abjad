@@ -3,7 +3,7 @@ from abjad import *
 def test_spannertools_get_spanners_attached_to_component_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    beam = beamtools.BeamSpanner(staff.leaves)
+    beam = spannertools.BeamSpanner(staff.leaves)
     first_slur = spannertools.SlurSpanner(staff.leaves[:2])
     second_slur = spannertools.SlurSpanner(staff.leaves[2:])
     crescendo = spannertools.CrescendoSpanner(staff.leaves)
@@ -22,12 +22,12 @@ def test_spannertools_get_spanners_attached_to_component_01():
     spanners = spannertools.get_spanners_attached_to_component(leaf)
     assert spanners == set([beam, first_slur, crescendo])
 
-    spanner_classes = (beamtools.BeamSpanner, )
+    spanner_classes = (spannertools.BeamSpanner, )
     spanners = spannertools.get_spanners_attached_to_component(
         leaf, spanner_classes=spanner_classes)
     assert spanners == set([beam])
 
-    spanner_classes = (beamtools.BeamSpanner, spannertools.SlurSpanner)
+    spanner_classes = (spannertools.BeamSpanner, spannertools.SlurSpanner)
     spanners = spannertools.get_spanners_attached_to_component(
         leaf, spanner_classes)
     assert spanners == set([beam, first_slur])

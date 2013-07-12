@@ -6,7 +6,7 @@ def test_iterationtools_iterate_components_and_grace_containers_in_expr_01():
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
     notes = [Note("c'16"), Note("d'16"), Note("e'16"), Note("f'16")]
     gracetools.GraceContainer(notes[:2], kind='grace')(t[1])
     gracetools.GraceContainer(notes[2:], kind='after')(t[1])

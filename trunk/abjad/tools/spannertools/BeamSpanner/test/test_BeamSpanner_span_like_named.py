@@ -11,14 +11,14 @@ def test_BeamSpanner_span_like_named_01():
     t[1].name = 'foo'
     pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
 
-    p = beamtools.BeamSpanner(t)
+    p = spannertools.BeamSpanner(t)
     assert len(p.components) == 1
     assert isinstance(p.components[0], Staff)
     assert len(p.leaves) == 8
     assert t.lilypond_format == '\\new Staff {\n\t\\context Voice = "foo" {\n\t\tc\'8 [\n\t\tcs\'8\n\t\td\'8\n\t\tef\'8\n\t}\n\t\\context Voice = "foo" {\n\t\te\'8\n\t\tf\'8\n\t\tfs\'8\n\t\tg\'8 ]\n\t}\n}'
     p.detach()
 
-    p = beamtools.BeamSpanner(t[:])
+    p = spannertools.BeamSpanner(t[:])
     assert len(p.components) == 2
     for x in p.components:
         assert isinstance(x, Voice)
@@ -53,11 +53,11 @@ def test_BeamSpanner_span_like_named_02():
     t[0][0].name, t[1][0].name = 'bar', 'bar'
     pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
 
-    assert py.test.raises(AssertionError, 'p = beamtools.BeamSpanner(t)')
+    assert py.test.raises(AssertionError, 'p = spannertools.BeamSpanner(t)')
 
-    assert py.test.raises(AssertionError, 'p = beamtools.BeamSpanner(t[:])')
+    assert py.test.raises(AssertionError, 'p = spannertools.BeamSpanner(t[:])')
 
-    assert py.test.raises(AssertionError, 'p = beamtools.BeamSpanner([t[0][0], t[1][0]])')
+    assert py.test.raises(AssertionError, 'p = spannertools.BeamSpanner([t[0][0], t[1][0]])')
 
 
 def test_BeamSpanner_span_like_named_03():
@@ -72,7 +72,7 @@ def test_BeamSpanner_span_like_named_03():
     t[0][1].name, t[1][0].name = 'second', 'second'
     pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
 
-    p = beamtools.BeamSpanner([t[0][0], t[1][1]])
+    p = spannertools.BeamSpanner([t[0][0], t[1][1]])
     assert len(p.components) == 2
     assert isinstance(p.components[0], Voice)
     assert isinstance(p.components[1], Voice)
@@ -125,7 +125,7 @@ def test_BeamSpanner_span_like_named_04():
     t[0][1].name, t[1][1].name = 'second', 'second'
     del(t[1][1])
     pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
-    p = beamtools.BeamSpanner([t[0][0], t[1][0]])
+    p = spannertools.BeamSpanner([t[0][0], t[1][0]])
 
     assert len(p.components) == 2
     assert len(p.leaves) == 8

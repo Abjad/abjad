@@ -11,7 +11,7 @@ def test_Container___delitem___01():
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
     spannertools.SlurSpanner(t[0][:])
     spannertools.SlurSpanner(t[1][:])
 
@@ -63,7 +63,7 @@ def test_Container___delitem___02():
     Spanner structure is preserved.'''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
 
     del(t[1])
 
@@ -84,7 +84,7 @@ def test_Container___delitem___03():
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
 
     del(t[1:3])
 
@@ -104,7 +104,7 @@ def test_Container___delitem___04():
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
 
     del(t[:2])
 
@@ -124,7 +124,7 @@ def test_Container___delitem___05():
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
 
     del(t[2:])
 
@@ -144,7 +144,7 @@ def test_Container___delitem___06():
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
 
     del(t[:])
 
@@ -162,7 +162,7 @@ def test_Container___delitem___07():
     '''
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
 
     del(t[1])
 

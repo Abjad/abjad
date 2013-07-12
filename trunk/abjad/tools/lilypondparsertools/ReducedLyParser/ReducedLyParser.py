@@ -232,12 +232,12 @@ class ReducedLyParser(abctools.Parser):
     def p_beam__BRACKET_L(self, p):
         '''beam : BRACKET_L
         '''
-        p[0] = (beamtools.BeamSpanner, Left)
+        p[0] = (spannertools.BeamSpanner, Left)
 
     def p_beam__BRACKET_R(self, p):
         '''beam : BRACKET_R
         '''
-        p[0] = (beamtools.BeamSpanner, Right)
+        p[0] = (spannertools.BeamSpanner, Right)
 
     def p_chord_body__chord_pitches(self, p):
         '''chord_body : chord_pitches
@@ -509,7 +509,7 @@ class ReducedLyParser(abctools.Parser):
     def _apply_spanners(self, leaves):
 
         spanner_references = {
-            beamtools.BeamSpanner: None,
+            spannertools.BeamSpanner: None,
             spannertools.SlurSpanner: None,
         }
 
@@ -540,7 +540,7 @@ class ReducedLyParser(abctools.Parser):
                     else:
                         spannertools.TieSpanner((leaf, next_leaf))
 
-                elif current_class is beamtools.BeamSpanner:
+                elif current_class is spannertools.BeamSpanner:
                     # A beam may begin and end on the same leaf
                     # but only one beam spanner may cover any given leaf,
                     # and starting events are processed before ending ones

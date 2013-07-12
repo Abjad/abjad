@@ -4,7 +4,7 @@ from abjad import *
 def test_containertools_delete_contents_of_container_starting_strictly_before_offset_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    beamtools.BeamSpanner(staff.leaves)
+    spannertools.BeamSpanner(staff.leaves)
     containertools.delete_contents_of_container_starting_strictly_before_offset(staff, Duration(1, 8))
 
     r'''
@@ -22,7 +22,7 @@ def test_containertools_delete_contents_of_container_starting_strictly_before_of
 def test_containertools_delete_contents_of_container_starting_strictly_before_offset_02():
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    beamtools.BeamSpanner(staff.leaves)
+    spannertools.BeamSpanner(staff.leaves)
     containertools.delete_contents_of_container_starting_strictly_before_offset(staff, Duration(3, 16))
 
     r'''
@@ -41,7 +41,7 @@ def test_containertools_delete_contents_of_container_starting_strictly_before_of
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    beamtools.BeamSpanner(staff.leaves)
+    spannertools.BeamSpanner(staff.leaves)
     containertools.delete_contents_of_container_starting_strictly_before_offset(staff, 0)
 
     r'''
@@ -62,7 +62,7 @@ def test_containertools_delete_contents_of_container_starting_strictly_before_of
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    beamtools.BeamSpanner(staff.leaves)
+    spannertools.BeamSpanner(staff.leaves)
     containertools.delete_contents_of_container_starting_strictly_before_offset(staff, 99)
 
     r'''

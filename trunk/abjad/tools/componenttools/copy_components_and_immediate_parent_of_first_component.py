@@ -21,7 +21,7 @@ def copy_components_and_immediate_parent_of_first_component(components):
 
         >>> voice = Voice(r"\times 2/3 { c'8 d' e' } \times 2/3 { f'8 g' a' }")
         >>> voice.append(r"\times 2/3 { b'8 c'' d'' }")
-        >>> beam = beamtools.BeamSpanner(voice.leaves[:4])
+        >>> beam = spannertools.BeamSpanner(voice.leaves[:4])
 
     ::
 

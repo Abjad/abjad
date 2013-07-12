@@ -7,7 +7,7 @@ def test_measuretools_scale_contents_of_measures_in_expr_01():
     '''
 
     t = Measure((3, 32), "c'32 d'32 e'32")
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
 
     measuretools.scale_contents_of_measures_in_expr(t, Duration(4))
 
@@ -29,7 +29,7 @@ def test_measuretools_scale_contents_of_measures_in_expr_02():
     '''
 
     t = Measure((3, 32), "c'32 d'32 e'32")
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
 
     measuretools.scale_contents_of_measures_in_expr(t, Duration(3))
 
@@ -51,7 +51,7 @@ def test_measuretools_scale_contents_of_measures_in_expr_03():
     '''
 
     t = Measure((3, 8), "c'8 d'8 e'8")
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
 
     measuretools.scale_contents_of_measures_in_expr(t, Duration(2, 3))
 

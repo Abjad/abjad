@@ -9,7 +9,7 @@ def test_Container_pop_01():
 
     t = Voice("c'8 d'8 e'8 f'8")
     spannertools.SlurSpanner(t[:])
-    beamtools.BeamSpanner(t[1])
+    spannertools.BeamSpanner(t[1])
 
     r'''
     \new Voice {
@@ -45,7 +45,7 @@ def test_Container_pop_02():
 
     t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    p = beamtools.BeamSpanner(t[:])
+    p = spannertools.BeamSpanner(t[:])
 
     r'''
     \new Staff {

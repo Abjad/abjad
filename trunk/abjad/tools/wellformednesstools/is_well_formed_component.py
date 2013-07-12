@@ -6,7 +6,7 @@ def is_well_formed_component(expr, allow_empty_containers=True):
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> beamtools.BeamSpanner(staff[:])
+        >>> spannertools.BeamSpanner(staff[:])
         BeamSpanner(c'8, d'8, e'8, f'8)
         >>> wellformednesstools.is_well_formed_component(staff)
         True
@@ -17,7 +17,7 @@ def is_well_formed_component(expr, allow_empty_containers=True):
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> staff[1].written_duration = Duration(1, 4)
-        >>> beamtools.BeamSpanner(staff[:])
+        >>> spannertools.BeamSpanner(staff[:])
         BeamSpanner(c'8, d'4, e'8, f'8)
         >>> wellformednesstools.is_well_formed_component(staff)
         False

@@ -3,7 +3,7 @@ Now comes some Abjad code
 
 <abjad>
 voice = Voice("c'8 d'8 e'8")
-beamtools.BeamSpanner(voice)
+spannertools.BeamSpanner(voice)
 beam = _
 show(voice)
 len(beam)

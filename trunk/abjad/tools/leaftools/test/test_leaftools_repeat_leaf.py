@@ -4,7 +4,7 @@ from abjad import *
 def test_leaftools_repeat_leaf_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    beamtools.BeamSpanner(staff.leaves)
+    spannertools.BeamSpanner(staff.leaves)
 
     r'''
     \new Staff {

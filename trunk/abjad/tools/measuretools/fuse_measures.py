@@ -16,7 +16,7 @@ def fuse_measures(measures):
         >>> measuretools.fill_measures_in_expr_with_repeated_notes(
         ...     staff, Duration(1, 16))
         >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
-        >>> beamtools.BeamSpanner(staff.leaves)
+        >>> spannertools.BeamSpanner(staff.leaves)
         BeamSpanner(c'16, d'16, e'16, f'16)
 
     ::

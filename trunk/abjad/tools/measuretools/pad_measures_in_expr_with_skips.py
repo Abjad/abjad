@@ -96,7 +96,7 @@ def pad_measures_in_expr_with_skips(expr, front, back, splice=False):
     ::
 
         >>> t = Measure((2, 8), "c'8 d'8")
-        >>> beamtools.BeamSpanner(t[:])
+        >>> spannertools.BeamSpanner(t[:])
         BeamSpanner(c'8, d'8)
         >>> measuretools.pad_measures_in_expr_with_skips(
         ...     t, Duration(1, 32), Duration(1, 64), splice = True)

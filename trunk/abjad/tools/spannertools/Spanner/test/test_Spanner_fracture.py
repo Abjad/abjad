@@ -7,7 +7,7 @@ def test_Spanner_fracture_01():
 
     t = Staff(Container(notetools.make_repeated_notes(4)) * 3)
     pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
-    p = beamtools.BeamSpanner(t[:])
+    p = spannertools.BeamSpanner(t[:])
     original, left, right = p.fracture(1, direction=Right)
 
     assert len(original.components) == 3

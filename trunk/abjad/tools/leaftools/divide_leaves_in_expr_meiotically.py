@@ -9,7 +9,7 @@ def divide_leaves_in_expr_meiotically(expr, n=2):
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> beamtools.BeamSpanner(staff.leaves)
+        >>> spannertools.BeamSpanner(staff.leaves)
         BeamSpanner(c'8, d'8, e'8, f'8)
         >>> f(staff)
         \new Staff {

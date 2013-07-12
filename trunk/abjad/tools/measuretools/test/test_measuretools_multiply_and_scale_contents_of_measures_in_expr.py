@@ -7,7 +7,7 @@ def test_measuretools_multiply_and_scale_contents_of_measures_in_expr_01():
         Numerator and denominator both triple.'''
 
     t = Measure((3, 8), "c'8 d'8 e'8")
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
     measuretools.multiply_and_scale_contents_of_measures_in_expr(t, [(3, 3)])
 
     r'''
@@ -38,7 +38,7 @@ def test_measuretools_multiply_and_scale_contents_of_measures_in_expr_02():
     '''
 
     t = Measure((3, 16), "c'16 d'16 e'16")
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
     measuretools.multiply_and_scale_contents_of_measures_in_expr(t, [(4, 5)])
 
     r'''
@@ -71,7 +71,7 @@ def test_measuretools_multiply_and_scale_contents_of_measures_in_expr_03():
         Numerator and denominator both quadruple.'''
 
     t = Measure((3, 16), "c'16 d'16 e'16")
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
     measuretools.multiply_and_scale_contents_of_measures_in_expr(t, [(4, 4)])
 
     r'''
@@ -102,7 +102,7 @@ def test_measuretools_multiply_and_scale_contents_of_measures_in_expr_04():
         Numerator doubles and denominator quadruples.'''
 
     t = Measure((3, 16), "c'16 d'16 e'16")
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
     measuretools.multiply_and_scale_contents_of_measures_in_expr(t, [(2, 4)])
 
     r'''

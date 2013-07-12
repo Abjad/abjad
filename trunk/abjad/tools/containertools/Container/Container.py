@@ -569,7 +569,7 @@ class Container(Component):
         ::
 
             >>> container = Container("c'8 d'8 e'8")
-            >>> beam = beamtools.BeamSpanner(container.music)
+            >>> beam = spannertools.BeamSpanner(container.music)
 
         ::
 
@@ -614,7 +614,7 @@ class Container(Component):
         ::
 
             >>> container = Container("c'8 d'8 e'8")
-            >>> beam = beamtools.BeamSpanner(container.music)
+            >>> beam = spannertools.BeamSpanner(container.music)
 
         ::
 
@@ -693,7 +693,7 @@ class Container(Component):
         '''Insert `component` in container at index `i`::
 
             >>> container = Container("c'8 d'8 e'8")
-            >>> beam = beamtools.BeamSpanner(container.music)
+            >>> beam = spannertools.BeamSpanner(container.music)
 
         ::
 
@@ -738,7 +738,7 @@ class Container(Component):
         ::
 
             >>> container = Container("c'8 d'8 e'8")
-            >>> beam = beamtools.BeamSpanner(container.music)
+            >>> beam = spannertools.BeamSpanner(container.music)
 
         ::
 
@@ -782,7 +782,7 @@ class Container(Component):
         ::
 
             >>> container = Container("c'8 d'8 e'8")
-            >>> beam = beamtools.BeamSpanner(container.music)
+            >>> beam = spannertools.BeamSpanner(container.music)
 
         ::
 

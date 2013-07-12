@@ -11,7 +11,7 @@ def divide_leaf_meiotically(leaf, n=2):
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> beamtools.BeamSpanner(staff.leaves)
+        >>> spannertools.BeamSpanner(staff.leaves)
         BeamSpanner(c'8, d'8, e'8, f'8)
         >>> f(staff)
         \new Staff {

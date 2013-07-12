@@ -55,7 +55,7 @@ Tests:
    12. staff = Staff([Note(0, (1, 4)) for x in range(100)]);
        for note in staff: marktools.Articulation('staccato')(note)
        for note in staff: marktools.Comment('comment')(note)
-       beamtools.BeamSpanner(staff[:])
+       spannertools.BeamSpanner(staff[:])
    13. ibid
 
 

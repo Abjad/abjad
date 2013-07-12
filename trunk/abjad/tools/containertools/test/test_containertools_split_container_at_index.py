@@ -8,7 +8,7 @@ def test_containertools_split_container_at_index_01():
 
     t = Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    p = beamtools.BeamSpanner(t[:])
+    p = spannertools.BeamSpanner(t[:])
 
     r'''
     \new Voice {
@@ -54,7 +54,7 @@ def test_containertools_split_container_at_index_02():
 
     t = Voice(Measure((3, 8), notetools.make_repeated_notes(3)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    p = beamtools.BeamSpanner(t[:])
+    p = spannertools.BeamSpanner(t[:])
 
     r'''
     \new Voice {
@@ -106,7 +106,7 @@ def test_containertools_split_container_at_index_03():
 
     t = Voice(Measure((3, 9), notetools.make_repeated_notes(3)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    p = beamtools.BeamSpanner(t[:])
+    p = spannertools.BeamSpanner(t[:])
 
     r'''
     \new Voice {
@@ -194,7 +194,7 @@ def test_containertools_split_container_at_index_05():
 
     t = Staff([Voice("c'8 d'8 e'8 f'8")])
     v = t[0]
-    beamtools.BeamSpanner(v)
+    spannertools.BeamSpanner(v)
     left, right = containertools.split_container_at_index(v, 0, fracture_spanners=False)
 
     r'''
@@ -254,7 +254,7 @@ def test_containertools_split_container_at_index_08():
 
     t = Staff([Container("c'8 d'8 e'8 f'8")])
     v = t[0]
-    beamtools.BeamSpanner(v)
+    spannertools.BeamSpanner(v)
     left, right = containertools.split_container_at_index(v, 2, fracture_spanners=False)
 
     r'''
@@ -284,7 +284,7 @@ def test_containertools_split_container_at_index_09():
     t = Staff([Voice([Tuplet(Fraction(4, 5), notetools.make_repeated_notes(5))])])
     v = t[0]
     tuplet = v[0]
-    beamtools.BeamSpanner(tuplet)
+    spannertools.BeamSpanner(tuplet)
     left, right = containertools.split_container_at_index(tuplet, 2, fracture_spanners=False)
 
     r'''
@@ -317,8 +317,8 @@ def test_containertools_split_container_at_index_10():
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beamtools.BeamSpanner(t[0])
-    beamtools.BeamSpanner(t[1])
+    spannertools.BeamSpanner(t[0])
+    spannertools.BeamSpanner(t[1])
     slur = spannertools.SlurSpanner(t.leaves)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
@@ -369,8 +369,8 @@ def test_containertools_split_container_at_index_11():
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beamtools.BeamSpanner(t[0])
-    beamtools.BeamSpanner(t[1])
+    spannertools.BeamSpanner(t[0])
+    spannertools.BeamSpanner(t[1])
     slur = spannertools.SlurSpanner(t.leaves)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
@@ -422,7 +422,7 @@ def test_containertools_split_container_at_index_12():
     t = Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
     tuplet = t[1]
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
 
     r'''
     \new Voice {
@@ -472,7 +472,7 @@ def test_containertools_split_container_at_index_13():
 
     t = Voice(Measure((3, 8), notetools.make_repeated_notes(3)) * 2)
     m = t[1]
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
 
     r'''
@@ -528,7 +528,7 @@ def test_containertools_split_container_at_index_14():
 
     t = Voice(Measure((3, 9), notetools.make_repeated_notes(3)) * 2)
     m = t[1]
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
 
     r'''
@@ -593,7 +593,7 @@ def test_containertools_split_container_at_index_15():
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
 
     r'''
     \new Voice {
@@ -633,7 +633,7 @@ def test_containertools_split_container_at_index_16():
 
     t = Staff([Voice("c'8 d'8 e'8 f'8")])
     v = t[0]
-    beamtools.BeamSpanner(v)
+    spannertools.BeamSpanner(v)
 
     r'''
     \new Staff {
@@ -674,7 +674,7 @@ def test_containertools_split_container_at_index_17():
 
     t = Staff([Voice("c'8 d'8 e'8 f'8")])
     v = t[0]
-    beamtools.BeamSpanner(v)
+    spannertools.BeamSpanner(v)
 
     left, right = containertools.split_container_at_index(v, 10, fracture_spanners=True)
 
@@ -701,8 +701,8 @@ def test_containertools_split_container_at_index_18():
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beamtools.BeamSpanner(t[0])
-    beamtools.BeamSpanner(t[1])
+    spannertools.BeamSpanner(t[0])
+    spannertools.BeamSpanner(t[1])
     slur = spannertools.SlurSpanner(t.leaves)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
@@ -752,8 +752,8 @@ def test_containertools_split_container_at_index_19():
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beamtools.BeamSpanner(t[0])
-    beamtools.BeamSpanner(t[1])
+    spannertools.BeamSpanner(t[0])
+    spannertools.BeamSpanner(t[1])
     slur = spannertools.SlurSpanner(t.leaves)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
@@ -803,8 +803,8 @@ def test_containertools_split_container_at_index_20():
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beamtools.BeamSpanner(t[0])
-    beamtools.BeamSpanner(t[1])
+    spannertools.BeamSpanner(t[0])
+    spannertools.BeamSpanner(t[1])
     slur = spannertools.SlurSpanner(t.leaves)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
@@ -854,7 +854,7 @@ def test_containertools_split_container_at_index_21():
     '''
 
     t = Staff([Measure((3, 12), "c'8. d'8.")])
-    beamtools.BeamSpanner(t[0])
+    spannertools.BeamSpanner(t[0])
     spannertools.SlurSpanner(t.leaves)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
@@ -903,7 +903,7 @@ def test_containertools_split_container_at_index_22():
     '''
 
     t = Staff([Measure((3, 8), "c'8. d'8.")])
-    beamtools.BeamSpanner(t[0])
+    spannertools.BeamSpanner(t[0])
     spannertools.SlurSpanner(t.leaves)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 

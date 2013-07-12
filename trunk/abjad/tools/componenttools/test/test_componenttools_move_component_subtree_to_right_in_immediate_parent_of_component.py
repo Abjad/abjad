@@ -6,7 +6,7 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
 
     r'''
     \new Voice {
@@ -37,8 +37,8 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    beamtools.BeamSpanner(t[:2])
-    beamtools.BeamSpanner(t[2:])
+    spannertools.BeamSpanner(t[:2])
+    spannertools.BeamSpanner(t[2:])
 
     r'''
     \new Voice {
@@ -69,7 +69,7 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    beamtools.BeamSpanner(t[:2])
+    spannertools.BeamSpanner(t[:2])
 
     r'''
     \new Voice {
@@ -101,7 +101,7 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
 
     t = Voice([Container("c'8 d'8"), Container([])])
     spannertools.GlissandoSpanner(t[:])
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
 
     r'''
     \new Voice {
@@ -138,7 +138,7 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
 
     t = Voice([Container("c'8 d'8"), Container([])])
     spannertools.GlissandoSpanner(t[:])
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
 
     r'''
     \new Voice {
@@ -179,7 +179,7 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beamtools.BeamSpanner(t.leaves)
+    spannertools.BeamSpanner(t.leaves)
 
     r'''
     \new Voice {
@@ -231,7 +231,7 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
     spannertools.GlissandoSpanner(t[:])
-    beamtools.BeamSpanner(t.leaves)
+    spannertools.BeamSpanner(t.leaves)
 
     r'''
     \new Voice {

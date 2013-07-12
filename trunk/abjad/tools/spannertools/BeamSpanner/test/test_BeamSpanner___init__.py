@@ -5,14 +5,14 @@ def test_BeamSpanner___init___01():
     '''Init empty beam spanner.
     '''
 
-    beam = beamtools.BeamSpanner()
-    assert isinstance(beam, beamtools.BeamSpanner)
+    beam = spannertools.BeamSpanner()
+    assert isinstance(beam, spannertools.BeamSpanner)
 
 
 def test_BeamSpanner___init___02():
 
     staff = Staff("c'8 d'8 e'8 f'8 g'2")
-    beamtools.BeamSpanner(staff[:4])
+    spannertools.BeamSpanner(staff[:4])
 
     r'''
     \new Staff {

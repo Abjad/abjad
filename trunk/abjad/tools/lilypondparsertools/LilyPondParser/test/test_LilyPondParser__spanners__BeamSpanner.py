@@ -5,8 +5,8 @@ from abjad.tools.lilypondparsertools import LilyPondParser
 
 def test_LilyPondParser__spanners__BeamSpanner_01():
     target = Container(notetools.make_notes([0] * 4, [(1, 4)]))
-    beamtools.BeamSpanner(target[0:3])
-    beamtools.BeamSpanner(target[3:])
+    spannertools.BeamSpanner(target[0:3])
+    spannertools.BeamSpanner(target[3:])
 
     r'''
     {
@@ -26,8 +26,8 @@ def test_LilyPondParser__spanners__BeamSpanner_02():
     '''With start and stop reversed.
     '''
     target = Container(notetools.make_notes([0] * 4, [(1, 4)]))
-    beamtools.BeamSpanner(target[0:3])
-    beamtools.BeamSpanner(target[3:])
+    spannertools.BeamSpanner(target[0:3])
+    spannertools.BeamSpanner(target[3:])
 
     r'''
     {
@@ -46,8 +46,8 @@ def test_LilyPondParser__spanners__BeamSpanner_02():
 
 def test_LilyPondParser__spanners__BeamSpanner_03():
     target = Container(notetools.make_notes([0] * 4, [(1, 4)]))
-    beamtools.BeamSpanner(target[:])
-    beamtools.BeamSpanner(target[1:3])
+    spannertools.BeamSpanner(target[:])
+    spannertools.BeamSpanner(target[1:3])
 
     r'''
     {
@@ -63,8 +63,8 @@ def test_LilyPondParser__spanners__BeamSpanner_03():
 
 def test_LilyPondParser__spanners__BeamSpanner_04():
     target = Container(notetools.make_notes([0] * 4, [(1, 4)]))
-    beamtools.BeamSpanner(target[:3])
-    beamtools.BeamSpanner(target[2:])
+    spannertools.BeamSpanner(target[:3])
+    spannertools.BeamSpanner(target[2:])
 
     r'''
     {
@@ -93,8 +93,8 @@ def test_LilyPondParser__spanners__BeamSpanner_07():
     '''With direction.
     '''
     target = Container(notetools.make_notes([0] * 4, [(1, 4)]))
-    beamtools.BeamSpanner(target[0:3], direction=Up)
-    beamtools.BeamSpanner(target[3:], direction=Down)
+    spannertools.BeamSpanner(target[0:3], direction=Up)
+    spannertools.BeamSpanner(target[3:], direction=Down)
 
     r'''
     {

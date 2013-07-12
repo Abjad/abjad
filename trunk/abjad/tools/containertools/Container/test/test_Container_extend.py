@@ -7,7 +7,7 @@ def test_Container_extend_01():
     '''
 
     t = Voice("c'8 d'8")
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
 
     r'''
     \new Voice {
@@ -36,7 +36,7 @@ def test_Container_extend_02():
     '''
 
     t = Voice("c'8 d'8")
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
 
     r'''
     \new Voice {
@@ -46,7 +46,7 @@ def test_Container_extend_02():
     '''
 
     u = Voice([Note(4, (1, 8)), Note(5, (1, 8))])
-    beamtools.BeamSpanner(u[:])
+    spannertools.BeamSpanner(u[:])
     t.extend(u)
 
     r'''
@@ -67,7 +67,7 @@ def test_Container_extend_03():
     '''
 
     t = Voice("c'8 d'8")
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
     t.extend([])
 
     r'''
@@ -86,7 +86,7 @@ def test_Container_extend_04():
     '''
 
     t = Voice("c'8 d'8")
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
     t.extend(Voice([]))
 
     r'''
@@ -105,7 +105,7 @@ def test_Container_extend_05():
     '''
 
     t = Voice("c'8 d'8")
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
 
     assert py.test.raises(Exception, 't.extend(7)')
     assert py.test.raises(Exception, "t.extend('foo')")
@@ -116,7 +116,7 @@ def test_Container_extend_06():
     '''
 
     t = Voice("c'8 d'8")
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
 
     assert py.test.raises(Exception, 't.extend(Note(4, (1, 4)))')
     assert py.test.raises(AssertionError, "t.extend(Chord([2, 3, 5], (1, 4)))")
@@ -127,7 +127,7 @@ def test_Container_extend_07():
     '''
 
     t = Voice("c'8 d'8")
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
 
     r'''
     \new Voice {
@@ -137,7 +137,7 @@ def test_Container_extend_07():
     '''
 
     u = Voice("c'8 d'8 e'8 f'8")
-    beamtools.BeamSpanner(u[:])
+    spannertools.BeamSpanner(u[:])
 
     r'''
     \new Voice {
@@ -183,7 +183,7 @@ def test_Container_extend_08():
     '''
 
     t = Voice("c'8 d'8")
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
 
     r'''
     \new Voice {
@@ -193,7 +193,7 @@ def test_Container_extend_08():
     '''
 
     u = Voice("c'8 d'8 e'8 f'8")
-    beamtools.BeamSpanner(u[:])
+    spannertools.BeamSpanner(u[:])
     spannertools.SlurSpanner(u[-2:])
 
     r'''

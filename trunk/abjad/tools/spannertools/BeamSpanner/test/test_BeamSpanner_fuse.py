@@ -6,8 +6,8 @@ def test_BeamSpanner_fuse_01():
     '''
 
     staff = Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
-    left = beamtools.BeamSpanner(staff[:2])
-    right = beamtools.BeamSpanner(staff[2:4])
+    left = spannertools.BeamSpanner(staff[:2])
+    right = spannertools.BeamSpanner(staff[2:4])
 
     assert len(
         spannertools.get_spanners_attached_to_any_improper_child_of_component(

@@ -6,7 +6,7 @@ def test_leaftools_repeat_leaves_in_expr_01():
     '''
 
     t = Voice("c'8 d'8 e'8")
-    p = beamtools.BeamSpanner(t[:])
+    p = spannertools.BeamSpanner(t[:])
     leaftools.repeat_leaves_in_expr(t, total=2)
 
     r'''
@@ -29,7 +29,7 @@ def test_leaftools_repeat_leaves_in_expr_02():
     '''
 
     t = Voice("c'8 d'8 e'8")
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
     leaftools.repeat_leaves_in_expr(t, total=3)
 
     r'''

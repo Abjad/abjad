@@ -127,7 +127,7 @@ def test_measuretools_pad_measures_in_expr_with_rests_03():
     '''
 
     t = Measure((2, 8), "c'8 d'8")
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
     measuretools.pad_measures_in_expr_with_rests(t, Duration(1, 32), Duration(1, 64), splice=True)
 
     r'''

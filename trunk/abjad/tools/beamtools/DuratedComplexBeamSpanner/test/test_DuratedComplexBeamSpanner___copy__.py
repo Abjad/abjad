@@ -13,7 +13,7 @@ def test_DuratedComplexBeamSpanner___copy___01():
         staff[:], durations=durations, span=2, direction=Down)
 
     new_staff = componenttools.copy_components_and_covered_spanners([staff])[0]
-    new_beam = new_staff[0]._get_spanner(beamtools.BeamSpanner)
+    new_beam = new_staff[0]._get_spanner(spannertools.BeamSpanner)
 
     assert staff.lilypond_format == new_staff.lilypond_format
     assert new_beam.durations == beam.durations

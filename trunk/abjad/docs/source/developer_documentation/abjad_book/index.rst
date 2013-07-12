@@ -35,7 +35,7 @@ Add some Abjad code to your HTML between open and close
 
    <abjad>
    v = Voice("c'8 d' e' f' g' a' b' c''")
-   beam = beamtools.BeamSpanner(v)
+   beam = spannertools.BeamSpanner(v)
    show(v)
    </abjad>
 

@@ -6,7 +6,7 @@ def test_Measure___add___01():
     '''
 
     t1 = Measure((1, 8), "c'16 d'16")
-    beamtools.BeamSpanner(t1[:])
+    spannertools.BeamSpanner(t1[:])
     t2 = Measure((2, 16), "c'16 d'16")
     spannertools.SlurSpanner(t2[:])
 
@@ -50,7 +50,7 @@ def test_Measure___add___02():
     '''
 
     t1 = Measure((1, 8), "c'16 d'16")
-    beamtools.BeamSpanner(t1[:])
+    spannertools.BeamSpanner(t1[:])
     t2 = Measure((2, 16), "c'16 d'16")
     spannertools.SlurSpanner(t2[:])
     t = Staff([t1, t2])

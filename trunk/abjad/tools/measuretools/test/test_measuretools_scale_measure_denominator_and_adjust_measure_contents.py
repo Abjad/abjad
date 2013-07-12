@@ -8,7 +8,7 @@ def test_measuretools_scale_measure_denominator_and_adjust_measure_contents_01()
     '''
 
     t = Measure((2, 8), "c'8 d'8")
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
 
     r'''
     {
@@ -41,7 +41,7 @@ def test_measuretools_scale_measure_denominator_and_adjust_measure_contents_02()
     '''
 
     t = Measure((2, 8), "c'8 d'8")
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
 
     r'''
     {
@@ -76,7 +76,7 @@ def test_measuretools_scale_measure_denominator_and_adjust_measure_contents_03()
     '''
 
     t = Measure((2, 8), "c'8 d'8")
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
 
     r'''
     {
@@ -109,7 +109,7 @@ def test_measuretools_scale_measure_denominator_and_adjust_measure_contents_04()
     '''
 
     t = Measure((2, 8), "c'8 d'8")
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
 
     r'''
     {

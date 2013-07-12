@@ -28,7 +28,7 @@ def test_Container___setitem___slice_02():
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
-    p = beamtools.BeamSpanner(t[:])
+    p = spannertools.BeamSpanner(t[:])
     note = Note(7, (1, 8))
     t[2:2] = [note]
 
@@ -57,7 +57,7 @@ def test_Container___setitem___slice_03():
     end = notes[4:]
 
     t = Staff(beginning + end)
-    p = beamtools.BeamSpanner(t[:])
+    p = spannertools.BeamSpanner(t[:])
 
     r'''
     \new Staff {
@@ -90,7 +90,7 @@ def test_Container___setitem___slice_04():
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
-    p = beamtools.BeamSpanner(t[:])
+    p = spannertools.BeamSpanner(t[:])
     note = Note(12, (1, 8))
     t[1:3] = [note]
 
@@ -111,7 +111,7 @@ def test_Container___setitem___slice_05():
         a different sequence of multiple components.'''
 
     t = Staff("c'8 d'8 e'8 f'8")
-    p = beamtools.BeamSpanner(t[:])
+    p = spannertools.BeamSpanner(t[:])
     notes = [Note(11, (1, 8)), Note(9, (1, 8)), Note(7, (1, 8))]
     t[1:3] = notes
 
@@ -135,7 +135,7 @@ def test_Container___setitem___slice_06():
 
     t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beamtools.BeamSpanner(t.leaves)
+    spannertools.BeamSpanner(t.leaves)
 
     r'''
     \new Staff {
@@ -175,7 +175,7 @@ def test_Container___setitem___slice_07():
 
     t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beamtools.BeamSpanner(t.leaves)
+    spannertools.BeamSpanner(t.leaves)
 
     r'''
     \new Staff {
@@ -216,7 +216,7 @@ def test_Container___setitem___slice_08():
 
     t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beamtools.BeamSpanner(t.leaves)
+    spannertools.BeamSpanner(t.leaves)
 
     r'''
     \new Staff {
@@ -255,7 +255,7 @@ def test_Container___setitem___slice_09():
 
     t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beamtools.BeamSpanner(t.leaves)
+    spannertools.BeamSpanner(t.leaves)
 
     r'''
     \new Staff {
@@ -297,7 +297,7 @@ def test_Container___setitem___slice_10():
 
     t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beamtools.BeamSpanner(t.leaves)
+    spannertools.BeamSpanner(t.leaves)
 
     r'''
     \new Staff {
@@ -337,7 +337,7 @@ def test_Container___setitem___slice_11():
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
     t[-1000:-1000] = [Rest((1, 8))]
 
     r'''
@@ -359,7 +359,7 @@ def test_Container___setitem___slice_12():
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
     t[1000:1000] = [Rest((1, 8))]
 
     r'''
@@ -388,7 +388,7 @@ def test_Container___setitem___slice_13():
     t = Staff("c'8 d'8 e'8 f'8")
     inner = Container(t[1:3])
     outer = Container([inner])
-    beam = beamtools.BeamSpanner(inner[:])
+    beam = spannertools.BeamSpanner(inner[:])
 
     r'''
     \new Staff {
@@ -432,7 +432,7 @@ def test_Container___setitem___slice_13():
     t = Staff("c'8 d'8 e'8 f'8")
     inner = Container(t[1:3])
     outer = Container([inner])
-    beam = beamtools.BeamSpanner(inner[:])
+    beam = spannertools.BeamSpanner(inner[:])
 
     containertools.delete_contents_of_container(outer)
 

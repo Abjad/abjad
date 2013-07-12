@@ -264,11 +264,11 @@ Let's set the beams as Bartók did with some crossing the bar lines:
 
 ::
 
-   >>> beamtools.BeamSpanner(upper_measures[0])
+   >>> spannertools.BeamSpanner(upper_measures[0])
    BeamSpanner(|2/4(4)|)
-   >>> beamtools.BeamSpanner(lower_staff.leaves[1:5])
+   >>> spannertools.BeamSpanner(lower_staff.leaves[1:5])
    BeamSpanner(d'8, c'8, b8, a8)
-   >>> beamtools.BeamSpanner(lower_staff.leaves[6:10])
+   >>> spannertools.BeamSpanner(lower_staff.leaves[6:10])
    BeamSpanner(c'8, bf8, a8, g8)
 
 

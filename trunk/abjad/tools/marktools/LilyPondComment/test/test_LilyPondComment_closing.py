@@ -6,7 +6,7 @@ def test_LilyPondComment_closing_01():
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
     marktools.LilyPondComment('Voice closing comments here.', 'closing')(t)
     marktools.LilyPondComment('More voice closing comments.', 'closing')(t)
 

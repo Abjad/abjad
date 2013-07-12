@@ -6,7 +6,7 @@ def test_leaftools_set_preprolated_leaf_duration_01():
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    beamtools.BeamSpanner(t[:2])
+    spannertools.BeamSpanner(t[:2])
 
     r'''
     \new Voice {
@@ -40,7 +40,7 @@ def test_leaftools_set_preprolated_leaf_duration_02():
 
     t = Voice(notetools.make_repeated_notes(4))
     spannertools.TieSpanner(t[:2])
-    beamtools.BeamSpanner(t[:2])
+    spannertools.BeamSpanner(t[:2])
 
     r'''
     \new Voice {
@@ -73,7 +73,7 @@ def test_leaftools_set_preprolated_leaf_duration_03():
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    beamtools.BeamSpanner(t[:2])
+    spannertools.BeamSpanner(t[:2])
 
     r'''
     \new Voice {
@@ -105,7 +105,7 @@ def test_leaftools_set_preprolated_leaf_duration_04():
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    beamtools.BeamSpanner(t[:2])
+    spannertools.BeamSpanner(t[:2])
 
     r'''
     \new Voice {
@@ -140,7 +140,7 @@ def test_leaftools_set_preprolated_leaf_duration_05():
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    beamtools.BeamSpanner(t[:2])
+    spannertools.BeamSpanner(t[:2])
 
     r'''
     \new Voice {

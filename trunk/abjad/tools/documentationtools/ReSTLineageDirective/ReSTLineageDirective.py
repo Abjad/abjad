@@ -7,15 +7,15 @@ class ReSTLineageDirective(ReSTDirective):
 
     ::
 
-        >>> documentationtools.ReSTLineageDirective(argument=beamtools.BeamSpanner)
+        >>> documentationtools.ReSTLineageDirective(argument=spannertools.BeamSpanner)
         ReSTLineageDirective(
-            argument='abjad.tools.beamtools.BeamSpanner.BeamSpanner.BeamSpanner'
+            argument='abjad.tools.spannertools.BeamSpanner.BeamSpanner.BeamSpanner'
             )
 
     ::
 
         >>> print _.rest_format
-        .. abjad-lineage:: abjad.tools.beamtools.BeamSpanner.BeamSpanner.BeamSpanner
+        .. abjad-lineage:: abjad.tools.spannertools.BeamSpanner.BeamSpanner.BeamSpanner
 
     Return `ReSTLineageDirective` instance.
     '''

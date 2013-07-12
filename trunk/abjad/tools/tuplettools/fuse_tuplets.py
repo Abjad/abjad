@@ -7,7 +7,7 @@ def fuse_tuplets(tuplets):
     r'''Fuse parent-contiguous `tuplets`::
 
         >>> t1 = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-        >>> beamtools.BeamSpanner(t1[:])
+        >>> spannertools.BeamSpanner(t1[:])
         BeamSpanner(c'8, d'8, e'8)
         >>> t2 = tuplettools.FixedDurationTuplet(Duration(2, 16), "c'16 d'16 e'16")
         >>> spannertools.SlurSpanner(t2[:])

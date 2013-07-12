@@ -17,7 +17,7 @@ These sixteenth notes are worth a sixteenth of a whole note:
 ::
 
    >>> measure = Measure((5, 16), "c16 c c c c")
-   >>> beam = beamtools.BeamSpanner(measure)
+   >>> beam = spannertools.BeamSpanner(measure)
    >>> staff = stafftools.RhythmicStaff([measure])
 
 
@@ -40,7 +40,7 @@ These sixteenth notes are worth more than a sixteenth of a whole note:
 ::
 
    >>> tuplet = tuplettools.FixedDurationTuplet(Duration(5, 16), "c8 c c c c")
-   >>> beam = beamtools.BeamSpanner(tuplet)
+   >>> beam = spannertools.BeamSpanner(tuplet)
    >>> measure = Measure((5, 16), [tuplet])
    >>> staff = stafftools.RhythmicStaff([measure])
 
@@ -99,9 +99,9 @@ These elements carry preprolated durations equal to ``1/8``, ``1/8`` and ``2/8``
 ::
 
    >>> notes = 2 * Note("c'8")
-   >>> beam = beamtools.BeamSpanner(notes)
+   >>> beam = spannertools.BeamSpanner(notes)
    >>> tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 c c")
-   >>> beam = beamtools.BeamSpanner(tuplet)
+   >>> beam = spannertools.BeamSpanner(tuplet)
    >>> measure = Measure((4, 8), notes + [tuplet])
    >>> staff = stafftools.RhythmicStaff([measure])
 
@@ -133,7 +133,7 @@ This fixed-duration tuplet carries a target duration equal to ``4/8``:
 ::
 
    >>> tuplet = tuplettools.FixedDurationTuplet(Duration(4, 8), "c'8 c c c c")
-   >>> beam = beamtools.BeamSpanner(tuplet)
+   >>> beam = spannertools.BeamSpanner(tuplet)
    >>> measure = Measure((4, 8), [tuplet])
    >>> staff = stafftools.RhythmicStaff([measure])
 
@@ -168,7 +168,7 @@ The first two notes below carry leaf mulitipliers equal to ``2/1``:
    >>> notes[0].duration_multiplier = Fraction(2, 1)
    >>> notes[1].duration_multiplier = Fraction(2, 1)
    >>> measure = Measure((3, 8), notes)
-   >>> beam = beamtools.BeamSpanner(measure)
+   >>> beam = spannertools.BeamSpanner(measure)
    >>> staff = stafftools.RhythmicStaff([measure])
 
 

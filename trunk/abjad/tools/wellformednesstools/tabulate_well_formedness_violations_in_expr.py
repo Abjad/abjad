@@ -5,7 +5,7 @@ def tabulate_well_formedness_violations_in_expr(expr):
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> staff[1].written_duration = Duration(1, 4)
-        >>> beamtools.BeamSpanner(staff[:])
+        >>> spannertools.BeamSpanner(staff[:])
         BeamSpanner(c'8, d'4, e'8, f'8)
         >>> f(staff)
         \new Staff {

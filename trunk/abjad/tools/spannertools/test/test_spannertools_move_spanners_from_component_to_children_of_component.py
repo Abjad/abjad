@@ -7,7 +7,7 @@ def test_spannertools_move_spanners_from_component_to_children_of_component_01()
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beam = beamtools.BeamSpanner(t[:])
+    beam = spannertools.BeamSpanner(t[:])
 
     r'''
     \new Voice {

@@ -8,7 +8,7 @@ def add_artificial_harmonic_to_note(note, melodic_diatonic_interval=None):
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> beamtools.BeamSpanner(staff[:])
+        >>> spannertools.BeamSpanner(staff[:])
         BeamSpanner(c'8, d'8, e'8, f'8)
 
     ::

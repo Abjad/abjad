@@ -99,7 +99,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___05():
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    p = beamtools.BeamSpanner(t[:])
+    p = spannertools.BeamSpanner(t[:])
     p.override.beam.positions = (4, 4)
 
     r'''
@@ -252,7 +252,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___12():
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
     p = spannertools.DynamicTextSpanner(t[:], 'f')
     p.override.dynamic_text.thickness = 3
 
@@ -718,7 +718,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___35():
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
-    p = beamtools.BeamSpanner(t[:])
+    p = spannertools.BeamSpanner(t[:])
     p.override.score.spacing_spanner.strict_grace_spacing = True
     p.override.score.spacing_spanner.strict_note_spacing = True
     p.override.score.spacing_spanner.uniform_stretching = True
@@ -751,7 +751,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___36():
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    p = beamtools.BeamSpanner(t[:])
+    p = spannertools.BeamSpanner(t[:])
     p.override.score.spacing_spanner.strict_grace_spacing = True
     p.override.score.spacing_spanner.strict_note_spacing = True
     p.override.score.spacing_spanner.uniform_stretching = True
@@ -1143,7 +1143,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___53():
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
     t.override.tuplet_bracket.direction = Down
 
     r'''
@@ -1166,7 +1166,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___54():
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
     t[1].override.tuplet_bracket.direction = Down
 
     r'''
@@ -1209,7 +1209,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___56():
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
     t.override.tuplet_number.fraction = True
 
     r'''
@@ -1232,7 +1232,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___57():
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
     t[1].override.tuplet_number.fraction = True
 
     r'''
@@ -1254,7 +1254,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___58():
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
     t.override.tuplet_number.text = markuptools.Markup('6:4')
 
     r'''

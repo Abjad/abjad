@@ -7,7 +7,7 @@ def test_BeamSpanner_span_anonymous_01():
     '''
 
     container = Container([])
-    beam = beamtools.BeamSpanner(container)
+    beam = spannertools.BeamSpanner(container)
 
     r'''
     {
@@ -25,7 +25,7 @@ def test_BeamSpanner_span_anonymous_02():
     '''
 
     container = Container("c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8")
-    beam = beamtools.BeamSpanner(container)
+    beam = spannertools.BeamSpanner(container)
 
     r'''
     {
@@ -51,7 +51,7 @@ def test_BeamSpanner_span_anonymous_03():
     '''
 
     staff = Staff("{ c'8 c'8 c'8 c'8 } { c'8 c'8 c'8 c'8 }")
-    beam = beamtools.BeamSpanner(staff[:])
+    beam = spannertools.BeamSpanner(staff[:])
 
     r'''
     \new Staff {
@@ -83,7 +83,7 @@ def test_BeamSpanner_span_anonymous_04():
     '''
 
     staff = Staff("{ c'8 c'8 c'8 c'8 } c'8 c'8")
-    beam = beamtools.BeamSpanner(staff)
+    beam = spannertools.BeamSpanner(staff)
 
     r'''
     \new Staff {
@@ -110,7 +110,7 @@ def test_BeamSpanner_span_anonymous_05():
     '''
 
     staff = Staff("{ c'8 c'8 c'8 c'8 } c'8 c'8")
-    beam = beamtools.BeamSpanner(staff[:])
+    beam = spannertools.BeamSpanner(staff[:])
 
     r'''
     \new Staff {
@@ -139,7 +139,7 @@ def test_BeamSpanner_span_anonymous_06():
     '''
 
     staff = Staff("{ c'8 c'8 c'8 c'8 } c'8 c'8")
-    beam = beamtools.BeamSpanner(staff.leaves)
+    beam = spannertools.BeamSpanner(staff.leaves)
 
     r'''
     \new Staff {
@@ -166,7 +166,7 @@ def test_BeamSpanner_span_anonymous_07():
     '''
 
     staff = Staff("{} {} {}")
-    beam = beamtools.BeamSpanner(staff[:])
+    beam = spannertools.BeamSpanner(staff[:])
 
     r'''
     \new Staff {
@@ -191,7 +191,7 @@ def test_BeamSpanner_span_anonymous_08():
     '''
 
     staff = Staff("{ c'8 c'8 c'8 c'8 } {} { c'8 c'8 c'8 c'8 }")
-    beam = beamtools.BeamSpanner(staff[:])
+    beam = spannertools.BeamSpanner(staff[:])
 
     r'''
     \new Staff {
@@ -225,7 +225,7 @@ def test_BeamSpanner_span_anonymous_09():
 
     t = Staff(Container([]) * 2)
     t.insert(1, Container(Note(0, (1, 8)) * 4))
-    p = beamtools.BeamSpanner(t[:])
+    p = spannertools.BeamSpanner(t[:])
 
     r'''
     \new Staff {
@@ -259,7 +259,7 @@ def test_BeamSpanner_span_anonymous_10():
     s2 = Container([Note(i, (1,8)) for i in range(4,8)])
     s2 = Container([s2])
     t = Voice([s1, s2])
-    p = beamtools.BeamSpanner(t)
+    p = spannertools.BeamSpanner(t)
     assert len(p.components) == 1
     assert len(p.leaves) == 8
 
@@ -285,22 +285,22 @@ def test_BeamSpanner_span_anonymous_10():
     '''
 
     p.detach()
-    p = beamtools.BeamSpanner([t[0], t[1]])
+    p = spannertools.BeamSpanner([t[0], t[1]])
     assert len(p.components) == 2
     assert len(p.leaves) == 8
 
     p.detach()
-    p = beamtools.BeamSpanner([t[0][0], t[1][0]])
+    p = spannertools.BeamSpanner([t[0][0], t[1][0]])
     assert len(p.components) == 2
     assert len(p.leaves) == 8
 
     p.detach()
-    p = beamtools.BeamSpanner([t[0], t[1][0]])
+    p = spannertools.BeamSpanner([t[0], t[1][0]])
     assert len(p.components) == 2
     assert len(p.leaves) == 8
 
     p.detach()
-    p = beamtools.BeamSpanner([t[0][0], t[1]])
+    p = spannertools.BeamSpanner([t[0][0], t[1]])
     assert len(p.components) == 2
     assert len(p.leaves) == 8
 
@@ -336,22 +336,22 @@ def test_BeamSpanner_span_anonymous_11():
     }
     '''
 
-    p = beamtools.BeamSpanner(t)
+    p = spannertools.BeamSpanner(t)
     assert len(p.components) == 1
     assert len(p.leaves) == 8
     p.detach()
 
-    p = beamtools.BeamSpanner([t[0], t[1]])
+    p = spannertools.BeamSpanner([t[0], t[1]])
     assert len(p.components) == 2
     assert len(p.leaves) == 8
     p.detach()
 
-    p = beamtools.BeamSpanner([t[0][0], t[1]])
+    p = spannertools.BeamSpanner([t[0][0], t[1]])
     assert len(p.components) == 2
     assert len(p.leaves) == 8
     p.detach()
 
-    p = beamtools.BeamSpanner([t[0][0][0], t[1]])
+    p = spannertools.BeamSpanner([t[0][0][0], t[1]])
     assert len(p.components) == 2
     assert len(p.leaves) == 8
     p.detach()
@@ -379,12 +379,12 @@ def test_BeamSpanner_span_anonymous_12():
     }
     '''
 
-    p = beamtools.BeamSpanner(v)
+    p = spannertools.BeamSpanner(v)
     assert len(p.components) == 1
     assert len(p.leaves) == 5
     p.detach()
 
-    p = beamtools.BeamSpanner(v[:])
+    p = spannertools.BeamSpanner(v[:])
     assert len(p.components) == 3
     assert len(p.leaves) == 5
     p.detach()
@@ -414,12 +414,12 @@ def test_BeamSpanner_span_anonymous_13():
     }
     '''
 
-    p = beamtools.BeamSpanner(v)
+    p = spannertools.BeamSpanner(v)
     assert len(p.components) == 1
     assert len(p.leaves) == 7
     p.detach()
 
-    p = beamtools.BeamSpanner(v[:])
+    p = spannertools.BeamSpanner(v[:])
     assert len(p.components) == 3
     assert len(p.leaves) == 7
     p.detach()
@@ -444,12 +444,12 @@ def test_BeamSpanner_span_anonymous_14():
     }
     '''
 
-    p = beamtools.BeamSpanner(t)
+    p = spannertools.BeamSpanner(t)
     assert len(p.components) == 1
     assert len(p.leaves) == 5
     p.detach()
 
-    p = beamtools.BeamSpanner(t[:])
+    p = spannertools.BeamSpanner(t[:])
     assert len(p.components) == 3
     assert len(p.leaves) == 5
 
@@ -482,8 +482,8 @@ def test_BeamSpanner_span_anonymous_15():
 
     assert py.test.raises(
         AssertionError, 
-        'p = beamtools.BeamSpanner([t[0], t[1]])')
+        'p = spannertools.BeamSpanner([t[0], t[1]])')
 
     assert py.test.raises(
         AssertionError, 
-        'p = beamtools.BeamSpanner([t[1], t[2]])')
+        'p = spannertools.BeamSpanner([t[1], t[2]])')

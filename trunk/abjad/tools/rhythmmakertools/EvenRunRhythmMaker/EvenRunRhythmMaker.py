@@ -1,8 +1,8 @@
-from abjad.tools import beamtools
 from abjad.tools import containertools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import notetools
+from abjad.tools import spannertools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 
 
@@ -113,7 +113,7 @@ class EvenRunRhythmMaker(RhythmMaker):
         notes = notetools.make_notes(numerator * [0], [unit_duration])
         container = containertools.Container(notes)
         if self.beam_each_cell:
-            beam_spanner = beamtools.BeamSpanner()
+            beam_spanner = spannertools.BeamSpanner()
             beam_spanner(container)
         return container
 

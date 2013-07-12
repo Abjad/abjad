@@ -4,7 +4,7 @@ def delete_contents_of_container_starting_strictly_after_offset(container, prola
     Delete contents of `container` starting strictly after `prolated_offset`::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> beamtools.BeamSpanner(staff.leaves)
+        >>> spannertools.BeamSpanner(staff.leaves)
         BeamSpanner(c'8, d'8, e'8, f'8)
 
     ::

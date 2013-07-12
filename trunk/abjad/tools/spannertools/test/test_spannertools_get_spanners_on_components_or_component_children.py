@@ -6,8 +6,8 @@ def test_spannertools_get_spanners_on_components_or_component_children_01():
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
-    b1 = beamtools.BeamSpanner(t[:2])
-    b2 = beamtools.BeamSpanner(t[2:])
+    b1 = spannertools.BeamSpanner(t[:2])
+    b2 = spannertools.BeamSpanner(t[2:])
     crescendo = spannertools.CrescendoSpanner(t)
 
     r'''

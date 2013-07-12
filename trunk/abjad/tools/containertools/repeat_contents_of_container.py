@@ -4,7 +4,7 @@ def repeat_contents_of_container(container, total=2):
     Repeat contents of `container`::
 
         >>> staff = Staff("c'8 d'8")
-        >>> beamtools.BeamSpanner(staff.leaves)
+        >>> spannertools.BeamSpanner(staff.leaves)
         BeamSpanner(c'8, d'8)
 
     ::

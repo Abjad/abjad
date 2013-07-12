@@ -8,7 +8,7 @@ def test_spannertools_get_spanners_contained_by_components_01():
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beam = beamtools.BeamSpanner(t[0][:])
+    beam = spannertools.BeamSpanner(t[0][:])
     slur = spannertools.SlurSpanner(t[1][:])
     trill = spannertools.TrillSpanner(t.leaves)
 

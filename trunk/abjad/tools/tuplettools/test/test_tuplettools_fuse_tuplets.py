@@ -7,7 +7,7 @@ def test_tuplettools_fuse_tuplets_01():
     '''
 
     t1 = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-    beamtools.BeamSpanner(t1[:])
+    spannertools.BeamSpanner(t1[:])
     t2 = tuplettools.FixedDurationTuplet(Duration(2, 16), "c'16 d'16 e'16")
     spannertools.SlurSpanner(t2[:])
 
@@ -54,7 +54,7 @@ def test_tuplettools_fuse_tuplets_02():
     '''
 
     t1 = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-    beamtools.BeamSpanner(t1[:])
+    spannertools.BeamSpanner(t1[:])
     t2 = tuplettools.FixedDurationTuplet(Duration(2, 16), "c'16 d'16 e'16")
     spannertools.SlurSpanner(t2[:])
     t = Voice([t1, t2])
@@ -99,7 +99,7 @@ def test_tuplettools_fuse_tuplets_03():
 
     #t1 = Tuplet(Fraction(2, 3), "c'8 d'8 e'8")
     t1 = Tuplet(Fraction(2, 3), "c'8 d'8 e'8")
-    beamtools.BeamSpanner(t1[:])
+    spannertools.BeamSpanner(t1[:])
     #t2 = Tuplet(Fraction(2, 3), "c'8 d'8 e'8 f'8 g'8")
     t2 = Tuplet(Fraction(2, 3), "c'8 d'8 e'8 f'8 g'8")
     spannertools.SlurSpanner(t2[:])

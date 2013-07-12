@@ -6,7 +6,7 @@ def test_BeamSpanner_detach_01():
     '''
 
     staff = Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
-    beam_spanner = beamtools.BeamSpanner(staff[0])
+    beam_spanner = spannertools.BeamSpanner(staff[0])
 
     r'''
     \new Staff {
@@ -45,7 +45,7 @@ def test_BeamSpanner_detach_02():
     '''
 
     staff = Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
-    beam_spanner = beamtools.BeamSpanner(staff[:4])
+    beam_spanner = spannertools.BeamSpanner(staff[:4])
 
     r'''
     \new Staff {

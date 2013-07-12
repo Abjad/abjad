@@ -26,7 +26,7 @@ class BeamSpanner(DirectedSpanner):
 
     ::
 
-        >>> beamtools.BeamSpanner(staff[:4])
+        >>> spannertools.BeamSpanner(staff[:4])
         BeamSpanner(c'8, d'8, e'8, f'8)
 
     ::
@@ -88,7 +88,7 @@ class BeamSpanner(DirectedSpanner):
         ::
 
             >>> for leaf in staff.leaves:
-            ...     result = beamtools.BeamSpanner.is_beamable_component(leaf)
+            ...     result = spannertools.BeamSpanner.is_beamable_component(leaf)
             ...     print '{:<8}{}'.format(leaf, result)
             ...
             r32     False

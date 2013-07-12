@@ -69,7 +69,7 @@ class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
         illustration.file_initial_system_comments = []
         illustration.file_initial_system_includes = []
         measures = score.select_components(measuretools.Measure)
-        measures.attach_spanners(beamtools.BeamSpanner)
+        measures.attach_spanners(spannertools.BeamSpanner)
         scoretools.add_double_bar_to_end_of_score(score)
         return illustration
 

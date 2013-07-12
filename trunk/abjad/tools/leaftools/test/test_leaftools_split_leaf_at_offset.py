@@ -178,7 +178,7 @@ def test_leaftools_split_leaf_at_offset_06():
 
     t = Voice(notetools.make_repeated_notes(1) + [tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3))])
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beamtools.BeamSpanner(t.leaves)
+    spannertools.BeamSpanner(t.leaves)
 
     r'''
     \new Voice {
@@ -325,7 +325,7 @@ def test_leaftools_split_leaf_at_offset_13():
     '''
 
     t = Staff(notetools.make_repeated_notes(4))
-    b = beamtools.BeamSpanner(t.leaves)
+    b = spannertools.BeamSpanner(t.leaves)
 
     halves = leaftools.split_leaf_at_offset(
         t[0], (1, 16), tie_split_notes=False)
@@ -333,7 +333,7 @@ def test_leaftools_split_leaf_at_offset_13():
     assert len(t) == 5
     for l in t.leaves:
         assert l.spanners == set([b])
-        assert l._get_spanner(beamtools.BeamSpanner) is b
+        assert l._get_spanner(spannertools.BeamSpanner) is b
     assert wellformednesstools.is_well_formed_component(t)
 
 

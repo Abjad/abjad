@@ -35,7 +35,7 @@ The two "layers" of the *cell* we will model with two Voices inside a parallel C
 
    >>> pitches = [1,2,3]
    >>> notes = notetools.make_notes(pitches, [(1, 8)])
-   >>> beamtools.BeamSpanner(notes)
+   >>> spannertools.BeamSpanner(notes)
    BeamSpanner(cs'8, d'8, ef'8)
    >>> spannertools.SlurSpanner(notes)
    SlurSpanner(cs'8, d'8, ef'8)
@@ -104,7 +104,7 @@ Because this *cell* appears over and over again, we want to reuse this code to g
        `pitches` is a list of numbers or, more generally, pitch tokens.
        '''
        notes = [Note(pitch, (1, 8)) for pitch in pitches]
-       beamtools.BeamSpanner(notes)
+       spannertools.BeamSpanner(notes)
        spannertools.SlurSpanner(notes)
        contexttools.DynamicMark('f')(notes[0])
        contexttools.DynamicMark('p')(notes[1])

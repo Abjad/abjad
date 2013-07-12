@@ -6,7 +6,7 @@ def all_are_spanners(expr):
     ::
 
         >>> voice = Voice("c'8 d'8 e'8 f'8")
-        >>> spanner = beamtools.BeamSpanner(voice[:2])
+        >>> spanner = spannertools.BeamSpanner(voice[:2])
 
     ::
 

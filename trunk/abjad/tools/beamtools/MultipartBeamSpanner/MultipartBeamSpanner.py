@@ -1,4 +1,4 @@
-from abjad.tools.beamtools.BeamSpanner import BeamSpanner
+from abjad.tools.spannertools.BeamSpanner import BeamSpanner
 
 
 class MultipartBeamSpanner(BeamSpanner):

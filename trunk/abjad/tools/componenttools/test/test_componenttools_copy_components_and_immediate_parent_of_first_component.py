@@ -93,38 +93,38 @@ def test_componenttools_copy_components_and_immediate_parent_of_first_component_
 def test_componenttools_copy_components_and_immediate_parent_of_first_component_05():
 
     t = Staff([Note(n, (1, 8)) for n in range(8)])
-    beamtools.BeamSpanner(t[:4])
+    spannertools.BeamSpanner(t[:4])
     u = componenttools.copy_components_and_immediate_parent_of_first_component(t[0:1])
 
-    beam_spanner = u[0]._get_spanner(beamtools.BeamSpanner)
+    beam_spanner = u[0]._get_spanner(spannertools.BeamSpanner)
     assert beam_spanner._is_my_only_leaf(u[0])
 
 
 def test_componenttools_copy_components_and_immediate_parent_of_first_component_06():
 
     t = Staff([Note(n, (1, 8)) for n in range(8)])
-    beamtools.BeamSpanner(t[:4])
+    spannertools.BeamSpanner(t[:4])
     u = componenttools.copy_components_and_immediate_parent_of_first_component(
         t[0:2])
 
-    beam_spanner = u[0]._get_spanner(beamtools.BeamSpanner)
+    beam_spanner = u[0]._get_spanner(spannertools.BeamSpanner)
     assert beam_spanner._is_my_first_leaf(u[0])
 
-    beam_spanner = u[1]._get_spanner(beamtools.BeamSpanner)
+    beam_spanner = u[1]._get_spanner(spannertools.BeamSpanner)
     assert beam_spanner._is_my_last_leaf(u[1])
 
 
 def test_componenttools_copy_components_and_immediate_parent_of_first_component_07():
 
     t = Staff([Note(n, (1, 8)) for n in range(8)])
-    beamtools.BeamSpanner(t[:4])
+    spannertools.BeamSpanner(t[:4])
     u = componenttools.copy_components_and_immediate_parent_of_first_component(t[0:4])
 
-    beam_spanner = u[0]._get_spanner(beamtools.BeamSpanner)
+    beam_spanner = u[0]._get_spanner(spannertools.BeamSpanner)
     assert beam_spanner._is_my_first_leaf(u[0])
 
-    assert u[1]._has_spanner(beamtools.BeamSpanner)
-    assert u[2]._has_spanner(beamtools.BeamSpanner)
+    assert u[1]._has_spanner(spannertools.BeamSpanner)
+    assert u[2]._has_spanner(spannertools.BeamSpanner)
     
-    beam_spanner = u[3]._get_spanner(beamtools.BeamSpanner)
+    beam_spanner = u[3]._get_spanner(spannertools.BeamSpanner)
     assert beam_spanner._is_my_last_leaf(u[3])

@@ -4,7 +4,7 @@ from abjad import *
 def test_containertools_insert_component_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    beamtools.BeamSpanner(staff.leaves)
+    spannertools.BeamSpanner(staff.leaves)
     containertools.insert_component(staff, 1, Note("cs'8"), fracture_spanners=False)
 
     r'''
@@ -31,7 +31,7 @@ def test_containertools_insert_component_02():
     "Insert works just before a spanner."
 
     t = Staff([Note(n, (1, 8)) for n in range(4)])
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
     containertools.insert_component(t, 0, Rest((1, 4)), fracture_spanners=True)
 
     r'''
@@ -53,7 +53,7 @@ def test_containertools_insert_component_03():
     '''
 
     t = Staff([Note(n, (1, 8)) for n in range(4)])
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
     containertools.insert_component(t, 1, Rest((1, 4)), fracture_spanners=True)
 
     r'''
@@ -75,7 +75,7 @@ def test_containertools_insert_component_04():
     '''
 
     t = Staff([Note(n, (1, 8)) for n in range(4)])
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
     containertools.insert_component(t, 4, Rest((1, 4)), fracture_spanners=True)
 
     r'''
@@ -97,7 +97,7 @@ def test_containertools_insert_component_05():
     '''
 
     t = Staff([Note(n, (1, 8)) for n in range(4)])
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
     containertools.insert_component(t, 1000, Rest((1, 4)), fracture_spanners=True)
 
     r'''
@@ -119,7 +119,7 @@ def test_containertools_insert_component_06():
     '''
 
     t = Staff([Note(n, (1, 8)) for n in range(4)])
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
     containertools.insert_component(t, -1, Rest((1, 4)), fracture_spanners=True)
 
     r'''
@@ -141,7 +141,7 @@ def test_containertools_insert_component_07():
     '''
 
     t = Staff([Note(n, (1, 8)) for n in range(4)])
-    beamtools.BeamSpanner(t[:])
+    spannertools.BeamSpanner(t[:])
     containertools.insert_component(t, -1000, Rest((1, 4)), fracture_spanners=True)
 
     r'''

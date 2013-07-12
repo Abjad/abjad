@@ -17,7 +17,7 @@ Tuplets prolate their contents:
 
    >>> tuplet = Tuplet(Fraction(5, 4), 'c8 c c c')
    >>> staff = stafftools.RhythmicStaff([Measure((5, 8), [tuplet])])
-   >>> beam = beamtools.BeamSpanner(tuplet)
+   >>> beam = spannertools.BeamSpanner(tuplet)
 
 
 ::
@@ -68,7 +68,7 @@ Such nonbinary meters rhythmically diminish the contents of the measures they go
 ::
 
    >>> measure = Measure((4, 10), 'c8 c c c')
-   >>> beam = beamtools.BeamSpanner(measure)
+   >>> beam = spannertools.BeamSpanner(measure)
    >>> staff = stafftools.RhythmicStaff([measure])
 
 
@@ -130,7 +130,7 @@ All durated components carry a prolation chain:
 ::
 
    >>> tuplet = tuplettools.FixedDurationTuplet(Duration(4, 8), 'c16 c c c c c c')
-   >>> beamtools.BeamSpanner(tuplet)
+   >>> spannertools.BeamSpanner(tuplet)
    BeamSpanner({c16, c16, c16, c16, c16, c16, c16})
    >>> measure = Measure((4, 10), [tuplet])
    >>> staff = stafftools.RhythmicStaff([measure])

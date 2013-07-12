@@ -4,7 +4,7 @@ from abjad import *
 def test_BeamSpanner_direction_01():
 
     staff = Staff("c'8 d'8 e'8 f'8 g'2")
-    beamtools.BeamSpanner(staff[:4], direction=Up)
+    spannertools.BeamSpanner(staff[:4], direction=Up)
 
     r'''
     \new Staff {
@@ -22,7 +22,7 @@ def test_BeamSpanner_direction_01():
 def test_BeamSpanner_direction_02():
 
     staff = Staff("c'8 d'8 e'8 f'8 g'2")
-    beamtools.BeamSpanner(staff[:4], direction=Down)
+    spannertools.BeamSpanner(staff[:4], direction=Down)
 
     r'''
     \new Staff {
@@ -40,7 +40,7 @@ def test_BeamSpanner_direction_02():
 def test_BeamSpanner_direction_03():
 
     staff = Staff("c'8 d'8 e'8 f'8 g'2")
-    beamtools.BeamSpanner(staff[:4], direction=Center)
+    spannertools.BeamSpanner(staff[:4], direction=Center)
 
     r'''
     \new Staff {

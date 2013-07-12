@@ -60,7 +60,7 @@ EXAMPLES
 
         <abjad>
         v = Voice("c'4 d'4 e'4 f'4")
-        beamtools.BeamSpanner(v)
+        spannertools.BeamSpanner(v)
         show(v)
         </abjad>
 
