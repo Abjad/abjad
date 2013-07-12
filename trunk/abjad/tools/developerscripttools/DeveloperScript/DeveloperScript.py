@@ -18,10 +18,6 @@ class DeveloperScript(abctools.AbjadObject):
     to share functionality.
     '''
 
-    ### CLASS VARIABLES ###
-
-    __slots__ = ('_argument_parser',)
-
     ### CLASS INITIALIZER ###
 
     def __init__(self):
