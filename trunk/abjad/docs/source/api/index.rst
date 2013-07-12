@@ -2987,13 +2987,6 @@ Core composition packages
       tools/sievetools/ResidueClass/ResidueClass
       tools/sievetools/Sieve/Sieve
 
-   --------
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/sievetools/all_are_residue_class_expressions
-
 .. only:: latex
 
    Abstract Classes
@@ -3010,13 +3003,6 @@ Core composition packages
 
       tools/sievetools/ResidueClass/ResidueClass
       tools/sievetools/Sieve/Sieve
-
-   Functions
-   ---------
-
-   .. toctree::
-
-      tools/sievetools/all_are_residue_class_expressions
 
 :py:mod:`skiptools <abjad.tools.skiptools>`
 ===========================================
