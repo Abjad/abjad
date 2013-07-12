@@ -42,7 +42,7 @@ def iterate_thread_in_expr(expr, component_class, containment_signature, reverse
 
     ::
 
-        >>> signature = staff.leaves[0].parentage.containment_signature
+        >>> signature = staff.leaves[0].select_parentage().containment_signature
         >>> for x in iterationtools.iterate_thread_in_expr(
         ...     staff, Note, signature):
         ...     x
@@ -57,7 +57,7 @@ def iterate_thread_in_expr(expr, component_class, containment_signature, reverse
     from abjad.tools import iterationtools
 
     if isinstance(expr, component_class) and \
-        expr.parentage.containment_signature == containment_signature:
+        expr.select_parentage().containment_signature == containment_signature:
         yield expr
 
     if not reverse:

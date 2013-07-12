@@ -30,9 +30,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.componenttools.Component.Component.Component.parent
    :noindex:
 
-.. autoattribute:: abjad.tools.componenttools.Component.Component.Component.parentage
-   :noindex:
-
 .. autoattribute:: abjad.tools.componenttools.Component.Component.Component.prolation
    :noindex:
 
@@ -64,6 +61,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.componenttools.Component.Component.Component.select_lineage
+   :noindex:
+
+.. automethod:: abjad.tools.componenttools.Component.Component.Component.select_parentage
    :noindex:
 
 Special methods

@@ -56,9 +56,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.parent
    :noindex:
 
-.. autoattribute:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.parentage
-   :noindex:
-
 .. autoattribute:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.preprolated_duration
    :noindex:
 
@@ -126,6 +123,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.select_lineage
+   :noindex:
+
+.. automethod:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.select_parentage
    :noindex:
 
 Special methods

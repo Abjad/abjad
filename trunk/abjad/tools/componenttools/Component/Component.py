@@ -119,13 +119,6 @@ class Component(AbjadObject):
         return self._parent
 
     @property
-    def parentage(self):
-        '''Reference to component parentage score selection.
-        '''
-        from abjad.tools import componenttools
-        return componenttools.Parentage(self)
-
-    @property
     def prolation(self):
         products = mathtools.cumulative_products(
             [fractions.Fraction(1)] + self._prolations)
@@ -378,7 +371,8 @@ class Component(AbjadObject):
         prolated_offset_values_are_current = True
         marks_are_current = True
         offset_values_in_seconds_are_current = True
-        for component in self.parentage:
+        parentage = self.select_parentage()
+        for component in parentage:
             if prolated_offset_values_are_current and \
                 not component._prolated_offset_values_are_current:
                 prolated_offset_values_are_current = False
@@ -400,8 +394,9 @@ class Component(AbjadObject):
             'forbid': None, 
             'direction': 'left',
             }
+        parentage = self.select_parentage()
         components = iterationtools.iterate_components_depth_first(
-            self.parentage.root, **kwargs)
+            parentage.root, **kwargs)
         return components
 
     def _mark_entire_score_tree_for_later_update(self, value):
@@ -430,7 +425,8 @@ class Component(AbjadObject):
         from abjad.tools import iterationtools
         from abjad.tools import leaftools
         from abjad.tools import measuretools
-        score_root = self.parentage.root
+        parentage = self.select_parentage()
+        score_root = parentage.root
         if isinstance(score_root, contexttools.Context):
             for context in \
                 iterationtools.iterate_contexts_in_expr(score_root):
@@ -544,3 +540,9 @@ class Component(AbjadObject):
         '''
         from abjad.tools import componenttools
         return componenttools.Lineage(self)
+
+    def select_parentage(self):
+        '''Select parentage.
+        '''
+        from abjad.tools import componenttools
+        return componenttools.Parentage(self)

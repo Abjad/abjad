@@ -43,9 +43,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.lyrictools.AddLyrics.AddLyrics.AddLyrics.parent
    :noindex:
 
-.. autoattribute:: experimental.tools.lyrictools.AddLyrics.AddLyrics.AddLyrics.parentage
-   :noindex:
-
 .. autoattribute:: experimental.tools.lyrictools.AddLyrics.AddLyrics.AddLyrics.preprolated_duration
    :noindex:
 
@@ -104,6 +101,9 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.lyrictools.AddLyrics.AddLyrics.AddLyrics.select_lineage
+   :noindex:
+
+.. automethod:: experimental.tools.lyrictools.AddLyrics.AddLyrics.AddLyrics.select_parentage
    :noindex:
 
 Special methods

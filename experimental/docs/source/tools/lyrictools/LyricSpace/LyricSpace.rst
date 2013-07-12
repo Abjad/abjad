@@ -42,9 +42,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.lyrictools.LyricSpace.LyricSpace.LyricSpace.parent
    :noindex:
 
-.. autoattribute:: experimental.tools.lyrictools.LyricSpace.LyricSpace.LyricSpace.parentage
-   :noindex:
-
 .. autoattribute:: experimental.tools.lyrictools.LyricSpace.LyricSpace.LyricSpace.preprolated_duration
    :noindex:
 
@@ -94,6 +91,9 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.lyrictools.LyricSpace.LyricSpace.LyricSpace.select_lineage
+   :noindex:
+
+.. automethod:: experimental.tools.lyrictools.LyricSpace.LyricSpace.LyricSpace.select_parentage
    :noindex:
 
 .. automethod:: experimental.tools.lyrictools.LyricSpace.LyricSpace.LyricSpace.select_tie_chain

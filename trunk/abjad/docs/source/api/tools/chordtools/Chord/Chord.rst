@@ -43,9 +43,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.chordtools.Chord.Chord.Chord.parent
    :noindex:
 
-.. autoattribute:: abjad.tools.chordtools.Chord.Chord.Chord.parentage
-   :noindex:
-
 .. autoattribute:: abjad.tools.chordtools.Chord.Chord.Chord.preprolated_duration
    :noindex:
 
@@ -116,6 +113,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.select_lineage
+   :noindex:
+
+.. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.select_parentage
    :noindex:
 
 .. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.select_tie_chain

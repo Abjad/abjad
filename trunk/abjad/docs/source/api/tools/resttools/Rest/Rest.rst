@@ -40,9 +40,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.resttools.Rest.Rest.Rest.parent
    :noindex:
 
-.. autoattribute:: abjad.tools.resttools.Rest.Rest.Rest.parentage
-   :noindex:
-
 .. autoattribute:: abjad.tools.resttools.Rest.Rest.Rest.preprolated_duration
    :noindex:
 
@@ -92,6 +89,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.resttools.Rest.Rest.Rest.select_lineage
+   :noindex:
+
+.. automethod:: abjad.tools.resttools.Rest.Rest.Rest.select_parentage
    :noindex:
 
 .. automethod:: abjad.tools.resttools.Rest.Rest.Rest.select_tie_chain

@@ -69,9 +69,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.parent
    :noindex:
 
-.. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.parentage
-   :noindex:
-
 .. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.preprolated_duration
    :noindex:
 
@@ -139,6 +136,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.measuretools.Measure.Measure.Measure.select_lineage
+   :noindex:
+
+.. automethod:: abjad.tools.measuretools.Measure.Measure.Measure.select_parentage
    :noindex:
 
 Special methods

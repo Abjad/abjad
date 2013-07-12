@@ -54,9 +54,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.voicetools.Voice.Voice.Voice.parent
    :noindex:
 
-.. autoattribute:: abjad.tools.voicetools.Voice.Voice.Voice.parentage
-   :noindex:
-
 .. autoattribute:: abjad.tools.voicetools.Voice.Voice.Voice.preprolated_duration
    :noindex:
 
@@ -124,6 +121,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.voicetools.Voice.Voice.Voice.select_lineage
+   :noindex:
+
+.. automethod:: abjad.tools.voicetools.Voice.Voice.Voice.select_parentage
    :noindex:
 
 Special methods

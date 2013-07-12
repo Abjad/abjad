@@ -52,9 +52,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.contexttools.Context.Context.Context.parent
    :noindex:
 
-.. autoattribute:: abjad.tools.contexttools.Context.Context.Context.parentage
-   :noindex:
-
 .. autoattribute:: abjad.tools.contexttools.Context.Context.Context.preprolated_duration
    :noindex:
 
@@ -122,6 +119,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.contexttools.Context.Context.Context.select_lineage
+   :noindex:
+
+.. automethod:: abjad.tools.contexttools.Context.Context.Context.select_parentage
    :noindex:
 
 Special methods

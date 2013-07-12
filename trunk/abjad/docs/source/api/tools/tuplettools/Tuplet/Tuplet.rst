@@ -64,9 +64,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.parent
    :noindex:
 
-.. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.parentage
-   :noindex:
-
 .. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.preprolated_duration
    :noindex:
 
@@ -140,6 +137,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.select_lineage
+   :noindex:
+
+.. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.select_parentage
    :noindex:
 
 Special methods

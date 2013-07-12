@@ -383,7 +383,7 @@ class Leaf(Component):
         from abjad.tools import leaftools
         from abjad.tools import spannertools
         spanner_classes = (spannertools.TieSpanner,)
-        for component in self.parentage:
+        for component in self.select_parentage():
             tie_spanners = component._get_spanners(spanner_classes)
             if len(tie_spanners) == 1:
                 tie_spanner = tie_spanners.pop()

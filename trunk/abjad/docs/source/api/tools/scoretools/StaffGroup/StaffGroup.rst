@@ -54,9 +54,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.parent
    :noindex:
 
-.. autoattribute:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.parentage
-   :noindex:
-
 .. autoattribute:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.preprolated_duration
    :noindex:
 
@@ -124,6 +121,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.select_lineage
+   :noindex:
+
+.. automethod:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.select_parentage
    :noindex:
 
 Special methods

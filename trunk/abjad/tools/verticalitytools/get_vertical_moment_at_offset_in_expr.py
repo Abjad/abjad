@@ -110,13 +110,13 @@ def get_vertical_moment_at_offset_in_expr(expr, offset):
                 raise TypeError(message)
     else:
         raise TypeError(message)
-    governors.sort(key=lambda x: x.parentage.score_index)
+    governors.sort(key=lambda x: x.select_parentage().score_index)
     governors = tuple(governors)
 
     components = []
     for governor in governors:
         components.extend(recurse(governor, offset))
-    components.sort(key=lambda x: x.parentage.score_index)
+    components.sort(key=lambda x: x.select_parentage().score_index)
     components = tuple(components)
 
     vertical_moment = verticalitytools.VerticalMoment(offset, governors, components)

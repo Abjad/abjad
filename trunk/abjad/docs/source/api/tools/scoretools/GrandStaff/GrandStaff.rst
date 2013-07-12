@@ -56,9 +56,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.parent
    :noindex:
 
-.. autoattribute:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.parentage
-   :noindex:
-
 .. autoattribute:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.preprolated_duration
    :noindex:
 
@@ -126,6 +123,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.select_lineage
+   :noindex:
+
+.. automethod:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.select_parentage
    :noindex:
 
 Special methods

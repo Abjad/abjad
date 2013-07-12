@@ -23,7 +23,7 @@ def pad_measures_in_expr(expr, front, back, pad_class, splice=False):
     if not isinstance(pad_class, (resttools.Rest, skiptools.Skip)):
         raise TypeError
 
-    root = expr[0].parentage.root
+    root = expr[0].select_parentage().root
 
     # forbid updates because
     # componenttools.extend_in_parent_of_component() calls self.stop_offset

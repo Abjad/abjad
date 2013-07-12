@@ -39,5 +39,6 @@ def label_leaves_in_expr_with_leaf_depth(expr, markup_direction=Down):
     '''
 
     for leaf in iterationtools.iterate_leaves_in_expr(expr):
-        label = markuptools.MarkupCommand('small', str(leaf.parentage.depth))
+        label = markuptools.MarkupCommand(
+            'small', str(leaf.select_parentage().depth))
         markuptools.Markup(label, markup_direction)(leaf)

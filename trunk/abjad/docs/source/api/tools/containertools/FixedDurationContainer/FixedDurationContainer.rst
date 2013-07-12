@@ -55,9 +55,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.parent
    :noindex:
 
-.. autoattribute:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.parentage
-   :noindex:
-
 .. autoattribute:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.preprolated_duration
    :noindex:
 
@@ -119,6 +116,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.select_lineage
+   :noindex:
+
+.. automethod:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.select_parentage
    :noindex:
 
 Special methods

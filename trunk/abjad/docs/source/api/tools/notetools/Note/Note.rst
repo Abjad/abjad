@@ -43,9 +43,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.notetools.Note.Note.Note.parent
    :noindex:
 
-.. autoattribute:: abjad.tools.notetools.Note.Note.Note.parentage
-   :noindex:
-
 .. autoattribute:: abjad.tools.notetools.Note.Note.Note.preprolated_duration
    :noindex:
 
@@ -104,6 +101,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.notetools.Note.Note.Note.select_lineage
+   :noindex:
+
+.. automethod:: abjad.tools.notetools.Note.Note.Note.select_parentage
    :noindex:
 
 .. automethod:: abjad.tools.notetools.Note.Note.Note.select_tie_chain

@@ -208,7 +208,7 @@ def split_leaf_at_offsets(
         preprolated_duration = duration / leaf_prolation
         shard = leaftools.set_preprolated_leaf_duration(
             new_leaf, preprolated_duration)
-        shard = [x.parentage.root for x in shard]
+        shard = [x.select_parentage().root for x in shard]
         result.append(shard)
 
     flattened_result = sequencetools.flatten_sequence(result)

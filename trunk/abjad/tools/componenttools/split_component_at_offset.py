@@ -277,7 +277,8 @@ def split_component_at_offset(
     if did_split_leaf:
         if  (tie_split_notes and isinstance(leaf_left_of_split, notetools.Note)) or \
             (tie_split_rests and isinstance(leaf_left_of_split, resttools.Rest)):
-            if leaf_left_of_split.parentage.root is leaf_right_of_split.parentage.root:
+            if leaf_left_of_split.select_parentage().root is \
+                leaf_right_of_split.select_parentage().root:
                 leaves_around_split = (leaf_left_of_split, leaf_right_of_split)
                 selection = selectiontools.Selection(leaves_around_split)
                 selection._attach_tie_spanner_to_leaf_pair()

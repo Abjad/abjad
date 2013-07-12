@@ -853,7 +853,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
                 components_at_level = []
                 for component in \
                     iterationtools.iterate_components_in_expr(self.payload):
-                    score_index = component.parentage.score_index
+                    score_index = component.select_parentage().score_index
                     if len(score_index) == rotation_indicator.level:
                         components_at_level.append(component)
             components_at_level = sequencetools.CyclicTuple(components_at_level)
@@ -930,7 +930,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
                 spannertools.get_spanners_attached_to_any_improper_child_of_component(
                     self.payload):
                 spanner._components.sort(
-                    lambda x, y: cmp(x.parentage.score_index, y.parentage.score_index))
+                    lambda x, y: cmp(x.select_parentage().score_index, y.select_parentage().score_index))
             assert wellformednesstools.is_well_formed_component(self.payload)
         return self
 

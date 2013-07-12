@@ -8,9 +8,9 @@ def test_Parentage_containment_signature_01():
 
     t = Staff("c'8 d'8 e'8 f'8")
 
-    containment = t.parentage.containment_signature
+    containment = t.select_parentage().containment_signature
     for component in iterationtools.iterate_components_in_expr(t):
-        assert component.parentage.containment_signature == containment
+        assert component.select_parentage().containment_signature == containment
 
 
 def test_Parentage_containment_signature_02():
@@ -20,9 +20,9 @@ def test_Parentage_containment_signature_02():
     t = Staff("c'8 d'8 e'8 f'8")
     t.name = 'foo'
 
-    containment = t.parentage.containment_signature
+    containment = t.select_parentage().containment_signature
     for component in iterationtools.iterate_components_in_expr(t):
-        assert component.parentage.containment_signature == containment
+        assert component.select_parentage().containment_signature == containment
 
 def test_Parentage_containment_signature_03():
     '''Leaves inside equally named sequential voices inside a staff
@@ -33,9 +33,9 @@ def test_Parentage_containment_signature_03():
     t[0].name = 'foo'
     t[1].name = 'foo'
 
-    containment = t[0][0].parentage.containment_signature
+    containment = t[0][0].select_parentage().containment_signature
     for leaf in t.leaves:
-        assert leaf.parentage.containment_signature == containment
+        assert leaf.select_parentage().containment_signature == containment
 
 
 def test_Parentage_containment_signature_04():
@@ -70,7 +70,8 @@ def test_Parentage_containment_signature_04():
     }
     '''
 
-    signatures = [leaf.parentage.containment_signature for leaf in t.leaves]
+    signatures = [leaf.select_parentage().containment_signature 
+        for leaf in t.leaves]
 
     assert signatures[0] == signatures[1]
     assert signatures[0] != signatures[2]
@@ -115,7 +116,8 @@ def test_Parentage_containment_signature_05():
     }
     '''
 
-    signatures = [leaf.parentage.containment_signature for leaf in t.leaves]
+    signatures = [leaf.select_parentage().containment_signature 
+        for leaf in t.leaves]
 
     signatures[0] == signatures[1]
     signatures[0] == signatures[2]
@@ -165,7 +167,8 @@ def test_Parentage_containment_signature_06():
     }
     '''
 
-    signatures = [leaf.parentage.containment_signature for leaf in t.leaves]
+    signatures = [leaf.select_parentage().containment_signature 
+        for leaf in t.leaves]
 
     signatures[0] == signatures[1]
     signatures[0] != signatures[2]
@@ -216,7 +219,8 @@ def test_Parentage_containment_signature_07():
     }
     '''
 
-    signatures = [leaf.parentage.containment_signature for leaf in t.leaves]
+    signatures = [leaf.select_parentage().containment_signature 
+        for leaf in t.leaves]
 
     signatures[0] != signatures[1]
     signatures[0] != signatures[2]
@@ -244,7 +248,8 @@ def test_Parentage_containment_signature_08():
     t1 = Note(0, (1, 8))
     t2 = Note(0, (1, 8))
 
-    assert t1.parentage.containment_signature != t2.parentage.containment_signature
+    assert t1.select_parentage().containment_signature != \
+        t2.select_parentage().containment_signature
 
 
 def test_Parentage_containment_signature_09():
@@ -260,8 +265,8 @@ def test_Parentage_containment_signature_09():
     t2.name = 'staff'
     t2[0].name = 'voice'
 
-    t1_leaf_signature = t1.leaves[0].parentage.containment_signature
-    t2_leaf_signature = t2.leaves[0].parentage.containment_signature
+    t1_leaf_signature = t1.leaves[0].select_parentage().containment_signature
+    t2_leaf_signature = t2.leaves[0].select_parentage().containment_signature
     assert t1_leaf_signature != t2_leaf_signature
 
 
@@ -282,9 +287,12 @@ def test_Parentage_containment_signature_10():
     }
     '''
 
-    assert t[0].parentage.containment_signature == t[-1].parentage.containment_signature
-    assert t[0].parentage.containment_signature == t[0][0].parentage.containment_signature
-    assert t[0][0].parentage.containment_signature == t[-1].parentage.containment_signature
+    assert t[0].select_parentage().containment_signature == \
+        t[-1].select_parentage().containment_signature
+    assert t[0].select_parentage().containment_signature == \
+        t[0][0].select_parentage().containment_signature
+    assert t[0][0].select_parentage().containment_signature == \
+        t[-1].select_parentage().containment_signature
 
 
 def test_Parentage_containment_signature_11():
@@ -308,7 +316,11 @@ def test_Parentage_containment_signature_11():
     }
     '''
 
-    assert t.leaves[0].parentage.containment_signature == t.leaves[1].parentage.containment_signature
-    assert t.leaves[0].parentage.containment_signature != t.leaves[2].parentage.containment_signature
-    assert t.leaves[2].parentage.containment_signature == t.leaves[3].parentage.containment_signature
-    assert t.leaves[2].parentage.containment_signature != t.leaves[0].parentage.containment_signature
+    assert t.leaves[0].select_parentage().containment_signature == \
+        t.leaves[1].select_parentage().containment_signature
+    assert t.leaves[0].select_parentage().containment_signature != \
+        t.leaves[2].select_parentage().containment_signature
+    assert t.leaves[2].select_parentage().containment_signature == \
+        t.leaves[3].select_parentage().containment_signature
+    assert t.leaves[2].select_parentage().containment_signature != \
+        t.leaves[0].select_parentage().containment_signature

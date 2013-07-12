@@ -42,9 +42,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.lyrictools.LyricHyphen.LyricHyphen.LyricHyphen.parent
    :noindex:
 
-.. autoattribute:: experimental.tools.lyrictools.LyricHyphen.LyricHyphen.LyricHyphen.parentage
-   :noindex:
-
 .. autoattribute:: experimental.tools.lyrictools.LyricHyphen.LyricHyphen.LyricHyphen.preprolated_duration
    :noindex:
 
@@ -94,6 +91,9 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.lyrictools.LyricHyphen.LyricHyphen.LyricHyphen.select_lineage
+   :noindex:
+
+.. automethod:: experimental.tools.lyrictools.LyricHyphen.LyricHyphen.LyricHyphen.select_parentage
    :noindex:
 
 .. automethod:: experimental.tools.lyrictools.LyricHyphen.LyricHyphen.LyricHyphen.select_tie_chain

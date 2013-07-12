@@ -43,9 +43,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.parent
    :noindex:
 
-.. autoattribute:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.parentage
-   :noindex:
-
 .. autoattribute:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.preprolated_duration
    :noindex:
 
@@ -110,6 +107,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.select_lineage
+   :noindex:
+
+.. automethod:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.select_parentage
    :noindex:
 
 Special methods

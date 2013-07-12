@@ -40,9 +40,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.skiptools.Skip.Skip.Skip.parent
    :noindex:
 
-.. autoattribute:: abjad.tools.skiptools.Skip.Skip.Skip.parentage
-   :noindex:
-
 .. autoattribute:: abjad.tools.skiptools.Skip.Skip.Skip.preprolated_duration
    :noindex:
 
@@ -92,6 +89,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.skiptools.Skip.Skip.Skip.select_lineage
+   :noindex:
+
+.. automethod:: abjad.tools.skiptools.Skip.Skip.Skip.select_parentage
    :noindex:
 
 .. automethod:: abjad.tools.skiptools.Skip.Skip.Skip.select_tie_chain

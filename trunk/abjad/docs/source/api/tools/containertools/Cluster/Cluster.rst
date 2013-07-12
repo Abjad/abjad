@@ -43,9 +43,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.containertools.Cluster.Cluster.Cluster.parent
    :noindex:
 
-.. autoattribute:: abjad.tools.containertools.Cluster.Cluster.Cluster.parentage
-   :noindex:
-
 .. autoattribute:: abjad.tools.containertools.Cluster.Cluster.Cluster.preprolated_duration
    :noindex:
 
@@ -104,6 +101,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.containertools.Cluster.Cluster.Cluster.select_lineage
+   :noindex:
+
+.. automethod:: abjad.tools.containertools.Cluster.Cluster.Cluster.select_parentage
    :noindex:
 
 Special methods

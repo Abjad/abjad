@@ -85,7 +85,8 @@ def fuse_tuplets(tuplets):
         raise TypeError('unknown tuplet type.')
 
     wrapped = False
-    if tuplets[0].parentage.root is not tuplets[-1].parentage.root:
+    if tuplets[0].select_parentage().root is not \
+        tuplets[-1].select_parentage().root:
         dummy_container = containertools.Container(tuplets)
         wrapped = True
     containertools.move_parentage_children_and_spanners_from_components_to_empty_container(

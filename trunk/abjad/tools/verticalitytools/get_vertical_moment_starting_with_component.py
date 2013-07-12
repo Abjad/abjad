@@ -70,6 +70,6 @@ def get_vertical_moment_starting_with_component(component, governor=None):
     offset = component.timespan.start_offset
 
     if governor is None:
-        governor = component.parentage.root
+        governor = component.select_parentage().root
 
     return verticalitytools.get_vertical_moment_at_offset_in_expr(governor, offset)

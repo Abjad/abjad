@@ -41,9 +41,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.containertools.Container.Container.Container.parent
    :noindex:
 
-.. autoattribute:: abjad.tools.containertools.Container.Container.Container.parentage
-   :noindex:
-
 .. autoattribute:: abjad.tools.containertools.Container.Container.Container.preprolated_duration
    :noindex:
 
@@ -102,6 +99,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.containertools.Container.Container.Container.select_lineage
+   :noindex:
+
+.. automethod:: abjad.tools.containertools.Container.Container.Container.select_parentage
    :noindex:
 
 Special methods

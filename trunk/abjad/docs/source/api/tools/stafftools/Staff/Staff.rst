@@ -54,9 +54,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.stafftools.Staff.Staff.Staff.parent
    :noindex:
 
-.. autoattribute:: abjad.tools.stafftools.Staff.Staff.Staff.parentage
-   :noindex:
-
 .. autoattribute:: abjad.tools.stafftools.Staff.Staff.Staff.preprolated_duration
    :noindex:
 
@@ -124,6 +121,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.stafftools.Staff.Staff.Staff.select_lineage
+   :noindex:
+
+.. automethod:: abjad.tools.stafftools.Staff.Staff.Staff.select_parentage
    :noindex:
 
 Special methods

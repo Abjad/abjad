@@ -38,9 +38,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.leaftools.Leaf.Leaf.Leaf.parent
    :noindex:
 
-.. autoattribute:: abjad.tools.leaftools.Leaf.Leaf.Leaf.parentage
-   :noindex:
-
 .. autoattribute:: abjad.tools.leaftools.Leaf.Leaf.Leaf.preprolated_duration
    :noindex:
 
@@ -90,6 +87,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.select_lineage
+   :noindex:
+
+.. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.select_parentage
    :noindex:
 
 .. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.select_tie_chain

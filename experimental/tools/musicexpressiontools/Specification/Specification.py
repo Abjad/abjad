@@ -246,7 +246,7 @@ class Specification(AbjadObject):
             return 0
         else:
             context = self.score_model[context_name]
-            return context.parentage.depth
+            return context.select_parentage().depth
 
     def get_single_context_set_expressions_rooted_to_specification_that_govern_context_name(
         self, attribute, context_name):

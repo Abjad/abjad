@@ -88,20 +88,20 @@ def all_are_thread_contiguous_components(
         return False
 
     orphan_components = True
-    if not first.parentage.is_orphan:
+    if not first.select_parentage().is_orphan:
         orphan_components = False
 
     same_thread = True
     thread_proper = True
 
-    first_thread = first.parentage.containment_signature
+    first_thread = first.select_parentage().containment_signature
     prev = first
     for cur in expr[1:]:
         if not isinstance(cur, component_classes):
             return False
-        if not cur.parentage.is_orphan:
+        if not cur.select_parentage().is_orphan:
             orphan_components = False
-        if not cur.parentage.containment_signature == first_thread:
+        if not cur.select_parentage().containment_signature == first_thread:
             same_thread = False
         if not componenttools.is_immediate_temporal_successor_of_component(
             prev, cur):
@@ -140,8 +140,8 @@ def _are_thread_proper(component_1, component_2, component_classes=None):
         return False
 
     # if component_1 and component_2 do not share a thread
-    first_thread = component_1.parentage.containment_signature
-    if not first_thread == component_2.parentage.containment_signature:
+    first_thread = component_1.select_parentage().containment_signature
+    if not first_thread == component_2.select_parentage().containment_signature:
         return False
 
     # find component_1 offset end time and component_2 offset begin
@@ -158,7 +158,7 @@ def _are_thread_proper(component_1, component_2, component_classes=None):
     for node in dfs:
         if node is component_2:
             break
-        node_thread = node.parentage.containment_signature
+        node_thread = node.select_parentage().containment_signature
         if node_thread == first_thread:
             node_begin = node.timespan.start_offset
             if first_end <= node_begin < second_begin:

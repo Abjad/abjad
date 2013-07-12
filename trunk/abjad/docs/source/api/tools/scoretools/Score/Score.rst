@@ -54,9 +54,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.scoretools.Score.Score.Score.parent
    :noindex:
 
-.. autoattribute:: abjad.tools.scoretools.Score.Score.Score.parentage
-   :noindex:
-
 .. autoattribute:: abjad.tools.scoretools.Score.Score.Score.preprolated_duration
    :noindex:
 
@@ -124,6 +121,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.scoretools.Score.Score.Score.select_lineage
+   :noindex:
+
+.. automethod:: abjad.tools.scoretools.Score.Score.Score.select_parentage
    :noindex:
 
 Special methods

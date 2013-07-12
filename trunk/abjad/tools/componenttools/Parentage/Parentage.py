@@ -123,7 +123,7 @@ class Parentage(Selection):
 
         ::
 
-            >>> score.leaves[0].parentage.containment_signature
+            >>> score.leaves[0].select_parentage().containment_signature
             ContainmentSignature(Note-..., Voice-'CustomVoice', Staff-..., Score-'CustomScore')
 
         Return containment signature object.
@@ -195,7 +195,7 @@ class Parentage(Selection):
             ...     Duration(2, 8), "c'8 d'8 e'8")
             >>> staff = Staff([tuplet])
             >>> note = staff.leaves[0]
-            >>> print note.parentage.parentage_signature
+            >>> print note.select_parentage().parentage_signature
                 staff: Staff-...
                 self: Note-...
 
@@ -271,7 +271,7 @@ class Parentage(Selection):
         ::
 
             >>> for leaf in score.leaves:
-            ...     leaf, leaf.parentage.score_index
+            ...     leaf, leaf.select_parentage().score_index
             ...
             (Note("c'8"), (0, 0, 0))
             (Note("d'8"), (0, 0, 1))
@@ -307,17 +307,17 @@ class Parentage(Selection):
 
         ::
 
-            >>> note.parentage.tuplet_depth
+            >>> note.select_parentage().tuplet_depth
             1
 
         ::
 
-            >>> tuplet.parentage.tuplet_depth
+            >>> tuplet.select_parentage().tuplet_depth
             0
 
         ::
 
-            >>> staff.parentage.tuplet_depth
+            >>> staff.select_parentage().tuplet_depth
             0
 
         Return nonnegative integer.

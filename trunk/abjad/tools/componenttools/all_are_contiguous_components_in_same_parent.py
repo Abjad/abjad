@@ -66,7 +66,7 @@ def all_are_contiguous_components_in_same_parent(
     for current in expr[1:]:
         if not isinstance(current, component_classes):
             return False
-        if not current.parentage.is_orphan:
+        if not current.select_parentage().is_orphan:
             orphan_components = False
         if not current._parent is first_parent:
             same_parent = False
