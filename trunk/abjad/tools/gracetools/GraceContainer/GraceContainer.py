@@ -23,6 +23,10 @@ class GraceContainer(Container):
 
     ::
 
+        >>> show(voice) # doctest: +SKIP
+
+    ::
+
         >>> grace_notes = [Note("c'16"), Note("d'16")]
         >>> gracetools.GraceContainer(grace_notes, kind='grace')(voice[1])
         Note("d'8")
@@ -41,6 +45,9 @@ class GraceContainer(Container):
             f'8 ]
         }
 
+    ::
+
+        >>> show(voice) # doctest: +SKIP
 
     ::
 
@@ -68,6 +75,9 @@ class GraceContainer(Container):
             f'8 ]
         }
 
+    ::
+
+        >>> show(voice) # doctest: +SKIP
 
     Grace objects are containers you can fill with notes, rests and chords.
 
