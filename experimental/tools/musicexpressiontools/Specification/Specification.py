@@ -38,8 +38,7 @@ class Specification(AbjadObject):
         context = \
             componenttools.get_first_component_in_expr_with_name(
             self.score_model, context_name)
-        parentage = \
-            componenttools.get_improper_parentage_of_component(context)
+        parentage = context.select_parentage(include_self=True)
         parentage_names = [parent.name for parent in parentage]
         return parentage_names
 

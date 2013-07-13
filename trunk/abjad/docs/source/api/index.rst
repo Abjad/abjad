@@ -111,7 +111,6 @@ Core composition packages
       tools/componenttools/get_improper_descendents_of_component_that_cross_offset
       tools/componenttools/get_improper_descendents_of_component_that_start_with_component
       tools/componenttools/get_improper_descendents_of_component_that_stop_with_component
-      tools/componenttools/get_improper_parentage_of_component
       tools/componenttools/get_improper_parentage_of_component_that_start_with_component
       tools/componenttools/get_improper_parentage_of_component_that_stop_with_component
       tools/componenttools/get_leftmost_components_with_total_duration_at_most
@@ -196,7 +195,6 @@ Core composition packages
       tools/componenttools/get_improper_descendents_of_component_that_cross_offset
       tools/componenttools/get_improper_descendents_of_component_that_start_with_component
       tools/componenttools/get_improper_descendents_of_component_that_stop_with_component
-      tools/componenttools/get_improper_parentage_of_component
       tools/componenttools/get_improper_parentage_of_component_that_start_with_component
       tools/componenttools/get_improper_parentage_of_component_that_stop_with_component
       tools/componenttools/get_leftmost_components_with_total_duration_at_most
