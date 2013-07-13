@@ -87,6 +87,9 @@ Methods
 .. automethod:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.select_components
    :noindex:
 
+.. automethod:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.select_contents
+   :noindex:
+
 .. automethod:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.select_descendants
    :noindex:
 

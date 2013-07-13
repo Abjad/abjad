@@ -117,6 +117,9 @@ Methods
 .. automethod:: abjad.tools.scoretools.Score.Score.Score.select_components
    :noindex:
 
+.. automethod:: abjad.tools.scoretools.Score.Score.Score.select_contents
+   :noindex:
+
 .. automethod:: abjad.tools.scoretools.Score.Score.Score.select_descendants
    :noindex:
 

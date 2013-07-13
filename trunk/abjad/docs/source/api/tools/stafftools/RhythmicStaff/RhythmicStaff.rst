@@ -119,6 +119,9 @@ Methods
 .. automethod:: abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.select_components
    :noindex:
 
+.. automethod:: abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.select_contents
+   :noindex:
+
 .. automethod:: abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.select_descendants
    :noindex:
 

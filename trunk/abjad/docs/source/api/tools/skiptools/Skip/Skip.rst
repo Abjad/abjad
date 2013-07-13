@@ -85,6 +85,9 @@ Methods
 .. automethod:: abjad.tools.skiptools.Skip.Skip.Skip.select_components
    :noindex:
 
+.. automethod:: abjad.tools.skiptools.Skip.Skip.Skip.select_contents
+   :noindex:
+
 .. automethod:: abjad.tools.skiptools.Skip.Skip.Skip.select_descendants
    :noindex:
 

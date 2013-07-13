@@ -112,6 +112,9 @@ Methods
 .. automethod:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.select_components
    :noindex:
 
+.. automethod:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.select_contents
+   :noindex:
+
 .. automethod:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.select_descendants
    :noindex:
 

@@ -57,6 +57,9 @@ Methods
 .. automethod:: abjad.tools.componenttools.Component.Component.Component.select_components
    :noindex:
 
+.. automethod:: abjad.tools.componenttools.Component.Component.Component.select_contents
+   :noindex:
+
 .. automethod:: abjad.tools.componenttools.Component.Component.Component.select_descendants
    :noindex:
 

@@ -87,6 +87,9 @@ Methods
 .. automethod:: experimental.tools.lyrictools.LyricSpace.LyricSpace.LyricSpace.select_components
    :noindex:
 
+.. automethod:: experimental.tools.lyrictools.LyricSpace.LyricSpace.LyricSpace.select_contents
+   :noindex:
+
 .. automethod:: experimental.tools.lyrictools.LyricSpace.LyricSpace.LyricSpace.select_descendants
    :noindex:
 

@@ -117,6 +117,9 @@ Methods
 .. automethod:: abjad.tools.stafftools.Staff.Staff.Staff.select_components
    :noindex:
 
+.. automethod:: abjad.tools.stafftools.Staff.Staff.Staff.select_contents
+   :noindex:
+
 .. automethod:: abjad.tools.stafftools.Staff.Staff.Staff.select_descendants
    :noindex:
 

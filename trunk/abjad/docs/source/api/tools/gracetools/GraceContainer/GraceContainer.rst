@@ -103,6 +103,9 @@ Methods
 .. automethod:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.select_components
    :noindex:
 
+.. automethod:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.select_contents
+   :noindex:
+
 .. automethod:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.select_descendants
    :noindex:
 

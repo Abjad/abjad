@@ -117,6 +117,9 @@ Methods
 .. automethod:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.select_components
    :noindex:
 
+.. automethod:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.select_contents
+   :noindex:
+
 .. automethod:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.select_descendants
    :noindex:
 

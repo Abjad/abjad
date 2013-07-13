@@ -83,6 +83,9 @@ Methods
 .. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.select_components
    :noindex:
 
+.. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.select_contents
+   :noindex:
+
 .. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.select_descendants
    :noindex:
 

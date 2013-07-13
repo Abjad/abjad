@@ -97,6 +97,9 @@ Methods
 .. automethod:: abjad.tools.containertools.Cluster.Cluster.Cluster.select_components
    :noindex:
 
+.. automethod:: abjad.tools.containertools.Cluster.Cluster.Cluster.select_contents
+   :noindex:
+
 .. automethod:: abjad.tools.containertools.Cluster.Cluster.Cluster.select_descendants
    :noindex:
 

@@ -525,6 +525,19 @@ class Component(AbjadObject):
             expr, component_class=component_classes)
         return selectiontools.Selection(components)
 
+    def select_contents(self, include_self=True):
+        '''Select contents of component.
+
+        Return selection.
+        '''
+        from abjad.tools import selectiontools
+        result = []
+        if include_self:
+            result.append(self)
+        result.extend(getattr(self, 'music', []))
+        result = selectiontools.Selection(result)
+        return result
+
     def select_descendants(self, include_self=True):
         '''Select descendants.
         '''

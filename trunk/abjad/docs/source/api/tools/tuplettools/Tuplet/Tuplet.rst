@@ -133,6 +133,9 @@ Methods
 .. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.select_components
    :noindex:
 
+.. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.select_contents
+   :noindex:
+
 .. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.select_descendants
    :noindex:
 

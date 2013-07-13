@@ -87,6 +87,9 @@ Methods
 .. automethod:: experimental.tools.lyrictools.LyricExtender.LyricExtender.LyricExtender.select_components
    :noindex:
 
+.. automethod:: experimental.tools.lyrictools.LyricExtender.LyricExtender.LyricExtender.select_contents
+   :noindex:
+
 .. automethod:: experimental.tools.lyrictools.LyricExtender.LyricExtender.LyricExtender.select_descendants
    :noindex:
 

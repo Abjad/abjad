@@ -117,6 +117,9 @@ Methods
 .. automethod:: abjad.tools.voicetools.Voice.Voice.Voice.select_components
    :noindex:
 
+.. automethod:: abjad.tools.voicetools.Voice.Voice.Voice.select_contents
+   :noindex:
+
 .. automethod:: abjad.tools.voicetools.Voice.Voice.Voice.select_descendants
    :noindex:
 

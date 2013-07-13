@@ -115,6 +115,9 @@ Methods
 .. automethod:: abjad.tools.contexttools.Context.Context.Context.select_components
    :noindex:
 
+.. automethod:: abjad.tools.contexttools.Context.Context.Context.select_contents
+   :noindex:
+
 .. automethod:: abjad.tools.contexttools.Context.Context.Context.select_descendants
    :noindex:
 

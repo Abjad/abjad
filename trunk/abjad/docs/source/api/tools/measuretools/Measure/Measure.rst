@@ -132,6 +132,9 @@ Methods
 .. automethod:: abjad.tools.measuretools.Measure.Measure.Measure.select_components
    :noindex:
 
+.. automethod:: abjad.tools.measuretools.Measure.Measure.Measure.select_contents
+   :noindex:
+
 .. automethod:: abjad.tools.measuretools.Measure.Measure.Measure.select_descendants
    :noindex:
 

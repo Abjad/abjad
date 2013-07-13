@@ -119,6 +119,9 @@ Methods
 .. automethod:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.select_components
    :noindex:
 
+.. automethod:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.select_contents
+   :noindex:
+
 .. automethod:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.select_descendants
    :noindex:
 

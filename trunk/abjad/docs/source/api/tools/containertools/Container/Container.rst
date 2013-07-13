@@ -95,6 +95,9 @@ Methods
 .. automethod:: abjad.tools.containertools.Container.Container.Container.select_components
    :noindex:
 
+.. automethod:: abjad.tools.containertools.Container.Container.Container.select_contents
+   :noindex:
+
 .. automethod:: abjad.tools.containertools.Container.Container.Container.select_descendants
    :noindex:
 

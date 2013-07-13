@@ -85,6 +85,9 @@ Methods
 .. automethod:: abjad.tools.resttools.Rest.Rest.Rest.select_components
    :noindex:
 
+.. automethod:: abjad.tools.resttools.Rest.Rest.Rest.select_contents
+   :noindex:
+
 .. automethod:: abjad.tools.resttools.Rest.Rest.Rest.select_descendants
    :noindex:
 

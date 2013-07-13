@@ -97,6 +97,9 @@ Methods
 .. automethod:: experimental.tools.lyrictools.AddLyrics.AddLyrics.AddLyrics.select_components
    :noindex:
 
+.. automethod:: experimental.tools.lyrictools.AddLyrics.AddLyrics.AddLyrics.select_contents
+   :noindex:
+
 .. automethod:: experimental.tools.lyrictools.AddLyrics.AddLyrics.AddLyrics.select_descendants
    :noindex:
 

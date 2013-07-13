@@ -104,6 +104,9 @@ Methods
 .. automethod:: abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.select_components
    :noindex:
 
+.. automethod:: abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.select_contents
+   :noindex:
+
 .. automethod:: abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.select_descendants
    :noindex:
 

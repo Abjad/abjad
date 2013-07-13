@@ -109,6 +109,9 @@ Methods
 .. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.select_components
    :noindex:
 
+.. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.select_contents
+   :noindex:
+
 .. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.select_descendants
    :noindex:
 
