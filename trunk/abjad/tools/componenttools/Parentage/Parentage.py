@@ -66,8 +66,9 @@ class Parentage(Selection):
             music = componenttools.get_improper_parentage_of_component(
                 component)
         else:
-            music = componenttools.get_proper_parentage_of_component(
+            music = componenttools.get_improper_parentage_of_component(
                 component)
+            music = music[1:]
         Selection.__init__(self, music)
         self._component = component
 
