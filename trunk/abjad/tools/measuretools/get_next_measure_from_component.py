@@ -53,7 +53,7 @@ def get_next_measure_from_component(component):
     from abjad.tools import measuretools
 
     if isinstance(component, leaftools.Leaf):
-        for parent in componenttools.get_proper_parentage_of_component(component):
+        for parent in component.select_parentage(include_self=False):
             if isinstance(parent, measuretools.Measure):
                 return parent
         raise MissingMeasureError
@@ -69,4 +69,5 @@ def get_next_measure_from_component(component):
         except StopIteration:
             raise MissingMeasureError
     else:
-        raise TypeError('"%s" is unknown Abjad component.' % component)
+        message = 'unknown component: {!r}.'
+        raise TypeError(message.format(component))

@@ -1,7 +1,9 @@
 def get_improper_parentage_of_component_that_start_with_component(component):
     r'''.. versionadded:: 2.9
 
-    Get improper parentage of `component` that start with `component`::
+    Get improper parentage of `component` that start with `component`:
+
+    ::
 
         >>> staff = Staff(r"c' << \new Voice { d' } \new Voice { e' } >> f'")
 
@@ -27,7 +29,8 @@ def get_improper_parentage_of_component_that_start_with_component(component):
         ...     staff.leaves[1])
         [Note("d'4"), Voice{1}, <<Voice{1}, Voice{1}>>]
 
-    Return list of `component` together with proper parentage that start with `component`.
+    Return list of `component` together with proper parentage that start 
+    with `component`.
     '''
     from abjad.tools import componenttools
 
@@ -38,13 +41,13 @@ def get_improper_parentage_of_component_that_start_with_component(component):
     result.append(component)
 
     # add proper parentage that start with component
-    prev = component
-    for parent in componenttools.get_proper_parentage_of_component(component):
+    previous = component
+    for parent in component.select_parentage(include_self=False):
         if parent.is_parallel:
             result.append(parent)
-        elif parent.index(prev) == 0:
+        elif parent.index(previous) == 0:
             result.append(parent)
-        prev = parent
+        previous = parent
 
     # return result
     return result

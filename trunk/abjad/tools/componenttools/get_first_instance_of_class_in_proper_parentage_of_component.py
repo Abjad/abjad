@@ -16,6 +16,6 @@ def get_first_instance_of_class_in_proper_parentage_of_component(
     '''
     from abjad.tools import componenttools
 
-    for parent in componenttools.get_proper_parentage_of_component(component):
+    for parent in component.select_parentage(include_self=False):
         if isinstance(parent, parentage_class):
             return parent

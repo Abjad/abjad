@@ -35,7 +35,8 @@ def remove_leaf_and_shrink_durated_parent_containers(leaf):
 
     ::
 
-        >>> leaftools.remove_leaf_and_shrink_durated_parent_containers(measure.leaves[0])
+        >>> leaftools.remove_leaf_and_shrink_durated_parent_containers(
+        ...     measure.leaves[0])
 
     ::
 
@@ -94,7 +95,7 @@ def remove_leaf_and_shrink_durated_parent_containers(leaf):
                         tuplettools.FixedDurationTuplet(new_target, [x])
         parent = parent._parent
         i += 1
-    parentage = componenttools.get_proper_parentage_of_component(leaf)
+    parentage = leaf.select_parentage(include_self=False)
     componenttools.remove_component_subtree_from_score_and_spanners([leaf])
     for x in parentage:
         if not len(x):

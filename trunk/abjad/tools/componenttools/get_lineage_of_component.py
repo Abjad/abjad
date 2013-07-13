@@ -30,7 +30,7 @@ def get_lineage_of_component(component):
     result = []
 
     # add parentage of component
-    result.extend(reversed(componenttools.get_proper_parentage_of_component(component)))
+    result.extend(reversed(component.select_parentage(include_self=False)))
 
     # add component
     result.append(component)

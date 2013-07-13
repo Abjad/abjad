@@ -1,7 +1,10 @@
-def get_first_component_with_name_in_proper_parentage_of_component(component, name):
+def get_first_component_with_name_in_proper_parentage_of_component(
+    component, name):
     r'''.. versionadded:: 2.0
 
-    Get first component with `name` in proper parentage of `component`::
+    Get first component with `name` in proper parentage of `component`:
+
+    ::
 
         >>> score = Score([Staff("c'4 d'4 e'4 f'4")])
         >>> score.name = 'The Score'
@@ -36,8 +39,6 @@ def get_first_component_with_name_in_proper_parentage_of_component(component, na
 
     Return component or none.
     '''
-    from abjad.tools import componenttools
-
-    for parent in componenttools.get_proper_parentage_of_component(component):
+    for parent in component.select_parentage(include_self=False):
         if getattr(parent, 'name', None) == name:
             return parent

@@ -52,7 +52,7 @@ def get_previous_measure_from_component(component):
     from abjad.tools import measuretools
 
     if isinstance(component, leaftools.Leaf):
-        for parent in componenttools.get_proper_parentage_of_component(component):
+        for parent in component.select_parentage(include_self=False):
             if isinstance(parent, measuretools.Measure):
                 return parent
         raise MissingMeasureError
@@ -61,11 +61,13 @@ def get_previous_measure_from_component(component):
     elif isinstance(component, containertools.Container):
         return measuretools.get_measure_that_stops_with_container(component)
     elif isinstance(component, (list, tuple)):
-        measure_generator = iterationtools.iterate_measures_in_expr(component, reverse=True)
+        measure_generator = \
+            iterationtools.iterate_measures_in_expr(component, reverse=True)
         try:
             measure = measure_generator.next()
             return measure
         except StopIteration:
             raise MissingMeasureError
     else:
-        raise TypeError('"%s" is unknown Abjad component.' % component)
+        message = 'unknown component: {!r}.'
+        raise TypeError(message.format(component))
