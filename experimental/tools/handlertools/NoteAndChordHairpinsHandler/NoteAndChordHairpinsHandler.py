@@ -4,6 +4,7 @@ from abjad.tools import componenttools
 from abjad.tools import iterationtools
 from abjad.tools import marktools
 from abjad.tools import notetools
+from abjad.tools import selectiontools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from experimental.tools.handlertools.DynamicHandler import DynamicHandler
@@ -28,13 +29,15 @@ class NoteAndChordHairpinsHandler(DynamicHandler):
             leaves, (notetools.Note, chordtools.Chord)))
         hairpin_tokens = sequencetools.CyclicList(self.hairpin_tokens)
         for i, group in enumerate(groups):
+            if not isinstance(group, selectiontools.Selection):
+                group = selectiontools.Selection(group)
             is_short_group = False
             hairpin_token = hairpin_tokens[offset+i]
             if len(group) == 1:
                 is_short_group = True
             elif self.minimum_duration is not None:
-                duration = componenttools.sum_duration_of_components(group)
-                if duration < self.minimum_duration:
+                #duration = componenttools.sum_duration_of_components(group)
+                if group.duration < self.minimum_duration:
                     is_short_group = True
             if is_short_group:
                 start_dynamic = hairpin_token[0]

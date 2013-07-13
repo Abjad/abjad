@@ -348,13 +348,16 @@ def split_components_at_offsets(components, offsets,
     '''
     from abjad.tools import componenttools
     from abjad.tools import leaftools
+    from abjad.tools import selectiontools
 
     # check input
     assert componenttools.all_are_components(components), repr(components)
+    if not isinstance(components, selectiontools.Selection):
+        components = selectiontools.Selection(components)
     offsets = [durationtools.Offset(offset) for offset in offsets]
 
     # calculate total component duration
-    total_component_duration = componenttools.sum_duration_of_components(components)
+    total_component_duration = components.duration
     total_offset_duration = sum(offsets)
 
     # calculate offsets
