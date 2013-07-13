@@ -57,13 +57,16 @@ class Parentage(Selection):
 
     ### INITIALIZER ###
 
-    def __init__(self, component=None):
+    def __init__(self, component=None, include_self=True):
         from abjad.tools import componenttools
+        assert isinstance(component, (componenttools.Component, type(None)))
         if component is None:
             music = ()
-        else:
-            assert isinstance(component, componenttools.Component)
+        elif include_self:
             music = componenttools.get_improper_parentage_of_component(
+                component)
+        else:
+            music = componenttools.get_proper_parentage_of_component(
                 component)
         Selection.__init__(self, music)
         self._component = component

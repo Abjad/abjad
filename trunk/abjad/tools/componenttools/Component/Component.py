@@ -292,8 +292,7 @@ class Component(AbjadObject):
     def _remove_named_children_from_parentage(self, name_dictionary):
         from abjad.tools import componenttools
         if self._parent is not None and name_dictionary:
-            parentage = componenttools.get_proper_parentage_of_component(self)
-            for parent in parentage:
+            for parent in self.select_parentage(include_self=False):
                 named_children = parent._named_children
                 for name in name_dictionary:
                     for component in name_dictionary[name]:
@@ -304,8 +303,7 @@ class Component(AbjadObject):
     def _restore_named_children_to_parentage(self, name_dictionary):
         from abjad.tools import componenttools
         if self._parent is not None and name_dictionary:
-            parentage = componenttools.get_proper_parentage_of_component(self)
-            for parent in parentage:
+            for parent in self.select_parentage(include_self=False):
                 named_children = parent._named_children
                 for name in name_dictionary:
                     if name in named_children:
@@ -541,8 +539,8 @@ class Component(AbjadObject):
         from abjad.tools import componenttools
         return componenttools.Lineage(self)
 
-    def select_parentage(self):
+    def select_parentage(self, include_self=True):
         '''Select parentage.
         '''
         from abjad.tools import componenttools
-        return componenttools.Parentage(self)
+        return componenttools.Parentage(self, include_self=include_self)

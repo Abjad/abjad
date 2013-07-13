@@ -312,9 +312,8 @@ class Context(Container):
             return self._name
         def fset(self, arg):
             assert isinstance(arg, (str, type(None)))
-            parentage = componenttools.get_proper_parentage_of_component(self)
             old_name = self._name
-            for parent in parentage:
+            for parent in self.select_parentage(include_self=False):
                 named_children = parent._named_children
                 if old_name is not None:
                     named_children[old_name].remove(self)

@@ -97,11 +97,12 @@ def get_all_mark_format_contributions(component):
 
     ### handle context marks ###
 
-    for parent in componenttools.get_proper_parentage_of_component(component):
+    for parent in component.select_parentage(include_self=False):
         for mark in parent._start_marks:
             if isinstance(mark, contexttools.ContextMark):
                 if mark not in context_marks:
-                    if formattools.is_formattable_context_mark_for_component(mark, component):
+                    if formattools.is_formattable_context_mark_for_component(
+                        mark, component):
                         context_marks.append(mark)
 
     #for candidate in context_mark_candidates:
