@@ -106,7 +106,6 @@ Core composition packages
       tools/componenttools/get_first_component_with_name_in_proper_parentage_of_component
       tools/componenttools/get_first_instance_of_class_in_improper_parentage_of_component
       tools/componenttools/get_first_instance_of_class_in_proper_parentage_of_component
-      tools/componenttools/get_improper_contents_of_component
       tools/componenttools/get_improper_descendants_of_component_that_cross_offset
       tools/componenttools/get_improper_descendants_of_component_that_start_with_component
       tools/componenttools/get_improper_descendants_of_component_that_stop_with_component
@@ -121,7 +120,6 @@ Core composition packages
       tools/componenttools/get_nth_namesake_from_component
       tools/componenttools/get_nth_sibling_from_component
       tools/componenttools/get_parent_and_start_stop_indices_of_components
-      tools/componenttools/get_proper_contents_of_component
       tools/componenttools/is_immediate_temporal_successor_of_component
       tools/componenttools/move_component_subtree_to_right_in_immediate_parent_of_component
       tools/componenttools/move_parentage_and_spanners_from_components_to_components
@@ -186,7 +184,6 @@ Core composition packages
       tools/componenttools/get_first_component_with_name_in_proper_parentage_of_component
       tools/componenttools/get_first_instance_of_class_in_improper_parentage_of_component
       tools/componenttools/get_first_instance_of_class_in_proper_parentage_of_component
-      tools/componenttools/get_improper_contents_of_component
       tools/componenttools/get_improper_descendants_of_component_that_cross_offset
       tools/componenttools/get_improper_descendants_of_component_that_start_with_component
       tools/componenttools/get_improper_descendants_of_component_that_stop_with_component
@@ -201,7 +198,6 @@ Core composition packages
       tools/componenttools/get_nth_namesake_from_component
       tools/componenttools/get_nth_sibling_from_component
       tools/componenttools/get_parent_and_start_stop_indices_of_components
-      tools/componenttools/get_proper_contents_of_component
       tools/componenttools/is_immediate_temporal_successor_of_component
       tools/componenttools/move_component_subtree_to_right_in_immediate_parent_of_component
       tools/componenttools/move_parentage_and_spanners_from_components_to_components
