@@ -63,7 +63,10 @@ class Lineage(Selection):
     def __init__(self, component):
         from abjad.tools import componenttools
         assert isinstance(component, componenttools.Component)
-        music = componenttools.get_lineage_of_component(component)
+        music = []
+        music.extend(reversed(component.select_parentage(include_self=False)))
+        music.append(component)
+        music.extend(componenttools.get_proper_descendents_of_component(component))
         Selection.__init__(self, music)
         self._component = component
 

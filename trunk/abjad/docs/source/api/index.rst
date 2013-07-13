@@ -114,7 +114,6 @@ Core composition packages
       tools/componenttools/get_improper_parentage_of_component_that_start_with_component
       tools/componenttools/get_improper_parentage_of_component_that_stop_with_component
       tools/componenttools/get_leftmost_components_with_total_duration_at_most
-      tools/componenttools/get_lineage_of_component
       tools/componenttools/get_lineage_of_component_that_start_with_component
       tools/componenttools/get_lineage_of_component_that_stop_with_component
       tools/componenttools/get_most_distant_sequential_container_in_improper_parentage_of_component
@@ -198,7 +197,6 @@ Core composition packages
       tools/componenttools/get_improper_parentage_of_component_that_start_with_component
       tools/componenttools/get_improper_parentage_of_component_that_stop_with_component
       tools/componenttools/get_leftmost_components_with_total_duration_at_most
-      tools/componenttools/get_lineage_of_component
       tools/componenttools/get_lineage_of_component_that_start_with_component
       tools/componenttools/get_lineage_of_component_that_stop_with_component
       tools/componenttools/get_most_distant_sequential_container_in_improper_parentage_of_component
