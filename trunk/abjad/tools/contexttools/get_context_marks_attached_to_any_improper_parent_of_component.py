@@ -34,7 +34,7 @@ def get_context_marks_attached_to_any_improper_parent_of_component(component):
 
     result = []
 
-    for component in componenttools.get_improper_parentage_of_component(component):
+    for component in component.select_parentage(include_self=True):
         for mark in component._start_marks:
             if isinstance(mark, contexttools.ContextMark):
                 result.append(mark)

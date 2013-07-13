@@ -14,9 +14,6 @@ def get_first_instance_of_class_in_improper_parentage_of_component(
 
     Return component or none.
     '''
-    from abjad.tools import componenttools
-
-    for parent in \
-        componenttools.get_improper_parentage_of_component(component):
+    for parent in component.select_parentage(include_self=True):
         if isinstance(parent, parentage_class):
             return parent

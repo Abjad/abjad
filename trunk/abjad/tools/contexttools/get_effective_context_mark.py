@@ -54,8 +54,7 @@ def get_effective_context_mark(component, context_mark_class):
     # gathering candidate marks
     candidate_marks = datastructuretools.SortedCollection(
         key=lambda x: x.start_component.timespan.start_offset)
-    for parent in \
-        componenttools.get_improper_parentage_of_component(component):
+    for parent in component.select_parentage(include_self=True):
         parent_marks = parent._dependent_context_marks
         for mark in parent_marks:
             if isinstance(mark, context_mark_class):

@@ -402,9 +402,7 @@ class Component(AbjadObject):
 
         Only dynamic measures mark time signature for udpate.
         '''
-        from abjad.tools import componenttools
-        for component in \
-            componenttools.get_improper_parentage_of_component(self):
+        for component in self.select_parentage(include_self=True):
             if value == 'prolated':
                 component._prolated_offset_values_are_current = False
             elif value == 'seconds':

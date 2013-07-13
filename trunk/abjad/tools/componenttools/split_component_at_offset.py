@@ -234,8 +234,7 @@ def split_component_at_offset(
 
     # find component to right of split that is also immediate child of 
     # last duration-crossing container
-    for component in componenttools.get_improper_parentage_of_component(
-        leaf_right_of_split):
+    for component in leaf_right_of_split.select_parentage(include_self=True):
         if component.parent is duration_crossing_containers[-1]:
             highest_level_component_right_of_split = component
             break

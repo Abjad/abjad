@@ -1,9 +1,10 @@
-def get_most_distant_sequential_container_in_improper_parentage_of_component(component):
+def get_most_distant_sequential_container_in_improper_parentage_of_component(
+    component):
     r'''.. versionadded:: 2.9
 
     Get first sequential container in the improper parentage of `component`
-    such that the parent of sequential container is either a parellel container
-    or else none:
+    such that the parent of sequential container is either a parellel 
+    container or else none:
 
     ::
 
@@ -40,13 +41,15 @@ def get_most_distant_sequential_container_in_improper_parentage_of_component(com
         ...     note)
         Voice-"voice 1"{2}
 
-    Return none when no such container exists in the improper parentage of `component`.
+    Return none when no such container exists in the improper 
+    parentage of `component`.
     '''
     from abjad.tools import containertools
     from abjad.tools import componenttools
 
-    for component in componenttools.get_improper_parentage_of_component(component):
-        if isinstance(component, containertools.Container) and not component.is_parallel:
+    for component in component.select_parentage(include_self=True):
+        if isinstance(component, containertools.Container) and \
+            not component.is_parallel:
             if component.parent is None:
                 return component
             if isinstance(component.parent, containertools.Container) and \

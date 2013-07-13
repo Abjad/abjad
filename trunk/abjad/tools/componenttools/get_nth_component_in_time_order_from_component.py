@@ -82,16 +82,18 @@ def get_nth_component_in_time_order_from_component(component, n):
     assert mathtools.is_integer_equivalent_expr(n)
 
     def _next(component):
-        for parent in componenttools.get_improper_parentage_of_component(component):
-            next_sibling = componenttools.get_nth_sibling_from_component(parent, 1)
-            if next_sibling is not None:
-                return next_sibling
+        if component is not None:
+            for parent in component.select_parentage(include_self=True):
+                next_sibling = componenttools.get_nth_sibling_from_component(parent, 1)
+                if next_sibling is not None:
+                    return next_sibling
 
     def _prev(component):
-        for parent in componenttools.get_improper_parentage_of_component(component):
-            next_sibling = componenttools.get_nth_sibling_from_component(parent, -1)
-            if next_sibling is not None:
-                return next_sibling
+        if component is not None:
+            for parent in component.select_parentage(include_self=True):
+                next_sibling = componenttools.get_nth_sibling_from_component(parent, -1)
+                if next_sibling is not None:
+                    return next_sibling
 
     result = component
 

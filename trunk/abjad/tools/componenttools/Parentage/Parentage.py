@@ -62,13 +62,16 @@ class Parentage(Selection):
         assert isinstance(component, (componenttools.Component, type(None)))
         if component is None:
             music = ()
-        elif include_self:
-            music = componenttools.get_improper_parentage_of_component(
-                component)
         else:
-            music = componenttools.get_improper_parentage_of_component(
-                component)
-            music = music[1:]
+            music = []
+            if include_self:
+                parent = component
+            else:
+                parent = component.parent
+            while parent is not None:
+                music.append(parent)
+                parent = parent.parent
+            music = tuple(music)
         Selection.__init__(self, music)
         self._component = component
 

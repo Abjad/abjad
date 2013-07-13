@@ -1,7 +1,9 @@
 def get_lineage_of_component_that_stop_with_component(component):
     r'''.. versionadded:: 2.9
 
-    Get lineage of `component` that stop with `component`::
+    Get lineage of `component` that stop with `component`:
+
+    ::
 
         >>> staff = Staff(r"c' << \new Voice { d'8 e'8 } \new Voice { d''8 e''8 } >> f'4")
 
