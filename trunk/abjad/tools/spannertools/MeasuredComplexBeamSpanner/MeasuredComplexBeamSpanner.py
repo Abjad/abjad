@@ -82,11 +82,10 @@ class MeasuredComplexBeamSpanner(ComplexBeamSpanner):
         if self.is_beamable_component(leaf):
             if self._is_exterior_leaf(leaf):
                 left, right = self._get_left_right_for_exterior_leaf(leaf)
-            elif componenttools.get_first_instance_of_class_in_proper_parentage_of_component(
-                leaf, measuretools.Measure) is not None:
-                measure = \
-                    componenttools.get_first_instance_of_class_in_proper_parentage_of_component(
-                    leaf, measuretools.Measure)
+            elif leaf.select_parentage(include_self=False).get_first(
+                measuretools.Measure) is not None:
+                measure = leaf.select_parentage(include_self=False).get_first(
+                    measuretools.Measure)
                 # leaf at beginning of measure
                 if measure._is_one_of_my_first_leaves(leaf):
                     assert isinstance(self.span, int)

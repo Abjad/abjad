@@ -12,8 +12,8 @@ class NestedMeasureCheck(Check):
         violators = []
         total = 0
         for t in iterationtools.iterate_measures_in_expr(expr):
-            if componenttools.get_first_instance_of_class_in_proper_parentage_of_component(
-                t, measuretools.Measure):
+            parentage = t.select_parentage(include_self=False)
+            if parentage.get_first(measuretools.Measure):
                 violators.append(t)
             total += 1
         return violators, total
