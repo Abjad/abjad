@@ -242,8 +242,6 @@ Core composition packages
       tools/containertools/eject_contents_of_container
       tools/containertools/fuse_like_named_contiguous_containers_in_expr
       tools/containertools/get_element_starting_at_exactly_offset
-      tools/containertools/get_first_container_in_improper_parentage_of_component
-      tools/containertools/get_first_container_in_proper_parentage_of_component
       tools/containertools/get_first_element_starting_at_or_after_offset
       tools/containertools/get_first_element_starting_before_or_at_offset
       tools/containertools/get_first_element_starting_strictly_after_offset
@@ -287,8 +285,6 @@ Core composition packages
       tools/containertools/eject_contents_of_container
       tools/containertools/fuse_like_named_contiguous_containers_in_expr
       tools/containertools/get_element_starting_at_exactly_offset
-      tools/containertools/get_first_container_in_improper_parentage_of_component
-      tools/containertools/get_first_container_in_proper_parentage_of_component
       tools/containertools/get_first_element_starting_at_or_after_offset
       tools/containertools/get_first_element_starting_before_or_at_offset
       tools/containertools/get_first_element_starting_strictly_after_offset
@@ -1551,8 +1547,6 @@ Core composition packages
       tools/measuretools/fill_measures_in_expr_with_time_signature_denominator_notes
       tools/measuretools/fuse_contiguous_measures_in_container_cyclically_by_counts
       tools/measuretools/fuse_measures
-      tools/measuretools/get_first_measure_in_improper_parentage_of_component
-      tools/measuretools/get_first_measure_in_proper_parentage_of_component
       tools/measuretools/get_likely_multiplier_of_components
       tools/measuretools/get_measure_that_starts_with_container
       tools/measuretools/get_measure_that_stops_with_container
@@ -1604,8 +1598,6 @@ Core composition packages
       tools/measuretools/fill_measures_in_expr_with_time_signature_denominator_notes
       tools/measuretools/fuse_contiguous_measures_in_container_cyclically_by_counts
       tools/measuretools/fuse_measures
-      tools/measuretools/get_first_measure_in_improper_parentage_of_component
-      tools/measuretools/get_first_measure_in_proper_parentage_of_component
       tools/measuretools/get_likely_multiplier_of_components
       tools/measuretools/get_measure_that_starts_with_container
       tools/measuretools/get_measure_that_stops_with_container
@@ -2616,8 +2608,6 @@ Core composition packages
       tools/scoretools/add_double_bar_to_end_of_score
       tools/scoretools/add_markup_to_end_of_score
       tools/scoretools/all_are_scores
-      tools/scoretools/get_first_score_in_improper_parentage_of_component
-      tools/scoretools/get_first_score_in_proper_parentage_of_component
       tools/scoretools/list_performer_names
       tools/scoretools/list_primary_performer_names
       tools/scoretools/make_empty_piano_score
@@ -2647,8 +2637,6 @@ Core composition packages
       tools/scoretools/add_double_bar_to_end_of_score
       tools/scoretools/add_markup_to_end_of_score
       tools/scoretools/all_are_scores
-      tools/scoretools/get_first_score_in_improper_parentage_of_component
-      tools/scoretools/get_first_score_in_proper_parentage_of_component
       tools/scoretools/list_performer_names
       tools/scoretools/list_primary_performer_names
       tools/scoretools/make_empty_piano_score
@@ -3199,8 +3187,6 @@ Core composition packages
       :maxdepth: 1
 
       tools/stafftools/all_are_staves
-      tools/stafftools/get_first_staff_in_improper_parentage_of_component
-      tools/stafftools/get_first_staff_in_proper_parentage_of_component
       tools/stafftools/make_rhythmic_sketch_staff
 
 .. only:: latex
@@ -3219,8 +3205,6 @@ Core composition packages
    .. toctree::
 
       tools/stafftools/all_are_staves
-      tools/stafftools/get_first_staff_in_improper_parentage_of_component
-      tools/stafftools/get_first_staff_in_proper_parentage_of_component
       tools/stafftools/make_rhythmic_sketch_staff
 
 :py:mod:`stringtools <abjad.tools.stringtools>`
@@ -3755,8 +3739,6 @@ Core composition packages
       tools/tuplettools/change_tuplets_in_expr_to_fixed_duration_tuplets
       tools/tuplettools/fix_contents_of_tuplets_in_expr
       tools/tuplettools/fuse_tuplets
-      tools/tuplettools/get_first_tuplet_in_improper_parentage_of_component
-      tools/tuplettools/get_first_tuplet_in_proper_parentage_of_component
       tools/tuplettools/leaf_to_tuplet_with_n_notes_of_equal_written_duration
       tools/tuplettools/leaf_to_tuplet_with_ratio
       tools/tuplettools/make_tuplet_from_duration_and_ratio
@@ -3788,8 +3770,6 @@ Core composition packages
       tools/tuplettools/change_tuplets_in_expr_to_fixed_duration_tuplets
       tools/tuplettools/fix_contents_of_tuplets_in_expr
       tools/tuplettools/fuse_tuplets
-      tools/tuplettools/get_first_tuplet_in_improper_parentage_of_component
-      tools/tuplettools/get_first_tuplet_in_proper_parentage_of_component
       tools/tuplettools/leaf_to_tuplet_with_n_notes_of_equal_written_duration
       tools/tuplettools/leaf_to_tuplet_with_ratio
       tools/tuplettools/make_tuplet_from_duration_and_ratio
@@ -3852,8 +3832,6 @@ Core composition packages
       :maxdepth: 1
 
       tools/voicetools/all_are_voices
-      tools/voicetools/get_first_voice_in_improper_parentage_of_component
-      tools/voicetools/get_first_voice_in_proper_parentage_of_component
 
 .. only:: latex
 
@@ -3870,8 +3848,6 @@ Core composition packages
    .. toctree::
 
       tools/voicetools/all_are_voices
-      tools/voicetools/get_first_voice_in_improper_parentage_of_component
-      tools/voicetools/get_first_voice_in_proper_parentage_of_component
 
 :py:mod:`wellformednesstools <abjad.tools.wellformednesstools>`
 ===============================================================
