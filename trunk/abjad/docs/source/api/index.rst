@@ -136,7 +136,6 @@ Core composition packages
       tools/componenttools/shorten_component_by_duration
       tools/componenttools/split_component_at_offset
       tools/componenttools/split_components_at_offsets
-      tools/componenttools/sum_duration_of_components
       tools/componenttools/yield_components_grouped_by_duration
       tools/componenttools/yield_components_grouped_by_preprolated_duration
       tools/componenttools/yield_groups_of_mixed_classes_in_sequence
@@ -219,7 +218,6 @@ Core composition packages
       tools/componenttools/shorten_component_by_duration
       tools/componenttools/split_component_at_offset
       tools/componenttools/split_components_at_offsets
-      tools/componenttools/sum_duration_of_components
       tools/componenttools/yield_components_grouped_by_duration
       tools/componenttools/yield_components_grouped_by_preprolated_duration
       tools/componenttools/yield_groups_of_mixed_classes_in_sequence

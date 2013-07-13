@@ -36,7 +36,6 @@ class NoteAndChordHairpinsHandler(DynamicHandler):
             if len(group) == 1:
                 is_short_group = True
             elif self.minimum_duration is not None:
-                #duration = componenttools.sum_duration_of_components(group)
                 if group.duration < self.minimum_duration:
                     is_short_group = True
             if is_short_group:
