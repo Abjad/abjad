@@ -174,7 +174,7 @@ class BurnishedRhythmMaker(RhythmMaker):
             self._add_ties(result)
         assert isinstance(result, list), repr(result)
         assert all(isinstance(x, list) for x in result) or \
-            tuplettools.all_are_tuplets(result), repr(result)
+            all(isinstance(x, tuplettools.Tuplet) for x in result)
         return result
 
     ### PRIVATE METHODS ###

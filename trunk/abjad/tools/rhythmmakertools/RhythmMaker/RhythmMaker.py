@@ -72,10 +72,15 @@ class RhythmMaker(Maker):
 
     ### PRIVATE METHODS ###
 
+    @staticmethod
+    def _is_leaf_list(expr):
+        return all(isinstance(x, leaftools.Leaf) for x in expr)
+
+    # TODO: make static
     def _all_are_tuplets_or_all_are_leaf_lists(self, expr):
-        if tuplettools.all_are_tuplets(expr):
+        if all(isinstance(x, tuplettools.Tuplet) for x in expr):
             return True
-        elif all(leaftools.all_are_leaves(x) for x in expr):
+        elif all(self._is_leaf_list(x) for x in expr):
             return True
         else:
             return False

@@ -229,7 +229,6 @@ Core composition packages
    .. toctree::
       :maxdepth: 1
 
-      tools/containertools/all_are_containers
       tools/containertools/delete_contents_of_container
       tools/containertools/delete_contents_of_container_starting_at_or_after_offset
       tools/containertools/delete_contents_of_container_starting_before_or_at_offset
@@ -272,7 +271,6 @@ Core composition packages
 
    .. toctree::
 
-      tools/containertools/all_are_containers
       tools/containertools/delete_contents_of_container
       tools/containertools/delete_contents_of_container_starting_at_or_after_offset
       tools/containertools/delete_contents_of_container_starting_before_or_at_offset
@@ -324,7 +322,6 @@ Core composition packages
    .. toctree::
       :maxdepth: 1
 
-      tools/contexttools/all_are_contexts
       tools/contexttools/detach_clef_marks_attached_to_component
       tools/contexttools/detach_context_marks_attached_to_component
       tools/contexttools/detach_dynamic_marks_attached_to_component
@@ -393,7 +390,6 @@ Core composition packages
 
    .. toctree::
 
-      tools/contexttools/all_are_contexts
       tools/contexttools/detach_clef_marks_attached_to_component
       tools/contexttools/detach_context_marks_attached_to_component
       tools/contexttools/detach_dynamic_marks_attached_to_component
@@ -455,7 +451,6 @@ Core composition packages
    .. toctree::
       :maxdepth: 1
 
-      tools/durationtools/all_are_durations
       tools/durationtools/count_offsets_in_expr
       tools/durationtools/durations_to_integers
       tools/durationtools/durations_to_nonreduced_fractions_with_common_denominator
@@ -479,7 +474,6 @@ Core composition packages
 
    .. toctree::
 
-      tools/durationtools/all_are_durations
       tools/durationtools/count_offsets_in_expr
       tools/durationtools/durations_to_integers
       tools/durationtools/durations_to_nonreduced_fractions_with_common_denominator
@@ -502,7 +496,6 @@ Core composition packages
    .. toctree::
       :maxdepth: 1
 
-      tools/gracetools/all_are_grace_containers
       tools/gracetools/detach_grace_containers_attached_to_leaf
       tools/gracetools/detach_grace_containers_attached_to_leaves_in_expr
       tools/gracetools/get_grace_containers_attached_to_leaf
@@ -521,7 +514,6 @@ Core composition packages
 
    .. toctree::
 
-      tools/gracetools/all_are_grace_containers
       tools/gracetools/detach_grace_containers_attached_to_leaf
       tools/gracetools/detach_grace_containers_attached_to_leaves_in_expr
       tools/gracetools/get_grace_containers_attached_to_leaf
@@ -999,7 +991,6 @@ Core composition packages
    .. toctree::
       :maxdepth: 1
 
-      tools/leaftools/all_are_leaves
       tools/leaftools/change_written_leaf_duration_and_preserve_preprolated_leaf_duration
       tools/leaftools/copy_written_duration_and_multiplier_from_leaf_to_leaf
       tools/leaftools/divide_leaf_meiotically
@@ -1052,7 +1043,6 @@ Core composition packages
 
    .. toctree::
 
-      tools/leaftools/all_are_leaves
       tools/leaftools/change_written_leaf_duration_and_preserve_preprolated_leaf_duration
       tools/leaftools/copy_written_duration_and_multiplier_from_leaf_to_leaf
       tools/leaftools/divide_leaf_meiotically
@@ -1320,7 +1310,6 @@ Core composition packages
    .. toctree::
       :maxdepth: 1
 
-      tools/markuptools/all_are_markup
       tools/markuptools/combine_markup_commands
       tools/markuptools/get_down_markup_attached_to_component
       tools/markuptools/get_markup_attached_to_component
@@ -1348,7 +1337,6 @@ Core composition packages
 
    .. toctree::
 
-      tools/markuptools/all_are_markup
       tools/markuptools/combine_markup_commands
       tools/markuptools/get_down_markup_attached_to_component
       tools/markuptools/get_markup_attached_to_component
@@ -1531,7 +1519,6 @@ Core composition packages
    .. toctree::
       :maxdepth: 1
 
-      tools/measuretools/all_are_measures
       tools/measuretools/append_spacer_skip_to_underfull_measure
       tools/measuretools/append_spacer_skips_to_underfull_measures_in_expr
       tools/measuretools/apply_full_measure_tuplets_to_contents_of_measures_in_expr
@@ -1582,7 +1569,6 @@ Core composition packages
 
    .. toctree::
 
-      tools/measuretools/all_are_measures
       tools/measuretools/append_spacer_skip_to_underfull_measure
       tools/measuretools/append_spacer_skips_to_underfull_measures_in_expr
       tools/measuretools/apply_full_measure_tuplets_to_contents_of_measures_in_expr
@@ -1637,7 +1623,6 @@ Core composition packages
       :maxdepth: 1
 
       tools/notetools/add_artificial_harmonic_to_note
-      tools/notetools/all_are_notes
       tools/notetools/make_accelerating_notes_with_lilypond_multipliers
       tools/notetools/make_notes
       tools/notetools/make_notes_with_multiplied_durations
@@ -1667,7 +1652,6 @@ Core composition packages
    .. toctree::
 
       tools/notetools/add_artificial_harmonic_to_note
-      tools/notetools/all_are_notes
       tools/notetools/make_accelerating_notes_with_lilypond_multipliers
       tools/notetools/make_notes
       tools/notetools/make_notes_with_multiplied_durations
@@ -1698,7 +1682,6 @@ Core composition packages
    .. toctree::
       :maxdepth: 1
 
-      tools/pitcharraytools/all_are_pitch_arrays
       tools/pitcharraytools/concatenate_pitch_arrays
       tools/pitcharraytools/list_nonspanning_subarrays_of_pitch_array
       tools/pitcharraytools/make_pitch_array_from_leaf_iterables
@@ -1723,7 +1706,6 @@ Core composition packages
 
    .. toctree::
 
-      tools/pitcharraytools/all_are_pitch_arrays
       tools/pitcharraytools/concatenate_pitch_arrays
       tools/pitcharraytools/list_nonspanning_subarrays_of_pitch_array
       tools/pitcharraytools/make_pitch_array_from_leaf_iterables
@@ -2345,7 +2327,6 @@ Core composition packages
    .. toctree::
       :maxdepth: 1
 
-      tools/resttools/all_are_rests
       tools/resttools/make_multi_measure_rests
       tools/resttools/make_repeated_rests_from_time_signature
       tools/resttools/make_repeated_rests_from_time_signatures
@@ -2370,7 +2351,6 @@ Core composition packages
 
    .. toctree::
 
-      tools/resttools/all_are_rests
       tools/resttools/make_multi_measure_rests
       tools/resttools/make_repeated_rests_from_time_signature
       tools/resttools/make_repeated_rests_from_time_signatures
@@ -2603,7 +2583,6 @@ Core composition packages
 
       tools/scoretools/add_double_bar_to_end_of_score
       tools/scoretools/add_markup_to_end_of_score
-      tools/scoretools/all_are_scores
       tools/scoretools/list_performer_names
       tools/scoretools/list_primary_performer_names
       tools/scoretools/make_empty_piano_score
@@ -2632,7 +2611,6 @@ Core composition packages
 
       tools/scoretools/add_double_bar_to_end_of_score
       tools/scoretools/add_markup_to_end_of_score
-      tools/scoretools/all_are_scores
       tools/scoretools/list_performer_names
       tools/scoretools/list_primary_performer_names
       tools/scoretools/make_empty_piano_score
@@ -2983,7 +2961,6 @@ Core composition packages
    .. toctree::
       :maxdepth: 1
 
-      tools/skiptools/all_are_skips
       tools/skiptools/make_repeated_skips_from_time_signature
       tools/skiptools/make_repeated_skips_from_time_signatures
       tools/skiptools/make_skips_with_multiplied_durations
@@ -3004,7 +2981,6 @@ Core composition packages
 
    .. toctree::
 
-      tools/skiptools/all_are_skips
       tools/skiptools/make_repeated_skips_from_time_signature
       tools/skiptools/make_repeated_skips_from_time_signatures
       tools/skiptools/make_skips_with_multiplied_durations
@@ -3056,7 +3032,6 @@ Core composition packages
    .. toctree::
       :maxdepth: 1
 
-      tools/spannertools/all_are_spanners
       tools/spannertools/apply_octavation_spanner_to_pitched_components
       tools/spannertools/detach_spanners_attached_to_component
       tools/spannertools/detach_spanners_attached_to_components_in_expr
@@ -3133,7 +3108,6 @@ Core composition packages
 
    .. toctree::
 
-      tools/spannertools/all_are_spanners
       tools/spannertools/apply_octavation_spanner_to_pitched_components
       tools/spannertools/detach_spanners_attached_to_component
       tools/spannertools/detach_spanners_attached_to_components_in_expr
@@ -3182,7 +3156,6 @@ Core composition packages
    .. toctree::
       :maxdepth: 1
 
-      tools/stafftools/all_are_staves
       tools/stafftools/make_rhythmic_sketch_staff
 
 .. only:: latex
@@ -3200,7 +3173,6 @@ Core composition packages
 
    .. toctree::
 
-      tools/stafftools/all_are_staves
       tools/stafftools/make_rhythmic_sketch_staff
 
 :py:mod:`stringtools <abjad.tools.stringtools>`
@@ -3728,7 +3700,6 @@ Core composition packages
    .. toctree::
       :maxdepth: 1
 
-      tools/tuplettools/all_are_tuplets
       tools/tuplettools/change_augmented_tuplets_in_expr_to_diminished
       tools/tuplettools/change_diminished_tuplets_in_expr_to_augmented
       tools/tuplettools/change_fixed_duration_tuplets_in_expr_to_tuplets
@@ -3759,7 +3730,6 @@ Core composition packages
 
    .. toctree::
 
-      tools/tuplettools/all_are_tuplets
       tools/tuplettools/change_augmented_tuplets_in_expr_to_diminished
       tools/tuplettools/change_diminished_tuplets_in_expr_to_augmented
       tools/tuplettools/change_fixed_duration_tuplets_in_expr_to_tuplets
@@ -3822,13 +3792,6 @@ Core composition packages
 
       tools/voicetools/Voice/Voice
 
-   --------
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/voicetools/all_are_voices
-
 .. only:: latex
 
    Concrete Classes
@@ -3837,13 +3800,6 @@ Core composition packages
    .. toctree::
 
       tools/voicetools/Voice/Voice
-
-   Functions
-   ---------
-
-   .. toctree::
-
-      tools/voicetools/all_are_voices
 
 :py:mod:`wellformednesstools <abjad.tools.wellformednesstools>`
 ===============================================================

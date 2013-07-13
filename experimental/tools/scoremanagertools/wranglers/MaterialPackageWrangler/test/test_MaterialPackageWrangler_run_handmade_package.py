@@ -95,8 +95,10 @@ def test_MaterialPackageWrangler_run_handmade_package_04():
             'illustration_builder.py', 'material_definition.py', 'output_material.py', 'tags.py']
         assert mpp.has_user_finalized_material_definition_module
         assert mpp.has_illustration_builder_module
-        assert mpp.material_definition and notetools.all_are_notes(mpp.material_definition)
-        assert mpp.output_material and notetools.all_are_notes(mpp.output_material)
+        assert mpp.material_definition and \
+            all(isinstance(x, Note) for x in mpp.material_definition)
+        assert mpp.output_material and \
+            all(isinstance(x, Note) for x in mpp.output_material)
     finally:
         score_manager._run(pending_user_input='m testnotes del remove default q')
         assert not score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testnotes')
@@ -174,7 +176,8 @@ def test_MaterialPackageWrangler_run_handmade_package_07():
         assert mpp.has_user_finalized_material_definition_module
         assert not mpp.has_output_material_module
         assert not mpp.has_illustration_builder_module
-        assert mpp.material_definition and notetools.all_are_notes(mpp.material_definition)
+        assert mpp.material_definition and \
+            all(isinstance(x, Note) for x in mpp.material_definition)
         assert mpp.output_material is None
     finally:
         score_manager._run(pending_user_input='m testnotes del remove default q')
@@ -227,7 +230,8 @@ def test_MaterialPackageWrangler_run_handmade_package_09():
             'illustration_builder.py', 'material_definition.py', 'output_material.py', 'tags.py']
         assert mpp.has_user_finalized_material_definition_module
         assert mpp.has_illustration_builder_module
-        assert mpp.material_definition and notetools.all_are_notes(mpp.material_definition)
+        assert mpp.material_definition and \
+            all(isinstance(x, Note) for x in mpp.material_definition)
         assert mpp.output_material is None
     finally:
         score_manager._run(pending_user_input='m testnotes del remove default q')
@@ -260,8 +264,11 @@ def test_MaterialPackageWrangler_run_handmade_package_10():
         assert mpp.has_user_finalized_illustration_builder_module
         assert mpp.has_illustration_ly
         assert mpp.has_illustration_pdf
-        assert mpp.material_definition and notetools.all_are_notes(mpp.material_definition)
-        assert mpp.output_material and notetools.all_are_notes(mpp.output_material)
+        assert mpp.material_definition and \
+            all(isinstance(x, Note) for x in mpp.material_definition)
+        assert mpp.output_material and \
+            all(isinstance(x, Note) for x in mpp.output_material)
+            
     finally:
         score_manager._run(pending_user_input='m testnotes del remove default q')
         assert not score_manager.configuration.packagesystem_path_exists('experimental.tools.scoremanagertools.materialpackages.testnotes')

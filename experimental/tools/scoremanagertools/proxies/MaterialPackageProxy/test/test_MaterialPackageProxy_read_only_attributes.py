@@ -108,7 +108,8 @@ def test_MaterialPackageProxy_read_only_attributes_02():
     assert     mpp.material_package_name == 'red_sargasso_measures'
     assert     mpp.space_delimited_material_package_name == 'red sargasso measures'
     assert     mpp.material_package_name == 'red_sargasso_measures'
-    assert     measuretools.all_are_measures(mpp.output_material)
+    assert     all(isinstance(x, measuretools.Measure) 
+                    for x in mpp.output_material)
     assert     mpp.output_material_module_body_lines is None
     assert     mpp.output_material_module_file_name == \
         os.path.join(mpp.configuration.built_in_material_packages_directory_path, 'red_sargasso_measures', 'output_material.py')
@@ -179,7 +180,7 @@ def test_MaterialPackageProxy_read_only_attributes_03():
     assert     mpp.material_package_name == 'red_notes'
     assert     mpp.space_delimited_material_package_name == 'red notes'
     assert     mpp.material_package_name == 'red_notes'
-    assert     notetools.all_are_notes(mpp.material_definition)
+    assert     all(isinstance(x, Note) for x in mpp.material_definition)
     assert     mpp.output_material_module_body_lines is not None
     assert     mpp.output_material_module_file_name == \
         os.path.join(mpp.configuration.built_in_material_packages_directory_path, 'red_notes', 'output_material.py')

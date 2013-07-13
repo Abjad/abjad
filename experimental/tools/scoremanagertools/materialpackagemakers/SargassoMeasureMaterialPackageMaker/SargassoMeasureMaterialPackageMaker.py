@@ -13,7 +13,8 @@ class SargassoMeasureMaterialPackageMaker(FunctionInputMaterialPackageMaker):
 
     generic_output_name = 'sargasso measures'
 
-    output_material_checker = staticmethod(measuretools.all_are_measures)
+    output_material_checker = staticmethod(lambda output: all(
+        isinstance(x, measuretools.Measure) for x in output))
 
     output_material_module_import_statements = [
         'from abjad.tools import measuretools']
