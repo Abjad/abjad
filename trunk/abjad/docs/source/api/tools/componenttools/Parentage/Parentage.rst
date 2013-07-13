@@ -71,6 +71,9 @@ Methods
 .. automethod:: abjad.tools.componenttools.Parentage.Parentage.Parentage.detach_spanners
    :noindex:
 
+.. automethod:: abjad.tools.componenttools.Parentage.Parentage.Parentage.get_first
+   :noindex:
+
 .. automethod:: abjad.tools.componenttools.Parentage.Parentage.Parentage.get_offset_lists
    :noindex:
 

@@ -340,3 +340,19 @@ class Parentage(Selection):
             if isinstance(parent, tuplettools.Tuplet):
                 result += 1
         return result
+
+    ### PUBLIC METHODS ###
+
+    def get_first(self, component_classes=None):
+        '''Get first instance of `component_classes` in parentage.
+
+        Return component or none.
+        '''
+        from abjad.tools import componenttools
+        if component_classes is None:
+            component_classes = (componenttools.Component,)
+        if not isinstance(component_classes, tuple):
+            component_classes = (component_classes,)
+        for component in self:
+            if isinstance(component, component_classes):
+                return component

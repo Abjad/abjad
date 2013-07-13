@@ -27,5 +27,5 @@ def get_first_staff_in_improper_parentage_of_component(component):
     '''
     from abjad.tools import stafftools
 
-    return componenttools.get_first_instance_of_class_in_improper_parentage_of_component(
-        component, stafftools.Staff)
+    parentage = component.select_parentage(include_self=True)
+    return parentage.get_first(stafftools.Staff)
