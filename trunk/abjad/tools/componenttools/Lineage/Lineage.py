@@ -66,7 +66,7 @@ class Lineage(Selection):
         music = []
         music.extend(reversed(component.select_parentage(include_self=False)))
         music.append(component)
-        music.extend(componenttools.get_proper_descendants_of_component(component))
+        music.extend(component.select_descendants(include_self=False))
         Selection.__init__(self, music)
         self._component = component
 

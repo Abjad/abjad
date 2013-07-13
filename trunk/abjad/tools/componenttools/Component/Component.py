@@ -525,11 +525,11 @@ class Component(AbjadObject):
             expr, component_class=component_classes)
         return selectiontools.Selection(components)
 
-    def select_descendants(self):
+    def select_descendants(self, include_self=True):
         '''Select descendants.
         '''
         from abjad.tools import componenttools
-        return componenttools.Descendants(self)
+        return componenttools.Descendants(self, include_self=include_self)
 
     def select_lineage(self):
         '''Select lineage.
