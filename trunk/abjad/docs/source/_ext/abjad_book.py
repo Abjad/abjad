@@ -96,14 +96,8 @@ def rewrite_literal_block_line(line):
     elif ',' in object_name:
         object_name = object_name.rpartition(',')[0]
     object_name = object_name.strip()
-    if kind == 'lilypond':
-        return '__abjad_book__ = ({!r}, ' \
-            'documentationtools.make_reference_manual_lilypond_file({}).lilypond_format)'.format(
-            kind, object_name), True
-    elif kind == 'graphviz':
-        return '__abjad_book__ = ({!r}, ' \
-            'documentationtools.make_reference_manual_graphviz_graph({}).graphviz_format)'.format(
-            kind, object_name), True
+    if kind in ('lilypond', 'graphviz'):
+        return '__abjad_book__ = ({!r}, {})'.format(kind, object_name), True
 
 
 def scan_doctree_for_literal_blocks(doctree):
@@ -150,10 +144,16 @@ def process_literal_block_pairs(literal_block_pairs):
                     exec('\n'.join(lines_to_execute), environment)
                 except:
                     pass
-                kind, code = environment['__abjad_book__']
+                kind, obj = environment['__abjad_book__']
                 new_abjad_book_block = abjad_book_block()
                 new_abjad_book_block['kind'] = kind
-                new_abjad_book_block['code'] = code
+                if kind == 'lilypond':
+                    lilypond_file = documentationtools.make_reference_manual_lilypond_file(obj)
+                    new_abjad_book_block['code'] = lilypond_file.lilypond_format
+                    new_abjad_book_block['raw_code'] = obj.lilypond_format
+                elif kind == 'graphviz':
+                    graphviz_graph = documentationtools.make_reference_manual_graphviz_graph(obj)
+                    new_abjad_book_block['code'] = graphviz_graph.graphviz_format
                 text = '\n'.join(original_lines[previous_line_number:i + 1])
                 new_literal_block = literal_block.deepcopy()
                 new_literal_block.rawsource = text
@@ -223,8 +223,10 @@ def render_graphviz_image(self, code, paths, file_format='png',
         os.path.basename(os.path.splitext(primary_path)[0])) + '.dot'
     # if we pickled a documentationtools.GraphvizGraph instance
     # in order to support conditional reformatting for LaTeX vs HTML...
+    
     if is_pickled:
         graph = pickle.loads(code)
+        alt = graph.graphviz_format
         if is_latex:
             graph.attributes['fontsize'] = 10
             graph.attributes['ranksep'] = 0.25
@@ -233,6 +235,8 @@ def render_graphviz_image(self, code, paths, file_format='png',
             graph.node_attributes['fontsize'] = 8
             graph.node_attributes['margin'] = (0.06, 0.06)
         code = graph.unflattened_graphviz_format
+    else:
+        alt = code
     with open(tmp_path, 'w') as f:
         f.write(code)
     commands = []
@@ -249,6 +253,7 @@ def render_graphviz_image(self, code, paths, file_format='png',
         #subprocess.call(command, shell=True)
     if not keep_original and os.path.exists(secondary_path):
         os.remove(secondary_path)
+    return alt
 
 
 def render_lilypond_image(self, code, paths, file_format='png', keep_original=False):
@@ -264,12 +269,16 @@ def render_lilypond_image(self, code, paths, file_format='png', keep_original=Fa
     if file_format == 'png':
         commands.append('lilypond --png -dresolution=300 -o {} {}'.format(abs_path, tmp_path))
         commands.append('convert -trim -resample 50%% {} {}'.format(absolute_path, absolute_path))
+#        commands.append('lilypond --png -dresolution=600 -o {} {}'.format(abs_path, tmp_path))
+#        commands.append('convert -units PixelsPerInch {} -trim -resample 150 -density 72 {}'.format(
+#            absolute_path,
+#            absolute_path,
+#            ))
     elif file_format == 'pdf':
         commands.append('lilypond -o {} {}'.format(abs_path, tmp_path))
         commands.append('pdfcrop {} {}'.format(absolute_path, absolute_path))
     for command in commands:
         subprocess.call(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-
 
 def render_abjad_book_node(self, node, file_format='png', linked=False):
     code = node['code']
@@ -306,26 +315,32 @@ def render_abjad_book_node(self, node, file_format='png', linked=False):
         paths['secondary_relative_path'] = secondary_file_name
         paths['secondary_absolute_path'] = os.path.join(
             self.builder.outdir, secondary_file_name)
+    # TODO: The `alt` handling here is completely hackish, and must be
+    #       refactored with the next pass on abjadbooktools.
+    alt = node.get('raw_code', '')
     if os.path.isfile(paths['primary_absolute_path']):
-        return paths
+        return paths, alt
     if kind == 'lilypond':
         render_lilypond_image(self, code, paths, file_format,
             keep_original=keep_original)
     elif kind == 'graphviz':
-        render_graphviz_image(self, code, paths, file_format,
+        alt = render_graphviz_image(self, code, paths, file_format,
             is_latex=is_latex,
             is_pickled=is_pickled,
             keep_original=keep_original,
             )
-    return paths
+    else:
+        raise Exception('Unknown node kind, {!r}'.format(kind))
+    return paths, alt
 
 
 def visit_abjad_book_html(self, node):
-    paths = render_abjad_book_node(
-        self, node, file_format='png',
-        )
+    result = render_abjad_book_node(self, node, file_format='png')
+#    print
+#    print result
+    paths, alt = result
     wrapper = 'p'
-    alt = self.encode(node['code']).strip()
+    alt = self.encode(alt).strip()
     self.body.append(self.starttag(node, wrapper, CLASS='abjad_book'))
     img = '<img src="{}" alt="{}" />'.format(
         paths['primary_relative_path'], alt)
@@ -343,7 +358,7 @@ def visit_abjad_book_html(self, node):
 
 
 def visit_abjad_book_latex(self, node):
-    paths = render_abjad_book_node(
+    paths, alt = render_abjad_book_node(
         self, node, file_format='pdf',
         )
     self.body.append('\n\\includegraphics{' + paths['primary_relative_path'] + '}\n')

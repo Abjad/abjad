@@ -1,10 +1,22 @@
 import importlib
 import inspect
+import sphinx
 import types
-
 from docutils import nodes
-
 from sphinx import addnodes
+
+
+class AbjadDoctestDirective(sphinx.util.compat.Directive):
+
+    has_content = True
+    required_arguments = 0
+    optional_arguments = 0
+    final_argument_whitespace = True
+    option_spec = {}
+
+    def run(self):
+        self.assert_has_content()
+        return []
 
 
 def doctree_read(app, doctree):
@@ -85,4 +97,5 @@ def doctree_read(app, doctree):
             signature_node.insert(0, label_node)
 
 def setup(app):
+    app.add_directive('doctest', AbjadDoctestDirective)
     app.connect('doctree-read', doctree_read)
