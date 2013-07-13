@@ -12,7 +12,7 @@ def get_measure_that_stops_with_container(container):
     from abjad.tools import measuretools
 
     if isinstance(container, containertools.Container):
-        contents = componenttools.get_improper_descendents_of_component_that_stop_with_component(container)
+        contents = componenttools.get_improper_descendants_of_component_that_stop_with_component(container)
         contents = [x for x in contents if isinstance(x, measuretools.Measure)]
         if contents:
             return contents[0]

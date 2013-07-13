@@ -33,7 +33,7 @@ def pad_measures_in_expr(expr, front, back, pad_class, splice=False):
 
     for measure in iterationtools.iterate_measures_in_expr(expr):
         if front is not None:
-            start_components = componenttools.get_improper_descendents_of_component_that_start_with_component(
+            start_components = componenttools.get_improper_descendants_of_component_that_start_with_component(
                 measure)
             start_leaves = \
                 [x for x in start_components if isinstance(x, leaftools.Leaf)]
@@ -54,7 +54,7 @@ def pad_measures_in_expr(expr, front, back, pad_class, splice=False):
                         )
         if back is not None:
             stop_components = \
-                componenttools.get_improper_descendents_of_component_that_stop_with_component(
+                componenttools.get_improper_descendants_of_component_that_stop_with_component(
                 measure)
             stop_leaves = \
                 [x for x in stop_components if isinstance(x, leaftools.Leaf)]

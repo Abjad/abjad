@@ -635,11 +635,11 @@ Many new functions are available in the ``componenttools`` package.
     componenttools.get_improper_contents_of_component()
     componenttools.get_improper_contents_of_component_that_start_with_component()
     componenttools.get_improper_contents_of_component_that_stop_with_component()
-    componenttools.get_proper_descendents_of_component()
-    componenttools.get_improper_descendents_of_component()
+    componenttools.get_proper_descendants_of_component()
+    componenttools.get_improper_descendants_of_component()
     componenttools.get_improper_descendents_of_component_that_cross_prolated_offset
-    componenttools.get_improper_descendents_of_component_that_start_with_component
-    componenttools.get_improper_descendents_of_component_that_stop_with_component
+    componenttools.get_improper_descendants_of_component_that_start_with_component
+    componenttools.get_improper_descendants_of_component_that_stop_with_component
     componenttools.get_lineage_of_component()
     componenttools.get_lineage_of_component_that_start_with_component()
     componenttools.get_lineage_of_component_that_stop_with_component()
@@ -661,7 +661,7 @@ Many new functions are available in the ``componenttools`` package.
 
   Versus::
 
-    >>> componenttools.get_proper_descendents_of_component(staff)
+    >>> componenttools.get_proper_descendants_of_component(staff)
     [Note("c'4"), Tuplet(2/3, [d'8, e'8, f'8]), Note("d'8"), Note("e'8"), Note("f'8")]
 
 - Also add the following ``componenttools`` predicate::

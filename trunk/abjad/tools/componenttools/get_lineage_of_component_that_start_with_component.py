@@ -47,6 +47,6 @@ def get_lineage_of_component_that_start_with_component(component):
 
     result.remove(component)
 
-    result.extend(componenttools.get_improper_descendents_of_component_that_start_with_component(component))
+    result.extend(componenttools.get_improper_descendants_of_component_that_start_with_component(component))
 
     return result

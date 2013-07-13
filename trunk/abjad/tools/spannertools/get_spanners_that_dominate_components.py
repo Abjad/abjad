@@ -26,8 +26,8 @@ def get_spanners_that_dominate_components(components):
 
     first, last = components[0], components[-1]
 
-    start_components = componenttools.get_improper_descendents_of_component_that_start_with_component(first)
-    stop_components = componenttools.get_improper_descendents_of_component_that_stop_with_component(last)
+    start_components = componenttools.get_improper_descendants_of_component_that_start_with_component(first)
+    stop_components = componenttools.get_improper_descendants_of_component_that_stop_with_component(last)
     stop_components = set(stop_components)
     for component in start_components:
         for spanner in spannertools.get_spanners_attached_to_component(component):

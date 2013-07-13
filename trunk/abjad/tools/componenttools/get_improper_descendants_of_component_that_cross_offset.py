@@ -1,7 +1,7 @@
 from abjad.tools import durationtools
 
 
-def get_improper_descendents_of_component_that_cross_offset(component, prolated_offset):
+def get_improper_descendants_of_component_that_cross_offset(component, prolated_offset):
     r'''.. versionadded:: 2.0
 
     Get improper contents of `component` that cross `prolated_offset`::
@@ -28,30 +28,30 @@ def get_improper_descendents_of_component_that_cross_offset(component, prolated_
 
     No components cross prolated offset ``0``::
 
-        >>> componenttools.get_improper_descendents_of_component_that_cross_offset(staff, 0)
+        >>> componenttools.get_improper_descendants_of_component_that_cross_offset(staff, 0)
         []
 
     Staff, measure and leaf cross prolated offset ``1/16``::
 
-        >>> componenttools.get_improper_descendents_of_component_that_cross_offset(
+        >>> componenttools.get_improper_descendants_of_component_that_cross_offset(
         ...     staff, Duration(1, 16))
         [Staff{2}, Measure(2/8, [c'8, d'8]), Note("c'8")]
 
     Staff and measure cross prolated offset ``1/8``::
 
-        >>> componenttools.get_improper_descendents_of_component_that_cross_offset(
+        >>> componenttools.get_improper_descendants_of_component_that_cross_offset(
         ...     staff, Duration(1, 8))
         [Staff{2}, Measure(2/8, [c'8, d'8])]
 
     Staff crosses prolated offset ``1/4``::
 
-        >>> componenttools.get_improper_descendents_of_component_that_cross_offset(
+        >>> componenttools.get_improper_descendants_of_component_that_cross_offset(
         ...     staff, Duration(1, 4))
         [Staff{2}]
 
     No components cross prolated offset ``99``::
 
-        >>> componenttools.get_improper_descendents_of_component_that_cross_offset(
+        >>> componenttools.get_improper_descendants_of_component_that_cross_offset(
         ...     staff, 99)
         []
 

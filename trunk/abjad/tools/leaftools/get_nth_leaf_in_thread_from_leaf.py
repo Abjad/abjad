@@ -52,7 +52,7 @@ def get_nth_leaf_in_thread_from_leaf(leaf, n=0):
         new_component = componenttools.get_nth_component_in_time_order_from_component(component, 1)
         if new_component is None:
             return
-        candidates = componenttools.get_improper_descendents_of_component_that_start_with_component(
+        candidates = componenttools.get_improper_descendants_of_component_that_start_with_component(
             new_component)
         candidates = [x for x in candidates if isinstance(x, leaftools.Leaf)]
         for candidate in candidates:
@@ -63,7 +63,7 @@ def get_nth_leaf_in_thread_from_leaf(leaf, n=0):
         new_component = componenttools.get_nth_component_in_time_order_from_component(component, -1)
         if new_component is None:
             return
-        candidates = componenttools.get_improper_descendents_of_component_that_stop_with_component(
+        candidates = componenttools.get_improper_descendants_of_component_that_stop_with_component(
             new_component)
         candidates = [x for x in candidates if isinstance(x, leaftools.Leaf)]
         for candidate in candidates:

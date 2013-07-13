@@ -1,4 +1,4 @@
-def get_proper_descendents_of_component(component):
+def get_proper_descendants_of_component(component):
     r'''.. versionadded:: 2.9
 
     Get proper descendents of `component`::
@@ -19,7 +19,7 @@ def get_proper_descendents_of_component(component):
 
     ::
 
-        >>> componenttools.get_proper_descendents_of_component(staff)
+        >>> componenttools.get_proper_descendants_of_component(staff)
         [Note("c'4"), Tuplet(2/3, [d'8, e'8, f'8]), Note("d'8"), Note("e'8"), Note("f'8")]
 
     Return list of proper descendents of `component`.

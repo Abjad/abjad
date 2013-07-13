@@ -15,7 +15,7 @@ def is_immediate_temporal_successor_of_component(component, expr):
             cur = cur.parent
         else:
             temporal_successors = \
-                componenttools.get_improper_descendents_of_component_that_start_with_component(next_sibling)
+                componenttools.get_improper_descendants_of_component_that_start_with_component(next_sibling)
             break
 
     return expr in temporal_successors

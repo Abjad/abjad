@@ -1,4 +1,4 @@
-def get_improper_descendents_of_component(component):
+def get_improper_descendants_of_component(component):
     r'''.. versionadded:: 2.9
 
     Get improper descendents of `component`::
@@ -19,7 +19,7 @@ def get_improper_descendents_of_component(component):
 
     ::
 
-        >>> for x in componenttools.get_improper_descendents_of_component(staff):
+        >>> for x in componenttools.get_improper_descendants_of_component(staff):
         ...     x
         ...
         Staff{2}

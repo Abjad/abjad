@@ -52,7 +52,7 @@ def get_lineage_of_component_that_stop_with_component(component):
     result.remove(component)
 
     # component and descendents of component that start with component
-    result.extend(componenttools.get_improper_descendents_of_component_that_stop_with_component(component))
+    result.extend(componenttools.get_improper_descendants_of_component_that_stop_with_component(component))
 
     # return result
     return result

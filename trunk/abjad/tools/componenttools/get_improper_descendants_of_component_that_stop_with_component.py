@@ -1,4 +1,4 @@
-def get_improper_descendents_of_component_that_stop_with_component(component):
+def get_improper_descendants_of_component_that_stop_with_component(component):
     r'''.. versionadded:: 2.9
 
     Get improper descendents of `component` that stop with `component`::
@@ -23,7 +23,7 @@ def get_improper_descendents_of_component_that_stop_with_component(component):
 
     ::
 
-        >>> componenttools.get_improper_descendents_of_component_that_stop_with_component(staff)
+        >>> componenttools.get_improper_descendants_of_component_that_stop_with_component(staff)
         [Staff{3}, Note("f'4")]
 
     Return list of `component` together with proper contents that stop with `component`.
@@ -42,9 +42,9 @@ def get_improper_descendents_of_component_that_stop_with_component(component):
             duration = component.preprolated_duration
             for x in component:
                 if x.preprolated_duration == duration:
-                    result.extend(get_improper_descendents_of_component_that_stop_with_component(x))
+                    result.extend(get_improper_descendants_of_component_that_stop_with_component(x))
         elif component:
-            result.extend(get_improper_descendents_of_component_that_stop_with_component(component[-1]))
+            result.extend(get_improper_descendants_of_component_that_stop_with_component(component[-1]))
 
     # return result
     return result

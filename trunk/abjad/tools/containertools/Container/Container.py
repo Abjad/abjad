@@ -536,11 +536,11 @@ class Container(Component):
 
     def _is_one_of_my_first_leaves(self, leaf):
         from abjad.tools import componenttools
-        return leaf in componenttools.get_improper_descendents_of_component_that_start_with_component(self)
+        return leaf in componenttools.get_improper_descendants_of_component_that_start_with_component(self)
 
     def _is_one_of_my_last_leaves(self, leaf):
         from abjad.tools import componenttools
-        return leaf in componenttools.get_improper_descendents_of_component_that_stop_with_component(self)
+        return leaf in componenttools.get_improper_descendants_of_component_that_stop_with_component(self)
 
     def _parse_string(self, string):
         from abjad.tools import lilypondparsertools

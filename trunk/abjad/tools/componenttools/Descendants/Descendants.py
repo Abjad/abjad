@@ -64,7 +64,7 @@ class Descendants(Selection):
     def __init__(self, component):
         from abjad.tools import componenttools
         assert isinstance(component, componenttools.Component)
-        music = componenttools.get_improper_descendents_of_component(component)
+        music = componenttools.get_improper_descendants_of_component(component)
         Selection.__init__(self, music)
         self._component = component
 
