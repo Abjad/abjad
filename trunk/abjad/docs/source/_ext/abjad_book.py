@@ -246,7 +246,7 @@ def render_graphviz_image(self, code, paths, file_format='png',
     elif file_format == 'png':
         commands.append('dot -Tpdf -o {} {}'.format(secondary_path, tmp_path))
         commands.append('dot -Tpng -o {} {}'.format(primary_path, tmp_path))
-        commands.append('convert -debug Exception -trim -resize 75% -resize 460x9999">" {} {}'.format(
+        commands.append('convert -debug Exception -trim -resize 50%% -resize 800x9999">" {} {}'.format(
             primary_path, primary_path))
     for command in commands:
         subprocess.call(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -339,21 +339,12 @@ def visit_abjad_book_html(self, node):
 #    print
 #    print result
     paths, alt = result
-    wrapper = 'p'
     alt = self.encode(alt).strip()
-    self.body.append(self.starttag(node, wrapper, CLASS='abjad_book'))
-    img = '<img src="{}" alt="{}" />'.format(
-        paths['primary_relative_path'], alt)
-    if node.get('keep_original', False):
-        figure = '<figure>{anchor}<figcaption>{caption}</figcaption></figure>'
-        anchor = '<a href="{}" alt="click for high-quality original">{}</a>'.format(
-            paths["secondary_relative_path"], img)
-        caption = '<a href="{}">(click for high-quality image)</a>'.format(
-            paths["secondary_relative_path"])
-        self.body.append(figure.format(anchor=anchor, caption=caption))
-    else:
-        self.body.append(img)
-    self.body.append('</{}>\n'.format(wrapper))
+    self.body.append('<div class="abjad-book">\n')
+    self.body.append('<img src="{}" alt="Click to view source." title="Click to view source."/>\n'.format(
+        paths['primary_relative_path']))
+    self.body.append('<pre>\n{}\n</pre>\n'.format(alt))
+    self.body.append('</div>\n')
     raise docutils.nodes.SkipNode
 
 

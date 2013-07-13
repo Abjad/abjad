@@ -377,4 +377,7 @@ tt.staticmethod {
     background-color: #69c;
     }
 
-
+div.abjad-book pre {
+    background-color: #380000;
+    color: #93A1A1;
+    }
