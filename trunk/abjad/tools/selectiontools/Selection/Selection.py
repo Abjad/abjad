@@ -228,10 +228,34 @@ class Selection(AbjadObject):
     ### PUBLIC PROPERTIES ###
 
     @property
+    def duration(self):
+        '''Duration of components in selection.
+
+        Return duration.
+        '''
+        return sum(component.duration for component in self)
+
+    @property
+    def duration_in_seconds(self):
+        '''Duration in seconds of components in selection.
+
+        Return duration.
+        '''
+        return sum(component.duration_in_seconds for component in self)
+
+    @property
     def music(self):
         '''Tuple of components in selection.
         '''
         return self._music
+
+    @property
+    def preprolated_duration(self):
+        '''Preprolated duration of components in selection.
+
+        Return duration.
+        '''
+        return sum(component.preprolated_duration for component in self)
 
     @property
     def timespan(self):

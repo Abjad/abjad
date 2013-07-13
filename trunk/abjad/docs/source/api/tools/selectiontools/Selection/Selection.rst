@@ -15,7 +15,16 @@ Bases
 Read-only properties
 --------------------
 
+.. autoattribute:: abjad.tools.selectiontools.Selection.Selection.Selection.duration
+   :noindex:
+
+.. autoattribute:: abjad.tools.selectiontools.Selection.Selection.Selection.duration_in_seconds
+   :noindex:
+
 .. autoattribute:: abjad.tools.selectiontools.Selection.Selection.Selection.music
+   :noindex:
+
+.. autoattribute:: abjad.tools.selectiontools.Selection.Selection.Selection.preprolated_duration
    :noindex:
 
 .. autoattribute:: abjad.tools.selectiontools.Selection.Selection.Selection.storage_format

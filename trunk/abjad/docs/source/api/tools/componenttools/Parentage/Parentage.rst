@@ -26,6 +26,12 @@ Read-only properties
 .. autoattribute:: abjad.tools.componenttools.Parentage.Parentage.Parentage.depth
    :noindex:
 
+.. autoattribute:: abjad.tools.componenttools.Parentage.Parentage.Parentage.duration
+   :noindex:
+
+.. autoattribute:: abjad.tools.componenttools.Parentage.Parentage.Parentage.duration_in_seconds
+   :noindex:
+
 .. autoattribute:: abjad.tools.componenttools.Parentage.Parentage.Parentage.is_orphan
    :noindex:
 
@@ -36,6 +42,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: abjad.tools.componenttools.Parentage.Parentage.Parentage.parentage_signature
+   :noindex:
+
+.. autoattribute:: abjad.tools.componenttools.Parentage.Parentage.Parentage.preprolated_duration
    :noindex:
 
 .. autoattribute:: abjad.tools.componenttools.Parentage.Parentage.Parentage.root

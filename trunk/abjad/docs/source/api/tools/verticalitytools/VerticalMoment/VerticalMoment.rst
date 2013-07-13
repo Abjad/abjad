@@ -23,6 +23,12 @@ Read-only properties
 .. autoattribute:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment.components
    :noindex:
 
+.. autoattribute:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment.duration
+   :noindex:
+
+.. autoattribute:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment.duration_in_seconds
+   :noindex:
+
 .. autoattribute:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment.governors
    :noindex:
 
@@ -54,6 +60,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment.overlap_notes
+   :noindex:
+
+.. autoattribute:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment.preprolated_duration
    :noindex:
 
 .. autoattribute:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment.previous_vertical_moment

@@ -20,7 +20,16 @@ Read-only properties
 .. autoattribute:: abjad.tools.componenttools.Descendants.Descendants.Descendants.component
    :noindex:
 
+.. autoattribute:: abjad.tools.componenttools.Descendants.Descendants.Descendants.duration
+   :noindex:
+
+.. autoattribute:: abjad.tools.componenttools.Descendants.Descendants.Descendants.duration_in_seconds
+   :noindex:
+
 .. autoattribute:: abjad.tools.componenttools.Descendants.Descendants.Descendants.music
+   :noindex:
+
+.. autoattribute:: abjad.tools.componenttools.Descendants.Descendants.Descendants.preprolated_duration
    :noindex:
 
 .. autoattribute:: abjad.tools.componenttools.Descendants.Descendants.Descendants.storage_format

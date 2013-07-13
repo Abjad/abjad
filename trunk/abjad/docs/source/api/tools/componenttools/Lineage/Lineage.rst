@@ -20,7 +20,16 @@ Read-only properties
 .. autoattribute:: abjad.tools.componenttools.Lineage.Lineage.Lineage.component
    :noindex:
 
+.. autoattribute:: abjad.tools.componenttools.Lineage.Lineage.Lineage.duration
+   :noindex:
+
+.. autoattribute:: abjad.tools.componenttools.Lineage.Lineage.Lineage.duration_in_seconds
+   :noindex:
+
 .. autoattribute:: abjad.tools.componenttools.Lineage.Lineage.Lineage.music
+   :noindex:
+
+.. autoattribute:: abjad.tools.componenttools.Lineage.Lineage.Lineage.preprolated_duration
    :noindex:
 
 .. autoattribute:: abjad.tools.componenttools.Lineage.Lineage.Lineage.storage_format
