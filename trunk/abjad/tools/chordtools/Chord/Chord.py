@@ -123,6 +123,17 @@ class Chord(Leaf):
 
     ### PRIVATE METHODS ###
 
+    @staticmethod
+    def _cast_defective_chord(chord):
+        from abjad.tools import notetools
+        from abjad.tools import resttools
+        if isinstance(chord, Chord) and not len(chord):
+            return resttools.Rest(chord)
+        elif isinstance(chord, Chord) and len(chord) == 1:
+            return notetools.Note(chord)
+        else:
+            return chord
+
     def _copy_with_marks_but_without_children_or_spanners(self):
         new = Leaf._copy_with_marks_but_without_children_or_spanners(self)
         new[:] = []
@@ -345,8 +356,8 @@ class Chord(Leaf):
                     bass.remove(note_head)
         else:
             raise TypeError
-        treble = chordtools.change_defective_chord_to_note_or_rest(treble)
-        bass = chordtools.change_defective_chord_to_note_or_rest(bass)
+        treble = self._cast_defective_chord(treble)
+        bass = self._cast_defective_chord(bass)
         up_markup = markuptools.get_up_markup_attached_to_component(self)
         up_markup = [copy.copy(markup) for markup in up_markup]
         down_markup = markuptools.get_down_markup_attached_to_component(self)
