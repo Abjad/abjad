@@ -1,12 +1,15 @@
+from abjad.tools import iterationtools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
-from abjad.tools import verticalitytools
 
 
-def label_vertical_moments_in_expr_with_interval_class_vectors(expr, markup_direction=Down):
+def label_vertical_moments_in_expr_with_interval_class_vectors(
+    expr, markup_direction=Down):
     r'''.. versionadded:: 2.0
 
-    Label interval-class vector of every vertical moment in `expr`::
+    Label interval-class vector of every vertical moment in `expr`:
+
+    ::
 
         >>> score = Score([])
         >>> staff = Staff("c'8 d'8 e'8 f'8")
@@ -64,15 +67,18 @@ def label_vertical_moments_in_expr_with_interval_class_vectors(expr, markup_dire
     Return none.
     '''
 
-    for vertical_moment in verticalitytools.iterate_vertical_moments_in_expr(expr):
+    for vertical_moment in \
+        iterationtools.iterate_vertical_moments_in_expr(expr):
         leaves = vertical_moment.leaves
         pitches = pitchtools.list_named_chromatic_pitches_in_expr(leaves)
         if not pitches:
             continue
-        interval_class_vector = pitchtools.inversion_equivalent_chromatic_interval_class_number_dictionary(
+        interval_class_vector = \
+            pitchtools.inversion_equivalent_chromatic_interval_class_number_dictionary(
             pitches)
         formatted = _format_interval_class_vector(interval_class_vector)
-        markuptools.Markup(formatted, markup_direction)(vertical_moment.start_leaves[-1])
+        markup = markuptools.Markup(formatted, markup_direction)
+        markup.attach(vertical_moment.start_leaves[-1])
 
 
 def _format_interval_class_vector(interval_class_vector):

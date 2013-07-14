@@ -44,7 +44,7 @@ def iterate_vertical_moments_in_expr(expr, reverse=False):
 
     ::
 
-        >>> for x in verticalitytools.iterate_vertical_moments_in_expr(score):
+        >>> for x in iterationtools.iterate_vertical_moments_in_expr(score):
         ...     x.leaves
         ...
         (Note("d''8"), Note("a'4"), Note("f'8"))
@@ -56,7 +56,7 @@ def iterate_vertical_moments_in_expr(expr, reverse=False):
 
     ::
 
-        >>> for x in verticalitytools.iterate_vertical_moments_in_expr(
+        >>> for x in iterationtools.iterate_vertical_moments_in_expr(
         ...     piano_staff):
         ...     x.leaves
         ...
@@ -69,7 +69,7 @@ def iterate_vertical_moments_in_expr(expr, reverse=False):
 
     ::
 
-        >>> for x in verticalitytools.iterate_vertical_moments_in_expr(
+        >>> for x in iterationtools.iterate_vertical_moments_in_expr(
         ...     score, reverse=True):
         ...     x.leaves
         ...
@@ -82,7 +82,7 @@ def iterate_vertical_moments_in_expr(expr, reverse=False):
 
     ::
 
-        >>> for x in verticalitytools.iterate_vertical_moments_in_expr(
+        >>> for x in iterationtools.iterate_vertical_moments_in_expr(
         ...     piano_staff, reverse=True):
         ...     x.leaves
         ...

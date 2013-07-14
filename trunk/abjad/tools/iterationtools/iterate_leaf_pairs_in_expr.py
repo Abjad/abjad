@@ -57,15 +57,19 @@ def iterate_leaf_pairs_in_expr(expr):
 
     Return generator.
     '''
-    from abjad.tools import verticalitytools
+    from abjad.tools import iterationtools
 
-    vertical_moments = verticalitytools.iterate_vertical_moments_in_expr(expr)
-    for moment_1, moment_2 in sequencetools.iterate_sequence_pairwise_strict(vertical_moments):
-        for pair in sequencetools.yield_all_unordered_pairs_of_sequence(moment_1.start_leaves):
+    vertical_moments = iterationtools.iterate_vertical_moments_in_expr(expr)
+    for moment_1, moment_2 in \
+        sequencetools.iterate_sequence_pairwise_strict(vertical_moments):
+        for pair in sequencetools.yield_all_unordered_pairs_of_sequence(
+            moment_1.start_leaves):
             yield pair
-        pairs = sequencetools.yield_all_pairs_between_sequences(moment_1.leaves, moment_2.start_leaves)
+        pairs = sequencetools.yield_all_pairs_between_sequences(
+            moment_1.leaves, moment_2.start_leaves)
         for pair in pairs:
             yield pair
     else:
-        for pair in sequencetools.yield_all_unordered_pairs_of_sequence(moment_2.start_leaves):
+        for pair in sequencetools.yield_all_unordered_pairs_of_sequence(
+            moment_2.start_leaves):
             yield pair

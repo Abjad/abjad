@@ -41,7 +41,7 @@ class VerticalMoment(Selection):
 
     ::
 
-        >>> for x in verticalitytools.iterate_vertical_moments_in_expr(score):
+        >>> for x in iterationtools.iterate_vertical_moments_in_expr(score):
         ...     x
         ...
         VerticalMoment(0, <<2>>)

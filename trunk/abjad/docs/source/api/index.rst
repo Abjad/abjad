@@ -796,6 +796,7 @@ Core composition packages
       tools/iterationtools/iterate_timeline_in_expr
       tools/iterationtools/iterate_topmost_tie_chains_and_components_in_expr
       tools/iterationtools/iterate_tuplets_in_expr
+      tools/iterationtools/iterate_vertical_moments_in_expr
       tools/iterationtools/iterate_voices_in_expr
 
 .. only:: latex
@@ -831,6 +832,7 @@ Core composition packages
       tools/iterationtools/iterate_timeline_in_expr
       tools/iterationtools/iterate_topmost_tie_chains_and_components_in_expr
       tools/iterationtools/iterate_tuplets_in_expr
+      tools/iterationtools/iterate_vertical_moments_in_expr
       tools/iterationtools/iterate_voices_in_expr
 
 :py:mod:`labeltools <abjad.tools.labeltools>`
@@ -3740,7 +3742,6 @@ Core composition packages
 
       tools/verticalitytools/get_vertical_moment_at_offset_in_expr
       tools/verticalitytools/get_vertical_moment_starting_with_component
-      tools/verticalitytools/iterate_vertical_moments_in_expr
 
 .. only:: latex
 
@@ -3758,7 +3759,6 @@ Core composition packages
 
       tools/verticalitytools/get_vertical_moment_at_offset_in_expr
       tools/verticalitytools/get_vertical_moment_starting_with_component
-      tools/verticalitytools/iterate_vertical_moments_in_expr
 
 :py:mod:`voicetools <abjad.tools.voicetools>`
 =============================================

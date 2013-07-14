@@ -1,13 +1,18 @@
+from abjad.tools import iterationtools
 from abjad.tools import markuptools
 from abjad.tools import notetools
 from abjad.tools import pitchtools
 from abjad.tools import verticalitytools
 
 
-def label_vertical_moments_in_expr_with_chromatic_interval_classes(expr, markup_direction=Down):
+def label_vertical_moments_in_expr_with_chromatic_interval_classes(
+    expr, markup_direction=Down):
     r'''.. versionadded:: 2.0
 
-    Label harmonic chromatic interval-classes of every vertical moment in `expr`::
+    Label harmonic chromatic interval-classes of every vertical 
+    moment in `expr`:
+
+    ::
 
         >>> score = Score([])
         >>> staff = Staff("c'8 d'8 e'8 f'8")
@@ -82,7 +87,8 @@ def label_vertical_moments_in_expr_with_chromatic_interval_classes(expr, markup_
     Return none.
     '''
 
-    for vertical_moment in verticalitytools.iterate_vertical_moments_in_expr(expr):
+    for vertical_moment in \
+        iterationtools.iterate_vertical_moments_in_expr(expr):
         leaves = vertical_moment.leaves
         notes = [leaf for leaf in leaves if isinstance(leaf, notetools.Note)]
         if not notes:
@@ -99,4 +105,5 @@ def label_vertical_moments_in_expr_with_chromatic_interval_classes(expr, markup_
             hcics.append(hcic)
         hcics = ' '.join([str(hcic) for hcic in hcics])
         hcics = r'\small \column { %s }' % hcics
-        markuptools.Markup(hcics, markup_direction)(vertical_moment.start_leaves[-1])
+        markup = markuptools.Markup(hcics, markup_direction)
+        markup.attach(vertical_moment.start_leaves[-1])
