@@ -315,3 +315,29 @@ class Note(Leaf):
                     pitch = pitchtools.NamedChromaticPitch(arg)
                     self.note_head.written_pitch = pitch
         return property(**locals())
+
+    ### PUBLIC METHODS ###
+
+    def divide(self, pitch=None):
+        from abjad.tools import markuptools
+        from abjad.tools import pitchtools
+        from abjad.tools import resttools
+        pitch = pitch or pitchtools.NamedChromaticPitch('b', 3)
+        pitch = pitchtools.NamedChromaticPitch(pitch)
+        treble = copy.copy(self)
+        bass = copy.copy(self)
+        markuptools.remove_markup_attached_to_component(treble)
+        markuptools.remove_markup_attached_to_component(bass)
+        if treble.written_pitch < pitch:
+            treble = resttools.Rest(treble)
+        if pitch <= bass.written_pitch:
+            bass = resttools.Rest(bass)
+        up_markup = markuptools.get_up_markup_attached_to_component(self)
+        up_markup = [copy.copy(markup) for markup in up_markup]
+        down_markup = markuptools.get_down_markup_attached_to_component(self)
+        down_markup = [copy.copy(markup) for markup in down_markup]
+        for markup in up_markup:
+            markup(treble)
+        for markup in down_markup:
+            markup(bass)
+        return treble, bass

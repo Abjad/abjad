@@ -46,8 +46,11 @@ def test_scoretools_make_piano_score_from_leaves_02():
     container = iotools.p("{ g4 a4 b4 c'4 d'4 r4 a4 g4 }")
     container_contents = containertools.eject_contents_of_container(container)
     lowest_treble_pitch = pitchtools.NamedChromaticPitch('a')
-    score, treble_staff, bass_staff = scoretools.make_piano_score_from_leaves(
-        container_contents, lowest_treble_pitch = lowest_treble_pitch)
+    score, treble_staff, bass_staff = \
+        scoretools.make_piano_score_from_leaves(
+        container_contents,
+        lowest_treble_pitch=lowest_treble_pitch,
+        )
 
     r'''
     \new Score <<

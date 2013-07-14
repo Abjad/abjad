@@ -84,3 +84,22 @@ class Rest(Leaf):
     @property
     def _compact_representation(self):
         return 'r%s' % self._formatted_duration
+
+    ### PUBLIC METHODS ###
+
+    def divide(self, pitch=None):
+        from abjad.tools import markuptools
+        from abjad.tools import pitchtools
+        treble = copy.copy(self)
+        bass = copy.copy(self)
+        markuptools.remove_markup_attached_to_component(treble)
+        markuptools.remove_markup_attached_to_component(bass)
+        up_markup = markuptools.get_up_markup_attached_to_component(self)
+        up_markup = [copy.copy(markup) for markup in up_markup]
+        down_markup = markuptools.get_down_markup_attached_to_component(self)
+        down_markup = [copy.copy(markup) for markup in down_markup]
+        for markup in up_markup:
+            markup(treble)
+        for markup in down_markup:
+            markup(bass)
+        return treble, bass

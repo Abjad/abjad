@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_chordtools_divide_chord_by_diatonic_pitch_number_01():
+def test_Chord_divide_01():
     '''Divide at D4.
     '''
 
@@ -23,7 +23,7 @@ def test_chordtools_divide_chord_by_diatonic_pitch_number_01():
 
 
 
-def test_chordtools_divide_chord_by_diatonic_pitch_number_02():
+def test_Chord_divide_02():
     '''Divide at Eb4.
     '''
 
@@ -44,7 +44,7 @@ def test_chordtools_divide_chord_by_diatonic_pitch_number_02():
     assert wellformednesstools.is_well_formed_component(staff)
 
 
-def test_chordtools_divide_chord_by_diatonic_pitch_number_03():
+def test_Chord_divide_03():
     '''Divide at E4.
     '''
 

@@ -91,6 +91,9 @@ Read/write properties
 Methods
 -------
 
+.. automethod:: abjad.tools.notetools.Note.Note.Note.divide
+   :noindex:
+
 .. automethod:: abjad.tools.notetools.Note.Note.Note.select
    :noindex:
 
