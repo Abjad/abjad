@@ -26,7 +26,6 @@ Core composition packages
       :maxdepth: 1
 
       tools/chordtools/make_tied_chord
-      tools/chordtools/yield_groups_of_chords_in_sequence
 
 .. only:: latex
 
@@ -43,7 +42,6 @@ Core composition packages
    .. toctree::
 
       tools/chordtools/make_tied_chord
-      tools/chordtools/yield_groups_of_chords_in_sequence
 
 :py:mod:`componenttools <abjad.tools.componenttools>`
 =====================================================
@@ -1619,7 +1617,6 @@ Core composition packages
       tools/notetools/make_repeated_notes_from_time_signatures
       tools/notetools/make_repeated_notes_with_shorter_notes_at_end
       tools/notetools/make_tied_note
-      tools/notetools/yield_groups_of_notes_in_sequence
 
 .. only:: latex
 
@@ -1648,7 +1645,6 @@ Core composition packages
       tools/notetools/make_repeated_notes_from_time_signatures
       tools/notetools/make_repeated_notes_with_shorter_notes_at_end
       tools/notetools/make_tied_note
-      tools/notetools/yield_groups_of_notes_in_sequence
 
 :py:mod:`pitcharraytools <abjad.tools.pitcharraytools>`
 =======================================================
@@ -2320,7 +2316,6 @@ Core composition packages
       tools/resttools/make_tied_rest
       tools/resttools/replace_leaves_in_expr_with_rests
       tools/resttools/set_vertical_positioning_pitch_on_rest
-      tools/resttools/yield_groups_of_rests_in_sequence
 
 .. only:: latex
 
@@ -2344,7 +2339,6 @@ Core composition packages
       tools/resttools/make_tied_rest
       tools/resttools/replace_leaves_in_expr_with_rests
       tools/resttools/set_vertical_positioning_pitch_on_rest
-      tools/resttools/yield_groups_of_rests_in_sequence
 
 :py:mod:`rhythmmakertools <abjad.tools.rhythmmakertools>`
 =========================================================
@@ -2951,7 +2945,6 @@ Core composition packages
       tools/skiptools/make_repeated_skips_from_time_signatures
       tools/skiptools/make_skips_with_multiplied_durations
       tools/skiptools/replace_leaves_in_expr_with_skips
-      tools/skiptools/yield_groups_of_skips_in_sequence
 
 .. only:: latex
 
@@ -2971,7 +2964,6 @@ Core composition packages
       tools/skiptools/make_repeated_skips_from_time_signatures
       tools/skiptools/make_skips_with_multiplied_durations
       tools/skiptools/replace_leaves_in_expr_with_skips
-      tools/skiptools/yield_groups_of_skips_in_sequence
 
 :py:mod:`spannertools <abjad.tools.spannertools>`
 =================================================
