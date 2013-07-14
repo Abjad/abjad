@@ -102,6 +102,9 @@ Methods
 .. automethod:: experimental.tools.lyrictools.LyricHyphen.LyricHyphen.LyricHyphen.select_tie_chain
    :noindex:
 
+.. automethod:: experimental.tools.lyrictools.LyricHyphen.LyricHyphen.LyricHyphen.select_vertical_moment
+   :noindex:
+
 Special methods
 ---------------
 

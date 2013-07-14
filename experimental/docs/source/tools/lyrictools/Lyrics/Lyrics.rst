@@ -129,6 +129,9 @@ Methods
 .. automethod:: experimental.tools.lyrictools.Lyrics.Lyrics.Lyrics.select_parentage
    :noindex:
 
+.. automethod:: experimental.tools.lyrictools.Lyrics.Lyrics.Lyrics.select_vertical_moment
+   :noindex:
+
 Special methods
 ---------------
 
