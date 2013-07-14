@@ -307,6 +307,56 @@ class Chord(Leaf):
         self._note_heads.append(note_head)
         self._note_heads.sort()
 
+    def divide(self, pitch=None):
+        r'''Divide chord at `pitch`.
+
+        Return pair of newly created notes, rests or chords.
+        '''
+        from abjad.tools import chordtools
+        from abjad.tools import markuptools
+        from abjad.tools import notetools
+        from abjad.tools import pitchtools
+        from abjad.tools import resttools
+        pitch = pitch or pitchtools.NamedChromaticPitch('b', 3)
+        pitch = pitchtools.NamedChromaticPitch(pitch)
+        treble = copy.copy(self)
+        bass = copy.copy(self)
+        markuptools.remove_markup_attached_to_component(treble)
+        markuptools.remove_markup_attached_to_component(bass)
+        if isinstance(treble, notetools.Note):
+            if treble.written_pitch < pitch:
+                treble = resttools.Rest(treble)
+        elif isinstance(treble, resttools.Rest):
+            pass
+        elif isinstance(treble, chordtools.Chord):
+            for note_head in treble.note_heads:
+                if note_head.written_pitch < pitch:
+                    treble.remove(note_head)
+        else:
+            raise TypeError
+        if isinstance(bass, notetools.Note):
+            if pitch <= bass.written_pitch:
+                bass = resttools.Rest(bass)
+        elif isinstance(bass, resttools.Rest):
+            pass
+        elif isinstance(bass, chordtools.Chord):
+            for note_head in bass.note_heads:
+                if pitch <= note_head.written_pitch:
+                    bass.remove(note_head)
+        else:
+            raise TypeError
+        treble = chordtools.change_defective_chord_to_note_or_rest(treble)
+        bass = chordtools.change_defective_chord_to_note_or_rest(bass)
+        up_markup = markuptools.get_up_markup_attached_to_component(self)
+        up_markup = [copy.copy(markup) for markup in up_markup]
+        down_markup = markuptools.get_down_markup_attached_to_component(self)
+        down_markup = [copy.copy(markup) for markup in down_markup]
+        for markup in up_markup:
+            markup(treble)
+        for markup in down_markup:
+            markup(bass)
+        return treble, bass
+
     def extend(self, note_heads):
         '''Extend chord with `note_heads`::
 

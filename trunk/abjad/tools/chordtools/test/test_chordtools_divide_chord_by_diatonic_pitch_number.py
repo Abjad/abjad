@@ -2,68 +2,64 @@ from abjad import *
 
 
 def test_chordtools_divide_chord_by_diatonic_pitch_number_01():
-    '''Chord split by diatonic pitch number only; empty bass.
+    '''Divide at D4.
     '''
-    t = Chord([('d', 4), ('ef', 4), ('e', 4)], (1, 4))
-    treble, bass = chordtools.divide_chord_by_diatonic_pitch_number(t, pitchtools.NamedChromaticPitch('d', 4))
-    assert isinstance(treble, Chord)
-    assert treble.lilypond_format == Chord([2, 3, 4], (1, 4)).lilypond_format
-    assert isinstance(bass, Rest)
-    assert bass.lilypond_format == Rest((1, 4)).lilypond_format
-    assert t is not treble
-    assert t is not bass
-    assert treble is not bass
+
+    staff = Staff("<d' ef' e'>4")
+    pitch = pitchtools.NamedChromaticPitch('d', 4)
+    treble, bass = staff[0].divide(pitch)
+    staff.extend([treble, bass])
+
+    r'''
+    \new Staff {
+        <d' ef' e'>4
+        <d' ef' e'>4
+        r4
+    }
+    '''
+
+    assert staff.lilypond_format == "\\new Staff {\n\t<d' ef' e'>4\n\t<d' ef' e'>4\n\tr4\n}"
+    assert wellformednesstools.is_well_formed_component(staff)
+
 
 
 def test_chordtools_divide_chord_by_diatonic_pitch_number_02():
-    '''Chord split by diatonic pitch number only; one-note bass.
+    '''Divide at Eb4.
     '''
-    t = Chord([('d', 4), ('ef', 4), ('e', 4)], (1, 4))
-    treble, bass = chordtools.divide_chord_by_diatonic_pitch_number(t, pitchtools.NamedChromaticPitch('e', 4))
-    assert isinstance(treble, Chord)
-    assert treble.lilypond_format == Chord([3, 4], (1, 4)).lilypond_format
-    assert isinstance(bass, Note)
-    assert bass.lilypond_format == Note(2, (1, 4)).lilypond_format
-    assert t is not treble
-    assert t is not bass
-    assert treble is not bass
+
+    staff = Staff("<d' ef' e'>4")
+    pitch = pitchtools.NamedChromaticPitch('ef', 4)
+    treble, bass = staff[0].divide(pitch)
+    staff.extend([treble, bass])
+
+    r'''
+    \new Staff {
+        <d' ef' e'>4
+        <ef' e'>4
+        d'4
+    }
+    '''
+
+    assert staff.lilypond_format == "\\new Staff {\n\t<d' ef' e'>4\n\t<ef' e'>4\n\td'4\n}"
+    assert wellformednesstools.is_well_formed_component(staff)
 
 
 def test_chordtools_divide_chord_by_diatonic_pitch_number_03():
-    '''Chord split by diatonic pitch number is accidental agnostic.
+    '''Divide at E4.
     '''
-    t = Chord([('d', 4), ('ef', 4), ('e', 4)], (1, 4))
-    treble1, bass1 = chordtools.divide_chord_by_diatonic_pitch_number(t, pitchtools.NamedChromaticPitch('e', 4))
-    treble2, bass2 = chordtools.divide_chord_by_diatonic_pitch_number(t, pitchtools.NamedChromaticPitch('ef', 4))
-    assert treble1.lilypond_format == treble2.lilypond_format
-    assert bass1.lilypond_format == bass2.lilypond_format
 
+    staff = Staff("<d' ef' e'>4")
+    pitch = pitchtools.NamedChromaticPitch('e', 4)
+    treble, bass = staff[0].divide(pitch)
+    staff.extend([treble, bass])
 
-def test_chordtools_divide_chord_by_diatonic_pitch_number_04():
-    '''Typographically crossed split by diatonic pitch number only.
+    r'''
+    \new Staff {
+        <d' ef' e'>4
+        e'4
+        <d' ef'>4
+    }
     '''
-    t = Chord([('d', 4), ('es', 4), ('ff', 4), ('g', 4)], (1, 4))
-    treble, bass = chordtools.divide_chord_by_diatonic_pitch_number(t, pitchtools.NamedChromaticPitch('f', 4))
-    assert isinstance(treble, Chord)
-    assert treble.lilypond_format == Chord([('ff', 4), ('g', 4)], (1, 4)).lilypond_format
-    assert isinstance(bass, Chord)
-    assert bass.lilypond_format == Chord([('d', 4), ('es', 4)], (1, 4)).lilypond_format
-    assert t is not treble
-    assert t is not bass
-    assert treble is not bass
 
-
-def test_chordtools_divide_chord_by_diatonic_pitch_number_05():
-    '''Spanned chord DOES NOT copy spanner to resultant split parts.
-    '''
-    staff = Staff(Chord([2, 4, 5], (1, 4)) * 3)
-    spannertools.BeamSpanner(staff)
-    t = staff[1]
-    treble, bass = chordtools.divide_chord_by_diatonic_pitch_number(t, pitchtools.NamedChromaticPitch('e', 4))
-    assert isinstance(treble, Chord)
-    assert len(treble.spanners) == 0
-    assert isinstance(bass, Note)
-    assert len(bass.spanners) == 0
-    assert t is not treble
-    assert t is not bass
-    assert treble is not bass
+    assert staff.lilypond_format == "\\new Staff {\n\t<d' ef' e'>4\n\te'4\n\t<d' ef'>4\n}"
+    assert wellformednesstools.is_well_formed_component(staff)
