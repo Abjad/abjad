@@ -375,6 +375,37 @@ class Chord(Leaf):
         for note_head in note_heads:
             self.append(note_head)
 
+    def get_note_head(self, pitch):
+        '''Get note head from chord by `pitch`.
+
+        Raise missing note head error when chord contains no
+        note head with pitch.
+
+        Raise extra note head error when chord contains more than
+        one note head with pitch.
+
+        Return note head.
+        '''
+        from abjad.tools import pitchtools
+        result = []
+        if isinstance(pitch, pitchtools.NamedChromaticPitch):
+            for note_head in self.note_heads:
+                if note_head.written_pitch == pitch:
+                    result.append(note_head)
+        else:
+            for note_head in self.note_heads:
+                ncp = note_head.written_pitch.numbered_chromatic_pitch
+                if ncp._chromatic_pitch_number == pitch:
+                    result.append(note_head)
+        count = len(result)
+        if count == 0:
+            raise MissingNoteHeadError
+        elif count == 1:
+            note_head = result[0]
+            return note_head
+        else:
+            raise ExtraNoteHeadError
+
     def pop(self, i=-1):
         '''Remove note head at index `i` in chord:
 

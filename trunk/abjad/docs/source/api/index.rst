@@ -26,7 +26,6 @@ Core composition packages
       :maxdepth: 1
 
       tools/chordtools/change_defective_chord_to_note_or_rest
-      tools/chordtools/get_note_head_from_chord_by_pitch
       tools/chordtools/make_tied_chord
       tools/chordtools/yield_all_subchords_of_chord
       tools/chordtools/yield_groups_of_chords_in_sequence
@@ -46,7 +45,6 @@ Core composition packages
    .. toctree::
 
       tools/chordtools/change_defective_chord_to_note_or_rest
-      tools/chordtools/get_note_head_from_chord_by_pitch
       tools/chordtools/make_tied_chord
       tools/chordtools/yield_all_subchords_of_chord
       tools/chordtools/yield_groups_of_chords_in_sequence
