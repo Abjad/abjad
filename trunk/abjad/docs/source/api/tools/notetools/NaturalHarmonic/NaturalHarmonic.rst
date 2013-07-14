@@ -122,6 +122,9 @@ Methods
 .. automethod:: abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.select_tie_chain
    :noindex:
 
+.. automethod:: abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.select_vertical_moment
+   :noindex:
+
 Special methods
 ---------------
 

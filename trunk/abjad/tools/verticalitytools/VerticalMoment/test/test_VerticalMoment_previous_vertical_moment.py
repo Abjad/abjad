@@ -38,7 +38,7 @@ def test_VerticalMoment_previous_vertical_moment_01():
     '''
 
     last_leaf = score.leaves[-1]
-    vertical_moment = verticalitytools.get_vertical_moment_starting_with_component(last_leaf)
+    vertical_moment = last_leaf.select_vertical_moment()
     assert vertical_moment.offset == Offset(3, 8)
 
     vertical_moment = vertical_moment.previous_vertical_moment

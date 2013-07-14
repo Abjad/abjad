@@ -129,6 +129,9 @@ Methods
 .. automethod:: abjad.tools.voicetools.Voice.Voice.Voice.select_parentage
    :noindex:
 
+.. automethod:: abjad.tools.voicetools.Voice.Voice.Voice.select_vertical_moment
+   :noindex:
+
 Special methods
 ---------------
 

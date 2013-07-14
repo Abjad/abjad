@@ -131,6 +131,9 @@ Methods
 .. automethod:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.select_parentage
    :noindex:
 
+.. automethod:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.select_vertical_moment
+   :noindex:
+
 Special methods
 ---------------
 

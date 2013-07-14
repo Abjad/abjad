@@ -98,6 +98,9 @@ Methods
 .. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.select_tie_chain
    :noindex:
 
+.. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.select_vertical_moment
+   :noindex:
+
 Special methods
 ---------------
 

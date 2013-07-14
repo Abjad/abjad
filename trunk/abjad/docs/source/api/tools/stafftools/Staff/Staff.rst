@@ -129,6 +129,9 @@ Methods
 .. automethod:: abjad.tools.stafftools.Staff.Staff.Staff.select_parentage
    :noindex:
 
+.. automethod:: abjad.tools.stafftools.Staff.Staff.Staff.select_vertical_moment
+   :noindex:
+
 Special methods
 ---------------
 

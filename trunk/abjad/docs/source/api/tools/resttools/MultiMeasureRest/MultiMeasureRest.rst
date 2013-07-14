@@ -105,6 +105,9 @@ Methods
 .. automethod:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.select_tie_chain
    :noindex:
 
+.. automethod:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.select_vertical_moment
+   :noindex:
+
 Special methods
 ---------------
 

@@ -69,6 +69,9 @@ Methods
 .. automethod:: abjad.tools.componenttools.Component.Component.Component.select_parentage
    :noindex:
 
+.. automethod:: abjad.tools.componenttools.Component.Component.Component.select_vertical_moment
+   :noindex:
+
 Special methods
 ---------------
 

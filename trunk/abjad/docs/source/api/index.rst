@@ -3741,7 +3741,6 @@ Core composition packages
       :maxdepth: 1
 
       tools/verticalitytools/get_vertical_moment_at_offset_in_expr
-      tools/verticalitytools/get_vertical_moment_starting_with_component
 
 .. only:: latex
 
@@ -3758,7 +3757,6 @@ Core composition packages
    .. toctree::
 
       tools/verticalitytools/get_vertical_moment_at_offset_in_expr
-      tools/verticalitytools/get_vertical_moment_starting_with_component
 
 :py:mod:`voicetools <abjad.tools.voicetools>`
 =============================================

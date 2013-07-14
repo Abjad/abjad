@@ -130,6 +130,9 @@ Methods
 .. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.select_tie_chain
    :noindex:
 
+.. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.select_vertical_moment
+   :noindex:
+
 Special methods
 ---------------
 

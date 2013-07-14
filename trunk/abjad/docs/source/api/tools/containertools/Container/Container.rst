@@ -107,6 +107,9 @@ Methods
 .. automethod:: abjad.tools.containertools.Container.Container.Container.select_parentage
    :noindex:
 
+.. automethod:: abjad.tools.containertools.Container.Container.Container.select_vertical_moment
+   :noindex:
+
 Special methods
 ---------------
 

@@ -129,6 +129,9 @@ Methods
 .. automethod:: abjad.tools.scoretools.Score.Score.Score.select_parentage
    :noindex:
 
+.. automethod:: abjad.tools.scoretools.Score.Score.Score.select_vertical_moment
+   :noindex:
+
 Special methods
 ---------------
 

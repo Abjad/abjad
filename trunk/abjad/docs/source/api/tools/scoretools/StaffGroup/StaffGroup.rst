@@ -129,6 +129,9 @@ Methods
 .. automethod:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.select_parentage
    :noindex:
 
+.. automethod:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.select_vertical_moment
+   :noindex:
+
 Special methods
 ---------------
 

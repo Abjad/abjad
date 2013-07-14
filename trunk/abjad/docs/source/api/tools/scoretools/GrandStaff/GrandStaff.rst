@@ -131,6 +131,9 @@ Methods
 .. automethod:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.select_parentage
    :noindex:
 
+.. automethod:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.select_vertical_moment
+   :noindex:
+
 Special methods
 ---------------
 

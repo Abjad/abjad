@@ -131,6 +131,9 @@ Methods
 .. automethod:: abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.select_parentage
    :noindex:
 
+.. automethod:: abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.select_vertical_moment
+   :noindex:
+
 Special methods
 ---------------
 

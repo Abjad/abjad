@@ -115,6 +115,9 @@ Methods
 .. automethod:: abjad.tools.notetools.Note.Note.Note.select_tie_chain
    :noindex:
 
+.. automethod:: abjad.tools.notetools.Note.Note.Note.select_vertical_moment
+   :noindex:
+
 Special methods
 ---------------
 

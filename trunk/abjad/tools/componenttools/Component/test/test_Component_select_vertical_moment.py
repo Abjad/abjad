@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import verticalitytools
 
 
-def test_verticalitytools_get_vertical_moment_starting_with_component_01():
+def test_Component_select_vertical_moment_01():
 
     score = Score([])
     score.append(Staff([tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(3))]))
@@ -39,7 +39,7 @@ def test_verticalitytools_get_vertical_moment_starting_with_component_01():
     '''
 
     def piano_staff_moment(expr):
-        return verticalitytools.get_vertical_moment_starting_with_component(expr, piano_staff)
+        return expr.select_vertical_moment(governor=piano_staff)
 
     vm = piano_staff_moment(piano_staff[1][0])
     assert vm.leaves == (piano_staff[0][0], piano_staff[1][0])
@@ -54,7 +54,7 @@ def test_verticalitytools_get_vertical_moment_starting_with_component_01():
     assert vm.leaves == (piano_staff[0][1], piano_staff[1][3])
 
 
-def test_verticalitytools_get_vertical_moment_starting_with_component_02():
+def test_Component_select_vertical_moment_02():
 
     score = Score([])
     score.append(Staff([tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(3))]))
@@ -90,14 +90,14 @@ def test_verticalitytools_get_vertical_moment_starting_with_component_02():
     >>
     '''
 
-    vm = verticalitytools.get_vertical_moment_starting_with_component(piano_staff[1][0])
+    vm = piano_staff[1][0].select_vertical_moment()
     assert vm.leaves == (score[0][0][0], piano_staff[0][0], piano_staff[1][0])
 
-    vm = verticalitytools.get_vertical_moment_starting_with_component(piano_staff[1][1])
+    vm = piano_staff[1][1].select_vertical_moment()
     assert vm.leaves == (score[0][0][0], piano_staff[0][0], piano_staff[1][1])
 
-    vm = verticalitytools.get_vertical_moment_starting_with_component(piano_staff[1][2])
+    vm = piano_staff[1][2].select_vertical_moment()
     assert vm.leaves == (score[0][0][1], piano_staff[0][1], piano_staff[1][2])
 
-    vm = verticalitytools.get_vertical_moment_starting_with_component(piano_staff[1][3])
+    vm = piano_staff[1][3].select_vertical_moment()
     assert vm.leaves == (score[0][0][2], piano_staff[0][1], piano_staff[1][3])
