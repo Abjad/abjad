@@ -84,7 +84,6 @@ Core composition packages
       tools/componenttools/copy_governed_component_subtree_by_leaf_range
       tools/componenttools/copy_governed_component_subtree_from_offset_to
       tools/componenttools/extend_in_parent_of_component
-      tools/componenttools/get_component_in_expr_with_name
       tools/componenttools/get_components_in_expr_with_name
       tools/componenttools/get_first_component_in_expr_with_name
       tools/componenttools/get_first_component_with_name_in_improper_parentage_of_component
@@ -161,7 +160,6 @@ Core composition packages
       tools/componenttools/copy_governed_component_subtree_by_leaf_range
       tools/componenttools/copy_governed_component_subtree_from_offset_to
       tools/componenttools/extend_in_parent_of_component
-      tools/componenttools/get_component_in_expr_with_name
       tools/componenttools/get_components_in_expr_with_name
       tools/componenttools/get_first_component_in_expr_with_name
       tools/componenttools/get_first_component_with_name_in_improper_parentage_of_component

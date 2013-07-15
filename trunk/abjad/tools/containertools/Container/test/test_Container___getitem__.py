@@ -62,17 +62,17 @@ def test_Container___getitem___05():
 
 
 def test_Container___getitem___06():
-    '''Bad name raises MissingNamedComponentError.
+    '''Bad name raises exception.
     '''
 
     template = scoretemplatetools.StringQuartetScoreTemplate()
     score = template()
 
-    assert py.test.raises(MissingNamedComponentError, "score['Foo']")
+    assert py.test.raises(Exception, "score['Foo']")
 
 
 def test_Container___getitem___07():
-    '''Duplicate named contexts raise ExtraNamedComponentError.
+    '''Duplicate named contexts raise exception.
     '''
 
     template = scoretemplatetools.StringQuartetScoreTemplate()
@@ -82,7 +82,7 @@ def test_Container___getitem___07():
 
     score['Cello Staff'].append(Voice(name='First Violin Voice'))
 
-    assert py.test.raises(ExtraNamedComponentError, "score['First Violin Voice']")
+    assert py.test.raises(Exception, "score['First Violin Voice']")
 
     extra_first_violin_voice = score['Cello Staff'].pop()
 
