@@ -65,22 +65,17 @@ class VerticalMoment(Selection):
 
     ### INITIALIZER ###
 
-    #def __init__(self, offset, governors, components):
     def __init__(self, expr=None, offset=None):
         if expr is None:
             return
-        offset, governors, components = \
-            self._from_expr_and_offset(expr, offset)
+        governors, components = self._from_expr_and_offset(expr, offset)
         offset = durationtools.Offset(offset)
         assert isinstance(governors, tuple)
         assert isinstance(components, tuple)
-        #object.__setattr__(self, '_offset', offset)
-        #object.__setattr__(self, '_governors', tuple(governors))
         self._offset = offset
         self._governors = tuple(governors)
         components = list(components)
         components.sort(key=lambda x: x.select_parentage().score_index)
-        #object.__setattr__(self, '_components', tuple(components))
         self._components = tuple(components)
 
     ### SPECIAL METHODS ###
@@ -121,45 +116,33 @@ class VerticalMoment(Selection):
     def _format_string(self):
         return ', '.join([str(x) for x in self.components])
 
+    ### PRIVATE METHODS ###
+
+    @staticmethod
+    def _find_index(container, offset):
+        '''Based off of Python's bisect.bisect() function.
+        '''
+        lo = 0
+        hi = len(container)
+        while lo < hi:
+            mid = (lo + hi) // 2
+            start_offset = container[mid].timespan.start_offset
+            stop_offset = container[mid].timespan.stop_offset
+            if start_offset <= offset < stop_offset:
+                lo = mid + 1
+            # if container[mid] is of nonzero duration
+            elif start_offset < stop_offset:
+                hi = mid
+            # container[mid] is of zero duration so we skip it
+            else:
+                lo = mid + 1
+        return lo - 1
+
     @staticmethod
     def _from_expr_and_offset(expr, offset):
-        from abjad.tools import iterationtools
         from abjad.tools import selectiontools
-        from abjad.tools import verticalitytools
-        def find_index(container, offset):
-            '''Based off of Python's bisect.bisect() function.
-            '''
-            lo = 0
-            hi = len(container)
-            while lo < hi:
-                mid = (lo + hi) // 2
-                start_offset = container[mid].timespan.start_offset
-                stop_offset = container[mid].timespan.stop_offset
-                if start_offset <= offset < stop_offset:
-                    lo = mid + 1
-                # if container[mid] is of nonzero duration
-                elif start_offset < stop_offset:
-                    hi = mid
-                # container[mid] is of zero duration so we skip it
-                else:
-                    lo = mid + 1
-            return lo - 1
-        def recurse(component, offset):
-            result = []
-            if component.timespan.start_offset <= \
-                offset < component.timespan.stop_offset:
-                result.append(component)
-                if hasattr(component, '_music'):
-                    if component.is_parallel:
-                        for x in component:
-                            result.extend(recurse(x, offset))
-                    else:
-                        child = component[find_index(component, offset)]
-                        result.extend(recurse(child, offset))
-            return result
         offset = durationtools.Offset(offset)
         governors = []
-        message = 'must be Abjad component or tuple of Abjad components.'
         if isinstance(expr, componenttools.Component):
             governors.append(expr)
         elif isinstance(expr, (list, tuple, selectiontools.Selection)):
@@ -167,6 +150,8 @@ class VerticalMoment(Selection):
                 if isinstance(x, componenttools.Component):
                     governors.append(x)
                 else:
+                    message = 'must be Abjad component'
+                    message += ' or tuple of Abjad components.'
                     raise TypeError(message)
         else:
             raise TypeError(message)
@@ -174,10 +159,26 @@ class VerticalMoment(Selection):
         governors = tuple(governors)
         components = []
         for governor in governors:
-            components.extend(recurse(governor, offset))
+            components.extend(VerticalMoment._recurse(governor, offset))
         components.sort(key=lambda x: x.select_parentage().score_index)
         components = tuple(components)
-        return offset, governors, components
+        return governors, components
+
+    @staticmethod
+    def _recurse(component, offset):
+        result = []
+        if component.timespan.start_offset <= \
+            offset < component.timespan.stop_offset:
+            result.append(component)
+            if hasattr(component, '_music'):
+                if component.is_parallel:
+                    for x in component:
+                        result.extend(VerticalMoment._recurse(x, offset))
+                else:
+                    child = component[
+                        VerticalMoment._find_index(component, offset)]
+                    result.extend(VerticalMoment._recurse(child, offset))
+        return result
 
     ### PUBLIC PROPERTIES ###
 

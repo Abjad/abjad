@@ -3737,13 +3737,6 @@ Core composition packages
 
       tools/verticalitytools/VerticalMoment/VerticalMoment
 
-   --------
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/verticalitytools/get_vertical_moment_at_offset_in_expr
-
 .. only:: latex
 
    Concrete Classes
@@ -3752,13 +3745,6 @@ Core composition packages
    .. toctree::
 
       tools/verticalitytools/VerticalMoment/VerticalMoment
-
-   Functions
-   ---------
-
-   .. toctree::
-
-      tools/verticalitytools/get_vertical_moment_at_offset_in_expr
 
 :py:mod:`voicetools <abjad.tools.voicetools>`
 =============================================

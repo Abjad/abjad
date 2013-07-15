@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_verticalitytools_get_vertical_moment_at_offset_in_expr_01():
+def test_Component_select_vertical_moment_at_01():
 
     score = Score([])
     score.append(Staff([tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(3))]))
@@ -56,7 +56,7 @@ def test_verticalitytools_get_vertical_moment_at_offset_in_expr_01():
     assert vm.leaves == ()
 
 
-def test_verticalitytools_get_vertical_moment_at_offset_in_expr_02():
+def test_Component_select_vertical_moment_at_02():
 
     score = Score([])
     score.append(Staff([tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(3))]))
