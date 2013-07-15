@@ -123,6 +123,12 @@ Methods
 .. automethod:: abjad.tools.scoretools.Score.Score.Score.select_descendants
    :noindex:
 
+.. automethod:: abjad.tools.scoretools.Score.Score.Score.select_descendants_starting_with
+   :noindex:
+
+.. automethod:: abjad.tools.scoretools.Score.Score.Score.select_descendants_stopping_with
+   :noindex:
+
 .. automethod:: abjad.tools.scoretools.Score.Score.Score.select_lineage
    :noindex:
 

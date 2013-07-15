@@ -91,6 +91,12 @@ Methods
 .. automethod:: abjad.tools.skiptools.Skip.Skip.Skip.select_descendants
    :noindex:
 
+.. automethod:: abjad.tools.skiptools.Skip.Skip.Skip.select_descendants_starting_with
+   :noindex:
+
+.. automethod:: abjad.tools.skiptools.Skip.Skip.Skip.select_descendants_stopping_with
+   :noindex:
+
 .. automethod:: abjad.tools.skiptools.Skip.Skip.Skip.select_lineage
    :noindex:
 

@@ -89,6 +89,12 @@ Methods
 .. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.select_descendants
    :noindex:
 
+.. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.select_descendants_starting_with
+   :noindex:
+
+.. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.select_descendants_stopping_with
+   :noindex:
+
 .. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.select_lineage
    :noindex:
 

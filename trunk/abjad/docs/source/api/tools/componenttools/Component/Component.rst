@@ -63,6 +63,12 @@ Methods
 .. automethod:: abjad.tools.componenttools.Component.Component.Component.select_descendants
    :noindex:
 
+.. automethod:: abjad.tools.componenttools.Component.Component.Component.select_descendants_starting_with
+   :noindex:
+
+.. automethod:: abjad.tools.componenttools.Component.Component.Component.select_descendants_stopping_with
+   :noindex:
+
 .. automethod:: abjad.tools.componenttools.Component.Component.Component.select_lineage
    :noindex:
 

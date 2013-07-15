@@ -123,6 +123,12 @@ Methods
 .. automethod:: abjad.tools.voicetools.Voice.Voice.Voice.select_descendants
    :noindex:
 
+.. automethod:: abjad.tools.voicetools.Voice.Voice.Voice.select_descendants_starting_with
+   :noindex:
+
+.. automethod:: abjad.tools.voicetools.Voice.Voice.Voice.select_descendants_stopping_with
+   :noindex:
+
 .. automethod:: abjad.tools.voicetools.Voice.Voice.Voice.select_lineage
    :noindex:
 

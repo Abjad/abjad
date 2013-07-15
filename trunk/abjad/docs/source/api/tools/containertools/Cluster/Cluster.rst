@@ -103,6 +103,12 @@ Methods
 .. automethod:: abjad.tools.containertools.Cluster.Cluster.Cluster.select_descendants
    :noindex:
 
+.. automethod:: abjad.tools.containertools.Cluster.Cluster.Cluster.select_descendants_starting_with
+   :noindex:
+
+.. automethod:: abjad.tools.containertools.Cluster.Cluster.Cluster.select_descendants_stopping_with
+   :noindex:
+
 .. automethod:: abjad.tools.containertools.Cluster.Cluster.Cluster.select_lineage
    :noindex:
 

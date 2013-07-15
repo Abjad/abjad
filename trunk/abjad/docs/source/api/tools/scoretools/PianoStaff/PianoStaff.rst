@@ -125,6 +125,12 @@ Methods
 .. automethod:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.select_descendants
    :noindex:
 
+.. automethod:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.select_descendants_starting_with
+   :noindex:
+
+.. automethod:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.select_descendants_stopping_with
+   :noindex:
+
 .. automethod:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.select_lineage
    :noindex:
 

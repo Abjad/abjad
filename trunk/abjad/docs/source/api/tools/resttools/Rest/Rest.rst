@@ -94,6 +94,12 @@ Methods
 .. automethod:: abjad.tools.resttools.Rest.Rest.Rest.select_descendants
    :noindex:
 
+.. automethod:: abjad.tools.resttools.Rest.Rest.Rest.select_descendants_starting_with
+   :noindex:
+
+.. automethod:: abjad.tools.resttools.Rest.Rest.Rest.select_descendants_stopping_with
+   :noindex:
+
 .. automethod:: abjad.tools.resttools.Rest.Rest.Rest.select_lineage
    :noindex:
 

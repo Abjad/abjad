@@ -30,21 +30,27 @@ def get_improper_descendants_of_component_that_stop_with_component(component):
     '''
     from abjad.tools import containertools
 
-    # initialize result
-    result = []
+    # why can't we use this instead?
+    #return component.select_descendants(
+    #    stop_offset=component.timespan.stop_offset)
 
-    # add component
-    result.append(component)
+#    # initialize result
+#    result = []
+#
+#    # add component
+#    result.append(component)
+#
+#    # add proper contents that stop with component
+#    if isinstance(component, containertools.Container):
+#        if component.is_parallel:
+#            duration = component.preprolated_duration
+#            for x in component:
+#                if x.preprolated_duration == duration:
+#                    result.extend(get_improper_descendants_of_component_that_stop_with_component(x))
+#        elif component:
+#            result.extend(get_improper_descendants_of_component_that_stop_with_component(component[-1]))
+#
+#    # return result
+#    return result
 
-    # add proper contents that stop with component
-    if isinstance(component, containertools.Container):
-        if component.is_parallel:
-            duration = component.preprolated_duration
-            for x in component:
-                if x.preprolated_duration == duration:
-                    result.extend(get_improper_descendants_of_component_that_stop_with_component(x))
-        elif component:
-            result.extend(get_improper_descendants_of_component_that_stop_with_component(component[-1]))
-
-    # return result
-    return result
+    return component.select_descendants_stopping_with()

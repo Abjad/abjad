@@ -123,6 +123,12 @@ Methods
 .. automethod:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.select_descendants
    :noindex:
 
+.. automethod:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.select_descendants_starting_with
+   :noindex:
+
+.. automethod:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.select_descendants_stopping_with
+   :noindex:
+
 .. automethod:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.select_lineage
    :noindex:
 

@@ -556,6 +556,30 @@ class Component(AbjadObject):
             stop_offset=stop_offset,
             )
 
+    def select_descendants_starting_with(self):
+        from abjad.tools import containertools
+        result = []
+        result.append(self)
+        if isinstance(self, containertools.Container):
+            if self.is_parallel:
+                for x in self:
+                    result.extend(x.select_descendants_starting_with())
+            elif self:
+                result.extend(self[0].select_descendants_starting_with())
+        return result
+
+    def select_descendants_stopping_with(self):
+        from abjad.tools import containertools
+        result = []
+        result.append(self)
+        if isinstance(self, containertools.Container):
+            if self.is_parallel:
+                for x in self:
+                    result.extend(x.select_descendants_stopping_with())
+            elif self:
+                result.extend(self[-1].select_descendants_stopping_with())
+        return result
+
     def select_lineage(self):
         '''Select lineage.
         '''

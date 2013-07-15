@@ -29,21 +29,28 @@ def get_improper_descendants_of_component_that_start_with_component(component):
 
     Return list of `component` together with improper contents that start with component.
     '''
+
     from abjad.tools import containertools
 
-    # initialize result
-    result = []
+    # why can't we use this instead?
+    #return component.select_descendants(
+    #    start_offset=component.timespan.start_offset)
 
-    # add component
-    result.append(component)
+#    # initialize result
+#    result = []
+#
+#    # add component
+#    result.append(component)
+#
+#    # add content components that start with component
+#    if isinstance(component, containertools.Container):
+#        if component.is_parallel:
+#            for x in component:
+#                result.extend(get_improper_descendants_of_component_that_start_with_component(x))
+#        elif component:
+#            result.extend(get_improper_descendants_of_component_that_start_with_component(component[0]))
+#
+#    # return result
+#    return result
 
-    # add content components that start with component
-    if isinstance(component, containertools.Container):
-        if component.is_parallel:
-            for x in component:
-                result.extend(get_improper_descendants_of_component_that_start_with_component(x))
-        elif component:
-            result.extend(get_improper_descendants_of_component_that_start_with_component(component[0]))
-
-    # return result
-    return result
+    return component.select_descendants_starting_with()

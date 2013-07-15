@@ -121,6 +121,12 @@ Methods
 .. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.select_descendants
    :noindex:
 
+.. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.select_descendants_starting_with
+   :noindex:
+
+.. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.select_descendants_stopping_with
+   :noindex:
+
 .. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.select_lineage
    :noindex:
 

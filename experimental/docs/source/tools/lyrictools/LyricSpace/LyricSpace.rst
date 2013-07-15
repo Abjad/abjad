@@ -93,6 +93,12 @@ Methods
 .. automethod:: experimental.tools.lyrictools.LyricSpace.LyricSpace.LyricSpace.select_descendants
    :noindex:
 
+.. automethod:: experimental.tools.lyrictools.LyricSpace.LyricSpace.LyricSpace.select_descendants_starting_with
+   :noindex:
+
+.. automethod:: experimental.tools.lyrictools.LyricSpace.LyricSpace.LyricSpace.select_descendants_stopping_with
+   :noindex:
+
 .. automethod:: experimental.tools.lyrictools.LyricSpace.LyricSpace.LyricSpace.select_lineage
    :noindex:
 

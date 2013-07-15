@@ -121,6 +121,12 @@ Methods
 .. automethod:: abjad.tools.contexttools.Context.Context.Context.select_descendants
    :noindex:
 
+.. automethod:: abjad.tools.contexttools.Context.Context.Context.select_descendants_starting_with
+   :noindex:
+
+.. automethod:: abjad.tools.contexttools.Context.Context.Context.select_descendants_stopping_with
+   :noindex:
+
 .. automethod:: abjad.tools.contexttools.Context.Context.Context.select_lineage
    :noindex:
 

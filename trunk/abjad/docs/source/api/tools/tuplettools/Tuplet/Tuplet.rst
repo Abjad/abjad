@@ -139,6 +139,12 @@ Methods
 .. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.select_descendants
    :noindex:
 
+.. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.select_descendants_starting_with
+   :noindex:
+
+.. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.select_descendants_stopping_with
+   :noindex:
+
 .. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.select_lineage
    :noindex:
 

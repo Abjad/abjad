@@ -106,6 +106,12 @@ Methods
 .. automethod:: abjad.tools.notetools.Note.Note.Note.select_descendants
    :noindex:
 
+.. automethod:: abjad.tools.notetools.Note.Note.Note.select_descendants_starting_with
+   :noindex:
+
+.. automethod:: abjad.tools.notetools.Note.Note.Note.select_descendants_stopping_with
+   :noindex:
+
 .. automethod:: abjad.tools.notetools.Note.Note.Note.select_lineage
    :noindex:
 
