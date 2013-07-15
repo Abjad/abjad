@@ -380,3 +380,9 @@ class Selection(AbjadObject):
         from abjad.tools import componenttools
         return componenttools.get_parent_and_start_stop_indices_of_components(
             self)
+
+    def select_vertical_moment_at(self, offset):
+        '''Select vertical moment at `offset`.
+        '''
+        from abjad.tools import verticalitytools
+        return verticalitytools.VerticalMoment(self, offset)

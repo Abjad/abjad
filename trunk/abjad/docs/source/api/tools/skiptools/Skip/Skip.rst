@@ -103,6 +103,9 @@ Methods
 .. automethod:: abjad.tools.skiptools.Skip.Skip.Skip.select_vertical_moment
    :noindex:
 
+.. automethod:: abjad.tools.skiptools.Skip.Skip.Skip.select_vertical_moment_at
+   :noindex:
+
 Special methods
 ---------------
 

@@ -118,6 +118,9 @@ Methods
 .. automethod:: abjad.tools.notetools.Note.Note.Note.select_vertical_moment
    :noindex:
 
+.. automethod:: abjad.tools.notetools.Note.Note.Note.select_vertical_moment_at
+   :noindex:
+
 Special methods
 ---------------
 

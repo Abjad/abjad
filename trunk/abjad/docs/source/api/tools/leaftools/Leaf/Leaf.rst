@@ -101,6 +101,9 @@ Methods
 .. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.select_vertical_moment
    :noindex:
 
+.. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.select_vertical_moment_at
+   :noindex:
+
 Special methods
 ---------------
 

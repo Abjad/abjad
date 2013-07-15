@@ -37,8 +37,7 @@ def test_VerticalMoment_next_vertical_moment_01():
     >>
     '''
 
-    vertical_moment = verticalitytools.get_vertical_moment_at_offset_in_expr(
-        score, Offset(0))
+    vertical_moment = score.select_vertical_moment_at(Offset(0))
     assert vertical_moment.offset == Offset(0)
 
     vertical_moment = vertical_moment.next_vertical_moment

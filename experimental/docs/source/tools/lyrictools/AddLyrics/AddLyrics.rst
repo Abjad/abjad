@@ -112,6 +112,9 @@ Methods
 .. automethod:: experimental.tools.lyrictools.AddLyrics.AddLyrics.AddLyrics.select_vertical_moment
    :noindex:
 
+.. automethod:: experimental.tools.lyrictools.AddLyrics.AddLyrics.AddLyrics.select_vertical_moment_at
+   :noindex:
+
 Special methods
 ---------------
 

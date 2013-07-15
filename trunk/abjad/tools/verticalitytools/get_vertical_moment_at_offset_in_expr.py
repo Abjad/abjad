@@ -48,11 +48,7 @@ def get_vertical_moment_at_offset_in_expr(expr, offset):
 
     ::
 
-        >>> args = (piano_staff, durationtools.Offset(1, 8))
-
-    ::
-
-        >>> verticalitytools.get_vertical_moment_at_offset_in_expr(*args)
+        >>> piano_staff.select_vertical_moment_at(Offset(1, 8))
         VerticalMoment(1/8, <<2>>)
 
     ::
@@ -77,15 +73,18 @@ def get_vertical_moment_at_offset_in_expr(expr, offset):
             stop_offset = container[mid].timespan.stop_offset
             if start_offset <= offset < stop_offset:
                 lo = mid + 1
-            elif start_offset < stop_offset: # if container[mid] is of non-zero duration
+            # if container[mid] is of nonzero duration
+            elif start_offset < stop_offset:
                 hi = mid
-            else: # else, container[mid] _is_ of zero duration, so we skip it
+            # container[mid] is of zero duration so we skip it
+            else:
                 lo = mid + 1
         return lo - 1
 
     def recurse(component, offset):
         result = []
-        if component.timespan.start_offset <= offset < component.timespan.stop_offset:
+        if component.timespan.start_offset <= \
+            offset < component.timespan.stop_offset:
             result.append(component)
             if hasattr(component, '_music'):
                 if component.is_parallel:
@@ -119,6 +118,7 @@ def get_vertical_moment_at_offset_in_expr(expr, offset):
     components.sort(key=lambda x: x.select_parentage().score_index)
     components = tuple(components)
 
-    vertical_moment = verticalitytools.VerticalMoment(offset, governors, components)
+    vertical_moment = \
+        verticalitytools.VerticalMoment(offset, governors, components)
 
     return vertical_moment

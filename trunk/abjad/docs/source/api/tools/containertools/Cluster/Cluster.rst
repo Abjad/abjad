@@ -112,6 +112,9 @@ Methods
 .. automethod:: abjad.tools.containertools.Cluster.Cluster.Cluster.select_vertical_moment
    :noindex:
 
+.. automethod:: abjad.tools.containertools.Cluster.Cluster.Cluster.select_vertical_moment_at
+   :noindex:
+
 Special methods
 ---------------
 

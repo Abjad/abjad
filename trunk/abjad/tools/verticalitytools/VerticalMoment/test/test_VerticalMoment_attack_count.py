@@ -37,10 +37,8 @@ def test_VerticalMoment_attack_count_01():
     >>
     '''
 
-    vertical_moment = verticalitytools.get_vertical_moment_at_offset_in_expr(
-        score, Offset(0))
+    vertical_moment = score.select_vertical_moment_at(Offset(0))
     assert vertical_moment.attack_count == 3
 
-    vertical_moment = verticalitytools.get_vertical_moment_at_offset_in_expr(
-        score, Offset(1, 8))
+    vertical_moment = score.select_vertical_moment_at(Offset(1, 8))
     assert vertical_moment.attack_count == 1

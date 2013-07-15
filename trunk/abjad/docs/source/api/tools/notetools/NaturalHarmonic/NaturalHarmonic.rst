@@ -125,6 +125,9 @@ Methods
 .. automethod:: abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.select_vertical_moment
    :noindex:
 
+.. automethod:: abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.select_vertical_moment_at
+   :noindex:
+
 Special methods
 ---------------
 

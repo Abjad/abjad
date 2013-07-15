@@ -53,6 +53,9 @@ Methods
 .. automethod:: abjad.tools.componenttools.Descendants.Descendants.Descendants.get_parent_and_start_stop_indices
    :noindex:
 
+.. automethod:: abjad.tools.componenttools.Descendants.Descendants.Descendants.select_vertical_moment_at
+   :noindex:
+
 Special methods
 ---------------
 

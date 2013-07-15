@@ -37,8 +37,9 @@ def test_VerticalMoment_notes_01():
     >>
     '''
 
-    vertical_moment = verticalitytools.get_vertical_moment_at_offset_in_expr(score, Offset(1, 8))
+    vertical_moment = score.select_vertical_moment_at(Offset(1, 8))
 
     "(Note(d'', 8), Note(a', 4), Note(e', 8))"
 
-    assert vertical_moment.notes == (score[0][0][0], piano_staff[0][0], piano_staff[1][1])
+    assert vertical_moment.notes == (
+        score[0][0][0], piano_staff[0][0], piano_staff[1][1])

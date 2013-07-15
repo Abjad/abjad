@@ -563,5 +563,10 @@ class Component(AbjadObject):
         offset = self.timespan.start_offset
         if governor is None:
             governor = self.select_parentage().root
-        return verticalitytools.get_vertical_moment_at_offset_in_expr(
-            governor, offset)
+        return verticalitytools.VerticalMoment(governor, offset)
+
+    def select_vertical_moment_at(self, offset):
+        '''Select vertical moment at `offset`.
+        '''
+        from abjad.tools import verticalitytools
+        return verticalitytools.VerticalMoment(self, offset)

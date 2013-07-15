@@ -130,6 +130,9 @@ Methods
 .. automethod:: abjad.tools.contexttools.Context.Context.Context.select_vertical_moment
    :noindex:
 
+.. automethod:: abjad.tools.contexttools.Context.Context.Context.select_vertical_moment_at
+   :noindex:
+
 Special methods
 ---------------
 

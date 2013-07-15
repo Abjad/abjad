@@ -37,22 +37,22 @@ def test_VerticalMoment___len___01():
     >>
     '''
 
-    vertical_moment = verticalitytools.get_vertical_moment_at_offset_in_expr(score, Offset(1, 8))
+    vertical_moment = score.select_vertical_moment_at(Offset(1, 8))
     "VerticalMoment(Score<<2>>, Staff{1}, {@ 3:4 d''8, c''8, b'8 @}, d''8, PianoStaff<<2>>, Staff{2}, a'4, Staff{4}, e'8)"
     assert len(vertical_moment) == 9
 
-    vertical_moment = verticalitytools.get_vertical_moment_at_offset_in_expr(score[0], Offset(1, 8))
+    vertical_moment = score[0].select_vertical_moment_at(Offset(1, 8))
     "VerticalMoment(Staff{1}, {@ 3:4 d''8, c''8, b'8 @}, d''8)"
     assert len(vertical_moment) == 3
 
-    vertical_moment = verticalitytools.get_vertical_moment_at_offset_in_expr(piano_staff, Offset(1, 8))
+    vertical_moment = piano_staff.select_vertical_moment_at(Offset(1, 8))
     "VerticalMoment(PianoStaff<<2>>, Staff{2}, a'4, Staff{4}, e'8)"
     assert len(vertical_moment) == 5
 
-    vertical_moment = verticalitytools.get_vertical_moment_at_offset_in_expr(piano_staff[0], Offset(1, 8))
+    vertical_moment = piano_staff[0].select_vertical_moment_at(Offset(1, 8))
     "VerticalMoment(Staff{2}, a'4)"
     assert len(vertical_moment) == 2
 
-    vertical_moment = verticalitytools.get_vertical_moment_at_offset_in_expr(piano_staff[1], Offset(1, 8))
+    vertical_moment = piano_staff[1].select_vertical_moment_at(Offset(1, 8))
     "VerticalMoment(Staff{2}, e'8)"
     assert len(vertical_moment) == 2

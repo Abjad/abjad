@@ -132,6 +132,9 @@ Methods
 .. automethod:: abjad.tools.stafftools.Staff.Staff.Staff.select_vertical_moment
    :noindex:
 
+.. automethod:: abjad.tools.stafftools.Staff.Staff.Staff.select_vertical_moment_at
+   :noindex:
+
 Special methods
 ---------------
 

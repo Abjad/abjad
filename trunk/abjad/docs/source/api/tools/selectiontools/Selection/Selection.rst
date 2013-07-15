@@ -48,6 +48,9 @@ Methods
 .. automethod:: abjad.tools.selectiontools.Selection.Selection.Selection.get_parent_and_start_stop_indices
    :noindex:
 
+.. automethod:: abjad.tools.selectiontools.Selection.Selection.Selection.select_vertical_moment_at
+   :noindex:
+
 Special methods
 ---------------
 

@@ -106,8 +106,14 @@ def iterate_vertical_moments_in_expr(expr, reverse=False):
         current_offset, stop_offsets, buffer = durationtools.Offset(0), [], []
         _buffer_components_starting_with(expr, buffer, stop_offsets)
         while buffer:
-            yield verticalitytools.VerticalMoment(
-                current_offset, governors, tuple(buffer))
+            vertical_moment = verticalitytools.VerticalMoment()
+            offset = durationtools.Offset(current_offset)
+            components = list(buffer)
+            components.sort(key=lambda x: x.select_parentage().score_index)
+            vertical_moment._offset = offset
+            vertical_moment._governors = governors
+            vertical_moment._components = components
+            yield vertical_moment
             current_offset, stop_offsets = min(stop_offsets), []
             _update_buffer(current_offset, buffer, stop_offsets)
 
@@ -167,5 +173,4 @@ def iterate_vertical_moments_in_expr(expr, reverse=False):
                 moments_in_governor.append(offset)
         moments_in_governor.sort()
         for moment_in_governor in reversed(moments_in_governor):
-            yield verticalitytools.get_vertical_moment_at_offset_in_expr(
-                expr, moment_in_governor)
+            yield expr.select_vertical_moment_at(moment_in_governor)

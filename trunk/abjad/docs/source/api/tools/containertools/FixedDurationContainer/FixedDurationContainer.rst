@@ -127,6 +127,9 @@ Methods
 .. automethod:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.select_vertical_moment
    :noindex:
 
+.. automethod:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.select_vertical_moment_at
+   :noindex:
+
 Special methods
 ---------------
 

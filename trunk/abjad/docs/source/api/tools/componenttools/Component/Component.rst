@@ -72,6 +72,9 @@ Methods
 .. automethod:: abjad.tools.componenttools.Component.Component.Component.select_vertical_moment
    :noindex:
 
+.. automethod:: abjad.tools.componenttools.Component.Component.Component.select_vertical_moment_at
+   :noindex:
+
 Special methods
 ---------------
 
