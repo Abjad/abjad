@@ -1,4 +1,5 @@
 import os
+import webbrowser
 from abjad.tools import iotools
 from abjad.tools.documentationtools import AbjadAPIGenerator
 from abjad.tools.developerscripttools.DeveloperScript import DeveloperScript
@@ -141,12 +142,34 @@ class BuildApiScript(DeveloperScript):
     ### PUBLIC METHODS ###
 
     def process_args(self, args):
+        from abjad import abjad_configuration
         format = args.format
         clean = args.clean
+        paths = []
         if args.mainline:
             self._build_mainline_api(format=format, clean=clean)
+            paths.append(os.path.abspath(os.path.join(
+                abjad_configuration.abjad_directory_path,
+                'docs',
+                'build',
+                'html',
+                'api',
+                'index.html',
+                )))
         if args.experimental:
             self._build_experimental_api(format=format, clean=clean)
+            paths.append(os.path.abspath(os.path.join(
+                abjad_configuration.abjad_experimental_directory_path,
+                'docs',
+                'build',
+                'html',
+                'index.html',
+                )))
+        if args.format == 'html' and args.openinbrowser:
+            for path in paths:
+                if path.startswith('/'):
+                    path = 'file://' + path
+                webbrowser.open(path)
 
     def setup_argument_parser(self, parser):
 
@@ -164,6 +187,12 @@ class BuildApiScript(DeveloperScript):
             action='store_true',
             dest='clean',
             help='run "make clean" before building the api',
+            )
+
+        parser.add_argument('-O', '--open',
+            action='store_true',
+            dest='openinbrowser',
+            help='open the docs in a web browser after building.',
             )
 
         parser.add_argument('--format',
