@@ -17,7 +17,7 @@ class VerticalMoment(Selection):
 
     ::
 
-        f(score)
+        >>> f(score)
         \new Score <<
             \new PianoStaff <<
                 \new Staff {
@@ -33,6 +33,10 @@ class VerticalMoment(Selection):
                 }
             >>
         >>
+
+    ::
+
+        >>> show(score) # doctest: +SKIP
 
     ::
 
