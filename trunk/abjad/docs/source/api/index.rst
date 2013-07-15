@@ -2608,6 +2608,7 @@ Core composition packages
       :maxdepth: 1
 
       tools/selectiontools/Selection/Selection
+      tools/selectiontools/SelectionInventory/SelectionInventory
 
 .. only:: latex
 
@@ -2617,6 +2618,7 @@ Core composition packages
    .. toctree::
 
       tools/selectiontools/Selection/Selection
+      tools/selectiontools/SelectionInventory/SelectionInventory
 
 :py:mod:`sequencetools <abjad.tools.sequencetools>`
 ===================================================
