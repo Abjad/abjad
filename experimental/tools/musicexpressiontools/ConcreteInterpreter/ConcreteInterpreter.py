@@ -85,8 +85,7 @@ class ConcreteInterpreter(Interpreter):
         time_signatures = self.score_specification.time_signatures
         measures = measuretools.make_measures_with_full_measure_spacer_skips(
             time_signatures)
-        context = componenttools.get_first_component_in_expr_with_name(
-            self.score, 'TimeSignatureContext')
+        context = self.score['TimeSignatureContext']
         context.extend(measures)
 
     def build_leaf_offset_lists(self):

@@ -35,9 +35,7 @@ class Specification(AbjadObject):
     ### PRIVATE PROPERTIES ###
 
     def _context_name_to_improper_parentage_names(self, context_name):
-        context = \
-            componenttools.get_first_component_in_expr_with_name(
-            self.score_model, context_name)
+        context = self.score_model[context_name]
         parentage = context.select_parentage(include_self=True)
         parentage_names = [parent.name for parent in parentage]
         return parentage_names
