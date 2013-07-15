@@ -1,5 +1,4 @@
 from abjad import *
-from abjad.tools import verticalitytools
 
 
 def test_labeltools_label_vertical_moments_in_expr_with_counterpoint_intervals_01():

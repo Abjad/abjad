@@ -1,5 +1,4 @@
 from abjad import *
-from abjad.tools import verticalitytools
 
 
 def test_Component_select_vertical_moment_01():

@@ -1,7 +1,6 @@
 from abjad.tools import iterationtools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
-from abjad.tools import verticalitytools
 
 
 def label_vertical_moments_in_expr_with_pitch_numbers(
