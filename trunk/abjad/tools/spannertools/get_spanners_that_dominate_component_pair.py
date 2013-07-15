@@ -30,9 +30,12 @@ def get_spanners_that_dominate_component_pair(left, right):
         spannertools.get_spanners_attached_to_any_improper_child_of_component(
             right)
     dominant_spanners = left_contained & right_contained
-    components_after_gap = \
-        componenttools.get_lineage_of_component_that_start_with_component(
-            right)
+
+    right_start_offset = right.timespan.start_offset
+    components_after_gap = []
+    for component in right.select_lineage():
+        if component.timespan.start_offset == right_start_offset:
+            components_after_gap.append(component)
 
     receipt = set([])
     for spanner in dominant_spanners:

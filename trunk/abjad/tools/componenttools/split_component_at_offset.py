@@ -244,11 +244,12 @@ def split_component_at_offset(
     # crawl back up through duration-crossing containers and 
     # fracture spanners if requested
     if fracture_spanners:
-        for x in componenttools.get_improper_parentage_of_component_that_start_with_component(
-            leaf_right_of_split):
-            spannertools.fracture_spanners_attached_to_component(
-                x, direction=Left)
-            if x is component:
+        start_offset = leaf_right_of_split.timespan.start_offset
+        for parent in leaf_right_of_split.select_parentage():
+            if parent.timespan.start_offset == start_offset:
+                spannertools.fracture_spanners_attached_to_component(
+                    parent, direction=Left)
+            if parent is component:
                 break
 
     # crawl back up through duration-crossing containers and split each
