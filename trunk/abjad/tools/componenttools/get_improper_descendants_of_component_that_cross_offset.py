@@ -29,31 +29,31 @@ def get_improper_descendants_of_component_that_cross_offset(component, prolated_
     No components cross prolated offset ``0``::
 
         >>> componenttools.get_improper_descendants_of_component_that_cross_offset(staff, 0)
-        []
+        Descendants()
 
     Staff, measure and leaf cross prolated offset ``1/16``::
 
         >>> componenttools.get_improper_descendants_of_component_that_cross_offset(
         ...     staff, Duration(1, 16))
-        [Staff{2}, Measure(2/8, [c'8, d'8]), Note("c'8")]
+        Descendants(Staff{2}, Measure(2/8, [c'8, d'8]), Note("c'8"))
 
     Staff and measure cross prolated offset ``1/8``::
 
         >>> componenttools.get_improper_descendants_of_component_that_cross_offset(
         ...     staff, Duration(1, 8))
-        [Staff{2}, Measure(2/8, [c'8, d'8])]
+        Descendants(Staff{2}, Measure(2/8, [c'8, d'8]))
 
     Staff crosses prolated offset ``1/4``::
 
         >>> componenttools.get_improper_descendants_of_component_that_cross_offset(
         ...     staff, Duration(1, 4))
-        [Staff{2}]
+        Descendants(Staff{2},)
 
     No components cross prolated offset ``99``::
 
         >>> componenttools.get_improper_descendants_of_component_that_cross_offset(
         ...     staff, 99)
-        []
+        Descendants()
 
     Return list.
     '''
@@ -66,14 +66,16 @@ def get_improper_descendants_of_component_that_cross_offset(component, prolated_
     result = []
 
     if component.duration <= prolated_offset:
-        return result
+        return componenttools.Descendants()
 
     boundary_time = component.timespan.start_offset + prolated_offset
 
-    for x in iterationtools.iterate_components_in_expr(component):
-        x_start = x.timespan.start_offset
-        x_stop = x.timespan.stop_offset
-        if x_start < boundary_time < x_stop:
-            result.append(x)
+#    for x in iterationtools.iterate_components_in_expr(component):
+#        x_start = x.timespan.start_offset
+#        x_stop = x.timespan.stop_offset
+#        if x_start < boundary_time < x_stop:
+#            result.append(x)
+#
+#    return result
 
-    return result
+    return component.select_descendants(cross_offset=boundary_time)

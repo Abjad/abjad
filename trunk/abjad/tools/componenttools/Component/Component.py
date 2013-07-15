@@ -538,11 +538,23 @@ class Component(AbjadObject):
         result = selectiontools.Selection(result)
         return result
 
-    def select_descendants(self, include_self=True):
+    def select_descendants(
+        self,
+        cross_offset=None,
+        include_self=True,
+        start_offset=None,
+        stop_offset=None,
+        ):
         '''Select descendants.
         '''
         from abjad.tools import componenttools
-        return componenttools.Descendants(self, include_self=include_self)
+        return componenttools.Descendants(
+            self,
+            cross_offset=cross_offset,
+            include_self=include_self,
+            start_offset=start_offset,
+            stop_offset=stop_offset,
+            )
 
     def select_lineage(self):
         '''Select lineage.
