@@ -559,14 +559,14 @@ class Component(AbjadObject):
     def select_vertical_moment(self, governor=None):
         '''Select vertical moment starting with component.
         '''
-        from abjad.tools import verticalitytools
+        from abjad.tools import componenttools
         offset = self.timespan.start_offset
         if governor is None:
             governor = self.select_parentage().root
-        return verticalitytools.VerticalMoment(governor, offset)
+        return componenttools.VerticalMoment(governor, offset)
 
     def select_vertical_moment_at(self, offset):
         '''Select vertical moment at `offset`.
         '''
-        from abjad.tools import verticalitytools
-        return verticalitytools.VerticalMoment(self, offset)
+        from abjad.tools import componenttools
+        return componenttools.VerticalMoment(self, offset)

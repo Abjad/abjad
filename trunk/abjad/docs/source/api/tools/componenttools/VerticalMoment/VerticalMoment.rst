@@ -1,0 +1,144 @@
+componenttools.VerticalMoment
+=============================
+
+.. abjad-lineage:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment
+
+.. autoclass:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment
+
+Bases
+-----
+
+- :class:`selectiontools.Selection <abjad.tools.selectiontools.Selection.Selection.Selection>`
+
+- :class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+- :class:`__builtin__.object <object>`
+
+Read-only properties
+--------------------
+
+.. autoattribute:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.attack_count
+   :noindex:
+
+.. autoattribute:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.components
+   :noindex:
+
+.. autoattribute:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.duration
+   :noindex:
+
+.. autoattribute:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.duration_in_seconds
+   :noindex:
+
+.. autoattribute:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.governors
+   :noindex:
+
+.. autoattribute:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.leaves
+   :noindex:
+
+.. autoattribute:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.measures
+   :noindex:
+
+.. autoattribute:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.music
+   :noindex:
+
+.. autoattribute:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.next_vertical_moment
+   :noindex:
+
+.. autoattribute:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.notes
+   :noindex:
+
+.. autoattribute:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.offset
+   :noindex:
+
+.. autoattribute:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.overlap_components
+   :noindex:
+
+.. autoattribute:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.overlap_leaves
+   :noindex:
+
+.. autoattribute:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.overlap_measures
+   :noindex:
+
+.. autoattribute:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.overlap_notes
+   :noindex:
+
+.. autoattribute:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.preprolated_duration
+   :noindex:
+
+.. autoattribute:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.previous_vertical_moment
+   :noindex:
+
+.. autoattribute:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.start_components
+   :noindex:
+
+.. autoattribute:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.start_leaves
+   :noindex:
+
+.. autoattribute:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.start_notes
+   :noindex:
+
+.. autoattribute:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.storage_format
+   :noindex:
+
+.. autoattribute:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.timespan
+   :noindex:
+
+Methods
+-------
+
+.. automethod:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.attach_spanners
+   :noindex:
+
+.. automethod:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.detach_spanners
+   :noindex:
+
+.. automethod:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.get_offset_lists
+   :noindex:
+
+.. automethod:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.get_parent_and_start_stop_indices
+   :noindex:
+
+.. automethod:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.select_vertical_moment_at
+   :noindex:
+
+Special methods
+---------------
+
+.. automethod:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.__add__
+   :noindex:
+
+.. automethod:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.__contains__
+   :noindex:
+
+.. automethod:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.__eq__
+   :noindex:
+
+.. automethod:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.__ge__
+   :noindex:
+
+.. automethod:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.__getitem__
+   :noindex:
+
+.. automethod:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.__gt__
+   :noindex:
+
+.. automethod:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.__hash__
+   :noindex:
+
+.. automethod:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.__le__
+   :noindex:
+
+.. automethod:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.__len__
+   :noindex:
+
+.. automethod:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.__lt__
+   :noindex:
+
+.. automethod:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.__ne__
+   :noindex:
+
+.. automethod:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.__radd__
+   :noindex:
+
+.. automethod:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.__repr__
+   :noindex:

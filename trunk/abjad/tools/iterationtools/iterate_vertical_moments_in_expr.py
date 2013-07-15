@@ -97,7 +97,6 @@ def iterate_vertical_moments_in_expr(expr, reverse=False):
     from abjad.tools import containertools
     from abjad.tools import durationtools
     from abjad.tools import iterationtools
-    from abjad.tools import verticalitytools
 
     def _iterate_vertical_moments_forward_in_expr(expr):
         if not isinstance(expr, componenttools.Component):
@@ -106,7 +105,7 @@ def iterate_vertical_moments_in_expr(expr, reverse=False):
         current_offset, stop_offsets, buffer = durationtools.Offset(0), [], []
         _buffer_components_starting_with(expr, buffer, stop_offsets)
         while buffer:
-            vertical_moment = verticalitytools.VerticalMoment()
+            vertical_moment = componenttools.VerticalMoment()
             offset = durationtools.Offset(current_offset)
             components = list(buffer)
             components.sort(key=lambda x: x.select_parentage().score_index)

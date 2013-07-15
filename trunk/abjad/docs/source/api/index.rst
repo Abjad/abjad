@@ -62,6 +62,7 @@ Core composition packages
       tools/componenttools/Descendants/Descendants
       tools/componenttools/Lineage/Lineage
       tools/componenttools/Parentage/Parentage
+      tools/componenttools/VerticalMoment/VerticalMoment
 
    --------
 
@@ -138,6 +139,7 @@ Core composition packages
       tools/componenttools/Descendants/Descendants
       tools/componenttools/Lineage/Lineage
       tools/componenttools/Parentage/Parentage
+      tools/componenttools/VerticalMoment/VerticalMoment
 
    Functions
    ---------
@@ -3726,25 +3728,6 @@ Core composition packages
       tools/tuplettools/remove_trivial_tuplets_in_expr
       tools/tuplettools/scale_contents_of_tuplets_in_expr_by_multiplier
       tools/tuplettools/set_denominator_of_tuplets_in_expr_to_at_least
-
-:py:mod:`verticalitytools <abjad.tools.verticalitytools>`
-=========================================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/verticalitytools/VerticalMoment/VerticalMoment
-
-.. only:: latex
-
-   Concrete Classes
-   ----------------
-
-   .. toctree::
-
-      tools/verticalitytools/VerticalMoment/VerticalMoment
 
 :py:mod:`voicetools <abjad.tools.voicetools>`
 =============================================

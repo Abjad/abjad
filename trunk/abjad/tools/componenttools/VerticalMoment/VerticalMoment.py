@@ -1,9 +1,4 @@
-from abjad.tools import componenttools
-from abjad.tools import chordtools
 from abjad.tools import durationtools
-from abjad.tools import leaftools
-from abjad.tools import measuretools
-from abjad.tools import notetools
 from abjad.tools.selectiontools import Selection
 
 
@@ -49,10 +44,6 @@ class VerticalMoment(Selection):
         VerticalMoment(1/2, <<2>>)
         VerticalMoment(3/4, <<2>>)
 
-    Create vertical moments with the getters and iterators implemented in
-    the ``verticalitytools`` module.
-
-    Vertical moments are immutable.
     '''
 
     ### CLASS VARIABLES ###
@@ -140,6 +131,7 @@ class VerticalMoment(Selection):
 
     @staticmethod
     def _from_expr_and_offset(expr, offset):
+        from abjad.tools import componenttools
         from abjad.tools import selectiontools
         offset = durationtools.Offset(offset)
         governors = []
@@ -185,7 +177,10 @@ class VerticalMoment(Selection):
     @property
     def attack_count(self):
         '''Positive integer number of pitch carriers
-        starting at vertical moment.'''
+        starting at vertical moment.
+        '''
+        from abjad.tools import chordtools
+        from abjad.tools import notetools
         attack_carriers = []
         for leaf in self.start_leaves:
             if isinstance(leaf, (notetools.Note, chordtools.Chord)):
@@ -214,6 +209,7 @@ class VerticalMoment(Selection):
         '''Tuple of zero or more leaves
         at vertical moment.
         '''
+        from abjad.tools import leaftools
         result = []
         for component in self.components:
             if isinstance(component, leaftools.Leaf):
@@ -226,6 +222,7 @@ class VerticalMoment(Selection):
         '''Tuplet of zero or more measures
         at vertical moment.
         '''
+        from abjad.tools import measuretools
         result = []
         for component in self.components:
             if isinstance(component, measuretools.Measure):
@@ -237,7 +234,7 @@ class VerticalMoment(Selection):
     def next_vertical_moment(self):
         '''Reference to next vertical moment forward in time.
         '''
-        from abjad.tools import verticalitytools
+        from abjad.tools import componenttools
         candidate_shortest_leaf = self.leaves[0]
         for leaf in self.leaves[1:]:
             if leaf.stop < candidate_shortest_leaf.stop:
@@ -251,7 +248,7 @@ class VerticalMoment(Selection):
     def next_vertical_moment(self):
         '''Reference to next vertical moment forward in time.
         '''
-        from abjad.tools import verticalitytools
+        from abjad.tools import componenttools
         candidate_shortest_leaf = self.leaves[0]
         for leaf in self.leaves[1:]:
             if leaf.timespan.stop_offset < \
@@ -267,6 +264,7 @@ class VerticalMoment(Selection):
         '''Tuple of zero or more notes
         at vertical moment.
         '''
+        from abjad.tools import notetools
         result = []
         for component in self.components:
             if isinstance(component, notetools.Note):
@@ -298,6 +296,7 @@ class VerticalMoment(Selection):
         '''Tuple of leaves in vertical moment
         starting before vertical moment, ordered by score index.
         '''
+        from abjad.tools import leaftools
         result = [x for x in self.overlap_components 
             if isinstance(x, leaftools.Leaf)]
         result = tuple(result)
@@ -308,6 +307,7 @@ class VerticalMoment(Selection):
         '''Tuple of measures in vertical moment
         starting before vertical moment, ordered by score index.
         '''
+        from abjad.tools import measuretools
         result = [x for x in self.overlap_components 
             if isinstance(x, measuretools.Measure)]
         result = tuple(result)
@@ -318,6 +318,7 @@ class VerticalMoment(Selection):
         '''Tuple of notes in vertical moment
         starting before vertical moment, ordered by score index.
         '''
+        from abjad.tools import notetools
         result = [x for x in self.overlap_components 
             if isinstance(x, notetools.Note)]
         result = tuple(result)
@@ -327,7 +328,7 @@ class VerticalMoment(Selection):
     def previous_vertical_moment(self):
         '''Reference to prev vertical moment backward in time.
         '''
-        from abjad.tools import verticalitytools
+        from abjad.tools import componenttools
         if self.offset == 0:
             raise IndexError
         most_recent_start_offset = durationtools.Offset(0)
@@ -378,6 +379,7 @@ class VerticalMoment(Selection):
         '''Tuple of leaves in vertical moment
         starting with vertical moment, ordered by score index.
         '''
+        from abjad.tools import leaftools
         result = [x for x in self.start_components 
             if isinstance(x, leaftools.Leaf)]
         result = tuple(result)
@@ -388,6 +390,7 @@ class VerticalMoment(Selection):
         '''Tuple of notes in vertical moment
         starting with vertical moment, ordered by score index.
         '''
+        from abjad.tools import notetools
         result = [x for x in self.start_components 
             if isinstance(x, notetools.Note)]
         result = tuple(result)
