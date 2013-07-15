@@ -535,12 +535,10 @@ class Container(Component):
             raise TypeError(message)
 
     def _is_one_of_my_first_leaves(self, leaf):
-        from abjad.tools import componenttools
-        return leaf in componenttools.get_improper_descendants_of_component_that_start_with_component(self)
+        return leaf in self.select_descendants_starting_with()
 
     def _is_one_of_my_last_leaves(self, leaf):
-        from abjad.tools import componenttools
-        return leaf in componenttools.get_improper_descendants_of_component_that_stop_with_component(self)
+        return leaf in self.select_descendants_stopping_with()
 
     def _parse_string(self, string):
         from abjad.tools import lilypondparsertools
