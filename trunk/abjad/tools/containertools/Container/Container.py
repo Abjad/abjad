@@ -824,10 +824,15 @@ class Container(Component):
     def shorten(self, duration):
         '''Shorten container by `duration`.
         '''
-        from abjad.tools import componenttools
-        components, accumulated_duration = \
-            componenttools.get_leftmost_components_with_total_duration_at_most(
-                self[:], duration)
+        accumulated_duration = durationtools.Duration(0)
+        components = []
+        for component in self:
+            current_duration = component.duration
+            if accumulated_duration + current_duration <= duration:
+                components.append(component)
+                accumulated_duration += current_duration
+            else:
+                break
         del(self[:len(components)])
         remaining_subtrahend_duration = duration - accumulated_duration
         self[0].shorten(remaining_subtrahend_duration)
