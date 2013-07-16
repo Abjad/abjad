@@ -408,3 +408,4 @@ Or flats:
    >>> show(staff)
 
 .. image:: images/index-4.png
+

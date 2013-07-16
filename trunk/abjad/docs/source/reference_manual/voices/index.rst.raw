@@ -80,10 +80,10 @@ Inspecting a voice's leaves
 Get the leaves in a voice with ``leaves``:
 
 <abjad>
-voice.leaves
+voice.select_leaves()
 </abjad>
 
-Abjad returns a read-only tuple of leaves.
+Abjad returns a read-only selection of leaves.
 
 Getting the length of a voice
 -----------------------------

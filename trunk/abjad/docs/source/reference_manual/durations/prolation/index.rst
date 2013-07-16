@@ -81,7 +81,7 @@ Such nonbinary meters rhythmically diminish the contents of the measures they go
 
 ::
 
-   >>> note = staff.leaves[0]
+   >>> note = staff.select_leaves()[0]
    >>> note.prolation
    Multiplier(4, 5)
 
@@ -151,7 +151,7 @@ All durated components carry a prolation chain:
 
 ::
 
-   >>> note = measure.leaves[0]
+   >>> note = measure.select_leaves()[0]
    >>> note.prolation
    Multiplier(32, 35)
 

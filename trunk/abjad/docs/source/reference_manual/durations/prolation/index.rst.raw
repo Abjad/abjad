@@ -66,7 +66,7 @@ show(staff)
 </abjad>
 
 <abjad>
-note = staff.leaves[0]
+note = staff.select_leaves()[0]
 note.prolation
 </abjad>
 
@@ -121,7 +121,7 @@ measure.prolation
 </abjad>
 
 <abjad>
-note = measure.leaves[0]
+note = measure.select_leaves()[0]
 note.prolation
 </abjad>
 

@@ -106,11 +106,11 @@ Get the leaves in a voice with ``leaves``:
 
 ::
 
-   >>> voice.leaves
-   (Note("c'4"), Note("d'4"), Note("e'4"), Note("f'2"), Note("g'1"))
+   >>> voice.select_leaves()
+   Selection(Note("c'4"), Note("d'4"), Note("e'4"), Note("f'2"), Note("g'1"))
 
 
-Abjad returns a read-only tuple of leaves.
+Abjad returns a read-only selection of leaves.
 
 Getting the length of a voice
 -----------------------------

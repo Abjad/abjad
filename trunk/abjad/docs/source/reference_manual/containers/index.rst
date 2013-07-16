@@ -223,7 +223,7 @@ And make it easy to retrieve containers later:
 
 ::
 
-   >>> componenttools.get_first_component_in_expr_with_name(score, 'Flute')
+   >>> score['Flute']
    Staff-"Flute"{4}
 
 
@@ -498,3 +498,4 @@ Delete grob overrides you no longer want:
    >>> show(staff)
 
 .. image:: images/index-15.png
+

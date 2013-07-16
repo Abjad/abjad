@@ -164,7 +164,7 @@ f(score)
 And make it easy to retrieve containers later:
 
 <abjad>
-componenttools.get_first_component_in_expr_with_name(score, 'Flute')
+score['Flute']
 </abjad>
 
 But container names do not appear in notational output:

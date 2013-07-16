@@ -96,10 +96,10 @@ Inspecting a tuplet's leaves
 Get the leaves in any Abjad container with ``leaves``:
 
 <abjad>
-tuplet.leaves
+tuplet.select_leaves()
 </abjad>
 
-Abjad returns a read-only tuple of leaves.
+Abjad returns a read-only selection of leaves.
 
 Getting the length of a tuplet
 ------------------------------
