@@ -152,7 +152,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         Return newly constructed start-positioned rhythm payload expression.
         '''
         assert isinstance(expr, slice), repr(expr)
-        leaves = self.payload.leaves.__getitem__(expr)
+        leaves = self.payload.select_leaves().__getitem__(expr)
         start_offset = leaves[0].timespan.start_offset
         stop_offset = leaves[-1].timespan.stop_offset
         timespan = timespantools.Timespan(start_offset, stop_offset)
@@ -179,7 +179,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
         Return nonnegative integer.
         '''
-        return len(self.payload.leaves)
+        return len(self.payload.select_leaves())
 
     def __or__(self, expr):
         '''Logical OR of two start-positioned rhythm payload expressions:
@@ -393,7 +393,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
 
         Return tuple.
         '''
-        return self.payload.leaves
+        return self.payload.select_leaves()
 
     @property
     def elements_are_time_contiguous(self):
@@ -731,7 +731,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         Operate in place and return start-positioned rhythm 
         payload expression.
         '''
-        leaves = sequencetools.CyclicTuple(self.payload.leaves)
+        leaves = sequencetools.CyclicTuple(self.payload.select_leaves())
         leaves = leaves[:length]
         duration = sum([leaf.duration for leaf in leaves])
         return self.repeat_to_duration(duration)
@@ -838,7 +838,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         '''
         from experimental.tools import musicexpressiontools
         if isinstance(n, int):
-            leaves = sequencetools.CyclicTuple(self.payload.leaves)
+            leaves = sequencetools.CyclicTuple(self.payload.select_leaves())
             if 0 < n:
                 split_offset = leaves[-n].timespan.start_offset
             elif n == 0:
@@ -848,7 +848,7 @@ class StartPositionedRhythmPayloadExpression(StartPositionedPayloadExpression):
         elif isinstance(n, musicexpressiontools.RotationIndicator):
             rotation_indicator = n
             if rotation_indicator.level is None:
-                components_at_level = self.payload.leaves
+                components_at_level = self.payload.select_leaves()
             else:
                 components_at_level = []
                 for component in \

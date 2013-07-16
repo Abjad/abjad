@@ -39,9 +39,6 @@ Read-only properties
 .. autoattribute:: experimental.tools.lyrictools.Lyrics.Lyrics.Lyrics.is_semantic
    :noindex:
 
-.. autoattribute:: experimental.tools.lyrictools.Lyrics.Lyrics.Lyrics.leaves
-   :noindex:
-
 .. autoattribute:: experimental.tools.lyrictools.Lyrics.Lyrics.Lyrics.lilypond_format
    :noindex:
 
@@ -127,6 +124,9 @@ Methods
    :noindex:
 
 .. automethod:: experimental.tools.lyrictools.Lyrics.Lyrics.Lyrics.select_descendants_stopping_with
+   :noindex:
+
+.. automethod:: experimental.tools.lyrictools.Lyrics.Lyrics.Lyrics.select_leaves
    :noindex:
 
 .. automethod:: experimental.tools.lyrictools.Lyrics.Lyrics.Lyrics.select_lineage
