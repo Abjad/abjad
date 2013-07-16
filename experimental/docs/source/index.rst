@@ -6,10 +6,6 @@ Abjad Experimental API
 Demos and example packages
 **************************
 
-.. toctree::
-   :maxdepth: 1
-
-
 :py:mod:`microlanguage <experimental.demos.microlanguage>`
 ==========================================================
 
@@ -22,7 +18,7 @@ Demos and example packages
 
 .. only:: latex
 
-   Concrete Classes
+   Concrete classes
    ----------------
 
    .. toctree::
@@ -39,8 +35,6 @@ Demos and example packages
 
       demos/windungen/WindungenScoreTemplate/WindungenScoreTemplate
 
-   --------
-
    .. toctree::
       :maxdepth: 1
 
@@ -52,7 +46,7 @@ Demos and example packages
 
 .. only:: latex
 
-   Concrete Classes
+   Concrete classes
    ----------------
 
    .. toctree::
@@ -74,10 +68,6 @@ Demos and example packages
 Unstable packages (load manually)
 *********************************
 
-.. toctree::
-   :maxdepth: 1
-
-
 :py:mod:`constrainttools <experimental.tools.constrainttools>`
 ==============================================================
 
@@ -98,7 +88,7 @@ Unstable packages (load manually)
 
 .. only:: latex
 
-   Concrete Classes
+   Concrete classes
    ----------------
 
    .. toctree::
@@ -126,8 +116,6 @@ Unstable packages (load manually)
       tools/handlertools/Handler/Handler
       tools/handlertools/PitchHandler/PitchHandler
 
-   --------
-
    .. toctree::
       :maxdepth: 1
 
@@ -147,7 +135,7 @@ Unstable packages (load manually)
 
 .. only:: latex
 
-   Abstract Classes
+   Abstract classes
    ----------------
 
    .. toctree::
@@ -157,7 +145,7 @@ Unstable packages (load manually)
       tools/handlertools/Handler/Handler
       tools/handlertools/PitchHandler/PitchHandler
 
-   Concrete Classes
+   Concrete classes
    ----------------
 
    .. toctree::
@@ -175,6 +163,54 @@ Unstable packages (load manually)
       tools/handlertools/TerracedDynamicsHandler/TerracedDynamicsHandler
       tools/handlertools/TimewisePitchClassHandler/TimewisePitchClassHandler
       tools/handlertools/TwoStageHairpinHandler/TwoStageHairpinHandler
+
+:py:mod:`lyrictools <experimental.tools.lyrictools>`
+====================================================
+
+.. only:: html
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/lyrictools/AddLyrics/AddLyrics
+      tools/lyrictools/LyricExtender/LyricExtender
+      tools/lyrictools/LyricHyphen/LyricHyphen
+      tools/lyrictools/LyricSpace/LyricSpace
+      tools/lyrictools/LyricText/LyricText
+      tools/lyrictools/Lyrics/Lyrics
+
+.. only:: latex
+
+   Concrete classes
+   ----------------
+
+   .. toctree::
+
+      tools/lyrictools/AddLyrics/AddLyrics
+      tools/lyrictools/LyricExtender/LyricExtender
+      tools/lyrictools/LyricHyphen/LyricHyphen
+      tools/lyrictools/LyricSpace/LyricSpace
+      tools/lyrictools/LyricText/LyricText
+      tools/lyrictools/Lyrics/Lyrics
+
+:py:mod:`metricmodulationtools <experimental.tools.metricmodulationtools>`
+==========================================================================
+
+.. only:: html
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/metricmodulationtools/yield_prolation_rewrite_pairs
+
+.. only:: latex
+
+   Functions
+   ---------
+
+   .. toctree::
+
+      tools/metricmodulationtools/yield_prolation_rewrite_pairs
 
 :py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`
 ========================================================================
@@ -206,8 +242,6 @@ Unstable packages (load manually)
       tools/musicexpressiontools/TimeContiguousSetMethodMixin/TimeContiguousSetMethodMixin
       tools/musicexpressiontools/TimespanCallbackMixin/TimespanCallbackMixin
       tools/musicexpressiontools/TimespanScopedSingleContextSetExpression/TimespanScopedSingleContextSetExpression
-
-   --------
 
    .. toctree::
       :maxdepth: 1
@@ -288,7 +322,7 @@ Unstable packages (load manually)
 
 .. only:: latex
 
-   Abstract Classes
+   Abstract classes
    ----------------
 
    .. toctree::
@@ -316,7 +350,7 @@ Unstable packages (load manually)
       tools/musicexpressiontools/TimespanCallbackMixin/TimespanCallbackMixin
       tools/musicexpressiontools/TimespanScopedSingleContextSetExpression/TimespanScopedSingleContextSetExpression
 
-   Concrete Classes
+   Concrete classes
    ----------------
 
    .. toctree::
@@ -411,8 +445,6 @@ Unstable packages (load manually)
       tools/newabjadbooktools/OutputProxy/OutputProxy
       tools/newabjadbooktools/TextualDocumentHandler/TextualDocumentHandler
 
-   --------
-
    .. toctree::
       :maxdepth: 1
 
@@ -431,7 +463,7 @@ Unstable packages (load manually)
 
 .. only:: latex
 
-   Abstract Classes
+   Abstract classes
    ----------------
 
    .. toctree::
@@ -444,7 +476,7 @@ Unstable packages (load manually)
       tools/newabjadbooktools/OutputProxy/OutputProxy
       tools/newabjadbooktools/TextualDocumentHandler/TextualDocumentHandler
 
-   Concrete Classes
+   Concrete classes
    ----------------
 
    .. toctree::
@@ -461,54 +493,6 @@ Unstable packages (load manually)
       tools/newabjadbooktools/PNGImageFormat/PNGImageFormat
       tools/newabjadbooktools/ReSTDocumentHandler/ReSTDocumentHandler
       tools/newabjadbooktools/SVGImageFormat/SVGImageFormat
-
-:py:mod:`lyrictools <experimental.tools.lyrictools>`
-====================================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/lyrictools/AddLyrics/AddLyrics
-      tools/lyrictools/LyricExtender/LyricExtender
-      tools/lyrictools/LyricHyphen/LyricHyphen
-      tools/lyrictools/LyricSpace/LyricSpace
-      tools/lyrictools/LyricText/LyricText
-      tools/lyrictools/Lyrics/Lyrics
-
-.. only:: latex
-
-   Concrete Classes
-   ----------------
-
-   .. toctree::
-
-      tools/lyrictools/AddLyrics/AddLyrics
-      tools/lyrictools/LyricExtender/LyricExtender
-      tools/lyrictools/LyricHyphen/LyricHyphen
-      tools/lyrictools/LyricSpace/LyricSpace
-      tools/lyrictools/LyricText/LyricText
-      tools/lyrictools/Lyrics/Lyrics
-
-:py:mod:`metricmodulationtools <experimental.tools.metricmodulationtools>`
-==========================================================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/metricmodulationtools/yield_prolation_rewrite_pairs
-
-.. only:: latex
-
-   Functions
-   ---------
-
-   .. toctree::
-
-      tools/metricmodulationtools/yield_prolation_rewrite_pairs
 
 :py:mod:`parsertools <experimental.tools.parsertools>`
 ======================================================
@@ -522,7 +506,7 @@ Unstable packages (load manually)
 
 .. only:: latex
 
-   Concrete Classes
+   Concrete classes
    ----------------
 
    .. toctree::
@@ -550,8 +534,6 @@ Unstable packages (load manually)
       tools/scoremanagertools/wranglers/ModuleWrangler/ModuleWrangler
       tools/scoremanagertools/wranglers/PackageWrangler/PackageWrangler
       tools/scoremanagertools/wranglers/PackagesystemAssetWrangler/PackagesystemAssetWrangler
-
-   --------
 
    .. toctree::
       :maxdepth: 1
@@ -717,7 +699,7 @@ Unstable packages (load manually)
 
 .. only:: latex
 
-   Abstract Classes
+   Abstract classes
    ----------------
 
    .. toctree::
@@ -736,7 +718,7 @@ Unstable packages (load manually)
       tools/scoremanagertools/wranglers/PackageWrangler/PackageWrangler
       tools/scoremanagertools/wranglers/PackagesystemAssetWrangler/PackagesystemAssetWrangler
 
-   Concrete Classes
+   Concrete classes
    ----------------
 
    .. toctree::
