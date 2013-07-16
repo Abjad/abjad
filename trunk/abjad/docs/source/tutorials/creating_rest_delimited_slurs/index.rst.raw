@@ -8,7 +8,7 @@ there is a pattern to how they arranged.
 string = r"\times 2/3 { c'4 d' r } r8 e'4 <fs' a' c''>8 ~ q4 \times 4/5 { r16 g' r b' d'' } df'4 c' ~ c'1"
 staff = Staff(string)
 leaves = iterationtools.iterate_leaves_in_expr(staff)
-for group in componenttools.yield_groups_of_mixed_classes_in_sequence(leaves, (Note, Chord)):
+for group in iterationtools.iterate_runs_in_expr(leaves, (Note, Chord)):
     if 1 < len(group):
         slur = spannertools.SlurSpanner(group)
 
@@ -42,7 +42,7 @@ We add slur spanners inside our loop:
 
 <abjad>
 leaves = iterationtools.iterate_leaves_in_expr(staff)
-for group in componenttools.yield_groups_of_mixed_classes_in_sequence(leaves, (Note, Chord)):
+for group in iterationtools.iterate_runs_in_expr(leaves, (Note, Chord)):
     spannertools.SlurSpanner(group)
 
 </abjad>
@@ -69,7 +69,7 @@ Let's rewrite our example to prevent that from happening:
 staff = Staff(string)
 leaves = iterationtools.iterate_leaves_in_expr(staff)
 classes = (Note, Chord)
-for group in componenttools.yield_groups_of_mixed_classes_in_sequence(leaves, classes):
+for group in iterationtools.iterate_runs_in_expr(leaves, classes):
     if 1 < len(group):
         spannertools.SlurSpanner(group)
 </abjad>

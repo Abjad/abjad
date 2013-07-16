@@ -104,7 +104,6 @@ Core composition packages
       tools/componenttools/shorten_component_by_duration
       tools/componenttools/split_component_at_offset
       tools/componenttools/split_components_at_offsets
-      tools/componenttools/yield_groups_of_mixed_classes_in_sequence
 
 .. only:: latex
 
@@ -166,7 +165,6 @@ Core composition packages
       tools/componenttools/shorten_component_by_duration
       tools/componenttools/split_component_at_offset
       tools/componenttools/split_components_at_offsets
-      tools/componenttools/yield_groups_of_mixed_classes_in_sequence
 
 :py:mod:`containertools <abjad.tools.containertools>`
 =====================================================
@@ -757,6 +755,7 @@ Core composition packages
       tools/iterationtools/iterate_notes_in_expr
       tools/iterationtools/iterate_pitched_tie_chains_in_expr
       tools/iterationtools/iterate_rests_in_expr
+      tools/iterationtools/iterate_runs_in_expr
       tools/iterationtools/iterate_scores_in_expr
       tools/iterationtools/iterate_semantic_voices_in_expr
       tools/iterationtools/iterate_skips_in_expr
@@ -793,6 +792,7 @@ Core composition packages
       tools/iterationtools/iterate_notes_in_expr
       tools/iterationtools/iterate_pitched_tie_chains_in_expr
       tools/iterationtools/iterate_rests_in_expr
+      tools/iterationtools/iterate_runs_in_expr
       tools/iterationtools/iterate_scores_in_expr
       tools/iterationtools/iterate_semantic_voices_in_expr
       tools/iterationtools/iterate_skips_in_expr

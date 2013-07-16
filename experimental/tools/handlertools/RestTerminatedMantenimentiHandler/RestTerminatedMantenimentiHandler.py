@@ -27,7 +27,7 @@ class RestTerminatedMantenimentiHandler(DynamicHandler):
         groups = []
         classes = (notetools.Note, chordtools.Chord)
         for i, group in enumerate(
-            componenttools.yield_groups_of_mixed_classes_in_sequence(
+            iterationtools.iterate_runs_in_expr(
             expr, classes)):
             spanner = spannertools.TextSpanner(group)
             spanner.override.text_spanner.dash_fraction = 1

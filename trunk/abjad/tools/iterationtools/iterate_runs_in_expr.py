@@ -1,15 +1,16 @@
 import types
 
 
-def yield_groups_of_mixed_classes_in_sequence(sequence, classes):
+def iterate_runs_in_expr(sequence, classes):
     r'''.. versionadded:: 2.0
 
-    Example 1. Yield groups of notes and chords at only the 
+    Example 1. Iterate runs of notes and chords at only the 
     top level of score:
 
     ::
 
-        >>> staff = Staff(r"\times 2/3 { c'8 d'8 r8 } \times 2/3 { r8 <e' g'>8 <f' a'>8 }")
+        >>> staff = Staff(r"\times 2/3 { c'8 d'8 r8 }")
+        >>> staff.append(r"\times 2/3 { r8 <e' g'>8 <f' a'>8 }")
         >>> staff.extend("g'8 a'8 r8 r8 <b' d''>8 <c'' e''>8")
 
     ::
@@ -36,14 +37,13 @@ def yield_groups_of_mixed_classes_in_sequence(sequence, classes):
 
     ::
 
-        >>> for group in \
-        ...     componenttools.yield_groups_of_mixed_classes_in_sequence(
+        >>> for group in iterationtools.iterate_runs_in_expr(
         ...     staff[:], (Note, Chord)):
         ...     group
         (Note("g'8"), Note("a'8"))
         (Chord("<b' d''>8"), Chord("<c'' e''>8"))
 
-    Example 2. Yield groups of notes and chords at all levels of score:
+    Example 2. Iterate runs of notes and chords at all levels of score:
 
     ::
 
@@ -51,8 +51,7 @@ def yield_groups_of_mixed_classes_in_sequence(sequence, classes):
 
     ::
 
-        >>> for group in \
-        ...     componenttools.yield_groups_of_mixed_classes_in_sequence(
+        >>> for group in iterationtools.iterate_runs_in_expr(
         ...     leaves, (Note, Chord)):
         ...     group
         (Note("c'8"), Note("d'8"))

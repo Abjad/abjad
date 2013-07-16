@@ -1,10 +1,10 @@
 from abjad import *
 
 
-def test_componenttools_yield_groups_of_mixed_classes_in_sequence_01():
+def test_iterationtools_iterate_runs_in_expr_01():
 
     staff = Staff("c'8 d'8 r8 r8 <e' g'>8 <f' a'>8 g'8 a'8 r8 r8 <b' d''>8 <c'' e''>8")
-    groups = componenttools.yield_groups_of_mixed_classes_in_sequence(
+    groups = iterationtools.iterate_runs_in_expr(
         staff[:], (Note, Chord))
     groups = list(groups)
 
