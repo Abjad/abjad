@@ -55,7 +55,7 @@ def add_markup_to_end_of_score(score, markup, extra_offset=None):
     '''
     from abjad.tools import markuptools
 
-    last_leaf = leaftools.get_nth_leaf_in_expr(score, -1)
+    last_leaf = score[:].get(leaftools.Leaf, -1)
     # TODO: copy markup direction from markup input
     markup = markuptools.Markup(markup, Down)(last_leaf)
 
