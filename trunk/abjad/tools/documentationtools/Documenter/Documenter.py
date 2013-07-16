@@ -6,6 +6,10 @@ class Documenter(abctools.Maker):
     '''Documenter is an abstract base class for documentation classes.
     '''
 
+    ### CLASS VARIABLES ###
+
+    _ignored_directories = ('test', '.svn', '__pycache__')
+
     ### INITIALIZER ###
 
     def __init__(self, obj, prefix='abjad.tools.'):
@@ -45,3 +49,16 @@ class Documenter(abctools.Maker):
         obj = obj or self.obj
         prefix = prefix or self.prefix
         return type(self)(obj=obj, prefix=prefix)
+
+    @staticmethod
+    def write(filepath, lines):
+        should_write = True
+        if os.path.exists(filepath):
+            with open(filepath, 'r') as f:
+                if f.read().splitlines() == lines:
+                    should_write = False
+        if should_write:
+            print 'WRITING {}'.format(os.path.relpath(filepath))
+            with open(filepath, 'w') as f:
+                f.write('\n'.join(lines))
+
