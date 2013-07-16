@@ -2,4 +2,3 @@ containertools.replace_contents_of_target_container_with_contents_of_source_cont
 =====================================================================================
 
 .. autofunction:: abjad.tools.containertools.replace_contents_of_target_container_with_contents_of_source_container.replace_contents_of_target_container_with_contents_of_source_container
-   :noindex:

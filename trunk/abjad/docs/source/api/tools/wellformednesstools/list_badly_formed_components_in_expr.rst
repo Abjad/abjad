@@ -2,4 +2,3 @@ wellformednesstools.list_badly_formed_components_in_expr
 ========================================================
 
 .. autofunction:: abjad.tools.wellformednesstools.list_badly_formed_components_in_expr.list_badly_formed_components_in_expr
-   :noindex:

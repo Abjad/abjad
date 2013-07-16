@@ -2,4 +2,3 @@ pitchtools.transpose_named_chromatic_pitch_by_melodic_chromatic_interval_and_res
 ====================================================================================
 
 .. autofunction:: abjad.tools.pitchtools.transpose_named_chromatic_pitch_by_melodic_chromatic_interval_and_respell.transpose_named_chromatic_pitch_by_melodic_chromatic_interval_and_respell
-   :noindex:

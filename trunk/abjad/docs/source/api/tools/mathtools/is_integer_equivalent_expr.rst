@@ -2,4 +2,3 @@ mathtools.is_integer_equivalent_expr
 ====================================
 
 .. autofunction:: abjad.tools.mathtools.is_integer_equivalent_expr.is_integer_equivalent_expr
-   :noindex:

@@ -10,7 +10,7 @@ Concrete classes
 
 .. autosummary::
 
-   AbsoluteIndexConstraint <AbsoluteIndexConstraint.AbsoluteIndexConstraint.AbsoluteIndexConstraint>
+   experimental.tools.constrainttools.AbsoluteIndexConstraint.AbsoluteIndexConstraint.AbsoluteIndexConstraint
    experimental.tools.constrainttools.Domain.Domain.Domain
    experimental.tools.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver
    experimental.tools.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint

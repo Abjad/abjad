@@ -43,7 +43,8 @@ class FunctionDocumenter(Documenter):
         autodoc = documentationtools.ReSTAutodocDirective(
             argument=self.module_name,
             directive='autofunction',
-            options={'noindex': True},
+            options={
+                },
             )
         document.extend([heading, autodoc])
 
