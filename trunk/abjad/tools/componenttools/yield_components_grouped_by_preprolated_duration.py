@@ -1,3 +1,6 @@
+import itertools
+
+
 def yield_components_grouped_by_preprolated_duration(components):
     r'''.. versionadded:: 2.0
 
@@ -56,24 +59,8 @@ def yield_components_grouped_by_preprolated_duration(components):
         (Note("c'8"), Note("c'8"))
 
     Return generator.
-
-    .. note:: Might be best to add ``in_sequence`` or ``topmost`` to the name
-        of this function.
     '''
 
-    current_group = []
-    for component in components:
-        if current_group:
-            previous_component = current_group[-1]
-            previous_duration = previous_component.preprolated_duration
-            current_duration = component.preprolated_duration
-            if current_duration == previous_duration:
-                current_group.append(component)
-            else:
-                yield tuple(current_group)
-                current_group = []
-                current_group.append(component)
-        else:
-            current_group.append(component)
-    if current_group:
-        yield tuple(current_group)
+    grouper = itertools.groupby(components, lambda x: x.preprolated_duration)
+    for preprolated_duration, generator in grouper:
+        yield tuple(generator)
