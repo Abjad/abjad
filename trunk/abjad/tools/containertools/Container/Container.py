@@ -821,3 +821,13 @@ class Container(Component):
         generator = iterationtools.iterate_leaves_in_expr(self)
         return selectiontools.Selection(generator)
 
+    def shorten(self, duration):
+        '''Shorten container by `duration`.
+        '''
+        from abjad.tools import componenttools
+        components, accumulated_duration = \
+            componenttools.get_leftmost_components_with_total_duration_at_most(
+                self[:], duration)
+        del(self[:len(components)])
+        remaining_subtrahend_duration = duration - accumulated_duration
+        self[0].shorten(remaining_subtrahend_duration)

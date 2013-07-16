@@ -143,6 +143,9 @@ Methods
 .. automethod:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.select_vertical_moment_at
    :noindex:
 
+.. automethod:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.shorten
+   :noindex:
+
 Special methods
 ---------------
 

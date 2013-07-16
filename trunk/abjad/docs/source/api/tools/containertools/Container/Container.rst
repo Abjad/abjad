@@ -119,6 +119,9 @@ Methods
 .. automethod:: abjad.tools.containertools.Container.Container.Container.select_vertical_moment_at
    :noindex:
 
+.. automethod:: abjad.tools.containertools.Container.Container.Container.shorten
+   :noindex:
+
 Special methods
 ---------------
 

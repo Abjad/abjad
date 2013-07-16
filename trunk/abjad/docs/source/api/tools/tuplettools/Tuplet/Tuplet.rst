@@ -157,6 +157,9 @@ Methods
 .. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.select_vertical_moment_at
    :noindex:
 
+.. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.shorten
+   :noindex:
+
 Special methods
 ---------------
 

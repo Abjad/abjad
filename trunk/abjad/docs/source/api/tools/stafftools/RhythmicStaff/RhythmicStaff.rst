@@ -143,6 +143,9 @@ Methods
 .. automethod:: abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.select_vertical_moment_at
    :noindex:
 
+.. automethod:: abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.shorten
+   :noindex:
+
 Special methods
 ---------------
 

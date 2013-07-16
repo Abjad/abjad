@@ -141,6 +141,9 @@ Methods
 .. automethod:: abjad.tools.voicetools.Voice.Voice.Voice.select_vertical_moment_at
    :noindex:
 
+.. automethod:: abjad.tools.voicetools.Voice.Voice.Voice.shorten
+   :noindex:
+
 Special methods
 ---------------
 

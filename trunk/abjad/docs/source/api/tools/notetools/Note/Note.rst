@@ -127,6 +127,9 @@ Methods
 .. automethod:: abjad.tools.notetools.Note.Note.Note.select_vertical_moment_at
    :noindex:
 
+.. automethod:: abjad.tools.notetools.Note.Note.Note.shorten
+   :noindex:
+
 Special methods
 ---------------
 

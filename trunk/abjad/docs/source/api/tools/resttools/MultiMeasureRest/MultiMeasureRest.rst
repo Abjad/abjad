@@ -117,6 +117,9 @@ Methods
 .. automethod:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.select_vertical_moment_at
    :noindex:
 
+.. automethod:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.shorten
+   :noindex:
+
 Special methods
 ---------------
 

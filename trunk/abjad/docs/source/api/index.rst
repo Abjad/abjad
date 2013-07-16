@@ -101,7 +101,6 @@ Core composition packages
       tools/componenttools/partition_components_by_durations_not_less_than
       tools/componenttools/remove_component_subtree_from_score_and_spanners
       tools/componenttools/replace_components_with_children_of_components
-      tools/componenttools/shorten_component_by_duration
       tools/componenttools/split_component_at_offset
       tools/componenttools/split_components_at_offsets
 
@@ -162,7 +161,6 @@ Core composition packages
       tools/componenttools/partition_components_by_durations_not_less_than
       tools/componenttools/remove_component_subtree_from_score_and_spanners
       tools/componenttools/replace_components_with_children_of_components
-      tools/componenttools/shorten_component_by_duration
       tools/componenttools/split_component_at_offset
       tools/componenttools/split_components_at_offsets
 

@@ -392,3 +392,11 @@ class Leaf(Component):
                 raise ExtraSpannerError
         else:
             return leaftools.TieChain(music=self)
+
+    def shorten(self, duration):
+        '''Shorten leaf by `duration`.
+        '''
+        from abjad.tools import leaftools
+        duration = self.duration - duration
+        preprolated_duration = duration / self.prolation
+        leaftools.set_preprolated_leaf_duration(self, preprolated_duration)

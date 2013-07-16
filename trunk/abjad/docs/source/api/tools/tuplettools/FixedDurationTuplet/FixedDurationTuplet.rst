@@ -162,6 +162,9 @@ Methods
 .. automethod:: abjad.tools.tuplettools.FixedDurationTuplet.FixedDurationTuplet.FixedDurationTuplet.select_vertical_moment_at
    :noindex:
 
+.. automethod:: abjad.tools.tuplettools.FixedDurationTuplet.FixedDurationTuplet.FixedDurationTuplet.shorten
+   :noindex:
+
 .. automethod:: abjad.tools.tuplettools.FixedDurationTuplet.FixedDurationTuplet.FixedDurationTuplet.trim
    :noindex:
 

@@ -114,6 +114,9 @@ Methods
 .. automethod:: experimental.tools.lyrictools.LyricSpace.LyricSpace.LyricSpace.select_vertical_moment_at
    :noindex:
 
+.. automethod:: experimental.tools.lyrictools.LyricSpace.LyricSpace.LyricSpace.shorten
+   :noindex:
+
 Special methods
 ---------------
 

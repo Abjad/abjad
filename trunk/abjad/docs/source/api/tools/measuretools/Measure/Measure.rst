@@ -156,6 +156,9 @@ Methods
 .. automethod:: abjad.tools.measuretools.Measure.Measure.Measure.select_vertical_moment_at
    :noindex:
 
+.. automethod:: abjad.tools.measuretools.Measure.Measure.Measure.shorten
+   :noindex:
+
 Special methods
 ---------------
 

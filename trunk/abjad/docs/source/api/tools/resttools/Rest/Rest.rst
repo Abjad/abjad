@@ -115,6 +115,9 @@ Methods
 .. automethod:: abjad.tools.resttools.Rest.Rest.Rest.select_vertical_moment_at
    :noindex:
 
+.. automethod:: abjad.tools.resttools.Rest.Rest.Rest.shorten
+   :noindex:
+
 Special methods
 ---------------
 

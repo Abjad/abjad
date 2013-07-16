@@ -142,6 +142,9 @@ Methods
 .. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.select_vertical_moment_at
    :noindex:
 
+.. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.shorten
+   :noindex:
+
 Special methods
 ---------------
 

@@ -141,6 +141,9 @@ Methods
 .. automethod:: abjad.tools.scoretools.Score.Score.Score.select_vertical_moment_at
    :noindex:
 
+.. automethod:: abjad.tools.scoretools.Score.Score.Score.shorten
+   :noindex:
+
 Special methods
 ---------------
 

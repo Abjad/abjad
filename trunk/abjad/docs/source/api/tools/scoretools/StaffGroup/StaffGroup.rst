@@ -141,6 +141,9 @@ Methods
 .. automethod:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.select_vertical_moment_at
    :noindex:
 
+.. automethod:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.shorten
+   :noindex:
+
 Special methods
 ---------------
 

@@ -110,6 +110,9 @@ Methods
 .. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.select_vertical_moment_at
    :noindex:
 
+.. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.shorten
+   :noindex:
+
 Special methods
 ---------------
 

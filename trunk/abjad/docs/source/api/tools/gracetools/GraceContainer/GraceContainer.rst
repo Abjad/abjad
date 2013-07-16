@@ -127,6 +127,9 @@ Methods
 .. automethod:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.select_vertical_moment_at
    :noindex:
 
+.. automethod:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.shorten
+   :noindex:
+
 Special methods
 ---------------
 

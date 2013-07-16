@@ -114,6 +114,9 @@ Methods
 .. automethod:: experimental.tools.lyrictools.LyricText.LyricText.LyricText.select_vertical_moment_at
    :noindex:
 
+.. automethod:: experimental.tools.lyrictools.LyricText.LyricText.LyricText.shorten
+   :noindex:
+
 Special methods
 ---------------
 
