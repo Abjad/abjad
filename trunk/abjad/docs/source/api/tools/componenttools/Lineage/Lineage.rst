@@ -53,6 +53,9 @@ Methods
 .. automethod:: abjad.tools.componenttools.Lineage.Lineage.Lineage.get_parent_and_start_stop_indices
    :noindex:
 
+.. automethod:: abjad.tools.componenttools.Lineage.Lineage.Lineage.group_by
+   :noindex:
+
 .. automethod:: abjad.tools.componenttools.Lineage.Lineage.Lineage.select_vertical_moment_at
    :noindex:
 

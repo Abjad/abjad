@@ -1,4 +1,5 @@
 import itertools
+import types
 
 
 def yield_topmost_components_grouped_by_type(expr):
@@ -35,7 +36,8 @@ def yield_topmost_components_grouped_by_type(expr):
 
     ::
 
-        >>> for x in componenttools.yield_topmost_components_grouped_by_type(staff):
+        >>> for x in componenttools.yield_topmost_components_grouped_by_type(
+        ...     staff[:]):
         ...     x
         (Tuplet(2/3, [c'8, d'8, r8]), Tuplet(2/3, [r8, <e' g'>8, <f' a'>8]))
         (Note("g'8"), Note("a'8"))
@@ -50,7 +52,8 @@ def yield_topmost_components_grouped_by_type(expr):
 
     ::
 
-        >>> for x in componenttools.yield_topmost_components_grouped_by_type(leaves):
+        >>> for x in componenttools.yield_topmost_components_grouped_by_type(
+        ...     leaves):
         ...     x
         (Note("c'8"), Note("d'8"))
         (Rest('r8'), Rest('r8'))
@@ -61,7 +64,20 @@ def yield_topmost_components_grouped_by_type(expr):
 
     Return generator.
     '''
+    from abjad.tools import containertools
+    from abjad.tools import selectiontools
 
-    grouper = itertools.groupby(expr, type)
-    for leaf_type, generator in grouper:
-        yield tuple(generator)
+    assert isinstance(expr, (
+        list,
+        tuple,
+        types.GeneratorType, 
+        selectiontools.Selection)), repr(expr)
+
+#    grouper = itertools.groupby(expr, type)
+#    for leaf_type, generator in grouper:
+#        yield tuple(generator)
+
+    selection = selectiontools.Selection(expr)
+    groups = selection.group_by(type)
+    for group in groups:
+        yield group

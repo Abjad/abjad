@@ -1,4 +1,5 @@
 import copy
+import itertools
 import types
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
@@ -380,6 +381,15 @@ class Selection(AbjadObject):
         from abjad.tools import componenttools
         return componenttools.get_parent_and_start_stop_indices_of_components(
             self)
+
+    def group_by(self, predicate):
+        result = []
+        grouper = itertools.groupby(self, predicate)
+        for label, generator in grouper:
+            #selection = type(self)(generator)
+            selection = tuple(generator)
+            result.append(selection)
+        return result
 
     def select_vertical_moment_at(self, offset):
         '''Select vertical moment at `offset`.

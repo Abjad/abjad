@@ -107,9 +107,8 @@ def add_splits_to_score_by_tuples(score, splitTuplePairs):
 
 
 def fuse_rests_in_beat(beat):
-    for group in componenttools.yield_topmost_components_grouped_by_type(beat):
-        if isinstance(group[0], Rest):
-            leaftools.fuse_leaves( group[:] )
+    for group in componenttools.yield_groups_of_mixed_classes(beat, Rest):
+        leaftools.fuse_leaves(group[:])
 
 
 def fuse_rests_in_staff_by_beats(beats):

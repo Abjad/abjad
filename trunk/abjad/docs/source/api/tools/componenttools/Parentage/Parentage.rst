@@ -80,6 +80,9 @@ Methods
 .. automethod:: abjad.tools.componenttools.Parentage.Parentage.Parentage.get_parent_and_start_stop_indices
    :noindex:
 
+.. automethod:: abjad.tools.componenttools.Parentage.Parentage.Parentage.group_by
+   :noindex:
+
 .. automethod:: abjad.tools.componenttools.Parentage.Parentage.Parentage.select_vertical_moment_at
    :noindex:
 

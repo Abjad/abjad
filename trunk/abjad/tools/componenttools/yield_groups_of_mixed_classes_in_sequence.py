@@ -35,7 +35,7 @@ def yield_groups_of_mixed_classes_in_sequence(sequence, classes):
 
         >>> for group in \
         ...     componenttools.yield_groups_of_mixed_classes_in_sequence(
-        ...     staff, (Note, Chord)):
+        ...     staff[:], (Note, Chord)):
         ...     group
         (Note("g'8"), Note("a'8"))
         (Chord("<b' d''>8"), Chord("<c'' e''>8"))

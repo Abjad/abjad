@@ -74,6 +74,9 @@ Methods
 .. automethod:: abjad.tools.leaftools.TieChain.TieChain.TieChain.get_parent_and_start_stop_indices
    :noindex:
 
+.. automethod:: abjad.tools.leaftools.TieChain.TieChain.TieChain.group_by
+   :noindex:
+
 .. automethod:: abjad.tools.leaftools.TieChain.TieChain.TieChain.select_vertical_moment_at
    :noindex:
 

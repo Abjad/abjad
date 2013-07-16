@@ -98,6 +98,9 @@ Methods
 .. automethod:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.get_parent_and_start_stop_indices
    :noindex:
 
+.. automethod:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.group_by
+   :noindex:
+
 .. automethod:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.select_vertical_moment_at
    :noindex:
 
