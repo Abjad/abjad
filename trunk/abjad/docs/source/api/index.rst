@@ -986,7 +986,6 @@ Core composition packages
       tools/leaftools/show_leaves
       tools/leaftools/split_leaf_at_offset
       tools/leaftools/split_leaf_at_offsets
-      tools/leaftools/yield_groups_of_mixed_notes_and_chords_in_sequence
 
 .. only:: latex
 
@@ -1038,7 +1037,6 @@ Core composition packages
       tools/leaftools/show_leaves
       tools/leaftools/split_leaf_at_offset
       tools/leaftools/split_leaf_at_offsets
-      tools/leaftools/yield_groups_of_mixed_notes_and_chords_in_sequence
 
 :py:mod:`lilypondfiletools <abjad.tools.lilypondfiletools>`
 ===========================================================

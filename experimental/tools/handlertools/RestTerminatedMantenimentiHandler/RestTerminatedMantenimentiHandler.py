@@ -1,3 +1,5 @@
+from abjad.tools import chordtools
+from abjad.tools import componenttools
 from abjad.tools import leaftools
 from abjad.tools import marktools
 from abjad.tools import markuptools
@@ -23,9 +25,10 @@ class RestTerminatedMantenimentiHandler(DynamicHandler):
     def __call__(self, expr):
         assert self.dynamics_talea, repr(self.dynamics_talea)
         groups = []
+        classes = (notetools.Note, chordtools.Chord)
         for i, group in enumerate(
-            leaftools.yield_groups_of_mixed_notes_and_chords_in_sequence(
-            expr)):
+            componenttools.yield_groups_of_mixed_classes_in_sequence(
+            expr, classes)):
             spanner = spannertools.TextSpanner(group)
             spanner.override.text_spanner.dash_fraction = 1
             dynamic_string = self.dynamics_talea[i]
