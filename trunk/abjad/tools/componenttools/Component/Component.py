@@ -542,8 +542,6 @@ class Component(AbjadObject):
         self,
         cross_offset=None,
         include_self=True,
-        start_offset=None,
-        stop_offset=None,
         ):
         '''Select descendants.
         '''
@@ -552,8 +550,6 @@ class Component(AbjadObject):
             self,
             cross_offset=cross_offset,
             include_self=include_self,
-            start_offset=start_offset,
-            stop_offset=stop_offset,
             )
 
     def select_descendants_starting_with(self):

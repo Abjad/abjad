@@ -14,8 +14,6 @@ def is_immediate_temporal_successor_of_component(component, expr):
         if next_sibling is None:
             cur = cur.parent
         else:
-            #temporal_successors = next_sibling.select_descendants(
-            #    start_offset=next_sibling.timespan.start_offset)
             temporal_successors = \
                 next_sibling.select_descendants_starting_with()
             break

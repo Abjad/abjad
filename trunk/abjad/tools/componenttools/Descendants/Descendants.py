@@ -66,8 +66,6 @@ class Descendants(Selection):
         component=None,
         cross_offset=None,
         include_self=True,
-        start_offset=None,
-        stop_offset=None,
         ):
         from abjad.tools import componenttools
         from abjad.tools import iterationtools
@@ -79,20 +77,16 @@ class Descendants(Selection):
             if not include_self:
                 music.remove(component)
         result = []
-        for x in music:
-            append_x = True
-            if cross_offset is not None and \
-                not (x.timespan.start_offset < cross_offset and 
-                cross_offset < x.timespan.stop_offset):
-                append_x = False
-            if start_offset is not None and \
-                not x.timespan.start_offset == start_offset:
-                append_x = False
-            if stop_offset is not None and \
-                not x.timespan.stop_offset == stop_offset:
-                append_x = False
-            if append_x:
-                result.append(x)
+        if cross_offset is None:
+            result = music
+        else:
+            for x in music:
+                append_x = True
+                if not (x.timespan.start_offset < cross_offset and 
+                    cross_offset < x.timespan.stop_offset):
+                    append_x = False
+                if append_x:
+                    result.append(x)
         Selection.__init__(self, result)
         self._component = component
 
