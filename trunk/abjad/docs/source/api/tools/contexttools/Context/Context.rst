@@ -37,9 +37,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.contexttools.Context.Context.Context.is_semantic
    :noindex:
 
-.. autoattribute:: abjad.tools.contexttools.Context.Context.Context.leaves
-   :noindex:
-
 .. autoattribute:: abjad.tools.contexttools.Context.Context.Context.lilypond_format
    :noindex:
 
@@ -125,6 +122,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.contexttools.Context.Context.Context.select_descendants_stopping_with
+   :noindex:
+
+.. automethod:: abjad.tools.contexttools.Context.Context.Context.select_leaves
    :noindex:
 
 .. automethod:: abjad.tools.contexttools.Context.Context.Context.select_lineage

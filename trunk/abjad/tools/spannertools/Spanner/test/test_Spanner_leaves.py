@@ -99,8 +99,8 @@ def test_Spanner_leaves_04():
 
     assert len(p.components) == 1
     assert len(p.leaves) == 8
-    for i, leaf in enumerate(t.leaves):
-        assert leaf is t.leaves[i]
+    for i, leaf in enumerate(t.select_leaves()):
+        assert leaf is t.select_leaves()[i]
     assert p.duration == Duration(8, 8)
 
 
@@ -143,7 +143,7 @@ def test_Spanner_leaves_05():
     assert p.components[2] is t[2]
     assert len(p.leaves) == 4
     for i, leaf in enumerate(p.leaves):
-        assert leaf is t.leaves[i]
+        assert leaf is t.select_leaves()[i]
     assert p.duration == Duration(4, 8)
 
 

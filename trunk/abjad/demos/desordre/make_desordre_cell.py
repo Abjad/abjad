@@ -37,7 +37,7 @@ def make_desordre_cell(pitches):
     container.is_parallel = True
 
     # make all 1/8 beats breakable
-    for leaf in lower_voice.leaves[:-1]:
+    for leaf in lower_voice.select_leaves()[:-1]:
         marktools.BarLine('')(leaf)
 
     return container

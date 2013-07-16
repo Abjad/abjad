@@ -29,13 +29,13 @@ def test_componenttools_get_most_distant_sequential_container_in_improper_parent
     '''
 
     assert componenttools.get_most_distant_sequential_container_in_improper_parentage_of_component(
-        t.leaves[0]) is t[0][0]
+        t.select_leaves()[0]) is t[0][0]
     assert componenttools.get_most_distant_sequential_container_in_improper_parentage_of_component(
-        t.leaves[1]) is t[0][0]
+        t.select_leaves()[1]) is t[0][0]
     assert componenttools.get_most_distant_sequential_container_in_improper_parentage_of_component(
-        t.leaves[2]) is t[0][1]
+        t.select_leaves()[2]) is t[0][1]
     assert componenttools.get_most_distant_sequential_container_in_improper_parentage_of_component(
-        t.leaves[3]) is t[0][1]
+        t.select_leaves()[3]) is t[0][1]
 
 
 def test_componenttools_get_most_distant_sequential_container_in_improper_parentage_of_component_02( ):
@@ -67,13 +67,13 @@ def test_componenttools_get_most_distant_sequential_container_in_improper_parent
     '''
 
     assert componenttools.get_most_distant_sequential_container_in_improper_parentage_of_component(
-        t.leaves[0]) is t
+        t.select_leaves()[0]) is t
     assert componenttools.get_most_distant_sequential_container_in_improper_parentage_of_component(
-        t.leaves[1]) is t
+        t.select_leaves()[1]) is t
     assert componenttools.get_most_distant_sequential_container_in_improper_parentage_of_component(
-        t.leaves[2]) is t
+        t.select_leaves()[2]) is t
     assert componenttools.get_most_distant_sequential_container_in_improper_parentage_of_component(
-        t.leaves[3]) is t
+        t.select_leaves()[3]) is t
 
 
 def test_componenttools_get_most_distant_sequential_container_in_improper_parentage_of_component_04( ):

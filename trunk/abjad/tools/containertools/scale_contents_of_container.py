@@ -6,7 +6,7 @@ def scale_contents_of_container(container, multiplier):
     ::
 
         >>> staff = Staff("c'8 d'8")
-        >>> spannertools.BeamSpanner(staff.leaves)
+        >>> spannertools.BeamSpanner(staff.select_leaves())
         BeamSpanner(c'8, d'8)
 
     ::
@@ -35,7 +35,7 @@ def scale_contents_of_container(container, multiplier):
     ::
 
         >>> staff = Staff("c'8 d'8")
-        >>> spannertools.BeamSpanner(staff.leaves)
+        >>> spannertools.BeamSpanner(staff.select_leaves())
         BeamSpanner(c'8, d'8)
 
     ::
@@ -67,7 +67,7 @@ def scale_contents_of_container(container, multiplier):
     ::
 
         >>> staff = Staff("c'8 d'8")
-        >>> spannertools.BeamSpanner(staff.leaves)
+        >>> spannertools.BeamSpanner(staff.select_leaves())
         BeamSpanner(c'8, d'8)
 
     ::

@@ -4,7 +4,7 @@ from abjad import *
 def test_TieChain_leaves_group_by_immediate_parents_01():
 
     staff = Staff(2 * Measure((2, 8), "c'8 c'8"))
-    spannertools.TieSpanner(staff.leaves)
+    spannertools.TieSpanner(staff.select_leaves())
 
     r'''
     \new Staff {
@@ -17,22 +17,22 @@ def test_TieChain_leaves_group_by_immediate_parents_01():
     }
     '''
 
-    tie_chain = staff.leaves[0].select_tie_chain()
+    tie_chain = staff.select_leaves()[0].select_tie_chain()
     groups = tie_chain.leaves_grouped_by_immediate_parents
 
     assert len(groups) == 2
-    assert groups[0] == list(staff.leaves[:2])
-    assert groups[1] == list(staff.leaves[2:])
+    assert groups[0] == list(staff.select_leaves()[:2])
+    assert groups[1] == list(staff.select_leaves()[2:])
 
 
 def test_TieChain_leaves_group_by_immediate_parents_02():
 
     staff = Staff("c'8 ~ c'8 ~ c'8 ~ c'8")
-    tie_chain = staff.leaves[0].select_tie_chain()
+    tie_chain = staff.select_leaves()[0].select_tie_chain()
     groups = tie_chain.leaves_grouped_by_immediate_parents
 
     assert len(groups) == 1
-    assert groups[0] == list(staff.leaves)
+    assert groups[0] == list(staff.select_leaves())
 
 
 def test_TieChain_leaves_group_by_immediate_parents_03():

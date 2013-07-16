@@ -179,7 +179,7 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t.leaves)
+    spannertools.BeamSpanner(t.select_leaves())
 
     r'''
     \new Voice {
@@ -198,10 +198,10 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
     }
     '''
 
-    old = t.leaves[2]
-    #containertools.move_parentage_children_and_spanners_from_components_to_empty_container(t.leaves[2:3], Rest((1, 8)))
+    old = t.select_leaves()[2]
+    #containertools.move_parentage_children_and_spanners_from_components_to_empty_container(t.select_leaves()[2:3], Rest((1, 8)))
     # ALSO WORKS:
-    componenttools.move_parentage_and_spanners_from_components_to_components(t.leaves[2:3], [Rest((1, 8))])
+    componenttools.move_parentage_and_spanners_from_components_to_components(t.select_leaves()[2:3], [Rest((1, 8))])
 
     r'''
     \new Voice {
@@ -231,7 +231,7 @@ def test_componenttools_move_component_subtree_to_right_in_immediate_parent_of_c
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
     spannertools.GlissandoSpanner(t[:])
-    spannertools.BeamSpanner(t.leaves)
+    spannertools.BeamSpanner(t.select_leaves())
 
     r'''
     \new Voice {

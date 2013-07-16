@@ -13,7 +13,7 @@ def remove_leaf_and_shrink_durated_parent_containers(leaf):
         >>> measure = Measure((4, 8), [])
         >>> measure.append(tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8"))
         >>> measure.append(tuplettools.FixedDurationTuplet((2, 8), "f'8 g'8 a'8"))
-        >>> spannertools.BeamSpanner(measure.leaves)
+        >>> spannertools.BeamSpanner(measure.select_leaves())
         BeamSpanner(c'8, d'8, e'8, f'8, g'8, a'8)
 
     ::
@@ -36,7 +36,7 @@ def remove_leaf_and_shrink_durated_parent_containers(leaf):
     ::
 
         >>> leaftools.remove_leaf_and_shrink_durated_parent_containers(
-        ...     measure.leaves[0])
+        ...     measure.select_leaves()[0])
 
     ::
 

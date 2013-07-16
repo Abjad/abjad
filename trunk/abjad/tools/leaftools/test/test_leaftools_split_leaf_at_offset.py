@@ -18,7 +18,7 @@ def test_leaftools_split_leaf_at_offset_01():
     '''
 
     halves = leaftools.split_leaf_at_offset(
-        staff.leaves[1],
+        staff.select_leaves()[1],
         (1, 32), fracture_spanners=False,
         tie_split_notes=False,
         )
@@ -52,7 +52,7 @@ def test_leaftools_split_leaf_at_offset_02():
     '''
 
     halves = leaftools.split_leaf_at_offset(
-        staff.leaves[1],
+        staff.select_leaves()[1],
         (1, 32),
         fracture_spanners=True,
         tie_split_notes=False,
@@ -87,7 +87,7 @@ def test_leaftools_split_leaf_at_offset_03():
     '''
 
     halves = leaftools.split_leaf_at_offset(
-        staff.leaves[1],
+        staff.select_leaves()[1],
         (1, 32), fracture_spanners=False,
         tie_split_notes=True,
         )
@@ -121,7 +121,7 @@ def test_leaftools_split_leaf_at_offset_04():
     '''
 
     halves = leaftools.split_leaf_at_offset(
-        staff.leaves[1], (1, 32), fracture_spanners=True, tie_split_notes=True)
+        staff.select_leaves()[1], (1, 32), fracture_spanners=True, tie_split_notes=True)
 
     r'''
     \new Staff {
@@ -152,7 +152,7 @@ def test_leaftools_split_leaf_at_offset_05():
     '''
 
     halves = leaftools.split_leaf_at_offset(
-        staff.leaves[1], (1, 24), tie_split_notes=False)
+        staff.select_leaves()[1], (1, 24), tie_split_notes=False)
 
     r'''
     \new Staff {
@@ -178,7 +178,7 @@ def test_leaftools_split_leaf_at_offset_06():
 
     t = Voice(notetools.make_repeated_notes(1) + [tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3))])
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t.leaves)
+    spannertools.BeamSpanner(t.select_leaves())
 
     r'''
     \new Voice {
@@ -191,7 +191,7 @@ def test_leaftools_split_leaf_at_offset_06():
     }
     '''
 
-    halves = leaftools.split_leaf_at_offset(t.leaves[1], Duration(1, 24), tie_split_notes=False)
+    halves = leaftools.split_leaf_at_offset(t.select_leaves()[1], Duration(1, 24), tie_split_notes=False)
 
     r'''
     \new Voice {
@@ -309,11 +309,11 @@ def test_leaftools_split_leaf_at_offset_12():
     '''
 
     t = Staff([Note("c'4")])
-    s = spannertools.TieSpanner(t.leaves)
+    s = spannertools.TieSpanner(t.select_leaves())
     halves = leaftools.split_leaf_at_offset(t[0], Duration(1, 8))
 
     assert len(t) == 2
-    for leaf in t.leaves:
+    for leaf in t.select_leaves():
         assert leaf.spanners == set([s])
         assert spannertools.get_the_only_spanner_attached_to_component(
             leaf, spannertools.TieSpanner) is s
@@ -325,13 +325,13 @@ def test_leaftools_split_leaf_at_offset_13():
     '''
 
     t = Staff(notetools.make_repeated_notes(4))
-    b = spannertools.BeamSpanner(t.leaves)
+    b = spannertools.BeamSpanner(t.select_leaves())
 
     halves = leaftools.split_leaf_at_offset(
         t[0], (1, 16), tie_split_notes=False)
 
     assert len(t) == 5
-    for l in t.leaves:
+    for l in t.select_leaves():
         assert l.spanners == set([b])
         assert l._get_spanner(spannertools.BeamSpanner) is b
     assert wellformednesstools.is_well_formed_component(t)
@@ -343,13 +343,13 @@ def test_leaftools_split_leaf_at_offset_14():
     '''
 
     t = Staff([Note("c'4")])
-    s = spannertools.TieSpanner(t.leaves)
+    s = spannertools.TieSpanner(t.select_leaves())
     halves = leaftools.split_leaf_at_offset(t[0], Duration(5, 32))
 
     assert len(halves) == 2
     assert len(halves[0]) == 2
     assert len(halves[1]) == 1
-    for l in t.leaves:
+    for l in t.select_leaves():
         assert l.spanners == set([s])
         assert spannertools.get_the_only_spanner_attached_to_component(
             l, spannertools.TieSpanner) is s
@@ -366,7 +366,7 @@ def test_leaftools_split_leaf_at_offset_15():
 
     assert spannertools.get_the_only_spanner_attached_to_component(t, spannertools.TieSpanner) is s
     assert s.components == (t, )
-    for l in t.leaves:
+    for l in t.select_leaves():
         assert not l.spanners
     assert wellformednesstools.is_well_formed_component(t)
 
@@ -382,7 +382,7 @@ def test_leaftools_split_leaf_at_offset_16():
     assert s.components == tuple(t[:])
     for v in t:
         assert v.spanners == set([s])
-        for l in v.leaves:
+        for l in v.select_leaves():
             assert not l.spanners
             assert l._parent is v
     assert wellformednesstools.is_well_formed_component(t)

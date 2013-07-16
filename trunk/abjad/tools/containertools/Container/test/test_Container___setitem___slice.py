@@ -135,7 +135,7 @@ def test_Container___setitem___slice_06():
 
     t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t.leaves)
+    spannertools.BeamSpanner(t.select_leaves())
 
     r'''
     \new Staff {
@@ -151,7 +151,7 @@ def test_Container___setitem___slice_06():
     '''
 
     sequential = t[0]
-    t[0:1] = sequential.leaves
+    t[0:1] = sequential.select_leaves()
 
     r'''
     \new Staff {
@@ -175,7 +175,7 @@ def test_Container___setitem___slice_07():
 
     t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t.leaves)
+    spannertools.BeamSpanner(t.select_leaves())
 
     r'''
     \new Staff {
@@ -216,7 +216,7 @@ def test_Container___setitem___slice_08():
 
     t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t.leaves)
+    spannertools.BeamSpanner(t.select_leaves())
 
     r'''
     \new Staff {
@@ -255,7 +255,7 @@ def test_Container___setitem___slice_09():
 
     t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t.leaves)
+    spannertools.BeamSpanner(t.select_leaves())
 
     r'''
     \new Staff {
@@ -297,7 +297,7 @@ def test_Container___setitem___slice_10():
 
     t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t.leaves)
+    spannertools.BeamSpanner(t.select_leaves())
 
     r'''
     \new Staff {

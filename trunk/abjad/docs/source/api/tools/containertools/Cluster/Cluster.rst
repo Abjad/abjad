@@ -28,9 +28,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.containertools.Cluster.Cluster.Cluster.duration_in_seconds
    :noindex:
 
-.. autoattribute:: abjad.tools.containertools.Cluster.Cluster.Cluster.leaves
-   :noindex:
-
 .. autoattribute:: abjad.tools.containertools.Cluster.Cluster.Cluster.lilypond_format
    :noindex:
 
@@ -107,6 +104,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.containertools.Cluster.Cluster.Cluster.select_descendants_stopping_with
+   :noindex:
+
+.. automethod:: abjad.tools.containertools.Cluster.Cluster.Cluster.select_leaves
    :noindex:
 
 .. automethod:: abjad.tools.containertools.Cluster.Cluster.Cluster.select_lineage

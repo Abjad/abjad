@@ -34,14 +34,14 @@ def test_measuretools_get_next_measure_from_component_01():
     assert measuretools.get_next_measure_from_component(t[1]) is t[2]
     #assert py.test.raises(StopIteration, 'measuretools.get_next_measure_from_component(t[2])')
     assert measuretools.get_next_measure_from_component(t[2]) is None
-    assert measuretools.get_next_measure_from_component(t.leaves[0]) is t[0][0]
-    assert measuretools.get_next_measure_from_component(t.leaves[1]) is t[0][0]
-    assert measuretools.get_next_measure_from_component(t.leaves[2]) is t[0][1]
-    assert measuretools.get_next_measure_from_component(t.leaves[3]) is t[0][1]
-    assert measuretools.get_next_measure_from_component(t.leaves[4]) is t[1]
-    assert measuretools.get_next_measure_from_component(t.leaves[5]) is t[1]
-    assert measuretools.get_next_measure_from_component(t.leaves[6]) is t[2]
-    assert measuretools.get_next_measure_from_component(t.leaves[7]) is t[2]
+    assert measuretools.get_next_measure_from_component(t.select_leaves()[0]) is t[0][0]
+    assert measuretools.get_next_measure_from_component(t.select_leaves()[1]) is t[0][0]
+    assert measuretools.get_next_measure_from_component(t.select_leaves()[2]) is t[0][1]
+    assert measuretools.get_next_measure_from_component(t.select_leaves()[3]) is t[0][1]
+    assert measuretools.get_next_measure_from_component(t.select_leaves()[4]) is t[1]
+    assert measuretools.get_next_measure_from_component(t.select_leaves()[5]) is t[1]
+    assert measuretools.get_next_measure_from_component(t.select_leaves()[6]) is t[2]
+    assert measuretools.get_next_measure_from_component(t.select_leaves()[7]) is t[2]
 
 
 def test_measuretools_get_next_measure_from_component_02():

@@ -4,7 +4,7 @@ def get_marks_attached_to_component(component):
     Get all marks attached to `component`'::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> slur = spannertools.SlurSpanner(staff.leaves)
+        >>> slur = spannertools.SlurSpanner(staff.select_leaves())
         >>> comment_mark = marktools.LilyPondComment('beginning of note content')(staff[0])
         >>> marktools.LilyPondCommandMark('slurDotted')(staff[0])
         LilyPondCommandMark('slurDotted')(c'8)

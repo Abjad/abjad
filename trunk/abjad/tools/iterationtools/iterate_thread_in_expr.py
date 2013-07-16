@@ -42,7 +42,7 @@ def iterate_thread_in_expr(expr, component_class, containment_signature, reverse
 
     ::
 
-        >>> signature = staff.leaves[0].select_parentage().containment_signature
+        >>> signature = staff.select_leaves()[0].select_parentage().containment_signature
         >>> for x in iterationtools.iterate_thread_in_expr(
         ...     staff, Note, signature):
         ...     x

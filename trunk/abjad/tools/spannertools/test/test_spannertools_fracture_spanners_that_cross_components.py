@@ -110,7 +110,7 @@ def test_spannertools_fracture_spanners_that_cross_components_05():
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
     spannertools.CrescendoSpanner(t)
     spannertools.BeamSpanner(t[:])
-    spannertools.TrillSpanner(t.leaves)
+    spannertools.TrillSpanner(t.select_leaves())
 
     r'''
     \new Staff {

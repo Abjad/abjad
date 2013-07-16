@@ -9,7 +9,7 @@ def is_component_with_spanner_attached(expr, spanner_classes=None):
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> beam = spannertools.BeamSpanner(staff.leaves)
+        >>> beam = spannertools.BeamSpanner(staff.select_leaves())
         >>> f(staff)
         \new Staff {
             c'8 [

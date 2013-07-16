@@ -247,7 +247,7 @@ class LilyPondParser(abctools.Parser):
         all_spanners = { }
 
         # traverse all leaves
-        leaves = music.leaves
+        leaves = music.select_leaves()
         first_leaf = None
         if leaves:
             first_leaf = leaves[0]

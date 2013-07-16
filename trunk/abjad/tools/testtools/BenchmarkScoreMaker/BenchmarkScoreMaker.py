@@ -137,7 +137,7 @@ class BenchmarkScoreMaker(AbjadObject):
             2.12 (r9724) LilyPond format:        96,806 function calls
         '''
         staff = stafftools.Staff(200 * notetools.Note("c'16"))
-        for note in staff.leaves:
+        for note in staff.select_leaves():
             contexttools.DynamicMark('f')(note)
         return staff
 

@@ -7,7 +7,7 @@ def fuse_leaves_in_tie_chain_by_immediate_parent(tie_chain):
     ::
 
         >>> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-        >>> spannertools.TieSpanner(staff.leaves)
+        >>> spannertools.TieSpanner(staff.select_leaves())
         TieSpanner(c'8, c'8, c'8, c'8)
         >>> f(staff)
         \new Staff {
@@ -24,7 +24,7 @@ def fuse_leaves_in_tie_chain_by_immediate_parent(tie_chain):
 
     ::
 
-        >>> tie_chain = staff.leaves[0].select_tie_chain()
+        >>> tie_chain = staff.select_leaves()[0].select_tie_chain()
         >>> leaftools.fuse_leaves_in_tie_chain_by_immediate_parent(tie_chain)
         [[Note("c'4")], [Note("c'4")]]
 

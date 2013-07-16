@@ -29,6 +29,6 @@ def test_SlurSpanner_02():
     s = spannertools.SlurSpanner(t[:])
 
     assert len(t.spanners) == 0
-    for leaf in t.leaves:
+    for leaf in t.select_leaves():
         assert leaf.spanners == set([s])
     assert t.lilypond_format == "\\new Voice {\n\tc'8 (\n\td'8\n\te'8\n\tf'8 )\n}"

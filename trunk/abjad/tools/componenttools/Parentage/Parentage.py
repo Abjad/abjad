@@ -130,7 +130,7 @@ class Parentage(Selection):
 
         ::
 
-            >>> score.leaves[0].select_parentage().containment_signature
+            >>> score.select_leaves()[0].select_parentage().containment_signature
             ContainmentSignature(Note-..., Voice-'CustomVoice', Staff-..., Score-'CustomScore')
 
         Return containment signature object.
@@ -201,7 +201,7 @@ class Parentage(Selection):
             >>> tuplet = tuplettools.FixedDurationTuplet(
             ...     Duration(2, 8), "c'8 d'8 e'8")
             >>> staff = Staff([tuplet])
-            >>> note = staff.leaves[0]
+            >>> note = staff.select_leaves()[0]
             >>> print note.select_parentage().parentage_signature
                 staff: Staff-...
                 self: Note-...
@@ -277,7 +277,7 @@ class Parentage(Selection):
 
         ::
 
-            >>> for leaf in score.leaves:
+            >>> for leaf in score.select_leaves():
             ...     leaf, leaf.select_parentage().score_index
             ...
             (Note("c'8"), (0, 0, 0))
@@ -310,7 +310,7 @@ class Parentage(Selection):
             >>> tuplet = tuplettools.FixedDurationTuplet(
             ...     Duration(2, 8), "c'8 d'8 e'8")
             >>> staff = Staff([tuplet])
-            >>> note = staff.leaves[0]
+            >>> note = staff.select_leaves()[0]
 
         ::
 

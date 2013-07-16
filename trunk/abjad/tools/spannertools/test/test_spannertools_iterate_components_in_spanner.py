@@ -23,7 +23,7 @@ def test_spannertools_iterate_components_in_spanner_01():
 
     components = spannertools.iterate_components_in_spanner(p, reverse=True)
     components = list(components)
-    leaves = t.leaves
+    leaves = t.select_leaves()
 
     assert components[0] is t[-1]
     assert components[1] is leaves[-1]

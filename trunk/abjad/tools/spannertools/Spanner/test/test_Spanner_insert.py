@@ -20,7 +20,7 @@ def test_Spanner_insert_01():
     }
     '''
 
-    p._insert(1, t.leaves[-1])
+    p._insert(1, t.select_leaves()[-1])
 
     "Interior insert leaves discontiguous spanner: spannertools.BeamSpanner(c'8, f'8, d'8)."
 

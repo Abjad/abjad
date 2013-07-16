@@ -40,9 +40,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.is_underfull
    :noindex:
 
-.. autoattribute:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.leaves
-   :noindex:
-
 .. autoattribute:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.lilypond_format
    :noindex:
 
@@ -122,6 +119,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.select_descendants_stopping_with
+   :noindex:
+
+.. automethod:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.select_leaves
    :noindex:
 
 .. automethod:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.select_lineage

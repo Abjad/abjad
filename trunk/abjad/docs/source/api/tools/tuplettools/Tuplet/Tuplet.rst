@@ -46,9 +46,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.is_trivial
    :noindex:
 
-.. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.leaves
-   :noindex:
-
 .. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.lilypond_format
    :noindex:
 
@@ -143,6 +140,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.select_descendants_stopping_with
+   :noindex:
+
+.. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.select_leaves
    :noindex:
 
 .. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.select_lineage

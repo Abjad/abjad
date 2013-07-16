@@ -7,10 +7,10 @@ def test_containertools_reverse_contents_of_container_01():
     '''
 
     t = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-    leaves_rev = reversed(t.leaves)
+    leaves_rev = reversed(t.select_leaves())
     containertools.reverse_contents_of_container(t)
 
-    assert list(leaves_rev) == list(t.leaves)
+    assert list(leaves_rev) == list(t.select_leaves())
     assert wellformednesstools.is_well_formed_component(t)
 
 
@@ -20,10 +20,10 @@ def test_containertools_reverse_contents_of_container_02():
 
     t = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
     beam = spannertools.BeamSpanner(t)
-    leaves_rev = reversed(t.leaves)
+    leaves_rev = reversed(t.select_leaves())
     containertools.reverse_contents_of_container(t)
 
-    assert list(leaves_rev) == list(t.leaves)
+    assert list(leaves_rev) == list(t.select_leaves())
     assert beam.components == (t, )
     assert wellformednesstools.is_well_formed_component(t)
 
@@ -34,12 +34,12 @@ def test_containertools_reverse_contents_of_container_03():
     '''
 
     t = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-    beam = spannertools.BeamSpanner(t.leaves)
-    leaves_rev = reversed(t.leaves)
+    beam = spannertools.BeamSpanner(t.select_leaves())
+    leaves_rev = reversed(t.select_leaves())
     containertools.reverse_contents_of_container(t)
 
-    assert list(leaves_rev) == list(t.leaves)
-    assert beam.components == tuple(t.leaves)
+    assert list(leaves_rev) == list(t.select_leaves())
+    assert beam.components == tuple(t.select_leaves())
     assert wellformednesstools.is_well_formed_component(t)
 
 
@@ -50,9 +50,9 @@ def test_containertools_reverse_contents_of_container_04():
 
     t = Staff([Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")] + notetools.make_repeated_notes(2))
     beam = spannertools.BeamSpanner(t[0])
-    leaves_rev = reversed(t[0].leaves)
+    leaves_rev = reversed(t[0].select_leaves())
     containertools.reverse_contents_of_container(t[0])
-    assert list(leaves_rev) == list(t[0].leaves)
+    assert list(leaves_rev) == list(t[0].select_leaves())
     assert beam.components == (t[0], )
     assert wellformednesstools.is_well_formed_component(t)
 
@@ -63,11 +63,11 @@ def test_containertools_reverse_contents_of_container_05():
     '''
 
     t = Staff([Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")] + notetools.make_repeated_notes(2))
-    beam = spannertools.BeamSpanner(t[0].leaves)
-    leaves_rev = reversed(t[0].leaves)
+    beam = spannertools.BeamSpanner(t[0].select_leaves())
+    leaves_rev = reversed(t[0].select_leaves())
     containertools.reverse_contents_of_container(t[0])
-    assert list(leaves_rev) == list(t[0].leaves)
-    assert beam.components == tuple(t[0].leaves)
+    assert list(leaves_rev) == list(t[0].select_leaves())
+    assert beam.components == tuple(t[0].select_leaves())
     assert wellformednesstools.is_well_formed_component(t)
 
 
@@ -78,9 +78,9 @@ def test_containertools_reverse_contents_of_container_06():
     notes = [Note("c'8"), Note("d'8")]
     t = Staff([Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")] + notes)
     beam = spannertools.BeamSpanner(t)
-    leaves_rev = reversed(t[0].leaves)
+    leaves_rev = reversed(t[0].select_leaves())
     containertools.reverse_contents_of_container(t[0])
-    assert list(leaves_rev) == list(t[0].leaves)
+    assert list(leaves_rev) == list(t[0].select_leaves())
     assert beam.components == tuple([t])
     assert wellformednesstools.is_well_formed_component(t)
 
@@ -94,9 +94,9 @@ def test_containertools_reverse_contents_of_container_07():
     measure = Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
     t = Staff([measure] + notes)
     beam = spannertools.BeamSpanner(t[:])
-    leaves_rev = reversed(t[0].leaves)
+    leaves_rev = reversed(t[0].select_leaves())
     containertools.reverse_contents_of_container(t[0])
-    assert list(leaves_rev) == list(t[0].leaves)
+    assert list(leaves_rev) == list(t[0].select_leaves())
     assert beam.components == tuple([measure] + notes)
     assert wellformednesstools.is_well_formed_component(t)
 
@@ -145,7 +145,7 @@ def test_containertools_reverse_contents_of_container_09():
     trill = spannertools.TrillSpanner(staff[:])
     beam1 = spannertools.BeamSpanner(staff[0])
     beam2 = spannertools.BeamSpanner(staff[1])
-    gliss = spannertools.GlissandoSpanner(staff.leaves)
+    gliss = spannertools.GlissandoSpanner(staff.select_leaves())
     containertools.reverse_contents_of_container(staff)
     assert staff[0] is m2
     assert staff[1] is m1
@@ -155,5 +155,5 @@ def test_containertools_reverse_contents_of_container_09():
     assert trill.components == tuple(staff[:])
     assert beam1.components == (m1, )
     assert beam2.components == (m2, )
-    assert gliss.components == tuple(staff.leaves)
+    assert gliss.components == tuple(staff.select_leaves())
     assert wellformednesstools.is_well_formed_component(staff)

@@ -6,10 +6,10 @@ def get_spanners_attached_to_component(component, spanner_classes=None):
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> beam = spannertools.BeamSpanner(staff.leaves)
-        >>> first_slur = spannertools.SlurSpanner(staff.leaves[:2])
-        >>> second_slur = spannertools.SlurSpanner(staff.leaves[2:])
-        >>> crescendo = spannertools.CrescendoSpanner(staff.leaves)
+        >>> beam = spannertools.BeamSpanner(staff.select_leaves())
+        >>> first_slur = spannertools.SlurSpanner(staff.select_leaves()[:2])
+        >>> second_slur = spannertools.SlurSpanner(staff.select_leaves()[2:])
+        >>> crescendo = spannertools.CrescendoSpanner(staff.select_leaves())
 
     ::
 
@@ -24,7 +24,7 @@ def get_spanners_attached_to_component(component, spanner_classes=None):
     ::
 
         >>> result = spannertools.get_spanners_attached_to_component(
-        ...     staff.leaves[0])
+        ...     staff.select_leaves()[0])
         >>> for x in sorted(result):
         ...     x
         ...
@@ -38,7 +38,7 @@ def get_spanners_attached_to_component(component, spanner_classes=None):
 
         >>> spanner_classes = (spannertools.BeamSpanner, )
         >>> result = spannertools.get_spanners_attached_to_component(
-        ...     staff.leaves[0], spanner_classes=spanner_classes)
+        ...     staff.select_leaves()[0], spanner_classes=spanner_classes)
         >>> for x in sorted(result):
         ...     x
         ...
@@ -50,7 +50,7 @@ def get_spanners_attached_to_component(component, spanner_classes=None):
 
         >>> spanner_classes = (spannertools.BeamSpanner, spannertools.SlurSpanner)
         >>> result = spannertools.get_spanners_attached_to_component(
-        ...     staff.leaves[0], spanner_classes=spanner_classes)
+        ...     staff.select_leaves()[0], spanner_classes=spanner_classes)
         >>> for x in sorted(result):
         ...     x
         ...

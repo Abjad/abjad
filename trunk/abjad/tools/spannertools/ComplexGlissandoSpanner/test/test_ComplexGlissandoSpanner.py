@@ -3,7 +3,7 @@ from abjad import *
 
 def test_ComplexGlissandoSpanner_01():
     t = Staff("c'8 d'8 r8 e'8")
-    gliss = spannertools.ComplexGlissandoSpanner(t.leaves[:])
+    gliss = spannertools.ComplexGlissandoSpanner(t.select_leaves()[:])
     assert isinstance(gliss, spannertools.ComplexGlissandoSpanner)
 
     '''

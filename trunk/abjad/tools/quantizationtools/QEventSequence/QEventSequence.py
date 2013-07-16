@@ -330,7 +330,7 @@ class QEventSequence(tuple, ImmutableAbjadObject):
 
             >>> sequence = \
             ...     quantizationtools.QEventSequence.from_tempo_scaled_leaves(
-            ...     staff.leaves, tempo=tempo)
+            ...     staff.select_leaves(), tempo=tempo)
 
         ::
 

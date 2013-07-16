@@ -139,7 +139,7 @@ def test_BeamSpanner_span_anonymous_06():
     '''
 
     staff = Staff("{ c'8 c'8 c'8 c'8 } c'8 c'8")
-    beam = spannertools.BeamSpanner(staff.leaves)
+    beam = spannertools.BeamSpanner(staff.select_leaves())
 
     r'''
     \new Staff {

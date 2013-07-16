@@ -26,9 +26,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.containertools.Container.Container.Container.duration_in_seconds
    :noindex:
 
-.. autoattribute:: abjad.tools.containertools.Container.Container.Container.leaves
-   :noindex:
-
 .. autoattribute:: abjad.tools.containertools.Container.Container.Container.lilypond_format
    :noindex:
 
@@ -105,6 +102,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.containertools.Container.Container.Container.select_descendants_stopping_with
+   :noindex:
+
+.. automethod:: abjad.tools.containertools.Container.Container.Container.select_leaves
    :noindex:
 
 .. automethod:: abjad.tools.containertools.Container.Container.Container.select_lineage

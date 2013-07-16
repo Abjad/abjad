@@ -39,9 +39,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.scoretools.Score.Score.Score.is_semantic
    :noindex:
 
-.. autoattribute:: abjad.tools.scoretools.Score.Score.Score.leaves
-   :noindex:
-
 .. autoattribute:: abjad.tools.scoretools.Score.Score.Score.lilypond_format
    :noindex:
 
@@ -127,6 +124,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.scoretools.Score.Score.Score.select_descendants_stopping_with
+   :noindex:
+
+.. automethod:: abjad.tools.scoretools.Score.Score.Score.select_leaves
    :noindex:
 
 .. automethod:: abjad.tools.scoretools.Score.Score.Score.select_lineage

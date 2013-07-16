@@ -13,7 +13,7 @@ def all_are_contiguous_components_in_same_thread(
 
         >>> staff = Staff("c'8 d'8 e'8")
         >>> componenttools.all_are_contiguous_components_in_same_thread(
-        ...     staff.leaves)
+        ...     staff.select_leaves())
         True
 
     True when elements in `expr` are all contiguous instances 
@@ -23,7 +23,7 @@ def all_are_contiguous_components_in_same_thread(
 
         >>> staff = Staff("c'8 d'8 e'8")
         >>> componenttools.all_are_contiguous_components_in_same_thread(
-        ...     staff.leaves, component_classes=Note)
+        ...     staff.select_leaves(), component_classes=Note)
         True
 
     Return boolean.

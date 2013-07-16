@@ -319,7 +319,7 @@ def test_containertools_split_container_at_index_10():
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
     spannertools.BeamSpanner(t[0])
     spannertools.BeamSpanner(t[1])
-    slur = spannertools.SlurSpanner(t.leaves)
+    slur = spannertools.SlurSpanner(t.select_leaves())
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
@@ -337,7 +337,7 @@ def test_containertools_split_container_at_index_10():
     }
     '''
 
-    leaf = t.leaves[1]
+    leaf = t.select_leaves()[1]
     left, right = containertools.split_container_at_index(leaf, -100, fracture_spanners=False)
 
     "Score is unchanged."
@@ -371,7 +371,7 @@ def test_containertools_split_container_at_index_11():
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
     spannertools.BeamSpanner(t[0])
     spannertools.BeamSpanner(t[1])
-    slur = spannertools.SlurSpanner(t.leaves)
+    slur = spannertools.SlurSpanner(t.select_leaves())
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
@@ -389,7 +389,7 @@ def test_containertools_split_container_at_index_11():
     }
     '''
 
-    leaf = t.leaves[1]
+    leaf = t.select_leaves()[1]
     left, right = containertools.split_container_at_index(leaf, 100, fracture_spanners=False)
 
     "Score is unchanged."
@@ -703,7 +703,7 @@ def test_containertools_split_container_at_index_18():
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
     spannertools.BeamSpanner(t[0])
     spannertools.BeamSpanner(t[1])
-    slur = spannertools.SlurSpanner(t.leaves)
+    slur = spannertools.SlurSpanner(t.select_leaves())
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
@@ -754,7 +754,7 @@ def test_containertools_split_container_at_index_19():
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
     spannertools.BeamSpanner(t[0])
     spannertools.BeamSpanner(t[1])
-    slur = spannertools.SlurSpanner(t.leaves)
+    slur = spannertools.SlurSpanner(t.select_leaves())
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
 
@@ -773,7 +773,7 @@ def test_containertools_split_container_at_index_19():
     }
     '''
 
-    leaf = t.leaves[1]
+    leaf = t.select_leaves()[1]
     left, right = containertools.split_container_at_index(leaf, -100, fracture_spanners=True)
 
     r'''
@@ -805,7 +805,7 @@ def test_containertools_split_container_at_index_20():
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
     spannertools.BeamSpanner(t[0])
     spannertools.BeamSpanner(t[1])
-    slur = spannertools.SlurSpanner(t.leaves)
+    slur = spannertools.SlurSpanner(t.select_leaves())
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
@@ -823,7 +823,7 @@ def test_containertools_split_container_at_index_20():
     }
     '''
 
-    leaf = t.leaves[1]
+    leaf = t.select_leaves()[1]
     left, right = containertools.split_container_at_index(leaf, 100, fracture_spanners=True)
 
     r'''
@@ -855,7 +855,7 @@ def test_containertools_split_container_at_index_21():
 
     t = Staff([Measure((3, 12), "c'8. d'8.")])
     spannertools.BeamSpanner(t[0])
-    spannertools.SlurSpanner(t.leaves)
+    spannertools.SlurSpanner(t.select_leaves())
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
@@ -904,7 +904,7 @@ def test_containertools_split_container_at_index_22():
 
     t = Staff([Measure((3, 8), "c'8. d'8.")])
     spannertools.BeamSpanner(t[0])
-    spannertools.SlurSpanner(t.leaves)
+    spannertools.SlurSpanner(t.select_leaves())
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''

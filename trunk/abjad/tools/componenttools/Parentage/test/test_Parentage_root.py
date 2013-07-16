@@ -8,6 +8,6 @@ def test_Parentage_root_01():
 
     assert staff.select_parentage().root is staff
     assert tuplet.select_parentage().root is staff
-    assert staff.leaves[0].select_parentage().root is staff
-    assert staff.leaves[1].select_parentage().root is staff
-    assert staff.leaves[2].select_parentage().root is staff
+    assert staff.select_leaves()[0].select_parentage().root is staff
+    assert staff.select_leaves()[1].select_parentage().root is staff
+    assert staff.select_leaves()[2].select_parentage().root is staff

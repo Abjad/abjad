@@ -4,7 +4,7 @@ def detach_lilypond_comments_attached_to_component(component):
     Detach LilyPond comments attached to `component`::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> slur = spannertools.SlurSpanner(staff.leaves)
+        >>> slur = spannertools.SlurSpanner(staff.select_leaves())
         >>> marktools.LilyPondComment('comment 1')(staff[0])
         LilyPondComment('comment 1')(c'8)
         >>> marktools.LilyPondComment('comment 2')(staff[0])

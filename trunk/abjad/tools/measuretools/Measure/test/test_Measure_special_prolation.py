@@ -20,10 +20,10 @@ def test_Measure_special_prolation_02():
         Note("c'4"),
         tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3),
         Note("c'4")])
-    assert t.leaves[0].written_duration == Duration(1, 4)
-    assert t.leaves[0].duration == Duration(1, 4)
-    assert t.leaves[1].written_duration == Duration(1, 4)
-    assert t.leaves[1].duration == Duration(1, 6)
+    assert t.select_leaves()[0].written_duration == Duration(1, 4)
+    assert t.select_leaves()[0].duration == Duration(1, 4)
+    assert t.select_leaves()[1].written_duration == Duration(1, 4)
+    assert t.select_leaves()[1].duration == Duration(1, 6)
 
 
 def test_Measure_special_prolation_03():
@@ -37,10 +37,10 @@ def test_Measure_special_prolation_03():
             tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3),
             Note("c'4")]),
         Note("c'4")])
-    assert t.leaves[0].written_duration == Duration(1, 4)
-    assert t.leaves[0].duration == Duration(1, 4)
-    assert t.leaves[1].written_duration == Duration(1, 4)
-    assert t.leaves[1].duration == Duration(1, 9)
+    assert t.select_leaves()[0].written_duration == Duration(1, 4)
+    assert t.select_leaves()[0].duration == Duration(1, 4)
+    assert t.select_leaves()[1].written_duration == Duration(1, 4)
+    assert t.select_leaves()[1].duration == Duration(1, 9)
 
 
 def test_Measure_special_prolation_04():
@@ -62,10 +62,10 @@ def test_Measure_special_prolation_05():
         Note("c'4"),
         tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3),
         Note("c'4")])
-    assert t.leaves[0].written_duration == Duration(1, 4)
-    assert t.leaves[0].duration == Duration(1, 5)
-    assert t.leaves[1].written_duration == Duration(1, 4)
-    assert t.leaves[1].duration == Duration(2, 15)
+    assert t.select_leaves()[0].written_duration == Duration(1, 4)
+    assert t.select_leaves()[0].duration == Duration(1, 5)
+    assert t.select_leaves()[1].written_duration == Duration(1, 4)
+    assert t.select_leaves()[1].duration == Duration(2, 15)
 
 
 def test_Measure_special_prolation_06():
@@ -79,7 +79,7 @@ def test_Measure_special_prolation_06():
             tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3),
             Note("c'4")]),
         Note("c'4")])
-    assert t.leaves[0].written_duration == Duration(1, 4)
-    assert t.leaves[0].duration == Duration(1, 5)
-    assert t.leaves[1].written_duration == Duration(1, 4)
-    assert t.leaves[1].duration == Duration(4, 45)
+    assert t.select_leaves()[0].written_duration == Duration(1, 4)
+    assert t.select_leaves()[0].duration == Duration(1, 5)
+    assert t.select_leaves()[1].written_duration == Duration(1, 4)
+    assert t.select_leaves()[1].duration == Duration(4, 45)

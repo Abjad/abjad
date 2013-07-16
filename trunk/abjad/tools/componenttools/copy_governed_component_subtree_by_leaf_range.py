@@ -98,7 +98,7 @@ def copy_governed_component_subtree_by_leaf_range(
         raise Exception('can not copy from parallel container.')
 
     # assert valid start and stop
-    leaves = component.leaves
+    leaves = component.select_leaves()
     assert start <= len(leaves)
     if stop is None:
         stop = len(leaves)
@@ -113,7 +113,7 @@ def copy_governed_component_subtree_by_leaf_range(
         leaves[start])
 
     # find start and stop leaves in governor
-    governor_leaves = list(governor.leaves)
+    governor_leaves = list(governor.select_leaves())
     for i, x in enumerate(governor_leaves):
         if x is start_leaf_in_component:
             start_index_in_governor = i
@@ -125,7 +125,7 @@ def copy_governed_component_subtree_by_leaf_range(
     governor_copy = \
         componenttools.copy_components_and_fracture_crossing_spanners(
             [governor])[0]
-    copy_leaves = governor_copy.leaves
+    copy_leaves = governor_copy.select_leaves()
 
     # find start and stop leaves in copy of governor
     start_leaf = copy_leaves[start_index_in_governor]

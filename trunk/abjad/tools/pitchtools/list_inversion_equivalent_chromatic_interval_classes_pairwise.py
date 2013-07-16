@@ -58,7 +58,7 @@ def list_inversion_equivalent_chromatic_interval_classes_pairwise(pitch_carriers
 
     ::
 
-        >>> notes = staff.leaves
+        >>> notes = staff.select_leaves()
         >>> notes = list(reversed(notes))
 
     ::

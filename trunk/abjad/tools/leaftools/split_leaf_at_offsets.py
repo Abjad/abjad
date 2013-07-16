@@ -156,7 +156,7 @@ def split_leaf_at_offsets(
 
     ::
 
-        >>> leaftools.split_leaf_at_offsets(staff.leaves[1], [(1, 6)], cyclic=False,
+        >>> leaftools.split_leaf_at_offsets(staff.select_leaves()[1], [(1, 6)], cyclic=False,
         ...     tie_split_notes=True)
         [[Note("d'4")], [Note("d'4")]]
 

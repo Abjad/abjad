@@ -6,7 +6,7 @@ def test_marktools_attach_lilypond_command_marks_to_components_in_expr_01():
     staff = Staff("c'8 d'8 e'8 f'8")
     lilypond_command_mark = marktools.LilyPondCommandMark('stemUp')
     marktools.attach_lilypond_command_marks_to_components_in_expr(
-        staff.leaves, [lilypond_command_mark])
+        staff.select_leaves(), [lilypond_command_mark])
 
     r'''
     \new Staff {
@@ -21,7 +21,7 @@ def test_marktools_attach_lilypond_command_marks_to_components_in_expr_01():
     }
     '''
 
-    for leaf in staff.leaves:
+    for leaf in staff.select_leaves():
         new_lilypond_command_mark = \
             marktools.get_lilypond_command_marks_attached_to_component(leaf)[0]
         assert new_lilypond_command_mark == lilypond_command_mark

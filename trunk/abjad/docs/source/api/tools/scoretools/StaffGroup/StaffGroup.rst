@@ -39,9 +39,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.is_semantic
    :noindex:
 
-.. autoattribute:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.leaves
-   :noindex:
-
 .. autoattribute:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.lilypond_format
    :noindex:
 
@@ -127,6 +124,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.select_descendants_stopping_with
+   :noindex:
+
+.. automethod:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.select_leaves
    :noindex:
 
 .. automethod:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.select_lineage

@@ -37,7 +37,7 @@ def test_iterationtools_iterate_thread_from_component_01():
     }
     '''
 
-    notes = iterationtools.iterate_thread_from_component(staff.leaves[-1], Note, reverse=True)
+    notes = iterationtools.iterate_thread_from_component(staff.select_leaves()[-1], Note, reverse=True)
     notes = list(notes)
 
     voice_2_first_half = staff[0][1]
@@ -85,7 +85,7 @@ def test_iterationtools_iterate_thread_from_component_02():
     }
     '''
 
-    components = iterationtools.iterate_thread_from_component(staff.leaves[-1], reverse=True)
+    components = iterationtools.iterate_thread_from_component(staff.select_leaves()[-1], reverse=True)
     components = list(components)
 
     r'''
@@ -97,9 +97,9 @@ def test_iterationtools_iterate_thread_from_component_02():
     Note(e', 8)
     '''
 
-    assert components[0] is staff.leaves[-1]
+    assert components[0] is staff.select_leaves()[-1]
     assert components[1] is staff[1][1]
-    assert components[2] is staff.leaves[-2]
+    assert components[2] is staff.select_leaves()[-2]
     assert components[3] is staff[0][1]
     assert components[4] is staff[0][1][1]
     assert components[5] is staff[0][1][0]
@@ -139,7 +139,7 @@ def test_iterationtools_iterate_thread_from_component_03():
     }
     '''
 
-    notes = iterationtools.iterate_thread_from_component(staff.leaves[0], Note)
+    notes = iterationtools.iterate_thread_from_component(staff.select_leaves()[0], Note)
     notes = list(notes)
 
     voice_1_first_half = staff[0][0]
@@ -185,7 +185,7 @@ def test_iterationtools_iterate_thread_from_component_04():
     }
     '''
 
-    components = iterationtools.iterate_thread_from_component(staff.leaves[0])
+    components = iterationtools.iterate_thread_from_component(staff.select_leaves()[0])
     components = list(components)
 
     r'''
@@ -197,9 +197,9 @@ def test_iterationtools_iterate_thread_from_component_04():
     a'8
     '''
 
-    assert components[0] is staff.leaves[0]
+    assert components[0] is staff.select_leaves()[0]
     assert components[1] is staff[0][0]
-    assert components[2] is staff.leaves[1]
+    assert components[2] is staff.select_leaves()[1]
     assert components[3] is staff[1][0]
     assert components[4] is staff[1][0][0]
     assert components[5] is staff[1][0][1]

@@ -5,7 +5,7 @@ def attach_annotations_to_components_in_expr(expr, annotations):
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> annotation = marktools.Annotation('foo', 'bar')
-        >>> marktools.attach_annotations_to_components_in_expr(staff.leaves, [annotation])
+        >>> marktools.attach_annotations_to_components_in_expr(staff.select_leaves(), [annotation])
 
     ::
 

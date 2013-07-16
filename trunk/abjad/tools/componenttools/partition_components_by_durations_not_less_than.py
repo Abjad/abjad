@@ -44,7 +44,7 @@ def partition_components_by_durations_not_less_than(
 
         >>> parts = \
         ...     componenttools.partition_components_by_durations_not_less_than(
-        ...     staff.leaves, [Duration(3, 16), Duration(1, 16)], 
+        ...     staff.select_leaves(), [Duration(3, 16), Duration(1, 16)], 
         ...     cyclic=True, overhang=True)
 
     ::

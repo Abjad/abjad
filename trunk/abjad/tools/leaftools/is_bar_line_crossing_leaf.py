@@ -21,14 +21,14 @@ def is_bar_line_crossing_leaf(leaf):
             e'4
             f'8
         }
-        >>> leaftools.is_bar_line_crossing_leaf(t.leaves[2])
+        >>> leaftools.is_bar_line_crossing_leaf(t.select_leaves()[2])
         True
 
     Otherwise false:
 
     ::
 
-        >>> leaftools.is_bar_line_crossing_leaf(t.leaves[3])
+        >>> leaftools.is_bar_line_crossing_leaf(t.select_leaves()[3])
         False
 
     Return boolean.

@@ -3,10 +3,10 @@ from abjad import *
 def test_spannertools_get_spanners_attached_to_component_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    beam = spannertools.BeamSpanner(staff.leaves)
-    first_slur = spannertools.SlurSpanner(staff.leaves[:2])
-    second_slur = spannertools.SlurSpanner(staff.leaves[2:])
-    crescendo = spannertools.CrescendoSpanner(staff.leaves)
+    beam = spannertools.BeamSpanner(staff.select_leaves())
+    first_slur = spannertools.SlurSpanner(staff.select_leaves()[:2])
+    second_slur = spannertools.SlurSpanner(staff.select_leaves()[2:])
+    crescendo = spannertools.CrescendoSpanner(staff.select_leaves())
 
     r'''
     \new Staff {

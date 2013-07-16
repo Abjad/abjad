@@ -6,7 +6,7 @@ def attach_lilypond_comments_to_components_in_expr(expr, lilypond_comments):
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> lilypond_comment = marktools.LilyPondComment('foo', 'right')
         >>> marktools.attach_lilypond_comments_to_components_in_expr(
-        ...     staff.leaves, [lilypond_comment])
+        ...     staff.select_leaves(), [lilypond_comment])
 
     ::
 

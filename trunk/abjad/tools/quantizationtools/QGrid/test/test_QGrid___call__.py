@@ -47,22 +47,28 @@ def test_QGrid___call___02():
     assert isinstance(result, list) and len(result) == 1
     assert result[0].lilypond_format == "\\times 2/3 {\n\tc'8\n\tc'16\n\tc'16\n\t\\times 2/3 {\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t}\n}"
 
-    annotation = marktools.get_annotations_attached_to_component(result[0].leaves[0])[0]
+    annotation = marktools.get_annotations_attached_to_component(
+        result[0].select_leaves()[0])[0]
     assert isinstance(annotation.value, tuple) and len(annotation.value) == 2
     assert annotation.value[0].attachments == ('A',)
     assert annotation.value[1].attachments == ('B',)
 
-    assert not marktools.get_annotations_attached_to_component(result[0].leaves[1])
+    assert not marktools.get_annotations_attached_to_component(
+        result[0].select_leaves()[1])
 
-    annotation = marktools.get_annotation_attached_to_component(result[0].leaves[2])
+    annotation = marktools.get_annotation_attached_to_component(
+        result[0].select_leaves()[2])
     assert isinstance(annotation.value, tuple) and len(annotation.value) == 3
     assert annotation.value[0].attachments == ('C',)
     assert annotation.value[1].attachments == ('D',)
     assert annotation.value[2].attachments == ('E',)
 
-    assert not marktools.get_annotations_attached_to_component(result[0].leaves[3])
-    assert not marktools.get_annotations_attached_to_component(result[0].leaves[4])
-    assert not marktools.get_annotations_attached_to_component(result[0].leaves[5])
+    assert not marktools.get_annotations_attached_to_component(
+        result[0].select_leaves()[3])
+    assert not marktools.get_annotations_attached_to_component(
+        result[0].select_leaves()[4])
+    assert not marktools.get_annotations_attached_to_component(
+        result[0].select_leaves()[5])
 
 
 def test_QGrid___call___03():

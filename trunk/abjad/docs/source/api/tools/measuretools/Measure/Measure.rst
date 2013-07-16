@@ -51,9 +51,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.is_underfull
    :noindex:
 
-.. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.leaves
-   :noindex:
-
 .. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.lilypond_format
    :noindex:
 
@@ -142,6 +139,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.measuretools.Measure.Measure.Measure.select_descendants_stopping_with
+   :noindex:
+
+.. automethod:: abjad.tools.measuretools.Measure.Measure.Measure.select_leaves
    :noindex:
 
 .. automethod:: abjad.tools.measuretools.Measure.Measure.Measure.select_lineage

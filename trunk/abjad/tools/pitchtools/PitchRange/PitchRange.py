@@ -124,7 +124,7 @@ class PitchRange(AbjadObject):
         elif isinstance(arg, (resttools.Rest, skiptools.Skip)):
             return True
         elif isinstance(arg, containertools.Container):
-            return all(x in self for x in arg.leaves)
+            return all(x in self for x in arg.select_leaves())
         else:
             pitches = pitchtools.list_named_chromatic_pitches_in_expr(arg)
             if pitches:

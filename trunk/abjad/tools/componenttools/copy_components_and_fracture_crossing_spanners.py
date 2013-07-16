@@ -27,12 +27,12 @@ def copy_components_and_fracture_crossing_spanners(components, n=1):
 
         >>> result = \
         ...     componenttools.copy_components_and_fracture_crossing_spanners(
-        ...     voice.leaves[2:4])
+        ...     voice.select_leaves()[2:4])
         >>> new_voice = Voice(result)
 
     ::
 
-        >>> voice.leaves[2] is new_voice.leaves[0]
+        >>> voice.select_leaves()[2] is new_voice.select_leaves()[0]
         False
 
     ::
@@ -45,7 +45,7 @@ def copy_components_and_fracture_crossing_spanners(components, n=1):
 
         >>> result = \
         ...     componenttools.copy_components_and_fracture_crossing_spanners(
-        ...     voice.leaves[2:4], n=4)
+        ...     voice.select_leaves()[2:4], n=4)
         >>> new_voice = Voice(result)
 
     ::

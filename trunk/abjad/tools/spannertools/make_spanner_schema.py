@@ -5,7 +5,7 @@ def make_spanner_schema(components):
 
         >>> voice = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
         >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
-        >>> beam = spannertools.BeamSpanner(voice.leaves[:4])
+        >>> beam = spannertools.BeamSpanner(voice.select_leaves()[:4])
         >>> slur = spannertools.SlurSpanner(voice[-2:])
 
     ::
@@ -33,7 +33,7 @@ def make_spanner_schema(components):
 
     ::
 
-        >>> spannertools.make_spanner_schema(voice.leaves[2:4])
+        >>> spannertools.make_spanner_schema(voice.select_leaves()[2:4])
         {BeamSpanner(c'8, d'8, e'8, f'8): [0, 1]}
 
     Return dictionary.

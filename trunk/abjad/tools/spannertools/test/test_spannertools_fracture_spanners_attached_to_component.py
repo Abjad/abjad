@@ -4,8 +4,8 @@ from abjad import *
 def test_spannertools_fracture_spanners_attached_to_component_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    beam = spannertools.BeamSpanner(staff.leaves)
-    slur = spannertools.SlurSpanner(staff.leaves)
+    beam = spannertools.BeamSpanner(staff.select_leaves())
+    slur = spannertools.SlurSpanner(staff.select_leaves())
     trill = spannertools.TrillSpanner(staff)
 
     r'''
@@ -37,8 +37,8 @@ def test_spannertools_fracture_spanners_attached_to_component_02():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    beam = spannertools.BeamSpanner(staff.leaves)
-    slur = spannertools.SlurSpanner(staff.leaves)
+    beam = spannertools.BeamSpanner(staff.select_leaves())
+    slur = spannertools.SlurSpanner(staff.select_leaves())
     trill = spannertools.TrillSpanner(staff)
 
     r'''

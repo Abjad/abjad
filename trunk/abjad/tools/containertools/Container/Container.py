@@ -386,7 +386,7 @@ class Container(Component):
                 [x.duration_in_seconds for x in self])
         else:
             duration = durationtools.Duration(0)
-            for leaf in self.leaves:
+            for leaf in self.select_leaves():
                 duration += leaf.duration_in_seconds
             return duration
 
@@ -461,26 +461,6 @@ class Container(Component):
             self._parallel = expr
             self._mark_entire_score_tree_for_later_update('prolated')
         return property(**locals())
-
-    @property
-    def leaves(self):
-        '''Tuple of leaves in container:
-
-        ::
-
-            >>> container = Container("c'8 d'8 e'8")
-
-        ::
-
-            >>> container.leaves
-            Selection(Note("c'8"), Note("d'8"), Note("e'8"))
-
-        Return selection of zero or more leaves.
-        '''
-        from abjad.tools import iterationtools
-        from abjad.tools import selectiontools
-        generator = iterationtools.iterate_leaves_in_expr(self)
-        return selectiontools.Selection(generator)
 
     @property
     def music(self):
@@ -821,3 +801,23 @@ class Container(Component):
         '''
         i = self.index(component)
         del(self[i])
+
+    def select_leaves(self):
+        '''Select leaves in container:
+
+        ::
+
+            >>> container = Container("c'8 d'8 e'8")
+
+        ::
+
+            >>> container.select_leaves()
+            Selection(Note("c'8"), Note("d'8"), Note("e'8"))
+
+        Return selection of zero or more leaves.
+        '''
+        from abjad.tools import iterationtools
+        from abjad.tools import selectiontools
+        generator = iterationtools.iterate_leaves_in_expr(self)
+        return selectiontools.Selection(generator)
+

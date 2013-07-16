@@ -5,7 +5,7 @@ def test_containertools_replace_contents_of_target_container_with_contents_of_so
 
     staff = Staff(Tuplet(Fraction(2, 3), "c'8 d'8 e'8") * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
-    spannertools.BeamSpanner(staff.leaves)
+    spannertools.BeamSpanner(staff.select_leaves())
 
     r'''
     \new Staff {
@@ -28,7 +28,7 @@ def test_containertools_replace_contents_of_target_container_with_contents_of_so
     '''
 
     container = Container("c'8 d'8 e'8")
-    spannertools.SlurSpanner(container.leaves)
+    spannertools.SlurSpanner(container.select_leaves())
 
     r'''
     {

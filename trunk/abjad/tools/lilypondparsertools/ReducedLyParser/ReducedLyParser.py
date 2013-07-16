@@ -586,7 +586,7 @@ class ReducedLyParser(abctools.Parser):
         for x in parsed:
             container.append(x)
         parsed = container
-        leaves = parsed.leaves
+        leaves = parsed.select_leaves()
         if leaves:
             self._apply_spanners(leaves)
         for leaf in leaves:

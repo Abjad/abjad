@@ -5,7 +5,7 @@ import py.test
 
 def test_LilyPondParser__marks__TempoMark_01():
     target = Score([Staff([Note(0, 1)])])
-    contexttools.TempoMark("As fast as possible", target_context=Staff)(target.leaves[0])
+    contexttools.TempoMark("As fast as possible", target_context=Staff)(target.select_leaves()[0])
 
     r'''
     \new Score <<
@@ -19,12 +19,12 @@ def test_LilyPondParser__marks__TempoMark_01():
     parser = LilyPondParser()
     result = parser(target.lilypond_format)
     assert target.lilypond_format == result.lilypond_format and target is not result
-    assert 1 == len(contexttools.get_tempo_marks_attached_to_component(result.leaves[0]))
+    assert 1 == len(contexttools.get_tempo_marks_attached_to_component(result.select_leaves()[0]))
 
 
 def test_LilyPondParser__marks__TempoMark_02():
     target = Score([Staff([Note(0, 1)])])
-    contexttools.TempoMark((1, 4), 60, target_context=Staff)(target.leaves[0])
+    contexttools.TempoMark((1, 4), 60, target_context=Staff)(target.select_leaves()[0])
 
     r'''
     \new Score <<
@@ -38,12 +38,12 @@ def test_LilyPondParser__marks__TempoMark_02():
     parser = LilyPondParser()
     result = parser(target.lilypond_format)
     assert target.lilypond_format == result.lilypond_format and target is not result
-    assert 1 == len(contexttools.get_tempo_marks_attached_to_component(result.leaves[0]))
+    assert 1 == len(contexttools.get_tempo_marks_attached_to_component(result.select_leaves()[0]))
 
 
 def test_LilyPondParser__marks__TempoMark_03():
     target = Score([Staff([Note(0, 1)])])
-    contexttools.TempoMark((1, 4), (59, 63), target_context=Staff)(target.leaves[0])
+    contexttools.TempoMark((1, 4), (59, 63), target_context=Staff)(target.select_leaves()[0])
 
     r'''
     \new Score <<
@@ -57,13 +57,13 @@ def test_LilyPondParser__marks__TempoMark_03():
     parser = LilyPondParser()
     result = parser(target.lilypond_format)
     assert target.lilypond_format == result.lilypond_format and target is not result
-    assert 1 == len(contexttools.get_tempo_marks_attached_to_component(result.leaves[0]))
+    assert 1 == len(contexttools.get_tempo_marks_attached_to_component(result.select_leaves()[0]))
 
 
 def test_LilyPondParser__marks__TempoMark_04():
     target = Score([Staff([Note(0, 1)])])
     contexttools.TempoMark("Like a majestic swan, alive with youth and vigour!", \
-        (1, 4), 60, target_context=Staff)(target.leaves[0])
+        (1, 4), 60, target_context=Staff)(target.select_leaves()[0])
 
     r'''
     \new Score <<
@@ -77,13 +77,13 @@ def test_LilyPondParser__marks__TempoMark_04():
     parser = LilyPondParser()
     result = parser(target.lilypond_format)
     assert target.lilypond_format == result.lilypond_format and target is not result
-    assert 1 == len(contexttools.get_tempo_marks_attached_to_component(result.leaves[0]))
+    assert 1 == len(contexttools.get_tempo_marks_attached_to_component(result.select_leaves()[0]))
 
 
 def test_LilyPondParser__marks__TempoMark_05():
     target = Score([Staff([Note(0, 1)])])
     contexttools.TempoMark("Faster than a thousand suns",
-        (1, 16), (34, 55), target_context=Staff)(target.leaves[0])
+        (1, 16), (34, 55), target_context=Staff)(target.select_leaves()[0])
 
     r'''
     \new Score <<
@@ -97,4 +97,4 @@ def test_LilyPondParser__marks__TempoMark_05():
     parser = LilyPondParser()
     result = parser(target.lilypond_format)
     assert target.lilypond_format == result.lilypond_format and target is not result
-    assert 1 == len(contexttools.get_tempo_marks_attached_to_component(result.leaves[0]))
+    assert 1 == len(contexttools.get_tempo_marks_attached_to_component(result.select_leaves()[0]))

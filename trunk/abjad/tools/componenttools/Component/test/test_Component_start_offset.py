@@ -42,7 +42,7 @@ def test_Component_start_offset_06():
     v2 = Voice(notetools.make_repeated_notes(16))
     v1.name = v2.name = 'voice'
     t = Container([v1, v2])
-    for i, x in enumerate(t.leaves):
+    for i, x in enumerate(t.select_leaves()):
         assert x.timespan.start_offset == i * Duration(1, 8)
 
 
@@ -56,7 +56,7 @@ def test_Component_start_offset_08():
     tp = tuplettools.FixedDurationTuplet(Duration(1, 4), notetools.make_repeated_notes(3))
     t = Voice([Note(0, (1, 8)), tp, Note(0, (1, 8))])
     offset = 0
-    for x, d in zip(t.leaves, [(1, 8), (1, 12), (1, 12), (1, 12), (1, 8)]):
+    for x, d in zip(t.select_leaves(), [(1, 8), (1, 12), (1, 12), (1, 12), (1, 8)]):
         assert x.timespan.start_offset == offset
         offset += Duration(*d)
 
@@ -68,7 +68,7 @@ def test_Component_start_offset_09():
     tp = tuplettools.FixedDurationTuplet(Duration(1, 4), notetools.make_repeated_notes(3))
     t = tuplettools.FixedDurationTuplet(Duration(2, 4), [Note("c'4"), tp, Note("c'4")])
     offset = 0
-    for x, d in zip(t.leaves, [(1, 6), (1, 18), (1, 18), (1, 18), (1, 6)]):
+    for x, d in zip(t.select_leaves(), [(1, 6), (1, 18), (1, 18), (1, 18), (1, 6)]):
         assert x.timespan.start_offset == offset
         offset += Duration(*d)
 
@@ -93,9 +93,9 @@ def test_Component_start_offset_11():
 
     v = Voice(notetools.make_repeated_notes(4))
     t = Staff([Note(0, (1, 8)), v, Note(0, (1, 8))])
-    for i, x in enumerate(t.leaves):
+    for i, x in enumerate(t.select_leaves()):
         assert x.timespan.start_offset == i * Duration(1, 8)
-    for i, x in enumerate(v.leaves):
+    for i, x in enumerate(v.select_leaves()):
         assert x.timespan.start_offset == i * Duration(1, 8) + Duration(1, 8)
 
 
@@ -106,9 +106,9 @@ def test_Component_start_offset_12():
     v1 = Voice(notetools.make_repeated_notes(4))
     v2 = Voice(notetools.make_repeated_notes(4))
     t = Staff([v1, v2])
-    for i, x in enumerate(v1.leaves):
+    for i, x in enumerate(v1.select_leaves()):
         assert x.timespan.start_offset == i * Duration(1, 8)
-    for i, x in enumerate(v2.leaves):
+    for i, x in enumerate(v2.select_leaves()):
         assert x.timespan.start_offset == i * Duration(1, 8) + Duration(1, 2)
 
 
@@ -120,9 +120,9 @@ def test_Component_start_offset_13():
     v2 = Voice(notetools.make_repeated_notes(4))
     t = Staff([v1, v2])
     t.is_parallel = True
-    for i, x in enumerate(v1.leaves):
+    for i, x in enumerate(v1.select_leaves()):
         assert x.timespan.start_offset == i * Duration(1, 8)
-    for i, x in enumerate(v2.leaves):
+    for i, x in enumerate(v2.select_leaves()):
         assert x.timespan.start_offset == i * Duration(1, 8)
 
 
@@ -135,7 +135,7 @@ def test_Component_start_offset_14():
     v3 = Voice(notetools.make_repeated_notes(4))
     t = Staff([Container([v1, v2]), v3])
     t[0].is_parallel = True
-    for i, x in enumerate(v3.leaves):
+    for i, x in enumerate(v3.select_leaves()):
         assert x.timespan.start_offset == i * Duration(1, 8) + Duration(1, 2)
 
 
@@ -148,9 +148,9 @@ def test_Component_start_offset_15():
     v3 = Voice(notetools.make_repeated_notes(4))
     t = Staff([v3, Container([v1, v2])])
     t[1].is_parallel = True
-    for i, x in enumerate(v1.leaves):
+    for i, x in enumerate(v1.select_leaves()):
         assert x.timespan.start_offset == i * Duration(1, 8) + Duration(1, 2)
-    for i, x in enumerate(v2.leaves):
+    for i, x in enumerate(v2.select_leaves()):
         assert x.timespan.start_offset == i * Duration(1, 8) + Duration(1, 2)
 
 

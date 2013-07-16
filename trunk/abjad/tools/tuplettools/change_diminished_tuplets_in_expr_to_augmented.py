@@ -27,7 +27,7 @@ def change_diminished_tuplets_in_expr_to_augmented(tuplet):
         raise TypeError('must be tuplet')
 
     while tuplet.is_diminution:
-        for leaf in tuplet.leaves:
+        for leaf in tuplet.select_leaves():
             leaf.written_duration /= 2
 
     return tuplet

@@ -6,7 +6,7 @@ def repeat_leaves_in_expr(expr, total=1):
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> spannertools.BeamSpanner(staff.leaves)
+        >>> spannertools.BeamSpanner(staff.select_leaves())
         BeamSpanner(c'8, d'8, e'8, f'8)
         >>> f(staff)
         \new Staff {

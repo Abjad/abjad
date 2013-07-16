@@ -25,7 +25,7 @@ def extend_in_parent_of_component(
     ::
 
         >>> result = componenttools.extend_in_parent_of_component(
-        ...     staff.leaves[-1], 
+        ...     staff.select_leaves()[-1], 
         ...     new_components,
         ...     grow_spanners=True)
 
@@ -55,7 +55,7 @@ def extend_in_parent_of_component(
     ::
 
         >>> result = componenttools.extend_in_parent_of_component(
-        ...     staff.leaves[-1], 
+        ...     staff.select_leaves()[-1], 
         ...     new_components,
         ...     grow_spanners=False)
 
@@ -84,7 +84,7 @@ def extend_in_parent_of_component(
     ::
 
         >>> result = componenttools.extend_in_parent_of_component(
-        ...     staff.leaves[0], 
+        ...     staff.select_leaves()[0], 
         ...     new_components,
         ...     left=True,
         ...     grow_spanners=True)
@@ -114,7 +114,7 @@ def extend_in_parent_of_component(
     ::
 
         >>> result = componenttools.extend_in_parent_of_component(
-        ...     staff.leaves[0], 
+        ...     staff.select_leaves()[0], 
         ...     new_components,
         ...     left=True,
         ...     grow_spanners=False)

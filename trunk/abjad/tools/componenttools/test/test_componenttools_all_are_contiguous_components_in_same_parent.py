@@ -7,21 +7,21 @@ def test_componenttools_all_are_contiguous_components_in_same_parent_01():
 
     t = Voice("c'8 d'8 e'8 f'8")
 
-    assert componenttools.all_are_contiguous_components_in_same_parent(t.leaves)
+    assert componenttools.all_are_contiguous_components_in_same_parent(t.select_leaves())
 
-    assert not componenttools.all_are_contiguous_components_in_same_parent(list(reversed(t.leaves)))
+    assert not componenttools.all_are_contiguous_components_in_same_parent(list(reversed(t.select_leaves())))
 
     components = []
-    components.extend(t.leaves[2:])
-    components.extend(t.leaves[:2])
+    components.extend(t.select_leaves()[2:])
+    components.extend(t.select_leaves()[:2])
     assert not componenttools.all_are_contiguous_components_in_same_parent(components)
 
     components = []
-    components.extend(t.leaves[3:4])
-    components.extend(t.leaves[0:1])
+    components.extend(t.select_leaves()[3:4])
+    components.extend(t.select_leaves()[0:1])
     assert not componenttools.all_are_contiguous_components_in_same_parent(components)
     components = [t]
-    components.extend(t.leaves)
+    components.extend(t.select_leaves())
     assert not componenttools.all_are_contiguous_components_in_same_parent(components)
 
 
@@ -54,7 +54,7 @@ def test_componenttools_all_are_contiguous_components_in_same_parent_02():
     assert componenttools.all_are_contiguous_components_in_same_parent(t[0][:])
     assert componenttools.all_are_contiguous_components_in_same_parent(t[1][:])
 
-    assert not componenttools.all_are_contiguous_components_in_same_parent(t.leaves)
+    assert not componenttools.all_are_contiguous_components_in_same_parent(t.select_leaves())
 
 
 def test_componenttools_all_are_contiguous_components_in_same_parent_03():

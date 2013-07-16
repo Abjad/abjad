@@ -58,19 +58,19 @@ def test_Leaf___copy___06():
 
 def test_Leaf___copy___07():
     t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3) * 3)
-    u = componenttools.copy_components_and_fracture_crossing_spanners(t.leaves[4:5])[0]
+    u = componenttools.copy_components_and_fracture_crossing_spanners(t.select_leaves()[4:5])[0]
     assert isinstance(u, Note)
-    assert u.written_pitch.numbered_chromatic_pitch == t.leaves[4].written_pitch.numbered_chromatic_pitch
-    assert u.written_duration == t.leaves[4].written_duration
-    assert id(u) != id(t.leaves[4])
-    assert u.duration != t.leaves[4].duration
+    assert u.written_pitch.numbered_chromatic_pitch == t.select_leaves()[4].written_pitch.numbered_chromatic_pitch
+    assert u.written_duration == t.select_leaves()[4].written_duration
+    assert id(u) != id(t.select_leaves()[4])
+    assert u.duration != t.select_leaves()[4].duration
 
 
 def test_Leaf___copy___08():
     t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3) * 3)
-    u = componenttools.copy_components_and_fracture_crossing_spanners(t.leaves[5:6])[0]
+    u = componenttools.copy_components_and_fracture_crossing_spanners(t.select_leaves()[5:6])[0]
     assert isinstance(u, Note)
-    assert u.written_pitch.numbered_chromatic_pitch == t.leaves[5].written_pitch.numbered_chromatic_pitch
-    assert u.written_duration == t.leaves[5].written_duration
-    assert id(u) != id(t.leaves[5])
-    assert u.duration != t.leaves[5].duration
+    assert u.written_pitch.numbered_chromatic_pitch == t.select_leaves()[5].written_pitch.numbered_chromatic_pitch
+    assert u.written_duration == t.select_leaves()[5].written_duration
+    assert id(u) != id(t.select_leaves()[5])
+    assert u.duration != t.select_leaves()[5].duration

@@ -8,7 +8,7 @@ def test_Container___setitem___integer_01():
 
     t = Voice("c'8 d'8 e'8 f'8")
     spannertools.BeamSpanner(t[:2])
-    spannertools.GlissandoSpanner(t.leaves)
+    spannertools.GlissandoSpanner(t.select_leaves())
 
     r'''
     \new Voice {
@@ -40,7 +40,7 @@ def test_Container___setitem___integer_02():
 
     t = Voice("c'8 d'8 e'8 f'8")
     spannertools.BeamSpanner(t[:2])
-    spannertools.GlissandoSpanner(t.leaves)
+    spannertools.GlissandoSpanner(t.select_leaves())
 
     r'''
     \new Voice {
@@ -114,8 +114,8 @@ def test_Container___setitem___integer_04():
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t.leaves)
-    spannertools.GlissandoSpanner(t.leaves)
+    spannertools.BeamSpanner(t.select_leaves())
+    spannertools.GlissandoSpanner(t.select_leaves())
 
     r'''
     \new Voice {
@@ -194,8 +194,8 @@ def test_Container___setitem___integer_06():
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t.leaves)
-    spannertools.GlissandoSpanner(t.leaves)
+    spannertools.BeamSpanner(t.select_leaves())
+    spannertools.GlissandoSpanner(t.select_leaves())
 
     r'''
     \new Voice {
@@ -232,7 +232,7 @@ def test_Container___setitem___integer_07():
 
     t = Voice(Container(notetools.make_repeated_notes(4)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t.leaves[0:6])
+    spannertools.BeamSpanner(t.select_leaves()[0:6])
     r'''
     \new Voice {
         {
@@ -345,8 +345,8 @@ def test_Container___setitem___integer_09():
 
     u = Voice(notes[3:])
     Container(u[1:3])
-    spannertools.GlissandoSpanner(u.leaves)
-    spannertools.SlurSpanner(u[1].leaves)
+    spannertools.GlissandoSpanner(u.select_leaves())
+    spannertools.SlurSpanner(u[1].select_leaves())
 
     r'''
     \new Voice {

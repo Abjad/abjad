@@ -28,9 +28,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.duration_in_seconds
    :noindex:
 
-.. autoattribute:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.leaves
-   :noindex:
-
 .. autoattribute:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.lilypond_format
    :noindex:
 
@@ -113,6 +110,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.select_descendants_stopping_with
+   :noindex:
+
+.. automethod:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.select_leaves
    :noindex:
 
 .. automethod:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.select_lineage

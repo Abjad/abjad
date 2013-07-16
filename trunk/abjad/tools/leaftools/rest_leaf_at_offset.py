@@ -24,7 +24,7 @@ def rest_leaf_at_offset(leaf, offset):
 
     ::
 
-        >>> leaftools.rest_leaf_at_offset(staff.leaves[1], (1, 32))
+        >>> leaftools.rest_leaf_at_offset(staff.select_leaves()[1], (1, 32))
         ([Note("d'32")], [Note("d'16.")])
 
     ::

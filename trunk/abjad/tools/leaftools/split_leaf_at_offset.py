@@ -20,9 +20,9 @@ def split_leaf_at_offset(leaf, offset, fracture_spanners=False,
         >>> staff = Staff(r"abj: | 2/8 c'8 ( d'8 || 2/8 e'8 f'8 ) |")
         >>> staff[:].attach_spanners(spannertools.BeamSpanner)
         [BeamSpanner(|2/8(2)|), BeamSpanner(|2/8(2)|)]
-        >>> contexttools.DynamicMark('f')(staff.leaves[0])
+        >>> contexttools.DynamicMark('f')(staff.select_leaves()[0])
         DynamicMark('f')(c'8)
-        >>> marktools.Articulation('accent')(staff.leaves[0])
+        >>> marktools.Articulation('accent')(staff.select_leaves()[0])
         Articulation('accent')(c'8)
 
     ::
@@ -42,7 +42,7 @@ def split_leaf_at_offset(leaf, offset, fracture_spanners=False,
 
     ::
 
-        >>> leaftools.split_leaf_at_offset(staff.leaves[0], (1, 32),
+        >>> leaftools.split_leaf_at_offset(staff.select_leaves()[0], (1, 32),
         ...     tie_split_notes=False)
         ([Note("c'32")], [Note("c'16.")])
 
@@ -67,9 +67,9 @@ def split_leaf_at_offset(leaf, offset, fracture_spanners=False,
         >>> staff = Staff(r"abj: | 2/8 c'8 ( d'8 || 2/8 e'8 f'8 ) |")
         >>> staff[:].attach_spanners(spannertools.BeamSpanner)
         [BeamSpanner(|2/8(2)|), BeamSpanner(|2/8(2)|)]
-        >>> gracetools.GraceContainer("cs'16")(staff.leaves[0])
+        >>> gracetools.GraceContainer("cs'16")(staff.select_leaves()[0])
         Note("c'8")
-        >>> gracetools.GraceContainer("ds'16", kind='after')(staff.leaves[0])
+        >>> gracetools.GraceContainer("ds'16", kind='after')(staff.select_leaves()[0])
         Note("c'8")
 
     ::
@@ -96,7 +96,7 @@ def split_leaf_at_offset(leaf, offset, fracture_spanners=False,
 
     ::
 
-        >>> leaftools.split_leaf_at_offset(staff.leaves[0], (1, 32),
+        >>> leaftools.split_leaf_at_offset(staff.select_leaves()[0], (1, 32),
         ...     tie_split_notes=False)
         ([Note("c'32")], [Note("c'16.")])
 

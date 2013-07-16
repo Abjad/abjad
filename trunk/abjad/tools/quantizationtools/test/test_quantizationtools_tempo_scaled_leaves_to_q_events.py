@@ -25,7 +25,7 @@ def test_quantizationtools_tempo_scaled_leaves_to_q_events_01():
 
     tempo = contexttools.TempoMark((1, 4), 55)
 
-    q_events = quantizationtools.tempo_scaled_leaves_to_q_events(staff.leaves, tempo)
+    q_events = quantizationtools.tempo_scaled_leaves_to_q_events(staff.select_leaves(), tempo)
 
     assert q_events == [
         quantizationtools.PitchedQEvent(
@@ -92,7 +92,7 @@ def test_quantizationtools_tempo_scaled_leaves_to_q_events_02():
     contexttools.TempoMark((1, 4), 58, target_context=Staff)(staff[0])
     contexttools.TempoMark((1, 4), 77, target_context=Staff)(staff[9])
 
-    q_events = quantizationtools.tempo_scaled_leaves_to_q_events(staff.leaves)
+    q_events = quantizationtools.tempo_scaled_leaves_to_q_events(staff.select_leaves())
 
     assert q_events == [
         quantizationtools.PitchedQEvent(

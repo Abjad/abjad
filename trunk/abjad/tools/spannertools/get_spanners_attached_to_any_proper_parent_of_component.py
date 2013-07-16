@@ -10,8 +10,8 @@ def get_spanners_attached_to_any_proper_parent_of_component(
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> beam = spannertools.BeamSpanner(staff.leaves)
-        >>> slur = spannertools.SlurSpanner(staff.leaves)
+        >>> beam = spannertools.BeamSpanner(staff.select_leaves())
+        >>> slur = spannertools.SlurSpanner(staff.select_leaves())
         >>> trill = spannertools.TrillSpanner(staff)
         >>> f(staff)
         \new Staff {

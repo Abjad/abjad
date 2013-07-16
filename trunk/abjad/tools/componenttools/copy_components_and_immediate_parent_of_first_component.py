@@ -21,7 +21,7 @@ def copy_components_and_immediate_parent_of_first_component(components):
 
         >>> voice = Voice(r"\times 2/3 { c'8 d' e' } \times 2/3 { f'8 g' a' }")
         >>> voice.append(r"\times 2/3 { b'8 c'' d'' }")
-        >>> beam = spannertools.BeamSpanner(voice.leaves[:4])
+        >>> beam = spannertools.BeamSpanner(voice.select_leaves()[:4])
 
     ::
 
@@ -46,7 +46,7 @@ def copy_components_and_immediate_parent_of_first_component(components):
 
     ::
 
-        >>> leaves = voice.leaves[:2]
+        >>> leaves = voice.select_leaves()[:2]
         >>> componenttools.copy_components_and_immediate_parent_of_first_component(leaves)
         Tuplet(2/3, [c'8, d'8])
 
@@ -55,7 +55,7 @@ def copy_components_and_immediate_parent_of_first_component(components):
     
     ::
 
-        >>> leaves = voice.leaves[:5]
+        >>> leaves = voice.select_leaves()[:5]
         >>> componenttools.copy_components_and_immediate_parent_of_first_component(leaves)
         Tuplet(2/3, [c'8, d'8, e'8, f'8, g'8])
 

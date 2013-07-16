@@ -27,13 +27,13 @@ def test_componenttools_partition_components_by_durations_exactly_01():
     '''
 
     parts = componenttools.partition_components_by_durations_exactly(
-        t.leaves, [1.5], cyclic=True, in_seconds=True, overhang=False)
+        t.select_leaves(), [1.5], cyclic=True, in_seconds=True, overhang=False)
 
     "[[Note(c'', 8), Note(b', 8), Note(a', 8)], [Note(g', 8), Note(f', 8), Note(e', 8)]]"
 
     assert len(parts) == 2
-    assert parts[0] == list(t.leaves[:3])
-    assert parts[1] == list(t.leaves[3:6])
+    assert parts[0] == list(t.select_leaves()[:3])
+    assert parts[1] == list(t.select_leaves()[3:6])
 
 
 def test_componenttools_partition_components_by_durations_exactly_02():
@@ -62,16 +62,16 @@ def test_componenttools_partition_components_by_durations_exactly_02():
     '''
 
     parts = componenttools.partition_components_by_durations_exactly(
-        t.leaves, [1.5], cyclic=True, in_seconds=True, overhang=True)
+        t.select_leaves(), [1.5], cyclic=True, in_seconds=True, overhang=True)
 
     "[[Note(c'', 8), Note(b', 8), Note(a', 8)], "
     "[Note(g', 8), Note(f', 8), Note(e', 8)], "
     "[Note(d', 8), Note(c', 8)]]"
 
     assert len(parts) == 3
-    assert parts[0] == list(t.leaves[:3])
-    assert parts[1] == list(t.leaves[3:6])
-    assert parts[2] == list(t.leaves[6:8])
+    assert parts[0] == list(t.select_leaves()[:3])
+    assert parts[1] == list(t.select_leaves()[3:6])
+    assert parts[2] == list(t.select_leaves()[6:8])
 
 
 def test_componenttools_partition_components_by_durations_exactly_03():
@@ -97,16 +97,16 @@ def test_componenttools_partition_components_by_durations_exactly_03():
     '''
 
     parts = componenttools.partition_components_by_durations_exactly(
-        t.leaves, [Duration(3, 8)], cyclic=True, in_seconds=False, overhang=True)
+        t.select_leaves(), [Duration(3, 8)], cyclic=True, in_seconds=False, overhang=True)
 
     "[[Note(c'', 8), Note(b', 8), Note(a', 8)], "
     "[Note(g', 8), Note(f', 8), Note(e', 8)], "
     "[Note(d', 8), Note(c', 8)]]"
 
     assert len(parts) == 3
-    assert parts[0] == list(t.leaves[:3])
-    assert parts[1] == list(t.leaves[3:6])
-    assert parts[2] == list(t.leaves[6:8])
+    assert parts[0] == list(t.select_leaves()[:3])
+    assert parts[1] == list(t.select_leaves()[3:6])
+    assert parts[2] == list(t.select_leaves()[6:8])
 
 
 def test_componenttools_partition_components_by_durations_exactly_04():
@@ -135,12 +135,12 @@ def test_componenttools_partition_components_by_durations_exactly_04():
     '''
 
     parts = componenttools.partition_components_by_durations_exactly(
-        t.leaves, [1.5], cyclic=False, in_seconds=True, overhang=False)
+        t.select_leaves(), [1.5], cyclic=False, in_seconds=True, overhang=False)
 
     "[[Note(c'', 8), Note(b', 8), Note(a', 8)]]"
 
     assert len(parts) == 1
-    assert parts[0] == list(t.leaves[:3])
+    assert parts[0] == list(t.select_leaves()[:3])
 
 
 def test_componenttools_partition_components_by_durations_exactly_05():
@@ -167,9 +167,9 @@ def test_componenttools_partition_components_by_durations_exactly_05():
 
     groups = \
         componenttools.partition_components_by_durations_exactly(
-        t.leaves, [Duration(3, 8)], cyclic=False, in_seconds=False, overhang=False)
+        t.select_leaves(), [Duration(3, 8)], cyclic=False, in_seconds=False, overhang=False)
 
     "[[Note(c'', 8), Note(b', 8), Note(a', 8)]]"
 
     assert len(groups) == 1
-    assert groups[0] == list(t.leaves[:3])
+    assert groups[0] == list(t.select_leaves()[:3])

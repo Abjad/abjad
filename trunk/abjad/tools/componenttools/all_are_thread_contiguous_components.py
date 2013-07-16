@@ -45,13 +45,13 @@ def all_are_thread_contiguous_components(
 
     ::
 
-        >>> components = container_1.leaves + container_2.leaves
+        >>> components = container_1.select_leaves() + container_2.select_leaves()
         >>> componenttools.all_are_thread_contiguous_components(components)
         True
 
     ::
 
-        >>> components = (container_1, ) + container_2.leaves
+        >>> components = (container_1, ) + container_2.select_leaves()
         >>> componenttools.all_are_thread_contiguous_components(components)
         True
 

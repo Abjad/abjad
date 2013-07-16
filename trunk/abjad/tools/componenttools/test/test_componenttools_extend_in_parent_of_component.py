@@ -81,7 +81,7 @@ def test_componenttools_extend_in_parent_of_component_04():
     '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
-    spannertools.BeamSpanner(t.leaves)
+    spannertools.BeamSpanner(t.select_leaves())
     result = componenttools.extend_in_parent_of_component(
         t[0], [Note(2.5, (1, 8))], grow_spanners=True)
 
@@ -237,7 +237,7 @@ def test_componenttools_extend_in_parent_of_component_10():
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t.leaves)
+    spannertools.BeamSpanner(t.select_leaves())
     result = componenttools.extend_in_parent_of_component(
         t[1], [Note(2.5, (1, 8))], left=True, grow_spanners=True)
 

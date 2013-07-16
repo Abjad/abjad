@@ -41,9 +41,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.is_semantic
    :noindex:
 
-.. autoattribute:: abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.leaves
-   :noindex:
-
 .. autoattribute:: abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.lilypond_format
    :noindex:
 
@@ -129,6 +126,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.select_descendants_stopping_with
+   :noindex:
+
+.. automethod:: abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.select_leaves
    :noindex:
 
 .. automethod:: abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.select_lineage

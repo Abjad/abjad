@@ -20,7 +20,7 @@ def fracture_spanners_that_cross_components(components):
         >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
         >>> crescendo = spannertools.CrescendoSpanner(t)
         >>> beam = spannertools.BeamSpanner(t[:])
-        >>> trill = spannertools.TrillSpanner(t.leaves)
+        >>> trill = spannertools.TrillSpanner(t.select_leaves())
 
         >>> f(t)
         \new Staff {

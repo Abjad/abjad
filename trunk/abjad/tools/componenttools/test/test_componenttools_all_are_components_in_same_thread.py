@@ -163,9 +163,9 @@ def test_componenttools_all_are_components_in_same_thread_08():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(t.leaves[:4])
-    assert componenttools.all_are_components_in_same_thread(t.leaves[4:])
-    assert not componenttools.all_are_components_in_same_thread(t.leaves)
+    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[:4])
+    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[4:])
+    assert not componenttools.all_are_components_in_same_thread(t.select_leaves())
     assert not componenttools.all_are_components_in_same_thread(t[:])
 
 
@@ -195,7 +195,7 @@ def test_componenttools_all_are_components_in_same_thread_09():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(t.leaves)
+    assert componenttools.all_are_components_in_same_thread(t.select_leaves())
 
 
 def test_componenttools_all_are_components_in_same_thread_10():
@@ -220,7 +220,7 @@ def test_componenttools_all_are_components_in_same_thread_10():
     }
     '''
 
-    assert not componenttools.all_are_components_in_same_thread(t.leaves)
+    assert not componenttools.all_are_components_in_same_thread(t.select_leaves())
 
 
 def test_componenttools_all_are_components_in_same_thread_11():
@@ -248,7 +248,7 @@ def test_componenttools_all_are_components_in_same_thread_11():
     }
     '''
 
-    assert not componenttools.all_are_components_in_same_thread(t.leaves)
+    assert not componenttools.all_are_components_in_same_thread(t.select_leaves())
 
 
 def test_componenttools_all_are_components_in_same_thread_12():
@@ -286,7 +286,7 @@ def test_componenttools_all_are_components_in_same_thread_12():
     }
     '''
 
-    assert not componenttools.all_are_components_in_same_thread(t.leaves[:4])
+    assert not componenttools.all_are_components_in_same_thread(t.select_leaves()[:4])
 
 
 def test_componenttools_all_are_components_in_same_thread_13():
@@ -309,7 +309,7 @@ def test_componenttools_all_are_components_in_same_thread_13():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(t.leaves)
+    assert componenttools.all_are_components_in_same_thread(t.select_leaves())
 
 
 def test_componenttools_all_are_components_in_same_thread_14():
@@ -339,8 +339,8 @@ def test_componenttools_all_are_components_in_same_thread_14():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(t.leaves[:4])
-    assert not componenttools.all_are_components_in_same_thread(t.leaves)
+    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[:4])
+    assert not componenttools.all_are_components_in_same_thread(t.select_leaves())
 
 
 def test_componenttools_all_are_components_in_same_thread_15():
@@ -367,9 +367,9 @@ def test_componenttools_all_are_components_in_same_thread_15():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(t.leaves[:4])
-    assert componenttools.all_are_components_in_same_thread(t.leaves[4:])
-    assert not componenttools.all_are_components_in_same_thread(t.leaves)
+    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[:4])
+    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[4:])
+    assert not componenttools.all_are_components_in_same_thread(t.select_leaves())
 
 
 def test_componenttools_all_are_components_in_same_thread_16():
@@ -396,9 +396,9 @@ def test_componenttools_all_are_components_in_same_thread_16():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(t.leaves[:4])
-    assert componenttools.all_are_components_in_same_thread(t.leaves[4:])
-    assert not componenttools.all_are_components_in_same_thread(t.leaves)
+    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[:4])
+    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[4:])
+    assert not componenttools.all_are_components_in_same_thread(t.select_leaves())
 
 
 def test_componenttools_all_are_components_in_same_thread_17():
@@ -426,9 +426,9 @@ def test_componenttools_all_are_components_in_same_thread_17():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(t.leaves[:4])
-    assert componenttools.all_are_components_in_same_thread(t.leaves[4:])
-    assert not componenttools.all_are_components_in_same_thread(t.leaves)
+    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[:4])
+    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[4:])
+    assert not componenttools.all_are_components_in_same_thread(t.select_leaves())
 
 
 def test_componenttools_all_are_components_in_same_thread_18():
@@ -456,9 +456,9 @@ def test_componenttools_all_are_components_in_same_thread_18():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(t.leaves[:4])
-    assert componenttools.all_are_components_in_same_thread(t.leaves[4:])
-    assert not componenttools.all_are_components_in_same_thread(t.leaves)
+    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[:4])
+    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[4:])
+    assert not componenttools.all_are_components_in_same_thread(t.select_leaves())
 
 
 def test_componenttools_all_are_components_in_same_thread_19():
@@ -485,9 +485,9 @@ def test_componenttools_all_are_components_in_same_thread_19():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(t.leaves[:4])
-    assert componenttools.all_are_components_in_same_thread(t.leaves[4:])
-    assert not componenttools.all_are_components_in_same_thread(t.leaves)
+    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[:4])
+    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[4:])
+    assert not componenttools.all_are_components_in_same_thread(t.select_leaves())
 
 
 def test_componenttools_all_are_components_in_same_thread_20():
@@ -514,9 +514,9 @@ def test_componenttools_all_are_components_in_same_thread_20():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(t.leaves[:4])
-    assert componenttools.all_are_components_in_same_thread(t.leaves[4:])
-    assert not componenttools.all_are_components_in_same_thread(t.leaves)
+    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[:4])
+    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[4:])
+    assert not componenttools.all_are_components_in_same_thread(t.select_leaves())
 
 
 def test_componenttools_all_are_components_in_same_thread_21():
@@ -541,9 +541,9 @@ def test_componenttools_all_are_components_in_same_thread_21():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(t.leaves[:4])
-    assert componenttools.all_are_components_in_same_thread(t.leaves[4:])
-    assert not componenttools.all_are_components_in_same_thread(t.leaves)
+    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[:4])
+    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[4:])
+    assert not componenttools.all_are_components_in_same_thread(t.select_leaves())
 
 
 def test_componenttools_all_are_components_in_same_thread_22():
@@ -569,9 +569,9 @@ def test_componenttools_all_are_components_in_same_thread_22():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(t.leaves[:4])
-    assert componenttools.all_are_components_in_same_thread(t.leaves[4:])
-    assert not componenttools.all_are_components_in_same_thread(t.leaves)
+    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[:4])
+    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[4:])
+    assert not componenttools.all_are_components_in_same_thread(t.select_leaves())
 
 
 def test_componenttools_all_are_components_in_same_thread_23():
@@ -597,9 +597,9 @@ def test_componenttools_all_are_components_in_same_thread_23():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(t.leaves[:4])
-    assert componenttools.all_are_components_in_same_thread(t.leaves[4:])
-    assert not componenttools.all_are_components_in_same_thread(t.leaves)
+    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[:4])
+    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[4:])
+    assert not componenttools.all_are_components_in_same_thread(t.select_leaves())
 
 
 def test_componenttools_all_are_components_in_same_thread_24():
@@ -628,9 +628,9 @@ def test_componenttools_all_are_components_in_same_thread_24():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(t.leaves[:4])
-    assert componenttools.all_are_components_in_same_thread(t.leaves[4:])
-    assert not componenttools.all_are_components_in_same_thread(t.leaves)
+    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[:4])
+    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[4:])
+    assert not componenttools.all_are_components_in_same_thread(t.select_leaves())
 
 
 def test_componenttools_all_are_components_in_same_thread_25():
@@ -655,9 +655,9 @@ def test_componenttools_all_are_components_in_same_thread_25():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(t.leaves[:4])
-    assert componenttools.all_are_components_in_same_thread(t.leaves[4:])
-    assert not componenttools.all_are_components_in_same_thread(t.leaves)
+    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[:4])
+    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[4:])
+    assert not componenttools.all_are_components_in_same_thread(t.select_leaves())
 
 
 def test_componenttools_all_are_components_in_same_thread_26():
@@ -683,9 +683,9 @@ def test_componenttools_all_are_components_in_same_thread_26():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(t.leaves[:4])
-    assert componenttools.all_are_components_in_same_thread(t.leaves[4:])
-    assert not componenttools.all_are_components_in_same_thread(t.leaves)
+    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[:4])
+    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[4:])
+    assert not componenttools.all_are_components_in_same_thread(t.select_leaves())
 
 
 def test_componenttools_all_are_components_in_same_thread_27():
@@ -714,9 +714,9 @@ def test_componenttools_all_are_components_in_same_thread_27():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(t.leaves[:4])
-    assert componenttools.all_are_components_in_same_thread(t.leaves[4:])
-    assert not componenttools.all_are_components_in_same_thread(t.leaves)
+    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[:4])
+    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[4:])
+    assert not componenttools.all_are_components_in_same_thread(t.select_leaves())
 
 
 def test_componenttools_all_are_components_in_same_thread_28():
@@ -746,9 +746,9 @@ def test_componenttools_all_are_components_in_same_thread_28():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(t.leaves[:4])
-    assert componenttools.all_are_components_in_same_thread(t.leaves[4:])
-    assert not componenttools.all_are_components_in_same_thread(t.leaves)
+    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[:4])
+    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[4:])
+    assert not componenttools.all_are_components_in_same_thread(t.select_leaves())
 
 
 def test_componenttools_all_are_components_in_same_thread_29():
@@ -779,9 +779,9 @@ def test_componenttools_all_are_components_in_same_thread_29():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(t.leaves[:4])
-    assert componenttools.all_are_components_in_same_thread(t.leaves[4:])
-    assert not componenttools.all_are_components_in_same_thread(t.leaves)
+    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[:4])
+    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[4:])
+    assert not componenttools.all_are_components_in_same_thread(t.select_leaves())
 
 
 def test_componenttools_all_are_components_in_same_thread_30():
@@ -810,9 +810,9 @@ def test_componenttools_all_are_components_in_same_thread_30():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(t.leaves[:4])
-    assert componenttools.all_are_components_in_same_thread(t.leaves[4:])
-    assert not componenttools.all_are_components_in_same_thread(t.leaves)
+    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[:4])
+    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[4:])
+    assert not componenttools.all_are_components_in_same_thread(t.select_leaves())
 
 
 def test_componenttools_all_are_components_in_same_thread_31():
@@ -849,8 +849,8 @@ def test_componenttools_all_are_components_in_same_thread_31():
     }
     '''
 
-    assert not componenttools.all_are_components_in_same_thread(t.leaves[:8])
-    assert not componenttools.all_are_components_in_same_thread(t.leaves[4:])
+    assert not componenttools.all_are_components_in_same_thread(t.select_leaves()[:8])
+    assert not componenttools.all_are_components_in_same_thread(t.select_leaves()[4:])
 
 
 def test_componenttools_all_are_components_in_same_thread_32():
@@ -884,8 +884,8 @@ def test_componenttools_all_are_components_in_same_thread_32():
     }
     '''
 
-    assert not componenttools.all_are_components_in_same_thread(t.leaves[:8])
-    assert not componenttools.all_are_components_in_same_thread(t.leaves[4:])
+    assert not componenttools.all_are_components_in_same_thread(t.select_leaves()[:8])
+    assert not componenttools.all_are_components_in_same_thread(t.select_leaves()[4:])
 
 
 def test_componenttools_all_are_components_in_same_thread_33():
@@ -924,10 +924,10 @@ def test_componenttools_all_are_components_in_same_thread_33():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread([t.leaves[i] for i in outer])
-    assert componenttools.all_are_components_in_same_thread([t.leaves[i] for i in middle])
-    assert componenttools.all_are_components_in_same_thread([t.leaves[i] for i in inner])
-    assert not componenttools.all_are_components_in_same_thread(t.leaves[:4])
+    assert componenttools.all_are_components_in_same_thread([t.select_leaves()[i] for i in outer])
+    assert componenttools.all_are_components_in_same_thread([t.select_leaves()[i] for i in middle])
+    assert componenttools.all_are_components_in_same_thread([t.select_leaves()[i] for i in inner])
+    assert not componenttools.all_are_components_in_same_thread(t.select_leaves()[:4])
 
 
 def test_componenttools_all_are_components_in_same_thread_34():
@@ -966,10 +966,10 @@ def test_componenttools_all_are_components_in_same_thread_34():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread([t.leaves[i] for i in outer])
-    assert componenttools.all_are_components_in_same_thread([t.leaves[i] for i in middle])
-    assert componenttools.all_are_components_in_same_thread([t.leaves[i] for i in inner])
-    assert not componenttools.all_are_components_in_same_thread(t.leaves[:4])
+    assert componenttools.all_are_components_in_same_thread([t.select_leaves()[i] for i in outer])
+    assert componenttools.all_are_components_in_same_thread([t.select_leaves()[i] for i in middle])
+    assert componenttools.all_are_components_in_same_thread([t.select_leaves()[i] for i in inner])
+    assert not componenttools.all_are_components_in_same_thread(t.select_leaves()[:4])
 
 
 def test_componenttools_all_are_components_in_same_thread_35():
@@ -1074,9 +1074,9 @@ def test_componenttools_all_are_components_in_same_thread_37():
     outer = (0, 1, 6, 7)
     inner = (2, 3, 4, 5)
 
-    assert componenttools.all_are_components_in_same_thread([t.leaves[i] for i in outer])
-    assert componenttools.all_are_components_in_same_thread([t.leaves[i] for i in inner])
-    assert not componenttools.all_are_components_in_same_thread(t.leaves)
+    assert componenttools.all_are_components_in_same_thread([t.select_leaves()[i] for i in outer])
+    assert componenttools.all_are_components_in_same_thread([t.select_leaves()[i] for i in inner])
+    assert not componenttools.all_are_components_in_same_thread(t.select_leaves())
 
 
 def test_componenttools_all_are_components_in_same_thread_38():
@@ -1107,9 +1107,9 @@ def test_componenttools_all_are_components_in_same_thread_38():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(t.leaves[:4])
-    assert componenttools.all_are_components_in_same_thread(t.leaves[4:])
-    assert not componenttools.all_are_components_in_same_thread(t.leaves)
+    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[:4])
+    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[4:])
+    assert not componenttools.all_are_components_in_same_thread(t.select_leaves())
 
 
 def test_componenttools_all_are_components_in_same_thread_39():
@@ -1147,9 +1147,9 @@ def test_componenttools_all_are_components_in_same_thread_39():
     outer = (0, 1, 6, 7)
     inner = (2, 3, 4, 5)
 
-    assert componenttools.all_are_components_in_same_thread([t.leaves[i] for i in outer])
-    assert componenttools.all_are_components_in_same_thread([t.leaves[i] for i in inner])
-    assert not componenttools.all_are_components_in_same_thread(t.leaves)
+    assert componenttools.all_are_components_in_same_thread([t.select_leaves()[i] for i in outer])
+    assert componenttools.all_are_components_in_same_thread([t.select_leaves()[i] for i in inner])
+    assert not componenttools.all_are_components_in_same_thread(t.select_leaves())
 
 
 def test_componenttools_all_are_components_in_same_thread_40():
@@ -1197,9 +1197,9 @@ def test_componenttools_all_are_components_in_same_thread_40():
     outer = (0, 1, 2, 3, 4, 5, 10, 11, 12, 13, 14, 15)
     inner = (6, 7, 8, 9)
 
-    assert componenttools.all_are_components_in_same_thread([t.leaves[i] for i in outer])
-    assert componenttools.all_are_components_in_same_thread([t.leaves[i] for i in inner])
-    assert not componenttools.all_are_components_in_same_thread(t.leaves)
+    assert componenttools.all_are_components_in_same_thread([t.select_leaves()[i] for i in outer])
+    assert componenttools.all_are_components_in_same_thread([t.select_leaves()[i] for i in inner])
+    assert not componenttools.all_are_components_in_same_thread(t.select_leaves())
 
 
 def test_componenttools_all_are_components_in_same_thread_41():
@@ -1231,12 +1231,12 @@ def test_componenttools_all_are_components_in_same_thread_41():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(t.leaves[:4])
-    assert componenttools.all_are_components_in_same_thread(t.leaves[4:8])
-    assert componenttools.all_are_components_in_same_thread(t.leaves[8:])
-    assert not componenttools.all_are_components_in_same_thread(t.leaves[:8])
-    assert not componenttools.all_are_components_in_same_thread(t.leaves[4:])
-    assert not componenttools.all_are_components_in_same_thread(t.leaves)
+    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[:4])
+    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[4:8])
+    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[8:])
+    assert not componenttools.all_are_components_in_same_thread(t.select_leaves()[:8])
+    assert not componenttools.all_are_components_in_same_thread(t.select_leaves()[4:])
+    assert not componenttools.all_are_components_in_same_thread(t.select_leaves())
 
 
 def test_componenttools_all_are_components_in_same_thread_42():
@@ -1274,8 +1274,8 @@ def test_componenttools_all_are_components_in_same_thread_42():
 
     outer = (0, 1, 10, 11)
 
-    assert componenttools.all_are_components_in_same_thread([t.leaves[i] for i in outer])
-    assert componenttools.all_are_components_in_same_thread(t.leaves[2:6])
-    assert componenttools.all_are_components_in_same_thread(t.leaves[6:10])
-    assert not componenttools.all_are_components_in_same_thread(t.leaves[:6])
-    assert not componenttools.all_are_components_in_same_thread(t.leaves)
+    assert componenttools.all_are_components_in_same_thread([t.select_leaves()[i] for i in outer])
+    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[2:6])
+    assert componenttools.all_are_components_in_same_thread(t.select_leaves()[6:10])
+    assert not componenttools.all_are_components_in_same_thread(t.select_leaves()[:6])
+    assert not componenttools.all_are_components_in_same_thread(t.select_leaves())

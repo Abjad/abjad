@@ -10,7 +10,7 @@ def test_spannertools_get_spanners_covered_by_components_01():
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
     beam = spannertools.BeamSpanner(t[0][:])
     slur = spannertools.SlurSpanner(t[1][:])
-    trill = spannertools.TrillSpanner(t.leaves)
+    trill = spannertools.TrillSpanner(t.select_leaves())
 
     r'''
     \new Voice {
@@ -31,7 +31,7 @@ def test_spannertools_get_spanners_covered_by_components_01():
     assert slur in spanners
     assert trill in spanners
 
-    spanners = spannertools.get_spanners_covered_by_components(t.leaves)
+    spanners = spannertools.get_spanners_covered_by_components(t.select_leaves())
     assert len(spanners) == 3
     assert beam in spanners
     assert slur in spanners
@@ -41,5 +41,5 @@ def test_spannertools_get_spanners_covered_by_components_01():
     assert len(spanners) == 1
     assert beam in spanners
 
-    spanners = spannertools.get_spanners_covered_by_components(t.leaves[0:1])
+    spanners = spannertools.get_spanners_covered_by_components(t.select_leaves()[0:1])
     assert spanners == set([])

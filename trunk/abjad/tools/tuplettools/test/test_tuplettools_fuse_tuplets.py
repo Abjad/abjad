@@ -172,7 +172,7 @@ def test_tuplettools_fuse_tuplets_06():
         tuplettools.FixedDurationTuplet(Duration(1, 12), [Note(0, (1, 8))]),
         tuplettools.FixedDurationTuplet(Duration(1, 6), [Note("c'4")]),
         Note("c'4")])
-    spannertools.SlurSpanner(t.leaves)
+    spannertools.SlurSpanner(t.select_leaves())
 
     r'''
     \new Voice {

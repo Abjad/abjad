@@ -11,7 +11,7 @@ def all_are_components_in_same_thread(expr, classes=None, allow_orphans=True):
     ::
 
         >>> voice = Voice("c'8 d'8 e'8")
-        >>> componenttools.all_are_components_in_same_thread(voice.leaves)
+        >>> componenttools.all_are_components_in_same_thread(voice.select_leaves())
         True
 
     True when elements in `expr` are all `classes` in same thread. 
@@ -21,7 +21,7 @@ def all_are_components_in_same_thread(expr, classes=None, allow_orphans=True):
 
         >>> voice = Voice("c'8 d'8 e'8")
         >>> componenttools.all_are_components_in_same_thread(
-        ...     voice.leaves, classes=Note)
+        ...     voice.select_leaves(), classes=Note)
         True
 
     Return boolean.

@@ -24,7 +24,7 @@ def test_componenttools_all_are_thread_contiguous_components_01():
     '''
 
     outer = (0, 1, 4, 5)
-    assert componenttools.all_are_thread_contiguous_components([t.leaves[i] for i in outer])
+    assert componenttools.all_are_thread_contiguous_components([t.select_leaves()[i] for i in outer])
 
 
 def test_componenttools_all_are_thread_contiguous_components_02():
@@ -159,7 +159,7 @@ def test_componenttools_all_are_thread_contiguous_components_10():
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t.leaves)
+    spannertools.BeamSpanner(t.select_leaves())
 
     r'''
     \new Voice {

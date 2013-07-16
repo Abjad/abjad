@@ -31,9 +31,9 @@ def test_componenttools_get_nth_namesake_from_component_03():
 
     t = Container(Voice(notetools.make_repeated_notes(2)) * 2)
 
-    assert componenttools.get_nth_namesake_from_component(t.leaves[0], 1) is t.leaves[1]
-    assert componenttools.get_nth_namesake_from_component(t.leaves[1], 1) is None
-    assert componenttools.get_nth_namesake_from_component(t.leaves[2], 1) is t.leaves[3]
+    assert componenttools.get_nth_namesake_from_component(t.select_leaves()[0], 1) is t.select_leaves()[1]
+    assert componenttools.get_nth_namesake_from_component(t.select_leaves()[1], 1) is None
+    assert componenttools.get_nth_namesake_from_component(t.select_leaves()[2], 1) is t.select_leaves()[3]
 
 
 def test_componenttools_get_nth_namesake_from_component_04():
@@ -55,9 +55,9 @@ def test_componenttools_get_nth_namesake_from_component_05():
     t[0].name = 'voice'
 
     assert componenttools.get_nth_namesake_from_component(t[0], 1) is None
-    assert componenttools.get_nth_namesake_from_component(t.leaves[0], 1) is t.leaves[1]
-    assert componenttools.get_nth_namesake_from_component(t.leaves[1], 1) is None
-    assert componenttools.get_nth_namesake_from_component(t.leaves[2], 1) is t.leaves[3]
+    assert componenttools.get_nth_namesake_from_component(t.select_leaves()[0], 1) is t.select_leaves()[1]
+    assert componenttools.get_nth_namesake_from_component(t.select_leaves()[1], 1) is None
+    assert componenttools.get_nth_namesake_from_component(t.select_leaves()[2], 1) is t.select_leaves()[3]
 
 
 def test_componenttools_get_nth_namesake_from_component_06():
@@ -72,7 +72,7 @@ def test_componenttools_get_nth_namesake_from_component_06():
 
     assert componenttools.get_nth_namesake_from_component(t[0], 1) is t[1]
     assert componenttools.get_nth_namesake_from_component(t[1], 1) is None
-    assert componenttools.get_nth_namesake_from_component(t.leaves[1], 1) is t.leaves[2]
+    assert componenttools.get_nth_namesake_from_component(t.select_leaves()[1], 1) is t.select_leaves()[2]
 
 
 def test_componenttools_get_nth_namesake_from_component_07():
@@ -85,7 +85,7 @@ def test_componenttools_get_nth_namesake_from_component_07():
     t.insert(1, Rest((1, 2)))
 
     assert componenttools.get_nth_namesake_from_component(t[0], 1) is t[2]
-    assert componenttools.get_nth_namesake_from_component(t.leaves[1], 1) is t.leaves[3]
+    assert componenttools.get_nth_namesake_from_component(t.select_leaves()[1], 1) is t.select_leaves()[3]
 
 
 def test_componenttools_get_nth_namesake_from_component_08():
@@ -97,7 +97,7 @@ def test_componenttools_get_nth_namesake_from_component_08():
     t[1].name = 'staff'
 
     assert componenttools.get_nth_namesake_from_component(t[0], 1) is t[1]
-    assert componenttools.get_nth_namesake_from_component(t.leaves[1], 1) is t.leaves[2]
+    assert componenttools.get_nth_namesake_from_component(t.select_leaves()[1], 1) is t.select_leaves()[2]
 
 
 def test_componenttools_get_nth_namesake_from_component_09():

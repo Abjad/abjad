@@ -30,7 +30,7 @@ def transpose_from_fingered_pitch_to_sounding_pitch(expr):
 
     ::
 
-        >>> for leaf in staff.leaves:
+        >>> for leaf in staff.select_leaves():
         ...   leaf.written_pitch_indication_is_at_sounding_pitch = False
 
         >>> instrumenttools.transpose_from_fingered_pitch_to_sounding_pitch(staff)

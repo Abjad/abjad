@@ -7,23 +7,23 @@ def test_componenttools_all_are_contiguous_components_01():
 
     t = Voice("c'8 d'8 e'8 f'8")
 
-    assert componenttools.all_are_contiguous_components(t.leaves)
+    assert componenttools.all_are_contiguous_components(t.select_leaves())
 
-    components = list(reversed(t.leaves))
+    components = list(reversed(t.select_leaves()))
     assert not componenttools.all_are_contiguous_components(components)
 
     components = []
-    components.extend(t.leaves[2:])
-    components.extend(t.leaves[:2])
+    components.extend(t.select_leaves()[2:])
+    components.extend(t.select_leaves()[:2])
     assert not componenttools.all_are_contiguous_components(components)
 
     components = []
-    components.extend(t.leaves[3:4])
-    components.extend(t.leaves[0:1])
+    components.extend(t.select_leaves()[3:4])
+    components.extend(t.select_leaves()[0:1])
     assert not componenttools.all_are_contiguous_components(components)
 
     components = [t]
-    components.extend(t.leaves)
+    components.extend(t.select_leaves())
     assert not componenttools.all_are_contiguous_components(components)
 
 
@@ -53,7 +53,7 @@ def test_componenttools_all_are_contiguous_components_02():
     assert componenttools.all_are_contiguous_components(t[1][:])
     assert componenttools.all_are_contiguous_components(t[0:1] + t[1][:])
     assert componenttools.all_are_contiguous_components(t[0][:] + t[1:2])
-    assert componenttools.all_are_contiguous_components(t.leaves)
+    assert componenttools.all_are_contiguous_components(t.select_leaves())
 
 
 def test_componenttools_all_are_contiguous_components_03():

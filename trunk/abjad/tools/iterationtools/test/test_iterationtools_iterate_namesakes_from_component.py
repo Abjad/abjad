@@ -86,7 +86,7 @@ def test_iterationtools_iterate_namesakes_from_component_02():
     }
     '''
 
-    notes = iterationtools.iterate_namesakes_from_component(score.leaves[-1], reverse=True)
+    notes = iterationtools.iterate_namesakes_from_component(score.select_leaves()[-1], reverse=True)
     notes = list(notes)
 
     r'''
@@ -124,11 +124,11 @@ def test_iterationtools_iterate_namesakes_from_component_03():
     '''
 
     g = iterationtools.iterate_namesakes_from_component(
-        t.leaves[-2], reverse=True, start=0, stop=3)
+        t.select_leaves()[-2], reverse=True, start=0, stop=3)
 
-    assert g.next() is t.leaves[-2]
-    assert g.next() is t.leaves[-3]
-    assert g.next() is t.leaves[-4]
+    assert g.next() is t.select_leaves()[-2]
+    assert g.next() is t.select_leaves()[-3]
+    assert g.next() is t.select_leaves()[-4]
     assert py.test.raises(StopIteration, 'g.next()')
 
 
@@ -155,11 +155,11 @@ def test_iterationtools_iterate_namesakes_from_component_04():
     '''
 
     g = iterationtools.iterate_namesakes_from_component(
-        t.leaves[-2], reverse=True, start=2)
+        t.select_leaves()[-2], reverse=True, start=2)
 
-    assert g.next() is t.leaves[-4]
-    assert g.next() is t.leaves[-5]
-    assert g.next() is t.leaves[-6]
+    assert g.next() is t.select_leaves()[-4]
+    assert g.next() is t.select_leaves()[-5]
+    assert g.next() is t.select_leaves()[-6]
     assert py.test.raises(StopIteration, 'g.next()')
 
 
@@ -247,7 +247,7 @@ def test_iterationtools_iterate_namesakes_from_component_06():
     }
     '''
 
-    notes = iterationtools.iterate_namesakes_from_component(score.leaves[0])
+    notes = iterationtools.iterate_namesakes_from_component(score.select_leaves()[0])
     notes = list(notes)
 
     for note in notes:
@@ -277,11 +277,11 @@ def test_iterationtools_iterate_namesakes_from_component_07():
     }
     '''
 
-    g = iterationtools.iterate_namesakes_from_component(t.leaves[1], start=0, stop=3)
+    g = iterationtools.iterate_namesakes_from_component(t.select_leaves()[1], start=0, stop=3)
 
-    assert g.next() is t.leaves[1]
-    assert g.next() is t.leaves[2]
-    assert g.next() is t.leaves[3]
+    assert g.next() is t.select_leaves()[1]
+    assert g.next() is t.select_leaves()[2]
+    assert g.next() is t.select_leaves()[3]
     assert py.test.raises(StopIteration, 'g.next()')
 
 
@@ -307,9 +307,9 @@ def test_iterationtools_iterate_namesakes_from_component_08():
     }
     '''
 
-    g = iterationtools.iterate_namesakes_from_component(t.leaves[1], start=2)
+    g = iterationtools.iterate_namesakes_from_component(t.select_leaves()[1], start=2)
 
-    assert g.next() is t.leaves[3]
-    assert g.next() is t.leaves[4]
-    assert g.next() is t.leaves[5]
+    assert g.next() is t.select_leaves()[3]
+    assert g.next() is t.select_leaves()[4]
+    assert g.next() is t.select_leaves()[5]
     assert py.test.raises(StopIteration, 'g.next()')

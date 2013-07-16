@@ -10,7 +10,7 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> spannertools.BeamSpanner(staff.leaves)
+        >>> spannertools.BeamSpanner(staff.select_leaves())
         BeamSpanner(c'8, d'8, e'8, f'8)
         >>> leaftools.set_preprolated_leaf_duration(staff[1], Duration(3, 16))
         [Note("d'8.")]
@@ -27,7 +27,7 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> spannertools.BeamSpanner(staff.leaves)
+        >>> spannertools.BeamSpanner(staff.select_leaves())
         BeamSpanner(c'8, d'8, e'8, f'8)
         >>> leaftools.set_preprolated_leaf_duration(staff[1], Duration(5, 32))
         [Note("d'8"), Note("d'32")]
@@ -45,7 +45,7 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> spannertools.BeamSpanner(staff.leaves)
+        >>> spannertools.BeamSpanner(staff.select_leaves())
         BeamSpanner(c'8, d'8, e'8, f'8)
         >>> leaftools.set_preprolated_leaf_duration(staff[1], Duration(1, 12))
         Selection(Note("d'8"),)
@@ -67,7 +67,7 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> spannertools.BeamSpanner(staff.leaves)
+        >>> spannertools.BeamSpanner(staff.select_leaves())
         BeamSpanner(c'8, d'8, e'8, f'8)
         >>> leaftools.set_preprolated_leaf_duration(staff[1], Duration(5, 48))
         [Note("d'8"), Note("d'32")]

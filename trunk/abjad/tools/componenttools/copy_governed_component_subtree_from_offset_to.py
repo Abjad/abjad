@@ -178,8 +178,8 @@ def _copy_container_from_start_offset_to_stop_offset(container, start, stop):
     container, first_dif, second_dif = _get_lcopy(container, start, stop)
 
     # get container start and stop leaves
-    leaf_start = container.leaves[0]
-    leaf_end = container.leaves[-1]
+    leaf_start = container.select_leaves()[0]
+    leaf_end = container.select_leaves()[-1]
 
     # split first leaf
     leaf_start_splitted = componenttools.split_component_at_offset(

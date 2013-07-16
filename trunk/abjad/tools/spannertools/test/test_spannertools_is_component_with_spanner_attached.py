@@ -6,7 +6,7 @@ def test_spannertools_is_component_with_spanner_attached_01():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    beam = spannertools.BeamSpanner(staff.leaves)
+    beam = spannertools.BeamSpanner(staff.select_leaves())
     f(staff)
 
     r'''
@@ -27,7 +27,7 @@ def test_spannertools_is_component_with_spanner_attached_02():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    beam = spannertools.BeamSpanner(staff.leaves)
+    beam = spannertools.BeamSpanner(staff.select_leaves())
     f(staff)
 
     r'''

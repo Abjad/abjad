@@ -32,15 +32,15 @@ def test_componenttools_partition_components_by_durations_not_less_than_01():
     '''
 
     parts = componenttools.partition_components_by_durations_not_less_than(
-        staff.leaves, [Duration(3, 16), Duration(1, 16)], cyclic=True, in_seconds=False, overhang=True)
+        staff.select_leaves(), [Duration(3, 16), Duration(1, 16)], cyclic=True, in_seconds=False, overhang=True)
 
     "[[Note(c', 8), Note(d', 8)], "
     "[Note(e', 8)], [Note(f', 8), Note(g', 8)], "
     "[Note(a', 8)], [Note(b', 8), Note(c'', 8)]]"
 
     assert len(parts) == 5
-    assert parts[0] == list(staff.leaves[:2])
-    assert parts[1] == list(staff.leaves[2:3])
-    assert parts[2] == list(staff.leaves[3:5])
-    assert parts[3] == list(staff.leaves[5:6])
-    assert parts[4] == list(staff.leaves[6:])
+    assert parts[0] == list(staff.select_leaves()[:2])
+    assert parts[1] == list(staff.select_leaves()[2:3])
+    assert parts[2] == list(staff.select_leaves()[3:5])
+    assert parts[3] == list(staff.select_leaves()[5:6])
+    assert parts[4] == list(staff.select_leaves()[6:])

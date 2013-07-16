@@ -23,7 +23,7 @@ def test_spannertools_get_nth_leaf_in_spanner_01():
     }
     '''
 
-    leaves = t.leaves
+    leaves = t.select_leaves()
 
     assert spannertools.get_nth_leaf_in_spanner(p, 0) is leaves[0]
     assert spannertools.get_nth_leaf_in_spanner(p, 1) is leaves[1]

@@ -17,7 +17,7 @@ def test_Leaf_number_02():
     '''
 
     t = Staff([Measure((3, 8), "c'8 d'8 e'8")])
-    leaves = t.leaves
+    leaves = t.select_leaves()
     assert leaves[0].leaf_index == 0
     assert leaves[1].leaf_index == 1
     assert leaves[2].leaf_index == 2
@@ -28,7 +28,7 @@ def test_Leaf_number_03():
     '''
 
     t = Staff(Measure((2, 8), "c'8 d'8") * 3)
-    leaves = t.leaves
+    leaves = t.select_leaves()
     assert leaves[0].leaf_index == 0
     assert leaves[1].leaf_index == 1
     assert leaves[2].leaf_index == 2

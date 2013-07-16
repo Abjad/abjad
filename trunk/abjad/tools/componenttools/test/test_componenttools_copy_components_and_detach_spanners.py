@@ -176,7 +176,7 @@ def test_componenttools_copy_components_and_detach_spanners_03():
     }
     '''
 
-    result = componenttools.copy_components_and_detach_spanners(t.leaves[:6])
+    result = componenttools.copy_components_and_detach_spanners(t.select_leaves()[:6])
     new = Voice(result)
     measuretools.set_always_format_time_signature_of_measures_in_expr(new)
 

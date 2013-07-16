@@ -7,7 +7,7 @@ def test_componenttools_replace_components_with_children_of_components_01():
 
     t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    p = spannertools.BeamSpanner(t.leaves)
+    p = spannertools.BeamSpanner(t.select_leaves())
 
     r'''
     \new Staff {
@@ -100,8 +100,8 @@ def test_componenttools_replace_components_with_children_of_components_04():
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    spannertools.BeamSpanner(t.leaves)
-    spannertools.GlissandoSpanner(t.leaves)
+    spannertools.BeamSpanner(t.select_leaves())
+    spannertools.GlissandoSpanner(t.select_leaves())
 
     r'''
     \new Voice {

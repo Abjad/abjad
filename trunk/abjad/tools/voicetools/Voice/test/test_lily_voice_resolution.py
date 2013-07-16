@@ -94,7 +94,7 @@ def test_lily_voice_resolution_03():
     t[0][0].name = 'voicefoo'
     t[1][0].name = 'voicefoo'
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    py.test.raises(AssertionError, 'spannertools.BeamSpanner(t.leaves)')
+    py.test.raises(AssertionError, 'spannertools.BeamSpanner(t.select_leaves())')
 
     '''LilyPond gives unterminated beam warnings.
     LilyPond gives grob direction programming errors.

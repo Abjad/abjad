@@ -12,7 +12,7 @@ def all_are_contiguous_components(
     ::
 
         >>> staff = Staff("c'8 d'8 e'8")
-        >>> componenttools.all_are_contiguous_components(staff.leaves)
+        >>> componenttools.all_are_contiguous_components(staff.select_leaves())
         True
 
     True when elements in `expr` are all contiguous instances
@@ -22,7 +22,7 @@ def all_are_contiguous_components(
 
         >>> staff = Staff("c'8 d'8 e'8")
         >>> componenttools.all_are_contiguous_components(
-        ...     staff.leaves, component_classes=Note)
+        ...     staff.select_leaves(), component_classes=Note)
         True
 
     Return boolean.

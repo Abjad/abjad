@@ -11,7 +11,7 @@ class LilyPondCommandMark(Mark):
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> slur = spannertools.SlurSpanner(staff.leaves)
+        >>> slur = spannertools.SlurSpanner(staff.select_leaves())
 
     ::
 

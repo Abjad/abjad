@@ -46,7 +46,7 @@ def copy_components_and_detach_spanners(components, n=1):
     ::
 
         >>> result = componenttools.copy_components_and_detach_spanners(
-        ...     voice.leaves[1:3])
+        ...     voice.select_leaves()[1:3])
 
     ::
 
@@ -71,7 +71,7 @@ def copy_components_and_detach_spanners(components, n=1):
 
     ::
 
-        >>> voice.leaves[2] is new_voice.leaves[0]
+        >>> voice.select_leaves()[2] is new_voice.select_leaves()[0]
         False
 
     Example 2. Copy components multiple times:
@@ -79,7 +79,7 @@ def copy_components_and_detach_spanners(components, n=1):
     ::
 
         >>> result = componenttools.copy_components_and_detach_spanners(
-        ...     voice.leaves[1:3], n=2)
+        ...     voice.select_leaves()[1:3], n=2)
 
     ::
 

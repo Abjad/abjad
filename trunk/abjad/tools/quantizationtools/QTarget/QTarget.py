@@ -155,7 +155,7 @@ class QTarget(AbjadObject):
         # check first against second, notating first, tying as necessry
         # keep track of the leaf index, as we're mutating the 
         # structure as we go
-        leaves = list(voice.leaves)
+        leaves = list(voice.select_leaves())
         for i in range(len(leaves) - 1):
             leaf_one, leaf_two = leaves[i], leaves[i + 1]
             leaf_one = self._notate_one_leaf(leaf_one, grace_handler)

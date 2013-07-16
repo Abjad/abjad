@@ -39,7 +39,7 @@ class BeatwiseQTarget(QTarget):
         if attach_tempo_marks:
             attachment_target = components[0]
             if isinstance(attachment_target, containertools.Container):
-                attachment_target = attachment_target.leaves[0]
+                attachment_target = attachment_target.select_leaves()[0]
             copy.copy(beat.tempo)(attachment_target)
         voice.extend(components)
 
@@ -50,7 +50,7 @@ class BeatwiseQTarget(QTarget):
             if (beat_two.tempo != beat_one.tempo) and attach_tempo_marks:
                 attachment_target = components[0]
                 if isinstance(attachment_target, containertools.Container):
-                    attachment_target = attachment_target.leaves[0]
+                    attachment_target = attachment_target.select_leaves()[0]
                 copy.copy(beat_two.tempo)(attachment_target)
             voice.extend(components)
 

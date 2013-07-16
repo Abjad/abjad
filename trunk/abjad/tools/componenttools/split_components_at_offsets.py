@@ -19,7 +19,7 @@ def split_components_at_offsets(components, offsets,
         BeamSpanner(|2/8(2)|)
         >>> spannertools.BeamSpanner(staff[1])
         BeamSpanner(|2/8(2)|)
-        >>> spannertools.SlurSpanner(staff.leaves)
+        >>> spannertools.SlurSpanner(staff.select_leaves())
         SlurSpanner(c'8, d'8, e'8, f'8)
 
     ::
@@ -44,7 +44,7 @@ def split_components_at_offsets(components, offsets,
     ::
 
         >>> componenttools.split_components_at_offsets(
-        ...     staff.leaves, [Duration(3, 32)], cyclic=True)
+        ...     staff.select_leaves(), [Duration(3, 32)], cyclic=True)
         [[Note("c'16.")], [Note("c'32"), Note("d'16")],
         [Note("d'16"), Note("e'32")], [Note("e'16.")], [Note("f'16.")], [Note("f'32")]]
 
@@ -83,7 +83,7 @@ def split_components_at_offsets(components, offsets,
         BeamSpanner(|2/8(2)|)
         >>> spannertools.BeamSpanner(staff[1])
         BeamSpanner(|2/8(2)|)
-        >>> spannertools.SlurSpanner(staff.leaves)
+        >>> spannertools.SlurSpanner(staff.select_leaves())
         SlurSpanner(c'8, d'8, e'8, f'8)
 
     ::
@@ -108,7 +108,7 @@ def split_components_at_offsets(components, offsets,
     ::
 
         >>> result = componenttools.split_components_at_offsets(
-        ... staff.leaves, [Duration(3, 32)], cyclic=True, fracture_spanners=True)
+        ... staff.select_leaves(), [Duration(3, 32)], cyclic=True, fracture_spanners=True)
 
     ::
 
@@ -151,7 +151,7 @@ def split_components_at_offsets(components, offsets,
         BeamSpanner(|2/8(2)|)
         >>> spannertools.BeamSpanner(staff[1])
         BeamSpanner(|2/8(2)|)
-        >>> spannertools.SlurSpanner(staff.leaves)
+        >>> spannertools.SlurSpanner(staff.select_leaves())
         SlurSpanner(c'8, d'8, e'8, f'8)
 
     ::
@@ -221,7 +221,7 @@ def split_components_at_offsets(components, offsets,
         BeamSpanner(|2/8(2)|)
         >>> spannertools.BeamSpanner(staff[1])
         BeamSpanner(|2/8(2)|)
-        >>> spannertools.SlurSpanner(staff.leaves)
+        >>> spannertools.SlurSpanner(staff.select_leaves())
         SlurSpanner(c'8, d'8, e'8, f'8)
 
     ::
@@ -288,7 +288,7 @@ def split_components_at_offsets(components, offsets,
         BeamSpanner({c'8, d'8, e'8})
         >>> spannertools.BeamSpanner(staff[1])
         BeamSpanner({f'8, g'8, a'8})
-        >>> spannertools.SlurSpanner(staff.leaves)
+        >>> spannertools.SlurSpanner(staff.select_leaves())
         SlurSpanner(c'8, d'8, e'8, f'8, g'8, a'8)
 
     ::
@@ -315,7 +315,7 @@ def split_components_at_offsets(components, offsets,
 
         >>> offsets = [(1, 8)]
         >>> shards = componenttools.split_components_at_offsets(
-        ... staff.leaves, offsets, cyclic=False, fracture_spanners=True, tie_split_notes=True)
+        ... staff.select_leaves(), offsets, cyclic=False, fracture_spanners=True, tie_split_notes=True)
 
     ::
 

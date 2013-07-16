@@ -7,7 +7,7 @@ def repeat_last_n_elements_of_container(container, n=1, total=2):
     Repeat last `n` elements of `container`::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> spannertools.BeamSpanner(staff.leaves)
+        >>> spannertools.BeamSpanner(staff.select_leaves())
         BeamSpanner(c'8, d'8, e'8, f'8)
 
     ::

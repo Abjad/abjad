@@ -39,9 +39,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.voicetools.Voice.Voice.Voice.is_semantic
    :noindex:
 
-.. autoattribute:: abjad.tools.voicetools.Voice.Voice.Voice.leaves
-   :noindex:
-
 .. autoattribute:: abjad.tools.voicetools.Voice.Voice.Voice.lilypond_format
    :noindex:
 
@@ -127,6 +124,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.voicetools.Voice.Voice.Voice.select_descendants_stopping_with
+   :noindex:
+
+.. automethod:: abjad.tools.voicetools.Voice.Voice.Voice.select_leaves
    :noindex:
 
 .. automethod:: abjad.tools.voicetools.Voice.Voice.Voice.select_lineage

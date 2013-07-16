@@ -4,7 +4,7 @@ def delete_contents_of_container_starting_before_or_at_offset(container, prolate
     Delete contents of `container` starting before or at `prolated_offset`::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> spannertools.BeamSpanner(staff.leaves)
+        >>> spannertools.BeamSpanner(staff.select_leaves())
         BeamSpanner(c'8, d'8, e'8, f'8)
 
     ::

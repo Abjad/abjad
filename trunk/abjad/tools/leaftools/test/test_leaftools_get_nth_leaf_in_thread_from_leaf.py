@@ -24,17 +24,17 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_01():
     }
     '''
 
-    leaves = staff.leaves
-    assert leaftools.get_nth_leaf_in_thread_from_leaf(staff.leaves[0], 0) is leaves[0]
-    assert leaftools.get_nth_leaf_in_thread_from_leaf(staff.leaves[0], 1) is leaves[1]
-    assert leaftools.get_nth_leaf_in_thread_from_leaf(staff.leaves[0], 2) is leaves[2]
-    assert leaftools.get_nth_leaf_in_thread_from_leaf(staff.leaves[0], 3) is leaves[3]
-    assert leaftools.get_nth_leaf_in_thread_from_leaf(staff.leaves[0], 4) is None
-    assert leaftools.get_nth_leaf_in_thread_from_leaf(staff.leaves[0], 5) is None
-    assert leaftools.get_nth_leaf_in_thread_from_leaf(staff.leaves[0], 6) is None
-    assert leaftools.get_nth_leaf_in_thread_from_leaf(staff.leaves[0], 7) is None
+    leaves = staff.select_leaves()
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(staff.select_leaves()[0], 0) is leaves[0]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(staff.select_leaves()[0], 1) is leaves[1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(staff.select_leaves()[0], 2) is leaves[2]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(staff.select_leaves()[0], 3) is leaves[3]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(staff.select_leaves()[0], 4) is None
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(staff.select_leaves()[0], 5) is None
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(staff.select_leaves()[0], 6) is None
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(staff.select_leaves()[0], 7) is None
 
-    assert leaftools.get_nth_leaf_in_thread_from_leaf(staff.leaves[0], -1) is None
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(staff.select_leaves()[0], -1) is None
 
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_02():

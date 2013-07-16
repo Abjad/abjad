@@ -37,7 +37,7 @@ def test_Parentage_parentage_signature_03():
     t[1].name = 'foo'
 
     containment = t[0][0].select_parentage().parentage_signature
-    for leaf in t.leaves:
+    for leaf in t.select_leaves():
         assert leaf.select_parentage().parentage_signature == containment
 
 
@@ -74,7 +74,7 @@ def test_Parentage_parentage_signature_04():
     '''
 
     signatures = [leaf.select_parentage().parentage_signature 
-        for leaf in t.leaves]
+        for leaf in t.select_leaves()]
 
     assert signatures[0] == signatures[1]
     assert signatures[0] != signatures[2]
@@ -117,14 +117,14 @@ def test_Parentage_parentage_signature_06():
     }
     '''
 
-    assert t.leaves[0].select_parentage().parentage_signature == \
-        t.leaves[1].select_parentage().parentage_signature
-    assert t.leaves[0].select_parentage().parentage_signature == \
-        t.leaves[2].select_parentage().parentage_signature
-    assert t.leaves[2].select_parentage().parentage_signature == \
-        t.leaves[3].select_parentage().parentage_signature
-    assert t.leaves[2].select_parentage().parentage_signature == \
-        t.leaves[0].select_parentage().parentage_signature
+    assert t.select_leaves()[0].select_parentage().parentage_signature == \
+        t.select_leaves()[1].select_parentage().parentage_signature
+    assert t.select_leaves()[0].select_parentage().parentage_signature == \
+        t.select_leaves()[2].select_parentage().parentage_signature
+    assert t.select_leaves()[2].select_parentage().parentage_signature == \
+        t.select_leaves()[3].select_parentage().parentage_signature
+    assert t.select_leaves()[2].select_parentage().parentage_signature == \
+        t.select_leaves()[0].select_parentage().parentage_signature
 
-    assert t.leaves[0].select_parentage().parentage_signature == \
-        t.leaves[1].select_parentage().parentage_signature
+    assert t.select_leaves()[0].select_parentage().parentage_signature == \
+        t.select_leaves()[1].select_parentage().parentage_signature

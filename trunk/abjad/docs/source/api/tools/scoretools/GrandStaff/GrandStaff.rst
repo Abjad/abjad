@@ -41,9 +41,6 @@ Read-only properties
 .. autoattribute:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.is_semantic
    :noindex:
 
-.. autoattribute:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.leaves
-   :noindex:
-
 .. autoattribute:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.lilypond_format
    :noindex:
 
@@ -129,6 +126,9 @@ Methods
    :noindex:
 
 .. automethod:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.select_descendants_stopping_with
+   :noindex:
+
+.. automethod:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.select_leaves
    :noindex:
 
 .. automethod:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.select_lineage

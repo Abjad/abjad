@@ -5,7 +5,7 @@ def test_Tuplet_timespan_in_seconds_01():
 
     staff = Staff(r"c'4 d'4 \times 2/3 { e'4 f'4 g'4 }")
     score = Score([staff])
-    contexttools.TempoMark((1, 4), 60)(staff.leaves[0])
+    contexttools.TempoMark((1, 4), 60)(staff.select_leaves()[0])
 
     r'''
     \new Score <<

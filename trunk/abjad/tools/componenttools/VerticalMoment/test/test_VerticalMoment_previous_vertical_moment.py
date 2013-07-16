@@ -10,7 +10,7 @@ def test_VerticalMoment_previous_vertical_moment_01():
     piano_staff.append(Staff(notetools.make_repeated_notes(4)))
     contexttools.ClefMark('bass')(piano_staff[1])
     score.append(piano_staff)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(list(reversed(score.leaves)))
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(list(reversed(score.select_leaves())))
 
     r'''
     \new Score <<
@@ -37,7 +37,7 @@ def test_VerticalMoment_previous_vertical_moment_01():
     >>
     '''
 
-    last_leaf = score.leaves[-1]
+    last_leaf = score.select_leaves()[-1]
     vertical_moment = last_leaf.select_vertical_moment()
     assert vertical_moment.offset == Offset(3, 8)
 

@@ -111,7 +111,7 @@ class QGrid(AbjadObject):
         result_leaves = []
         for x in result:
             if isinstance(x, containertools.Container):
-                result_leaves.extend(x.leaves)
+                result_leaves.extend(x.select_leaves())
             else:
                 result_leaves.append(x)
         for result_leaf, q_grid_leaf in zip(result_leaves, self.leaves[:-1]):

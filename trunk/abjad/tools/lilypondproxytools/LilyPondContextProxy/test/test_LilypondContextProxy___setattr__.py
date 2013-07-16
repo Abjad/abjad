@@ -31,7 +31,7 @@ def test_LilypondContextProxy___setattr___02():
 
     t = Staff("c'8 d'8 e'8 f'8")
     score = Score([t])
-    score.leaves[1].set.score.tempo_wholes_per_minute = schemetools.SchemeMoment(24)
+    score.select_leaves()[1].set.score.tempo_wholes_per_minute = schemetools.SchemeMoment(24)
 
     r'''
     \new Score <<

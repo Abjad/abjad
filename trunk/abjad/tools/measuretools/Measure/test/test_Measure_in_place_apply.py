@@ -6,9 +6,9 @@ from abjad import *
 def test_Measure_in_place_apply_01():
 
     t = Voice([Note(n, (1, 8)) for n in range(8)])
-    leaves_before = t.leaves
+    leaves_before = t.select_leaves()
     Measure((4, 8), t[0:4])
-    leaves_after = t.leaves
+    leaves_after = t.select_leaves()
 
     r'''
     \new Voice {
@@ -32,9 +32,9 @@ def test_Measure_in_place_apply_01():
 def test_Measure_in_place_apply_02():
 
     t = Staff([Note(n, (1, 8)) for n in range(8)])
-    leaves_before = t.leaves
+    leaves_before = t.select_leaves()
     Measure((4, 8), t[0:4])
-    leaves_after = t.leaves
+    leaves_after = t.select_leaves()
 
     r'''
     \new Staff {
@@ -58,9 +58,9 @@ def test_Measure_in_place_apply_02():
 def test_Measure_in_place_apply_03():
 
     t = Staff([Note(n, (1, 1)) for n in range(4)])
-    leaves_before = t.leaves
+    leaves_before = t.select_leaves()
     Measure((1, 1), t[0:1])
-    leaves_after = t.leaves
+    leaves_after = t.select_leaves()
 
     r'''
     \new Staff {

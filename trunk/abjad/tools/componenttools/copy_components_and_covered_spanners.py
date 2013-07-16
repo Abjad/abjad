@@ -29,12 +29,12 @@ def copy_components_and_covered_spanners(components, n=1):
     ::
 
         >>> result = componenttools.copy_components_and_covered_spanners(
-        ...     staff.leaves)
+        ...     staff.select_leaves())
         >>> new_staff = Staff(result)
 
     ::
 
-        >>> staff.leaves[0] is new_staff.leaves[0]
+        >>> staff.select_leaves()[0] is new_staff.select_leaves()[0]
         False
 
     ::
@@ -46,7 +46,7 @@ def copy_components_and_covered_spanners(components, n=1):
     ::
 
         >>> result = componenttools.copy_components_and_covered_spanners(
-        ...     staff.leaves[:2], n=4)
+        ...     staff.select_leaves()[:2], n=4)
         >>> new_staff = Staff(result)
 
     ::

@@ -7,8 +7,8 @@ def test_iterationtools_iterate_nontrivial_tie_chains_in_expr_01():
 
     tie_chains = list(iterationtools.iterate_nontrivial_tie_chains_in_expr(staff, reverse=True))
 
-    assert tie_chains[0].leaves == staff.leaves[-2:]
-    assert tie_chains[1].leaves == staff.leaves[:2]
+    assert tie_chains[0].leaves == staff.select_leaves()[-2:]
+    assert tie_chains[1].leaves == staff.select_leaves()[:2]
 
 
 def test_iterationtools_iterate_nontrivial_tie_chains_in_expr_02():
@@ -17,5 +17,5 @@ def test_iterationtools_iterate_nontrivial_tie_chains_in_expr_02():
 
     tie_chains = list(iterationtools.iterate_nontrivial_tie_chains_in_expr(staff))
 
-    assert tie_chains[0].leaves == staff.leaves[:2]
-    assert tie_chains[1].leaves == staff.leaves[-2:]
+    assert tie_chains[0].leaves == staff.select_leaves()[:2]
+    assert tie_chains[1].leaves == staff.select_leaves()[-2:]

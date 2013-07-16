@@ -6,7 +6,7 @@ def remove_component_subtree_from_score_and_spanners(components):
     ::
 
         >>> voice = Voice("c'8 [ { d'8 e'8 } f'8 ]")
-        >>> spannertools.GlissandoSpanner(voice.leaves)
+        >>> spannertools.GlissandoSpanner(voice.select_leaves())
         GlissandoSpanner(c'8, d'8, e'8, f'8)
 
     ::
@@ -24,7 +24,7 @@ def remove_component_subtree_from_score_and_spanners(components):
     ::
 
         >>> componenttools.remove_component_subtree_from_score_and_spanners(
-        ...     voice.leaves[1:2])
+        ...     voice.select_leaves()[1:2])
         Selection(Note("d'8"),)
 
     ::
@@ -43,7 +43,7 @@ def remove_component_subtree_from_score_and_spanners(components):
     ::
 
         >>> voice = Voice("c'8 [ { d'8 e'8 } f'8 ]")
-        >>> spannertools.GlissandoSpanner(voice.leaves)
+        >>> spannertools.GlissandoSpanner(voice.select_leaves())
         GlissandoSpanner(c'8, d'8, e'8, f'8)
 
     ::
@@ -61,7 +61,7 @@ def remove_component_subtree_from_score_and_spanners(components):
     ::
 
         >>> componenttools.remove_component_subtree_from_score_and_spanners(
-        ...     voice.leaves[:2])
+        ...     voice.select_leaves()[:2])
         Selection(Note("c'8"), Note("d'8"))
 
     ::
@@ -79,7 +79,7 @@ def remove_component_subtree_from_score_and_spanners(components):
     ::
 
         >>> voice = Voice("c'8 [ { d'8 e'8 } f'8 ]")
-        >>> spannertools.GlissandoSpanner(voice.leaves)
+        >>> spannertools.GlissandoSpanner(voice.select_leaves())
         GlissandoSpanner(c'8, d'8, e'8, f'8)
 
     ::
@@ -97,7 +97,7 @@ def remove_component_subtree_from_score_and_spanners(components):
     ::
 
         >>> componenttools.remove_component_subtree_from_score_and_spanners(
-        ... [voice.leaves[0], voice.leaves[2]])
+        ... [voice.select_leaves()[0], voice.select_leaves()[2]])
         [Note("c'8"), Note("e'8")]
 
     ::
@@ -114,7 +114,7 @@ def remove_component_subtree_from_score_and_spanners(components):
     ::
 
         >>> voice = Voice("c'8 [ { d'8 e'8 } f'8 ]")
-        >>> spannertools.GlissandoSpanner(voice.leaves)
+        >>> spannertools.GlissandoSpanner(voice.select_leaves())
         GlissandoSpanner(c'8, d'8, e'8, f'8)
 
     ::

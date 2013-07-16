@@ -28,7 +28,7 @@ def count_offsets_in_expr(expr):
 
     ::
 
-        >>> counter = durationtools.count_offsets_in_expr(score.leaves)
+        >>> counter = durationtools.count_offsets_in_expr(score.select_leaves())
         >>> for offset, count in sorted(counter.items()):
         ...     offset, count
         ...

@@ -12,7 +12,7 @@ def test_PhrasingSlurSpanner___init___01():
 def test_PhrasingSlurSpanner___init___02():
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    spannertools.PhrasingSlurSpanner(staff.leaves)
+    spannertools.PhrasingSlurSpanner(staff.select_leaves())
 
 
     r'''

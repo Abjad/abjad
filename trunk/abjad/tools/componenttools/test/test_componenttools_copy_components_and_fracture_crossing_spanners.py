@@ -10,7 +10,7 @@ def test_componenttools_copy_components_and_fracture_crossing_spanners_01():
     t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
     slur = spannertools.SlurSpanner(t[:])
-    trill = spannertools.TrillSpanner(t.leaves)
+    trill = spannertools.TrillSpanner(t.select_leaves())
     beam = spannertools.BeamSpanner(t[0][:] + t[1:2] + t[2][:])
 
     r'''
@@ -27,7 +27,7 @@ def test_componenttools_copy_components_and_fracture_crossing_spanners_01():
     }
     '''
 
-    result = componenttools.copy_components_and_fracture_crossing_spanners(t.leaves[2:4])
+    result = componenttools.copy_components_and_fracture_crossing_spanners(t.select_leaves()[2:4])
     new = Voice(result)
 
     r'''
@@ -49,7 +49,7 @@ def test_componenttools_copy_components_and_fracture_crossing_spanners_02():
     t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
     slur = spannertools.SlurSpanner(t[:])
-    trill = spannertools.TrillSpanner(t.leaves)
+    trill = spannertools.TrillSpanner(t.select_leaves())
     beam = spannertools.BeamSpanner(t[0][:] + t[1:2] + t[2][:])
 
     r'''
@@ -97,7 +97,7 @@ def test_componenttools_copy_components_and_fracture_crossing_spanners_03():
     t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
     slur = spannertools.SlurSpanner(t[:])
-    trill = spannertools.TrillSpanner(t.leaves)
+    trill = spannertools.TrillSpanner(t.select_leaves())
     beam = spannertools.BeamSpanner(t[0][:] + t[1:2] + t[2][:])
 
     r'''
@@ -120,7 +120,7 @@ def test_componenttools_copy_components_and_fracture_crossing_spanners_03():
     }
     '''
 
-    result = componenttools.copy_components_and_fracture_crossing_spanners(t.leaves[-3:])
+    result = componenttools.copy_components_and_fracture_crossing_spanners(t.select_leaves()[-3:])
     new = Voice(result)
 
     r'''
@@ -143,7 +143,7 @@ def test_componenttools_copy_components_and_fracture_crossing_spanners_04():
     t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
     slur = spannertools.SlurSpanner(t[:])
-    trill = spannertools.TrillSpanner(t.leaves)
+    trill = spannertools.TrillSpanner(t.select_leaves())
     beam = spannertools.BeamSpanner(t[0][:] + t[1:2] + t[2][:])
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 

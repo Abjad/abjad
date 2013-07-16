@@ -9,7 +9,7 @@ def replace_components_with_children_of_components(components):
         >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
         >>> spannertools.SlurSpanner(staff[:])
         SlurSpanner({c'8, d'8}, {e'8, f'8})
-        >>> spannertools.BeamSpanner(staff.leaves)
+        >>> spannertools.BeamSpanner(staff.select_leaves())
         BeamSpanner(c'8, d'8, e'8, f'8)
 
     ::

@@ -7,7 +7,7 @@ def test_leaftools_rest_leaf_at_offset_01():
     spannertools.SlurSpanner(t[:])
 
     leaftools.rest_leaf_at_offset(
-      t.leaves[1], Duration(1, 32))
+      t.select_leaves()[1], Duration(1, 32))
 
     r'''
     \new Staff {

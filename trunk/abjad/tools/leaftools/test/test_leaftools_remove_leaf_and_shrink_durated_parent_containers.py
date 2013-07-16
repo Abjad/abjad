@@ -24,7 +24,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_01():
     }
     '''
 
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[0])
+    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.select_leaves()[0])
 
     r'''
     {
@@ -74,7 +74,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_02():
     }
     '''
 
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[0])
+    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.select_leaves()[0])
 
     r'''
     {
@@ -137,7 +137,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_03():
     }
     '''
 
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[0])
+    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.select_leaves()[0])
 
     r'''
     {
@@ -203,7 +203,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_04():
         }
         '''
 
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[-1])
+    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.select_leaves()[-1])
 
     r'''
     \time 11/14
@@ -277,7 +277,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_05():
         }
         '''
 
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[0])
+    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.select_leaves()[0])
 
     r'''
     \time 11/14
@@ -355,7 +355,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_06():
         }
         '''
 
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[-1])
+    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.select_leaves()[-1])
 
     r'''
     \time 4/6
@@ -412,7 +412,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_07():
         }
         '''
 
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[-1])
+    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.select_leaves()[-1])
     measure = t
     assert isinstance(measure, Measure)
     assert contexttools.get_effective_time_signature(measure) == contexttools.TimeSignatureMark((8, 9))
@@ -459,7 +459,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_08():
     '''
 
     t = Container(Note("c'4") * 6)
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[0])
+    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.select_leaves()[0])
     assert isinstance(t, Container)
     assert len(t) == 5
     assert t.preprolated_duration == Duration(5, 4)
@@ -475,7 +475,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_09():
     '''
 
     t = Container(Note("c'4") * 6)
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[0])
+    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.select_leaves()[0])
     assert isinstance(t, Container)
     assert len(t) == 5
     assert t.preprolated_duration == Duration(5, 4)
@@ -491,7 +491,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_10():
     '''
 
     t = Voice(Note("c'4") * 6)
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[0])
+    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.select_leaves()[0])
     assert isinstance(t, Voice)
     assert len(t) == 5
     assert t.preprolated_duration == Duration(5, 4)
@@ -507,7 +507,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_11():
     '''
 
     t = Staff(Note("c'4") * 6)
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[0])
+    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.select_leaves()[0])
     assert isinstance(t, Staff)
     assert len(t) == 5
     assert t.preprolated_duration == Duration(5, 4)
@@ -599,7 +599,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_16():
     '''
 
     t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 2)
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[0])
+    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.select_leaves()[0])
     assert isinstance(t, Staff)
     assert len(t) == 2
     assert t.preprolated_duration == Duration(5, 6)
@@ -618,7 +618,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_17():
     '''
 
     t = Container(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 2)
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[0])
+    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.select_leaves()[0])
     assert isinstance(t, Container)
     assert len(t) == 2
     assert t.preprolated_duration == Duration(5, 6)
@@ -637,7 +637,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_18():
     '''
 
     t = Voice(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 2)
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[0])
+    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.select_leaves()[0])
     assert isinstance(t, Voice)
     assert len(t) == 2
     assert t.preprolated_duration == Duration(5, 6)
@@ -656,7 +656,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_19():
     '''
 
     t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 2)
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[0])
+    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.select_leaves()[0])
     assert isinstance(t, Staff)
     assert len(t) == 2
     assert t.preprolated_duration == Duration(5, 6)
@@ -678,7 +678,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_20():
         Note("c'4"),
         Note("c'4"),
         tuplettools.FixedDurationTuplet(Duration(1, 4), [Note("c'4")])])
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[-1])
+    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.select_leaves()[-1])
     assert isinstance(t, tuplettools.FixedDurationTuplet)
     assert len(t) == 2
     assert t.target_duration == Duration(2, 6)
@@ -713,7 +713,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_21():
     }
     '''
 
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[-1])
+    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.select_leaves()[-1])
 
     r'''
     \times 2/3 {
@@ -751,7 +751,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_22():
     }
     '''
 
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[-1])
+    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.select_leaves()[-1])
 
     r'''
     \times 2/3 {
@@ -785,7 +785,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_23():
     }
     '''
 
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[0])
+    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.select_leaves()[0])
 
     r'''
     \times 4/5 {
@@ -817,7 +817,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_24():
     }
     '''
 
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[0])
+    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.select_leaves()[0])
 
     r'''
     \times 4/5 {
@@ -851,7 +851,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_25():
     }
     '''
 
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[-1])
+    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.select_leaves()[-1])
 
     r'''
     \times 2/3 {
@@ -889,7 +889,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_26():
     }
     '''
 
-    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.leaves[-1])
+    leaftools.remove_leaf_and_shrink_durated_parent_containers(t.select_leaves()[-1])
 
     r'''
     \times 2/3 {
