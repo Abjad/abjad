@@ -1,5 +1,5 @@
-scoremanagertools.editors.PerformerSpecifierEditor
-==================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.editors.PerformerSpecifierEditor
+===================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.PerformerSpecifierEditor.PerformerSpecifierEditor.PerformerSpecifierEditor
 

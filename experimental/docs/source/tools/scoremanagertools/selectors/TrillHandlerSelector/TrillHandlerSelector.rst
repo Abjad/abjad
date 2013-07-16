@@ -1,5 +1,5 @@
-scoremanagertools.selectors.TrillHandlerSelector
-================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.selectors.TrillHandlerSelector
+=================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.selectors.TrillHandlerSelector.TrillHandlerSelector.TrillHandlerSelector
 

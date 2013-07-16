@@ -1,5 +1,5 @@
-handlertools.RepeatedMarkupHandler
-==================================
+:py:mod:`handlertools <experimental.tools.handlertools>`.RepeatedMarkupHandler
+==============================================================================
 
 .. abjad-lineage:: experimental.tools.handlertools.RepeatedMarkupHandler.RepeatedMarkupHandler.RepeatedMarkupHandler
 

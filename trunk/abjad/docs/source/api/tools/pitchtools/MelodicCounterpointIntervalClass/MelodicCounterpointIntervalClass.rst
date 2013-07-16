@@ -1,5 +1,5 @@
-pitchtools.MelodicCounterpointIntervalClass
-===========================================
+:py:mod:`pitchtools <abjad.tools.pitchtools>`.MelodicCounterpointIntervalClass
+==============================================================================
 
 .. abjad-lineage:: abjad.tools.pitchtools.MelodicCounterpointIntervalClass.MelodicCounterpointIntervalClass.MelodicCounterpointIntervalClass
 

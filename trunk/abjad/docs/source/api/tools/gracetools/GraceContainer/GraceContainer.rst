@@ -1,5 +1,5 @@
-gracetools.GraceContainer
-=========================
+:py:mod:`gracetools <abjad.tools.gracetools>`.GraceContainer
+============================================================
 
 .. abjad-lineage:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer
 

@@ -1,5 +1,5 @@
-instrumenttools.Vibraphone
-==========================
+:py:mod:`instrumenttools <abjad.tools.instrumenttools>`.Vibraphone
+==================================================================
 
 .. abjad-lineage:: abjad.tools.instrumenttools.Vibraphone.Vibraphone.Vibraphone
 

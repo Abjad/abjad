@@ -1,5 +1,5 @@
-sequencetools.Matrix
-====================
+:py:mod:`sequencetools <abjad.tools.sequencetools>`.Matrix
+==========================================================
 
 .. abjad-lineage:: abjad.tools.sequencetools.Matrix.Matrix.Matrix
 

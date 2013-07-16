@@ -1,5 +1,5 @@
-exceptiontools.MissingNamedComponentError
-=========================================
+:py:mod:`exceptiontools <abjad.tools.exceptiontools>`.MissingNamedComponentError
+================================================================================
 
 .. abjad-lineage:: abjad.tools.exceptiontools.MissingNamedComponentError.MissingNamedComponentError
 

@@ -1,5 +1,5 @@
-pitcharraytools.PitchArrayCell
-==============================
+:py:mod:`pitcharraytools <abjad.tools.pitcharraytools>`.PitchArrayCell
+======================================================================
 
 .. abjad-lineage:: abjad.tools.pitcharraytools.PitchArrayCell.PitchArrayCell.PitchArrayCell
 

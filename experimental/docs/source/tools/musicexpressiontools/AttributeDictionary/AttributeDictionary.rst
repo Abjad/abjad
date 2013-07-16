@@ -1,5 +1,5 @@
-musicexpressiontools.AttributeDictionary
-========================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.AttributeDictionary
+============================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.AttributeDictionary.AttributeDictionary.AttributeDictionary
 

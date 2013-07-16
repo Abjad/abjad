@@ -1,5 +1,5 @@
-exceptiontools.ContiguityError
-==============================
+:py:mod:`exceptiontools <abjad.tools.exceptiontools>`.ContiguityError
+=====================================================================
 
 .. abjad-lineage:: abjad.tools.exceptiontools.ContiguityError.ContiguityError
 

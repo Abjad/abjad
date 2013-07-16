@@ -1,5 +1,5 @@
-instrumenttools.InstrumentInventory
-===================================
+:py:mod:`instrumenttools <abjad.tools.instrumenttools>`.InstrumentInventory
+===========================================================================
 
 .. abjad-lineage:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory
 

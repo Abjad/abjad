@@ -1,5 +1,5 @@
-musicexpressiontools.VoiceDictionary
-====================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.VoiceDictionary
+========================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.VoiceDictionary.VoiceDictionary.VoiceDictionary
 

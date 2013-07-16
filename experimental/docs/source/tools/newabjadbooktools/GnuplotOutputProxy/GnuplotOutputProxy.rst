@@ -1,5 +1,5 @@
-newabjadbooktools.GnuplotOutputProxy
-====================================
+:py:mod:`newabjadbooktools <experimental.tools.newabjadbooktools>`.GnuplotOutputProxy
+=====================================================================================
 
 .. abjad-lineage:: experimental.tools.newabjadbooktools.GnuplotOutputProxy.GnuplotOutputProxy.GnuplotOutputProxy
 

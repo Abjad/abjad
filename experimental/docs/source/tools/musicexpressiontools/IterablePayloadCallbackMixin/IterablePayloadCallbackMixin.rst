@@ -1,5 +1,5 @@
-musicexpressiontools.IterablePayloadCallbackMixin
-=================================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.IterablePayloadCallbackMixin
+=====================================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.IterablePayloadCallbackMixin.IterablePayloadCallbackMixin.IterablePayloadCallbackMixin
 

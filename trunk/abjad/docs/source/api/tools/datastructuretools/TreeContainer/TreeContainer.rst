@@ -1,5 +1,5 @@
-datastructuretools.TreeContainer
-================================
+:py:mod:`datastructuretools <abjad.tools.datastructuretools>`.TreeContainer
+===========================================================================
 
 .. abjad-lineage:: abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer
 

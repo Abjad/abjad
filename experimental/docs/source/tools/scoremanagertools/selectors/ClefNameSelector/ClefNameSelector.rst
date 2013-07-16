@@ -1,5 +1,5 @@
-scoremanagertools.selectors.ClefNameSelector
-============================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.selectors.ClefNameSelector
+=============================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.selectors.ClefNameSelector.ClefNameSelector.ClefNameSelector
 

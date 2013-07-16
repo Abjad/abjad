@@ -1,5 +1,5 @@
-scoremanagertools.selectors.DirectiveHandlerSelector
-====================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.selectors.DirectiveHandlerSelector
+=====================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.selectors.DirectiveHandlerSelector.DirectiveHandlerSelector.DirectiveHandlerSelector
 

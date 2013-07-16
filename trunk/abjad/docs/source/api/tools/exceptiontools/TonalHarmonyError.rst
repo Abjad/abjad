@@ -1,5 +1,5 @@
-exceptiontools.TonalHarmonyError
-================================
+:py:mod:`exceptiontools <abjad.tools.exceptiontools>`.TonalHarmonyError
+=======================================================================
 
 .. abjad-lineage:: abjad.tools.exceptiontools.TonalHarmonyError.TonalHarmonyError
 

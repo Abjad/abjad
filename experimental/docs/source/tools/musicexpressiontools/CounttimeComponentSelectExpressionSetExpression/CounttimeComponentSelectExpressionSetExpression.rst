@@ -1,5 +1,5 @@
-musicexpressiontools.CounttimeComponentSelectExpressionSetExpression
-====================================================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.CounttimeComponentSelectExpressionSetExpression
+========================================================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.CounttimeComponentSelectExpressionSetExpression.CounttimeComponentSelectExpressionSetExpression.CounttimeComponentSelectExpressionSetExpression
 

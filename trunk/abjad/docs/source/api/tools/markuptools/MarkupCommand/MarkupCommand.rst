@@ -1,5 +1,5 @@
-markuptools.MarkupCommand
-=========================
+:py:mod:`markuptools <abjad.tools.markuptools>`.MarkupCommand
+=============================================================
 
 .. abjad-lineage:: abjad.tools.markuptools.MarkupCommand.MarkupCommand.MarkupCommand
 

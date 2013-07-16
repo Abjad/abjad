@@ -1,5 +1,5 @@
-rhythmmakertools.TaleaRhythmMaker
-=================================
+:py:mod:`rhythmmakertools <abjad.tools.rhythmmakertools>`.TaleaRhythmMaker
+==========================================================================
 
 .. abjad-lineage:: abjad.tools.rhythmmakertools.TaleaRhythmMaker.TaleaRhythmMaker.TaleaRhythmMaker
 

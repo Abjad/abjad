@@ -1,5 +1,5 @@
-scoremanagertools.io.IOManager
-==============================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.io.IOManager
+===============================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.io.IOManager.IOManager.IOManager
 

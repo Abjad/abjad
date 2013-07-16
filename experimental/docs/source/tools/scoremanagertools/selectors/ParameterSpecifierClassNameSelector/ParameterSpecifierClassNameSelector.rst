@@ -1,5 +1,5 @@
-scoremanagertools.selectors.ParameterSpecifierClassNameSelector
-===============================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.selectors.ParameterSpecifierClassNameSelector
+================================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.selectors.ParameterSpecifierClassNameSelector.ParameterSpecifierClassNameSelector.ParameterSpecifierClassNameSelector
 

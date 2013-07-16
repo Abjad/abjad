@@ -1,5 +1,5 @@
-pitchtools.MelodicChromaticIntervalClassSegment
-===============================================
+:py:mod:`pitchtools <abjad.tools.pitchtools>`.MelodicChromaticIntervalClassSegment
+==================================================================================
 
 .. abjad-lineage:: abjad.tools.pitchtools.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment
 

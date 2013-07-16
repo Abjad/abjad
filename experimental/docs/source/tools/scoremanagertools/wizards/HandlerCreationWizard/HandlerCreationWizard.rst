@@ -1,5 +1,5 @@
-scoremanagertools.wizards.HandlerCreationWizard
-===============================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.wizards.HandlerCreationWizard
+================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.wizards.HandlerCreationWizard.HandlerCreationWizard.HandlerCreationWizard
 

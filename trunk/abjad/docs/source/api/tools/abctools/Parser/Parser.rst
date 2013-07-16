@@ -1,5 +1,5 @@
-abctools.Parser
-===============
+:py:mod:`abctools <abjad.tools.abctools>`.Parser
+================================================
 
 .. abjad-lineage:: abjad.tools.abctools.Parser.Parser.Parser
 

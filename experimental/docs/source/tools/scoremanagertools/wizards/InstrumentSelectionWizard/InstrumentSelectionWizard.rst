@@ -1,5 +1,5 @@
-scoremanagertools.wizards.InstrumentSelectionWizard
-===================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.wizards.InstrumentSelectionWizard
+====================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.wizards.InstrumentSelectionWizard.InstrumentSelectionWizard.InstrumentSelectionWizard
 

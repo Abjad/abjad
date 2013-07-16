@@ -1,5 +1,5 @@
-documentationtools.ReSTHorizontalRule
-=====================================
+:py:mod:`documentationtools <abjad.tools.documentationtools>`.ReSTHorizontalRule
+================================================================================
 
 .. abjad-lineage:: abjad.tools.documentationtools.ReSTHorizontalRule.ReSTHorizontalRule.ReSTHorizontalRule
 

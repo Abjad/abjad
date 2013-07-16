@@ -1,5 +1,5 @@
-handlertools.TimewisePitchClassHandler
-======================================
+:py:mod:`handlertools <experimental.tools.handlertools>`.TimewisePitchClassHandler
+==================================================================================
 
 .. abjad-lineage:: experimental.tools.handlertools.TimewisePitchClassHandler.TimewisePitchClassHandler.TimewisePitchClassHandler
 

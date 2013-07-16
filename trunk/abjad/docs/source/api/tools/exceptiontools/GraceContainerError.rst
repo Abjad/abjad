@@ -1,5 +1,5 @@
-exceptiontools.GraceContainerError
-==================================
+:py:mod:`exceptiontools <abjad.tools.exceptiontools>`.GraceContainerError
+=========================================================================
 
 .. abjad-lineage:: abjad.tools.exceptiontools.GraceContainerError.GraceContainerError
 

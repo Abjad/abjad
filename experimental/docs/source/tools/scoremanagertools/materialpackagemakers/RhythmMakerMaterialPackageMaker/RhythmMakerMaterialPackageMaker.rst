@@ -1,5 +1,5 @@
-scoremanagertools.materialpackagemakers.RhythmMakerMaterialPackageMaker
-=======================================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.materialpackagemakers.RhythmMakerMaterialPackageMaker
+========================================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.materialpackagemakers.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker.RhythmMakerMaterialPackageMaker
 

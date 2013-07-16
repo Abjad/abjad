@@ -1,5 +1,5 @@
-scoremanagertools.wizards.Wizard
-================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.wizards.Wizard
+=================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.wizards.Wizard.Wizard.Wizard
 

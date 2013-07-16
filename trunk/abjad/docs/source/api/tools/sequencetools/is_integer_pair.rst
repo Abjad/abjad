@@ -1,4 +1,4 @@
-sequencetools.is_integer_pair
-=============================
+:py:mod:`sequencetools <abjad.tools.sequencetools>`.is_integer_pair
+===================================================================
 
 .. autofunction:: abjad.tools.sequencetools.is_integer_pair.is_integer_pair

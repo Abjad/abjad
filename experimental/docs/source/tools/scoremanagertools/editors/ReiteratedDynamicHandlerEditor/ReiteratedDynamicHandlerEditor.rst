@@ -1,5 +1,5 @@
-scoremanagertools.editors.ReiteratedDynamicHandlerEditor
-========================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.editors.ReiteratedDynamicHandlerEditor
+=========================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor.ReiteratedDynamicHandlerEditor
 

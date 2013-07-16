@@ -1,5 +1,5 @@
-musicexpressiontools.SegmentSpecification
-=========================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.SegmentSpecification
+=============================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.SegmentSpecification.SegmentSpecification.SegmentSpecification
 

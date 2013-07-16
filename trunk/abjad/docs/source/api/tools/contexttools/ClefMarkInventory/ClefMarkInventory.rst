@@ -1,5 +1,5 @@
-contexttools.ClefMarkInventory
-==============================
+:py:mod:`contexttools <abjad.tools.contexttools>`.ClefMarkInventory
+===================================================================
 
 .. abjad-lineage:: abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory
 

@@ -1,5 +1,5 @@
-pitcharraytools.PitchArrayColumn
-================================
+:py:mod:`pitcharraytools <abjad.tools.pitcharraytools>`.PitchArrayColumn
+========================================================================
 
 .. abjad-lineage:: abjad.tools.pitcharraytools.PitchArrayColumn.PitchArrayColumn.PitchArrayColumn
 

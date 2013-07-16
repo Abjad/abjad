@@ -1,5 +1,5 @@
-musicexpressiontools.VoiceProxy
-===============================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.VoiceProxy
+===================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.VoiceProxy.VoiceProxy.VoiceProxy
 

@@ -1,5 +1,5 @@
-newabjadbooktools.MIDIOutputProxy
-=================================
+:py:mod:`newabjadbooktools <experimental.tools.newabjadbooktools>`.MIDIOutputProxy
+==================================================================================
 
 .. abjad-lineage:: experimental.tools.newabjadbooktools.MIDIOutputProxy.MIDIOutputProxy.MIDIOutputProxy
 

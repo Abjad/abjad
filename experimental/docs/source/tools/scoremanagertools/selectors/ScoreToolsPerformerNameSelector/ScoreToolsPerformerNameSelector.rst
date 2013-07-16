@@ -1,5 +1,5 @@
-scoremanagertools.selectors.ScoreToolsPerformerNameSelector
-===========================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.selectors.ScoreToolsPerformerNameSelector
+============================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.selectors.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector.ScoreToolsPerformerNameSelector
 

@@ -1,5 +1,5 @@
-rhythmmakertools.BurnishedRhythmMaker
-=====================================
+:py:mod:`rhythmmakertools <abjad.tools.rhythmmakertools>`.BurnishedRhythmMaker
+==============================================================================
 
 .. abjad-lineage:: abjad.tools.rhythmmakertools.BurnishedRhythmMaker.BurnishedRhythmMaker.BurnishedRhythmMaker
 

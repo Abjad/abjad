@@ -1,5 +1,5 @@
-tonalitytools.QualityIndicator
-==============================
+:py:mod:`tonalitytools <abjad.tools.tonalitytools>`.QualityIndicator
+====================================================================
 
 .. abjad-lineage:: abjad.tools.tonalitytools.QualityIndicator.QualityIndicator.QualityIndicator
 

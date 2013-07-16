@@ -1,5 +1,5 @@
-scoremanagertools.selectors.StaffHandlerSelector
-================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.selectors.StaffHandlerSelector
+=================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.selectors.StaffHandlerSelector.StaffHandlerSelector.StaffHandlerSelector
 

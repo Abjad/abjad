@@ -1,5 +1,5 @@
-lilypondparsertools.ReducedLyParser
-===================================
+:py:mod:`lilypondparsertools <abjad.tools.lilypondparsertools>`.ReducedLyParser
+===============================================================================
 
 .. abjad-lineage:: abjad.tools.lilypondparsertools.ReducedLyParser.ReducedLyParser.ReducedLyParser
 

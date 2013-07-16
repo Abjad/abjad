@@ -1,5 +1,5 @@
-lilypondfiletools.DateTimeToken
-===============================
+:py:mod:`lilypondfiletools <abjad.tools.lilypondfiletools>`.DateTimeToken
+=========================================================================
 
 .. abjad-lineage:: abjad.tools.lilypondfiletools.DateTimeToken.DateTimeToken.DateTimeToken
 

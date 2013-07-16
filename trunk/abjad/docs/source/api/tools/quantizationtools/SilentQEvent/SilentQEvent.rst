@@ -1,5 +1,5 @@
-quantizationtools.SilentQEvent
-==============================
+:py:mod:`quantizationtools <abjad.tools.quantizationtools>`.SilentQEvent
+========================================================================
 
 .. abjad-lineage:: abjad.tools.quantizationtools.SilentQEvent.SilentQEvent.SilentQEvent
 

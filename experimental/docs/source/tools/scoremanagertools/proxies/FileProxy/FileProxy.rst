@@ -1,5 +1,5 @@
-scoremanagertools.proxies.FileProxy
-===================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.proxies.FileProxy
+====================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.proxies.FileProxy.FileProxy.FileProxy
 

@@ -1,5 +1,5 @@
-musicexpressiontools.TimeContiguousAnchoredSetExpression
-========================================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.TimeContiguousAnchoredSetExpression
+============================================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression.TimeContiguousAnchoredSetExpression
 

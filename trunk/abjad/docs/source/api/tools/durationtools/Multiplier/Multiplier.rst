@@ -1,5 +1,5 @@
-durationtools.Multiplier
-========================
+:py:mod:`durationtools <abjad.tools.durationtools>`.Multiplier
+==============================================================
 
 .. abjad-lineage:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier
 

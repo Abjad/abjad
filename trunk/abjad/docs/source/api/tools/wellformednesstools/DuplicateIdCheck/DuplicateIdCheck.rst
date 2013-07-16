@@ -1,5 +1,5 @@
-wellformednesstools.DuplicateIdCheck
-====================================
+:py:mod:`wellformednesstools <abjad.tools.wellformednesstools>`.DuplicateIdCheck
+================================================================================
 
 .. abjad-lineage:: abjad.tools.wellformednesstools.DuplicateIdCheck.DuplicateIdCheck.DuplicateIdCheck
 

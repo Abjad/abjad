@@ -1,5 +1,5 @@
-developerscripttools.SvnUpdateScript
-====================================
+:py:mod:`developerscripttools <abjad.tools.developerscripttools>`.SvnUpdateScript
+=================================================================================
 
 .. abjad-lineage:: abjad.tools.developerscripttools.SvnUpdateScript.SvnUpdateScript.SvnUpdateScript
 

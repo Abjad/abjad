@@ -1,5 +1,5 @@
-containertools.Cluster
-======================
+:py:mod:`containertools <abjad.tools.containertools>`.Cluster
+=============================================================
 
 .. abjad-lineage:: abjad.tools.containertools.Cluster.Cluster.Cluster
 

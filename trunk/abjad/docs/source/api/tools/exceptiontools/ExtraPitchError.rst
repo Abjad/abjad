@@ -1,5 +1,5 @@
-exceptiontools.ExtraPitchError
-==============================
+:py:mod:`exceptiontools <abjad.tools.exceptiontools>`.ExtraPitchError
+=====================================================================
 
 .. abjad-lineage:: abjad.tools.exceptiontools.ExtraPitchError.ExtraPitchError
 

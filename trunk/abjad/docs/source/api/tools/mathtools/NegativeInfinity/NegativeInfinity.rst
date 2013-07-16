@@ -1,5 +1,5 @@
-mathtools.NegativeInfinity
-==========================
+:py:mod:`mathtools <abjad.tools.mathtools>`.NegativeInfinity
+============================================================
 
 .. abjad-lineage:: abjad.tools.mathtools.NegativeInfinity.NegativeInfinity.NegativeInfinity
 

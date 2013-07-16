@@ -1,5 +1,5 @@
-instrumenttools.EFlatClarinet
-=============================
+:py:mod:`instrumenttools <abjad.tools.instrumenttools>`.EFlatClarinet
+=====================================================================
 
 .. abjad-lineage:: abjad.tools.instrumenttools.EFlatClarinet.EFlatClarinet.EFlatClarinet
 

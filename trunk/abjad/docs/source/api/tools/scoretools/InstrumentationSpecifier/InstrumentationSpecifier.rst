@@ -1,5 +1,5 @@
-scoretools.InstrumentationSpecifier
-===================================
+:py:mod:`scoretools <abjad.tools.scoretools>`.InstrumentationSpecifier
+======================================================================
 
 .. abjad-lineage:: abjad.tools.scoretools.InstrumentationSpecifier.InstrumentationSpecifier.InstrumentationSpecifier
 

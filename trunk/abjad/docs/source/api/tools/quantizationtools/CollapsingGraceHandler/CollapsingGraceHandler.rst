@@ -1,5 +1,5 @@
-quantizationtools.CollapsingGraceHandler
-========================================
+:py:mod:`quantizationtools <abjad.tools.quantizationtools>`.CollapsingGraceHandler
+==================================================================================
 
 .. abjad-lineage:: abjad.tools.quantizationtools.CollapsingGraceHandler.CollapsingGraceHandler.CollapsingGraceHandler
 

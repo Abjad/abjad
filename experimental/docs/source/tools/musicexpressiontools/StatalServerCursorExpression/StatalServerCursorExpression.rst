@@ -1,5 +1,5 @@
-musicexpressiontools.StatalServerCursorExpression
-=================================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.StatalServerCursorExpression
+=====================================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.StatalServerCursorExpression.StatalServerCursorExpression.StatalServerCursorExpression
 

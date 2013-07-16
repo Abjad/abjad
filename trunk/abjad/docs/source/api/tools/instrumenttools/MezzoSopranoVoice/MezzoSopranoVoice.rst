@@ -1,5 +1,5 @@
-instrumenttools.MezzoSopranoVoice
-=================================
+:py:mod:`instrumenttools <abjad.tools.instrumenttools>`.MezzoSopranoVoice
+=========================================================================
 
 .. abjad-lineage:: abjad.tools.instrumenttools.MezzoSopranoVoice.MezzoSopranoVoice.MezzoSopranoVoice
 

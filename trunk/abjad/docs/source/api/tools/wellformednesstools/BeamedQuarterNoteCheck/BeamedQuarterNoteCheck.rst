@@ -1,5 +1,5 @@
-wellformednesstools.BeamedQuarterNoteCheck
-==========================================
+:py:mod:`wellformednesstools <abjad.tools.wellformednesstools>`.BeamedQuarterNoteCheck
+======================================================================================
 
 .. abjad-lineage:: abjad.tools.wellformednesstools.BeamedQuarterNoteCheck.BeamedQuarterNoteCheck.BeamedQuarterNoteCheck
 

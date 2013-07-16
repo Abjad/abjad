@@ -1,5 +1,5 @@
-developerscripttools.SvnMessageScript
-=====================================
+:py:mod:`developerscripttools <abjad.tools.developerscripttools>`.SvnMessageScript
+==================================================================================
 
 .. abjad-lineage:: abjad.tools.developerscripttools.SvnMessageScript.SvnMessageScript.SvnMessageScript
 

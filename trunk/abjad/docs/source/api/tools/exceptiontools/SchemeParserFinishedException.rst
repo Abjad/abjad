@@ -1,5 +1,5 @@
-exceptiontools.SchemeParserFinishedException
-============================================
+:py:mod:`exceptiontools <abjad.tools.exceptiontools>`.SchemeParserFinishedException
+===================================================================================
 
 .. abjad-lineage:: abjad.tools.exceptiontools.SchemeParserFinishedException.SchemeParserFinishedException
 

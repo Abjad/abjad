@@ -1,5 +1,5 @@
-musicexpressiontools.SegmentSelectExpression
-============================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.SegmentSelectExpression
+================================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.SegmentSelectExpression.SegmentSelectExpression.SegmentSelectExpression
 

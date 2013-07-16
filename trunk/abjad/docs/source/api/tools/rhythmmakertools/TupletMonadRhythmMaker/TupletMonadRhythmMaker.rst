@@ -1,5 +1,5 @@
-rhythmmakertools.TupletMonadRhythmMaker
-=======================================
+:py:mod:`rhythmmakertools <abjad.tools.rhythmmakertools>`.TupletMonadRhythmMaker
+================================================================================
 
 .. abjad-lineage:: abjad.tools.rhythmmakertools.TupletMonadRhythmMaker.TupletMonadRhythmMaker.TupletMonadRhythmMaker
 

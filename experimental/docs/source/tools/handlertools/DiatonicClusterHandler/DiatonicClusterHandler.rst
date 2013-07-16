@@ -1,5 +1,5 @@
-handlertools.DiatonicClusterHandler
-===================================
+:py:mod:`handlertools <experimental.tools.handlertools>`.DiatonicClusterHandler
+===============================================================================
 
 .. abjad-lineage:: experimental.tools.handlertools.DiatonicClusterHandler.DiatonicClusterHandler.DiatonicClusterHandler
 

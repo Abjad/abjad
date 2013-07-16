@@ -1,5 +1,5 @@
-scoremanagertools.editors.InstrumentEditor
-==========================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.editors.InstrumentEditor
+===========================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.InstrumentEditor.InstrumentEditor.InstrumentEditor
 

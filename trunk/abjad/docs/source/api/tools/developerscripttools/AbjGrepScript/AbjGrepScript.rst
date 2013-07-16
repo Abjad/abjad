@@ -1,5 +1,5 @@
-developerscripttools.AbjGrepScript
-==================================
+:py:mod:`developerscripttools <abjad.tools.developerscripttools>`.AbjGrepScript
+===============================================================================
 
 .. abjad-lineage:: abjad.tools.developerscripttools.AbjGrepScript.AbjGrepScript.AbjGrepScript
 

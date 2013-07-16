@@ -1,5 +1,5 @@
-instrumenttools.WindInstrument
-==============================
+:py:mod:`instrumenttools <abjad.tools.instrumenttools>`.WindInstrument
+======================================================================
 
 .. abjad-lineage:: abjad.tools.instrumenttools.WindInstrument.WindInstrument.WindInstrument
 

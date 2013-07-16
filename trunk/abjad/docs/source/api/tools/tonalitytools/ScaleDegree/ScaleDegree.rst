@@ -1,5 +1,5 @@
-tonalitytools.ScaleDegree
-=========================
+:py:mod:`tonalitytools <abjad.tools.tonalitytools>`.ScaleDegree
+===============================================================
 
 .. abjad-lineage:: abjad.tools.tonalitytools.ScaleDegree.ScaleDegree.ScaleDegree
 

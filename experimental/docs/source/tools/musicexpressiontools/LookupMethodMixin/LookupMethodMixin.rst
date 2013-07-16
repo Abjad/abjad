@@ -1,5 +1,5 @@
-musicexpressiontools.LookupMethodMixin
-======================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.LookupMethodMixin
+==========================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.LookupMethodMixin.LookupMethodMixin.LookupMethodMixin
 

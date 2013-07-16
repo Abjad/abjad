@@ -1,5 +1,5 @@
-wellformednesstools.Check
-=========================
+:py:mod:`wellformednesstools <abjad.tools.wellformednesstools>`.Check
+=====================================================================
 
 .. abjad-lineage:: abjad.tools.wellformednesstools.Check.Check.Check
 

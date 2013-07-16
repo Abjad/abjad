@@ -1,5 +1,5 @@
-configurationtools.Configuration
-================================
+:py:mod:`configurationtools <abjad.tools.configurationtools>`.Configuration
+===========================================================================
 
 .. abjad-lineage:: abjad.tools.configurationtools.Configuration.Configuration.Configuration
 

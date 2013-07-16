@@ -1,5 +1,5 @@
-stafftools.Staff
-================
+:py:mod:`stafftools <abjad.tools.stafftools>`.Staff
+===================================================
 
 .. abjad-lineage:: abjad.tools.stafftools.Staff.Staff.Staff
 

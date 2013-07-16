@@ -1,5 +1,5 @@
-instrumenttools.PercussionInstrument
-====================================
+:py:mod:`instrumenttools <abjad.tools.instrumenttools>`.PercussionInstrument
+============================================================================
 
 .. abjad-lineage:: abjad.tools.instrumenttools.PercussionInstrument.PercussionInstrument.PercussionInstrument
 

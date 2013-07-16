@@ -1,5 +1,5 @@
-musicexpressiontools.SelectMethodMixin
-======================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.SelectMethodMixin
+==========================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin
 

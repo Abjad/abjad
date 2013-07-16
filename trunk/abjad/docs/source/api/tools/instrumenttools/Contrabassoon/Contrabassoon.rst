@@ -1,5 +1,5 @@
-instrumenttools.Contrabassoon
-=============================
+:py:mod:`instrumenttools <abjad.tools.instrumenttools>`.Contrabassoon
+=====================================================================
 
 .. abjad-lineage:: abjad.tools.instrumenttools.Contrabassoon.Contrabassoon.Contrabassoon
 

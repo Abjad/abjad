@@ -1,5 +1,5 @@
-tonalitytools.OmissionIndicator
-===============================
+:py:mod:`tonalitytools <abjad.tools.tonalitytools>`.OmissionIndicator
+=====================================================================
 
 .. abjad-lineage:: abjad.tools.tonalitytools.OmissionIndicator.OmissionIndicator.OmissionIndicator
 

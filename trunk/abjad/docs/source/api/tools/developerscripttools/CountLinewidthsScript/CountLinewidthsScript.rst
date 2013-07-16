@@ -1,5 +1,5 @@
-developerscripttools.CountLinewidthsScript
-==========================================
+:py:mod:`developerscripttools <abjad.tools.developerscripttools>`.CountLinewidthsScript
+=======================================================================================
 
 .. abjad-lineage:: abjad.tools.developerscripttools.CountLinewidthsScript.CountLinewidthsScript.CountLinewidthsScript
 

@@ -1,5 +1,5 @@
-musicexpressiontools.RegisterSetExpression
-==========================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.RegisterSetExpression
+==============================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.RegisterSetExpression.RegisterSetExpression.RegisterSetExpression
 

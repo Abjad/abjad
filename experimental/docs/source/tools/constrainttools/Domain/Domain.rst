@@ -1,5 +1,5 @@
-constrainttools.Domain
-======================
+:py:mod:`constrainttools <experimental.tools.constrainttools>`.Domain
+=====================================================================
 
 .. abjad-lineage:: experimental.tools.constrainttools.Domain.Domain.Domain
 

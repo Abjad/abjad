@@ -1,5 +1,5 @@
-tonalitytools.ChordClass
-========================
+:py:mod:`tonalitytools <abjad.tools.tonalitytools>`.ChordClass
+==============================================================
 
 .. abjad-lineage:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass
 

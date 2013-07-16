@@ -1,5 +1,5 @@
-musicexpressiontools.PitchClassTransformExpression
-==================================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.PitchClassTransformExpression
+======================================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.PitchClassTransformExpression.PitchClassTransformExpression.PitchClassTransformExpression
 

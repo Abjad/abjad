@@ -1,5 +1,5 @@
-lilypondfiletools.AttributedBlock
-=================================
+:py:mod:`lilypondfiletools <abjad.tools.lilypondfiletools>`.AttributedBlock
+===========================================================================
 
 .. abjad-lineage:: abjad.tools.lilypondfiletools.AttributedBlock.AttributedBlock.AttributedBlock
 

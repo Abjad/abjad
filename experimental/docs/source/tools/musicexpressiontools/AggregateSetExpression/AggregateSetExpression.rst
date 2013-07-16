@@ -1,5 +1,5 @@
-musicexpressiontools.AggregateSetExpression
-===========================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.AggregateSetExpression
+===============================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.AggregateSetExpression.AggregateSetExpression.AggregateSetExpression
 

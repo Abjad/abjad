@@ -1,5 +1,5 @@
-spannertools.OctavationSpanner
-==============================
+:py:mod:`spannertools <abjad.tools.spannertools>`.OctavationSpanner
+===================================================================
 
 .. abjad-lineage:: abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner
 

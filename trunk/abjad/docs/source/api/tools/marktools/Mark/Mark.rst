@@ -1,5 +1,5 @@
-marktools.Mark
-==============
+:py:mod:`marktools <abjad.tools.marktools>`.Mark
+================================================
 
 .. abjad-lineage:: abjad.tools.marktools.Mark.Mark.Mark
 

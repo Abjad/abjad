@@ -1,5 +1,5 @@
-musicexpressiontools.SelectExpressionInventory
-==============================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.SelectExpressionInventory
+==================================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.SelectExpressionInventory.SelectExpressionInventory.SelectExpressionInventory
 

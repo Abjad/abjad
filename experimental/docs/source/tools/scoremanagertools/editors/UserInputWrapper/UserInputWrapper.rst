@@ -1,5 +1,5 @@
-scoremanagertools.editors.UserInputWrapper
-==========================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.editors.UserInputWrapper
+===========================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.UserInputWrapper.UserInputWrapper.UserInputWrapper
 

@@ -1,5 +1,5 @@
-lilypondfiletools.AbjadRevisionToken
-====================================
+:py:mod:`lilypondfiletools <abjad.tools.lilypondfiletools>`.AbjadRevisionToken
+==============================================================================
 
 .. abjad-lineage:: abjad.tools.lilypondfiletools.AbjadRevisionToken.AbjadRevisionToken.AbjadRevisionToken
 

@@ -1,5 +1,5 @@
-scoretemplatetools.GroupedRhythmicStavesScoreTemplate
-=====================================================
+:py:mod:`scoretemplatetools <abjad.tools.scoretemplatetools>`.GroupedRhythmicStavesScoreTemplate
+================================================================================================
 
 .. abjad-lineage:: abjad.tools.scoretemplatetools.GroupedRhythmicStavesScoreTemplate.GroupedRhythmicStavesScoreTemplate.GroupedRhythmicStavesScoreTemplate
 

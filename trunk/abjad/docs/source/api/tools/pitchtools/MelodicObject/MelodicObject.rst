@@ -1,5 +1,5 @@
-pitchtools.MelodicObject
-========================
+:py:mod:`pitchtools <abjad.tools.pitchtools>`.MelodicObject
+===========================================================
 
 .. abjad-lineage:: abjad.tools.pitchtools.MelodicObject.MelodicObject.MelodicObject
 

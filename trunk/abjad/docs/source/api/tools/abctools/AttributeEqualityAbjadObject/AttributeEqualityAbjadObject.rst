@@ -1,5 +1,5 @@
-abctools.AttributeEqualityAbjadObject
-=====================================
+:py:mod:`abctools <abjad.tools.abctools>`.AttributeEqualityAbjadObject
+======================================================================
 
 .. abjad-lineage:: abjad.tools.abctools.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject
 

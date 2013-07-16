@@ -1,5 +1,5 @@
-spannertools.TextScriptSpanner
-==============================
+:py:mod:`spannertools <abjad.tools.spannertools>`.TextScriptSpanner
+===================================================================
 
 .. abjad-lineage:: abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner
 

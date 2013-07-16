@@ -1,5 +1,5 @@
-scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector
-========================================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.selectors.InstrumentToolsUntunedPercussionNameSelector
+=========================================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.selectors.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector.InstrumentToolsUntunedPercussionNameSelector
 

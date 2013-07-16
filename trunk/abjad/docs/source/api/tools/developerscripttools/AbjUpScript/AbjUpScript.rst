@@ -1,5 +1,5 @@
-developerscripttools.AbjUpScript
-================================
+:py:mod:`developerscripttools <abjad.tools.developerscripttools>`.AbjUpScript
+=============================================================================
 
 .. abjad-lineage:: abjad.tools.developerscripttools.AbjUpScript.AbjUpScript.AbjUpScript
 

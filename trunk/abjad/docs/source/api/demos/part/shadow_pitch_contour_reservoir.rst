@@ -1,4 +1,4 @@
-part.shadow_pitch_contour_reservoir
-===================================
+:py:mod:`part <abjad.demos.part>`.shadow_pitch_contour_reservoir
+================================================================
 
 .. autofunction:: abjad.demos.part.shadow_pitch_contour_reservoir.shadow_pitch_contour_reservoir

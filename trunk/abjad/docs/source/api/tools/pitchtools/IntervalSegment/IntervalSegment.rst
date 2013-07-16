@@ -1,5 +1,5 @@
-pitchtools.IntervalSegment
-==========================
+:py:mod:`pitchtools <abjad.tools.pitchtools>`.IntervalSegment
+=============================================================
 
 .. abjad-lineage:: abjad.tools.pitchtools.IntervalSegment.IntervalSegment.IntervalSegment
 

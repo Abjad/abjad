@@ -1,5 +1,5 @@
-mathtools.NonreducedFraction
-============================
+:py:mod:`mathtools <abjad.tools.mathtools>`.NonreducedFraction
+==============================================================
 
 .. abjad-lineage:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction
 

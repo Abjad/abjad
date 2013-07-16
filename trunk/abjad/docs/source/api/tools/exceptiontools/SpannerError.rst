@@ -1,5 +1,5 @@
-exceptiontools.SpannerError
-===========================
+:py:mod:`exceptiontools <abjad.tools.exceptiontools>`.SpannerError
+==================================================================
 
 .. abjad-lineage:: abjad.tools.exceptiontools.SpannerError.SpannerError
 

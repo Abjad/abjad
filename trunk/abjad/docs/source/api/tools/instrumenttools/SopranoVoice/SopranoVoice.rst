@@ -1,5 +1,5 @@
-instrumenttools.SopranoVoice
-============================
+:py:mod:`instrumenttools <abjad.tools.instrumenttools>`.SopranoVoice
+====================================================================
 
 .. abjad-lineage:: abjad.tools.instrumenttools.SopranoVoice.SopranoVoice.SopranoVoice
 

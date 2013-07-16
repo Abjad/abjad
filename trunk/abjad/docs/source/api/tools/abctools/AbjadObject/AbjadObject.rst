@@ -1,5 +1,5 @@
-abctools.AbjadObject
-====================
+:py:mod:`abctools <abjad.tools.abctools>`.AbjadObject
+=====================================================
 
 .. abjad-lineage:: abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject
 

@@ -1,5 +1,5 @@
-lyrictools.LyricHyphen
-======================
+:py:mod:`lyrictools <experimental.tools.lyrictools>`.LyricHyphen
+================================================================
 
 .. abjad-lineage:: experimental.tools.lyrictools.LyricHyphen.LyricHyphen.LyricHyphen
 

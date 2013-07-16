@@ -1,5 +1,5 @@
-constrainttools.RelativeCountsConstraint
-========================================
+:py:mod:`constrainttools <experimental.tools.constrainttools>`.RelativeCountsConstraint
+=======================================================================================
 
 .. abjad-lineage:: experimental.tools.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint
 

@@ -1,5 +1,5 @@
-scoremanagertools.selectors.TropingHandlerSelector
-==================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.selectors.TropingHandlerSelector
+===================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.selectors.TropingHandlerSelector.TropingHandlerSelector.TropingHandlerSelector
 

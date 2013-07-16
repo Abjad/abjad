@@ -1,5 +1,5 @@
-exceptiontools.MusicContentsError
-=================================
+:py:mod:`exceptiontools <abjad.tools.exceptiontools>`.MusicContentsError
+========================================================================
 
 .. abjad-lineage:: abjad.tools.exceptiontools.MusicContentsError.MusicContentsError
 

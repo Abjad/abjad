@@ -1,5 +1,5 @@
-pitchtools.MelodicIntervalClass
-===============================
+:py:mod:`pitchtools <abjad.tools.pitchtools>`.MelodicIntervalClass
+==================================================================
 
 .. abjad-lineage:: abjad.tools.pitchtools.MelodicIntervalClass.MelodicIntervalClass.MelodicIntervalClass
 

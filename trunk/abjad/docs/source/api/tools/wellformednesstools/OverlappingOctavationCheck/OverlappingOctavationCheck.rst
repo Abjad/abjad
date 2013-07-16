@@ -1,5 +1,5 @@
-wellformednesstools.OverlappingOctavationCheck
-==============================================
+:py:mod:`wellformednesstools <abjad.tools.wellformednesstools>`.OverlappingOctavationCheck
+==========================================================================================
 
 .. abjad-lineage:: abjad.tools.wellformednesstools.OverlappingOctavationCheck.OverlappingOctavationCheck.OverlappingOctavationCheck
 

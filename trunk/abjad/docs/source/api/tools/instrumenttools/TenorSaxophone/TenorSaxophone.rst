@@ -1,5 +1,5 @@
-instrumenttools.TenorSaxophone
-==============================
+:py:mod:`instrumenttools <abjad.tools.instrumenttools>`.TenorSaxophone
+======================================================================
 
 .. abjad-lineage:: abjad.tools.instrumenttools.TenorSaxophone.TenorSaxophone.TenorSaxophone
 

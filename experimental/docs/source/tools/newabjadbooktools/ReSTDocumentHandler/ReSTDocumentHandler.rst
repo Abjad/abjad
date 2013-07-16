@@ -1,5 +1,5 @@
-newabjadbooktools.ReSTDocumentHandler
-=====================================
+:py:mod:`newabjadbooktools <experimental.tools.newabjadbooktools>`.ReSTDocumentHandler
+======================================================================================
 
 .. abjad-lineage:: experimental.tools.newabjadbooktools.ReSTDocumentHandler.ReSTDocumentHandler.ReSTDocumentHandler
 

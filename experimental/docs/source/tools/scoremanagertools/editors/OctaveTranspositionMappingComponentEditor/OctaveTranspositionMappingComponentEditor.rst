@@ -1,5 +1,5 @@
-scoremanagertools.editors.OctaveTranspositionMappingComponentEditor
-===================================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.editors.OctaveTranspositionMappingComponentEditor
+====================================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor.OctaveTranspositionMappingComponentEditor
 

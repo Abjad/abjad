@@ -1,5 +1,5 @@
-datastructuretools.TreeNode
-===========================
+:py:mod:`datastructuretools <abjad.tools.datastructuretools>`.TreeNode
+======================================================================
 
 .. abjad-lineage:: abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode
 

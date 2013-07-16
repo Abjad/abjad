@@ -1,5 +1,5 @@
-marktools.BendAfter
-===================
+:py:mod:`marktools <abjad.tools.marktools>`.BendAfter
+=====================================================
 
 .. abjad-lineage:: abjad.tools.marktools.BendAfter.BendAfter.BendAfter
 

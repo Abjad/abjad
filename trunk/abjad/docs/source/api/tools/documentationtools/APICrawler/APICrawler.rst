@@ -1,5 +1,5 @@
-documentationtools.APICrawler
-=============================
+:py:mod:`documentationtools <abjad.tools.documentationtools>`.APICrawler
+========================================================================
 
 .. abjad-lineage:: abjad.tools.documentationtools.APICrawler.APICrawler.APICrawler
 

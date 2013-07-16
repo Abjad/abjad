@@ -1,5 +1,5 @@
-mathtools.Infinity
-==================
+:py:mod:`mathtools <abjad.tools.mathtools>`.Infinity
+====================================================
 
 .. abjad-lineage:: abjad.tools.mathtools.Infinity.Infinity.Infinity
 

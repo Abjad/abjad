@@ -1,5 +1,5 @@
-exceptiontools.PartitionError
-=============================
+:py:mod:`exceptiontools <abjad.tools.exceptiontools>`.PartitionError
+====================================================================
 
 .. abjad-lineage:: abjad.tools.exceptiontools.PartitionError.PartitionError
 

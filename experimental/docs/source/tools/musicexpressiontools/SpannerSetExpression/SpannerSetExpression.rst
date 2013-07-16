@@ -1,5 +1,5 @@
-musicexpressiontools.SpannerSetExpression
-=========================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.SpannerSetExpression
+=============================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.SpannerSetExpression.SpannerSetExpression.SpannerSetExpression
 

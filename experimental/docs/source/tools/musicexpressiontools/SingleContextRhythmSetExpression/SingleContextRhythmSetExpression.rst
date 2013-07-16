@@ -1,5 +1,5 @@
-musicexpressiontools.SingleContextRhythmSetExpression
-=====================================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.SingleContextRhythmSetExpression
+=========================================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression.SingleContextRhythmSetExpression
 

@@ -1,5 +1,5 @@
-contexttools.KeySignatureMark
-=============================
+:py:mod:`contexttools <abjad.tools.contexttools>`.KeySignatureMark
+==================================================================
 
 .. abjad-lineage:: abjad.tools.contexttools.KeySignatureMark.KeySignatureMark.KeySignatureMark
 

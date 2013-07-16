@@ -1,5 +1,5 @@
-scoretools.StaffGroup
-=====================
+:py:mod:`scoretools <abjad.tools.scoretools>`.StaffGroup
+========================================================
 
 .. abjad-lineage:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup
 

@@ -1,5 +1,5 @@
-instrumenttools.BassVoice
-=========================
+:py:mod:`instrumenttools <abjad.tools.instrumenttools>`.BassVoice
+=================================================================
 
 .. abjad-lineage:: abjad.tools.instrumenttools.BassVoice.BassVoice.BassVoice
 

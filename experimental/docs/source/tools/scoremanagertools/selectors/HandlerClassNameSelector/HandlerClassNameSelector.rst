@@ -1,5 +1,5 @@
-scoremanagertools.selectors.HandlerClassNameSelector
-====================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.selectors.HandlerClassNameSelector
+=====================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.selectors.HandlerClassNameSelector.HandlerClassNameSelector.HandlerClassNameSelector
 

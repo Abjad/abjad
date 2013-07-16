@@ -1,5 +1,5 @@
-scoremanagertools.editors.MarkupEditor
-======================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.editors.MarkupEditor
+=======================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.MarkupEditor.MarkupEditor.MarkupEditor
 

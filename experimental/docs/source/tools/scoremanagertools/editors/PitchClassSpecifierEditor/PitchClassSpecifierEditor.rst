@@ -1,5 +1,5 @@
-scoremanagertools.editors.PitchClassSpecifierEditor
-===================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.editors.PitchClassSpecifierEditor
+====================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.PitchClassSpecifierEditor.PitchClassSpecifierEditor.PitchClassSpecifierEditor
 

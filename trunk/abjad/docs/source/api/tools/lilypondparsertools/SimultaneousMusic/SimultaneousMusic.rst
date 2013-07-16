@@ -1,5 +1,5 @@
-lilypondparsertools.SimultaneousMusic
-=====================================
+:py:mod:`lilypondparsertools <abjad.tools.lilypondparsertools>`.SimultaneousMusic
+=================================================================================
 
 .. abjad-lineage:: abjad.tools.lilypondparsertools.SimultaneousMusic.SimultaneousMusic.SimultaneousMusic
 

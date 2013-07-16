@@ -1,5 +1,5 @@
-pitchtools.NumberedChromaticPitchClass
-======================================
+:py:mod:`pitchtools <abjad.tools.pitchtools>`.NumberedChromaticPitchClass
+=========================================================================
 
 .. abjad-lineage:: abjad.tools.pitchtools.NumberedChromaticPitchClass.NumberedChromaticPitchClass.NumberedChromaticPitchClass
 

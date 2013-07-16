@@ -1,5 +1,5 @@
-containertools.FixedDurationContainer
-=====================================
+:py:mod:`containertools <abjad.tools.containertools>`.FixedDurationContainer
+============================================================================
 
 .. abjad-lineage:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer
 

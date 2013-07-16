@@ -1,5 +1,5 @@
-rhythmmakertools.DivisionBurnishedTaleaRhythmMaker
-==================================================
+:py:mod:`rhythmmakertools <abjad.tools.rhythmmakertools>`.DivisionBurnishedTaleaRhythmMaker
+===========================================================================================
 
 .. abjad-lineage:: abjad.tools.rhythmmakertools.DivisionBurnishedTaleaRhythmMaker.DivisionBurnishedTaleaRhythmMaker.DivisionBurnishedTaleaRhythmMaker
 

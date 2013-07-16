@@ -1,5 +1,5 @@
-quantizationtools.DistanceHeuristic
-===================================
+:py:mod:`quantizationtools <abjad.tools.quantizationtools>`.DistanceHeuristic
+=============================================================================
 
 .. abjad-lineage:: abjad.tools.quantizationtools.DistanceHeuristic.DistanceHeuristic.DistanceHeuristic
 

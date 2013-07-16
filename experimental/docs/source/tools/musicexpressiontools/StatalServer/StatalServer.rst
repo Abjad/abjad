@@ -1,5 +1,5 @@
-musicexpressiontools.StatalServer
-=================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.StatalServer
+=====================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.StatalServer.StatalServer.StatalServer
 

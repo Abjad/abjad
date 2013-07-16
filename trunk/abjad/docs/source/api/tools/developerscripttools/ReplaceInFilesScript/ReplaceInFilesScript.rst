@@ -1,5 +1,5 @@
-developerscripttools.ReplaceInFilesScript
-=========================================
+:py:mod:`developerscripttools <abjad.tools.developerscripttools>`.ReplaceInFilesScript
+======================================================================================
 
 .. abjad-lineage:: abjad.tools.developerscripttools.ReplaceInFilesScript.ReplaceInFilesScript.ReplaceInFilesScript
 

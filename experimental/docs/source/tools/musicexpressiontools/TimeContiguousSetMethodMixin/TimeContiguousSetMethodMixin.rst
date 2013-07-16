@@ -1,5 +1,5 @@
-musicexpressiontools.TimeContiguousSetMethodMixin
-=================================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.TimeContiguousSetMethodMixin
+=====================================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin.TimeContiguousSetMethodMixin
 

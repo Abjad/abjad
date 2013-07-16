@@ -1,5 +1,5 @@
-lilypondparsertools.SchemeParser
-================================
+:py:mod:`lilypondparsertools <abjad.tools.lilypondparsertools>`.SchemeParser
+============================================================================
 
 .. abjad-lineage:: abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser
 

@@ -1,5 +1,5 @@
-wellformednesstools.DiscontiguousSpannerCheck
-=============================================
+:py:mod:`wellformednesstools <abjad.tools.wellformednesstools>`.DiscontiguousSpannerCheck
+=========================================================================================
 
 .. abjad-lineage:: abjad.tools.wellformednesstools.DiscontiguousSpannerCheck.DiscontiguousSpannerCheck.DiscontiguousSpannerCheck
 

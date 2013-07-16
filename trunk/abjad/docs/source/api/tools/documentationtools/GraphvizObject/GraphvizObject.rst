@@ -1,5 +1,5 @@
-documentationtools.GraphvizObject
-=================================
+:py:mod:`documentationtools <abjad.tools.documentationtools>`.GraphvizObject
+============================================================================
 
 .. abjad-lineage:: abjad.tools.documentationtools.GraphvizObject.GraphvizObject.GraphvizObject
 

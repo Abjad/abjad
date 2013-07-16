@@ -1,5 +1,5 @@
-documentationtools.ReSTAutosummaryDirective
-===========================================
+:py:mod:`documentationtools <abjad.tools.documentationtools>`.ReSTAutosummaryDirective
+======================================================================================
 
 .. abjad-lineage:: abjad.tools.documentationtools.ReSTAutosummaryDirective.ReSTAutosummaryDirective.ReSTAutosummaryDirective
 

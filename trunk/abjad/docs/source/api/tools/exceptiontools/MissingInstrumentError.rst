@@ -1,5 +1,5 @@
-exceptiontools.MissingInstrumentError
-=====================================
+:py:mod:`exceptiontools <abjad.tools.exceptiontools>`.MissingInstrumentError
+============================================================================
 
 .. abjad-lineage:: abjad.tools.exceptiontools.MissingInstrumentError.MissingInstrumentError
 

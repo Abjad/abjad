@@ -1,5 +1,5 @@
-scoremanagertools.proxies.IllustrationBuilderModuleProxy
-========================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.proxies.IllustrationBuilderModuleProxy
+=========================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.proxies.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy.IllustrationBuilderModuleProxy
 

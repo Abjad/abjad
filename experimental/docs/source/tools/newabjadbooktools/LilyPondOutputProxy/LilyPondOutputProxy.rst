@@ -1,5 +1,5 @@
-newabjadbooktools.LilyPondOutputProxy
-=====================================
+:py:mod:`newabjadbooktools <experimental.tools.newabjadbooktools>`.LilyPondOutputProxy
+======================================================================================
 
 .. abjad-lineage:: experimental.tools.newabjadbooktools.LilyPondOutputProxy.LilyPondOutputProxy.LilyPondOutputProxy
 

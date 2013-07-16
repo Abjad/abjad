@@ -1,5 +1,5 @@
-resttools.Rest
-==============
+:py:mod:`resttools <abjad.tools.resttools>`.Rest
+================================================
 
 .. abjad-lineage:: abjad.tools.resttools.Rest.Rest.Rest
 

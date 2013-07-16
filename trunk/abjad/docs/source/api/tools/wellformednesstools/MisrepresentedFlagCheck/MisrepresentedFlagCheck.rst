@@ -1,5 +1,5 @@
-wellformednesstools.MisrepresentedFlagCheck
-===========================================
+:py:mod:`wellformednesstools <abjad.tools.wellformednesstools>`.MisrepresentedFlagCheck
+=======================================================================================
 
 .. abjad-lineage:: abjad.tools.wellformednesstools.MisrepresentedFlagCheck.MisrepresentedFlagCheck.MisrepresentedFlagCheck
 

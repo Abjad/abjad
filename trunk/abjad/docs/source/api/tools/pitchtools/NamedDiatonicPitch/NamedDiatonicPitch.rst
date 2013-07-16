@@ -1,5 +1,5 @@
-pitchtools.NamedDiatonicPitch
-=============================
+:py:mod:`pitchtools <abjad.tools.pitchtools>`.NamedDiatonicPitch
+================================================================
 
 .. abjad-lineage:: abjad.tools.pitchtools.NamedDiatonicPitch.NamedDiatonicPitch.NamedDiatonicPitch
 

@@ -1,5 +1,5 @@
-spannertools.TrillSpanner
-=========================
+:py:mod:`spannertools <abjad.tools.spannertools>`.TrillSpanner
+==============================================================
 
 .. abjad-lineage:: abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner
 

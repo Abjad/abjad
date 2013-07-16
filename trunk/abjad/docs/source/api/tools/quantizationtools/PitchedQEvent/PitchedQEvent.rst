@@ -1,5 +1,5 @@
-quantizationtools.PitchedQEvent
-===============================
+:py:mod:`quantizationtools <abjad.tools.quantizationtools>`.PitchedQEvent
+=========================================================================
 
 .. abjad-lineage:: abjad.tools.quantizationtools.PitchedQEvent.PitchedQEvent.PitchedQEvent
 

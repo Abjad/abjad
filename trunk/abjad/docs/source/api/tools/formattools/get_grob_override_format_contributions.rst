@@ -1,4 +1,4 @@
-formattools.get_grob_override_format_contributions
-==================================================
+:py:mod:`formattools <abjad.tools.formattools>`.get_grob_override_format_contributions
+======================================================================================
 
 .. autofunction:: abjad.tools.formattools.get_grob_override_format_contributions.get_grob_override_format_contributions

@@ -1,5 +1,5 @@
-schemetools.SchemeVector
-========================
+:py:mod:`schemetools <abjad.tools.schemetools>`.SchemeVector
+============================================================
 
 .. abjad-lineage:: abjad.tools.schemetools.SchemeVector.SchemeVector.SchemeVector
 

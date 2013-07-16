@@ -1,5 +1,5 @@
-musicexpressiontools.ScoreSpecificationInterface
-================================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.ScoreSpecificationInterface
+====================================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.ScoreSpecificationInterface.ScoreSpecificationInterface.ScoreSpecificationInterface
 

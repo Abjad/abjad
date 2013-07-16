@@ -1,5 +1,5 @@
-pitchtools.HarmonicChromaticInterval
-====================================
+:py:mod:`pitchtools <abjad.tools.pitchtools>`.HarmonicChromaticInterval
+=======================================================================
 
 .. abjad-lineage:: abjad.tools.pitchtools.HarmonicChromaticInterval.HarmonicChromaticInterval.HarmonicChromaticInterval
 

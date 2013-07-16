@@ -1,5 +1,5 @@
-exceptiontools.ContainmentError
-===============================
+:py:mod:`exceptiontools <abjad.tools.exceptiontools>`.ContainmentError
+======================================================================
 
 .. abjad-lineage:: abjad.tools.exceptiontools.ContainmentError.ContainmentError
 

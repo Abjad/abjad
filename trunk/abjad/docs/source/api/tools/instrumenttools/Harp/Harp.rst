@@ -1,5 +1,5 @@
-instrumenttools.Harp
-====================
+:py:mod:`instrumenttools <abjad.tools.instrumenttools>`.Harp
+============================================================
 
 .. abjad-lineage:: abjad.tools.instrumenttools.Harp.Harp.Harp
 

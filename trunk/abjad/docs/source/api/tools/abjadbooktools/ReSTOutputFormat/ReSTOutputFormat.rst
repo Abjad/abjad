@@ -1,5 +1,5 @@
-abjadbooktools.ReSTOutputFormat
-===============================
+:py:mod:`abjadbooktools <abjad.tools.abjadbooktools>`.ReSTOutputFormat
+======================================================================
 
 .. abjad-lineage:: abjad.tools.abjadbooktools.ReSTOutputFormat.ReSTOutputFormat.ReSTOutputFormat
 

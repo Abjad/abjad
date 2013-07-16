@@ -1,5 +1,5 @@
-constrainttools.GlobalCountsConstraint
-======================================
+:py:mod:`constrainttools <experimental.tools.constrainttools>`.GlobalCountsConstraint
+=====================================================================================
 
 .. abjad-lineage:: experimental.tools.constrainttools.GlobalCountsConstraint.GlobalCountsConstraint.GlobalCountsConstraint
 

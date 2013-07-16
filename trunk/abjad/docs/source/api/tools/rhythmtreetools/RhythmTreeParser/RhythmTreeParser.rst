@@ -1,5 +1,5 @@
-rhythmtreetools.RhythmTreeParser
-================================
+:py:mod:`rhythmtreetools <abjad.tools.rhythmtreetools>`.RhythmTreeParser
+========================================================================
 
 .. abjad-lineage:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser
 

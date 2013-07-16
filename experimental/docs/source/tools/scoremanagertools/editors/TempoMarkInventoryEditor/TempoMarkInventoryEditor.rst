@@ -1,5 +1,5 @@
-scoremanagertools.editors.TempoMarkInventoryEditor
-==================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.editors.TempoMarkInventoryEditor
+===================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.TempoMarkInventoryEditor.TempoMarkInventoryEditor.TempoMarkInventoryEditor
 

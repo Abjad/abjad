@@ -1,5 +1,5 @@
-schemetools.SchemeVectorConstant
-================================
+:py:mod:`schemetools <abjad.tools.schemetools>`.SchemeVectorConstant
+====================================================================
 
 .. abjad-lineage:: abjad.tools.schemetools.SchemeVectorConstant.SchemeVectorConstant.SchemeVectorConstant
 

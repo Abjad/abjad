@@ -1,5 +1,5 @@
-instrumenttools.TenorVoice
-==========================
+:py:mod:`instrumenttools <abjad.tools.instrumenttools>`.TenorVoice
+==================================================================
 
 .. abjad-lineage:: abjad.tools.instrumenttools.TenorVoice.TenorVoice.TenorVoice
 

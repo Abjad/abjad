@@ -1,5 +1,5 @@
-exceptiontools.ImpreciseTempoError
-==================================
+:py:mod:`exceptiontools <abjad.tools.exceptiontools>`.ImpreciseTempoError
+=========================================================================
 
 .. abjad-lineage:: abjad.tools.exceptiontools.ImpreciseTempoError.ImpreciseTempoError
 

@@ -1,5 +1,5 @@
-scoremanagertools.editors.AttributeDetail
-=========================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.editors.AttributeDetail
+==========================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.AttributeDetail.AttributeDetail.AttributeDetail
 

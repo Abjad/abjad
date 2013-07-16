@@ -1,5 +1,5 @@
-handlertools.NoteAndChordHairpinsHandler
-========================================
+:py:mod:`handlertools <experimental.tools.handlertools>`.NoteAndChordHairpinsHandler
+====================================================================================
 
 .. abjad-lineage:: experimental.tools.handlertools.NoteAndChordHairpinsHandler.NoteAndChordHairpinsHandler.NoteAndChordHairpinsHandler
 

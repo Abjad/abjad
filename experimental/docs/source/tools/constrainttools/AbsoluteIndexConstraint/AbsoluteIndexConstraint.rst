@@ -1,5 +1,5 @@
-constrainttools.AbsoluteIndexConstraint
-=======================================
+:py:mod:`constrainttools <experimental.tools.constrainttools>`.AbsoluteIndexConstraint
+======================================================================================
 
 .. abjad-lineage:: experimental.tools.constrainttools.AbsoluteIndexConstraint.AbsoluteIndexConstraint.AbsoluteIndexConstraint
 

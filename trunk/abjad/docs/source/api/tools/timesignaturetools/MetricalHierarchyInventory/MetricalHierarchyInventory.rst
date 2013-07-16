@@ -1,5 +1,5 @@
-timesignaturetools.MetricalHierarchyInventory
-=============================================
+:py:mod:`timesignaturetools <abjad.tools.timesignaturetools>`.MetricalHierarchyInventory
+========================================================================================
 
 .. abjad-lineage:: abjad.tools.timesignaturetools.MetricalHierarchyInventory.MetricalHierarchyInventory.MetricalHierarchyInventory
 

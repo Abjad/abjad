@@ -1,5 +1,5 @@
-pitchtools.InversionEquivalentChromaticIntervalClassVector
-==========================================================
+:py:mod:`pitchtools <abjad.tools.pitchtools>`.InversionEquivalentChromaticIntervalClassVector
+=============================================================================================
 
 .. abjad-lineage:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector
 

@@ -1,4 +1,4 @@
-timerelationtools.offset_happens_during_timespan
-================================================
+:py:mod:`timerelationtools <abjad.tools.timerelationtools>`.offset_happens_during_timespan
+==========================================================================================
 
 .. autofunction:: abjad.tools.timerelationtools.offset_happens_during_timespan.offset_happens_during_timespan

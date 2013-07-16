@@ -1,5 +1,5 @@
-contexttools.StaffChangeMark
-============================
+:py:mod:`contexttools <abjad.tools.contexttools>`.StaffChangeMark
+=================================================================
 
 .. abjad-lineage:: abjad.tools.contexttools.StaffChangeMark.StaffChangeMark.StaffChangeMark
 

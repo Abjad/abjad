@@ -1,5 +1,5 @@
-exceptiontools.UnboundedTimeIntervalError
-=========================================
+:py:mod:`exceptiontools <abjad.tools.exceptiontools>`.UnboundedTimeIntervalError
+================================================================================
 
 .. abjad-lineage:: abjad.tools.exceptiontools.UnboundedTimeIntervalError.UnboundedTimeIntervalError
 

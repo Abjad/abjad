@@ -1,5 +1,5 @@
-schemetools.SchemeAssociativeList
-=================================
+:py:mod:`schemetools <abjad.tools.schemetools>`.SchemeAssociativeList
+=====================================================================
 
 .. abjad-lineage:: abjad.tools.schemetools.SchemeAssociativeList.SchemeAssociativeList.SchemeAssociativeList
 

@@ -1,5 +1,5 @@
-scoremanagertools.io.IOTranscript
-=================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.io.IOTranscript
+==================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.io.IOTranscript.IOTranscript.IOTranscript
 

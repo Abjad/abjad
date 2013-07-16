@@ -1,5 +1,5 @@
-newabjadbooktools.GraphvizOutputProxy
-=====================================
+:py:mod:`newabjadbooktools <experimental.tools.newabjadbooktools>`.GraphvizOutputProxy
+======================================================================================
 
 .. abjad-lineage:: experimental.tools.newabjadbooktools.GraphvizOutputProxy.GraphvizOutputProxy.GraphvizOutputProxy
 

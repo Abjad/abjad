@@ -1,5 +1,5 @@
-quantizationtools.WeightedSearchTree
-====================================
+:py:mod:`quantizationtools <abjad.tools.quantizationtools>`.WeightedSearchTree
+==============================================================================
 
 .. abjad-lineage:: abjad.tools.quantizationtools.WeightedSearchTree.WeightedSearchTree.WeightedSearchTree
 

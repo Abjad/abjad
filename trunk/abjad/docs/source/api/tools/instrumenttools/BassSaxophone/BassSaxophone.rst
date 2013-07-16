@@ -1,5 +1,5 @@
-instrumenttools.BassSaxophone
-=============================
+:py:mod:`instrumenttools <abjad.tools.instrumenttools>`.BassSaxophone
+=====================================================================
 
 .. abjad-lineage:: abjad.tools.instrumenttools.BassSaxophone.BassSaxophone.BassSaxophone
 

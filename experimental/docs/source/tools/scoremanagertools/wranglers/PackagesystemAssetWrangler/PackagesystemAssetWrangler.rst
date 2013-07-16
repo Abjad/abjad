@@ -1,5 +1,5 @@
-scoremanagertools.wranglers.PackagesystemAssetWrangler
-======================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.wranglers.PackagesystemAssetWrangler
+=======================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.wranglers.PackagesystemAssetWrangler.PackagesystemAssetWrangler.PackagesystemAssetWrangler
 

@@ -1,5 +1,5 @@
-musicexpressiontools.TimespanCallbackMixin
-==========================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.TimespanCallbackMixin
+==============================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.TimespanCallbackMixin.TimespanCallbackMixin.TimespanCallbackMixin
 

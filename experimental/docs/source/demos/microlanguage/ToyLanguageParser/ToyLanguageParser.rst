@@ -1,5 +1,5 @@
-microlanguage.ToyLanguageParser
-===============================
+:py:mod:`microlanguage <experimental.demos.microlanguage>`.ToyLanguageParser
+============================================================================
 
 .. abjad-lineage:: experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser
 

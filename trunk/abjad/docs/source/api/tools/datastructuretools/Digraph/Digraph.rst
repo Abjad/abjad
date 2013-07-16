@@ -1,5 +1,5 @@
-datastructuretools.Digraph
-==========================
+:py:mod:`datastructuretools <abjad.tools.datastructuretools>`.Digraph
+=====================================================================
 
 .. abjad-lineage:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph
 

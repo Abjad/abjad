@@ -1,5 +1,5 @@
-musicexpressiontools.OffsetExpression
-=====================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.OffsetExpression
+=========================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.OffsetExpression.OffsetExpression.OffsetExpression
 

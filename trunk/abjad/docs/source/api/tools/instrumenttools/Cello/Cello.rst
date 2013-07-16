@@ -1,5 +1,5 @@
-instrumenttools.Cello
-=====================
+:py:mod:`instrumenttools <abjad.tools.instrumenttools>`.Cello
+=============================================================
 
 .. abjad-lineage:: abjad.tools.instrumenttools.Cello.Cello.Cello
 

@@ -1,5 +1,5 @@
-exceptiontools.ContextContainmentError
-======================================
+:py:mod:`exceptiontools <abjad.tools.exceptiontools>`.ContextContainmentError
+=============================================================================
 
 .. abjad-lineage:: abjad.tools.exceptiontools.ContextContainmentError.ContextContainmentError
 

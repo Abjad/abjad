@@ -1,5 +1,5 @@
-musicexpressiontools.RhythmSetExpressionLookupExpression
-========================================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.RhythmSetExpressionLookupExpression
+============================================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression.RhythmSetExpressionLookupExpression
 

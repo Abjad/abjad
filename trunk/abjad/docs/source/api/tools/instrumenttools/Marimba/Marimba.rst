@@ -1,5 +1,5 @@
-instrumenttools.Marimba
-=======================
+:py:mod:`instrumenttools <abjad.tools.instrumenttools>`.Marimba
+===============================================================
 
 .. abjad-lineage:: abjad.tools.instrumenttools.Marimba.Marimba.Marimba
 

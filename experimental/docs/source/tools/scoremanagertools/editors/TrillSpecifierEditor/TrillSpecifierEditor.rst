@@ -1,5 +1,5 @@
-scoremanagertools.editors.TrillSpecifierEditor
-==============================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.editors.TrillSpecifierEditor
+===============================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.TrillSpecifierEditor.TrillSpecifierEditor.TrillSpecifierEditor
 

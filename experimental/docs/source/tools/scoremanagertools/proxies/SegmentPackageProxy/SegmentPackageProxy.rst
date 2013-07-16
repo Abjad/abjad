@@ -1,5 +1,5 @@
-scoremanagertools.proxies.SegmentPackageProxy
-=============================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.proxies.SegmentPackageProxy
+==============================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.proxies.SegmentPackageProxy.SegmentPackageProxy.SegmentPackageProxy
 

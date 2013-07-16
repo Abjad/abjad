@@ -1,5 +1,5 @@
-lilypondparsertools.LilyPondDuration
-====================================
+:py:mod:`lilypondparsertools <abjad.tools.lilypondparsertools>`.LilyPondDuration
+================================================================================
 
 .. abjad-lineage:: abjad.tools.lilypondparsertools.LilyPondDuration.LilyPondDuration.LilyPondDuration
 

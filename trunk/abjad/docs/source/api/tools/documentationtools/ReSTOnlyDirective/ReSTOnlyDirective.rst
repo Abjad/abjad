@@ -1,5 +1,5 @@
-documentationtools.ReSTOnlyDirective
-====================================
+:py:mod:`documentationtools <abjad.tools.documentationtools>`.ReSTOnlyDirective
+===============================================================================
 
 .. abjad-lineage:: abjad.tools.documentationtools.ReSTOnlyDirective.ReSTOnlyDirective.ReSTOnlyDirective
 

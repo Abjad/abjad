@@ -1,5 +1,5 @@
-rhythmmakertools.RestRhythmMaker
-================================
+:py:mod:`rhythmmakertools <abjad.tools.rhythmmakertools>`.RestRhythmMaker
+=========================================================================
 
 .. abjad-lineage:: abjad.tools.rhythmmakertools.RestRhythmMaker.RestRhythmMaker.RestRhythmMaker
 

@@ -1,5 +1,5 @@
-instrumenttools.SingleReedInstrument
-====================================
+:py:mod:`instrumenttools <abjad.tools.instrumenttools>`.SingleReedInstrument
+============================================================================
 
 .. abjad-lineage:: abjad.tools.instrumenttools.SingleReedInstrument.SingleReedInstrument.SingleReedInstrument
 

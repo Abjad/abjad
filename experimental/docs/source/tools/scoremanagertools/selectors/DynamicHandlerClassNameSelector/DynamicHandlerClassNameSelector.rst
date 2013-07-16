@@ -1,5 +1,5 @@
-scoremanagertools.selectors.DynamicHandlerClassNameSelector
-===========================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.selectors.DynamicHandlerClassNameSelector
+============================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.selectors.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector.DynamicHandlerClassNameSelector
 

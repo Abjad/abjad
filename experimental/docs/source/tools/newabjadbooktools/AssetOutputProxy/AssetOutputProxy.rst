@@ -1,5 +1,5 @@
-newabjadbooktools.AssetOutputProxy
-==================================
+:py:mod:`newabjadbooktools <experimental.tools.newabjadbooktools>`.AssetOutputProxy
+===================================================================================
 
 .. abjad-lineage:: experimental.tools.newabjadbooktools.AssetOutputProxy.AssetOutputProxy.AssetOutputProxy
 

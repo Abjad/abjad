@@ -1,5 +1,5 @@
-quantizationtools.Quantizer
-===========================
+:py:mod:`quantizationtools <abjad.tools.quantizationtools>`.Quantizer
+=====================================================================
 
 .. abjad-lineage:: abjad.tools.quantizationtools.Quantizer.Quantizer.Quantizer
 

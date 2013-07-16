@@ -1,5 +1,5 @@
-scoremanagertools.specifiers.StaffSpecifier
-===========================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.specifiers.StaffSpecifier
+============================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.specifiers.StaffSpecifier.StaffSpecifier.StaffSpecifier
 

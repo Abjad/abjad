@@ -1,5 +1,5 @@
-tonalitytools.SuspensionIndicator
-=================================
+:py:mod:`tonalitytools <abjad.tools.tonalitytools>`.SuspensionIndicator
+=======================================================================
 
 .. abjad-lineage:: abjad.tools.tonalitytools.SuspensionIndicator.SuspensionIndicator.SuspensionIndicator
 

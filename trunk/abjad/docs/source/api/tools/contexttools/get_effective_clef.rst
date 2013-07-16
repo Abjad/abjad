@@ -1,4 +1,4 @@
-contexttools.get_effective_clef
-===============================
+:py:mod:`contexttools <abjad.tools.contexttools>`.get_effective_clef
+====================================================================
 
 .. autofunction:: abjad.tools.contexttools.get_effective_clef.get_effective_clef

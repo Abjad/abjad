@@ -1,5 +1,5 @@
-lilypondfiletools.LilyPondDimension
-===================================
+:py:mod:`lilypondfiletools <abjad.tools.lilypondfiletools>`.LilyPondDimension
+=============================================================================
 
 .. abjad-lineage:: abjad.tools.lilypondfiletools.LilyPondDimension.LilyPondDimension.LilyPondDimension
 

@@ -1,5 +1,5 @@
-marktools.BarLine
-=================
+:py:mod:`marktools <abjad.tools.marktools>`.BarLine
+===================================================
 
 .. abjad-lineage:: abjad.tools.marktools.BarLine.BarLine.BarLine
 

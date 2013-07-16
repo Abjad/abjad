@@ -1,5 +1,5 @@
-documentationtools.AbjadAPIGenerator
-====================================
+:py:mod:`documentationtools <abjad.tools.documentationtools>`.AbjadAPIGenerator
+===============================================================================
 
 .. abjad-lineage:: abjad.tools.documentationtools.AbjadAPIGenerator.AbjadAPIGenerator.AbjadAPIGenerator
 

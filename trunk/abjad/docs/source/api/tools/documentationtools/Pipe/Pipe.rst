@@ -1,5 +1,5 @@
-documentationtools.Pipe
-=======================
+:py:mod:`documentationtools <abjad.tools.documentationtools>`.Pipe
+==================================================================
 
 .. abjad-lineage:: abjad.tools.documentationtools.Pipe.Pipe.Pipe
 

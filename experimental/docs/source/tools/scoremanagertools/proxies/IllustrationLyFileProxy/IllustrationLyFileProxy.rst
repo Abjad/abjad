@@ -1,5 +1,5 @@
-scoremanagertools.proxies.IllustrationLyFileProxy
-=================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.proxies.IllustrationLyFileProxy
+==================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.proxies.IllustrationLyFileProxy.IllustrationLyFileProxy.IllustrationLyFileProxy
 

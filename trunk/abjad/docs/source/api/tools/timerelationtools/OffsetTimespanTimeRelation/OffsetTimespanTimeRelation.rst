@@ -1,5 +1,5 @@
-timerelationtools.OffsetTimespanTimeRelation
-============================================
+:py:mod:`timerelationtools <abjad.tools.timerelationtools>`.OffsetTimespanTimeRelation
+======================================================================================
 
 .. abjad-lineage:: abjad.tools.timerelationtools.OffsetTimespanTimeRelation.OffsetTimespanTimeRelation.OffsetTimespanTimeRelation
 

@@ -1,5 +1,5 @@
-contexttools.TimeSignatureMark
-==============================
+:py:mod:`contexttools <abjad.tools.contexttools>`.TimeSignatureMark
+===================================================================
 
 .. abjad-lineage:: abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark
 

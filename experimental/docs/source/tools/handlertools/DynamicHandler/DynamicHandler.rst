@@ -1,5 +1,5 @@
-handlertools.DynamicHandler
-===========================
+:py:mod:`handlertools <experimental.tools.handlertools>`.DynamicHandler
+=======================================================================
 
 .. abjad-lineage:: experimental.tools.handlertools.DynamicHandler.DynamicHandler.DynamicHandler
 

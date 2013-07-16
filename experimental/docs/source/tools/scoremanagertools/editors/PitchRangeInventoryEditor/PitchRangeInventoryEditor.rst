@@ -1,5 +1,5 @@
-scoremanagertools.editors.PitchRangeInventoryEditor
-===================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.editors.PitchRangeInventoryEditor
+====================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.PitchRangeInventoryEditor.PitchRangeInventoryEditor.PitchRangeInventoryEditor
 

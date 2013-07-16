@@ -1,5 +1,5 @@
-exceptiontools.MissingNoteHeadError
-===================================
+:py:mod:`exceptiontools <abjad.tools.exceptiontools>`.MissingNoteHeadError
+==========================================================================
 
 .. abjad-lineage:: abjad.tools.exceptiontools.MissingNoteHeadError.MissingNoteHeadError
 

@@ -1,5 +1,5 @@
-scoremanagertools.selectors.TempoMarkSelector
-=============================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.selectors.TempoMarkSelector
+==============================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.selectors.TempoMarkSelector.TempoMarkSelector.TempoMarkSelector
 

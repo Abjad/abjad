@@ -1,5 +1,5 @@
-musicexpressiontools.DivisionSetExpressionLookupExpression
-==========================================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.DivisionSetExpressionLookupExpression
+==============================================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.DivisionSetExpressionLookupExpression.DivisionSetExpressionLookupExpression.DivisionSetExpressionLookupExpression
 

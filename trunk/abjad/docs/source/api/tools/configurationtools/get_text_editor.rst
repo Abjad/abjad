@@ -1,4 +1,4 @@
-configurationtools.get_text_editor
-==================================
+:py:mod:`configurationtools <abjad.tools.configurationtools>`.get_text_editor
+=============================================================================
 
 .. autofunction:: abjad.tools.configurationtools.get_text_editor.get_text_editor

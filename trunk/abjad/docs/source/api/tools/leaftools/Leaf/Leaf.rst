@@ -1,5 +1,5 @@
-leaftools.Leaf
-==============
+:py:mod:`leaftools <abjad.tools.leaftools>`.Leaf
+================================================
 
 .. abjad-lineage:: abjad.tools.leaftools.Leaf.Leaf.Leaf
 

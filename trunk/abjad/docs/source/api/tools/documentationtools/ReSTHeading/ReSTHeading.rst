@@ -1,5 +1,5 @@
-documentationtools.ReSTHeading
-==============================
+:py:mod:`documentationtools <abjad.tools.documentationtools>`.ReSTHeading
+=========================================================================
 
 .. abjad-lineage:: abjad.tools.documentationtools.ReSTHeading.ReSTHeading.ReSTHeading
 

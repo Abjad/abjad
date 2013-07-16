@@ -1,5 +1,5 @@
-scoremanagertools.specifiers.TropingSpecifier
-=============================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.specifiers.TropingSpecifier
+==============================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.specifiers.TropingSpecifier.TropingSpecifier.TropingSpecifier
 

@@ -1,5 +1,5 @@
-layouttools.SpacingIndication
-=============================
+:py:mod:`layouttools <abjad.tools.layouttools>`.SpacingIndication
+=================================================================
 
 .. abjad-lineage:: abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication
 

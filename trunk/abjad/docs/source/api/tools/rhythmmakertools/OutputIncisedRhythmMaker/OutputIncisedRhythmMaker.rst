@@ -1,5 +1,5 @@
-rhythmmakertools.OutputIncisedRhythmMaker
-=========================================
+:py:mod:`rhythmmakertools <abjad.tools.rhythmmakertools>`.OutputIncisedRhythmMaker
+==================================================================================
 
 .. abjad-lineage:: abjad.tools.rhythmmakertools.OutputIncisedRhythmMaker.OutputIncisedRhythmMaker.OutputIncisedRhythmMaker
 

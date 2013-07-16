@@ -1,5 +1,5 @@
-pitchtools.DiatonicIntervalClass
-================================
+:py:mod:`pitchtools <abjad.tools.pitchtools>`.DiatonicIntervalClass
+===================================================================
 
 .. abjad-lineage:: abjad.tools.pitchtools.DiatonicIntervalClass.DiatonicIntervalClass.DiatonicIntervalClass
 

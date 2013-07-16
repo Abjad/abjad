@@ -1,5 +1,5 @@
-quantizationtools.MeasurewiseQSchema
-====================================
+:py:mod:`quantizationtools <abjad.tools.quantizationtools>`.MeasurewiseQSchema
+==============================================================================
 
 .. abjad-lineage:: abjad.tools.quantizationtools.MeasurewiseQSchema.MeasurewiseQSchema.MeasurewiseQSchema
 

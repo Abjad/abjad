@@ -1,5 +1,5 @@
-exceptiontools.MissingTempoError
-================================
+:py:mod:`exceptiontools <abjad.tools.exceptiontools>`.MissingTempoError
+=======================================================================
 
 .. abjad-lineage:: abjad.tools.exceptiontools.MissingTempoError.MissingTempoError
 

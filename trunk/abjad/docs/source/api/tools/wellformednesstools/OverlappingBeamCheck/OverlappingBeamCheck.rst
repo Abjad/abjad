@@ -1,5 +1,5 @@
-wellformednesstools.OverlappingBeamCheck
-========================================
+:py:mod:`wellformednesstools <abjad.tools.wellformednesstools>`.OverlappingBeamCheck
+====================================================================================
 
 .. abjad-lineage:: abjad.tools.wellformednesstools.OverlappingBeamCheck.OverlappingBeamCheck.OverlappingBeamCheck
 

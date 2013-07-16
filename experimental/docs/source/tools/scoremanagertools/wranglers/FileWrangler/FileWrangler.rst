@@ -1,5 +1,5 @@
-scoremanagertools.wranglers.FileWrangler
-========================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.wranglers.FileWrangler
+=========================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.wranglers.FileWrangler.FileWrangler.FileWrangler
 

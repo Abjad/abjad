@@ -1,5 +1,5 @@
-tuplettools.Tuplet
-==================
+:py:mod:`tuplettools <abjad.tools.tuplettools>`.Tuplet
+======================================================
 
 .. abjad-lineage:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet
 

@@ -1,5 +1,5 @@
-handlertools.ArticulationHandler
-================================
+:py:mod:`handlertools <experimental.tools.handlertools>`.ArticulationHandler
+============================================================================
 
 .. abjad-lineage:: experimental.tools.handlertools.ArticulationHandler.ArticulationHandler.ArticulationHandler
 

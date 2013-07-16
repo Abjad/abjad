@@ -1,5 +1,5 @@
-timespantools.TimespanInventory
-===============================
+:py:mod:`timespantools <abjad.tools.timespantools>`.TimespanInventory
+=====================================================================
 
 .. abjad-lineage:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory
 

@@ -1,5 +1,5 @@
-exceptiontools.PitchError
-=========================
+:py:mod:`exceptiontools <abjad.tools.exceptiontools>`.PitchError
+================================================================
 
 .. abjad-lineage:: abjad.tools.exceptiontools.PitchError.PitchError
 

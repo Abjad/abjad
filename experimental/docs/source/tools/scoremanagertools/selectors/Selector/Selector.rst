@@ -1,5 +1,5 @@
-scoremanagertools.selectors.Selector
-====================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.selectors.Selector
+=====================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.selectors.Selector.Selector.Selector
 

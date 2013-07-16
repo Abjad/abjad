@@ -1,5 +1,5 @@
-scoremanagertools.editors.OutputIncisedNoteRhythmMakerEditor
-============================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.editors.OutputIncisedNoteRhythmMakerEditor
+=============================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor.OutputIncisedNoteRhythmMakerEditor
 

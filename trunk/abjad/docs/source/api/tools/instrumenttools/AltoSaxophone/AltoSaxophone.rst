@@ -1,5 +1,5 @@
-instrumenttools.AltoSaxophone
-=============================
+:py:mod:`instrumenttools <abjad.tools.instrumenttools>`.AltoSaxophone
+=====================================================================
 
 .. abjad-lineage:: abjad.tools.instrumenttools.AltoSaxophone.AltoSaxophone.AltoSaxophone
 

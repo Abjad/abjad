@@ -1,5 +1,5 @@
-iotools.RedirectedStreams
-=========================
+:py:mod:`iotools <abjad.tools.iotools>`.RedirectedStreams
+=========================================================
 
 .. abjad-lineage:: abjad.tools.iotools.RedirectedStreams.RedirectedStreams.RedirectedStreams
 

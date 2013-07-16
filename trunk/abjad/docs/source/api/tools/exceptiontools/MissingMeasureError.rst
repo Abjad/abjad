@@ -1,5 +1,5 @@
-exceptiontools.MissingMeasureError
-==================================
+:py:mod:`exceptiontools <abjad.tools.exceptiontools>`.MissingMeasureError
+=========================================================================
 
 .. abjad-lineage:: abjad.tools.exceptiontools.MissingMeasureError.MissingMeasureError
 

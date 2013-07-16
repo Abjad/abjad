@@ -1,5 +1,5 @@
-sievetools.ResidueClass
-=======================
+:py:mod:`sievetools <abjad.tools.sievetools>`.ResidueClass
+==========================================================
 
 .. abjad-lineage:: abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass
 

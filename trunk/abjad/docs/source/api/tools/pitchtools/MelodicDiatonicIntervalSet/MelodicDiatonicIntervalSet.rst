@@ -1,5 +1,5 @@
-pitchtools.MelodicDiatonicIntervalSet
-=====================================
+:py:mod:`pitchtools <abjad.tools.pitchtools>`.MelodicDiatonicIntervalSet
+========================================================================
 
 .. abjad-lineage:: abjad.tools.pitchtools.MelodicDiatonicIntervalSet.MelodicDiatonicIntervalSet.MelodicDiatonicIntervalSet
 

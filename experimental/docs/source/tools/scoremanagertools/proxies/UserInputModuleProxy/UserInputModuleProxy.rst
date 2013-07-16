@@ -1,5 +1,5 @@
-scoremanagertools.proxies.UserInputModuleProxy
-==============================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.proxies.UserInputModuleProxy
+===============================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.proxies.UserInputModuleProxy.UserInputModuleProxy.UserInputModuleProxy
 

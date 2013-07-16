@@ -1,5 +1,5 @@
-timespantools.Timespan
-======================
+:py:mod:`timespantools <abjad.tools.timespantools>`.Timespan
+============================================================
 
 .. abjad-lineage:: abjad.tools.timespantools.Timespan.Timespan.Timespan
 

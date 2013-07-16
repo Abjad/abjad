@@ -1,5 +1,5 @@
-developerscripttools.MakeNewFunctionTemplateScript
-==================================================
+:py:mod:`developerscripttools <abjad.tools.developerscripttools>`.MakeNewFunctionTemplateScript
+===============================================================================================
 
 .. abjad-lineage:: abjad.tools.developerscripttools.MakeNewFunctionTemplateScript.MakeNewFunctionTemplateScript.MakeNewFunctionTemplateScript
 

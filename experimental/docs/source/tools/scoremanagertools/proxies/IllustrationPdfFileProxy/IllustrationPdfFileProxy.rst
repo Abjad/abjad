@@ -1,5 +1,5 @@
-scoremanagertools.proxies.IllustrationPdfFileProxy
-==================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.proxies.IllustrationPdfFileProxy
+===================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.proxies.IllustrationPdfFileProxy.IllustrationPdfFileProxy.IllustrationPdfFileProxy
 

@@ -1,5 +1,5 @@
-scoremanagertools.selectors.OverrideHandlerSelector
-===================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.selectors.OverrideHandlerSelector
+====================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.selectors.OverrideHandlerSelector.OverrideHandlerSelector.OverrideHandlerSelector
 

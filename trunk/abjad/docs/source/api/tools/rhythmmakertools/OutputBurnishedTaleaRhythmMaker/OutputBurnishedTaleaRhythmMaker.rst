@@ -1,5 +1,5 @@
-rhythmmakertools.OutputBurnishedTaleaRhythmMaker
-================================================
+:py:mod:`rhythmmakertools <abjad.tools.rhythmmakertools>`.OutputBurnishedTaleaRhythmMaker
+=========================================================================================
 
 .. abjad-lineage:: abjad.tools.rhythmmakertools.OutputBurnishedTaleaRhythmMaker.OutputBurnishedTaleaRhythmMaker.OutputBurnishedTaleaRhythmMaker
 

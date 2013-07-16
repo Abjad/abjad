@@ -1,5 +1,5 @@
-schemetools.Scheme
-==================
+:py:mod:`schemetools <abjad.tools.schemetools>`.Scheme
+======================================================
 
 .. abjad-lineage:: abjad.tools.schemetools.Scheme.Scheme.Scheme
 

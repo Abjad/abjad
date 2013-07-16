@@ -1,5 +1,5 @@
-rhythmtreetools.RhythmTreeLeaf
-==============================
+:py:mod:`rhythmtreetools <abjad.tools.rhythmtreetools>`.RhythmTreeLeaf
+======================================================================
 
 .. abjad-lineage:: abjad.tools.rhythmtreetools.RhythmTreeLeaf.RhythmTreeLeaf.RhythmTreeLeaf
 

@@ -1,5 +1,5 @@
-scoremanagertools.editors.DynamicSpecifierEditor
-================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.editors.DynamicSpecifierEditor
+=================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.DynamicSpecifierEditor.DynamicSpecifierEditor.DynamicSpecifierEditor
 

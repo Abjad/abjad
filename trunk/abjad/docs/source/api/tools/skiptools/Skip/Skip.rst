@@ -1,5 +1,5 @@
-skiptools.Skip
-==============
+:py:mod:`skiptools <abjad.tools.skiptools>`.Skip
+================================================
 
 .. abjad-lineage:: abjad.tools.skiptools.Skip.Skip.Skip
 

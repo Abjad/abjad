@@ -1,5 +1,5 @@
-tuplettools.FixedDurationTuplet
-===============================
+:py:mod:`tuplettools <abjad.tools.tuplettools>`.FixedDurationTuplet
+===================================================================
 
 .. abjad-lineage:: abjad.tools.tuplettools.FixedDurationTuplet.FixedDurationTuplet.FixedDurationTuplet
 

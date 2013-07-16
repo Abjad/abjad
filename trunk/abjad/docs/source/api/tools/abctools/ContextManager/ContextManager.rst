@@ -1,5 +1,5 @@
-abctools.ContextManager
-=======================
+:py:mod:`abctools <abjad.tools.abctools>`.ContextManager
+========================================================
 
 .. abjad-lineage:: abjad.tools.abctools.ContextManager.ContextManager.ContextManager
 

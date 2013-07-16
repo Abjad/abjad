@@ -1,5 +1,5 @@
-musicexpressiontools.RegionExpression
-=====================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.RegionExpression
+=========================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.RegionExpression.RegionExpression.RegionExpression
 

@@ -1,5 +1,5 @@
-musicexpressiontools.Specification
-==================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.Specification
+======================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.Specification.Specification.Specification
 

@@ -1,5 +1,5 @@
-scoremanagertools.wranglers.MaterialPackageWrangler
-===================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.wranglers.MaterialPackageWrangler
+====================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.wranglers.MaterialPackageWrangler.MaterialPackageWrangler.MaterialPackageWrangler
 

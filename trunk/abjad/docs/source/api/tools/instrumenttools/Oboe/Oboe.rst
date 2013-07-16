@@ -1,5 +1,5 @@
-instrumenttools.Oboe
-====================
+:py:mod:`instrumenttools <abjad.tools.instrumenttools>`.Oboe
+============================================================
 
 .. abjad-lineage:: abjad.tools.instrumenttools.Oboe.Oboe.Oboe
 

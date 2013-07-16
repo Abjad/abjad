@@ -1,5 +1,5 @@
-instrumenttools.KeyboardInstrument
-==================================
+:py:mod:`instrumenttools <abjad.tools.instrumenttools>`.KeyboardInstrument
+==========================================================================
 
 .. abjad-lineage:: abjad.tools.instrumenttools.KeyboardInstrument.KeyboardInstrument.KeyboardInstrument
 

@@ -1,5 +1,5 @@
-tonalitytools.ExtentIndicator
-=============================
+:py:mod:`tonalitytools <abjad.tools.tonalitytools>`.ExtentIndicator
+===================================================================
 
 .. abjad-lineage:: abjad.tools.tonalitytools.ExtentIndicator.ExtentIndicator.ExtentIndicator
 

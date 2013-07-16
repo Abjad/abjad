@@ -1,5 +1,5 @@
-exceptiontools.TimeSignatureError
-=================================
+:py:mod:`exceptiontools <abjad.tools.exceptiontools>`.TimeSignatureError
+========================================================================
 
 .. abjad-lineage:: abjad.tools.exceptiontools.TimeSignatureError.TimeSignatureError
 

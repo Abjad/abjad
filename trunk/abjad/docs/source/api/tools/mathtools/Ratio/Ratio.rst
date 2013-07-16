@@ -1,5 +1,5 @@
-mathtools.Ratio
-===============
+:py:mod:`mathtools <abjad.tools.mathtools>`.Ratio
+=================================================
 
 .. abjad-lineage:: abjad.tools.mathtools.Ratio.Ratio.Ratio
 

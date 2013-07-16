@@ -1,5 +1,5 @@
-newabjadbooktools.SVGImageFormat
-================================
+:py:mod:`newabjadbooktools <experimental.tools.newabjadbooktools>`.SVGImageFormat
+=================================================================================
 
 .. abjad-lineage:: experimental.tools.newabjadbooktools.SVGImageFormat.SVGImageFormat.SVGImageFormat
 

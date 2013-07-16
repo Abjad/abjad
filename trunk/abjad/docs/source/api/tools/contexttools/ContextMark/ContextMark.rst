@@ -1,5 +1,5 @@
-contexttools.ContextMark
-========================
+:py:mod:`contexttools <abjad.tools.contexttools>`.ContextMark
+=============================================================
 
 .. abjad-lineage:: abjad.tools.contexttools.ContextMark.ContextMark.ContextMark
 

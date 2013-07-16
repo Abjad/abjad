@@ -1,5 +1,5 @@
-quantizationtools.QGridLeaf
-===========================
+:py:mod:`quantizationtools <abjad.tools.quantizationtools>`.QGridLeaf
+=====================================================================
 
 .. abjad-lineage:: abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf
 

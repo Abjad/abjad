@@ -1,5 +1,5 @@
-exceptiontools.DurationError
-============================
+:py:mod:`exceptiontools <abjad.tools.exceptiontools>`.DurationError
+===================================================================
 
 .. abjad-lineage:: abjad.tools.exceptiontools.DurationError.DurationError
 

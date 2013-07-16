@@ -1,5 +1,5 @@
-schemetools.SchemeMoment
-========================
+:py:mod:`schemetools <abjad.tools.schemetools>`.SchemeMoment
+============================================================
 
 .. abjad-lineage:: abjad.tools.schemetools.SchemeMoment.SchemeMoment.SchemeMoment
 

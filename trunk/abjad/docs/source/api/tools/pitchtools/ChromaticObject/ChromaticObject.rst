@@ -1,5 +1,5 @@
-pitchtools.ChromaticObject
-==========================
+:py:mod:`pitchtools <abjad.tools.pitchtools>`.ChromaticObject
+=============================================================
 
 .. abjad-lineage:: abjad.tools.pitchtools.ChromaticObject.ChromaticObject.ChromaticObject
 

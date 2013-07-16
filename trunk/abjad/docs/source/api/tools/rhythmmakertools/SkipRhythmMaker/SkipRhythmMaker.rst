@@ -1,5 +1,5 @@
-rhythmmakertools.SkipRhythmMaker
-================================
+:py:mod:`rhythmmakertools <abjad.tools.rhythmmakertools>`.SkipRhythmMaker
+=========================================================================
 
 .. abjad-lineage:: abjad.tools.rhythmmakertools.SkipRhythmMaker.SkipRhythmMaker.SkipRhythmMaker
 

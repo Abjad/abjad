@@ -1,5 +1,5 @@
-scoremanagertools.specifiers.RegistrationSpecifier
-==================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.specifiers.RegistrationSpecifier
+===================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.specifiers.RegistrationSpecifier.RegistrationSpecifier.RegistrationSpecifier
 

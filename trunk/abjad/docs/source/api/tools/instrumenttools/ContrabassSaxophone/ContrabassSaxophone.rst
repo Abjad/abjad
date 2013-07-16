@@ -1,5 +1,5 @@
-instrumenttools.ContrabassSaxophone
-===================================
+:py:mod:`instrumenttools <abjad.tools.instrumenttools>`.ContrabassSaxophone
+===========================================================================
 
 .. abjad-lineage:: abjad.tools.instrumenttools.ContrabassSaxophone.ContrabassSaxophone.ContrabassSaxophone
 

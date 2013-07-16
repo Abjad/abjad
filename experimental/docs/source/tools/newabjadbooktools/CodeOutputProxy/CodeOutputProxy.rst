@@ -1,5 +1,5 @@
-newabjadbooktools.CodeOutputProxy
-=================================
+:py:mod:`newabjadbooktools <experimental.tools.newabjadbooktools>`.CodeOutputProxy
+==================================================================================
 
 .. abjad-lineage:: experimental.tools.newabjadbooktools.CodeOutputProxy.CodeOutputProxy.CodeOutputProxy
 

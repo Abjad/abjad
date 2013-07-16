@@ -1,5 +1,5 @@
-scoremanagertools.editors.TerracedDynamicsHandlerEditor
-=======================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.editors.TerracedDynamicsHandlerEditor
+========================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.TerracedDynamicsHandlerEditor.TerracedDynamicsHandlerEditor.TerracedDynamicsHandlerEditor
 

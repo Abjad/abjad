@@ -1,5 +1,5 @@
-handlertools.TwoStageHairpinHandler
-===================================
+:py:mod:`handlertools <experimental.tools.handlertools>`.TwoStageHairpinHandler
+===============================================================================
 
 .. abjad-lineage:: experimental.tools.handlertools.TwoStageHairpinHandler.TwoStageHairpinHandler.TwoStageHairpinHandler
 

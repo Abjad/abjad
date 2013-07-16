@@ -1,5 +1,5 @@
-exceptiontools.CyclicNodeError
-==============================
+:py:mod:`exceptiontools <abjad.tools.exceptiontools>`.CyclicNodeError
+=====================================================================
 
 .. abjad-lineage:: abjad.tools.exceptiontools.CyclicNodeError.CyclicNodeError
 

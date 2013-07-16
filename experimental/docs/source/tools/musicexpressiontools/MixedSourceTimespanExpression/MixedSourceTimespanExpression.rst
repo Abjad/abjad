@@ -1,5 +1,5 @@
-musicexpressiontools.MixedSourceTimespanExpression
-==================================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.MixedSourceTimespanExpression
+======================================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression
 

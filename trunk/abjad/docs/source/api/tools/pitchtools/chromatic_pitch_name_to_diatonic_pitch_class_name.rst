@@ -1,4 +1,4 @@
-pitchtools.chromatic_pitch_name_to_diatonic_pitch_class_name
-============================================================
+:py:mod:`pitchtools <abjad.tools.pitchtools>`.chromatic_pitch_name_to_diatonic_pitch_class_name
+===============================================================================================
 
 .. autofunction:: abjad.tools.pitchtools.chromatic_pitch_name_to_diatonic_pitch_class_name.chromatic_pitch_name_to_diatonic_pitch_class_name

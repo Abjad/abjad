@@ -1,5 +1,5 @@
-wellformednesstools.MissingParentCheck
-======================================
+:py:mod:`wellformednesstools <abjad.tools.wellformednesstools>`.MissingParentCheck
+==================================================================================
 
 .. abjad-lineage:: abjad.tools.wellformednesstools.MissingParentCheck.MissingParentCheck.MissingParentCheck
 

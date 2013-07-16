@@ -1,5 +1,5 @@
-lyrictools.LyricExtender
-========================
+:py:mod:`lyrictools <experimental.tools.lyrictools>`.LyricExtender
+==================================================================
 
 .. abjad-lineage:: experimental.tools.lyrictools.LyricExtender.LyricExtender.LyricExtender
 

@@ -1,5 +1,5 @@
-quantizationtools.JobHandler
-============================
+:py:mod:`quantizationtools <abjad.tools.quantizationtools>`.JobHandler
+======================================================================
 
 .. abjad-lineage:: abjad.tools.quantizationtools.JobHandler.JobHandler.JobHandler
 

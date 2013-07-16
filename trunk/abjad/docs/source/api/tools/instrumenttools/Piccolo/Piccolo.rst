@@ -1,5 +1,5 @@
-instrumenttools.Piccolo
-=======================
+:py:mod:`instrumenttools <abjad.tools.instrumenttools>`.Piccolo
+===============================================================
 
 .. abjad-lineage:: abjad.tools.instrumenttools.Piccolo.Piccolo.Piccolo
 

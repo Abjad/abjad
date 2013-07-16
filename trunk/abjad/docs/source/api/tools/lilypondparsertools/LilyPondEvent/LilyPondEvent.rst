@@ -1,5 +1,5 @@
-lilypondparsertools.LilyPondEvent
-=================================
+:py:mod:`lilypondparsertools <abjad.tools.lilypondparsertools>`.LilyPondEvent
+=============================================================================
 
 .. abjad-lineage:: abjad.tools.lilypondparsertools.LilyPondEvent.LilyPondEvent.LilyPondEvent
 

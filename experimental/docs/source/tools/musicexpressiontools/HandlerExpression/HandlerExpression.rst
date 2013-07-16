@@ -1,5 +1,5 @@
-musicexpressiontools.HandlerExpression
-======================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.HandlerExpression
+==========================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.HandlerExpression.HandlerExpression.HandlerExpression
 

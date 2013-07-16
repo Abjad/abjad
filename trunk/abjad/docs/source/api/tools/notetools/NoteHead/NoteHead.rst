@@ -1,5 +1,5 @@
-notetools.NoteHead
-==================
+:py:mod:`notetools <abjad.tools.notetools>`.NoteHead
+====================================================
 
 .. abjad-lineage:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead
 

@@ -1,5 +1,5 @@
-exceptiontools.LilyPondParserError
-==================================
+:py:mod:`exceptiontools <abjad.tools.exceptiontools>`.LilyPondParserError
+=========================================================================
 
 .. abjad-lineage:: abjad.tools.exceptiontools.LilyPondParserError.LilyPondParserError
 

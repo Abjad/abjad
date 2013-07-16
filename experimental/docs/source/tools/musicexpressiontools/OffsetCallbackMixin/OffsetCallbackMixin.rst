@@ -1,5 +1,5 @@
-musicexpressiontools.OffsetCallbackMixin
-========================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.OffsetCallbackMixin
+============================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.OffsetCallbackMixin.OffsetCallbackMixin.OffsetCallbackMixin
 

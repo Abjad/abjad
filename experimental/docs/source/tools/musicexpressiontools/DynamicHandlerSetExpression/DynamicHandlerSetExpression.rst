@@ -1,5 +1,5 @@
-musicexpressiontools.DynamicHandlerSetExpression
-================================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.DynamicHandlerSetExpression
+====================================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.DynamicHandlerSetExpression.DynamicHandlerSetExpression.DynamicHandlerSetExpression
 

@@ -1,4 +1,4 @@
-timeintervaltools.concatenate_trees
-===================================
+:py:mod:`timeintervaltools <abjad.tools.timeintervaltools>`.concatenate_trees
+=============================================================================
 
 .. autofunction:: abjad.tools.timeintervaltools.concatenate_trees.concatenate_trees

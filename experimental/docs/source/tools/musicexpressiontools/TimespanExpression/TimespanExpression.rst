@@ -1,5 +1,5 @@
-musicexpressiontools.TimespanExpression
-=======================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.TimespanExpression
+===========================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression
 

@@ -1,5 +1,5 @@
-musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory
-======================================================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.TimespanScopedSingleContextSetExpressionInventory
+==========================================================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory.TimespanScopedSingleContextSetExpressionInventory
 

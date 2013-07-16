@@ -1,5 +1,5 @@
-spannertools.PianoPedalSpanner
-==============================
+:py:mod:`spannertools <abjad.tools.spannertools>`.PianoPedalSpanner
+===================================================================
 
 .. abjad-lineage:: abjad.tools.spannertools.PianoPedalSpanner.PianoPedalSpanner.PianoPedalSpanner
 

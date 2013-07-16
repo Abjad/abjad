@@ -1,5 +1,5 @@
-lilypondfiletools.HeaderBlock
-=============================
+:py:mod:`lilypondfiletools <abjad.tools.lilypondfiletools>`.HeaderBlock
+=======================================================================
 
 .. abjad-lineage:: abjad.tools.lilypondfiletools.HeaderBlock.HeaderBlock.HeaderBlock
 

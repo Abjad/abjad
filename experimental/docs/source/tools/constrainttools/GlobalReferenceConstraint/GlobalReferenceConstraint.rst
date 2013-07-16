@@ -1,5 +1,5 @@
-constrainttools.GlobalReferenceConstraint
-=========================================
+:py:mod:`constrainttools <experimental.tools.constrainttools>`.GlobalReferenceConstraint
+========================================================================================
 
 .. abjad-lineage:: experimental.tools.constrainttools.GlobalReferenceConstraint.GlobalReferenceConstraint.GlobalReferenceConstraint
 

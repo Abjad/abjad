@@ -1,5 +1,5 @@
-scoremanagertools.selectors.InstrumentToolsInstrumentNameSelector
-=================================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.selectors.InstrumentToolsInstrumentNameSelector
+==================================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.selectors.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector.InstrumentToolsInstrumentNameSelector
 

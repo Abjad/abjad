@@ -1,5 +1,5 @@
-quantizationtools.ConcatenatingGraceHandler
-===========================================
+:py:mod:`quantizationtools <abjad.tools.quantizationtools>`.ConcatenatingGraceHandler
+=====================================================================================
 
 .. abjad-lineage:: abjad.tools.quantizationtools.ConcatenatingGraceHandler.ConcatenatingGraceHandler.ConcatenatingGraceHandler
 

@@ -1,5 +1,5 @@
-scoremanagertools.editors.ListEditor
-====================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.editors.ListEditor
+=====================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.ListEditor.ListEditor.ListEditor
 

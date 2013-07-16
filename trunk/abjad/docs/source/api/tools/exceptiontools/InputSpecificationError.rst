@@ -1,5 +1,5 @@
-exceptiontools.InputSpecificationError
-======================================
+:py:mod:`exceptiontools <abjad.tools.exceptiontools>`.InputSpecificationError
+=============================================================================
 
 .. abjad-lineage:: abjad.tools.exceptiontools.InputSpecificationError.InputSpecificationError
 

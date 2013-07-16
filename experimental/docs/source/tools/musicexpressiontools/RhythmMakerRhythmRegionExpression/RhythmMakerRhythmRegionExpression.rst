@@ -1,5 +1,5 @@
-musicexpressiontools.RhythmMakerRhythmRegionExpression
-======================================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.RhythmMakerRhythmRegionExpression
+==========================================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression.RhythmMakerRhythmRegionExpression
 

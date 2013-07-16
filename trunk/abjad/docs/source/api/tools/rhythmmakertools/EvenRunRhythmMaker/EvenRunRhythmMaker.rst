@@ -1,5 +1,5 @@
-rhythmmakertools.EvenRunRhythmMaker
-===================================
+:py:mod:`rhythmmakertools <abjad.tools.rhythmmakertools>`.EvenRunRhythmMaker
+============================================================================
 
 .. abjad-lineage:: abjad.tools.rhythmmakertools.EvenRunRhythmMaker.EvenRunRhythmMaker.EvenRunRhythmMaker
 

@@ -1,4 +1,4 @@
-pitchtools.list_named_chromatic_pitches_in_expr
-===============================================
+:py:mod:`pitchtools <abjad.tools.pitchtools>`.list_named_chromatic_pitches_in_expr
+==================================================================================
 
 .. autofunction:: abjad.tools.pitchtools.list_named_chromatic_pitches_in_expr.list_named_chromatic_pitches_in_expr

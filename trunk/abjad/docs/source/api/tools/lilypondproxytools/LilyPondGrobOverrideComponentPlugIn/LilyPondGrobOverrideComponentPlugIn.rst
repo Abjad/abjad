@@ -1,5 +1,5 @@
-lilypondproxytools.LilyPondGrobOverrideComponentPlugIn
-======================================================
+:py:mod:`lilypondproxytools <abjad.tools.lilypondproxytools>`.LilyPondGrobOverrideComponentPlugIn
+=================================================================================================
 
 .. abjad-lineage:: abjad.tools.lilypondproxytools.LilyPondGrobOverrideComponentPlugIn.LilyPondGrobOverrideComponentPlugIn.LilyPondGrobOverrideComponentPlugIn
 

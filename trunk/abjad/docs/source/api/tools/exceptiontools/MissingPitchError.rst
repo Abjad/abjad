@@ -1,5 +1,5 @@
-exceptiontools.MissingPitchError
-================================
+:py:mod:`exceptiontools <abjad.tools.exceptiontools>`.MissingPitchError
+=======================================================================
 
 .. abjad-lineage:: abjad.tools.exceptiontools.MissingPitchError.MissingPitchError
 

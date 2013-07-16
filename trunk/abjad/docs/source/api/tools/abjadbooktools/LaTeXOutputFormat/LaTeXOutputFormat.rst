@@ -1,5 +1,5 @@
-abjadbooktools.LaTeXOutputFormat
-================================
+:py:mod:`abjadbooktools <abjad.tools.abjadbooktools>`.LaTeXOutputFormat
+=======================================================================
 
 .. abjad-lineage:: abjad.tools.abjadbooktools.LaTeXOutputFormat.LaTeXOutputFormat.LaTeXOutputFormat
 

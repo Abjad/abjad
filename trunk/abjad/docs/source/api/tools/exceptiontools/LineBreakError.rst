@@ -1,5 +1,5 @@
-exceptiontools.LineBreakError
-=============================
+:py:mod:`exceptiontools <abjad.tools.exceptiontools>`.LineBreakError
+====================================================================
 
 .. abjad-lineage:: abjad.tools.exceptiontools.LineBreakError.LineBreakError
 

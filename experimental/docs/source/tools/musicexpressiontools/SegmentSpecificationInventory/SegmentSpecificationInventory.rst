@@ -1,5 +1,5 @@
-musicexpressiontools.SegmentSpecificationInventory
-==================================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.SegmentSpecificationInventory
+======================================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.SegmentSpecificationInventory.SegmentSpecificationInventory.SegmentSpecificationInventory
 

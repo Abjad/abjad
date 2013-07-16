@@ -1,5 +1,5 @@
-abctools.Maker
-==============
+:py:mod:`abctools <abjad.tools.abctools>`.Maker
+===============================================
 
 .. abjad-lineage:: abjad.tools.abctools.Maker.Maker.Maker
 

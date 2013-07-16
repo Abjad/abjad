@@ -1,5 +1,5 @@
-quantizationtools.QEventSequence
-================================
+:py:mod:`quantizationtools <abjad.tools.quantizationtools>`.QEventSequence
+==========================================================================
 
 .. abjad-lineage:: abjad.tools.quantizationtools.QEventSequence.QEventSequence.QEventSequence
 

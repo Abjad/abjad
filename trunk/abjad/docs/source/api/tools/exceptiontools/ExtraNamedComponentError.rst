@@ -1,5 +1,5 @@
-exceptiontools.ExtraNamedComponentError
-=======================================
+:py:mod:`exceptiontools <abjad.tools.exceptiontools>`.ExtraNamedComponentError
+==============================================================================
 
 .. abjad-lineage:: abjad.tools.exceptiontools.ExtraNamedComponentError.ExtraNamedComponentError
 

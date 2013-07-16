@@ -1,5 +1,5 @@
-documentationtools.GraphvizSubgraph
-===================================
+:py:mod:`documentationtools <abjad.tools.documentationtools>`.GraphvizSubgraph
+==============================================================================
 
 .. abjad-lineage:: abjad.tools.documentationtools.GraphvizSubgraph.GraphvizSubgraph.GraphvizSubgraph
 

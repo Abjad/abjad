@@ -1,5 +1,5 @@
-scoremanagertools.editors.ObjectInventoryEditor
-===============================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.editors.ObjectInventoryEditor
+================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.ObjectInventoryEditor.ObjectInventoryEditor.ObjectInventoryEditor
 

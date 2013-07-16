@@ -1,5 +1,5 @@
-scoretools.Performer
-====================
+:py:mod:`scoretools <abjad.tools.scoretools>`.Performer
+=======================================================
 
 .. abjad-lineage:: abjad.tools.scoretools.Performer.Performer.Performer
 

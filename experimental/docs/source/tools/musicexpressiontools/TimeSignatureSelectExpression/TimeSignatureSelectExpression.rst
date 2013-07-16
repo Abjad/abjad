@@ -1,5 +1,5 @@
-musicexpressiontools.TimeSignatureSelectExpression
-==================================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.TimeSignatureSelectExpression
+======================================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.TimeSignatureSelectExpression.TimeSignatureSelectExpression.TimeSignatureSelectExpression
 

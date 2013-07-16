@@ -1,5 +1,5 @@
-contexttools.Context
-====================
+:py:mod:`contexttools <abjad.tools.contexttools>`.Context
+=========================================================
 
 .. abjad-lineage:: abjad.tools.contexttools.Context.Context.Context
 

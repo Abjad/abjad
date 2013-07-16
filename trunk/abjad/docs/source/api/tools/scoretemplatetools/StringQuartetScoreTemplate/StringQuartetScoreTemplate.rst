@@ -1,5 +1,5 @@
-scoretemplatetools.StringQuartetScoreTemplate
-=============================================
+:py:mod:`scoretemplatetools <abjad.tools.scoretemplatetools>`.StringQuartetScoreTemplate
+========================================================================================
 
 .. abjad-lineage:: abjad.tools.scoretemplatetools.StringQuartetScoreTemplate.StringQuartetScoreTemplate.StringQuartetScoreTemplate
 

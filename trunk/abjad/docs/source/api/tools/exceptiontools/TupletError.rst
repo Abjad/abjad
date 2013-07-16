@@ -1,5 +1,5 @@
-exceptiontools.TupletError
-==========================
+:py:mod:`exceptiontools <abjad.tools.exceptiontools>`.TupletError
+=================================================================
 
 .. abjad-lineage:: abjad.tools.exceptiontools.TupletError.TupletError
 

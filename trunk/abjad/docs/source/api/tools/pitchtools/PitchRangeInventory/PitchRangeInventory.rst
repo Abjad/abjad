@@ -1,5 +1,5 @@
-pitchtools.PitchRangeInventory
-==============================
+:py:mod:`pitchtools <abjad.tools.pitchtools>`.PitchRangeInventory
+=================================================================
 
 .. abjad-lineage:: abjad.tools.pitchtools.PitchRangeInventory.PitchRangeInventory.PitchRangeInventory
 

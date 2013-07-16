@@ -34,11 +34,21 @@ class FunctionDocumenter(Documenter):
         Returns string.
         '''
         from abjad.tools import documentationtools
-
         document = documentationtools.ReSTDocument()
+        stripped_function_name = self._shrink_module_name(
+            self.object.__module__)
+        parts = self.object.__module__.split('.')
+        tools_package_path = '.'.join(parts[:3])
+        tools_package_name, sep, function_name = \
+            stripped_function_name.partition('.')
+        banner = ':py:mod:`{} <{}>`.{}'.format(
+            tools_package_name,
+            tools_package_path,
+            function_name,
+            )
         heading = documentationtools.ReSTHeading(
             level=2,
-            text=self._shrink_module_name(self.object.__module__)
+            text=banner,
             )
         autodoc = documentationtools.ReSTAutodocDirective(
             argument=self.module_name,
@@ -47,5 +57,4 @@ class FunctionDocumenter(Documenter):
                 },
             )
         document.extend([heading, autodoc])
-
         return document.rest_format

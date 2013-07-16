@@ -1,5 +1,5 @@
-scoremanagertools.materialpackagemakers.DynamicHandlerMaterialPackageMaker
-==========================================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.materialpackagemakers.DynamicHandlerMaterialPackageMaker
+===========================================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.materialpackagemakers.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker.DynamicHandlerMaterialPackageMaker
 

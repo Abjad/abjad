@@ -200,18 +200,22 @@ class ClassDocumenter(Documenter):
         from abjad.tools import documentationtools
 
         stripped_class_name = self._shrink_module_name(self.object.__module__)
-
+        parts = self.object.__module__.split('.')
+        tools_package_path = '.'.join(parts[:3])
+        tools_package_name, sep, class_name = stripped_class_name.partition('.')
+        banner = ':py:mod:`{} <{}>`.{}'.format(
+            tools_package_name,
+            tools_package_path,
+            class_name,
+            )
         document = documentationtools.ReSTDocument()
-
         document.append(documentationtools.ReSTHeading(
             level=2,
-            text=stripped_class_name,
+            text=banner,
             ))
-
         document.append(documentationtools.ReSTLineageDirective(
             argument=self.module_name,
             ))
-
         document.append(documentationtools.ReSTAutodocDirective(
             argument=self.module_name,
             directive='autoclass',
@@ -219,51 +223,42 @@ class ClassDocumenter(Documenter):
                 #'noindex': True, 
                 },
             ))
-
         document.extend(self._build_bases_section())
-
 #        document.extend(self._build_attribute_section(
 #            self.data,
 #            'Class variables',
 #            'autodata',
 #            ))
-
         document.extend(self._build_attribute_section(
             self.readonly_properties,
             'Read-only properties',
             'autoattribute',
             ))
-
         document.extend(self._build_attribute_section(
             self.readwrite_properties,
             'Read/write properties',
             'autoattribute',
             ))
-
         document.extend(self._build_attribute_section(
             self.methods,
             'Methods',
             'automethod',
             ))
-
         document.extend(self._build_attribute_section(
             self.class_methods,
             'Class methods',
             'automethod',
             ))
-
         document.extend(self._build_attribute_section(
             self.static_methods,
             'Static methods',
             'automethod',
             ))
-
         document.extend(self._build_attribute_section(
             self.special_methods,
             'Special methods',
             'automethod',
             ))
-
         return document.rest_format
 
     ### PRIVATE METHODS ###

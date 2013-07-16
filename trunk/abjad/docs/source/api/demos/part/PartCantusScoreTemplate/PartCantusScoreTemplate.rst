@@ -1,5 +1,5 @@
-part.PartCantusScoreTemplate
-============================
+:py:mod:`part <abjad.demos.part>`.PartCantusScoreTemplate
+=========================================================
 
 .. abjad-lineage:: abjad.demos.part.PartCantusScoreTemplate.PartCantusScoreTemplate.PartCantusScoreTemplate
 

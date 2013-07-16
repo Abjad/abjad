@@ -1,5 +1,5 @@
-durationtools.Offset
-====================
+:py:mod:`durationtools <abjad.tools.durationtools>`.Offset
+==========================================================
 
 .. abjad-lineage:: abjad.tools.durationtools.Offset.Offset.Offset
 

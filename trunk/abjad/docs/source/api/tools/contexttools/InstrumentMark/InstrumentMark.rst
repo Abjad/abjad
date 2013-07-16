@@ -1,5 +1,5 @@
-contexttools.InstrumentMark
-===========================
+:py:mod:`contexttools <abjad.tools.contexttools>`.InstrumentMark
+================================================================
 
 .. abjad-lineage:: abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark
 

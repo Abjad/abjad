@@ -1,5 +1,5 @@
-documentationtools.ReSTInheritanceDiagram
-=========================================
+:py:mod:`documentationtools <abjad.tools.documentationtools>`.ReSTInheritanceDiagram
+====================================================================================
 
 .. abjad-lineage:: abjad.tools.documentationtools.ReSTInheritanceDiagram.ReSTInheritanceDiagram.ReSTInheritanceDiagram
 

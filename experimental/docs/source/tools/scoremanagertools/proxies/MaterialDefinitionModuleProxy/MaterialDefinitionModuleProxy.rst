@@ -1,5 +1,5 @@
-scoremanagertools.proxies.MaterialDefinitionModuleProxy
-=======================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.proxies.MaterialDefinitionModuleProxy
+========================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.proxies.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy.MaterialDefinitionModuleProxy
 

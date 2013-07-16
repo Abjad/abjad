@@ -1,5 +1,5 @@
-timerelationtools.SimpleInequality
-==================================
+:py:mod:`timerelationtools <abjad.tools.timerelationtools>`.SimpleInequality
+============================================================================
 
 .. abjad-lineage:: abjad.tools.timerelationtools.SimpleInequality.SimpleInequality.SimpleInequality
 

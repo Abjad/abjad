@@ -1,5 +1,5 @@
-spannertools.HairpinSpanner
-===========================
+:py:mod:`spannertools <abjad.tools.spannertools>`.HairpinSpanner
+================================================================
 
 .. abjad-lineage:: abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner
 

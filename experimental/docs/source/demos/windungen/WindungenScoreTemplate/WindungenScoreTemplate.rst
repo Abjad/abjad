@@ -1,5 +1,5 @@
-windungen.WindungenScoreTemplate
-================================
+:py:mod:`windungen <experimental.demos.windungen>`.WindungenScoreTemplate
+=========================================================================
 
 .. abjad-lineage:: experimental.demos.windungen.WindungenScoreTemplate.WindungenScoreTemplate.WindungenScoreTemplate
 

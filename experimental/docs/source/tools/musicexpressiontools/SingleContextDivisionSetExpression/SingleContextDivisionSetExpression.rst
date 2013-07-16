@@ -1,5 +1,5 @@
-musicexpressiontools.SingleContextDivisionSetExpression
-=======================================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.SingleContextDivisionSetExpression
+===========================================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression.SingleContextDivisionSetExpression
 

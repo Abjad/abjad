@@ -1,5 +1,5 @@
-lilypondfiletools.LilyPondFile
-==============================
+:py:mod:`lilypondfiletools <abjad.tools.lilypondfiletools>`.LilyPondFile
+========================================================================
 
 .. abjad-lineage:: abjad.tools.lilypondfiletools.LilyPondFile.LilyPondFile.LilyPondFile
 

@@ -1,5 +1,5 @@
-scoremanagertools.materialpackagemakers.ListMaterialPackageMaker
-================================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.materialpackagemakers.ListMaterialPackageMaker
+=================================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.materialpackagemakers.ListMaterialPackageMaker.ListMaterialPackageMaker.ListMaterialPackageMaker
 

@@ -1,5 +1,5 @@
-instrumenttools.AltoFlute
-=========================
+:py:mod:`instrumenttools <abjad.tools.instrumenttools>`.AltoFlute
+=================================================================
 
 .. abjad-lineage:: abjad.tools.instrumenttools.AltoFlute.AltoFlute.AltoFlute
 

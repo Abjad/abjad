@@ -1,5 +1,5 @@
-scoremanagertools.specifiers.MusicSpecifier
-===========================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.specifiers.MusicSpecifier
+============================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.specifiers.MusicSpecifier.MusicSpecifier.MusicSpecifier
 

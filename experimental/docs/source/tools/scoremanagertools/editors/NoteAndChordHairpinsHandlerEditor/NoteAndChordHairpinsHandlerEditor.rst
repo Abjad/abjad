@@ -1,5 +1,5 @@
-scoremanagertools.editors.NoteAndChordHairpinsHandlerEditor
-===========================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.editors.NoteAndChordHairpinsHandlerEditor
+============================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor.NoteAndChordHairpinsHandlerEditor
 

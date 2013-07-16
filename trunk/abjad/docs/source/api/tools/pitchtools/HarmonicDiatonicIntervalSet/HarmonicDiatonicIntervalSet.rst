@@ -1,5 +1,5 @@
-pitchtools.HarmonicDiatonicIntervalSet
-======================================
+:py:mod:`pitchtools <abjad.tools.pitchtools>`.HarmonicDiatonicIntervalSet
+=========================================================================
 
 .. abjad-lineage:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet
 

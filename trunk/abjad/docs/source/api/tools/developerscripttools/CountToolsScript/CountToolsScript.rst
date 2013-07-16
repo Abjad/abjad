@@ -1,5 +1,5 @@
-developerscripttools.CountToolsScript
-=====================================
+:py:mod:`developerscripttools <abjad.tools.developerscripttools>`.CountToolsScript
+==================================================================================
 
 .. abjad-lineage:: abjad.tools.developerscripttools.CountToolsScript.CountToolsScript.CountToolsScript
 

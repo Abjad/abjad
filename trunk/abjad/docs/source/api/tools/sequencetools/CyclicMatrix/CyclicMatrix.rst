@@ -1,5 +1,5 @@
-sequencetools.CyclicMatrix
-==========================
+:py:mod:`sequencetools <abjad.tools.sequencetools>`.CyclicMatrix
+================================================================
 
 .. abjad-lineage:: abjad.tools.sequencetools.CyclicMatrix.CyclicMatrix.CyclicMatrix
 

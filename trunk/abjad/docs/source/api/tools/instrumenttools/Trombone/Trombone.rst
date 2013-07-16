@@ -1,5 +1,5 @@
-instrumenttools.Trombone
-========================
+:py:mod:`instrumenttools <abjad.tools.instrumenttools>`.Trombone
+================================================================
 
 .. abjad-lineage:: abjad.tools.instrumenttools.Trombone.Trombone.Trombone
 

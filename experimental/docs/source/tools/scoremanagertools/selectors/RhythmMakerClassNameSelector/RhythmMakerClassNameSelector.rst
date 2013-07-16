@@ -1,5 +1,5 @@
-scoremanagertools.selectors.RhythmMakerClassNameSelector
-========================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.selectors.RhythmMakerClassNameSelector
+=========================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.selectors.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector.RhythmMakerClassNameSelector
 

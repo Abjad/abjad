@@ -1,5 +1,5 @@
-exceptiontools.VoiceContainmentError
-====================================
+:py:mod:`exceptiontools <abjad.tools.exceptiontools>`.VoiceContainmentError
+===========================================================================
 
 .. abjad-lineage:: abjad.tools.exceptiontools.VoiceContainmentError.VoiceContainmentError
 

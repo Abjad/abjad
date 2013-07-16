@@ -1,5 +1,5 @@
-instrumenttools.Bassoon
-=======================
+:py:mod:`instrumenttools <abjad.tools.instrumenttools>`.Bassoon
+===============================================================
 
 .. abjad-lineage:: abjad.tools.instrumenttools.Bassoon.Bassoon.Bassoon
 

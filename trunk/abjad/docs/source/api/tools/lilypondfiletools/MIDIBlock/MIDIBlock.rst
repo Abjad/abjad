@@ -1,5 +1,5 @@
-lilypondfiletools.MIDIBlock
-===========================
+:py:mod:`lilypondfiletools <abjad.tools.lilypondfiletools>`.MIDIBlock
+=====================================================================
 
 .. abjad-lineage:: abjad.tools.lilypondfiletools.MIDIBlock.MIDIBlock.MIDIBlock
 

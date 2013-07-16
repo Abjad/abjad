@@ -1,5 +1,5 @@
-spannertools.GlissandoSpanner
-=============================
+:py:mod:`spannertools <abjad.tools.spannertools>`.GlissandoSpanner
+==================================================================
 
 .. abjad-lineage:: abjad.tools.spannertools.GlissandoSpanner.GlissandoSpanner.GlissandoSpanner
 

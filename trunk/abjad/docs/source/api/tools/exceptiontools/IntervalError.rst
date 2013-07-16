@@ -1,5 +1,5 @@
-exceptiontools.IntervalError
-============================
+:py:mod:`exceptiontools <abjad.tools.exceptiontools>`.IntervalError
+===================================================================
 
 .. abjad-lineage:: abjad.tools.exceptiontools.IntervalError.IntervalError
 

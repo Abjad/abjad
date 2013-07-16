@@ -1,5 +1,5 @@
-lilypondparsertools.LilyPondFraction
-====================================
+:py:mod:`lilypondparsertools <abjad.tools.lilypondparsertools>`.LilyPondFraction
+================================================================================
 
 .. abjad-lineage:: abjad.tools.lilypondparsertools.LilyPondFraction.LilyPondFraction.LilyPondFraction
 

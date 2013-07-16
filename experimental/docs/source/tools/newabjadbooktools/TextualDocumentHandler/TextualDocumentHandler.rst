@@ -1,5 +1,5 @@
-newabjadbooktools.TextualDocumentHandler
-========================================
+:py:mod:`newabjadbooktools <experimental.tools.newabjadbooktools>`.TextualDocumentHandler
+=========================================================================================
 
 .. abjad-lineage:: experimental.tools.newabjadbooktools.TextualDocumentHandler.TextualDocumentHandler.TextualDocumentHandler
 

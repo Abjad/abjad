@@ -1,4 +1,4 @@
-formattools.get_context_setting_format_contributions
-====================================================
+:py:mod:`formattools <abjad.tools.formattools>`.get_context_setting_format_contributions
+========================================================================================
 
 .. autofunction:: abjad.tools.formattools.get_context_setting_format_contributions.get_context_setting_format_contributions

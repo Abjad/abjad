@@ -1,5 +1,5 @@
-pitchtools.IntervalSet
-======================
+:py:mod:`pitchtools <abjad.tools.pitchtools>`.IntervalSet
+=========================================================
 
 .. abjad-lineage:: abjad.tools.pitchtools.IntervalSet.IntervalSet.IntervalSet
 

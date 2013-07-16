@@ -1,5 +1,5 @@
-exceptiontools.MeasureContiguityError
-=====================================
+:py:mod:`exceptiontools <abjad.tools.exceptiontools>`.MeasureContiguityError
+============================================================================
 
 .. abjad-lineage:: abjad.tools.exceptiontools.MeasureContiguityError.MeasureContiguityError
 

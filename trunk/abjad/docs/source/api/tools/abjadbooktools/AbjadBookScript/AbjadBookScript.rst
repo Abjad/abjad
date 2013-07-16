@@ -1,5 +1,5 @@
-abjadbooktools.AbjadBookScript
-==============================
+:py:mod:`abjadbooktools <abjad.tools.abjadbooktools>`.AbjadBookScript
+=====================================================================
 
 .. abjad-lineage:: abjad.tools.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript
 

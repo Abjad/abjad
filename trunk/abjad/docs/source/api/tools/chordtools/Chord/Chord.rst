@@ -1,5 +1,5 @@
-chordtools.Chord
-================
+:py:mod:`chordtools <abjad.tools.chordtools>`.Chord
+===================================================
 
 .. abjad-lineage:: abjad.tools.chordtools.Chord.Chord.Chord
 

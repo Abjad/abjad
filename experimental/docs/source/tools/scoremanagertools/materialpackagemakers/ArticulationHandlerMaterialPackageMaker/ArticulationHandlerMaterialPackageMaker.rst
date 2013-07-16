@@ -1,5 +1,5 @@
-scoremanagertools.materialpackagemakers.ArticulationHandlerMaterialPackageMaker
-===============================================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.materialpackagemakers.ArticulationHandlerMaterialPackageMaker
+================================================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.materialpackagemakers.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker.ArticulationHandlerMaterialPackageMaker
 

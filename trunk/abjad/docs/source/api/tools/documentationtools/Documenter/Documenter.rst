@@ -1,5 +1,5 @@
-documentationtools.Documenter
-=============================
+:py:mod:`documentationtools <abjad.tools.documentationtools>`.Documenter
+========================================================================
 
 .. abjad-lineage:: abjad.tools.documentationtools.Documenter.Documenter.Documenter
 

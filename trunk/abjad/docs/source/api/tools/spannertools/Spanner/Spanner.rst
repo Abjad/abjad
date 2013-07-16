@@ -1,5 +1,5 @@
-spannertools.Spanner
-====================
+:py:mod:`spannertools <abjad.tools.spannertools>`.Spanner
+=========================================================
 
 .. abjad-lineage:: abjad.tools.spannertools.Spanner.Spanner.Spanner
 

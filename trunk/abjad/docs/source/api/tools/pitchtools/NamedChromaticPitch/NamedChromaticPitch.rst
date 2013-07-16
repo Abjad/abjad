@@ -1,5 +1,5 @@
-pitchtools.NamedChromaticPitch
-==============================
+:py:mod:`pitchtools <abjad.tools.pitchtools>`.NamedChromaticPitch
+=================================================================
 
 .. abjad-lineage:: abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch.NamedChromaticPitch
 

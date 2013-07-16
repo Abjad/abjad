@@ -1,5 +1,5 @@
-scoremanagertools.editors.ClefMarkEditor
-========================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.editors.ClefMarkEditor
+=========================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.ClefMarkEditor.ClefMarkEditor.ClefMarkEditor
 

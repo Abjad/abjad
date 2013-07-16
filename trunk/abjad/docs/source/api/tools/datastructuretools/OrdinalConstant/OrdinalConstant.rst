@@ -1,5 +1,5 @@
-datastructuretools.OrdinalConstant
-==================================
+:py:mod:`datastructuretools <abjad.tools.datastructuretools>`.OrdinalConstant
+=============================================================================
 
 .. abjad-lineage:: abjad.tools.datastructuretools.OrdinalConstant.OrdinalConstant.OrdinalConstant
 

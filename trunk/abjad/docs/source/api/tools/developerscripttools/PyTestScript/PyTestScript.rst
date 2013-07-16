@@ -1,5 +1,5 @@
-developerscripttools.PyTestScript
-=================================
+:py:mod:`developerscripttools <abjad.tools.developerscripttools>`.PyTestScript
+==============================================================================
 
 .. abjad-lineage:: abjad.tools.developerscripttools.PyTestScript.PyTestScript.PyTestScript
 

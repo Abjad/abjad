@@ -1,5 +1,5 @@
-scoretools.PerformerInventory
-=============================
+:py:mod:`scoretools <abjad.tools.scoretools>`.PerformerInventory
+================================================================
 
 .. abjad-lineage:: abjad.tools.scoretools.PerformerInventory.PerformerInventory.PerformerInventory
 

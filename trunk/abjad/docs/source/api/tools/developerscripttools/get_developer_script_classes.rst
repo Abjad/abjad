@@ -1,4 +1,4 @@
-developerscripttools.get_developer_script_classes
-=================================================
+:py:mod:`developerscripttools <abjad.tools.developerscripttools>`.get_developer_script_classes
+==============================================================================================
 
 .. autofunction:: abjad.tools.developerscripttools.get_developer_script_classes.get_developer_script_classes

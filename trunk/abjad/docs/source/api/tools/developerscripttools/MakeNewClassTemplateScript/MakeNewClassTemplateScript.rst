@@ -1,5 +1,5 @@
-developerscripttools.MakeNewClassTemplateScript
-===============================================
+:py:mod:`developerscripttools <abjad.tools.developerscripttools>`.MakeNewClassTemplateScript
+============================================================================================
 
 .. abjad-lineage:: abjad.tools.developerscripttools.MakeNewClassTemplateScript.MakeNewClassTemplateScript.MakeNewClassTemplateScript
 

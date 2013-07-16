@@ -1,5 +1,5 @@
-scoremanagertools.editors.ReiteratedArticulationHandlerEditor
-=============================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.editors.ReiteratedArticulationHandlerEditor
+==============================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.ReiteratedArticulationHandlerEditor.ReiteratedArticulationHandlerEditor.ReiteratedArticulationHandlerEditor
 

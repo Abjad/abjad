@@ -1,5 +1,5 @@
-containertools.Container
-========================
+:py:mod:`containertools <abjad.tools.containertools>`.Container
+===============================================================
 
 .. abjad-lineage:: abjad.tools.containertools.Container.Container.Container
 

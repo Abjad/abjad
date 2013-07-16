@@ -1,5 +1,5 @@
-abctools.SortableAttributeEqualityAbjadObject
-=============================================
+:py:mod:`abctools <abjad.tools.abctools>`.SortableAttributeEqualityAbjadObject
+==============================================================================
 
 .. abjad-lineage:: abjad.tools.abctools.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject
 

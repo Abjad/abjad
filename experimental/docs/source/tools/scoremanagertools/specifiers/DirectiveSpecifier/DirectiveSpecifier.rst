@@ -1,5 +1,5 @@
-scoremanagertools.specifiers.DirectiveSpecifier
-===============================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.specifiers.DirectiveSpecifier
+================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.specifiers.DirectiveSpecifier.DirectiveSpecifier.DirectiveSpecifier
 

@@ -1,5 +1,5 @@
-documentationtools.InheritanceGraph
-===================================
+:py:mod:`documentationtools <abjad.tools.documentationtools>`.InheritanceGraph
+==============================================================================
 
 .. abjad-lineage:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph
 

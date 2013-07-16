@@ -1,5 +1,5 @@
-spannertools.TieSpanner
-=======================
+:py:mod:`spannertools <abjad.tools.spannertools>`.TieSpanner
+============================================================
 
 .. abjad-lineage:: abjad.tools.spannertools.TieSpanner.TieSpanner.TieSpanner
 

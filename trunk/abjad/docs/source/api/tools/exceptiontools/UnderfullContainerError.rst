@@ -1,5 +1,5 @@
-exceptiontools.UnderfullContainerError
-======================================
+:py:mod:`exceptiontools <abjad.tools.exceptiontools>`.UnderfullContainerError
+=============================================================================
 
 .. abjad-lineage:: abjad.tools.exceptiontools.UnderfullContainerError.UnderfullContainerError
 

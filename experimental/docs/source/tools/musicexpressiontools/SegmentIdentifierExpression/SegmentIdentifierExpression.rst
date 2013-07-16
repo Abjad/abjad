@@ -1,5 +1,5 @@
-musicexpressiontools.SegmentIdentifierExpression
-================================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.SegmentIdentifierExpression
+====================================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.SegmentIdentifierExpression.SegmentIdentifierExpression.SegmentIdentifierExpression
 

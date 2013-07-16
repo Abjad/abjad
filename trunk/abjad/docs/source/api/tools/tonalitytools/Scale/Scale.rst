@@ -1,5 +1,5 @@
-tonalitytools.Scale
-===================
+:py:mod:`tonalitytools <abjad.tools.tonalitytools>`.Scale
+=========================================================
 
 .. abjad-lineage:: abjad.tools.tonalitytools.Scale.Scale.Scale
 

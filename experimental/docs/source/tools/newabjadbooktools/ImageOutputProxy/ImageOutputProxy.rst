@@ -1,5 +1,5 @@
-newabjadbooktools.ImageOutputProxy
-==================================
+:py:mod:`newabjadbooktools <experimental.tools.newabjadbooktools>`.ImageOutputProxy
+===================================================================================
 
 .. abjad-lineage:: experimental.tools.newabjadbooktools.ImageOutputProxy.ImageOutputProxy.ImageOutputProxy
 

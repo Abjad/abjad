@@ -1,5 +1,5 @@
-developerscripttools.CleanScript
-================================
+:py:mod:`developerscripttools <abjad.tools.developerscripttools>`.CleanScript
+=============================================================================
 
 .. abjad-lineage:: abjad.tools.developerscripttools.CleanScript.CleanScript.CleanScript
 

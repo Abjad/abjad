@@ -1,5 +1,5 @@
-exceptiontools.MarkError
-========================
+:py:mod:`exceptiontools <abjad.tools.exceptiontools>`.MarkError
+===============================================================
 
 .. abjad-lineage:: abjad.tools.exceptiontools.MarkError.MarkError
 

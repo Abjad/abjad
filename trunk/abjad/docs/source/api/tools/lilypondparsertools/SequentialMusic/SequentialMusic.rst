@@ -1,5 +1,5 @@
-lilypondparsertools.SequentialMusic
-===================================
+:py:mod:`lilypondparsertools <abjad.tools.lilypondparsertools>`.SequentialMusic
+===============================================================================
 
 .. abjad-lineage:: abjad.tools.lilypondparsertools.SequentialMusic.SequentialMusic.SequentialMusic
 

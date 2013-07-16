@@ -1,5 +1,5 @@
-componenttools.VerticalMoment
-=============================
+:py:mod:`componenttools <abjad.tools.componenttools>`.VerticalMoment
+====================================================================
 
 .. abjad-lineage:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment
 

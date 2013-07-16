@@ -1,5 +1,5 @@
-measuretools.Measure
-====================
+:py:mod:`measuretools <abjad.tools.measuretools>`.Measure
+=========================================================
 
 .. abjad-lineage:: abjad.tools.measuretools.Measure.Measure.Measure
 

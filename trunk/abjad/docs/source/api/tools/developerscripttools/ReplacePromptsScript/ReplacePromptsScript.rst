@@ -1,5 +1,5 @@
-developerscripttools.ReplacePromptsScript
-=========================================
+:py:mod:`developerscripttools <abjad.tools.developerscripttools>`.ReplacePromptsScript
+======================================================================================
 
 .. abjad-lineage:: abjad.tools.developerscripttools.ReplacePromptsScript.ReplacePromptsScript.ReplacePromptsScript
 

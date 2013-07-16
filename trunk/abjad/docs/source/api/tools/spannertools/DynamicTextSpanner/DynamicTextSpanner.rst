@@ -1,5 +1,5 @@
-spannertools.DynamicTextSpanner
-===============================
+:py:mod:`spannertools <abjad.tools.spannertools>`.DynamicTextSpanner
+====================================================================
 
 .. abjad-lineage:: abjad.tools.spannertools.DynamicTextSpanner.DynamicTextSpanner.DynamicTextSpanner
 

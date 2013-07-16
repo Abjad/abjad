@@ -1,5 +1,5 @@
-exceptiontools.TimeSignatureAssignmentError
-===========================================
+:py:mod:`exceptiontools <abjad.tools.exceptiontools>`.TimeSignatureAssignmentError
+==================================================================================
 
 .. abjad-lineage:: abjad.tools.exceptiontools.TimeSignatureAssignmentError.TimeSignatureAssignmentError
 

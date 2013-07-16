@@ -1,5 +1,5 @@
-quantizationtools.AttackPointOptimizer
-======================================
+:py:mod:`quantizationtools <abjad.tools.quantizationtools>`.AttackPointOptimizer
+================================================================================
 
 .. abjad-lineage:: abjad.tools.quantizationtools.AttackPointOptimizer.AttackPointOptimizer.AttackPointOptimizer
 

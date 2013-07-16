@@ -1,5 +1,5 @@
-timesignaturetools.MetricalKernel
-=================================
+:py:mod:`timesignaturetools <abjad.tools.timesignaturetools>`.MetricalKernel
+============================================================================
 
 .. abjad-lineage:: abjad.tools.timesignaturetools.MetricalKernel.MetricalKernel.MetricalKernel
 

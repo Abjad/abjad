@@ -1,5 +1,5 @@
-sequencetools.CyclicTuple
-=========================
+:py:mod:`sequencetools <abjad.tools.sequencetools>`.CyclicTuple
+===============================================================
 
 .. abjad-lineage:: abjad.tools.sequencetools.CyclicTuple.CyclicTuple.CyclicTuple
 

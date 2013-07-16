@@ -1,5 +1,5 @@
-datastructuretools.ObjectInventory
-==================================
+:py:mod:`datastructuretools <abjad.tools.datastructuretools>`.ObjectInventory
+=============================================================================
 
 .. abjad-lineage:: abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory
 

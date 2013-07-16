@@ -1,5 +1,5 @@
-quantizationtools.DiscardingGraceHandler
-========================================
+:py:mod:`quantizationtools <abjad.tools.quantizationtools>`.DiscardingGraceHandler
+==================================================================================
 
 .. abjad-lineage:: abjad.tools.quantizationtools.DiscardingGraceHandler.DiscardingGraceHandler.DiscardingGraceHandler
 

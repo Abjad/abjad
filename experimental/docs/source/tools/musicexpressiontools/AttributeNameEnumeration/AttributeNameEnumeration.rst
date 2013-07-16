@@ -1,5 +1,5 @@
-musicexpressiontools.AttributeNameEnumeration
-=============================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.AttributeNameEnumeration
+=================================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.AttributeNameEnumeration.AttributeNameEnumeration.AttributeNameEnumeration
 

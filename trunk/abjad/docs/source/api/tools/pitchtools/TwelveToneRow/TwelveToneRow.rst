@@ -1,5 +1,5 @@
-pitchtools.TwelveToneRow
-========================
+:py:mod:`pitchtools <abjad.tools.pitchtools>`.TwelveToneRow
+===========================================================
 
 .. abjad-lineage:: abjad.tools.pitchtools.TwelveToneRow.TwelveToneRow.TwelveToneRow
 

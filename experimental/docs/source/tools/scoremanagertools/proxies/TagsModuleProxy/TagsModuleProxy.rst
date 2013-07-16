@@ -1,5 +1,5 @@
-scoremanagertools.proxies.TagsModuleProxy
-=========================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.proxies.TagsModuleProxy
+==========================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.proxies.TagsModuleProxy.TagsModuleProxy.TagsModuleProxy
 

@@ -1,5 +1,5 @@
-scoremanagertools.editors.MarkupInventoryEditor
-===============================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.editors.MarkupInventoryEditor
+================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.MarkupInventoryEditor.MarkupInventoryEditor.MarkupInventoryEditor
 

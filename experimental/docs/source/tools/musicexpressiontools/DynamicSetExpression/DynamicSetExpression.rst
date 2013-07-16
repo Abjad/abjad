@@ -1,5 +1,5 @@
-musicexpressiontools.DynamicSetExpression
-=========================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.DynamicSetExpression
+=============================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.DynamicSetExpression.DynamicSetExpression.DynamicSetExpression
 

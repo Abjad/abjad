@@ -1,5 +1,5 @@
-tonalitytools.TonalFunction
-===========================
+:py:mod:`tonalitytools <abjad.tools.tonalitytools>`.TonalFunction
+=================================================================
 
 .. abjad-lineage:: abjad.tools.tonalitytools.TonalFunction.TonalFunction.TonalFunction
 

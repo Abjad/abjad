@@ -1,5 +1,5 @@
-instrumenttools.Harpsichord
-===========================
+:py:mod:`instrumenttools <abjad.tools.instrumenttools>`.Harpsichord
+===================================================================
 
 .. abjad-lineage:: abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord
 

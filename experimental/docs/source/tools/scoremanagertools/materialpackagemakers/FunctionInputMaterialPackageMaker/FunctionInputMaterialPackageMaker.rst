@@ -1,5 +1,5 @@
-scoremanagertools.materialpackagemakers.FunctionInputMaterialPackageMaker
-=========================================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.materialpackagemakers.FunctionInputMaterialPackageMaker
+==========================================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.materialpackagemakers.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker.FunctionInputMaterialPackageMaker
 

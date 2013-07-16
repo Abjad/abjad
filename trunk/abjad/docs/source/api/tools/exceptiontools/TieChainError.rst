@@ -1,5 +1,5 @@
-exceptiontools.TieChainError
-============================
+:py:mod:`exceptiontools <abjad.tools.exceptiontools>`.TieChainError
+===================================================================
 
 .. abjad-lineage:: abjad.tools.exceptiontools.TieChainError.TieChainError
 

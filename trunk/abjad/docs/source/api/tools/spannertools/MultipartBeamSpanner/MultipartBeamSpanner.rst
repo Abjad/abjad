@@ -1,5 +1,5 @@
-spannertools.MultipartBeamSpanner
-=================================
+:py:mod:`spannertools <abjad.tools.spannertools>`.MultipartBeamSpanner
+======================================================================
 
 .. abjad-lineage:: abjad.tools.spannertools.MultipartBeamSpanner.MultipartBeamSpanner.MultipartBeamSpanner
 

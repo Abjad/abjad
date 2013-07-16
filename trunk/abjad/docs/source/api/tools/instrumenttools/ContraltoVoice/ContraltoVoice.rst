@@ -1,5 +1,5 @@
-instrumenttools.ContraltoVoice
-==============================
+:py:mod:`instrumenttools <abjad.tools.instrumenttools>`.ContraltoVoice
+======================================================================
 
 .. abjad-lineage:: abjad.tools.instrumenttools.ContraltoVoice.ContraltoVoice.ContraltoVoice
 

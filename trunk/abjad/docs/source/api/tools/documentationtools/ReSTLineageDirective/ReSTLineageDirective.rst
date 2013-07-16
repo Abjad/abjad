@@ -1,5 +1,5 @@
-documentationtools.ReSTLineageDirective
-=======================================
+:py:mod:`documentationtools <abjad.tools.documentationtools>`.ReSTLineageDirective
+==================================================================================
 
 .. abjad-lineage:: abjad.tools.documentationtools.ReSTLineageDirective.ReSTLineageDirective.ReSTLineageDirective
 

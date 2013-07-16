@@ -1,5 +1,5 @@
-datastructuretools.ImmutableDictionary
-======================================
+:py:mod:`datastructuretools <abjad.tools.datastructuretools>`.ImmutableDictionary
+=================================================================================
 
 .. abjad-lineage:: abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary
 

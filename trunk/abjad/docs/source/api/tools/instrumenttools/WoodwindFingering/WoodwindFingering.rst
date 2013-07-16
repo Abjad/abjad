@@ -1,5 +1,5 @@
-instrumenttools.WoodwindFingering
-=================================
+:py:mod:`instrumenttools <abjad.tools.instrumenttools>`.WoodwindFingering
+=========================================================================
 
 .. abjad-lineage:: abjad.tools.instrumenttools.WoodwindFingering.WoodwindFingering.WoodwindFingering
 

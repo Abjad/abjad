@@ -1,5 +1,5 @@
-parsertools.ENPParser
-=====================
+:py:mod:`parsertools <experimental.tools.parsertools>`.ENPParser
+================================================================
 
 .. abjad-lineage:: experimental.tools.parsertools.ENPParser.ENPParser.ENPParser
 

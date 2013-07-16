@@ -1,5 +1,5 @@
-quantizationtools.QGrid
-=======================
+:py:mod:`quantizationtools <abjad.tools.quantizationtools>`.QGrid
+=================================================================
 
 .. abjad-lineage:: abjad.tools.quantizationtools.QGrid.QGrid.QGrid
 

@@ -1,5 +1,5 @@
-exceptiontools.AssignabilityError
-=================================
+:py:mod:`exceptiontools <abjad.tools.exceptiontools>`.AssignabilityError
+========================================================================
 
 .. abjad-lineage:: abjad.tools.exceptiontools.AssignabilityError.AssignabilityError
 

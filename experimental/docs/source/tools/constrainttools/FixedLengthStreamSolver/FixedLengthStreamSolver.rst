@@ -1,5 +1,5 @@
-constrainttools.FixedLengthStreamSolver
-=======================================
+:py:mod:`constrainttools <experimental.tools.constrainttools>`.FixedLengthStreamSolver
+======================================================================================
 
 .. abjad-lineage:: experimental.tools.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver
 

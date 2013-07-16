@@ -1,5 +1,5 @@
-exceptiontools.SpacingError
-===========================
+:py:mod:`exceptiontools <abjad.tools.exceptiontools>`.SpacingError
+==================================================================
 
 .. abjad-lineage:: abjad.tools.exceptiontools.SpacingError.SpacingError
 

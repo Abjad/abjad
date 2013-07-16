@@ -1,5 +1,5 @@
-musicexpressiontools.LeafColorSetExpression
-===========================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.LeafColorSetExpression
+===============================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.LeafColorSetExpression.LeafColorSetExpression.LeafColorSetExpression
 

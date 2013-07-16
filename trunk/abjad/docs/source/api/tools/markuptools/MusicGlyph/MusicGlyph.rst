@@ -1,5 +1,5 @@
-markuptools.MusicGlyph
-======================
+:py:mod:`markuptools <abjad.tools.markuptools>`.MusicGlyph
+==========================================================
 
 .. abjad-lineage:: abjad.tools.markuptools.MusicGlyph.MusicGlyph.MusicGlyph
 

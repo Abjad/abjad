@@ -1,5 +1,5 @@
-musicexpressiontools.ContextProxy
-=================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.ContextProxy
+=====================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.ContextProxy.ContextProxy.ContextProxy
 

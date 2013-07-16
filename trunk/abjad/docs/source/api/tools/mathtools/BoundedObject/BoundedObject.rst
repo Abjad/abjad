@@ -1,5 +1,5 @@
-mathtools.BoundedObject
-=======================
+:py:mod:`mathtools <abjad.tools.mathtools>`.BoundedObject
+=========================================================
 
 .. abjad-lineage:: abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject
 

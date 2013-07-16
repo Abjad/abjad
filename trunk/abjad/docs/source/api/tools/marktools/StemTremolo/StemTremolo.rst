@@ -1,5 +1,5 @@
-marktools.StemTremolo
-=====================
+:py:mod:`marktools <abjad.tools.marktools>`.StemTremolo
+=======================================================
 
 .. abjad-lineage:: abjad.tools.marktools.StemTremolo.StemTremolo.StemTremolo
 

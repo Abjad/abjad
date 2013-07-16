@@ -1,5 +1,5 @@
-componenttools.ContainmentSignature
-===================================
+:py:mod:`componenttools <abjad.tools.componenttools>`.ContainmentSignature
+==========================================================================
 
 .. abjad-lineage:: abjad.tools.componenttools.ContainmentSignature.ContainmentSignature.ContainmentSignature
 

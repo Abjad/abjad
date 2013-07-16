@@ -1,5 +1,5 @@
-scoremanagertools.selectors.ArticulationHandlerSelector
-=======================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.selectors.ArticulationHandlerSelector
+========================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.selectors.ArticulationHandlerSelector.ArticulationHandlerSelector.ArticulationHandlerSelector
 

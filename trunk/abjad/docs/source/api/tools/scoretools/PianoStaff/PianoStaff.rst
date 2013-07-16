@@ -1,5 +1,5 @@
-scoretools.PianoStaff
-=====================
+:py:mod:`scoretools <abjad.tools.scoretools>`.PianoStaff
+========================================================
 
 .. abjad-lineage:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff
 

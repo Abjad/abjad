@@ -1,5 +1,5 @@
-testtools.BenchmarkScoreMaker
-=============================
+:py:mod:`testtools <abjad.tools.testtools>`.BenchmarkScoreMaker
+===============================================================
 
 .. abjad-lineage:: abjad.tools.testtools.BenchmarkScoreMaker.BenchmarkScoreMaker.BenchmarkScoreMaker
 

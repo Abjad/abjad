@@ -1,5 +1,5 @@
-scoremanagertools.selectors.PitchClassReservoirSelector
-=======================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.selectors.PitchClassReservoirSelector
+========================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.selectors.PitchClassReservoirSelector.PitchClassReservoirSelector.PitchClassReservoirSelector
 

@@ -1,5 +1,5 @@
-instrumenttools.BassFlute
-=========================
+:py:mod:`instrumenttools <abjad.tools.instrumenttools>`.BassFlute
+=================================================================
 
 .. abjad-lineage:: abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute
 

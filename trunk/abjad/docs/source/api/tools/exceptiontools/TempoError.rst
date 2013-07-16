@@ -1,5 +1,5 @@
-exceptiontools.TempoError
-=========================
+:py:mod:`exceptiontools <abjad.tools.exceptiontools>`.TempoError
+================================================================
 
 .. abjad-lineage:: abjad.tools.exceptiontools.TempoError.TempoError
 

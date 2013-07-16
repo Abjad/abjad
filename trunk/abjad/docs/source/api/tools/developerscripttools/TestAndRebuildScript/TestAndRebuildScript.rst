@@ -1,5 +1,5 @@
-developerscripttools.TestAndRebuildScript
-=========================================
+:py:mod:`developerscripttools <abjad.tools.developerscripttools>`.TestAndRebuildScript
+======================================================================================
 
 .. abjad-lineage:: abjad.tools.developerscripttools.TestAndRebuildScript.TestAndRebuildScript.TestAndRebuildScript
 

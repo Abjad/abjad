@@ -1,5 +1,5 @@
-documentationtools.ReSTAutodocDirective
-=======================================
+:py:mod:`documentationtools <abjad.tools.documentationtools>`.ReSTAutodocDirective
+==================================================================================
 
 .. abjad-lineage:: abjad.tools.documentationtools.ReSTAutodocDirective.ReSTAutodocDirective.ReSTAutodocDirective
 

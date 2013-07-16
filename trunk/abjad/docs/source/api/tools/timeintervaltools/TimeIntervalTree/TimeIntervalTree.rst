@@ -1,5 +1,5 @@
-timeintervaltools.TimeIntervalTree
-==================================
+:py:mod:`timeintervaltools <abjad.tools.timeintervaltools>`.TimeIntervalTree
+============================================================================
 
 .. abjad-lineage:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree
 

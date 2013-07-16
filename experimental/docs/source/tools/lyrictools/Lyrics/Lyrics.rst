@@ -1,5 +1,5 @@
-lyrictools.Lyrics
-=================
+:py:mod:`lyrictools <experimental.tools.lyrictools>`.Lyrics
+===========================================================
 
 .. abjad-lineage:: experimental.tools.lyrictools.Lyrics.Lyrics.Lyrics
 

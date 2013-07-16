@@ -1,5 +1,5 @@
-scoremanagertools.io.UserInputGetterPrompt
-==========================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.io.UserInputGetterPrompt
+===========================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.io.UserInputGetterPrompt.UserInputGetterPrompt.UserInputGetterPrompt
 

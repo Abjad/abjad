@@ -1,5 +1,5 @@
-quantizationtools.BeatwiseQTarget
-=================================
+:py:mod:`quantizationtools <abjad.tools.quantizationtools>`.BeatwiseQTarget
+===========================================================================
 
 .. abjad-lineage:: abjad.tools.quantizationtools.BeatwiseQTarget.BeatwiseQTarget.BeatwiseQTarget
 

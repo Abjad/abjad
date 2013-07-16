@@ -1,5 +1,5 @@
-lilypondfiletools.NonattributedBlock
-====================================
+:py:mod:`lilypondfiletools <abjad.tools.lilypondfiletools>`.NonattributedBlock
+==============================================================================
 
 .. abjad-lineage:: abjad.tools.lilypondfiletools.NonattributedBlock.NonattributedBlock.NonattributedBlock
 

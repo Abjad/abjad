@@ -1,5 +1,5 @@
-rhythmmakertools.EqualDivisionRhythmMaker
-=========================================
+:py:mod:`rhythmmakertools <abjad.tools.rhythmmakertools>`.EqualDivisionRhythmMaker
+==================================================================================
 
 .. abjad-lineage:: abjad.tools.rhythmmakertools.EqualDivisionRhythmMaker.EqualDivisionRhythmMaker.EqualDivisionRhythmMaker
 

@@ -1,5 +1,5 @@
-handlertools.StemTremoloHandler
-===============================
+:py:mod:`handlertools <experimental.tools.handlertools>`.StemTremoloHandler
+===========================================================================
 
 .. abjad-lineage:: experimental.tools.handlertools.StemTremoloHandler.StemTremoloHandler.StemTremoloHandler
 

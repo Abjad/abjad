@@ -1,5 +1,5 @@
-sievetools.Sieve
-================
+:py:mod:`sievetools <abjad.tools.sievetools>`.Sieve
+===================================================
 
 .. abjad-lineage:: abjad.tools.sievetools.Sieve.Sieve.Sieve
 

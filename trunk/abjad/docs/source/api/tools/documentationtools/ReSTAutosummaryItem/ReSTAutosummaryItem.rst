@@ -1,5 +1,5 @@
-documentationtools.ReSTAutosummaryItem
-======================================
+:py:mod:`documentationtools <abjad.tools.documentationtools>`.ReSTAutosummaryItem
+=================================================================================
 
 .. abjad-lineage:: abjad.tools.documentationtools.ReSTAutosummaryItem.ReSTAutosummaryItem.ReSTAutosummaryItem
 

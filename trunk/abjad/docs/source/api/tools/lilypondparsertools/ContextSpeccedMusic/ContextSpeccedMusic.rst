@@ -1,5 +1,5 @@
-lilypondparsertools.ContextSpeccedMusic
-=======================================
+:py:mod:`lilypondparsertools <abjad.tools.lilypondparsertools>`.ContextSpeccedMusic
+===================================================================================
 
 .. abjad-lineage:: abjad.tools.lilypondparsertools.ContextSpeccedMusic.ContextSpeccedMusic.ContextSpeccedMusic
 

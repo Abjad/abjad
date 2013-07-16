@@ -1,5 +1,5 @@
-wellformednesstools.IntermarkedHairpinCheck
-===========================================
+:py:mod:`wellformednesstools <abjad.tools.wellformednesstools>`.IntermarkedHairpinCheck
+=======================================================================================
 
 .. abjad-lineage:: abjad.tools.wellformednesstools.IntermarkedHairpinCheck.IntermarkedHairpinCheck.IntermarkedHairpinCheck
 

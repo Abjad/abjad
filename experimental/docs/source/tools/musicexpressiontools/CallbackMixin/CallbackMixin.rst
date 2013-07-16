@@ -1,5 +1,5 @@
-musicexpressiontools.CallbackMixin
-==================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.CallbackMixin
+======================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.CallbackMixin.CallbackMixin.CallbackMixin
 

@@ -1,5 +1,5 @@
-rhythmmakertools.NoteRhythmMaker
-================================
+:py:mod:`rhythmmakertools <abjad.tools.rhythmmakertools>`.NoteRhythmMaker
+=========================================================================
 
 .. abjad-lineage:: abjad.tools.rhythmmakertools.NoteRhythmMaker.NoteRhythmMaker.NoteRhythmMaker
 

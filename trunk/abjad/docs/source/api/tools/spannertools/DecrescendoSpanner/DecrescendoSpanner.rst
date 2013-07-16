@@ -1,5 +1,5 @@
-spannertools.DecrescendoSpanner
-===============================
+:py:mod:`spannertools <abjad.tools.spannertools>`.DecrescendoSpanner
+====================================================================
 
 .. abjad-lineage:: abjad.tools.spannertools.DecrescendoSpanner.DecrescendoSpanner.DecrescendoSpanner
 

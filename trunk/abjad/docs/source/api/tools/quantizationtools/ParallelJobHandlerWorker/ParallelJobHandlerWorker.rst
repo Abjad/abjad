@@ -1,5 +1,5 @@
-quantizationtools.ParallelJobHandlerWorker
-==========================================
+:py:mod:`quantizationtools <abjad.tools.quantizationtools>`.ParallelJobHandlerWorker
+====================================================================================
 
 .. abjad-lineage:: abjad.tools.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker
 

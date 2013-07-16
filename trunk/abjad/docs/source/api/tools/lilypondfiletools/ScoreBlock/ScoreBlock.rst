@@ -1,5 +1,5 @@
-lilypondfiletools.ScoreBlock
-============================
+:py:mod:`lilypondfiletools <abjad.tools.lilypondfiletools>`.ScoreBlock
+======================================================================
 
 .. abjad-lineage:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock
 

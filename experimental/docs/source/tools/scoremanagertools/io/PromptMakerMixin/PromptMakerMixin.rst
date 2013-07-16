@@ -1,5 +1,5 @@
-scoremanagertools.io.PromptMakerMixin
-=====================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.io.PromptMakerMixin
+======================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.io.PromptMakerMixin.PromptMakerMixin.PromptMakerMixin
 

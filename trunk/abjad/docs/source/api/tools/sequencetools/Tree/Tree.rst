@@ -1,5 +1,5 @@
-sequencetools.Tree
-==================
+:py:mod:`sequencetools <abjad.tools.sequencetools>`.Tree
+========================================================
 
 .. abjad-lineage:: abjad.tools.sequencetools.Tree.Tree.Tree
 

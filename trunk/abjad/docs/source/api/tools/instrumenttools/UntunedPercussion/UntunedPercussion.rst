@@ -1,5 +1,5 @@
-instrumenttools.UntunedPercussion
-=================================
+:py:mod:`instrumenttools <abjad.tools.instrumenttools>`.UntunedPercussion
+=========================================================================
 
 .. abjad-lineage:: abjad.tools.instrumenttools.UntunedPercussion.UntunedPercussion.UntunedPercussion
 

@@ -1,5 +1,5 @@
-lilypondfiletools.BookpartBlock
-===============================
+:py:mod:`lilypondfiletools <abjad.tools.lilypondfiletools>`.BookpartBlock
+=========================================================================
 
 .. abjad-lineage:: abjad.tools.lilypondfiletools.BookpartBlock.BookpartBlock.BookpartBlock
 

@@ -1,5 +1,5 @@
-instrumenttools.BaritoneVoice
-=============================
+:py:mod:`instrumenttools <abjad.tools.instrumenttools>`.BaritoneVoice
+=====================================================================
 
 .. abjad-lineage:: abjad.tools.instrumenttools.BaritoneVoice.BaritoneVoice.BaritoneVoice
 

@@ -1,5 +1,5 @@
-notetools.NaturalHarmonic
-=========================
+:py:mod:`notetools <abjad.tools.notetools>`.NaturalHarmonic
+===========================================================
 
 .. abjad-lineage:: abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic
 

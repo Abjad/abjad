@@ -1,5 +1,5 @@
-instrumenttools.FrenchHorn
-==========================
+:py:mod:`instrumenttools <abjad.tools.instrumenttools>`.FrenchHorn
+==================================================================
 
 .. abjad-lineage:: abjad.tools.instrumenttools.FrenchHorn.FrenchHorn.FrenchHorn
 

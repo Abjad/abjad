@@ -1,5 +1,5 @@
-scoretemplatetools.GroupedStavesScoreTemplate
-=============================================
+:py:mod:`scoretemplatetools <abjad.tools.scoretemplatetools>`.GroupedStavesScoreTemplate
+========================================================================================
 
 .. abjad-lineage:: abjad.tools.scoretemplatetools.GroupedStavesScoreTemplate.GroupedStavesScoreTemplate.GroupedStavesScoreTemplate
 

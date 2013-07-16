@@ -1,5 +1,5 @@
-pitchtools.HarmonicObject
-=========================
+:py:mod:`pitchtools <abjad.tools.pitchtools>`.HarmonicObject
+============================================================
 
 .. abjad-lineage:: abjad.tools.pitchtools.HarmonicObject.HarmonicObject.HarmonicObject
 

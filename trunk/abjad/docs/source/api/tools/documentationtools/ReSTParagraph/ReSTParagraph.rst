@@ -1,5 +1,5 @@
-documentationtools.ReSTParagraph
-================================
+:py:mod:`documentationtools <abjad.tools.documentationtools>`.ReSTParagraph
+===========================================================================
 
 .. abjad-lineage:: abjad.tools.documentationtools.ReSTParagraph.ReSTParagraph.ReSTParagraph
 

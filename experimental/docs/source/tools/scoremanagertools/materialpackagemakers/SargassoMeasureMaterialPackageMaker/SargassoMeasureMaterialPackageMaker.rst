@@ -1,5 +1,5 @@
-scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker
-===========================================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.materialpackagemakers.SargassoMeasureMaterialPackageMaker
+============================================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.materialpackagemakers.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker.SargassoMeasureMaterialPackageMaker
 

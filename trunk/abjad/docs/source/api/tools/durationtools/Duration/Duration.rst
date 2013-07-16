@@ -1,5 +1,5 @@
-durationtools.Duration
-======================
+:py:mod:`durationtools <abjad.tools.durationtools>`.Duration
+============================================================
 
 .. abjad-lineage:: abjad.tools.durationtools.Duration.Duration.Duration
 

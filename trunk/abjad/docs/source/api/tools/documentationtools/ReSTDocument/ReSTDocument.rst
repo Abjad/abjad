@@ -1,5 +1,5 @@
-documentationtools.ReSTDocument
-===============================
+:py:mod:`documentationtools <abjad.tools.documentationtools>`.ReSTDocument
+==========================================================================
 
 .. abjad-lineage:: abjad.tools.documentationtools.ReSTDocument.ReSTDocument.ReSTDocument
 

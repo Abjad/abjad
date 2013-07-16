@@ -1,5 +1,5 @@
-scoretools.GrandStaff
-=====================
+:py:mod:`scoretools <abjad.tools.scoretools>`.GrandStaff
+========================================================
 
 .. abjad-lineage:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff
 

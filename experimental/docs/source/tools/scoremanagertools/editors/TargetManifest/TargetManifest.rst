@@ -1,5 +1,5 @@
-scoremanagertools.editors.TargetManifest
-========================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.editors.TargetManifest
+=========================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.TargetManifest.TargetManifest.TargetManifest
 

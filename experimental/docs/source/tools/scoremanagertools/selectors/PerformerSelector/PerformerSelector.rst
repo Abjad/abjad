@@ -1,5 +1,5 @@
-scoremanagertools.selectors.PerformerSelector
-=============================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.selectors.PerformerSelector
+==============================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.selectors.PerformerSelector.PerformerSelector.PerformerSelector
 

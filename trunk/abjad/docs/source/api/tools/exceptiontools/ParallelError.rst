@@ -1,5 +1,5 @@
-exceptiontools.ParallelError
-============================
+:py:mod:`exceptiontools <abjad.tools.exceptiontools>`.ParallelError
+===================================================================
 
 .. abjad-lineage:: abjad.tools.exceptiontools.ParallelError.ParallelError
 

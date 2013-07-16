@@ -1,5 +1,5 @@
-datastructuretools.BreakPointFunction
-=====================================
+:py:mod:`datastructuretools <abjad.tools.datastructuretools>`.BreakPointFunction
+================================================================================
 
 .. abjad-lineage:: abjad.tools.datastructuretools.BreakPointFunction.BreakPointFunction.BreakPointFunction
 

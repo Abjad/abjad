@@ -1,5 +1,5 @@
-documentationtools.ReSTTOCItem
-==============================
+:py:mod:`documentationtools <abjad.tools.documentationtools>`.ReSTTOCItem
+=========================================================================
 
 .. abjad-lineage:: abjad.tools.documentationtools.ReSTTOCItem.ReSTTOCItem.ReSTTOCItem
 

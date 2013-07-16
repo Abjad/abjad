@@ -1,5 +1,5 @@
-exceptiontools.ClefError
-========================
+:py:mod:`exceptiontools <abjad.tools.exceptiontools>`.ClefError
+===============================================================
 
 .. abjad-lineage:: abjad.tools.exceptiontools.ClefError.ClefError
 

@@ -1,5 +1,5 @@
-scoremanagertools.selectors.NoteHeadHandlerSelector
-===================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.selectors.NoteHeadHandlerSelector
+====================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.selectors.NoteHeadHandlerSelector.NoteHeadHandlerSelector.NoteHeadHandlerSelector
 

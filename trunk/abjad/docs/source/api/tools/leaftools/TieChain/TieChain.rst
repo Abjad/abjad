@@ -1,5 +1,5 @@
-leaftools.TieChain
-==================
+:py:mod:`leaftools <abjad.tools.leaftools>`.TieChain
+====================================================
 
 .. abjad-lineage:: abjad.tools.leaftools.TieChain.TieChain.TieChain
 

@@ -1,5 +1,5 @@
-musicexpressiontools.ArticulationSetExpression
-==============================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.ArticulationSetExpression
+==================================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.ArticulationSetExpression.ArticulationSetExpression.ArticulationSetExpression
 

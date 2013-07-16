@@ -1,5 +1,5 @@
-instrumenttools.Accordion
-=========================
+:py:mod:`instrumenttools <abjad.tools.instrumenttools>`.Accordion
+=================================================================
 
 .. abjad-lineage:: abjad.tools.instrumenttools.Accordion.Accordion.Accordion
 

@@ -1,5 +1,5 @@
-lyrictools.LyricSpace
-=====================
+:py:mod:`lyrictools <experimental.tools.lyrictools>`.LyricSpace
+===============================================================
 
 .. abjad-lineage:: experimental.tools.lyrictools.LyricSpace.LyricSpace.LyricSpace
 

@@ -1,5 +1,5 @@
-spannertools.DuratedComplexBeamSpanner
-======================================
+:py:mod:`spannertools <abjad.tools.spannertools>`.DuratedComplexBeamSpanner
+===========================================================================
 
 .. abjad-lineage:: abjad.tools.spannertools.DuratedComplexBeamSpanner.DuratedComplexBeamSpanner.DuratedComplexBeamSpanner
 

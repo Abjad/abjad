@@ -1,5 +1,5 @@
-exceptiontools.MeasureError
-===========================
+:py:mod:`exceptiontools <abjad.tools.exceptiontools>`.MeasureError
+==================================================================
 
 .. abjad-lineage:: abjad.tools.exceptiontools.MeasureError.MeasureError
 

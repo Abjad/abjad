@@ -1,5 +1,5 @@
-wellformednesstools.OverlappingGlissandoCheck
-=============================================
+:py:mod:`wellformednesstools <abjad.tools.wellformednesstools>`.OverlappingGlissandoCheck
+=========================================================================================
 
 .. abjad-lineage:: abjad.tools.wellformednesstools.OverlappingGlissandoCheck.OverlappingGlissandoCheck.OverlappingGlissandoCheck
 

@@ -1,5 +1,5 @@
-scoremanagertools.specifiers.TempoSpecifier
-===========================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.specifiers.TempoSpecifier
+============================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.specifiers.TempoSpecifier.TempoSpecifier.TempoSpecifier
 

@@ -1,5 +1,5 @@
-documentationtools.ClassCrawler
-===============================
+:py:mod:`documentationtools <abjad.tools.documentationtools>`.ClassCrawler
+==========================================================================
 
 .. abjad-lineage:: abjad.tools.documentationtools.ClassCrawler.ClassCrawler.ClassCrawler
 

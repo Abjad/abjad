@@ -1,5 +1,5 @@
-musicexpressiontools.ConcreteInterpreter
-========================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.ConcreteInterpreter
+============================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter
 

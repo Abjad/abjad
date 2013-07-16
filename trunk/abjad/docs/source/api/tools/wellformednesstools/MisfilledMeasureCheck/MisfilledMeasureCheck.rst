@@ -1,5 +1,5 @@
-wellformednesstools.MisfilledMeasureCheck
-=========================================
+:py:mod:`wellformednesstools <abjad.tools.wellformednesstools>`.MisfilledMeasureCheck
+=====================================================================================
 
 .. abjad-lineage:: abjad.tools.wellformednesstools.MisfilledMeasureCheck.MisfilledMeasureCheck.MisfilledMeasureCheck
 

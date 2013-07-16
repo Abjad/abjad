@@ -1,5 +1,5 @@
-resttools.MultiMeasureRest
-==========================
+:py:mod:`resttools <abjad.tools.resttools>`.MultiMeasureRest
+============================================================
 
 .. abjad-lineage:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest
 

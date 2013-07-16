@@ -1,5 +1,5 @@
-quantizationtools.NullAttackPointOptimizer
-==========================================
+:py:mod:`quantizationtools <abjad.tools.quantizationtools>`.NullAttackPointOptimizer
+====================================================================================
 
 .. abjad-lineage:: abjad.tools.quantizationtools.NullAttackPointOptimizer.NullAttackPointOptimizer.NullAttackPointOptimizer
 

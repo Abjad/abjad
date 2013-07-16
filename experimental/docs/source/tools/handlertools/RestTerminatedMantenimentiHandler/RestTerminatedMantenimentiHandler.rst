@@ -1,5 +1,5 @@
-handlertools.RestTerminatedMantenimentiHandler
-==============================================
+:py:mod:`handlertools <experimental.tools.handlertools>`.RestTerminatedMantenimentiHandler
+==========================================================================================
 
 .. abjad-lineage:: experimental.tools.handlertools.RestTerminatedMantenimentiHandler.RestTerminatedMantenimentiHandler.RestTerminatedMantenimentiHandler
 

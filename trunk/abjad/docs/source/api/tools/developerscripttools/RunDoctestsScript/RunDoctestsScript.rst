@@ -1,5 +1,5 @@
-developerscripttools.RunDoctestsScript
-======================================
+:py:mod:`developerscripttools <abjad.tools.developerscripttools>`.RunDoctestsScript
+===================================================================================
 
 .. abjad-lineage:: abjad.tools.developerscripttools.RunDoctestsScript.RunDoctestsScript.RunDoctestsScript
 

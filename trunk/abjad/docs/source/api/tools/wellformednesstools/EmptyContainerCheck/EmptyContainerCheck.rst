@@ -1,5 +1,5 @@
-wellformednesstools.EmptyContainerCheck
-=======================================
+:py:mod:`wellformednesstools <abjad.tools.wellformednesstools>`.EmptyContainerCheck
+===================================================================================
 
 .. abjad-lineage:: abjad.tools.wellformednesstools.EmptyContainerCheck.EmptyContainerCheck.EmptyContainerCheck
 

@@ -1,5 +1,5 @@
-handlertools.OctaveTranspositionHandler
-=======================================
+:py:mod:`handlertools <experimental.tools.handlertools>`.OctaveTranspositionHandler
+===================================================================================
 
 .. abjad-lineage:: experimental.tools.handlertools.OctaveTranspositionHandler.OctaveTranspositionHandler.OctaveTranspositionHandler
 

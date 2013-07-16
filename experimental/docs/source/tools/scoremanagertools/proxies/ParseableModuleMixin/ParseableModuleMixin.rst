@@ -1,5 +1,5 @@
-scoremanagertools.proxies.ParseableModuleMixin
-==============================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.proxies.ParseableModuleMixin
+===============================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.proxies.ParseableModuleMixin.ParseableModuleMixin.ParseableModuleMixin
 

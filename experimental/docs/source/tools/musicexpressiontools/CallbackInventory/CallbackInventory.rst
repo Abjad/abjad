@@ -1,5 +1,5 @@
-musicexpressiontools.CallbackInventory
-======================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.CallbackInventory
+==========================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.CallbackInventory.CallbackInventory.CallbackInventory
 

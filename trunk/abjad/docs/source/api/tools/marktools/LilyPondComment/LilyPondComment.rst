@@ -1,5 +1,5 @@
-marktools.LilyPondComment
-=========================
+:py:mod:`marktools <abjad.tools.marktools>`.LilyPondComment
+===========================================================
 
 .. abjad-lineage:: abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment
 

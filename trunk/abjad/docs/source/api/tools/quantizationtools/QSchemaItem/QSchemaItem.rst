@@ -1,5 +1,5 @@
-quantizationtools.QSchemaItem
-=============================
+:py:mod:`quantizationtools <abjad.tools.quantizationtools>`.QSchemaItem
+=======================================================================
 
 .. abjad-lineage:: abjad.tools.quantizationtools.QSchemaItem.QSchemaItem.QSchemaItem
 

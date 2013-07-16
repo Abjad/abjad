@@ -1,5 +1,5 @@
-musicexpressiontools.RotationIndicator
-======================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.RotationIndicator
+==========================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.RotationIndicator.RotationIndicator.RotationIndicator
 

@@ -1,5 +1,5 @@
-scoremanagertools.selectors.ReservoirStartHelperSelector
-========================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.selectors.ReservoirStartHelperSelector
+=========================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.selectors.ReservoirStartHelperSelector.ReservoirStartHelperSelector.ReservoirStartHelperSelector
 

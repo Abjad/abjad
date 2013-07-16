@@ -1,5 +1,5 @@
-voicetools.Voice
-================
+:py:mod:`voicetools <abjad.tools.voicetools>`.Voice
+===================================================
 
 .. abjad-lineage:: abjad.tools.voicetools.Voice.Voice.Voice
 

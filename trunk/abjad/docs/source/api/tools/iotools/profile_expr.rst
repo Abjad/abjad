@@ -1,4 +1,4 @@
-iotools.profile_expr
-====================
+:py:mod:`iotools <abjad.tools.iotools>`.profile_expr
+====================================================
 
 .. autofunction:: abjad.tools.iotools.profile_expr.profile_expr

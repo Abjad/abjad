@@ -1,5 +1,5 @@
-pitchtools.Accidental
-=====================
+:py:mod:`pitchtools <abjad.tools.pitchtools>`.Accidental
+========================================================
 
 .. abjad-lineage:: abjad.tools.pitchtools.Accidental.Accidental.Accidental
 

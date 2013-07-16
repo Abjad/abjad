@@ -1,5 +1,5 @@
-musicexpressiontools.AnchoredExpression
-=======================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.AnchoredExpression
+===========================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.AnchoredExpression.AnchoredExpression.AnchoredExpression
 

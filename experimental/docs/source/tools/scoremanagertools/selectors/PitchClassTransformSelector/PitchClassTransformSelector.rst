@@ -1,5 +1,5 @@
-scoremanagertools.selectors.PitchClassTransformSelector
-=======================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.selectors.PitchClassTransformSelector
+========================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.selectors.PitchClassTransformSelector.PitchClassTransformSelector.PitchClassTransformSelector
 

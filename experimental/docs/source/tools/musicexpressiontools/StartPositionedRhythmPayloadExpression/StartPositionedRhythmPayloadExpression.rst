@@ -1,5 +1,5 @@
-musicexpressiontools.StartPositionedRhythmPayloadExpression
-===========================================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.StartPositionedRhythmPayloadExpression
+===============================================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.StartPositionedRhythmPayloadExpression.StartPositionedRhythmPayloadExpression.StartPositionedRhythmPayloadExpression
 

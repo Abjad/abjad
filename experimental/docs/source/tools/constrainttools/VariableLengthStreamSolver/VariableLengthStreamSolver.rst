@@ -1,5 +1,5 @@
-constrainttools.VariableLengthStreamSolver
-==========================================
+:py:mod:`constrainttools <experimental.tools.constrainttools>`.VariableLengthStreamSolver
+=========================================================================================
 
 .. abjad-lineage:: experimental.tools.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver
 

@@ -1,5 +1,5 @@
-marktools.Annotation
-====================
+:py:mod:`marktools <abjad.tools.marktools>`.Annotation
+======================================================
 
 .. abjad-lineage:: abjad.tools.marktools.Annotation.Annotation.Annotation
 

@@ -1,5 +1,5 @@
-pitchtools.HarmonicInterval
-===========================
+:py:mod:`pitchtools <abjad.tools.pitchtools>`.HarmonicInterval
+==============================================================
 
 .. abjad-lineage:: abjad.tools.pitchtools.HarmonicInterval.HarmonicInterval.HarmonicInterval
 

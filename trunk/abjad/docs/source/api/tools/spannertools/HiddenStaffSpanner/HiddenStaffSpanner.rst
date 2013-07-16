@@ -1,5 +1,5 @@
-spannertools.HiddenStaffSpanner
-===============================
+:py:mod:`spannertools <abjad.tools.spannertools>`.HiddenStaffSpanner
+====================================================================
 
 .. abjad-lineage:: abjad.tools.spannertools.HiddenStaffSpanner.HiddenStaffSpanner.HiddenStaffSpanner
 

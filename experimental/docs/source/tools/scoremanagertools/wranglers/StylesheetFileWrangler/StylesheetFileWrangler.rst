@@ -1,5 +1,5 @@
-scoremanagertools.wranglers.StylesheetFileWrangler
-==================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.wranglers.StylesheetFileWrangler
+===================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.wranglers.StylesheetFileWrangler.StylesheetFileWrangler.StylesheetFileWrangler
 

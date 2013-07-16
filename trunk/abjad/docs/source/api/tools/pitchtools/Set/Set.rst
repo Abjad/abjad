@@ -1,5 +1,5 @@
-pitchtools.Set
-==============
+:py:mod:`pitchtools <abjad.tools.pitchtools>`.Set
+=================================================
 
 .. abjad-lineage:: abjad.tools.pitchtools.Set.Set.Set
 

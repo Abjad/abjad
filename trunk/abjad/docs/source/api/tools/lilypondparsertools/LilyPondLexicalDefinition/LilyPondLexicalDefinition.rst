@@ -1,5 +1,5 @@
-lilypondparsertools.LilyPondLexicalDefinition
-=============================================
+:py:mod:`lilypondparsertools <abjad.tools.lilypondparsertools>`.LilyPondLexicalDefinition
+=========================================================================================
 
 .. abjad-lineage:: abjad.tools.lilypondparsertools.LilyPondLexicalDefinition.LilyPondLexicalDefinition.LilyPondLexicalDefinition
 

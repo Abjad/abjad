@@ -1,5 +1,5 @@
-constrainttools.RelativeIndexConstraint
-=======================================
+:py:mod:`constrainttools <experimental.tools.constrainttools>`.RelativeIndexConstraint
+======================================================================================
 
 .. abjad-lineage:: experimental.tools.constrainttools.RelativeIndexConstraint.RelativeIndexConstraint.RelativeIndexConstraint
 

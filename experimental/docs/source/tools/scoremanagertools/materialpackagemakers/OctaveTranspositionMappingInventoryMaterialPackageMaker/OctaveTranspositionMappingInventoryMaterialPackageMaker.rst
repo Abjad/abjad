@@ -1,5 +1,5 @@
-scoremanagertools.materialpackagemakers.OctaveTranspositionMappingInventoryMaterialPackageMaker
-===============================================================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.materialpackagemakers.OctaveTranspositionMappingInventoryMaterialPackageMaker
+================================================================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.materialpackagemakers.OctaveTranspositionMappingInventoryMaterialPackageMaker.OctaveTranspositionMappingInventoryMaterialPackageMaker.OctaveTranspositionMappingInventoryMaterialPackageMaker
 

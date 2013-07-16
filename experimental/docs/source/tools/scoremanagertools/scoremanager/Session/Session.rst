@@ -1,5 +1,5 @@
-scoremanagertools.scoremanager.Session
-======================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.scoremanager.Session
+=======================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.scoremanager.Session.Session.Session
 

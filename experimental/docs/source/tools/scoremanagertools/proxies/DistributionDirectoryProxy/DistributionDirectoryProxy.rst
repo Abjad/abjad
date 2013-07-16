@@ -1,5 +1,5 @@
-scoremanagertools.proxies.DistributionDirectoryProxy
-====================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.proxies.DistributionDirectoryProxy
+=====================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.proxies.DistributionDirectoryProxy.DistributionDirectoryProxy.DistributionDirectoryProxy
 

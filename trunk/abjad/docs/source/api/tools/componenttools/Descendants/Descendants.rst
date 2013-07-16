@@ -1,5 +1,5 @@
-componenttools.Descendants
-==========================
+:py:mod:`componenttools <abjad.tools.componenttools>`.Descendants
+=================================================================
 
 .. abjad-lineage:: abjad.tools.componenttools.Descendants.Descendants.Descendants
 

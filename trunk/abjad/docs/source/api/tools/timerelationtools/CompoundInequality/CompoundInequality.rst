@@ -1,5 +1,5 @@
-timerelationtools.CompoundInequality
-====================================
+:py:mod:`timerelationtools <abjad.tools.timerelationtools>`.CompoundInequality
+==============================================================================
 
 .. abjad-lineage:: abjad.tools.timerelationtools.CompoundInequality.CompoundInequality.CompoundInequality
 

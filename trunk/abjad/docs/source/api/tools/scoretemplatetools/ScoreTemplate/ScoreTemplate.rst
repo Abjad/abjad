@@ -1,5 +1,5 @@
-scoretemplatetools.ScoreTemplate
-================================
+:py:mod:`scoretemplatetools <abjad.tools.scoretemplatetools>`.ScoreTemplate
+===========================================================================
 
 .. abjad-lineage:: abjad.tools.scoretemplatetools.ScoreTemplate.ScoreTemplate.ScoreTemplate
 

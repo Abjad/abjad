@@ -1,5 +1,5 @@
-abjadbooktools.AbjadBookProcessor
-=================================
+:py:mod:`abjadbooktools <abjad.tools.abjadbooktools>`.AbjadBookProcessor
+========================================================================
 
 .. abjad-lineage:: abjad.tools.abjadbooktools.AbjadBookProcessor.AbjadBookProcessor.AbjadBookProcessor
 

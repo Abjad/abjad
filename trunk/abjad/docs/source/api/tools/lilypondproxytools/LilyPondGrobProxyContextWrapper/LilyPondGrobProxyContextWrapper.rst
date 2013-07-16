@@ -1,5 +1,5 @@
-lilypondproxytools.LilyPondGrobProxyContextWrapper
-==================================================
+:py:mod:`lilypondproxytools <abjad.tools.lilypondproxytools>`.LilyPondGrobProxyContextWrapper
+=============================================================================================
 
 .. abjad-lineage:: abjad.tools.lilypondproxytools.LilyPondGrobProxyContextWrapper.LilyPondGrobProxyContextWrapper.LilyPondGrobProxyContextWrapper
 

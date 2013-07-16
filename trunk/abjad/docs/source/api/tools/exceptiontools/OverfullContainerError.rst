@@ -1,5 +1,5 @@
-exceptiontools.OverfullContainerError
-=====================================
+:py:mod:`exceptiontools <abjad.tools.exceptiontools>`.OverfullContainerError
+============================================================================
 
 .. abjad-lineage:: abjad.tools.exceptiontools.OverfullContainerError.OverfullContainerError
 

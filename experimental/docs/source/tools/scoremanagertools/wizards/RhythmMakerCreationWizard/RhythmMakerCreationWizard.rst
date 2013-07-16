@@ -1,5 +1,5 @@
-scoremanagertools.wizards.RhythmMakerCreationWizard
-===================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.wizards.RhythmMakerCreationWizard
+====================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.wizards.RhythmMakerCreationWizard.RhythmMakerCreationWizard.RhythmMakerCreationWizard
 

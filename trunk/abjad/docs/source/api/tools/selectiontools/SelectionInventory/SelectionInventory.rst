@@ -1,5 +1,5 @@
-selectiontools.SelectionInventory
-=================================
+:py:mod:`selectiontools <abjad.tools.selectiontools>`.SelectionInventory
+========================================================================
 
 .. abjad-lineage:: abjad.tools.selectiontools.SelectionInventory.SelectionInventory.SelectionInventory
 

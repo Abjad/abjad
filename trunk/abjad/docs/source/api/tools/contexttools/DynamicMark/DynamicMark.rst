@@ -1,5 +1,5 @@
-contexttools.DynamicMark
-========================
+:py:mod:`contexttools <abjad.tools.contexttools>`.DynamicMark
+=============================================================
 
 .. abjad-lineage:: abjad.tools.contexttools.DynamicMark.DynamicMark.DynamicMark
 

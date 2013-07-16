@@ -1,5 +1,5 @@
-exceptiontools.ExtraMarkError
-=============================
+:py:mod:`exceptiontools <abjad.tools.exceptiontools>`.ExtraMarkError
+====================================================================
 
 .. abjad-lineage:: abjad.tools.exceptiontools.ExtraMarkError.ExtraMarkError
 

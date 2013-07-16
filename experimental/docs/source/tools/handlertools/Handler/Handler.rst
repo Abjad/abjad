@@ -1,5 +1,5 @@
-handlertools.Handler
-====================
+:py:mod:`handlertools <experimental.tools.handlertools>`.Handler
+================================================================
 
 .. abjad-lineage:: experimental.tools.handlertools.Handler.Handler.Handler
 

@@ -1,5 +1,5 @@
-musicexpressiontools.DivisionList
-=================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.DivisionList
+=====================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.DivisionList.DivisionList.DivisionList
 

@@ -1,5 +1,5 @@
-developerscripttools.SvnCommitScript
-====================================
+:py:mod:`developerscripttools <abjad.tools.developerscripttools>`.SvnCommitScript
+=================================================================================
 
 .. abjad-lineage:: abjad.tools.developerscripttools.SvnCommitScript.SvnCommitScript.SvnCommitScript
 

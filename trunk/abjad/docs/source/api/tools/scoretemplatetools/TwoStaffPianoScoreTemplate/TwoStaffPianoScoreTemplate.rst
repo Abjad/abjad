@@ -1,5 +1,5 @@
-scoretemplatetools.TwoStaffPianoScoreTemplate
-=============================================
+:py:mod:`scoretemplatetools <abjad.tools.scoretemplatetools>`.TwoStaffPianoScoreTemplate
+========================================================================================
 
 .. abjad-lineage:: abjad.tools.scoretemplatetools.TwoStaffPianoScoreTemplate.TwoStaffPianoScoreTemplate.TwoStaffPianoScoreTemplate
 

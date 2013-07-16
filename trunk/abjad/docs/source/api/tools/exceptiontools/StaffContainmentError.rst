@@ -1,5 +1,5 @@
-exceptiontools.StaffContainmentError
-====================================
+:py:mod:`exceptiontools <abjad.tools.exceptiontools>`.StaffContainmentError
+===========================================================================
 
 .. abjad-lineage:: abjad.tools.exceptiontools.StaffContainmentError.StaffContainmentError
 

@@ -1,5 +1,5 @@
-developerscripttools.BuildApiScript
-===================================
+:py:mod:`developerscripttools <abjad.tools.developerscripttools>`.BuildApiScript
+================================================================================
 
 .. abjad-lineage:: abjad.tools.developerscripttools.BuildApiScript.BuildApiScript.BuildApiScript
 

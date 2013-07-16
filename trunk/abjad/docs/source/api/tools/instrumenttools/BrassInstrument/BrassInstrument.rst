@@ -1,5 +1,5 @@
-instrumenttools.BrassInstrument
-===============================
+:py:mod:`instrumenttools <abjad.tools.instrumenttools>`.BrassInstrument
+=======================================================================
 
 .. abjad-lineage:: abjad.tools.instrumenttools.BrassInstrument.BrassInstrument.BrassInstrument
 

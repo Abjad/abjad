@@ -1,5 +1,5 @@
-scoremanagertools.wizards.ParameterSpecifierCreationWizard
-==========================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.wizards.ParameterSpecifierCreationWizard
+===========================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.wizards.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard.ParameterSpecifierCreationWizard
 

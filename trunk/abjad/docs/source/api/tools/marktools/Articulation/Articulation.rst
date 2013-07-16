@@ -1,5 +1,5 @@
-marktools.Articulation
-======================
+:py:mod:`marktools <abjad.tools.marktools>`.Articulation
+========================================================
 
 .. abjad-lineage:: abjad.tools.marktools.Articulation.Articulation.Articulation
 

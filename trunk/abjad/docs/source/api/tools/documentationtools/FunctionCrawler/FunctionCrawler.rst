@@ -1,5 +1,5 @@
-documentationtools.FunctionCrawler
-==================================
+:py:mod:`documentationtools <abjad.tools.documentationtools>`.FunctionCrawler
+=============================================================================
 
 .. abjad-lineage:: abjad.tools.documentationtools.FunctionCrawler.FunctionCrawler.FunctionCrawler
 

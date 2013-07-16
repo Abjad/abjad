@@ -1,5 +1,5 @@
-rhythmtreetools.RhythmTreeContainer
-===================================
+:py:mod:`rhythmtreetools <abjad.tools.rhythmtreetools>`.RhythmTreeContainer
+===========================================================================
 
 .. abjad-lineage:: abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer
 

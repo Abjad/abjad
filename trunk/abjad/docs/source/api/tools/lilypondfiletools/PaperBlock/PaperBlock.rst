@@ -1,5 +1,5 @@
-lilypondfiletools.PaperBlock
-============================
+:py:mod:`lilypondfiletools <abjad.tools.lilypondfiletools>`.PaperBlock
+======================================================================
 
 .. abjad-lineage:: abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock
 

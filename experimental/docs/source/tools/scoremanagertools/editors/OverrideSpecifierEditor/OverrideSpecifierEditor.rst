@@ -1,5 +1,5 @@
-scoremanagertools.editors.OverrideSpecifierEditor
-=================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.editors.OverrideSpecifierEditor
+==================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.OverrideSpecifierEditor.OverrideSpecifierEditor.OverrideSpecifierEditor
 

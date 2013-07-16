@@ -1,5 +1,5 @@
-schemetools.SchemeColor
-=======================
+:py:mod:`schemetools <abjad.tools.schemetools>`.SchemeColor
+===========================================================
 
 .. abjad-lineage:: abjad.tools.schemetools.SchemeColor.SchemeColor.SchemeColor
 

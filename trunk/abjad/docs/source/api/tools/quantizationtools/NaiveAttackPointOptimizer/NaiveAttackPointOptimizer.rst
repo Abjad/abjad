@@ -1,5 +1,5 @@
-quantizationtools.NaiveAttackPointOptimizer
-===========================================
+:py:mod:`quantizationtools <abjad.tools.quantizationtools>`.NaiveAttackPointOptimizer
+=====================================================================================
 
 .. abjad-lineage:: abjad.tools.quantizationtools.NaiveAttackPointOptimizer.NaiveAttackPointOptimizer.NaiveAttackPointOptimizer
 

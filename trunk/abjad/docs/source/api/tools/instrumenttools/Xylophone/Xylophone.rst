@@ -1,5 +1,5 @@
-instrumenttools.Xylophone
-=========================
+:py:mod:`instrumenttools <abjad.tools.instrumenttools>`.Xylophone
+=================================================================
 
 .. abjad-lineage:: abjad.tools.instrumenttools.Xylophone.Xylophone.Xylophone
 

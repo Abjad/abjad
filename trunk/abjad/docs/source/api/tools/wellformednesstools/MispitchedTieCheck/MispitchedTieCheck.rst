@@ -1,5 +1,5 @@
-wellformednesstools.MispitchedTieCheck
-======================================
+:py:mod:`wellformednesstools <abjad.tools.wellformednesstools>`.MispitchedTieCheck
+==================================================================================
 
 .. abjad-lineage:: abjad.tools.wellformednesstools.MispitchedTieCheck.MispitchedTieCheck.MispitchedTieCheck
 

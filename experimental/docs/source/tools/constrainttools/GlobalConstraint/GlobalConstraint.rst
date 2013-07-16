@@ -1,5 +1,5 @@
-constrainttools.GlobalConstraint
-================================
+:py:mod:`constrainttools <experimental.tools.constrainttools>`.GlobalConstraint
+===============================================================================
 
 .. abjad-lineage:: experimental.tools.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint
 

@@ -1,5 +1,5 @@
-instrumenttools.Clarinet
-========================
+:py:mod:`instrumenttools <abjad.tools.instrumenttools>`.Clarinet
+================================================================
 
 .. abjad-lineage:: abjad.tools.instrumenttools.Clarinet.Clarinet.Clarinet
 

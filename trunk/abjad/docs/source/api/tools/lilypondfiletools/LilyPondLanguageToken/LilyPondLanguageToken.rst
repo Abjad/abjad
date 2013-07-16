@@ -1,5 +1,5 @@
-lilypondfiletools.LilyPondLanguageToken
-=======================================
+:py:mod:`lilypondfiletools <abjad.tools.lilypondfiletools>`.LilyPondLanguageToken
+=================================================================================
 
 .. abjad-lineage:: abjad.tools.lilypondfiletools.LilyPondLanguageToken.LilyPondLanguageToken.LilyPondLanguageToken
 

@@ -1,5 +1,5 @@
-instrumenttools.Glockenspiel
-============================
+:py:mod:`instrumenttools <abjad.tools.instrumenttools>`.Glockenspiel
+====================================================================
 
 .. abjad-lineage:: abjad.tools.instrumenttools.Glockenspiel.Glockenspiel.Glockenspiel
 

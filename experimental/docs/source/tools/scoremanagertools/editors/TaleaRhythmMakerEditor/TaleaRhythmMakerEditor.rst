@@ -1,5 +1,5 @@
-scoremanagertools.editors.TaleaRhythmMakerEditor
-================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.editors.TaleaRhythmMakerEditor
+=================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor.TaleaRhythmMakerEditor
 

@@ -1,5 +1,5 @@
-developerscripttools.RenameModulesScript
-========================================
+:py:mod:`developerscripttools <abjad.tools.developerscripttools>`.RenameModulesScript
+=====================================================================================
 
 .. abjad-lineage:: abjad.tools.developerscripttools.RenameModulesScript.RenameModulesScript.RenameModulesScript
 

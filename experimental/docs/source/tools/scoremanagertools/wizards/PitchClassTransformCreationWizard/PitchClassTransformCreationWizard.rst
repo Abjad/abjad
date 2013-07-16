@@ -1,5 +1,5 @@
-scoremanagertools.wizards.PitchClassTransformCreationWizard
-===========================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.wizards.PitchClassTransformCreationWizard
+============================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.wizards.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard.PitchClassTransformCreationWizard
 

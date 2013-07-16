@@ -1,5 +1,5 @@
-musicexpressiontools.ContextDictionary
-======================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.ContextDictionary
+==========================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.ContextDictionary.ContextDictionary.ContextDictionary
 

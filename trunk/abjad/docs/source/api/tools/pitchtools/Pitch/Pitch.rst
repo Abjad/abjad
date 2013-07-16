@@ -1,5 +1,5 @@
-pitchtools.Pitch
-================
+:py:mod:`pitchtools <abjad.tools.pitchtools>`.Pitch
+===================================================
 
 .. abjad-lineage:: abjad.tools.pitchtools.Pitch.Pitch.Pitch
 

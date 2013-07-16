@@ -1,5 +1,5 @@
-datastructuretools.SortedCollection
-===================================
+:py:mod:`datastructuretools <abjad.tools.datastructuretools>`.SortedCollection
+==============================================================================
 
 .. abjad-lineage:: abjad.tools.datastructuretools.SortedCollection.SortedCollection.SortedCollection
 

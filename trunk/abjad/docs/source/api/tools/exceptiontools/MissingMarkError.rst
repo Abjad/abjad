@@ -1,5 +1,5 @@
-exceptiontools.MissingMarkError
-===============================
+:py:mod:`exceptiontools <abjad.tools.exceptiontools>`.MissingMarkError
+======================================================================
 
 .. abjad-lineage:: abjad.tools.exceptiontools.MissingMarkError.MissingMarkError
 

@@ -1,5 +1,5 @@
-quantizationtools.QEventProxy
-=============================
+:py:mod:`quantizationtools <abjad.tools.quantizationtools>`.QEventProxy
+=======================================================================
 
 .. abjad-lineage:: abjad.tools.quantizationtools.QEventProxy.QEventProxy.QEventProxy
 

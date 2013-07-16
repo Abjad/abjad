@@ -1,5 +1,5 @@
-scoremanagertools.editors.ArticulationSpecifierEditor
-=====================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.editors.ArticulationSpecifierEditor
+======================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.ArticulationSpecifierEditor.ArticulationSpecifierEditor.ArticulationSpecifierEditor
 

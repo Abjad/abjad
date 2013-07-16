@@ -1,5 +1,5 @@
-scoremanagertools.wranglers.FilesystemAssetWrangler
-===================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.wranglers.FilesystemAssetWrangler
+====================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.wranglers.FilesystemAssetWrangler.FilesystemAssetWrangler.FilesystemAssetWrangler
 

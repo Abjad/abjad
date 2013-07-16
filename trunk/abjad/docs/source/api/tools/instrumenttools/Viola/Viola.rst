@@ -1,5 +1,5 @@
-instrumenttools.Viola
-=====================
+:py:mod:`instrumenttools <abjad.tools.instrumenttools>`.Viola
+=============================================================
 
 .. abjad-lineage:: abjad.tools.instrumenttools.Viola.Viola.Viola
 

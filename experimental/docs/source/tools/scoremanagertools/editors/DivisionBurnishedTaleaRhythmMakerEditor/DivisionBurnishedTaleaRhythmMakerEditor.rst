@@ -1,5 +1,5 @@
-scoremanagertools.editors.DivisionBurnishedTaleaRhythmMakerEditor
-=================================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.editors.DivisionBurnishedTaleaRhythmMakerEditor
+==================================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor.DivisionBurnishedTaleaRhythmMakerEditor
 

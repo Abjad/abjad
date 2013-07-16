@@ -1,5 +1,5 @@
-pitchtools.CounterpointObject
-=============================
+:py:mod:`pitchtools <abjad.tools.pitchtools>`.CounterpointObject
+================================================================
 
 .. abjad-lineage:: abjad.tools.pitchtools.CounterpointObject.CounterpointObject.CounterpointObject
 

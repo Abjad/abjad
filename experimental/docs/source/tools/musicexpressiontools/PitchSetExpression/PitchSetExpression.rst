@@ -1,5 +1,5 @@
-musicexpressiontools.PitchSetExpression
-=======================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.PitchSetExpression
+===========================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.PitchSetExpression.PitchSetExpression.PitchSetExpression
 

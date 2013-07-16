@@ -1,5 +1,5 @@
-scoremanagertools.editors.RhythmSpecifierEditor
-===============================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.editors.RhythmSpecifierEditor
+================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.editors.RhythmSpecifierEditor.RhythmSpecifierEditor.RhythmSpecifierEditor
 

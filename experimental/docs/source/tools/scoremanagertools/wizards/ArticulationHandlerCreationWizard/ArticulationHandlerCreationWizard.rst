@@ -1,5 +1,5 @@
-scoremanagertools.wizards.ArticulationHandlerCreationWizard
-===========================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.wizards.ArticulationHandlerCreationWizard
+============================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.wizards.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard.ArticulationHandlerCreationWizard
 

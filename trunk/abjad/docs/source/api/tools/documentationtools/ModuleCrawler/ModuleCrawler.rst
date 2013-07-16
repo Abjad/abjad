@@ -1,5 +1,5 @@
-documentationtools.ModuleCrawler
-================================
+:py:mod:`documentationtools <abjad.tools.documentationtools>`.ModuleCrawler
+===========================================================================
 
 .. abjad-lineage:: abjad.tools.documentationtools.ModuleCrawler.ModuleCrawler.ModuleCrawler
 

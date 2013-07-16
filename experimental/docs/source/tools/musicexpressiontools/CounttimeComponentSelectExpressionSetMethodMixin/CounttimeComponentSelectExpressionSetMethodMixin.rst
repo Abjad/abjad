@@ -1,5 +1,5 @@
-musicexpressiontools.CounttimeComponentSelectExpressionSetMethodMixin
-=====================================================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.CounttimeComponentSelectExpressionSetMethodMixin
+=========================================================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.CounttimeComponentSelectExpressionSetMethodMixin.CounttimeComponentSelectExpressionSetMethodMixin.CounttimeComponentSelectExpressionSetMethodMixin
 

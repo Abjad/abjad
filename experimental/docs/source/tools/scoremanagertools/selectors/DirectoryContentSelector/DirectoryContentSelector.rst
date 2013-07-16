@@ -1,5 +1,5 @@
-scoremanagertools.selectors.DirectoryContentSelector
-====================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.selectors.DirectoryContentSelector
+=====================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.selectors.DirectoryContentSelector.DirectoryContentSelector.DirectoryContentSelector
 

@@ -1,5 +1,5 @@
-tonalitytools.InversionIndicator
-================================
+:py:mod:`tonalitytools <abjad.tools.tonalitytools>`.InversionIndicator
+======================================================================
 
 .. abjad-lineage:: abjad.tools.tonalitytools.InversionIndicator.InversionIndicator.InversionIndicator
 

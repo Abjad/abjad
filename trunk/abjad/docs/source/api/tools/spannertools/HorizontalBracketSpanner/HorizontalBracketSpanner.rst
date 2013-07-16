@@ -1,5 +1,5 @@
-spannertools.HorizontalBracketSpanner
-=====================================
+:py:mod:`spannertools <abjad.tools.spannertools>`.HorizontalBracketSpanner
+==========================================================================
 
 .. abjad-lineage:: abjad.tools.spannertools.HorizontalBracketSpanner.HorizontalBracketSpanner.HorizontalBracketSpanner
 

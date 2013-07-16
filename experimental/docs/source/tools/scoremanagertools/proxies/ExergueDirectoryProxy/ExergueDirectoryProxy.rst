@@ -1,5 +1,5 @@
-scoremanagertools.proxies.ExergueDirectoryProxy
-===============================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.proxies.ExergueDirectoryProxy
+================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.proxies.ExergueDirectoryProxy.ExergueDirectoryProxy.ExergueDirectoryProxy
 

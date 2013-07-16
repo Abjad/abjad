@@ -1,5 +1,5 @@
-scoremanagertools.io.MenuSection
-================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.io.MenuSection
+=================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.io.MenuSection.MenuSection.MenuSection
 

@@ -1,5 +1,5 @@
-stafftools.RhythmicStaff
-========================
+:py:mod:`stafftools <abjad.tools.stafftools>`.RhythmicStaff
+===========================================================
 
 .. abjad-lineage:: abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff
 

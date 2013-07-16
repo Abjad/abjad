@@ -1,5 +1,5 @@
-spannertools.DirectedSpanner
-============================
+:py:mod:`spannertools <abjad.tools.spannertools>`.DirectedSpanner
+=================================================================
 
 .. abjad-lineage:: abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner
 

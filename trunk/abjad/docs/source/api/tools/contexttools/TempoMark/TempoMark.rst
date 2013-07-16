@@ -1,5 +1,5 @@
-contexttools.TempoMark
-======================
+:py:mod:`contexttools <abjad.tools.contexttools>`.TempoMark
+===========================================================
 
 .. abjad-lineage:: abjad.tools.contexttools.TempoMark.TempoMark.TempoMark
 

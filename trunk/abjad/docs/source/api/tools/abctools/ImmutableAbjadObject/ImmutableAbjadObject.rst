@@ -1,5 +1,5 @@
-abctools.ImmutableAbjadObject
-=============================
+:py:mod:`abctools <abjad.tools.abctools>`.ImmutableAbjadObject
+==============================================================
 
 .. abjad-lineage:: abjad.tools.abctools.ImmutableAbjadObject.ImmutableAbjadObject.ImmutableAbjadObject
 

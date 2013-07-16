@@ -1,5 +1,5 @@
-musicexpressiontools.IterablePayloadExpression
-==============================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.IterablePayloadExpression
+==================================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.IterablePayloadExpression.IterablePayloadExpression.IterablePayloadExpression
 

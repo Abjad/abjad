@@ -1,5 +1,5 @@
-lilypondparsertools.GuileProxy
-==============================
+:py:mod:`lilypondparsertools <abjad.tools.lilypondparsertools>`.GuileProxy
+==========================================================================
 
 .. abjad-lineage:: abjad.tools.lilypondparsertools.GuileProxy.GuileProxy.GuileProxy
 

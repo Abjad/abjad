@@ -1,5 +1,5 @@
-instrumenttools.Trumpet
-=======================
+:py:mod:`instrumenttools <abjad.tools.instrumenttools>`.Trumpet
+===============================================================
 
 .. abjad-lineage:: abjad.tools.instrumenttools.Trumpet.Trumpet.Trumpet
 

@@ -1,5 +1,5 @@
-contexttools.ClefMark
-=====================
+:py:mod:`contexttools <abjad.tools.contexttools>`.ClefMark
+==========================================================
 
 .. abjad-lineage:: abjad.tools.contexttools.ClefMark.ClefMark.ClefMark
 

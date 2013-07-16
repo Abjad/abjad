@@ -1,4 +1,4 @@
-marktools.detach_lilypond_comments_attached_to_component
-========================================================
+:py:mod:`marktools <abjad.tools.marktools>`.detach_lilypond_comments_attached_to_component
+==========================================================================================
 
 .. autofunction:: abjad.tools.marktools.detach_lilypond_comments_attached_to_component.detach_lilypond_comments_attached_to_component

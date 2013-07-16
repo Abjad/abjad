@@ -1,5 +1,5 @@
-pitchtools.OctaveTranspositionMapping
-=====================================
+:py:mod:`pitchtools <abjad.tools.pitchtools>`.OctaveTranspositionMapping
+========================================================================
 
 .. abjad-lineage:: abjad.tools.pitchtools.OctaveTranspositionMapping.OctaveTranspositionMapping.OctaveTranspositionMapping
 

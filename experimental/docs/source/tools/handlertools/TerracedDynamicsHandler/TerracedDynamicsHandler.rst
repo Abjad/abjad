@@ -1,5 +1,5 @@
-handlertools.TerracedDynamicsHandler
-====================================
+:py:mod:`handlertools <experimental.tools.handlertools>`.TerracedDynamicsHandler
+================================================================================
 
 .. abjad-lineage:: experimental.tools.handlertools.TerracedDynamicsHandler.TerracedDynamicsHandler.TerracedDynamicsHandler
 

@@ -1,5 +1,5 @@
-rhythmmakertools.DivisionIncisedNoteRhythmMaker
-===============================================
+:py:mod:`rhythmmakertools <abjad.tools.rhythmmakertools>`.DivisionIncisedNoteRhythmMaker
+========================================================================================
 
 .. abjad-lineage:: abjad.tools.rhythmmakertools.DivisionIncisedNoteRhythmMaker.DivisionIncisedNoteRhythmMaker.DivisionIncisedNoteRhythmMaker
 

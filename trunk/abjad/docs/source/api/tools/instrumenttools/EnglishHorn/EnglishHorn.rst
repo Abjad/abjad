@@ -1,5 +1,5 @@
-instrumenttools.EnglishHorn
-===========================
+:py:mod:`instrumenttools <abjad.tools.instrumenttools>`.EnglishHorn
+===================================================================
 
 .. abjad-lineage:: abjad.tools.instrumenttools.EnglishHorn.EnglishHorn.EnglishHorn
 

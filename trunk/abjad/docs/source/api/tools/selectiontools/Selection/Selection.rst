@@ -1,5 +1,5 @@
-selectiontools.Selection
-========================
+:py:mod:`selectiontools <abjad.tools.selectiontools>`.Selection
+===============================================================
 
 .. abjad-lineage:: abjad.tools.selectiontools.Selection.Selection.Selection
 

@@ -1,5 +1,5 @@
-mathtools.NonreducedRatio
-=========================
+:py:mod:`mathtools <abjad.tools.mathtools>`.NonreducedRatio
+===========================================================
 
 .. abjad-lineage:: abjad.tools.mathtools.NonreducedRatio.NonreducedRatio.NonreducedRatio
 

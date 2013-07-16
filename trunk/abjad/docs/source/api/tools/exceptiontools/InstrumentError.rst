@@ -1,5 +1,5 @@
-exceptiontools.InstrumentError
-==============================
+:py:mod:`exceptiontools <abjad.tools.exceptiontools>`.InstrumentError
+=====================================================================
 
 .. abjad-lineage:: abjad.tools.exceptiontools.InstrumentError.InstrumentError
 

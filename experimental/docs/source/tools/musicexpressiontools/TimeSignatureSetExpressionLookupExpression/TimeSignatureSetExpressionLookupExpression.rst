@@ -1,5 +1,5 @@
-musicexpressiontools.TimeSignatureSetExpressionLookupExpression
-===============================================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.TimeSignatureSetExpressionLookupExpression
+===================================================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.TimeSignatureSetExpressionLookupExpression.TimeSignatureSetExpressionLookupExpression.TimeSignatureSetExpressionLookupExpression
 

@@ -1,5 +1,5 @@
-spannertools.MeasuredComplexBeamSpanner
-=======================================
+:py:mod:`spannertools <abjad.tools.spannertools>`.MeasuredComplexBeamSpanner
+============================================================================
 
 .. abjad-lineage:: abjad.tools.spannertools.MeasuredComplexBeamSpanner.MeasuredComplexBeamSpanner.MeasuredComplexBeamSpanner
 

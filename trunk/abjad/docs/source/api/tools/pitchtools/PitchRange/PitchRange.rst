@@ -1,5 +1,5 @@
-pitchtools.PitchRange
-=====================
+:py:mod:`pitchtools <abjad.tools.pitchtools>`.PitchRange
+========================================================
 
 .. abjad-lineage:: abjad.tools.pitchtools.PitchRange.PitchRange.PitchRange
 

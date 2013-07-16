@@ -1,5 +1,5 @@
-instrumenttools.Piano
-=====================
+:py:mod:`instrumenttools <abjad.tools.instrumenttools>`.Piano
+=============================================================
 
 .. abjad-lineage:: abjad.tools.instrumenttools.Piano.Piano.Piano
 

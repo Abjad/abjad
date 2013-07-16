@@ -1,4 +1,4 @@
-rhythmtreetools.parse_rtm_syntax
-================================
+:py:mod:`rhythmtreetools <abjad.tools.rhythmtreetools>`.parse_rtm_syntax
+========================================================================
 
 .. autofunction:: abjad.tools.rhythmtreetools.parse_rtm_syntax.parse_rtm_syntax

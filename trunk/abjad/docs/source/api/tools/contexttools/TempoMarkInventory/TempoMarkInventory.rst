@@ -1,5 +1,5 @@
-contexttools.TempoMarkInventory
-===============================
+:py:mod:`contexttools <abjad.tools.contexttools>`.TempoMarkInventory
+====================================================================
 
 .. abjad-lineage:: abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory
 

@@ -1,5 +1,5 @@
-musicexpressiontools.LeafSetExpression
-======================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.LeafSetExpression
+==========================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.LeafSetExpression.LeafSetExpression.LeafSetExpression
 

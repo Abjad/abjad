@@ -1,5 +1,5 @@
-wellformednesstools.ShortHairpinCheck
-=====================================
+:py:mod:`wellformednesstools <abjad.tools.wellformednesstools>`.ShortHairpinCheck
+=================================================================================
 
 .. abjad-lineage:: abjad.tools.wellformednesstools.ShortHairpinCheck.ShortHairpinCheck.ShortHairpinCheck
 

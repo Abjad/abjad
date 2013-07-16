@@ -1,5 +1,5 @@
-lilypondproxytools.LilyPondComponentPlugIn
-==========================================
+:py:mod:`lilypondproxytools <abjad.tools.lilypondproxytools>`.LilyPondComponentPlugIn
+=====================================================================================
 
 .. abjad-lineage:: abjad.tools.lilypondproxytools.LilyPondComponentPlugIn.LilyPondComponentPlugIn.LilyPondComponentPlugIn
 

@@ -1,5 +1,5 @@
-wellformednesstools.MisduratedMeasureCheck
-==========================================
+:py:mod:`wellformednesstools <abjad.tools.wellformednesstools>`.MisduratedMeasureCheck
+======================================================================================
 
 .. abjad-lineage:: abjad.tools.wellformednesstools.MisduratedMeasureCheck.MisduratedMeasureCheck.MisduratedMeasureCheck
 

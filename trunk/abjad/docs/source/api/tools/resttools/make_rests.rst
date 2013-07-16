@@ -1,4 +1,4 @@
-resttools.make_rests
-====================
+:py:mod:`resttools <abjad.tools.resttools>`.make_rests
+======================================================
 
 .. autofunction:: abjad.tools.resttools.make_rests.make_rests

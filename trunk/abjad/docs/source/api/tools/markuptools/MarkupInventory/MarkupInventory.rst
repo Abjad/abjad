@@ -1,5 +1,5 @@
-markuptools.MarkupInventory
-===========================
+:py:mod:`markuptools <abjad.tools.markuptools>`.MarkupInventory
+===============================================================
 
 .. abjad-lineage:: abjad.tools.markuptools.MarkupInventory.MarkupInventory.MarkupInventory
 

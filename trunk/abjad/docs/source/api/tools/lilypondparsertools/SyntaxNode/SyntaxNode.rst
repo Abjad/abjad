@@ -1,5 +1,5 @@
-lilypondparsertools.SyntaxNode
-==============================
+:py:mod:`lilypondparsertools <abjad.tools.lilypondparsertools>`.SyntaxNode
+==========================================================================
 
 .. abjad-lineage:: abjad.tools.lilypondparsertools.SyntaxNode.SyntaxNode.SyntaxNode
 

@@ -1,5 +1,5 @@
-newabjadbooktools.PNGImageFormat
-================================
+:py:mod:`newabjadbooktools <experimental.tools.newabjadbooktools>`.PNGImageFormat
+=================================================================================
 
 .. abjad-lineage:: experimental.tools.newabjadbooktools.PNGImageFormat.PNGImageFormat.PNGImageFormat
 

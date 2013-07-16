@@ -1,5 +1,5 @@
-musicexpressiontools.MultipleContextSetExpression
-=================================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.MultipleContextSetExpression
+=====================================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.MultipleContextSetExpression.MultipleContextSetExpression.MultipleContextSetExpression
 

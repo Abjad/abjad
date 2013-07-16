@@ -1,5 +1,5 @@
-scoremanagertools.selectors.PackageContentSelector
-==================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.selectors.PackageContentSelector
+===================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.selectors.PackageContentSelector.PackageContentSelector.PackageContentSelector
 

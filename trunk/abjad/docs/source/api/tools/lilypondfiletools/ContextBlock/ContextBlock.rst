@@ -1,5 +1,5 @@
-lilypondfiletools.ContextBlock
-==============================
+:py:mod:`lilypondfiletools <abjad.tools.lilypondfiletools>`.ContextBlock
+========================================================================
 
 .. abjad-lineage:: abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock
 

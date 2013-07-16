@@ -1,5 +1,5 @@
-newabjadbooktools.CodeBlock
-===========================
+:py:mod:`newabjadbooktools <experimental.tools.newabjadbooktools>`.CodeBlock
+============================================================================
 
 .. abjad-lineage:: experimental.tools.newabjadbooktools.CodeBlock.CodeBlock.CodeBlock
 

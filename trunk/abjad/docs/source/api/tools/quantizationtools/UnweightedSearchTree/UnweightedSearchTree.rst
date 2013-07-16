@@ -1,5 +1,5 @@
-quantizationtools.UnweightedSearchTree
-======================================
+:py:mod:`quantizationtools <abjad.tools.quantizationtools>`.UnweightedSearchTree
+================================================================================
 
 .. abjad-lineage:: abjad.tools.quantizationtools.UnweightedSearchTree.UnweightedSearchTree.UnweightedSearchTree
 

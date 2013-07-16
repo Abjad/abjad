@@ -1,5 +1,5 @@
-musicexpressiontools.MarkupSetExpression
-========================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.MarkupSetExpression
+============================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.MarkupSetExpression.MarkupSetExpression.MarkupSetExpression
 

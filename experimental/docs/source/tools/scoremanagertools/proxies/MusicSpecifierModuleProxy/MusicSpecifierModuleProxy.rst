@@ -1,5 +1,5 @@
-scoremanagertools.proxies.MusicSpecifierModuleProxy
-===================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.proxies.MusicSpecifierModuleProxy
+====================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.proxies.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy.MusicSpecifierModuleProxy
 

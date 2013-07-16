@@ -1,5 +1,5 @@
-wellformednesstools.NestedMeasureCheck
-======================================
+:py:mod:`wellformednesstools <abjad.tools.wellformednesstools>`.NestedMeasureCheck
+==================================================================================
 
 .. abjad-lineage:: abjad.tools.wellformednesstools.NestedMeasureCheck.NestedMeasureCheck.NestedMeasureCheck
 

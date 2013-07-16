@@ -1,5 +1,5 @@
-musicexpressiontools.BeatSelectExpression
-=========================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.BeatSelectExpression
+=============================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.BeatSelectExpression.BeatSelectExpression.BeatSelectExpression
 

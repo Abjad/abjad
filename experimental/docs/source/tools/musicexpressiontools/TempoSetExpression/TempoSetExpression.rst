@@ -1,5 +1,5 @@
-musicexpressiontools.TempoSetExpression
-=======================================
+:py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`.TempoSetExpression
+===========================================================================================
 
 .. abjad-lineage:: experimental.tools.musicexpressiontools.TempoSetExpression.TempoSetExpression.TempoSetExpression
 

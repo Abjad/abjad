@@ -1,5 +1,5 @@
-sequencetools.CyclicTree
-========================
+:py:mod:`sequencetools <abjad.tools.sequencetools>`.CyclicTree
+==============================================================
 
 .. abjad-lineage:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree
 

@@ -1,5 +1,5 @@
-quantizationtools.TerminalQEvent
-================================
+:py:mod:`quantizationtools <abjad.tools.quantizationtools>`.TerminalQEvent
+==========================================================================
 
 .. abjad-lineage:: abjad.tools.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent
 

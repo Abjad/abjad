@@ -1,5 +1,5 @@
-exceptiontools.NoteHeadError
-============================
+:py:mod:`exceptiontools <abjad.tools.exceptiontools>`.NoteHeadError
+===================================================================
 
 .. abjad-lineage:: abjad.tools.exceptiontools.NoteHeadError.NoteHeadError
 

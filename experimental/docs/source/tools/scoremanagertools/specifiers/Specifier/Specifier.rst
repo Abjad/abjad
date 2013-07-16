@@ -1,5 +1,5 @@
-scoremanagertools.specifiers.Specifier
-======================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.specifiers.Specifier
+=======================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.specifiers.Specifier.Specifier.Specifier
 

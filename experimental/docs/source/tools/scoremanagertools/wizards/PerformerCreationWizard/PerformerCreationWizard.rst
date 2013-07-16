@@ -1,5 +1,5 @@
-scoremanagertools.wizards.PerformerCreationWizard
-=================================================
+:py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`.wizards.PerformerCreationWizard
+==================================================================================================
 
 .. abjad-lineage:: experimental.tools.scoremanagertools.wizards.PerformerCreationWizard.PerformerCreationWizard.PerformerCreationWizard
 

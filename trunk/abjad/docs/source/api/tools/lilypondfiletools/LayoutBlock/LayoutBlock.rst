@@ -1,5 +1,5 @@
-lilypondfiletools.LayoutBlock
-=============================
+:py:mod:`lilypondfiletools <abjad.tools.lilypondfiletools>`.LayoutBlock
+=======================================================================
 
 .. abjad-lineage:: abjad.tools.lilypondfiletools.LayoutBlock.LayoutBlock.LayoutBlock
 

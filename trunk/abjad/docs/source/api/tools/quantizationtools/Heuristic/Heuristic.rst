@@ -1,5 +1,5 @@
-quantizationtools.Heuristic
-===========================
+:py:mod:`quantizationtools <abjad.tools.quantizationtools>`.Heuristic
+=====================================================================
 
 .. abjad-lineage:: abjad.tools.quantizationtools.Heuristic.Heuristic.Heuristic
 

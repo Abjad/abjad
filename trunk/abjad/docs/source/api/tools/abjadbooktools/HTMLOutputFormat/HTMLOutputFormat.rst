@@ -1,5 +1,5 @@
-abjadbooktools.HTMLOutputFormat
-===============================
+:py:mod:`abjadbooktools <abjad.tools.abjadbooktools>`.HTMLOutputFormat
+======================================================================
 
 .. abjad-lineage:: abjad.tools.abjadbooktools.HTMLOutputFormat.HTMLOutputFormat.HTMLOutputFormat
 

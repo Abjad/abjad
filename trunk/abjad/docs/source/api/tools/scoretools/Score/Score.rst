@@ -1,5 +1,5 @@
-scoretools.Score
-================
+:py:mod:`scoretools <abjad.tools.scoretools>`.Score
+===================================================
 
 .. abjad-lineage:: abjad.tools.scoretools.Score.Score.Score
 
