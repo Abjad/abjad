@@ -51,6 +51,7 @@ def reverse_contents_of_container(container):
         container.reverse()
     elif isinstance(container, containertools.Container):
         container._music.reverse()
+        container._mark_entire_score_tree_for_later_update('prolated')
         spanners = spannertools.get_spanners_attached_to_any_improper_child_of_component(
             container)
         for s in spanners:
