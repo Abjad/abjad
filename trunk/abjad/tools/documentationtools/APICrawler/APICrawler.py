@@ -1,10 +1,6 @@
 import os
 import types
 from abjad.tools import abctools
-from abjad.tools.documentationtools.ClassDocumenter import ClassDocumenter
-from abjad.tools.documentationtools.FunctionDocumenter \
-	import FunctionDocumenter
-from abjad.tools.documentationtools.ModuleCrawler import ModuleCrawler
 
 
 class APICrawler(abctools.AbjadObject):
@@ -27,12 +23,15 @@ class APICrawler(abctools.AbjadObject):
         code_root, 
         docs_root, 
         root_package_name,
-        ignored_directories=['test', '.svn', '__pycache__'],
+        ignored_directories=('test', '.svn', '__pycache__'),
         prefix='abjad.tools.',
         ):
-        self._module_crawler = ModuleCrawler(code_root,
+        from abjad.tools import documentationtools
+        self._module_crawler = documentationtools.ModuleCrawler(
+            code_root,
             root_package_name=root_package_name,
-            ignored_directories=ignored_directories)
+            ignored_directories=ignored_directories,
+            )
         assert os.path.exists(docs_root)
         self._code_root = os.path.abspath(code_root)
         self._docs_root = os.path.abspath(docs_root)
@@ -44,6 +43,7 @@ class APICrawler(abctools.AbjadObject):
         '''Crawl `code_root` and generate corresponding ReST in `docs_root`
         while ignoring ignored directories.
         '''
+        from abjad.tools import documentationtools
         assert os.path.exists(self.docs_root)
 
         documenters = []
@@ -56,9 +56,15 @@ class APICrawler(abctools.AbjadObject):
             # get object and documenter
             obj = getattr(module, obj_name)
             if isinstance(obj, types.TypeType):
-                documenter = ClassDocumenter(obj, prefix=self.prefix)
+                documenter = documentationtools.ClassDocumenter(
+                    obj, 
+                    prefix=self.prefix,
+                    )
             elif isinstance(obj, types.FunctionType):
-                documenter = FunctionDocumenter(obj, prefix=self.prefix)
+                documenter = documentationtools.FunctionDocumenter(
+                    obj, 
+                    prefix=self.prefix,
+                    )
 
             # create directory
             code_directory = os.path.dirname(module.__file__)

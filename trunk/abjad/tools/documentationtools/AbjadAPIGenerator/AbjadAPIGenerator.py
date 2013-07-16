@@ -81,9 +81,13 @@ class AbjadAPIGenerator(abctools.AbjadObject):
                 document.append(documentationtools.ReSTTOCDirective(
                     options={'maxdepth': 1},
                     ))
-                for package_name, package in sorted(packages.items()):
+                for package_module, package_dictionary in sorted(
+                    packages.items()):
                     document.extend(self._create_package_toc(
-                        package_name, package, tools_package_dictionary))
+                        package_module,
+                        package_dictionary,
+                        tools_package_dictionary,
+                        ))
 
         f = open(self.docs_api_index_path, 'w')
         f.write(document.rest_format)
@@ -97,7 +101,12 @@ class AbjadAPIGenerator(abctools.AbjadObject):
     ### PRIVATE METHODS ###
 
     def _create_package_toc(self, 
-        package_name, package_modules, tools_package_dictionary):
+        package_module,
+        package_dictionary,
+        tools_package_dictionary,
+        ):
+        package_name = package_module.__name__.split('.')[
+            self.tools_package_path_index]
         from abjad.tools import documentationtools
         result = [documentationtools.ReSTHeading(
             level=2,
@@ -107,7 +116,7 @@ class AbjadAPIGenerator(abctools.AbjadObject):
         ]
         only_html = documentationtools.ReSTOnlyDirective(argument='html')
         only_latex = documentationtools.ReSTOnlyDirective(argument='latex')
-        if package_modules['abstract_classes']:
+        if package_dictionary['abstract_classes']:
             only_latex.append(documentationtools.ReSTHeading(
                 level=3,
                 text='Abstract Classes'
@@ -116,30 +125,30 @@ class AbjadAPIGenerator(abctools.AbjadObject):
                 options={'maxdepth': 1},
                 )
             toc_latex = documentationtools.ReSTTOCDirective()
-            for obj in package_modules['abstract_classes']:
+            for obj in package_dictionary['abstract_classes']:
                 toc_entry = self._module_name_to_toc_entry(obj.module_name)
                 toc_html.append(toc_entry)
                 toc_latex.append(toc_entry)
             only_html.append(toc_html)
             only_latex.append(toc_latex)
-        if package_modules['concrete_classes']:
+        if package_dictionary['concrete_classes']:
             only_latex.append(documentationtools.ReSTHeading(
                 level=3,
                 text='Concrete Classes'
                 ))
-            if package_modules['abstract_classes']:
+            if package_dictionary['abstract_classes']:
                 only_html.append(documentationtools.ReSTHorizontalRule())
             toc_html = documentationtools.ReSTTOCDirective(
                 options={'maxdepth': 1},
                 )
             toc_latex = documentationtools.ReSTTOCDirective()
-            for obj in package_modules['concrete_classes']:
+            for obj in package_dictionary['concrete_classes']:
                 toc_entry = self._module_name_to_toc_entry(obj.module_name)
                 toc_html.append(toc_entry)
                 toc_latex.append(toc_entry)
             only_html.append(toc_html)
             only_latex.append(toc_latex)
-        if package_modules['functions']:
+        if package_dictionary['functions']:
             only_latex.append(documentationtools.ReSTHeading(
                 level=3,
                 text='Functions'
@@ -148,10 +157,10 @@ class AbjadAPIGenerator(abctools.AbjadObject):
                 options={'maxdepth': 1},
                 )
             toc_latex = documentationtools.ReSTTOCDirective()
-            if package_modules['concrete_classes'] or \
-                package_modules['abstract_classes']:
+            if package_dictionary['concrete_classes'] or \
+                package_dictionary['abstract_classes']:
                 only_html.append(documentationtools.ReSTHorizontalRule())
-            for obj in package_modules['functions']:
+            for obj in package_dictionary['functions']:
                 toc_entry = self._module_name_to_toc_entry(obj.module_name)
                 toc_html.append(toc_entry)
                 toc_latex.append(toc_entry)
@@ -165,40 +174,40 @@ class AbjadAPIGenerator(abctools.AbjadObject):
         return '/'.join(parts)
 
     def _sort_modules(self, objects):
-        packages = {}
-        module_mapping = {}
+        package_dictionary = {}
+        tools_package_dictionary = {}
         for obj in sorted(objects, key=lambda x: x.module_name):
             tools_package_name = obj.module_name.split('.')[
                 self.tools_package_path_index]
             tools_package_path = '.'.join(
                 obj.module_name.split('.')[:self.tools_package_path_index + 1])
             tools_package_module = importlib.import_module(tools_package_path)
-            if tools_package_name not in module_mapping:
-                module_mapping[tools_package_name] = tools_package_path
+            if tools_package_name not in tools_package_dictionary:
+                tools_package_dictionary[tools_package_name] = tools_package_path
             if hasattr(tools_package_module, '_documentation_section'):
                 declared_documentation_section = \
                     getattr(tools_package_module, '_documentation_section')
-                if declared_documentation_section not in packages:
-                    packages[declared_documentation_section] = {}
-                collection = packages[declared_documentation_section]
+                if declared_documentation_section not in package_dictionary:
+                    package_dictionary[declared_documentation_section] = {}
+                collection = package_dictionary[declared_documentation_section]
             else:
                 continue
-            if tools_package_name not in collection:
-                collection[tools_package_name] = {
+            if tools_package_module not in collection:
+                collection[tools_package_module] = {
                     'abstract_classes': [],
                     'concrete_classes': [],
                     'functions': []
                 }
             if isinstance(obj, ClassDocumenter):
                 if obj.is_abstract:
-                    collection[tools_package_name][
+                    collection[tools_package_module][
                         'abstract_classes'].append(obj)
                 else:
-                    collection[tools_package_name][
+                    collection[tools_package_module][
                         'concrete_classes'].append(obj)
             else:
-                collection[tools_package_name]['functions'].append(obj)
-        return packages, module_mapping
+                collection[tools_package_module]['functions'].append(obj)
+        return package_dictionary, tools_package_dictionary
 
 
     ### PUBLIC PROPERTIES ###
