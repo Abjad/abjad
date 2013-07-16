@@ -32,11 +32,10 @@ class ToolsPackageDocumenter(Documenter):
         Return string.
         '''
         from abjad.tools import documentationtools 
-        stripped_class_name = self._shrink_module_name(self.object.__path__[0])
         document = documentationtools.ReSTDocument()
         document.append(documentationtools.ReSTHeading(
             level=2,
-            text=stripped_class_name,
+            text=self._shrink_module_name(self.module_name)
             ))
         document.append(documentationtools.ReSTAutodocDirective(
             argument=self.module_name,
@@ -69,6 +68,10 @@ class ToolsPackageDocumenter(Documenter):
             text=banner,
             )
         result.append(heading)
+        autosummary = documentationtools.ReSTAutosummaryDirective()
+        for documenter in documenters:
+            autosummary.append(documenter.module_name)
+        result.append(autosummary)
         return result
 
     def _examine_tools_package(self):
@@ -115,6 +118,74 @@ class ToolsPackageDocumenter(Documenter):
         self._documentation_section = getattr(self.object,
             '_documentation_section', None)
 
+    ### PUBLIC METHODS ###
+
+    def create_api_toc_section(self):
+        '''Generate a TOC section to be included in the master API index:
+
+        ::
+
+            >>> module = notetools
+            >>> documenter = documentationtools.ToolsPackageDocumenter(module)
+            >>> result = documenter.create_api_toc_section()
+
+        Return list.
+        '''
+        from abjad.tools import documentationtools
+        result = []
+        heading = documentationtools.ReSTHeading(
+            level=2,
+            text=':py:mod:`{} <{}>`'.format(
+                self._shrink_module_name(self.module_name), self.module_name)
+            )
+        only_html = documentationtools.ReSTOnlyDirective(argument='html')
+        only_latex = documentationtools.ReSTOnlyDirective(argument='latex')
+        
+        def module_name_to_toc_entry(module_name):
+            stripped = module_name.lstrip(self.module_name)
+            return '/'.join(stripped.split('.')[:-1])
+            
+        def make_subsection(banner, documenters, only_html, only_latex):
+            only_latex.append(documentationtools.ReSTHeading(
+                level=3,
+                text=banner
+                ))
+            toc_html = documentationtools.ReSTTOCDirective(
+                options={'maxdepth': 1},
+                )
+            toc_latex = documentationtools.ReSTTOCDirective()
+            for documenter in documenters:
+                toc_entry = module_name_to_toc_entry(
+                    documenter.module_name)
+                toc_html.append(toc_entry)
+                toc_latex.append(toc_entry)
+            only_html.append(toc_html)
+            only_latex.append(toc_latex)
+
+        if self.abstract_class_documenters:
+            make_subsection(
+                'Abstract classes',
+                self.abstract_class_documenters,
+                only_html,
+                only_latex,
+                )
+        if self.concrete_class_documenters:
+            make_subsection(
+                'Concrete classes',
+                self.concrete_class_documenters,
+                only_html,
+                only_latex,
+                )
+        if self.function_documenters:
+            make_subsection(
+                'Functions',
+                self.function_documenters,
+                only_html,
+                only_latex,
+                )
+        result.extend((only_html, only_latex))
+        return result
+
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -141,4 +212,4 @@ class ToolsPackageDocumenter(Documenter):
 
     @property
     def module_name(self):
-        return self.object.__path__
+        return self.object.__name__

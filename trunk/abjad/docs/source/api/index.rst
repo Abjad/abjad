@@ -3897,6 +3897,33 @@ Demos and example packages
       demos/desordre/make_desordre_score
       demos/desordre/make_desordre_staff
 
+:py:mod:`mozart <abjad.demos.mozart>`
+=====================================
+
+.. only:: html
+
+   .. toctree::
+      :maxdepth: 1
+
+      demos/mozart/choose_mozart_measures
+      demos/mozart/make_mozart_lilypond_file
+      demos/mozart/make_mozart_measure
+      demos/mozart/make_mozart_measure_corpus
+      demos/mozart/make_mozart_score
+
+.. only:: latex
+
+   Functions
+   ---------
+
+   .. toctree::
+
+      demos/mozart/choose_mozart_measures
+      demos/mozart/make_mozart_lilypond_file
+      demos/mozart/make_mozart_measure
+      demos/mozart/make_mozart_measure_corpus
+      demos/mozart/make_mozart_score
+
 :py:mod:`ferneyhough <abjad.demos.ferneyhough>`
 ===============================================
 
@@ -3925,33 +3952,6 @@ Demos and example packages
       demos/ferneyhough/make_nested_tuplet
       demos/ferneyhough/make_row_of_nested_tuplets
       demos/ferneyhough/make_rows_of_nested_tuplets
-
-:py:mod:`mozart <abjad.demos.mozart>`
-=====================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      demos/mozart/choose_mozart_measures
-      demos/mozart/make_mozart_lilypond_file
-      demos/mozart/make_mozart_measure
-      demos/mozart/make_mozart_measure_corpus
-      demos/mozart/make_mozart_score
-
-.. only:: latex
-
-   Functions
-   ---------
-
-   .. toctree::
-
-      demos/mozart/choose_mozart_measures
-      demos/mozart/make_mozart_lilypond_file
-      demos/mozart/make_mozart_measure
-      demos/mozart/make_mozart_measure_corpus
-      demos/mozart/make_mozart_score
 
 ***********************
 Abjad internal packages

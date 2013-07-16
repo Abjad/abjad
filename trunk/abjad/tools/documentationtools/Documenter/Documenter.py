@@ -62,7 +62,7 @@ class Documenter(abctools.Maker):
 
     @property
     def module_name(self):
-        return '%s.%s' % (self._object.__module__, self._object.__name__)
+        return '{}.{}'.format(self._object.__module__, self._object.__name__)
 
     @property
     def object(self):

@@ -52,6 +52,9 @@ Read-only properties
 Methods
 -------
 
+.. automethod:: abjad.tools.documentationtools.ToolsPackageDocumenter.ToolsPackageDocumenter.ToolsPackageDocumenter.create_api_toc_section
+   :noindex:
+
 .. automethod:: abjad.tools.documentationtools.ToolsPackageDocumenter.ToolsPackageDocumenter.ToolsPackageDocumenter.new
    :noindex:
 
