@@ -184,7 +184,8 @@ def split_container_at_index(component, i, fracture_spanners=False):
     spannertools.move_spanners_from_component_to_children_of_component(component)
 
     # incorporate left and right parents in score, if possible
-    parent, start, stop = componenttools.get_parent_and_start_stop_indices_of_components([component])
+    selection = component.select()
+    parent, start, stop = selection.get_parent_and_start_stop_indices()
     if parent is not None:
         # to avoid pychecker slice assignment error
         #parent._music[start:stop+1] = nonempty_halves

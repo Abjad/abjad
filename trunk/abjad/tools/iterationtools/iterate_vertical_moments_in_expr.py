@@ -133,9 +133,8 @@ def iterate_vertical_moments_in_expr(expr, reverse=False):
     def _next_in_parent(component):
         if not isinstance(component, componenttools.Component):
             raise TypeError
-        parent, start, stop = \
-            componenttools.get_parent_and_start_stop_indices_of_components(
-                [component])
+        selection = component.select()
+        parent, start, stop = selection.get_parent_and_start_stop_indices()
         assert start == stop
         if parent is None:
             raise StopIteration

@@ -544,9 +544,8 @@ class Component(AbjadObject):
                     for new_component in reversed(new_components):
                         spanner._insert(insert_index, new_component)
                         new_component._spanners.add(spanner)
-            parent, start, stop = \
-                componenttools.get_parent_and_start_stop_indices_of_components(
-                [self])
+            selection = self.select()
+            parent, start, stop = selection.get_parent_and_start_stop_indices()
             if parent is not None:
                 if grow_spanners:
                     for new_component in reversed(new_components):
@@ -568,9 +567,8 @@ class Component(AbjadObject):
                     for new_component in reversed(new_components):
                         spanner._insert(index, new_component)
                         new_component._spanners.add(spanner)
-            parent, start, stop = \
-                componenttools.get_parent_and_start_stop_indices_of_components(
-                [self])
+            selection = self.select()
+            parent, start, stop = selection.get_parent_and_start_stop_indices()
             if parent is not None:
                 if grow_spanners:
                     for new_component in reversed(new_components):

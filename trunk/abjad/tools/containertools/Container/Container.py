@@ -490,13 +490,12 @@ class Container(Component):
         if music is None:
             music = []
         if componenttools.all_are_contiguous_components_in_same_thread(music):
-            parent, index, stop_index = \
-                componenttools.get_parent_and_start_stop_indices_of_components(
-                music)
+            music = selectiontools.Selection(music)
+            parent, start, stop = music.get_parent_and_start_stop_indices()
             self._music = list(music)
             self[:]._set_parents(self)
             if parent is not None:
-                parent._music.insert(index, self)
+                parent._music.insert(start, self)
                 self._set_parent(parent)
         elif isinstance(music, str):
             parsed = self._parse_string(music)

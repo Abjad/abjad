@@ -405,9 +405,14 @@ class Selection(AbjadObject):
         return start_offsets, stop_offsets
 
     def get_parent_and_start_stop_indices(self):
-        from abjad.tools import componenttools
-        return componenttools.get_parent_and_start_stop_indices_of_components(
-            self)
+        if self:
+            first, last = self[0], self[-1]
+            parent = first.parent
+            if parent is not None:
+                first_index = parent.index(first)
+                last_index = parent.index(last)
+                return parent, first_index, last_index
+        return None, None, None
 
     def group_by(self, predicate):
         result = []
