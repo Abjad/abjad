@@ -78,25 +78,6 @@ Unstable packages (load manually)
    :maxdepth: 1
 
 
-:py:mod:`parsertools <experimental.tools.parsertools>`
-======================================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/parsertools/ENPParser/ENPParser
-
-.. only:: latex
-
-   Concrete Classes
-   ----------------
-
-   .. toctree::
-
-      tools/parsertools/ENPParser/ENPParser
-
 :py:mod:`constrainttools <experimental.tools.constrainttools>`
 ==============================================================
 
@@ -194,54 +175,6 @@ Unstable packages (load manually)
       tools/handlertools/TerracedDynamicsHandler/TerracedDynamicsHandler
       tools/handlertools/TimewisePitchClassHandler/TimewisePitchClassHandler
       tools/handlertools/TwoStageHairpinHandler/TwoStageHairpinHandler
-
-:py:mod:`lyrictools <experimental.tools.lyrictools>`
-====================================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/lyrictools/AddLyrics/AddLyrics
-      tools/lyrictools/LyricExtender/LyricExtender
-      tools/lyrictools/LyricHyphen/LyricHyphen
-      tools/lyrictools/LyricSpace/LyricSpace
-      tools/lyrictools/LyricText/LyricText
-      tools/lyrictools/Lyrics/Lyrics
-
-.. only:: latex
-
-   Concrete Classes
-   ----------------
-
-   .. toctree::
-
-      tools/lyrictools/AddLyrics/AddLyrics
-      tools/lyrictools/LyricExtender/LyricExtender
-      tools/lyrictools/LyricHyphen/LyricHyphen
-      tools/lyrictools/LyricSpace/LyricSpace
-      tools/lyrictools/LyricText/LyricText
-      tools/lyrictools/Lyrics/Lyrics
-
-:py:mod:`metricmodulationtools <experimental.tools.metricmodulationtools>`
-==========================================================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/metricmodulationtools/yield_prolation_rewrite_pairs
-
-.. only:: latex
-
-   Functions
-   ---------
-
-   .. toctree::
-
-      tools/metricmodulationtools/yield_prolation_rewrite_pairs
 
 :py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`
 ========================================================================
@@ -528,6 +461,73 @@ Unstable packages (load manually)
       tools/newabjadbooktools/PNGImageFormat/PNGImageFormat
       tools/newabjadbooktools/ReSTDocumentHandler/ReSTDocumentHandler
       tools/newabjadbooktools/SVGImageFormat/SVGImageFormat
+
+:py:mod:`lyrictools <experimental.tools.lyrictools>`
+====================================================
+
+.. only:: html
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/lyrictools/AddLyrics/AddLyrics
+      tools/lyrictools/LyricExtender/LyricExtender
+      tools/lyrictools/LyricHyphen/LyricHyphen
+      tools/lyrictools/LyricSpace/LyricSpace
+      tools/lyrictools/LyricText/LyricText
+      tools/lyrictools/Lyrics/Lyrics
+
+.. only:: latex
+
+   Concrete Classes
+   ----------------
+
+   .. toctree::
+
+      tools/lyrictools/AddLyrics/AddLyrics
+      tools/lyrictools/LyricExtender/LyricExtender
+      tools/lyrictools/LyricHyphen/LyricHyphen
+      tools/lyrictools/LyricSpace/LyricSpace
+      tools/lyrictools/LyricText/LyricText
+      tools/lyrictools/Lyrics/Lyrics
+
+:py:mod:`metricmodulationtools <experimental.tools.metricmodulationtools>`
+==========================================================================
+
+.. only:: html
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/metricmodulationtools/yield_prolation_rewrite_pairs
+
+.. only:: latex
+
+   Functions
+   ---------
+
+   .. toctree::
+
+      tools/metricmodulationtools/yield_prolation_rewrite_pairs
+
+:py:mod:`parsertools <experimental.tools.parsertools>`
+======================================================
+
+.. only:: html
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/parsertools/ENPParser/ENPParser
+
+.. only:: latex
+
+   Concrete Classes
+   ----------------
+
+   .. toctree::
+
+      tools/parsertools/ENPParser/ENPParser
 
 :py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`
 ==================================================================
