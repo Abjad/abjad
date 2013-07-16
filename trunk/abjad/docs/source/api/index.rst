@@ -106,7 +106,6 @@ Core composition packages
       tools/componenttools/split_components_at_offsets
       tools/componenttools/yield_groups_of_mixed_classes_in_sequence
       tools/componenttools/yield_topmost_components_grouped_by_type
-      tools/componenttools/yield_topmost_components_of_class_grouped_by_type
 
 .. only:: latex
 
@@ -170,7 +169,6 @@ Core composition packages
       tools/componenttools/split_components_at_offsets
       tools/componenttools/yield_groups_of_mixed_classes_in_sequence
       tools/componenttools/yield_topmost_components_grouped_by_type
-      tools/componenttools/yield_topmost_components_of_class_grouped_by_type
 
 :py:mod:`containertools <abjad.tools.containertools>`
 =====================================================
