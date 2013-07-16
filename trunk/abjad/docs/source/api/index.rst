@@ -1038,7 +1038,6 @@ Core composition packages
       tools/componenttools/copy_components_and_immediate_parent_of_first_component
       tools/componenttools/copy_governed_component_subtree_by_leaf_range
       tools/componenttools/copy_governed_component_subtree_from_offset_to
-      tools/componenttools/get_improper_descendants_of_component_that_cross_offset
       tools/componenttools/get_leftmost_components_with_total_duration_at_most
       tools/componenttools/get_most_distant_sequential_container_in_improper_parentage_of_component
       tools/componenttools/get_nth_component_in_expr
@@ -1096,7 +1095,6 @@ Core composition packages
       tools/componenttools/copy_components_and_immediate_parent_of_first_component
       tools/componenttools/copy_governed_component_subtree_by_leaf_range
       tools/componenttools/copy_governed_component_subtree_from_offset_to
-      tools/componenttools/get_improper_descendants_of_component_that_cross_offset
       tools/componenttools/get_leftmost_components_with_total_duration_at_most
       tools/componenttools/get_most_distant_sequential_container_in_improper_parentage_of_component
       tools/componenttools/get_nth_component_in_expr
@@ -3799,6 +3797,35 @@ Demos and example packages
    :maxdepth: 1
 
 
+:py:mod:`desordre <abjad.demos.desordre>`
+=========================================
+
+.. only:: html
+
+   .. toctree::
+      :maxdepth: 1
+
+      demos/desordre/make_desordre_cell
+      demos/desordre/make_desordre_lilypond_file
+      demos/desordre/make_desordre_measure
+      demos/desordre/make_desordre_pitches
+      demos/desordre/make_desordre_score
+      demos/desordre/make_desordre_staff
+
+.. only:: latex
+
+   Functions
+   ---------
+
+   .. toctree::
+
+      demos/desordre/make_desordre_cell
+      demos/desordre/make_desordre_lilypond_file
+      demos/desordre/make_desordre_measure
+      demos/desordre/make_desordre_pitches
+      demos/desordre/make_desordre_score
+      demos/desordre/make_desordre_staff
+
 :py:mod:`part <abjad.demos.part>`
 =================================
 
@@ -3868,20 +3895,19 @@ Demos and example packages
       demos/part/make_part_lilypond_file
       demos/part/shadow_pitch_contour_reservoir
 
-:py:mod:`desordre <abjad.demos.desordre>`
-=========================================
+:py:mod:`mozart <abjad.demos.mozart>`
+=====================================
 
 .. only:: html
 
    .. toctree::
       :maxdepth: 1
 
-      demos/desordre/make_desordre_cell
-      demos/desordre/make_desordre_lilypond_file
-      demos/desordre/make_desordre_measure
-      demos/desordre/make_desordre_pitches
-      demos/desordre/make_desordre_score
-      demos/desordre/make_desordre_staff
+      demos/mozart/choose_mozart_measures
+      demos/mozart/make_mozart_lilypond_file
+      demos/mozart/make_mozart_measure
+      demos/mozart/make_mozart_measure_corpus
+      demos/mozart/make_mozart_score
 
 .. only:: latex
 
@@ -3890,12 +3916,11 @@ Demos and example packages
 
    .. toctree::
 
-      demos/desordre/make_desordre_cell
-      demos/desordre/make_desordre_lilypond_file
-      demos/desordre/make_desordre_measure
-      demos/desordre/make_desordre_pitches
-      demos/desordre/make_desordre_score
-      demos/desordre/make_desordre_staff
+      demos/mozart/choose_mozart_measures
+      demos/mozart/make_mozart_lilypond_file
+      demos/mozart/make_mozart_measure
+      demos/mozart/make_mozart_measure_corpus
+      demos/mozart/make_mozart_score
 
 :py:mod:`mozart <abjad.demos.mozart>`
 =====================================

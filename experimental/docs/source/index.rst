@@ -78,69 +78,6 @@ Unstable packages (load manually)
    :maxdepth: 1
 
 
-:py:mod:`handlertools <experimental.tools.handlertools>`
-========================================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/handlertools/ArticulationHandler/ArticulationHandler
-      tools/handlertools/DynamicHandler/DynamicHandler
-      tools/handlertools/Handler/Handler
-      tools/handlertools/PitchHandler/PitchHandler
-
-   --------
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/handlertools/DiatonicClusterHandler/DiatonicClusterHandler
-      tools/handlertools/NoteAndChordHairpinHandler/NoteAndChordHairpinHandler
-      tools/handlertools/NoteAndChordHairpinsHandler/NoteAndChordHairpinsHandler
-      tools/handlertools/OctaveTranspositionHandler/OctaveTranspositionHandler
-      tools/handlertools/PatternedArticulationsHandler/PatternedArticulationsHandler
-      tools/handlertools/ReiteratedArticulationHandler/ReiteratedArticulationHandler
-      tools/handlertools/ReiteratedDynamicHandler/ReiteratedDynamicHandler
-      tools/handlertools/RepeatedMarkupHandler/RepeatedMarkupHandler
-      tools/handlertools/RestTerminatedMantenimentiHandler/RestTerminatedMantenimentiHandler
-      tools/handlertools/StemTremoloHandler/StemTremoloHandler
-      tools/handlertools/TerracedDynamicsHandler/TerracedDynamicsHandler
-      tools/handlertools/TimewisePitchClassHandler/TimewisePitchClassHandler
-      tools/handlertools/TwoStageHairpinHandler/TwoStageHairpinHandler
-
-.. only:: latex
-
-   Abstract Classes
-   ----------------
-
-   .. toctree::
-
-      tools/handlertools/ArticulationHandler/ArticulationHandler
-      tools/handlertools/DynamicHandler/DynamicHandler
-      tools/handlertools/Handler/Handler
-      tools/handlertools/PitchHandler/PitchHandler
-
-   Concrete Classes
-   ----------------
-
-   .. toctree::
-
-      tools/handlertools/DiatonicClusterHandler/DiatonicClusterHandler
-      tools/handlertools/NoteAndChordHairpinHandler/NoteAndChordHairpinHandler
-      tools/handlertools/NoteAndChordHairpinsHandler/NoteAndChordHairpinsHandler
-      tools/handlertools/OctaveTranspositionHandler/OctaveTranspositionHandler
-      tools/handlertools/PatternedArticulationsHandler/PatternedArticulationsHandler
-      tools/handlertools/ReiteratedArticulationHandler/ReiteratedArticulationHandler
-      tools/handlertools/ReiteratedDynamicHandler/ReiteratedDynamicHandler
-      tools/handlertools/RepeatedMarkupHandler/RepeatedMarkupHandler
-      tools/handlertools/RestTerminatedMantenimentiHandler/RestTerminatedMantenimentiHandler
-      tools/handlertools/StemTremoloHandler/StemTremoloHandler
-      tools/handlertools/TerracedDynamicsHandler/TerracedDynamicsHandler
-      tools/handlertools/TimewisePitchClassHandler/TimewisePitchClassHandler
-      tools/handlertools/TwoStageHairpinHandler/TwoStageHairpinHandler
-
 :py:mod:`constrainttools <experimental.tools.constrainttools>`
 ==============================================================
 
@@ -194,6 +131,73 @@ Unstable packages (load manually)
    .. toctree::
 
       tools/metricmodulationtools/yield_prolation_rewrite_pairs
+
+:py:mod:`newabjadbooktools <experimental.tools.newabjadbooktools>`
+==================================================================
+
+.. only:: html
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/newabjadbooktools/AssetOutputProxy/AssetOutputProxy
+      tools/newabjadbooktools/DoctreeDocumentHandler/DoctreeDocumentHandler
+      tools/newabjadbooktools/DocumentHandler/DocumentHandler
+      tools/newabjadbooktools/ImageFormat/ImageFormat
+      tools/newabjadbooktools/ImageOutputProxy/ImageOutputProxy
+      tools/newabjadbooktools/OutputProxy/OutputProxy
+      tools/newabjadbooktools/TextualDocumentHandler/TextualDocumentHandler
+
+   --------
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/newabjadbooktools/CodeBlock/CodeBlock
+      tools/newabjadbooktools/CodeOutputProxy/CodeOutputProxy
+      tools/newabjadbooktools/GnuplotOutputProxy/GnuplotOutputProxy
+      tools/newabjadbooktools/GraphvizOutputProxy/GraphvizOutputProxy
+      tools/newabjadbooktools/HTMLDocumentHandler/HTMLDocumentHandler
+      tools/newabjadbooktools/LaTeXDocumentHandler/LaTeXDocumentHandler
+      tools/newabjadbooktools/LilyPondOutputProxy/LilyPondOutputProxy
+      tools/newabjadbooktools/MIDIOutputProxy/MIDIOutputProxy
+      tools/newabjadbooktools/PDFImageFormat/PDFImageFormat
+      tools/newabjadbooktools/PNGImageFormat/PNGImageFormat
+      tools/newabjadbooktools/ReSTDocumentHandler/ReSTDocumentHandler
+      tools/newabjadbooktools/SVGImageFormat/SVGImageFormat
+
+.. only:: latex
+
+   Abstract Classes
+   ----------------
+
+   .. toctree::
+
+      tools/newabjadbooktools/AssetOutputProxy/AssetOutputProxy
+      tools/newabjadbooktools/DoctreeDocumentHandler/DoctreeDocumentHandler
+      tools/newabjadbooktools/DocumentHandler/DocumentHandler
+      tools/newabjadbooktools/ImageFormat/ImageFormat
+      tools/newabjadbooktools/ImageOutputProxy/ImageOutputProxy
+      tools/newabjadbooktools/OutputProxy/OutputProxy
+      tools/newabjadbooktools/TextualDocumentHandler/TextualDocumentHandler
+
+   Concrete Classes
+   ----------------
+
+   .. toctree::
+
+      tools/newabjadbooktools/CodeBlock/CodeBlock
+      tools/newabjadbooktools/CodeOutputProxy/CodeOutputProxy
+      tools/newabjadbooktools/GnuplotOutputProxy/GnuplotOutputProxy
+      tools/newabjadbooktools/GraphvizOutputProxy/GraphvizOutputProxy
+      tools/newabjadbooktools/HTMLDocumentHandler/HTMLDocumentHandler
+      tools/newabjadbooktools/LaTeXDocumentHandler/LaTeXDocumentHandler
+      tools/newabjadbooktools/LilyPondOutputProxy/LilyPondOutputProxy
+      tools/newabjadbooktools/MIDIOutputProxy/MIDIOutputProxy
+      tools/newabjadbooktools/PDFImageFormat/PDFImageFormat
+      tools/newabjadbooktools/PNGImageFormat/PNGImageFormat
+      tools/newabjadbooktools/ReSTDocumentHandler/ReSTDocumentHandler
+      tools/newabjadbooktools/SVGImageFormat/SVGImageFormat
 
 :py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`
 ========================================================================
@@ -414,6 +418,69 @@ Unstable packages (load manually)
       tools/musicexpressiontools/VoiceDictionary/VoiceDictionary
       tools/musicexpressiontools/VoiceProxy/VoiceProxy
 
+:py:mod:`handlertools <experimental.tools.handlertools>`
+========================================================
+
+.. only:: html
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/handlertools/ArticulationHandler/ArticulationHandler
+      tools/handlertools/DynamicHandler/DynamicHandler
+      tools/handlertools/Handler/Handler
+      tools/handlertools/PitchHandler/PitchHandler
+
+   --------
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/handlertools/DiatonicClusterHandler/DiatonicClusterHandler
+      tools/handlertools/NoteAndChordHairpinHandler/NoteAndChordHairpinHandler
+      tools/handlertools/NoteAndChordHairpinsHandler/NoteAndChordHairpinsHandler
+      tools/handlertools/OctaveTranspositionHandler/OctaveTranspositionHandler
+      tools/handlertools/PatternedArticulationsHandler/PatternedArticulationsHandler
+      tools/handlertools/ReiteratedArticulationHandler/ReiteratedArticulationHandler
+      tools/handlertools/ReiteratedDynamicHandler/ReiteratedDynamicHandler
+      tools/handlertools/RepeatedMarkupHandler/RepeatedMarkupHandler
+      tools/handlertools/RestTerminatedMantenimentiHandler/RestTerminatedMantenimentiHandler
+      tools/handlertools/StemTremoloHandler/StemTremoloHandler
+      tools/handlertools/TerracedDynamicsHandler/TerracedDynamicsHandler
+      tools/handlertools/TimewisePitchClassHandler/TimewisePitchClassHandler
+      tools/handlertools/TwoStageHairpinHandler/TwoStageHairpinHandler
+
+.. only:: latex
+
+   Abstract Classes
+   ----------------
+
+   .. toctree::
+
+      tools/handlertools/ArticulationHandler/ArticulationHandler
+      tools/handlertools/DynamicHandler/DynamicHandler
+      tools/handlertools/Handler/Handler
+      tools/handlertools/PitchHandler/PitchHandler
+
+   Concrete Classes
+   ----------------
+
+   .. toctree::
+
+      tools/handlertools/DiatonicClusterHandler/DiatonicClusterHandler
+      tools/handlertools/NoteAndChordHairpinHandler/NoteAndChordHairpinHandler
+      tools/handlertools/NoteAndChordHairpinsHandler/NoteAndChordHairpinsHandler
+      tools/handlertools/OctaveTranspositionHandler/OctaveTranspositionHandler
+      tools/handlertools/PatternedArticulationsHandler/PatternedArticulationsHandler
+      tools/handlertools/ReiteratedArticulationHandler/ReiteratedArticulationHandler
+      tools/handlertools/ReiteratedDynamicHandler/ReiteratedDynamicHandler
+      tools/handlertools/RepeatedMarkupHandler/RepeatedMarkupHandler
+      tools/handlertools/RestTerminatedMantenimentiHandler/RestTerminatedMantenimentiHandler
+      tools/handlertools/StemTremoloHandler/StemTremoloHandler
+      tools/handlertools/TerracedDynamicsHandler/TerracedDynamicsHandler
+      tools/handlertools/TimewisePitchClassHandler/TimewisePitchClassHandler
+      tools/handlertools/TwoStageHairpinHandler/TwoStageHairpinHandler
+
 :py:mod:`lyrictools <experimental.tools.lyrictools>`
 ====================================================
 
@@ -442,73 +509,6 @@ Unstable packages (load manually)
       tools/lyrictools/LyricSpace/LyricSpace
       tools/lyrictools/LyricText/LyricText
       tools/lyrictools/Lyrics/Lyrics
-
-:py:mod:`newabjadbooktools <experimental.tools.newabjadbooktools>`
-==================================================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/newabjadbooktools/AssetOutputProxy/AssetOutputProxy
-      tools/newabjadbooktools/DoctreeDocumentHandler/DoctreeDocumentHandler
-      tools/newabjadbooktools/DocumentHandler/DocumentHandler
-      tools/newabjadbooktools/ImageFormat/ImageFormat
-      tools/newabjadbooktools/ImageOutputProxy/ImageOutputProxy
-      tools/newabjadbooktools/OutputProxy/OutputProxy
-      tools/newabjadbooktools/TextualDocumentHandler/TextualDocumentHandler
-
-   --------
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/newabjadbooktools/CodeBlock/CodeBlock
-      tools/newabjadbooktools/CodeOutputProxy/CodeOutputProxy
-      tools/newabjadbooktools/GnuplotOutputProxy/GnuplotOutputProxy
-      tools/newabjadbooktools/GraphvizOutputProxy/GraphvizOutputProxy
-      tools/newabjadbooktools/HTMLDocumentHandler/HTMLDocumentHandler
-      tools/newabjadbooktools/LaTeXDocumentHandler/LaTeXDocumentHandler
-      tools/newabjadbooktools/LilyPondOutputProxy/LilyPondOutputProxy
-      tools/newabjadbooktools/MIDIOutputProxy/MIDIOutputProxy
-      tools/newabjadbooktools/PDFImageFormat/PDFImageFormat
-      tools/newabjadbooktools/PNGImageFormat/PNGImageFormat
-      tools/newabjadbooktools/ReSTDocumentHandler/ReSTDocumentHandler
-      tools/newabjadbooktools/SVGImageFormat/SVGImageFormat
-
-.. only:: latex
-
-   Abstract Classes
-   ----------------
-
-   .. toctree::
-
-      tools/newabjadbooktools/AssetOutputProxy/AssetOutputProxy
-      tools/newabjadbooktools/DoctreeDocumentHandler/DoctreeDocumentHandler
-      tools/newabjadbooktools/DocumentHandler/DocumentHandler
-      tools/newabjadbooktools/ImageFormat/ImageFormat
-      tools/newabjadbooktools/ImageOutputProxy/ImageOutputProxy
-      tools/newabjadbooktools/OutputProxy/OutputProxy
-      tools/newabjadbooktools/TextualDocumentHandler/TextualDocumentHandler
-
-   Concrete Classes
-   ----------------
-
-   .. toctree::
-
-      tools/newabjadbooktools/CodeBlock/CodeBlock
-      tools/newabjadbooktools/CodeOutputProxy/CodeOutputProxy
-      tools/newabjadbooktools/GnuplotOutputProxy/GnuplotOutputProxy
-      tools/newabjadbooktools/GraphvizOutputProxy/GraphvizOutputProxy
-      tools/newabjadbooktools/HTMLDocumentHandler/HTMLDocumentHandler
-      tools/newabjadbooktools/LaTeXDocumentHandler/LaTeXDocumentHandler
-      tools/newabjadbooktools/LilyPondOutputProxy/LilyPondOutputProxy
-      tools/newabjadbooktools/MIDIOutputProxy/MIDIOutputProxy
-      tools/newabjadbooktools/PDFImageFormat/PDFImageFormat
-      tools/newabjadbooktools/PNGImageFormat/PNGImageFormat
-      tools/newabjadbooktools/ReSTDocumentHandler/ReSTDocumentHandler
-      tools/newabjadbooktools/SVGImageFormat/SVGImageFormat
 
 :py:mod:`parsertools <experimental.tools.parsertools>`
 ======================================================

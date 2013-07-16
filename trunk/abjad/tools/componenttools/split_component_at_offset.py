@@ -158,9 +158,8 @@ def split_component_at_offset(
     global_split_point = component.timespan.start_offset + offset
 
     # get any duration-crossing descendents
-    contents = \
-        componenttools.get_improper_descendants_of_component_that_cross_offset(
-        component, offset)
+    cross_offset = component.timespan.start_offset + offset
+    contents = component.select_descendants(cross_offset=cross_offset)
 
     # get any duration-crossing measure descendents
     measures = [x for x in contents if isinstance(x, measuretools.Measure)]
@@ -187,9 +186,8 @@ def split_component_at_offset(
             measuretools.scale_measure_denominator_and_adjust_measure_contents(
                 measure, non_power_of_two_product)
             # rederive duration crosses with possibly new measure contents
-            contents = \
-                componenttools.get_improper_descendants_of_component_that_cross_offset(
-                component, offset)
+            cross_offset = component.timespan.start_offset + offset
+            contents = component.select_descendants(cross_offset=cross_offset)
     elif 1 < len(measures):
         raise ContainmentError('measures can not nest.')
 

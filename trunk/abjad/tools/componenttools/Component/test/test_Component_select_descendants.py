@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_componenttools_get_improper_descendants_of_component_that_cross_offset_01():
+def test_Component_select_descendants_01():
     '''Staff and first measure cross offset at 1/8.
     '''
 
@@ -19,12 +19,13 @@ def test_componenttools_get_improper_descendants_of_component_that_cross_offset_
     }
     '''
 
-    result = componenttools.get_improper_descendants_of_component_that_cross_offset(t, Duration(1, 8))
+    cross_offset = t.timespan.start_offset + Duration(1, 8)
+    result = t.select_descendants(cross_offset=cross_offset)
 
     assert result == [t, t[0]]
 
 
-def test_componenttools_get_improper_descendants_of_component_that_cross_offset_02():
+def test_Component_select_descendants_02():
     '''Staff, first measure and first note cross 1/16.
     '''
 
@@ -42,12 +43,13 @@ def test_componenttools_get_improper_descendants_of_component_that_cross_offset_
     }
     '''
 
-    result = componenttools.get_improper_descendants_of_component_that_cross_offset(t, Duration(1, 16))
+    cross_offset = t.timespan.start_offset + Duration(1, 16)
+    result = t.select_descendants(cross_offset=cross_offset)
 
     assert result == [t, t[0], t[0][0]]
 
 
-def test_componenttools_get_improper_descendants_of_component_that_cross_offset_03():
+def test_Component_select_descendants_03():
     '''Nothing crosses 0.
     '''
 
@@ -65,12 +67,13 @@ def test_componenttools_get_improper_descendants_of_component_that_cross_offset_
     }
     '''
 
-    result = componenttools.get_improper_descendants_of_component_that_cross_offset(t, Duration(0))
+    cross_offset = t.timespan.start_offset + Duration(0)
+    result = t.select_descendants(cross_offset=cross_offset)
 
     assert result == []
 
 
-def test_componenttools_get_improper_descendants_of_component_that_cross_offset_04():
+def test_Component_select_descendants_04():
     '''Nothing crosses 100.
     '''
 
@@ -88,6 +91,7 @@ def test_componenttools_get_improper_descendants_of_component_that_cross_offset_
     }
     '''
 
-    result = componenttools.get_improper_descendants_of_component_that_cross_offset(t, Duration(100))
+    cross_offset = t.timespan.start_offset + Duration(100)
+    result = t.select_descendants(cross_offset=cross_offset)
 
     assert result == []
