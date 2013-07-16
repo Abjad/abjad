@@ -1,5 +1,3 @@
-:orphan:
-
 timespantools
 =============
 
@@ -10,5 +8,5 @@ Concrete classes
 
 .. autosummary::
 
-   abjad.tools.timespantools.Timespan.Timespan.Timespan
-   abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory
+   ~abjad.tools.timespantools.Timespan.Timespan.Timespan
+   ~abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory

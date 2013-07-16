@@ -1,5 +1,3 @@
-:orphan:
-
 parsertools
 ===========
 
@@ -10,4 +8,4 @@ Concrete classes
 
 .. autosummary::
 
-   experimental.tools.parsertools.ENPParser.ENPParser.ENPParser
+   ~experimental.tools.parsertools.ENPParser.ENPParser.ENPParser

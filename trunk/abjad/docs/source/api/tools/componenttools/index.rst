@@ -1,5 +1,3 @@
-:orphan:
-
 componenttools
 ==============
 
@@ -10,49 +8,49 @@ Abstract classes
 
 .. autosummary::
 
-   abjad.tools.componenttools.Component.Component.Component
+   ~abjad.tools.componenttools.Component.Component.Component
 
 Concrete classes
 ----------------
 
 .. autosummary::
 
-   abjad.tools.componenttools.ContainmentSignature.ContainmentSignature.ContainmentSignature
-   abjad.tools.componenttools.Descendants.Descendants.Descendants
-   abjad.tools.componenttools.Lineage.Lineage.Lineage
-   abjad.tools.componenttools.Parentage.Parentage.Parentage
-   abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment
+   ~abjad.tools.componenttools.ContainmentSignature.ContainmentSignature.ContainmentSignature
+   ~abjad.tools.componenttools.Descendants.Descendants.Descendants
+   ~abjad.tools.componenttools.Lineage.Lineage.Lineage
+   ~abjad.tools.componenttools.Parentage.Parentage.Parentage
+   ~abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment
 
 Functions
 ---------
 
 .. autosummary::
 
-   abjad.tools.componenttools.all_are_components.all_are_components
-   abjad.tools.componenttools.all_are_components_in_same_thread.all_are_components_in_same_thread
-   abjad.tools.componenttools.all_are_components_scalable_by_multiplier.all_are_components_scalable_by_multiplier
-   abjad.tools.componenttools.all_are_contiguous_components.all_are_contiguous_components
-   abjad.tools.componenttools.all_are_contiguous_components_in_same_parent.all_are_contiguous_components_in_same_parent
-   abjad.tools.componenttools.all_are_contiguous_components_in_same_thread.all_are_contiguous_components_in_same_thread
-   abjad.tools.componenttools.all_are_thread_contiguous_components.all_are_thread_contiguous_components
-   abjad.tools.componenttools.copy_and_partition_governed_component_subtree_by_leaf_counts.copy_and_partition_governed_component_subtree_by_leaf_counts
-   abjad.tools.componenttools.copy_components_and_covered_spanners.copy_components_and_covered_spanners
-   abjad.tools.componenttools.copy_components_and_detach_spanners.copy_components_and_detach_spanners
-   abjad.tools.componenttools.copy_components_and_fracture_crossing_spanners.copy_components_and_fracture_crossing_spanners
-   abjad.tools.componenttools.copy_components_and_immediate_parent_of_first_component.copy_components_and_immediate_parent_of_first_component
-   abjad.tools.componenttools.copy_governed_component_subtree_by_leaf_range.copy_governed_component_subtree_by_leaf_range
-   abjad.tools.componenttools.copy_governed_component_subtree_from_offset_to.copy_governed_component_subtree_from_offset_to
-   abjad.tools.componenttools.get_nth_component_in_time_order_from_component.get_nth_component_in_time_order_from_component
-   abjad.tools.componenttools.get_nth_namesake_from_component.get_nth_namesake_from_component
-   abjad.tools.componenttools.get_nth_sibling_from_component.get_nth_sibling_from_component
-   abjad.tools.componenttools.get_parent_and_start_stop_indices_of_components.get_parent_and_start_stop_indices_of_components
-   abjad.tools.componenttools.move_component_subtree_to_right_in_immediate_parent_of_component.move_component_subtree_to_right_in_immediate_parent_of_component
-   abjad.tools.componenttools.move_parentage_and_spanners_from_components_to_components.move_parentage_and_spanners_from_components_to_components
-   abjad.tools.componenttools.partition_components_by_durations.partition_components_by_durations
-   abjad.tools.componenttools.partition_components_by_durations_exactly.partition_components_by_durations_exactly
-   abjad.tools.componenttools.partition_components_by_durations_not_greater_than.partition_components_by_durations_not_greater_than
-   abjad.tools.componenttools.partition_components_by_durations_not_less_than.partition_components_by_durations_not_less_than
-   abjad.tools.componenttools.remove_component_subtree_from_score_and_spanners.remove_component_subtree_from_score_and_spanners
-   abjad.tools.componenttools.replace_components_with_children_of_components.replace_components_with_children_of_components
-   abjad.tools.componenttools.split_component_at_offset.split_component_at_offset
-   abjad.tools.componenttools.split_components_at_offsets.split_components_at_offsets
+   ~abjad.tools.componenttools.all_are_components.all_are_components
+   ~abjad.tools.componenttools.all_are_components_in_same_thread.all_are_components_in_same_thread
+   ~abjad.tools.componenttools.all_are_components_scalable_by_multiplier.all_are_components_scalable_by_multiplier
+   ~abjad.tools.componenttools.all_are_contiguous_components.all_are_contiguous_components
+   ~abjad.tools.componenttools.all_are_contiguous_components_in_same_parent.all_are_contiguous_components_in_same_parent
+   ~abjad.tools.componenttools.all_are_contiguous_components_in_same_thread.all_are_contiguous_components_in_same_thread
+   ~abjad.tools.componenttools.all_are_thread_contiguous_components.all_are_thread_contiguous_components
+   ~abjad.tools.componenttools.copy_and_partition_governed_component_subtree_by_leaf_counts.copy_and_partition_governed_component_subtree_by_leaf_counts
+   ~abjad.tools.componenttools.copy_components_and_covered_spanners.copy_components_and_covered_spanners
+   ~abjad.tools.componenttools.copy_components_and_detach_spanners.copy_components_and_detach_spanners
+   ~abjad.tools.componenttools.copy_components_and_fracture_crossing_spanners.copy_components_and_fracture_crossing_spanners
+   ~abjad.tools.componenttools.copy_components_and_immediate_parent_of_first_component.copy_components_and_immediate_parent_of_first_component
+   ~abjad.tools.componenttools.copy_governed_component_subtree_by_leaf_range.copy_governed_component_subtree_by_leaf_range
+   ~abjad.tools.componenttools.copy_governed_component_subtree_from_offset_to.copy_governed_component_subtree_from_offset_to
+   ~abjad.tools.componenttools.get_nth_component_in_time_order_from_component.get_nth_component_in_time_order_from_component
+   ~abjad.tools.componenttools.get_nth_namesake_from_component.get_nth_namesake_from_component
+   ~abjad.tools.componenttools.get_nth_sibling_from_component.get_nth_sibling_from_component
+   ~abjad.tools.componenttools.get_parent_and_start_stop_indices_of_components.get_parent_and_start_stop_indices_of_components
+   ~abjad.tools.componenttools.move_component_subtree_to_right_in_immediate_parent_of_component.move_component_subtree_to_right_in_immediate_parent_of_component
+   ~abjad.tools.componenttools.move_parentage_and_spanners_from_components_to_components.move_parentage_and_spanners_from_components_to_components
+   ~abjad.tools.componenttools.partition_components_by_durations.partition_components_by_durations
+   ~abjad.tools.componenttools.partition_components_by_durations_exactly.partition_components_by_durations_exactly
+   ~abjad.tools.componenttools.partition_components_by_durations_not_greater_than.partition_components_by_durations_not_greater_than
+   ~abjad.tools.componenttools.partition_components_by_durations_not_less_than.partition_components_by_durations_not_less_than
+   ~abjad.tools.componenttools.remove_component_subtree_from_score_and_spanners.remove_component_subtree_from_score_and_spanners
+   ~abjad.tools.componenttools.replace_components_with_children_of_components.replace_components_with_children_of_components
+   ~abjad.tools.componenttools.split_component_at_offset.split_component_at_offset
+   ~abjad.tools.componenttools.split_components_at_offsets.split_components_at_offsets

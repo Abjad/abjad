@@ -9,6 +9,12 @@ Demos and example packages
 :py:mod:`microlanguage <experimental.demos.microlanguage>`
 ==========================================================
 
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   demos/microlanguage/index
+
 .. only:: html
 
    .. toctree::
@@ -27,6 +33,12 @@ Demos and example packages
 
 :py:mod:`windungen <experimental.demos.windungen>`
 ==================================================
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   demos/windungen/index
 
 .. only:: html
 
@@ -71,6 +83,12 @@ Unstable packages (load manually)
 :py:mod:`constrainttools <experimental.tools.constrainttools>`
 ==============================================================
 
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/constrainttools/index
+
 .. only:: html
 
    .. toctree::
@@ -105,6 +123,12 @@ Unstable packages (load manually)
 
 :py:mod:`handlertools <experimental.tools.handlertools>`
 ========================================================
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/handlertools/index
 
 .. only:: html
 
@@ -167,6 +191,12 @@ Unstable packages (load manually)
 :py:mod:`lyrictools <experimental.tools.lyrictools>`
 ====================================================
 
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/lyrictools/index
+
 .. only:: html
 
    .. toctree::
@@ -196,6 +226,12 @@ Unstable packages (load manually)
 :py:mod:`metricmodulationtools <experimental.tools.metricmodulationtools>`
 ==========================================================================
 
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/metricmodulationtools/index
+
 .. only:: html
 
    .. toctree::
@@ -214,6 +250,12 @@ Unstable packages (load manually)
 
 :py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`
 ========================================================================
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/musicexpressiontools/index
 
 .. only:: html
 
@@ -432,6 +474,12 @@ Unstable packages (load manually)
 :py:mod:`newabjadbooktools <experimental.tools.newabjadbooktools>`
 ==================================================================
 
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/newabjadbooktools/index
+
 .. only:: html
 
    .. toctree::
@@ -497,6 +545,12 @@ Unstable packages (load manually)
 :py:mod:`parsertools <experimental.tools.parsertools>`
 ======================================================
 
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/parsertools/index
+
 .. only:: html
 
    .. toctree::
@@ -515,6 +569,12 @@ Unstable packages (load manually)
 
 :py:mod:`scoremanagertools <experimental.tools.scoremanagertools>`
 ==================================================================
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/scoremanagertools/index
 
 .. only:: html
 

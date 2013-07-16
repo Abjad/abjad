@@ -1,5 +1,3 @@
-:orphan:
-
 sievetools
 ==========
 
@@ -10,12 +8,12 @@ Abstract classes
 
 .. autosummary::
 
-   abjad.tools.sievetools.BaseResidueClass.BaseResidueClass.BaseResidueClass
+   ~abjad.tools.sievetools.BaseResidueClass.BaseResidueClass.BaseResidueClass
 
 Concrete classes
 ----------------
 
 .. autosummary::
 
-   abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass
-   abjad.tools.sievetools.Sieve.Sieve.Sieve
+   ~abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass
+   ~abjad.tools.sievetools.Sieve.Sieve.Sieve

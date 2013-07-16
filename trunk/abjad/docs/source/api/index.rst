@@ -9,6 +9,12 @@ Core composition packages
 :py:mod:`chordtools <abjad.tools.chordtools>`
 =============================================
 
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/chordtools/index
+
 .. only:: html
 
    .. toctree::
@@ -39,6 +45,12 @@ Core composition packages
 
 :py:mod:`componenttools <abjad.tools.componenttools>`
 =====================================================
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/componenttools/index
 
 .. only:: html
 
@@ -145,6 +157,12 @@ Core composition packages
 :py:mod:`containertools <abjad.tools.containertools>`
 =====================================================
 
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/containertools/index
+
 .. only:: html
 
    .. toctree::
@@ -227,6 +245,12 @@ Core composition packages
 
 :py:mod:`contexttools <abjad.tools.contexttools>`
 =================================================
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/contexttools/index
 
 .. only:: html
 
@@ -363,6 +387,12 @@ Core composition packages
 :py:mod:`durationtools <abjad.tools.durationtools>`
 ===================================================
 
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/durationtools/index
+
 .. only:: html
 
    .. toctree::
@@ -408,6 +438,12 @@ Core composition packages
 :py:mod:`gracetools <abjad.tools.gracetools>`
 =============================================
 
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/gracetools/index
+
 .. only:: html
 
    .. toctree::
@@ -442,6 +478,12 @@ Core composition packages
 
 :py:mod:`instrumenttools <abjad.tools.instrumenttools>`
 =======================================================
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/instrumenttools/index
 
 .. only:: html
 
@@ -624,6 +666,12 @@ Core composition packages
 :py:mod:`iotools <abjad.tools.iotools>`
 =======================================
 
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/iotools/index
+
 .. only:: html
 
    .. toctree::
@@ -696,6 +744,12 @@ Core composition packages
 
 :py:mod:`iterationtools <abjad.tools.iterationtools>`
 =====================================================
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/iterationtools/index
 
 .. only:: html
 
@@ -771,6 +825,12 @@ Core composition packages
 
 :py:mod:`labeltools <abjad.tools.labeltools>`
 =============================================
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/labeltools/index
 
 .. only:: html
 
@@ -859,6 +919,12 @@ Core composition packages
 :py:mod:`layouttools <abjad.tools.layouttools>`
 ===============================================
 
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/layouttools/index
+
 .. only:: html
 
    .. toctree::
@@ -895,6 +961,12 @@ Core composition packages
 
 :py:mod:`leaftools <abjad.tools.leaftools>`
 ===========================================
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/leaftools/index
 
 .. only:: html
 
@@ -995,6 +1067,12 @@ Core composition packages
 :py:mod:`lilypondfiletools <abjad.tools.lilypondfiletools>`
 ===========================================================
 
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/lilypondfiletools/index
+
 .. only:: html
 
    .. toctree::
@@ -1069,6 +1147,12 @@ Core composition packages
 
 :py:mod:`marktools <abjad.tools.marktools>`
 ===========================================
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/marktools/index
 
 .. only:: html
 
@@ -1199,6 +1283,12 @@ Core composition packages
 :py:mod:`markuptools <abjad.tools.markuptools>`
 ===============================================
 
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/markuptools/index
+
 .. only:: html
 
    .. toctree::
@@ -1251,6 +1341,12 @@ Core composition packages
 
 :py:mod:`mathtools <abjad.tools.mathtools>`
 ===========================================
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/mathtools/index
 
 .. only:: html
 
@@ -1405,6 +1501,12 @@ Core composition packages
 :py:mod:`measuretools <abjad.tools.measuretools>`
 =================================================
 
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/measuretools/index
+
 .. only:: html
 
    .. toctree::
@@ -1502,6 +1604,12 @@ Core composition packages
 :py:mod:`notetools <abjad.tools.notetools>`
 ===========================================
 
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/notetools/index
+
 .. only:: html
 
    .. toctree::
@@ -1557,6 +1665,12 @@ Core composition packages
 :py:mod:`pitcharraytools <abjad.tools.pitcharraytools>`
 =======================================================
 
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/pitcharraytools/index
+
 .. only:: html
 
    .. toctree::
@@ -1603,6 +1717,12 @@ Core composition packages
 
 :py:mod:`pitchtools <abjad.tools.pitchtools>`
 =============================================
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/pitchtools/index
 
 .. only:: html
 
@@ -2067,6 +2187,12 @@ Core composition packages
 :py:mod:`quantizationtools <abjad.tools.quantizationtools>`
 ===========================================================
 
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/quantizationtools/index
+
 .. only:: html
 
    .. toctree::
@@ -2194,6 +2320,12 @@ Core composition packages
 :py:mod:`resttools <abjad.tools.resttools>`
 ===========================================
 
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/resttools/index
+
 .. only:: html
 
    .. toctree::
@@ -2238,6 +2370,12 @@ Core composition packages
 
 :py:mod:`rhythmmakertools <abjad.tools.rhythmmakertools>`
 =========================================================
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/rhythmmakertools/index
 
 .. only:: html
 
@@ -2302,6 +2440,12 @@ Core composition packages
 :py:mod:`rhythmtreetools <abjad.tools.rhythmtreetools>`
 =======================================================
 
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/rhythmtreetools/index
+
 .. only:: html
 
    .. toctree::
@@ -2349,6 +2493,12 @@ Core composition packages
 :py:mod:`schemetools <abjad.tools.schemetools>`
 ===============================================
 
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/schemetools/index
+
 .. only:: html
 
    .. toctree::
@@ -2392,6 +2542,12 @@ Core composition packages
 :py:mod:`scoretemplatetools <abjad.tools.scoretemplatetools>`
 =============================================================
 
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/scoretemplatetools/index
+
 .. only:: html
 
    .. toctree::
@@ -2428,6 +2584,12 @@ Core composition packages
 
 :py:mod:`scoretools <abjad.tools.scoretools>`
 =============================================
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/scoretools/index
 
 .. only:: html
 
@@ -2484,6 +2646,12 @@ Core composition packages
 :py:mod:`selectiontools <abjad.tools.selectiontools>`
 =====================================================
 
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/selectiontools/index
+
 .. only:: html
 
    .. toctree::
@@ -2504,6 +2672,12 @@ Core composition packages
 
 :py:mod:`sequencetools <abjad.tools.sequencetools>`
 ===================================================
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/sequencetools/index
 
 .. only:: html
 
@@ -2778,6 +2952,12 @@ Core composition packages
 :py:mod:`sievetools <abjad.tools.sievetools>`
 =============================================
 
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/sievetools/index
+
 .. only:: html
 
    .. toctree::
@@ -2810,6 +2990,12 @@ Core composition packages
 
 :py:mod:`skiptools <abjad.tools.skiptools>`
 ===========================================
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/skiptools/index
 
 .. only:: html
 
@@ -2847,6 +3033,12 @@ Core composition packages
 
 :py:mod:`spannertools <abjad.tools.spannertools>`
 =================================================
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/spannertools/index
 
 .. only:: html
 
@@ -2997,6 +3189,12 @@ Core composition packages
 :py:mod:`stafftools <abjad.tools.stafftools>`
 =============================================
 
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/stafftools/index
+
 .. only:: html
 
    .. toctree::
@@ -3029,6 +3227,12 @@ Core composition packages
 
 :py:mod:`stringtools <abjad.tools.stringtools>`
 ===============================================
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/stringtools/index
 
 .. only:: html
 
@@ -3101,6 +3305,12 @@ Core composition packages
 :py:mod:`tempotools <abjad.tools.tempotools>`
 =============================================
 
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/tempotools/index
+
 .. only:: html
 
    .. toctree::
@@ -3123,6 +3333,12 @@ Core composition packages
 
 :py:mod:`timeintervaltools <abjad.tools.timeintervaltools>`
 ===========================================================
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/timeintervaltools/index
 
 .. only:: html
 
@@ -3269,6 +3485,12 @@ Core composition packages
 :py:mod:`timerelationtools <abjad.tools.timerelationtools>`
 ===========================================================
 
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/timerelationtools/index
+
 .. only:: html
 
    .. toctree::
@@ -3382,6 +3604,12 @@ Core composition packages
 :py:mod:`timesignaturetools <abjad.tools.timesignaturetools>`
 =============================================================
 
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/timesignaturetools/index
+
 .. only:: html
 
    .. toctree::
@@ -3423,6 +3651,12 @@ Core composition packages
 :py:mod:`timespantools <abjad.tools.timespantools>`
 ===================================================
 
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/timespantools/index
+
 .. only:: html
 
    .. toctree::
@@ -3443,6 +3677,12 @@ Core composition packages
 
 :py:mod:`tonalitytools <abjad.tools.tonalitytools>`
 ===================================================
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/tonalitytools/index
 
 .. only:: html
 
@@ -3527,6 +3767,12 @@ Core composition packages
 :py:mod:`tuplettools <abjad.tools.tuplettools>`
 ===============================================
 
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/tuplettools/index
+
 .. only:: html
 
    .. toctree::
@@ -3586,6 +3832,12 @@ Core composition packages
 :py:mod:`voicetools <abjad.tools.voicetools>`
 =============================================
 
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/voicetools/index
+
 .. only:: html
 
    .. toctree::
@@ -3604,6 +3856,12 @@ Core composition packages
 
 :py:mod:`wellformednesstools <abjad.tools.wellformednesstools>`
 ===============================================================
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/wellformednesstools/index
 
 .. only:: html
 
@@ -3686,6 +3944,12 @@ Demos and example packages
 :py:mod:`desordre <abjad.demos.desordre>`
 =========================================
 
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   demos/desordre/index
+
 .. only:: html
 
    .. toctree::
@@ -3714,6 +3978,12 @@ Demos and example packages
 
 :py:mod:`ferneyhough <abjad.demos.ferneyhough>`
 ===============================================
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   demos/ferneyhough/index
 
 .. only:: html
 
@@ -3744,6 +4014,12 @@ Demos and example packages
 :py:mod:`mozart <abjad.demos.mozart>`
 =====================================
 
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   demos/mozart/index
+
 .. only:: html
 
    .. toctree::
@@ -3770,6 +4046,12 @@ Demos and example packages
 
 :py:mod:`part <abjad.demos.part>`
 =================================
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   demos/part/index
 
 .. only:: html
 
@@ -3842,6 +4124,12 @@ Abjad internal packages
 :py:mod:`abctools <abjad.tools.abctools>`
 =========================================
 
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/abctools/index
+
 .. only:: html
 
    .. toctree::
@@ -3872,6 +4160,12 @@ Abjad internal packages
 
 :py:mod:`abjadbooktools <abjad.tools.abjadbooktools>`
 =====================================================
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/abjadbooktools/index
 
 .. only:: html
 
@@ -3913,6 +4207,12 @@ Abjad internal packages
 
 :py:mod:`configurationtools <abjad.tools.configurationtools>`
 =============================================================
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/configurationtools/index
 
 .. only:: html
 
@@ -3977,6 +4277,12 @@ Abjad internal packages
 :py:mod:`datastructuretools <abjad.tools.datastructuretools>`
 =============================================================
 
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/datastructuretools/index
+
 .. only:: html
 
    .. toctree::
@@ -4010,6 +4316,12 @@ Abjad internal packages
 :py:mod:`decoratortools <abjad.tools.decoratortools>`
 =====================================================
 
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/decoratortools/index
+
 .. only:: html
 
    .. toctree::
@@ -4028,6 +4340,12 @@ Abjad internal packages
 
 :py:mod:`developerscripttools <abjad.tools.developerscripttools>`
 =================================================================
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/developerscripttools/index
 
 .. only:: html
 
@@ -4113,6 +4431,12 @@ Abjad internal packages
 
 :py:mod:`documentationtools <abjad.tools.documentationtools>`
 =============================================================
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/documentationtools/index
 
 .. only:: html
 
@@ -4218,6 +4542,12 @@ Abjad internal packages
 
 :py:mod:`exceptiontools <abjad.tools.exceptiontools>`
 =====================================================
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/exceptiontools/index
 
 .. only:: html
 
@@ -4344,6 +4674,12 @@ Abjad internal packages
 :py:mod:`formattools <abjad.tools.formattools>`
 ===============================================
 
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/formattools/index
+
 .. only:: html
 
    .. toctree::
@@ -4393,6 +4729,12 @@ Abjad internal packages
 :py:mod:`importtools <abjad.tools.importtools>`
 ===============================================
 
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/importtools/index
+
 .. only:: html
 
    .. toctree::
@@ -4420,6 +4762,12 @@ Abjad internal packages
 :py:mod:`introspectiontools <abjad.tools.introspectiontools>`
 =============================================================
 
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/introspectiontools/index
+
 .. only:: html
 
    .. toctree::
@@ -4440,6 +4788,12 @@ Abjad internal packages
 
 :py:mod:`lilypondparsertools <abjad.tools.lilypondparsertools>`
 ===============================================================
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/lilypondparsertools/index
 
 .. only:: html
 
@@ -4520,6 +4874,12 @@ Abjad internal packages
 :py:mod:`lilypondproxytools <abjad.tools.lilypondproxytools>`
 =============================================================
 
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/lilypondproxytools/index
+
 .. only:: html
 
    .. toctree::
@@ -4553,6 +4913,12 @@ Abjad internal packages
 :py:mod:`offsettools <abjad.tools.offsettools>`
 ===============================================
 
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/offsettools/index
+
 .. only:: html
 
    .. toctree::
@@ -4573,6 +4939,12 @@ Abjad internal packages
 
 :py:mod:`testtools <abjad.tools.testtools>`
 ===========================================
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   tools/testtools/index
 
 .. only:: html
 

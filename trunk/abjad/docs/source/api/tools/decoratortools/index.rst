@@ -1,5 +1,3 @@
-:orphan:
-
 decoratortools
 ==============
 
@@ -10,4 +8,4 @@ Functions
 
 .. autosummary::
 
-   abjad.tools.decoratortools.requires.requires
+   ~abjad.tools.decoratortools.requires.requires

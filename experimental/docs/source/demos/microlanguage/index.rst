@@ -1,5 +1,3 @@
-:orphan:
-
 microlanguage
 =============
 
@@ -10,4 +8,4 @@ Concrete classes
 
 .. autosummary::
 
-   experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser
+   ~experimental.demos.microlanguage.ToyLanguageParser.ToyLanguageParser.ToyLanguageParser

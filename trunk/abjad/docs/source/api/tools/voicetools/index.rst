@@ -1,5 +1,3 @@
-:orphan:
-
 voicetools
 ==========
 
@@ -10,4 +8,4 @@ Concrete classes
 
 .. autosummary::
 
-   abjad.tools.voicetools.Voice.Voice.Voice
+   ~abjad.tools.voicetools.Voice.Voice.Voice

@@ -35,9 +35,9 @@ class ToolsPackageDocumenter(Documenter):
         '''
         from abjad.tools import documentationtools 
         document = documentationtools.ReSTDocument()
-        document.append(documentationtools.ReSTParagraph(
-            text=':orphan:',
-            ))
+#        document.append(documentationtools.ReSTParagraph(
+#            text=':orphan:',
+#            ))
         document.append(documentationtools.ReSTHeading(
             level=2,
             text=self._shrink_module_name(self.module_name)
@@ -75,7 +75,7 @@ class ToolsPackageDocumenter(Documenter):
         result.append(heading)
         autosummary = documentationtools.ReSTAutosummaryDirective()
         for documenter in documenters:
-            autosummary.append(documenter.module_name)
+            autosummary.append('~{}'.format(documenter.module_name))
         result.append(autosummary)
         return result
 
@@ -144,9 +144,20 @@ class ToolsPackageDocumenter(Documenter):
                 self._shrink_module_name(self.module_name), self.module_name)
             )
         result.append(heading)
+
+        hidden_toc = documentationtools.ReSTTOCDirective(
+            options={
+                'hidden': True,
+                'maxdepth': 1,
+                },
+            )
+        index_path = '/'.join(self.module_name.split('.')[1:] + ['index'])
+        hidden_toc.append(index_path)
+        result.append(hidden_toc)
+
         only_html = documentationtools.ReSTOnlyDirective(argument='html')
         only_latex = documentationtools.ReSTOnlyDirective(argument='latex')
-        
+         
         def module_name_to_toc_entry(module_name):
             return '/'.join(module_name.split('.')[1:-1])
             

@@ -1,5 +1,3 @@
-:orphan:
-
 metricmodulationtools
 =====================
 
@@ -10,4 +8,4 @@ Functions
 
 .. autosummary::
 
-   experimental.tools.metricmodulationtools.yield_prolation_rewrite_pairs.yield_prolation_rewrite_pairs
+   ~experimental.tools.metricmodulationtools.yield_prolation_rewrite_pairs.yield_prolation_rewrite_pairs
