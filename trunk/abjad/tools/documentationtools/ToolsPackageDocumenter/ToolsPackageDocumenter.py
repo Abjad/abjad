@@ -62,7 +62,14 @@ class ToolsPackageDocumenter(Documenter):
     ### PRIVATE METHODS ###
 
     def _build_autosummary_section(self, banner, documenters):
-        return []
+        from abjad.tools import documentationtools
+        result = []
+        heading = documentationtools.ReSTHeading(
+            level=3,
+            text=banner,
+            )
+        result.append(heading)
+        return result
 
     def _examine_tools_package(self):
         from abjad.tools import documentationtools
