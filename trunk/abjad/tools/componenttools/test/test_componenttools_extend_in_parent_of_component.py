@@ -161,7 +161,8 @@ def test_componenttools_extend_in_parent_of_component_07():
     t = Voice("c'8 d'8 e'8")
     spannertools.BeamSpanner(t[:])
     notes = [Note("c'16"), Note("d'16"), Note("e'16")]
-    result = componenttools.extend_in_parent_of_component(t[0], notes, left=True, grow_spanners=True)
+    result = componenttools.extend_in_parent_of_component(
+        t[0], notes, direction=Left, grow_spanners=True)
 
     r'''
     \new Voice {
@@ -186,7 +187,7 @@ def test_componenttools_extend_in_parent_of_component_08():
     t = Voice("c'8 d'8 e'8")
     spannertools.BeamSpanner(t[:])
     result = componenttools.extend_in_parent_of_component(
-        t[1], [Note(1.5, (1, 8))], left=True, grow_spanners=True)
+        t[1], [Note(1.5, (1, 8))], direction=Left, grow_spanners=True)
 
     r'''
     \new Voice {
@@ -209,7 +210,11 @@ def test_componenttools_extend_in_parent_of_component_09():
     t = Voice([tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")])
     spannertools.BeamSpanner(t[0])
     result = componenttools.extend_in_parent_of_component(
-        t[0], [tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")], left=True, grow_spanners=True)
+        t[0], 
+        [tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")], 
+        direction=Left,
+        grow_spanners=True,
+        )
 
     r'''
     \new Voice {
@@ -239,7 +244,11 @@ def test_componenttools_extend_in_parent_of_component_10():
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
     spannertools.BeamSpanner(t.select_leaves())
     result = componenttools.extend_in_parent_of_component(
-        t[1], [Note(2.5, (1, 8))], left=True, grow_spanners=True)
+        t[1], 
+        [Note(2.5, (1, 8))], 
+        direction=Left,
+        grow_spanners=True,
+        )
 
     r'''
     \new Voice {
@@ -267,7 +276,12 @@ def test_componenttools_extend_in_parent_of_component_11():
     t = Voice("c'8 d'8 e'8")
     spannertools.BeamSpanner(t[:])
     notes = [Note("c'16"), Note("d'16"), Note("e'16")]
-    result = componenttools.extend_in_parent_of_component(t[0], notes, left=True, grow_spanners=False)
+    result = componenttools.extend_in_parent_of_component(
+        t[0],
+        notes,
+        direction=Left,
+        grow_spanners=False,
+        )
 
     r'''
     \new Voice {
@@ -292,7 +306,11 @@ def test_componenttools_extend_in_parent_of_component_12():
     t = Voice("c'8 d'8 e'8")
     spannertools.BeamSpanner(t[:])
     result = componenttools.extend_in_parent_of_component(
-        t[1], [Note(1.5, (1, 8))], left=True, grow_spanners=False)
+        t[1], 
+        [Note(1.5, (1, 8))], 
+        direction=Left,
+        grow_spanners=False,
+        )
 
     r'''
     \new Voice {

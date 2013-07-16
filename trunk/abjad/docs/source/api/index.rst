@@ -10,245 +10,6 @@ Core composition packages
    :maxdepth: 1
 
 
-:py:mod:`chordtools <abjad.tools.chordtools>`
-=============================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/chordtools/Chord/Chord
-
-   --------
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/chordtools/make_tied_chord
-
-.. only:: latex
-
-   Concrete Classes
-   ----------------
-
-   .. toctree::
-
-      tools/chordtools/Chord/Chord
-
-   Functions
-   ---------
-
-   .. toctree::
-
-      tools/chordtools/make_tied_chord
-
-:py:mod:`componenttools <abjad.tools.componenttools>`
-=====================================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/componenttools/Component/Component
-
-   --------
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/componenttools/ContainmentSignature/ContainmentSignature
-      tools/componenttools/Descendants/Descendants
-      tools/componenttools/Lineage/Lineage
-      tools/componenttools/Parentage/Parentage
-      tools/componenttools/VerticalMoment/VerticalMoment
-
-   --------
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/componenttools/all_are_components
-      tools/componenttools/all_are_components_in_same_thread
-      tools/componenttools/all_are_components_scalable_by_multiplier
-      tools/componenttools/all_are_contiguous_components
-      tools/componenttools/all_are_contiguous_components_in_same_parent
-      tools/componenttools/all_are_contiguous_components_in_same_thread
-      tools/componenttools/all_are_thread_contiguous_components
-      tools/componenttools/copy_and_partition_governed_component_subtree_by_leaf_counts
-      tools/componenttools/copy_components_and_covered_spanners
-      tools/componenttools/copy_components_and_detach_spanners
-      tools/componenttools/copy_components_and_fracture_crossing_spanners
-      tools/componenttools/copy_components_and_immediate_parent_of_first_component
-      tools/componenttools/copy_governed_component_subtree_by_leaf_range
-      tools/componenttools/copy_governed_component_subtree_from_offset_to
-      tools/componenttools/extend_in_parent_of_component
-      tools/componenttools/get_improper_descendants_of_component_that_cross_offset
-      tools/componenttools/get_leftmost_components_with_total_duration_at_most
-      tools/componenttools/get_most_distant_sequential_container_in_improper_parentage_of_component
-      tools/componenttools/get_nth_component_in_expr
-      tools/componenttools/get_nth_component_in_time_order_from_component
-      tools/componenttools/get_nth_namesake_from_component
-      tools/componenttools/get_nth_sibling_from_component
-      tools/componenttools/get_parent_and_start_stop_indices_of_components
-      tools/componenttools/is_immediate_temporal_successor_of_component
-      tools/componenttools/move_component_subtree_to_right_in_immediate_parent_of_component
-      tools/componenttools/move_parentage_and_spanners_from_components_to_components
-      tools/componenttools/partition_components_by_durations
-      tools/componenttools/partition_components_by_durations_exactly
-      tools/componenttools/partition_components_by_durations_not_greater_than
-      tools/componenttools/partition_components_by_durations_not_less_than
-      tools/componenttools/remove_component_subtree_from_score_and_spanners
-      tools/componenttools/replace_components_with_children_of_components
-      tools/componenttools/split_component_at_offset
-      tools/componenttools/split_components_at_offsets
-
-.. only:: latex
-
-   Abstract Classes
-   ----------------
-
-   .. toctree::
-
-      tools/componenttools/Component/Component
-
-   Concrete Classes
-   ----------------
-
-   .. toctree::
-
-      tools/componenttools/ContainmentSignature/ContainmentSignature
-      tools/componenttools/Descendants/Descendants
-      tools/componenttools/Lineage/Lineage
-      tools/componenttools/Parentage/Parentage
-      tools/componenttools/VerticalMoment/VerticalMoment
-
-   Functions
-   ---------
-
-   .. toctree::
-
-      tools/componenttools/all_are_components
-      tools/componenttools/all_are_components_in_same_thread
-      tools/componenttools/all_are_components_scalable_by_multiplier
-      tools/componenttools/all_are_contiguous_components
-      tools/componenttools/all_are_contiguous_components_in_same_parent
-      tools/componenttools/all_are_contiguous_components_in_same_thread
-      tools/componenttools/all_are_thread_contiguous_components
-      tools/componenttools/copy_and_partition_governed_component_subtree_by_leaf_counts
-      tools/componenttools/copy_components_and_covered_spanners
-      tools/componenttools/copy_components_and_detach_spanners
-      tools/componenttools/copy_components_and_fracture_crossing_spanners
-      tools/componenttools/copy_components_and_immediate_parent_of_first_component
-      tools/componenttools/copy_governed_component_subtree_by_leaf_range
-      tools/componenttools/copy_governed_component_subtree_from_offset_to
-      tools/componenttools/extend_in_parent_of_component
-      tools/componenttools/get_improper_descendants_of_component_that_cross_offset
-      tools/componenttools/get_leftmost_components_with_total_duration_at_most
-      tools/componenttools/get_most_distant_sequential_container_in_improper_parentage_of_component
-      tools/componenttools/get_nth_component_in_expr
-      tools/componenttools/get_nth_component_in_time_order_from_component
-      tools/componenttools/get_nth_namesake_from_component
-      tools/componenttools/get_nth_sibling_from_component
-      tools/componenttools/get_parent_and_start_stop_indices_of_components
-      tools/componenttools/is_immediate_temporal_successor_of_component
-      tools/componenttools/move_component_subtree_to_right_in_immediate_parent_of_component
-      tools/componenttools/move_parentage_and_spanners_from_components_to_components
-      tools/componenttools/partition_components_by_durations
-      tools/componenttools/partition_components_by_durations_exactly
-      tools/componenttools/partition_components_by_durations_not_greater_than
-      tools/componenttools/partition_components_by_durations_not_less_than
-      tools/componenttools/remove_component_subtree_from_score_and_spanners
-      tools/componenttools/replace_components_with_children_of_components
-      tools/componenttools/split_component_at_offset
-      tools/componenttools/split_components_at_offsets
-
-:py:mod:`containertools <abjad.tools.containertools>`
-=====================================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/containertools/Cluster/Cluster
-      tools/containertools/Container/Container
-      tools/containertools/FixedDurationContainer/FixedDurationContainer
-
-   --------
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/containertools/delete_contents_of_container
-      tools/containertools/delete_contents_of_container_starting_at_or_after_offset
-      tools/containertools/delete_contents_of_container_starting_before_or_at_offset
-      tools/containertools/delete_contents_of_container_starting_strictly_after_offset
-      tools/containertools/delete_contents_of_container_starting_strictly_before_offset
-      tools/containertools/eject_contents_of_container
-      tools/containertools/fuse_like_named_contiguous_containers_in_expr
-      tools/containertools/get_element_starting_at_exactly_offset
-      tools/containertools/get_first_element_starting_at_or_after_offset
-      tools/containertools/get_first_element_starting_before_or_at_offset
-      tools/containertools/get_first_element_starting_strictly_after_offset
-      tools/containertools/get_first_element_starting_strictly_before_offset
-      tools/containertools/insert_component
-      tools/containertools/move_parentage_children_and_spanners_from_components_to_empty_container
-      tools/containertools/remove_leafless_containers_in_expr
-      tools/containertools/repeat_contents_of_container
-      tools/containertools/repeat_last_n_elements_of_container
-      tools/containertools/replace_container_slice_with_rests
-      tools/containertools/replace_contents_of_target_container_with_contents_of_source_container
-      tools/containertools/report_container_modifications
-      tools/containertools/reverse_contents_of_container
-      tools/containertools/scale_contents_of_container
-      tools/containertools/set_container_multiplier
-      tools/containertools/split_container_at_index
-      tools/containertools/split_container_by_counts
-
-.. only:: latex
-
-   Concrete Classes
-   ----------------
-
-   .. toctree::
-
-      tools/containertools/Cluster/Cluster
-      tools/containertools/Container/Container
-      tools/containertools/FixedDurationContainer/FixedDurationContainer
-
-   Functions
-   ---------
-
-   .. toctree::
-
-      tools/containertools/delete_contents_of_container
-      tools/containertools/delete_contents_of_container_starting_at_or_after_offset
-      tools/containertools/delete_contents_of_container_starting_before_or_at_offset
-      tools/containertools/delete_contents_of_container_starting_strictly_after_offset
-      tools/containertools/delete_contents_of_container_starting_strictly_before_offset
-      tools/containertools/eject_contents_of_container
-      tools/containertools/fuse_like_named_contiguous_containers_in_expr
-      tools/containertools/get_element_starting_at_exactly_offset
-      tools/containertools/get_first_element_starting_at_or_after_offset
-      tools/containertools/get_first_element_starting_before_or_at_offset
-      tools/containertools/get_first_element_starting_strictly_after_offset
-      tools/containertools/get_first_element_starting_strictly_before_offset
-      tools/containertools/insert_component
-      tools/containertools/move_parentage_children_and_spanners_from_components_to_empty_container
-      tools/containertools/remove_leafless_containers_in_expr
-      tools/containertools/repeat_contents_of_container
-      tools/containertools/repeat_last_n_elements_of_container
-      tools/containertools/replace_container_slice_with_rests
-      tools/containertools/replace_contents_of_target_container_with_contents_of_source_container
-      tools/containertools/report_container_modifications
-      tools/containertools/reverse_contents_of_container
-      tools/containertools/scale_contents_of_container
-      tools/containertools/set_container_multiplier
-      tools/containertools/split_container_at_index
-      tools/containertools/split_container_by_counts
-
 :py:mod:`contexttools <abjad.tools.contexttools>`
 =================================================
 
@@ -385,921 +146,6 @@ Core composition packages
       tools/contexttools/is_component_with_time_signature_mark_attached
       tools/contexttools/list_clef_names
       tools/contexttools/set_accidental_style_on_sequential_contexts_in_expr
-
-:py:mod:`durationtools <abjad.tools.durationtools>`
-===================================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/durationtools/Duration/Duration
-      tools/durationtools/Multiplier/Multiplier
-      tools/durationtools/Offset/Offset
-
-   --------
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/durationtools/count_offsets_in_expr
-      tools/durationtools/durations_to_integers
-      tools/durationtools/durations_to_nonreduced_fractions_with_common_denominator
-      tools/durationtools/group_nonreduced_fractions_by_implied_prolation
-      tools/durationtools/numeric_seconds_to_clock_string
-      tools/durationtools/yield_durations
-
-.. only:: latex
-
-   Concrete Classes
-   ----------------
-
-   .. toctree::
-
-      tools/durationtools/Duration/Duration
-      tools/durationtools/Multiplier/Multiplier
-      tools/durationtools/Offset/Offset
-
-   Functions
-   ---------
-
-   .. toctree::
-
-      tools/durationtools/count_offsets_in_expr
-      tools/durationtools/durations_to_integers
-      tools/durationtools/durations_to_nonreduced_fractions_with_common_denominator
-      tools/durationtools/group_nonreduced_fractions_by_implied_prolation
-      tools/durationtools/numeric_seconds_to_clock_string
-      tools/durationtools/yield_durations
-
-:py:mod:`gracetools <abjad.tools.gracetools>`
-=============================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/gracetools/GraceContainer/GraceContainer
-
-   --------
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/gracetools/detach_grace_containers_attached_to_leaf
-      tools/gracetools/detach_grace_containers_attached_to_leaves_in_expr
-      tools/gracetools/get_grace_containers_attached_to_leaf
-
-.. only:: latex
-
-   Concrete Classes
-   ----------------
-
-   .. toctree::
-
-      tools/gracetools/GraceContainer/GraceContainer
-
-   Functions
-   ---------
-
-   .. toctree::
-
-      tools/gracetools/detach_grace_containers_attached_to_leaf
-      tools/gracetools/detach_grace_containers_attached_to_leaves_in_expr
-      tools/gracetools/get_grace_containers_attached_to_leaf
-
-:py:mod:`instrumenttools <abjad.tools.instrumenttools>`
-=======================================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/instrumenttools/BrassInstrument/BrassInstrument
-      tools/instrumenttools/Clarinet/Clarinet
-      tools/instrumenttools/DoubleReedInstrument/DoubleReedInstrument
-      tools/instrumenttools/Instrument/Instrument
-      tools/instrumenttools/KeyboardInstrument/KeyboardInstrument
-      tools/instrumenttools/PercussionInstrument/PercussionInstrument
-      tools/instrumenttools/ReedInstrument/ReedInstrument
-      tools/instrumenttools/Saxophone/Saxophone
-      tools/instrumenttools/SingleReedInstrument/SingleReedInstrument
-      tools/instrumenttools/StringInstrument/StringInstrument
-      tools/instrumenttools/Trombone/Trombone
-      tools/instrumenttools/Voice/Voice
-      tools/instrumenttools/WindInstrument/WindInstrument
-
-   --------
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/instrumenttools/Accordion/Accordion
-      tools/instrumenttools/AltoFlute/AltoFlute
-      tools/instrumenttools/AltoSaxophone/AltoSaxophone
-      tools/instrumenttools/AltoTrombone/AltoTrombone
-      tools/instrumenttools/BFlatClarinet/BFlatClarinet
-      tools/instrumenttools/BaritoneSaxophone/BaritoneSaxophone
-      tools/instrumenttools/BaritoneVoice/BaritoneVoice
-      tools/instrumenttools/BassClarinet/BassClarinet
-      tools/instrumenttools/BassFlute/BassFlute
-      tools/instrumenttools/BassSaxophone/BassSaxophone
-      tools/instrumenttools/BassTrombone/BassTrombone
-      tools/instrumenttools/BassVoice/BassVoice
-      tools/instrumenttools/Bassoon/Bassoon
-      tools/instrumenttools/Cello/Cello
-      tools/instrumenttools/ClarinetInA/ClarinetInA
-      tools/instrumenttools/Contrabass/Contrabass
-      tools/instrumenttools/ContrabassClarinet/ContrabassClarinet
-      tools/instrumenttools/ContrabassFlute/ContrabassFlute
-      tools/instrumenttools/ContrabassSaxophone/ContrabassSaxophone
-      tools/instrumenttools/Contrabassoon/Contrabassoon
-      tools/instrumenttools/ContraltoVoice/ContraltoVoice
-      tools/instrumenttools/EFlatClarinet/EFlatClarinet
-      tools/instrumenttools/EnglishHorn/EnglishHorn
-      tools/instrumenttools/Flute/Flute
-      tools/instrumenttools/FrenchHorn/FrenchHorn
-      tools/instrumenttools/Glockenspiel/Glockenspiel
-      tools/instrumenttools/Guitar/Guitar
-      tools/instrumenttools/Harp/Harp
-      tools/instrumenttools/Harpsichord/Harpsichord
-      tools/instrumenttools/InstrumentInventory/InstrumentInventory
-      tools/instrumenttools/Marimba/Marimba
-      tools/instrumenttools/MezzoSopranoVoice/MezzoSopranoVoice
-      tools/instrumenttools/Oboe/Oboe
-      tools/instrumenttools/Piano/Piano
-      tools/instrumenttools/Piccolo/Piccolo
-      tools/instrumenttools/SopraninoSaxophone/SopraninoSaxophone
-      tools/instrumenttools/SopranoSaxophone/SopranoSaxophone
-      tools/instrumenttools/SopranoVoice/SopranoVoice
-      tools/instrumenttools/TenorSaxophone/TenorSaxophone
-      tools/instrumenttools/TenorTrombone/TenorTrombone
-      tools/instrumenttools/TenorVoice/TenorVoice
-      tools/instrumenttools/Trumpet/Trumpet
-      tools/instrumenttools/Tuba/Tuba
-      tools/instrumenttools/UntunedPercussion/UntunedPercussion
-      tools/instrumenttools/Vibraphone/Vibraphone
-      tools/instrumenttools/Viola/Viola
-      tools/instrumenttools/Violin/Violin
-      tools/instrumenttools/WoodwindFingering/WoodwindFingering
-      tools/instrumenttools/Xylophone/Xylophone
-
-   --------
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/instrumenttools/default_instrument_name_to_instrument_class
-      tools/instrumenttools/iterate_notes_and_chords_in_expr_outside_traditional_instrument_ranges
-      tools/instrumenttools/list_instrument_names
-      tools/instrumenttools/list_instruments
-      tools/instrumenttools/list_primary_instruments
-      tools/instrumenttools/list_secondary_instruments
-      tools/instrumenttools/notes_and_chords_in_expr_are_on_expected_clefs
-      tools/instrumenttools/notes_and_chords_in_expr_are_within_traditional_instrument_ranges
-      tools/instrumenttools/transpose_from_fingered_pitch_to_sounding_pitch
-      tools/instrumenttools/transpose_from_sounding_pitch_to_fingered_pitch
-
-.. only:: latex
-
-   Abstract Classes
-   ----------------
-
-   .. toctree::
-
-      tools/instrumenttools/BrassInstrument/BrassInstrument
-      tools/instrumenttools/Clarinet/Clarinet
-      tools/instrumenttools/DoubleReedInstrument/DoubleReedInstrument
-      tools/instrumenttools/Instrument/Instrument
-      tools/instrumenttools/KeyboardInstrument/KeyboardInstrument
-      tools/instrumenttools/PercussionInstrument/PercussionInstrument
-      tools/instrumenttools/ReedInstrument/ReedInstrument
-      tools/instrumenttools/Saxophone/Saxophone
-      tools/instrumenttools/SingleReedInstrument/SingleReedInstrument
-      tools/instrumenttools/StringInstrument/StringInstrument
-      tools/instrumenttools/Trombone/Trombone
-      tools/instrumenttools/Voice/Voice
-      tools/instrumenttools/WindInstrument/WindInstrument
-
-   Concrete Classes
-   ----------------
-
-   .. toctree::
-
-      tools/instrumenttools/Accordion/Accordion
-      tools/instrumenttools/AltoFlute/AltoFlute
-      tools/instrumenttools/AltoSaxophone/AltoSaxophone
-      tools/instrumenttools/AltoTrombone/AltoTrombone
-      tools/instrumenttools/BFlatClarinet/BFlatClarinet
-      tools/instrumenttools/BaritoneSaxophone/BaritoneSaxophone
-      tools/instrumenttools/BaritoneVoice/BaritoneVoice
-      tools/instrumenttools/BassClarinet/BassClarinet
-      tools/instrumenttools/BassFlute/BassFlute
-      tools/instrumenttools/BassSaxophone/BassSaxophone
-      tools/instrumenttools/BassTrombone/BassTrombone
-      tools/instrumenttools/BassVoice/BassVoice
-      tools/instrumenttools/Bassoon/Bassoon
-      tools/instrumenttools/Cello/Cello
-      tools/instrumenttools/ClarinetInA/ClarinetInA
-      tools/instrumenttools/Contrabass/Contrabass
-      tools/instrumenttools/ContrabassClarinet/ContrabassClarinet
-      tools/instrumenttools/ContrabassFlute/ContrabassFlute
-      tools/instrumenttools/ContrabassSaxophone/ContrabassSaxophone
-      tools/instrumenttools/Contrabassoon/Contrabassoon
-      tools/instrumenttools/ContraltoVoice/ContraltoVoice
-      tools/instrumenttools/EFlatClarinet/EFlatClarinet
-      tools/instrumenttools/EnglishHorn/EnglishHorn
-      tools/instrumenttools/Flute/Flute
-      tools/instrumenttools/FrenchHorn/FrenchHorn
-      tools/instrumenttools/Glockenspiel/Glockenspiel
-      tools/instrumenttools/Guitar/Guitar
-      tools/instrumenttools/Harp/Harp
-      tools/instrumenttools/Harpsichord/Harpsichord
-      tools/instrumenttools/InstrumentInventory/InstrumentInventory
-      tools/instrumenttools/Marimba/Marimba
-      tools/instrumenttools/MezzoSopranoVoice/MezzoSopranoVoice
-      tools/instrumenttools/Oboe/Oboe
-      tools/instrumenttools/Piano/Piano
-      tools/instrumenttools/Piccolo/Piccolo
-      tools/instrumenttools/SopraninoSaxophone/SopraninoSaxophone
-      tools/instrumenttools/SopranoSaxophone/SopranoSaxophone
-      tools/instrumenttools/SopranoVoice/SopranoVoice
-      tools/instrumenttools/TenorSaxophone/TenorSaxophone
-      tools/instrumenttools/TenorTrombone/TenorTrombone
-      tools/instrumenttools/TenorVoice/TenorVoice
-      tools/instrumenttools/Trumpet/Trumpet
-      tools/instrumenttools/Tuba/Tuba
-      tools/instrumenttools/UntunedPercussion/UntunedPercussion
-      tools/instrumenttools/Vibraphone/Vibraphone
-      tools/instrumenttools/Viola/Viola
-      tools/instrumenttools/Violin/Violin
-      tools/instrumenttools/WoodwindFingering/WoodwindFingering
-      tools/instrumenttools/Xylophone/Xylophone
-
-   Functions
-   ---------
-
-   .. toctree::
-
-      tools/instrumenttools/default_instrument_name_to_instrument_class
-      tools/instrumenttools/iterate_notes_and_chords_in_expr_outside_traditional_instrument_ranges
-      tools/instrumenttools/list_instrument_names
-      tools/instrumenttools/list_instruments
-      tools/instrumenttools/list_primary_instruments
-      tools/instrumenttools/list_secondary_instruments
-      tools/instrumenttools/notes_and_chords_in_expr_are_on_expected_clefs
-      tools/instrumenttools/notes_and_chords_in_expr_are_within_traditional_instrument_ranges
-      tools/instrumenttools/transpose_from_fingered_pitch_to_sounding_pitch
-      tools/instrumenttools/transpose_from_sounding_pitch_to_fingered_pitch
-
-:py:mod:`iotools <abjad.tools.iotools>`
-=======================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/iotools/RedirectedStreams/RedirectedStreams
-
-   --------
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/iotools/clear_terminal
-      tools/iotools/count_function_calls
-      tools/iotools/f
-      tools/iotools/get_last_output_file_name
-      tools/iotools/get_next_output_file_name
-      tools/iotools/graph
-      tools/iotools/log
-      tools/iotools/ly
-      tools/iotools/p
-      tools/iotools/pdf
-      tools/iotools/play
-      tools/iotools/plot
-      tools/iotools/profile_expr
-      tools/iotools/redo
-      tools/iotools/save_last_ly_as
-      tools/iotools/save_last_pdf_as
-      tools/iotools/show
-      tools/iotools/spawn_subprocess
-      tools/iotools/which
-      tools/iotools/write_expr_to_ly
-      tools/iotools/write_expr_to_pdf
-      tools/iotools/z
-
-.. only:: latex
-
-   Concrete Classes
-   ----------------
-
-   .. toctree::
-
-      tools/iotools/RedirectedStreams/RedirectedStreams
-
-   Functions
-   ---------
-
-   .. toctree::
-
-      tools/iotools/clear_terminal
-      tools/iotools/count_function_calls
-      tools/iotools/f
-      tools/iotools/get_last_output_file_name
-      tools/iotools/get_next_output_file_name
-      tools/iotools/graph
-      tools/iotools/log
-      tools/iotools/ly
-      tools/iotools/p
-      tools/iotools/pdf
-      tools/iotools/play
-      tools/iotools/plot
-      tools/iotools/profile_expr
-      tools/iotools/redo
-      tools/iotools/save_last_ly_as
-      tools/iotools/save_last_pdf_as
-      tools/iotools/show
-      tools/iotools/spawn_subprocess
-      tools/iotools/which
-      tools/iotools/write_expr_to_ly
-      tools/iotools/write_expr_to_pdf
-      tools/iotools/z
-
-:py:mod:`iterationtools <abjad.tools.iterationtools>`
-=====================================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/iterationtools/iterate_chords_in_expr
-      tools/iterationtools/iterate_components_and_grace_containers_in_expr
-      tools/iterationtools/iterate_components_depth_first
-      tools/iterationtools/iterate_components_in_expr
-      tools/iterationtools/iterate_containers_in_expr
-      tools/iterationtools/iterate_contexts_in_expr
-      tools/iterationtools/iterate_leaf_pairs_in_expr
-      tools/iterationtools/iterate_leaves_in_expr
-      tools/iterationtools/iterate_measures_in_expr
-      tools/iterationtools/iterate_namesakes_from_component
-      tools/iterationtools/iterate_nontrivial_tie_chains_in_expr
-      tools/iterationtools/iterate_notes_and_chords_in_expr
-      tools/iterationtools/iterate_notes_in_expr
-      tools/iterationtools/iterate_pitched_tie_chains_in_expr
-      tools/iterationtools/iterate_rests_in_expr
-      tools/iterationtools/iterate_runs_in_expr
-      tools/iterationtools/iterate_scores_in_expr
-      tools/iterationtools/iterate_semantic_voices_in_expr
-      tools/iterationtools/iterate_skips_in_expr
-      tools/iterationtools/iterate_staves_in_expr
-      tools/iterationtools/iterate_thread_from_component
-      tools/iterationtools/iterate_thread_in_expr
-      tools/iterationtools/iterate_tie_chains_in_expr
-      tools/iterationtools/iterate_timeline_from_component
-      tools/iterationtools/iterate_timeline_in_expr
-      tools/iterationtools/iterate_topmost_tie_chains_and_components_in_expr
-      tools/iterationtools/iterate_tuplets_in_expr
-      tools/iterationtools/iterate_vertical_moments_in_expr
-      tools/iterationtools/iterate_voices_in_expr
-
-.. only:: latex
-
-   Functions
-   ---------
-
-   .. toctree::
-
-      tools/iterationtools/iterate_chords_in_expr
-      tools/iterationtools/iterate_components_and_grace_containers_in_expr
-      tools/iterationtools/iterate_components_depth_first
-      tools/iterationtools/iterate_components_in_expr
-      tools/iterationtools/iterate_containers_in_expr
-      tools/iterationtools/iterate_contexts_in_expr
-      tools/iterationtools/iterate_leaf_pairs_in_expr
-      tools/iterationtools/iterate_leaves_in_expr
-      tools/iterationtools/iterate_measures_in_expr
-      tools/iterationtools/iterate_namesakes_from_component
-      tools/iterationtools/iterate_nontrivial_tie_chains_in_expr
-      tools/iterationtools/iterate_notes_and_chords_in_expr
-      tools/iterationtools/iterate_notes_in_expr
-      tools/iterationtools/iterate_pitched_tie_chains_in_expr
-      tools/iterationtools/iterate_rests_in_expr
-      tools/iterationtools/iterate_runs_in_expr
-      tools/iterationtools/iterate_scores_in_expr
-      tools/iterationtools/iterate_semantic_voices_in_expr
-      tools/iterationtools/iterate_skips_in_expr
-      tools/iterationtools/iterate_staves_in_expr
-      tools/iterationtools/iterate_thread_from_component
-      tools/iterationtools/iterate_thread_in_expr
-      tools/iterationtools/iterate_tie_chains_in_expr
-      tools/iterationtools/iterate_timeline_from_component
-      tools/iterationtools/iterate_timeline_in_expr
-      tools/iterationtools/iterate_topmost_tie_chains_and_components_in_expr
-      tools/iterationtools/iterate_tuplets_in_expr
-      tools/iterationtools/iterate_vertical_moments_in_expr
-      tools/iterationtools/iterate_voices_in_expr
-
-:py:mod:`labeltools <abjad.tools.labeltools>`
-=============================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/labeltools/color_chord_note_heads_in_expr_by_pitch_class_color_map
-      tools/labeltools/color_contents_of_container
-      tools/labeltools/color_leaf
-      tools/labeltools/color_leaves_in_expr
-      tools/labeltools/color_measure
-      tools/labeltools/color_measures_with_non_power_of_two_denominators_in_expr
-      tools/labeltools/color_note_head_by_numbered_chromatic_pitch_class_color_map
-      tools/labeltools/label_leaves_in_expr_with_inversion_equivalent_chromatic_interval_classes
-      tools/labeltools/label_leaves_in_expr_with_leaf_depth
-      tools/labeltools/label_leaves_in_expr_with_leaf_duration
-      tools/labeltools/label_leaves_in_expr_with_leaf_durations
-      tools/labeltools/label_leaves_in_expr_with_leaf_indices
-      tools/labeltools/label_leaves_in_expr_with_leaf_numbers
-      tools/labeltools/label_leaves_in_expr_with_melodic_chromatic_interval_classes
-      tools/labeltools/label_leaves_in_expr_with_melodic_chromatic_intervals
-      tools/labeltools/label_leaves_in_expr_with_melodic_counterpoint_interval_classes
-      tools/labeltools/label_leaves_in_expr_with_melodic_counterpoint_intervals
-      tools/labeltools/label_leaves_in_expr_with_melodic_diatonic_interval_classes
-      tools/labeltools/label_leaves_in_expr_with_melodic_diatonic_intervals
-      tools/labeltools/label_leaves_in_expr_with_pitch_class_numbers
-      tools/labeltools/label_leaves_in_expr_with_pitch_numbers
-      tools/labeltools/label_leaves_in_expr_with_tuplet_depth
-      tools/labeltools/label_leaves_in_expr_with_written_leaf_duration
-      tools/labeltools/label_notes_in_expr_with_note_indices
-      tools/labeltools/label_tie_chains_in_expr_with_tie_chain_duration
-      tools/labeltools/label_tie_chains_in_expr_with_tie_chain_durations
-      tools/labeltools/label_tie_chains_in_expr_with_written_tie_chain_duration
-      tools/labeltools/label_vertical_moments_in_expr_with_chromatic_interval_classes
-      tools/labeltools/label_vertical_moments_in_expr_with_chromatic_intervals
-      tools/labeltools/label_vertical_moments_in_expr_with_counterpoint_intervals
-      tools/labeltools/label_vertical_moments_in_expr_with_diatonic_intervals
-      tools/labeltools/label_vertical_moments_in_expr_with_interval_class_vectors
-      tools/labeltools/label_vertical_moments_in_expr_with_numbered_chromatic_pitch_classes
-      tools/labeltools/label_vertical_moments_in_expr_with_pitch_numbers
-      tools/labeltools/remove_markup_from_leaves_in_expr
-
-.. only:: latex
-
-   Functions
-   ---------
-
-   .. toctree::
-
-      tools/labeltools/color_chord_note_heads_in_expr_by_pitch_class_color_map
-      tools/labeltools/color_contents_of_container
-      tools/labeltools/color_leaf
-      tools/labeltools/color_leaves_in_expr
-      tools/labeltools/color_measure
-      tools/labeltools/color_measures_with_non_power_of_two_denominators_in_expr
-      tools/labeltools/color_note_head_by_numbered_chromatic_pitch_class_color_map
-      tools/labeltools/label_leaves_in_expr_with_inversion_equivalent_chromatic_interval_classes
-      tools/labeltools/label_leaves_in_expr_with_leaf_depth
-      tools/labeltools/label_leaves_in_expr_with_leaf_duration
-      tools/labeltools/label_leaves_in_expr_with_leaf_durations
-      tools/labeltools/label_leaves_in_expr_with_leaf_indices
-      tools/labeltools/label_leaves_in_expr_with_leaf_numbers
-      tools/labeltools/label_leaves_in_expr_with_melodic_chromatic_interval_classes
-      tools/labeltools/label_leaves_in_expr_with_melodic_chromatic_intervals
-      tools/labeltools/label_leaves_in_expr_with_melodic_counterpoint_interval_classes
-      tools/labeltools/label_leaves_in_expr_with_melodic_counterpoint_intervals
-      tools/labeltools/label_leaves_in_expr_with_melodic_diatonic_interval_classes
-      tools/labeltools/label_leaves_in_expr_with_melodic_diatonic_intervals
-      tools/labeltools/label_leaves_in_expr_with_pitch_class_numbers
-      tools/labeltools/label_leaves_in_expr_with_pitch_numbers
-      tools/labeltools/label_leaves_in_expr_with_tuplet_depth
-      tools/labeltools/label_leaves_in_expr_with_written_leaf_duration
-      tools/labeltools/label_notes_in_expr_with_note_indices
-      tools/labeltools/label_tie_chains_in_expr_with_tie_chain_duration
-      tools/labeltools/label_tie_chains_in_expr_with_tie_chain_durations
-      tools/labeltools/label_tie_chains_in_expr_with_written_tie_chain_duration
-      tools/labeltools/label_vertical_moments_in_expr_with_chromatic_interval_classes
-      tools/labeltools/label_vertical_moments_in_expr_with_chromatic_intervals
-      tools/labeltools/label_vertical_moments_in_expr_with_counterpoint_intervals
-      tools/labeltools/label_vertical_moments_in_expr_with_diatonic_intervals
-      tools/labeltools/label_vertical_moments_in_expr_with_interval_class_vectors
-      tools/labeltools/label_vertical_moments_in_expr_with_numbered_chromatic_pitch_classes
-      tools/labeltools/label_vertical_moments_in_expr_with_pitch_numbers
-      tools/labeltools/remove_markup_from_leaves_in_expr
-
-:py:mod:`layouttools <abjad.tools.layouttools>`
-===============================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/layouttools/SpacingIndication/SpacingIndication
-
-   --------
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/layouttools/make_spacing_vector
-      tools/layouttools/set_line_breaks_by_line_duration
-      tools/layouttools/set_line_breaks_cyclically_by_line_duration_ge
-      tools/layouttools/set_line_breaks_cyclically_by_line_duration_in_seconds_ge
-
-.. only:: latex
-
-   Concrete Classes
-   ----------------
-
-   .. toctree::
-
-      tools/layouttools/SpacingIndication/SpacingIndication
-
-   Functions
-   ---------
-
-   .. toctree::
-
-      tools/layouttools/make_spacing_vector
-      tools/layouttools/set_line_breaks_by_line_duration
-      tools/layouttools/set_line_breaks_cyclically_by_line_duration_ge
-      tools/layouttools/set_line_breaks_cyclically_by_line_duration_in_seconds_ge
-
-:py:mod:`leaftools <abjad.tools.leaftools>`
-===========================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/leaftools/Leaf/Leaf
-      tools/leaftools/TieChain/TieChain
-
-   --------
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/leaftools/change_written_leaf_duration_and_preserve_preprolated_leaf_duration
-      tools/leaftools/copy_written_duration_and_multiplier_from_leaf_to_leaf
-      tools/leaftools/divide_leaf_meiotically
-      tools/leaftools/divide_leaves_in_expr_meiotically
-      tools/leaftools/expr_has_leaf_with_dotted_written_duration
-      tools/leaftools/fuse_leaves
-      tools/leaftools/fuse_leaves_in_container_once_by_counts
-      tools/leaftools/fuse_leaves_in_tie_chain_by_immediate_parent
-      tools/leaftools/get_composite_offset_difference_series_from_leaves_in_expr
-      tools/leaftools/get_composite_offset_series_from_leaves_in_expr
-      tools/leaftools/get_leaf_at_index_in_measure_number_in_expr
-      tools/leaftools/get_leaf_in_expr_with_maximum_duration
-      tools/leaftools/get_leaf_in_expr_with_minimum_duration
-      tools/leaftools/get_nth_leaf_in_expr
-      tools/leaftools/get_nth_leaf_in_thread_from_leaf
-      tools/leaftools/is_bar_line_crossing_leaf
-      tools/leaftools/list_durations_of_leaves_in_expr
-      tools/leaftools/list_written_durations_of_leaves_in_expr
-      tools/leaftools/make_leaves
-      tools/leaftools/make_leaves_from_talea
-      tools/leaftools/make_tied_leaf
-      tools/leaftools/remove_initial_rests_from_sequence
-      tools/leaftools/remove_leaf_and_shrink_durated_parent_containers
-      tools/leaftools/remove_outer_rests_from_sequence
-      tools/leaftools/remove_terminal_rests_from_sequence
-      tools/leaftools/repeat_leaf
-      tools/leaftools/repeat_leaves_in_expr
-      tools/leaftools/replace_leaves_in_expr_with_named_parallel_voices
-      tools/leaftools/replace_leaves_in_expr_with_parallel_voices
-      tools/leaftools/rest_leaf_at_offset
-      tools/leaftools/scale_preprolated_leaf_duration
-      tools/leaftools/set_preprolated_leaf_duration
-      tools/leaftools/show_leaves
-      tools/leaftools/split_leaf_at_offset
-      tools/leaftools/split_leaf_at_offsets
-
-.. only:: latex
-
-   Concrete Classes
-   ----------------
-
-   .. toctree::
-
-      tools/leaftools/Leaf/Leaf
-      tools/leaftools/TieChain/TieChain
-
-   Functions
-   ---------
-
-   .. toctree::
-
-      tools/leaftools/change_written_leaf_duration_and_preserve_preprolated_leaf_duration
-      tools/leaftools/copy_written_duration_and_multiplier_from_leaf_to_leaf
-      tools/leaftools/divide_leaf_meiotically
-      tools/leaftools/divide_leaves_in_expr_meiotically
-      tools/leaftools/expr_has_leaf_with_dotted_written_duration
-      tools/leaftools/fuse_leaves
-      tools/leaftools/fuse_leaves_in_container_once_by_counts
-      tools/leaftools/fuse_leaves_in_tie_chain_by_immediate_parent
-      tools/leaftools/get_composite_offset_difference_series_from_leaves_in_expr
-      tools/leaftools/get_composite_offset_series_from_leaves_in_expr
-      tools/leaftools/get_leaf_at_index_in_measure_number_in_expr
-      tools/leaftools/get_leaf_in_expr_with_maximum_duration
-      tools/leaftools/get_leaf_in_expr_with_minimum_duration
-      tools/leaftools/get_nth_leaf_in_expr
-      tools/leaftools/get_nth_leaf_in_thread_from_leaf
-      tools/leaftools/is_bar_line_crossing_leaf
-      tools/leaftools/list_durations_of_leaves_in_expr
-      tools/leaftools/list_written_durations_of_leaves_in_expr
-      tools/leaftools/make_leaves
-      tools/leaftools/make_leaves_from_talea
-      tools/leaftools/make_tied_leaf
-      tools/leaftools/remove_initial_rests_from_sequence
-      tools/leaftools/remove_leaf_and_shrink_durated_parent_containers
-      tools/leaftools/remove_outer_rests_from_sequence
-      tools/leaftools/remove_terminal_rests_from_sequence
-      tools/leaftools/repeat_leaf
-      tools/leaftools/repeat_leaves_in_expr
-      tools/leaftools/replace_leaves_in_expr_with_named_parallel_voices
-      tools/leaftools/replace_leaves_in_expr_with_parallel_voices
-      tools/leaftools/rest_leaf_at_offset
-      tools/leaftools/scale_preprolated_leaf_duration
-      tools/leaftools/set_preprolated_leaf_duration
-      tools/leaftools/show_leaves
-      tools/leaftools/split_leaf_at_offset
-      tools/leaftools/split_leaf_at_offsets
-
-:py:mod:`lilypondfiletools <abjad.tools.lilypondfiletools>`
-===========================================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/lilypondfiletools/AttributedBlock/AttributedBlock
-      tools/lilypondfiletools/NonattributedBlock/NonattributedBlock
-
-   --------
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/lilypondfiletools/AbjadRevisionToken/AbjadRevisionToken
-      tools/lilypondfiletools/BookBlock/BookBlock
-      tools/lilypondfiletools/BookpartBlock/BookpartBlock
-      tools/lilypondfiletools/ContextBlock/ContextBlock
-      tools/lilypondfiletools/DateTimeToken/DateTimeToken
-      tools/lilypondfiletools/HeaderBlock/HeaderBlock
-      tools/lilypondfiletools/LayoutBlock/LayoutBlock
-      tools/lilypondfiletools/LilyPondDimension/LilyPondDimension
-      tools/lilypondfiletools/LilyPondFile/LilyPondFile
-      tools/lilypondfiletools/LilyPondLanguageToken/LilyPondLanguageToken
-      tools/lilypondfiletools/LilyPondVersionToken/LilyPondVersionToken
-      tools/lilypondfiletools/MIDIBlock/MIDIBlock
-      tools/lilypondfiletools/PaperBlock/PaperBlock
-      tools/lilypondfiletools/ScoreBlock/ScoreBlock
-
-   --------
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/lilypondfiletools/make_basic_lilypond_file
-      tools/lilypondfiletools/make_floating_time_signature_lilypond_file
-      tools/lilypondfiletools/make_time_signature_context_block
-
-.. only:: latex
-
-   Abstract Classes
-   ----------------
-
-   .. toctree::
-
-      tools/lilypondfiletools/AttributedBlock/AttributedBlock
-      tools/lilypondfiletools/NonattributedBlock/NonattributedBlock
-
-   Concrete Classes
-   ----------------
-
-   .. toctree::
-
-      tools/lilypondfiletools/AbjadRevisionToken/AbjadRevisionToken
-      tools/lilypondfiletools/BookBlock/BookBlock
-      tools/lilypondfiletools/BookpartBlock/BookpartBlock
-      tools/lilypondfiletools/ContextBlock/ContextBlock
-      tools/lilypondfiletools/DateTimeToken/DateTimeToken
-      tools/lilypondfiletools/HeaderBlock/HeaderBlock
-      tools/lilypondfiletools/LayoutBlock/LayoutBlock
-      tools/lilypondfiletools/LilyPondDimension/LilyPondDimension
-      tools/lilypondfiletools/LilyPondFile/LilyPondFile
-      tools/lilypondfiletools/LilyPondLanguageToken/LilyPondLanguageToken
-      tools/lilypondfiletools/LilyPondVersionToken/LilyPondVersionToken
-      tools/lilypondfiletools/MIDIBlock/MIDIBlock
-      tools/lilypondfiletools/PaperBlock/PaperBlock
-      tools/lilypondfiletools/ScoreBlock/ScoreBlock
-
-   Functions
-   ---------
-
-   .. toctree::
-
-      tools/lilypondfiletools/make_basic_lilypond_file
-      tools/lilypondfiletools/make_floating_time_signature_lilypond_file
-      tools/lilypondfiletools/make_time_signature_context_block
-
-:py:mod:`marktools <abjad.tools.marktools>`
-===========================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/marktools/DirectedMark/DirectedMark
-
-   --------
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/marktools/Annotation/Annotation
-      tools/marktools/Articulation/Articulation
-      tools/marktools/BarLine/BarLine
-      tools/marktools/BendAfter/BendAfter
-      tools/marktools/LilyPondCommandMark/LilyPondCommandMark
-      tools/marktools/LilyPondComment/LilyPondComment
-      tools/marktools/Mark/Mark
-      tools/marktools/StemTremolo/StemTremolo
-
-   --------
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/marktools/attach_annotations_to_components_in_expr
-      tools/marktools/attach_articulations_to_notes_and_chords_in_expr
-      tools/marktools/attach_lilypond_command_marks_to_components_in_expr
-      tools/marktools/attach_lilypond_comments_to_components_in_expr
-      tools/marktools/attach_stem_tremolos_to_notes_and_chords_in_expr
-      tools/marktools/detach_annotations_attached_to_component
-      tools/marktools/detach_articulations_attached_to_component
-      tools/marktools/detach_lilypond_command_marks_attached_to_component
-      tools/marktools/detach_lilypond_comments_attached_to_component
-      tools/marktools/detach_marks_attached_to_component
-      tools/marktools/detach_marks_attached_to_components_in_expr
-      tools/marktools/detach_noncontext_marks_attached_to_component
-      tools/marktools/detach_stem_tremolos_attached_to_component
-      tools/marktools/get_annotation_attached_to_component
-      tools/marktools/get_annotations_attached_to_component
-      tools/marktools/get_articulation_attached_to_component
-      tools/marktools/get_articulations_attached_to_component
-      tools/marktools/get_lilypond_command_mark_attached_to_component
-      tools/marktools/get_lilypond_command_marks_attached_to_component
-      tools/marktools/get_lilypond_comment_attached_to_component
-      tools/marktools/get_lilypond_comments_attached_to_component
-      tools/marktools/get_mark_attached_to_component
-      tools/marktools/get_marks_attached_to_component
-      tools/marktools/get_marks_attached_to_components_in_expr
-      tools/marktools/get_noncontext_mark_attached_to_component
-      tools/marktools/get_noncontext_marks_attached_to_component
-      tools/marktools/get_stem_tremolo_attached_to_component
-      tools/marktools/get_stem_tremolos_attached_to_component
-      tools/marktools/get_value_of_annotation_attached_to_component
-      tools/marktools/is_component_with_annotation_attached
-      tools/marktools/is_component_with_articulation_attached
-      tools/marktools/is_component_with_lilypond_command_mark_attached
-      tools/marktools/is_component_with_lilypond_comment_attached
-      tools/marktools/is_component_with_mark_attached
-      tools/marktools/is_component_with_noncontext_mark_attached
-      tools/marktools/is_component_with_stem_tremolo_attached
-      tools/marktools/move_marks
-
-.. only:: latex
-
-   Abstract Classes
-   ----------------
-
-   .. toctree::
-
-      tools/marktools/DirectedMark/DirectedMark
-
-   Concrete Classes
-   ----------------
-
-   .. toctree::
-
-      tools/marktools/Annotation/Annotation
-      tools/marktools/Articulation/Articulation
-      tools/marktools/BarLine/BarLine
-      tools/marktools/BendAfter/BendAfter
-      tools/marktools/LilyPondCommandMark/LilyPondCommandMark
-      tools/marktools/LilyPondComment/LilyPondComment
-      tools/marktools/Mark/Mark
-      tools/marktools/StemTremolo/StemTremolo
-
-   Functions
-   ---------
-
-   .. toctree::
-
-      tools/marktools/attach_annotations_to_components_in_expr
-      tools/marktools/attach_articulations_to_notes_and_chords_in_expr
-      tools/marktools/attach_lilypond_command_marks_to_components_in_expr
-      tools/marktools/attach_lilypond_comments_to_components_in_expr
-      tools/marktools/attach_stem_tremolos_to_notes_and_chords_in_expr
-      tools/marktools/detach_annotations_attached_to_component
-      tools/marktools/detach_articulations_attached_to_component
-      tools/marktools/detach_lilypond_command_marks_attached_to_component
-      tools/marktools/detach_lilypond_comments_attached_to_component
-      tools/marktools/detach_marks_attached_to_component
-      tools/marktools/detach_marks_attached_to_components_in_expr
-      tools/marktools/detach_noncontext_marks_attached_to_component
-      tools/marktools/detach_stem_tremolos_attached_to_component
-      tools/marktools/get_annotation_attached_to_component
-      tools/marktools/get_annotations_attached_to_component
-      tools/marktools/get_articulation_attached_to_component
-      tools/marktools/get_articulations_attached_to_component
-      tools/marktools/get_lilypond_command_mark_attached_to_component
-      tools/marktools/get_lilypond_command_marks_attached_to_component
-      tools/marktools/get_lilypond_comment_attached_to_component
-      tools/marktools/get_lilypond_comments_attached_to_component
-      tools/marktools/get_mark_attached_to_component
-      tools/marktools/get_marks_attached_to_component
-      tools/marktools/get_marks_attached_to_components_in_expr
-      tools/marktools/get_noncontext_mark_attached_to_component
-      tools/marktools/get_noncontext_marks_attached_to_component
-      tools/marktools/get_stem_tremolo_attached_to_component
-      tools/marktools/get_stem_tremolos_attached_to_component
-      tools/marktools/get_value_of_annotation_attached_to_component
-      tools/marktools/is_component_with_annotation_attached
-      tools/marktools/is_component_with_articulation_attached
-      tools/marktools/is_component_with_lilypond_command_mark_attached
-      tools/marktools/is_component_with_lilypond_comment_attached
-      tools/marktools/is_component_with_mark_attached
-      tools/marktools/is_component_with_noncontext_mark_attached
-      tools/marktools/is_component_with_stem_tremolo_attached
-      tools/marktools/move_marks
-
-:py:mod:`markuptools <abjad.tools.markuptools>`
-===============================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/markuptools/Markup/Markup
-      tools/markuptools/MarkupCommand/MarkupCommand
-      tools/markuptools/MarkupInventory/MarkupInventory
-      tools/markuptools/MusicGlyph/MusicGlyph
-
-   --------
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/markuptools/combine_markup_commands
-      tools/markuptools/get_down_markup_attached_to_component
-      tools/markuptools/get_markup_attached_to_component
-      tools/markuptools/get_up_markup_attached_to_component
-      tools/markuptools/make_big_centered_page_number_markup
-      tools/markuptools/make_blank_line_markup
-      tools/markuptools/make_centered_title_markup
-      tools/markuptools/make_vertically_adjusted_composer_markup
-      tools/markuptools/remove_markup_attached_to_component
-
-.. only:: latex
-
-   Concrete Classes
-   ----------------
-
-   .. toctree::
-
-      tools/markuptools/Markup/Markup
-      tools/markuptools/MarkupCommand/MarkupCommand
-      tools/markuptools/MarkupInventory/MarkupInventory
-      tools/markuptools/MusicGlyph/MusicGlyph
-
-   Functions
-   ---------
-
-   .. toctree::
-
-      tools/markuptools/combine_markup_commands
-      tools/markuptools/get_down_markup_attached_to_component
-      tools/markuptools/get_markup_attached_to_component
-      tools/markuptools/get_up_markup_attached_to_component
-      tools/markuptools/make_big_centered_page_number_markup
-      tools/markuptools/make_blank_line_markup
-      tools/markuptools/make_centered_title_markup
-      tools/markuptools/make_vertically_adjusted_composer_markup
-      tools/markuptools/remove_markup_attached_to_component
 
 :py:mod:`mathtools <abjad.tools.mathtools>`
 ===========================================
@@ -1458,56 +304,143 @@ Core composition packages
       tools/mathtools/yield_all_partitions_of_integer
       tools/mathtools/yield_nonreduced_fractions
 
-:py:mod:`measuretools <abjad.tools.measuretools>`
-=================================================
+:py:mod:`sequencetools <abjad.tools.sequencetools>`
+===================================================
 
 .. only:: html
 
    .. toctree::
       :maxdepth: 1
 
-      tools/measuretools/Measure/Measure
+      tools/sequencetools/CyclicList/CyclicList
+      tools/sequencetools/CyclicMatrix/CyclicMatrix
+      tools/sequencetools/CyclicTree/CyclicTree
+      tools/sequencetools/CyclicTuple/CyclicTuple
+      tools/sequencetools/Matrix/Matrix
+      tools/sequencetools/Tree/Tree
 
    --------
 
    .. toctree::
       :maxdepth: 1
 
-      tools/measuretools/append_spacer_skip_to_underfull_measure
-      tools/measuretools/append_spacer_skips_to_underfull_measures_in_expr
-      tools/measuretools/apply_full_measure_tuplets_to_contents_of_measures_in_expr
-      tools/measuretools/comment_measures_in_container_with_measure_numbers
-      tools/measuretools/extend_measures_in_expr_and_apply_full_measure_tuplets
-      tools/measuretools/fill_measures_in_expr_with_full_measure_spacer_skips
-      tools/measuretools/fill_measures_in_expr_with_minimal_number_of_notes
-      tools/measuretools/fill_measures_in_expr_with_repeated_notes
-      tools/measuretools/fill_measures_in_expr_with_time_signature_denominator_notes
-      tools/measuretools/fuse_contiguous_measures_in_container_cyclically_by_counts
-      tools/measuretools/fuse_measures
-      tools/measuretools/get_likely_multiplier_of_components
-      tools/measuretools/get_measure_that_starts_with_container
-      tools/measuretools/get_measure_that_stops_with_container
-      tools/measuretools/get_next_measure_from_component
-      tools/measuretools/get_nth_measure_in_expr
-      tools/measuretools/get_one_indexed_measure_number_in_expr
-      tools/measuretools/get_previous_measure_from_component
-      tools/measuretools/list_time_signatures_of_measures_in_expr
-      tools/measuretools/make_measures_with_full_measure_spacer_skips
-      tools/measuretools/measure_to_one_line_input_string
-      tools/measuretools/move_full_measure_tuplet_prolation_to_measure_time_signature
-      tools/measuretools/move_measure_prolation_to_full_measure_tuplet
-      tools/measuretools/multiply_and_scale_contents_of_measures_in_expr
-      tools/measuretools/multiply_contents_of_measures_in_expr
-      tools/measuretools/pad_measures_in_expr
-      tools/measuretools/pad_measures_in_expr_with_rests
-      tools/measuretools/pad_measures_in_expr_with_skips
-      tools/measuretools/replace_contents_of_measures_in_expr
-      tools/measuretools/report_time_signature_distribution
-      tools/measuretools/scale_contents_of_measures_in_expr
-      tools/measuretools/scale_measure_and_adjust_time_signature
-      tools/measuretools/scale_measure_denominator_and_adjust_measure_contents
-      tools/measuretools/set_always_format_time_signature_of_measures_in_expr
-      tools/measuretools/set_measure_denominator_and_adjust_numerator
+      tools/sequencetools/all_are_assignable_integers
+      tools/sequencetools/all_are_equal
+      tools/sequencetools/all_are_integer_equivalent_exprs
+      tools/sequencetools/all_are_integer_equivalent_numbers
+      tools/sequencetools/all_are_nonnegative_integer_equivalent_numbers
+      tools/sequencetools/all_are_nonnegative_integer_powers_of_two
+      tools/sequencetools/all_are_nonnegative_integers
+      tools/sequencetools/all_are_numbers
+      tools/sequencetools/all_are_pairs
+      tools/sequencetools/all_are_pairs_of_types
+      tools/sequencetools/all_are_positive_integer_equivalent_numbers
+      tools/sequencetools/all_are_positive_integers
+      tools/sequencetools/all_are_unequal
+      tools/sequencetools/count_length_two_runs_in_sequence
+      tools/sequencetools/divide_sequence_elements_by_greatest_common_divisor
+      tools/sequencetools/flatten_sequence
+      tools/sequencetools/flatten_sequence_at_indices
+      tools/sequencetools/get_indices_of_sequence_elements_equal_to_true
+      tools/sequencetools/get_sequence_degree_of_rotational_symmetry
+      tools/sequencetools/get_sequence_element_at_cyclic_index
+      tools/sequencetools/get_sequence_elements_at_indices
+      tools/sequencetools/get_sequence_elements_frequency_distribution
+      tools/sequencetools/get_sequence_period_of_rotation
+      tools/sequencetools/increase_sequence_elements_at_indices_by_addenda
+      tools/sequencetools/increase_sequence_elements_cyclically_by_addenda
+      tools/sequencetools/interlace_sequences
+      tools/sequencetools/is_fraction_equivalent_pair
+      tools/sequencetools/is_integer_equivalent_n_tuple
+      tools/sequencetools/is_integer_equivalent_pair
+      tools/sequencetools/is_integer_equivalent_singleton
+      tools/sequencetools/is_integer_n_tuple
+      tools/sequencetools/is_integer_pair
+      tools/sequencetools/is_integer_singleton
+      tools/sequencetools/is_monotonically_decreasing_sequence
+      tools/sequencetools/is_monotonically_increasing_sequence
+      tools/sequencetools/is_n_tuple
+      tools/sequencetools/is_null_tuple
+      tools/sequencetools/is_pair
+      tools/sequencetools/is_permutation
+      tools/sequencetools/is_repetition_free_sequence
+      tools/sequencetools/is_restricted_growth_function
+      tools/sequencetools/is_singleton
+      tools/sequencetools/is_strictly_decreasing_sequence
+      tools/sequencetools/is_strictly_increasing_sequence
+      tools/sequencetools/iterate_sequence_cyclically
+      tools/sequencetools/iterate_sequence_cyclically_from_start_to_stop
+      tools/sequencetools/iterate_sequence_forward_and_backward_nonoverlapping
+      tools/sequencetools/iterate_sequence_forward_and_backward_overlapping
+      tools/sequencetools/iterate_sequence_nwise_cyclic
+      tools/sequencetools/iterate_sequence_nwise_strict
+      tools/sequencetools/iterate_sequence_nwise_wrapped
+      tools/sequencetools/iterate_sequence_pairwise_cyclic
+      tools/sequencetools/iterate_sequence_pairwise_strict
+      tools/sequencetools/iterate_sequence_pairwise_wrapped
+      tools/sequencetools/join_subsequences
+      tools/sequencetools/join_subsequences_by_sign_of_subsequence_elements
+      tools/sequencetools/map_sequence_elements_to_canonic_tuples
+      tools/sequencetools/map_sequence_elements_to_numbered_sublists
+      tools/sequencetools/merge_duration_sequences
+      tools/sequencetools/negate_absolute_value_of_sequence_elements_at_indices
+      tools/sequencetools/negate_absolute_value_of_sequence_elements_cyclically
+      tools/sequencetools/negate_sequence_elements_at_indices
+      tools/sequencetools/negate_sequence_elements_cyclically
+      tools/sequencetools/overwrite_sequence_elements_at_indices
+      tools/sequencetools/pair_duration_sequence_elements_with_input_pair_values
+      tools/sequencetools/partition_sequence_by_backgrounded_weights
+      tools/sequencetools/partition_sequence_by_counts
+      tools/sequencetools/partition_sequence_by_ratio_of_lengths
+      tools/sequencetools/partition_sequence_by_ratio_of_weights
+      tools/sequencetools/partition_sequence_by_restricted_growth_function
+      tools/sequencetools/partition_sequence_by_sign_of_elements
+      tools/sequencetools/partition_sequence_by_value_of_elements
+      tools/sequencetools/partition_sequence_by_weights_at_least
+      tools/sequencetools/partition_sequence_by_weights_at_most
+      tools/sequencetools/partition_sequence_by_weights_exactly
+      tools/sequencetools/partition_sequence_extended_to_counts
+      tools/sequencetools/permute_sequence
+      tools/sequencetools/remove_sequence_elements_at_indices
+      tools/sequencetools/remove_sequence_elements_at_indices_cyclically
+      tools/sequencetools/remove_subsequence_of_weight_at_index
+      tools/sequencetools/repeat_runs_in_sequence_to_count
+      tools/sequencetools/repeat_sequence_elements_at_indices
+      tools/sequencetools/repeat_sequence_elements_at_indices_cyclically
+      tools/sequencetools/repeat_sequence_elements_n_times_each
+      tools/sequencetools/repeat_sequence_n_times
+      tools/sequencetools/repeat_sequence_to_length
+      tools/sequencetools/repeat_sequence_to_weight_at_least
+      tools/sequencetools/repeat_sequence_to_weight_at_most
+      tools/sequencetools/repeat_sequence_to_weight_exactly
+      tools/sequencetools/replace_sequence_elements_cyclically_with_new_material
+      tools/sequencetools/retain_sequence_elements_at_indices
+      tools/sequencetools/retain_sequence_elements_at_indices_cyclically
+      tools/sequencetools/reverse_sequence
+      tools/sequencetools/reverse_sequence_elements
+      tools/sequencetools/rotate_sequence
+      tools/sequencetools/splice_new_elements_between_sequence_elements
+      tools/sequencetools/split_sequence_by_weights
+      tools/sequencetools/split_sequence_extended_to_weights
+      tools/sequencetools/sum_consecutive_sequence_elements_by_sign
+      tools/sequencetools/sum_sequence_elements_at_indices
+      tools/sequencetools/truncate_runs_in_sequence
+      tools/sequencetools/truncate_sequence_to_sum
+      tools/sequencetools/truncate_sequence_to_weight
+      tools/sequencetools/yield_all_combinations_of_sequence_elements
+      tools/sequencetools/yield_all_k_ary_sequences_of_length
+      tools/sequencetools/yield_all_pairs_between_sequences
+      tools/sequencetools/yield_all_partitions_of_sequence
+      tools/sequencetools/yield_all_permutations_of_sequence
+      tools/sequencetools/yield_all_permutations_of_sequence_in_orbit
+      tools/sequencetools/yield_all_restricted_growth_functions_of_length
+      tools/sequencetools/yield_all_rotations_of_sequence
+      tools/sequencetools/yield_all_set_partitions_of_sequence
+      tools/sequencetools/yield_all_subsequences_of_sequence
+      tools/sequencetools/yield_all_unordered_pairs_of_sequence
+      tools/sequencetools/yield_outer_product_of_sequences
+      tools/sequencetools/zip_sequences_cyclically
+      tools/sequencetools/zip_sequences_without_truncation
 
 .. only:: latex
 
@@ -1516,50 +449,376 @@ Core composition packages
 
    .. toctree::
 
-      tools/measuretools/Measure/Measure
+      tools/sequencetools/CyclicList/CyclicList
+      tools/sequencetools/CyclicMatrix/CyclicMatrix
+      tools/sequencetools/CyclicTree/CyclicTree
+      tools/sequencetools/CyclicTuple/CyclicTuple
+      tools/sequencetools/Matrix/Matrix
+      tools/sequencetools/Tree/Tree
 
    Functions
    ---------
 
    .. toctree::
 
-      tools/measuretools/append_spacer_skip_to_underfull_measure
-      tools/measuretools/append_spacer_skips_to_underfull_measures_in_expr
-      tools/measuretools/apply_full_measure_tuplets_to_contents_of_measures_in_expr
-      tools/measuretools/comment_measures_in_container_with_measure_numbers
-      tools/measuretools/extend_measures_in_expr_and_apply_full_measure_tuplets
-      tools/measuretools/fill_measures_in_expr_with_full_measure_spacer_skips
-      tools/measuretools/fill_measures_in_expr_with_minimal_number_of_notes
-      tools/measuretools/fill_measures_in_expr_with_repeated_notes
-      tools/measuretools/fill_measures_in_expr_with_time_signature_denominator_notes
-      tools/measuretools/fuse_contiguous_measures_in_container_cyclically_by_counts
-      tools/measuretools/fuse_measures
-      tools/measuretools/get_likely_multiplier_of_components
-      tools/measuretools/get_measure_that_starts_with_container
-      tools/measuretools/get_measure_that_stops_with_container
-      tools/measuretools/get_next_measure_from_component
-      tools/measuretools/get_nth_measure_in_expr
-      tools/measuretools/get_one_indexed_measure_number_in_expr
-      tools/measuretools/get_previous_measure_from_component
-      tools/measuretools/list_time_signatures_of_measures_in_expr
-      tools/measuretools/make_measures_with_full_measure_spacer_skips
-      tools/measuretools/measure_to_one_line_input_string
-      tools/measuretools/move_full_measure_tuplet_prolation_to_measure_time_signature
-      tools/measuretools/move_measure_prolation_to_full_measure_tuplet
-      tools/measuretools/multiply_and_scale_contents_of_measures_in_expr
-      tools/measuretools/multiply_contents_of_measures_in_expr
-      tools/measuretools/pad_measures_in_expr
-      tools/measuretools/pad_measures_in_expr_with_rests
-      tools/measuretools/pad_measures_in_expr_with_skips
-      tools/measuretools/replace_contents_of_measures_in_expr
-      tools/measuretools/report_time_signature_distribution
-      tools/measuretools/scale_contents_of_measures_in_expr
-      tools/measuretools/scale_measure_and_adjust_time_signature
-      tools/measuretools/scale_measure_denominator_and_adjust_measure_contents
-      tools/measuretools/set_always_format_time_signature_of_measures_in_expr
-      tools/measuretools/set_measure_denominator_and_adjust_numerator
+      tools/sequencetools/all_are_assignable_integers
+      tools/sequencetools/all_are_equal
+      tools/sequencetools/all_are_integer_equivalent_exprs
+      tools/sequencetools/all_are_integer_equivalent_numbers
+      tools/sequencetools/all_are_nonnegative_integer_equivalent_numbers
+      tools/sequencetools/all_are_nonnegative_integer_powers_of_two
+      tools/sequencetools/all_are_nonnegative_integers
+      tools/sequencetools/all_are_numbers
+      tools/sequencetools/all_are_pairs
+      tools/sequencetools/all_are_pairs_of_types
+      tools/sequencetools/all_are_positive_integer_equivalent_numbers
+      tools/sequencetools/all_are_positive_integers
+      tools/sequencetools/all_are_unequal
+      tools/sequencetools/count_length_two_runs_in_sequence
+      tools/sequencetools/divide_sequence_elements_by_greatest_common_divisor
+      tools/sequencetools/flatten_sequence
+      tools/sequencetools/flatten_sequence_at_indices
+      tools/sequencetools/get_indices_of_sequence_elements_equal_to_true
+      tools/sequencetools/get_sequence_degree_of_rotational_symmetry
+      tools/sequencetools/get_sequence_element_at_cyclic_index
+      tools/sequencetools/get_sequence_elements_at_indices
+      tools/sequencetools/get_sequence_elements_frequency_distribution
+      tools/sequencetools/get_sequence_period_of_rotation
+      tools/sequencetools/increase_sequence_elements_at_indices_by_addenda
+      tools/sequencetools/increase_sequence_elements_cyclically_by_addenda
+      tools/sequencetools/interlace_sequences
+      tools/sequencetools/is_fraction_equivalent_pair
+      tools/sequencetools/is_integer_equivalent_n_tuple
+      tools/sequencetools/is_integer_equivalent_pair
+      tools/sequencetools/is_integer_equivalent_singleton
+      tools/sequencetools/is_integer_n_tuple
+      tools/sequencetools/is_integer_pair
+      tools/sequencetools/is_integer_singleton
+      tools/sequencetools/is_monotonically_decreasing_sequence
+      tools/sequencetools/is_monotonically_increasing_sequence
+      tools/sequencetools/is_n_tuple
+      tools/sequencetools/is_null_tuple
+      tools/sequencetools/is_pair
+      tools/sequencetools/is_permutation
+      tools/sequencetools/is_repetition_free_sequence
+      tools/sequencetools/is_restricted_growth_function
+      tools/sequencetools/is_singleton
+      tools/sequencetools/is_strictly_decreasing_sequence
+      tools/sequencetools/is_strictly_increasing_sequence
+      tools/sequencetools/iterate_sequence_cyclically
+      tools/sequencetools/iterate_sequence_cyclically_from_start_to_stop
+      tools/sequencetools/iterate_sequence_forward_and_backward_nonoverlapping
+      tools/sequencetools/iterate_sequence_forward_and_backward_overlapping
+      tools/sequencetools/iterate_sequence_nwise_cyclic
+      tools/sequencetools/iterate_sequence_nwise_strict
+      tools/sequencetools/iterate_sequence_nwise_wrapped
+      tools/sequencetools/iterate_sequence_pairwise_cyclic
+      tools/sequencetools/iterate_sequence_pairwise_strict
+      tools/sequencetools/iterate_sequence_pairwise_wrapped
+      tools/sequencetools/join_subsequences
+      tools/sequencetools/join_subsequences_by_sign_of_subsequence_elements
+      tools/sequencetools/map_sequence_elements_to_canonic_tuples
+      tools/sequencetools/map_sequence_elements_to_numbered_sublists
+      tools/sequencetools/merge_duration_sequences
+      tools/sequencetools/negate_absolute_value_of_sequence_elements_at_indices
+      tools/sequencetools/negate_absolute_value_of_sequence_elements_cyclically
+      tools/sequencetools/negate_sequence_elements_at_indices
+      tools/sequencetools/negate_sequence_elements_cyclically
+      tools/sequencetools/overwrite_sequence_elements_at_indices
+      tools/sequencetools/pair_duration_sequence_elements_with_input_pair_values
+      tools/sequencetools/partition_sequence_by_backgrounded_weights
+      tools/sequencetools/partition_sequence_by_counts
+      tools/sequencetools/partition_sequence_by_ratio_of_lengths
+      tools/sequencetools/partition_sequence_by_ratio_of_weights
+      tools/sequencetools/partition_sequence_by_restricted_growth_function
+      tools/sequencetools/partition_sequence_by_sign_of_elements
+      tools/sequencetools/partition_sequence_by_value_of_elements
+      tools/sequencetools/partition_sequence_by_weights_at_least
+      tools/sequencetools/partition_sequence_by_weights_at_most
+      tools/sequencetools/partition_sequence_by_weights_exactly
+      tools/sequencetools/partition_sequence_extended_to_counts
+      tools/sequencetools/permute_sequence
+      tools/sequencetools/remove_sequence_elements_at_indices
+      tools/sequencetools/remove_sequence_elements_at_indices_cyclically
+      tools/sequencetools/remove_subsequence_of_weight_at_index
+      tools/sequencetools/repeat_runs_in_sequence_to_count
+      tools/sequencetools/repeat_sequence_elements_at_indices
+      tools/sequencetools/repeat_sequence_elements_at_indices_cyclically
+      tools/sequencetools/repeat_sequence_elements_n_times_each
+      tools/sequencetools/repeat_sequence_n_times
+      tools/sequencetools/repeat_sequence_to_length
+      tools/sequencetools/repeat_sequence_to_weight_at_least
+      tools/sequencetools/repeat_sequence_to_weight_at_most
+      tools/sequencetools/repeat_sequence_to_weight_exactly
+      tools/sequencetools/replace_sequence_elements_cyclically_with_new_material
+      tools/sequencetools/retain_sequence_elements_at_indices
+      tools/sequencetools/retain_sequence_elements_at_indices_cyclically
+      tools/sequencetools/reverse_sequence
+      tools/sequencetools/reverse_sequence_elements
+      tools/sequencetools/rotate_sequence
+      tools/sequencetools/splice_new_elements_between_sequence_elements
+      tools/sequencetools/split_sequence_by_weights
+      tools/sequencetools/split_sequence_extended_to_weights
+      tools/sequencetools/sum_consecutive_sequence_elements_by_sign
+      tools/sequencetools/sum_sequence_elements_at_indices
+      tools/sequencetools/truncate_runs_in_sequence
+      tools/sequencetools/truncate_sequence_to_sum
+      tools/sequencetools/truncate_sequence_to_weight
+      tools/sequencetools/yield_all_combinations_of_sequence_elements
+      tools/sequencetools/yield_all_k_ary_sequences_of_length
+      tools/sequencetools/yield_all_pairs_between_sequences
+      tools/sequencetools/yield_all_partitions_of_sequence
+      tools/sequencetools/yield_all_permutations_of_sequence
+      tools/sequencetools/yield_all_permutations_of_sequence_in_orbit
+      tools/sequencetools/yield_all_restricted_growth_functions_of_length
+      tools/sequencetools/yield_all_rotations_of_sequence
+      tools/sequencetools/yield_all_set_partitions_of_sequence
+      tools/sequencetools/yield_all_subsequences_of_sequence
+      tools/sequencetools/yield_all_unordered_pairs_of_sequence
+      tools/sequencetools/yield_outer_product_of_sequences
+      tools/sequencetools/zip_sequences_cyclically
+      tools/sequencetools/zip_sequences_without_truncation
 
-:py:mod:`notetools <abjad.tools.notetools>`
+:py:mod:`sievetools <abjad.tools.sievetools>`
+=============================================
+
+.. only:: html
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/sievetools/BaseResidueClass/BaseResidueClass
+
+   --------
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/sievetools/ResidueClass/ResidueClass
+      tools/sievetools/Sieve/Sieve
+
+.. only:: latex
+
+   Abstract Classes
+   ----------------
+
+   .. toctree::
+
+      tools/sievetools/BaseResidueClass/BaseResidueClass
+
+   Concrete Classes
+   ----------------
+
+   .. toctree::
+
+      tools/sievetools/ResidueClass/ResidueClass
+      tools/sievetools/Sieve/Sieve
+
+:py:mod:`chordtools <abjad.tools.chordtools>`
+=============================================
+
+.. only:: html
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/chordtools/Chord/Chord
+
+   --------
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/chordtools/make_tied_chord
+
+.. only:: latex
+
+   Concrete Classes
+   ----------------
+
+   .. toctree::
+
+      tools/chordtools/Chord/Chord
+
+   Functions
+   ---------
+
+   .. toctree::
+
+      tools/chordtools/make_tied_chord
+
+:py:mod:`markuptools <abjad.tools.markuptools>`
+===============================================
+
+.. only:: html
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/markuptools/Markup/Markup
+      tools/markuptools/MarkupCommand/MarkupCommand
+      tools/markuptools/MarkupInventory/MarkupInventory
+      tools/markuptools/MusicGlyph/MusicGlyph
+
+   --------
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/markuptools/combine_markup_commands
+      tools/markuptools/get_down_markup_attached_to_component
+      tools/markuptools/get_markup_attached_to_component
+      tools/markuptools/get_up_markup_attached_to_component
+      tools/markuptools/make_big_centered_page_number_markup
+      tools/markuptools/make_blank_line_markup
+      tools/markuptools/make_centered_title_markup
+      tools/markuptools/make_vertically_adjusted_composer_markup
+      tools/markuptools/remove_markup_attached_to_component
+
+.. only:: latex
+
+   Concrete Classes
+   ----------------
+
+   .. toctree::
+
+      tools/markuptools/Markup/Markup
+      tools/markuptools/MarkupCommand/MarkupCommand
+      tools/markuptools/MarkupInventory/MarkupInventory
+      tools/markuptools/MusicGlyph/MusicGlyph
+
+   Functions
+   ---------
+
+   .. toctree::
+
+      tools/markuptools/combine_markup_commands
+      tools/markuptools/get_down_markup_attached_to_component
+      tools/markuptools/get_markup_attached_to_component
+      tools/markuptools/get_up_markup_attached_to_component
+      tools/markuptools/make_big_centered_page_number_markup
+      tools/markuptools/make_blank_line_markup
+      tools/markuptools/make_centered_title_markup
+      tools/markuptools/make_vertically_adjusted_composer_markup
+      tools/markuptools/remove_markup_attached_to_component
+
+:py:mod:`schemetools <abjad.tools.schemetools>`
+===============================================
+
+.. only:: html
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/schemetools/Scheme/Scheme
+      tools/schemetools/SchemeAssociativeList/SchemeAssociativeList
+      tools/schemetools/SchemeColor/SchemeColor
+      tools/schemetools/SchemeMoment/SchemeMoment
+      tools/schemetools/SchemePair/SchemePair
+      tools/schemetools/SchemeVector/SchemeVector
+      tools/schemetools/SchemeVectorConstant/SchemeVectorConstant
+
+   --------
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/schemetools/format_scheme_value
+
+.. only:: latex
+
+   Concrete Classes
+   ----------------
+
+   .. toctree::
+
+      tools/schemetools/Scheme/Scheme
+      tools/schemetools/SchemeAssociativeList/SchemeAssociativeList
+      tools/schemetools/SchemeColor/SchemeColor
+      tools/schemetools/SchemeMoment/SchemeMoment
+      tools/schemetools/SchemePair/SchemePair
+      tools/schemetools/SchemeVector/SchemeVector
+      tools/schemetools/SchemeVectorConstant/SchemeVectorConstant
+
+   Functions
+   ---------
+
+   .. toctree::
+
+      tools/schemetools/format_scheme_value
+
+:py:mod:`stringtools <abjad.tools.stringtools>`
+===============================================
+
+.. only:: html
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/stringtools/add_terminal_newlines
+      tools/stringtools/arg_to_bidirectional_direction_string
+      tools/stringtools/arg_to_bidirectional_lilypond_symbol
+      tools/stringtools/arg_to_tridirectional_direction_string
+      tools/stringtools/arg_to_tridirectional_lilypond_symbol
+      tools/stringtools/arg_to_tridirectional_ordinal_constant
+      tools/stringtools/capitalize_string_start
+      tools/stringtools/format_input_lines_as_doc_string
+      tools/stringtools/format_input_lines_as_regression_test
+      tools/stringtools/is_dash_case_file_name
+      tools/stringtools/is_dash_case_string
+      tools/stringtools/is_lower_camel_case_string
+      tools/stringtools/is_snake_case_file_name
+      tools/stringtools/is_snake_case_file_name_with_extension
+      tools/stringtools/is_snake_case_package_name
+      tools/stringtools/is_snake_case_string
+      tools/stringtools/is_space_delimited_lowercase_string
+      tools/stringtools/is_upper_camel_case_string
+      tools/stringtools/pluralize_string
+      tools/stringtools/snake_case_to_lower_camel_case
+      tools/stringtools/snake_case_to_upper_camel_case
+      tools/stringtools/space_delimited_lowercase_to_upper_camel_case
+      tools/stringtools/string_to_accent_free_snake_case
+      tools/stringtools/string_to_space_delimited_lowercase
+      tools/stringtools/strip_diacritics_from_binary_string
+      tools/stringtools/upper_camel_case_to_snake_case
+      tools/stringtools/upper_camel_case_to_space_delimited_lowercase
+
+.. only:: latex
+
+   Functions
+   ---------
+
+   .. toctree::
+
+      tools/stringtools/add_terminal_newlines
+      tools/stringtools/arg_to_bidirectional_direction_string
+      tools/stringtools/arg_to_bidirectional_lilypond_symbol
+      tools/stringtools/arg_to_tridirectional_direction_string
+      tools/stringtools/arg_to_tridirectional_lilypond_symbol
+      tools/stringtools/arg_to_tridirectional_ordinal_constant
+      tools/stringtools/capitalize_string_start
+      tools/stringtools/format_input_lines_as_doc_string
+      tools/stringtools/format_input_lines_as_regression_test
+      tools/stringtools/is_dash_case_file_name
+      tools/stringtools/is_dash_case_string
+      tools/stringtools/is_lower_camel_case_string
+      tools/stringtools/is_snake_case_file_name
+      tools/stringtools/is_snake_case_file_name_with_extension
+      tools/stringtools/is_snake_case_package_name
+      tools/stringtools/is_snake_case_string
+      tools/stringtools/is_space_delimited_lowercase_string
+      tools/stringtools/is_upper_camel_case_string
+      tools/stringtools/pluralize_string
+      tools/stringtools/snake_case_to_lower_camel_case
+      tools/stringtools/snake_case_to_upper_camel_case
+      tools/stringtools/space_delimited_lowercase_to_upper_camel_case
+      tools/stringtools/string_to_accent_free_snake_case
+      tools/stringtools/string_to_space_delimited_lowercase
+      tools/stringtools/strip_diacritics_from_binary_string
+      tools/stringtools/upper_camel_case_to_snake_case
+      tools/stringtools/upper_camel_case_to_space_delimited_lowercase
+
+:py:mod:`marktools <abjad.tools.marktools>`
 ===========================================
 
 .. only:: html
@@ -1567,79 +826,154 @@ Core composition packages
    .. toctree::
       :maxdepth: 1
 
-      tools/notetools/NaturalHarmonic/NaturalHarmonic
-      tools/notetools/Note/Note
-      tools/notetools/NoteHead/NoteHead
+      tools/marktools/DirectedMark/DirectedMark
 
    --------
 
    .. toctree::
       :maxdepth: 1
 
-      tools/notetools/add_artificial_harmonic_to_note
-      tools/notetools/make_accelerating_notes_with_lilypond_multipliers
-      tools/notetools/make_notes
-      tools/notetools/make_notes_with_multiplied_durations
-      tools/notetools/make_percussion_note
-      tools/notetools/make_quarter_notes_with_lilypond_multipliers
-      tools/notetools/make_repeated_notes
-      tools/notetools/make_repeated_notes_from_time_signature
-      tools/notetools/make_repeated_notes_from_time_signatures
-      tools/notetools/make_repeated_notes_with_shorter_notes_at_end
-      tools/notetools/make_tied_note
+      tools/marktools/Annotation/Annotation
+      tools/marktools/Articulation/Articulation
+      tools/marktools/BarLine/BarLine
+      tools/marktools/BendAfter/BendAfter
+      tools/marktools/LilyPondCommandMark/LilyPondCommandMark
+      tools/marktools/LilyPondComment/LilyPondComment
+      tools/marktools/Mark/Mark
+      tools/marktools/StemTremolo/StemTremolo
+
+   --------
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/marktools/attach_annotations_to_components_in_expr
+      tools/marktools/attach_articulations_to_notes_and_chords_in_expr
+      tools/marktools/attach_lilypond_command_marks_to_components_in_expr
+      tools/marktools/attach_lilypond_comments_to_components_in_expr
+      tools/marktools/attach_stem_tremolos_to_notes_and_chords_in_expr
+      tools/marktools/detach_annotations_attached_to_component
+      tools/marktools/detach_articulations_attached_to_component
+      tools/marktools/detach_lilypond_command_marks_attached_to_component
+      tools/marktools/detach_lilypond_comments_attached_to_component
+      tools/marktools/detach_marks_attached_to_component
+      tools/marktools/detach_marks_attached_to_components_in_expr
+      tools/marktools/detach_noncontext_marks_attached_to_component
+      tools/marktools/detach_stem_tremolos_attached_to_component
+      tools/marktools/get_annotation_attached_to_component
+      tools/marktools/get_annotations_attached_to_component
+      tools/marktools/get_articulation_attached_to_component
+      tools/marktools/get_articulations_attached_to_component
+      tools/marktools/get_lilypond_command_mark_attached_to_component
+      tools/marktools/get_lilypond_command_marks_attached_to_component
+      tools/marktools/get_lilypond_comment_attached_to_component
+      tools/marktools/get_lilypond_comments_attached_to_component
+      tools/marktools/get_mark_attached_to_component
+      tools/marktools/get_marks_attached_to_component
+      tools/marktools/get_marks_attached_to_components_in_expr
+      tools/marktools/get_noncontext_mark_attached_to_component
+      tools/marktools/get_noncontext_marks_attached_to_component
+      tools/marktools/get_stem_tremolo_attached_to_component
+      tools/marktools/get_stem_tremolos_attached_to_component
+      tools/marktools/get_value_of_annotation_attached_to_component
+      tools/marktools/is_component_with_annotation_attached
+      tools/marktools/is_component_with_articulation_attached
+      tools/marktools/is_component_with_lilypond_command_mark_attached
+      tools/marktools/is_component_with_lilypond_comment_attached
+      tools/marktools/is_component_with_mark_attached
+      tools/marktools/is_component_with_noncontext_mark_attached
+      tools/marktools/is_component_with_stem_tremolo_attached
+      tools/marktools/move_marks
 
 .. only:: latex
+
+   Abstract Classes
+   ----------------
+
+   .. toctree::
+
+      tools/marktools/DirectedMark/DirectedMark
 
    Concrete Classes
    ----------------
 
    .. toctree::
 
-      tools/notetools/NaturalHarmonic/NaturalHarmonic
-      tools/notetools/Note/Note
-      tools/notetools/NoteHead/NoteHead
+      tools/marktools/Annotation/Annotation
+      tools/marktools/Articulation/Articulation
+      tools/marktools/BarLine/BarLine
+      tools/marktools/BendAfter/BendAfter
+      tools/marktools/LilyPondCommandMark/LilyPondCommandMark
+      tools/marktools/LilyPondComment/LilyPondComment
+      tools/marktools/Mark/Mark
+      tools/marktools/StemTremolo/StemTremolo
 
    Functions
    ---------
 
    .. toctree::
 
-      tools/notetools/add_artificial_harmonic_to_note
-      tools/notetools/make_accelerating_notes_with_lilypond_multipliers
-      tools/notetools/make_notes
-      tools/notetools/make_notes_with_multiplied_durations
-      tools/notetools/make_percussion_note
-      tools/notetools/make_quarter_notes_with_lilypond_multipliers
-      tools/notetools/make_repeated_notes
-      tools/notetools/make_repeated_notes_from_time_signature
-      tools/notetools/make_repeated_notes_from_time_signatures
-      tools/notetools/make_repeated_notes_with_shorter_notes_at_end
-      tools/notetools/make_tied_note
+      tools/marktools/attach_annotations_to_components_in_expr
+      tools/marktools/attach_articulations_to_notes_and_chords_in_expr
+      tools/marktools/attach_lilypond_command_marks_to_components_in_expr
+      tools/marktools/attach_lilypond_comments_to_components_in_expr
+      tools/marktools/attach_stem_tremolos_to_notes_and_chords_in_expr
+      tools/marktools/detach_annotations_attached_to_component
+      tools/marktools/detach_articulations_attached_to_component
+      tools/marktools/detach_lilypond_command_marks_attached_to_component
+      tools/marktools/detach_lilypond_comments_attached_to_component
+      tools/marktools/detach_marks_attached_to_component
+      tools/marktools/detach_marks_attached_to_components_in_expr
+      tools/marktools/detach_noncontext_marks_attached_to_component
+      tools/marktools/detach_stem_tremolos_attached_to_component
+      tools/marktools/get_annotation_attached_to_component
+      tools/marktools/get_annotations_attached_to_component
+      tools/marktools/get_articulation_attached_to_component
+      tools/marktools/get_articulations_attached_to_component
+      tools/marktools/get_lilypond_command_mark_attached_to_component
+      tools/marktools/get_lilypond_command_marks_attached_to_component
+      tools/marktools/get_lilypond_comment_attached_to_component
+      tools/marktools/get_lilypond_comments_attached_to_component
+      tools/marktools/get_mark_attached_to_component
+      tools/marktools/get_marks_attached_to_component
+      tools/marktools/get_marks_attached_to_components_in_expr
+      tools/marktools/get_noncontext_mark_attached_to_component
+      tools/marktools/get_noncontext_marks_attached_to_component
+      tools/marktools/get_stem_tremolo_attached_to_component
+      tools/marktools/get_stem_tremolos_attached_to_component
+      tools/marktools/get_value_of_annotation_attached_to_component
+      tools/marktools/is_component_with_annotation_attached
+      tools/marktools/is_component_with_articulation_attached
+      tools/marktools/is_component_with_lilypond_command_mark_attached
+      tools/marktools/is_component_with_lilypond_comment_attached
+      tools/marktools/is_component_with_mark_attached
+      tools/marktools/is_component_with_noncontext_mark_attached
+      tools/marktools/is_component_with_stem_tremolo_attached
+      tools/marktools/move_marks
 
-:py:mod:`pitcharraytools <abjad.tools.pitcharraytools>`
-=======================================================
+:py:mod:`durationtools <abjad.tools.durationtools>`
+===================================================
 
 .. only:: html
 
    .. toctree::
       :maxdepth: 1
 
-      tools/pitcharraytools/PitchArray/PitchArray
-      tools/pitcharraytools/PitchArrayCell/PitchArrayCell
-      tools/pitcharraytools/PitchArrayColumn/PitchArrayColumn
-      tools/pitcharraytools/PitchArrayRow/PitchArrayRow
+      tools/durationtools/Duration/Duration
+      tools/durationtools/Multiplier/Multiplier
+      tools/durationtools/Offset/Offset
 
    --------
 
    .. toctree::
       :maxdepth: 1
 
-      tools/pitcharraytools/concatenate_pitch_arrays
-      tools/pitcharraytools/list_nonspanning_subarrays_of_pitch_array
-      tools/pitcharraytools/make_pitch_array_from_leaf_iterables
-      tools/pitcharraytools/make_pitch_array_score_from_pitch_arrays
-      tools/pitcharraytools/pitch_array_row_to_measure
-      tools/pitcharraytools/pitch_array_to_measures
+      tools/durationtools/count_offsets_in_expr
+      tools/durationtools/durations_to_integers
+      tools/durationtools/durations_to_nonreduced_fractions_with_common_denominator
+      tools/durationtools/group_nonreduced_fractions_by_implied_prolation
+      tools/durationtools/numeric_seconds_to_clock_string
+      tools/durationtools/yield_durations
 
 .. only:: latex
 
@@ -1648,22 +982,643 @@ Core composition packages
 
    .. toctree::
 
-      tools/pitcharraytools/PitchArray/PitchArray
-      tools/pitcharraytools/PitchArrayCell/PitchArrayCell
-      tools/pitcharraytools/PitchArrayColumn/PitchArrayColumn
-      tools/pitcharraytools/PitchArrayRow/PitchArrayRow
+      tools/durationtools/Duration/Duration
+      tools/durationtools/Multiplier/Multiplier
+      tools/durationtools/Offset/Offset
 
    Functions
    ---------
 
    .. toctree::
 
-      tools/pitcharraytools/concatenate_pitch_arrays
-      tools/pitcharraytools/list_nonspanning_subarrays_of_pitch_array
-      tools/pitcharraytools/make_pitch_array_from_leaf_iterables
-      tools/pitcharraytools/make_pitch_array_score_from_pitch_arrays
-      tools/pitcharraytools/pitch_array_row_to_measure
-      tools/pitcharraytools/pitch_array_to_measures
+      tools/durationtools/count_offsets_in_expr
+      tools/durationtools/durations_to_integers
+      tools/durationtools/durations_to_nonreduced_fractions_with_common_denominator
+      tools/durationtools/group_nonreduced_fractions_by_implied_prolation
+      tools/durationtools/numeric_seconds_to_clock_string
+      tools/durationtools/yield_durations
+
+:py:mod:`componenttools <abjad.tools.componenttools>`
+=====================================================
+
+.. only:: html
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/componenttools/Component/Component
+
+   --------
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/componenttools/ContainmentSignature/ContainmentSignature
+      tools/componenttools/Descendants/Descendants
+      tools/componenttools/Lineage/Lineage
+      tools/componenttools/Parentage/Parentage
+      tools/componenttools/VerticalMoment/VerticalMoment
+
+   --------
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/componenttools/all_are_components
+      tools/componenttools/all_are_components_in_same_thread
+      tools/componenttools/all_are_components_scalable_by_multiplier
+      tools/componenttools/all_are_contiguous_components
+      tools/componenttools/all_are_contiguous_components_in_same_parent
+      tools/componenttools/all_are_contiguous_components_in_same_thread
+      tools/componenttools/all_are_thread_contiguous_components
+      tools/componenttools/copy_and_partition_governed_component_subtree_by_leaf_counts
+      tools/componenttools/copy_components_and_covered_spanners
+      tools/componenttools/copy_components_and_detach_spanners
+      tools/componenttools/copy_components_and_fracture_crossing_spanners
+      tools/componenttools/copy_components_and_immediate_parent_of_first_component
+      tools/componenttools/copy_governed_component_subtree_by_leaf_range
+      tools/componenttools/copy_governed_component_subtree_from_offset_to
+      tools/componenttools/extend_in_parent_of_component
+      tools/componenttools/get_improper_descendants_of_component_that_cross_offset
+      tools/componenttools/get_leftmost_components_with_total_duration_at_most
+      tools/componenttools/get_most_distant_sequential_container_in_improper_parentage_of_component
+      tools/componenttools/get_nth_component_in_expr
+      tools/componenttools/get_nth_component_in_time_order_from_component
+      tools/componenttools/get_nth_namesake_from_component
+      tools/componenttools/get_nth_sibling_from_component
+      tools/componenttools/get_parent_and_start_stop_indices_of_components
+      tools/componenttools/is_immediate_temporal_successor_of_component
+      tools/componenttools/move_component_subtree_to_right_in_immediate_parent_of_component
+      tools/componenttools/move_parentage_and_spanners_from_components_to_components
+      tools/componenttools/partition_components_by_durations
+      tools/componenttools/partition_components_by_durations_exactly
+      tools/componenttools/partition_components_by_durations_not_greater_than
+      tools/componenttools/partition_components_by_durations_not_less_than
+      tools/componenttools/remove_component_subtree_from_score_and_spanners
+      tools/componenttools/replace_components_with_children_of_components
+      tools/componenttools/split_component_at_offset
+      tools/componenttools/split_components_at_offsets
+
+.. only:: latex
+
+   Abstract Classes
+   ----------------
+
+   .. toctree::
+
+      tools/componenttools/Component/Component
+
+   Concrete Classes
+   ----------------
+
+   .. toctree::
+
+      tools/componenttools/ContainmentSignature/ContainmentSignature
+      tools/componenttools/Descendants/Descendants
+      tools/componenttools/Lineage/Lineage
+      tools/componenttools/Parentage/Parentage
+      tools/componenttools/VerticalMoment/VerticalMoment
+
+   Functions
+   ---------
+
+   .. toctree::
+
+      tools/componenttools/all_are_components
+      tools/componenttools/all_are_components_in_same_thread
+      tools/componenttools/all_are_components_scalable_by_multiplier
+      tools/componenttools/all_are_contiguous_components
+      tools/componenttools/all_are_contiguous_components_in_same_parent
+      tools/componenttools/all_are_contiguous_components_in_same_thread
+      tools/componenttools/all_are_thread_contiguous_components
+      tools/componenttools/copy_and_partition_governed_component_subtree_by_leaf_counts
+      tools/componenttools/copy_components_and_covered_spanners
+      tools/componenttools/copy_components_and_detach_spanners
+      tools/componenttools/copy_components_and_fracture_crossing_spanners
+      tools/componenttools/copy_components_and_immediate_parent_of_first_component
+      tools/componenttools/copy_governed_component_subtree_by_leaf_range
+      tools/componenttools/copy_governed_component_subtree_from_offset_to
+      tools/componenttools/extend_in_parent_of_component
+      tools/componenttools/get_improper_descendants_of_component_that_cross_offset
+      tools/componenttools/get_leftmost_components_with_total_duration_at_most
+      tools/componenttools/get_most_distant_sequential_container_in_improper_parentage_of_component
+      tools/componenttools/get_nth_component_in_expr
+      tools/componenttools/get_nth_component_in_time_order_from_component
+      tools/componenttools/get_nth_namesake_from_component
+      tools/componenttools/get_nth_sibling_from_component
+      tools/componenttools/get_parent_and_start_stop_indices_of_components
+      tools/componenttools/is_immediate_temporal_successor_of_component
+      tools/componenttools/move_component_subtree_to_right_in_immediate_parent_of_component
+      tools/componenttools/move_parentage_and_spanners_from_components_to_components
+      tools/componenttools/partition_components_by_durations
+      tools/componenttools/partition_components_by_durations_exactly
+      tools/componenttools/partition_components_by_durations_not_greater_than
+      tools/componenttools/partition_components_by_durations_not_less_than
+      tools/componenttools/remove_component_subtree_from_score_and_spanners
+      tools/componenttools/replace_components_with_children_of_components
+      tools/componenttools/split_component_at_offset
+      tools/componenttools/split_components_at_offsets
+
+:py:mod:`selectiontools <abjad.tools.selectiontools>`
+=====================================================
+
+.. only:: html
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/selectiontools/Selection/Selection
+      tools/selectiontools/SelectionInventory/SelectionInventory
+
+.. only:: latex
+
+   Concrete Classes
+   ----------------
+
+   .. toctree::
+
+      tools/selectiontools/Selection/Selection
+      tools/selectiontools/SelectionInventory/SelectionInventory
+
+:py:mod:`timespantools <abjad.tools.timespantools>`
+===================================================
+
+.. only:: html
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/timespantools/Timespan/Timespan
+      tools/timespantools/TimespanInventory/TimespanInventory
+
+.. only:: latex
+
+   Concrete Classes
+   ----------------
+
+   .. toctree::
+
+      tools/timespantools/Timespan/Timespan
+      tools/timespantools/TimespanInventory/TimespanInventory
+
+:py:mod:`timerelationtools <abjad.tools.timerelationtools>`
+===========================================================
+
+.. only:: html
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/timerelationtools/TimeRelation/TimeRelation
+
+   --------
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/timerelationtools/CompoundInequality/CompoundInequality
+      tools/timerelationtools/OffsetTimespanTimeRelation/OffsetTimespanTimeRelation
+      tools/timerelationtools/SimpleInequality/SimpleInequality
+      tools/timerelationtools/TimespanTimespanTimeRelation/TimespanTimespanTimeRelation
+
+   --------
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/timerelationtools/offset_happens_after_timespan_starts
+      tools/timerelationtools/offset_happens_after_timespan_stops
+      tools/timerelationtools/offset_happens_before_timespan_starts
+      tools/timerelationtools/offset_happens_before_timespan_stops
+      tools/timerelationtools/offset_happens_during_timespan
+      tools/timerelationtools/offset_happens_when_timespan_starts
+      tools/timerelationtools/offset_happens_when_timespan_stops
+      tools/timerelationtools/timespan_2_contains_timespan_1_improperly
+      tools/timerelationtools/timespan_2_curtails_timespan_1
+      tools/timerelationtools/timespan_2_delays_timespan_1
+      tools/timerelationtools/timespan_2_happens_during_timespan_1
+      tools/timerelationtools/timespan_2_intersects_timespan_1
+      tools/timerelationtools/timespan_2_is_congruent_to_timespan_1
+      tools/timerelationtools/timespan_2_overlaps_all_of_timespan_1
+      tools/timerelationtools/timespan_2_overlaps_only_start_of_timespan_1
+      tools/timerelationtools/timespan_2_overlaps_only_stop_of_timespan_1
+      tools/timerelationtools/timespan_2_overlaps_start_of_timespan_1
+      tools/timerelationtools/timespan_2_overlaps_stop_of_timespan_1
+      tools/timerelationtools/timespan_2_starts_after_timespan_1_starts
+      tools/timerelationtools/timespan_2_starts_after_timespan_1_stops
+      tools/timerelationtools/timespan_2_starts_before_timespan_1_starts
+      tools/timerelationtools/timespan_2_starts_before_timespan_1_stops
+      tools/timerelationtools/timespan_2_starts_during_timespan_1
+      tools/timerelationtools/timespan_2_starts_when_timespan_1_starts
+      tools/timerelationtools/timespan_2_starts_when_timespan_1_stops
+      tools/timerelationtools/timespan_2_stops_after_timespan_1_starts
+      tools/timerelationtools/timespan_2_stops_after_timespan_1_stops
+      tools/timerelationtools/timespan_2_stops_before_timespan_1_starts
+      tools/timerelationtools/timespan_2_stops_before_timespan_1_stops
+      tools/timerelationtools/timespan_2_stops_during_timespan_1
+      tools/timerelationtools/timespan_2_stops_when_timespan_1_starts
+      tools/timerelationtools/timespan_2_stops_when_timespan_1_stops
+      tools/timerelationtools/timespan_2_trisects_timespan_1
+
+.. only:: latex
+
+   Abstract Classes
+   ----------------
+
+   .. toctree::
+
+      tools/timerelationtools/TimeRelation/TimeRelation
+
+   Concrete Classes
+   ----------------
+
+   .. toctree::
+
+      tools/timerelationtools/CompoundInequality/CompoundInequality
+      tools/timerelationtools/OffsetTimespanTimeRelation/OffsetTimespanTimeRelation
+      tools/timerelationtools/SimpleInequality/SimpleInequality
+      tools/timerelationtools/TimespanTimespanTimeRelation/TimespanTimespanTimeRelation
+
+   Functions
+   ---------
+
+   .. toctree::
+
+      tools/timerelationtools/offset_happens_after_timespan_starts
+      tools/timerelationtools/offset_happens_after_timespan_stops
+      tools/timerelationtools/offset_happens_before_timespan_starts
+      tools/timerelationtools/offset_happens_before_timespan_stops
+      tools/timerelationtools/offset_happens_during_timespan
+      tools/timerelationtools/offset_happens_when_timespan_starts
+      tools/timerelationtools/offset_happens_when_timespan_stops
+      tools/timerelationtools/timespan_2_contains_timespan_1_improperly
+      tools/timerelationtools/timespan_2_curtails_timespan_1
+      tools/timerelationtools/timespan_2_delays_timespan_1
+      tools/timerelationtools/timespan_2_happens_during_timespan_1
+      tools/timerelationtools/timespan_2_intersects_timespan_1
+      tools/timerelationtools/timespan_2_is_congruent_to_timespan_1
+      tools/timerelationtools/timespan_2_overlaps_all_of_timespan_1
+      tools/timerelationtools/timespan_2_overlaps_only_start_of_timespan_1
+      tools/timerelationtools/timespan_2_overlaps_only_stop_of_timespan_1
+      tools/timerelationtools/timespan_2_overlaps_start_of_timespan_1
+      tools/timerelationtools/timespan_2_overlaps_stop_of_timespan_1
+      tools/timerelationtools/timespan_2_starts_after_timespan_1_starts
+      tools/timerelationtools/timespan_2_starts_after_timespan_1_stops
+      tools/timerelationtools/timespan_2_starts_before_timespan_1_starts
+      tools/timerelationtools/timespan_2_starts_before_timespan_1_stops
+      tools/timerelationtools/timespan_2_starts_during_timespan_1
+      tools/timerelationtools/timespan_2_starts_when_timespan_1_starts
+      tools/timerelationtools/timespan_2_starts_when_timespan_1_stops
+      tools/timerelationtools/timespan_2_stops_after_timespan_1_starts
+      tools/timerelationtools/timespan_2_stops_after_timespan_1_stops
+      tools/timerelationtools/timespan_2_stops_before_timespan_1_starts
+      tools/timerelationtools/timespan_2_stops_before_timespan_1_stops
+      tools/timerelationtools/timespan_2_stops_during_timespan_1
+      tools/timerelationtools/timespan_2_stops_when_timespan_1_starts
+      tools/timerelationtools/timespan_2_stops_when_timespan_1_stops
+      tools/timerelationtools/timespan_2_trisects_timespan_1
+
+:py:mod:`containertools <abjad.tools.containertools>`
+=====================================================
+
+.. only:: html
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/containertools/Cluster/Cluster
+      tools/containertools/Container/Container
+      tools/containertools/FixedDurationContainer/FixedDurationContainer
+
+   --------
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/containertools/delete_contents_of_container
+      tools/containertools/delete_contents_of_container_starting_at_or_after_offset
+      tools/containertools/delete_contents_of_container_starting_before_or_at_offset
+      tools/containertools/delete_contents_of_container_starting_strictly_after_offset
+      tools/containertools/delete_contents_of_container_starting_strictly_before_offset
+      tools/containertools/eject_contents_of_container
+      tools/containertools/fuse_like_named_contiguous_containers_in_expr
+      tools/containertools/get_element_starting_at_exactly_offset
+      tools/containertools/get_first_element_starting_at_or_after_offset
+      tools/containertools/get_first_element_starting_before_or_at_offset
+      tools/containertools/get_first_element_starting_strictly_after_offset
+      tools/containertools/get_first_element_starting_strictly_before_offset
+      tools/containertools/insert_component
+      tools/containertools/move_parentage_children_and_spanners_from_components_to_empty_container
+      tools/containertools/remove_leafless_containers_in_expr
+      tools/containertools/repeat_contents_of_container
+      tools/containertools/repeat_last_n_elements_of_container
+      tools/containertools/replace_container_slice_with_rests
+      tools/containertools/replace_contents_of_target_container_with_contents_of_source_container
+      tools/containertools/report_container_modifications
+      tools/containertools/reverse_contents_of_container
+      tools/containertools/scale_contents_of_container
+      tools/containertools/set_container_multiplier
+      tools/containertools/split_container_at_index
+      tools/containertools/split_container_by_counts
+
+.. only:: latex
+
+   Concrete Classes
+   ----------------
+
+   .. toctree::
+
+      tools/containertools/Cluster/Cluster
+      tools/containertools/Container/Container
+      tools/containertools/FixedDurationContainer/FixedDurationContainer
+
+   Functions
+   ---------
+
+   .. toctree::
+
+      tools/containertools/delete_contents_of_container
+      tools/containertools/delete_contents_of_container_starting_at_or_after_offset
+      tools/containertools/delete_contents_of_container_starting_before_or_at_offset
+      tools/containertools/delete_contents_of_container_starting_strictly_after_offset
+      tools/containertools/delete_contents_of_container_starting_strictly_before_offset
+      tools/containertools/eject_contents_of_container
+      tools/containertools/fuse_like_named_contiguous_containers_in_expr
+      tools/containertools/get_element_starting_at_exactly_offset
+      tools/containertools/get_first_element_starting_at_or_after_offset
+      tools/containertools/get_first_element_starting_before_or_at_offset
+      tools/containertools/get_first_element_starting_strictly_after_offset
+      tools/containertools/get_first_element_starting_strictly_before_offset
+      tools/containertools/insert_component
+      tools/containertools/move_parentage_children_and_spanners_from_components_to_empty_container
+      tools/containertools/remove_leafless_containers_in_expr
+      tools/containertools/repeat_contents_of_container
+      tools/containertools/repeat_last_n_elements_of_container
+      tools/containertools/replace_container_slice_with_rests
+      tools/containertools/replace_contents_of_target_container_with_contents_of_source_container
+      tools/containertools/report_container_modifications
+      tools/containertools/reverse_contents_of_container
+      tools/containertools/scale_contents_of_container
+      tools/containertools/set_container_multiplier
+      tools/containertools/split_container_at_index
+      tools/containertools/split_container_by_counts
+
+:py:mod:`iotools <abjad.tools.iotools>`
+=======================================
+
+.. only:: html
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/iotools/RedirectedStreams/RedirectedStreams
+
+   --------
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/iotools/clear_terminal
+      tools/iotools/count_function_calls
+      tools/iotools/f
+      tools/iotools/get_last_output_file_name
+      tools/iotools/get_next_output_file_name
+      tools/iotools/graph
+      tools/iotools/log
+      tools/iotools/ly
+      tools/iotools/p
+      tools/iotools/pdf
+      tools/iotools/play
+      tools/iotools/plot
+      tools/iotools/profile_expr
+      tools/iotools/redo
+      tools/iotools/save_last_ly_as
+      tools/iotools/save_last_pdf_as
+      tools/iotools/show
+      tools/iotools/spawn_subprocess
+      tools/iotools/which
+      tools/iotools/write_expr_to_ly
+      tools/iotools/write_expr_to_pdf
+      tools/iotools/z
+
+.. only:: latex
+
+   Concrete Classes
+   ----------------
+
+   .. toctree::
+
+      tools/iotools/RedirectedStreams/RedirectedStreams
+
+   Functions
+   ---------
+
+   .. toctree::
+
+      tools/iotools/clear_terminal
+      tools/iotools/count_function_calls
+      tools/iotools/f
+      tools/iotools/get_last_output_file_name
+      tools/iotools/get_next_output_file_name
+      tools/iotools/graph
+      tools/iotools/log
+      tools/iotools/ly
+      tools/iotools/p
+      tools/iotools/pdf
+      tools/iotools/play
+      tools/iotools/plot
+      tools/iotools/profile_expr
+      tools/iotools/redo
+      tools/iotools/save_last_ly_as
+      tools/iotools/save_last_pdf_as
+      tools/iotools/show
+      tools/iotools/spawn_subprocess
+      tools/iotools/which
+      tools/iotools/write_expr_to_ly
+      tools/iotools/write_expr_to_pdf
+      tools/iotools/z
+
+:py:mod:`lilypondfiletools <abjad.tools.lilypondfiletools>`
+===========================================================
+
+.. only:: html
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/lilypondfiletools/AttributedBlock/AttributedBlock
+      tools/lilypondfiletools/NonattributedBlock/NonattributedBlock
+
+   --------
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/lilypondfiletools/AbjadRevisionToken/AbjadRevisionToken
+      tools/lilypondfiletools/BookBlock/BookBlock
+      tools/lilypondfiletools/BookpartBlock/BookpartBlock
+      tools/lilypondfiletools/ContextBlock/ContextBlock
+      tools/lilypondfiletools/DateTimeToken/DateTimeToken
+      tools/lilypondfiletools/HeaderBlock/HeaderBlock
+      tools/lilypondfiletools/LayoutBlock/LayoutBlock
+      tools/lilypondfiletools/LilyPondDimension/LilyPondDimension
+      tools/lilypondfiletools/LilyPondFile/LilyPondFile
+      tools/lilypondfiletools/LilyPondLanguageToken/LilyPondLanguageToken
+      tools/lilypondfiletools/LilyPondVersionToken/LilyPondVersionToken
+      tools/lilypondfiletools/MIDIBlock/MIDIBlock
+      tools/lilypondfiletools/PaperBlock/PaperBlock
+      tools/lilypondfiletools/ScoreBlock/ScoreBlock
+
+   --------
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/lilypondfiletools/make_basic_lilypond_file
+      tools/lilypondfiletools/make_floating_time_signature_lilypond_file
+      tools/lilypondfiletools/make_time_signature_context_block
+
+.. only:: latex
+
+   Abstract Classes
+   ----------------
+
+   .. toctree::
+
+      tools/lilypondfiletools/AttributedBlock/AttributedBlock
+      tools/lilypondfiletools/NonattributedBlock/NonattributedBlock
+
+   Concrete Classes
+   ----------------
+
+   .. toctree::
+
+      tools/lilypondfiletools/AbjadRevisionToken/AbjadRevisionToken
+      tools/lilypondfiletools/BookBlock/BookBlock
+      tools/lilypondfiletools/BookpartBlock/BookpartBlock
+      tools/lilypondfiletools/ContextBlock/ContextBlock
+      tools/lilypondfiletools/DateTimeToken/DateTimeToken
+      tools/lilypondfiletools/HeaderBlock/HeaderBlock
+      tools/lilypondfiletools/LayoutBlock/LayoutBlock
+      tools/lilypondfiletools/LilyPondDimension/LilyPondDimension
+      tools/lilypondfiletools/LilyPondFile/LilyPondFile
+      tools/lilypondfiletools/LilyPondLanguageToken/LilyPondLanguageToken
+      tools/lilypondfiletools/LilyPondVersionToken/LilyPondVersionToken
+      tools/lilypondfiletools/MIDIBlock/MIDIBlock
+      tools/lilypondfiletools/PaperBlock/PaperBlock
+      tools/lilypondfiletools/ScoreBlock/ScoreBlock
+
+   Functions
+   ---------
+
+   .. toctree::
+
+      tools/lilypondfiletools/make_basic_lilypond_file
+      tools/lilypondfiletools/make_floating_time_signature_lilypond_file
+      tools/lilypondfiletools/make_time_signature_context_block
+
+:py:mod:`leaftools <abjad.tools.leaftools>`
+===========================================
+
+.. only:: html
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/leaftools/Leaf/Leaf
+      tools/leaftools/TieChain/TieChain
+
+   --------
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/leaftools/change_written_leaf_duration_and_preserve_preprolated_leaf_duration
+      tools/leaftools/copy_written_duration_and_multiplier_from_leaf_to_leaf
+      tools/leaftools/divide_leaf_meiotically
+      tools/leaftools/divide_leaves_in_expr_meiotically
+      tools/leaftools/expr_has_leaf_with_dotted_written_duration
+      tools/leaftools/fuse_leaves
+      tools/leaftools/fuse_leaves_in_container_once_by_counts
+      tools/leaftools/fuse_leaves_in_tie_chain_by_immediate_parent
+      tools/leaftools/get_composite_offset_difference_series_from_leaves_in_expr
+      tools/leaftools/get_composite_offset_series_from_leaves_in_expr
+      tools/leaftools/get_leaf_at_index_in_measure_number_in_expr
+      tools/leaftools/get_leaf_in_expr_with_maximum_duration
+      tools/leaftools/get_leaf_in_expr_with_minimum_duration
+      tools/leaftools/get_nth_leaf_in_expr
+      tools/leaftools/get_nth_leaf_in_thread_from_leaf
+      tools/leaftools/is_bar_line_crossing_leaf
+      tools/leaftools/list_durations_of_leaves_in_expr
+      tools/leaftools/list_written_durations_of_leaves_in_expr
+      tools/leaftools/make_leaves
+      tools/leaftools/make_leaves_from_talea
+      tools/leaftools/make_tied_leaf
+      tools/leaftools/remove_initial_rests_from_sequence
+      tools/leaftools/remove_leaf_and_shrink_durated_parent_containers
+      tools/leaftools/remove_outer_rests_from_sequence
+      tools/leaftools/remove_terminal_rests_from_sequence
+      tools/leaftools/repeat_leaf
+      tools/leaftools/repeat_leaves_in_expr
+      tools/leaftools/replace_leaves_in_expr_with_named_parallel_voices
+      tools/leaftools/replace_leaves_in_expr_with_parallel_voices
+      tools/leaftools/rest_leaf_at_offset
+      tools/leaftools/scale_preprolated_leaf_duration
+      tools/leaftools/set_preprolated_leaf_duration
+      tools/leaftools/show_leaves
+      tools/leaftools/split_leaf_at_offset
+      tools/leaftools/split_leaf_at_offsets
+
+.. only:: latex
+
+   Concrete Classes
+   ----------------
+
+   .. toctree::
+
+      tools/leaftools/Leaf/Leaf
+      tools/leaftools/TieChain/TieChain
+
+   Functions
+   ---------
+
+   .. toctree::
+
+      tools/leaftools/change_written_leaf_duration_and_preserve_preprolated_leaf_duration
+      tools/leaftools/copy_written_duration_and_multiplier_from_leaf_to_leaf
+      tools/leaftools/divide_leaf_meiotically
+      tools/leaftools/divide_leaves_in_expr_meiotically
+      tools/leaftools/expr_has_leaf_with_dotted_written_duration
+      tools/leaftools/fuse_leaves
+      tools/leaftools/fuse_leaves_in_container_once_by_counts
+      tools/leaftools/fuse_leaves_in_tie_chain_by_immediate_parent
+      tools/leaftools/get_composite_offset_difference_series_from_leaves_in_expr
+      tools/leaftools/get_composite_offset_series_from_leaves_in_expr
+      tools/leaftools/get_leaf_at_index_in_measure_number_in_expr
+      tools/leaftools/get_leaf_in_expr_with_maximum_duration
+      tools/leaftools/get_leaf_in_expr_with_minimum_duration
+      tools/leaftools/get_nth_leaf_in_expr
+      tools/leaftools/get_nth_leaf_in_thread_from_leaf
+      tools/leaftools/is_bar_line_crossing_leaf
+      tools/leaftools/list_durations_of_leaves_in_expr
+      tools/leaftools/list_written_durations_of_leaves_in_expr
+      tools/leaftools/make_leaves
+      tools/leaftools/make_leaves_from_talea
+      tools/leaftools/make_tied_leaf
+      tools/leaftools/remove_initial_rests_from_sequence
+      tools/leaftools/remove_leaf_and_shrink_durated_parent_containers
+      tools/leaftools/remove_outer_rests_from_sequence
+      tools/leaftools/remove_terminal_rests_from_sequence
+      tools/leaftools/repeat_leaf
+      tools/leaftools/repeat_leaves_in_expr
+      tools/leaftools/replace_leaves_in_expr_with_named_parallel_voices
+      tools/leaftools/replace_leaves_in_expr_with_parallel_voices
+      tools/leaftools/rest_leaf_at_offset
+      tools/leaftools/scale_preprolated_leaf_duration
+      tools/leaftools/set_preprolated_leaf_duration
+      tools/leaftools/show_leaves
+      tools/leaftools/split_leaf_at_offset
+      tools/leaftools/split_leaf_at_offsets
 
 :py:mod:`pitchtools <abjad.tools.pitchtools>`
 =============================================
@@ -2132,137 +2087,6 @@ Core composition packages
       tools/pitchtools/transpose_pitch_carrier_by_melodic_interval
       tools/pitchtools/transpose_pitch_expr_into_pitch_range
 
-:py:mod:`quantizationtools <abjad.tools.quantizationtools>`
-===========================================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/quantizationtools/AttackPointOptimizer/AttackPointOptimizer
-      tools/quantizationtools/GraceHandler/GraceHandler
-      tools/quantizationtools/Heuristic/Heuristic
-      tools/quantizationtools/JobHandler/JobHandler
-      tools/quantizationtools/QEvent/QEvent
-      tools/quantizationtools/QSchema/QSchema
-      tools/quantizationtools/QSchemaItem/QSchemaItem
-      tools/quantizationtools/QTarget/QTarget
-      tools/quantizationtools/SearchTree/SearchTree
-
-   --------
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/quantizationtools/BeatwiseQSchema/BeatwiseQSchema
-      tools/quantizationtools/BeatwiseQSchemaItem/BeatwiseQSchemaItem
-      tools/quantizationtools/BeatwiseQTarget/BeatwiseQTarget
-      tools/quantizationtools/CollapsingGraceHandler/CollapsingGraceHandler
-      tools/quantizationtools/ConcatenatingGraceHandler/ConcatenatingGraceHandler
-      tools/quantizationtools/DiscardingGraceHandler/DiscardingGraceHandler
-      tools/quantizationtools/DistanceHeuristic/DistanceHeuristic
-      tools/quantizationtools/MeasurewiseAttackPointOptimizer/MeasurewiseAttackPointOptimizer
-      tools/quantizationtools/MeasurewiseQSchema/MeasurewiseQSchema
-      tools/quantizationtools/MeasurewiseQSchemaItem/MeasurewiseQSchemaItem
-      tools/quantizationtools/MeasurewiseQTarget/MeasurewiseQTarget
-      tools/quantizationtools/NaiveAttackPointOptimizer/NaiveAttackPointOptimizer
-      tools/quantizationtools/NullAttackPointOptimizer/NullAttackPointOptimizer
-      tools/quantizationtools/ParallelJobHandler/ParallelJobHandler
-      tools/quantizationtools/ParallelJobHandlerWorker/ParallelJobHandlerWorker
-      tools/quantizationtools/PitchedQEvent/PitchedQEvent
-      tools/quantizationtools/QEventProxy/QEventProxy
-      tools/quantizationtools/QEventSequence/QEventSequence
-      tools/quantizationtools/QGrid/QGrid
-      tools/quantizationtools/QGridContainer/QGridContainer
-      tools/quantizationtools/QGridLeaf/QGridLeaf
-      tools/quantizationtools/QTargetBeat/QTargetBeat
-      tools/quantizationtools/QTargetMeasure/QTargetMeasure
-      tools/quantizationtools/QuantizationJob/QuantizationJob
-      tools/quantizationtools/Quantizer/Quantizer
-      tools/quantizationtools/SerialJobHandler/SerialJobHandler
-      tools/quantizationtools/SilentQEvent/SilentQEvent
-      tools/quantizationtools/TerminalQEvent/TerminalQEvent
-      tools/quantizationtools/UnweightedSearchTree/UnweightedSearchTree
-      tools/quantizationtools/WeightedSearchTree/WeightedSearchTree
-
-   --------
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/quantizationtools/make_test_time_segments
-      tools/quantizationtools/millisecond_pitch_pairs_to_q_events
-      tools/quantizationtools/milliseconds_to_q_events
-      tools/quantizationtools/tempo_scaled_duration_to_milliseconds
-      tools/quantizationtools/tempo_scaled_durations_to_q_events
-      tools/quantizationtools/tempo_scaled_leaves_to_q_events
-
-.. only:: latex
-
-   Abstract Classes
-   ----------------
-
-   .. toctree::
-
-      tools/quantizationtools/AttackPointOptimizer/AttackPointOptimizer
-      tools/quantizationtools/GraceHandler/GraceHandler
-      tools/quantizationtools/Heuristic/Heuristic
-      tools/quantizationtools/JobHandler/JobHandler
-      tools/quantizationtools/QEvent/QEvent
-      tools/quantizationtools/QSchema/QSchema
-      tools/quantizationtools/QSchemaItem/QSchemaItem
-      tools/quantizationtools/QTarget/QTarget
-      tools/quantizationtools/SearchTree/SearchTree
-
-   Concrete Classes
-   ----------------
-
-   .. toctree::
-
-      tools/quantizationtools/BeatwiseQSchema/BeatwiseQSchema
-      tools/quantizationtools/BeatwiseQSchemaItem/BeatwiseQSchemaItem
-      tools/quantizationtools/BeatwiseQTarget/BeatwiseQTarget
-      tools/quantizationtools/CollapsingGraceHandler/CollapsingGraceHandler
-      tools/quantizationtools/ConcatenatingGraceHandler/ConcatenatingGraceHandler
-      tools/quantizationtools/DiscardingGraceHandler/DiscardingGraceHandler
-      tools/quantizationtools/DistanceHeuristic/DistanceHeuristic
-      tools/quantizationtools/MeasurewiseAttackPointOptimizer/MeasurewiseAttackPointOptimizer
-      tools/quantizationtools/MeasurewiseQSchema/MeasurewiseQSchema
-      tools/quantizationtools/MeasurewiseQSchemaItem/MeasurewiseQSchemaItem
-      tools/quantizationtools/MeasurewiseQTarget/MeasurewiseQTarget
-      tools/quantizationtools/NaiveAttackPointOptimizer/NaiveAttackPointOptimizer
-      tools/quantizationtools/NullAttackPointOptimizer/NullAttackPointOptimizer
-      tools/quantizationtools/ParallelJobHandler/ParallelJobHandler
-      tools/quantizationtools/ParallelJobHandlerWorker/ParallelJobHandlerWorker
-      tools/quantizationtools/PitchedQEvent/PitchedQEvent
-      tools/quantizationtools/QEventProxy/QEventProxy
-      tools/quantizationtools/QEventSequence/QEventSequence
-      tools/quantizationtools/QGrid/QGrid
-      tools/quantizationtools/QGridContainer/QGridContainer
-      tools/quantizationtools/QGridLeaf/QGridLeaf
-      tools/quantizationtools/QTargetBeat/QTargetBeat
-      tools/quantizationtools/QTargetMeasure/QTargetMeasure
-      tools/quantizationtools/QuantizationJob/QuantizationJob
-      tools/quantizationtools/Quantizer/Quantizer
-      tools/quantizationtools/SerialJobHandler/SerialJobHandler
-      tools/quantizationtools/SilentQEvent/SilentQEvent
-      tools/quantizationtools/TerminalQEvent/TerminalQEvent
-      tools/quantizationtools/UnweightedSearchTree/UnweightedSearchTree
-      tools/quantizationtools/WeightedSearchTree/WeightedSearchTree
-
-   Functions
-   ---------
-
-   .. toctree::
-
-      tools/quantizationtools/make_test_time_segments
-      tools/quantizationtools/millisecond_pitch_pairs_to_q_events
-      tools/quantizationtools/milliseconds_to_q_events
-      tools/quantizationtools/tempo_scaled_duration_to_milliseconds
-      tools/quantizationtools/tempo_scaled_durations_to_q_events
-      tools/quantizationtools/tempo_scaled_leaves_to_q_events
-
 :py:mod:`resttools <abjad.tools.resttools>`
 ===========================================
 
@@ -2310,72 +2134,44 @@ Core composition packages
       tools/resttools/replace_leaves_in_expr_with_rests
       tools/resttools/set_vertical_positioning_pitch_on_rest
 
-:py:mod:`rhythmmakertools <abjad.tools.rhythmmakertools>`
-=========================================================
+:py:mod:`gracetools <abjad.tools.gracetools>`
+=============================================
 
 .. only:: html
 
    .. toctree::
       :maxdepth: 1
 
-      tools/rhythmmakertools/BurnishedRhythmMaker/BurnishedRhythmMaker
-      tools/rhythmmakertools/DivisionIncisedRhythmMaker/DivisionIncisedRhythmMaker
-      tools/rhythmmakertools/IncisedRhythmMaker/IncisedRhythmMaker
-      tools/rhythmmakertools/OutputIncisedRhythmMaker/OutputIncisedRhythmMaker
-      tools/rhythmmakertools/RhythmMaker/RhythmMaker
+      tools/gracetools/GraceContainer/GraceContainer
 
    --------
 
    .. toctree::
       :maxdepth: 1
 
-      tools/rhythmmakertools/DivisionBurnishedTaleaRhythmMaker/DivisionBurnishedTaleaRhythmMaker
-      tools/rhythmmakertools/DivisionIncisedNoteRhythmMaker/DivisionIncisedNoteRhythmMaker
-      tools/rhythmmakertools/DivisionIncisedRestRhythmMaker/DivisionIncisedRestRhythmMaker
-      tools/rhythmmakertools/EqualDivisionRhythmMaker/EqualDivisionRhythmMaker
-      tools/rhythmmakertools/EvenRunRhythmMaker/EvenRunRhythmMaker
-      tools/rhythmmakertools/NoteRhythmMaker/NoteRhythmMaker
-      tools/rhythmmakertools/OutputBurnishedTaleaRhythmMaker/OutputBurnishedTaleaRhythmMaker
-      tools/rhythmmakertools/OutputIncisedNoteRhythmMaker/OutputIncisedNoteRhythmMaker
-      tools/rhythmmakertools/OutputIncisedRestRhythmMaker/OutputIncisedRestRhythmMaker
-      tools/rhythmmakertools/RestRhythmMaker/RestRhythmMaker
-      tools/rhythmmakertools/SkipRhythmMaker/SkipRhythmMaker
-      tools/rhythmmakertools/TaleaRhythmMaker/TaleaRhythmMaker
-      tools/rhythmmakertools/TupletMonadRhythmMaker/TupletMonadRhythmMaker
+      tools/gracetools/detach_grace_containers_attached_to_leaf
+      tools/gracetools/detach_grace_containers_attached_to_leaves_in_expr
+      tools/gracetools/get_grace_containers_attached_to_leaf
 
 .. only:: latex
-
-   Abstract Classes
-   ----------------
-
-   .. toctree::
-
-      tools/rhythmmakertools/BurnishedRhythmMaker/BurnishedRhythmMaker
-      tools/rhythmmakertools/DivisionIncisedRhythmMaker/DivisionIncisedRhythmMaker
-      tools/rhythmmakertools/IncisedRhythmMaker/IncisedRhythmMaker
-      tools/rhythmmakertools/OutputIncisedRhythmMaker/OutputIncisedRhythmMaker
-      tools/rhythmmakertools/RhythmMaker/RhythmMaker
 
    Concrete Classes
    ----------------
 
    .. toctree::
 
-      tools/rhythmmakertools/DivisionBurnishedTaleaRhythmMaker/DivisionBurnishedTaleaRhythmMaker
-      tools/rhythmmakertools/DivisionIncisedNoteRhythmMaker/DivisionIncisedNoteRhythmMaker
-      tools/rhythmmakertools/DivisionIncisedRestRhythmMaker/DivisionIncisedRestRhythmMaker
-      tools/rhythmmakertools/EqualDivisionRhythmMaker/EqualDivisionRhythmMaker
-      tools/rhythmmakertools/EvenRunRhythmMaker/EvenRunRhythmMaker
-      tools/rhythmmakertools/NoteRhythmMaker/NoteRhythmMaker
-      tools/rhythmmakertools/OutputBurnishedTaleaRhythmMaker/OutputBurnishedTaleaRhythmMaker
-      tools/rhythmmakertools/OutputIncisedNoteRhythmMaker/OutputIncisedNoteRhythmMaker
-      tools/rhythmmakertools/OutputIncisedRestRhythmMaker/OutputIncisedRestRhythmMaker
-      tools/rhythmmakertools/RestRhythmMaker/RestRhythmMaker
-      tools/rhythmmakertools/SkipRhythmMaker/SkipRhythmMaker
-      tools/rhythmmakertools/TaleaRhythmMaker/TaleaRhythmMaker
-      tools/rhythmmakertools/TupletMonadRhythmMaker/TupletMonadRhythmMaker
+      tools/gracetools/GraceContainer/GraceContainer
 
-:py:mod:`rhythmtreetools <abjad.tools.rhythmtreetools>`
+   Functions
+   ---------
+
+   .. toctree::
+
+      tools/gracetools/detach_grace_containers_attached_to_leaf
+      tools/gracetools/detach_grace_containers_attached_to_leaves_in_expr
+      tools/gracetools/get_grace_containers_attached_to_leaf
+
+:py:mod:`instrumenttools <abjad.tools.instrumenttools>`
 =======================================================
 
 .. only:: html
@@ -2383,23 +2179,90 @@ Core composition packages
    .. toctree::
       :maxdepth: 1
 
-      tools/rhythmtreetools/RhythmTreeNode/RhythmTreeNode
+      tools/instrumenttools/BrassInstrument/BrassInstrument
+      tools/instrumenttools/Clarinet/Clarinet
+      tools/instrumenttools/DoubleReedInstrument/DoubleReedInstrument
+      tools/instrumenttools/Instrument/Instrument
+      tools/instrumenttools/KeyboardInstrument/KeyboardInstrument
+      tools/instrumenttools/PercussionInstrument/PercussionInstrument
+      tools/instrumenttools/ReedInstrument/ReedInstrument
+      tools/instrumenttools/Saxophone/Saxophone
+      tools/instrumenttools/SingleReedInstrument/SingleReedInstrument
+      tools/instrumenttools/StringInstrument/StringInstrument
+      tools/instrumenttools/Trombone/Trombone
+      tools/instrumenttools/Voice/Voice
+      tools/instrumenttools/WindInstrument/WindInstrument
 
    --------
 
    .. toctree::
       :maxdepth: 1
 
-      tools/rhythmtreetools/RhythmTreeContainer/RhythmTreeContainer
-      tools/rhythmtreetools/RhythmTreeLeaf/RhythmTreeLeaf
-      tools/rhythmtreetools/RhythmTreeParser/RhythmTreeParser
+      tools/instrumenttools/Accordion/Accordion
+      tools/instrumenttools/AltoFlute/AltoFlute
+      tools/instrumenttools/AltoSaxophone/AltoSaxophone
+      tools/instrumenttools/AltoTrombone/AltoTrombone
+      tools/instrumenttools/BFlatClarinet/BFlatClarinet
+      tools/instrumenttools/BaritoneSaxophone/BaritoneSaxophone
+      tools/instrumenttools/BaritoneVoice/BaritoneVoice
+      tools/instrumenttools/BassClarinet/BassClarinet
+      tools/instrumenttools/BassFlute/BassFlute
+      tools/instrumenttools/BassSaxophone/BassSaxophone
+      tools/instrumenttools/BassTrombone/BassTrombone
+      tools/instrumenttools/BassVoice/BassVoice
+      tools/instrumenttools/Bassoon/Bassoon
+      tools/instrumenttools/Cello/Cello
+      tools/instrumenttools/ClarinetInA/ClarinetInA
+      tools/instrumenttools/Contrabass/Contrabass
+      tools/instrumenttools/ContrabassClarinet/ContrabassClarinet
+      tools/instrumenttools/ContrabassFlute/ContrabassFlute
+      tools/instrumenttools/ContrabassSaxophone/ContrabassSaxophone
+      tools/instrumenttools/Contrabassoon/Contrabassoon
+      tools/instrumenttools/ContraltoVoice/ContraltoVoice
+      tools/instrumenttools/EFlatClarinet/EFlatClarinet
+      tools/instrumenttools/EnglishHorn/EnglishHorn
+      tools/instrumenttools/Flute/Flute
+      tools/instrumenttools/FrenchHorn/FrenchHorn
+      tools/instrumenttools/Glockenspiel/Glockenspiel
+      tools/instrumenttools/Guitar/Guitar
+      tools/instrumenttools/Harp/Harp
+      tools/instrumenttools/Harpsichord/Harpsichord
+      tools/instrumenttools/InstrumentInventory/InstrumentInventory
+      tools/instrumenttools/Marimba/Marimba
+      tools/instrumenttools/MezzoSopranoVoice/MezzoSopranoVoice
+      tools/instrumenttools/Oboe/Oboe
+      tools/instrumenttools/Piano/Piano
+      tools/instrumenttools/Piccolo/Piccolo
+      tools/instrumenttools/SopraninoSaxophone/SopraninoSaxophone
+      tools/instrumenttools/SopranoSaxophone/SopranoSaxophone
+      tools/instrumenttools/SopranoVoice/SopranoVoice
+      tools/instrumenttools/TenorSaxophone/TenorSaxophone
+      tools/instrumenttools/TenorTrombone/TenorTrombone
+      tools/instrumenttools/TenorVoice/TenorVoice
+      tools/instrumenttools/Trumpet/Trumpet
+      tools/instrumenttools/Tuba/Tuba
+      tools/instrumenttools/UntunedPercussion/UntunedPercussion
+      tools/instrumenttools/Vibraphone/Vibraphone
+      tools/instrumenttools/Viola/Viola
+      tools/instrumenttools/Violin/Violin
+      tools/instrumenttools/WoodwindFingering/WoodwindFingering
+      tools/instrumenttools/Xylophone/Xylophone
 
    --------
 
    .. toctree::
       :maxdepth: 1
 
-      tools/rhythmtreetools/parse_rtm_syntax
+      tools/instrumenttools/default_instrument_name_to_instrument_class
+      tools/instrumenttools/iterate_notes_and_chords_in_expr_outside_traditional_instrument_ranges
+      tools/instrumenttools/list_instrument_names
+      tools/instrumenttools/list_instruments
+      tools/instrumenttools/list_primary_instruments
+      tools/instrumenttools/list_secondary_instruments
+      tools/instrumenttools/notes_and_chords_in_expr_are_on_expected_clefs
+      tools/instrumenttools/notes_and_chords_in_expr_are_within_traditional_instrument_ranges
+      tools/instrumenttools/transpose_from_fingered_pitch_to_sounding_pitch
+      tools/instrumenttools/transpose_from_sounding_pitch_to_fingered_pitch
 
 .. only:: latex
 
@@ -2408,25 +2271,179 @@ Core composition packages
 
    .. toctree::
 
-      tools/rhythmtreetools/RhythmTreeNode/RhythmTreeNode
+      tools/instrumenttools/BrassInstrument/BrassInstrument
+      tools/instrumenttools/Clarinet/Clarinet
+      tools/instrumenttools/DoubleReedInstrument/DoubleReedInstrument
+      tools/instrumenttools/Instrument/Instrument
+      tools/instrumenttools/KeyboardInstrument/KeyboardInstrument
+      tools/instrumenttools/PercussionInstrument/PercussionInstrument
+      tools/instrumenttools/ReedInstrument/ReedInstrument
+      tools/instrumenttools/Saxophone/Saxophone
+      tools/instrumenttools/SingleReedInstrument/SingleReedInstrument
+      tools/instrumenttools/StringInstrument/StringInstrument
+      tools/instrumenttools/Trombone/Trombone
+      tools/instrumenttools/Voice/Voice
+      tools/instrumenttools/WindInstrument/WindInstrument
 
    Concrete Classes
    ----------------
 
    .. toctree::
 
-      tools/rhythmtreetools/RhythmTreeContainer/RhythmTreeContainer
-      tools/rhythmtreetools/RhythmTreeLeaf/RhythmTreeLeaf
-      tools/rhythmtreetools/RhythmTreeParser/RhythmTreeParser
+      tools/instrumenttools/Accordion/Accordion
+      tools/instrumenttools/AltoFlute/AltoFlute
+      tools/instrumenttools/AltoSaxophone/AltoSaxophone
+      tools/instrumenttools/AltoTrombone/AltoTrombone
+      tools/instrumenttools/BFlatClarinet/BFlatClarinet
+      tools/instrumenttools/BaritoneSaxophone/BaritoneSaxophone
+      tools/instrumenttools/BaritoneVoice/BaritoneVoice
+      tools/instrumenttools/BassClarinet/BassClarinet
+      tools/instrumenttools/BassFlute/BassFlute
+      tools/instrumenttools/BassSaxophone/BassSaxophone
+      tools/instrumenttools/BassTrombone/BassTrombone
+      tools/instrumenttools/BassVoice/BassVoice
+      tools/instrumenttools/Bassoon/Bassoon
+      tools/instrumenttools/Cello/Cello
+      tools/instrumenttools/ClarinetInA/ClarinetInA
+      tools/instrumenttools/Contrabass/Contrabass
+      tools/instrumenttools/ContrabassClarinet/ContrabassClarinet
+      tools/instrumenttools/ContrabassFlute/ContrabassFlute
+      tools/instrumenttools/ContrabassSaxophone/ContrabassSaxophone
+      tools/instrumenttools/Contrabassoon/Contrabassoon
+      tools/instrumenttools/ContraltoVoice/ContraltoVoice
+      tools/instrumenttools/EFlatClarinet/EFlatClarinet
+      tools/instrumenttools/EnglishHorn/EnglishHorn
+      tools/instrumenttools/Flute/Flute
+      tools/instrumenttools/FrenchHorn/FrenchHorn
+      tools/instrumenttools/Glockenspiel/Glockenspiel
+      tools/instrumenttools/Guitar/Guitar
+      tools/instrumenttools/Harp/Harp
+      tools/instrumenttools/Harpsichord/Harpsichord
+      tools/instrumenttools/InstrumentInventory/InstrumentInventory
+      tools/instrumenttools/Marimba/Marimba
+      tools/instrumenttools/MezzoSopranoVoice/MezzoSopranoVoice
+      tools/instrumenttools/Oboe/Oboe
+      tools/instrumenttools/Piano/Piano
+      tools/instrumenttools/Piccolo/Piccolo
+      tools/instrumenttools/SopraninoSaxophone/SopraninoSaxophone
+      tools/instrumenttools/SopranoSaxophone/SopranoSaxophone
+      tools/instrumenttools/SopranoVoice/SopranoVoice
+      tools/instrumenttools/TenorSaxophone/TenorSaxophone
+      tools/instrumenttools/TenorTrombone/TenorTrombone
+      tools/instrumenttools/TenorVoice/TenorVoice
+      tools/instrumenttools/Trumpet/Trumpet
+      tools/instrumenttools/Tuba/Tuba
+      tools/instrumenttools/UntunedPercussion/UntunedPercussion
+      tools/instrumenttools/Vibraphone/Vibraphone
+      tools/instrumenttools/Viola/Viola
+      tools/instrumenttools/Violin/Violin
+      tools/instrumenttools/WoodwindFingering/WoodwindFingering
+      tools/instrumenttools/Xylophone/Xylophone
 
    Functions
    ---------
 
    .. toctree::
 
-      tools/rhythmtreetools/parse_rtm_syntax
+      tools/instrumenttools/default_instrument_name_to_instrument_class
+      tools/instrumenttools/iterate_notes_and_chords_in_expr_outside_traditional_instrument_ranges
+      tools/instrumenttools/list_instrument_names
+      tools/instrumenttools/list_instruments
+      tools/instrumenttools/list_primary_instruments
+      tools/instrumenttools/list_secondary_instruments
+      tools/instrumenttools/notes_and_chords_in_expr_are_on_expected_clefs
+      tools/instrumenttools/notes_and_chords_in_expr_are_within_traditional_instrument_ranges
+      tools/instrumenttools/transpose_from_fingered_pitch_to_sounding_pitch
+      tools/instrumenttools/transpose_from_sounding_pitch_to_fingered_pitch
 
-:py:mod:`schemetools <abjad.tools.schemetools>`
+:py:mod:`labeltools <abjad.tools.labeltools>`
+=============================================
+
+.. only:: html
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/labeltools/color_chord_note_heads_in_expr_by_pitch_class_color_map
+      tools/labeltools/color_contents_of_container
+      tools/labeltools/color_leaf
+      tools/labeltools/color_leaves_in_expr
+      tools/labeltools/color_measure
+      tools/labeltools/color_measures_with_non_power_of_two_denominators_in_expr
+      tools/labeltools/color_note_head_by_numbered_chromatic_pitch_class_color_map
+      tools/labeltools/label_leaves_in_expr_with_inversion_equivalent_chromatic_interval_classes
+      tools/labeltools/label_leaves_in_expr_with_leaf_depth
+      tools/labeltools/label_leaves_in_expr_with_leaf_duration
+      tools/labeltools/label_leaves_in_expr_with_leaf_durations
+      tools/labeltools/label_leaves_in_expr_with_leaf_indices
+      tools/labeltools/label_leaves_in_expr_with_leaf_numbers
+      tools/labeltools/label_leaves_in_expr_with_melodic_chromatic_interval_classes
+      tools/labeltools/label_leaves_in_expr_with_melodic_chromatic_intervals
+      tools/labeltools/label_leaves_in_expr_with_melodic_counterpoint_interval_classes
+      tools/labeltools/label_leaves_in_expr_with_melodic_counterpoint_intervals
+      tools/labeltools/label_leaves_in_expr_with_melodic_diatonic_interval_classes
+      tools/labeltools/label_leaves_in_expr_with_melodic_diatonic_intervals
+      tools/labeltools/label_leaves_in_expr_with_pitch_class_numbers
+      tools/labeltools/label_leaves_in_expr_with_pitch_numbers
+      tools/labeltools/label_leaves_in_expr_with_tuplet_depth
+      tools/labeltools/label_leaves_in_expr_with_written_leaf_duration
+      tools/labeltools/label_notes_in_expr_with_note_indices
+      tools/labeltools/label_tie_chains_in_expr_with_tie_chain_duration
+      tools/labeltools/label_tie_chains_in_expr_with_tie_chain_durations
+      tools/labeltools/label_tie_chains_in_expr_with_written_tie_chain_duration
+      tools/labeltools/label_vertical_moments_in_expr_with_chromatic_interval_classes
+      tools/labeltools/label_vertical_moments_in_expr_with_chromatic_intervals
+      tools/labeltools/label_vertical_moments_in_expr_with_counterpoint_intervals
+      tools/labeltools/label_vertical_moments_in_expr_with_diatonic_intervals
+      tools/labeltools/label_vertical_moments_in_expr_with_interval_class_vectors
+      tools/labeltools/label_vertical_moments_in_expr_with_numbered_chromatic_pitch_classes
+      tools/labeltools/label_vertical_moments_in_expr_with_pitch_numbers
+      tools/labeltools/remove_markup_from_leaves_in_expr
+
+.. only:: latex
+
+   Functions
+   ---------
+
+   .. toctree::
+
+      tools/labeltools/color_chord_note_heads_in_expr_by_pitch_class_color_map
+      tools/labeltools/color_contents_of_container
+      tools/labeltools/color_leaf
+      tools/labeltools/color_leaves_in_expr
+      tools/labeltools/color_measure
+      tools/labeltools/color_measures_with_non_power_of_two_denominators_in_expr
+      tools/labeltools/color_note_head_by_numbered_chromatic_pitch_class_color_map
+      tools/labeltools/label_leaves_in_expr_with_inversion_equivalent_chromatic_interval_classes
+      tools/labeltools/label_leaves_in_expr_with_leaf_depth
+      tools/labeltools/label_leaves_in_expr_with_leaf_duration
+      tools/labeltools/label_leaves_in_expr_with_leaf_durations
+      tools/labeltools/label_leaves_in_expr_with_leaf_indices
+      tools/labeltools/label_leaves_in_expr_with_leaf_numbers
+      tools/labeltools/label_leaves_in_expr_with_melodic_chromatic_interval_classes
+      tools/labeltools/label_leaves_in_expr_with_melodic_chromatic_intervals
+      tools/labeltools/label_leaves_in_expr_with_melodic_counterpoint_interval_classes
+      tools/labeltools/label_leaves_in_expr_with_melodic_counterpoint_intervals
+      tools/labeltools/label_leaves_in_expr_with_melodic_diatonic_interval_classes
+      tools/labeltools/label_leaves_in_expr_with_melodic_diatonic_intervals
+      tools/labeltools/label_leaves_in_expr_with_pitch_class_numbers
+      tools/labeltools/label_leaves_in_expr_with_pitch_numbers
+      tools/labeltools/label_leaves_in_expr_with_tuplet_depth
+      tools/labeltools/label_leaves_in_expr_with_written_leaf_duration
+      tools/labeltools/label_notes_in_expr_with_note_indices
+      tools/labeltools/label_tie_chains_in_expr_with_tie_chain_duration
+      tools/labeltools/label_tie_chains_in_expr_with_tie_chain_durations
+      tools/labeltools/label_tie_chains_in_expr_with_written_tie_chain_duration
+      tools/labeltools/label_vertical_moments_in_expr_with_chromatic_interval_classes
+      tools/labeltools/label_vertical_moments_in_expr_with_chromatic_intervals
+      tools/labeltools/label_vertical_moments_in_expr_with_counterpoint_intervals
+      tools/labeltools/label_vertical_moments_in_expr_with_diatonic_intervals
+      tools/labeltools/label_vertical_moments_in_expr_with_interval_class_vectors
+      tools/labeltools/label_vertical_moments_in_expr_with_numbered_chromatic_pitch_classes
+      tools/labeltools/label_vertical_moments_in_expr_with_pitch_numbers
+      tools/labeltools/remove_markup_from_leaves_in_expr
+
+:py:mod:`layouttools <abjad.tools.layouttools>`
 ===============================================
 
 .. only:: html
@@ -2434,20 +2451,17 @@ Core composition packages
    .. toctree::
       :maxdepth: 1
 
-      tools/schemetools/Scheme/Scheme
-      tools/schemetools/SchemeAssociativeList/SchemeAssociativeList
-      tools/schemetools/SchemeColor/SchemeColor
-      tools/schemetools/SchemeMoment/SchemeMoment
-      tools/schemetools/SchemePair/SchemePair
-      tools/schemetools/SchemeVector/SchemeVector
-      tools/schemetools/SchemeVectorConstant/SchemeVectorConstant
+      tools/layouttools/SpacingIndication/SpacingIndication
 
    --------
 
    .. toctree::
       :maxdepth: 1
 
-      tools/schemetools/format_scheme_value
+      tools/layouttools/make_spacing_vector
+      tools/layouttools/set_line_breaks_by_line_duration
+      tools/layouttools/set_line_breaks_cyclically_by_line_duration_ge
+      tools/layouttools/set_line_breaks_cyclically_by_line_duration_in_seconds_ge
 
 .. only:: latex
 
@@ -2456,59 +2470,66 @@ Core composition packages
 
    .. toctree::
 
-      tools/schemetools/Scheme/Scheme
-      tools/schemetools/SchemeAssociativeList/SchemeAssociativeList
-      tools/schemetools/SchemeColor/SchemeColor
-      tools/schemetools/SchemeMoment/SchemeMoment
-      tools/schemetools/SchemePair/SchemePair
-      tools/schemetools/SchemeVector/SchemeVector
-      tools/schemetools/SchemeVectorConstant/SchemeVectorConstant
+      tools/layouttools/SpacingIndication/SpacingIndication
 
    Functions
    ---------
 
    .. toctree::
 
-      tools/schemetools/format_scheme_value
+      tools/layouttools/make_spacing_vector
+      tools/layouttools/set_line_breaks_by_line_duration
+      tools/layouttools/set_line_breaks_cyclically_by_line_duration_ge
+      tools/layouttools/set_line_breaks_cyclically_by_line_duration_in_seconds_ge
 
-:py:mod:`scoretemplatetools <abjad.tools.scoretemplatetools>`
-=============================================================
+:py:mod:`pitcharraytools <abjad.tools.pitcharraytools>`
+=======================================================
 
 .. only:: html
 
    .. toctree::
       :maxdepth: 1
 
-      tools/scoretemplatetools/ScoreTemplate/ScoreTemplate
+      tools/pitcharraytools/PitchArray/PitchArray
+      tools/pitcharraytools/PitchArrayCell/PitchArrayCell
+      tools/pitcharraytools/PitchArrayColumn/PitchArrayColumn
+      tools/pitcharraytools/PitchArrayRow/PitchArrayRow
 
    --------
 
    .. toctree::
       :maxdepth: 1
 
-      tools/scoretemplatetools/GroupedRhythmicStavesScoreTemplate/GroupedRhythmicStavesScoreTemplate
-      tools/scoretemplatetools/GroupedStavesScoreTemplate/GroupedStavesScoreTemplate
-      tools/scoretemplatetools/StringQuartetScoreTemplate/StringQuartetScoreTemplate
-      tools/scoretemplatetools/TwoStaffPianoScoreTemplate/TwoStaffPianoScoreTemplate
+      tools/pitcharraytools/concatenate_pitch_arrays
+      tools/pitcharraytools/list_nonspanning_subarrays_of_pitch_array
+      tools/pitcharraytools/make_pitch_array_from_leaf_iterables
+      tools/pitcharraytools/make_pitch_array_score_from_pitch_arrays
+      tools/pitcharraytools/pitch_array_row_to_measure
+      tools/pitcharraytools/pitch_array_to_measures
 
 .. only:: latex
-
-   Abstract Classes
-   ----------------
-
-   .. toctree::
-
-      tools/scoretemplatetools/ScoreTemplate/ScoreTemplate
 
    Concrete Classes
    ----------------
 
    .. toctree::
 
-      tools/scoretemplatetools/GroupedRhythmicStavesScoreTemplate/GroupedRhythmicStavesScoreTemplate
-      tools/scoretemplatetools/GroupedStavesScoreTemplate/GroupedStavesScoreTemplate
-      tools/scoretemplatetools/StringQuartetScoreTemplate/StringQuartetScoreTemplate
-      tools/scoretemplatetools/TwoStaffPianoScoreTemplate/TwoStaffPianoScoreTemplate
+      tools/pitcharraytools/PitchArray/PitchArray
+      tools/pitcharraytools/PitchArrayCell/PitchArrayCell
+      tools/pitcharraytools/PitchArrayColumn/PitchArrayColumn
+      tools/pitcharraytools/PitchArrayRow/PitchArrayRow
+
+   Functions
+   ---------
+
+   .. toctree::
+
+      tools/pitcharraytools/concatenate_pitch_arrays
+      tools/pitcharraytools/list_nonspanning_subarrays_of_pitch_array
+      tools/pitcharraytools/make_pitch_array_from_leaf_iterables
+      tools/pitcharraytools/make_pitch_array_score_from_pitch_arrays
+      tools/pitcharraytools/pitch_array_row_to_measure
+      tools/pitcharraytools/pitch_array_to_measures
 
 :py:mod:`scoretools <abjad.tools.scoretools>`
 =============================================
@@ -2567,303 +2588,7 @@ Core composition packages
       tools/scoretools/make_piano_score_from_leaves
       tools/scoretools/make_piano_sketch_score_from_leaves
 
-:py:mod:`selectiontools <abjad.tools.selectiontools>`
-=====================================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/selectiontools/Selection/Selection
-      tools/selectiontools/SelectionInventory/SelectionInventory
-
-.. only:: latex
-
-   Concrete Classes
-   ----------------
-
-   .. toctree::
-
-      tools/selectiontools/Selection/Selection
-      tools/selectiontools/SelectionInventory/SelectionInventory
-
-:py:mod:`sequencetools <abjad.tools.sequencetools>`
-===================================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/sequencetools/CyclicList/CyclicList
-      tools/sequencetools/CyclicMatrix/CyclicMatrix
-      tools/sequencetools/CyclicTree/CyclicTree
-      tools/sequencetools/CyclicTuple/CyclicTuple
-      tools/sequencetools/Matrix/Matrix
-      tools/sequencetools/Tree/Tree
-
-   --------
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/sequencetools/all_are_assignable_integers
-      tools/sequencetools/all_are_equal
-      tools/sequencetools/all_are_integer_equivalent_exprs
-      tools/sequencetools/all_are_integer_equivalent_numbers
-      tools/sequencetools/all_are_nonnegative_integer_equivalent_numbers
-      tools/sequencetools/all_are_nonnegative_integer_powers_of_two
-      tools/sequencetools/all_are_nonnegative_integers
-      tools/sequencetools/all_are_numbers
-      tools/sequencetools/all_are_pairs
-      tools/sequencetools/all_are_pairs_of_types
-      tools/sequencetools/all_are_positive_integer_equivalent_numbers
-      tools/sequencetools/all_are_positive_integers
-      tools/sequencetools/all_are_unequal
-      tools/sequencetools/count_length_two_runs_in_sequence
-      tools/sequencetools/divide_sequence_elements_by_greatest_common_divisor
-      tools/sequencetools/flatten_sequence
-      tools/sequencetools/flatten_sequence_at_indices
-      tools/sequencetools/get_indices_of_sequence_elements_equal_to_true
-      tools/sequencetools/get_sequence_degree_of_rotational_symmetry
-      tools/sequencetools/get_sequence_element_at_cyclic_index
-      tools/sequencetools/get_sequence_elements_at_indices
-      tools/sequencetools/get_sequence_elements_frequency_distribution
-      tools/sequencetools/get_sequence_period_of_rotation
-      tools/sequencetools/increase_sequence_elements_at_indices_by_addenda
-      tools/sequencetools/increase_sequence_elements_cyclically_by_addenda
-      tools/sequencetools/interlace_sequences
-      tools/sequencetools/is_fraction_equivalent_pair
-      tools/sequencetools/is_integer_equivalent_n_tuple
-      tools/sequencetools/is_integer_equivalent_pair
-      tools/sequencetools/is_integer_equivalent_singleton
-      tools/sequencetools/is_integer_n_tuple
-      tools/sequencetools/is_integer_pair
-      tools/sequencetools/is_integer_singleton
-      tools/sequencetools/is_monotonically_decreasing_sequence
-      tools/sequencetools/is_monotonically_increasing_sequence
-      tools/sequencetools/is_n_tuple
-      tools/sequencetools/is_null_tuple
-      tools/sequencetools/is_pair
-      tools/sequencetools/is_permutation
-      tools/sequencetools/is_repetition_free_sequence
-      tools/sequencetools/is_restricted_growth_function
-      tools/sequencetools/is_singleton
-      tools/sequencetools/is_strictly_decreasing_sequence
-      tools/sequencetools/is_strictly_increasing_sequence
-      tools/sequencetools/iterate_sequence_cyclically
-      tools/sequencetools/iterate_sequence_cyclically_from_start_to_stop
-      tools/sequencetools/iterate_sequence_forward_and_backward_nonoverlapping
-      tools/sequencetools/iterate_sequence_forward_and_backward_overlapping
-      tools/sequencetools/iterate_sequence_nwise_cyclic
-      tools/sequencetools/iterate_sequence_nwise_strict
-      tools/sequencetools/iterate_sequence_nwise_wrapped
-      tools/sequencetools/iterate_sequence_pairwise_cyclic
-      tools/sequencetools/iterate_sequence_pairwise_strict
-      tools/sequencetools/iterate_sequence_pairwise_wrapped
-      tools/sequencetools/join_subsequences
-      tools/sequencetools/join_subsequences_by_sign_of_subsequence_elements
-      tools/sequencetools/map_sequence_elements_to_canonic_tuples
-      tools/sequencetools/map_sequence_elements_to_numbered_sublists
-      tools/sequencetools/merge_duration_sequences
-      tools/sequencetools/negate_absolute_value_of_sequence_elements_at_indices
-      tools/sequencetools/negate_absolute_value_of_sequence_elements_cyclically
-      tools/sequencetools/negate_sequence_elements_at_indices
-      tools/sequencetools/negate_sequence_elements_cyclically
-      tools/sequencetools/overwrite_sequence_elements_at_indices
-      tools/sequencetools/pair_duration_sequence_elements_with_input_pair_values
-      tools/sequencetools/partition_sequence_by_backgrounded_weights
-      tools/sequencetools/partition_sequence_by_counts
-      tools/sequencetools/partition_sequence_by_ratio_of_lengths
-      tools/sequencetools/partition_sequence_by_ratio_of_weights
-      tools/sequencetools/partition_sequence_by_restricted_growth_function
-      tools/sequencetools/partition_sequence_by_sign_of_elements
-      tools/sequencetools/partition_sequence_by_value_of_elements
-      tools/sequencetools/partition_sequence_by_weights_at_least
-      tools/sequencetools/partition_sequence_by_weights_at_most
-      tools/sequencetools/partition_sequence_by_weights_exactly
-      tools/sequencetools/partition_sequence_extended_to_counts
-      tools/sequencetools/permute_sequence
-      tools/sequencetools/remove_sequence_elements_at_indices
-      tools/sequencetools/remove_sequence_elements_at_indices_cyclically
-      tools/sequencetools/remove_subsequence_of_weight_at_index
-      tools/sequencetools/repeat_runs_in_sequence_to_count
-      tools/sequencetools/repeat_sequence_elements_at_indices
-      tools/sequencetools/repeat_sequence_elements_at_indices_cyclically
-      tools/sequencetools/repeat_sequence_elements_n_times_each
-      tools/sequencetools/repeat_sequence_n_times
-      tools/sequencetools/repeat_sequence_to_length
-      tools/sequencetools/repeat_sequence_to_weight_at_least
-      tools/sequencetools/repeat_sequence_to_weight_at_most
-      tools/sequencetools/repeat_sequence_to_weight_exactly
-      tools/sequencetools/replace_sequence_elements_cyclically_with_new_material
-      tools/sequencetools/retain_sequence_elements_at_indices
-      tools/sequencetools/retain_sequence_elements_at_indices_cyclically
-      tools/sequencetools/reverse_sequence
-      tools/sequencetools/reverse_sequence_elements
-      tools/sequencetools/rotate_sequence
-      tools/sequencetools/splice_new_elements_between_sequence_elements
-      tools/sequencetools/split_sequence_by_weights
-      tools/sequencetools/split_sequence_extended_to_weights
-      tools/sequencetools/sum_consecutive_sequence_elements_by_sign
-      tools/sequencetools/sum_sequence_elements_at_indices
-      tools/sequencetools/truncate_runs_in_sequence
-      tools/sequencetools/truncate_sequence_to_sum
-      tools/sequencetools/truncate_sequence_to_weight
-      tools/sequencetools/yield_all_combinations_of_sequence_elements
-      tools/sequencetools/yield_all_k_ary_sequences_of_length
-      tools/sequencetools/yield_all_pairs_between_sequences
-      tools/sequencetools/yield_all_partitions_of_sequence
-      tools/sequencetools/yield_all_permutations_of_sequence
-      tools/sequencetools/yield_all_permutations_of_sequence_in_orbit
-      tools/sequencetools/yield_all_restricted_growth_functions_of_length
-      tools/sequencetools/yield_all_rotations_of_sequence
-      tools/sequencetools/yield_all_set_partitions_of_sequence
-      tools/sequencetools/yield_all_subsequences_of_sequence
-      tools/sequencetools/yield_all_unordered_pairs_of_sequence
-      tools/sequencetools/yield_outer_product_of_sequences
-      tools/sequencetools/zip_sequences_cyclically
-      tools/sequencetools/zip_sequences_without_truncation
-
-.. only:: latex
-
-   Concrete Classes
-   ----------------
-
-   .. toctree::
-
-      tools/sequencetools/CyclicList/CyclicList
-      tools/sequencetools/CyclicMatrix/CyclicMatrix
-      tools/sequencetools/CyclicTree/CyclicTree
-      tools/sequencetools/CyclicTuple/CyclicTuple
-      tools/sequencetools/Matrix/Matrix
-      tools/sequencetools/Tree/Tree
-
-   Functions
-   ---------
-
-   .. toctree::
-
-      tools/sequencetools/all_are_assignable_integers
-      tools/sequencetools/all_are_equal
-      tools/sequencetools/all_are_integer_equivalent_exprs
-      tools/sequencetools/all_are_integer_equivalent_numbers
-      tools/sequencetools/all_are_nonnegative_integer_equivalent_numbers
-      tools/sequencetools/all_are_nonnegative_integer_powers_of_two
-      tools/sequencetools/all_are_nonnegative_integers
-      tools/sequencetools/all_are_numbers
-      tools/sequencetools/all_are_pairs
-      tools/sequencetools/all_are_pairs_of_types
-      tools/sequencetools/all_are_positive_integer_equivalent_numbers
-      tools/sequencetools/all_are_positive_integers
-      tools/sequencetools/all_are_unequal
-      tools/sequencetools/count_length_two_runs_in_sequence
-      tools/sequencetools/divide_sequence_elements_by_greatest_common_divisor
-      tools/sequencetools/flatten_sequence
-      tools/sequencetools/flatten_sequence_at_indices
-      tools/sequencetools/get_indices_of_sequence_elements_equal_to_true
-      tools/sequencetools/get_sequence_degree_of_rotational_symmetry
-      tools/sequencetools/get_sequence_element_at_cyclic_index
-      tools/sequencetools/get_sequence_elements_at_indices
-      tools/sequencetools/get_sequence_elements_frequency_distribution
-      tools/sequencetools/get_sequence_period_of_rotation
-      tools/sequencetools/increase_sequence_elements_at_indices_by_addenda
-      tools/sequencetools/increase_sequence_elements_cyclically_by_addenda
-      tools/sequencetools/interlace_sequences
-      tools/sequencetools/is_fraction_equivalent_pair
-      tools/sequencetools/is_integer_equivalent_n_tuple
-      tools/sequencetools/is_integer_equivalent_pair
-      tools/sequencetools/is_integer_equivalent_singleton
-      tools/sequencetools/is_integer_n_tuple
-      tools/sequencetools/is_integer_pair
-      tools/sequencetools/is_integer_singleton
-      tools/sequencetools/is_monotonically_decreasing_sequence
-      tools/sequencetools/is_monotonically_increasing_sequence
-      tools/sequencetools/is_n_tuple
-      tools/sequencetools/is_null_tuple
-      tools/sequencetools/is_pair
-      tools/sequencetools/is_permutation
-      tools/sequencetools/is_repetition_free_sequence
-      tools/sequencetools/is_restricted_growth_function
-      tools/sequencetools/is_singleton
-      tools/sequencetools/is_strictly_decreasing_sequence
-      tools/sequencetools/is_strictly_increasing_sequence
-      tools/sequencetools/iterate_sequence_cyclically
-      tools/sequencetools/iterate_sequence_cyclically_from_start_to_stop
-      tools/sequencetools/iterate_sequence_forward_and_backward_nonoverlapping
-      tools/sequencetools/iterate_sequence_forward_and_backward_overlapping
-      tools/sequencetools/iterate_sequence_nwise_cyclic
-      tools/sequencetools/iterate_sequence_nwise_strict
-      tools/sequencetools/iterate_sequence_nwise_wrapped
-      tools/sequencetools/iterate_sequence_pairwise_cyclic
-      tools/sequencetools/iterate_sequence_pairwise_strict
-      tools/sequencetools/iterate_sequence_pairwise_wrapped
-      tools/sequencetools/join_subsequences
-      tools/sequencetools/join_subsequences_by_sign_of_subsequence_elements
-      tools/sequencetools/map_sequence_elements_to_canonic_tuples
-      tools/sequencetools/map_sequence_elements_to_numbered_sublists
-      tools/sequencetools/merge_duration_sequences
-      tools/sequencetools/negate_absolute_value_of_sequence_elements_at_indices
-      tools/sequencetools/negate_absolute_value_of_sequence_elements_cyclically
-      tools/sequencetools/negate_sequence_elements_at_indices
-      tools/sequencetools/negate_sequence_elements_cyclically
-      tools/sequencetools/overwrite_sequence_elements_at_indices
-      tools/sequencetools/pair_duration_sequence_elements_with_input_pair_values
-      tools/sequencetools/partition_sequence_by_backgrounded_weights
-      tools/sequencetools/partition_sequence_by_counts
-      tools/sequencetools/partition_sequence_by_ratio_of_lengths
-      tools/sequencetools/partition_sequence_by_ratio_of_weights
-      tools/sequencetools/partition_sequence_by_restricted_growth_function
-      tools/sequencetools/partition_sequence_by_sign_of_elements
-      tools/sequencetools/partition_sequence_by_value_of_elements
-      tools/sequencetools/partition_sequence_by_weights_at_least
-      tools/sequencetools/partition_sequence_by_weights_at_most
-      tools/sequencetools/partition_sequence_by_weights_exactly
-      tools/sequencetools/partition_sequence_extended_to_counts
-      tools/sequencetools/permute_sequence
-      tools/sequencetools/remove_sequence_elements_at_indices
-      tools/sequencetools/remove_sequence_elements_at_indices_cyclically
-      tools/sequencetools/remove_subsequence_of_weight_at_index
-      tools/sequencetools/repeat_runs_in_sequence_to_count
-      tools/sequencetools/repeat_sequence_elements_at_indices
-      tools/sequencetools/repeat_sequence_elements_at_indices_cyclically
-      tools/sequencetools/repeat_sequence_elements_n_times_each
-      tools/sequencetools/repeat_sequence_n_times
-      tools/sequencetools/repeat_sequence_to_length
-      tools/sequencetools/repeat_sequence_to_weight_at_least
-      tools/sequencetools/repeat_sequence_to_weight_at_most
-      tools/sequencetools/repeat_sequence_to_weight_exactly
-      tools/sequencetools/replace_sequence_elements_cyclically_with_new_material
-      tools/sequencetools/retain_sequence_elements_at_indices
-      tools/sequencetools/retain_sequence_elements_at_indices_cyclically
-      tools/sequencetools/reverse_sequence
-      tools/sequencetools/reverse_sequence_elements
-      tools/sequencetools/rotate_sequence
-      tools/sequencetools/splice_new_elements_between_sequence_elements
-      tools/sequencetools/split_sequence_by_weights
-      tools/sequencetools/split_sequence_extended_to_weights
-      tools/sequencetools/sum_consecutive_sequence_elements_by_sign
-      tools/sequencetools/sum_sequence_elements_at_indices
-      tools/sequencetools/truncate_runs_in_sequence
-      tools/sequencetools/truncate_sequence_to_sum
-      tools/sequencetools/truncate_sequence_to_weight
-      tools/sequencetools/yield_all_combinations_of_sequence_elements
-      tools/sequencetools/yield_all_k_ary_sequences_of_length
-      tools/sequencetools/yield_all_pairs_between_sequences
-      tools/sequencetools/yield_all_partitions_of_sequence
-      tools/sequencetools/yield_all_permutations_of_sequence
-      tools/sequencetools/yield_all_permutations_of_sequence_in_orbit
-      tools/sequencetools/yield_all_restricted_growth_functions_of_length
-      tools/sequencetools/yield_all_rotations_of_sequence
-      tools/sequencetools/yield_all_set_partitions_of_sequence
-      tools/sequencetools/yield_all_subsequences_of_sequence
-      tools/sequencetools/yield_all_unordered_pairs_of_sequence
-      tools/sequencetools/yield_outer_product_of_sequences
-      tools/sequencetools/zip_sequences_cyclically
-      tools/sequencetools/zip_sequences_without_truncation
-
-:py:mod:`sievetools <abjad.tools.sievetools>`
+:py:mod:`stafftools <abjad.tools.stafftools>`
 =============================================
 
 .. only:: html
@@ -2871,32 +2596,227 @@ Core composition packages
    .. toctree::
       :maxdepth: 1
 
-      tools/sievetools/BaseResidueClass/BaseResidueClass
+      tools/stafftools/RhythmicStaff/RhythmicStaff
+      tools/stafftools/Staff/Staff
 
    --------
 
    .. toctree::
       :maxdepth: 1
 
-      tools/sievetools/ResidueClass/ResidueClass
-      tools/sievetools/Sieve/Sieve
+      tools/stafftools/make_rhythmic_sketch_staff
 
 .. only:: latex
-
-   Abstract Classes
-   ----------------
-
-   .. toctree::
-
-      tools/sievetools/BaseResidueClass/BaseResidueClass
 
    Concrete Classes
    ----------------
 
    .. toctree::
 
-      tools/sievetools/ResidueClass/ResidueClass
-      tools/sievetools/Sieve/Sieve
+      tools/stafftools/RhythmicStaff/RhythmicStaff
+      tools/stafftools/Staff/Staff
+
+   Functions
+   ---------
+
+   .. toctree::
+
+      tools/stafftools/make_rhythmic_sketch_staff
+
+:py:mod:`voicetools <abjad.tools.voicetools>`
+=============================================
+
+.. only:: html
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/voicetools/Voice/Voice
+
+.. only:: latex
+
+   Concrete Classes
+   ----------------
+
+   .. toctree::
+
+      tools/voicetools/Voice/Voice
+
+:py:mod:`iterationtools <abjad.tools.iterationtools>`
+=====================================================
+
+.. only:: html
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/iterationtools/iterate_chords_in_expr
+      tools/iterationtools/iterate_components_and_grace_containers_in_expr
+      tools/iterationtools/iterate_components_depth_first
+      tools/iterationtools/iterate_components_in_expr
+      tools/iterationtools/iterate_containers_in_expr
+      tools/iterationtools/iterate_contexts_in_expr
+      tools/iterationtools/iterate_leaf_pairs_in_expr
+      tools/iterationtools/iterate_leaves_in_expr
+      tools/iterationtools/iterate_measures_in_expr
+      tools/iterationtools/iterate_namesakes_from_component
+      tools/iterationtools/iterate_nontrivial_tie_chains_in_expr
+      tools/iterationtools/iterate_notes_and_chords_in_expr
+      tools/iterationtools/iterate_notes_in_expr
+      tools/iterationtools/iterate_pitched_tie_chains_in_expr
+      tools/iterationtools/iterate_rests_in_expr
+      tools/iterationtools/iterate_runs_in_expr
+      tools/iterationtools/iterate_scores_in_expr
+      tools/iterationtools/iterate_semantic_voices_in_expr
+      tools/iterationtools/iterate_skips_in_expr
+      tools/iterationtools/iterate_staves_in_expr
+      tools/iterationtools/iterate_thread_from_component
+      tools/iterationtools/iterate_thread_in_expr
+      tools/iterationtools/iterate_tie_chains_in_expr
+      tools/iterationtools/iterate_timeline_from_component
+      tools/iterationtools/iterate_timeline_in_expr
+      tools/iterationtools/iterate_topmost_tie_chains_and_components_in_expr
+      tools/iterationtools/iterate_tuplets_in_expr
+      tools/iterationtools/iterate_vertical_moments_in_expr
+      tools/iterationtools/iterate_voices_in_expr
+
+.. only:: latex
+
+   Functions
+   ---------
+
+   .. toctree::
+
+      tools/iterationtools/iterate_chords_in_expr
+      tools/iterationtools/iterate_components_and_grace_containers_in_expr
+      tools/iterationtools/iterate_components_depth_first
+      tools/iterationtools/iterate_components_in_expr
+      tools/iterationtools/iterate_containers_in_expr
+      tools/iterationtools/iterate_contexts_in_expr
+      tools/iterationtools/iterate_leaf_pairs_in_expr
+      tools/iterationtools/iterate_leaves_in_expr
+      tools/iterationtools/iterate_measures_in_expr
+      tools/iterationtools/iterate_namesakes_from_component
+      tools/iterationtools/iterate_nontrivial_tie_chains_in_expr
+      tools/iterationtools/iterate_notes_and_chords_in_expr
+      tools/iterationtools/iterate_notes_in_expr
+      tools/iterationtools/iterate_pitched_tie_chains_in_expr
+      tools/iterationtools/iterate_rests_in_expr
+      tools/iterationtools/iterate_runs_in_expr
+      tools/iterationtools/iterate_scores_in_expr
+      tools/iterationtools/iterate_semantic_voices_in_expr
+      tools/iterationtools/iterate_skips_in_expr
+      tools/iterationtools/iterate_staves_in_expr
+      tools/iterationtools/iterate_thread_from_component
+      tools/iterationtools/iterate_thread_in_expr
+      tools/iterationtools/iterate_tie_chains_in_expr
+      tools/iterationtools/iterate_timeline_from_component
+      tools/iterationtools/iterate_timeline_in_expr
+      tools/iterationtools/iterate_topmost_tie_chains_and_components_in_expr
+      tools/iterationtools/iterate_tuplets_in_expr
+      tools/iterationtools/iterate_vertical_moments_in_expr
+      tools/iterationtools/iterate_voices_in_expr
+
+:py:mod:`measuretools <abjad.tools.measuretools>`
+=================================================
+
+.. only:: html
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/measuretools/Measure/Measure
+
+   --------
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/measuretools/append_spacer_skip_to_underfull_measure
+      tools/measuretools/append_spacer_skips_to_underfull_measures_in_expr
+      tools/measuretools/apply_full_measure_tuplets_to_contents_of_measures_in_expr
+      tools/measuretools/comment_measures_in_container_with_measure_numbers
+      tools/measuretools/extend_measures_in_expr_and_apply_full_measure_tuplets
+      tools/measuretools/fill_measures_in_expr_with_full_measure_spacer_skips
+      tools/measuretools/fill_measures_in_expr_with_minimal_number_of_notes
+      tools/measuretools/fill_measures_in_expr_with_repeated_notes
+      tools/measuretools/fill_measures_in_expr_with_time_signature_denominator_notes
+      tools/measuretools/fuse_contiguous_measures_in_container_cyclically_by_counts
+      tools/measuretools/fuse_measures
+      tools/measuretools/get_likely_multiplier_of_components
+      tools/measuretools/get_measure_that_starts_with_container
+      tools/measuretools/get_measure_that_stops_with_container
+      tools/measuretools/get_next_measure_from_component
+      tools/measuretools/get_nth_measure_in_expr
+      tools/measuretools/get_one_indexed_measure_number_in_expr
+      tools/measuretools/get_previous_measure_from_component
+      tools/measuretools/list_time_signatures_of_measures_in_expr
+      tools/measuretools/make_measures_with_full_measure_spacer_skips
+      tools/measuretools/measure_to_one_line_input_string
+      tools/measuretools/move_full_measure_tuplet_prolation_to_measure_time_signature
+      tools/measuretools/move_measure_prolation_to_full_measure_tuplet
+      tools/measuretools/multiply_and_scale_contents_of_measures_in_expr
+      tools/measuretools/multiply_contents_of_measures_in_expr
+      tools/measuretools/pad_measures_in_expr
+      tools/measuretools/pad_measures_in_expr_with_rests
+      tools/measuretools/pad_measures_in_expr_with_skips
+      tools/measuretools/replace_contents_of_measures_in_expr
+      tools/measuretools/report_time_signature_distribution
+      tools/measuretools/scale_contents_of_measures_in_expr
+      tools/measuretools/scale_measure_and_adjust_time_signature
+      tools/measuretools/scale_measure_denominator_and_adjust_measure_contents
+      tools/measuretools/set_always_format_time_signature_of_measures_in_expr
+      tools/measuretools/set_measure_denominator_and_adjust_numerator
+
+.. only:: latex
+
+   Concrete Classes
+   ----------------
+
+   .. toctree::
+
+      tools/measuretools/Measure/Measure
+
+   Functions
+   ---------
+
+   .. toctree::
+
+      tools/measuretools/append_spacer_skip_to_underfull_measure
+      tools/measuretools/append_spacer_skips_to_underfull_measures_in_expr
+      tools/measuretools/apply_full_measure_tuplets_to_contents_of_measures_in_expr
+      tools/measuretools/comment_measures_in_container_with_measure_numbers
+      tools/measuretools/extend_measures_in_expr_and_apply_full_measure_tuplets
+      tools/measuretools/fill_measures_in_expr_with_full_measure_spacer_skips
+      tools/measuretools/fill_measures_in_expr_with_minimal_number_of_notes
+      tools/measuretools/fill_measures_in_expr_with_repeated_notes
+      tools/measuretools/fill_measures_in_expr_with_time_signature_denominator_notes
+      tools/measuretools/fuse_contiguous_measures_in_container_cyclically_by_counts
+      tools/measuretools/fuse_measures
+      tools/measuretools/get_likely_multiplier_of_components
+      tools/measuretools/get_measure_that_starts_with_container
+      tools/measuretools/get_measure_that_stops_with_container
+      tools/measuretools/get_next_measure_from_component
+      tools/measuretools/get_nth_measure_in_expr
+      tools/measuretools/get_one_indexed_measure_number_in_expr
+      tools/measuretools/get_previous_measure_from_component
+      tools/measuretools/list_time_signatures_of_measures_in_expr
+      tools/measuretools/make_measures_with_full_measure_spacer_skips
+      tools/measuretools/measure_to_one_line_input_string
+      tools/measuretools/move_full_measure_tuplet_prolation_to_measure_time_signature
+      tools/measuretools/move_measure_prolation_to_full_measure_tuplet
+      tools/measuretools/multiply_and_scale_contents_of_measures_in_expr
+      tools/measuretools/multiply_contents_of_measures_in_expr
+      tools/measuretools/pad_measures_in_expr
+      tools/measuretools/pad_measures_in_expr_with_rests
+      tools/measuretools/pad_measures_in_expr_with_skips
+      tools/measuretools/replace_contents_of_measures_in_expr
+      tools/measuretools/report_time_signature_distribution
+      tools/measuretools/scale_contents_of_measures_in_expr
+      tools/measuretools/scale_measure_and_adjust_time_signature
+      tools/measuretools/scale_measure_denominator_and_adjust_measure_contents
+      tools/measuretools/set_always_format_time_signature_of_measures_in_expr
+      tools/measuretools/set_measure_denominator_and_adjust_numerator
 
 :py:mod:`skiptools <abjad.tools.skiptools>`
 ===========================================
@@ -2936,6 +2856,63 @@ Core composition packages
       tools/skiptools/make_repeated_skips_from_time_signatures
       tools/skiptools/make_skips_with_multiplied_durations
       tools/skiptools/replace_leaves_in_expr_with_skips
+
+:py:mod:`notetools <abjad.tools.notetools>`
+===========================================
+
+.. only:: html
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/notetools/NaturalHarmonic/NaturalHarmonic
+      tools/notetools/Note/Note
+      tools/notetools/NoteHead/NoteHead
+
+   --------
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/notetools/add_artificial_harmonic_to_note
+      tools/notetools/make_accelerating_notes_with_lilypond_multipliers
+      tools/notetools/make_notes
+      tools/notetools/make_notes_with_multiplied_durations
+      tools/notetools/make_percussion_note
+      tools/notetools/make_quarter_notes_with_lilypond_multipliers
+      tools/notetools/make_repeated_notes
+      tools/notetools/make_repeated_notes_from_time_signature
+      tools/notetools/make_repeated_notes_from_time_signatures
+      tools/notetools/make_repeated_notes_with_shorter_notes_at_end
+      tools/notetools/make_tied_note
+
+.. only:: latex
+
+   Concrete Classes
+   ----------------
+
+   .. toctree::
+
+      tools/notetools/NaturalHarmonic/NaturalHarmonic
+      tools/notetools/Note/Note
+      tools/notetools/NoteHead/NoteHead
+
+   Functions
+   ---------
+
+   .. toctree::
+
+      tools/notetools/add_artificial_harmonic_to_note
+      tools/notetools/make_accelerating_notes_with_lilypond_multipliers
+      tools/notetools/make_notes
+      tools/notetools/make_notes_with_multiplied_durations
+      tools/notetools/make_percussion_note
+      tools/notetools/make_quarter_notes_with_lilypond_multipliers
+      tools/notetools/make_repeated_notes
+      tools/notetools/make_repeated_notes_from_time_signature
+      tools/notetools/make_repeated_notes_from_time_signatures
+      tools/notetools/make_repeated_notes_with_shorter_notes_at_end
+      tools/notetools/make_tied_note
 
 :py:mod:`spannertools <abjad.tools.spannertools>`
 =================================================
@@ -3090,23 +3067,36 @@ Core composition packages
       tools/spannertools/move_spanners_from_component_to_children_of_component
       tools/spannertools/withdraw_components_from_spanners_covered_by_components
 
-:py:mod:`stafftools <abjad.tools.stafftools>`
-=============================================
+:py:mod:`tuplettools <abjad.tools.tuplettools>`
+===============================================
 
 .. only:: html
 
    .. toctree::
       :maxdepth: 1
 
-      tools/stafftools/RhythmicStaff/RhythmicStaff
-      tools/stafftools/Staff/Staff
+      tools/tuplettools/FixedDurationTuplet/FixedDurationTuplet
+      tools/tuplettools/Tuplet/Tuplet
 
    --------
 
    .. toctree::
       :maxdepth: 1
 
-      tools/stafftools/make_rhythmic_sketch_staff
+      tools/tuplettools/change_augmented_tuplets_in_expr_to_diminished
+      tools/tuplettools/change_diminished_tuplets_in_expr_to_augmented
+      tools/tuplettools/change_fixed_duration_tuplets_in_expr_to_tuplets
+      tools/tuplettools/change_tuplets_in_expr_to_fixed_duration_tuplets
+      tools/tuplettools/fix_contents_of_tuplets_in_expr
+      tools/tuplettools/fuse_tuplets
+      tools/tuplettools/leaf_to_tuplet_with_n_notes_of_equal_written_duration
+      tools/tuplettools/leaf_to_tuplet_with_ratio
+      tools/tuplettools/make_tuplet_from_duration_and_ratio
+      tools/tuplettools/make_tuplet_from_nonreduced_ratio_and_nonreduced_fraction
+      tools/tuplettools/move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_tuplet
+      tools/tuplettools/remove_trivial_tuplets_in_expr
+      tools/tuplettools/scale_contents_of_tuplets_in_expr_by_multiplier
+      tools/tuplettools/set_denominator_of_tuplets_in_expr_to_at_least
 
 .. only:: latex
 
@@ -3115,86 +3105,28 @@ Core composition packages
 
    .. toctree::
 
-      tools/stafftools/RhythmicStaff/RhythmicStaff
-      tools/stafftools/Staff/Staff
+      tools/tuplettools/FixedDurationTuplet/FixedDurationTuplet
+      tools/tuplettools/Tuplet/Tuplet
 
    Functions
    ---------
 
    .. toctree::
 
-      tools/stafftools/make_rhythmic_sketch_staff
-
-:py:mod:`stringtools <abjad.tools.stringtools>`
-===============================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/stringtools/add_terminal_newlines
-      tools/stringtools/arg_to_bidirectional_direction_string
-      tools/stringtools/arg_to_bidirectional_lilypond_symbol
-      tools/stringtools/arg_to_tridirectional_direction_string
-      tools/stringtools/arg_to_tridirectional_lilypond_symbol
-      tools/stringtools/arg_to_tridirectional_ordinal_constant
-      tools/stringtools/capitalize_string_start
-      tools/stringtools/format_input_lines_as_doc_string
-      tools/stringtools/format_input_lines_as_regression_test
-      tools/stringtools/is_dash_case_file_name
-      tools/stringtools/is_dash_case_string
-      tools/stringtools/is_lower_camel_case_string
-      tools/stringtools/is_snake_case_file_name
-      tools/stringtools/is_snake_case_file_name_with_extension
-      tools/stringtools/is_snake_case_package_name
-      tools/stringtools/is_snake_case_string
-      tools/stringtools/is_space_delimited_lowercase_string
-      tools/stringtools/is_upper_camel_case_string
-      tools/stringtools/pluralize_string
-      tools/stringtools/snake_case_to_lower_camel_case
-      tools/stringtools/snake_case_to_upper_camel_case
-      tools/stringtools/space_delimited_lowercase_to_upper_camel_case
-      tools/stringtools/string_to_accent_free_snake_case
-      tools/stringtools/string_to_space_delimited_lowercase
-      tools/stringtools/strip_diacritics_from_binary_string
-      tools/stringtools/upper_camel_case_to_snake_case
-      tools/stringtools/upper_camel_case_to_space_delimited_lowercase
-
-.. only:: latex
-
-   Functions
-   ---------
-
-   .. toctree::
-
-      tools/stringtools/add_terminal_newlines
-      tools/stringtools/arg_to_bidirectional_direction_string
-      tools/stringtools/arg_to_bidirectional_lilypond_symbol
-      tools/stringtools/arg_to_tridirectional_direction_string
-      tools/stringtools/arg_to_tridirectional_lilypond_symbol
-      tools/stringtools/arg_to_tridirectional_ordinal_constant
-      tools/stringtools/capitalize_string_start
-      tools/stringtools/format_input_lines_as_doc_string
-      tools/stringtools/format_input_lines_as_regression_test
-      tools/stringtools/is_dash_case_file_name
-      tools/stringtools/is_dash_case_string
-      tools/stringtools/is_lower_camel_case_string
-      tools/stringtools/is_snake_case_file_name
-      tools/stringtools/is_snake_case_file_name_with_extension
-      tools/stringtools/is_snake_case_package_name
-      tools/stringtools/is_snake_case_string
-      tools/stringtools/is_space_delimited_lowercase_string
-      tools/stringtools/is_upper_camel_case_string
-      tools/stringtools/pluralize_string
-      tools/stringtools/snake_case_to_lower_camel_case
-      tools/stringtools/snake_case_to_upper_camel_case
-      tools/stringtools/space_delimited_lowercase_to_upper_camel_case
-      tools/stringtools/string_to_accent_free_snake_case
-      tools/stringtools/string_to_space_delimited_lowercase
-      tools/stringtools/strip_diacritics_from_binary_string
-      tools/stringtools/upper_camel_case_to_snake_case
-      tools/stringtools/upper_camel_case_to_space_delimited_lowercase
+      tools/tuplettools/change_augmented_tuplets_in_expr_to_diminished
+      tools/tuplettools/change_diminished_tuplets_in_expr_to_augmented
+      tools/tuplettools/change_fixed_duration_tuplets_in_expr_to_tuplets
+      tools/tuplettools/change_tuplets_in_expr_to_fixed_duration_tuplets
+      tools/tuplettools/fix_contents_of_tuplets_in_expr
+      tools/tuplettools/fuse_tuplets
+      tools/tuplettools/leaf_to_tuplet_with_n_notes_of_equal_written_duration
+      tools/tuplettools/leaf_to_tuplet_with_ratio
+      tools/tuplettools/make_tuplet_from_duration_and_ratio
+      tools/tuplettools/make_tuplet_from_nonreduced_ratio_and_nonreduced_fraction
+      tools/tuplettools/move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_tuplet
+      tools/tuplettools/remove_trivial_tuplets_in_expr
+      tools/tuplettools/scale_contents_of_tuplets_in_expr_by_multiplier
+      tools/tuplettools/set_denominator_of_tuplets_in_expr_to_at_least
 
 :py:mod:`tempotools <abjad.tools.tempotools>`
 =============================================
@@ -3218,6 +3150,241 @@ Core composition packages
       tools/tempotools/report_integer_tempo_rewrite_pairs
       tools/tempotools/rewrite_duration_under_new_tempo
       tools/tempotools/rewrite_integer_tempo
+
+:py:mod:`quantizationtools <abjad.tools.quantizationtools>`
+===========================================================
+
+.. only:: html
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/quantizationtools/AttackPointOptimizer/AttackPointOptimizer
+      tools/quantizationtools/GraceHandler/GraceHandler
+      tools/quantizationtools/Heuristic/Heuristic
+      tools/quantizationtools/JobHandler/JobHandler
+      tools/quantizationtools/QEvent/QEvent
+      tools/quantizationtools/QSchema/QSchema
+      tools/quantizationtools/QSchemaItem/QSchemaItem
+      tools/quantizationtools/QTarget/QTarget
+      tools/quantizationtools/SearchTree/SearchTree
+
+   --------
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/quantizationtools/BeatwiseQSchema/BeatwiseQSchema
+      tools/quantizationtools/BeatwiseQSchemaItem/BeatwiseQSchemaItem
+      tools/quantizationtools/BeatwiseQTarget/BeatwiseQTarget
+      tools/quantizationtools/CollapsingGraceHandler/CollapsingGraceHandler
+      tools/quantizationtools/ConcatenatingGraceHandler/ConcatenatingGraceHandler
+      tools/quantizationtools/DiscardingGraceHandler/DiscardingGraceHandler
+      tools/quantizationtools/DistanceHeuristic/DistanceHeuristic
+      tools/quantizationtools/MeasurewiseAttackPointOptimizer/MeasurewiseAttackPointOptimizer
+      tools/quantizationtools/MeasurewiseQSchema/MeasurewiseQSchema
+      tools/quantizationtools/MeasurewiseQSchemaItem/MeasurewiseQSchemaItem
+      tools/quantizationtools/MeasurewiseQTarget/MeasurewiseQTarget
+      tools/quantizationtools/NaiveAttackPointOptimizer/NaiveAttackPointOptimizer
+      tools/quantizationtools/NullAttackPointOptimizer/NullAttackPointOptimizer
+      tools/quantizationtools/ParallelJobHandler/ParallelJobHandler
+      tools/quantizationtools/ParallelJobHandlerWorker/ParallelJobHandlerWorker
+      tools/quantizationtools/PitchedQEvent/PitchedQEvent
+      tools/quantizationtools/QEventProxy/QEventProxy
+      tools/quantizationtools/QEventSequence/QEventSequence
+      tools/quantizationtools/QGrid/QGrid
+      tools/quantizationtools/QGridContainer/QGridContainer
+      tools/quantizationtools/QGridLeaf/QGridLeaf
+      tools/quantizationtools/QTargetBeat/QTargetBeat
+      tools/quantizationtools/QTargetMeasure/QTargetMeasure
+      tools/quantizationtools/QuantizationJob/QuantizationJob
+      tools/quantizationtools/Quantizer/Quantizer
+      tools/quantizationtools/SerialJobHandler/SerialJobHandler
+      tools/quantizationtools/SilentQEvent/SilentQEvent
+      tools/quantizationtools/TerminalQEvent/TerminalQEvent
+      tools/quantizationtools/UnweightedSearchTree/UnweightedSearchTree
+      tools/quantizationtools/WeightedSearchTree/WeightedSearchTree
+
+   --------
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/quantizationtools/make_test_time_segments
+      tools/quantizationtools/millisecond_pitch_pairs_to_q_events
+      tools/quantizationtools/milliseconds_to_q_events
+      tools/quantizationtools/tempo_scaled_duration_to_milliseconds
+      tools/quantizationtools/tempo_scaled_durations_to_q_events
+      tools/quantizationtools/tempo_scaled_leaves_to_q_events
+
+.. only:: latex
+
+   Abstract Classes
+   ----------------
+
+   .. toctree::
+
+      tools/quantizationtools/AttackPointOptimizer/AttackPointOptimizer
+      tools/quantizationtools/GraceHandler/GraceHandler
+      tools/quantizationtools/Heuristic/Heuristic
+      tools/quantizationtools/JobHandler/JobHandler
+      tools/quantizationtools/QEvent/QEvent
+      tools/quantizationtools/QSchema/QSchema
+      tools/quantizationtools/QSchemaItem/QSchemaItem
+      tools/quantizationtools/QTarget/QTarget
+      tools/quantizationtools/SearchTree/SearchTree
+
+   Concrete Classes
+   ----------------
+
+   .. toctree::
+
+      tools/quantizationtools/BeatwiseQSchema/BeatwiseQSchema
+      tools/quantizationtools/BeatwiseQSchemaItem/BeatwiseQSchemaItem
+      tools/quantizationtools/BeatwiseQTarget/BeatwiseQTarget
+      tools/quantizationtools/CollapsingGraceHandler/CollapsingGraceHandler
+      tools/quantizationtools/ConcatenatingGraceHandler/ConcatenatingGraceHandler
+      tools/quantizationtools/DiscardingGraceHandler/DiscardingGraceHandler
+      tools/quantizationtools/DistanceHeuristic/DistanceHeuristic
+      tools/quantizationtools/MeasurewiseAttackPointOptimizer/MeasurewiseAttackPointOptimizer
+      tools/quantizationtools/MeasurewiseQSchema/MeasurewiseQSchema
+      tools/quantizationtools/MeasurewiseQSchemaItem/MeasurewiseQSchemaItem
+      tools/quantizationtools/MeasurewiseQTarget/MeasurewiseQTarget
+      tools/quantizationtools/NaiveAttackPointOptimizer/NaiveAttackPointOptimizer
+      tools/quantizationtools/NullAttackPointOptimizer/NullAttackPointOptimizer
+      tools/quantizationtools/ParallelJobHandler/ParallelJobHandler
+      tools/quantizationtools/ParallelJobHandlerWorker/ParallelJobHandlerWorker
+      tools/quantizationtools/PitchedQEvent/PitchedQEvent
+      tools/quantizationtools/QEventProxy/QEventProxy
+      tools/quantizationtools/QEventSequence/QEventSequence
+      tools/quantizationtools/QGrid/QGrid
+      tools/quantizationtools/QGridContainer/QGridContainer
+      tools/quantizationtools/QGridLeaf/QGridLeaf
+      tools/quantizationtools/QTargetBeat/QTargetBeat
+      tools/quantizationtools/QTargetMeasure/QTargetMeasure
+      tools/quantizationtools/QuantizationJob/QuantizationJob
+      tools/quantizationtools/Quantizer/Quantizer
+      tools/quantizationtools/SerialJobHandler/SerialJobHandler
+      tools/quantizationtools/SilentQEvent/SilentQEvent
+      tools/quantizationtools/TerminalQEvent/TerminalQEvent
+      tools/quantizationtools/UnweightedSearchTree/UnweightedSearchTree
+      tools/quantizationtools/WeightedSearchTree/WeightedSearchTree
+
+   Functions
+   ---------
+
+   .. toctree::
+
+      tools/quantizationtools/make_test_time_segments
+      tools/quantizationtools/millisecond_pitch_pairs_to_q_events
+      tools/quantizationtools/milliseconds_to_q_events
+      tools/quantizationtools/tempo_scaled_duration_to_milliseconds
+      tools/quantizationtools/tempo_scaled_durations_to_q_events
+      tools/quantizationtools/tempo_scaled_leaves_to_q_events
+
+:py:mod:`rhythmmakertools <abjad.tools.rhythmmakertools>`
+=========================================================
+
+.. only:: html
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/rhythmmakertools/BurnishedRhythmMaker/BurnishedRhythmMaker
+      tools/rhythmmakertools/DivisionIncisedRhythmMaker/DivisionIncisedRhythmMaker
+      tools/rhythmmakertools/IncisedRhythmMaker/IncisedRhythmMaker
+      tools/rhythmmakertools/OutputIncisedRhythmMaker/OutputIncisedRhythmMaker
+      tools/rhythmmakertools/RhythmMaker/RhythmMaker
+
+   --------
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/rhythmmakertools/DivisionBurnishedTaleaRhythmMaker/DivisionBurnishedTaleaRhythmMaker
+      tools/rhythmmakertools/DivisionIncisedNoteRhythmMaker/DivisionIncisedNoteRhythmMaker
+      tools/rhythmmakertools/DivisionIncisedRestRhythmMaker/DivisionIncisedRestRhythmMaker
+      tools/rhythmmakertools/EqualDivisionRhythmMaker/EqualDivisionRhythmMaker
+      tools/rhythmmakertools/EvenRunRhythmMaker/EvenRunRhythmMaker
+      tools/rhythmmakertools/NoteRhythmMaker/NoteRhythmMaker
+      tools/rhythmmakertools/OutputBurnishedTaleaRhythmMaker/OutputBurnishedTaleaRhythmMaker
+      tools/rhythmmakertools/OutputIncisedNoteRhythmMaker/OutputIncisedNoteRhythmMaker
+      tools/rhythmmakertools/OutputIncisedRestRhythmMaker/OutputIncisedRestRhythmMaker
+      tools/rhythmmakertools/RestRhythmMaker/RestRhythmMaker
+      tools/rhythmmakertools/SkipRhythmMaker/SkipRhythmMaker
+      tools/rhythmmakertools/TaleaRhythmMaker/TaleaRhythmMaker
+      tools/rhythmmakertools/TupletMonadRhythmMaker/TupletMonadRhythmMaker
+
+.. only:: latex
+
+   Abstract Classes
+   ----------------
+
+   .. toctree::
+
+      tools/rhythmmakertools/BurnishedRhythmMaker/BurnishedRhythmMaker
+      tools/rhythmmakertools/DivisionIncisedRhythmMaker/DivisionIncisedRhythmMaker
+      tools/rhythmmakertools/IncisedRhythmMaker/IncisedRhythmMaker
+      tools/rhythmmakertools/OutputIncisedRhythmMaker/OutputIncisedRhythmMaker
+      tools/rhythmmakertools/RhythmMaker/RhythmMaker
+
+   Concrete Classes
+   ----------------
+
+   .. toctree::
+
+      tools/rhythmmakertools/DivisionBurnishedTaleaRhythmMaker/DivisionBurnishedTaleaRhythmMaker
+      tools/rhythmmakertools/DivisionIncisedNoteRhythmMaker/DivisionIncisedNoteRhythmMaker
+      tools/rhythmmakertools/DivisionIncisedRestRhythmMaker/DivisionIncisedRestRhythmMaker
+      tools/rhythmmakertools/EqualDivisionRhythmMaker/EqualDivisionRhythmMaker
+      tools/rhythmmakertools/EvenRunRhythmMaker/EvenRunRhythmMaker
+      tools/rhythmmakertools/NoteRhythmMaker/NoteRhythmMaker
+      tools/rhythmmakertools/OutputBurnishedTaleaRhythmMaker/OutputBurnishedTaleaRhythmMaker
+      tools/rhythmmakertools/OutputIncisedNoteRhythmMaker/OutputIncisedNoteRhythmMaker
+      tools/rhythmmakertools/OutputIncisedRestRhythmMaker/OutputIncisedRestRhythmMaker
+      tools/rhythmmakertools/RestRhythmMaker/RestRhythmMaker
+      tools/rhythmmakertools/SkipRhythmMaker/SkipRhythmMaker
+      tools/rhythmmakertools/TaleaRhythmMaker/TaleaRhythmMaker
+      tools/rhythmmakertools/TupletMonadRhythmMaker/TupletMonadRhythmMaker
+
+:py:mod:`scoretemplatetools <abjad.tools.scoretemplatetools>`
+=============================================================
+
+.. only:: html
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/scoretemplatetools/ScoreTemplate/ScoreTemplate
+
+   --------
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/scoretemplatetools/GroupedRhythmicStavesScoreTemplate/GroupedRhythmicStavesScoreTemplate
+      tools/scoretemplatetools/GroupedStavesScoreTemplate/GroupedStavesScoreTemplate
+      tools/scoretemplatetools/StringQuartetScoreTemplate/StringQuartetScoreTemplate
+      tools/scoretemplatetools/TwoStaffPianoScoreTemplate/TwoStaffPianoScoreTemplate
+
+.. only:: latex
+
+   Abstract Classes
+   ----------------
+
+   .. toctree::
+
+      tools/scoretemplatetools/ScoreTemplate/ScoreTemplate
+
+   Concrete Classes
+   ----------------
+
+   .. toctree::
+
+      tools/scoretemplatetools/GroupedRhythmicStavesScoreTemplate/GroupedRhythmicStavesScoreTemplate
+      tools/scoretemplatetools/GroupedStavesScoreTemplate/GroupedStavesScoreTemplate
+      tools/scoretemplatetools/StringQuartetScoreTemplate/StringQuartetScoreTemplate
+      tools/scoretemplatetools/TwoStaffPianoScoreTemplate/TwoStaffPianoScoreTemplate
 
 :py:mod:`timeintervaltools <abjad.tools.timeintervaltools>`
 ===========================================================
@@ -3368,64 +3535,31 @@ Core composition packages
       tools/timeintervaltools/shift_aggregate_offset_to_rational
       tools/timeintervaltools/split_intervals_at_rationals
 
-:py:mod:`timerelationtools <abjad.tools.timerelationtools>`
-===========================================================
+:py:mod:`rhythmtreetools <abjad.tools.rhythmtreetools>`
+=======================================================
 
 .. only:: html
 
    .. toctree::
       :maxdepth: 1
 
-      tools/timerelationtools/TimeRelation/TimeRelation
+      tools/rhythmtreetools/RhythmTreeNode/RhythmTreeNode
 
    --------
 
    .. toctree::
       :maxdepth: 1
 
-      tools/timerelationtools/CompoundInequality/CompoundInequality
-      tools/timerelationtools/OffsetTimespanTimeRelation/OffsetTimespanTimeRelation
-      tools/timerelationtools/SimpleInequality/SimpleInequality
-      tools/timerelationtools/TimespanTimespanTimeRelation/TimespanTimespanTimeRelation
+      tools/rhythmtreetools/RhythmTreeContainer/RhythmTreeContainer
+      tools/rhythmtreetools/RhythmTreeLeaf/RhythmTreeLeaf
+      tools/rhythmtreetools/RhythmTreeParser/RhythmTreeParser
 
    --------
 
    .. toctree::
       :maxdepth: 1
 
-      tools/timerelationtools/offset_happens_after_timespan_starts
-      tools/timerelationtools/offset_happens_after_timespan_stops
-      tools/timerelationtools/offset_happens_before_timespan_starts
-      tools/timerelationtools/offset_happens_before_timespan_stops
-      tools/timerelationtools/offset_happens_during_timespan
-      tools/timerelationtools/offset_happens_when_timespan_starts
-      tools/timerelationtools/offset_happens_when_timespan_stops
-      tools/timerelationtools/timespan_2_contains_timespan_1_improperly
-      tools/timerelationtools/timespan_2_curtails_timespan_1
-      tools/timerelationtools/timespan_2_delays_timespan_1
-      tools/timerelationtools/timespan_2_happens_during_timespan_1
-      tools/timerelationtools/timespan_2_intersects_timespan_1
-      tools/timerelationtools/timespan_2_is_congruent_to_timespan_1
-      tools/timerelationtools/timespan_2_overlaps_all_of_timespan_1
-      tools/timerelationtools/timespan_2_overlaps_only_start_of_timespan_1
-      tools/timerelationtools/timespan_2_overlaps_only_stop_of_timespan_1
-      tools/timerelationtools/timespan_2_overlaps_start_of_timespan_1
-      tools/timerelationtools/timespan_2_overlaps_stop_of_timespan_1
-      tools/timerelationtools/timespan_2_starts_after_timespan_1_starts
-      tools/timerelationtools/timespan_2_starts_after_timespan_1_stops
-      tools/timerelationtools/timespan_2_starts_before_timespan_1_starts
-      tools/timerelationtools/timespan_2_starts_before_timespan_1_stops
-      tools/timerelationtools/timespan_2_starts_during_timespan_1
-      tools/timerelationtools/timespan_2_starts_when_timespan_1_starts
-      tools/timerelationtools/timespan_2_starts_when_timespan_1_stops
-      tools/timerelationtools/timespan_2_stops_after_timespan_1_starts
-      tools/timerelationtools/timespan_2_stops_after_timespan_1_stops
-      tools/timerelationtools/timespan_2_stops_before_timespan_1_starts
-      tools/timerelationtools/timespan_2_stops_before_timespan_1_stops
-      tools/timerelationtools/timespan_2_stops_during_timespan_1
-      tools/timerelationtools/timespan_2_stops_when_timespan_1_starts
-      tools/timerelationtools/timespan_2_stops_when_timespan_1_stops
-      tools/timerelationtools/timespan_2_trisects_timespan_1
+      tools/rhythmtreetools/parse_rtm_syntax
 
 .. only:: latex
 
@@ -3434,56 +3568,23 @@ Core composition packages
 
    .. toctree::
 
-      tools/timerelationtools/TimeRelation/TimeRelation
+      tools/rhythmtreetools/RhythmTreeNode/RhythmTreeNode
 
    Concrete Classes
    ----------------
 
    .. toctree::
 
-      tools/timerelationtools/CompoundInequality/CompoundInequality
-      tools/timerelationtools/OffsetTimespanTimeRelation/OffsetTimespanTimeRelation
-      tools/timerelationtools/SimpleInequality/SimpleInequality
-      tools/timerelationtools/TimespanTimespanTimeRelation/TimespanTimespanTimeRelation
+      tools/rhythmtreetools/RhythmTreeContainer/RhythmTreeContainer
+      tools/rhythmtreetools/RhythmTreeLeaf/RhythmTreeLeaf
+      tools/rhythmtreetools/RhythmTreeParser/RhythmTreeParser
 
    Functions
    ---------
 
    .. toctree::
 
-      tools/timerelationtools/offset_happens_after_timespan_starts
-      tools/timerelationtools/offset_happens_after_timespan_stops
-      tools/timerelationtools/offset_happens_before_timespan_starts
-      tools/timerelationtools/offset_happens_before_timespan_stops
-      tools/timerelationtools/offset_happens_during_timespan
-      tools/timerelationtools/offset_happens_when_timespan_starts
-      tools/timerelationtools/offset_happens_when_timespan_stops
-      tools/timerelationtools/timespan_2_contains_timespan_1_improperly
-      tools/timerelationtools/timespan_2_curtails_timespan_1
-      tools/timerelationtools/timespan_2_delays_timespan_1
-      tools/timerelationtools/timespan_2_happens_during_timespan_1
-      tools/timerelationtools/timespan_2_intersects_timespan_1
-      tools/timerelationtools/timespan_2_is_congruent_to_timespan_1
-      tools/timerelationtools/timespan_2_overlaps_all_of_timespan_1
-      tools/timerelationtools/timespan_2_overlaps_only_start_of_timespan_1
-      tools/timerelationtools/timespan_2_overlaps_only_stop_of_timespan_1
-      tools/timerelationtools/timespan_2_overlaps_start_of_timespan_1
-      tools/timerelationtools/timespan_2_overlaps_stop_of_timespan_1
-      tools/timerelationtools/timespan_2_starts_after_timespan_1_starts
-      tools/timerelationtools/timespan_2_starts_after_timespan_1_stops
-      tools/timerelationtools/timespan_2_starts_before_timespan_1_starts
-      tools/timerelationtools/timespan_2_starts_before_timespan_1_stops
-      tools/timerelationtools/timespan_2_starts_during_timespan_1
-      tools/timerelationtools/timespan_2_starts_when_timespan_1_starts
-      tools/timerelationtools/timespan_2_starts_when_timespan_1_stops
-      tools/timerelationtools/timespan_2_stops_after_timespan_1_starts
-      tools/timerelationtools/timespan_2_stops_after_timespan_1_stops
-      tools/timerelationtools/timespan_2_stops_before_timespan_1_starts
-      tools/timerelationtools/timespan_2_stops_before_timespan_1_stops
-      tools/timerelationtools/timespan_2_stops_during_timespan_1
-      tools/timerelationtools/timespan_2_stops_when_timespan_1_starts
-      tools/timerelationtools/timespan_2_stops_when_timespan_1_stops
-      tools/timerelationtools/timespan_2_trisects_timespan_1
+      tools/rhythmtreetools/parse_rtm_syntax
 
 :py:mod:`timesignaturetools <abjad.tools.timesignaturetools>`
 =============================================================
@@ -3527,27 +3628,6 @@ Core composition packages
       tools/timesignaturetools/establish_metrical_hierarchy
       tools/timesignaturetools/fit_metrical_hierarchies_to_expr
       tools/timesignaturetools/make_gridded_test_rhythm
-
-:py:mod:`timespantools <abjad.tools.timespantools>`
-===================================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/timespantools/Timespan/Timespan
-      tools/timespantools/TimespanInventory/TimespanInventory
-
-.. only:: latex
-
-   Concrete Classes
-   ----------------
-
-   .. toctree::
-
-      tools/timespantools/Timespan/Timespan
-      tools/timespantools/TimespanInventory/TimespanInventory
 
 :py:mod:`tonalitytools <abjad.tools.tonalitytools>`
 ===================================================
@@ -3633,86 +3713,6 @@ Core composition packages
       tools/tonalitytools/is_unlikely_melodic_diatonic_interval_in_chorale
       tools/tonalitytools/make_all_notes_in_ascending_and_descending_diatonic_scale
       tools/tonalitytools/make_first_n_notes_in_ascending_diatonic_scale
-
-:py:mod:`tuplettools <abjad.tools.tuplettools>`
-===============================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/tuplettools/FixedDurationTuplet/FixedDurationTuplet
-      tools/tuplettools/Tuplet/Tuplet
-
-   --------
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/tuplettools/change_augmented_tuplets_in_expr_to_diminished
-      tools/tuplettools/change_diminished_tuplets_in_expr_to_augmented
-      tools/tuplettools/change_fixed_duration_tuplets_in_expr_to_tuplets
-      tools/tuplettools/change_tuplets_in_expr_to_fixed_duration_tuplets
-      tools/tuplettools/fix_contents_of_tuplets_in_expr
-      tools/tuplettools/fuse_tuplets
-      tools/tuplettools/leaf_to_tuplet_with_n_notes_of_equal_written_duration
-      tools/tuplettools/leaf_to_tuplet_with_ratio
-      tools/tuplettools/make_tuplet_from_duration_and_ratio
-      tools/tuplettools/make_tuplet_from_nonreduced_ratio_and_nonreduced_fraction
-      tools/tuplettools/move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_tuplet
-      tools/tuplettools/remove_trivial_tuplets_in_expr
-      tools/tuplettools/scale_contents_of_tuplets_in_expr_by_multiplier
-      tools/tuplettools/set_denominator_of_tuplets_in_expr_to_at_least
-
-.. only:: latex
-
-   Concrete Classes
-   ----------------
-
-   .. toctree::
-
-      tools/tuplettools/FixedDurationTuplet/FixedDurationTuplet
-      tools/tuplettools/Tuplet/Tuplet
-
-   Functions
-   ---------
-
-   .. toctree::
-
-      tools/tuplettools/change_augmented_tuplets_in_expr_to_diminished
-      tools/tuplettools/change_diminished_tuplets_in_expr_to_augmented
-      tools/tuplettools/change_fixed_duration_tuplets_in_expr_to_tuplets
-      tools/tuplettools/change_tuplets_in_expr_to_fixed_duration_tuplets
-      tools/tuplettools/fix_contents_of_tuplets_in_expr
-      tools/tuplettools/fuse_tuplets
-      tools/tuplettools/leaf_to_tuplet_with_n_notes_of_equal_written_duration
-      tools/tuplettools/leaf_to_tuplet_with_ratio
-      tools/tuplettools/make_tuplet_from_duration_and_ratio
-      tools/tuplettools/make_tuplet_from_nonreduced_ratio_and_nonreduced_fraction
-      tools/tuplettools/move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_tuplet
-      tools/tuplettools/remove_trivial_tuplets_in_expr
-      tools/tuplettools/scale_contents_of_tuplets_in_expr_by_multiplier
-      tools/tuplettools/set_denominator_of_tuplets_in_expr_to_at_least
-
-:py:mod:`voicetools <abjad.tools.voicetools>`
-=============================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/voicetools/Voice/Voice
-
-.. only:: latex
-
-   Concrete Classes
-   ----------------
-
-   .. toctree::
-
-      tools/voicetools/Voice/Voice
 
 :py:mod:`wellformednesstools <abjad.tools.wellformednesstools>`
 ===============================================================
@@ -3832,6 +3832,33 @@ Demos and example packages
       demos/desordre/make_desordre_score
       demos/desordre/make_desordre_staff
 
+:py:mod:`mozart <abjad.demos.mozart>`
+=====================================
+
+.. only:: html
+
+   .. toctree::
+      :maxdepth: 1
+
+      demos/mozart/choose_mozart_measures
+      demos/mozart/make_mozart_lilypond_file
+      demos/mozart/make_mozart_measure
+      demos/mozart/make_mozart_measure_corpus
+      demos/mozart/make_mozart_score
+
+.. only:: latex
+
+   Functions
+   ---------
+
+   .. toctree::
+
+      demos/mozart/choose_mozart_measures
+      demos/mozart/make_mozart_lilypond_file
+      demos/mozart/make_mozart_measure
+      demos/mozart/make_mozart_measure_corpus
+      demos/mozart/make_mozart_score
+
 :py:mod:`ferneyhough <abjad.demos.ferneyhough>`
 ===============================================
 
@@ -3860,33 +3887,6 @@ Demos and example packages
       demos/ferneyhough/make_nested_tuplet
       demos/ferneyhough/make_row_of_nested_tuplets
       demos/ferneyhough/make_rows_of_nested_tuplets
-
-:py:mod:`mozart <abjad.demos.mozart>`
-=====================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      demos/mozart/choose_mozart_measures
-      demos/mozart/make_mozart_lilypond_file
-      demos/mozart/make_mozart_measure
-      demos/mozart/make_mozart_measure_corpus
-      demos/mozart/make_mozart_score
-
-.. only:: latex
-
-   Functions
-   ---------
-
-   .. toctree::
-
-      demos/mozart/choose_mozart_measures
-      demos/mozart/make_mozart_lilypond_file
-      demos/mozart/make_mozart_measure
-      demos/mozart/make_mozart_measure_corpus
-      demos/mozart/make_mozart_score
 
 :py:mod:`part <abjad.demos.part>`
 =================================
@@ -3965,36 +3965,65 @@ Abjad internal packages
    :maxdepth: 1
 
 
-:py:mod:`abctools <abjad.tools.abctools>`
-=========================================
+:py:mod:`datastructuretools <abjad.tools.datastructuretools>`
+=============================================================
 
 .. only:: html
 
    .. toctree::
       :maxdepth: 1
 
-      tools/abctools/AbjadObject/AbjadObject
-      tools/abctools/AttributeEqualityAbjadObject/AttributeEqualityAbjadObject
-      tools/abctools/ContextManager/ContextManager
-      tools/abctools/ImmutableAbjadObject/ImmutableAbjadObject
-      tools/abctools/Maker/Maker
-      tools/abctools/Parser/Parser
-      tools/abctools/SortableAttributeEqualityAbjadObject/SortableAttributeEqualityAbjadObject
+      tools/datastructuretools/BreakPointFunction/BreakPointFunction
+      tools/datastructuretools/Digraph/Digraph
+      tools/datastructuretools/ImmutableDictionary/ImmutableDictionary
+      tools/datastructuretools/ObjectInventory/ObjectInventory
+      tools/datastructuretools/OrdinalConstant/OrdinalConstant
+      tools/datastructuretools/SortedCollection/SortedCollection
+      tools/datastructuretools/TreeContainer/TreeContainer
+      tools/datastructuretools/TreeNode/TreeNode
 
 .. only:: latex
 
-   Abstract Classes
+   Concrete Classes
    ----------------
 
    .. toctree::
 
-      tools/abctools/AbjadObject/AbjadObject
-      tools/abctools/AttributeEqualityAbjadObject/AttributeEqualityAbjadObject
-      tools/abctools/ContextManager/ContextManager
-      tools/abctools/ImmutableAbjadObject/ImmutableAbjadObject
-      tools/abctools/Maker/Maker
-      tools/abctools/Parser/Parser
-      tools/abctools/SortableAttributeEqualityAbjadObject/SortableAttributeEqualityAbjadObject
+      tools/datastructuretools/BreakPointFunction/BreakPointFunction
+      tools/datastructuretools/Digraph/Digraph
+      tools/datastructuretools/ImmutableDictionary/ImmutableDictionary
+      tools/datastructuretools/ObjectInventory/ObjectInventory
+      tools/datastructuretools/OrdinalConstant/OrdinalConstant
+      tools/datastructuretools/SortedCollection/SortedCollection
+      tools/datastructuretools/TreeContainer/TreeContainer
+      tools/datastructuretools/TreeNode/TreeNode
+
+:py:mod:`importtools <abjad.tools.importtools>`
+===============================================
+
+.. only:: html
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/importtools/get_public_function_names_in_module
+      tools/importtools/import_contents_of_public_packages_in_path_into_namespace
+      tools/importtools/import_public_names_from_filesystem_path_into_namespace
+      tools/importtools/import_structured_package
+      tools/importtools/remove_modules_from_namespace
+
+.. only:: latex
+
+   Functions
+   ---------
+
+   .. toctree::
+
+      tools/importtools/get_public_function_names_in_module
+      tools/importtools/import_contents_of_public_packages_in_path_into_namespace
+      tools/importtools/import_public_names_from_filesystem_path_into_namespace
+      tools/importtools/import_structured_package
+      tools/importtools/remove_modules_from_namespace
 
 :py:mod:`abjadbooktools <abjad.tools.abjadbooktools>`
 =====================================================
@@ -4039,106 +4068,6 @@ Abjad internal packages
       tools/abjadbooktools/LaTeXOutputFormat/LaTeXOutputFormat
       tools/abjadbooktools/ReSTOutputFormat/ReSTOutputFormat
 
-:py:mod:`configurationtools <abjad.tools.configurationtools>`
-=============================================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/configurationtools/Configuration/Configuration
-
-   --------
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/configurationtools/AbjadConfiguration/AbjadConfiguration
-
-   --------
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/configurationtools/get_abjad_revision_string
-      tools/configurationtools/get_abjad_startup_string
-      tools/configurationtools/get_abjad_version_string
-      tools/configurationtools/get_lilypond_minimum_version_string
-      tools/configurationtools/get_lilypond_version_string
-      tools/configurationtools/get_python_version_string
-      tools/configurationtools/get_tab_width
-      tools/configurationtools/get_text_editor
-      tools/configurationtools/list_abjad_environment_variables
-      tools/configurationtools/list_package_dependency_versions
-      tools/configurationtools/read_abjad_user_config_file
-
-.. only:: latex
-
-   Abstract Classes
-   ----------------
-
-   .. toctree::
-
-      tools/configurationtools/Configuration/Configuration
-
-   Concrete Classes
-   ----------------
-
-   .. toctree::
-
-      tools/configurationtools/AbjadConfiguration/AbjadConfiguration
-
-   Functions
-   ---------
-
-   .. toctree::
-
-      tools/configurationtools/get_abjad_revision_string
-      tools/configurationtools/get_abjad_startup_string
-      tools/configurationtools/get_abjad_version_string
-      tools/configurationtools/get_lilypond_minimum_version_string
-      tools/configurationtools/get_lilypond_version_string
-      tools/configurationtools/get_python_version_string
-      tools/configurationtools/get_tab_width
-      tools/configurationtools/get_text_editor
-      tools/configurationtools/list_abjad_environment_variables
-      tools/configurationtools/list_package_dependency_versions
-      tools/configurationtools/read_abjad_user_config_file
-
-:py:mod:`datastructuretools <abjad.tools.datastructuretools>`
-=============================================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/datastructuretools/BreakPointFunction/BreakPointFunction
-      tools/datastructuretools/Digraph/Digraph
-      tools/datastructuretools/ImmutableDictionary/ImmutableDictionary
-      tools/datastructuretools/ObjectInventory/ObjectInventory
-      tools/datastructuretools/OrdinalConstant/OrdinalConstant
-      tools/datastructuretools/SortedCollection/SortedCollection
-      tools/datastructuretools/TreeContainer/TreeContainer
-      tools/datastructuretools/TreeNode/TreeNode
-
-.. only:: latex
-
-   Concrete Classes
-   ----------------
-
-   .. toctree::
-
-      tools/datastructuretools/BreakPointFunction/BreakPointFunction
-      tools/datastructuretools/Digraph/Digraph
-      tools/datastructuretools/ImmutableDictionary/ImmutableDictionary
-      tools/datastructuretools/ObjectInventory/ObjectInventory
-      tools/datastructuretools/OrdinalConstant/OrdinalConstant
-      tools/datastructuretools/SortedCollection/SortedCollection
-      tools/datastructuretools/TreeContainer/TreeContainer
-      tools/datastructuretools/TreeNode/TreeNode
-
 :py:mod:`decoratortools <abjad.tools.decoratortools>`
 =====================================================
 
@@ -4158,50 +4087,21 @@ Abjad internal packages
 
       tools/decoratortools/requires
 
-:py:mod:`developerscripttools <abjad.tools.developerscripttools>`
-=================================================================
+:py:mod:`abctools <abjad.tools.abctools>`
+=========================================
 
 .. only:: html
 
    .. toctree::
       :maxdepth: 1
 
-      tools/developerscripttools/DeveloperScript/DeveloperScript
-      tools/developerscripttools/DirectoryScript/DirectoryScript
-
-   --------
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/developerscripttools/AbjDevScript/AbjDevScript
-      tools/developerscripttools/AbjGrepScript/AbjGrepScript
-      tools/developerscripttools/AbjUpScript/AbjUpScript
-      tools/developerscripttools/BuildApiScript/BuildApiScript
-      tools/developerscripttools/CleanScript/CleanScript
-      tools/developerscripttools/CountLinewidthsScript/CountLinewidthsScript
-      tools/developerscripttools/CountToolsScript/CountToolsScript
-      tools/developerscripttools/MakeNewClassTemplateScript/MakeNewClassTemplateScript
-      tools/developerscripttools/MakeNewFunctionTemplateScript/MakeNewFunctionTemplateScript
-      tools/developerscripttools/PyTestScript/PyTestScript
-      tools/developerscripttools/RenameModulesScript/RenameModulesScript
-      tools/developerscripttools/ReplaceInFilesScript/ReplaceInFilesScript
-      tools/developerscripttools/ReplacePromptsScript/ReplacePromptsScript
-      tools/developerscripttools/RunDoctestsScript/RunDoctestsScript
-      tools/developerscripttools/SvnAddAllScript/SvnAddAllScript
-      tools/developerscripttools/SvnCommitScript/SvnCommitScript
-      tools/developerscripttools/SvnMessageScript/SvnMessageScript
-      tools/developerscripttools/SvnUpdateScript/SvnUpdateScript
-      tools/developerscripttools/TestAndRebuildScript/TestAndRebuildScript
-
-   --------
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/developerscripttools/get_developer_script_classes
-      tools/developerscripttools/run_abjadbook
-      tools/developerscripttools/run_abjdev
+      tools/abctools/AbjadObject/AbjadObject
+      tools/abctools/AttributeEqualityAbjadObject/AttributeEqualityAbjadObject
+      tools/abctools/ContextManager/ContextManager
+      tools/abctools/ImmutableAbjadObject/ImmutableAbjadObject
+      tools/abctools/Maker/Maker
+      tools/abctools/Parser/Parser
+      tools/abctools/SortableAttributeEqualityAbjadObject/SortableAttributeEqualityAbjadObject
 
 .. only:: latex
 
@@ -4210,42 +4110,13 @@ Abjad internal packages
 
    .. toctree::
 
-      tools/developerscripttools/DeveloperScript/DeveloperScript
-      tools/developerscripttools/DirectoryScript/DirectoryScript
-
-   Concrete Classes
-   ----------------
-
-   .. toctree::
-
-      tools/developerscripttools/AbjDevScript/AbjDevScript
-      tools/developerscripttools/AbjGrepScript/AbjGrepScript
-      tools/developerscripttools/AbjUpScript/AbjUpScript
-      tools/developerscripttools/BuildApiScript/BuildApiScript
-      tools/developerscripttools/CleanScript/CleanScript
-      tools/developerscripttools/CountLinewidthsScript/CountLinewidthsScript
-      tools/developerscripttools/CountToolsScript/CountToolsScript
-      tools/developerscripttools/MakeNewClassTemplateScript/MakeNewClassTemplateScript
-      tools/developerscripttools/MakeNewFunctionTemplateScript/MakeNewFunctionTemplateScript
-      tools/developerscripttools/PyTestScript/PyTestScript
-      tools/developerscripttools/RenameModulesScript/RenameModulesScript
-      tools/developerscripttools/ReplaceInFilesScript/ReplaceInFilesScript
-      tools/developerscripttools/ReplacePromptsScript/ReplacePromptsScript
-      tools/developerscripttools/RunDoctestsScript/RunDoctestsScript
-      tools/developerscripttools/SvnAddAllScript/SvnAddAllScript
-      tools/developerscripttools/SvnCommitScript/SvnCommitScript
-      tools/developerscripttools/SvnMessageScript/SvnMessageScript
-      tools/developerscripttools/SvnUpdateScript/SvnUpdateScript
-      tools/developerscripttools/TestAndRebuildScript/TestAndRebuildScript
-
-   Functions
-   ---------
-
-   .. toctree::
-
-      tools/developerscripttools/get_developer_script_classes
-      tools/developerscripttools/run_abjadbook
-      tools/developerscripttools/run_abjdev
+      tools/abctools/AbjadObject/AbjadObject
+      tools/abctools/AttributeEqualityAbjadObject/AttributeEqualityAbjadObject
+      tools/abctools/ContextManager/ContextManager
+      tools/abctools/ImmutableAbjadObject/ImmutableAbjadObject
+      tools/abctools/Maker/Maker
+      tools/abctools/Parser/Parser
+      tools/abctools/SortableAttributeEqualityAbjadObject/SortableAttributeEqualityAbjadObject
 
 :py:mod:`documentationtools <abjad.tools.documentationtools>`
 =============================================================
@@ -4351,6 +4222,244 @@ Abjad internal packages
       tools/documentationtools/make_reference_manual_graphviz_graph
       tools/documentationtools/make_reference_manual_lilypond_file
       tools/documentationtools/make_text_alignment_example_lilypond_file
+
+:py:mod:`formattools <abjad.tools.formattools>`
+===============================================
+
+.. only:: html
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/formattools/get_all_format_contributions
+      tools/formattools/get_all_mark_format_contributions
+      tools/formattools/get_articulation_format_contributions
+      tools/formattools/get_comment_format_contributions_for_slot
+      tools/formattools/get_context_mark_format_contributions_for_slot
+      tools/formattools/get_context_mark_format_pieces
+      tools/formattools/get_context_setting_format_contributions
+      tools/formattools/get_grob_override_format_contributions
+      tools/formattools/get_grob_revert_format_contributions
+      tools/formattools/get_lilypond_command_mark_format_contributions_for_slot
+      tools/formattools/get_markup_format_contributions
+      tools/formattools/get_spanner_format_contributions
+      tools/formattools/get_stem_tremolo_format_contributions
+      tools/formattools/is_formattable_context_mark_for_component
+      tools/formattools/report_component_format_contributions
+      tools/formattools/report_spanner_format_contributions
+
+.. only:: latex
+
+   Functions
+   ---------
+
+   .. toctree::
+
+      tools/formattools/get_all_format_contributions
+      tools/formattools/get_all_mark_format_contributions
+      tools/formattools/get_articulation_format_contributions
+      tools/formattools/get_comment_format_contributions_for_slot
+      tools/formattools/get_context_mark_format_contributions_for_slot
+      tools/formattools/get_context_mark_format_pieces
+      tools/formattools/get_context_setting_format_contributions
+      tools/formattools/get_grob_override_format_contributions
+      tools/formattools/get_grob_revert_format_contributions
+      tools/formattools/get_lilypond_command_mark_format_contributions_for_slot
+      tools/formattools/get_markup_format_contributions
+      tools/formattools/get_spanner_format_contributions
+      tools/formattools/get_stem_tremolo_format_contributions
+      tools/formattools/is_formattable_context_mark_for_component
+      tools/formattools/report_component_format_contributions
+      tools/formattools/report_spanner_format_contributions
+
+:py:mod:`lilypondproxytools <abjad.tools.lilypondproxytools>`
+=============================================================
+
+.. only:: html
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/lilypondproxytools/LilyPondComponentPlugIn/LilyPondComponentPlugIn
+      tools/lilypondproxytools/LilyPondContextProxy/LilyPondContextProxy
+      tools/lilypondproxytools/LilyPondContextSettingComponentPlugIn/LilyPondContextSettingComponentPlugIn
+      tools/lilypondproxytools/LilyPondGrobOverrideComponentPlugIn/LilyPondGrobOverrideComponentPlugIn
+      tools/lilypondproxytools/LilyPondGrobProxy/LilyPondGrobProxy
+      tools/lilypondproxytools/LilyPondGrobProxyContextWrapper/LilyPondGrobProxyContextWrapper
+      tools/lilypondproxytools/LilyPondObjectProxy/LilyPondObjectProxy
+      tools/lilypondproxytools/LilyPondTweakReservoir/LilyPondTweakReservoir
+
+.. only:: latex
+
+   Concrete Classes
+   ----------------
+
+   .. toctree::
+
+      tools/lilypondproxytools/LilyPondComponentPlugIn/LilyPondComponentPlugIn
+      tools/lilypondproxytools/LilyPondContextProxy/LilyPondContextProxy
+      tools/lilypondproxytools/LilyPondContextSettingComponentPlugIn/LilyPondContextSettingComponentPlugIn
+      tools/lilypondproxytools/LilyPondGrobOverrideComponentPlugIn/LilyPondGrobOverrideComponentPlugIn
+      tools/lilypondproxytools/LilyPondGrobProxy/LilyPondGrobProxy
+      tools/lilypondproxytools/LilyPondGrobProxyContextWrapper/LilyPondGrobProxyContextWrapper
+      tools/lilypondproxytools/LilyPondObjectProxy/LilyPondObjectProxy
+      tools/lilypondproxytools/LilyPondTweakReservoir/LilyPondTweakReservoir
+
+:py:mod:`developerscripttools <abjad.tools.developerscripttools>`
+=================================================================
+
+.. only:: html
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/developerscripttools/DeveloperScript/DeveloperScript
+      tools/developerscripttools/DirectoryScript/DirectoryScript
+
+   --------
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/developerscripttools/AbjDevScript/AbjDevScript
+      tools/developerscripttools/AbjGrepScript/AbjGrepScript
+      tools/developerscripttools/AbjUpScript/AbjUpScript
+      tools/developerscripttools/BuildApiScript/BuildApiScript
+      tools/developerscripttools/CleanScript/CleanScript
+      tools/developerscripttools/CountLinewidthsScript/CountLinewidthsScript
+      tools/developerscripttools/CountToolsScript/CountToolsScript
+      tools/developerscripttools/MakeNewClassTemplateScript/MakeNewClassTemplateScript
+      tools/developerscripttools/MakeNewFunctionTemplateScript/MakeNewFunctionTemplateScript
+      tools/developerscripttools/PyTestScript/PyTestScript
+      tools/developerscripttools/RenameModulesScript/RenameModulesScript
+      tools/developerscripttools/ReplaceInFilesScript/ReplaceInFilesScript
+      tools/developerscripttools/ReplacePromptsScript/ReplacePromptsScript
+      tools/developerscripttools/RunDoctestsScript/RunDoctestsScript
+      tools/developerscripttools/SvnAddAllScript/SvnAddAllScript
+      tools/developerscripttools/SvnCommitScript/SvnCommitScript
+      tools/developerscripttools/SvnMessageScript/SvnMessageScript
+      tools/developerscripttools/SvnUpdateScript/SvnUpdateScript
+      tools/developerscripttools/TestAndRebuildScript/TestAndRebuildScript
+
+   --------
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/developerscripttools/get_developer_script_classes
+      tools/developerscripttools/run_abjadbook
+      tools/developerscripttools/run_abjdev
+
+.. only:: latex
+
+   Abstract Classes
+   ----------------
+
+   .. toctree::
+
+      tools/developerscripttools/DeveloperScript/DeveloperScript
+      tools/developerscripttools/DirectoryScript/DirectoryScript
+
+   Concrete Classes
+   ----------------
+
+   .. toctree::
+
+      tools/developerscripttools/AbjDevScript/AbjDevScript
+      tools/developerscripttools/AbjGrepScript/AbjGrepScript
+      tools/developerscripttools/AbjUpScript/AbjUpScript
+      tools/developerscripttools/BuildApiScript/BuildApiScript
+      tools/developerscripttools/CleanScript/CleanScript
+      tools/developerscripttools/CountLinewidthsScript/CountLinewidthsScript
+      tools/developerscripttools/CountToolsScript/CountToolsScript
+      tools/developerscripttools/MakeNewClassTemplateScript/MakeNewClassTemplateScript
+      tools/developerscripttools/MakeNewFunctionTemplateScript/MakeNewFunctionTemplateScript
+      tools/developerscripttools/PyTestScript/PyTestScript
+      tools/developerscripttools/RenameModulesScript/RenameModulesScript
+      tools/developerscripttools/ReplaceInFilesScript/ReplaceInFilesScript
+      tools/developerscripttools/ReplacePromptsScript/ReplacePromptsScript
+      tools/developerscripttools/RunDoctestsScript/RunDoctestsScript
+      tools/developerscripttools/SvnAddAllScript/SvnAddAllScript
+      tools/developerscripttools/SvnCommitScript/SvnCommitScript
+      tools/developerscripttools/SvnMessageScript/SvnMessageScript
+      tools/developerscripttools/SvnUpdateScript/SvnUpdateScript
+      tools/developerscripttools/TestAndRebuildScript/TestAndRebuildScript
+
+   Functions
+   ---------
+
+   .. toctree::
+
+      tools/developerscripttools/get_developer_script_classes
+      tools/developerscripttools/run_abjadbook
+      tools/developerscripttools/run_abjdev
+
+:py:mod:`configurationtools <abjad.tools.configurationtools>`
+=============================================================
+
+.. only:: html
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/configurationtools/Configuration/Configuration
+
+   --------
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/configurationtools/AbjadConfiguration/AbjadConfiguration
+
+   --------
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/configurationtools/get_abjad_revision_string
+      tools/configurationtools/get_abjad_startup_string
+      tools/configurationtools/get_abjad_version_string
+      tools/configurationtools/get_lilypond_minimum_version_string
+      tools/configurationtools/get_lilypond_version_string
+      tools/configurationtools/get_python_version_string
+      tools/configurationtools/get_tab_width
+      tools/configurationtools/get_text_editor
+      tools/configurationtools/list_abjad_environment_variables
+      tools/configurationtools/list_package_dependency_versions
+      tools/configurationtools/read_abjad_user_config_file
+
+.. only:: latex
+
+   Abstract Classes
+   ----------------
+
+   .. toctree::
+
+      tools/configurationtools/Configuration/Configuration
+
+   Concrete Classes
+   ----------------
+
+   .. toctree::
+
+      tools/configurationtools/AbjadConfiguration/AbjadConfiguration
+
+   Functions
+   ---------
+
+   .. toctree::
+
+      tools/configurationtools/get_abjad_revision_string
+      tools/configurationtools/get_abjad_startup_string
+      tools/configurationtools/get_abjad_version_string
+      tools/configurationtools/get_lilypond_minimum_version_string
+      tools/configurationtools/get_lilypond_version_string
+      tools/configurationtools/get_python_version_string
+      tools/configurationtools/get_tab_width
+      tools/configurationtools/get_text_editor
+      tools/configurationtools/list_abjad_environment_variables
+      tools/configurationtools/list_package_dependency_versions
+      tools/configurationtools/read_abjad_user_config_file
 
 :py:mod:`exceptiontools <abjad.tools.exceptiontools>`
 =====================================================
@@ -4477,82 +4586,6 @@ Abjad internal packages
       tools/exceptiontools/UnderfullContainerError
       tools/exceptiontools/VoiceContainmentError
 
-:py:mod:`formattools <abjad.tools.formattools>`
-===============================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/formattools/get_all_format_contributions
-      tools/formattools/get_all_mark_format_contributions
-      tools/formattools/get_articulation_format_contributions
-      tools/formattools/get_comment_format_contributions_for_slot
-      tools/formattools/get_context_mark_format_contributions_for_slot
-      tools/formattools/get_context_mark_format_pieces
-      tools/formattools/get_context_setting_format_contributions
-      tools/formattools/get_grob_override_format_contributions
-      tools/formattools/get_grob_revert_format_contributions
-      tools/formattools/get_lilypond_command_mark_format_contributions_for_slot
-      tools/formattools/get_markup_format_contributions
-      tools/formattools/get_spanner_format_contributions
-      tools/formattools/get_stem_tremolo_format_contributions
-      tools/formattools/is_formattable_context_mark_for_component
-      tools/formattools/report_component_format_contributions
-      tools/formattools/report_spanner_format_contributions
-
-.. only:: latex
-
-   Functions
-   ---------
-
-   .. toctree::
-
-      tools/formattools/get_all_format_contributions
-      tools/formattools/get_all_mark_format_contributions
-      tools/formattools/get_articulation_format_contributions
-      tools/formattools/get_comment_format_contributions_for_slot
-      tools/formattools/get_context_mark_format_contributions_for_slot
-      tools/formattools/get_context_mark_format_pieces
-      tools/formattools/get_context_setting_format_contributions
-      tools/formattools/get_grob_override_format_contributions
-      tools/formattools/get_grob_revert_format_contributions
-      tools/formattools/get_lilypond_command_mark_format_contributions_for_slot
-      tools/formattools/get_markup_format_contributions
-      tools/formattools/get_spanner_format_contributions
-      tools/formattools/get_stem_tremolo_format_contributions
-      tools/formattools/is_formattable_context_mark_for_component
-      tools/formattools/report_component_format_contributions
-      tools/formattools/report_spanner_format_contributions
-
-:py:mod:`importtools <abjad.tools.importtools>`
-===============================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/importtools/get_public_function_names_in_module
-      tools/importtools/import_contents_of_public_packages_in_path_into_namespace
-      tools/importtools/import_public_names_from_filesystem_path_into_namespace
-      tools/importtools/import_structured_package
-      tools/importtools/remove_modules_from_namespace
-
-.. only:: latex
-
-   Functions
-   ---------
-
-   .. toctree::
-
-      tools/importtools/get_public_function_names_in_module
-      tools/importtools/import_contents_of_public_packages_in_path_into_namespace
-      tools/importtools/import_public_names_from_filesystem_path_into_namespace
-      tools/importtools/import_structured_package
-      tools/importtools/remove_modules_from_namespace
-
 :py:mod:`introspectiontools <abjad.tools.introspectiontools>`
 =============================================================
 
@@ -4656,39 +4689,6 @@ Abjad internal packages
       tools/lilypondparsertools/list_known_markup_functions
       tools/lilypondparsertools/list_known_music_functions
       tools/lilypondparsertools/parse_reduced_ly_syntax
-
-:py:mod:`lilypondproxytools <abjad.tools.lilypondproxytools>`
-=============================================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/lilypondproxytools/LilyPondComponentPlugIn/LilyPondComponentPlugIn
-      tools/lilypondproxytools/LilyPondContextProxy/LilyPondContextProxy
-      tools/lilypondproxytools/LilyPondContextSettingComponentPlugIn/LilyPondContextSettingComponentPlugIn
-      tools/lilypondproxytools/LilyPondGrobOverrideComponentPlugIn/LilyPondGrobOverrideComponentPlugIn
-      tools/lilypondproxytools/LilyPondGrobProxy/LilyPondGrobProxy
-      tools/lilypondproxytools/LilyPondGrobProxyContextWrapper/LilyPondGrobProxyContextWrapper
-      tools/lilypondproxytools/LilyPondObjectProxy/LilyPondObjectProxy
-      tools/lilypondproxytools/LilyPondTweakReservoir/LilyPondTweakReservoir
-
-.. only:: latex
-
-   Concrete Classes
-   ----------------
-
-   .. toctree::
-
-      tools/lilypondproxytools/LilyPondComponentPlugIn/LilyPondComponentPlugIn
-      tools/lilypondproxytools/LilyPondContextProxy/LilyPondContextProxy
-      tools/lilypondproxytools/LilyPondContextSettingComponentPlugIn/LilyPondContextSettingComponentPlugIn
-      tools/lilypondproxytools/LilyPondGrobOverrideComponentPlugIn/LilyPondGrobOverrideComponentPlugIn
-      tools/lilypondproxytools/LilyPondGrobProxy/LilyPondGrobProxy
-      tools/lilypondproxytools/LilyPondGrobProxyContextWrapper/LilyPondGrobProxyContextWrapper
-      tools/lilypondproxytools/LilyPondObjectProxy/LilyPondObjectProxy
-      tools/lilypondproxytools/LilyPondTweakReservoir/LilyPondTweakReservoir
 
 :py:mod:`offsettools <abjad.tools.offsettools>`
 ===============================================

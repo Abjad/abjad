@@ -41,14 +41,14 @@ def pad_measures_in_expr(expr, front, back, pad_class, splice=False):
                     componenttools.extend_in_parent_of_component(
                         start_leaf,
                         [pad_class.__class__(front)], 
-                        left=True,
+                        direction=Left,
                         grow_spanners=True,
                         )
                 else:
                     componenttools.extend_in_parent_of_component(
                         start_leaf,
                         [pad_class.__class__(front)], 
-                        left=True,
+                        direction=Left,
                         grow_spanners=False,
                         )
         if back is not None:

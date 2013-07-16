@@ -1,5 +1,5 @@
 def extend_in_parent_of_component(
-    component, new_components, left=False, grow_spanners=True):
+    component, new_components, direction=Right, grow_spanners=True):
     r'''.. versionadded:: 2.10
 
     Extend `new_components` in parent of `component`.
@@ -86,7 +86,7 @@ def extend_in_parent_of_component(
         >>> result = componenttools.extend_in_parent_of_component(
         ...     staff.select_leaves()[0], 
         ...     new_components,
-        ...     left=True,
+        ...     direction=Left,
         ...     grow_spanners=True)
 
     ::
@@ -116,7 +116,7 @@ def extend_in_parent_of_component(
         >>> result = componenttools.extend_in_parent_of_component(
         ...     staff.select_leaves()[0], 
         ...     new_components,
-        ...     left=True,
+        ...     direction=Left,
         ...     grow_spanners=False)
 
     ::
@@ -133,7 +133,8 @@ def extend_in_parent_of_component(
     assert componenttools.all_are_components(new_components)
 
     # extend to the right of component
-    if not left:
+    #if not left:
+    if direction == Right:
 
         # extend spanners if required
         if grow_spanners:
