@@ -20,12 +20,53 @@ class ToolsPackageDocumenter(Documenter):
     ### SPECIAL METHODS ###
 
     def __call__(self):
-        pass 
+        '''Generate documentation:
+
+        ::
+
+            >>> module = notetools
+            >>> documenter = documentationtools.ToolsPackageDocumenter(
+            ...     notetools)
+            >>> restructured_text = documenter()
+
+        Return string.
+        '''
+        from abjad.tools import documentationtools 
+        stripped_class_name = self._shrink_module_name(self.object.__path__[0])
+        document = documentationtools.ReSTDocument()
+        document.append(documentationtools.ReSTHeading(
+            level=2,
+            text=stripped_class_name,
+            ))
+        document.append(documentationtools.ReSTAutodocDirective(
+            argument=self.module_name,
+            directive='automodule',
+            ))
+        if self.abstract_class_documenters:
+            document.extend(self._build_autosummary_section(
+                'Abstract classes',
+                self.abstract_class_documenters,
+                ))
+        if self.concrete_class_documenters:
+            document.extend(self._build_autosummary_section(
+                'Concrete classes',
+                self.concrete_class_documenters,
+                ))
+        if self.function_documenters:
+            document.extend(self._build_autosummary_section(
+                'Functions',
+                self.function_documenters,
+                ))
+        return document.rest_format 
 
     ### PRIVATE METHODS ###
 
+    def _build_autosummary_section(self, banner, documenters):
+        return []
+
     def _examine_tools_package(self):
-        code_root = self.obj.__path__[0]
+        from abjad.tools import documentationtools
+        code_root = self.object.__path__[0]
         root_package_name = self.prefix.split('.')[0] 
         crawler = documentationtools.ModuleCrawler(
             code_root,
@@ -35,8 +76,26 @@ class ToolsPackageDocumenter(Documenter):
         abstract_class_documenters = []
         concrete_class_documenters = []
         function_documenters = []
-         
-
+        for module in crawler:
+            obj_name = module.__name__.split('.')[-1]
+            if not hasattr(module, obj_name) or obj_name.startswith('_'):
+                continue
+            obj = getattr(module, obj_name)
+            if isinstance(obj, types.TypeType):
+                documenter = documentationtools.ClassDocumenter(
+                    obj, 
+                    prefix=self.prefix,
+                    )
+                if documenter.is_abstract:
+                    abstract_class_documenters.append(documenter)
+                else:
+                    concrete_class_documenters.append(documenter)
+            elif isinstance(obj, types.FunctionType):
+                documenter = documentationtools.FunctionDocumenter(
+                    obj, 
+                    prefix=self.prefix,
+                    )
+                function_documenters.append(documenter)
         self._abstract_class_documenters = tuple(sorted(
             abstract_class_documenters,
             key=lambda x: x.module_name))
@@ -46,7 +105,7 @@ class ToolsPackageDocumenter(Documenter):
         self._function_documenters = tuple(sorted(
             function_documenters,
             key=lambda x: x.module_name))
-        self._documentation_section = getattr(self.obj,
+        self._documentation_section = getattr(self.object,
             '_documentation_section', None)
 
     ### PUBLIC PROPERTIES ###
@@ -54,6 +113,12 @@ class ToolsPackageDocumenter(Documenter):
     @property
     def abstract_class_documenters(self):
         return self._abstract_class_documenters
+
+    @property
+    def all_documenters(self):
+        return self.abstract_class_documenters + \
+            self.concrete_class_documenters + \
+            self.function_documenters
 
     @property
     def concrete_class_documenters(self):

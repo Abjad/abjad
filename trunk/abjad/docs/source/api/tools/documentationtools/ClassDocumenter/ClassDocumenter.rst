@@ -25,6 +25,9 @@ Read-only properties
 .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.data
    :noindex:
 
+.. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.ignored_directories
+   :noindex:
+
 .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.inherited_attributes
    :noindex:
 

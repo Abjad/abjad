@@ -19,6 +19,9 @@ Bases
 Read-only properties
 --------------------
 
+.. autoattribute:: abjad.tools.documentationtools.FunctionDocumenter.FunctionDocumenter.FunctionDocumenter.ignored_directories
+   :noindex:
+
 .. autoattribute:: abjad.tools.documentationtools.FunctionDocumenter.FunctionDocumenter.FunctionDocumenter.module_name
    :noindex:
 

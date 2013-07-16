@@ -29,19 +29,11 @@ class Documenter(abctools.Maker):
                 unique.append(part)
         return '.'.join(unique)
 
-    ### PUBLIC PROPERTIES ###
-
+    ### PRIVATE PROPERTIES ###
+    
     @property
-    def module_name(self):
-        return '%s.%s' % (self._object.__module__, self._object.__name__)
-
-    @property
-    def object(self):
-        return self._object
-
-    @property
-    def prefix(self):
-        return self._prefix
+    def _positional_argument_names(self):
+        return ('_object',)
 
     ### PUBLIC METHODS ###
 
@@ -61,4 +53,22 @@ class Documenter(abctools.Maker):
             print 'WRITING {}'.format(os.path.relpath(filepath))
             with open(filepath, 'w') as f:
                 f.write('\n'.join(lines))
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def ignored_directories(self):
+        return self._ignored_directories
+
+    @property
+    def module_name(self):
+        return '%s.%s' % (self._object.__module__, self._object.__name__)
+
+    @property
+    def object(self):
+        return self._object
+
+    @property
+    def prefix(self):
+        return self._prefix
 

@@ -22,6 +22,9 @@ Read-only properties
 .. autoattribute:: abjad.tools.documentationtools.ToolsPackageDocumenter.ToolsPackageDocumenter.ToolsPackageDocumenter.abstract_class_documenters
    :noindex:
 
+.. autoattribute:: abjad.tools.documentationtools.ToolsPackageDocumenter.ToolsPackageDocumenter.ToolsPackageDocumenter.all_documenters
+   :noindex:
+
 .. autoattribute:: abjad.tools.documentationtools.ToolsPackageDocumenter.ToolsPackageDocumenter.ToolsPackageDocumenter.concrete_class_documenters
    :noindex:
 
@@ -29,6 +32,9 @@ Read-only properties
    :noindex:
 
 .. autoattribute:: abjad.tools.documentationtools.ToolsPackageDocumenter.ToolsPackageDocumenter.ToolsPackageDocumenter.function_documenters
+   :noindex:
+
+.. autoattribute:: abjad.tools.documentationtools.ToolsPackageDocumenter.ToolsPackageDocumenter.ToolsPackageDocumenter.ignored_directories
    :noindex:
 
 .. autoattribute:: abjad.tools.documentationtools.ToolsPackageDocumenter.ToolsPackageDocumenter.ToolsPackageDocumenter.module_name
