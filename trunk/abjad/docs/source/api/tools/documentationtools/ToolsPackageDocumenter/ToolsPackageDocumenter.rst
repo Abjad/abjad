@@ -34,7 +34,7 @@ Read-only properties
 .. autoattribute:: abjad.tools.documentationtools.ToolsPackageDocumenter.ToolsPackageDocumenter.ToolsPackageDocumenter.function_documenters
    :noindex:
 
-.. autoattribute:: abjad.tools.documentationtools.ToolsPackageDocumenter.ToolsPackageDocumenter.ToolsPackageDocumenter.ignored_directories
+.. autoattribute:: abjad.tools.documentationtools.ToolsPackageDocumenter.ToolsPackageDocumenter.ToolsPackageDocumenter.ignored_directory_names
    :noindex:
 
 .. autoattribute:: abjad.tools.documentationtools.ToolsPackageDocumenter.ToolsPackageDocumenter.ToolsPackageDocumenter.module_name

@@ -18,7 +18,7 @@ Read-only properties
 .. autoattribute:: abjad.tools.documentationtools.ModuleCrawler.ModuleCrawler.ModuleCrawler.code_root
    :noindex:
 
-.. autoattribute:: abjad.tools.documentationtools.ModuleCrawler.ModuleCrawler.ModuleCrawler.ignored_directories
+.. autoattribute:: abjad.tools.documentationtools.ModuleCrawler.ModuleCrawler.ModuleCrawler.ignored_directory_names
    :noindex:
 
 .. autoattribute:: abjad.tools.documentationtools.ModuleCrawler.ModuleCrawler.ModuleCrawler.root_package_name

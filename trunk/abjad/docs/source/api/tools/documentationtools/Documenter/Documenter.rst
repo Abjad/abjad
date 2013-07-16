@@ -17,9 +17,6 @@ Bases
 Read-only properties
 --------------------
 
-.. autoattribute:: abjad.tools.documentationtools.Documenter.Documenter.Documenter.ignored_directories
-   :noindex:
-
 .. autoattribute:: abjad.tools.documentationtools.Documenter.Documenter.Documenter.module_name
    :noindex:
 
