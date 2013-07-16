@@ -64,6 +64,12 @@ Methods
 .. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.new
    :noindex:
 
+Static methods
+--------------
+
+.. automethod:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.write
+   :noindex:
+
 Special methods
 ---------------
 

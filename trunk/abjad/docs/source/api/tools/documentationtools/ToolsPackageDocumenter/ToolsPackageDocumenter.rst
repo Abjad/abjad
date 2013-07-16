@@ -19,6 +19,18 @@ Bases
 Read-only properties
 --------------------
 
+.. autoattribute:: abjad.tools.documentationtools.ToolsPackageDocumenter.ToolsPackageDocumenter.ToolsPackageDocumenter.abstract_class_documenters
+   :noindex:
+
+.. autoattribute:: abjad.tools.documentationtools.ToolsPackageDocumenter.ToolsPackageDocumenter.ToolsPackageDocumenter.concrete_class_documenters
+   :noindex:
+
+.. autoattribute:: abjad.tools.documentationtools.ToolsPackageDocumenter.ToolsPackageDocumenter.ToolsPackageDocumenter.documentation_section
+   :noindex:
+
+.. autoattribute:: abjad.tools.documentationtools.ToolsPackageDocumenter.ToolsPackageDocumenter.ToolsPackageDocumenter.function_documenters
+   :noindex:
+
 .. autoattribute:: abjad.tools.documentationtools.ToolsPackageDocumenter.ToolsPackageDocumenter.ToolsPackageDocumenter.module_name
    :noindex:
 
@@ -35,6 +47,12 @@ Methods
 -------
 
 .. automethod:: abjad.tools.documentationtools.ToolsPackageDocumenter.ToolsPackageDocumenter.ToolsPackageDocumenter.new
+   :noindex:
+
+Static methods
+--------------
+
+.. automethod:: abjad.tools.documentationtools.ToolsPackageDocumenter.ToolsPackageDocumenter.ToolsPackageDocumenter.write
    :noindex:
 
 Special methods
