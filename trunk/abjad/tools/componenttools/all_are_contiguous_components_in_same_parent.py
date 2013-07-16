@@ -70,8 +70,7 @@ def all_are_contiguous_components_in_same_parent(
             orphan_components = False
         if not current._parent is first_parent:
             same_parent = False
-        if not componenttools.is_immediate_temporal_successor_of_component(
-            previous, current):
+        if not previous._is_immediate_temporal_successor_of(current):
             strictly_contiguous = False
         if (not allow_orphans or 
             (allow_orphans and not orphan_components)) and \

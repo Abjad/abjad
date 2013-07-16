@@ -70,8 +70,7 @@ def all_are_contiguous_components_in_same_thread(
             current.select_parentage().containment_signature
         if not currentrent_signature == first_signature:
             same_thread = False
-        if not componenttools.is_immediate_temporal_successor_of_component(
-            previous, current):
+        if not previous._is_immediate_temporal_successor_of(current):
             strictly_contiguous = False
         if (not allow_orphans or 
             (allow_orphans and not orphan_components)) and \

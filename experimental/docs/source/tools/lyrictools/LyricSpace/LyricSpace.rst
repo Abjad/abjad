@@ -81,6 +81,9 @@ Read/write properties
 Methods
 -------
 
+.. automethod:: experimental.tools.lyrictools.LyricSpace.LyricSpace.LyricSpace.extend_in_parent
+   :noindex:
+
 .. automethod:: experimental.tools.lyrictools.LyricSpace.LyricSpace.LyricSpace.select
    :noindex:
 

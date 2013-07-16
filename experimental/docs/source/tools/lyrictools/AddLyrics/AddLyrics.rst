@@ -76,6 +76,9 @@ Methods
 .. automethod:: experimental.tools.lyrictools.AddLyrics.AddLyrics.AddLyrics.extend
    :noindex:
 
+.. automethod:: experimental.tools.lyrictools.AddLyrics.AddLyrics.AddLyrics.extend_in_parent
+   :noindex:
+
 .. automethod:: experimental.tools.lyrictools.AddLyrics.AddLyrics.AddLyrics.index
    :noindex:
 

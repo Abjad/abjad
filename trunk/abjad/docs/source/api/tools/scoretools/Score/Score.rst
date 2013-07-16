@@ -96,6 +96,9 @@ Methods
 .. automethod:: abjad.tools.scoretools.Score.Score.Score.extend
    :noindex:
 
+.. automethod:: abjad.tools.scoretools.Score.Score.Score.extend_in_parent
+   :noindex:
+
 .. automethod:: abjad.tools.scoretools.Score.Score.Score.index
    :noindex:
 

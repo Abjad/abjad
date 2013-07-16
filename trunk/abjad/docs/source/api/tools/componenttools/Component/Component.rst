@@ -51,6 +51,9 @@ Read-only properties
 Methods
 -------
 
+.. automethod:: abjad.tools.componenttools.Component.Component.Component.extend_in_parent
+   :noindex:
+
 .. automethod:: abjad.tools.componenttools.Component.Component.Component.select
    :noindex:
 

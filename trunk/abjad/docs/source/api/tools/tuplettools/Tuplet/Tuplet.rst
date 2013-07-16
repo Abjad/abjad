@@ -112,6 +112,9 @@ Methods
 .. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.extend
    :noindex:
 
+.. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.extend_in_parent
+   :noindex:
+
 .. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.index
    :noindex:
 

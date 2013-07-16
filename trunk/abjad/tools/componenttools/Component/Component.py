@@ -283,6 +283,21 @@ class Component(AbjadObject):
         for key, value in kwargs.iteritems():
             self._set_keyword_value(key, value)
 
+    def _is_immediate_temporal_successor_of(self, component):
+        from abjad.tools import componenttools
+        temporal_successors = []
+        current = self
+        while current is not None:
+            next_sibling = \
+                componenttools.get_nth_sibling_from_component(current, 1)
+            if next_sibling is None:
+                current = current.parent
+            else:
+                temporal_successors = \
+                    next_sibling.select_descendants_starting_with()
+                break
+        return component in temporal_successors
+
     def _remove_from_parent(self):
         self._mark_entire_score_tree_for_later_update('prolated')
         if self.parent is not None:
@@ -502,6 +517,68 @@ class Component(AbjadObject):
             self._update_leaf_indices_and_measure_numbers_in_score_tree()
 
     ### PUBLIC METHODS ###
+
+
+    def extend_in_parent(
+        self,
+        new_components,
+        direction=Right,
+        grow_spanners=True,
+        ):
+        from abjad.tools import componenttools
+        from abjad.tools import spannertools
+        assert componenttools.all_are_components(new_components)
+        if direction == Right:
+            if grow_spanners:
+                insert_offset = self.timespan.stop_offset
+                receipt = spannertools.get_spanners_that_dominate_components(
+                    [self])
+                for spanner, index in receipt:
+                    insert_component = \
+                        spannertools.find_spanner_component_starting_at_exactly_score_offset(
+                        spanner, insert_offset)
+                    if insert_component is not None:
+                        insert_index = spanner.index(insert_component)
+                    else:
+                        insert_index = len(spanner)
+                    for new_component in reversed(new_components):
+                        spanner._insert(insert_index, new_component)
+                        new_component._spanners.add(spanner)
+            parent, start, stop = \
+                componenttools.get_parent_and_start_stop_indices_of_components(
+                [self])
+            if parent is not None:
+                if grow_spanners:
+                    for new_component in reversed(new_components):
+                        new_component._set_parent(parent)
+                        parent._music.insert(start + 1, new_component)
+                else:
+                    after = stop + 1
+                    parent.__setitem__(slice(after, after), new_components)
+            return [self] + new_components
+        else:
+            if grow_spanners:
+                offset = self.timespan.start_offset
+                receipt = spannertools.get_spanners_that_dominate_components(
+                    [self])
+                for spanner, x in receipt:
+                    index = \
+                        spannertools.find_index_of_spanner_component_at_score_offset(
+                        spanner, offset)
+                    for new_component in reversed(new_components):
+                        spanner._insert(index, new_component)
+                        new_component._spanners.add(spanner)
+            parent, start, stop = \
+                componenttools.get_parent_and_start_stop_indices_of_components(
+                [self])
+            if parent is not None:
+                if grow_spanners:
+                    for new_component in reversed(new_components):
+                        new_component._set_parent(parent)
+                        parent._music.insert(start, new_component)
+                else:
+                    parent.__setitem__(slice(start, start), new_components)
+            return new_components + [self]
 
     def select(self):
         '''Select component.

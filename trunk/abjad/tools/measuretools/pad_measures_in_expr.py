@@ -25,8 +25,7 @@ def pad_measures_in_expr(expr, front, back, pad_class, splice=False):
 
     root = expr[0].select_parentage().root
 
-    # forbid updates because
-    # componenttools.extend_in_parent_of_component() calls self.stop_offset
+    # forbid updates because self.extend_in_parent() calls self.stop_offset
     #root._update._forbid_component_update()
     root._update_prolated_offset_values_of_entire_score_tree_if_necessary()
     root._forbid_component_update()
@@ -38,15 +37,13 @@ def pad_measures_in_expr(expr, front, back, pad_class, splice=False):
                 [x for x in start_components if isinstance(x, leaftools.Leaf)]
             for start_leaf in start_leaves:
                 if splice:
-                    componenttools.extend_in_parent_of_component(
-                        start_leaf,
+                    start_leaf.extend_in_parent(
                         [pad_class.__class__(front)], 
                         direction=Left,
                         grow_spanners=True,
                         )
                 else:
-                    componenttools.extend_in_parent_of_component(
-                        start_leaf,
+                    start_leaf.extend_in_parent(
                         [pad_class.__class__(front)], 
                         direction=Left,
                         grow_spanners=False,
@@ -57,14 +54,12 @@ def pad_measures_in_expr(expr, front, back, pad_class, splice=False):
                 [x for x in stop_components if isinstance(x, leaftools.Leaf)]
             for stop_leaf in stop_leaves:
                 if splice:
-                    componenttools.extend_in_parent_of_component(
-                        stop_leaf,
+                    stop_leaf.extend_in_parent(
                         [pad_class.__class__(back)],
                         grow_spanners=True,
                         )
                 else:
-                    componenttools.extend_in_parent_of_component(
-                        stop_leaf,
+                    stop_leaf.extend_in_parent(
                         [pad_class.__class__(back)],
                         grow_spanners=False,
                         )

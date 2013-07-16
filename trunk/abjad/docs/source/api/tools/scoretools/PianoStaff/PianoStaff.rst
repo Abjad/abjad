@@ -98,6 +98,9 @@ Methods
 .. automethod:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.extend
    :noindex:
 
+.. automethod:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.extend_in_parent
+   :noindex:
+
 .. automethod:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.index
    :noindex:
 

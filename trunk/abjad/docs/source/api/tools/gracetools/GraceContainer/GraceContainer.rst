@@ -82,6 +82,9 @@ Methods
 .. automethod:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.extend
    :noindex:
 
+.. automethod:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.extend_in_parent
+   :noindex:
+
 .. automethod:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.index
    :noindex:
 

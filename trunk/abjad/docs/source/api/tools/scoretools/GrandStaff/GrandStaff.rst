@@ -98,6 +98,9 @@ Methods
 .. automethod:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.extend
    :noindex:
 
+.. automethod:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.extend_in_parent
+   :noindex:
+
 .. automethod:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.index
    :noindex:
 

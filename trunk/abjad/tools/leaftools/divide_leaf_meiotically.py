@@ -53,15 +53,15 @@ def divide_leaf_meiotically(leaf, n=2):
     from abjad.tools import leaftools
 
     # TODO: find a way to optimize this; either reimplement
-    # componenttools.extend_in_parent_of_component()
-    # or come up with something else.
+    #       self.extend_in_parent() or come up with something else.
 
     assert isinstance(leaf, leaftools.Leaf)
     assert mathtools.is_nonnegative_integer_power_of_two(n)
     assert 0 < n
 
-    new_leaves = componenttools.copy_components_and_detach_spanners([leaf], n - 1)
-    componenttools.extend_in_parent_of_component(leaf, new_leaves, grow_spanners=True)
+    new_leaves = componenttools.copy_components_and_detach_spanners(
+        [leaf], n - 1)
+    leaf.extend_in_parent(new_leaves, grow_spanners=True)
     adjustment_multiplier = durationtools.Duration(1, n)
     leaf.written_duration *= adjustment_multiplier
     for new_leaf in new_leaves:

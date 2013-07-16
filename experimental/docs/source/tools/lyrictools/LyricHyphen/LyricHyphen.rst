@@ -81,6 +81,9 @@ Read/write properties
 Methods
 -------
 
+.. automethod:: experimental.tools.lyrictools.LyricHyphen.LyricHyphen.LyricHyphen.extend_in_parent
+   :noindex:
+
 .. automethod:: experimental.tools.lyrictools.LyricHyphen.LyricHyphen.LyricHyphen.select
    :noindex:
 

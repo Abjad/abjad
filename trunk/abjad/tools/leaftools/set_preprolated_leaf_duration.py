@@ -122,7 +122,7 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
             all_leaves = [leaf] + tied_leaves
             for x, component in zip(all_leaves, components):
                 x.written_duration = component.written_duration
-            componenttools.extend_in_parent_of_component(leaf, tied_leaves, grow_spanners=True)
+            leaf.extend_in_parent(tied_leaves, grow_spanners=True)
             if not spannertools.get_spanners_attached_to_any_improper_parent_of_component(
                 leaf, spanner_classes=(spannertools.TieSpanner,)):
                 spannertools.TieSpanner(all_leaves)
@@ -135,7 +135,7 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
             all_leaves = [leaf] + tied_leaves
             for x, component in zip(all_leaves, components):
                 x.written_duration = component.written_duration
-            componenttools.extend_in_parent_of_component(leaf, tied_leaves, grow_spanners=True)
+            leaf.extend_in_parent(tied_leaves, grow_spanners=True)
             if not spannertools.is_component_with_spanner_attached(leaf, spannertools.TieSpanner):
                 spannertools.TieSpanner(all_leaves)
             tuplet_multiplier = fmtuplet.multiplier

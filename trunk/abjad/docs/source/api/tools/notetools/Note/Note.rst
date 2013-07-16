@@ -94,6 +94,9 @@ Methods
 .. automethod:: abjad.tools.notetools.Note.Note.Note.divide
    :noindex:
 
+.. automethod:: abjad.tools.notetools.Note.Note.Note.extend_in_parent
+   :noindex:
+
 .. automethod:: abjad.tools.notetools.Note.Note.Note.select
    :noindex:
 

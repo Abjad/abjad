@@ -111,6 +111,9 @@ Methods
 .. automethod:: abjad.tools.measuretools.Measure.Measure.Measure.extend
    :noindex:
 
+.. automethod:: abjad.tools.measuretools.Measure.Measure.Measure.extend_in_parent
+   :noindex:
+
 .. automethod:: abjad.tools.measuretools.Measure.Measure.Measure.index
    :noindex:
 

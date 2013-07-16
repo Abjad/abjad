@@ -42,7 +42,7 @@ def repeat_leaf(leaf, total=1):
     Return none.
     '''
 
-    componenttools.extend_in_parent_of_component(
-        leaf,
+    leaf.extend_in_parent(
         componenttools.copy_components_and_detach_spanners([leaf], total - 1),
-        grow_spanners=True)
+        grow_spanners=True,
+        )

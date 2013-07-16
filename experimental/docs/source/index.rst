@@ -78,41 +78,6 @@ Unstable packages (load manually)
    :maxdepth: 1
 
 
-:py:mod:`constrainttools <experimental.tools.constrainttools>`
-==============================================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/constrainttools/AbsoluteIndexConstraint/AbsoluteIndexConstraint
-      tools/constrainttools/Domain/Domain
-      tools/constrainttools/FixedLengthStreamSolver/FixedLengthStreamSolver
-      tools/constrainttools/GlobalConstraint/GlobalConstraint
-      tools/constrainttools/GlobalCountsConstraint/GlobalCountsConstraint
-      tools/constrainttools/GlobalReferenceConstraint/GlobalReferenceConstraint
-      tools/constrainttools/RelativeCountsConstraint/RelativeCountsConstraint
-      tools/constrainttools/RelativeIndexConstraint/RelativeIndexConstraint
-      tools/constrainttools/VariableLengthStreamSolver/VariableLengthStreamSolver
-
-.. only:: latex
-
-   Concrete Classes
-   ----------------
-
-   .. toctree::
-
-      tools/constrainttools/AbsoluteIndexConstraint/AbsoluteIndexConstraint
-      tools/constrainttools/Domain/Domain
-      tools/constrainttools/FixedLengthStreamSolver/FixedLengthStreamSolver
-      tools/constrainttools/GlobalConstraint/GlobalConstraint
-      tools/constrainttools/GlobalCountsConstraint/GlobalCountsConstraint
-      tools/constrainttools/GlobalReferenceConstraint/GlobalReferenceConstraint
-      tools/constrainttools/RelativeCountsConstraint/RelativeCountsConstraint
-      tools/constrainttools/RelativeIndexConstraint/RelativeIndexConstraint
-      tools/constrainttools/VariableLengthStreamSolver/VariableLengthStreamSolver
-
 :py:mod:`handlertools <experimental.tools.handlertools>`
 ========================================================
 
@@ -176,20 +141,23 @@ Unstable packages (load manually)
       tools/handlertools/TimewisePitchClassHandler/TimewisePitchClassHandler
       tools/handlertools/TwoStageHairpinHandler/TwoStageHairpinHandler
 
-:py:mod:`lyrictools <experimental.tools.lyrictools>`
-====================================================
+:py:mod:`constrainttools <experimental.tools.constrainttools>`
+==============================================================
 
 .. only:: html
 
    .. toctree::
       :maxdepth: 1
 
-      tools/lyrictools/AddLyrics/AddLyrics
-      tools/lyrictools/LyricExtender/LyricExtender
-      tools/lyrictools/LyricHyphen/LyricHyphen
-      tools/lyrictools/LyricSpace/LyricSpace
-      tools/lyrictools/LyricText/LyricText
-      tools/lyrictools/Lyrics/Lyrics
+      tools/constrainttools/AbsoluteIndexConstraint/AbsoluteIndexConstraint
+      tools/constrainttools/Domain/Domain
+      tools/constrainttools/FixedLengthStreamSolver/FixedLengthStreamSolver
+      tools/constrainttools/GlobalConstraint/GlobalConstraint
+      tools/constrainttools/GlobalCountsConstraint/GlobalCountsConstraint
+      tools/constrainttools/GlobalReferenceConstraint/GlobalReferenceConstraint
+      tools/constrainttools/RelativeCountsConstraint/RelativeCountsConstraint
+      tools/constrainttools/RelativeIndexConstraint/RelativeIndexConstraint
+      tools/constrainttools/VariableLengthStreamSolver/VariableLengthStreamSolver
 
 .. only:: latex
 
@@ -198,12 +166,15 @@ Unstable packages (load manually)
 
    .. toctree::
 
-      tools/lyrictools/AddLyrics/AddLyrics
-      tools/lyrictools/LyricExtender/LyricExtender
-      tools/lyrictools/LyricHyphen/LyricHyphen
-      tools/lyrictools/LyricSpace/LyricSpace
-      tools/lyrictools/LyricText/LyricText
-      tools/lyrictools/Lyrics/Lyrics
+      tools/constrainttools/AbsoluteIndexConstraint/AbsoluteIndexConstraint
+      tools/constrainttools/Domain/Domain
+      tools/constrainttools/FixedLengthStreamSolver/FixedLengthStreamSolver
+      tools/constrainttools/GlobalConstraint/GlobalConstraint
+      tools/constrainttools/GlobalCountsConstraint/GlobalCountsConstraint
+      tools/constrainttools/GlobalReferenceConstraint/GlobalReferenceConstraint
+      tools/constrainttools/RelativeCountsConstraint/RelativeCountsConstraint
+      tools/constrainttools/RelativeIndexConstraint/RelativeIndexConstraint
+      tools/constrainttools/VariableLengthStreamSolver/VariableLengthStreamSolver
 
 :py:mod:`metricmodulationtools <experimental.tools.metricmodulationtools>`
 ==========================================================================
@@ -442,6 +413,35 @@ Unstable packages (load manually)
       tools/musicexpressiontools/TimespanScopedSingleContextSetExpressionInventory/TimespanScopedSingleContextSetExpressionInventory
       tools/musicexpressiontools/VoiceDictionary/VoiceDictionary
       tools/musicexpressiontools/VoiceProxy/VoiceProxy
+
+:py:mod:`lyrictools <experimental.tools.lyrictools>`
+====================================================
+
+.. only:: html
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/lyrictools/AddLyrics/AddLyrics
+      tools/lyrictools/LyricExtender/LyricExtender
+      tools/lyrictools/LyricHyphen/LyricHyphen
+      tools/lyrictools/LyricSpace/LyricSpace
+      tools/lyrictools/LyricText/LyricText
+      tools/lyrictools/Lyrics/Lyrics
+
+.. only:: latex
+
+   Concrete Classes
+   ----------------
+
+   .. toctree::
+
+      tools/lyrictools/AddLyrics/AddLyrics
+      tools/lyrictools/LyricExtender/LyricExtender
+      tools/lyrictools/LyricHyphen/LyricHyphen
+      tools/lyrictools/LyricSpace/LyricSpace
+      tools/lyrictools/LyricText/LyricText
+      tools/lyrictools/Lyrics/Lyrics
 
 :py:mod:`newabjadbooktools <experimental.tools.newabjadbooktools>`
 ==================================================================

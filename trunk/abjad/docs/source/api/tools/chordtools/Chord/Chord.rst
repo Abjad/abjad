@@ -100,6 +100,9 @@ Methods
 .. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.extend
    :noindex:
 
+.. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.extend_in_parent
+   :noindex:
+
 .. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.get_note_head
    :noindex:
 

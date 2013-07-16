@@ -77,6 +77,9 @@ Read/write properties
 Methods
 -------
 
+.. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.extend_in_parent
+   :noindex:
+
 .. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.select
    :noindex:
 

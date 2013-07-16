@@ -82,6 +82,9 @@ Methods
 .. automethod:: abjad.tools.resttools.Rest.Rest.Rest.divide
    :noindex:
 
+.. automethod:: abjad.tools.resttools.Rest.Rest.Rest.extend_in_parent
+   :noindex:
+
 .. automethod:: abjad.tools.resttools.Rest.Rest.Rest.select
    :noindex:
 

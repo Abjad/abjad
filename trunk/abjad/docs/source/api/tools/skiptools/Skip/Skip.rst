@@ -79,6 +79,9 @@ Read/write properties
 Methods
 -------
 
+.. automethod:: abjad.tools.skiptools.Skip.Skip.Skip.extend_in_parent
+   :noindex:
+
 .. automethod:: abjad.tools.skiptools.Skip.Skip.Skip.select
    :noindex:
 
