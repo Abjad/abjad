@@ -77,6 +77,18 @@ class Parentage(Selection):
 
     ### PRIVATE METHODS ###
 
+    def _get_governor(self):
+        from abjad.tools import containertools
+        from abjad.tools import componenttools
+        for component in self:
+            if isinstance(component, containertools.Container) and \
+                not component.is_parallel:
+                if component.parent is None:
+                    return component
+                if isinstance(component.parent, containertools.Container) and \
+                    component.parent.is_parallel:
+                    return component
+
     def _get_spanner(self, spanner_classes=None):
         spanners = self._get_spanners(spanner_classes=spanner_classes)
         if not spanners:

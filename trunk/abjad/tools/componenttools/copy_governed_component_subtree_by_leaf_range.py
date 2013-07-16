@@ -108,9 +108,9 @@ def copy_governed_component_subtree_by_leaf_range(
     start_leaf_in_component = leaves[start]
     stop_leaf_in_component = leaves[stop - 1]
 
-    # find governor
-    governor = componenttools.get_most_distant_sequential_container_in_improper_parentage_of_component(
-        leaves[start])
+    # get governor
+    parentage = leaves[start].select_parentage(include_self=True)
+    governor = parentage._get_governor()
 
     # find start and stop leaves in governor
     governor_leaves = list(governor.select_leaves())
