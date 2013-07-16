@@ -144,8 +144,9 @@ def fuse_consecutive_rests_of_duration_by_duration_threshold(
 
 def fuse_large_rests_of_duration_in_bar_by_duration_threshold(
     bar, duration, durationThreshold):
-    for run in componenttools.yield_topmost_components_grouped_by_type(bar):
-        fuse_consecutive_rests_of_duration_by_duration_threshold(run, duration, durationThreshold )
+    for run in bar[:].group_by(type):
+        fuse_consecutive_rests_of_duration_by_duration_threshold(
+            run, duration, durationThreshold)
 
 
 def fuse_large_rests_of_duration_in_bars_by_duration_threshold(

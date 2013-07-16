@@ -1,3 +1,6 @@
+import types
+
+
 def yield_groups_of_mixed_classes_in_sequence(sequence, classes):
     r'''.. versionadded:: 2.0
 
@@ -59,10 +62,18 @@ def yield_groups_of_mixed_classes_in_sequence(sequence, classes):
     Return generator.
     '''
     from abjad.tools import componenttools
+    from abjad.tools import selectiontools
+
+    assert isinstance(sequence, (
+        list,
+        tuple,
+        types.GeneratorType, 
+        selectiontools.Selection)), repr(expr)
+
+    sequence = selectiontools.Selection(sequence)
 
     current_group = ()
-    for group in \
-        componenttools.yield_topmost_components_grouped_by_type(sequence):
+    for group in sequence.group_by(type):
         if type(group[0]) in classes:
             current_group = current_group + group
         elif current_group:
