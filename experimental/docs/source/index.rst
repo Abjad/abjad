@@ -10,6 +10,25 @@ Demos and example packages
    :maxdepth: 1
 
 
+:py:mod:`microlanguage <experimental.demos.microlanguage>`
+==========================================================
+
+.. only:: html
+
+   .. toctree::
+      :maxdepth: 1
+
+      demos/microlanguage/ToyLanguageParser/ToyLanguageParser
+
+.. only:: latex
+
+   Concrete Classes
+   ----------------
+
+   .. toctree::
+
+      demos/microlanguage/ToyLanguageParser/ToyLanguageParser
+
 :py:mod:`windungen <experimental.demos.windungen>`
 ==================================================
 
@@ -51,25 +70,6 @@ Demos and example packages
       demos/windungen/make_windungen_score
       demos/windungen/mirror_base_list_of_rotation_tuples
 
-:py:mod:`microlanguage <experimental.demos.microlanguage>`
-==========================================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      demos/microlanguage/ToyLanguageParser/ToyLanguageParser
-
-.. only:: latex
-
-   Concrete Classes
-   ----------------
-
-   .. toctree::
-
-      demos/microlanguage/ToyLanguageParser/ToyLanguageParser
-
 *********************************
 Unstable packages (load manually)
 *********************************
@@ -78,20 +78,15 @@ Unstable packages (load manually)
    :maxdepth: 1
 
 
-:py:mod:`lyrictools <experimental.tools.lyrictools>`
-====================================================
+:py:mod:`parsertools <experimental.tools.parsertools>`
+======================================================
 
 .. only:: html
 
    .. toctree::
       :maxdepth: 1
 
-      tools/lyrictools/AddLyrics/AddLyrics
-      tools/lyrictools/LyricExtender/LyricExtender
-      tools/lyrictools/LyricHyphen/LyricHyphen
-      tools/lyrictools/LyricSpace/LyricSpace
-      tools/lyrictools/LyricText/LyricText
-      tools/lyrictools/Lyrics/Lyrics
+      tools/parsertools/ENPParser/ENPParser
 
 .. only:: latex
 
@@ -100,31 +95,42 @@ Unstable packages (load manually)
 
    .. toctree::
 
-      tools/lyrictools/AddLyrics/AddLyrics
-      tools/lyrictools/LyricExtender/LyricExtender
-      tools/lyrictools/LyricHyphen/LyricHyphen
-      tools/lyrictools/LyricSpace/LyricSpace
-      tools/lyrictools/LyricText/LyricText
-      tools/lyrictools/Lyrics/Lyrics
+      tools/parsertools/ENPParser/ENPParser
 
-:py:mod:`metricmodulationtools <experimental.tools.metricmodulationtools>`
-==========================================================================
+:py:mod:`constrainttools <experimental.tools.constrainttools>`
+==============================================================
 
 .. only:: html
 
    .. toctree::
       :maxdepth: 1
 
-      tools/metricmodulationtools/yield_prolation_rewrite_pairs
+      tools/constrainttools/AbsoluteIndexConstraint/AbsoluteIndexConstraint
+      tools/constrainttools/Domain/Domain
+      tools/constrainttools/FixedLengthStreamSolver/FixedLengthStreamSolver
+      tools/constrainttools/GlobalConstraint/GlobalConstraint
+      tools/constrainttools/GlobalCountsConstraint/GlobalCountsConstraint
+      tools/constrainttools/GlobalReferenceConstraint/GlobalReferenceConstraint
+      tools/constrainttools/RelativeCountsConstraint/RelativeCountsConstraint
+      tools/constrainttools/RelativeIndexConstraint/RelativeIndexConstraint
+      tools/constrainttools/VariableLengthStreamSolver/VariableLengthStreamSolver
 
 .. only:: latex
 
-   Functions
-   ---------
+   Concrete Classes
+   ----------------
 
    .. toctree::
 
-      tools/metricmodulationtools/yield_prolation_rewrite_pairs
+      tools/constrainttools/AbsoluteIndexConstraint/AbsoluteIndexConstraint
+      tools/constrainttools/Domain/Domain
+      tools/constrainttools/FixedLengthStreamSolver/FixedLengthStreamSolver
+      tools/constrainttools/GlobalConstraint/GlobalConstraint
+      tools/constrainttools/GlobalCountsConstraint/GlobalCountsConstraint
+      tools/constrainttools/GlobalReferenceConstraint/GlobalReferenceConstraint
+      tools/constrainttools/RelativeCountsConstraint/RelativeCountsConstraint
+      tools/constrainttools/RelativeIndexConstraint/RelativeIndexConstraint
+      tools/constrainttools/VariableLengthStreamSolver/VariableLengthStreamSolver
 
 :py:mod:`handlertools <experimental.tools.handlertools>`
 ========================================================
@@ -189,23 +195,20 @@ Unstable packages (load manually)
       tools/handlertools/TimewisePitchClassHandler/TimewisePitchClassHandler
       tools/handlertools/TwoStageHairpinHandler/TwoStageHairpinHandler
 
-:py:mod:`constrainttools <experimental.tools.constrainttools>`
-==============================================================
+:py:mod:`lyrictools <experimental.tools.lyrictools>`
+====================================================
 
 .. only:: html
 
    .. toctree::
       :maxdepth: 1
 
-      tools/constrainttools/AbsoluteIndexConstraint/AbsoluteIndexConstraint
-      tools/constrainttools/Domain/Domain
-      tools/constrainttools/FixedLengthStreamSolver/FixedLengthStreamSolver
-      tools/constrainttools/GlobalConstraint/GlobalConstraint
-      tools/constrainttools/GlobalCountsConstraint/GlobalCountsConstraint
-      tools/constrainttools/GlobalReferenceConstraint/GlobalReferenceConstraint
-      tools/constrainttools/RelativeCountsConstraint/RelativeCountsConstraint
-      tools/constrainttools/RelativeIndexConstraint/RelativeIndexConstraint
-      tools/constrainttools/VariableLengthStreamSolver/VariableLengthStreamSolver
+      tools/lyrictools/AddLyrics/AddLyrics
+      tools/lyrictools/LyricExtender/LyricExtender
+      tools/lyrictools/LyricHyphen/LyricHyphen
+      tools/lyrictools/LyricSpace/LyricSpace
+      tools/lyrictools/LyricText/LyricText
+      tools/lyrictools/Lyrics/Lyrics
 
 .. only:: latex
 
@@ -214,34 +217,31 @@ Unstable packages (load manually)
 
    .. toctree::
 
-      tools/constrainttools/AbsoluteIndexConstraint/AbsoluteIndexConstraint
-      tools/constrainttools/Domain/Domain
-      tools/constrainttools/FixedLengthStreamSolver/FixedLengthStreamSolver
-      tools/constrainttools/GlobalConstraint/GlobalConstraint
-      tools/constrainttools/GlobalCountsConstraint/GlobalCountsConstraint
-      tools/constrainttools/GlobalReferenceConstraint/GlobalReferenceConstraint
-      tools/constrainttools/RelativeCountsConstraint/RelativeCountsConstraint
-      tools/constrainttools/RelativeIndexConstraint/RelativeIndexConstraint
-      tools/constrainttools/VariableLengthStreamSolver/VariableLengthStreamSolver
+      tools/lyrictools/AddLyrics/AddLyrics
+      tools/lyrictools/LyricExtender/LyricExtender
+      tools/lyrictools/LyricHyphen/LyricHyphen
+      tools/lyrictools/LyricSpace/LyricSpace
+      tools/lyrictools/LyricText/LyricText
+      tools/lyrictools/Lyrics/Lyrics
 
-:py:mod:`parsertools <experimental.tools.parsertools>`
-======================================================
+:py:mod:`metricmodulationtools <experimental.tools.metricmodulationtools>`
+==========================================================================
 
 .. only:: html
 
    .. toctree::
       :maxdepth: 1
 
-      tools/parsertools/ENPParser/ENPParser
+      tools/metricmodulationtools/yield_prolation_rewrite_pairs
 
 .. only:: latex
 
-   Concrete Classes
-   ----------------
+   Functions
+   ---------
 
    .. toctree::
 
-      tools/parsertools/ENPParser/ENPParser
+      tools/metricmodulationtools/yield_prolation_rewrite_pairs
 
 :py:mod:`musicexpressiontools <experimental.tools.musicexpressiontools>`
 ========================================================================

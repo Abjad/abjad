@@ -350,6 +350,33 @@ class Selection(AbjadObject):
         for component in self._iterate_components(recurse=recurse):
             component._detach_spanners(spanner_classes=spanner_classes)
 
+    def get(self, component_classes=None, n=0, recurse=True):
+        '''Get instance `n` of `component_classes` in selection.
+        '''
+        from abjad.tools import componenttools
+        from abjad.tools import iterationtools
+        component_classes = component_classes or (componenttools.Component,)
+        if not isinstance(component_classes, tuple):
+            component_classes = (component_classes,)
+        if 0 <= n:
+            if recurse:
+                components = iterationtools.iterate_components_in_expr(
+                    self, component_classes)
+            else:
+                components = self.music
+            for i, x in enumerate(components):
+                if i == n:
+                    return x
+        else:
+            if recurse:
+                components = iterationtools.iterate_components_in_expr(
+                    self, component_classes, reverse=True)
+            else:
+                components = reversed(self.music)
+            for i, x in enumerate(components):
+                if i == abs(n) - 1:
+                    return x
+
     def get_offset_lists(self):
         '''Get offset lists of components in selection:
 

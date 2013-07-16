@@ -42,6 +42,9 @@ Methods
 .. automethod:: abjad.tools.selectiontools.Selection.Selection.Selection.detach_spanners
    :noindex:
 
+.. automethod:: abjad.tools.selectiontools.Selection.Selection.Selection.get
+   :noindex:
+
 .. automethod:: abjad.tools.selectiontools.Selection.Selection.Selection.get_offset_lists
    :noindex:
 

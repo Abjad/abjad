@@ -61,16 +61,25 @@ def get_nth_component_in_expr(expr, classes, n=0):
 
     Return component or none.
     '''
+    from abjad.tools import componenttools
     from abjad.tools import iterationtools
+    from abjad.tools import selectiontools
 
-    if not isinstance(n, (int, long)):
-        raise ValueError
+#    if not isinstance(n, (int, long)):
+#        raise ValueError
+#
+#    if 0 <= n:
+#        for i, x in enumerate(iterationtools.iterate_components_in_expr(expr, classes)):
+#            if i == n:
+#                return x
+#    else:
+#        for i, x in enumerate(iterationtools.iterate_components_in_expr(expr, classes, reverse=True)):
+#            if i == abs(n) - 1:
+#                return x
 
-    if 0 <= n:
-        for i, x in enumerate(iterationtools.iterate_components_in_expr(expr, classes)):
-            if i == n:
-                return x
+    if isinstance(expr, componenttools.Component):
+        selection = selectiontools.Selection(expr)
     else:
-        for i, x in enumerate(iterationtools.iterate_components_in_expr(expr, classes, reverse=True)):
-            if i == abs(n) - 1:
-                return x
+        selection = selectiontools.Selection(expr)
+
+    return selection.get(component_classes=classes, n=n)

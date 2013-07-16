@@ -68,6 +68,9 @@ Methods
 .. automethod:: abjad.tools.leaftools.TieChain.TieChain.TieChain.detach_spanners
    :noindex:
 
+.. automethod:: abjad.tools.leaftools.TieChain.TieChain.TieChain.get
+   :noindex:
+
 .. automethod:: abjad.tools.leaftools.TieChain.TieChain.TieChain.get_offset_lists
    :noindex:
 

@@ -47,6 +47,9 @@ Methods
 .. automethod:: abjad.tools.componenttools.Descendants.Descendants.Descendants.detach_spanners
    :noindex:
 
+.. automethod:: abjad.tools.componenttools.Descendants.Descendants.Descendants.get
+   :noindex:
+
 .. automethod:: abjad.tools.componenttools.Descendants.Descendants.Descendants.get_offset_lists
    :noindex:
 

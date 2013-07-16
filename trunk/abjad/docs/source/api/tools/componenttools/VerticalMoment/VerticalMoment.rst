@@ -92,6 +92,9 @@ Methods
 .. automethod:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.detach_spanners
    :noindex:
 
+.. automethod:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.get
+   :noindex:
+
 .. automethod:: abjad.tools.componenttools.VerticalMoment.VerticalMoment.VerticalMoment.get_offset_lists
    :noindex:
 
