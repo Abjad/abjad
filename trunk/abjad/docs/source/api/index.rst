@@ -3582,6 +3582,49 @@ Core composition packages
 
       tools/rhythmtreetools/parse_rtm_syntax
 
+:py:mod:`timesignaturetools <abjad.tools.timesignaturetools>`
+=============================================================
+
+.. only:: html
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/timesignaturetools/MetricalHierarchy/MetricalHierarchy
+      tools/timesignaturetools/MetricalHierarchyInventory/MetricalHierarchyInventory
+      tools/timesignaturetools/MetricalKernel/MetricalKernel
+
+   --------
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/timesignaturetools/duration_and_possible_denominators_to_time_signature
+      tools/timesignaturetools/establish_metrical_hierarchy
+      tools/timesignaturetools/fit_metrical_hierarchies_to_expr
+      tools/timesignaturetools/make_gridded_test_rhythm
+
+.. only:: latex
+
+   Concrete Classes
+   ----------------
+
+   .. toctree::
+
+      tools/timesignaturetools/MetricalHierarchy/MetricalHierarchy
+      tools/timesignaturetools/MetricalHierarchyInventory/MetricalHierarchyInventory
+      tools/timesignaturetools/MetricalKernel/MetricalKernel
+
+   Functions
+   ---------
+
+   .. toctree::
+
+      tools/timesignaturetools/duration_and_possible_denominators_to_time_signature
+      tools/timesignaturetools/establish_metrical_hierarchy
+      tools/timesignaturetools/fit_metrical_hierarchies_to_expr
+      tools/timesignaturetools/make_gridded_test_rhythm
+
 :py:mod:`tonalitytools <abjad.tools.tonalitytools>`
 ===================================================
 
@@ -3666,49 +3709,6 @@ Core composition packages
       tools/tonalitytools/is_unlikely_melodic_diatonic_interval_in_chorale
       tools/tonalitytools/make_all_notes_in_ascending_and_descending_diatonic_scale
       tools/tonalitytools/make_first_n_notes_in_ascending_diatonic_scale
-
-:py:mod:`timesignaturetools <abjad.tools.timesignaturetools>`
-=============================================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/timesignaturetools/MetricalHierarchy/MetricalHierarchy
-      tools/timesignaturetools/MetricalHierarchyInventory/MetricalHierarchyInventory
-      tools/timesignaturetools/MetricalKernel/MetricalKernel
-
-   --------
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/timesignaturetools/duration_and_possible_denominators_to_time_signature
-      tools/timesignaturetools/establish_metrical_hierarchy
-      tools/timesignaturetools/fit_metrical_hierarchies_to_expr
-      tools/timesignaturetools/make_gridded_test_rhythm
-
-.. only:: latex
-
-   Concrete Classes
-   ----------------
-
-   .. toctree::
-
-      tools/timesignaturetools/MetricalHierarchy/MetricalHierarchy
-      tools/timesignaturetools/MetricalHierarchyInventory/MetricalHierarchyInventory
-      tools/timesignaturetools/MetricalKernel/MetricalKernel
-
-   Functions
-   ---------
-
-   .. toctree::
-
-      tools/timesignaturetools/duration_and_possible_denominators_to_time_signature
-      tools/timesignaturetools/establish_metrical_hierarchy
-      tools/timesignaturetools/fit_metrical_hierarchies_to_expr
-      tools/timesignaturetools/make_gridded_test_rhythm
 
 :py:mod:`wellformednesstools <abjad.tools.wellformednesstools>`
 ===============================================================
@@ -3799,91 +3799,6 @@ Demos and example packages
    :maxdepth: 1
 
 
-:py:mod:`ferneyhough <abjad.demos.ferneyhough>`
-===============================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      demos/ferneyhough/configure_lilypond_file
-      demos/ferneyhough/configure_score
-      demos/ferneyhough/make_lilypond_file
-      demos/ferneyhough/make_nested_tuplet
-      demos/ferneyhough/make_row_of_nested_tuplets
-      demos/ferneyhough/make_rows_of_nested_tuplets
-
-.. only:: latex
-
-   Functions
-   ---------
-
-   .. toctree::
-
-      demos/ferneyhough/configure_lilypond_file
-      demos/ferneyhough/configure_score
-      demos/ferneyhough/make_lilypond_file
-      demos/ferneyhough/make_nested_tuplet
-      demos/ferneyhough/make_row_of_nested_tuplets
-      demos/ferneyhough/make_rows_of_nested_tuplets
-
-:py:mod:`desordre <abjad.demos.desordre>`
-=========================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      demos/desordre/make_desordre_cell
-      demos/desordre/make_desordre_lilypond_file
-      demos/desordre/make_desordre_measure
-      demos/desordre/make_desordre_pitches
-      demos/desordre/make_desordre_score
-      demos/desordre/make_desordre_staff
-
-.. only:: latex
-
-   Functions
-   ---------
-
-   .. toctree::
-
-      demos/desordre/make_desordre_cell
-      demos/desordre/make_desordre_lilypond_file
-      demos/desordre/make_desordre_measure
-      demos/desordre/make_desordre_pitches
-      demos/desordre/make_desordre_score
-      demos/desordre/make_desordre_staff
-
-:py:mod:`mozart <abjad.demos.mozart>`
-=====================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      demos/mozart/choose_mozart_measures
-      demos/mozart/make_mozart_lilypond_file
-      demos/mozart/make_mozart_measure
-      demos/mozart/make_mozart_measure_corpus
-      demos/mozart/make_mozart_score
-
-.. only:: latex
-
-   Functions
-   ---------
-
-   .. toctree::
-
-      demos/mozart/choose_mozart_measures
-      demos/mozart/make_mozart_lilypond_file
-      demos/mozart/make_mozart_measure
-      demos/mozart/make_mozart_measure_corpus
-      demos/mozart/make_mozart_score
-
 :py:mod:`part <abjad.demos.part>`
 =================================
 
@@ -3952,6 +3867,91 @@ Demos and example packages
       demos/part/edit_viola_voice
       demos/part/make_part_lilypond_file
       demos/part/shadow_pitch_contour_reservoir
+
+:py:mod:`desordre <abjad.demos.desordre>`
+=========================================
+
+.. only:: html
+
+   .. toctree::
+      :maxdepth: 1
+
+      demos/desordre/make_desordre_cell
+      demos/desordre/make_desordre_lilypond_file
+      demos/desordre/make_desordre_measure
+      demos/desordre/make_desordre_pitches
+      demos/desordre/make_desordre_score
+      demos/desordre/make_desordre_staff
+
+.. only:: latex
+
+   Functions
+   ---------
+
+   .. toctree::
+
+      demos/desordre/make_desordre_cell
+      demos/desordre/make_desordre_lilypond_file
+      demos/desordre/make_desordre_measure
+      demos/desordre/make_desordre_pitches
+      demos/desordre/make_desordre_score
+      demos/desordre/make_desordre_staff
+
+:py:mod:`ferneyhough <abjad.demos.ferneyhough>`
+===============================================
+
+.. only:: html
+
+   .. toctree::
+      :maxdepth: 1
+
+      demos/ferneyhough/configure_lilypond_file
+      demos/ferneyhough/configure_score
+      demos/ferneyhough/make_lilypond_file
+      demos/ferneyhough/make_nested_tuplet
+      demos/ferneyhough/make_row_of_nested_tuplets
+      demos/ferneyhough/make_rows_of_nested_tuplets
+
+.. only:: latex
+
+   Functions
+   ---------
+
+   .. toctree::
+
+      demos/ferneyhough/configure_lilypond_file
+      demos/ferneyhough/configure_score
+      demos/ferneyhough/make_lilypond_file
+      demos/ferneyhough/make_nested_tuplet
+      demos/ferneyhough/make_row_of_nested_tuplets
+      demos/ferneyhough/make_rows_of_nested_tuplets
+
+:py:mod:`mozart <abjad.demos.mozart>`
+=====================================
+
+.. only:: html
+
+   .. toctree::
+      :maxdepth: 1
+
+      demos/mozart/choose_mozart_measures
+      demos/mozart/make_mozart_lilypond_file
+      demos/mozart/make_mozart_measure
+      demos/mozart/make_mozart_measure_corpus
+      demos/mozart/make_mozart_score
+
+.. only:: latex
+
+   Functions
+   ---------
+
+   .. toctree::
+
+      demos/mozart/choose_mozart_measures
+      demos/mozart/make_mozart_lilypond_file
+      demos/mozart/make_mozart_measure
+      demos/mozart/make_mozart_measure_corpus
+      demos/mozart/make_mozart_score
 
 ***********************
 Abjad internal packages
@@ -4064,7 +4064,7 @@ Abjad internal packages
       tools/abjadbooktools/LaTeXOutputFormat/LaTeXOutputFormat
       tools/abjadbooktools/ReSTOutputFormat/ReSTOutputFormat
 
-:py:mod:`exceptiontools <abjad.tools.exceptiontools>`
+:py:mod:`decoratortools <abjad.tools.decoratortools>`
 =====================================================
 
 .. only:: html
@@ -4072,122 +4072,16 @@ Abjad internal packages
    .. toctree::
       :maxdepth: 1
 
-      tools/exceptiontools/AssignabilityError
-      tools/exceptiontools/ClefError
-      tools/exceptiontools/ContainmentError
-      tools/exceptiontools/ContextContainmentError
-      tools/exceptiontools/ContiguityError
-      tools/exceptiontools/CyclicNodeError
-      tools/exceptiontools/DurationError
-      tools/exceptiontools/ExtraMarkError
-      tools/exceptiontools/ExtraNamedComponentError
-      tools/exceptiontools/ExtraNoteHeadError
-      tools/exceptiontools/ExtraPitchError
-      tools/exceptiontools/ExtraSpannerError
-      tools/exceptiontools/GraceContainerError
-      tools/exceptiontools/ImpreciseTempoError
-      tools/exceptiontools/InputSpecificationError
-      tools/exceptiontools/InstrumentError
-      tools/exceptiontools/IntervalError
-      tools/exceptiontools/LilyPondParserError
-      tools/exceptiontools/LineBreakError
-      tools/exceptiontools/MarkError
-      tools/exceptiontools/MeasureContiguityError
-      tools/exceptiontools/MeasureError
-      tools/exceptiontools/MissingComponentError
-      tools/exceptiontools/MissingInstrumentError
-      tools/exceptiontools/MissingMarkError
-      tools/exceptiontools/MissingMeasureError
-      tools/exceptiontools/MissingNamedComponentError
-      tools/exceptiontools/MissingNoteHeadError
-      tools/exceptiontools/MissingPitchError
-      tools/exceptiontools/MissingSpannerError
-      tools/exceptiontools/MissingTempoError
-      tools/exceptiontools/MusicContentsError
-      tools/exceptiontools/NoteHeadError
-      tools/exceptiontools/OverfullContainerError
-      tools/exceptiontools/ParallelError
-      tools/exceptiontools/PartitionError
-      tools/exceptiontools/PitchError
-      tools/exceptiontools/SchemeParserFinishedException
-      tools/exceptiontools/SpacingError
-      tools/exceptiontools/SpannerError
-      tools/exceptiontools/SpannerPopulationError
-      tools/exceptiontools/StaffContainmentError
-      tools/exceptiontools/TempoError
-      tools/exceptiontools/TieChainError
-      tools/exceptiontools/TimeSignatureAssignmentError
-      tools/exceptiontools/TimeSignatureError
-      tools/exceptiontools/TonalHarmonyError
-      tools/exceptiontools/TupletError
-      tools/exceptiontools/TupletFuseError
-      tools/exceptiontools/TypographicWhitespaceError
-      tools/exceptiontools/UnboundedTimeIntervalError
-      tools/exceptiontools/UndefinedSpacingError
-      tools/exceptiontools/UnderfullContainerError
-      tools/exceptiontools/VoiceContainmentError
+      tools/decoratortools/requires
 
 .. only:: latex
 
-   Concrete Classes
-   ----------------
+   Functions
+   ---------
 
    .. toctree::
 
-      tools/exceptiontools/AssignabilityError
-      tools/exceptiontools/ClefError
-      tools/exceptiontools/ContainmentError
-      tools/exceptiontools/ContextContainmentError
-      tools/exceptiontools/ContiguityError
-      tools/exceptiontools/CyclicNodeError
-      tools/exceptiontools/DurationError
-      tools/exceptiontools/ExtraMarkError
-      tools/exceptiontools/ExtraNamedComponentError
-      tools/exceptiontools/ExtraNoteHeadError
-      tools/exceptiontools/ExtraPitchError
-      tools/exceptiontools/ExtraSpannerError
-      tools/exceptiontools/GraceContainerError
-      tools/exceptiontools/ImpreciseTempoError
-      tools/exceptiontools/InputSpecificationError
-      tools/exceptiontools/InstrumentError
-      tools/exceptiontools/IntervalError
-      tools/exceptiontools/LilyPondParserError
-      tools/exceptiontools/LineBreakError
-      tools/exceptiontools/MarkError
-      tools/exceptiontools/MeasureContiguityError
-      tools/exceptiontools/MeasureError
-      tools/exceptiontools/MissingComponentError
-      tools/exceptiontools/MissingInstrumentError
-      tools/exceptiontools/MissingMarkError
-      tools/exceptiontools/MissingMeasureError
-      tools/exceptiontools/MissingNamedComponentError
-      tools/exceptiontools/MissingNoteHeadError
-      tools/exceptiontools/MissingPitchError
-      tools/exceptiontools/MissingSpannerError
-      tools/exceptiontools/MissingTempoError
-      tools/exceptiontools/MusicContentsError
-      tools/exceptiontools/NoteHeadError
-      tools/exceptiontools/OverfullContainerError
-      tools/exceptiontools/ParallelError
-      tools/exceptiontools/PartitionError
-      tools/exceptiontools/PitchError
-      tools/exceptiontools/SchemeParserFinishedException
-      tools/exceptiontools/SpacingError
-      tools/exceptiontools/SpannerError
-      tools/exceptiontools/SpannerPopulationError
-      tools/exceptiontools/StaffContainmentError
-      tools/exceptiontools/TempoError
-      tools/exceptiontools/TieChainError
-      tools/exceptiontools/TimeSignatureAssignmentError
-      tools/exceptiontools/TimeSignatureError
-      tools/exceptiontools/TonalHarmonyError
-      tools/exceptiontools/TupletError
-      tools/exceptiontools/TupletFuseError
-      tools/exceptiontools/TypographicWhitespaceError
-      tools/exceptiontools/UnboundedTimeIntervalError
-      tools/exceptiontools/UndefinedSpacingError
-      tools/exceptiontools/UnderfullContainerError
-      tools/exceptiontools/VoiceContainmentError
+      tools/decoratortools/requires
 
 :py:mod:`abctools <abjad.tools.abctools>`
 =========================================
@@ -4251,6 +4145,8 @@ Abjad internal packages
       tools/documentationtools/ModuleCrawler/ModuleCrawler
       tools/documentationtools/Pipe/Pipe
       tools/documentationtools/ReSTAutodocDirective/ReSTAutodocDirective
+      tools/documentationtools/ReSTAutosummaryDirective/ReSTAutosummaryDirective
+      tools/documentationtools/ReSTAutosummaryItem/ReSTAutosummaryItem
       tools/documentationtools/ReSTDocument/ReSTDocument
       tools/documentationtools/ReSTHeading/ReSTHeading
       tools/documentationtools/ReSTHorizontalRule/ReSTHorizontalRule
@@ -4303,6 +4199,8 @@ Abjad internal packages
       tools/documentationtools/ModuleCrawler/ModuleCrawler
       tools/documentationtools/Pipe/Pipe
       tools/documentationtools/ReSTAutodocDirective/ReSTAutodocDirective
+      tools/documentationtools/ReSTAutosummaryDirective/ReSTAutosummaryDirective
+      tools/documentationtools/ReSTAutosummaryItem/ReSTAutosummaryItem
       tools/documentationtools/ReSTDocument/ReSTDocument
       tools/documentationtools/ReSTHeading/ReSTHeading
       tools/documentationtools/ReSTHorizontalRule/ReSTHorizontalRule
@@ -4563,6 +4461,131 @@ Abjad internal packages
       tools/configurationtools/list_package_dependency_versions
       tools/configurationtools/read_abjad_user_config_file
 
+:py:mod:`exceptiontools <abjad.tools.exceptiontools>`
+=====================================================
+
+.. only:: html
+
+   .. toctree::
+      :maxdepth: 1
+
+      tools/exceptiontools/AssignabilityError
+      tools/exceptiontools/ClefError
+      tools/exceptiontools/ContainmentError
+      tools/exceptiontools/ContextContainmentError
+      tools/exceptiontools/ContiguityError
+      tools/exceptiontools/CyclicNodeError
+      tools/exceptiontools/DurationError
+      tools/exceptiontools/ExtraMarkError
+      tools/exceptiontools/ExtraNamedComponentError
+      tools/exceptiontools/ExtraNoteHeadError
+      tools/exceptiontools/ExtraPitchError
+      tools/exceptiontools/ExtraSpannerError
+      tools/exceptiontools/GraceContainerError
+      tools/exceptiontools/ImpreciseTempoError
+      tools/exceptiontools/InputSpecificationError
+      tools/exceptiontools/InstrumentError
+      tools/exceptiontools/IntervalError
+      tools/exceptiontools/LilyPondParserError
+      tools/exceptiontools/LineBreakError
+      tools/exceptiontools/MarkError
+      tools/exceptiontools/MeasureContiguityError
+      tools/exceptiontools/MeasureError
+      tools/exceptiontools/MissingComponentError
+      tools/exceptiontools/MissingInstrumentError
+      tools/exceptiontools/MissingMarkError
+      tools/exceptiontools/MissingMeasureError
+      tools/exceptiontools/MissingNamedComponentError
+      tools/exceptiontools/MissingNoteHeadError
+      tools/exceptiontools/MissingPitchError
+      tools/exceptiontools/MissingSpannerError
+      tools/exceptiontools/MissingTempoError
+      tools/exceptiontools/MusicContentsError
+      tools/exceptiontools/NoteHeadError
+      tools/exceptiontools/OverfullContainerError
+      tools/exceptiontools/ParallelError
+      tools/exceptiontools/PartitionError
+      tools/exceptiontools/PitchError
+      tools/exceptiontools/SchemeParserFinishedException
+      tools/exceptiontools/SpacingError
+      tools/exceptiontools/SpannerError
+      tools/exceptiontools/SpannerPopulationError
+      tools/exceptiontools/StaffContainmentError
+      tools/exceptiontools/TempoError
+      tools/exceptiontools/TieChainError
+      tools/exceptiontools/TimeSignatureAssignmentError
+      tools/exceptiontools/TimeSignatureError
+      tools/exceptiontools/TonalHarmonyError
+      tools/exceptiontools/TupletError
+      tools/exceptiontools/TupletFuseError
+      tools/exceptiontools/TypographicWhitespaceError
+      tools/exceptiontools/UnboundedTimeIntervalError
+      tools/exceptiontools/UndefinedSpacingError
+      tools/exceptiontools/UnderfullContainerError
+      tools/exceptiontools/VoiceContainmentError
+
+.. only:: latex
+
+   Concrete Classes
+   ----------------
+
+   .. toctree::
+
+      tools/exceptiontools/AssignabilityError
+      tools/exceptiontools/ClefError
+      tools/exceptiontools/ContainmentError
+      tools/exceptiontools/ContextContainmentError
+      tools/exceptiontools/ContiguityError
+      tools/exceptiontools/CyclicNodeError
+      tools/exceptiontools/DurationError
+      tools/exceptiontools/ExtraMarkError
+      tools/exceptiontools/ExtraNamedComponentError
+      tools/exceptiontools/ExtraNoteHeadError
+      tools/exceptiontools/ExtraPitchError
+      tools/exceptiontools/ExtraSpannerError
+      tools/exceptiontools/GraceContainerError
+      tools/exceptiontools/ImpreciseTempoError
+      tools/exceptiontools/InputSpecificationError
+      tools/exceptiontools/InstrumentError
+      tools/exceptiontools/IntervalError
+      tools/exceptiontools/LilyPondParserError
+      tools/exceptiontools/LineBreakError
+      tools/exceptiontools/MarkError
+      tools/exceptiontools/MeasureContiguityError
+      tools/exceptiontools/MeasureError
+      tools/exceptiontools/MissingComponentError
+      tools/exceptiontools/MissingInstrumentError
+      tools/exceptiontools/MissingMarkError
+      tools/exceptiontools/MissingMeasureError
+      tools/exceptiontools/MissingNamedComponentError
+      tools/exceptiontools/MissingNoteHeadError
+      tools/exceptiontools/MissingPitchError
+      tools/exceptiontools/MissingSpannerError
+      tools/exceptiontools/MissingTempoError
+      tools/exceptiontools/MusicContentsError
+      tools/exceptiontools/NoteHeadError
+      tools/exceptiontools/OverfullContainerError
+      tools/exceptiontools/ParallelError
+      tools/exceptiontools/PartitionError
+      tools/exceptiontools/PitchError
+      tools/exceptiontools/SchemeParserFinishedException
+      tools/exceptiontools/SpacingError
+      tools/exceptiontools/SpannerError
+      tools/exceptiontools/SpannerPopulationError
+      tools/exceptiontools/StaffContainmentError
+      tools/exceptiontools/TempoError
+      tools/exceptiontools/TieChainError
+      tools/exceptiontools/TimeSignatureAssignmentError
+      tools/exceptiontools/TimeSignatureError
+      tools/exceptiontools/TonalHarmonyError
+      tools/exceptiontools/TupletError
+      tools/exceptiontools/TupletFuseError
+      tools/exceptiontools/TypographicWhitespaceError
+      tools/exceptiontools/UnboundedTimeIntervalError
+      tools/exceptiontools/UndefinedSpacingError
+      tools/exceptiontools/UnderfullContainerError
+      tools/exceptiontools/VoiceContainmentError
+
 :py:mod:`introspectiontools <abjad.tools.introspectiontools>`
 =============================================================
 
@@ -4583,25 +4606,6 @@ Abjad internal packages
 
       tools/introspectiontools/class_to_tools_package_qualified_class_name
       tools/introspectiontools/get_current_function_name
-
-:py:mod:`decoratortools <abjad.tools.decoratortools>`
-=====================================================
-
-.. only:: html
-
-   .. toctree::
-      :maxdepth: 1
-
-      tools/decoratortools/requires
-
-.. only:: latex
-
-   Functions
-   ---------
-
-   .. toctree::
-
-      tools/decoratortools/requires
 
 :py:mod:`lilypondparsertools <abjad.tools.lilypondparsertools>`
 ===============================================================
