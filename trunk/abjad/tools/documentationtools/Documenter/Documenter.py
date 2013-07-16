@@ -1,14 +1,11 @@
 import abc
+import os
 from abjad.tools import abctools
 
 
 class Documenter(abctools.Maker):
     '''Documenter is an abstract base class for documentation classes.
     '''
-
-    ### CLASS VARIABLES ###
-
-    _ignored_directories = ('test', '.svn', '__pycache__')
 
     ### INITIALIZER ###
 
@@ -43,22 +40,18 @@ class Documenter(abctools.Maker):
         return type(self)(obj=obj, prefix=prefix)
 
     @staticmethod
-    def write(filepath, lines):
+    def write(filepath, restructured_text):
         should_write = True
         if os.path.exists(filepath):
             with open(filepath, 'r') as f:
-                if f.read().splitlines() == lines:
+                if f.read() == restructured_text:
                     should_write = False
         if should_write:
             print 'WRITING {}'.format(os.path.relpath(filepath))
             with open(filepath, 'w') as f:
-                f.write('\n'.join(lines))
+                f.write(restructured_text)
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def ignored_directories(self):
-        return self._ignored_directories
 
     @property
     def module_name(self):

@@ -11,10 +11,12 @@ class ToolsPackageDocumenter(Documenter):
 
     def __init__(self, 
         obj,
+        ignored_directory_names=(),
         prefix='abjad.tools.',
         ):
         assert isinstance(obj, types.ModuleType)
         Documenter.__init__(self, obj, prefix=prefix)
+        self._ignored_directory_names = ignored_directory_names
         self._examine_tools_package()
 
     ### SPECIAL METHODS ###
@@ -33,6 +35,9 @@ class ToolsPackageDocumenter(Documenter):
         '''
         from abjad.tools import documentationtools 
         document = documentationtools.ReSTDocument()
+        document.append(documentationtools.ReSTParagraph(
+            text=':orphan:',
+            ))
         document.append(documentationtools.ReSTHeading(
             level=2,
             text=self._shrink_module_name(self.module_name)
@@ -81,7 +86,7 @@ class ToolsPackageDocumenter(Documenter):
         crawler = documentationtools.ModuleCrawler(
             code_root,
             root_package_name=root_package_name,
-            ignored_directories=self.ignored_directories,
+            ignored_directory_names=self.ignored_directory_names,
             )
         abstract_class_documenters = []
         concrete_class_documenters = []
@@ -138,12 +143,12 @@ class ToolsPackageDocumenter(Documenter):
             text=':py:mod:`{} <{}>`'.format(
                 self._shrink_module_name(self.module_name), self.module_name)
             )
+        result.append(heading)
         only_html = documentationtools.ReSTOnlyDirective(argument='html')
         only_latex = documentationtools.ReSTOnlyDirective(argument='latex')
         
         def module_name_to_toc_entry(module_name):
-            stripped = module_name.lstrip(self.module_name)
-            return '/'.join(stripped.split('.')[:-1])
+            return '/'.join(module_name.split('.')[1:-1])
             
         def make_subsection(banner, documenters, only_html, only_latex):
             only_latex.append(documentationtools.ReSTHeading(
@@ -209,6 +214,10 @@ class ToolsPackageDocumenter(Documenter):
     @property
     def function_documenters(self):
         return self._function_documenters
+
+    @property
+    def ignored_directory_names(self):
+        return self._ignored_directory_names
 
     @property
     def module_name(self):

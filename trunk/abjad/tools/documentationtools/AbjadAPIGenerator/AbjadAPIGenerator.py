@@ -1,10 +1,6 @@
 import importlib
 import os
 from abjad.tools import abctools
-from abjad.tools.documentationtools.APICrawler import APICrawler
-from abjad.tools.documentationtools.ClassDocumenter import ClassDocumenter
-from abjad.tools.documentationtools.FunctionDocumenter \
-	import FunctionDocumenter
 
 
 class AbjadAPIGenerator(abctools.AbjadObject):
@@ -48,23 +44,8 @@ class AbjadAPIGenerator(abctools.AbjadObject):
         if verbose:
             print 'Now making Sphinx TOCs ...'
 
-        ignored_directories = ['.svn', 'test', '__pycache__']
-        ignored_directories.extend(self._undocumented_packages)
-
-        all_visited_modules = []
-        for code_path, docs_path, package_prefix in self.path_definitions:
-            if not os.path.exists(code_path):
-                os.makedirs(code_path)
-            if not os.path.exists(docs_path):
-                os.makedirs(docs_path)
-            crawler = APICrawler(code_path, docs_path, self.root_package,
-                ignored_directories=ignored_directories, prefix=package_prefix)
-            all_visited_modules.extend(crawler())
-        package_dictionary, tools_package_dictionary = \
-            self._sort_modules(all_visited_modules)
-
-        if verbose:
-            print 'Now making API index ...'
+        ignored_directory_names = ['.svn', 'test', '__pycache__']
+        ignored_directory_names.extend(self._undocumented_packages)
 
         document = documentationtools.ReSTDocument()
         document.append(documentationtools.ReSTHeading(
@@ -72,26 +53,60 @@ class AbjadAPIGenerator(abctools.AbjadObject):
             text=self._api_title,
             ))
 
-        for package_group, packages in sorted(package_dictionary.items()):
-            if packages:
-                document.append(documentationtools.ReSTHeading(
-                    level=1,
-                    text=self._package_descriptions[package_group]
-                    ))
-                document.append(documentationtools.ReSTTOCDirective(
-                    options={'maxdepth': 1},
-                    ))
-                for package_module, package_dictionary in sorted(
-                    packages.items()):
-                    document.extend(self._create_package_toc(
-                        package_module,
-                        package_dictionary,
-                        tools_package_dictionary,
-                        ))
+        documentation_sections = {}
+        for code_path, docs_path, package_prefix in self.path_definitions:
+            if not os.path.exists(code_path):
+                os.makedirs(code_path)
+            if not os.path.exists(docs_path):
+                os.makedirs(docs_path)
+            for name in os.listdir(code_path):
+                if name in ignored_directory_names:
+                    continue
+                path = os.path.join(code_path, name)
+                if not os.path.isdir(path):
+                    continue
+                if not os.path.exists(os.path.join(
+                    path, '__init__.py')):
+                    continue
+                packagesystem_path = ''.join((package_prefix, name))
+                module = importlib.import_module(packagesystem_path)
+                documenter = documentationtools.ToolsPackageDocumenter(
+                    module,
+                    ignored_directory_names=ignored_directory_names,
+                    prefix=package_prefix,
+                    )
+                if not documenter.all_documenters:
+                    continue
+                section = documenter.documentation_section
+                if section not in documentation_sections:
+                    documentation_sections[section] = []
+                payload = (documenter, code_path, docs_path, package_prefix)
+                documentation_sections[section].append(payload)
 
-        f = open(self.docs_api_index_path, 'w')
-        f.write(document.rest_format)
-        f.close()
+        for section in sorted(documentation_sections):
+            documenters = sorted(documentation_sections[section],
+                key=lambda x: x[0].module_name)
+            section_heading = documentationtools.ReSTHeading(
+                level=1,
+                text=self._package_descriptions.get(section,
+                    'Undefinited documentation section'),
+                )
+            document.append(section_heading)
+            for payload in documenters:
+                tools_package_documenter, code_path, docs_path, package_prefix = \
+                    payload
+                document.extend(
+                    tools_package_documenter.create_api_toc_section())
+                self._write_document(tools_package_documenter,
+                    code_path, docs_path, package_prefix)
+                for documenter in tools_package_documenter.all_documenters:
+                    self._write_document(documenter,
+                        code_path, docs_path, package_prefix)
+                
+        documentationtools.Documenter.write(
+            self.docs_api_index_path,
+            document.rest_format,
+            )
 
         if verbose:
             print ''
@@ -100,115 +115,28 @@ class AbjadAPIGenerator(abctools.AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    def _create_package_toc(self, 
-        package_module,
-        package_dictionary,
-        tools_package_dictionary,
-        ):
-        package_name = package_module.__name__.split('.')[
-            self.tools_package_path_index]
+    def _write_document(self, documenter, code_path, docs_path, package_prefix):
         from abjad.tools import documentationtools
-        result = [documentationtools.ReSTHeading(
-            level=2,
-            text=':py:mod:`{} <{}>`'.format(
-                package_name, tools_package_dictionary[package_name])
-            )
-        ]
-        only_html = documentationtools.ReSTOnlyDirective(argument='html')
-        only_latex = documentationtools.ReSTOnlyDirective(argument='latex')
-        if package_dictionary['abstract_classes']:
-            only_latex.append(documentationtools.ReSTHeading(
-                level=3,
-                text='Abstract Classes'
-                ))
-            toc_html = documentationtools.ReSTTOCDirective(
-                options={'maxdepth': 1},
-                )
-            toc_latex = documentationtools.ReSTTOCDirective()
-            for documenter in package_dictionary['abstract_classes']:
-                toc_entry = self._module_name_to_toc_entry(documenter.module_name)
-                toc_html.append(toc_entry)
-                toc_latex.append(toc_entry)
-            only_html.append(toc_html)
-            only_latex.append(toc_latex)
-        if package_dictionary['concrete_classes']:
-            only_latex.append(documentationtools.ReSTHeading(
-                level=3,
-                text='Concrete Classes'
-                ))
-            if package_dictionary['abstract_classes']:
-                only_html.append(documentationtools.ReSTHorizontalRule())
-            toc_html = documentationtools.ReSTTOCDirective(
-                options={'maxdepth': 1},
-                )
-            toc_latex = documentationtools.ReSTTOCDirective()
-            for documenter in package_dictionary['concrete_classes']:
-                toc_entry = self._module_name_to_toc_entry(documenter.module_name)
-                toc_html.append(toc_entry)
-                toc_latex.append(toc_entry)
-            only_html.append(toc_html)
-            only_latex.append(toc_latex)
-        if package_dictionary['functions']:
-            only_latex.append(documentationtools.ReSTHeading(
-                level=3,
-                text='Functions'
-                ))
-            toc_html = documentationtools.ReSTTOCDirective(
-                options={'maxdepth': 1},
-                )
-            toc_latex = documentationtools.ReSTTOCDirective()
-            if package_dictionary['concrete_classes'] or \
-                package_dictionary['abstract_classes']:
-                only_html.append(documentationtools.ReSTHorizontalRule())
-            for documenter in package_dictionary['functions']:
-                toc_entry = self._module_name_to_toc_entry(documenter.module_name)
-                toc_html.append(toc_entry)
-                toc_latex.append(toc_entry)
-            only_html.append(toc_html)
-            only_latex.append(toc_latex)
-        result.extend([only_html, only_latex])
-        return result
-
-    def _module_name_to_toc_entry(self, module_name):
-        parts = module_name.split('.')[self.tools_package_path_index-1:-1]
-        return '/'.join(parts)
-
-    def _sort_modules(self, documenters):
-        package_dictionary = {}
-        tools_package_dictionary = {}
-        for documenter in sorted(documenters, key=lambda x: x.module_name):
-            tools_package_name = documenter.module_name.split('.')[
-                self.tools_package_path_index]
-            tools_package_path = '.'.join(
-                documenter.module_name.split('.')[:self.tools_package_path_index + 1])
-            tools_package_module = importlib.import_module(tools_package_path)
-            if tools_package_name not in tools_package_dictionary:
-                tools_package_dictionary[tools_package_name] = tools_package_path
-            if hasattr(tools_package_module, '_documentation_section'):
-                declared_documentation_section = \
-                    getattr(tools_package_module, '_documentation_section')
-                if declared_documentation_section not in package_dictionary:
-                    package_dictionary[declared_documentation_section] = {}
-                collection = package_dictionary[declared_documentation_section]
-            else:
-                continue
-            if tools_package_module not in collection:
-                collection[tools_package_module] = {
-                    'abstract_classes': [],
-                    'concrete_classes': [],
-                    'functions': []
-                }
-            if isinstance(documenter, ClassDocumenter):
-                if documenter.is_abstract:
-                    collection[tools_package_module][
-                        'abstract_classes'].append(documenter)
-                else:
-                    collection[tools_package_module][
-                        'concrete_classes'].append(documenter)
-            else:
-                collection[tools_package_module]['functions'].append(documenter)
-        return package_dictionary, tools_package_dictionary
-
+#        print
+#        print documenter.module_name
+#        print docs_path
+#        print package_prefix
+        parts = documenter.module_name.replace(
+            package_prefix, '', 1).split('.')
+#        print parts
+        if isinstance(documenter, documentationtools.ToolsPackageDocumenter):
+            parts.append('index.rst')
+        elif isinstance(documenter, (documentationtools.ClassDocumenter,
+            documentationtools.FunctionDocumenter)):
+            parts.pop()
+            parts[-1] += '.rst'
+        parts.insert(0, docs_path)
+        file_path = os.path.join(*parts)
+#        print file_path
+        directory_path = os.path.dirname(file_path)
+        if not os.path.exists(directory_path):
+            os.makedirs(directory_path)
+        documenter.write(file_path, documenter())
 
     ### PUBLIC PROPERTIES ###
 

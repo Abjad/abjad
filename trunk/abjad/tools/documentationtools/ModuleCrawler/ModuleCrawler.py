@@ -13,7 +13,7 @@ class ModuleCrawler(AbjadObject):
 
     __slots__ = (
         '_code_root', 
-        '_ignored_directories', 
+        '_ignored_directory_names', 
         '_root_package_name',
         '_visit_private_modules',
         )
@@ -22,7 +22,7 @@ class ModuleCrawler(AbjadObject):
 
     def __init__(self, 
         code_root='.',
-        ignored_directories=('test', '.svn', '__pycache__'),
+        ignored_directory_names=('test', '.svn', '__pycache__'),
         root_package_name=None,
         visit_private_modules=False,
         ):
@@ -41,7 +41,7 @@ class ModuleCrawler(AbjadObject):
                 root_package_name = parts.pop()
 
         self._code_root = code_root
-        self._ignored_directories = ignored_directories
+        self._ignored_directory_names = ignored_directory_names
         self._root_package_name = root_package_name
         self._visit_private_modules = bool(visit_private_modules)
 
@@ -57,7 +57,7 @@ class ModuleCrawler(AbjadObject):
 
             # filter directories
             for directory in directories[:]:
-                if directory in self.ignored_directories:
+                if directory in self.ignored_directory_names:
                     directories.remove(directory)
                 elif directory.startswith('_') and \
                     not self.visit_private_modules:
@@ -96,8 +96,8 @@ class ModuleCrawler(AbjadObject):
         return self._code_root
 
     @property
-    def ignored_directories(self):
-        return self._ignored_directories
+    def ignored_directory_names(self):
+        return self._ignored_directory_names
 
     @property
     def root_package_name(self):
