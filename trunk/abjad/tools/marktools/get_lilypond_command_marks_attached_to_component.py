@@ -31,11 +31,13 @@ def get_lilypond_command_marks_attached_to_component(component, command_name=Non
     '''
     from abjad.tools import marktools
 
-    result = []
-    for mark in component._start_marks:
-        if isinstance(mark, marktools.LilyPondCommandMark):
-            if mark.command_name == command_name or command_name is None:
-                result.append(mark)
+#    result = []
+#    for mark in component._start_marks:
+#        if isinstance(mark, marktools.LilyPondCommandMark):
+#            if mark.command_name == command_name or command_name is None:
+#                result.append(mark)
+#
+#    result = tuple(result)
+#    return result
 
-    result = tuple(result)
-    return result
+    return component.get_marks(marktools.LilyPondCommandMark)

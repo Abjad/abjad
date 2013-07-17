@@ -93,6 +93,9 @@ Methods
 .. automethod:: experimental.tools.lyrictools.Lyrics.Lyrics.Lyrics.append
    :noindex:
 
+.. automethod:: experimental.tools.lyrictools.Lyrics.Lyrics.Lyrics.detach_marks
+   :noindex:
+
 .. automethod:: experimental.tools.lyrictools.Lyrics.Lyrics.Lyrics.extend
    :noindex:
 

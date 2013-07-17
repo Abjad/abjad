@@ -548,6 +548,16 @@ class Component(AbjadObject):
 
     ### PUBLIC METHODS ###
 
+    def detach_marks(
+        self,
+        mark_classes=None,
+        ):
+        marks = []
+        for mark in self.get_marks(mark_classes=mark_classes):
+            mark.detach()
+            marks.append(mark)
+        return tuple(marks)
+
     def extend_in_parent(
         self,
         new_components,

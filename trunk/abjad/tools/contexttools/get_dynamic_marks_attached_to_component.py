@@ -26,4 +26,6 @@ def get_dynamic_marks_attached_to_component(component):
     '''
     from abjad.tools import contexttools
 
-    return contexttools.get_context_marks_attached_to_component(component, classes=(contexttools.DynamicMark,))
+    #return contexttools.get_context_marks_attached_to_component(component, classes=(contexttools.DynamicMark,))
+
+    return component.get_marks(contexttools.DynamicMark)

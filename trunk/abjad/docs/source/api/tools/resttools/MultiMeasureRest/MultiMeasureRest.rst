@@ -81,6 +81,9 @@ Read/write properties
 Methods
 -------
 
+.. automethod:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.detach_marks
+   :noindex:
+
 .. automethod:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.divide
    :noindex:
 

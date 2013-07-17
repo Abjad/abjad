@@ -81,6 +81,9 @@ Read/write properties
 Methods
 -------
 
+.. automethod:: experimental.tools.lyrictools.LyricExtender.LyricExtender.LyricExtender.detach_marks
+   :noindex:
+
 .. automethod:: experimental.tools.lyrictools.LyricExtender.LyricExtender.LyricExtender.extend_in_parent
    :noindex:
 

@@ -28,4 +28,6 @@ def get_instrument_marks_attached_to_component(component):
     '''
     from abjad.tools import contexttools
 
-    return contexttools.get_context_marks_attached_to_component(component, classes=(contexttools.InstrumentMark,))
+    #return contexttools.get_context_marks_attached_to_component(component, classes=(contexttools.InstrumentMark,))
+
+    return component.get_marks(contexttools.InstrumentMark)

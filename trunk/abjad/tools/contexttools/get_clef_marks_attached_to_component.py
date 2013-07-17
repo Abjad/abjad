@@ -27,4 +27,5 @@ def get_clef_marks_attached_to_component(component):
     '''
     from abjad.tools import contexttools
 
-    return contexttools.get_context_marks_attached_to_component(component, classes=(contexttools.ClefMark,))
+    #return contexttools.get_context_marks_attached_to_component(component, classes=(contexttools.ClefMark,))
+    return component.get_marks(contexttools.ClefMark)

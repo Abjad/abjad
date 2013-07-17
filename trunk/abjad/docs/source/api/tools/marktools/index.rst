@@ -51,7 +51,6 @@ Functions
    ~abjad.tools.marktools.get_lilypond_comment_attached_to_component.get_lilypond_comment_attached_to_component
    ~abjad.tools.marktools.get_lilypond_comments_attached_to_component.get_lilypond_comments_attached_to_component
    ~abjad.tools.marktools.get_mark_attached_to_component.get_mark_attached_to_component
-   ~abjad.tools.marktools.get_marks_attached_to_component.get_marks_attached_to_component
    ~abjad.tools.marktools.get_marks_attached_to_components_in_expr.get_marks_attached_to_components_in_expr
    ~abjad.tools.marktools.get_noncontext_mark_attached_to_component.get_noncontext_mark_attached_to_component
    ~abjad.tools.marktools.get_noncontext_marks_attached_to_component.get_noncontext_marks_attached_to_component

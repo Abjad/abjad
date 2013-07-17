@@ -8,7 +8,7 @@ def test_BendAfter_format_01():
     t = Note("cs'4")
     marktools.BendAfter(8)(t)
     assert t.lilypond_format == "cs'4 - \\bendAfter #'8.0"
-    marktools.detach_articulations_attached_to_component(t)
+    t.detach_marks(marktools.BendAfter)
     assert t.lilypond_format == "cs'4"
 
 
@@ -19,7 +19,7 @@ def test_BendAfter_format_02():
     t = Chord([1, 2, 3], (1, 4))
     marktools.BendAfter(8)(t)
     assert t.lilypond_format == "<cs' d' ef'>4 - \\bendAfter #'8.0"
-    marktools.detach_articulations_attached_to_component(t)
+    t.detach_marks(marktools.BendAfter)
     assert t.lilypond_format == "<cs' d' ef'>4"
 
 
@@ -30,5 +30,5 @@ def test_BendAfter_format_03():
     t = Rest((1, 4))
     marktools.BendAfter(8)(t)
     assert t.lilypond_format == "r4 - \\bendAfter #'8.0"
-    marktools.detach_articulations_attached_to_component(t)
+    t.detach_marks(marktools.BendAfter)
     assert t.lilypond_format == "r4"

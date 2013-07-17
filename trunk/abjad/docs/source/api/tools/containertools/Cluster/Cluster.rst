@@ -73,6 +73,9 @@ Methods
 .. automethod:: abjad.tools.containertools.Cluster.Cluster.Cluster.append
    :noindex:
 
+.. automethod:: abjad.tools.containertools.Cluster.Cluster.Cluster.detach_marks
+   :noindex:
+
 .. automethod:: abjad.tools.containertools.Cluster.Cluster.Cluster.extend
    :noindex:
 

@@ -26,11 +26,13 @@ def get_stem_tremolos_attached_to_component(component, tremolo_flags=None):
     '''
     from abjad.tools import marktools
 
-    result = []
-    for mark in component._start_marks:
-        if isinstance(mark, marktools.StemTremolo):
-            if tremolo_flags is None or mark.tremolo_flags == tremolo_flags:
-                result.append(mark)
+#    result = []
+#    for mark in component._start_marks:
+#        if isinstance(mark, marktools.StemTremolo):
+#            if tremolo_flags is None or mark.tremolo_flags == tremolo_flags:
+#                result.append(mark)
+#
+#    result = tuple(result)
+#    return result
 
-    result = tuple(result)
-    return result
+    return component.get_marks(marktools.StemTremolo)

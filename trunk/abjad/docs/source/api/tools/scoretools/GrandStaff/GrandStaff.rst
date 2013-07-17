@@ -95,6 +95,9 @@ Methods
 .. automethod:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.append
    :noindex:
 
+.. automethod:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.detach_marks
+   :noindex:
+
 .. automethod:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.extend
    :noindex:
 

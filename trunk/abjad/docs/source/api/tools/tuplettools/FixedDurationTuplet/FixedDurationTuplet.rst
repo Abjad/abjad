@@ -114,6 +114,9 @@ Methods
 .. automethod:: abjad.tools.tuplettools.FixedDurationTuplet.FixedDurationTuplet.FixedDurationTuplet.append
    :noindex:
 
+.. automethod:: abjad.tools.tuplettools.FixedDurationTuplet.FixedDurationTuplet.FixedDurationTuplet.detach_marks
+   :noindex:
+
 .. automethod:: abjad.tools.tuplettools.FixedDurationTuplet.FixedDurationTuplet.FixedDurationTuplet.extend
    :noindex:
 

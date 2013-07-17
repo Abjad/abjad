@@ -1194,7 +1194,6 @@ Core composition packages
       tools/marktools/get_lilypond_comment_attached_to_component
       tools/marktools/get_lilypond_comments_attached_to_component
       tools/marktools/get_mark_attached_to_component
-      tools/marktools/get_marks_attached_to_component
       tools/marktools/get_marks_attached_to_components_in_expr
       tools/marktools/get_noncontext_mark_attached_to_component
       tools/marktools/get_noncontext_marks_attached_to_component
@@ -1260,7 +1259,6 @@ Core composition packages
       tools/marktools/get_lilypond_comment_attached_to_component
       tools/marktools/get_lilypond_comments_attached_to_component
       tools/marktools/get_mark_attached_to_component
-      tools/marktools/get_marks_attached_to_component
       tools/marktools/get_marks_attached_to_components_in_expr
       tools/marktools/get_noncontext_mark_attached_to_component
       tools/marktools/get_noncontext_marks_attached_to_component

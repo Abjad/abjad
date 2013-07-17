@@ -139,40 +139,6 @@ def test_Component_detach_marks_07():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     slur = spannertools.SlurSpanner(staff.select_leaves())
-    marktools.LilyPondCommandMark('slurDotted')(staff[0])
-    marktools.LilyPondCommandMark('slurUp')(staff[0])
-
-    r'''
-    \new Staff {
-        \slurDotted
-        \slurUp
-        c'8 (
-        d'8
-        e'8
-        f'8 )
-    }
-    '''
-
-    marktools.detach_lilypond_command_marks_attached_to_component(staff[0], 'slurDotted')
-
-    r'''
-    \new Staff {
-        \slurUp
-        c'8 (
-        d'8
-        e'8
-        f'8 )
-    }
-    '''
-
-    assert wellformednesstools.is_well_formed_component(staff)
-    assert staff.lilypond_format == "\\new Staff {\n\t\\slurUp\n\tc'8 (\n\td'8\n\te'8\n\tf'8 )\n}"
-
-
-def test_Component_detach_marks_08():
-
-    staff = Staff("c'8 d'8 e'8 f'8")
-    slur = spannertools.SlurSpanner(staff.select_leaves())
     marktools.LilyPondComment('comment 1')(staff[0])
     marktools.LilyPondComment('comment 2')(staff[0])
 
@@ -202,7 +168,7 @@ def test_Component_detach_marks_08():
     assert staff.lilypond_format == "\\new Staff {\n\tc'8 (\n\td'8\n\te'8\n\tf'8 )\n}"
 
 
-def test_Component_detach_marks_09():
+def test_Component_detach_marks_08():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     slur = spannertools.SlurSpanner(staff.select_leaves())
@@ -217,7 +183,7 @@ def test_Component_detach_marks_09():
     assert len(marks) == 0
 
 
-def test_Component_detach_marks_10():
+def test_Component_detach_marks_09():
 
     staff = Staff("c'4 \staccato d' \marcato e' \staccato f' \marcato")
     assert len(marktools.get_marks_attached_to_components_in_expr(staff)) == 4
@@ -232,7 +198,7 @@ def test_Component_detach_marks_10():
     assert not len(staff.get_marks())
 
 
-def test_Component_detach_marks_11():
+def test_Component_detach_marks_10():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     contexttools.TimeSignatureMark((2, 4))(staff[0])
@@ -263,7 +229,7 @@ def test_Component_detach_marks_11():
     assert staff.lilypond_format == "\\new Staff {\n\t\\time 2/4\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
-def test_Component_detach_marks_12():
+def test_Component_detach_marks_11():
 
     note = Note("c'4")
     stem_tremolo = marktools.StemTremolo(16)(note)

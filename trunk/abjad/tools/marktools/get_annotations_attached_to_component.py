@@ -28,10 +28,12 @@ def get_annotations_attached_to_component(component):
     '''
     from abjad.tools import marktools
 
-    result = []
-    for mark in component._start_marks:
-        if isinstance(mark, marktools.Annotation):
-            result.append(mark)
+#    result = []
+#    for mark in component._start_marks:
+#        if isinstance(mark, marktools.Annotation):
+#            result.append(mark)
+#
+#    result = tuple(result)
+#    return result
 
-    result = tuple(result)
-    return result
+    return component.get_marks(marktools.Annotation)

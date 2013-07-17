@@ -98,6 +98,9 @@ Read/write properties
 Methods
 -------
 
+.. automethod:: abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.detach_marks
+   :noindex:
+
 .. automethod:: abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.divide
    :noindex:
 
