@@ -19,7 +19,7 @@ def test_marktools_get_lilypond_command_marks_attached_to_component_01():
     }
     '''
 
-    marks = marktools.get_lilypond_command_marks_attached_to_component(staff[0])
+    marks = staff[0].get_marks(marktools.LilyPondCommandMark)
 
     assert lilypond_command_mark_1 in marks
     assert lilypond_command_mark_2 in marks

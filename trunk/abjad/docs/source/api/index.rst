@@ -1188,7 +1188,6 @@ Core composition packages
       tools/marktools/get_annotation_attached_to_component
       tools/marktools/get_articulation_attached_to_component
       tools/marktools/get_lilypond_command_mark_attached_to_component
-      tools/marktools/get_lilypond_command_marks_attached_to_component
       tools/marktools/get_lilypond_comment_attached_to_component
       tools/marktools/get_lilypond_comments_attached_to_component
       tools/marktools/get_mark_attached_to_component
@@ -1251,7 +1250,6 @@ Core composition packages
       tools/marktools/get_annotation_attached_to_component
       tools/marktools/get_articulation_attached_to_component
       tools/marktools/get_lilypond_command_mark_attached_to_component
-      tools/marktools/get_lilypond_command_marks_attached_to_component
       tools/marktools/get_lilypond_comment_attached_to_component
       tools/marktools/get_lilypond_comments_attached_to_component
       tools/marktools/get_mark_attached_to_component

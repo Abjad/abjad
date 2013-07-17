@@ -42,8 +42,7 @@ def detach_lilypond_command_marks_attached_to_component(component, command_name=
     from abjad.tools import marktools
 
     marks = []
-    for mark in marktools.get_lilypond_command_marks_attached_to_component(
-        component, command_name = command_name):
+    for mark in component.get_marks(marktools.LilyPondCommandMark):
         mark.detach()
         marks.append(mark)
     return tuple(marks)

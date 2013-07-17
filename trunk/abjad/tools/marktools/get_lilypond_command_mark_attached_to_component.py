@@ -31,7 +31,7 @@ def get_lilypond_command_mark_attached_to_component(component):
     '''
     from abjad.tools import marktools
 
-    lilypond_command_marks = marktools.get_lilypond_command_marks_attached_to_component(component)
+    lilypond_command_marks = component.get_marks(marktools.LilyPondCommandMark)
     if not lilypond_command_marks:
         raise MissingMarkError
     elif 1 < len(lilypond_command_marks):

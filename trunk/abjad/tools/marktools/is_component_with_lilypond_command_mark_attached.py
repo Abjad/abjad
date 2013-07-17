@@ -33,8 +33,7 @@ def is_component_with_lilypond_command_mark_attached(expr, command_name=None):
     from abjad.tools import marktools
 
     if isinstance(expr, componenttools.Component):
-        for mark in marktools.get_lilypond_command_marks_attached_to_component(expr):
+        for mark in expr.get_marks(marktools.LilyPondCommandMark):
             if mark.command_name == command_name or command_name is None:
                 return True
-
     return False

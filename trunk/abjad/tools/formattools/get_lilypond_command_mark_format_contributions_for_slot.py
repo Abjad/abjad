@@ -8,8 +8,8 @@ def get_lilypond_command_mark_format_contributions_for_slot(component, slot):
     from abjad.tools import marktools
 
     result = []
-    comment_marks = marktools.get_lilypond_command_marks_attached_to_component(component)
-    for comment_mark in comment_marks:
-        if comment_mark._format_slot == slot:
-            result.append(comment_mark.lilypond_format)
+    command_marks = component.get_marks(marktools.LilyPondCommandMark)
+    for command_mark in command_marks:
+        if command_mark._format_slot == slot:
+            result.append(command_mark.lilypond_format)
     return ['lilypond command marks', result]
