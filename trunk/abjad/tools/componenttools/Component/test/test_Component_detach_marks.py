@@ -94,11 +94,12 @@ def test_Component_detach_marks_05():
     slur = spannertools.SlurSpanner(staff.select_leaves())
     marktools.Articulation('^')(staff[0])
     marktools.Articulation('.')(staff[0])
-    articulations = marktools.get_articulations_attached_to_component(staff[0])
+
+    articulations = staff[0].get_marks(marktools.Articulation)
     assert len(articulations) == 2
 
     marktools.detach_articulations_attached_to_component(staff[0])
-    articulations = marktools.get_articulations_attached_to_component(staff[0])
+    articulations = staff[0].get_marks(marktools.Articulation)
     assert len(articulations) == 0
 
 

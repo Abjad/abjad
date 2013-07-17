@@ -8,7 +8,7 @@ def get_articulation_format_contributions(component):
     from abjad.tools import marktools
 
     result = []
-    articulations = marktools.get_articulations_attached_to_component(component)
+    articulations = component.get_marks(marktools.Articulation)
     for articulation in articulations:
         result.append(articulation.lilypond_format)
     result.sort()

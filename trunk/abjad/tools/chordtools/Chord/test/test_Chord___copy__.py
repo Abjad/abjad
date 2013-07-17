@@ -84,7 +84,7 @@ def test_Chord___copy___05():
     assert chord_1.lilypond_format == chord_2.lilypond_format
     assert chord_1 is not chord_2
 
-    articulation_2 = marktools.get_articulations_attached_to_component(chord_2)[0]
+    articulation_2 = chord_2.get_marks(marktools.Articulation)[0]
     assert articulation_1 == articulation_2
     assert articulation_1 is not articulation_2
 

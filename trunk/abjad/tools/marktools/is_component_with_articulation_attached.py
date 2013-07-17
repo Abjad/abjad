@@ -33,7 +33,7 @@ def is_component_with_articulation_attached(expr, articulation_name=None):
     from abjad.tools import marktools
 
     if isinstance(expr, componenttools.Component):
-        for articulation in marktools.get_articulations_attached_to_component(expr):
+        for articulation in expr.get_marks(marktools.Articulation):
             if articulation.name == articulation_name or articulation_name is None:
                 return True
 

@@ -22,7 +22,7 @@ def detach_articulations_attached_to_component(component):
 
     ::
 
-        >>> marktools.get_articulations_attached_to_component(staff[0])
+        >>> staff[0].get_marks(marktools.Articulation)
         (Articulation('^')(c'8), Articulation('.')(c'8))
 
     ::
@@ -32,7 +32,7 @@ def detach_articulations_attached_to_component(component):
 
     ::
 
-        >>> marktools.get_articulations_attached_to_component(staff[0])
+        >>> staff[0].get_marks(marktools.Articulation)
         ()
 
     Return tuple or zero or more articulations detached.
@@ -40,7 +40,7 @@ def detach_articulations_attached_to_component(component):
     from abjad.tools import marktools
 
     articulations = []
-    for articulation in marktools.get_articulations_attached_to_component(component):
+    for articulation in component.get_marks(marktools.Articulation):
         articulation.detach()
         articulations.append(articulation)
 

@@ -30,7 +30,7 @@ def get_articulation_attached_to_component(component):
     '''
     from abjad.tools import marktools
 
-    articulations = marktools.get_articulations_attached_to_component(component)
+    articulations = component.get_marks(marktools.Articulation)
     if not articulations:
         raise MissingMarkError
     elif 1 < len(articulations):
